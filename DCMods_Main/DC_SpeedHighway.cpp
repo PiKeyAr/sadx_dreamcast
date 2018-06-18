@@ -17,6 +17,7 @@
 FunctionPointer(void, sub_409E70, (NJS_MODEL_SADX *a1, int a2, float a3), 0x409E70);
 FunctionPointer(long double, sub_49CC70, (float a1, float a2, float a3), 0x49CC70);
 FunctionPointer(void, sub_408530, (NJS_OBJECT *obj), 0x408530);
+FunctionPointer(void, sub_407FC0, (NJS_MODEL_SADX *a1, int blend), 0x407FC0);
 
 static int RocketAlpha = 255;
 static int AntennaAlpha = 255;
@@ -128,9 +129,8 @@ static void __cdecl FountainDisplay_r(ObjectMaster *a1)
 	{
 		njSetTexture((NJS_TEXLIST*)0x10F30A0);
 		njPushMatrix(0);
-		DrawQueueDepthBias = -37952.0f;
-		ProcessModelNode(&objectSTG04_00133AD8, QueuedModelFlagsB_EnableZWrite, 1.0f);
-		DrawQueueDepthBias = 0;
+		njTranslate(0, objectSTG04_00133AD8.pos[0], objectSTG04_00133AD8.pos[1], objectSTG04_00133AD8.pos[2]);
+		sub_407FC0(&attachSTG04_00133AB0, 4);
 		njPopMatrix(1u);
 	}
 	original(a1);
