@@ -32,7 +32,6 @@ static bool WhiteSonic = false;
 FunctionPointer(void, sub_5DD900, (int a1, int a2), 0x5DD900);
 FunctionPointer(void, sub_5DD920, (int a1, int a2), 0x5DD920);
 FunctionPointer(void, sub_5D04C0, (ObjectMaster *a1), 0x5D04C0);
-FunctionPointer(double, sub_789320, (float a2), 0x789320);
 FunctionPointer(void, sub_5C09D0, (int a1), 0x5C09D0);
 FunctionPointer(void, sub_405450, (NJS_ACTION *a1, float frame, float scale), 0x405450);
 FunctionPointer(bool, IsVisible2, (NJS_VECTOR *center, float radius), 0x00403330);
@@ -208,14 +207,14 @@ void __cdecl sub_5D0560(ObjectMaster *obj)
 			}
 			DisplayDebugString(1179667, v4);
 			DisplayDebugString(1179668, "RotSpd:");
-			v5 = sub_789320(v1->Scale.y);
+			v5 = fabs(v1->Scale.y);
 			PrintDebugNumber(1703956, (unsigned __int64)v5, 4);
 		}
 		else
 		{
 			AddToCollisionList(v1);
 			v6 = dword_1E77568;
-			sub_789320(v1->Scale.y);
+			fabs(v1->Scale.y);
 			++v1->InvulnerableTime;
 			((short *)&v1->CharIndex)[0] = v6;
 		}
@@ -263,14 +262,14 @@ void __cdecl sub_5D0560_KazB(ObjectMaster *obj)
 			}
 			DisplayDebugString(1179667, v4);
 			DisplayDebugString(1179668, "RotSpd:");
-			v5 = sub_789320(v1->Scale.y);
+			v5 = fabs(v1->Scale.y);
 			PrintDebugNumber(1703956, (unsigned __int64)v5, 4);
 		}
 		else
 		{
 			AddToCollisionList(v1);
 			v6 = dword_1E77568;
-			sub_789320(v1->Scale.y);
+			fabs(v1->Scale.y);
 			++v1->InvulnerableTime;
 			((short *)&v1->CharIndex)[0] = v6;
 		}
