@@ -24,6 +24,7 @@ NJS_SPRITE Heat2Sprite = { { 0, 0, 0 }, 1.0f, 1.0f, 0, (NJS_TEXLIST*)0x0091BD28,
 
 DataPointer(NJS_OBJECT, stru_8B22F4, 0x8B22F4);
 DataPointer(NJS_MATRIX, nj_unit_matrix_, 0x389D650);
+FunctionPointer(void, BarrierChild, (ObjectMaster *a1), 0x4BA1E0);
 FunctionPointer(void, sub_4083D0, (NJS_ACTION *a1, float a2, int a3), 0x4083D0);
 FunctionPointer(EntityData1*, sub_4B9430, (NJS_VECTOR *a1, NJS_VECTOR *a2, float a3), 0x4B9430);
 FunctionPointer(void, sub_436550, (), 0x436550);
@@ -661,13 +662,16 @@ static Sint32 __cdecl DisplayTitleCard_r()
 void DrawUnderwaterOverlay(NJS_MATRIX_PTR m)
 {
 	NJS_COLOR WaterOverlay_Colors;
-	njPushMatrix(m);
-	njColorBlendingMode(0, NJD_COLOR_BLENDING_SRCALPHA);
-	njColorBlendingMode(NJD_DESTINATION_COLOR, NJD_COLOR_BLENDING_ONE);
-	WaterOverlay_Colors.color = 0x1E0008FF;
-	DrawRect_Queue(0.0, 0.0, HorizontalResolution, VerticalResolution, 22041.496f, WaterOverlay_Colors.argb.b | ((WaterOverlay_Colors.argb.g | (*(unsigned __int16 *)&WaterOverlay_Colors.argb.r << 8)) << 8), QueuedModelFlagsB_EnableZWrite);
-	njColorBlendingMode(0, NJD_COLOR_BLENDING_SRCALPHA);
-	njColorBlendingMode(NJD_DESTINATION_COLOR, NJD_COLOR_BLENDING_INVSRCALPHA);
+	if (CurrentLevel != 9)
+	{
+		njPushMatrix(m);
+		njColorBlendingMode(0, NJD_COLOR_BLENDING_SRCALPHA);
+		njColorBlendingMode(NJD_DESTINATION_COLOR, NJD_COLOR_BLENDING_ONE);
+		WaterOverlay_Colors.color = 0x1E0008FF;
+		DrawRect_Queue(0.0, 0.0, HorizontalResolution, VerticalResolution, 22041.496f, WaterOverlay_Colors.argb.b | ((WaterOverlay_Colors.argb.g | (*(unsigned __int16 *)&WaterOverlay_Colors.argb.r << 8)) << 8), QueuedModelFlagsB_EnableZWrite);
+		njColorBlendingMode(0, NJD_COLOR_BLENDING_SRCALPHA);
+		njColorBlendingMode(NJD_DESTINATION_COLOR, NJD_COLOR_BLENDING_INVSRCALPHA);
+	}
 }
 
 void FPSLockHook(int a1)
@@ -706,8 +710,6 @@ void __cdecl sub_4B9CE0(EntityData1 *a1, EntityData1 *a2)
 	njCalcPoint(0, &a2a, &v2->Position);
 	njPopMatrix(1u);
 }
-
-FunctionPointer(void, BarrierChild, (ObjectMaster *a1), 0x4BA1E0);
 
 void __cdecl Barrier_MainX(ObjectMaster *a1)
 {

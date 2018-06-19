@@ -18,7 +18,6 @@ FunctionPointer(void, sub_407A00, (NJS_MODEL_SADX *model, float a2), 0x407A00);
 FunctionPointer(void, sub_405450, (NJS_ACTION *a1, float frame, float scale), 0x405450);
 FunctionPointer(void, sub_5ADCF0, (), 0x5ADCF0);
 
-
 static int cylinderframe = 0;
 float OFunAnimationSpeedOverride = 0.25f; //Floating Fan Animation Speed Tweak
 SETObjData setdata_fe = {};

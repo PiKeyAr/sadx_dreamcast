@@ -11,8 +11,6 @@ struct __declspec(align(2)) ObjectThingC
 	void(__cdecl *function)(NJS_OBJECT *);
 };
 
-
-
 FunctionPointer(void, sub_61D4E0, (ObjectMaster *a1), 0x61D4E0);
 FunctionPointer(void, sub_61D1F0, (ObjectMaster *a1), 0x61D1F0);
 FunctionPointer(void, sub_4BA5D0, (NJS_OBJECT *a1, ObjectThingC *a2), 0x4BA5D0);

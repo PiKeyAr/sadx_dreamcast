@@ -75,7 +75,6 @@ FunctionPointer(void, sub_4B9540, (NJS_VECTOR *position, NJS_VECTOR *scale_v, fl
 FunctionPointer(void, sub_408530, (NJS_OBJECT *o), 0x408530);
 FunctionPointer(void, sub_570900, (int a1, int a2), 0x570900);
 FunctionPointer(void, sub_407BB0, (NJS_MODEL_SADX *a1, QueuedModelFlagsB queueFlags), 0x407BB0);
-FunctionPointer(void, sub_56FC30, (int a1, int a2, float a3), 0x56FC30);
 FunctionPointer(void, sub_568EC0, (EntityData1 *a1), 0x568EC0);
 FunctionPointer(void, sub_4CACF0, (NJS_VECTOR *a1, float a2), 0x4CACF0);
 FunctionPointer(void, sub_77E940, (FVFStruct_H_B *a1, signed int count, int a3), 0x77E940);

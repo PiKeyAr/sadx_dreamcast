@@ -5,10 +5,11 @@
 #include "LostWorld_objects.h"
 
 DataPointer(float, CurrentDrawDist, 0x03ABDC74);
+DataPointer(NJS_MODEL_SADX, Hasira1Model, 0x2004E80);
 
 static int animw1 = 44;
 static int animw2 = 81;
-DataPointer(NJS_MODEL_SADX, Hasira1Model, 0x2004E80);
+
 
 NJS_MATERIAL* ObjectSpecular_LostWorld[] = {
 	//OSuimen

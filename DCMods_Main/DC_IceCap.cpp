@@ -13,7 +13,6 @@ DataPointer(NJS_ACTION, stru_E758E4, 0xE758E4);
 DataPointer(NJS_OBJECT, stru_E76598, 0xE76598);
 DataPointer(NJS_OBJECT, stru_E76E78, 0xE76E78);
 DataPointer(NJS_OBJECT, stru_E773D8, 0xE773D8);
-
 DataArray(FogData, IceCap1Fog, 0x00C67EA0, 3);
 DataArray(FogData, IceCap2Fog, 0x00C67ED0, 3);
 DataArray(FogData, IceCap3Fog, 0x00C67F00, 3);
@@ -21,9 +20,7 @@ DataArray(FogData, IceCap4Fog, 0x00C67F30, 3);
 DataArray(DrawDistance, DrawDist_IceCap1, 0x00C67E40, 3);
 DataArray(DrawDistance, DrawDist_IceCap2, 0x00C67E58, 3);
 DataArray(DrawDistance, DrawDist_IceCap3, 0x00C67E70, 3);
-
 FunctionPointer(void, sub_405450, (NJS_ACTION *a1, float frame, float scale), 0x405450);
-FunctionPointer(void, sub_4BAD80, (NJS_VECTOR *a1, NJS_VECTOR *a2, int a3, signed int a4), 0x4BAD80);
 
 static int animframe = 41;
 
@@ -135,13 +132,6 @@ void __cdecl sub_4EF5A0X(ObjectMaster *a1)
 	}
 }
 
-void CrystalParticle(NJS_VECTOR *a1, NJS_VECTOR *a2, int a3, signed int a4)
-{
-	ParticleDepthOverride = 26000.0f;
-	sub_4BAD80(a1, a2, a3, a4);
-	ParticleDepthOverride = 0;
-}
-
 void __cdecl FixedAvalanche(ObjectMaster *a1)
 {
 	EntityData1 *v1; // esi
@@ -223,7 +213,6 @@ void IceCap_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 	WriteData((LandTable**)0x97DB0C, &landtable_00015714);
 	WriteData((LandTable**)0x97DB10, &landtable_000180B4);
 	//Crystal fixes, hopefully someday
-	//WriteCall((void*)0x004EF79E, CrystalParticle);
 	//stru_E76598.basicdxmodel->mats[0].attrflags |= NJD_FLAG_USE_ALPHA;
 	//stru_E76598.basicdxmodel->mats[1].attrflags |= NJD_FLAG_USE_ALPHA;
 	//stru_E76598.basicdxmodel->mats[2].attrflags |= NJD_FLAG_USE_ALPHA;

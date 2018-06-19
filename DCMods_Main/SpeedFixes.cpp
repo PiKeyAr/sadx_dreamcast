@@ -151,7 +151,6 @@ void __cdecl Fuse_Fixed(ObjectMaster *a1)
 	float v22; // [esp+18h] [ebp+4h]
 	float v23; // [esp+18h] [ebp+4h]
 	float v24; // [esp+18h] [ebp+4h]
-
 	v1 = a1->Data1;
 	v2 = v1->InvulnerableTime;
 	if (FrameCounter % 2 == 0)

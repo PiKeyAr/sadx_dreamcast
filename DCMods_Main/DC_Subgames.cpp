@@ -704,7 +704,7 @@ void Subgames_Init(const IniFile *config, const HelperFunctions &helperFunctions
 		ReplacePVR("ST_064S_LOCKC");
 		ReplacePVR("STG_S_LOCKMK");
 	}
-	// Load configuration settings.
+	//Load configuration settings
 	EnableTwinkleCircuit = config->getBool("Miscellaneous", "EnableTwinkleCircuit", true);
 	EnableSandHill = config->getBool("Miscellaneous", "EnableSandHill", true);
 	EnableSkyChaseEnemyModels = config->getBool("Miscellaneous", "EnableSkyChaseEnemyModels", true);

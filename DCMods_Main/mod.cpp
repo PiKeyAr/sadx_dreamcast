@@ -68,14 +68,13 @@ extern "C"
 {
 	__declspec(dllexport) void __cdecl Init(const char *path, const HelperFunctions &helperFunctions)
 	{
-		// Check which DLLs are loaded.
+		//Check which DLLs are loaded
 		DLLLoaded_HDGUI    = (GetModuleHandle(L"HD_GUI.dll") != nullptr);
 		DLLLoaded_SA1Chars = (GetModuleHandle(L"SA1_Chars.dll") != nullptr);
 		DLLLoaded_Lantern  = (GetModuleHandle(L"sadx-dc-lighting.dll") != nullptr);
 		DLLLoaded_DLCs     = (GetModuleHandle(L"DLCs_Main.dll") != nullptr);
 		DLLLoaded_SADXFE   = (GetModuleHandle(L"sadx-fixed-edition.dll") != nullptr);
 		HMODULE WaterEffect = GetModuleHandle(L"WaterEffect");
-
 		//Error messages
 		if (helperFunctions.Version < 7)
 		{
@@ -84,8 +83,7 @@ extern "C"
 				L"DC Conversion error: Mod loader out of date", MB_OK | MB_ICONERROR);
 			return;
 		}
-
-		// Check for old mod DLLs.
+		//Check for old mod DLLs
 		std::wstring OldModsMessage = L"Old/incompatible mods detected!\n\n"
 			L"The following mods are outdated and will cause "
 			L"problems if you leave them enabled. These mods are "
@@ -98,13 +96,12 @@ extern "C"
 		{
 			if (GetModuleHandle(OldModDLLs[i]) != nullptr)
 			{
-				// Found a known incompatible mod.
+				//Found a known incompatible mod
 				OldModsMessage += OldModDLLs[i];
 				OldModsMessage += '\n';
 				OldModsFound = true;
 			}
 		}
-
 		if (OldModsFound)
 		{
 			MessageBox(WindowHandle, OldModsMessage.c_str(),
@@ -112,10 +109,8 @@ extern "C"
 				MB_OK | MB_ICONERROR);
 			return;
 		}
-
 		const std::string s_path(path);
 		const std::string s_config_ini(s_path + "\\config.ini");
-
 		//Config stuff
 		const IniFile *const config = new IniFile(s_config_ini);
 		//Read config stuff for levels and branding
@@ -150,7 +145,6 @@ extern "C"
 			EnableSETFixes = SETFixes_Normal;
 		else if (EnableSETFixes_String == "Extra")
 			EnableSETFixes = SETFixes_Extra;
-
 		//Set window title
 		if (EnableWindowTitle) helperFunctions.SetWindowTitle("Sonic Adventure");
 		//Another error message
@@ -192,9 +186,9 @@ extern "C"
 		General_Init(config, helperFunctions);
 		if (!DisableAllVideoStuff) Videos_Init(config, helperFunctions);
 		if (EnableSpeedFixes) SpeedFixes_Init();
-
 		delete config;
 	}
+
 	__declspec(dllexport) void __cdecl OnFrame()
 	{
 		if (EnableDCBranding) Branding_OnFrame();
@@ -221,15 +215,18 @@ extern "C"
 		if (EnableSpeedFixes) SpeedFixes_OnFrame();
 		SADXStyleWater_OnFrame();
 	}
+
 	__declspec(dllexport) void __cdecl OnInput()
 	{
 		if (!DisableAllVideoStuff) Videos_OnInput();
 		if (CutsceneSkipMode != 3) General_OnInput();
 	}
-	_declspec(dllexport) void __cdecl OnRenderDeviceReset()
+
+	__declspec(dllexport) void __cdecl OnRenderDeviceReset()
 	{
 		SkyChaseFix_UpdateBounds();
 		Branding_SetUpVariables();
 	}
+
 	__declspec(dllexport) ModInfo SADXModInfo = { ModLoaderVer };
 }

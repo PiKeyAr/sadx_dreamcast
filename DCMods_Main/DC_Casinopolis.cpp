@@ -32,13 +32,9 @@ static bool WhiteSonic = false;
 FunctionPointer(void, sub_5DD900, (int a1, int a2), 0x5DD900);
 FunctionPointer(void, sub_5DD920, (int a1, int a2), 0x5DD920);
 FunctionPointer(void, sub_5D04C0, (ObjectMaster *a1), 0x5D04C0);
-FunctionPointer(void, sub_5C09D0, (int a1), 0x5C09D0);
+FunctionPointer(Sint32, sub_5C09D0, (int a1), 0x5C09D0);
 FunctionPointer(void, sub_405450, (NJS_ACTION *a1, float frame, float scale), 0x405450);
-FunctionPointer(bool, IsVisible2, (NJS_VECTOR *center, float radius), 0x00403330);
-FunctionPointer(void, sub_5D4230, (int a1, int a2, int a3, float a4), 0x5D4230);
 FunctionPointer(int, sub_5D4600, (int a1, int a2, float a3, int a4), 0x5D4600);
-FunctionPointer(int, sub_5D4300, (int result, float a2), 0x5D4300);
-FunctionPointer(void, sub_407870, (NJS_MODEL_SADX *model, char blend, float radius_scale), 0x407870);
 FunctionPointer(void, sub_405490, (NJS_ACTION *a1, float a2, int a3, int a4), 0x405490);
 FunctionPointer(void, sub_407A00, (NJS_MODEL_SADX *model, float a2), 0x407A00);
 FunctionPointer(void, sub_4053A0, (void *a1, int a2, float a3, int a4, int a5), 0x4053A0);
@@ -498,7 +494,7 @@ void __cdecl OLhtr_Display(ObjectMaster *a1)
 	int v4; // eax@7
 	int v5;
 	v1 = a1->Data1;
-	if (!ClipObject(a1, 360010.0) && IsVisible2(&v1->Position, 30.0))
+	if (!ClipObject(a1, 360010.0) && IsVisible(&v1->Position, 30.0f))
 	{
 		sub_5DD900(12 * (v1->Action == 0) + 31940064, 1);
 		sub_5C09D0(12);
@@ -535,7 +531,7 @@ void __cdecl OLhtg_Display(ObjectMaster *a1)
 	int v4; // eax@7
 	int v5;
 	v1 = a1->Data1;
-	if (!ClipObject(a1, 360010.0) && IsVisible2(&v1->Position, 105.0))
+	if (!ClipObject(a1, 360010.0) && IsVisible(&v1->Position, 105.0f))
 	{
 		sub_5DD900(12 * (v1->Action == 0) + 31940040, 1);
 		sub_5C09D0(12);

@@ -5,7 +5,6 @@
 #include "RM_Objects.h"
 
 DataPointer(float, CurrentDrawDistance, 0x03ABDC74);
-FunctionPointer(double, sub_789320, (float), 0x789320);
 FunctionPointer(void, sub_600BF0, (ObjectMaster *a1, NJS_OBJECT *a2), 0x600BF0);
 static int UVShift1 = 0;
 static int UVShift2 = 0;

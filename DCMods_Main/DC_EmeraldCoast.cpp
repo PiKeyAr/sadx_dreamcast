@@ -39,7 +39,6 @@ DataPointer(float, flt_7E00DC, 0x7E00DC);
 DataPointer(float, flt_7DF1B0, 0x7DF1B0);
 DataPointer(int, EffectActive, 0x3C5E4B0);
 FunctionPointer(void, DrawEmeraldCoastOcean, (OceanData *x), 0x004F8A30);
-FunctionPointer(double, sub_789320, (float a2), 0x789320);
 
 int roundfloat(float r) {
 	return (r > 0.0) ? (r + 0.5) : (r - 0.5);
