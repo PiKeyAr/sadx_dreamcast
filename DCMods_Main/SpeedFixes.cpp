@@ -9,6 +9,7 @@ FunctionPointer(void, CreateFireParticle, (NJS_VECTOR *a1, NJS_VECTOR *a2, float
 FunctionPointer(void, FireSprite, (ObjectMaster *a1), 0x5E81E0);
 FunctionPointer(void, DrawSparkSprite, (ObjectMaster *a1), 0x4BAE50);
 FunctionPointer(void, Chaos0_Raindrop_Display, (ObjectMaster *a1), 0x546090);
+FunctionPointer(void, sub_4083F0, (NJS_ACTION *a1, float a2, int a3, float a4), 0x4083F0);
 
 static int FramerateSettingOld = 0;
 static int FrameCounter_Half = 0;
@@ -441,8 +442,40 @@ static void __cdecl Bubbles_r(ObjectMaster *a1)
 	else original(a1);
 }
 
+void IceKeySS_Display(ObjectMaster *obj)
+{
+	EntityData1 *v1; // esi
+	Angle v2; // eax
+	double v4; // st7
+	NJS_ACTION *action;
+	v1 = obj->Data1;
+	if (GetCharacterObject(0)->MainSub)
+	{
+		if (!ObjectSelectedDebug(obj))
+		{
+			if (v1->Status & 0x1000) v1->Rotation.y = -EntityData1Ptrs[0]->Rotation.y;
+			v4 = *(float *)&v1->Object + FramerateSetting * 0.25f;
+			if (v4 >= 39.0f) v4 = 0.0f;
+			*(float *)&v1->Object = v4;
+		}
+		njPushMatrix(0);
+		njTranslateV(0, &v1->Position);
+		v2 = v1->Rotation.y;
+		if (v2)
+		{
+			njRotateY(0, (unsigned __int16)v2);
+		}
+		SetTextureToLevelObj();
+		action = *(NJS_ACTION **)&v1->CharIndex;
+		sub_4083F0(action, *(float *)&v1->Object, 0, 1.0f);
+		njPopMatrix(1u);
+	}
+}
+
 void SpeedFixes_Init()
 {
+	//Ice Key in Station Square
+	WriteJump((void*)0x637DE0, IceKeySS_Display);
 	//Ring count when red
 	WriteData((short*)0x00425DBB, RingCountFlashSpeed);
 	//Invincibility
