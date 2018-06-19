@@ -10,7 +10,7 @@ To install Dreamcast Conversion you can use SADX Mod Installer that sets up SADX
 
 Alternatively you could download Dreamcast Conversion for manual install from the ModDB homepage or get the latest AppVeyor development build from the link below.
 
-**Latest development build:** https://ci.appveyor.com/api/projects/PiKeyAr/sadx-dreamcast/artifacts/Release/DreamcastConversion.7z
+**Latest development build:** https://ci.appveyor.com/api/projects/PiKeyAr/sadx-dreamcast/artifacts/bin/DreamcastConversion.7z
 
 Changelog: https://dcmods.unreliable.network/owncloud/data/PiKeyAr/files/Changelog.txt
 
