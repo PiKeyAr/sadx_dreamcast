@@ -84,6 +84,7 @@ DataPointer(int, InsideMachine, 0x3C7507C);
 DataPointer(NJS_OBJECT*, unk_1E05954, 0x1E05954);
 DataPointer(CollisionData, stru_1E77604, 0x1E77604);
 DataPointer(NJS_OBJECT, stru_1DF198C, 0x1DF198C);
+
 void __cdecl Loop_Display(ObjectMaster *a1)
 {
 	EntityData1 *v1; // esi@1
@@ -93,7 +94,6 @@ void __cdecl Loop_Display(ObjectMaster *a1)
 	Angle v5; // edi@8
 	double v6; // st7@9
 	float v7; // [sp+8h] [bp+4h]@9
-
 	v1 = a1->Data1;
 	if (!MissedFrames)
 	{
@@ -858,10 +858,8 @@ void Casinopolis_Init(const IniFile *config, const HelperFunctions &helperFuncti
 	WriteJump((void*)0x5D44A0, TutuB_Display); //OTutuB display
 	WriteJump((void*)0x5D4550, TutuC_Display); //OTutuC display
 	WriteData((int*)0x1E77E58, 128); //Gear rotation speed
-
-	// Load configuration settings.
+	//Load configuration settings
 	CowgirlOn = config->getBool("Miscellaneous", "EnableCasinopolisCowgirl", true);
-
 	if (CowgirlOn)
 	{
 		stru_1E763B8[0].scale.y = stru_1E763B8[0].scale.y * 4;
@@ -961,7 +959,7 @@ void Casinopolis_Init(const IniFile *config, const HelperFunctions &helperFuncti
 	*(NJS_MODEL_SADX*)0x01E74A68 = attachSTG09_01A74A68; //NeonK
 	WriteCall((void*)0x5CAB34, RenderNeonK);
 	*(NJS_MODEL_SADX*)0x01E46F30 = attachSTG09_001C4DCC; //OCfa rotating thing
-
+	//Fog and draw distance stuff
 	for (unsigned int i = 0; i < 3; i++)
 	{
 		Casino1Fog[i].Color = 0xFF000000;
@@ -975,6 +973,7 @@ void Casinopolis_Init(const IniFile *config, const HelperFunctions &helperFuncti
 		DrawDist_Casino2[i].Maximum = -2000.0;
 	}
 }
+
 void Casinopolis_OnFrame()
 {
 	if (DLLLoaded_Lantern)
