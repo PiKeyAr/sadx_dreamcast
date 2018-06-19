@@ -24,6 +24,7 @@ static bool lilocean = false;
 static bool IamStupidAndIWantFuckedUpOcean = false;
 static NJS_VECTOR oldpos{ 0,0,0 };
 
+DataArray(NJS_TEX, uvSTG01_00CC0530, 0x10C0530, 4);
 DataArray(NJS_TEX, uvSTG01_00CBB000_data, 0x10BB000, LengthOfArray(uvSTG01_00CBB000));
 DataArray(FogData, EmeraldCoast1Fog, 0x00E99DDC, 3);
 DataArray(FogData, EmeraldCoast2Fog, 0x00E99E0C, 3);
@@ -34,6 +35,9 @@ DataPointer(float, CurrentFogLayer, 0x03ABDC60);
 DataPointer(float, EC1OceanYShift, 0x010C85A8);
 DataPointer(OceanData, OceanDataA, 0x03D0B8F0);
 DataPointer(OceanData, OceanDataB, 0x03D0B90C);
+DataPointer(float, flt_7E00DC, 0x7E00DC);
+DataPointer(float, flt_7DF1B0, 0x7DF1B0);
+DataPointer(int, EffectActive, 0x3C5E4B0);
 FunctionPointer(void, DrawEmeraldCoastOcean, (OceanData *x), 0x004F8A30);
 FunctionPointer(double, sub_789320, (float a2), 0x789320);
 
@@ -43,7 +47,6 @@ int roundfloat(float r) {
 
 void __cdecl Obj_EC23Water_DisplayX(ObjectMaster *a1)
 {
-	DataArray(NJS_TEX, uvSTG01_00CC0530, 0x10C0530, 4);
 	EntityData1 *v1; // esi@1
 	float x; // ST14_4
 	double y; // st7
@@ -125,14 +128,9 @@ void __cdecl Obj_EC23Water_DisplayX(ObjectMaster *a1)
 
 void __cdecl Obj_EC1Water_DisplayX(ObjectMaster *a1)
 {
-	DataPointer(float, flt_7E00DC, 0x7E00DC);
-	DataPointer(float, flt_7DF1B0, 0x7DF1B0);
 	auto entity = EntityData1Ptrs[0];
 	double v2;
 	int OceanUVShift1;
-	DataArray(NJS_TEX, uvSTG01_00CC0530, 0x10C0530, 4);
-	DataPointer(int, EffectActive, 0x3C5E4B0);
-	DataPointer(int, FrameCounterUnpaused, 0x03ABDF5C);
 	EntityData1 *v1; // esi@1
 	v1 = a1->Data1;
 	int unitsize_u_small = 10;
@@ -245,7 +243,7 @@ void __cdecl Obj_EC1Water_DisplayX(ObjectMaster *a1)
 			njTranslate(0, v1->Position.x, EC1OceanYShift, v1->Position.z);
 			DrawQueueDepthBias = -19952.0f;
 			EC1OceanYShift = -1.5f;
-			if (entity->Position.x>4850.0f) ProcessModelNode_D_Wrapper((NJS_OBJECT*)0x010C03FC, 1.0f);
+			if (EffectActive) ProcessModelNode_D_Wrapper((NJS_OBJECT*)0x010C03FC, 1.0f);
 			else ProcessModelNode_A_Wrapper((NJS_OBJECT*)0x010C03FC, QueuedModelFlagsB_SomeTextureThing, 1.0f);
 			njPopMatrix(1u);
 
@@ -656,7 +654,6 @@ void EmeraldCoast_Init(const IniFile *config, const HelperFunctions &helperFunct
 
 void EmeraldCoast_OnFrame()
 {
-	DataArray(NJS_TEX, uvSTG01_00CC0530, 0x10C0530, 4);
 	//Hide skybox bottom in Act 3
 	if (!IamStupidAndIWantFuckedUpOcean)
 	{
