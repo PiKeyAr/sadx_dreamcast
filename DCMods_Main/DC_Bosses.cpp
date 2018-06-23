@@ -1611,7 +1611,7 @@ void Bosses_OnFrame()
 		{
 			EggHornetTrigger = byte_03C6C944;
 			((NJS_OBJECT *)0x01561A70)->ang[1] = NJM_DEG_ANG(0); //Main model
-			((NJS_OBJECT *)0x015658E0)->pos[1] = NJM_DEG_ANG(90); //Eggman
+			((NJS_OBJECT *)0x015658E0)->ang[1] = NJM_DEG_ANG(90); //Eggman
 			((NJS_SPRITE *)0x3C6C884)->ang = NJM_DEG_ANG(0); //Main model
 			((NJS_OBJECT *)0x01567BCC)->ang[1] = NJM_DEG_ANG(0); //Jet
 			((NJS_OBJECT *)0x01567E64)->ang[1] = NJM_DEG_ANG(0); //Jet
