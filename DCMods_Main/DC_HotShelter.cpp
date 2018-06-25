@@ -4,6 +4,7 @@
 #include "HotShelter2.h"
 #include "HotShelter3.h"
 
+FunctionPointer(void, sub_4B9540, (NJS_VECTOR *position, NJS_VECTOR *scale_v, float scale), 0x4B9540);
 FunctionPointer(void, sub_405370, (NJS_OBJECT *a1, NJS_MOTION *a2, float a3, float a4), 0x405370);
 DataPointer(float, E105HitCounter, 0x03C58158);
 DataPointer(float, CurrentFogDist, 0x03ABDC64);
@@ -196,6 +197,13 @@ NJS_MATERIAL* WhiteDiffuse_HotShelter[] = {
 	&matlistSTG12_0015C248[7],
 };
 
+void RenderWaterThing(NJS_OBJECT *a1, QueuedModelFlagsB a2, float a3)
+{
+	DrawQueueDepthBias = -17000.0f;
+	ProcessModelNode(a1, QueuedModelFlagsB_SomeTextureThing, a3);
+	DrawQueueDepthBias = 0;
+}
+
 void AmyHatchFix(ObjectMaster *obj, CollisionData *collisionArray, int count, unsigned __int8 list)
 {
 	if (CurrentCharacter != 5) Collision_Init(obj, collisionArray, count, list);
@@ -283,6 +291,11 @@ void HotShelter_Init(const IniFile *config, const HelperFunctions &helperFunctio
 	WriteCall((void*)0x0059F75C, AmyHatchFix); //Don't make the ventilation hatch solid when playing as Amy
 	WaterThingMaterials[0].attr_texId = 44;
 	WaterThingMaterials[1].attr_texId = 3;
+	//Fix the water splashes created by the water thing
+	WriteCall((void*)0x5AD478, RenderWaterThing);
+	WriteCall((void*)0x5AD4BF, RenderWaterThing);
+	WriteCall((void*)0x5AD506, RenderWaterThing);
+	WriteCall((void*)0x5AD54D, RenderWaterThing);
 	WriteData((LandTable**)0x97DB88, &landtable_0001970C);
 	WriteData((LandTable**)0x97DB8C, &landtable_0005277C);
 	WriteData((LandTable**)0x97DB90, &landtable_000B0DA4);
@@ -328,7 +341,6 @@ void HotShelter_Init(const IniFile *config, const HelperFunctions &helperFunctio
 	((NJS_MATERIAL*)0x018136E0)->diffuse.color = 0xFFB2B2B2; //OUkijima material colors
 	((NJS_MATERIAL*)0x018136F4)->diffuse.color = 0xFFB2B2B2; //OUkijima material colors
 	((NJS_MATERIAL*)0x01813708)->diffuse.color = 0xFFB2B2B2; //OUkijima material colors
-
 	//Fog/draw distance data
 	for (unsigned int i = 0; i < 3; i++)
 	{
