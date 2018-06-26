@@ -57,7 +57,7 @@ static int MissedFrames_Half = 1;
 static bool FixesApplied = false;
 
 //General
-float BigHudFix_float = 2.0f;
+float BigHudFix_float = 2.0f; //For both 30 and 60 FPS because it's broken in SADX
 short RingCountFlashSpeed = 512;
 float InvincibilitySpeed = 0.84f;
 float DashPanelAnimationSpeedOverride = 0.25f;
@@ -514,16 +514,12 @@ void IceKeySS_Display(ObjectMaster *obj)
 
 void BigHudFix(SomeSpriteThing *a1)
 {
-	if (EnableSpeedFixes)
-	{
 		if (Rings != 0)
 		{
 			a1->color.color = 0xFFFFFFFF;
 			DrawHudCharacter(a1);
 		}
 		else DrawHudCharacter(a1);
-	}
-	else DrawHudCharacter(a1);
 }
 
 void SpeedFixes_Init()
@@ -680,8 +676,6 @@ void SpeedFixes_OnFrame()
 		//Original values for 30 FPS
 		if (FramerateSetting >= 2)
 		{
-			//Big ring count
-			BigHudFix_float = 1.0f;
 			//Ring count
 			RingCountFlashSpeed = 1024;
 			//Invincibility
@@ -749,8 +743,6 @@ void SpeedFixes_OnFrame()
 		//60 FPS values
 		else
 		{
-			//Big ring count
-			BigHudFix_float = 2.0f;
 			//Ring count
 			RingCountFlashSpeed = 512;
 			//Invincibility
