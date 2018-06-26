@@ -1,5 +1,43 @@
 #include "stdafx.h"
 
+enum SpriteThingFlagsA : __int8
+{
+	SpriteThingFlagsA_Scale = 0x1,
+	SpriteThingFlagsA_2 = 0x2,
+	SpriteThingFlagsA_4 = 0x4,
+	SpriteThingFlagsA_8 = 0x8,
+	SpriteThingFlagsA_10 = 0x10,
+	SpriteThingFlagsA_20 = 0x20,
+	SpriteThingFlagsA_40 = 0x40,
+	SpriteThingFlagsA_80 = 0x80,
+};
+
+enum SpriteThingFlagsB : __int8
+{
+	SpriteThingFlagsB_1 = 0x1,
+	SpriteThingFlagsB_2 = 0x2,
+	SpriteThingFlagsB_4 = 0x4,
+	SpriteThingFlagsB_8 = 0x8,
+	SpriteThingFlagsB_10 = 0x10,
+	SpriteThingFlagsB_20 = 0x20,
+	SpriteThingFlagsB_40 = 0x40,
+	SpriteThingFlagsB_80 = 0x80,
+};
+
+struct __declspec(align(8)) SomeSpriteThing
+{
+	SpriteThingFlagsA flags_a;
+	SpriteThingFlagsB flags_b;
+	__int16 field_2;
+	unsigned int max_value;
+	unsigned int value;
+	float x;
+	float y;
+	int z;
+	float scale;
+	NJS_COLOR color;
+};
+
 DataPointer(NJS_POINT3COL, stru_9894C0, 0x9894C0);
 DataPointer(NJS_VECTOR, FuseLine1, 0x3C5C484);
 DataPointer(NJS_VECTOR, FuseLine2, 0x3C5C490);
@@ -10,13 +48,16 @@ FunctionPointer(void, FireSprite, (ObjectMaster *a1), 0x5E81E0);
 FunctionPointer(void, DrawSparkSprite, (ObjectMaster *a1), 0x4BAE50);
 FunctionPointer(void, Chaos0_Raindrop_Display, (ObjectMaster *a1), 0x546090);
 FunctionPointer(void, sub_4083F0, (NJS_ACTION *a1, float a2, int a3, float a4), 0x4083F0);
+FunctionPointer(void, DrawHudCharacter, (SomeSpriteThing *a1), 0x427BB0);
 
+//Main
 static int FramerateSettingOld = 0;
 static int FrameCounter_Half = 0;
 static int MissedFrames_Half = 1;
 static bool FixesApplied = false;
 
 //General
+float BigHudFix_float = 2.0f;
 short RingCountFlashSpeed = 512;
 float InvincibilitySpeed = 0.84f;
 float DashPanelAnimationSpeedOverride = 0.25f;
@@ -471,8 +512,26 @@ void IceKeySS_Display(ObjectMaster *obj)
 	}
 }
 
+void BigHudFix(SomeSpriteThing *a1)
+{
+	if (EnableSpeedFixes)
+	{
+		if (Rings != 0)
+		{
+			a1->color.color = 0xFFFFFFFF;
+			DrawHudCharacter(a1);
+		}
+		else DrawHudCharacter(a1);
+	}
+	else DrawHudCharacter(a1);
+}
+
 void SpeedFixes_Init()
 {
+	//Big ring flashing HUD
+	WriteData((float**)0x0046CE9B, &BigHudFix_float);
+	WriteData((short*)0x0046CE6B, RingCountFlashSpeed);
+	WriteCall((void*)0x46CECD, BigHudFix);
 	//Ice Key in Station Square
 	WriteJump((void*)0x637DE0, IceKeySS_Display);
 	//Ring count when red
@@ -621,6 +680,8 @@ void SpeedFixes_OnFrame()
 		//Original values for 30 FPS
 		if (FramerateSetting >= 2)
 		{
+			//Big ring count
+			BigHudFix_float = 1.0f;
 			//Ring count
 			RingCountFlashSpeed = 1024;
 			//Invincibility
@@ -688,6 +749,8 @@ void SpeedFixes_OnFrame()
 		//60 FPS values
 		else
 		{
+			//Big ring count
+			BigHudFix_float = 2.0f;
 			//Ring count
 			RingCountFlashSpeed = 512;
 			//Invincibility
