@@ -1111,7 +1111,7 @@ void Bosses_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 		WriteData((LandTable**)0x7D1CEC, &landtable_00000318); // Chaos 6 Act 1
 		WriteData((LandTable**)0x7D1CF6, &landtable_0000033C); //Chaos 6 Act 2
 		//Chaos 6 emeralds
-		((NJS_MATERIAL*)0x01264A58)->diffuse.color = 0xFFB2B2B2;
+		/*((NJS_MATERIAL*)0x01264A58)->diffuse.color = 0xFFB2B2B2;
 		((NJS_MATERIAL*)0x01266968)->diffuse.color = 0xFFB2B2B2;
 		((NJS_MATERIAL*)0x0126F6F4)->diffuse.color = 0xFFB2B2B2;
 		((NJS_MATERIAL*)0x0126F970)->diffuse.color = 0xFFB2B2B2;
@@ -1122,7 +1122,7 @@ void Bosses_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 		((NJS_MATERIAL*)0x0126F6F4)->attrflags |= NJD_FLAG_IGNORE_LIGHT;
 		((NJS_MATERIAL*)0x0126F970)->attrflags |= NJD_FLAG_IGNORE_LIGHT;
 		((NJS_MATERIAL*)0x0126FBE8)->attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		((NJS_MATERIAL*)0x0126FE60)->attrflags |= NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)0x0126FE60)->attrflags |= NJD_FLAG_IGNORE_LIGHT;*/
 	}
 	if (EnableEggHornet == true)
 	{
@@ -1314,6 +1314,7 @@ void Bosses_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 	//Lighting stuff
 	if (DLLLoaded_Lantern)
 	{
+		material_register(Chaos4Materials, LengthOfArray(Chaos4Materials), &Chaos4NPCFunction);
 		material_register(Chaos6ObjectMaterials, LengthOfArray(Chaos6ObjectMaterials), &ForceDiffuse0Specular0or1);
 		material_register(WhiteDiffuse_Boss, LengthOfArray(WhiteDiffuse_Boss), &ForceWhiteDiffuse3Specular1);
 	}

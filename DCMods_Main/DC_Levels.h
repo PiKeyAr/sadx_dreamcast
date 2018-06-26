@@ -122,6 +122,7 @@ bool ForceWhiteDiffuse3_Night(NJS_MATERIAL* material, Uint32 flags);
 bool ForceWhiteDiffuse3Specular1(NJS_MATERIAL* material, Uint32 flags);
 bool ChaosPuddleFunc(NJS_MATERIAL* material, Uint32 flags);
 bool Chaos2Function(NJS_MATERIAL* material, Uint32 flags);
+bool Chaos4NPCFunction(NJS_MATERIAL* material, Uint32 flags);
 void RemoveMaterialColors(NJS_MATERIAL* material);
 
 bool ForceDiffuse0Specular0(NJS_MATERIAL* material, Uint32 flags);

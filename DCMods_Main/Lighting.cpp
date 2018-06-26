@@ -89,6 +89,21 @@ bool ForceDiffuse4Specular5(NJS_MATERIAL* material, Uint32 flags)
 	return true;
 }
 
+bool Chaos4NPCFunction(NJS_MATERIAL* material, Uint32 flags)
+{
+	if (CurrentLevel == LevelIDs_EggCarrierOutside)
+	{
+		set_diffuse(2, false);
+		set_specular(3, false);
+	}
+	else
+	{
+		set_diffuse(0, false);
+		set_specular(1, false);
+	}
+	return true;
+}
+
 bool ChaosPuddleFunc(NJS_MATERIAL* material, Uint32 flags)
 {
 	if (CurrentLevel == 18 || CurrentLevel == 16 || CurrentLevel == 19)
