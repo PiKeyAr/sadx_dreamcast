@@ -568,6 +568,9 @@ void ADV01_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 	___ADV01_OBJECTS[28] = &objectADV01_001777B4; //Door 2
 	___ADV01_OBJECTS[18] = &objectADV01_00189EA0; //Eggcap
 	___ADV01_OBJECTS[19] = &objectADV01_001760A0; //Egglift
+	___ADV01_OBJECTS[51]->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT; //Pool water
+	___ADV01_OBJECTS[51]->basicdxmodel->mats[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT; //Pool water
+	___ADV01_OBJECTS[51]->basicdxmodel->mats[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT; //Pool water
 	___ADV01_OBJECTS[69]->child->child->model = &attachADV01_0016CD90; //Monorail front
 	___ADV01_OBJECTS[69]->child->model = &attachADV01_0016D524; //Monorail front
 	___ADV01_OBJECTS[70]->child->child->model = &attachADV01_00170CFC; //Monorail back
