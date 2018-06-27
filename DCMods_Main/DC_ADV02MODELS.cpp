@@ -252,6 +252,15 @@ void FixMRBase_Apply(const IniFile *config, const HelperFunctions &helperFunctio
 	}
 }
 
+void SetBlockEntryMaterialColor(float a, float r, float g, float b)
+{
+	ADV02_OBJECTS[50]->basicdxmodel->mats[0].diffuse.argb.a = max(0, min(255, 255 + r * 255));
+	ADV02_OBJECTS[50]->basicdxmodel->mats[0].diffuse.argb.r = max(0, min(255, 255 + r * 255));
+	ADV02_OBJECTS[50]->basicdxmodel->mats[0].diffuse.argb.g = max(0, min(255, 255 + g * 255));
+	ADV02_OBJECTS[50]->basicdxmodel->mats[0].diffuse.argb.b = max(0, min(255, 255 + b * 255));
+	SetMaterialAndSpriteColor_Float(0, 0, 0, 0);
+}
+
 void ADV02_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 {
 	HMODULE handle = GetModuleHandle(L"ADV02MODELS");
@@ -340,6 +349,9 @@ void ADV02_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 	ReplacePVM("MR_TORNADO2");
 	WriteData<1>((char*)0x006F4DA0, 0x04); //Emerald shard (cutscene) glow blending mode
 	WriteData<1>((char*)0x006F4BF1, 0x04); //Emerald shard (cutscene) glow blending mode	
+	//OBlockEntry brightness
+	WriteCall((void*)0x53B5E8, SetBlockEntryMaterialColor);
+	ADV02_OBJECTS[50]->basicdxmodel->mats[0].diffuse.color = 0xFFFFFFFF;
 	//Cutscene after Lost World
 	WriteData((float*)0x006D2537, 16.0f); //Y1
 	WriteData((float*)0x006D2507, 16.0f); //Y2
