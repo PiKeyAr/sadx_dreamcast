@@ -417,6 +417,7 @@ void ADV03_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 	WriteCall((void*)0x6A1DB5, AllocateEventChao_2);
 	WriteCall((void*)0x6A1DD9, AllocateEventChao_2);
 	WriteCall((void*)0x6A1DFA, AllocateEventChao_2);
+	WriteCall((void*)0x6A2A09, AllocateEventChao_2);
 	//Palm fixes
 	ADV03_ACTIONS[10]->object->model = &attach_00122F04;
 	WriteCall((void*)0x545C1A, RenderPalm1);
