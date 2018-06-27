@@ -54,6 +54,10 @@ static float LSDFix = 16.0f;
 static int CutsceneFadeValue = 0;
 static int CutsceneFadeMode = 0;
 static bool SkipPressed_Cutscene = false;
+static Uint32 GlobalPoint2Col_1 = 0x00000000;
+static Uint32 GlobalPoint2Col_2 = 0x00000000;
+static Uint32 GlobalPoint2Col_3 = 0x00000000;
+static int GlobalPoint2Delay = -1;
 
 NJS_MATERIAL* RemoveColors_General[] = {
 	//Shopping bag in Amy's first cutscene
@@ -870,6 +874,26 @@ void __cdecl RenderInvincibilityLines(NJS_MODEL_SADX *a1)
 	DrawQueueDepthBias = 0.0f;
 }
 
+void SetGlobalPoint2Col_Colors_Delay(Uint32 one, Uint32 two, Uint32 threefour)
+{
+	GlobalPoint2Col_Colors[0].color = 0 | 0xFF000000;
+	GlobalPoint2Col_Colors[1].color = 0 | 0xFF000000;
+	GlobalPoint2Col_Colors[2].color = 0 | 0xFF000000;
+	GlobalPoint2Col_Colors[3].color = 0 | 0xFF000000;
+	GlobalPoint2Col_1 = one;
+	GlobalPoint2Col_2 = two;
+	GlobalPoint2Col_3 = threefour;
+	GlobalPoint2Delay = 5;
+}
+
+void SetGlobalPoint2Col_Colors_Real(Uint32 one, Uint32 two, Uint32 threefour)
+{
+	GlobalPoint2Col_Colors[0].color = one | 0xFF000000;
+	GlobalPoint2Col_Colors[1].color = two | 0xFF000000;
+	GlobalPoint2Col_Colors[2].color = threefour | 0xFF000000;
+	GlobalPoint2Col_Colors[3].color = threefour | 0xFF000000;
+}
+
 void General_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 {
 	ReplacePVR("AL_BARRIA");
@@ -1033,6 +1057,8 @@ void General_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 	ReplacePVM("WING_P");
 	ReplacePVM("WING_T");
 	ReplacePVM("ZOU");
+	//Fix screen flash before fade
+	WriteJump((void*)0x402F10, SetGlobalPoint2Col_Colors_Delay);
 	//Fix frogs lol
 	*(NJS_OBJECT*)0x030CB4F8 = object_02CCB4F8;
 	*(NJS_OBJECT*)0x030CDB28 = object_02CCDB28;
@@ -1309,6 +1335,13 @@ void General_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 
 void General_OnFrame()
 {
+	//GlobalPoint2Col delay
+	if (GlobalPoint2Delay > 0) GlobalPoint2Delay--;
+	if (GlobalPoint2Delay == 0)
+	{
+		SetGlobalPoint2Col_Colors_Real(GlobalPoint2Col_1, GlobalPoint2Col_2, GlobalPoint2Col_3);
+		GlobalPoint2Delay = -1;
+	}
 	//Frame counter for cutscenes
 	if (EV_MainThread_ptr != nullptr)
 	{
@@ -1390,6 +1423,7 @@ void General_OnFrame()
 		}
 	}
 	//Environment maps
+	//Egg Hornet level
 	if (EnvMapMode == 0 && CurrentLevel == 20 && !MetalSonicFlag)
 	{
 		EnvMapMode = 1;
@@ -1406,7 +1440,8 @@ void General_OnFrame()
 		EnvMap3 = 0.5f;
 		EnvMap4 = 0.5f;
 	}
-	if (EnvMapMode == 0 && CutsceneID == 208 && CutsceneFrameCounter > 800 && CutsceneFrameCounter < 1200) //Big's intro
+	//Big's intro
+	if (EnvMapMode == 0 && CutsceneID == 208 && CutsceneFrameCounter > 800 && CutsceneFrameCounter < 1200) 
 	{
 		EnvMapMode = 2;
 		EnvMap1 = 2.0f;
@@ -1422,7 +1457,8 @@ void General_OnFrame()
 		EnvMap3 = 0.5f;
 		EnvMap4 = 0.5f;
 	}
-	if (EnvMapMode == 0 && CutsceneID == 128 && CutsceneFrameCounter > 1700 && CutsceneFrameCounter < 2230) //Knuckles' intro
+	//Knuckles' intro
+	if (EnvMapMode == 0 && CutsceneID == 128 && CutsceneFrameCounter > 1700 && CutsceneFrameCounter < 2230) 
 	{
 		EnvMapMode = 2;
 		EnvMap1 = 2.0f;
