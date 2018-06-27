@@ -97,7 +97,6 @@ float Flag1AnimationSpeedOverride = 0.2f;
 
 //Red Mountain
 float OGLSpeedOverride = 0.25f;
-float OLampSpeedOverride = 0.1f;
 
 //Sky Deck
 float OMekaSpeedOverride = 0.5f;
@@ -522,6 +521,32 @@ void BigHudFix(SomeSpriteThing *a1)
 		else DrawHudCharacter(a1);
 }
 
+static void __cdecl OLamp_Display_r(ObjectMaster *a1);
+static Trampoline OLamp_Display_t(0x606610, 0x606617, OLamp_Display_r);
+static void __cdecl OLamp_Display_r(ObjectMaster *a1)
+{
+	EntityData1 *v1; // esi
+	v1 = a1->Data1;
+	Angle v7;
+	double v6; // st7
+	__int16 v5; // ax
+	NJS_OBJECT obj;
+	auto original = reinterpret_cast<decltype(OLamp_Display_r)*>(OLamp_Display_t.Target());
+	if (EnableSpeedFixes)
+	{
+		if (FramerateSetting >= 2 || FrameCounter % 2 == 0) original(a1);
+		else
+		{
+			v5 = v1->InvulnerableTime;
+			v6 = *(float*)&v1->Object - 0.05f;
+			v1->InvulnerableTime = v5 - 1;
+			*(float*)&v1->Object = v6;
+			original(a1);
+		}
+	}
+	else original(a1);
+}
+
 void SpeedFixes_Init()
 {
 	//Big ring flashing HUD
@@ -647,7 +672,6 @@ void SpeedFixes_Init()
 	//Red Mountain
 	WriteData((float**)0x0060C885, &OGLSpeedOverride); //OGL Speed Tweak
 	WriteData((float**)0x0060B361, &OGLSpeedOverride); //O Gear Speed Tweak
-	WriteData((float**)0x00606676, &OLampSpeedOverride);
 	//Sky Deck
 	WriteData((float**)0x005F4146, &OMekaSpeedOverride); //OMeka OTutu	
 	WriteData((float**)0x005EE248, &TankhSpeedOverride); //Tank h	
@@ -730,7 +754,6 @@ void SpeedFixes_OnFrame()
 			TankhSpeedOverride = 1.0f;
 			//Red Mountain
 			OGLSpeedOverride = 0.5f;
-			OLampSpeedOverride = 0.05f;
 			//Casinopolis
 			OKaizAnimationSpeedOverride = 0.00277777f;
 			OCrystalAnimationSpeedOverride = 336;
@@ -794,7 +817,6 @@ void SpeedFixes_OnFrame()
 			Flag1AnimationSpeedOverride = 0.2f;
 			//Red Mountain
 			OGLSpeedOverride = 0.25f;
-			OLampSpeedOverride = 0.1f;
 			//Sky Deck
 			OMekaSpeedOverride = 0.5f;
 			TankhSpeedOverride = 0.25f;
