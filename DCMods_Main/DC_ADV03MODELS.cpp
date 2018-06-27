@@ -5,16 +5,21 @@
 #include "ADV03_01.h"
 #include "ADV03_02.h"
 #include "Past_objects.h"
+#include "Past_Chao.h"
 
 HMODULE Past = GetModuleHandle(L"ADV03MODELS");
 
+FunctionPointer(void, AllocateEventObject, (ObjectMaster *a1, NJS_ACTION *a2, NJS_TEXLIST *a3, float a4, char a5, char a6), 0x42FE00);
 FunctionPointer(void, sub_408350, (NJS_ACTION *a1, float a2, int a3, float a4), 0x408350);
+FunctionPointer(void, sub_6EEFF0, (NJS_OBJECT *a1), 0x6EEFF0);
+FunctionPointer(void, sub_4187D0, (EntityData1 *a1), 0x4187D0);
 DataArray(DrawDistance, DrawDist_Past1, 0x0111E540, 3);
 DataArray(DrawDistance, DrawDist_Past2, 0x0111E558, 3);
 DataArray(DrawDistance, DrawDist_Past3, 0x0111E570, 3);
 DataArray(FogData, FogData_Past1, 0x0111E588, 3);
 DataArray(FogData, FogData_Past2, 0x0111E5B8, 3);
 DataArray(FogData, FogData_Past3, 0x0111E5E8, 3);
+DataPointer(void*, dword_3D08844, 0x3D08844);
 static int ocean_act1 = 73;
 static int ocean_act2 = 59;
 static int water_act1 = 59;
@@ -302,6 +307,54 @@ void RenderPalm1(NJS_OBJECT *a1, QueuedModelFlagsB a2, float a3)
 	DrawQueueDepthBias = 0.0f;
 }
 
+void AllocateEventChao_2(ObjectMaster *a1, NJS_ACTION *a2, NJS_TEXLIST *a3, float a4, char a5, char a6)
+{
+	NJS_ACTION newaction;
+	newaction.motion = a2->motion;
+	newaction.object = a2->object;
+	AllocateEventObject(a1, &newaction, a3, a4, a5, a6);
+}
+
+void AllocateEventChao_6(ObjectMaster *a1, NJS_ACTION *a2, NJS_TEXLIST *a3, float a4, char a5, char a6)
+{
+	NJS_ACTION newaction;
+	newaction.motion = a2->motion;
+	newaction.object = &object6_0013CB5C;
+	AllocateEventObject(a1, &newaction, a3, a4, a5, a6);
+}
+
+void AllocateEventChao_7(ObjectMaster *a1, NJS_ACTION *a2, NJS_TEXLIST *a3, float a4, char a5, char a6)
+{
+	NJS_ACTION newaction;
+	newaction.motion = a2->motion;
+	newaction.object = &object7_0013CB5C;
+	AllocateEventObject(a1, &newaction, a3, a4, a5, a6);
+}
+
+void AllocateEventChao_8(ObjectMaster *a1, NJS_ACTION *a2, NJS_TEXLIST *a3, float a4, char a5, char a6)
+{
+	NJS_ACTION newaction;
+	newaction.motion = a2->motion;
+	newaction.object = &object8_0013CB5C;
+	AllocateEventObject(a1, &newaction, a3, a4, a5, a6);
+}
+
+void AllocateEventChao_9(ObjectMaster *a1, NJS_ACTION *a2, NJS_TEXLIST *a3, float a4, char a5, char a6)
+{
+	NJS_ACTION newaction;
+	newaction.motion = a2->motion;
+	newaction.object = &object9_0013CB5C;
+	AllocateEventObject(a1, &newaction, a3, a4, a5, a6);
+}
+
+void AllocateEventChao_10(ObjectMaster *a1, NJS_ACTION *a2, NJS_TEXLIST *a3, float a4, char a5, char a6)
+{
+	NJS_ACTION newaction;
+	newaction.motion = a2->motion;
+	newaction.object = &object10_0013CB5C;
+	AllocateEventObject(a1, &newaction, a3, a4, a5, a6);
+}
+
 void ADV03_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 {
 	ReplaceBIN_DC("CAMPAST00S");
@@ -327,6 +380,43 @@ void ADV03_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 	{
 		RemoveMaterialColors(PatyaMaterials[i]);
 	}
+	//Event Chao eye fixes
+	WriteCall((void*)0x653C40, AllocateEventChao_9);
+	WriteCall((void*)0x653C67, AllocateEventChao_9);
+	WriteCall((void*)0x653C91, AllocateEventChao_9);
+	//1
+	WriteCall((void*)0x66181E, AllocateEventChao_9);
+	WriteCall((void*)0x661840, AllocateEventChao_9);
+	WriteCall((void*)0x661862, AllocateEventChao_9);
+	WriteCall((void*)0x661887, AllocateEventChao_9);
+	//2
+	WriteCall((void*)0x67D993, AllocateEventChao_8);
+	WriteCall((void*)0x67D9B4, AllocateEventChao_2);
+	WriteCall((void*)0x67D9D8, AllocateEventChao_10);
+	WriteCall((void*)0x67D9F9, AllocateEventChao_8);
+	WriteCall((void*)0x67DA1A, AllocateEventChao_2);
+	WriteCall((void*)0x67DA3E, AllocateEventChao_10);
+	WriteCall((void*)0x67DA5F, AllocateEventChao_2);
+	WriteCall((void*)0x67DA80, AllocateEventChao_7);
+	WriteCall((void*)0x67DAA4, AllocateEventChao_2);
+	WriteCall((void*)0x67DAC5, AllocateEventChao_8);
+	WriteCall((void*)0x67DAE6, AllocateEventChao_8);
+	WriteCall((void*)0x67DB0A, AllocateEventChao_2);
+	WriteCall((void*)0x67DB2B, AllocateEventChao_10);
+	WriteCall((void*)0x67DB4C, AllocateEventChao_8);
+	WriteCall((void*)0x67DB70, AllocateEventChao_10);
+	WriteCall((void*)0x67DB91, AllocateEventChao_2);
+	//3
+	WriteCall((void*)0x68BDB1, AllocateEventChao_9);
+	WriteCall((void*)0x68BDD9, AllocateEventChao_9);
+	WriteCall((void*)0x68BDFE, AllocateEventChao_9);
+	WriteCall((void*)0x68BE26, AllocateEventChao_9);
+	WriteCall((void*)0x68BE4B, AllocateEventChao_9);
+	//4
+	WriteCall((void*)0x6A1D94, AllocateEventChao_2);
+	WriteCall((void*)0x6A1DB5, AllocateEventChao_2);
+	WriteCall((void*)0x6A1DD9, AllocateEventChao_2);
+	WriteCall((void*)0x6A1DFA, AllocateEventChao_2);
 	//Palm fixes
 	ADV03_ACTIONS[10]->object->model = &attach_00122F04;
 	WriteCall((void*)0x545C1A, RenderPalm1);
