@@ -187,6 +187,20 @@ NJS_MATERIAL* PatyaMaterials[] = {
 	(NJS_MATERIAL*)((size_t)Past + 0x00168868),
 	(NJS_MATERIAL*)((size_t)Past + 0x00168A94),
 	(NJS_MATERIAL*)((size_t)Past + 0x00168C8C),
+	//Event Chao
+	(NJS_MATERIAL*)((size_t)Past + 0x0013CA54),
+	(NJS_MATERIAL*)((size_t)Past + 0x0013C668),
+	(NJS_MATERIAL*)((size_t)Past + 0x0013C190),
+	(NJS_MATERIAL*)((size_t)Past + 0x0013BCB8),
+	(NJS_MATERIAL*)((size_t)Past + 0x0013BB7C),
+	(NJS_MATERIAL*)((size_t)Past + 0x0013BA40),
+	(NJS_MATERIAL*)((size_t)Past + 0x0013B6F0),
+	(NJS_MATERIAL*)((size_t)Past + 0x0013B184),
+	(NJS_MATERIAL*)((size_t)Past + 0x0013ADEC),
+	(NJS_MATERIAL*)((size_t)Past + 0x0013AA54),
+	(NJS_MATERIAL*)((size_t)Past + 0x0013A94C),
+	(NJS_MATERIAL*)((size_t)Past + 0x0013A4DC),
+	(NJS_MATERIAL*)((size_t)Past + 0x0013A068),
 };
 
 NJS_MATERIAL* SecondCharacterSpecular[] = {
@@ -486,4 +500,18 @@ void ADV03_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 	___ADV03_OBJECTS[15] = &objectADV03_00027158; //small tree shadow
 	___ADV03_OBJECTS[13] = &objectADV03_00016CA0; //OWell
 	___ADV03_OBJECTS[18] = &objectADV03_00027054; //well shadow
+}
+
+void ADV03_OnFrame()
+{
+	//Rotate the thing above the Chao's head
+	if (CurrentLevel == LevelIDs_Past && CurrentAct > 0 && EV_MainThread_ptr != nullptr)
+	{
+		((NJS_OBJECT*)((size_t)Past + 0x0013CB28))->ang[1] = Camera_Data1->Rotation.y;
+		object6_0013CB28.ang[1] = Camera_Data1->Rotation.y;
+		object7_0013CB28.ang[1] = Camera_Data1->Rotation.y;
+		object8_0013CB28.ang[1] = Camera_Data1->Rotation.y;
+		object9_0013CB28.ang[1] = Camera_Data1->Rotation.y;
+		object10_0013CB28.ang[1] = Camera_Data1->Rotation.y;
+	}
 }

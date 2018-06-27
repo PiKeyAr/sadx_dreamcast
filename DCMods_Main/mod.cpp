@@ -195,7 +195,7 @@ extern "C"
 		if (EnableStationSquare) ADV00_OnFrame();
 		if (EnableEggCarrier) ADV01_OnFrame();
 		if (EnableMysticRuins) ADV02_OnFrame();
-		//if (EnablePast) ADV03_OnFrame();
+		if (EnablePast) ADV03_OnFrame();
 		Bosses_OnFrame();
 		if (EnableEmeraldCoast) EmeraldCoast_OnFrame();
 		if (EnableWindyValley) WindyValley_OnFrame();
