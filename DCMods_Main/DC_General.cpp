@@ -853,6 +853,7 @@ void EmeraldShardLighting(NJD_FLAG lol1, NJD_FLAG lol2)
 void FixCutsceneTransition()
 {
 	if (CutsceneID == 134) sub_436550(); //Knuckles back in Station Square after meeting Pacman
+	if (CutsceneID == 380) sub_436550(); //Gamma after Windy Valley
 }
 
 void __cdecl RenderInvincibilityLines(NJS_MODEL_SADX *a1)
