@@ -1059,6 +1059,10 @@ void General_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 	WriteData((float*)0x006F3F94, 0.85f); //E103 alpha (cutscene model)
 	WriteData((float*)0x006F3D54, 0.85f); //E104 alpha (cutscene model)
 	WriteData((float*)0x006F3B24, 0.85f); //E105 alpha (cutscene model)
+	//Gamma's projectile fix. I have no idea why this works, but ok I guess
+	E102_OBJECTS[5]->basicdxmodel->mats[0].attr_texId = 10;
+	E102_OBJECTS[5]->basicdxmodel->mats[0].attrflags |= NJD_FLAG_USE_TEXTURE;
+	E102_OBJECTS[6] = E102_OBJECTS[5];
 	//Chaos 1 materials
 	((NJS_OBJECT*)0x038DD9BC)->basicdxmodel->mats[0].diffuse.color = 0xFFB2B2B2; //Chaos puddle
 	((NJS_OBJECT*)0x02D6962C)->basicdxmodel->mats[0].diffuse.color = 0xFFB2B2B2; //Chaos puddle
