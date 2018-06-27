@@ -403,7 +403,7 @@ void ADV03_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 	WriteCall((void*)0x661840, AllocateEventChao_9);
 	WriteCall((void*)0x661862, AllocateEventChao_9);
 	WriteCall((void*)0x661887, AllocateEventChao_9);
-	//2
+	//2 - Gamma meets Tikal
 	WriteCall((void*)0x67D993, AllocateEventChao_8);
 	WriteCall((void*)0x67D9B4, AllocateEventChao_2);
 	WriteCall((void*)0x67D9D8, AllocateEventChao_10);
@@ -420,12 +420,12 @@ void ADV03_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 	WriteCall((void*)0x67DB4C, AllocateEventChao_8);
 	WriteCall((void*)0x67DB70, AllocateEventChao_10);
 	WriteCall((void*)0x67DB91, AllocateEventChao_2);
-	//3
-	WriteCall((void*)0x68BDB1, AllocateEventChao_9);
-	WriteCall((void*)0x68BDD9, AllocateEventChao_9);
-	WriteCall((void*)0x68BDFE, AllocateEventChao_9);
-	WriteCall((void*)0x68BE26, AllocateEventChao_9);
-	WriteCall((void*)0x68BE4B, AllocateEventChao_9);
+	//3 - Knuckles meets Tikal
+	WriteCall((void*)0x68BF49, AllocateEventChao_2);
+	WriteCall((void*)0x68BF6D, AllocateEventChao_2);
+	WriteCall((void*)0x68BF8E, AllocateEventChao_2);
+	WriteCall((void*)0x68BFAF, AllocateEventChao_2);
+	WriteCall((void*)0x68BFD3, AllocateEventChao_2);
 	//4
 	WriteCall((void*)0x6A1D94, AllocateEventChao_2);
 	WriteCall((void*)0x6A1DB5, AllocateEventChao_2);
