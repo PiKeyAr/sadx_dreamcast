@@ -433,7 +433,8 @@ void ADV02_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 	___ADV02_OBJECTS[67]->child->sibling->sibling->sibling->sibling->child->model = &attachADV02_001D9174;
 	___ADV02_OBJECTS[67]->child->sibling->sibling->sibling->sibling->sibling->model = &attachADV02_001D854C;
 	___ADV02_OBJECTS[67]->child->sibling->sibling->sibling->sibling->sibling->child->model = &attachADV02_001D82AC;
-	___ADV02_OBJECTS[84] = &objectADV02_000690B8; //Light above the door of Tails' house
+	___ADV02_OBJECTS[84] = &objectADV02_000690B8; //Windows and the light above the door of Tails' house
+	___ADV02_OBJECTS[85] = &object_00069D28; //Same as above but lit up
 	//Material fixes
 	___ADV02_OBJECTS[90]->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_IGNORE_SPECULAR;
 	___ADV02_OBJECTS[91]->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_IGNORE_SPECULAR;
