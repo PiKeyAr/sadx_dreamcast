@@ -54,12 +54,10 @@ static float LSDFix = 16.0f;
 static int CutsceneFadeValue = 0;
 static int CutsceneFadeMode = 0;
 static bool SkipPressed_Cutscene = false;
-static Uint32 GlobalPoint2Col_1 = 0x00000000;
-static Uint32 GlobalPoint2Col_2 = 0x00000000;
-static Uint32 GlobalPoint2Col_3 = 0x00000000;
-static int GlobalPoint2Delay = -1;
 
 NJS_MATERIAL* RemoveColors_General[] = {
+	//The beam that collects the emeralds in "Tails and Sonic gassed at Casinopolis" cutscene
+	((NJS_MATERIAL*)0x030B010C),
 	//Shopping bag in Amy's first cutscene
 	((NJS_MATERIAL*)0x0328C498),
 	((NJS_MATERIAL*)0x0328C4AC),
@@ -874,26 +872,6 @@ void __cdecl RenderInvincibilityLines(NJS_MODEL_SADX *a1)
 	DrawQueueDepthBias = 0.0f;
 }
 
-void SetGlobalPoint2Col_Colors_Delay(Uint32 one, Uint32 two, Uint32 threefour)
-{
-	GlobalPoint2Col_Colors[0].color = 0 | 0xFF000000;
-	GlobalPoint2Col_Colors[1].color = 0 | 0xFF000000;
-	GlobalPoint2Col_Colors[2].color = 0 | 0xFF000000;
-	GlobalPoint2Col_Colors[3].color = 0 | 0xFF000000;
-	GlobalPoint2Col_1 = one;
-	GlobalPoint2Col_2 = two;
-	GlobalPoint2Col_3 = threefour;
-	GlobalPoint2Delay = 5;
-}
-
-void SetGlobalPoint2Col_Colors_Real(Uint32 one, Uint32 two, Uint32 threefour)
-{
-	GlobalPoint2Col_Colors[0].color = one | 0xFF000000;
-	GlobalPoint2Col_Colors[1].color = two | 0xFF000000;
-	GlobalPoint2Col_Colors[2].color = threefour | 0xFF000000;
-	GlobalPoint2Col_Colors[3].color = threefour | 0xFF000000;
-}
-
 void General_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 {
 	ReplacePVR("AL_BARRIA");
@@ -1057,8 +1035,6 @@ void General_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 	ReplacePVM("WING_P");
 	ReplacePVM("WING_T");
 	ReplacePVM("ZOU");
-	//Fix screen flash before fade
-	WriteJump((void*)0x402F10, SetGlobalPoint2Col_Colors_Delay);
 	//Fix frogs lol
 	*(NJS_OBJECT*)0x030CB4F8 = object_02CCB4F8;
 	*(NJS_OBJECT*)0x030CDB28 = object_02CCDB28;
@@ -1335,13 +1311,6 @@ void General_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 
 void General_OnFrame()
 {
-	//GlobalPoint2Col delay
-	if (GlobalPoint2Delay > 0) GlobalPoint2Delay--;
-	if (GlobalPoint2Delay == 0)
-	{
-		SetGlobalPoint2Col_Colors_Real(GlobalPoint2Col_1, GlobalPoint2Col_2, GlobalPoint2Col_3);
-		GlobalPoint2Delay = -1;
-	}
 	//Frame counter for cutscenes
 	if (EV_MainThread_ptr != nullptr)
 	{
