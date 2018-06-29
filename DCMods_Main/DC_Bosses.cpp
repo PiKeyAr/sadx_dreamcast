@@ -12,6 +12,7 @@
 #include "Chaos6_Act1.h"
 #include "Chaos6_Act2.h"
 #include "Chaos7.h"
+#include "Chaos7_fixes.h"
 #include "E101.h"
 #include "Zero.h"
 #include "E101R.h"
@@ -337,6 +338,34 @@ NJS_TEXANIM texanim_array[] =
 	{ 0x28, 0x28, 0x14, 0x14, 0, 0, 0xFF, 0xFF, 31, 0 },
 };
 
+void __cdecl PerfectChaosUVs()
+{
+	if (EV_MainThread_ptr == nullptr)
+	{
+		object_000E483C.ang[1] += 1638;
+		object_000E3B98.ang[1] += 1638;
+		object_000E2BF4_3.ang[1] -= 819;
+		object_000E2BF4_2.ang[1] += 819;
+		object_000E2BF4_1.ang[1] += 3276;
+		object_000E22A8.ang[1] -= 3276;
+	}
+	else
+	{
+		object_000E483C.ang[1] += 1638 * 2;
+		object_000E3B98.ang[1] += 1638 * 2;
+		object_000E2BF4_3.ang[1] -= 819 * 2;
+		object_000E2BF4_2.ang[1] += 819 * 2;
+		object_000E2BF4_1.ang[1] += 3276 * 2;
+		object_000E22A8.ang[1] -= 3276 * 2;
+	}
+	if (object_000E483C.ang[1] > 65535) object_000E483C.ang[1] -= 65535;
+	if (object_000E3B98.ang[1] > 65535) object_000E3B98.ang[1] -= 65535;
+	if (object_000E2BF4_3.ang[1] < -65535) object_000E2BF4_3.ang[1] += 65535;
+	if (object_000E2BF4_2.ang[1] > 65535) object_000E2BF4_2.ang[1] -= 65535;
+	if (object_000E2BF4_1.ang[1] > 65535) object_000E2BF4_1.ang[1] -= 65535;
+	if (object_000E22A8.ang[1] < -65535) object_000E22A8.ang[1] += 65535;
+}
+
 void __cdecl TornadoFunc()
 {
 	nj_constant_material_temp.a = TornadoAlpha;
@@ -344,7 +373,7 @@ void __cdecl TornadoFunc()
 	nj_constant_material_temp.g = 1.0f;
 	nj_constant_material_temp.b = 1.0f;
 	SetMaterialAndSpriteColor(&nj_constant_material_temp);
-	ProcessModelNode_D_WrapperB(&stru_13A6E8C, 0, 1.0);
+	if (!(stru_13A6E8C.evalflags &= NJD_EVAL_HIDE))	ProcessModelNode_D_WrapperB(&object_000E483C, 0, 1.0f);
 }
 
 //Perfect Chaos damage functions
@@ -1271,6 +1300,9 @@ void Bosses_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 		ResizeTextureList((NJS_TEXLIST*)0x1494FBC, textures_chaos7);
 		WriteData((LandTable**)0x7D1D06, &landtable_00001214); //Perfect Chaos DC
 		WriteCall((void*)0x56463B, PerfectChaosWaterfallHook);
+		//Perfect Chaos tornado UVs
+		WriteCall((void*)0x562D6D, PerfectChaosUVs);
+		WriteCall((void*)0x00562303, TornadoFunc); //Perfect Chaos tornado fade-in
 		//Perfect Chaos breath fix
 		WriteData((float*)0x00566A03, 1.0f);
 		//Egg Carrier 2 crash in Perfect Chaos cutscene
@@ -1287,12 +1319,6 @@ void Bosses_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 		//Perfect Chaos damage functions
 		WriteJump((void*)0x5632F0, Chaos7Explosion_DisplayX);
 		WriteJump((void*)0x005633C0, Chaos7Damage_DisplayX);
-		//Perfect Chaos tornado UVs
-		WriteData((int*)0x01426CA0, 1538);
-		WriteData((int*)0x01426CA4, -2500);
-		WriteData((int*)0x01426CA8, -2538);
-		WriteData((int*)0x01426CAC, -2538);
-		WriteCall((void*)0x00562303, TornadoFunc); //Perfect Chaos tornado fade-in
 		//Perfect Chaos misc
 		((NJS_OBJECT*)0x0248B1B4)->basicdxmodel->mats[2].attrflags &= ~NJD_FLAG_IGNORE_SPECULAR; //Egg Carrier 2
 		matlist_00F975B0[0].diffuse.color = 0xFFB2B2B2;

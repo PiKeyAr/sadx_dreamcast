@@ -175,7 +175,6 @@
     <ClInclude Include="Data\Chaos6_models.h" />
     <ClInclude Include="Data\Chaos7.h" />
     <ClInclude Include="Data\Chaos7_fixes.h" />
-    <ClInclude Include="Data\Chaos7_PC.h" />
     <ClInclude Include="Data\CharacterEffects.h" />
     <ClInclude Include="Data\CommonObjects.h" />
     <ClInclude Include="Data\Cowgirl.h" />
