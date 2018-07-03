@@ -569,17 +569,6 @@ void TwinklePark_OnFrame()
 		if (CurrentLevel == 3 && CurrentAct == 1)
 		{
 			if (GameState != 16)
-				if (CurrentCharacter != 0)
-				{
-					collist_000178B0[LengthOfArray(collist_000178B0) - 1].Flags = 0x00000000;
-					collist_000178B0[LengthOfArray(collist_000178B0) - 2].Flags = 0x00000000;
-				}
-				else
-				{
-					collist_000178B0[LengthOfArray(collist_000178B0) - 1].Flags = 0x80040000;
-					collist_000178B0[LengthOfArray(collist_000178B0) - 2].Flags = 0x80040000;
-				}
-			if (GameState != 16)
 			{
 				objectSTG03_000AEC6C.ang[1] = objectSTG03_000AEC6C.ang[1] + 64;
 				if (anim > 87) anim = 74;
