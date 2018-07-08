@@ -60619,7 +60619,7 @@ NJS_MDATA2 animation_000817B4_mdat[] = {
 	{ NULL, NULL, 0, 0 },
 	{ NULL, animation_000817B4_2_scl, 0, LengthOfArray(animation_000817B4_2_scl) },
 	{ NULL, NULL, 0, 0 },
-	{ NULL, NULL, LengthOfArray(animation_000817B4_4_rot), 0 },
+	{ NULL, NULL, 0, 0 },
 	{ animation_000817B4_5_rot, NULL, LengthOfArray(animation_000817B4_5_rot), 0 },
 	{ animation_000817B4_6_rot, NULL, LengthOfArray(animation_000817B4_6_rot), 0 },
 	{ animation_000817B4_7_rot, NULL, LengthOfArray(animation_000817B4_7_rot), 0 },
