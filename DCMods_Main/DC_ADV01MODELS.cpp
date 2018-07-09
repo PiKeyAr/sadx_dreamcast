@@ -420,6 +420,7 @@ void ADV01_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 			AddSETFix("SETEC05S");
 			AddSETFix("SETEC30S");
 			AddSETFix("SETEC31S");
+			AddSETFix("SETEC31B");
 			AddSETFix("SETEC32S");
 			AddSETFix("SETEC33S");
 			AddSETFix("SETEC34S");
@@ -434,6 +435,7 @@ void ADV01_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 			AddSETFix_Extra("SETEC05S");
 			AddSETFix_Extra("SETEC30S");
 			AddSETFix_Extra("SETEC31S");
+			AddSETFix_Extra("SETEC31B");
 			AddSETFix_Extra("SETEC32S");
 			AddSETFix_Extra("SETEC33S");
 			AddSETFix_Extra("SETEC34S");
