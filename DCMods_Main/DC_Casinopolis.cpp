@@ -972,6 +972,7 @@ void Casinopolis_Init(const IniFile *config, const HelperFunctions &helperFuncti
 
 void Casinopolis_OnFrame()
 {
+	auto entity = EntityData1Ptrs[0];
 	if (DLLLoaded_Lantern)
 	{
 		//Failsafe stuff for palette blending
@@ -1085,7 +1086,6 @@ void Casinopolis_OnFrame()
 		}
 		//Cowgirl action
 		if (CowgirlDelay < 100) CowgirlDelay++;
-		auto entity = EntityData1Ptrs[0];
 		if (CowgirlDelay >= 100 && entity != nullptr && entity->Status & Status_Attack)
 		{
 			if (IsPlayerInsideSphere(&Cowgirl1, 180.0f) || IsPlayerInsideSphere(&Cowgirl2, 180.0f))
@@ -1100,7 +1100,6 @@ void Casinopolis_OnFrame()
 		if (CurrentAct != 1) SoundPlayed = 0;
 		if (CurrentAct == 1)
 		{
-			auto entity = EntityData1Ptrs[0];
 			if (SoundPlayed == 0 && entity != nullptr && entity->Position.y > -1698)
 			{
 				PlaySound(249, 0, 0, 0);
@@ -1110,6 +1109,16 @@ void Casinopolis_OnFrame()
 	}
 	if (CurrentLevel == 9 && CurrentAct == 0 && GameState != 16)
 	{
+		//This game's collision is fucking awful
+		if (entity != nullptr)
+		{
+			if (CurrentCharacter == 3)
+			{
+				if (entity->Position.y > -30.0f) collist_00023DA0[LengthOfArray(collist_00023DA0) - 2].Flags = 0xA0040002;
+				else collist_00023DA0[LengthOfArray(collist_00023DA0) - 2].Flags = 0xA0040000;
+			}
+			else collist_00023DA0[LengthOfArray(collist_00023DA0) - 2].Flags = 0xA0040000;
+		}
 		//Rotating thing
 		matlistSTG09_001C448C[3].attr_texId = monitorimage + 140;
 		if (FrameCounter % (240 / FramerateSetting) == 0)
