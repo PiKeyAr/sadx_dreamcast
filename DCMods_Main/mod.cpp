@@ -64,6 +64,14 @@ static const wchar_t *const OldModDLLs[] = {
 	L"MRFinalEggFix"
 };
 
+void AnimateTextures(NJS_MATERIAL *material, int startframe, int endframe, int speed)
+{
+	int texid = material->attr_texId;
+	if (FrameCounter % (speed / FramerateSetting) == 0)	texid++;
+	if (texid > endframe) texid = startframe;
+	material->attr_texId = texid;
+}
+
 extern "C"
 {
 	__declspec(dllexport) void __cdecl Init(const char *path, const HelperFunctions &helperFunctions)
@@ -90,7 +98,6 @@ extern "C"
 			L"no longer needed because they are built into the "
 			L"main Dreamcast Conversion mod.\n\n"
 			L"Please uninstall the following mods in the Mod Manager:\n\n";
-
 		bool OldModsFound = false;
 		for (unsigned int i = 0; i < LengthOfArray(OldModDLLs); i++)
 		{

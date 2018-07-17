@@ -116,23 +116,26 @@ void __cdecl MysticRuins_OceanDraw_SADXStyle(OceanData *o);
 void __cdecl EggCarrier_OceanDraw_SADXStyle(OceanData *o);
 void __cdecl Past_OceanDraw_SADXStyle(OceanData *o);
 
-bool ForceWhiteDiffuse1(NJS_MATERIAL* material, Uint32 flags);
-bool ForceWhiteDiffuse3(NJS_MATERIAL* material, Uint32 flags);
-bool ForceWhiteDiffuse3_Night(NJS_MATERIAL* material, Uint32 flags);
-bool ForceWhiteDiffuse3Specular1(NJS_MATERIAL* material, Uint32 flags);
-bool ChaosPuddleFunc(NJS_MATERIAL* material, Uint32 flags);
-bool Chaos2Function(NJS_MATERIAL* material, Uint32 flags);
-bool Chaos4NPCFunction(NJS_MATERIAL* material, Uint32 flags);
+bool ForceWhiteDiffuse1(NJS_MATERIAL* material, uint32_t flags);
+bool ForceWhiteDiffuse3(NJS_MATERIAL* material, uint32_t flags);
+bool ForceWhiteDiffuse3_Night(NJS_MATERIAL* material, uint32_t flags);
+bool ForceWhiteDiffuse3Specular1(NJS_MATERIAL* material, uint32_t flags);
+bool ChaosPuddleFunc(NJS_MATERIAL* material, uint32_t flags);
+bool Chaos2Function(NJS_MATERIAL* material, uint32_t flags);
+bool Chaos4NPCFunction(NJS_MATERIAL* material, uint32_t flags);
 void RemoveMaterialColors(NJS_MATERIAL* material);
+bool DisableAlphaRejection(NJS_MATERIAL* material, uint32_t flags);
 
-bool ForceDiffuse0Specular0(NJS_MATERIAL* material, Uint32 flags);
-bool ForceDiffuse0Specular1(NJS_MATERIAL* material, Uint32 flags);
-bool ForceDiffuse0Specular0or1(NJS_MATERIAL* material, Uint32 flags);
-bool ForceDiffuse2Specular2(NJS_MATERIAL* material, Uint32 flags);
-bool ForceDiffuse2Specular3(NJS_MATERIAL* material, Uint32 flags);
-bool ForceDiffuse4Specular5(NJS_MATERIAL* material, Uint32 flags);
+bool ForceDiffuse0Specular0(NJS_MATERIAL* material, uint32_t flags);
+bool ForceDiffuse0Specular1(NJS_MATERIAL* material, uint32_t flags);
+bool ForceDiffuse0Specular0or1(NJS_MATERIAL* material, uint32_t flags);
+bool ForceDiffuse2Specular2(NJS_MATERIAL* material, uint32_t flags);
+bool ForceDiffuse2Specular3(NJS_MATERIAL* material, uint32_t flags);
+bool ForceDiffuse4Specular5(NJS_MATERIAL* material, uint32_t flags);
 
 void DisplayVideoFadeout(int fadeout, int mode);
+
+void AnimateTextures(NJS_MATERIAL *material, int startframe, int endframe, int speed);
 
 #define ReplacePVM(a) helperFunctions.ReplaceFile("system\\" a ".PVM", "system\\" a "_DC.PVM")
 #define ReplacePVR(a) helperFunctions.ReplaceFile("system\\" a ".PVR", "system\\" a "_DC.PVR")
