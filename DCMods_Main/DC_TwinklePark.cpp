@@ -30,6 +30,12 @@ NJS_MATERIAL matlistSTG03_034C3AD0[] = {
 
 NJS_TEXNAME textures_tpobjects[97];
 
+NJS_MATERIAL* DisableAlphaRejection_TwinklePark[] = {
+	((NJS_MATERIAL*)0x027B3EF8), //OLamp
+	((NJS_MATERIAL*)0x027B3DEC), //OLamp
+	((NJS_MATERIAL*)0x027A0488), //OFlagWLamp
+};
+
 NJS_MATERIAL* ObjectSpecular_Twinkle[] = {
 	//OFence2
 	((NJS_MATERIAL*)0x027A24B0),
@@ -473,6 +479,7 @@ void TwinklePark_Init(const IniFile *config, const HelperFunctions &helperFuncti
 	((NJS_OBJECT*)0x008BF3A0)->basicdxmodel->mats[0].attrflags |= NJD_FLAG_IGNORE_LIGHT; //shadow blob
 	if (DLLLoaded_Lantern)
 	{
+		if (set_alpha_reject != nullptr) material_register(DisableAlphaRejection_TwinklePark, LengthOfArray(DisableAlphaRejection_TwinklePark), &DisableAlphaRejection);
 		material_register(LevelSpecular_Twinkle, LengthOfArray(LevelSpecular_Twinkle), &ForceDiffuse0Specular0);
 		material_register(ObjectSpecular_Twinkle, LengthOfArray(ObjectSpecular_Twinkle), &ForceDiffuse0Specular1);
 		material_register(WhiteDiffuse_Twinkle, LengthOfArray(WhiteDiffuse_Twinkle), &ForceWhiteDiffuse3);

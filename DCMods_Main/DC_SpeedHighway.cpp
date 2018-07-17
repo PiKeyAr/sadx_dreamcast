@@ -47,6 +47,10 @@ void FountainPart3(NJS_MODEL_SADX *a1, int a2, float a3)
 	sub_409E70(&attachSTG04_00135454, 4, a3);
 }
 
+NJS_MATERIAL* DisableAlphaRejection_SpeedHighway[] = {
+	((NJS_MATERIAL*)0x02696920), //OLmpa
+};
+
 NJS_MATERIAL* WhiteDiffuse_Highway[] = {
 	//Level stuff
 	&matlistSTG04_000774B8[0],
@@ -200,6 +204,7 @@ void SpeedHighway_Init(const IniFile *config, const HelperFunctions &helperFunct
 	WriteData<1>((char*)0x004B19E2, 0x08); //Cop speeder effect blending
 	WriteCall((void*)0x4B1C6F, SetCopSpeederEffectAlpha);
 	//Fix light sprites in various objects
+	((NJS_MATERIAL*)0x02696920)->diffuse.color = 0xFFFFFFFF; //OLmpa
 	WriteData<1>((char*)0x00615DBB, 0x8); //Antenna sprite blending SA_SRC
 	WriteData((float**)0x00615DA0, (float*)0x7DCB10); //Antenna sprite maximum brightness 1.0 instead of 0.5
 	WriteData((float**)0x00616625, (float*)0x7DCC98); //GCLight sprite maximum brightness 0.5 instead of 0.8
@@ -210,6 +215,7 @@ void SpeedHighway_Init(const IniFile *config, const HelperFunctions &helperFunct
 	if (DLLLoaded_Lantern)
 	{
 		material_register(WhiteDiffuse_Highway, LengthOfArray(WhiteDiffuse_Highway), &ForceWhiteDiffuse1);
+		if (set_alpha_reject != nullptr) material_register(DisableAlphaRejection_SpeedHighway, LengthOfArray(DisableAlphaRejection_SpeedHighway), &DisableAlphaRejection);
 	}
 	//Helicopter light
 	((NJS_OBJECT*)0x268CF20)->child->sibling->evalflags |= NJD_EVAL_HIDE;

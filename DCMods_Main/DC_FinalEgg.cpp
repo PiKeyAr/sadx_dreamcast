@@ -37,6 +37,19 @@ PVMEntry FinalEggObjectTextures[] = {
 	{ 0 }
 };
 
+NJS_MATERIAL* DisableAlphaRejection_FinalEgg[] = {
+	&matlistSTG10_001AEB58[0], //Light object
+	&matlistSTG10_00153094[0], //Blue light in Act 3
+	&matlistSTG10_00145448[0], //Lights around the tube you fall through in Act 3
+	&matlistSTG10_00145448[1], //Lights around the tube you fall through in Act 3
+	&matlistSTG10_00152708[0], //Probably same as above
+	&matlistSTG10_00152708[1], //Probably same as above
+	&matlistSTG10_0015329C[0], //Not DA_ONE but better include this too
+	&matlistSTG10_00153514[0], //Not DA_ONE but better include this too
+	&matlistSTG10_00153780[0], //Not DA_ONE but better include this too
+	&matlistSTG10_0014DB7C[0], //Not DA_ONE but better include this too
+};
+
 //O Tatekan
 void __cdecl sub_5B4690(ObjectMaster *a1)
 {
@@ -688,6 +701,7 @@ void FinalEgg_Init(const IniFile *config, const HelperFunctions &helperFunctions
 	}
 	if (DLLLoaded_Lantern)
 	{
+		if (set_alpha_reject != nullptr)material_register(DisableAlphaRejection_FinalEgg, LengthOfArray(DisableAlphaRejection_FinalEgg), &DisableAlphaRejection);
 		material_register(LevelSpecular_FinalEgg, LengthOfArray(LevelSpecular_FinalEgg), &ForceDiffuse0Specular0);
 		material_register(ObjectSpecular_FinalEgg, LengthOfArray(ObjectSpecular_FinalEgg), &ForceDiffuse0Specular1);
 		material_register(WhiteDiffuse_FinalEgg, LengthOfArray(WhiteDiffuse_FinalEgg), &ForceWhiteDiffuse1);

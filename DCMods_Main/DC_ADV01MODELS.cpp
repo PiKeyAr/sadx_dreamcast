@@ -143,6 +143,52 @@ NJS_MATERIAL* WhiteDiffuseADV01[] = {
 	&matlistADV01_000165BC[9],
 };
 
+NJS_MATERIAL* DisableAlphaRejection_EggCarrier[] = {
+	(NJS_MATERIAL*)((size_t)ADV01MODELS + 0x00209B6C), //Rotating lights outside
+	(NJS_MATERIAL*)((size_t)ADV01MODELS + 0x001F7A58), //Monorail sign (outside)
+	(NJS_MATERIAL*)((size_t)ADV01CMODELS + 0x000ED480), //Monorail sign (inside)
+};
+
+NJS_MATERIAL* HedgehogHammerDolls[] = {
+	//Hedgehog Hammer targets (possibly SL objects?)
+	(NJS_MATERIAL*)((size_t)ADV01CMODELS + 0x0011C478),
+	(NJS_MATERIAL*)((size_t)ADV01CMODELS + 0x0011BF60),
+	(NJS_MATERIAL*)((size_t)ADV01CMODELS + 0x0011BF74),
+	(NJS_MATERIAL*)((size_t)ADV01CMODELS + 0x0011BBC8),
+	(NJS_MATERIAL*)((size_t)ADV01CMODELS + 0x0011B364),
+	(NJS_MATERIAL*)((size_t)ADV01CMODELS + 0x0011A9E8),
+	(NJS_MATERIAL*)((size_t)ADV01CMODELS + 0x0011A504),
+	(NJS_MATERIAL*)((size_t)ADV01CMODELS + 0x0011A1CC),
+	(NJS_MATERIAL*)((size_t)ADV01CMODELS + 0x0011A07C),
+	(NJS_MATERIAL*)((size_t)ADV01CMODELS + 0x0011A090),
+	(NJS_MATERIAL*)((size_t)ADV01CMODELS + 0x00119F2C),
+	(NJS_MATERIAL*)((size_t)ADV01CMODELS + 0x00119F40),
+	(NJS_MATERIAL*)((size_t)ADV01CMODELS + 0x001247C8),
+	(NJS_MATERIAL*)((size_t)ADV01CMODELS + 0x001242B0),
+	(NJS_MATERIAL*)((size_t)ADV01CMODELS + 0x001242C4),
+	(NJS_MATERIAL*)((size_t)ADV01CMODELS + 0x00123F18),
+	(NJS_MATERIAL*)((size_t)ADV01CMODELS + 0x001236B4),
+	(NJS_MATERIAL*)((size_t)ADV01CMODELS + 0x00122D38),
+	(NJS_MATERIAL*)((size_t)ADV01CMODELS + 0x00122854),
+	(NJS_MATERIAL*)((size_t)ADV01CMODELS + 0x0012251C),
+	(NJS_MATERIAL*)((size_t)ADV01CMODELS + 0x001223CC), //Super Sonic ears (disable alpha rejection)
+	(NJS_MATERIAL*)((size_t)ADV01CMODELS + 0x001223E0), //Super Sonic ears (disable alpha rejection)
+	(NJS_MATERIAL*)((size_t)ADV01CMODELS + 0x0012227C), //Super Sonic ears (disable alpha rejection)
+	(NJS_MATERIAL*)((size_t)ADV01CMODELS + 0x00122290), //Super Sonic ears (disable alpha rejection)
+	(NJS_MATERIAL*)((size_t)ADV01CMODELS + 0x00115630),
+	(NJS_MATERIAL*)((size_t)ADV01CMODELS + 0x00114C38),
+	(NJS_MATERIAL*)((size_t)ADV01CMODELS + 0x00114C4C),
+	(NJS_MATERIAL*)((size_t)ADV01CMODELS + 0x00114C60),
+	(NJS_MATERIAL*)((size_t)ADV01CMODELS + 0x00114C74),
+	(NJS_MATERIAL*)((size_t)ADV01CMODELS + 0x00114568),
+	(NJS_MATERIAL*)((size_t)ADV01CMODELS + 0x0011457C),
+	(NJS_MATERIAL*)((size_t)ADV01CMODELS + 0x001142D4),
+	(NJS_MATERIAL*)((size_t)ADV01CMODELS + 0x001140CC),
+	(NJS_MATERIAL*)((size_t)ADV01CMODELS + 0x00113EB4),
+	(NJS_MATERIAL*)((size_t)ADV01CMODELS + 0x00113B4C),
+	(NJS_MATERIAL*)((size_t)ADV01CMODELS + 0x001137E4),
+};
+
 void __cdecl ECDoorBarrier1X(ObjectMaster *a1)
 {
 	EntityData1 *v1; // esi
@@ -360,6 +406,14 @@ void EggCarrierSea()
 	}
 }
 
+bool HedgehogHammerDollsFunction(NJS_MATERIAL* material, uint32_t flags)
+{
+	set_diffuse(2, false);
+	set_specular(2, false);
+	set_alpha_reject(0.0f, false);
+	return true;
+}
+
 void ADV01_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 {
 	ReplaceBIN_DC("SETEC00S");
@@ -500,8 +554,17 @@ void ADV01_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 	WriteData((float*)0x00678CC1, 80.25f); //Z2
 	HMODULE Lantern = GetModuleHandle(L"sadx-dc-lighting");
 	ReplaceBIN("PL_W1B", "PL_W1X");
+	for (unsigned int i = 0; i < LengthOfArray(HedgehogHammerDolls); i++)
+	{
+		RemoveMaterialColors(HedgehogHammerDolls[i]);
+	}
 	if (DLLLoaded_Lantern)
 	{
+		if (set_alpha_reject != nullptr) 
+		{
+			material_register(DisableAlphaRejection_EggCarrier, LengthOfArray(DisableAlphaRejection_EggCarrier), &DisableAlphaRejection);
+			material_register(HedgehogHammerDolls, LengthOfArray(HedgehogHammerDolls), &HedgehogHammerDollsFunction);
+		}
 		material_register(ObjectSpecularADV01, LengthOfArray(ObjectSpecularADV01), &ForceDiffuse0Specular1);
 		//material_register(LevelSpecularADV01, LengthOfArray(LevelSpecularADV01), &ForceDiffuse0Specular0);
 		material_register(WhiteDiffuseADV01, LengthOfArray(WhiteDiffuseADV01), &ForceWhiteDiffuse1);

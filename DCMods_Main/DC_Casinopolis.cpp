@@ -560,6 +560,17 @@ void __cdecl OLhtg_Display(ObjectMaster *a1)
 	}
 }
 
+NJS_MATERIAL* DisableAlphaRejection_Casino[] = {
+	&matlistSTG09_01A3D5B0[0], //OKBC text
+	&matlistSTG09_01A3D5B0[1], //OKBC text
+	&matlistSTG09_01A709C0Z[0], //OKBS text
+	&matlistSTG09_01A709C0Z[0], //NeonK text
+	((NJS_MATERIAL*)0x01E3C7C8), //OKBR
+	((NJS_MATERIAL*)0x01E3C328), //OKBB
+	//((NJS_MATERIAL*)0x01E435A8), //OTDenki - welp
+	//((NJS_MATERIAL*)0x01E435BC), //OTDenki - welp
+};
+
 NJS_MATERIAL* WhiteDiffuse_Casino[] = {
 	//OSlotkan
 	((NJS_MATERIAL*)0x01E4D6B4),
@@ -811,6 +822,7 @@ void Casinopolis_Init(const IniFile *config, const HelperFunctions &helperFuncti
 	ReplaceBIN("PL_90B", "PL_90X");
 	if (DLLLoaded_Lantern)
 	{
+		if (set_alpha_reject != nullptr) material_register(DisableAlphaRejection_Casino, LengthOfArray(DisableAlphaRejection_Casino), &DisableAlphaRejection);
 		material_register(LevelSpecular_Casino, LengthOfArray(LevelSpecular_Casino), &ForceDiffuse0Specular0);
 		material_register(ObjectSpecular_Casino, LengthOfArray(ObjectSpecular_Casino), &ForceDiffuse0Specular1);
 		material_register(WhiteDiffuse_Casino, LengthOfArray(WhiteDiffuse_Casino), &ForceWhiteDiffuse1);

@@ -21,6 +21,15 @@ static int WaterThing_VShift = 0;
 static bool ReduceHotShelterFog = false;
 static Angle E105Angle = 0;
 
+NJS_MATERIAL* DisableAlphaRejection_HotShelter[] = {
+	&matlistSTG12_00032C20[0], //Act 1 green light
+	&matlistSTG12_00096220[0], //Act 2 green light
+	&matlistSTG12_0009639C[0], //Act 2 green light
+	&matlistSTG12_000964DC[0], //Act 2 green light
+	&matlistSTG12_000DCC38[10], //Act 3 blue light
+	&matlistSTG12_000DEBEC_2[0], //Act 3 blue light
+};
+
 NJS_MATERIAL* LevelSpecular_HotShelter[] = {
 	((NJS_MATERIAL*)0x01A3AD08), //Glass tube elevator
 };
@@ -305,6 +314,7 @@ void HotShelter_Init(const IniFile *config, const HelperFunctions &helperFunctio
 	ResizeTextureList((NJS_TEXLIST*)0x17F4F74, textures_shelter3);
 	if (DLLLoaded_Lantern)
 	{
+		if (set_alpha_reject != nullptr) material_register(DisableAlphaRejection_HotShelter, LengthOfArray(DisableAlphaRejection_HotShelter), &DisableAlphaRejection);
 		material_register(LevelSpecular_HotShelter, LengthOfArray(LevelSpecular_HotShelter), &ForceDiffuse0Specular0);
 		material_register(ObjectSpecular_HotShelter, LengthOfArray(ObjectSpecular_HotShelter), &ForceDiffuse0Specular1);
 		material_register(WhiteDiffuse_HotShelter, LengthOfArray(WhiteDiffuse_HotShelter), &ForceWhiteDiffuse1);

@@ -11,6 +11,7 @@
 HMODULE CHRMODELS3 = GetModuleHandle(L"CHRMODELS_orig");
 HMODULE ADV01MODELS2 = GetModuleHandle(L"ADV01MODELS");
 HMODULE ADV01CMODELS2 = GetModuleHandle(L"ADV01CMODELS");
+HMODULE ADV02MODELS2 = GetModuleHandle(L"ADV02MODELS");
 HMODULE ADV03MODELS = GetModuleHandle(L"ADV03MODELS");
 
 NJS_TEXANIM EmeraldGlowTexanim = { 32, 32, 0, 0, 0, 0, 0xFF, 0xFF, 3, 0 };
@@ -54,6 +55,12 @@ static float LSDFix = 16.0f;
 static int CutsceneFadeValue = 0;
 static int CutsceneFadeMode = 0;
 static bool SkipPressed_Cutscene = false;
+
+NJS_MATERIAL* AlphaRejectMaterials[] = {
+	((NJS_MATERIAL*)0x8B26E4), //Magnetic barrier
+	((NJS_MATERIAL*)0x8BF2C0), //Shadow blob
+	(NJS_MATERIAL*)((size_t)ADV02MODELS2 + 0x0007C334), //Emerald shards (cutscene)
+};
 
 NJS_MATERIAL* RemoveColors_General[] = {
 	//The beam that collects the emeralds in "Tails and Sonic gassed at Casinopolis" cutscene
@@ -160,43 +167,6 @@ NJS_MATERIAL* RemoveColors_General[] = {
 };
 
 NJS_MATERIAL* FirstCharacterSpecular_General[] = {
-	//Hedgehog Hammer targets (possibly SL objects?)
-	(NJS_MATERIAL*)((size_t)ADV01CMODELS2 + 0x0011C478),
-	(NJS_MATERIAL*)((size_t)ADV01CMODELS2 + 0x0011BF60),
-	(NJS_MATERIAL*)((size_t)ADV01CMODELS2 + 0x0011BF74),
-	(NJS_MATERIAL*)((size_t)ADV01CMODELS2 + 0x0011BBC8),
-	(NJS_MATERIAL*)((size_t)ADV01CMODELS2 + 0x0011B364),
-	(NJS_MATERIAL*)((size_t)ADV01CMODELS2 + 0x0011A9E8),
-	(NJS_MATERIAL*)((size_t)ADV01CMODELS2 + 0x0011A504),
-	(NJS_MATERIAL*)((size_t)ADV01CMODELS2 + 0x0011A1CC),
-	(NJS_MATERIAL*)((size_t)ADV01CMODELS2 + 0x0011A07C),
-	(NJS_MATERIAL*)((size_t)ADV01CMODELS2 + 0x0011A090),
-	(NJS_MATERIAL*)((size_t)ADV01CMODELS2 + 0x00119F2C),
-	(NJS_MATERIAL*)((size_t)ADV01CMODELS2 + 0x00119F40),
-	(NJS_MATERIAL*)((size_t)ADV01CMODELS2 + 0x001247C8),
-	(NJS_MATERIAL*)((size_t)ADV01CMODELS2 + 0x001242B0),
-	(NJS_MATERIAL*)((size_t)ADV01CMODELS2 + 0x001242C4),
-	(NJS_MATERIAL*)((size_t)ADV01CMODELS2 + 0x00123F18),
-	(NJS_MATERIAL*)((size_t)ADV01CMODELS2 + 0x001236B4),
-	(NJS_MATERIAL*)((size_t)ADV01CMODELS2 + 0x00122D38),
-	(NJS_MATERIAL*)((size_t)ADV01CMODELS2 + 0x00122854),
-	(NJS_MATERIAL*)((size_t)ADV01CMODELS2 + 0x0012251C),
-	(NJS_MATERIAL*)((size_t)ADV01CMODELS2 + 0x001223CC),
-	(NJS_MATERIAL*)((size_t)ADV01CMODELS2 + 0x001223E0),
-	(NJS_MATERIAL*)((size_t)ADV01CMODELS2 + 0x0012227C),
-	(NJS_MATERIAL*)((size_t)ADV01CMODELS2 + 0x00122290),
-	(NJS_MATERIAL*)((size_t)ADV01CMODELS2 + 0x00115630),
-	(NJS_MATERIAL*)((size_t)ADV01CMODELS2 + 0x00114C38),
-	(NJS_MATERIAL*)((size_t)ADV01CMODELS2 + 0x00114C4C),
-	(NJS_MATERIAL*)((size_t)ADV01CMODELS2 + 0x00114C60),
-	(NJS_MATERIAL*)((size_t)ADV01CMODELS2 + 0x00114C74),
-	(NJS_MATERIAL*)((size_t)ADV01CMODELS2 + 0x00114568),
-	(NJS_MATERIAL*)((size_t)ADV01CMODELS2 + 0x0011457C),
-	(NJS_MATERIAL*)((size_t)ADV01CMODELS2 + 0x001142D4),
-	(NJS_MATERIAL*)((size_t)ADV01CMODELS2 + 0x001140CC),
-	(NJS_MATERIAL*)((size_t)ADV01CMODELS2 + 0x00113EB4),
-	(NJS_MATERIAL*)((size_t)ADV01CMODELS2 + 0x00113B4C),
-	(NJS_MATERIAL*)((size_t)ADV01CMODELS2 + 0x001137E4),
 	//Button
 	((NJS_MATERIAL*)0x008BB6E4),
 	((NJS_MATERIAL*)0x008BB6F8),
@@ -1274,6 +1244,7 @@ void General_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 	if (DLLLoaded_Lantern == true)
 	{
 		allow_landtable_specular(true);
+		if (set_alpha_reject != nullptr) material_register(AlphaRejectMaterials, LengthOfArray(AlphaRejectMaterials), &DisableAlphaRejection);
 		material_register(FirstCharacterSpecular_General, LengthOfArray(FirstCharacterSpecular_General), &ForceDiffuse2Specular2);
 		material_register(ObjectSpecular_General, LengthOfArray(ObjectSpecular_General), &ForceDiffuse0Specular1);
 		material_register(LevelSpecular_General, LengthOfArray(LevelSpecular_General), &ForceDiffuse0Specular0);
