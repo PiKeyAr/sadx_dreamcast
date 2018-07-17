@@ -30,6 +30,17 @@ FunctionPointer(void, sub_408530, (NJS_OBJECT *a1), 0x408530);
 FunctionPointer(void, sub_407A00, (NJS_MODEL_SADX *model, float scale), 0x407A00);
 FunctionPointer(void, sub_5ED790, (ObjectMaster *a1, NJS_OBJECT *a2), 0x5ED790);
 
+NJS_MATERIAL* DisableAlphaRejection_SkyDeck[] = {
+	//Decals
+	&matlistSTG06_00197C5C[0],
+	&matlistSTG06_00198788[0],
+	&matlistSTG06_00198990[0],
+	&matlistSTG06_0019888C[0],
+	&matlistSTG06_00198A94[0],
+	&matlistSTG06_00198B98[0],
+	&matlistSTG06_00198C9C[0],
+};
+
 NJS_MATERIAL* WhiteDiffuse_SkyDeck[] = {
 	//Aircraft stuff
 	&matlistSTG06_001E11BC[4],
@@ -617,7 +628,6 @@ void SkyDeck_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 	ReplaceBIN_DC("CAM0601S");
 	ReplaceBIN_DC("CAM0602K");
 	ReplaceBIN_DC("CAM0602S");
-
 	switch (EnableSETFixes)
 	{
 		case SETFixes_Normal:
@@ -637,7 +647,6 @@ void SkyDeck_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 		default:
 			break;
 	}
-
 	ReplacePVM("E_AIRCRAFT");
 	ReplacePVM("OBJ_SKYDECK");
 	ReplacePVM("SKYDECK01");
@@ -677,6 +686,7 @@ void SkyDeck_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 	//Lantern stuff
 	if (DLLLoaded_Lantern)
 	{
+		if (set_alpha_reject != nullptr) material_register(DisableAlphaRejection_SkyDeck, LengthOfArray(DisableAlphaRejection_SkyDeck), &DisableAlphaRejection);
 		material_register(WhiteDiffuse_SkyDeck, LengthOfArray(WhiteDiffuse_SkyDeck), &ForceWhiteDiffuse1);
 		material_register(ObjectSpecular_SkyDeck, LengthOfArray(ObjectSpecular_SkyDeck), &ForceDiffuse0Specular1);
 	}
