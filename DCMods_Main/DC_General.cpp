@@ -592,6 +592,27 @@ void __cdecl ItemBox_Display_Destroyed_Rotate(ObjectMaster* _this)
 	njPopMatrix(1u);
 }
 
+NJS_OBJECT* PerMeshSorting_ItemCapsule[] = {
+	&object_004BEAD4_1,
+	&object_004BEAD4_2,
+	&object_004BEAD4_3,
+	&object_004BEAD4_4,
+	&object_004BEAD4_5,
+	&object_004BEAD4_6,
+	&object_004BEAD4_7,
+	&object_004BEAD4_8,
+	&object_004BEAD4_9,
+	&object_004BEAD4_10,
+	&object_004BEAD4_11,
+	&object_004BEAD4_12,
+	&object_004BEAD4_13,
+	&object_004BEAD4_14,
+	&object_004BEAD4_15,
+	&object_004BEAD4_16,
+	&object_004BEAD4_17,
+	&object_004BEAD4_18,
+};
+
 void __cdecl ItemBox_Display_Unknown_Rotate(ObjectMaster* _this)
 {
 	auto v1 = _this->Data1;
@@ -640,10 +661,19 @@ void __cdecl ItemBox_Display_Unknown_Rotate(ObjectMaster* _this)
 				// This was originally DrawModelIGuess_N, but that's wrong.
 				DrawModel(&ItemBox_Base_MODEL);
 
-				DrawModel_Queue(&ItemBox_Capsule_MODEL, QueuedModelFlagsB_EnableZWrite);
-
 				// This was originally DrawModelIGuess_N, but that's wrong.
 				DrawModel(&ItemBox_Top_MODEL);
+
+				//DrawModel_Queue(&ItemBox_Capsule_MODEL, QueuedModelFlagsB_EnableZWrite);
+
+				for (unsigned int i = 0; i < LengthOfArray(PerMeshSorting_ItemCapsule); i++)
+				{
+					njPushMatrix(0);
+					njTranslate(0, 0, 0, 0);
+					njScale(0, 1.0f, 1.0f, 1.0f);
+					ProcessModelNode_Sort(PerMeshSorting_ItemCapsule[i], QueuedModelFlagsB_EnableZWrite, 1.0f);
+					njPopMatrix(1u);
+				}
 
 				DrawQueueDepthBias = 0;
 			}
@@ -699,13 +729,46 @@ void __cdecl ItemBox_Display_Rotate(ObjectMaster* _this)
 
 				// This was originally DrawModelIGuess_N, but that's wrong.
 				DrawModel(&ItemBox_Base_MODEL);
-
-				DrawModel_Queue(&ItemBox_Capsule_MODEL, QueuedModelFlagsB_EnableZWrite);
-
 				// This was originally DrawModelIGuess_N, but that's wrong.
 				DrawModel(&ItemBox_Top_MODEL);
+
+				//DrawModel_Queue(&ItemBox_Capsule_MODEL, QueuedModelFlagsB_EnableZWrite);
+				for (unsigned int i = 0; i < LengthOfArray(PerMeshSorting_ItemCapsule); i++)
+				{
+					njPushMatrix(0);
+					njTranslate(0, 0, 0, 0);
+					njScale(0, 1.0f, 1.0f, 1.0f);
+					ProcessModelNode_Sort(PerMeshSorting_ItemCapsule[i], QueuedModelFlagsB_EnableZWrite, 1.0f);
+					njPopMatrix(1u);
+				}
 			}
 			njPopMatrixEx();
+		}
+	}
+}
+
+NJS_OBJECT* PerMeshSorting_ItemCapsuleAir[] = {
+	&object_004CAC14_1,
+	&object_004CAC14_2,
+	&object_004CAC14_3,
+	&object_004CAC14_4,
+};
+
+FunctionPointer(void, sub_4094D0, (NJS_MODEL_SADX *model, QueuedModelFlagsB blend, float radius_scale), 0x4094D0);
+
+void __cdecl ItemBoxAir_DisplayFix(NJS_MODEL_SADX *model, QueuedModelFlagsB blend, float radius_scale)
+{
+	if (model != (NJS_MODEL_SADX*)0x008CABE8)
+	{
+		sub_4094D0(model, blend, radius_scale);
+	}
+	else
+	{
+		for (unsigned int i = 0; i < LengthOfArray(PerMeshSorting_ItemCapsuleAir); i++)
+		{
+			njPushMatrix(0);
+			ProcessModelNode_Sort(PerMeshSorting_ItemCapsuleAir[i], QueuedModelFlagsB_EnableZWrite, radius_scale);
+			njPopMatrix(1u);
 		}
 	}
 }
@@ -1148,8 +1211,9 @@ void General_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 		ResizeTextureList(&OBJ_REGULAR_TEXLIST, 100); //Added DC ripple texture
 	}
 	WriteJump(ItemBox_Display_Destroyed, ItemBox_Display_Destroyed_Rotate);
-	WriteJump(ItemBox_Display_Unknown, ItemBox_Display_Unknown_Rotate);
+	WriteJump(ItemBox_Display_Unknown, ItemBox_Display_Rotate);// ItemBox_Display_Unknown_Rotate);
 	WriteJump(ItemBox_Display, ItemBox_Display_Rotate);
+	WriteCall((void*)0x4BA7B8, ItemBoxAir_DisplayFix);
 	*(NJS_MODEL_SADX*)0x00989384 = attach_0019D298_2; //Switch
 	*(NJS_MODEL_SADX*)0x008BBD84 = attach_0019D298; //Switch (pressed)
 	*(NJS_MODEL_SADX*)0x008B8438 = attach_00199A4C; //Dash panel
