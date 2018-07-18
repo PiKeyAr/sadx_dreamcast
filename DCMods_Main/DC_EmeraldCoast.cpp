@@ -40,6 +40,34 @@ DataPointer(float, flt_7DF1B0, 0x7DF1B0);
 DataPointer(int, EffectActive, 0x3C5E4B0);
 FunctionPointer(void, DrawEmeraldCoastOcean, (OceanData *x), 0x004F8A30);
 
+NJS_OBJECT* PerMeshSorting_EmeraldCoast[] = {
+	&objectSTG01_0005BBF4_1,
+	&objectSTG01_0005BBF4_2,
+	&objectSTG01_0005BBF4_3,
+	&objectSTG01_0005BBF4_4,
+	&objectSTG01_0005BBF4_5,
+	&objectSTG01_0005BBF4_6,
+	&objectSTG01_0005BBF4_7,
+	&objectSTG01_0005BBF4_8,
+	&objectSTG01_0005BBF4_9,
+	&objectSTG01_0005BBF4_10,
+	&objectSTG01_0005BBF4_11,
+	&objectSTG01_0005BBF4_12,
+};
+
+void PerMeshSortingFunction_EmeraldCoast()
+{
+	njSetTexture(&texlist_ecoast1);
+	for (unsigned int i = 0; i < LengthOfArray(PerMeshSorting_EmeraldCoast); i++)
+	{
+		njPushMatrix(0);
+		njTranslate(0, 0, 0, 0);
+		njScale(0, 1.0f, 1.0f, 1.0f);
+		ProcessModelNode_Sort(PerMeshSorting_EmeraldCoast[i], QueuedModelFlagsB_EnableZWrite, 1.0f);
+		njPopMatrix(1u);
+	}
+}
+
 int roundfloat(float r) {
 	return (r > 0.0) ? (r + 0.5) : (r - 0.5);
 }
@@ -348,6 +376,7 @@ void __cdecl Obj_EC1Water_DisplayX(ObjectMaster *a1)
 			DrawQueueDepthBias = 0;
 		}
 	}
+	if (CurrentAct == 0 && !DroppedFrames) PerMeshSortingFunction_EmeraldCoast();
 }
 
 NJS_MATERIAL* ObjectSpecular_STG01[] = {
