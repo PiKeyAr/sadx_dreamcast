@@ -14,6 +14,7 @@ DataPointer(float, EnvMap1, 0x038A5DD0);
 DataPointer(float, EnvMap2, 0x038A5DE4);
 DataPointer(float, EnvMap3, 0x038A5E00);
 DataPointer(float, EnvMap4, 0x038A5E04);
+FunctionPointer(void, ProcessModelNode_Sort, (NJS_OBJECT *a1, QueuedModelFlagsB a2, float a3), 0x409550);
 
 typedef enum
 {

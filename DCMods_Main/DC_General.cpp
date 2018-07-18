@@ -841,6 +841,88 @@ void __cdecl RenderInvincibilityLines(NJS_MODEL_SADX *a1)
 	DrawQueueDepthBias = 0.0f;
 }
 
+NJS_OBJECT* BalloonModels[] = {
+	&object_004BE194A_1,
+	&object_004BE194A_2,
+	&object_004BE194A_3,
+	&object_004BE194A_4,
+	&object_004BE194A_5,
+	&object_004BE194A_6,
+
+	&object_004BE194B_1,
+	&object_004BE194B_2,
+	&object_004BE194B_3,
+	&object_004BE194B_4,
+	&object_004BE194B_5,
+	&object_004BE194B_6,
+	&object_004BE194B_7,
+	&object_004BE194B_8,
+	&object_004BE194B_9,
+	&object_004BE194B_10,
+	&object_004BE194B_11,
+	&object_004BE194B_12,
+	&object_004BE194B_13,
+	&object_004BE194B_14,
+	&object_004BE194B_15,
+	&object_004BE194B_16,
+
+	&object_004BE194C_1,
+	&object_004BE194C_2,
+	&object_004BE194C_3,
+	&object_004BE194C_4,
+	&object_004BE194C_5,
+	&object_004BE194C_6,
+	&object_004BE194C_7,
+	&object_004BE194C_8,
+	&object_004BE194C_9,
+	&object_004BE194C_10,
+	&object_004BE194C_11,
+	&object_004BE194C_12,
+	&object_004BE194C_13,
+	&object_004BE194C_14,
+	&object_004BE194C_15,
+	&object_004BE194C_16,
+};
+
+void RenderBalloon(NJS_MODEL_SADX *model, float scale)
+{
+	for (unsigned int i = 0; i < LengthOfArray(BalloonModels); i++)
+	{
+		njPushMatrix(0);
+		njTranslate(0, 0, 0, 0);
+		njScale(0, 1.0f, 1.0f, 1.0f);
+		ProcessModelNode_Sort(BalloonModels[i], QueuedModelFlagsB_EnableZWrite, 1.0f);
+		njPopMatrix(1u);
+	}
+}
+
+void RenderBalloonTip(NJS_MODEL_SADX *model, float scale)
+{
+	njPushMatrix(0);
+	njTranslate(0, 0, 0, 0);
+	njScale(0, 1.0f, 1.0f, 1.0f);
+	ProcessModelNode_Sort(&object_004BD908_1, QueuedModelFlagsB_EnableZWrite, 1.0f);
+	njPopMatrix(1u);
+
+	njPushMatrix(0);
+	njTranslate(0, 0, 0, 0);
+	njScale(0, 1.0f, 1.0f, 1.0f);
+	ProcessModelNode_Sort(&object_004BD908_2, QueuedModelFlagsB_EnableZWrite, 1.0f);
+	njPopMatrix(1u);
+
+	njPushMatrix(0);
+	njTranslate(0, 0, 0, 0);
+	njScale(0, 1.0f, 1.0f, 1.0f);
+	ProcessModelNode_Sort(&object_004BD908_3, QueuedModelFlagsB_EnableZWrite, 1.0f);
+	njPopMatrix(1u);
+
+	njPushMatrix(0);
+	njTranslate(0, 0, 0, 0);
+	njScale(0, 1.0f, 1.0f, 1.0f);
+	ProcessModelNode_Sort(&object_004BD908_4, QueuedModelFlagsB_EnableZWrite, 1.0f);
+	njPopMatrix(1u);
+}
+
 void General_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 {
 	ReplacePVR("AL_BARRIA");
@@ -1254,8 +1336,8 @@ void General_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 	((NJS_MATERIAL*)0x03310F18)->diffuse.color = 0xFFFFFFFF;
 	((NJS_OBJECT*)0x10D7774)->basicdxmodel->mats[0].diffuse.color = 0xFFB2B2B2; //Question mark from Character Select
 	((NJS_OBJECT*)0x10D7774)->basicdxmodel->mats[0].attr_texId = 10; //Question mark from Character Select
-	//((NJS_OBJECT*)0x008BE194)->basicdxmodel->mats[0].diffuse.argb.a = 0xB2; //Balloon transparency
-	//((NJS_OBJECT*)0x008BE194)->basicdxmodel->mats[1].diffuse.argb.a = 0xB2; //Balloon transparency
+	WriteCall((void*)0x7A1E7C, RenderBalloon); 
+	WriteCall((void*)0x7A1F1E, RenderBalloonTip);
 	WriteData<1>((char*)0x004D7712, 0x02u); //Animal bubble blending mode
 	*(NJS_OBJECT*)0x02F67B78 = object_0021BD90; //Tornado 2 crashed
 	ResizeTextureList((NJS_TEXLIST*)0x0092ACE4, 5); //GOMA texlist
