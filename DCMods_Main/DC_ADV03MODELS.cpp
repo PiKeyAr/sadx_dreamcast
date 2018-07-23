@@ -298,14 +298,6 @@ NJS_MATERIAL* FirstCharacterSpecular[] = {
 
 };
 
-bool ForceFirstCharacterSpecular(NJS_MATERIAL* material, Uint32 flags)
-{
-	set_diffuse(2, false);
-	set_specular(2, false);
-	use_default_diffuse(true);
-	return true;
-}
-
 void __cdecl Past_OceanDraw_r(OceanData *a1)
 {
 	if (CurrentAct == 1)
