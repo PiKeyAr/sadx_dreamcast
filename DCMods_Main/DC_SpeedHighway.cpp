@@ -214,8 +214,8 @@ void SpeedHighway_Init(const IniFile *config, const HelperFunctions &helperFunct
 	WriteCall((void*)0x00614122, RocketSprite);
 	if (DLLLoaded_Lantern)
 	{
-		material_register(WhiteDiffuse_Highway, LengthOfArray(WhiteDiffuse_Highway), &ForceWhiteDiffuse1);
-		if (set_alpha_reject != nullptr) material_register(DisableAlphaRejection_SpeedHighway, LengthOfArray(DisableAlphaRejection_SpeedHighway), &DisableAlphaRejection);
+		material_register_ptr(WhiteDiffuse_Highway, LengthOfArray(WhiteDiffuse_Highway), &ForceWhiteDiffuse1);
+		if (set_alpha_reject_ptr != nullptr) material_register_ptr(DisableAlphaRejection_SpeedHighway, LengthOfArray(DisableAlphaRejection_SpeedHighway), &DisableAlphaRejection);
 	}
 	//Helicopter light
 	((NJS_OBJECT*)0x268CF20)->child->sibling->evalflags |= NJD_EVAL_HIDE;
@@ -378,5 +378,4 @@ void SpeedHighway_OnFrame()
 			matlistSTG04_001338A0[0].attr_texId = shwwater;
 		}
 	}
-
 }

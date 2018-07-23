@@ -2,7 +2,6 @@
 #define _LANTERNAPI_H
 
 #include <ninja.h>
-
 #ifdef __cplusplus
 #include <cstddef>
 #include <cstdint>
@@ -17,7 +16,7 @@
 #else
 #define API __declspec(dllimport)
 #endif
-
+#define API typedef
 #ifdef __cplusplus
 extern "C" {
 #endif

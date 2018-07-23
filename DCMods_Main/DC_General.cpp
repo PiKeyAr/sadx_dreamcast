@@ -251,13 +251,13 @@ bool E101Function(NJS_MATERIAL* material, Uint32 flags)
 {
 	if (CurrentLevel == 33 || CurrentLevel == 32)
 	{
-		set_diffuse(2, false);
-		set_specular(3, false);
+		set_diffuse_ptr(2, false);
+		set_specular_ptr(3, false);
 	}
 	else
 	{
-		set_diffuse(0, false);
-		set_specular(1, false);
+		set_diffuse_ptr(0, false);
+		set_specular_ptr(1, false);
 	}
 	return true;
 }
@@ -1243,10 +1243,10 @@ void General_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 	}
 	if (DLLLoaded_Lantern == true)
 	{
-		if (set_alpha_reject != nullptr) material_register(AlphaRejectMaterials, LengthOfArray(AlphaRejectMaterials), &DisableAlphaRejection);
-		material_register(FirstCharacterSpecular_General, LengthOfArray(FirstCharacterSpecular_General), &ForceDiffuse2Specular2);
-		material_register(ObjectSpecular_General, LengthOfArray(ObjectSpecular_General), &ForceDiffuse0Specular1);
-		material_register(LevelSpecular_General, LengthOfArray(LevelSpecular_General), &ForceDiffuse0Specular0);
+		if (set_alpha_reject_ptr != nullptr) material_register_ptr(AlphaRejectMaterials, LengthOfArray(AlphaRejectMaterials), &DisableAlphaRejection);
+		material_register_ptr(FirstCharacterSpecular_General, LengthOfArray(FirstCharacterSpecular_General), &ForceDiffuse2Specular2);
+		material_register_ptr(ObjectSpecular_General, LengthOfArray(ObjectSpecular_General), &ForceDiffuse0Specular1);
+		material_register_ptr(LevelSpecular_General, LengthOfArray(LevelSpecular_General), &ForceDiffuse0Specular0);
 	}
 	//Egg Walker cutscene
 	((NJS_MATERIAL*)0x03310F18)->attrflags |= NJD_FLAG_IGNORE_LIGHT;

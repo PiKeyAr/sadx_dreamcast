@@ -124,7 +124,6 @@ void WindyValley_Init(const IniFile *config, const HelperFunctions &helperFuncti
 	ReplaceBIN_DC("CAM0201S");
 	ReplaceBIN_DC("CAM0202M");
 	ReplaceBIN_DC("CAM0202S");
-
 	switch (EnableSETFixes)
 	{
 		case SETFixes_Normal:
@@ -144,7 +143,6 @@ void WindyValley_Init(const IniFile *config, const HelperFunctions &helperFuncti
 		default:
 			break;
 	}
-
 	ReplacePVM("OBJ_WINDY");
 	ReplacePVM("WINDY01");
 	ReplacePVM("WINDY02");
@@ -168,9 +166,9 @@ void WindyValley_Init(const IniFile *config, const HelperFunctions &helperFuncti
 	((NJS_MATERIAL*)0x00C1C47C)->attr_texId &= ~NJD_FLAG_IGNORE_SPECULAR;
 	if (DLLLoaded_Lantern)
 	{
-		material_register(LevelSpecular_Windy, LengthOfArray(LevelSpecular_Windy), &ForceDiffuse0Specular0);
-		material_register(ObjectSpecular_Windy, LengthOfArray(ObjectSpecular_Windy), &ForceDiffuse0Specular1);
-		material_register(ObjectSpecularWhiteDiffuse, LengthOfArray(ObjectSpecularWhiteDiffuse), &ForceWhiteDiffuse3Specular1);
+		material_register_ptr(LevelSpecular_Windy, LengthOfArray(LevelSpecular_Windy), &ForceDiffuse0Specular0);
+		material_register_ptr(ObjectSpecular_Windy, LengthOfArray(ObjectSpecular_Windy), &ForceDiffuse0Specular1);
+		material_register_ptr(ObjectSpecularWhiteDiffuse, LengthOfArray(ObjectSpecularWhiteDiffuse), &ForceWhiteDiffuse3Specular1);
 	}
 	WriteData<1>((void*)0x4DD120, 0xC3); //Disable some fog thing
 	WriteCall((void*)0x004E1E35, sub_409E70); //Wind gate rendering function
@@ -198,7 +196,6 @@ void WindyValley_Init(const IniFile *config, const HelperFunctions &helperFuncti
 	//OTreeM fixes
 	*(NJS_OBJECT*)0xC2663C = object_000CB98C; //OTreeM DC model
 	WriteCall((void*)0x4E2BA1, FixBranch);
-
 	//Skybox/fog data stuff
 	for (unsigned int i = 0; i < 3; i++)
 	{

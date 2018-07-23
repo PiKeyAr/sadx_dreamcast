@@ -1340,9 +1340,9 @@ void Bosses_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 	//Lighting stuff
 	if (DLLLoaded_Lantern)
 	{
-		material_register(Chaos4Materials, LengthOfArray(Chaos4Materials), &Chaos4NPCFunction);
-		material_register(Chaos6ObjectMaterials, LengthOfArray(Chaos6ObjectMaterials), &ForceDiffuse0Specular0or1);
-		material_register(WhiteDiffuse_Boss, LengthOfArray(WhiteDiffuse_Boss), &ForceWhiteDiffuse3Specular1);
+		material_register_ptr(Chaos4Materials, LengthOfArray(Chaos4Materials), &Chaos4NPCFunction);
+		material_register_ptr(Chaos6ObjectMaterials, LengthOfArray(Chaos6ObjectMaterials), &ForceDiffuse0Specular0or1);
+		material_register_ptr(WhiteDiffuse_Boss, LengthOfArray(WhiteDiffuse_Boss), &ForceWhiteDiffuse3Specular1);
 	}
 	//SADX style water
 	if (EnableEggHornet && SADXWater_MysticRuins)
@@ -1440,7 +1440,7 @@ void Bosses_OnFrame()
 		{
 			EggViper_blendfactor = 0;
 			EggViper_EffectMode = 0;
-			set_shader_flags(ShaderFlags_Blend, false);
+			set_shader_flags_ptr(ShaderFlags_Blend, false);
 		}
 		if (GameMode == GameModes_Menu || GameMode == GameModes_CharSel)
 		{
@@ -1450,7 +1450,7 @@ void Bosses_OnFrame()
 			EggViper_EffectMode = 0;
 			EggViper_blendfactor = 0;
 			EggViper_blenddirection = 1;
-			set_shader_flags(ShaderFlags_Blend, false);
+			set_shader_flags_ptr(ShaderFlags_Blend, false);
 			EggViperByteThing = 0;
 		}
 		if (CurrentLevel == 22)
@@ -1513,7 +1513,7 @@ void Bosses_OnFrame()
 				{
 					EggViper_blendfactor = 0;
 					EggViper_EffectMode = 0;
-					set_shader_flags(ShaderFlags_Blend, false);
+					set_shader_flags_ptr(ShaderFlags_Blend, false);
 				}
 			}
 			//longer flash
@@ -1526,7 +1526,7 @@ void Bosses_OnFrame()
 				{
 					EggViper_blendfactor = 0;
 					EggViper_EffectMode = 0;
-					set_shader_flags(ShaderFlags_Blend, false);
+					set_shader_flags_ptr(ShaderFlags_Blend, false);
 				}
 			}
 			//permanent flash
@@ -1560,11 +1560,11 @@ void Bosses_OnFrame()
 					EggViper_blendfactor = 0.0f;
 					EggViper_blenddirection = 1;
 					EggViper_EffectMode = 0;
-					set_blend_factor(0);
+					set_blend_factor_ptr(0);
 				}
 				if (EggViper_blendfactor >= EggViper_blendfactor_max)
 				{
-					set_diffuse_blend(0, 3);
+					set_diffuse_blend_ptr(0, 3);
 					EggViper_blenddirection = -1;
 					if (EggViper_blendfactor_max < 1.0f)
 					{
@@ -1574,7 +1574,7 @@ void Bosses_OnFrame()
 				if (EggViper_blendfactor <= EggViper_blendfactor_min)
 				{
 					EggViper_blenddirection = 1;
-					set_diffuse_blend(0, 6);
+					set_diffuse_blend_ptr(0, 6);
 				}
 				if (GameState != 16)
 				{
@@ -1587,16 +1587,15 @@ void Bosses_OnFrame()
 			//general stuff
 			if (EggViper_EffectMode != 0)
 			{
-				set_shader_flags(ShaderFlags_Blend, true);
-				if (EggViper_EffectMode != 5) set_diffuse_blend(0, 5);
-				set_specular_blend(0, 0);
-				set_blend_factor(EggViper_blendfactor);
+				set_shader_flags_ptr(ShaderFlags_Blend, true);
+				if (EggViper_EffectMode != 5) set_diffuse_blend_ptr(0, 5);
+				set_specular_blend_ptr(0, 0);
+				set_blend_factor_ptr(EggViper_blendfactor);
 			}
 			else
 			{
-				set_shader_flags(ShaderFlags_Blend, false);
+				set_shader_flags_ptr(ShaderFlags_Blend, false);
 			}
-
 		}
 	}
 	//Super stupid hax to make Perfect Chaos' tornadoes fade in

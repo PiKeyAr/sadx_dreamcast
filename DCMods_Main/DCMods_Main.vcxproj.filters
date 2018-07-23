@@ -653,5 +653,8 @@
     <ClInclude Include="Past_Chao.h">
       <Filter>Header Files\Levels\ADV03MODELS</Filter>
     </ClInclude>
+    <ClInclude Include="Lantern\lanternapi.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

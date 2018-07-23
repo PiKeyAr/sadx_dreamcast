@@ -822,10 +822,10 @@ void Casinopolis_Init(const IniFile *config, const HelperFunctions &helperFuncti
 	ReplaceBIN("PL_90B", "PL_90X");
 	if (DLLLoaded_Lantern)
 	{
-		if (set_alpha_reject != nullptr) material_register(DisableAlphaRejection_Casino, LengthOfArray(DisableAlphaRejection_Casino), &DisableAlphaRejection);
-		material_register(LevelSpecular_Casino, LengthOfArray(LevelSpecular_Casino), &ForceDiffuse0Specular0);
-		material_register(ObjectSpecular_Casino, LengthOfArray(ObjectSpecular_Casino), &ForceDiffuse0Specular1);
-		material_register(WhiteDiffuse_Casino, LengthOfArray(WhiteDiffuse_Casino), &ForceWhiteDiffuse1);
+		if (set_alpha_reject_ptr != nullptr) material_register_ptr(DisableAlphaRejection_Casino, LengthOfArray(DisableAlphaRejection_Casino), &DisableAlphaRejection);
+		material_register_ptr(LevelSpecular_Casino, LengthOfArray(LevelSpecular_Casino), &ForceDiffuse0Specular0);
+		material_register_ptr(ObjectSpecular_Casino, LengthOfArray(ObjectSpecular_Casino), &ForceDiffuse0Specular1);
+		material_register_ptr(WhiteDiffuse_Casino, LengthOfArray(WhiteDiffuse_Casino), &ForceWhiteDiffuse1);
 	}
 	//Ideya cap fix
 	WriteCall((void*)0x5D79A9, IdeyaCapFix);
@@ -991,10 +991,10 @@ void Casinopolis_OnFrame()
 		if (WhiteSonic && (InsideMachine == 0 || CurrentLevel != 9 || CurrentAct != 0 || GameMode == GameModes_Menu || GameState == 3 || GameState == 4 || GameState == 7 || GameState == 21))
 		{
 			WhiteSonic = false;
-			set_blend_factor(0.0f);
-			set_specular_blend(2, -1);
-			set_specular_blend(3, -1);
-			set_shader_flags(ShaderFlags_Blend, false);
+			set_blend_factor_ptr(0.0f);
+			set_specular_blend_ptr(2, -1);
+			set_specular_blend_ptr(3, -1);
+			set_shader_flags_ptr(ShaderFlags_Blend, false);
 			SonicWhiteness = 0;
 		}
 		if (CurrentLevel == 9 && CurrentAct == 0 && GameState != 16)
@@ -1003,14 +1003,14 @@ void Casinopolis_OnFrame()
 			if (!WhiteSonic && InsideMachine != 0)
 			{
 				WhiteSonic = true;
-				set_shader_flags(ShaderFlags_Blend, true);
-				set_specular_blend(2, 4);
-				set_specular_blend(3, 4);
+				set_shader_flags_ptr(ShaderFlags_Blend, true);
+				set_specular_blend_ptr(2, 4);
+				set_specular_blend_ptr(3, 4);
 			}
 			//Make Sonic normal
 			if (WhiteSonic && SonicWhiteness <= 0.75f)
 			{
-				set_blend_factor(SonicWhiteness);
+				set_blend_factor_ptr(SonicWhiteness);
 				SonicWhiteness += (0.01f * FramerateSetting);
 			}
 		}

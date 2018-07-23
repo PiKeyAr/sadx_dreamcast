@@ -314,10 +314,10 @@ void HotShelter_Init(const IniFile *config, const HelperFunctions &helperFunctio
 	ResizeTextureList((NJS_TEXLIST*)0x17F4F74, textures_shelter3);
 	if (DLLLoaded_Lantern)
 	{
-		if (set_alpha_reject != nullptr) material_register(DisableAlphaRejection_HotShelter, LengthOfArray(DisableAlphaRejection_HotShelter), &DisableAlphaRejection);
-		material_register(LevelSpecular_HotShelter, LengthOfArray(LevelSpecular_HotShelter), &ForceDiffuse0Specular0);
-		material_register(ObjectSpecular_HotShelter, LengthOfArray(ObjectSpecular_HotShelter), &ForceDiffuse0Specular1);
-		material_register(WhiteDiffuse_HotShelter, LengthOfArray(WhiteDiffuse_HotShelter), &ForceWhiteDiffuse1);
+		if (set_alpha_reject_ptr != nullptr) material_register_ptr(DisableAlphaRejection_HotShelter, LengthOfArray(DisableAlphaRejection_HotShelter), &DisableAlphaRejection);
+		material_register_ptr(LevelSpecular_HotShelter, LengthOfArray(LevelSpecular_HotShelter), &ForceDiffuse0Specular0);
+		material_register_ptr(ObjectSpecular_HotShelter, LengthOfArray(ObjectSpecular_HotShelter), &ForceDiffuse0Specular1);
+		material_register_ptr(WhiteDiffuse_HotShelter, LengthOfArray(WhiteDiffuse_HotShelter), &ForceWhiteDiffuse1);
 	}
 	//Material fixes
 	((NJS_MATERIAL*)0x01810150)->attrflags &= ~NJD_FLAG_IGNORE_LIGHT; //Water surface

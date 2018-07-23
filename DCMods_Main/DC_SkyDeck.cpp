@@ -686,9 +686,9 @@ void SkyDeck_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 	//Lantern stuff
 	if (DLLLoaded_Lantern)
 	{
-		if (set_alpha_reject != nullptr) material_register(DisableAlphaRejection_SkyDeck, LengthOfArray(DisableAlphaRejection_SkyDeck), &DisableAlphaRejection);
-		material_register(WhiteDiffuse_SkyDeck, LengthOfArray(WhiteDiffuse_SkyDeck), &ForceWhiteDiffuse1);
-		material_register(ObjectSpecular_SkyDeck, LengthOfArray(ObjectSpecular_SkyDeck), &ForceDiffuse0Specular1);
+		if (set_alpha_reject_ptr != nullptr) material_register_ptr(DisableAlphaRejection_SkyDeck, LengthOfArray(DisableAlphaRejection_SkyDeck), &DisableAlphaRejection);
+		material_register_ptr(WhiteDiffuse_SkyDeck, LengthOfArray(WhiteDiffuse_SkyDeck), &ForceWhiteDiffuse1);
+		material_register_ptr(ObjectSpecular_SkyDeck, LengthOfArray(ObjectSpecular_SkyDeck), &ForceDiffuse0Specular1);
 	}
 	//Some material fixes
 	((NJS_OBJECT*)0x95A334)->basicdxmodel->mats[4].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;

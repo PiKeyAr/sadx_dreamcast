@@ -815,9 +815,9 @@ void Subgames_Init(const IniFile *config, const HelperFunctions &helperFunctions
 	ReplaceBIN("PL_Z0B", "PL_Z0X");
 	if (DLLLoaded_Lantern)
 	{
-		material_register(ObjectBaseAndSpecular_Subgames, LengthOfArray(ObjectBaseAndSpecular_Subgames), &ForceDiffuse0Specular1);
-		material_register(LevelSpecular_Subgames, LengthOfArray(LevelSpecular_Subgames), &ForceDiffuse0Specular0);
-		material_register(WhiteDiffuse_Subgames, LengthOfArray(WhiteDiffuse_Subgames), &ForceWhiteDiffuse3);
+		material_register_ptr(ObjectBaseAndSpecular_Subgames, LengthOfArray(ObjectBaseAndSpecular_Subgames), &ForceDiffuse0Specular1);
+		material_register_ptr(LevelSpecular_Subgames, LengthOfArray(LevelSpecular_Subgames), &ForceDiffuse0Specular0);
+		material_register_ptr(WhiteDiffuse_Subgames, LengthOfArray(WhiteDiffuse_Subgames), &ForceWhiteDiffuse3);
 	}
 	//Fog and draw distance tweaks
 	for (unsigned int i = 0; i < 3; i++)

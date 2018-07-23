@@ -363,9 +363,9 @@ void ADV02_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 	ReplaceBIN("SL_X2B", "SL_X2X");
 	if (handle != nullptr && DLLLoaded_Lantern)
 	{
-		material_register(ObjectSpecular, LengthOfArray(ObjectSpecular), &ForceDiffuse0Specular1);
-		material_register(LevelSpecular, LengthOfArray(LevelSpecular), &ForceDiffuse0Specular0);
-		material_register(WhiteDiffuse, LengthOfArray(WhiteDiffuse), &ForceWhiteDiffuse1);
+		material_register_ptr(ObjectSpecular, LengthOfArray(ObjectSpecular), &ForceDiffuse0Specular1);
+		material_register_ptr(LevelSpecular, LengthOfArray(LevelSpecular), &ForceDiffuse0Specular0);
+		material_register_ptr(WhiteDiffuse, LengthOfArray(WhiteDiffuse), &ForceWhiteDiffuse1);
 	}
 	*(NJS_OBJECT*)0x1108A18 = object_00226468; //TANKEN
 	*(NJS_OBJECT*)0x110CF34 = object2_00229334; //TANKEN 2
@@ -596,7 +596,6 @@ void ADV02_OnFrame()
 				if (CurrentFogDist > -16000.0f) CurrentFogDist = CurrentFogDist - 128.0f;
 			}
 		}
-
 		for (unsigned int q6 = 0; q6 < LengthOfArray(uvADV02_00162054); q6++)
 		{
 			uvADV02_00162054[q6].v = uvADV02_00162054_0[q6].v + uvADV02_anim;

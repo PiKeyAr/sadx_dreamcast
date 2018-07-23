@@ -11,6 +11,10 @@ struct __declspec(align(2)) ObjectThingC
 	void(__cdecl *function)(NJS_OBJECT *);
 };
 
+DataArray(FogData, TwinklePark1Fog, 0x026B339C, 3);
+DataArray(FogData, TwinklePark2Fog, 0x026B33CC, 3);
+DataArray(FogData, TwinklePark3Fog, 0x026B33FC, 3);
+DataArray(FogData, TwinklePark4Fog, 0x026B342C, 3);
 FunctionPointer(void, sub_61D4E0, (ObjectMaster *a1), 0x61D4E0);
 FunctionPointer(void, sub_61D1F0, (ObjectMaster *a1), 0x61D1F0);
 FunctionPointer(void, sub_4BA5D0, (NJS_OBJECT *a1, ObjectThingC *a2), 0x4BA5D0);
@@ -479,11 +483,11 @@ void TwinklePark_Init(const IniFile *config, const HelperFunctions &helperFuncti
 	((NJS_OBJECT*)0x008BF3A0)->basicdxmodel->mats[0].attrflags |= NJD_FLAG_IGNORE_LIGHT; //shadow blob
 	if (DLLLoaded_Lantern)
 	{
-		if (set_alpha_reject != nullptr) material_register(DisableAlphaRejection_TwinklePark, LengthOfArray(DisableAlphaRejection_TwinklePark), &DisableAlphaRejection);
-		material_register(LevelSpecular_Twinkle, LengthOfArray(LevelSpecular_Twinkle), &ForceDiffuse0Specular0);
-		material_register(ObjectSpecular_Twinkle, LengthOfArray(ObjectSpecular_Twinkle), &ForceDiffuse0Specular1);
-		material_register(WhiteDiffuse_Twinkle, LengthOfArray(WhiteDiffuse_Twinkle), &ForceWhiteDiffuse3);
-		material_register(ObjectSpecularWhiteDiffuse_Twinkle, LengthOfArray(ObjectSpecularWhiteDiffuse_Twinkle), &ForceWhiteDiffuse3Specular1);
+		if (set_alpha_reject_ptr != nullptr) material_register_ptr(DisableAlphaRejection_TwinklePark, LengthOfArray(DisableAlphaRejection_TwinklePark), &DisableAlphaRejection);
+		material_register_ptr(LevelSpecular_Twinkle, LengthOfArray(LevelSpecular_Twinkle), &ForceDiffuse0Specular0);
+		material_register_ptr(ObjectSpecular_Twinkle, LengthOfArray(ObjectSpecular_Twinkle), &ForceDiffuse0Specular1);
+		material_register_ptr(WhiteDiffuse_Twinkle, LengthOfArray(WhiteDiffuse_Twinkle), &ForceWhiteDiffuse3);
+		material_register_ptr(ObjectSpecularWhiteDiffuse_Twinkle, LengthOfArray(ObjectSpecularWhiteDiffuse_Twinkle), &ForceWhiteDiffuse3Specular1);
 	}
 	*(NJS_OBJECT*)0x27AF5EC = objectSTG03_000ADBE0; //Double door
 	*(NJS_OBJECT*)0x27A3F5C = objectSTG03_000A6CD8; //OFlyer
@@ -550,11 +554,6 @@ void TwinklePark_Init(const IniFile *config, const HelperFunctions &helperFuncti
 	*(NJS_OBJECT*)0x027B972C = objectSTG03_000B5EE8; // pink flower pot
 	*(NJS_OBJECT*)0x027BAC54 = objectSTG03_000B6CF8; // yellow flower bed
 	*(NJS_OBJECT*)0x027BC1C4 = objectSTG03_000B6CF8_2; // pink flower bed
-
-	DataArray(FogData, TwinklePark1Fog, 0x026B339C, 3);
-	DataArray(FogData, TwinklePark2Fog, 0x026B33CC, 3);
-	DataArray(FogData, TwinklePark3Fog, 0x026B33FC, 3);
-	DataArray(FogData, TwinklePark4Fog, 0x026B342C, 3);
 	for (unsigned int i = 0; i < 3; i++)
 	{
 		TwinklePark1Fog[i].Layer = 1500.0f;
@@ -570,6 +569,7 @@ void TwinklePark_Init(const IniFile *config, const HelperFunctions &helperFuncti
 		TwinklePark4Fog[i].Toggle = 1;
 	}
 }
+
 void TwinklePark_OnFrame()
 {
 	{

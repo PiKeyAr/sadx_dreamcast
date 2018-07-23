@@ -111,9 +111,9 @@ void RedMountain_Init(const IniFile *config, const HelperFunctions &helperFuncti
 	WriteCall((void*)0x0060121C, RenderRMSky2);
 	if (DLLLoaded_Lantern)
 	{
-		material_register(LevelSpecular_Mountain, LengthOfArray(LevelSpecular_Mountain), &ForceDiffuse0Specular0);
-		material_register(ObjectSpecular_Mountain, LengthOfArray(ObjectSpecular_Mountain), &ForceDiffuse0Specular1);
-		material_register(WhiteDiffuse_Mountain, LengthOfArray(WhiteDiffuse_Mountain), &ForceWhiteDiffuse1);
+		material_register_ptr(LevelSpecular_Mountain, LengthOfArray(LevelSpecular_Mountain), &ForceDiffuse0Specular0);
+		material_register_ptr(ObjectSpecular_Mountain, LengthOfArray(ObjectSpecular_Mountain), &ForceDiffuse0Specular1);
+		material_register_ptr(WhiteDiffuse_Mountain, LengthOfArray(WhiteDiffuse_Mountain), &ForceWhiteDiffuse1);
 	}
 	*(NJS_OBJECT*)0x248213C = objectSTG05_0208213C; //Lamp1
 	*(NJS_OBJECT*)0x2482D94 = objectSTG05_02082D94; //Lamp2

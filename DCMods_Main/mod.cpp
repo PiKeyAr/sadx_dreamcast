@@ -1,5 +1,16 @@
 #include "stdafx.h"
 
+HMODULE LanternDLL;
+set_shader_flags* set_shader_flags_ptr;
+material_register* material_register_ptr;
+material_unregister* material_unregister_ptr;
+set_diffuse* set_diffuse_ptr;
+set_specular* set_specular_ptr;
+set_alpha_reject* set_alpha_reject_ptr;
+set_blend_factor* set_blend_factor_ptr;
+set_diffuse_blend* set_diffuse_blend_ptr;
+set_specular_blend* set_specular_blend_ptr;
+
 bool EnableWindowTitle = true;
 bool EnableDCBranding = true;
 bool EnableEmeraldCoast = true;
@@ -76,12 +87,23 @@ extern "C"
 {
 	__declspec(dllexport) void __cdecl Init(const char *path, const HelperFunctions &helperFunctions)
 	{
+		//Set up function pointers for Lantern API
+		HMODULE LanternDLL = GetModuleHandle(L"sadx-dc-lighting");
+		set_shader_flags_ptr = (void(*)(uint32_t, bool))GetProcAddress(LanternDLL, "set_shader_flags");
+		material_register_ptr = (void(*)(const NJS_MATERIAL *const *materials, size_t length, lantern_material_cb callback))GetProcAddress(LanternDLL, "material_register");
+		material_unregister_ptr = (void(*)(const NJS_MATERIAL *const *materials, size_t length, lantern_material_cb callback))GetProcAddress(LanternDLL, "material_unregister");
+		set_diffuse_ptr = (void(*)(int32_t, bool))GetProcAddress(LanternDLL, "set_diffuse");
+		set_specular_ptr = (void(*)(int32_t, bool))GetProcAddress(LanternDLL, "set_specular");
+		set_alpha_reject_ptr = (void(*)(float, bool))GetProcAddress(LanternDLL, "set_alpha_reject");
+		set_blend_factor_ptr = (void(*)(float))GetProcAddress(LanternDLL, "set_blend_factor");
+		set_diffuse_blend_ptr = (void(*)(int32_t, int32_t))GetProcAddress(LanternDLL, "set_diffuse_blend");
+		set_specular_blend_ptr = (void(*)(int32_t, int32_t))GetProcAddress(LanternDLL, "set_specular_blend");
 		//Check which DLLs are loaded
-		DLLLoaded_HDGUI    = (GetModuleHandle(L"HD_GUI.dll") != nullptr);
-		DLLLoaded_SA1Chars = (GetModuleHandle(L"SA1_Chars.dll") != nullptr);
-		DLLLoaded_Lantern  = (GetModuleHandle(L"sadx-dc-lighting.dll") != nullptr);
-		DLLLoaded_DLCs     = (GetModuleHandle(L"DLCs_Main.dll") != nullptr);
-		DLLLoaded_SADXFE   = (GetModuleHandle(L"sadx-fixed-edition.dll") != nullptr);
+		DLLLoaded_HDGUI    = (GetModuleHandle(L"HD_GUI") != nullptr);
+		DLLLoaded_SA1Chars = (GetModuleHandle(L"SA1_Chars") != nullptr);
+		DLLLoaded_Lantern  = (GetModuleHandle(L"sadx-dc-lighting") != nullptr);
+		DLLLoaded_DLCs     = (GetModuleHandle(L"DLCs_Main") != nullptr);
+		DLLLoaded_SADXFE   = (GetModuleHandle(L"sadx-fixed-edition") != nullptr);
 		HMODULE WaterEffect = GetModuleHandle(L"WaterEffect");
 		//Error messages
 		if (helperFunctions.Version < 7)

@@ -74,7 +74,7 @@ void LostWorld_Init(const IniFile *config, const HelperFunctions &helperFunction
 	WriteData((LandTable**)0x97DAF0, &landtable_000F928C);
 	if (DLLLoaded_Lantern)
 	{
-		material_register(ObjectSpecular_LostWorld, LengthOfArray(ObjectSpecular_LostWorld), &ForceDiffuse0Specular1);
+		material_register_ptr(ObjectSpecular_LostWorld, LengthOfArray(ObjectSpecular_LostWorld), &ForceDiffuse0Specular1);
 	}
 	((NJS_MATERIAL*)0x0201A13C)->attrflags |= NJD_FLAG_IGNORE_LIGHT; //TurnCube
 	((NJS_MATERIAL*)0x0201A150)->attrflags |= NJD_FLAG_IGNORE_LIGHT; //TurnCube

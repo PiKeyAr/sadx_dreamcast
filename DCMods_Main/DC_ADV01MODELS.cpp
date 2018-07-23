@@ -306,10 +306,10 @@ void __cdecl SetClip_EC01(signed int cliplevel)
 
 ObjectMaster *__cdecl TurnLightsOff()
 {
-	set_shader_flags(ShaderFlags_Blend, true);
-	set_diffuse_blend(0, 4);
-	set_specular_blend(0, 0);
-	set_blend_factor(1.0f);
+	set_shader_flags_ptr(ShaderFlags_Blend, true);
+	set_diffuse_blend_ptr(0, 4);
+	set_specular_blend_ptr(0, 0);
+	set_blend_factor_ptr(1.0f);
 	ObjectMaster *result; // eax@1
 	result = LoadObject((LoadObj)0, 1, sub_6F4570);
 	dword_3C85138 = result;
@@ -324,8 +324,8 @@ void TurnLightsOn()
 		dword_3C85138 = 0;
 	}
 
-	set_blend_factor(0.0f);
-	set_shader_flags(ShaderFlags_Blend, false);
+	set_blend_factor_ptr(0.0f);
+	set_shader_flags_ptr(ShaderFlags_Blend, false);
 }
 
 void __cdecl EggCarrierSkyBox(EntityData1 *a1, float a2)
@@ -408,9 +408,9 @@ void EggCarrierSea()
 
 bool HedgehogHammerDollsFunction(NJS_MATERIAL* material, uint32_t flags)
 {
-	set_diffuse(2, false);
-	set_specular(2, false);
-	set_alpha_reject(0.0f, false);
+	set_diffuse_ptr(2, false);
+	set_specular_ptr(2, false);
+	set_alpha_reject_ptr(0.0f, false);
 	return true;
 }
 
@@ -560,14 +560,14 @@ void ADV01_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 	}
 	if (DLLLoaded_Lantern)
 	{
-		if (set_alpha_reject != nullptr) 
+		if (set_alpha_reject_ptr != nullptr) 
 		{
-			material_register(DisableAlphaRejection_EggCarrier, LengthOfArray(DisableAlphaRejection_EggCarrier), &DisableAlphaRejection);
-			material_register(HedgehogHammerDolls, LengthOfArray(HedgehogHammerDolls), &HedgehogHammerDollsFunction);
+			material_register_ptr(DisableAlphaRejection_EggCarrier, LengthOfArray(DisableAlphaRejection_EggCarrier), &DisableAlphaRejection);
+			material_register_ptr(HedgehogHammerDolls, LengthOfArray(HedgehogHammerDolls), &HedgehogHammerDollsFunction);
 		}
-		material_register(ObjectSpecularADV01, LengthOfArray(ObjectSpecularADV01), &ForceDiffuse0Specular1);
-		//material_register(LevelSpecularADV01, LengthOfArray(LevelSpecularADV01), &ForceDiffuse0Specular0);
-		material_register(WhiteDiffuseADV01, LengthOfArray(WhiteDiffuseADV01), &ForceWhiteDiffuse1);
+		material_register_ptr(ObjectSpecularADV01, LengthOfArray(ObjectSpecularADV01), &ForceDiffuse0Specular1);
+		//material_register_ptr(LevelSpecularADV01, LengthOfArray(LevelSpecularADV01), &ForceDiffuse0Specular0);
+		material_register_ptr(WhiteDiffuseADV01, LengthOfArray(WhiteDiffuseADV01), &ForceWhiteDiffuse1);
 		WriteCall((void*)0x006F4577, TurnLightsOff); //Turn the lights off
 		WriteCall((void*)0x006F4620, TurnLightsOn); //Turn the lights on
 	}
@@ -700,8 +700,8 @@ void ADV01_OnFrame()
 	{
 		if (DLLLoaded_Lantern && dword_3C85138 == 0)
 		{
-			set_blend_factor(0.0f);
-			set_shader_flags(ShaderFlags_Blend, false);
+			set_blend_factor_ptr(0.0f);
+			set_shader_flags_ptr(ShaderFlags_Blend, false);
 		}
 	}
 }
