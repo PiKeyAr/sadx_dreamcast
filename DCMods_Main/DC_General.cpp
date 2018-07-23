@@ -1243,7 +1243,6 @@ void General_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 	}
 	if (DLLLoaded_Lantern == true)
 	{
-		allow_landtable_specular(true);
 		if (set_alpha_reject != nullptr) material_register(AlphaRejectMaterials, LengthOfArray(AlphaRejectMaterials), &DisableAlphaRejection);
 		material_register(FirstCharacterSpecular_General, LengthOfArray(FirstCharacterSpecular_General), &ForceDiffuse2Specular2);
 		material_register(ObjectSpecular_General, LengthOfArray(ObjectSpecular_General), &ForceDiffuse0Specular1);
