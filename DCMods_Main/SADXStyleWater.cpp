@@ -529,7 +529,7 @@ NJS_TEXLIST **__cdecl SetUpPastTexlists_2()
 void SADXStyleWater_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 {
 	//Emerald Coast
-	if (SADXWater_EmeraldCoast)
+	if (SADXWater_EmeraldCoast && EnableEmeraldCoast)
 	{
 		WriteJump(EmeraldCoast_OceanDraw, EmeraldCoast_OceanDraw_SADXStyle);
 		TexLists_Level[0]->PVMList = (PVMEntry*)&EmeraldCoast1Textures_list;
@@ -540,7 +540,7 @@ void SADXStyleWater_Init(const IniFile *config, const HelperFunctions &helperFun
 		TexLists_Level[2]->NumTextures = LengthOfArray(EmeraldCoast3Textures_list);
 	}
 	//Station Square
-	if (SADXWater_StationSquare)
+	if (SADXWater_StationSquare && EnableStationSquare)
 	{
 		WriteJump(StationSquare_OceanDraw, StationSquare_OceanDraw_SADXStyle);
 		WriteJump((void*)0x07C4FD0, SetUpSSTexlists);
@@ -550,7 +550,7 @@ void SADXStyleWater_Init(const IniFile *config, const HelperFunctions &helperFun
 		TexLists_Level[37]->NumTextures = LengthOfArray(StationSquare5Textures_list);
 	}
 	//Mystic Ruins
-	if (SADXWater_MysticRuins)
+	if (SADXWater_MysticRuins && EnableMysticRuins)
 	{
 		WriteJump((void*)0x7C5040, SetUpMRTexlists);
 		WriteJump(MysticRuins_OceanDraw, MysticRuins_OceanDraw_SADXStyle);
@@ -558,7 +558,7 @@ void SADXStyleWater_Init(const IniFile *config, const HelperFunctions &helperFun
 		TexLists_Level[39]->NumTextures = 4;
 	}
 	//Egg Carrier
-	if (SADXWater_EggCarrier)
+	if (SADXWater_EggCarrier && EnableEggCarrier)
 	{
 		WriteJump((void*)0x7D2C50, SetUpECTexlists_1);
 		WriteJump((void*)0x7D2C60, SetUpECTexlists_2);
@@ -572,7 +572,7 @@ void SADXStyleWater_Init(const IniFile *config, const HelperFunctions &helperFun
 		TexLists_Level[48]->NumTextures = LengthOfArray(EggCarrierOutside3Textures_list);
 	}
 	//Past
-	if (SADXWater_Past)
+	if (SADXWater_Past && EnablePast)
 	{
 		WriteJump((void*)0x7C5150, SetUpPastTexlists_1);
 		WriteJump((void*)0x7C5180, SetUpPastTexlists_2);
