@@ -655,7 +655,6 @@ void FinalEgg_Init(const IniFile *config, const HelperFunctions &helperFunctions
 	ReplaceBIN_DC("SET1002E");
 	ReplaceBIN_DC("SET1002S");
 	ReplaceBIN_DC("SET1003S");
-
 	switch (EnableSETFixes)
 	{
 		case SETFixes_Normal:
@@ -677,13 +676,13 @@ void FinalEgg_Init(const IniFile *config, const HelperFunctions &helperFunctions
 		default:
 			break;
 	}
-
 	ReplacePVM("EFF_FINALEGG_POM");
 	ReplacePVM("FINALEGG1");
 	ReplacePVM("FINALEGG2");
 	ReplacePVM("FINALEGG3");
 	ReplacePVM("FINALEGG4");
-	ReplacePVM("OBJ_FINALEGG");
+	
+	
 	ReplaceBIN("PL_A0B", "PL_A0X");
 	ReplaceBIN("PL_A2B", "PL_A2X");
 	TexLists_Obj[10] = FinalEggObjectTextures;
@@ -701,11 +700,17 @@ void FinalEgg_Init(const IniFile *config, const HelperFunctions &helperFunctions
 	}
 	if (DLLLoaded_Lantern)
 	{
-		if (set_alpha_reject_ptr != nullptr)material_register_ptr(DisableAlphaRejection_FinalEgg, LengthOfArray(DisableAlphaRejection_FinalEgg), &DisableAlphaRejection);
+		if (set_alpha_reject_ptr != nullptr)
+		{
+			material_register_ptr(DisableAlphaRejection_FinalEgg, LengthOfArray(DisableAlphaRejection_FinalEgg), &DisableAlphaRejection);
+			ReplacePVM("OBJ_FINALEGG");
+		}
+		else ReplaceGeneric("OBJ_FINALEGG.PVM", "OBJ_FINALEGG_DC_OLD.PVM");
 		material_register_ptr(LevelSpecular_FinalEgg, LengthOfArray(LevelSpecular_FinalEgg), &ForceDiffuse0Specular0);
 		material_register_ptr(ObjectSpecular_FinalEgg, LengthOfArray(ObjectSpecular_FinalEgg), &ForceDiffuse0Specular1);
 		material_register_ptr(WhiteDiffuse_FinalEgg, LengthOfArray(WhiteDiffuse_FinalEgg), &ForceWhiteDiffuse1);
 	}
+	else ReplaceGeneric("OBJ_FINALEGG.PVM", "OBJ_FINALEGG_DC_OLD.PVM");
 	//Environment maps thing
 	WriteCall((void*)0x005B3785, SetGachaponEnvMaps1);
 	WriteCall((void*)0x005B3744, sub_5B36E0X);

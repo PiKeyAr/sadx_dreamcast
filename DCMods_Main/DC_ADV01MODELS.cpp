@@ -523,8 +523,6 @@ void ADV01_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 	ReplacePVM("EC_TRANSFORM");
 	ReplacePVM("EC_WATER");
 	ReplacePVM("EV_ECCLOUD");
-	ReplacePVM("OBJ_EC00");
-	ReplacePVM("OBJ_EC30");
 	ReplacePVM("PVME101FACTORY");
 	ReplacePVM("ADV_EC00");
 	ReplacePVM("ADV_EC01");
@@ -564,12 +562,24 @@ void ADV01_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 		{
 			material_register_ptr(DisableAlphaRejection_EggCarrier, LengthOfArray(DisableAlphaRejection_EggCarrier), &DisableAlphaRejection);
 			material_register_ptr(HedgehogHammerDolls, LengthOfArray(HedgehogHammerDolls), &HedgehogHammerDollsFunction);
+			ReplacePVM("OBJ_EC00");
+			ReplacePVM("OBJ_EC30");
+		}
+		else
+		{
+			ReplaceGeneric("OBJ_EC00.PVM", "OBJ_EC00_DC_OLD.PVM");
+			ReplaceGeneric("OBJ_EC30.PVM", "OBJ_EC30_DC_OLD.PVM");
 		}
 		material_register_ptr(ObjectSpecularADV01, LengthOfArray(ObjectSpecularADV01), &ForceDiffuse0Specular1);
 		//material_register_ptr(LevelSpecularADV01, LengthOfArray(LevelSpecularADV01), &ForceDiffuse0Specular0);
 		material_register_ptr(WhiteDiffuseADV01, LengthOfArray(WhiteDiffuseADV01), &ForceWhiteDiffuse1);
 		WriteCall((void*)0x006F4577, TurnLightsOff); //Turn the lights off
 		WriteCall((void*)0x006F4620, TurnLightsOn); //Turn the lights on
+	}
+	else
+	{
+		ReplaceGeneric("OBJ_EC00.PVM", "OBJ_EC00_DC_OLD.PVM");
+		ReplaceGeneric("OBJ_EC30.PVM", "OBJ_EC30_DC_OLD.PVM");
 	}
 	WriteJump((char *)GetProcAddress(ADV01MODELS, "SetClip_EC00"), SetClip_EC00);
 	WriteJump((char *)GetProcAddress(ADV01MODELS, "SetClip_EC01"), SetClip_EC01);
