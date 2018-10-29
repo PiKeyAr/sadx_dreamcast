@@ -51,6 +51,7 @@ static float bowchaoframe = 0;
 static int letterframe = 0;
 static int bowchaoanim = 0;
 static bool cheerchaoanim = false;
+static int ChaoRaceSpriteTimer = 0;
 static SecondaryEntrance BK_SSGardenStartPoint;
 
 struct ChaoTreeEntityData1
@@ -490,7 +491,7 @@ static void __cdecl Chao_Display_r(ObjectMaster *a1)
 {
 	auto original = reinterpret_cast<decltype(Chao_Display_r)*>(Chao_Display_t.Target());
 	original(a1);
-	ChaoFukidasi_Display(a1);
+	//ChaoFukidasi_Display(a1);
 }
 
 //Chao Race double shadow fix
@@ -784,6 +785,85 @@ ObjectFunc(OF_E21, ChaoSlidingDoors_Load); // Sliding doors
 ObjectFunc(OF_E22, ChaoLetters_Load); // Chao Race letters
 
 //Race
+
+void ChaoRaceStartGoalSprite_Display(ObjectMaster *a1)
+{
+	EntityData1 *v1;
+	float TransparencyValue;
+	float SpriteScale;
+	int EndSpriteIf1 = 0;
+	NJS_SPRITE _sp;
+	float HorizontalResolution_float = static_cast<float>(HorizontalResolution);
+	float VerticalResolution_float = static_cast<float>(VerticalResolution);
+	v1 = a1->Data1;
+	SpriteScale = v1->Scale.x;
+	TransparencyValue = v1->Scale.z;
+	EndSpriteIf1 = v1->CharIndex;
+	_sp.p.x = HorizontalResolution_float / 2.0f;
+	_sp.p.y = VerticalResolution_float / 2.0f;
+	_sp.sx = SpriteScale * VerticalResolution_float / 480.0f;
+	_sp.sy = VerticalResolution_float / 480.0f;
+	_sp.tlist = &OBJ_AL_RACE_TEXLIST;
+	_sp.tanim = (NJS_TEXANIM*)0x888D70;
+	njSetTexture(&OBJ_AL_RACE_TEXLIST);
+	SetMaterialAndSpriteColor_Float(TransparencyValue, TransparencyValue, TransparencyValue, TransparencyValue);
+	njPushMatrix(0);
+	njColorBlendingMode(NJD_SOURCE_COLOR, NJD_COLOR_BLENDING_SRCALPHA);
+	njColorBlendingMode(NJD_DESTINATION_COLOR, NJD_COLOR_BLENDING_INVSRCALPHA);
+	if (EndSpriteIf1 == 1)
+	{
+		njDrawSprite2D_Queue(&_sp, 21, 22046.9f, NJD_SPRITE_ALPHA | NJD_SPRITE_COLOR, QueuedModelFlagsB_SomeTextureThing);
+	}
+	else
+	{
+		njDrawSprite2D_Queue(&_sp, 20, 22046.9f, NJD_SPRITE_ALPHA | NJD_SPRITE_COLOR, QueuedModelFlagsB_SomeTextureThing);
+	}
+	njPopMatrix(1u);
+	DrawQueueDepthBias = 0;
+}
+
+void ChaoRaceStartGoalSprite_Main(ObjectMaster *a1)
+{
+	float TransparencyValue;
+	float SpriteScale;
+	EntityData1 *v1;
+	v1 = a1->Data1;
+	TransparencyValue = v1->Scale.z;
+	SpriteScale = v1->Scale.x;
+	if (TransparencyValue <= 0.05f) CheckThingButThenDeleteObject(a1);
+	ChaoRaceStartGoalSprite_Display(a1);
+	if (ChaoRaceSpriteTimer > 120) TransparencyValue -= 0.05f;
+	if (SpriteScale < 1.0f) SpriteScale += 0.1f;
+	a1->Data1->Scale.z = TransparencyValue;
+	a1->Data1->Scale.x = SpriteScale;
+	ChaoRaceSpriteTimer++;
+}
+
+void ChaoRaceStartEndSprite_Load(bool end)
+{
+	ObjectMaster *a1;
+	EntityData1 *ent;
+	a1 = LoadObject((LoadObj)6, 3, ChaoRaceStartGoalSprite_Main);
+	a1->MainSub = (void(__cdecl *)(ObjectMaster *))ChaoRaceStartGoalSprite_Main;
+	a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))ChaoRaceStartGoalSprite_Display;
+	a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))CheckThingButThenDeleteObject;
+	a1->Data1->Scale.x = 0.1f;
+	a1->Data1->Scale.z = 1.0f;
+	if (end) a1->Data1->CharIndex = 1; else a1->Data1->CharIndex = 0;
+	ChaoRaceSpriteTimer = 0;
+}
+
+void ChaoRaceSoundHook_Start(int ID, void *a2, int a3, void *a4)
+{
+	PlaySound(ID, a2, a3, a4);
+	ChaoRaceStartEndSprite_Load(false);
+}
+
+void ChaoRaceSoundHook_Goal(int ID, void *a2, int a3, void *a4)
+{
+	PlaySound(ID, a2, a3, a4);
+	ChaoRaceStartEndSprite_Load(true);
+}
 
 void ChaoRaceWaterfall_Display(ObjectMaster *a1)
 {
@@ -5771,6 +5851,8 @@ void ChaoGardens_Init(const IniFile *config, const HelperFunctions &helperFuncti
 		WriteData<5>((void*)0x0071CEC2, 0x90); //Don't mess with entry button
 	}
 	//Chao Race stuff
+	WriteCall((void*)0x72E2D3, ChaoRaceSoundHook_Start); //Play sound and load "Start" graphics
+	WriteCall((void*)0x72F031, ChaoRaceSoundHook_Goal); //Play sound and load "Goal" graphics
 	WriteJump((void*)0x71BF20, LoadChaoRaceCrackers); //Load crackers
 	WriteCall((void*)0x75A550, RenderChaoBall); //Chao Race ball model
 	WriteCall((void*)0x76DA03, RenderChaoRaceLetters_Fix); //Chao Race letters fix
