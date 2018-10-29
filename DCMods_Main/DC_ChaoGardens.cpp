@@ -68,7 +68,10 @@ struct ChaoTreeEntityData1
 	Uint8 wonjis;
 };
 
-NJS_VECTOR racebutton{ 2020, 0, -0.68f };
+NJS_VECTOR racebutton { 2020, 0, -0.68f };
+
+NJS_TEXANIM fukidasiTexAnim = { 128, 32, 64, 16, 0, 0, 0x0FF, 0x0FF, 1, 0 };
+NJS_SPRITE fukidasiSpr = { {0}, 0.1f, 0.1f, 0, &CHAO_HYOUJI_TEXLIST, &fukidasiTexAnim };
 
 FunctionPointer(void, sub_78AC80, (NJS_CNK_MODEL *a1, int a2), 0x78AC80);
 FunctionPointer(void, sub_78ABB0, (NJS_CNK_OBJECT *a1, int *a2, float a3), 0x78ABB0);
@@ -119,6 +122,7 @@ DataPointer(NJS_TEXLIST*, texlist_garden02mr_night, 0x03CA6E84);
 DataPointer(LandTable*, objLandTableGarden02_Night, 0x03CA6E88);
 DataPointer(D3DMATRIX, stru_389D7E8, 0x0389D7E8);
 DataPointer(int, dword_3CA6EB8, 0x3CA6EB8);
+DataPointer(int, dword_3B2C660, 0x3B2C660);
 DataArray(int, off_389D780, 0x389D780, 4);
 DataArray(int, off_389D7B8, 0x389D7B8, 4);
 DataArray(int, dword_389D7B8, 0x389D7B8, 6);
@@ -147,6 +151,347 @@ ObjectFunc(OF_SS18, 0x007A1AA0); // O TIKAL
 ObjectFunc(OF_SS19, 0xC902DD2); // CAM COLLI
 ObjectFunc(OF_SS20, 0x004D4850); // WALL  
 ObjectFunc(OF_SS21, 0x007A9C60); // HINT BOX
+
+NJS_TEXANIM ChaoNameLettersTexanim[] = {
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+	{ 22, 22, 0, 0, 0, 0, 0x0FF, 0x0FF, 1, 0 },
+};
+
+//Chao nameplate stuff
+void BuildChaoFontUVMap()
+{
+	int numrows = 12;
+	int numcolumns = 23;
+	int xrow = 0;
+	do
+	{
+		for (int xcolumn = 0; xcolumn < numcolumns; xcolumn++)
+		{
+			ChaoNameLettersTexanim[xrow*numcolumns + xcolumn].u1 = 11 * xcolumn;
+			ChaoNameLettersTexanim[xrow*numcolumns + xcolumn].u2 = 11 * xcolumn + 11; //this is half the real number because the texture is rectangular
+			ChaoNameLettersTexanim[xrow*numcolumns + xcolumn].v1 = 22 * xrow;
+			ChaoNameLettersTexanim[xrow*numcolumns + xcolumn].v2 = 22 * xrow + 22;
+			//PrintDebug("{ 22, 22, 0, 0, %d, %d, %d, %d, 1, 0 },\n", 22 * xcolumn, 22 * xrow, 22 * xcolumn + 22, 22 * xrow + 22);
+		}
+		xrow++;
+	} 
+	while (xrow < numrows);
+}
+
+void ChaoFukidasi_Display(ObjectMaster* a1)
+{
+	int ChaoNameCurrentCharacter = 0;
+	int ChaoNameNumSpaces = 0;
+	ChaoData1* data1 = (ChaoData1*)a1->Data1;
+	/*data1->ChaoDataBase_ptr->Name[0] = 1;
+	data1->ChaoDataBase_ptr->Name[1] = 1;
+	data1->ChaoDataBase_ptr->Name[2] = 1;
+	data1->ChaoDataBase_ptr->Name[3] = 1;
+	data1->ChaoDataBase_ptr->Name[4] = 1;
+	data1->ChaoDataBase_ptr->Name[5] = 1;
+	data1->ChaoDataBase_ptr->Name[6] = 1;*/
+	NJS_VECTOR ChatBubblePosition = { a1->Data1->Position.x, a1->Data1->Position.y + 7.5f, a1->Data1->Position.z };
+	NJS_SPRITE ChaoNameLetterSprite;
+	ChaoNameLetterSprite.tlist = &ChaoTexLists[1];
+	ChaoNameLetterSprite.p.x = 0;
+	ChaoNameLetterSprite.p.y = -0.6f;
+	ChaoNameLetterSprite.p.z = 0.1f;
+	ChaoNameLetterSprite.sx = 0.08f;
+	ChaoNameLetterSprite.sy = 0.08f;
+	ChaoNameLetterSprite.tanim = ChaoNameLettersTexanim;
+	SetMaterialAndSpriteColor_Float(1.0f, 1.0f, 1.0f, 1.0f);
+	njColorBlendingMode(NJD_SOURCE_COLOR, NJD_COLOR_BLENDING_SRCALPHA);
+	njColorBlendingMode(NJD_DESTINATION_COLOR, NJD_COLOR_BLENDING_INVSRCALPHA);
+	//Draw the chat bubble
+	njPushMatrix(0);
+	njTranslateV(0, &ChatBubblePosition);
+	njRotateXYZ(0, Camera_Data1->Rotation.x, Camera_Data1->Rotation.y, 0);
+	njDrawSprite3D_Queue(&fukidasiSpr, 0, NJD_SPRITE_ALPHA | NJD_SPRITE_VFLIP, QueuedModelFlagsB_SomeTextureThing);
+	njPopMatrix(1u);
+	//Calculate the number of spaces for centering the name
+	for (int i = 0; i < 7; i++)
+	{
+		ChaoNameCurrentCharacter = data1->ChaoDataBase_ptr->Name[i];
+		if (ChaoNameCurrentCharacter == 0x5F) ChaoNameNumSpaces++;
+	}
+	//Draw the letters
+	for (int i = 0; i < 7; i++)
+	{
+		njPushMatrix(0);
+		njTranslateV(0, &ChatBubblePosition);
+		ChaoNameLetterSprite.p.x = -5.4f + i * 1.5f + ChaoNameNumSpaces* 0.75f;
+		njRotateXYZ(0, Camera_Data1->Rotation.x, Camera_Data1->Rotation.y, 0);
+		ChaoNameCurrentCharacter = data1->ChaoDataBase_ptr->Name[i];
+		//Draw all letters before space (because SADX is retarded)
+		if (ChaoNameCurrentCharacter < 0x5F || ChaoNameCurrentCharacter > 0x5F) njDrawSprite3D_Queue(&ChaoNameLetterSprite, ChaoNameCurrentCharacter-1, NJD_SPRITE_ALPHA | NJD_SPRITE_VFLIP, QueuedModelFlagsB_SomeTextureThing);
+		//Draw space
+		else njDrawSprite3D_Queue(&ChaoNameLetterSprite, 254, NJD_SPRITE_ALPHA | NJD_SPRITE_VFLIP, QueuedModelFlagsB_SomeTextureThing);
+		njPopMatrix(1u);
+	}
+}
+
+static void __cdecl Chao_Display_r(ObjectMaster *a1);
+static Trampoline Chao_Display_t(0x7204B0, 0x7204B5, Chao_Display_r);
+static void __cdecl Chao_Display_r(ObjectMaster *a1)
+{
+	auto original = reinterpret_cast<decltype(Chao_Display_r)*>(Chao_Display_t.Target());
+	original(a1);
+	ChaoFukidasi_Display(a1);
+}
 
 //Chao Race double shadow fix
 static void __cdecl ChaoShadowFix_r(ObjectMaster *a1, float a2, float a3, float a4);
@@ -4630,6 +4975,7 @@ void __cdecl LoadChaoRaceX()
 	PrintDebug("ChaoStgRace _prolog begin.\n");
 	LoadObject(LoadObj_Data1, 2, ChaoStgRace_Init);
 	LoadPVM("BG_AL_RACE02", &texlist_chaoracebg);
+	LoadPVM("AL_TEX_COMMON", &ChaoTexLists[1]); //Name font
 	LoadObjects_Race();
 	SetChaoLandTableX(&landtable_00000E64);
 	PrintDebug("ChaoStgRace _prolog end.\n");
@@ -5384,6 +5730,7 @@ void ChaoGardens_Init(const IniFile *config, const HelperFunctions &helperFuncti
 	*(NJS_MODEL_SADX*)0x03608064 = attachCHAO_0017B768; //Tree leaves 1
 	*(NJS_MODEL_SADX*)0x036076E4 = attachCHAO_0017B034; //Tree leaves 2
 	//Misc
+	BuildChaoFontUVMap(); //Create UV maps for the Chao name font
 	WriteData<1>((char*)0x007151D3, 0x1A); //The secret EC egg is a two-tone black egg
 	ResizeTextureList(&GARDEN00_OBJECT_TEXLIST, 16);
 	//Name Machine stuff
