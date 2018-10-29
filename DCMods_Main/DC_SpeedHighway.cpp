@@ -129,13 +129,16 @@ static Trampoline FountainDisplay_t(0x61BA10, 0x61BA15, FountainDisplay_r);
 static void __cdecl FountainDisplay_r(ObjectMaster *a1)
 {
 	auto original = reinterpret_cast<decltype(FountainDisplay_r)*>(FountainDisplay_t.Target());
-	if (!MissedFrames)
+	if (EnableSpeedHighway)
 	{
-		njSetTexture((NJS_TEXLIST*)0x10F30A0);
-		njPushMatrix(0);
-		njTranslate(0, objectSTG04_00133AD8.pos[0], objectSTG04_00133AD8.pos[1], objectSTG04_00133AD8.pos[2]);
-		sub_407FC0(&attachSTG04_00133AB0, 4);
-		njPopMatrix(1u);
+		if (!MissedFrames)
+		{
+			njSetTexture((NJS_TEXLIST*)0x10F30A0);
+			njPushMatrix(0);
+			njTranslate(0, objectSTG04_00133AD8.pos[0], objectSTG04_00133AD8.pos[1], objectSTG04_00133AD8.pos[2]);
+			sub_407FC0(&attachSTG04_00133AB0, 4);
+			njPopMatrix(1u);
+		}
 	}
 	original(a1);
 }
