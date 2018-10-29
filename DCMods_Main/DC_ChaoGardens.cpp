@@ -52,6 +52,7 @@ static int letterframe = 0;
 static int bowchaoanim = 0;
 static bool cheerchaoanim = false;
 static int ChaoRaceSpriteTimer = 0;
+static int ChaoRaceNameCounter = 0;
 static SecondaryEntrance BK_SSGardenStartPoint;
 
 struct ChaoTreeEntityData1
@@ -68,6 +69,70 @@ struct ChaoTreeEntityData1
 	char gap104[11];
 	Uint8 wonjis;
 };
+
+struct ChaoName
+{
+	char n1;
+	char n2;
+	char n3;
+	char n4;
+	char n5;
+	char n6;
+	char n7;
+};
+
+//Chao Race names
+
+//Child Chao
+ChaoName PUCHA = { 0x30, 0x55, 0x43, 0x48, 0x41, 0x5F, 0x5F };
+ChaoName TAHCHA = { 0x34, 0x41, 0x48, 0x43, 0x48, 0x41, 0x5F };
+ChaoName RUKICHA = { 0x32, 0x55, 0x4B, 0x49, 0x43, 0x48, 0x41 };
+ChaoName KUNCHA = { 0x2B, 0x55, 0x4E, 0x43, 0x48, 0x41, 0x5F };
+ChaoName TETOCHA = { 0x34, 0x45, 0x54, 0x4F, 0x43, 0x48, 0x41 };
+ChaoName PITECHA = { 0x30, 0x49, 0x54, 0x45, 0x43, 0x48, 0x41 };
+ChaoName RUPICHA = { 0x32, 0x55, 0x50, 0x49, 0x43, 0x48, 0x41 };
+ChaoName PIPOCHA = { 0x30, 0x49, 0x50, 0x4F, 0x43, 0x48, 0x41 };
+
+//Adult Chao
+ChaoName CHAHURA = { 0x23, 0x48, 0x41, 0x48, 0x55, 0x52, 0x41 };
+ChaoName CHAPATA = { 0x23, 0x48, 0x41, 0x50, 0x41, 0x54, 0x41 };
+ChaoName CHANNA = { 0x23, 0x48, 0x41, 0x4E, 0x4E, 0x41, 0x5F };
+ChaoName CHASUPI = { 0x23, 0x48, 0x41, 0x53, 0x55, 0x50, 0x49 };
+ChaoName CHAPUWA = { 0x23, 0x48, 0x41, 0x50, 0x55, 0x57, 0x41,};
+ChaoName CHACKLE = { 0x23, 0x48, 0x41, 0x43, 0x4C, 0x45, 0x5F };
+ChaoName CHAIMA = { 0x23, 0x48, 0x41, 0x49, 0x4D, 0x41, 0x5F };
+ChaoName CHARUKA = { 0x23, 0x48, 0x41, 0x52, 0x55, 0x4B, 0x41 };
+
+//Silver Chao
+ChaoName ELIZA = { 0x25, 0x4C, 0x49, 0x5A, 0x41, 0x5F, 0x5F };
+ChaoName SOPHIA = { 0x33, 0x4F, 0x50, 0x48, 0x49, 0x41, 0x5F };
+ChaoName JULIE = { 0x2A, 0x55, 0x4C, 0x49, 0x45, 0x5F, 0x5F };
+ChaoName JODIE = { 0x2A, 0x4F, 0x44, 0x49, 0x45, 0x5F, 0x5F };
+ChaoName VIVIAN = { 0x36, 0x49, 0x56, 0x49, 0x41, 0x4E, 0x5F };
+ChaoName AUDREY = { 0x21, 0x55, 0x44, 0x52, 0x45, 0x59, 0x5F };
+ChaoName FAYE = { 0x26, 0x41, 0x59, 0x45, 0x5F, 0x5F, 0x5F };
+ChaoName INGRID = { 0x29, 0x4E, 0x47, 0x52, 0x49, 0x44, 0x5F };
+
+//Gold Chao
+ChaoName KING = { 0x2B, 0x49, 0x4E, 0x47, 0x5F, 0x5F, 0x5F };
+ChaoName CAESAR = { 0x23, 0x41, 0x45, 0x53, 0x41, 0x52, 0x5F };
+ChaoName EMPEROR = { 0x25, 0x4D, 0x50, 0x45, 0x52, 0x4F, 0x52 };
+ChaoName GENERAL = { 0x27, 0x45, 0x4E, 0x45, 0x52, 0x41, 0x4C };
+ChaoName PHARAOH = { 0x30, 0x48, 0x41, 0x52, 0x41, 0x4F, 0x48 };
+ChaoName SHOGUN = { 0x33, 0x48, 0x4F, 0x47, 0x55, 0x4E, 0x5F };
+ChaoName CHAMP = { 0x23, 0x48, 0x41, 0x4D, 0x50, 0x5F, 0x5F };
+ChaoName LORD = { 0x2C, 0x4F, 0x52, 0x44, 0x5F, 0x5F, 0x5F };
+
+//Other names
+ChaoName CHACLON = { 0x23, 0x48, 0x41, 0x43, 0x4C, 0x4F, 0x4E };
+ChaoName CHAOTI = { 0x23, 0x48, 0x41, 0x4F, 0x54, 0x49, 0x5F };
+ChaoName CHAOMA = { 0x23, 0x48, 0x41, 0x4F, 0x4D, 0x41, 0x5F };
+ChaoName CHAOCHA = { 0x23, 0x48, 0x41, 0x4F, 0x23, 0x48, 0x41 };
+
+ChaoName ChaoNames_Child[] = { PUCHA, TAHCHA, RUKICHA, KUNCHA, TETOCHA, PITECHA, RUPICHA, PIPOCHA };
+ChaoName ChaoNames_Adult[] = { CHAHURA, CHAPATA, CHANNA, CHASUPI, CHAPUWA, CHACKLE, CHAIMA, CHARUKA };
+ChaoName ChaoNames_Silver[] = { ELIZA, SOPHIA, JULIE, JODIE, VIVIAN, AUDREY, FAYE, INGRID };
+ChaoName ChaoNames_Gold[] = { KING, CAESAR, EMPEROR, GENERAL, PHARAOH, SHOGUN, CHAMP, LORD };
 
 NJS_VECTOR racebutton { 2020, 0, -0.68f };
 
@@ -438,13 +503,64 @@ void ChaoFukidasi_Display(ObjectMaster* a1)
 	int ChaoNameCurrentCharacter = 0;
 	int ChaoNameNumSpaces = 0;
 	ChaoData1* data1 = (ChaoData1*)a1->Data1;
-	/*data1->ChaoDataBase_ptr->Name[0] = 1;
-	data1->ChaoDataBase_ptr->Name[1] = 1;
-	data1->ChaoDataBase_ptr->Name[2] = 1;
-	data1->ChaoDataBase_ptr->Name[3] = 1;
-	data1->ChaoDataBase_ptr->Name[4] = 1;
-	data1->ChaoDataBase_ptr->Name[5] = 1;
-	data1->ChaoDataBase_ptr->Name[6] = 1;*/
+	//Assign a name if the Chao doesn't have one
+	if (data1->ChaoDataBase_ptr->Name[0]==0)
+	{
+		if (data1->ChaoDataBase_ptr->Type == ChaoType_Child)
+		{
+			data1->ChaoDataBase_ptr->Name[0] = ChaoNames_Child[ChaoRaceNameCounter].n1;
+			data1->ChaoDataBase_ptr->Name[1] = ChaoNames_Child[ChaoRaceNameCounter].n2;
+			data1->ChaoDataBase_ptr->Name[2] = ChaoNames_Child[ChaoRaceNameCounter].n3;
+			data1->ChaoDataBase_ptr->Name[3] = ChaoNames_Child[ChaoRaceNameCounter].n4;
+			data1->ChaoDataBase_ptr->Name[4] = ChaoNames_Child[ChaoRaceNameCounter].n5;
+			data1->ChaoDataBase_ptr->Name[5] = ChaoNames_Child[ChaoRaceNameCounter].n6;
+			data1->ChaoDataBase_ptr->Name[6] = ChaoNames_Child[ChaoRaceNameCounter].n7;
+		}
+		else
+		{
+			if (data1->ChaoDataBase_ptr->Texture == SADXTexture_WhiteJewel)
+			{
+				data1->ChaoDataBase_ptr->Name[0] = ChaoNames_Silver[ChaoRaceNameCounter].n1;
+				data1->ChaoDataBase_ptr->Name[1] = ChaoNames_Silver[ChaoRaceNameCounter].n2;
+				data1->ChaoDataBase_ptr->Name[2] = ChaoNames_Silver[ChaoRaceNameCounter].n3;
+				data1->ChaoDataBase_ptr->Name[3] = ChaoNames_Silver[ChaoRaceNameCounter].n4;
+				data1->ChaoDataBase_ptr->Name[4] = ChaoNames_Silver[ChaoRaceNameCounter].n5;
+				data1->ChaoDataBase_ptr->Name[5] = ChaoNames_Silver[ChaoRaceNameCounter].n6;
+				data1->ChaoDataBase_ptr->Name[6] = ChaoNames_Silver[ChaoRaceNameCounter].n7;
+			}
+			else if (data1->ChaoDataBase_ptr->Texture == SADXTexture_YellowJewel)
+			{
+				data1->ChaoDataBase_ptr->Name[0] = ChaoNames_Gold[ChaoRaceNameCounter].n1;
+				data1->ChaoDataBase_ptr->Name[1] = ChaoNames_Gold[ChaoRaceNameCounter].n2;
+				data1->ChaoDataBase_ptr->Name[2] = ChaoNames_Gold[ChaoRaceNameCounter].n3;
+				data1->ChaoDataBase_ptr->Name[3] = ChaoNames_Gold[ChaoRaceNameCounter].n4;
+				data1->ChaoDataBase_ptr->Name[4] = ChaoNames_Gold[ChaoRaceNameCounter].n5;
+				data1->ChaoDataBase_ptr->Name[5] = ChaoNames_Gold[ChaoRaceNameCounter].n6;
+				data1->ChaoDataBase_ptr->Name[6] = ChaoNames_Gold[ChaoRaceNameCounter].n7;
+			}
+			else if (data1->ChaoDataBase_ptr->Color == SADXRetailColour_Black)
+			{
+				data1->ChaoDataBase_ptr->Name[0] = CHACLON.n1;
+				data1->ChaoDataBase_ptr->Name[1] = CHACLON.n2;
+				data1->ChaoDataBase_ptr->Name[2] = CHACLON.n3;
+				data1->ChaoDataBase_ptr->Name[3] = CHACLON.n4;
+				data1->ChaoDataBase_ptr->Name[4] = CHACLON.n5;
+				data1->ChaoDataBase_ptr->Name[5] = CHACLON.n6;
+				data1->ChaoDataBase_ptr->Name[6] = CHACLON.n7;
+			}
+			else
+			{
+				data1->ChaoDataBase_ptr->Name[0] = ChaoNames_Adult[ChaoRaceNameCounter].n1;
+				data1->ChaoDataBase_ptr->Name[1] = ChaoNames_Adult[ChaoRaceNameCounter].n2;
+				data1->ChaoDataBase_ptr->Name[2] = ChaoNames_Adult[ChaoRaceNameCounter].n3;
+				data1->ChaoDataBase_ptr->Name[3] = ChaoNames_Adult[ChaoRaceNameCounter].n4;
+				data1->ChaoDataBase_ptr->Name[4] = ChaoNames_Adult[ChaoRaceNameCounter].n5;
+				data1->ChaoDataBase_ptr->Name[5] = ChaoNames_Adult[ChaoRaceNameCounter].n6;
+				data1->ChaoDataBase_ptr->Name[6] = ChaoNames_Adult[ChaoRaceNameCounter].n7;
+			}
+		}
+		ChaoRaceNameCounter++;
+	}
 	NJS_VECTOR ChatBubblePosition = { a1->Data1->Position.x, a1->Data1->Position.y + 7.5f, a1->Data1->Position.z };
 	NJS_SPRITE ChaoNameLetterSprite;
 	ChaoNameLetterSprite.tlist = &ChaoTexLists[1];
@@ -491,7 +607,7 @@ static void __cdecl Chao_Display_r(ObjectMaster *a1)
 {
 	auto original = reinterpret_cast<decltype(Chao_Display_r)*>(Chao_Display_t.Target());
 	original(a1);
-	//ChaoFukidasi_Display(a1);
+	ChaoFukidasi_Display(a1);
 }
 
 //Chao Race double shadow fix
@@ -5051,6 +5167,7 @@ void ExitRaceEntry()
 
 void __cdecl LoadChaoRaceX()
 {
+	ChaoRaceNameCounter = 0;
 	SkipSA1Entry = false;
 	PrintDebug("ChaoStgRace _prolog begin.\n");
 	LoadObject(LoadObj_Data1, 2, ChaoStgRace_Init);
