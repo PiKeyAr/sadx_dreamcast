@@ -105,6 +105,7 @@ extern "C"
 		DLLLoaded_DLCs     = (GetModuleHandle(L"DLCs_Main") != nullptr);
 		DLLLoaded_SADXFE   = (GetModuleHandle(L"sadx-fixed-edition") != nullptr);
 		HMODULE WaterEffect = GetModuleHandle(L"WaterEffect");
+		HMODULE Autodemo_WindyValley = GetModuleHandle(L"AutoDemo_WindyValley");
 		//Error messages
 		if (helperFunctions.Version < 7)
 		{
@@ -148,6 +149,7 @@ extern "C"
 		EnableWindowTitle = config->getBool("General", "EnableWindowTitle", true);
 		EnableEmeraldCoast = config->getBool("Levels", "EnableEmeraldCoast", true);
 		EnableWindyValley = config->getBool("Levels", "EnableWindyValley", true);
+		if (Autodemo_WindyValley != nullptr) EnableWindyValley = false;
 		EnableTwinklePark = config->getBool("Levels", "EnableTwinklePark", true);
 		EnableSpeedHighway = config->getBool("Levels", "EnableSpeedHighway", true);
 		EnableRedMountain = config->getBool("Levels", "EnableRedMountain", true);
