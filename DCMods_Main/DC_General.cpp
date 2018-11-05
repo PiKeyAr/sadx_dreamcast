@@ -7,6 +7,7 @@
 #include "Ripple.h"
 #include "Frogs.h"
 #include "CommonObjects.h"
+#include "HintMonitor.h"
 
 HMODULE CHRMODELS3 = GetModuleHandle(L"CHRMODELS_orig");
 HMODULE ADV01MODELS2 = GetModuleHandle(L"ADV01MODELS");
@@ -34,6 +35,7 @@ FunctionPointer(double, sub_49EAD0, (float a1, float a2, float a3, int a4), 0x49
 FunctionPointer(float, sub_49E920, (float x, float y, float z, Rotation3 *rotation), 0x49E920);
 FunctionPointer(SubtitleThing *, sub_6424A0, (int a1, int a2, float a3, float a4, float a5, float a6, float a7, float a8), 0x6424A0);
 FunctionPointer(void, sub_4014B0, (), 0x4014B0);
+FunctionPointer(void, sub_409E70, (NJS_MODEL_SADX *a1, int a2, float a3), 0x409E70);
 
 static bool EnableCutsceneFix = true;
 int CutsceneSkipMode = 0;
@@ -841,6 +843,16 @@ void __cdecl RenderInvincibilityLines(NJS_MODEL_SADX *a1)
 	DrawQueueDepthBias = 0.0f;
 }
 
+void RenderHintMonitor_Main(NJS_MODEL_SADX *a1, int a2, float a3)
+{
+	sub_409E70(&attach_001AD330, a2, a3);
+}
+
+void SetHintMonitorTransparency(NJS_ARGB *a1)
+{
+	SetMaterialAndSpriteColor_Float(min(0.69f, a1->a), min(0.69f, a1->r), min(0.69f, a1->g), min(0.69f, a1->b));
+}
+
 void General_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 {
 	ReplacePVR("AL_BARRIA");
@@ -1004,6 +1016,9 @@ void General_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 	ReplacePVM("WING_P");
 	ReplacePVM("WING_T");
 	ReplacePVM("ZOU");
+	//Replace hint monitor model
+	WriteCall((void*)0x7A9509, RenderHintMonitor_Main);
+	WriteCall((void*)0x7A957F, SetHintMonitorTransparency);
 	//Fix frogs lol
 	*(NJS_OBJECT*)0x030CB4F8 = object_02CCB4F8;
 	*(NJS_OBJECT*)0x030CDB28 = object_02CCDB28;

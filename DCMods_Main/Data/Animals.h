@@ -13327,3 +13327,5 @@ NJS_MDATA2 _165C70_mdat[] = {
 NJS_MOTION _165C70 = { _165C70_mdat, 17, NJD_MTYPE_POS_0 | NJD_MTYPE_ANG_1, 2 };
 
 NJS_ACTION action__165C70 = { &object_00164470, &_165C70 };
+
+#pragma warning(pop)
