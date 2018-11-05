@@ -210,6 +210,7 @@
     <ClInclude Include="Data\Highway3.h" />
     <ClInclude Include="Data\Highway_objects.h" />
     <ClInclude Include="Data\HintMessages.h" />
+    <ClInclude Include="Data\HintMonitor.h" />
     <ClInclude Include="Data\HotShelter1.h" />
     <ClInclude Include="Data\HotShelter2.h" />
     <ClInclude Include="Data\HotShelter3.h" />

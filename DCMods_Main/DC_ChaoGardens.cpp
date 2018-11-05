@@ -51,8 +51,9 @@ static float bowchaoframe = 0;
 static int letterframe = 0;
 static int bowchaoanim = 0;
 static bool cheerchaoanim = false;
-static int ChaoRaceSpriteTimer = 0;
+static int ChaoRaceStartGoalTimer = 0;
 static int ChaoRaceNameCounter = 0;
+static int ChaoFukidasiTimer = 0;
 static SecondaryEntrance BK_SSGardenStartPoint;
 
 struct ChaoTreeEntityData1
@@ -136,8 +137,8 @@ ChaoName ChaoNames_Gold[] = { KING, CAESAR, EMPEROR, GENERAL, PHARAOH, SHOGUN, C
 
 NJS_VECTOR racebutton { 2020, 0, -0.68f };
 
-NJS_TEXANIM fukidasiTexAnim = { 128, 32, 64, 16, 0, 0, 0x0FF, 0x0FF, 1, 0 };
-NJS_SPRITE fukidasiSpr = { {0}, 0.1f, 0.1f, 0, &CHAO_HYOUJI_TEXLIST, &fukidasiTexAnim };
+NJS_TEXANIM ChaoFukidasiTexanim = { 64, 16, 32, 8, 0, 0, 0x0FF, 0x0FF, 1, 0 };
+NJS_SPRITE ChaoFukidasiSprite = { {0, 7.5f, 0.0f }, 0.12f, 0.12f, 0, &CHAO_HYOUJI_TEXLIST, &ChaoFukidasiTexanim };
 
 FunctionPointer(void, sub_78AC80, (NJS_CNK_MODEL *a1, int a2), 0x78AC80);
 FunctionPointer(void, sub_78ABB0, (NJS_CNK_OBJECT *a1, int *a2, float a3), 0x78ABB0);
@@ -500,11 +501,100 @@ void BuildChaoFontUVMap()
 
 void ChaoFukidasi_Display(ObjectMaster* a1)
 {
+	float LetterSpriteDepth = 22000.0f;
 	int ChaoNameCurrentCharacter = 0;
 	int ChaoNameNumSpaces = 0;
 	ChaoData1* data1 = (ChaoData1*)a1->Data1;
+	if (ChaoFukidasiTimer > 0 && data1->entity.CharID > 0)
+	{
+		NJS_VECTOR ChatBubblePosition = { a1->Data1->Position.x, a1->Data1->Position.y, a1->Data1->Position.z };
+		NJS_SPRITE ChaoNameLetterSprite;
+		ChaoNameLetterSprite.tlist = &ChaoTexLists[1];
+		ChaoNameLetterSprite.p.x = 0;
+		ChaoNameLetterSprite.p.y = ChaoFukidasiSprite.p.y - 0.4f;
+		ChaoNameLetterSprite.p.z = ChaoFukidasiSprite.p.z + 0.05f;
+		ChaoNameLetterSprite.sx = 0.05f;
+		ChaoNameLetterSprite.sy = 0.05f;
+		ChaoNameLetterSprite.tanim = ChaoNameLettersTexanim;
+		SetMaterialAndSpriteColor_Float(1.0f, 1.0f, 1.0f, 1.0f);
+		njColorBlendingMode(NJD_SOURCE_COLOR, NJD_COLOR_BLENDING_SRCALPHA);
+		njColorBlendingMode(NJD_DESTINATION_COLOR, NJD_COLOR_BLENDING_INVSRCALPHA);
+		//Draw the chat bubble
+		njPushMatrix(0);
+		njTranslateV(0, &ChatBubblePosition);
+		njRotateXYZ(0, Camera_Data1->Rotation.x, Camera_Data1->Rotation.y, 0);
+		Sprite3DDepth_Current = 20000.0f;
+		njDrawSprite3D_Queue(&ChaoFukidasiSprite, 0, NJD_SPRITE_ALPHA | NJD_SPRITE_VFLIP, QueuedModelFlagsB_SomeTextureThing);
+		Sprite3DDepth_Current = 0.0f;
+		njPopMatrix(1u);
+		//Calculate the number of spaces for centering the name
+		for (int i = 0; i < 7; i++)
+		{
+			ChaoNameCurrentCharacter = data1->ChaoDataBase_ptr->Name[i];
+			if (ChaoNameCurrentCharacter == 0x5F) ChaoNameNumSpaces++;
+		}
+		//Draw the letters
+		for (int i = 0; i < 7; i++)
+		{
+			njPushMatrix(0);
+			njTranslateV(0, &ChatBubblePosition);
+			ChaoNameLetterSprite.p.x = -3.5f + i * 1.0f + ChaoNameNumSpaces * 0.5f;
+			njRotateXYZ(0, Camera_Data1->Rotation.x, Camera_Data1->Rotation.y, 0);
+			Sprite3DDepth_Current = LetterSpriteDepth + i * 200.0f;
+			ChaoNameCurrentCharacter = data1->ChaoDataBase_ptr->Name[i];
+			//Draw all letters before space (because SADX is retarded)
+			if (ChaoNameCurrentCharacter < 0x5F || ChaoNameCurrentCharacter > 0x5F) njDrawSprite3D_Queue(&ChaoNameLetterSprite, ChaoNameCurrentCharacter - 1, NJD_SPRITE_ALPHA | NJD_SPRITE_VFLIP, QueuedModelFlagsB_EnableZWrite);
+			//Draw space
+			else njDrawSprite3D_Queue(&ChaoNameLetterSprite, 254, NJD_SPRITE_ALPHA | NJD_SPRITE_VFLIP, QueuedModelFlagsB_EnableZWrite);
+			Sprite3DDepth_Current = 0.0f;
+			njPopMatrix(1u);
+		}
+		PrintDebug("Name: %d, %d, %d, %d, %d, %d, %d\n", data1->ChaoDataBase_ptr->Name[0], data1->ChaoDataBase_ptr->Name[1], data1->ChaoDataBase_ptr->Name[2], data1->ChaoDataBase_ptr->Name[3], data1->ChaoDataBase_ptr->Name[4], data1->ChaoDataBase_ptr->Name[5], data1->ChaoDataBase_ptr->Name[6]);
+	}
+}
+
+/* Disabled the fukidasi thing for release version
+static void __cdecl Chao_Display_r(ObjectMaster *a1);
+static Trampoline Chao_Display_t(0x7204B0, 0x7204B5, Chao_Display_r);
+static void __cdecl Chao_Display_r(ObjectMaster *a1)
+{
+	auto original = reinterpret_cast<decltype(Chao_Display_r)*>(Chao_Display_t.Target());
+	original(a1);
+	ChaoData1* data1 = (ChaoData1*)a1->Data1;
+	int ChaoAnimationWhatever = data1->MotionTable[4];
+	if (data1->entity.CharID == 1 && ChaoFukidasiTimer <= 0) data1->entity.CharID = 0;
+	//Conditions to display the name badge
+	//Debug
+	data1->entity.CharID = 1;
+	ChaoFukidasiTimer = 3600;
+	ChaoFukidasi_Display(a1);
+
+	//Winning the race
+	if (ChaoAnimationWhatever == -17 && ChaoRaceStartGoalTimer == 0)
+	{
+		data1->entity.CharID = 1;
+		ChaoFukidasiTimer = 3600;
+	}
+	if (ChaoAnimationWhatever != -17 && data1->entity.CharID == 1) data1->entity.CharID = 0;
+	//
+	ChaoFukidasi_Display(a1);
+}*/
+
+//Generate Chao names
+//static void __cdecl ChaoNames_r(ObjectMaster *a1);
+//static Trampoline ChaoNames_t(0x734CD0, 0x734CD7, ChaoNames_r);
+//static void __cdecl ChaoNames_r(ObjectMaster *a1)
+//{
+//	auto original = reinterpret_cast<decltype(ChaoNames_r)*>(ChaoNames_t.Target());
+//	original(a1);
+
+FunctionPointer(int, sub_7373B0, (ObjectMaster *a1, int a2), 0x7373B0);
+
+int __cdecl ChaoNames(ObjectMaster *a1)
+{
+	ChaoData1* data1 = (ChaoData1*)a1->Data1;
 	//Assign a name if the Chao doesn't have one
-	if (data1->ChaoDataBase_ptr->Name[0]==0)
+	if (data1->ChaoDataBase_ptr->Name[0] == 0)
 	{
 		if (data1->ChaoDataBase_ptr->Type == ChaoType_Child)
 		{
@@ -561,53 +651,7 @@ void ChaoFukidasi_Display(ObjectMaster* a1)
 		}
 		ChaoRaceNameCounter++;
 	}
-	NJS_VECTOR ChatBubblePosition = { a1->Data1->Position.x, a1->Data1->Position.y + 7.5f, a1->Data1->Position.z };
-	NJS_SPRITE ChaoNameLetterSprite;
-	ChaoNameLetterSprite.tlist = &ChaoTexLists[1];
-	ChaoNameLetterSprite.p.x = 0;
-	ChaoNameLetterSprite.p.y = -0.6f;
-	ChaoNameLetterSprite.p.z = 0.1f;
-	ChaoNameLetterSprite.sx = 0.08f;
-	ChaoNameLetterSprite.sy = 0.08f;
-	ChaoNameLetterSprite.tanim = ChaoNameLettersTexanim;
-	SetMaterialAndSpriteColor_Float(1.0f, 1.0f, 1.0f, 1.0f);
-	njColorBlendingMode(NJD_SOURCE_COLOR, NJD_COLOR_BLENDING_SRCALPHA);
-	njColorBlendingMode(NJD_DESTINATION_COLOR, NJD_COLOR_BLENDING_INVSRCALPHA);
-	//Draw the chat bubble
-	njPushMatrix(0);
-	njTranslateV(0, &ChatBubblePosition);
-	njRotateXYZ(0, Camera_Data1->Rotation.x, Camera_Data1->Rotation.y, 0);
-	njDrawSprite3D_Queue(&fukidasiSpr, 0, NJD_SPRITE_ALPHA | NJD_SPRITE_VFLIP, QueuedModelFlagsB_SomeTextureThing);
-	njPopMatrix(1u);
-	//Calculate the number of spaces for centering the name
-	for (int i = 0; i < 7; i++)
-	{
-		ChaoNameCurrentCharacter = data1->ChaoDataBase_ptr->Name[i];
-		if (ChaoNameCurrentCharacter == 0x5F) ChaoNameNumSpaces++;
-	}
-	//Draw the letters
-	for (int i = 0; i < 7; i++)
-	{
-		njPushMatrix(0);
-		njTranslateV(0, &ChatBubblePosition);
-		ChaoNameLetterSprite.p.x = -5.4f + i * 1.5f + ChaoNameNumSpaces* 0.75f;
-		njRotateXYZ(0, Camera_Data1->Rotation.x, Camera_Data1->Rotation.y, 0);
-		ChaoNameCurrentCharacter = data1->ChaoDataBase_ptr->Name[i];
-		//Draw all letters before space (because SADX is retarded)
-		if (ChaoNameCurrentCharacter < 0x5F || ChaoNameCurrentCharacter > 0x5F) njDrawSprite3D_Queue(&ChaoNameLetterSprite, ChaoNameCurrentCharacter-1, NJD_SPRITE_ALPHA | NJD_SPRITE_VFLIP, QueuedModelFlagsB_SomeTextureThing);
-		//Draw space
-		else njDrawSprite3D_Queue(&ChaoNameLetterSprite, 254, NJD_SPRITE_ALPHA | NJD_SPRITE_VFLIP, QueuedModelFlagsB_SomeTextureThing);
-		njPopMatrix(1u);
-	}
-}
-
-static void __cdecl Chao_Display_r(ObjectMaster *a1);
-static Trampoline Chao_Display_t(0x7204B0, 0x7204B5, Chao_Display_r);
-static void __cdecl Chao_Display_r(ObjectMaster *a1)
-{
-	auto original = reinterpret_cast<decltype(Chao_Display_r)*>(Chao_Display_t.Target());
-	original(a1);
-	ChaoFukidasi_Display(a1);
+	return sub_7373B0(a1, data1->field_6A8);
 }
 
 //Chao Race double shadow fix
@@ -948,14 +992,14 @@ void ChaoRaceStartGoalSprite_Main(ObjectMaster *a1)
 	SpriteScale = v1->Scale.x;
 	if (TransparencyValue <= 0.05f) CheckThingButThenDeleteObject(a1);
 	ChaoRaceStartGoalSprite_Display(a1);
-	if (ChaoRaceSpriteTimer > 120) TransparencyValue -= 0.05f;
+	if (ChaoRaceStartGoalTimer > 120) TransparencyValue -= 0.05f;
 	if (SpriteScale < 1.0f) SpriteScale += 0.1f;
 	a1->Data1->Scale.z = TransparencyValue;
 	a1->Data1->Scale.x = SpriteScale;
-	ChaoRaceSpriteTimer++;
+	ChaoRaceStartGoalTimer++;
 }
 
-void ChaoRaceStartEndSprite_Load(bool end)
+void ChaoRaceStartGoalSprite_Load(bool end)
 {
 	ObjectMaster *a1;
 	EntityData1 *ent;
@@ -966,19 +1010,19 @@ void ChaoRaceStartEndSprite_Load(bool end)
 	a1->Data1->Scale.x = 0.1f;
 	a1->Data1->Scale.z = 1.0f;
 	if (end) a1->Data1->CharIndex = 1; else a1->Data1->CharIndex = 0;
-	ChaoRaceSpriteTimer = 0;
+	ChaoRaceStartGoalTimer = 0;
 }
 
 void ChaoRaceSoundHook_Start(int ID, void *a2, int a3, void *a4)
 {
 	PlaySound(ID, a2, a3, a4);
-	ChaoRaceStartEndSprite_Load(false);
+	ChaoRaceStartGoalSprite_Load(false);
 }
 
 void ChaoRaceSoundHook_Goal(int ID, void *a2, int a3, void *a4)
 {
 	PlaySound(ID, a2, a3, a4);
-	ChaoRaceStartEndSprite_Load(true);
+	ChaoRaceStartGoalSprite_Load(true);
 }
 
 void ChaoRaceWaterfall_Display(ObjectMaster *a1)
@@ -5388,7 +5432,8 @@ void RenderChaoRaceLetters_Fix(NJS_OBJECT *a1)
 void RenderChaoBall()
 {
 	njSetTexture(&CHAO_TEXLIST);
-	ProcessModelNode_AB_Wrapper(&object_0014B2C0, 1.0f);
+	njScale(0, 1.5f, 1.5f, 1.5f);
+	ProcessModelNode_AB_Wrapper(&object_0014B2C0, 1.5f);
 }
 
 
@@ -5927,7 +5972,7 @@ void ChaoGardens_Init(const IniFile *config, const HelperFunctions &helperFuncti
 	*(NJS_MODEL_SADX*)0x03608064 = attachCHAO_0017B768; //Tree leaves 1
 	*(NJS_MODEL_SADX*)0x036076E4 = attachCHAO_0017B034; //Tree leaves 2
 	//Misc
-	BuildChaoFontUVMap(); //Create UV maps for the Chao name font
+	//BuildChaoFontUVMap(); //Create UV maps for the Chao name font
 	WriteData<1>((char*)0x007151D3, 0x1A); //The secret EC egg is a two-tone black egg
 	ResizeTextureList(&GARDEN00_OBJECT_TEXLIST, 16);
 	//Name Machine stuff
@@ -5968,11 +6013,12 @@ void ChaoGardens_Init(const IniFile *config, const HelperFunctions &helperFuncti
 		WriteData<5>((void*)0x0071CEC2, 0x90); //Don't mess with entry button
 	}
 	//Chao Race stuff
+	//WriteCall((void*)0x71EBB8, ChaoNames);
+	WriteCall((void*)0x76DA03, RenderChaoRaceLetters_Fix); //Chao Race letters fix
 	WriteCall((void*)0x72E2D3, ChaoRaceSoundHook_Start); //Play sound and load "Start" graphics
 	WriteCall((void*)0x72F031, ChaoRaceSoundHook_Goal); //Play sound and load "Goal" graphics
 	WriteJump((void*)0x71BF20, LoadChaoRaceCrackers); //Load crackers
 	WriteCall((void*)0x75A550, RenderChaoBall); //Chao Race ball model
-	WriteCall((void*)0x76DA03, RenderChaoRaceLetters_Fix); //Chao Race letters fix
 	WriteData((NJS_OBJECT**)0x883E68, &object_000459E4); //Start Mark in Chao Race
 	WriteJump((void*)0x00719DB0, LoadChaoRaceX);
 	WriteData((float*)0x00719D74, -16000.0f); //Draw distance
@@ -6158,6 +6204,7 @@ void ChaoGardens_Init(const IniFile *config, const HelperFunctions &helperFuncti
 
 void ChaoGardens_OnFrame()
 {
+	if (ChaoFukidasiTimer > 0) ChaoFukidasiTimer--;
 	//All gardens VMU
 	if (CurrentChaoStage >= 4 && CurrentChaoStage <= 6)
 	{

@@ -656,5 +656,8 @@
     <ClInclude Include="Lantern\lanternapi.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Data\HintMonitor.h">
+      <Filter>Header Files\Levels\General</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
