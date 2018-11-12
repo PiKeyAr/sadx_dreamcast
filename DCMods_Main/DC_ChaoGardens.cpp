@@ -553,16 +553,18 @@ void ChaoFukidasi_Display(ObjectMaster* a1)
 	}
 }
 
-/* Disabled the fukidasi thing for release version
+//Disabled the fukidasi thing for release version
+/*
 static void __cdecl Chao_Display_r(ObjectMaster *a1);
-static Trampoline Chao_Display_t(0x7204B0, 0x7204B5, Chao_Display_r);
+static Trampoline Chao_Display_t(0x72EC80, 0x72EC86, Chao_Display_r);
 static void __cdecl Chao_Display_r(ObjectMaster *a1)
 {
 	auto original = reinterpret_cast<decltype(Chao_Display_r)*>(Chao_Display_t.Target());
 	original(a1);
-	ChaoData1* data1 = (ChaoData1*)a1->Data1;
-	int ChaoAnimationWhatever = data1->MotionTable[4];
-	if (data1->entity.CharID == 1 && ChaoFukidasiTimer <= 0) data1->entity.CharID = 0;
+	//ChaoData1* data1 = (ChaoData1*)a1->Data1;
+	//PrintDebug("X: %f\n", data1->entity.Position.x);
+	//PrintDebug("Y: %f\n", data1->entity.Position.y);
+	//PrintDebug("Z: %f\n", data1->entity.Position.z);
 	//Conditions to display the name badge
 	//Debug
 	data1->entity.CharID = 1;
@@ -576,9 +578,9 @@ static void __cdecl Chao_Display_r(ObjectMaster *a1)
 		ChaoFukidasiTimer = 3600;
 	}
 	if (ChaoAnimationWhatever != -17 && data1->entity.CharID == 1) data1->entity.CharID = 0;
-	//
-	ChaoFukidasi_Display(a1);
-}*/
+	//ChaoFukidasi_Display(a1);
+	}
+	*/
 
 //Generate Chao names
 //static void __cdecl ChaoNames_r(ObjectMaster *a1);
@@ -1030,14 +1032,15 @@ void ChaoRaceWaterfall_Display(ObjectMaster *a1)
 	EntityData1 *v1;
 	v1 = a1->Data1;
 	int ObjectIndex;
-	ObjectIndex = v1->CharIndex;
+	ObjectIndex = v1->CharID;
 	njSetTexture(&OBJ_AL_RACE_TEXLIST);
 	njPushMatrix(0);
 	njTranslateV(0, &v1->Position);
-	njRotateY(0, v1->Rotation.y);
+	njRotateXYZ(0, v1->Rotation.x, v1->Rotation.y, v1->Rotation.z);
 	njScale(0, 1.0f, 1.0f, 1.0f);
 	DrawQueueDepthBias = 2000.0f;
-	ProcessModelNode(&object_00045EB4, QueuedModelFlagsB_EnableZWrite, 1.0f);
+	if (ObjectIndex) ProcessModelNode(&objectCHAO_00046254, QueuedModelFlagsB_EnableZWrite, 1.0f);
+	else ProcessModelNode(&objectCHAO_00045EB4, QueuedModelFlagsB_EnableZWrite, 1.0f);
 	njPopMatrix(1u);
 	DrawQueueDepthBias = 0;
 }
@@ -1048,9 +1051,13 @@ void ChaoRaceWaterfall_Main(ObjectMaster *a1)
 	EntityData1 *v1;
 	v1 = a1->Data1;
 	UVShift = v1->CharIndex;
-	for (unsigned int w = 0; w < LengthOfArray(uv_00045AF4); w++)
+	for (unsigned int w = 0; w < LengthOfArray(uvCHAO_00045AF4); w++)
 	{
-		uv_00045AF4[w].v = uv_00045AF4_r[w].v + UVShift;
+		uvCHAO_00045AF4[w].v = uvCHAO_00045AF4R[w].v + UVShift;
+	}
+	for (unsigned int w = 0; w < LengthOfArray(uvCHAO_00045F74); w++)
+	{
+		uvCHAO_00045F74[w].v = uvCHAO_00045F74_r[w].v + UVShift;
 	}
 	ChaoRaceWaterfall_Display(a1);
 	UVShift = (UVShift - 6) % 255;
@@ -1076,7 +1083,7 @@ void ChaoRaceSkybox_Display(ObjectMaster *a1)
 	njScale(0, 1.0f, 1.0f, 1.0f);
 	DrawQueueDepthBias = -47000;
 	ProcessModelNode(&objectCHAO_0002A888, QueuedModelFlagsB_EnableZWrite, 1.0f); //Bottom thing
-	ProcessModelNode(&object_0001C628, QueuedModelFlagsB_EnableZWrite, 1.0f); //Sky
+	ProcessModelNode(&objectCHAO_0001C628, QueuedModelFlagsB_EnableZWrite, 1.0f); //Sky
 	njPopMatrix(1u);
 	DrawQueueDepthBias = 0;
 }
@@ -1090,6 +1097,33 @@ void ChaoRaceSkybox_Load(ObjectMaster *a1)
 {
 	a1->MainSub = (void(__cdecl *)(ObjectMaster *))ChaoRaceSkybox_Main;
 	a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))ChaoRaceSkybox_Display;
+	a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))CheckThingButThenDeleteObject;
+}
+
+void ChaoRaceNumberPlate_Display(ObjectMaster *a1)
+{
+	EntityData1 *v1;
+	v1 = a1->Data1;
+	njSetTexture(&OBJ_AL_RACE_TEXLIST);
+	njPushMatrix(0);
+	njTranslateV(0, &v1->Position);
+	njScale(0, 1.0f, 1.0f, 1.0f);
+	DrawQueueDepthBias = -47000;
+	ProcessModelNode(&objectCHAO_000445A0, QueuedModelFlagsB_EnableZWrite, 1.0f); //Thing 1
+	ProcessModelNode(&objectCHAO_000459E4, QueuedModelFlagsB_EnableZWrite, 1.0f); //Thing 2
+	njPopMatrix(1u);
+	DrawQueueDepthBias = 0;
+}
+
+void ChaoRaceNumberPlate_Main(ObjectMaster *a1)
+{
+	ChaoRaceNumberPlate_Display(a1);
+}
+
+void ChaoRaceNumberPlate_Load(ObjectMaster *a1)
+{
+	a1->MainSub = (void(__cdecl *)(ObjectMaster *))ChaoRaceNumberPlate_Main;
+	a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))ChaoRaceNumberPlate_Display;
 	a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))CheckThingButThenDeleteObject;
 }
 
@@ -1128,7 +1162,7 @@ ObjectFunc(OF4, 0x71CBC0); // COCONUT
 ObjectFunc(OF5, 0x71CA70); // FLAG
 ObjectFunc(OF6, 0x71C9D0); // WHITE FLOWER
 ObjectFunc(OF7, 0x71C9F0); // PURPLE FLOWER
-ObjectFunc(OF8, 0x71C2E0); // START MARK
+ObjectFunc(OF8, ChaoRaceNumberPlate_Load); // START MARK
 ObjectFunc(OF9, 0x71C7D0); // WATERING CAN
 ObjectFunc(OF10, 0x71C5F0); // BUGLE
 ObjectFunc(OF11, 0x71C3D0); // SCOOP
@@ -2035,6 +2069,7 @@ void LoadObjects_EC()
 		ent->Scale.y = 53;
 	}
 }
+
 void LoadObjects_RaceEntry()
 {
 	ObjectMaster *obj;
@@ -2368,9 +2403,9 @@ void LoadObjects_Race()
 	if (obj)
 	{
 		ent = obj->Data1;
-		ent->Position.x = 181.6474f;
-		ent->Position.y = 59.8748f;
-		ent->Position.z = -38.82487f;
+		ent->Position.x = 0;
+		ent->Position.y = 0;
+		ent->Position.z = 0;
 		ent->Rotation.x = 0;
 		ent->Rotation.y = 0;
 		ent->Rotation.z = 0;
@@ -2442,16 +2477,33 @@ void LoadObjects_Race()
 		ent->Position.z = 0;
 		ent->Rotation.y = 0;
 	}
-	//Waterfall
+	//Waterfall 1
 	obj = LoadObject((LoadObj)2, 3, OF19);
 	obj->SETData.SETData = &setdata_race;
 	if (obj)
 	{
 		ent = obj->Data1;
-		ent->Position.x = 0;
+		ent->Position.x = 382.1735f;
 		ent->Position.y = 0;
-		ent->Position.z = 0;
-		ent->Rotation.y = 0;
+		ent->Position.z = 199.4976f;
+		ent->Rotation.x = 0x68;
+		ent->Rotation.y = 0x88E;
+		ent->Rotation.z = 0;
+		ent->CharID = 0;
+	}
+	//Waterfall 2
+	obj = LoadObject((LoadObj)2, 3, OF19);
+	obj->SETData.SETData = &setdata_race;
+	if (obj)
+	{
+		ent = obj->Data1;
+		ent->Position.x = 323.048f;
+		ent->Position.y = 0;
+		ent->Position.z = 245.5593f;
+		ent->Rotation.x = 0x68;
+		ent->Rotation.y = 0x271;
+		ent->Rotation.z = 0x6;
+		ent->CharID = 1;
 	}
 	obj = LoadObject((LoadObj)2, 3, OF10); // BUGLE
 	obj->SETData.SETData = &setdata_race;
@@ -4694,16 +4746,6 @@ void LoadObjects_Race()
 		ent->Position.y = -0.58f;
 		ent->Position.z = 283.33f;
 		ent->Rotation.y = 0xF581;
-	}
-	obj = LoadObject((LoadObj)2, 3, OF8); // START MARK
-	obj->SETData.SETData = &setdata_race;
-	if (obj)
-	{
-		ent = obj->Data1;
-		ent->Position.x = 293.08f;
-		ent->Position.y = 10.06f;
-		ent->Position.z = 230.36f;
-		ent->Rotation.y = 0x900;
 	}
 }
 
