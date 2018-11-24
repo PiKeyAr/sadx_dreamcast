@@ -93,6 +93,7 @@
     <ClCompile Include="DC_Branding.cpp" />
     <ClCompile Include="DC_Casinopolis.cpp" />
     <ClCompile Include="DC_ChaoGardens.cpp" />
+    <ClCompile Include="DC_ChaoRace.cpp" />
     <ClCompile Include="DC_EmeraldCoast.cpp" />
     <ClCompile Include="DC_FinalEgg.cpp" />
     <ClCompile Include="DC_General.cpp" />
@@ -117,10 +118,11 @@
     <ClCompile Include="SpeedFixes.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="BigBeach.h" />
-    <ClInclude Include="ChaoEggs.h" />
-    <ClInclude Include="ChaoFruits.h" />
-    <ClInclude Include="Chaos2_Column.h" />
+    <ClInclude Include="Data\BigBeach.h" />
+    <ClInclude Include="Data\ChaoEggs.h" />
+    <ClInclude Include="Data\ChaoFruits.h" />
+    <ClInclude Include="Data\ChaoObjects_Race.h" />
+    <ClInclude Include="Data\Chaos2_Column.h" />
     <ClInclude Include="Data\ADV01C_00.h" />
     <ClInclude Include="Data\ADV01C_01.h" />
     <ClInclude Include="Data\ADV01C_02.h" />

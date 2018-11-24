@@ -102,6 +102,9 @@
     <ClCompile Include="DC_ChaoGardens.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="DC_ChaoRace.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="DC_EmeraldCoast.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -658,6 +661,9 @@
     </ClInclude>
     <ClInclude Include="Data\HintMonitor.h">
       <Filter>Header Files\Levels\General</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\ChaoObjects_Race.h">
+      <Filter>Header Files\Levels\Chao</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

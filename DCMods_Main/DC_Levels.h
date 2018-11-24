@@ -57,6 +57,7 @@ extern bool SADXWater_Past;
 extern NJS_TEXLIST texlist_sadxwtr_beach;
 extern NJS_TEXLIST texlist_sadxwtr_sewers;
 extern NJS_TEXLIST texlist_sadxwtr_waves;
+extern SecondaryEntrance BK_SSGardenStartPoint;
 
 void FixMRBase_Apply(const IniFile *config, const HelperFunctions &helperFunctions);
 void DisableSADXWaterFog();
@@ -98,6 +99,8 @@ void Subgames_Init(const IniFile *config, const HelperFunctions &helperFunctions
 //void Subgames_OnFrame();
 void ChaoGardens_Init(const IniFile *config, const HelperFunctions &helperFunctions);
 void ChaoGardens_OnFrame();
+void ChaoRace_Init(const IniFile *config, const HelperFunctions &helperFunctions);
+void ChaoRace_OnFrame();
 void General_Init(const IniFile *config, const HelperFunctions &helperFunctions);
 void General_OnFrame();
 void General_OnInput();

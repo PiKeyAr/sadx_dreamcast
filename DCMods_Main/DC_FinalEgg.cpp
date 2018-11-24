@@ -681,8 +681,6 @@ void FinalEgg_Init(const IniFile *config, const HelperFunctions &helperFunctions
 	ReplacePVM("FINALEGG2");
 	ReplacePVM("FINALEGG3");
 	ReplacePVM("FINALEGG4");
-	
-	
 	ReplaceBIN("PL_A0B", "PL_A0X");
 	ReplaceBIN("PL_A2B", "PL_A2X");
 	TexLists_Obj[10] = FinalEggObjectTextures;

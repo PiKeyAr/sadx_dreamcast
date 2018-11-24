@@ -214,6 +214,7 @@ extern "C"
 		SkyChaseFix_Init();
 		Subgames_Init(config, helperFunctions);
 		ChaoGardens_Init(config, helperFunctions);
+		ChaoRace_Init(config, helperFunctions);
 		General_Init(config, helperFunctions);
 		if (!DisableAllVideoStuff) Videos_Init(config, helperFunctions);
 		if (EnableSpeedFixes) SpeedFixes_Init();
@@ -241,6 +242,7 @@ extern "C"
 		if (EnableHotShelter) HotShelter_OnFrame();
 		//Subgames_OnFrame();
 		ChaoGardens_OnFrame();
+		ChaoRace_OnFrame();
 		General_OnFrame();
 		if (!DisableAllVideoStuff) Videos_OnFrame();
 		if (EnableSpeedFixes) SpeedFixes_OnFrame();
