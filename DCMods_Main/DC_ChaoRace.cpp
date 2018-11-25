@@ -896,6 +896,7 @@ void ChaoRaceWaterfall_Main(ObjectMaster *a1)
 	ChaoRaceWaterfall_Display(a1);
 	UVShift = (UVShift - 6) % 255;
 	a1->Data1->CharIndex = UVShift;
+	QueueSound_XYZ(686, v1, 0, 1, 10, v1->Position.x, v1->Position.y, v1->Position.z);
 }
 
 void ChaoRaceWaterfall_Load(ObjectMaster *a1)

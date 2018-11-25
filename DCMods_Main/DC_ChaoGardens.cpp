@@ -1946,6 +1946,12 @@ void __cdecl LoadChaoRaceDoorX(ObjectMaster *a1)
 	}
 }
 
+void PlayElevatorSound(int ID, void *a2, int a3, void *a4)
+{
+	if (CurrentLevel == 26) PlaySound(ID, a2, a3, a4);
+	else PlaySound(685, a2, a3, a4);
+}
+
 void ChaoGardens_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 {
 	ReplacePVM("CHAO");
@@ -2054,6 +2060,9 @@ void ChaoGardens_Init(const IniFile *config, const HelperFunctions &helperFuncti
 		WriteJump((void*)0x0072AB80, LoadChaoRaceDoorX);
 		WriteData((NJS_TEXLIST**)0x0072A963, &GARDEN00_OBJECT_TEXLIST); //Chao Race door texlist
 		WriteCall((void*)0x00638DD7, SetElevatorTexlist);
+		WriteCall((void*)0x638FAA, PlayElevatorSound);
+		WriteCall((void*)0x639038, PlayElevatorSound);
+		WriteCall((void*)0x6390B2, PlayElevatorSound);
 		WriteData<5>((void*)0x007195A3, 0x90); //SADX SS Garden Exit
 		*(NJS_OBJECT*)0x0340C5A4 = objectCHAO_00012A2C; //race door wall part
 		*(NJS_MOTION*)0x0340D978 = _12ADC; //race door animation
