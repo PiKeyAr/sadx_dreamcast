@@ -622,19 +622,31 @@ void ChaoSlidingDoors_Main(ObjectMaster *a1)
 	NJS_VECTOR exitdoor = { 2099.42f, 13.49f, -0.8400002f };
 	v1 = a1->Data1;
 	CharIndexShit = *(float *)&v1->CharIndex;
+	char CharIDShit = v1->CharID;
 	if (IsPlayerInsideSphere(&exitdoor, 30.0f))
 	{
+		if (CharIDShit == 0)
+		{
+			PlaySound(685, 0, 0, 0);
+			CharIDShit = 1;
+		}
 		if (bowchaoanim != 2) bowchaoanim = 1;
 		if (CharIndexShit < 25.0f) CharIndexShit += 0.8f;
 		if (CharIndexShit > 25.0f) CharIndexShit = 25.0f;
 	}
 	else
 	{
+		if (CharIDShit == 1)
+		{
+			PlaySound(685, 0, 0, 0);
+			CharIDShit = 0;
+		}
 		if (bowchaoanim == 2) bowchaoanim = 0;
 		if (CharIndexShit > 0.0f) CharIndexShit -= 0.8f;
 		if (CharIndexShit < 0) CharIndexShit = 0;
 	}
 	*(float *)&v1->CharIndex = CharIndexShit;
+	a1->Data1->CharID = CharIDShit;
 	ChaoSlidingDoors_Display(a1);
 }
 
@@ -2474,9 +2486,9 @@ void LoadObjects_Race()
 	if (obj)
 	{
 		ent = obj->Data1;
-		ent->Position.x = -265.66f;
+		ent->Position.x = -365.66f; //-265.66f in the original, probably a mistake
 		ent->Position.y = 82.63f;
-		ent->Position.z = 223.59f;
+		ent->Position.z = 123.59f; //223.59f in the original, probably a mistake
 		ent->Rotation.y = 0xC4B5;
 		ent->Rotation.z = 0x15F;
 		ent->Scale.x = 4;
