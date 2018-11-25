@@ -18,6 +18,7 @@
 
 FunctionPointer(void, sub_409FB0, (NJS_ACTION *a1, float frameNumber), 0x409FB0);
 FunctionPointer(void, sub_6F4570, (ObjectMaster *a1), 0x6F4570);
+FunctionPointer(void, sub_407A00, (NJS_MODEL_SADX *model, float scale), 0x407A00);
 DataPointer(ObjectMaster*, dword_3C85138, 0x3C85138);
 HMODULE ADV01MODELS = GetModuleHandle(L"ADV01MODELS");
 HMODULE ADV01CMODELS = GetModuleHandle(L"ADV01CMODELS");
@@ -414,6 +415,18 @@ bool HedgehogHammerDollsFunction(NJS_MATERIAL* material, uint32_t flags)
 	return true;
 }
 
+void ODoseiFix(NJS_MODEL_SADX *model, float scale)
+{
+	SetMaterialAndSpriteColor_Float(1.0f, 1.0f, 1.0f, 1.0f);
+	sub_407A00(model, scale);
+}
+
+void OLivingLightFix(NJS_OBJECT *a1, int blend_mode, float scale)
+{
+	SetMaterialAndSpriteColor_Float(1.0f, 1.0f, 1.0f, 1.0f);
+	ProcessModelNode_D_WrapperB(a1, blend_mode, scale);
+}
+
 void ADV01_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 {
 	ReplaceBIN_DC("SETEC00S");
@@ -533,6 +546,9 @@ void ADV01_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 	//Door barrier fixes (Gamma's story)
 	WriteJump((void*)0x52B2E0, ECDoorBarrier1X); 
 	WriteJump((void*)0x52B250, ECDoorBarrier2_asm);
+	WriteCall((void*)0x51F637, ODoseiFix);
+	WriteCall((void*)0x51F669, ODoseiFix);
+	WriteCall((void*)0x51EB2C, OLivingLightFix);
 	WriteCall((void*)0x0051AB88, RenderEggCarrier0NPC); //Chaos 4 glitch fix
 	WriteJump((void*)0x51B210, EggCarrierSkyBox);
 	WriteJump((void*)0x51B3B0, EggCarrierSkyBottom);
@@ -660,7 +676,18 @@ void ADV01_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 	___ADV01C_ACTIONS[6]->object = &objectADV01_000BAF48; //Door
 	___ADV01C_MODELS[27]->mats[0].diffuse.color = 0xFFFFFFFF;
 	WriteData<5>((void*)0x005244D6, 0x90); //Disable light flickering
-
+	//Fix materials on books
+	ADV01_OBJECTS[12]->basicdxmodel->mats[0].diffuse.color = 0xFFB2B2B2;
+	ADV01_OBJECTS[12]->basicdxmodel->mats[1].diffuse.color = 0xFFB2B2B2;
+	ADV01_OBJECTS[12]->basicdxmodel->mats[2].diffuse.color = 0xFFB2B2B2;
+	ADV01_OBJECTS[11]->basicdxmodel->mats[0].diffuse.color = 0xFFB2B2B2;
+	ADV01_OBJECTS[11]->basicdxmodel->mats[1].diffuse.color = 0xFFB2B2B2;
+	ADV01_OBJECTS[11]->basicdxmodel->mats[2].diffuse.color = 0xFFB2B2B2;
+	//Fix materials on elevator buttons
+	WriteData((float*)0x0051E818, 1.0f);
+	WriteData((float*)0x0051E81D, 1.0f);
+	WriteData((float*)0x0051E88F, 1.0f);
+	WriteData((float*)0x0051E894, 1.0f);
 	for (unsigned int i = 0; i < 3; i++)
 	{
 		SkyboxScale_EggCarrier4[i].x = 1.0f;
