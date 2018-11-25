@@ -341,7 +341,7 @@ void BuildChaoFontUVMap()
 
 void ChaoFukidasi_Display(ObjectMaster* a1)
 {
-	float LetterSpriteDepth = 22000.0f;
+	//float LetterSpriteDepth = 32000.0f;
 	int ChaoNameCurrentCharacter = 0;
 	int ChaoNameNumSpaces = 0;
 	ChaoData1* data1 = (ChaoData1*)a1->Data1;
@@ -351,29 +351,22 @@ void ChaoFukidasi_Display(ObjectMaster* a1)
 		if (data1->entity.CharID > 0) data1->entity.CharID--;
 		if (data1->entity.CharID < 0) data1->entity.CharID = 0;
 	}
+	else
+	{
+		data1->entity.CharID = 0;
+	}
 	//Display the bubble
-	if (data1->entity.CharIndex && (data1->entity.CharID > 0 || data1->entity.CharIndex == 2) && data1->ChaoDataBase_ptr->Name[0] != 0x00)
+	if (((data1->entity.CharIndex == 1 && data1->entity.CharID > 0) || data1->entity.CharIndex == 2) && data1->ChaoDataBase_ptr->Name[0] != 0x00)
 	{
 		NJS_VECTOR ChatBubblePosition = { a1->Data1->Position.x, a1->Data1->Position.y, a1->Data1->Position.z };
 		NJS_SPRITE ChaoNameLetterSprite;
 		ChaoNameLetterSprite.tlist = &ChaoTexLists[1];
 		ChaoNameLetterSprite.p.x = 0;
-		ChaoNameLetterSprite.p.y = ChaoFukidasiSprite.p.y - 0.4f;
+		ChaoNameLetterSprite.p.y = ChaoFukidasiSprite.p.y - 0.35f;
 		ChaoNameLetterSprite.p.z = ChaoFukidasiSprite.p.z + 0.05f;
-		ChaoNameLetterSprite.sx = 0.05f;
-		ChaoNameLetterSprite.sy = 0.05f;
+		ChaoNameLetterSprite.sx = 0.04f;
+		ChaoNameLetterSprite.sy = 0.04f;
 		ChaoNameLetterSprite.tanim = ChaoNameLettersTexanim;
-		SetMaterialAndSpriteColor_Float(1.0f, 1.0f, 1.0f, 1.0f);
-		njColorBlendingMode(NJD_SOURCE_COLOR, NJD_COLOR_BLENDING_SRCALPHA);
-		njColorBlendingMode(NJD_DESTINATION_COLOR, NJD_COLOR_BLENDING_INVSRCALPHA);
-		//Draw the chat bubble
-		njPushMatrix(0);
-		njTranslateV(0, &ChatBubblePosition);
-		njRotateXYZ(0, Camera_Data1->Rotation.x, Camera_Data1->Rotation.y, 0);
-		Sprite3DDepth_Current = 20000.0f;
-		njDrawSprite3D_Queue(&ChaoFukidasiSprite, 0, NJD_SPRITE_ALPHA | NJD_SPRITE_VFLIP, QueuedModelFlagsB_SomeTextureThing);
-		Sprite3DDepth_Current = 0.0f;
-		njPopMatrix(1u);
 		//Calculate the number of spaces for centering the name
 		for (int i = 0; i < 7; i++)
 		{
@@ -385,19 +378,29 @@ void ChaoFukidasi_Display(ObjectMaster* a1)
 		{
 			njPushMatrix(0);
 			njTranslateV(0, &ChatBubblePosition);
-			ChaoNameLetterSprite.p.x = -3.5f + i * 1.0f + ChaoNameNumSpaces * 0.5f;
+			ChaoNameLetterSprite.p.x = -3.4f + i * 1.0f + ChaoNameNumSpaces * 0.5f;
 			njRotateXYZ(0, Camera_Data1->Rotation.x, Camera_Data1->Rotation.y, 0);
-			Sprite3DDepth_Current = LetterSpriteDepth + i * 200.0f;
 			ChaoNameCurrentCharacter = data1->ChaoDataBase_ptr->Name[i];
 			//Set letter color (blue for CPU, black for player's Chao)
-			if (data1->entity.InvulnerableTime == 1) SetMaterialAndSpriteColor_Float(1.0f, 0.0f, 0.0f, 0.9f); else SetMaterialAndSpriteColor_Float(1.0f, 0.2f, 0.2f, 0.2f);
+			if (data1->entity.Index == 7) SetMaterialAndSpriteColor_Float(1.0f, 0.2f, 0.2f, 0.2f); else SetMaterialAndSpriteColor_Float(1.0f, 0.0f, 0.0f, 0.9f);
 			//Draw space
 			if (ChaoNameCurrentCharacter == 0x5F || ChaoNameCurrentCharacter == 0x00) njDrawSprite3D_Queue(&ChaoNameLetterSprite, 254, NJD_SPRITE_ALPHA | NJD_SPRITE_VFLIP, QueuedModelFlagsB_EnableZWrite);
 			//Draw all letters before space (because SADX is retarded)
 			else njDrawSprite3D_Queue(&ChaoNameLetterSprite, ChaoNameCurrentCharacter - 1, NJD_SPRITE_ALPHA | NJD_SPRITE_COLOR | NJD_SPRITE_VFLIP, QueuedModelFlagsB_EnableZWrite);
 			Sprite3DDepth_Current = 0.0f;
 			njPopMatrix(1u);
+			ClampGlobalColorThing_Thing();
 		}
+		//Draw the chat bubble
+		SetMaterialAndSpriteColor_Float(1.0f, 1.0f, 1.0f, 1.0f);
+		njColorBlendingMode(NJD_SOURCE_COLOR, NJD_COLOR_BLENDING_SRCALPHA);
+		njColorBlendingMode(NJD_DESTINATION_COLOR, NJD_COLOR_BLENDING_INVSRCALPHA);
+		njPushMatrix(0);
+		njTranslateV(0, &ChatBubblePosition);
+		njRotateXYZ(0, Camera_Data1->Rotation.x, Camera_Data1->Rotation.y, 0);
+		njDrawSprite3D_Queue(&ChaoFukidasiSprite, 0, NJD_SPRITE_ALPHA | NJD_SPRITE_VFLIP, QueuedModelFlagsB_EnableZWrite);
+		njPopMatrix(1u);
+		ClampGlobalColorThing_Thing();
 	}
 }
 
@@ -405,7 +408,6 @@ void __cdecl GenerateRaceChaoName(ObjectMaster *a1)
 {
 	ChaoData1* data1 = (ChaoData1*)a1->Data1;
 	//Assign a name if the Chao doesn't have one
-	data1->entity.InvulnerableTime = 1; //This is used to distinguish CPU players
 	if (data1->ChaoDataBase_ptr->Name[0] == 0)
 	{
 		if (data1->ChaoDataBase_ptr->Type == ChaoType_Child)
@@ -455,17 +457,6 @@ void __cdecl GenerateRaceChaoName(ObjectMaster *a1)
 	}
 }
 
-/* //Shuffle track positions... Someday
-static void __cdecl ChaoPuppet_r(ObjectMaster *a1);
-static Trampoline ChaoPuppet_t(0x757490, 0x757495, ChaoPuppet_r);
-static void __cdecl ChaoPuppet_r(ObjectMaster *a1)
-{
-	auto original = reinterpret_cast<decltype(ChaoPuppet_r)*>(ChaoPuppet_t.Target());
-	EntityData1 *v1 = a1->Data1;
-	original(a1);
-}
-*/
-
 static void __cdecl OldChaoMedal_r(int a1, NJS_VECTOR *a2);
 static Trampoline OldChaoMedal_t(0x751D70, 0x751D77, OldChaoMedal_r);
 static void __cdecl OldChaoMedal_r(int a1, NJS_VECTOR *a2)
@@ -478,8 +469,6 @@ static void __cdecl Chao_Display_r(ObjectMaster *a1);
 static Trampoline Chao_Display_t(0x7204B0, 0x7204B5, Chao_Display_r);
 static void __cdecl Chao_Display_r(ObjectMaster *a1)
 {
-	auto original = reinterpret_cast<decltype(Chao_Display_r)*>(Chao_Display_t.Target());
-	original(a1);
 	ChaoData1* data1 = (ChaoData1*)a1->Data1;
 	int ChaoAnimationWhatever = data1->MotionTable[4];
 	//All this stuff should only happen during Chao Race
@@ -488,23 +477,52 @@ static void __cdecl Chao_Display_r(ObjectMaster *a1)
 		//Generate Chao name if it's not on the first track (which would be the player's Chao)
 		if (ChaoRaceTimer < 50)
 		{
-			if (ChaoRaceType == 0 && a1->Data1->Position.z != ChaoRaceStartPositions_PearlCourse[0].z) GenerateRaceChaoName(a1);
-			if (ChaoRaceType == 1 && a1->Data1->Position.z != ChaoRaceStartPositions_AmethystCourse[0].z) GenerateRaceChaoName(a1);
-			if (ChaoRaceType == 2 && a1->Data1->Position.z != ChaoRaceStartPositions_SapphireCourse[0].z) GenerateRaceChaoName(a1);
-			if (ChaoRaceType == 3 && a1->Data1->Position.z != ChaoRaceStartPositions_RubyCourse[0].z) GenerateRaceChaoName(a1);
-			if (ChaoRaceType == 4 && a1->Data1->Position.z != ChaoRaceStartPositions_EmeraldCourse[0].z) GenerateRaceChaoName(a1);
+			if (a1->Data1->Index != 7) GenerateRaceChaoName(a1);
 		}
 		float ChaoX = data1->entity.Position.x;
+		float ChaoY = data1->entity.Position.y;
 		float ChaoZ = data1->entity.Position.z;
-		//If the race hasn't begun yet, show the nameplate above the Chao that has the same coordinates as the red arrow
-		if (ChaoRaceTimer < 360)
+		float CameraX = Camera_Data1->Position.x;
+		float CameraY = Camera_Data1->Position.y;
+		float CameraZ = Camera_Data1->Position.z;
+		float x_c = CameraX - ChaoX;
+		float y_c = CameraY - ChaoY;
+		float z_c = CameraZ - ChaoZ;
+		float x_a = RedArrowX - ChaoX;
+		float y_a = RedArrowY - ChaoY;
+		float z_a = RedArrowZ - ChaoZ;
+		float dist_cam = sqrt(x_c * x_c + y_c * y_c + z_c * z_c);
+		float dist_arrow = sqrt(x_a * x_a + y_a * y_a + z_a * z_a);
+		//PrintDebug("Index: %d, Distance cam: %f, Distance arrow: %f, CharIndex: %d, CharID: %d\n", data1->entity.Index, dist_cam, dist_arrow, data1->entity.CharIndex, data1->entity.CharID);
+		//Assign the winner a permanent name badge
+		if (!ChaoRaceEnded && ChaoAnimationWhatever == -17)
 		{
-			if (abs(ChaoX - RedArrowX) < 0.5f && abs(ChaoZ - RedArrowZ) < 0.5f)
+			ChaoRaceEnded = true;
+			ChaoRaceTimer = 0;
+			data1->entity.CharID = 80;
+			data1->entity.CharIndex = 2;
+		}
+		//Disable the nameplate if too far from the arrow/camera
+		if ((dist_arrow >= 8.5f || dist_cam >= 45.0f) && ChaoAnimationWhatever != -17)
+		{
+			data1->entity.CharIndex = 0;
+			data1->entity.CharID = 0;
+		}
+		//Disable the nameplate if playing the win animation but another Chao reached the end first
+		if (data1->entity.CharIndex != 2 && ChaoRaceEnded && ChaoAnimationWhatever == -17)
+		{
+			data1->entity.CharIndex = 0;
+			data1->entity.CharID = 0;
+		}
+		//Trigger the nameplate when the red arrow's coordinates roughly match the Chao's
+		if (data1->entity.CharIndex != 2 && ChaoAnimationWhatever != -17 && dist_cam < 45.0f)
+		{
+			if (dist_arrow < 8.5f)
 			{
 				if (!data1->entity.CharIndex)
 				{
 					data1->entity.CharIndex = 1;
-					data1->entity.CharID = 60;
+					data1->entity.CharID = 100;
 				}
 			}
 			else
@@ -513,37 +531,10 @@ static void __cdecl Chao_Display_r(ObjectMaster *a1)
 				data1->entity.CharIndex = 0;
 			}
 		}
-		//If the race has begun
-		if (ChaoRaceTimer > 500)
-		{
-			//Assign the winner a permanent name badge
-			if (!ChaoRaceEnded && ChaoAnimationWhatever == -17)
-			{
-				ChaoRaceEnded = true;
-				ChaoRaceTimer = 0;
-				data1->entity.CharID = 120;
-				data1->entity.CharIndex = 2;
-			}
-			//Trigger the nameplate when the red arrow's coordinates roughly match the Chao's
-			if (data1->entity.CharIndex != 2 && ChaoAnimationWhatever != -17)
-			{
-				if (abs(ChaoX - RedArrowX) < 1.0f && abs(ChaoZ - RedArrowZ) < 1.0f)
-				{
-					if (!data1->entity.CharIndex)
-					{
-						data1->entity.CharIndex = 1;
-						data1->entity.CharID = 80;
-					}
-				}
-				else
-				{
-					data1->entity.CharID = 0;
-					data1->entity.CharIndex = 0;
-				}
-			}
-		}
-		if (!ChaoRaceStartGoalTimer || ChaoRaceTimer > 600) ChaoFukidasi_Display(a1); //Show only before or during race, but not during the Start graphic
+		ChaoFukidasi_Display(a1);
 	}
+	auto original = reinterpret_cast<decltype(Chao_Display_r)*>(Chao_Display_t.Target());
+	original(a1);
 }
 
 //Chao Race double shadow fix
@@ -3835,7 +3826,9 @@ void ChaoRaceRedArrowHook(NJS_SPRITE *_sp, Int n, NJD_SPRITE attr)
 	RedArrowX = _sp->p.x;
 	RedArrowY = _sp->p.y;
 	RedArrowZ = _sp->p.z;
-	njDrawSprite3D_Queue(_sp, n, attr, (attr & NJD_SPRITE_ALPHA) != 0 ? QueuedModelFlagsB_SomeTextureThing : QueuedModelFlagsB_EnableZWrite);
+	DrawQueueDepthBias = -1000.0f;
+	njDrawSprite3D_Queue(_sp, n, attr, QueuedModelFlagsB_SomeTextureThing);
+	DrawQueueDepthBias = 0.0f;
 }
 
 //Chao Race Entry stuff
