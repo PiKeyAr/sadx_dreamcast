@@ -6,8 +6,12 @@
 static bool EnableLobby = true;
 static int chaoracewater = 55;
 static bool SkipSA1Entry = false;
+static bool MedalTextLoaded = false;
 
 DataPointer(char, ChaoRaceType, 0x3CD370A);
+DataPointer(int, ChaoRaceOver, 0x3CD7714);
+DataPointer(int, CrackersShouldFire, 0x3CD7710);
+DataPointer(char, ChaoRaceBeginnerJewelParty, 0x3CD3709);
 DataPointer(char, ChaclonNameFix1, 0x8890D0);
 DataPointer(char, ChaclonNameFix2, 0x8890D8);
 DataPointer(char, ChaclonNameFix3, 0x8890E0);
@@ -457,14 +461,6 @@ void __cdecl GenerateRaceChaoName(ObjectMaster *a1)
 	}
 }
 
-static void __cdecl OldChaoMedal_r(int a1, NJS_VECTOR *a2);
-static Trampoline OldChaoMedal_t(0x751D70, 0x751D77, OldChaoMedal_r);
-static void __cdecl OldChaoMedal_r(int a1, NJS_VECTOR *a2)
-{
-	if (a1 == 0) PrintDebug("No medal\n");
-	else PrintDebug("Medal\n");
-}
-
 static void __cdecl Chao_Display_r(ObjectMaster *a1);
 static Trampoline Chao_Display_t(0x7204B0, 0x7204B5, Chao_Display_r);
 static void __cdecl Chao_Display_r(ObjectMaster *a1)
@@ -800,14 +796,14 @@ void ChaoRaceStartGoalSprite_Display(ObjectMaster *a1)
 	EntityData1 *v1;
 	float TransparencyValue;
 	float SpriteScale;
-	int EndSpriteIf1 = 0;
+	char SpriteType = 0;
 	NJS_SPRITE _sp;
 	float HorizontalResolution_float = static_cast<float>(HorizontalResolution);
 	float VerticalResolution_float = static_cast<float>(VerticalResolution);
 	v1 = a1->Data1;
 	SpriteScale = v1->Scale.x;
 	TransparencyValue = v1->Scale.z;
-	EndSpriteIf1 = v1->CharIndex;
+	SpriteType = v1->CharIndex;
 	_sp.p.x = HorizontalResolution_float / 2.0f;
 	_sp.p.y = VerticalResolution_float / 2.0f;
 	_sp.sx = SpriteScale * VerticalResolution_float / 480.0f;
@@ -819,13 +815,25 @@ void ChaoRaceStartGoalSprite_Display(ObjectMaster *a1)
 	njPushMatrix(0);
 	njColorBlendingMode(NJD_SOURCE_COLOR, NJD_COLOR_BLENDING_SRCALPHA);
 	njColorBlendingMode(NJD_DESTINATION_COLOR, NJD_COLOR_BLENDING_INVSRCALPHA);
-	if (EndSpriteIf1 == 1)
+	//"Start!" sprite
+	if (SpriteType == 0)
+	{
+		njDrawSprite2D_Queue(&_sp, 20, 22046.9f, NJD_SPRITE_ALPHA | NJD_SPRITE_COLOR, QueuedModelFlagsB_SomeTextureThing);
+	}
+	//"Goal!" sprite
+	else if (SpriteType == 1)
 	{
 		njDrawSprite2D_Queue(&_sp, 21, 22046.9f, NJD_SPRITE_ALPHA | NJD_SPRITE_COLOR, QueuedModelFlagsB_SomeTextureThing);
 	}
-	else
+	//"Cool!" sprite
+	else if (SpriteType == 2)
 	{
-		njDrawSprite2D_Queue(&_sp, 20, 22046.9f, NJD_SPRITE_ALPHA | NJD_SPRITE_COLOR, QueuedModelFlagsB_SomeTextureThing);
+		njDrawSprite2D_Queue(&_sp, 22, 22046.9f, NJD_SPRITE_ALPHA | NJD_SPRITE_COLOR, QueuedModelFlagsB_SomeTextureThing);
+	}
+	//"You won the jewel!" sprite
+	else if (SpriteType == 3)
+	{
+		njDrawSprite2D_Queue(&_sp, 23, 22046.9f, NJD_SPRITE_ALPHA | NJD_SPRITE_COLOR, QueuedModelFlagsB_SomeTextureThing);
 	}
 	njPopMatrix(1u);
 	DrawQueueDepthBias = 0;
@@ -848,7 +856,7 @@ void ChaoRaceStartGoalSprite_Main(ObjectMaster *a1)
 	ChaoRaceStartGoalTimer++;
 }
 
-void ChaoRaceStartGoalSprite_Load(bool end)
+void ChaoRaceStartGoalSprite_Load(char sprite_type)
 {
 	ObjectMaster *a1;
 	a1 = LoadObject((LoadObj)6, 3, ChaoRaceStartGoalSprite_Main);
@@ -857,20 +865,20 @@ void ChaoRaceStartGoalSprite_Load(bool end)
 	a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))CheckThingButThenDeleteObject;
 	a1->Data1->Scale.x = 0.1f;
 	a1->Data1->Scale.z = 1.0f;
-	if (end) a1->Data1->CharIndex = 1; else a1->Data1->CharIndex = 0;
+	a1->Data1->CharIndex = sprite_type;
 	ChaoRaceStartGoalTimer = 0;
 }
 
 void ChaoRaceSoundHook_Start(int ID, void *a2, int a3, void *a4)
 {
 	PlaySound(ID, a2, a3, a4);
-	ChaoRaceStartGoalSprite_Load(false);
+	ChaoRaceStartGoalSprite_Load(0);
 }
 
 void ChaoRaceSoundHook_Goal(int ID, void *a2, int a3, void *a4)
 {
 	PlaySound(ID, a2, a3, a4);
-	ChaoRaceStartGoalSprite_Load(true);
+	ChaoRaceStartGoalSprite_Load(1);
 }
 
 void ChaoRaceWaterfall_Display(ObjectMaster *a1)
@@ -3789,6 +3797,7 @@ ObjectMaster *__cdecl LoadChaoRaceCrackers()
 	return obj;
 }
 
+/* Backup sub for SADX crackers
 ObjectMaster *__cdecl sub_71BF20()
 {
 	unsigned int v0; // edi
@@ -3826,6 +3835,7 @@ ObjectMaster *__cdecl sub_71BF20()
 	} while (v0 < 4);
 	return result;
 }
+*/
 
 void RenderChaoRaceLetters_Fix(NJS_OBJECT *a1)
 {
@@ -3942,6 +3952,20 @@ void __cdecl LoadChaoRaceX()
 	PrintDebug("ChaoStgRace _prolog end.\n");
 }
 
+void LoadObjChaoRaceTexlist(const char *PVMName, NJS_TEXLIST *TexListPtr, unsigned __int16 a3)
+{
+	if (TextLanguage) LoadChaoTexlist("OBJ_AL_RACE_E", &OBJ_AL_RACE_TEXLIST, 1u);
+	else LoadChaoTexlist("OBJ_AL_RACE", &OBJ_AL_RACE_TEXLIST, 1u);
+}
+
+FunctionPointer(void, sub_751D70, (int a1, NJS_VECTOR *a2), 0x751D70);
+
+void LoadChaoRaceJewelAndText(int a1, NJS_VECTOR *a2)
+{
+	sub_751D70(a1, a2);
+	ChaoRaceStartGoalSprite_Load(3);
+}
+
 void ChaoRace_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 {
 	//Load configuration settings
@@ -3960,6 +3984,9 @@ void ChaoRace_Init(const IniFile *config, const HelperFunctions &helperFunctions
 		WriteData<5>((void*)0x0071CEC2, 0x90); //Don't mess with entry button
 	}
 	//Chao Race stuff
+	WriteData((int**)0x751B11, &CurrentChaoStage); //Restore Chao Race jewel by replacing the invalid pointer with something that always returns something
+	WriteCall((void*)0x72E688, LoadChaoRaceJewelAndText);
+	WriteCall((void*)0x719D8C, LoadObjChaoRaceTexlist);
 	BuildChaoFontUVMap(); //Create UV maps for the Chao name font
 	//Convert the first letter in Chaclon's name to uppercase
 	ChaclonNameFix1 = 0x23;
@@ -4054,10 +4081,21 @@ void ChaoRace_OnFrame()
 		matlistCHAO_0002A548[0].attr_texId = chaoracewater;
 		matlistCHAO_0003EFB0[0].attr_texId = chaoracewater;
 		matlistCHAO_0003F2DC[0].attr_texId = chaoracewater;
+		//Winning the race (not jewel)
+		if (!MedalTextLoaded)
+		{
+			if (ChaoRaceOver > 0 && CrackersShouldFire > 0)
+			{
+				if (ChaoRaceBeginnerJewelParty != 1) ChaoRaceStartGoalSprite_Load(2);
+				MedalTextLoaded = true;
+			}
+		}
 	}
 	if (CurrentChaoStage != 1)
 	{
 		ChaoRaceTimer = 0;
-		ChaoRaceEnded = false;
+		ChaoRaceEnded = false; 
+		MedalTextLoaded = false;
+		CrackersShouldFire = 0;
 	}
 }
