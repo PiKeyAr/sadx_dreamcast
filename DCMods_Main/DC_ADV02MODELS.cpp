@@ -347,6 +347,10 @@ void ADV02_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 	ReplacePVM("MR_EGG");
 	ReplacePVM("MR_PYRAMID");
 	ReplacePVM("MR_TORNADO2");
+	WriteData<1>((char*)0x005370E0, 0x01); //Fix blending mode on floating bricks in WV entrance
+	WriteData<1>((char*)0x00537038, 0x01); //Fix blending mode on floating bricks in WV entrance
+	WriteData<1>((char*)0x00537181, 0x01); //Fix blending mode on floating bricks in WV entrance
+	WriteData<1>((char*)0x00537354, 0x01); //Fix blending mode on floating bricks in WV entrance
 	WriteData<1>((char*)0x006F4DA0, 0x04); //Emerald shard (cutscene) glow blending mode
 	WriteData<1>((char*)0x006F4BF1, 0x04); //Emerald shard (cutscene) glow blending mode	
 	//OBlockEntry brightness
