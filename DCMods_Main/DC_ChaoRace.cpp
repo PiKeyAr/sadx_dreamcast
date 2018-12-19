@@ -4057,14 +4057,14 @@ void ChaoRace_OnFrame()
 		a2 = letteranims[letterframe][5];
 		c2 = letteranims[letterframe][6];
 		e2 = letteranims[letterframe][7];
-		if (c1 == true) matlistCHAO_00047DEC[0].attr_texId = 19; else matlistCHAO_00047DEC[0].attr_texId = 20;
-		if (h1 == true) matlistCHAO_00047DEC[1].attr_texId = 21; else matlistCHAO_00047DEC[1].attr_texId = 18;
-		if (a1 == true) matlistCHAO_00047DEC[2].attr_texId = 22; else matlistCHAO_00047DEC[2].attr_texId = 23;
-		if (o1 == true) matlistCHAO_00047DEC[3].attr_texId = 24; else matlistCHAO_00047DEC[3].attr_texId = 25;
-		if (r2 == true) matlistCHAO_00047DEC[6].attr_texId = 26; else matlistCHAO_00047DEC[6].attr_texId = 27;
-		if (a2 == true) matlistCHAO_00047DEC[7].attr_texId = 28; else matlistCHAO_00047DEC[7].attr_texId = 29;
-		if (c2 == true) matlistCHAO_00047DEC[5].attr_texId = 30; else matlistCHAO_00047DEC[5].attr_texId = 31;
-		if (e2 == true) matlistCHAO_00047DEC[4].attr_texId = 32; else matlistCHAO_00047DEC[4].attr_texId = 33;
+		if (c1) matlistCHAO_00047DEC[0].attr_texId = 19; else matlistCHAO_00047DEC[0].attr_texId = 20;
+		if (h1) matlistCHAO_00047DEC[1].attr_texId = 21; else matlistCHAO_00047DEC[1].attr_texId = 18;
+		if (a1) matlistCHAO_00047DEC[2].attr_texId = 22; else matlistCHAO_00047DEC[2].attr_texId = 23;
+		if (o1) matlistCHAO_00047DEC[3].attr_texId = 24; else matlistCHAO_00047DEC[3].attr_texId = 25;
+		if (r2) matlistCHAO_00047DEC[6].attr_texId = 26; else matlistCHAO_00047DEC[6].attr_texId = 27;
+		if (a2) matlistCHAO_00047DEC[7].attr_texId = 28; else matlistCHAO_00047DEC[7].attr_texId = 29;
+		if (c2) matlistCHAO_00047DEC[5].attr_texId = 30; else matlistCHAO_00047DEC[5].attr_texId = 31;
+		if (e2) matlistCHAO_00047DEC[4].attr_texId = 32; else matlistCHAO_00047DEC[4].attr_texId = 33;
 		if (FrameCounter % (10 / FramerateSetting) == 0) letterframe++;
 		if (letterframe > LengthOfArray(letteranims)) letterframe = 0;
 		//Exit
