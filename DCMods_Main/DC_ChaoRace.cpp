@@ -4066,7 +4066,7 @@ void ChaoRace_OnFrame()
 		if (c2 == true) matlistCHAO_00047DEC[5].attr_texId = 30; else matlistCHAO_00047DEC[5].attr_texId = 31;
 		if (e2 == true) matlistCHAO_00047DEC[4].attr_texId = 32; else matlistCHAO_00047DEC[4].attr_texId = 33;
 		if (FrameCounter % (10 / FramerateSetting) == 0) letterframe++;
-		if (letterframe > 7) letterframe = 0;
+		if (letterframe > LengthOfArray(letteranims)) letterframe = 0;
 		//Exit
 		auto entity = EntityData1Ptrs[0];
 		if (entity != nullptr)
