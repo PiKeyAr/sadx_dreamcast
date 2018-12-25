@@ -159,6 +159,7 @@ ObjectFunc(OF_MR4, 0x004D4770); // CYLINDER
 ObjectFunc(OF_MR5, 0x004D47E0); // CUBE    
 ObjectFunc(OF_MR6, 0x004D47E0); // CUBE    
 ObjectFunc(OF_MR18, 0x004D4850); // WALL  
+ObjectFunc(OF_MR10, 0xCB80500); // O MR_TOR
 ObjectFunc(OF_MR19, MRGardenSkybox_Load);
 
 //EC Garden

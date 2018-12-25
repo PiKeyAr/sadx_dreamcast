@@ -346,6 +346,22 @@ static NJS_TEXANIM ChaoNameLettersTexanim[] = {
 //Chao nameplate stuff
 void BuildChaoFontUVMap()
 {
+	int numrows = 16;
+	int numcolumns = 16;
+	int xrow = 0;
+	do
+	{
+		for (int xcolumn = 0; xcolumn < numcolumns; xcolumn++)
+		{
+			//ChaoNameLettersTexanim[xrow*numcolumns + xcolumn].u1 = 11 * xcolumn;
+			//ChaoNameLettersTexanim[xrow*numcolumns + xcolumn].u2 = 11 * xcolumn + 11; //this is half the real number because the texture is rectangular
+			//ChaoNameLettersTexanim[xrow*numcolumns + xcolumn].v1 = 22 * xrow;
+			//ChaoNameLettersTexanim[xrow*numcolumns + xcolumn].v2 = 22 * xrow + 22;
+			PrintDebug("{ 64, 64, 0, 0, %d, %d, %d, %d, 61, 0 },\n", -1 + 16 * xcolumn, -1 + 16 * xrow, -1 + 16 * xcolumn + 16, -1 + 16 * xrow + 16);
+		}
+		xrow++;
+	} while (xrow < numrows);
+	/* Old stuff
 	int numrows = 12;
 	int numcolumns = 23;
 	int xrow = 0;
@@ -361,6 +377,7 @@ void BuildChaoFontUVMap()
 		}
 		xrow++;
 	} while (xrow < numrows);
+		*/
 }
 
 void ChaoFukidasi_Display(ObjectMaster* a1)
