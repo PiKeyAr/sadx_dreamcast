@@ -81,6 +81,7 @@ FunctionPointer(void, sub_4CACF0, (NJS_VECTOR *a1, float a2), 0x4CACF0);
 FunctionPointer(void, sub_77E940, (FVFStruct_H_B *a1, signed int count, int a3), 0x77E940);
 FunctionPointer(void, sub_40A280, (NJS_OBJECT *a1), 0x40A280);
 FunctionPointer(void, sub_407A00, (NJS_MODEL_SADX *model, float a2), 0x407A00);
+FunctionPointer(void, sub_407CF0, (NJS_MODEL_SADX *a1, QueuedModelFlagsB a2), 0x407CF0);
 
 static float EggViper_blendfactor = 0.0f;
 static int EggViper_blenddirection = 1;
@@ -908,6 +909,28 @@ void ComeOnChaosTimeToEat(NJS_OBJECT *a1)
 	}
 }
 
+void __cdecl Chaos4Kama(ObjectMaster *a1)
+{
+	EntityData1 *v1; // esi
+
+	v1 = a1->Data1;
+	if (!MissedFrames)
+	{
+		njSetTexture(&CHAOS4_KAMA_TEXLIST);
+		njPushMatrix(0);
+		njTranslateV(0, &v1->Position);
+		DisplayAnimationFrame((NJS_ACTION*)0x11C117C, *(float *)&v1->LoopData, QueuedModelFlagsB_SomeTextureThing, 0.0f, (void(__cdecl *)(NJS_MODEL_SADX *, int, int))sub_407CF0);
+		DisplayAnimationFrame((NJS_ACTION*)0x11C13CC, *(float *)&v1->LoopData, QueuedModelFlagsB_SomeTextureThing, 0.0f, (void(__cdecl *)(NJS_MODEL_SADX *, int, int))sub_407CF0);
+		njPopMatrix(1u);
+	}
+}
+
+void SetMaterial_Chaos4Wave(float a, float r, float g, float b)
+{
+	if (r > 0) SetMaterialAndSpriteColor_Float(r, r, g, b);
+	else SetMaterialAndSpriteColor_Float(0, 0, 0, 0);
+}
+
 void Bosses_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 {
 	ReplacePVM("CHAOS1");
@@ -1117,6 +1140,12 @@ void Bosses_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 		((NJS_OBJECT*)0x01191764)->basicdxmodel->mats[0].diffuse.color = 0x65B2B2B2; //Chaos4
 		((NJS_OBJECT*)0x011913AC)->basicdxmodel->mats[0].diffuse.color = 0x65B2B2B2; //Chaos4
 		((NJS_OBJECT*)0x01191018)->basicdxmodel->mats[0].diffuse.color = 0x65B2B2B2; //Chaos4
+		WriteJump((void*)0x556420, Chaos4Kama); //Chaos 4 attack effect fix
+		WriteCall((void*)0x5539E6, SetMaterial_Chaos4Wave); //Make Chaos 4 wave visible
+		((NJS_MATERIAL*)0x11C7BEC)->attr_texId = 0; //Fix Chaos 4 wave texture ID
+		((NJS_MATERIAL*)0x11C0028)->diffuse.color = 0xFFFFFFFF; //Fix Chaos 4 attack material colors
+		((NJS_MATERIAL*)0x11C07B0)->diffuse.color = 0xFFFFFFFF; //Fix Chaos 4 attack material colors
+		((NJS_MATERIAL*)0x11BFC04)->diffuse.color = 0xFFFFFFFF; //Fix Chaos 4 attack material colors
 	}
 	if (EnableChaos6 == true)
 	{
