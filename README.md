@@ -12,6 +12,8 @@ Alternatively you can download Dreamcast Conversion for manual install from the 
 
 WARNING: The development builds may be unstable.
 
+[![Build status](https://ci.appveyor.com/api/projects/status/kix683rtsb2pab08?svg=true)](https://ci.appveyor.com/project/PiKeyAr/sadx-dreamcast)
+
 **Latest development build:** https://ci.appveyor.com/api/projects/PiKeyAr/sadx-dreamcast/artifacts/bin/DreamcastConversion.7z
 
 Changelog: https://dcmods.unreliable.network/owncloud/data/PiKeyAr/files/Changelog.txt

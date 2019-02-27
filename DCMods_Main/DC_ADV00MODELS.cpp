@@ -29,13 +29,11 @@ FunctionPointer(void, sub_405470, (NJS_ACTION *a1, float a2, int a3), 0x405470);
 FunctionPointer(void, sub_405450, (NJS_ACTION *a1, float frame, float scale), 0x405450);
 FunctionPointer(void, sub_409E70, (NJS_MODEL_SADX *model, int blend, float scale), 0x409E70);
 HMODULE ADV00MODELS = GetModuleHandle(L"ADV00MODELS");
+static NJS_ACTION PoliceCarAction_Rot = { &objectADV00_0019F390_2, (NJS_MOTION*)0x2AFC5F8 };
 
 int __cdecl CheckIfCameraIsInHotel_Lol()
 {
-	int result; // eax@3
-	int v1; // eax@8
-	result = 0;
-	return result;
+	return 0;
 }
 
 void __cdecl SSMainAreaWater(OceanData *x)
@@ -788,13 +786,10 @@ NJS_MATERIAL* LevelSpecularADV00[] = {
 
 void FixPoliceCar(NJS_ACTION *a1, float a2, int a3)
 {
-	NJS_ACTION a4;
 	sub_405450(a1, a2, a3);
-	if (a1->object->basicdxmodel->mats[6].attr_texId == 16)
+	if (a1->object == ((NJS_OBJECT*)0x2AF4FC0))
 	{
-		a4.motion = a1->motion;
-		a4.object = &objectADV00_0019F390_2;
-		sub_405450(&a4, a2, a3);
+		sub_405450(&PoliceCarAction_Rot, a2, a3);
 	}
 }
 
