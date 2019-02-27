@@ -1016,7 +1016,6 @@ void ADV00_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 		matlistADV00_00151E54[0].attrflags &= ~NJD_FLAG_USE_ALPHA;
 		matlistADV00_001566E4[0].diffuse.argb.a = 0;
 		objectADV00_00151F24.pos[1] = -29.5f;
-		objectADV00_00151F24.pos[1] = -29.5f;
 	}
 	else
 	{
