@@ -17,6 +17,7 @@ static int SeashoreAnimation_Pool = 59;
 static int SandwaveAnimation_Pool = 60;
 static int SewerMainAnimation = 219;
 static int PoolWaterAnimation = 120;
+static Sint8 PreviousTimeOfDay = -1;
 
 DataArray(FogData, StationSquare1Fog, 0x02AA3D10, 3);
 DataArray(FogData, StationSquare2Fog, 0x02AA3D40, 3);
@@ -829,6 +830,404 @@ void RenderStreetLight(NJS_MODEL_SADX *model, QueuedModelFlagsB blend, float sca
 	DrawModel_QueueVisible(model, blend, scale);
 }
 
+void SwitchLight_Night()
+{
+	//Night reflections Act 0
+	matlistADV00_0003B3C4[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_0003AFD4[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_000522AC[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_0004D3FC[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_0004F4B4[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_0004F4B4[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_0004F4B4[4].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_000642F8[2].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00059BFC[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_000638C4[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00066CF0[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00066CF0[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00066CF0[2].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_0017D59C[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00031C48[3].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00030274[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00022CC0[5].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00022CC0[12].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00025990[5].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_0001E1DC[4].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_0001E1DC[5].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_000285A0[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_0002C924[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_0002C2BC[4].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00052FA8[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_000483CC[3].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00042DBC[2].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_0005AB04[2].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_0005F744[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00061B50[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_0005C6C4[4].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_000309E0[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_000309E0[3].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_000309E0[4].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_000309E0[6].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00046404[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00046404[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_000631AC[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_000631AC[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_000631AC[2].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00063748[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00021684[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_000203BC[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_0002B718[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_0002F984[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_0003B3C4[1].attr_texId = 207;
+	matlistADV00_0003BBA4[1].attr_texId = 207;
+	matlistADV00_0003BF94[1].attr_texId = 207;
+	matlistADV00_0003C384[1].attr_texId = 207;
+	matlistADV00_0003AFD4[1].attr_texId = 207;
+	matlistADV00_0003B7B4[1].attr_texId = 207;
+	matlistADV00_0003BBA4[1].attr_texId = 207;
+	matlistADV00_000631AC[2].attr_texId = 207;
+	matlistADV00_00046404[0].attr_texId = 209;
+	matlistADV00_00046404[1].attr_texId = 209;
+	matlistADV00_0007C240[0].attr_texId = 209;
+	matlistADV00_0007C240[1].attr_texId = 209;
+	matlistADV00_0002B718[0].attr_texId = 211;
+	matlistADV00_0002F984[0].attr_texId = 211;
+	matlistADV00_000631AC[0].attr_texId = 213;
+	matlistADV00_00063748[0].attr_texId = 213;
+	matlistADV00_000203BC[0].attr_texId = 215;
+	matlistADV00_00021684[0].attr_texId = 217;
+	matlistADV00_000631AC[1].attr_texId = 219;
+	//Night textures for Act 1 (Casino)
+	matlistADV00_000B59E0[0].attr_texId = 265;
+	//Night textures for Act 3 (Main area)
+	matlistADV00_000E4358[2].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00103FFC[2].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_000FAA28[4].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00129C8C[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00129C8C[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_000F4178[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00124B94[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_0012A874[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00125F20_2[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00101184_2[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00126720_2[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_000E3CC4[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_000F5934[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_0012BD98[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_0012BD98[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_0012BD98[2].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_001163FC[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00115CE0[3].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_0011EACC[2].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_0011DEFC[3].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00109760[4].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00109378[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_0010956C[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00109CCC[4].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_000E4358[8].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_000FE7A4[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_000FC250[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_000F7940[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_000F7314[3].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_000EF170[2].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_001129AC[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_000F002C[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_000F1C08[4].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_000F43F0[7].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00104E6C[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00104E6C[3].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00102CD4[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_0011ABE0[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_0011ABE0[3].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_000FA4D4[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_000FBD0C[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_001209D8[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_000EFA74[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_000F062C[5].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00128FA8[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00128FA8[3].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00125408[2].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00125038[2].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00129814[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00129814[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00124B94[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_000F062C[5].attr_texId = 259;
+	matlistADV00_000EF934[0].attr_texId = 259;
+	matlistADV00_000FA4D4[0].attr_texId = 263;
+	matlistADV00_000FBD0C[0].attr_texId = 261;
+	matlistADV00_0011BE68[2].attr_texId = 257;
+	//Night textures for Act 4 (Hotel)
+	matlistADV00_00151F58[0].attr_texId = 118;
+	matlistADV00_00152110[0].attr_texId = 117;
+	//Lamp pole
+	attachADV00_0017D7A8.mats[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+}
+
+void SwitchLight_Evening()
+{
+	//Evening reflections Act 0
+	matlistADV00_0003B3C4[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_0003AFD4[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_000522AC[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_0004D3FC[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_0004F4B4[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_0004F4B4[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_0004F4B4[4].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_000642F8[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00059BFC[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_000638C4[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00066CF0[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00066CF0[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00066CF0[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00031C48[3].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00030274[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00022CC0[5].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00022CC0[12].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00025990[5].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_0001E1DC[4].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_0001E1DC[5].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_000285A0[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_0002C924[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_0002C2BC[4].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00052FA8[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_000483CC[3].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00042DBC[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_0005AB04[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_0005F744[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00061B50[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_0005C6C4[4].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_000309E0[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_000309E0[3].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_000309E0[4].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_000309E0[6].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00046404[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00046404[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_000631AC[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_000631AC[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_000631AC[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00063748[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00021684[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_000203BC[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_0002B718[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_0002F984[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_0003B3C4[1].attr_texId = 206;
+	matlistADV00_0003BBA4[1].attr_texId = 206;
+	matlistADV00_0003BF94[1].attr_texId = 206;
+	matlistADV00_0003C384[1].attr_texId = 206;
+	matlistADV00_0003AFD4[1].attr_texId = 206;
+	matlistADV00_0003B7B4[1].attr_texId = 206;
+	matlistADV00_0003BBA4[1].attr_texId = 206;
+	matlistADV00_000631AC[2].attr_texId = 206;
+	matlistADV00_00046404[0].attr_texId = 208;
+	matlistADV00_00046404[1].attr_texId = 208;
+	matlistADV00_0007C240[0].attr_texId = 208;
+	matlistADV00_0007C240[1].attr_texId = 208;
+	matlistADV00_0002B718[0].attr_texId = 210;
+	matlistADV00_0002F984[0].attr_texId = 210;
+	matlistADV00_000631AC[0].attr_texId = 212;
+	matlistADV00_00063748[0].attr_texId = 212;
+	matlistADV00_000203BC[0].attr_texId = 214;
+	matlistADV00_00021684[0].attr_texId = 216;
+	matlistADV00_000631AC[1].attr_texId = 218;
+	//Evening textures for Act 1 (Casino)
+	matlistADV00_000B59E0[0].attr_texId = 264;
+	//Evening textures for Act 3 (Main area)
+	matlistADV00_000E4358[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00103FFC[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_000FAA28[4].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00129C8C[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00129C8C[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_000F4178[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00124B94[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_0012A874[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00125F20_2[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00101184_2[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00126720_2[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_000E3CC4[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_000F5934[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_0012BD98[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_0012BD98[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_0012BD98[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_001163FC[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00115CE0[3].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_0011EACC[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_0011DEFC[3].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00109760[4].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00109378[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_0010956C[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00109CCC[4].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_000E4358[8].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_000FE7A4[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_000FC250[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_000F7940[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_000F7314[3].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_000EF170[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_001129AC[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_000F002C[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_000F1C08[4].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_000F43F0[7].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00104E6C[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00104E6C[3].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00102CD4[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_0011ABE0[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_0011ABE0[3].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_000FA4D4[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_000FBD0C[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_001209D8[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_000EFA74[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_000F062C[5].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00128FA8[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00128FA8[3].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00125408[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00125038[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00129814[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00129814[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00124B94[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_000F062C[5].attr_texId = 258;
+	matlistADV00_000EF934[0].attr_texId = 258;
+	matlistADV00_000FA4D4[0].attr_texId = 262;
+	matlistADV00_000FBD0C[0].attr_texId = 260;
+	matlistADV00_0011BE68[2].attr_texId = 256;
+	//Evening textures for Act 4 (Hotel)
+	matlistADV00_00151F58[0].attr_texId = 116;
+	matlistADV00_00152110[0].attr_texId = 115;
+	//Lamp pole
+	attachADV00_0017D7A8.mats[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+
+}
+
+void SwitchLight_Day()
+{
+	//Day reflections Act 0
+	matlistADV00_0003B3C4[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_0003AFD4[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_000522AC[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_0004D3FC[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_0004F4B4[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_0004F4B4[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_0004F4B4[4].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_000642F8[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00059BFC[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_000638C4[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00066CF0[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00066CF0[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00066CF0[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00031C48[3].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00030274[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00022CC0[5].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00022CC0[12].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00025990[5].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_0001E1DC[4].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_0001E1DC[5].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_000285A0[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_0002C924[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_0002C2BC[4].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00052FA8[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_000483CC[3].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00042DBC[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_0005AB04[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_0005F744[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00061B50[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_0005C6C4[4].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_000309E0[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_000309E0[3].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_000309E0[4].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_000309E0[6].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00046404[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00046404[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_000631AC[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_000631AC[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_000631AC[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00063748[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00021684[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_000203BC[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_0002B718[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_0002F984[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_0003B3C4[1].attr_texId = 124;
+	matlistADV00_0003BBA4[1].attr_texId = 124;
+	matlistADV00_0003BF94[1].attr_texId = 124;
+	matlistADV00_0003C384[1].attr_texId = 124;
+	matlistADV00_0003AFD4[1].attr_texId = 124;
+	matlistADV00_0003B7B4[1].attr_texId = 124;
+	matlistADV00_0003BBA4[1].attr_texId = 124;
+	matlistADV00_000631AC[2].attr_texId = 124;
+	matlistADV00_00046404[0].attr_texId = 145;
+	matlistADV00_00046404[1].attr_texId = 145;
+	matlistADV00_0007C240[0].attr_texId = 145;
+	matlistADV00_0007C240[1].attr_texId = 145;
+	matlistADV00_0002B718[0].attr_texId = 69;
+	matlistADV00_0002F984[0].attr_texId = 69;
+	matlistADV00_000631AC[0].attr_texId = 184;
+	matlistADV00_00063748[0].attr_texId = 184;
+	matlistADV00_000203BC[0].attr_texId = 36;
+	matlistADV00_00021684[0].attr_texId = 39;
+	matlistADV00_000631AC[1].attr_texId = 185;
+	//Day textures for Act 1 (Casino)
+	matlistADV00_000B59E0[0].attr_texId = 240;
+	//Day reflections Act 3 (Main area)
+	matlistADV00_000E4358[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00103FFC[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_000FAA28[4].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00129C8C[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00129C8C[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_000F4178[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00124B94[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_0012A874[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00125F20_2[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00101184_2[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00126720_2[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_000E3CC4[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_000F5934[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_0012BD98[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_0012BD98[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_0012BD98[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_001163FC[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00115CE0[3].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_0011EACC[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_0011DEFC[3].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00109760[4].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00109378[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_0010956C[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00109CCC[4].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_000E4358[8].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_000FE7A4[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_000FC250[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_000F7940[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_000F7314[3].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_000EF170[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_001129AC[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_000F002C[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_000F1C08[4].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_000F43F0[7].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00104E6C[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00104E6C[3].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00102CD4[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_0011ABE0[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_0011ABE0[3].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_000FA4D4[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_000FBD0C[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_001209D8[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_000EFA74[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_000F062C[5].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00128FA8[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00128FA8[3].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00125408[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00125038[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00129814[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00129814[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_00124B94[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	matlistADV00_000EF934[0].attr_texId = 52;
+	matlistADV00_000F062C[5].attr_texId = 60;
+	matlistADV00_000FA4D4[0].attr_texId = 89;
+	matlistADV00_000FBD0C[0].attr_texId = 94;
+	matlistADV00_0011BE68[2].attr_texId = 165;
+	//Day textures for Act 4 (Hotel)
+	matlistADV00_00151F58[0].attr_texId = 69;
+	matlistADV00_00152110[0].attr_texId = 70;
+	//Lamp pole
+	attachADV00_0017D7A8.mats[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+}
+
 void ADV00_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 {
 	ReplaceBIN_DC("SETSS00A");
@@ -1036,8 +1435,10 @@ void ADV00_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 		matlistADV00_001566E4[0].diffuse.argb.a = 178;
 		objectADV00_00151F24.pos[1] = -13;
 	}
-	WriteData<4>((void*)0x00630AE0, 0x90); //Hotel door fix
-	WriteJump((void*)0x0062EA30, CheckIfCameraIsInHotel_Lol); //Hotel lighting
+	WriteData<5>((void*)0x630ADA, 0x90); //Hotel door fix 1
+	WriteData<5>((void*)0x630AE6, 0x90); //Hotel door fix 2
+	WriteData<5>((void*)0x630B03, 0x90); //Hotel door fix 3
+	WriteJump((void*)0x0062EA30, CheckIfCameraIsInHotel_Lol); //Disable hotel lighting check
 	ResizeTextureList((NJS_TEXLIST*)0x2AD9F58, 31); //SS_TRAIN
 	//Material stuff
 	((NJS_OBJECT*)0x02AB757C)->basicdxmodel->mats[2].attrflags &= ~NJD_FLAG_USE_ALPHA; //Speed Highway elevator door
@@ -1063,7 +1464,7 @@ void ADV00_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 	*(NJS_OBJECT*)0x02AD362C = objectADV00_00185A20; // SS Twinkle Park Ball
 	*(NJS_OBJECT*)0x02AB6900 = objectADV00_0016C3FC; // SS Twinkle Park Elevator
 	*(NJS_OBJECT*)0x02AD14C8 = objectADV00_00183B8C; // Gamma's target (O M Saku)
-	*(NJS_MODEL_SADX*)0x02AC95BC = attachADV00_0017D540; // Fire Extinguisher
+	*(NJS_MODEL_SADX*)0x02AC95BC = attachADV00_0017D540; // Fire hydrant
 	*(NJS_OBJECT*)0x02AD484C = objectADV00_0018684C; // Ice Key 1
 	//Landtables
 	HMODULE handle = GetModuleHandle(L"ADV00MODELS");
@@ -1110,6 +1511,14 @@ void ADV00_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 void ADV00_OnFrame()
 {
 	auto CharObj1PtrsThing = EntityData1Ptrs[0];
+	//Switch textures/lighting depending on time of day
+	if (CurrentLevel == 26 && PreviousTimeOfDay != GetTimeOfDay())
+	{
+		if (GetTimeOfDay() == 0) SwitchLight_Day();
+		else if (GetTimeOfDay() == 1) SwitchLight_Evening();
+		else if (GetTimeOfDay() == 2) SwitchLight_Night();
+		PreviousTimeOfDay = GetTimeOfDay();
+	}
 	//Act 2 (Sewers)
 	if (CurrentLevel == 26 && CurrentAct == 2)
 	{
@@ -1128,401 +1537,6 @@ void ADV00_OnFrame()
 			matlistADV00_000C24BC[0].attr_texId = WaterAnimation_Sewers;
 			if (FramerateSetting < 2 && FrameCounter % 4 == 0 || FramerateSetting == 2 && FrameCounter % 2 == 0 || FramerateSetting > 2) WaterAnimation_Sewers++;
 		}
-	}
-	//Night reflections Act 0
-	if (CurrentLevel == 26 && CurrentAct == 0 && GetTimeOfDay() == 2)
-	{
-		matlistADV00_0003B3C4[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_0003AFD4[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_000522AC[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_0004D3FC[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_0004F4B4[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_0004F4B4[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_0004F4B4[4].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_000642F8[2].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00059BFC[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_000638C4[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00066CF0[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00066CF0[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00066CF0[2].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_0017D59C[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00031C48[3].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00030274[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00022CC0[5].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00022CC0[12].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00025990[5].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_0001E1DC[4].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_0001E1DC[5].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_000285A0[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_0002C924[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_0002C2BC[4].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00052FA8[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_000483CC[3].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00042DBC[2].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_0005AB04[2].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_0005F744[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00061B50[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_0005C6C4[4].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_000309E0[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_000309E0[3].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_000309E0[4].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_000309E0[6].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00046404[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00046404[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_000631AC[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_000631AC[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_000631AC[2].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00063748[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00021684[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_000203BC[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_0002B718[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_0002F984[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_0003B3C4[1].attr_texId = 207;
-		matlistADV00_0003BBA4[1].attr_texId = 207;
-		matlistADV00_0003BF94[1].attr_texId = 207;
-		matlistADV00_0003C384[1].attr_texId = 207;
-		matlistADV00_0003AFD4[1].attr_texId = 207;
-		matlistADV00_0003B7B4[1].attr_texId = 207;
-		matlistADV00_0003BBA4[1].attr_texId = 207;
-		matlistADV00_000631AC[2].attr_texId = 207;
-		matlistADV00_00046404[0].attr_texId = 209;
-		matlistADV00_00046404[1].attr_texId = 209;
-		matlistADV00_0007C240[0].attr_texId = 209;
-		matlistADV00_0007C240[1].attr_texId = 209;
-		matlistADV00_0002B718[0].attr_texId = 211;
-		matlistADV00_0002F984[0].attr_texId = 211;
-		matlistADV00_000631AC[0].attr_texId = 213;
-		matlistADV00_00063748[0].attr_texId = 213;
-		matlistADV00_000203BC[0].attr_texId = 215;
-		matlistADV00_00021684[0].attr_texId = 217;
-		matlistADV00_000631AC[1].attr_texId = 219;
-	}
-	//Evening reflections Act 0
-	if (CurrentLevel == 26 && CurrentAct == 0 && GetTimeOfDay() == 1)
-	{
-		matlistADV00_0003B3C4[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_0003AFD4[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_000522AC[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_0004D3FC[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_0004F4B4[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_0004F4B4[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_0004F4B4[4].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_000642F8[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00059BFC[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_000638C4[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00066CF0[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00066CF0[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00066CF0[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00031C48[3].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00030274[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00022CC0[5].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00022CC0[12].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00025990[5].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_0001E1DC[4].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_0001E1DC[5].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_000285A0[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_0002C924[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_0002C2BC[4].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00052FA8[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_000483CC[3].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00042DBC[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_0005AB04[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_0005F744[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00061B50[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_0005C6C4[4].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_000309E0[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_000309E0[3].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_000309E0[4].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_000309E0[6].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00046404[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00046404[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_000631AC[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_000631AC[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_000631AC[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00063748[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00021684[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_000203BC[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_0002B718[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_0002F984[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_0003B3C4[1].attr_texId = 206;
-		matlistADV00_0003BBA4[1].attr_texId = 206;
-		matlistADV00_0003BF94[1].attr_texId = 206;
-		matlistADV00_0003C384[1].attr_texId = 206;
-		matlistADV00_0003AFD4[1].attr_texId = 206;
-		matlistADV00_0003B7B4[1].attr_texId = 206;
-		matlistADV00_0003BBA4[1].attr_texId = 206;
-		matlistADV00_000631AC[2].attr_texId = 206;
-		matlistADV00_00046404[0].attr_texId = 208;
-		matlistADV00_00046404[1].attr_texId = 208;
-		matlistADV00_0007C240[0].attr_texId = 208;
-		matlistADV00_0007C240[1].attr_texId = 208;
-		matlistADV00_0002B718[0].attr_texId = 210;
-		matlistADV00_0002F984[0].attr_texId = 210;
-		matlistADV00_000631AC[0].attr_texId = 212;
-		matlistADV00_00063748[0].attr_texId = 212;
-		matlistADV00_000203BC[0].attr_texId = 214;
-		matlistADV00_00021684[0].attr_texId = 216;
-		matlistADV00_000631AC[1].attr_texId = 218;
-	}
-	//Day reflections Act 0
-	if (CurrentLevel == 26 && CurrentAct == 0 && GetTimeOfDay() == 0)
-	{
-		matlistADV00_0003B3C4[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_0003AFD4[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_000522AC[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_0004D3FC[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_0004F4B4[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_0004F4B4[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_0004F4B4[4].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_000642F8[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00059BFC[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_000638C4[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00066CF0[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00066CF0[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00066CF0[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00031C48[3].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00030274[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00022CC0[5].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00022CC0[12].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00025990[5].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_0001E1DC[4].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_0001E1DC[5].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_000285A0[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_0002C924[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_0002C2BC[4].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00052FA8[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_000483CC[3].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00042DBC[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_0005AB04[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_0005F744[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00061B50[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_0005C6C4[4].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_000309E0[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_000309E0[3].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_000309E0[4].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_000309E0[6].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00046404[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00046404[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_000631AC[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_000631AC[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_000631AC[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00063748[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00021684[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_000203BC[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_0002B718[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_0002F984[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_0003B3C4[1].attr_texId = 124;
-		matlistADV00_0003BBA4[1].attr_texId = 124;
-		matlistADV00_0003BF94[1].attr_texId = 124;
-		matlistADV00_0003C384[1].attr_texId = 124;
-		matlistADV00_0003AFD4[1].attr_texId = 124;
-		matlistADV00_0003B7B4[1].attr_texId = 124;
-		matlistADV00_0003BBA4[1].attr_texId = 124;
-		matlistADV00_000631AC[2].attr_texId = 124;
-		matlistADV00_00046404[0].attr_texId = 145;
-		matlistADV00_00046404[1].attr_texId = 145;
-		matlistADV00_0007C240[0].attr_texId = 145;
-		matlistADV00_0007C240[1].attr_texId = 145;
-		matlistADV00_0002B718[0].attr_texId = 69;
-		matlistADV00_0002F984[0].attr_texId = 69;
-		matlistADV00_000631AC[0].attr_texId = 184;
-		matlistADV00_00063748[0].attr_texId = 184;
-		matlistADV00_000203BC[0].attr_texId = 36;
-		matlistADV00_00021684[0].attr_texId = 39;
-		matlistADV00_000631AC[1].attr_texId = 185;
-	}
-	//Day, Night & Evening textures for Act 1 (Casino)
-	if (CurrentLevel == 26 && CurrentAct == 1 && GetTimeOfDay() == 2) matlistADV00_000B59E0[0].attr_texId = 265;
-	if (CurrentLevel == 26 && CurrentAct == 1 && GetTimeOfDay() == 1) matlistADV00_000B59E0[0].attr_texId = 264;
-	if (CurrentLevel == 26 && CurrentAct == 1 && GetTimeOfDay() == 0) matlistADV00_000B59E0[0].attr_texId = 240;
-	//Day, Night & Evening textures for Act 4 (Hotel)
-	if (CurrentLevel == 26 && CurrentAct == 4 && GetTimeOfDay() == 2) matlistADV00_00151F58[0].attr_texId = 118;
-	if (CurrentLevel == 26 && CurrentAct == 4 && GetTimeOfDay() == 2) matlistADV00_00152110[0].attr_texId = 117;
-	if (CurrentLevel == 26 && CurrentAct == 4 && GetTimeOfDay() == 1) matlistADV00_00151F58[0].attr_texId = 116;
-	if (CurrentLevel == 26 && CurrentAct == 4 && GetTimeOfDay() == 1) matlistADV00_00152110[0].attr_texId = 115;
-	if (CurrentLevel == 26 && CurrentAct == 4 && GetTimeOfDay() == 0) matlistADV00_00151F58[0].attr_texId = 69;
-	if (CurrentLevel == 26 && CurrentAct == 4 && GetTimeOfDay() == 0) matlistADV00_00152110[0].attr_texId = 70;
-	//Night reflections Act 3 (Main area)
-	if (CurrentLevel == 26 && GetTimeOfDay() == 2) attachADV00_0017D7A8.mats[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	if (CurrentLevel == 26 && GetTimeOfDay() != 2) attachADV00_0017D7A8.mats[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	if (CurrentLevel == 26 && CurrentAct == 3 && GetTimeOfDay() == 2)
-	{
-		matlistADV00_000E4358[2].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00103FFC[2].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_000FAA28[4].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00129C8C[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00129C8C[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_000F4178[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00124B94[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_0012A874[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00125F20_2[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00101184_2[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00126720_2[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_000E3CC4[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_000F5934[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_0012BD98[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_0012BD98[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_0012BD98[2].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_001163FC[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00115CE0[3].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_0011EACC[2].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_0011DEFC[3].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00109760[4].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00109378[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_0010956C[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00109CCC[4].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_000E4358[8].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_000FE7A4[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_000FC250[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_000F7940[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_000F7314[3].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_000EF170[2].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_001129AC[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_000F002C[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_000F1C08[4].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_000F43F0[7].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00104E6C[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00104E6C[3].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00102CD4[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_0011ABE0[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_0011ABE0[3].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_000FA4D4[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_000FBD0C[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_001209D8[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_000EFA74[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_000F062C[5].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00128FA8[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00128FA8[3].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00125408[2].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00125038[2].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00129814[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00129814[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00124B94[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_000F062C[5].attr_texId = 259;
-		matlistADV00_000EF934[0].attr_texId = 259;
-		matlistADV00_000FA4D4[0].attr_texId = 263;
-		matlistADV00_000FBD0C[0].attr_texId = 261;
-		matlistADV00_0011BE68[2].attr_texId = 257;
-	}
-	//Evening reflections Act 3 (Main area)
-	if (CurrentLevel == 26 && CurrentAct == 3 && GetTimeOfDay() == 1)
-	{
-		matlistADV00_000E4358[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00103FFC[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_000FAA28[4].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00129C8C[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00129C8C[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_000F4178[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00124B94[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_0012A874[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00125F20_2[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00101184_2[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00126720_2[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_000E3CC4[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_000F5934[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_0012BD98[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_0012BD98[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_0012BD98[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_001163FC[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00115CE0[3].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_0011EACC[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_0011DEFC[3].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00109760[4].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00109378[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_0010956C[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00109CCC[4].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_000E4358[8].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_000FE7A4[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_000FC250[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_000F7940[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_000F7314[3].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_000EF170[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_001129AC[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_000F002C[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_000F1C08[4].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_000F43F0[7].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00104E6C[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00104E6C[3].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00102CD4[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_0011ABE0[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_0011ABE0[3].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_000FA4D4[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_000FBD0C[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_001209D8[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_000EFA74[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_000F062C[5].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00128FA8[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00128FA8[3].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00125408[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00125038[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00129814[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00129814[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00124B94[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_000F062C[5].attr_texId = 258;
-		matlistADV00_000EF934[0].attr_texId = 258;
-		matlistADV00_000FA4D4[0].attr_texId = 262;
-		matlistADV00_000FBD0C[0].attr_texId = 260;
-		matlistADV00_0011BE68[2].attr_texId = 256;
-	}
-	//Day reflections Act 3 (Main area)
-	if (CurrentLevel == 26 && CurrentAct == 3 && GetTimeOfDay() == 0)
-	{
-		matlistADV00_000E4358[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00103FFC[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_000FAA28[4].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00129C8C[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00129C8C[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_000F4178[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00124B94[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_0012A874[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00125F20_2[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00101184_2[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00126720_2[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_000E3CC4[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_000F5934[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_0012BD98[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_0012BD98[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_0012BD98[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_001163FC[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00115CE0[3].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_0011EACC[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_0011DEFC[3].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00109760[4].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00109378[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_0010956C[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00109CCC[4].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_000E4358[8].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_000FE7A4[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_000FC250[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_000F7940[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_000F7314[3].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_000EF170[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_001129AC[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_000F002C[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_000F1C08[4].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_000F43F0[7].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00104E6C[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00104E6C[3].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00102CD4[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_0011ABE0[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_0011ABE0[3].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_000FA4D4[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_000FBD0C[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_001209D8[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_000EFA74[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_000F062C[5].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00128FA8[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00128FA8[3].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00125408[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00125038[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00129814[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00129814[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_00124B94[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		matlistADV00_000EF934[0].attr_texId = 52;
-		matlistADV00_000F062C[5].attr_texId = 60;
-		matlistADV00_000FA4D4[0].attr_texId = 89;
-		matlistADV00_000FBD0C[0].attr_texId = 94;
-		matlistADV00_0011BE68[2].attr_texId = 165;
 	}
 	//Sea animations Act 3 (Main area)
 	if (CurrentLevel == 26 && CurrentAct == 3 && GameState != 16)
@@ -1544,7 +1558,7 @@ void ADV00_OnFrame()
 			matlistADV00_00114D80[0].attr_texId = SeashoreAnimation;
 		}
 		//Sewers water
-		else 
+		else
 		{
 			matlistADV00_00133D3C[0].attr_texId = SewerMainAnimation;
 			matlistADV00_00114D80Z[0].attr_texId = SewerMainAnimation;
