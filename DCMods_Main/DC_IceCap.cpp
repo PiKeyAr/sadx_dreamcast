@@ -4,7 +4,6 @@
 #include "IceCap1.h"
 #include "IceCap2.h"
 #include "IceCap3.h"
-#include "IceCap4_PC.h"
 #include "IceCap4.h"
 
 DataPointer(float, CurrentFogDist, 0x03ABDC64);
@@ -170,6 +169,53 @@ void FixSnowflake(NJS_SPRITE *sp, Int n, NJD_SPRITE attr, QueuedModelFlagsB zfun
 	njDrawSprite3D_Queue(sp, n, attr, zfunc_type);
 }
 
+void Obj_Icecap_DoColFlagThingsX(int some_flags)
+{
+	Uint32 *ptr; // ecx
+	int count; // edx
+	Uint32 flags; // eax
+	unsigned __int32 _flags; // eax
+	if (landtable_00019950.COLCount - 1 >= 0)
+	{
+		ptr = (Uint32*)&landtable_00019950.Col->Flags;
+		count = landtable_00019950.COLCount;
+		do
+		{
+			flags = *ptr;
+			if (*ptr & 0x60000000)
+			{
+				if (some_flags & *(ptr - 1))
+				{
+					//PrintDebug("Solid\n");
+					_flags = flags | ColFlags_Solid;
+				}
+				else
+				{
+					//PrintDebug("Not solid\n");
+					_flags = flags & ~ColFlags_Solid;
+				}
+				*ptr = _flags;
+			}
+			ptr += 9;
+			--count;
+		} while (count);
+	}
+}
+
+static void __declspec(naked) Obj_Icecap_DoColFlagThings_a()
+{
+	__asm
+	{
+		push esi // some_flags
+
+		// Call your __cdecl function here:
+		call Obj_Icecap_DoColFlagThingsX
+
+		pop esi // some_flags
+		retn
+	}
+}
+
 void IceCap_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 {
 	ReplaceBIN_DC("CAM0800S");
@@ -212,11 +258,13 @@ void IceCap_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 	WriteData((LandTable**)0x97DB08, &landtable_00014B44);
 	WriteData((LandTable**)0x97DB0C, &landtable_00015714);
 	WriteData((LandTable**)0x97DB10, &landtable_000180B4);
-	//Crystal fixes, hopefully someday
+	WriteData((LandTable**)0x97DB14, &landtable_00019950);
+	WriteJump((void*)0x4E91C0, Obj_Icecap_DoColFlagThings_a); //Weird COL flag function
+	/*Crystal fixes, hopefully someday
 	//stru_E76598.basicdxmodel->mats[0].attrflags |= NJD_FLAG_USE_ALPHA;
 	//stru_E76598.basicdxmodel->mats[1].attrflags |= NJD_FLAG_USE_ALPHA;
 	//stru_E76598.basicdxmodel->mats[2].attrflags |= NJD_FLAG_USE_ALPHA;
-	//WriteJump((void*)0x4EF5A0, sub_4EF5A0X);
+	//WriteJump((void*)0x4EF5A0, sub_4EF5A0X);*/
 	WriteCall((void*)0x004EFEF7, RenderIcicleSpriteThing);
 	WriteCall((void*)0x004EFE10, RenderSmallIcicles);
 	WriteJump((void*)0x4EB770, FixedAvalanche);
@@ -245,26 +293,13 @@ void IceCap_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 	((NJS_SPRITE*)0xE956E4)->tlist = &OBJ_ICECAP_TEXLIST; //Snow effect texlist
 	((NJS_TEXANIM*)0xE956D0)->texid = 96; //Snow effect texture ID
 	ResizeTextureList(&OBJ_ICECAP_TEXLIST, 100);
-	LandTable *lt = (LandTable *)0x0E3E024; COL *tmp = new COL[171 + LengthOfArray(collist_000180D8)];
-	memcpy(tmp, lt->Col, sizeof(COL) * lt->COLCount);
-	lt->Col = tmp; lt->COLCount = 171 + LengthOfArray(collist_000180D8);
-	for (unsigned int inv = 0; inv < 171; inv++)
-	{
-		((LandTable *)0x0E3E024)->Col[inv].Flags &= ~ColFlags_Visible;
-	}
-	for (unsigned int c = 171; c < LengthOfArray(collist_000180D8) + 171; c++)
-	{
-		((LandTable *)0x0E3E024)->Col[c] = collist_000180D8[c - 171];
-	}
-	for (unsigned int inv2 = 171; inv2 < 171 + LengthOfArray(collist_000180D8); inv2++)
-	{
-		((LandTable *)0x0E3E024)->Col[inv2].Flags &= ~ColFlags_Solid;
-	}
+	((NJS_MESHSET_SADX*)0xE7B164)->vertcolor = NULL; //Remove vertex colors in OFutaL (breakable ice)
+	((NJS_MESHSET_SADX*)0xE7DD28)->vertcolor = NULL; //Remove vertex colors in OFutaL (breakable ice)
+	((NJS_MESHSET_SADX*)0xE7DD44)->vertcolor = NULL; //Remove vertex colors in OFutaL (breakable ice)
 	*(NJS_OBJECT*)0xE537D8 = objectSTG08_00162694; //Icicle inner part
 	*(NJS_OBJECT*)0xE6E0E0 = objectSTG08_0017BD64; //MizuIwa B
 	*(NJS_OBJECT*)0xE6E694 = objectSTG08_0017C308; //MizuIwa C
 	*(NJS_OBJECT*)0xE52FCC = objectSTG08_00161838; //OIceJmp
-
 	for (unsigned int i = 0; i < 3; i++)
 	{
 		IceCap1Fog[i].Color = 0xFFFFFFFF;
@@ -286,6 +321,7 @@ void IceCap_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 		IceCap4Fog[i].Toggle = 1;
 	}
 }
+
 void IceCap_OnFrame()
 {
 	auto entity = EntityData1Ptrs[0];
