@@ -290,6 +290,7 @@ void IceCap_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 	ResizeTextureList((NJS_TEXLIST*)0xD39744, textures_icecap2);
 	ResizeTextureList((NJS_TEXLIST*)0xC68408, textures_icecap3);
 	WriteCall((void*)0x4F5B6F, FixSnowflake); //Snowflake brightness
+	WriteCall((void*)0x4EB948, FixSnowflake); //Snowflake brightness 2
 	((NJS_SPRITE*)0xE956E4)->tlist = &OBJ_ICECAP_TEXLIST; //Snow effect texlist
 	((NJS_TEXANIM*)0xE956D0)->texid = 96; //Snow effect texture ID
 	ResizeTextureList(&OBJ_ICECAP_TEXLIST, 100);
