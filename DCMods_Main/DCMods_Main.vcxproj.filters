@@ -467,9 +467,6 @@
     <ClInclude Include="Data\IceCap4.h">
       <Filter>Header Files\Levels\IceCap</Filter>
     </ClInclude>
-    <ClInclude Include="Data\IceCap4_PC.h">
-      <Filter>Header Files\Levels\IceCap</Filter>
-    </ClInclude>
     <ClInclude Include="Data\Icicle.h">
       <Filter>Header Files\Levels\IceCap</Filter>
     </ClInclude>
@@ -641,18 +638,6 @@
     <ClInclude Include="Frogs.h">
       <Filter>Header Files\Levels\General</Filter>
     </ClInclude>
-    <ClInclude Include="ChaoFruits.h">
-      <Filter>Header Files\Levels\Chao</Filter>
-    </ClInclude>
-    <ClInclude Include="BigBeach.h">
-      <Filter>Header Files\Levels\EmeraldCoast</Filter>
-    </ClInclude>
-    <ClInclude Include="ChaoEggs.h">
-      <Filter>Header Files\Levels\Chao</Filter>
-    </ClInclude>
-    <ClInclude Include="Chaos2_Column.h">
-      <Filter>Header Files\Levels\Bosses</Filter>
-    </ClInclude>
     <ClInclude Include="Past_Chao.h">
       <Filter>Header Files\Levels\ADV03MODELS</Filter>
     </ClInclude>
@@ -664,6 +649,18 @@
     </ClInclude>
     <ClInclude Include="Data\ChaoObjects_Race.h">
       <Filter>Header Files\Levels\Chao</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\BigBeach.h">
+      <Filter>Header Files\Levels\EmeraldCoast</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\ChaoEggs.h">
+      <Filter>Header Files\Levels\Chao</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\ChaoFruits.h">
+      <Filter>Header Files\Levels\Chao</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\Chaos2_Column.h">
+      <Filter>Header Files\Levels\Bosses</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
