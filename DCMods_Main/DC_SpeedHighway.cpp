@@ -291,41 +291,29 @@ void SpeedHighway_Init(const IniFile *config, const HelperFunctions &helperFunct
 	ResizeTextureList(&OBJ_HIGHWAY_TEXLIST, 118);
 	((NJS_OBJECT *)0x02671A20)->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_USE_ALPHA; //O Crane platform alpha fix
 	((NJS_OBJECT *)0x02671A20)->basicdxmodel->mats[2].attrflags |= NJD_FLAG_IGNORE_SPECULAR; //O Crane platform specular
-	memcpy((void*)0x267DC14, &objectSTG04_0227DC14, sizeof(objectSTG04_0227DC14)); // Turnasi part 1
-	memcpy((void*)0x267D3B4, &objectSTG04_0014ABC8, sizeof(objectSTG04_0014ABC8)); // Turnasi part 2
-	memcpy((void*)0x267C7AC, &objectSTG04_0014A5B0, sizeof(objectSTG04_0014A5B0)); // Turnasi part 3
-	memcpy((void*)0x0268C058, &objectSTG04_0228C058, sizeof(objectSTG04_0228C058)); // SH Helicopter
-	memcpy((void*)0x0266D90C, &objectSTG04_0013D068, sizeof(objectSTG04_0013D068)); // SH Bus
-	memcpy((void*)0x0266B484, &objectSTG04_0013B15C, sizeof(objectSTG04_0013B15C)); // SH Red Car
-	memcpy((void*)0x026682B8, &objectSTG04_0013949C, sizeof(objectSTG04_0013949C)); // SH Blue Car
-	memcpy((void*)0x0266FC8C, &objectSTG04_0013E9CC, sizeof(objectSTG04_0013E9CC)); // SH Yellow Car
-	memcpy((void*)0x0267A1A0, &attachSTG04_00148B24, sizeof(attachSTG04_00148B24)); //SH Glass
-	((NJS_OBJECT*)0x02679FDC)->basicdxmodel->mats[0].attr_texId = 13;
-	((NJS_OBJECT*)0x0267A2DC)->basicdxmodel->mats[0].attr_texId = 13;
-	((NJS_OBJECT*)0x0267A410)->basicdxmodel->mats[0].attr_texId = 13;
-	((NJS_OBJECT*)0x0267A56C)->basicdxmodel->mats[0].attr_texId = 13;
-	((NJS_OBJECT*)0x0267A67C)->basicdxmodel->mats[0].attr_texId = 13;
-	((NJS_OBJECT*)0x0267A7B0)->basicdxmodel->mats[0].attr_texId = 13;
-	((NJS_OBJECT*)0x0267A8C0)->basicdxmodel->mats[0].attr_texId = 13;
-	((NJS_OBJECT*)0x0267AA7C)->basicdxmodel->mats[0].attr_texId = 13;
-	((NJS_OBJECT*)0x0267ABB0)->basicdxmodel->mats[0].attr_texId = 13;
-	((NJS_OBJECT*)0x0267ACC0)->basicdxmodel->mats[0].attr_texId = 13;
-	((NJS_OBJECT*)0x0267ADD0)->basicdxmodel->mats[0].attr_texId = 13;
-	((NJS_OBJECT*)0x0267AF14)->basicdxmodel->mats[0].attr_texId = 13;
-	((NJS_OBJECT*)0x0267B06C)->basicdxmodel->mats[0].attr_texId = 13;
-	((NJS_OBJECT*)0x02679FDC)->basicdxmodel->mats[0].diffuse.color = 0x4CB2B2B2;
-	((NJS_OBJECT*)0x0267A2DC)->basicdxmodel->mats[0].diffuse.color = 0x4CB2B2B2;
-	((NJS_OBJECT*)0x0267A410)->basicdxmodel->mats[0].diffuse.color = 0x4CB2B2B2;
-	((NJS_OBJECT*)0x0267A56C)->basicdxmodel->mats[0].diffuse.color = 0x4CB2B2B2;
-	((NJS_OBJECT*)0x0267A67C)->basicdxmodel->mats[0].diffuse.color = 0x4CB2B2B2;
-	((NJS_OBJECT*)0x0267A7B0)->basicdxmodel->mats[0].diffuse.color = 0x4CB2B2B2;
-	((NJS_OBJECT*)0x0267A8C0)->basicdxmodel->mats[0].diffuse.color = 0x4CB2B2B2;
-	((NJS_OBJECT*)0x0267AA7C)->basicdxmodel->mats[0].diffuse.color = 0x4CB2B2B2;
-	((NJS_OBJECT*)0x0267ABB0)->basicdxmodel->mats[0].diffuse.color = 0x4CB2B2B2;
-	((NJS_OBJECT*)0x0267ACC0)->basicdxmodel->mats[0].diffuse.color = 0x4CB2B2B2;
-	((NJS_OBJECT*)0x0267ADD0)->basicdxmodel->mats[0].diffuse.color = 0x4CB2B2B2;
-	((NJS_OBJECT*)0x0267AF14)->basicdxmodel->mats[0].diffuse.color = 0x4CB2B2B2;
-	((NJS_OBJECT*)0x0267B06C)->basicdxmodel->mats[0].diffuse.color = 0x4CB2B2B2;
+	*(NJS_OBJECT*)0x0267DC14 = objectSTG04_0227DC14; //Turnasi part 1
+	*(NJS_OBJECT*)0x0267D3B4 = objectSTG04_0014ABC8; //Turnasi part 2
+	*(NJS_OBJECT*)0x0267C7AC = objectSTG04_0014A5B0; //Turnasi part 3
+	*(NJS_OBJECT*)0x0268C058 = objectSTG04_0228C058; //SH Helicopter
+	*(NJS_OBJECT*)0x0266D90C = objectSTG04_0013D068; //SH Bus
+	*(NJS_OBJECT*)0x0266B484 = objectSTG04_0013B15C; //SH Red Car
+	*(NJS_OBJECT*)0x026682B8 = objectSTG04_0013949C; //SH Blue Car
+	*(NJS_OBJECT*)0x0266FC8C = objectSTG04_0013E9CC; //SH Yellow Car
+	*(NJS_MODEL_SADX*)0x0267A1A0 = attachSTG04_00148B24; //SH Glass
+	//Glass fragments
+	*(NJS_OBJECT*)0x02679FDC = objectSTG04_00148984;
+	*(NJS_OBJECT*)0x0267A2DC = objectSTG04_00148C50;
+	*(NJS_OBJECT*)0x0267A410 = objectSTG04_00148D54;
+	*(NJS_OBJECT*)0x0267A56C = objectSTG04_00148E5C;
+	*(NJS_OBJECT*)0x0267A67C = objectSTG04_00148F64;
+	*(NJS_OBJECT*)0x0267A7B0 = objectSTG04_0014906C;
+	*(NJS_OBJECT*)0x0267A8C0 = objectSTG04_00149174;
+	*(NJS_OBJECT*)0x0267AA7C = objectSTG04_001492CC;
+	*(NJS_OBJECT*)0x0267ABB0 = objectSTG04_001493D4;
+	*(NJS_OBJECT*)0x0267ACC0 = objectSTG04_001494D8;
+	*(NJS_OBJECT*)0x0267ADD0 = objectSTG04_001495DC;
+	*(NJS_OBJECT*)0x0267AF14 = objectSTG04_001496F4;
+	*(NJS_OBJECT*)0x0267B06C = objectSTG04_001497F8;
 	//Fountain materials
 	((NJS_OBJECT*)0x0266387C)->basicdxmodel->mats[0].diffuse.color = 0xFFB2B2B2;
 	((NJS_OBJECT*)0x0266387C)->basicdxmodel->mats[1].diffuse.color = 0xFFB2B2B2;
@@ -333,19 +321,6 @@ void SpeedHighway_Init(const IniFile *config, const HelperFunctions &helperFunct
 	((NJS_OBJECT*)0x02663488)->basicdxmodel->mats[1].diffuse.color = 0xFFB2B2B2;
 	((NJS_OBJECT*)0x02662D68)->basicdxmodel->mats[0].diffuse.color = 0xFFB2B2B2;
 	((NJS_OBJECT*)0x02662D68)->basicdxmodel->mats[1].diffuse.color = 0xFFB2B2B2;
-	/*(NJS_OBJECT*)0x02679FDC = objectSTG04_00148C50;
-	*(NJS_OBJECT*)0x0267A2DC = objectSTG04_001495DC;
-	*(NJS_OBJECT*)0x0267A410 = objectSTG04_00148D54;
-	*(NJS_OBJECT*)0x0267A56C = objectSTG04_00148E5C;
-	*(NJS_OBJECT*)0x0267A67C = objectSTG04_0014906C;
-	*(NJS_OBJECT*)0x0267A7B0 = objectSTG04_00149174;
-	*(NJS_OBJECT*)0x0267A8C0 = objectSTG04_001492CC;
-	*(NJS_OBJECT*)0x0267AA7C = objectSTG04_001493D4;
-	*(NJS_OBJECT*)0x0267ABB0 = objectSTG04_001494D8;
-	*(NJS_OBJECT*)0x0267ACC0 = objectSTG04_001495DC;
-	*(NJS_OBJECT*)0x0267ADD0 = objectSTG04_001496F4;
-	*(NJS_OBJECT*)0x0267AF14 = objectSTG04_001497F8;
-	//*(NJS_OBJECT*)0x0267B06C =*/
 	DataArray(FogData, SpeedHighway1Fog, 0x024CA4E4, 3);
 	DataArray(FogData, SpeedHighway2Fog, 0x024CA514, 3);
 	DataArray(FogData, SpeedHighway3Fog, 0x024CA544, 3);
