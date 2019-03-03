@@ -282,6 +282,7 @@
     <ClInclude Include="Lantern\lanternapi.h" />
     <ClInclude Include="OStandLight.h" />
     <ClInclude Include="Past_Chao.h" />
+    <ClInclude Include="StageLights.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
