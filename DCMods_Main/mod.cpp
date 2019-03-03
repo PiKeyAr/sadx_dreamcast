@@ -106,6 +106,7 @@ extern "C"
 		DLLLoaded_SADXFE   = (GetModuleHandle(L"sadx-fixed-edition") != nullptr);
 		HMODULE WaterEffect = GetModuleHandle(L"WaterEffect");
 		HMODULE Autodemo_WindyValley = GetModuleHandle(L"AutoDemo_WindyValley");
+		HMODULE Autodemo_SpeedHighway = GetModuleHandle(L"AutoDemo_SpeedHighway");
 		//Error messages
 		if (helperFunctions.Version < 7)
 		{
@@ -149,7 +150,6 @@ extern "C"
 		EnableWindowTitle = config->getBool("General", "EnableWindowTitle", true);
 		EnableEmeraldCoast = config->getBool("Levels", "EnableEmeraldCoast", true);
 		EnableWindyValley = config->getBool("Levels", "EnableWindyValley", true);
-		if (Autodemo_WindyValley != nullptr) EnableWindyValley = false;
 		EnableTwinklePark = config->getBool("Levels", "EnableTwinklePark", true);
 		EnableSpeedHighway = config->getBool("Levels", "EnableSpeedHighway", true);
 		EnableRedMountain = config->getBool("Levels", "EnableRedMountain", true);
@@ -169,6 +169,9 @@ extern "C"
 		SADXWater_MysticRuins = config->getBool("SADX Style Water", "MysticRuins", false);
 		SADXWater_EggCarrier = config->getBool("SADX Style Water", "EggCarrier", false);
 		SADXWater_Past = config->getBool("SADX Style Water", "Past", false);
+		//Autodemo mods check
+		if (Autodemo_WindyValley != nullptr) EnableWindyValley = false;
+		if (Autodemo_SpeedHighway != nullptr) EnableSpeedHighway = false;
 		const std::string EnableSETFixes_String = config->getString("Miscellaneous", "EnableSETFixes", "Normal");
 		if (EnableSETFixes_String == "Off")
 			EnableSETFixes = SETFixes_Off;
