@@ -19,9 +19,6 @@ FunctionPointer(long double, sub_49CC70, (float a1, float a2, float a3), 0x49CC7
 FunctionPointer(void, sub_408530, (NJS_OBJECT *obj), 0x408530);
 FunctionPointer(void, sub_407FC0, (NJS_MODEL_SADX *a1, int blend), 0x407FC0);
 
-static int RocketAlpha = 255;
-static int AntennaAlpha = 255;
-static int RocketAlphaDir = 4;
 static int shwwater = 0;
 
 PVMEntry SpeedHighway3Textures_list[] = {
@@ -370,10 +367,6 @@ void SpeedHighway_OnFrame()
 {
 	if (CurrentLevel == 4)
 	{
-		if (RocketAlphaDir == 4 && RocketAlpha >= 255) RocketAlphaDir = -4;
-		if (RocketAlphaDir == -4 && RocketAlpha <= 0) RocketAlphaDir = 4;
-		RocketAlpha = RocketAlpha + RocketAlphaDir;
-		AntennaAlpha = RocketAlpha;
 		if (CurrentAct == 2 && GameState != 16)
 		{
 			if ((FramerateSetting < 2 && FrameCounterUnpaused % 4 == 0) || (FramerateSetting >= 2 && FrameCounterUnpaused % 2 == 0)) shwwater++;
