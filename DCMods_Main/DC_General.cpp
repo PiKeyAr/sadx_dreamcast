@@ -8,6 +8,7 @@
 #include "Frogs.h"
 #include "CommonObjects.h"
 #include "HintMonitor.h"
+#include "StageLights.h"
 
 HMODULE CHRMODELS3 = GetModuleHandle(L"CHRMODELS_orig");
 HMODULE ADV01MODELS2 = GetModuleHandle(L"ADV01MODELS");
@@ -24,6 +25,8 @@ NJS_TEXANIM Heat2Texanim = { 56, 64, 28, 32, 0, 0, 0xFF, 0xFF, 2, 0 };
 NJS_SPRITE Heat1Sprite = { { 0, 0, 0 }, 1.0f, 1.0f, 0, (NJS_TEXLIST*)0x0091BD28, &Heat1Texanim };
 NJS_SPRITE Heat2Sprite = { { 0, 0, 0 }, 1.0f, 1.0f, 0, (NJS_TEXLIST*)0x0091BD28, &Heat2Texanim };
 
+DataArray(DirLightData_SADX, DirLights_SADX, 0x900918, 29);
+DataPointer(DirLightData_SADX, DefaultDirLight_SADX, 0x9008E4);
 DataPointer(NJS_OBJECT, stru_8B22F4, 0x8B22F4);
 DataPointer(NJS_MATRIX, nj_unit_matrix_, 0x389D650);
 FunctionPointer(void, BarrierChild, (ObjectMaster *a1), 0x4BA1E0);
@@ -1016,6 +1019,32 @@ void General_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 	ReplacePVM("WING_P");
 	ReplacePVM("WING_T");
 	ReplacePVM("ZOU");
+	//Replace SADX DirLight data with SA1 DirLight data
+	DefaultDirLight_SADX.LightDirection.x = DirLights_SA1[0].LightDirection.x;
+	DefaultDirLight_SADX.LightDirection.y = DirLights_SA1[0].LightDirection.y;
+	DefaultDirLight_SADX.LightDirection.z = DirLights_SA1[0].LightDirection.z;
+	DefaultDirLight_SADX.R = DirLights_SA1[0].R;
+	DefaultDirLight_SADX.G = DirLights_SA1[0].G;
+	DefaultDirLight_SADX.B = DirLights_SA1[0].B;
+	DefaultDirLight_SADX.Specular = DirLights_SA1[0].Specular;
+	DefaultDirLight_SADX.Diffuse = DirLights_SA1[0].Diffuse;
+	DefaultDirLight_SADX.AmbientR = DirLights_SA1[0].Ambient;
+	DefaultDirLight_SADX.AmbientG = DirLights_SA1[0].Ambient;
+	DefaultDirLight_SADX.AmbientB = DirLights_SA1[0].Ambient;
+	for (int i = 0; i < LengthOfArray(DirLights_SA1); i++)
+	{
+		DirLights_SADX[i].LightDirection.x = DirLights_SA1[i].LightDirection.x;
+		DirLights_SADX[i].LightDirection.y = DirLights_SA1[i].LightDirection.y;
+		DirLights_SADX[i].LightDirection.z = DirLights_SA1[i].LightDirection.z;
+		DirLights_SADX[i].R = DirLights_SA1[i].R;
+		DirLights_SADX[i].G = DirLights_SA1[i].G;
+		DirLights_SADX[i].B = DirLights_SA1[i].B;
+		DirLights_SADX[i].Specular = DirLights_SA1[i].Specular;
+		DirLights_SADX[i].Diffuse = DirLights_SA1[i].Diffuse;
+		DirLights_SADX[i].AmbientR = DirLights_SA1[i].Ambient;
+		DirLights_SADX[i].AmbientG = DirLights_SA1[i].Ambient;
+		DirLights_SADX[i].AmbientB = DirLights_SA1[i].Ambient;
+	}
 	//Replace hint monitor model
 	WriteCall((void*)0x7A9509, RenderHintMonitor_Main);
 	WriteCall((void*)0x7A957F, SetHintMonitorTransparency);
