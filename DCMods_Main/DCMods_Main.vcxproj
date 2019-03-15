@@ -243,6 +243,7 @@
     <ClInclude Include="Data\OFinalEgg.h" />
     <ClInclude Include="Data\OLmpa.h" />
     <ClInclude Include="Data\Palm.h" />
+    <ClInclude Include="Data\Past_Chao.h" />
     <ClInclude Include="Data\Past_objects.h" />
     <ClInclude Include="Data\Ripple.h" />
     <ClInclude Include="Data\RM_Objects.h" />
@@ -281,7 +282,6 @@
     <ClInclude Include="Frogs.h" />
     <ClInclude Include="Lantern\lanternapi.h" />
     <ClInclude Include="OStandLight.h" />
-    <ClInclude Include="Past_Chao.h" />
     <ClInclude Include="StageLights.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />

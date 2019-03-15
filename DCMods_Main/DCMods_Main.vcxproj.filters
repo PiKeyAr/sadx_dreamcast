@@ -638,9 +638,6 @@
     <ClInclude Include="Frogs.h">
       <Filter>Header Files\Levels\General</Filter>
     </ClInclude>
-    <ClInclude Include="Past_Chao.h">
-      <Filter>Header Files\Levels\ADV03MODELS</Filter>
-    </ClInclude>
     <ClInclude Include="Lantern\lanternapi.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -664,6 +661,9 @@
     </ClInclude>
     <ClInclude Include="StageLights.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\Past_Chao.h">
+      <Filter>Header Files\Levels\ADV03MODELS</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
