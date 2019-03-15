@@ -913,7 +913,6 @@ void General_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 	ReplacePVM("ER_9000_EGGMANROBO");
 	ReplacePVM("EV_EGGMAN_BODY");
 	ReplacePVM("EV_EGGMOBILE1");
-	if (!DLLLoaded_SA1Chars) ReplacePVM("EV_EGGMOBLE0");
 	ReplacePVM("EV_EGGMOBLE0DM");
 	ReplacePVM("EV_EGGMOBLE1");
 	ReplacePVM("EV_EGGMOBLE2");
