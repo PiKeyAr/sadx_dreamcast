@@ -44,41 +44,6 @@ static int uvADV02_anim = 1;
 NJS_TEXNAME textures_mrtrain[31];
 NJS_TEXLIST texlist_mrtrain = { arrayptrandlength(textures_mrtrain) };
 
-void AdjustMRLightDirection()
-{
-	if (CurrentAct == 3)
-	{
-		//Light direction condition check 1
-		WriteData<1>((char*)0x412536, 0x0F);
-		WriteData<1>((char*)0x412537, 0x85);
-		WriteData<1>((char*)0x412538, 0x9C);
-		WriteData<1>((char*)0x412539, 0i8);
-		WriteData<1>((char*)0x41253A, 0i8);
-		WriteData<1>((char*)0x41253B, 0i8);
-		//Light direction condition check 2
-		WriteData<1>((char*)0x412544, 0x0F);
-		WriteData<1>((char*)0x412545, 0x85);
-		WriteData<1>((char*)0x412546, 0x8E);
-		WriteData<1>((char*)0x412547, 0i8);
-		WriteData<1>((char*)0x412548, 0i8);
-		WriteData<1>((char*)0x412549, 0i8);
-	}
-	else
-	{
-		WriteData<6>((char*)0x412536, 0x90);
-		WriteData<6>((char*)0x412544, 0x90);
-	}
-}
-
-static void __cdecl MRLightingHook_r(ObjectMaster *a1);
-static Trampoline MRLightingHook_t(0x530670, 0x530676, MRLightingHook_r);
-static void __cdecl MRLightingHook_r(ObjectMaster *a1)
-{
-	auto original = reinterpret_cast<decltype(MRLightingHook_r)*>(MRLightingHook_t.Target());
-	AdjustMRLightDirection();
-	original(a1);
-}
-
 void __cdecl MRWater(OceanData *x)
 {
 	if (CurrentAct == 0)
