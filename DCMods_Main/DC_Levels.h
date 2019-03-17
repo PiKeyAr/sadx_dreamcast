@@ -58,6 +58,7 @@ extern NJS_TEXLIST texlist_sadxwtr_beach;
 extern NJS_TEXLIST texlist_sadxwtr_sewers;
 extern NJS_TEXLIST texlist_sadxwtr_waves;
 extern SecondaryEntrance BK_SSGardenStartPoint;
+extern std::string ModPath;
 
 void FixMRBase_Apply(const IniFile *config, const HelperFunctions &helperFunctions);
 void DisableSADXWaterFog();

@@ -45,6 +45,8 @@ bool DLLLoaded_DLCs = false;
 bool DLLLoaded_SADXFE = false;
 bool EnableSpeedFixes = true;
 
+std::string ModPath = "";
+
 static const wchar_t *const OldModDLLs[] = {
 	L"DC_Bosses",
 	L"DC_Branding",
@@ -87,6 +89,8 @@ extern "C"
 {
 	__declspec(dllexport) void __cdecl Init(const char *path, const HelperFunctions &helperFunctions)
 	{
+		//Global mod path
+		ModPath = std::string(path);
 		//Set up function pointers for Lantern API
 		HMODULE LanternDLL = GetModuleHandle(L"sadx-dc-lighting");
 		set_shader_flags_ptr = (void(*)(uint32_t, bool))GetProcAddress(LanternDLL, "set_shader_flags");
