@@ -822,10 +822,8 @@ void Subgames_Init(const IniFile *config, const HelperFunctions &helperFunctions
 	//Fog and draw distance tweaks
 	for (unsigned int i = 0; i < 3; i++)
 	{
-		if (EnableSkyChaseFixes)
-			DrawDist_SkyChase1[i].Maximum = -60000.0f;
-		if (EnableSandHill)
-			FogData_SandHill[i].Color = 0xFFAAAA8C;
+		if (EnableSkyChaseFixes) DrawDist_SkyChase1[i].Maximum = -60000.0f;
+		if (EnableSandHill) FogData_SandHill[i].Color = 0xFFE0E0B0;
 		FogData_HedgehogHammer[i].Distance = 16000.0f;
 		FogData_HedgehogHammer[i].Layer = 5000.0f;
 	}

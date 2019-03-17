@@ -1437,6 +1437,7 @@ void Bosses_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 			Chaos7Fog[i].Layer = -4000.0f;
 			Chaos7Fog[i].Distance = 11000.0f;
 			Chaos7Fog[i].Toggle = 1;
+			Chaos7Fog[i].Color = 0xFF19CED3;
 			DrawDist_Chaos7[i].Maximum = -6500.0;
 		}
 		if (EnableEggHornet)
@@ -1445,7 +1446,7 @@ void Bosses_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 			EggHornetFog[i].Distance = -9000.0f;
 			EggHornetFog[i].Layer = -1500.0f;
 			EggHornetFog[i].Toggle = 1;
-			EggHornetFog[i].Color = 0xFF646464;
+			EggHornetFog[i].Color = 0xFFA0A0A0;
 		}
 		if (EnableEggWalker) EggWalkerFog[i].Toggle = 0;
 		if (EnableEggViper) EggViperFog[i].Toggle = 0;

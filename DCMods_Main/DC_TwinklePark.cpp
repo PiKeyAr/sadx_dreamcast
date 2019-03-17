@@ -559,10 +559,10 @@ void TwinklePark_Init(const IniFile *config, const HelperFunctions &helperFuncti
 		TwinklePark1Fog[i].Layer = 1500.0f;
 		TwinklePark2Fog[i].Layer = -1400.0f;
 		TwinklePark2Fog[i].Distance = -3200.0f;
-		TwinklePark2Fog[i].Color = 0xFF100428;
+		TwinklePark2Fog[i].Color = 0xFF100030;
 		TwinklePark3Fog[i].Layer = -800.0f;
 		TwinklePark3Fog[i].Distance = -2200.0f;
-		TwinklePark3Fog[i].Color = 0xFF100428;
+		TwinklePark3Fog[i].Color = 0xFF100030;
 		TwinklePark4Fog[i].Color = 0xFF000000;
 		TwinklePark4Fog[i].Layer = 1.0f;
 		TwinklePark4Fog[i].Distance = 1200.0f;

@@ -308,7 +308,7 @@ void IceCap_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 		IceCap1Fog[i].Distance = 3800.0f;
 		IceCap1Fog[i].Toggle = 1;
 		DrawDist_IceCap1[i].Maximum = -12000.0;
-		IceCap2Fog[i].Color = 0xFFFFFFFF;
+		IceCap2Fog[i].Color = 0xFF000060;
 		IceCap2Fog[i].Layer = 800.0f;
 		IceCap2Fog[i].Distance = 3800.0f;
 		IceCap2Fog[i].Toggle = 1;
@@ -316,7 +316,7 @@ void IceCap_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 		DrawDist_IceCap3[i].Maximum = -8000.0;
 		IceCap3Fog[i].Layer = 2500.0f;
 		IceCap3Fog[i].Color = 0xFFFFFFFF;
-		IceCap4Fog[i].Color = 0xFF575757;
+		IceCap4Fog[i].Color = 0xFF000060;
 		IceCap4Fog[i].Layer = 800.0f;
 		IceCap4Fog[i].Distance = 3800.0f;
 		IceCap4Fog[i].Toggle = 1;

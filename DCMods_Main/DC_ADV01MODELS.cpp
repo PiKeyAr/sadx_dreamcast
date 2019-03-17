@@ -717,13 +717,13 @@ void ADV01_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 		EggCarrierInside2Fog[i].Toggle = 1;
 		EggCarrierInside2Fog[i].Distance = 4000.0f;
 		EggCarrierInside2Fog[i].Layer = 800.0f;
-		EggCarrierInside2Fog[i].Color = 0xFFC6C9A8;
+		EggCarrierInside2Fog[i].Color = 0xFFA0A0A0;
 		EggCarrierInside3Fog[i].Distance = -12000;
 		EggCarrierInside3Fog[i].Layer = -12000;
 		EggCarrierInside4Fog[i].Toggle = 1;
 		EggCarrierInside4Fog[i].Distance = 1216.0f;
 		EggCarrierInside4Fog[i].Layer = 139.0f;
-		EggCarrierInside4Fog[i].Color = 0xFFC8C864;
+		EggCarrierInside4Fog[i].Color = 0xFF7F7F40;
 		EggCarrierInside5Fog[i].Distance = -12000;
 		EggCarrierInside5Fog[i].Layer = -12000;
 		EggCarrierInside6Fog[i].Distance = -12000;

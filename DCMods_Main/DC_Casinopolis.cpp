@@ -974,7 +974,7 @@ void Casinopolis_Init(const IniFile *config, const HelperFunctions &helperFuncti
 		Casino1Fog[i].Layer = 600.0f;
 		Casino1Fog[i].Toggle = 1;
 		Casino1Fog[i].Distance = 1700.0f;
-		Casino2Fog[i].Color = 0xFF646400;
+		Casino2Fog[i].Color = 0xFF707000;
 		Casino2Fog[i].Layer = 1.0f;
 		Casino2Fog[i].Distance = 4000.0f;
 		Casino2Fog[i].Toggle = 1;

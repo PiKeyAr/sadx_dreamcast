@@ -782,8 +782,10 @@ void SkyDeck_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 	{
 		SkyDeck1Fog[i].Layer = 4000.0f;
 		SkyDeck1Fog[i].Distance = 12000.0f;
+		SkyDeck1Fog[i].Color = 0xFF000000;
 		SkyDeck2Fog[i].Layer = 4000.0f;
 		SkyDeck2Fog[i].Distance = 12000.0f;
+		SkyDeck2Fog[i].Color = 0xFF000000;
 		SkyDeck3Fog[i].Layer = 4000.0f;
 		SkyDeck3Fog[i].Distance = 12000.0f;
 		SkyDeck1DrawDist[i].Maximum = -20000.0f;
@@ -830,15 +832,9 @@ void SkyDeck_OnFrame()
 		CurrentFogDistance = 12000.0f - flt_3C8046C * 9000;
 		if (flt_3C8046C <= 0)
 		{
-			if (CurrentFogColorX.r > 80) CurrentFogColorX.r = CurrentFogColorX.r - 4;
-			if (CurrentFogColorX.g > 80) CurrentFogColorX.g = CurrentFogColorX.r - 4;
-			if (CurrentFogColorX.b > 112) CurrentFogColorX.b = CurrentFogColorX.r - 4;
-		}
-		if (flt_3C8046C <= 0)
-		{
-			if (CurrentFogColorX.r > 104) CurrentFogColorX.r = CurrentFogColorX.r - 4;
-			if (CurrentFogColorX.g > 104) CurrentFogColorX.g = CurrentFogColorX.g - 4;
-			if (CurrentFogColorX.b > 128) CurrentFogColorX.b = CurrentFogColorX.b - 4;
+			if (CurrentFogColorX.r > 4) CurrentFogColorX.r = CurrentFogColorX.r - 4;
+			if (CurrentFogColorX.g > 4) CurrentFogColorX.g = CurrentFogColorX.r - 4;
+			if (CurrentFogColorX.b > 4) CurrentFogColorX.b = CurrentFogColorX.r - 4;
 		}
 		if (SkyDeckAltitude >= 300.0f)
 		{
@@ -872,9 +868,9 @@ void SkyDeck_OnFrame()
 		}
 		if (flt_3C8046C > 0)
 		{
-			if (CurrentFogColorX.r < 251) CurrentFogColorX.r = CurrentFogColorX.r + 4;
-			if (CurrentFogColorX.g < 251) CurrentFogColorX.g = CurrentFogColorX.g + 4;
-			if (CurrentFogColorX.b < 251) CurrentFogColorX.b = CurrentFogColorX.b + 3;
+			if (CurrentFogColorX.r < 178) CurrentFogColorX.r = CurrentFogColorX.r + 4;
+			if (CurrentFogColorX.g < 178) CurrentFogColorX.g = CurrentFogColorX.g + 4;
+			if (CurrentFogColorX.b < 178) CurrentFogColorX.b = CurrentFogColorX.b + 4;
 		}
 		if (CurrentAct == 0 || CurrentAct == 1)
 		{
