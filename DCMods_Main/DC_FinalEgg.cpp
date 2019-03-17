@@ -605,7 +605,7 @@ void Glass_Load(ObjectMaster *a1)
 {
 	a1->MainSub = (void(__cdecl *)(ObjectMaster *))Glass_Main;
 	a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Glass_Display;
-	a1->DeleteSub = DeleteObject_DynamicCOL;
+	a1->DeleteSub = DynamicCOL_DeleteObject;
 }
 
 void LoadGlass()

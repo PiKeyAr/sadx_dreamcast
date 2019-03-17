@@ -81,7 +81,7 @@ DataPointer(NJS_OBJECT*, unk_1E05954, 0x1E05954);
 DataPointer(CollisionData, stru_1E77604, 0x1E77604);
 DataPointer(NJS_OBJECT, stru_1DF198C, 0x1DF198C);
 
-void __cdecl Loop_Display(ObjectMaster *a1)
+void __cdecl Loop_DisplayF(ObjectMaster *a1)
 {
 	EntityData1 *v1; // esi@1
 	Angle v2; // eax@2
@@ -853,7 +853,7 @@ void Casinopolis_Init(const IniFile *config, const HelperFunctions &helperFuncti
 	*(NJS_OBJECT*)0x01E40980 = OSlX_Blue; //OSlB light
 	*(NJS_OBJECT*)0x01E415F0 = OSlX_Red; //OSlR light
 	*(NJS_OBJECT*)0x01E41C28 = OSlX_Yellow; //OSlY light
-	WriteJump((void*)0x5D5E50, Loop_Display); //Add sound
+	WriteJump((void*)0x5D5E50, Loop_DisplayF); //Add sound
 	//Fixed gears
 	WriteCall((void*)0x005D09C7, FixedGear1);
 	WriteJump((void*)0x5D3A90, FixedGear2); //Gears main

@@ -17,9 +17,6 @@ DataPointer(NJS_CNK_OBJECT, Fruit_Triangular, 0x33BB514);
 DataPointer(NJS_CNK_OBJECT, Fruit_Square, 0x33BBFF4);
 DataPointer(NJS_CNK_OBJECT, Fruit_Heart, 0x33BC574);
 DataPointer(NJS_CNK_OBJECT, Fruit_Chao, 0x33BCBC4);
-DataPointer(NJS_CNK_OBJECT, SADXChaoEgg, 0x3601B94);
-DataPointer(NJS_CNK_OBJECT, SADXChaoEggBroken, 0x36014D0);
-DataPointer(NJS_CNK_OBJECT, SADXChaoEggBottom, 0x3600F0C);
 DataPointer(NJS_CNK_OBJECT, SADXHatEyes, 0x35E2BBC);
 DataPointer(NJS_CNK_MODEL, SADXChaoEggTop_Model, 0x3601484);
 SecondaryEntrance BK_SSGardenStartPoint;
@@ -51,7 +48,6 @@ struct ChaoTreeEntityData1
 
 FunctionPointer(void, sub_78AC80, (NJS_CNK_MODEL *a1, int a2), 0x78AC80);
 FunctionPointer(void, sub_78ABB0, (NJS_CNK_OBJECT *a1, int *a2, float a3), 0x78ABB0);
-FunctionPointer(void, RenderSADXChaoEgg, (NJS_CNK_OBJECT *a1, int a2, int *a3, float a4), 0x78AF80);
 FunctionPointer(void, RenderSADXChaoEgg_2, (NJS_CNK_OBJECT *a1, int a2), 0x78AF40);
 FunctionPointer(char, sub_436210, (int(__cdecl *a1)(int), char a2, char a3), 0x436210);
 FunctionPointer(int, sub_72A6C0, (int a1), 0x72A6C0);

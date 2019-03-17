@@ -729,7 +729,7 @@ void Spotlight_Load(ObjectMaster *a1)
 {
 	a1->MainSub = (void(__cdecl *)(ObjectMaster *))Spotlight_Main;
 	a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Spotlight_Display;
-	a1->DeleteSub = DeleteObject_DynamicCOL;
+	a1->DeleteSub = DynamicCOL_DeleteObject;
 }
 
 void Chaos0SpotlightHook()

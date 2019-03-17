@@ -745,7 +745,7 @@ void ChaoRaceNumbers_Load(ObjectMaster *a1)
 	NJS_OBJECT *v2;
 	a1->MainSub = (void(__cdecl *)(ObjectMaster *))ChaoNumbers_Main;
 	a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))ChaoNumbers_Display;
-	a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))DeleteObject_DynamicCOL;
+	a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))DynamicCOL_DeleteObject;
 	v1 = a1->Data1;
 	int ObjectIndex;
 	ObjectIndex = v1->CharIndex;
