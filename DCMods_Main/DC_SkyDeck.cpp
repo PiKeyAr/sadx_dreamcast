@@ -637,8 +637,8 @@ void SkyDeck_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 	STG06_1_Info = STG06_1_Info_ptr;
 	STG06_2_Info = STG06_2_Info_ptr;
 	STG06_0 = STG06_0_Info->getlandtable();
-	LandTable *STG06_1 = STG06_1_Info->getlandtable();
-	LandTable *STG06_2 = STG06_2_Info->getlandtable();
+	STG06_1 = STG06_1_Info->getlandtable();
+	STG06_2 = STG06_2_Info->getlandtable();
 	STG06_0->TexList = &texlist_skydeck1;
 	STG06_1->TexList = &texlist_skydeck2;
 	STG06_2->TexList = &texlist_skydeck3;

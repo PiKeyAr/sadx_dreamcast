@@ -1,15 +1,27 @@
 #include "stdafx.h"
-#include "LostWorld1.h"
-#include "LostWorld2.h"
-#include "LostWorld3.h"
 #include "LostWorld_objects.h"
+
+LandTableInfo *STG07_0_Info = nullptr;
+LandTableInfo *STG07_1_Info = nullptr;
+LandTableInfo *STG07_2_Info = nullptr;
+LandTable *STG07_0 = nullptr;
+LandTable *STG07_1 = nullptr;
+LandTable *STG07_2 = nullptr;
+
+NJS_TEXNAME textures_lw1[58];
+NJS_TEXLIST texlist_lw1 = { arrayptrandlength(textures_lw1) };
+
+NJS_TEXNAME textures_lw2[95];
+NJS_TEXLIST texlist_lw2 = { arrayptrandlength(textures_lw2) };
+
+NJS_TEXNAME textures_lw3[30];
+NJS_TEXLIST texlist_lw3 = { arrayptrandlength(textures_lw3) };
 
 DataPointer(float, CurrentDrawDist, 0x03ABDC74);
 DataPointer(NJS_MODEL_SADX, Hasira1Model, 0x2004E80);
 
 static int animw1 = 44;
 static int animw2 = 81;
-
 
 NJS_MATERIAL* ObjectSpecular_LostWorld[] = {
 	//OSuimen
@@ -36,6 +48,18 @@ void RenderLWPlatformLight(NJS_MODEL_SADX *model, QueuedModelFlagsB blend, float
 
 void LostWorld_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 {
+	LandTableInfo *STG07_0_Info_ptr = new LandTableInfo(ModPath + "\\data\\STG07\\0.sa1lvl");
+	LandTableInfo *STG07_1_Info_ptr = new LandTableInfo(ModPath + "\\data\\STG07\\1.sa1lvl");
+	LandTableInfo *STG07_2_Info_ptr = new LandTableInfo(ModPath + "\\data\\STG07\\2.sa1lvl");
+	STG07_0_Info = STG07_0_Info_ptr;
+	STG07_1_Info = STG07_1_Info_ptr;
+	STG07_2_Info = STG07_2_Info_ptr;
+	STG07_0 = STG07_0_Info->getlandtable();
+	STG07_1 = STG07_1_Info->getlandtable();
+	STG07_2 = STG07_2_Info->getlandtable();
+	STG07_0->TexList = &texlist_lw1;
+	STG07_1->TexList = &texlist_lw2;
+	STG07_2->TexList = &texlist_lw3;
 	ReplaceBIN_DC("CAM0700S");
 	ReplaceBIN_DC("CAM0701K");
 	ReplaceBIN_DC("CAM0701S");
@@ -44,7 +68,6 @@ void LostWorld_Init(const IniFile *config, const HelperFunctions &helperFunction
 	ReplaceBIN_DC("SET0701K");
 	ReplaceBIN_DC("SET0701S");
 	ReplaceBIN_DC("SET0702S");
-
 	switch (EnableSETFixes)
 	{
 		case SETFixes_Normal:
@@ -62,16 +85,15 @@ void LostWorld_Init(const IniFile *config, const HelperFunctions &helperFunction
 		default:
 			break;
 	}
-
 	ReplacePVM("BG_RUIN");
 	ReplacePVM("RUIN01");
 	ReplacePVM("RUIN02");
 	ReplacePVM("RUIN03");
 	ReplacePVM("OBJ_RUIN");
 	ReplacePVM("OBJ_RUIN2");
-	WriteData((LandTable**)0x97DAE8, &landtable_0000D560);
-	WriteData((LandTable**)0x97DAEC, &landtable_00063A6C);
-	WriteData((LandTable**)0x97DAF0, &landtable_000F928C);
+	WriteData((LandTable**)0x97DAE8, STG07_0);
+	WriteData((LandTable**)0x97DAEC, STG07_1);
+	WriteData((LandTable**)0x97DAF0, STG07_2);
 	if (DLLLoaded_Lantern)
 	{
 		material_register_ptr(ObjectSpecular_LostWorld, LengthOfArray(ObjectSpecular_LostWorld), &ForceDiffuse0Specular1);
@@ -156,15 +178,16 @@ void LostWorld_Init(const IniFile *config, const HelperFunctions &helperFunction
 		DrawDist_LostWorld2[i].Maximum = -2700.0;
 	}
 }
+
 void LostWorld_OnFrame()
 {
 	if (CurrentLevel == 7 && CurrentAct == 0 && GameState != 16)
 	{
 		if (animw1 > 57) animw1 = 44;
 		((NJS_OBJECT*)0x01FE9D7C)->basicdxmodel->mats[0].attr_texId = animw1;
-		matlistSTG07_000584CC[0].attr_texId = animw1;
-		matlistSTG07_00057E90[0].attr_texId = animw1;
-		matlistSTG07_00059BE8[0].attr_texId = animw1;
+		((NJS_MATERIAL*)STG07_0_Info->getdata("matlistSTG07_000584CC"))[0].attr_texId = animw1;
+		((NJS_MATERIAL*)STG07_0_Info->getdata("matlistSTG07_00057E90"))[0].attr_texId = animw1;
+		((NJS_MATERIAL*)STG07_0_Info->getdata("matlistSTG07_00059BE8"))[0].attr_texId = animw1;
 		if (!MissedFrames) animw1++;
 	}
 	if (CurrentLevel == 7 && CurrentAct == 1 && GameState != 16)
@@ -172,15 +195,15 @@ void LostWorld_OnFrame()
 		auto entity = EntityData1Ptrs[0];
 		if (entity != nullptr && entity->Position.x < 7000 && entity->Position.x > 1800) CurrentDrawDist = -6000.0f; else CurrentDrawDist = -2700.0f;
 		if (animw2 > 94) animw2 = 81;
-		matlistSTG07_000E924C[0].attr_texId = animw2;
-		matlistSTG07_000E3610[0].attr_texId = animw2;
-		matlistSTG07_000E8A20[0].attr_texId = animw2;
-		matlistSTG07_000E43D0[0].attr_texId = animw2;
-		matlistSTG07_000E7228[0].attr_texId = animw2;
-		matlistSTG07_000EF078[0].attr_texId = animw2;
-		matlistSTG07_000ECF80[0].attr_texId = animw2;
-		matlistSTG07_000EABDC[0].attr_texId = animw2;
-		matlistSTG07_000EBB3C[0].attr_texId = animw2;
+		((NJS_MATERIAL*)STG07_1_Info->getdata("matlistSTG07_000E924C"))[0].attr_texId = animw2;
+		((NJS_MATERIAL*)STG07_1_Info->getdata("matlistSTG07_000E3610"))[0].attr_texId = animw2;
+		((NJS_MATERIAL*)STG07_1_Info->getdata("matlistSTG07_000E8A20"))[0].attr_texId = animw2;
+		((NJS_MATERIAL*)STG07_1_Info->getdata("matlistSTG07_000E43D0"))[0].attr_texId = animw2;
+		((NJS_MATERIAL*)STG07_1_Info->getdata("matlistSTG07_000E7228"))[0].attr_texId = animw2;
+		((NJS_MATERIAL*)STG07_1_Info->getdata("matlistSTG07_000EF078"))[0].attr_texId = animw2;
+		((NJS_MATERIAL*)STG07_1_Info->getdata("matlistSTG07_000ECF80"))[0].attr_texId = animw2;
+		((NJS_MATERIAL*)STG07_1_Info->getdata("matlistSTG07_000EABDC"))[0].attr_texId = animw2;
+		((NJS_MATERIAL*)STG07_1_Info->getdata("matlistSTG07_000EBB3C"))[0].attr_texId = animw2;
 		if (!MissedFrames) animw2++;
 	}
 }
