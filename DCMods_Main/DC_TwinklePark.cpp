@@ -1,9 +1,19 @@
 #include "stdafx.h"
 #include "TwinklePark_objects.h"
-#include "Twinkle1.h"
-#include "Twinkle2.h"
-#include "Twinkle3.h"
 #include "Buyon.h"
+
+NJS_TEXNAME textures_twinkle1[35];
+NJS_TEXLIST texlist_twinkle1 = { arrayptrandlength(textures_twinkle1) };
+
+NJS_TEXNAME textures_twinkle2[88];
+NJS_TEXLIST texlist_twinkle2 = { arrayptrandlength(textures_twinkle2) };
+
+NJS_TEXNAME textures_twinkle3[30];
+NJS_TEXLIST texlist_twinkle3 = { arrayptrandlength(textures_twinkle3) };
+
+LandTableInfo *STG03_0_Info = nullptr;
+LandTableInfo *STG03_1_Info = nullptr;
+LandTableInfo *STG03_2_Info = nullptr;
 
 struct __declspec(align(2)) ObjectThingC
 {
@@ -41,6 +51,8 @@ NJS_MATERIAL* DisableAlphaRejection_TwinklePark[] = {
 };
 
 NJS_MATERIAL* ObjectSpecular_Twinkle[] = {
+	//Last mirror 
+	nullptr, nullptr,
 	//OFence2
 	((NJS_MATERIAL*)0x027A24B0),
 	((NJS_MATERIAL*)0x027A24C4),
@@ -66,9 +78,6 @@ NJS_MATERIAL* ObjectSpecular_Twinkle[] = {
 	((NJS_MATERIAL*)((size_t)CHRMODELS2 + 0x000164C0)),
 	((NJS_MATERIAL*)((size_t)CHRMODELS2 + 0x000164D4)),
 	((NJS_MATERIAL*)((size_t)CHRMODELS2 + 0x000164E8)),
-	//Last mirror 
-	&matlistSTG03_00091C40X[0],
-	&matlistSTG03_00091F0CX[0],
 	//O Arch 2
 	((NJS_MATERIAL*)0x038BEF00),
 	((NJS_MATERIAL*)0x038BEF14),
@@ -183,6 +192,30 @@ NJS_MATERIAL* CartMaterials[] =
 };
 
 NJS_MATERIAL* LevelSpecular_Twinkle[] = {
+	//Use_Env stuff
+	nullptr,
+	nullptr,
+	nullptr,
+	nullptr,
+	nullptr,
+	nullptr,
+	nullptr,
+	nullptr,
+	nullptr,
+	nullptr,
+	nullptr,
+	nullptr,
+	nullptr,
+	nullptr,
+	nullptr,
+	nullptr,
+	nullptr,
+	nullptr,
+	nullptr,
+	nullptr,
+	nullptr,
+	nullptr,
+	nullptr,
 	//Barrel pieces
 	((NJS_MATERIAL*)0x0279D398),
 	((NJS_MATERIAL*)0x0279D3AC),
@@ -268,30 +301,6 @@ NJS_MATERIAL* LevelSpecular_Twinkle[] = {
 	((NJS_MATERIAL*)0x038CD76C),
 	((NJS_MATERIAL*)0x038CD780),
 	((NJS_MATERIAL*)0x038CD5E8),
-	//Use_Env stuff
-	&matlistSTG03_000263FC[0],
-	&matlistSTG03_00026884[0],
-	&matlistSTG03_00026884[1],
-	&matlistSTG03_00028260[0],
-	&matlistSTG03_00028260[1],
-	&matlistSTG03_0002B274[0],
-	&matlistSTG03_0002B274[1],
-	&matlistSTG03_0002E288[0],
-	&matlistSTG03_0002E288[1],
-	&matlistSTG03_000312B8[0],
-	&matlistSTG03_000312B8[1],
-	&matlistSTG03_000342E8[0],
-	&matlistSTG03_000342E8[1],
-	&matlistSTG03_00035CA8[0],
-	&matlistSTG03_00035CA8[1],
-	&matlistSTG03_0003763C[0],
-	&matlistSTG03_0003763C[1],
-	&matlistSTG03_00038FD0[0],
-	&matlistSTG03_00038FD0[1],
-	&matlistSTG03_0003A974[0],
-	&matlistSTG03_0003A974[1],
-	&matlistSTG03_0003C0C8[0],
-	&matlistSTG03_0003C0C8[1],
 	//Buyon
 	//&matlistSTG03_034E23EC[0],
 };
@@ -308,23 +317,23 @@ void Mirror_Display(ObjectMaster *a1)
 		njScale(0, 1.0f, 1.0f, 1.0f);
 		njRotateXYZ(0, 0, 0, 0);
 		DrawQueueDepthBias = 6000.0f;
-		ProcessModelNode(&objectSTG03_0009FFC8_2, (QueuedModelFlagsB)0, 1.0f); //far right
-		ProcessModelNode(&objectSTG03_000A00CC_2, (QueuedModelFlagsB)0, 1.0f); //far left
-		ProcessModelNode(&objectSTG03_000A0168_2, (QueuedModelFlagsB)0, 1.0f); //far right 2
-		ProcessModelNode(&objectSTG03_000A0064_2, (QueuedModelFlagsB)0, 1.0f); //far left 2
+		ProcessModelNode((NJS_OBJECT*)STG03_2_Info->getdata("objectSTG03_0009FFC8_2"), (QueuedModelFlagsB)0, 1.0f); //far right
+		ProcessModelNode((NJS_OBJECT*)STG03_2_Info->getdata("objectSTG03_000A00CC_2"), (QueuedModelFlagsB)0, 1.0f); //far left
+		ProcessModelNode((NJS_OBJECT*)STG03_2_Info->getdata("objectSTG03_000A0168_2"), (QueuedModelFlagsB)0, 1.0f); //far right 2
+		ProcessModelNode((NJS_OBJECT*)STG03_2_Info->getdata("objectSTG03_000A0064_2"), (QueuedModelFlagsB)0, 1.0f); //far left 2
 		DrawQueueDepthBias = 5000.0f;
-		ProcessModelNode(&objectSTG03_0009FF94_2, (QueuedModelFlagsB)0, 1.0f); //mid right
-		ProcessModelNode(&objectSTG03_000A0098_2, (QueuedModelFlagsB)0, 1.0f); //mid left 
-		ProcessModelNode(&objectSTG03_000A0134_2, (QueuedModelFlagsB)0, 1.0f); //mid right 2
-		ProcessModelNode(&objectSTG03_000A0030_2, (QueuedModelFlagsB)0, 1.0f); //mid left 2
+		ProcessModelNode((NJS_OBJECT*)STG03_2_Info->getdata("objectSTG03_0009FF94_2"), (QueuedModelFlagsB)0, 1.0f); //mid right
+		ProcessModelNode((NJS_OBJECT*)STG03_2_Info->getdata("objectSTG03_000A0098_2"), (QueuedModelFlagsB)0, 1.0f); //mid left 
+		ProcessModelNode((NJS_OBJECT*)STG03_2_Info->getdata("objectSTG03_000A0134_2"), (QueuedModelFlagsB)0, 1.0f); //mid right 2
+		ProcessModelNode((NJS_OBJECT*)STG03_2_Info->getdata("objectSTG03_000A0030_2"), (QueuedModelFlagsB)0, 1.0f); //mid left 2
 		DrawQueueDepthBias = 4000.0f;
-		ProcessModelNode(&objectSTG03_000914F8_2, (QueuedModelFlagsB)0, 1.0f); //end right
-		ProcessModelNode(&objectSTG03_00091A60_2, (QueuedModelFlagsB)0, 1.0f); //end left
-		ProcessModelNode(&objectSTG03_000A0100_2, (QueuedModelFlagsB)0, 1.0f); //end right 2
-		ProcessModelNode(&objectSTG03_0009FFFC_2, (QueuedModelFlagsB)0, 1.0f); //end left 2
+		ProcessModelNode((NJS_OBJECT*)STG03_2_Info->getdata("objectSTG03_000914F8_2"), (QueuedModelFlagsB)0, 1.0f); //end right
+		ProcessModelNode((NJS_OBJECT*)STG03_2_Info->getdata("objectSTG03_00091A60_2"), (QueuedModelFlagsB)0, 1.0f); //end left
+		ProcessModelNode((NJS_OBJECT*)STG03_2_Info->getdata("objectSTG03_000A0100_2"), (QueuedModelFlagsB)0, 1.0f); //end right 2
+		ProcessModelNode((NJS_OBJECT*)STG03_2_Info->getdata("objectSTG03_0009FFFC_2"), (QueuedModelFlagsB)0, 1.0f); //end left 2
 		DrawQueueDepthBias = 3000.0f;
-		ProcessModelNode(&objectSTG03_00091ED8X, (QueuedModelFlagsB)0, 1.0f); //end 1
-		ProcessModelNode(&objectSTG03_000925E8X, (QueuedModelFlagsB)0, 1.0f); //end 2
+		ProcessModelNode((NJS_OBJECT*)STG03_2_Info->getdata("objectSTG03_00091ED8X"), (QueuedModelFlagsB)0, 1.0f); //end 1
+		ProcessModelNode((NJS_OBJECT*)STG03_2_Info->getdata("objectSTG03_000925E8X"), (QueuedModelFlagsB)0, 1.0f); //end 2
 		njPopMatrix(1u);
 		DrawQueueDepthBias = 0;
 	}
@@ -409,6 +418,18 @@ void RenderCatapult(NJS_ACTION *a1, float frame, float scale)
 
 void TwinklePark_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 {
+	LandTableInfo *STG03_0_Info_ptr = new LandTableInfo(ModPath + "\\data\\STG03\\0.sa1lvl");
+	LandTableInfo *STG03_1_Info_ptr = new LandTableInfo(ModPath + "\\data\\STG03\\1.sa1lvl");
+	LandTableInfo *STG03_2_Info_ptr = new LandTableInfo(ModPath + "\\data\\STG03\\2.sa1lvl");
+	STG03_0_Info = STG03_0_Info_ptr;
+	STG03_1_Info = STG03_1_Info_ptr;
+	STG03_2_Info = STG03_2_Info_ptr;
+	LandTable *STG03_0 = STG03_0_Info->getlandtable();
+	LandTable *STG03_1 = STG03_1_Info->getlandtable();
+	LandTable *STG03_2 = STG03_2_Info->getlandtable();
+	STG03_0->TexList = &texlist_twinkle1;
+	STG03_1->TexList = &texlist_twinkle2;
+	STG03_2->TexList = &texlist_twinkle3;
 	ReplaceBIN_DC("CAM0300S");
 	ReplaceBIN_DC("CAM0301A");
 	ReplaceBIN_DC("CAM0301B");
@@ -421,7 +442,6 @@ void TwinklePark_Init(const IniFile *config, const HelperFunctions &helperFuncti
 	ReplaceBIN_DC("SET0301S");
 	ReplaceBIN_DC("SET0302A");
 	ReplaceBIN_DC("SET0302S");
-
 	switch (EnableSETFixes)
 	{
 		case SETFixes_Normal:
@@ -439,7 +459,6 @@ void TwinklePark_Init(const IniFile *config, const HelperFunctions &helperFuncti
 		default:
 			break;
 	}
-
 	ReplacePVM("BG_SHAREOBJ");
 	ReplacePVM("OBJ_SHAREOBJ");
 	ReplacePVM("OBJ_TWINKLE");
@@ -447,9 +466,9 @@ void TwinklePark_Init(const IniFile *config, const HelperFunctions &helperFuncti
 	ReplacePVM("TWINKLE02");
 	ReplacePVM("TWINKLE03");
 	ResizeTextureList(&OBJ_TWINKLE_TEXLIST, 96);
-	WriteData((LandTable**)0x97DA68, &landtable_0001788C);
-	WriteData((LandTable**)0x97DA6C, &landtable_00019344);
-	WriteData((LandTable**)0x97DA70, &landtable_00019F5C);
+	WriteData((LandTable**)0x97DA68, STG03_0);
+	WriteData((LandTable**)0x97DA6C, STG03_1);
+	WriteData((LandTable**)0x97DA70, STG03_2);
 	//Arch light fixes
 	WriteCall((void*)0x0079C5FD, FixArchLight);
 	WriteCall((void*)0x0079C36A, FixArchLight_Pause);
@@ -484,7 +503,32 @@ void TwinklePark_Init(const IniFile *config, const HelperFunctions &helperFuncti
 	if (DLLLoaded_Lantern)
 	{
 		if (set_alpha_reject_ptr != nullptr) material_register_ptr(DisableAlphaRejection_TwinklePark, LengthOfArray(DisableAlphaRejection_TwinklePark), &DisableAlphaRejection);
+		LevelSpecular_Twinkle[0] = &((NJS_MATERIAL*)STG03_1_Info->getdata("matlistSTG03_000263FC"))[0];
+		LevelSpecular_Twinkle[1] = &((NJS_MATERIAL*)STG03_1_Info->getdata("matlistSTG03_00026884"))[0];
+		LevelSpecular_Twinkle[2] = &((NJS_MATERIAL*)STG03_1_Info->getdata("matlistSTG03_00026884"))[1];
+		LevelSpecular_Twinkle[3] = &((NJS_MATERIAL*)STG03_1_Info->getdata("matlistSTG03_00028260"))[0];
+		LevelSpecular_Twinkle[4] = &((NJS_MATERIAL*)STG03_1_Info->getdata("matlistSTG03_00028260"))[1];
+		LevelSpecular_Twinkle[5] = &((NJS_MATERIAL*)STG03_1_Info->getdata("matlistSTG03_0002B274"))[0];
+		LevelSpecular_Twinkle[6] = &((NJS_MATERIAL*)STG03_1_Info->getdata("matlistSTG03_0002B274"))[1];
+		LevelSpecular_Twinkle[7] = &((NJS_MATERIAL*)STG03_1_Info->getdata("matlistSTG03_0002E288"))[0];
+		LevelSpecular_Twinkle[8] = &((NJS_MATERIAL*)STG03_1_Info->getdata("matlistSTG03_0002E288"))[1];
+		LevelSpecular_Twinkle[9] = &((NJS_MATERIAL*)STG03_1_Info->getdata("matlistSTG03_000312B8"))[0];
+		LevelSpecular_Twinkle[10] = &((NJS_MATERIAL*)STG03_1_Info->getdata("matlistSTG03_000312B8"))[1];
+		LevelSpecular_Twinkle[11] = &((NJS_MATERIAL*)STG03_1_Info->getdata("matlistSTG03_000342E8"))[0];
+		LevelSpecular_Twinkle[12] = &((NJS_MATERIAL*)STG03_1_Info->getdata("matlistSTG03_000342E8"))[1];
+		LevelSpecular_Twinkle[13] = &((NJS_MATERIAL*)STG03_1_Info->getdata("matlistSTG03_00035CA8"))[0];
+		LevelSpecular_Twinkle[14] = &((NJS_MATERIAL*)STG03_1_Info->getdata("matlistSTG03_00035CA8"))[1];
+		LevelSpecular_Twinkle[15] = &((NJS_MATERIAL*)STG03_1_Info->getdata("matlistSTG03_0003763C"))[0];
+		LevelSpecular_Twinkle[16] = &((NJS_MATERIAL*)STG03_1_Info->getdata("matlistSTG03_0003763C"))[1];
+		LevelSpecular_Twinkle[17] = &((NJS_MATERIAL*)STG03_1_Info->getdata("matlistSTG03_00038FD0"))[0];
+		LevelSpecular_Twinkle[18] = &((NJS_MATERIAL*)STG03_1_Info->getdata("matlistSTG03_00038FD0"))[1];
+		LevelSpecular_Twinkle[19] = &((NJS_MATERIAL*)STG03_1_Info->getdata("matlistSTG03_0003A974"))[0];
+		LevelSpecular_Twinkle[20] = &((NJS_MATERIAL*)STG03_1_Info->getdata("matlistSTG03_0003A974"))[1];
+		LevelSpecular_Twinkle[21] = &((NJS_MATERIAL*)STG03_1_Info->getdata("matlistSTG03_0003C0C8"))[0];
+		LevelSpecular_Twinkle[22] = &((NJS_MATERIAL*)STG03_1_Info->getdata("matlistSTG03_0003C0C8"))[1];
 		material_register_ptr(LevelSpecular_Twinkle, LengthOfArray(LevelSpecular_Twinkle), &ForceDiffuse0Specular0);
+		ObjectSpecular_Twinkle[0] = &((NJS_MATERIAL*)STG03_2_Info->getdata("matlistSTG03_00091C40X"))[0];
+		ObjectSpecular_Twinkle[1] = &((NJS_MATERIAL*)STG03_2_Info->getdata("matlistSTG03_00091F0CX"))[0];
 		material_register_ptr(ObjectSpecular_Twinkle, LengthOfArray(ObjectSpecular_Twinkle), &ForceDiffuse0Specular1);
 		material_register_ptr(WhiteDiffuse_Twinkle, LengthOfArray(WhiteDiffuse_Twinkle), &ForceWhiteDiffuse3);
 		material_register_ptr(ObjectSpecularWhiteDiffuse_Twinkle, LengthOfArray(ObjectSpecularWhiteDiffuse_Twinkle), &ForceWhiteDiffuse3Specular1);
@@ -579,10 +623,10 @@ void TwinklePark_OnFrame()
 			{
 				objectSTG03_000AEC6C.ang[1] = objectSTG03_000AEC6C.ang[1] + 64;
 				if (anim > 87) anim = 74;
-				matlistSTG03_00065D8C[0].attr_texId = anim;
-				matlistSTG03_0001A3A8[0].attr_texId = anim;
-				matlistSTG03_000657A0[0].attr_texId = anim;
-				matlistSTG03_00065A3C[0].attr_texId = anim;
+				((NJS_MATERIAL*)STG03_1_Info->getdata("matlistSTG03_00065D8C"))[0].attr_texId = anim;
+				((NJS_MATERIAL*)STG03_1_Info->getdata("matlistSTG03_0001A3A8"))[0].attr_texId = anim;
+				((NJS_MATERIAL*)STG03_1_Info->getdata("matlistSTG03_000657A0"))[0].attr_texId = anim;
+				((NJS_MATERIAL*)STG03_1_Info->getdata("matlistSTG03_00065A3C"))[0].attr_texId = anim;
 				if (FramerateSetting < 2 && FrameCounter % 2 == 0 || FramerateSetting >= 2) anim++;
 				objectSTG03_000AA710.basicdxmodel->mats[14].attr_texId = animlight;
 				objectSTG03_000AA710.basicdxmodel->mats[3].attr_texId = animlight;
