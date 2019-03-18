@@ -1,10 +1,27 @@
 #include "stdafx.h"
 #include "Casino_objects.h"
-#include "Casino1.h"
-#include "Casino2.h"
-#include "Casino3.h"
-#include "Casino4.h"
 #include "Cowgirl.h"
+
+NJS_TEXNAME textures_casino1[131];
+NJS_TEXLIST texlist_casino1 = { arrayptrandlength(textures_casino1) };
+
+NJS_TEXNAME textures_casino2[58];
+NJS_TEXLIST texlist_casino2 = { arrayptrandlength(textures_casino2) };
+
+NJS_TEXNAME textures_casino3[26];
+NJS_TEXLIST texlist_casino3 = { arrayptrandlength(textures_casino3) };
+
+NJS_TEXNAME textures_casino4[71];
+NJS_TEXLIST texlist_casino4 = { arrayptrandlength(textures_casino4) };
+
+LandTableInfo *STG09_0_Info = nullptr;
+LandTableInfo *STG09_1_Info = nullptr;
+LandTableInfo *STG09_2_Info = nullptr;
+LandTableInfo *STG09_3_Info = nullptr;
+LandTable *STG09_0 = nullptr;
+LandTable *STG09_1 = nullptr;
+LandTable *STG09_2 = nullptr;
+LandTable *STG09_3 = nullptr;
 
 static short CurrentPlayer = -1;
 static float distance_float;
@@ -772,6 +789,22 @@ void IdeyaCapFix(void *a1, int a2, float a3, int a4, int a5)
 
 void Casinopolis_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 {
+	LandTableInfo *STG09_0_Info_ptr = new LandTableInfo(ModPath + "\\data\\STG09\\0.sa1lvl");
+	LandTableInfo *STG09_1_Info_ptr = new LandTableInfo(ModPath + "\\data\\STG09\\1.sa1lvl");
+	LandTableInfo *STG09_2_Info_ptr = new LandTableInfo(ModPath + "\\data\\STG09\\2.sa1lvl");
+	LandTableInfo *STG09_3_Info_ptr = new LandTableInfo(ModPath + "\\data\\STG09\\3.sa1lvl");
+	STG09_0_Info = STG09_0_Info_ptr;
+	STG09_1_Info = STG09_1_Info_ptr;
+	STG09_2_Info = STG09_2_Info_ptr;
+	STG09_3_Info = STG09_3_Info_ptr;
+	STG09_0 = STG09_0_Info->getlandtable();
+	STG09_1 = STG09_1_Info->getlandtable();
+	STG09_2 = STG09_2_Info->getlandtable();
+	STG09_3 = STG09_3_Info->getlandtable();
+	STG09_0->TexList = &texlist_casino1;
+	STG09_1->TexList = &texlist_casino2;
+	STG09_2->TexList = &texlist_casino3;
+	STG09_3->TexList = &texlist_casino4;
 	ReplaceBIN_DC("CAM0900K");
 	ReplaceBIN_DC("CAM0900S");
 	ReplaceBIN_DC("CAM0901M");
@@ -814,10 +847,10 @@ void Casinopolis_Init(const IniFile *config, const HelperFunctions &helperFuncti
 	ReplacePVM("OBJ_CASINO8");
 	ReplacePVM("OBJ_CASINO9");
 	ReplacePVM("OBJ_CASINO_E");
-	WriteData((LandTable**)0x97DB28, &landtable_00025EAC);
-	WriteData((LandTable**)0x97DB2C, &landtable_0006C0B4);
-	WriteData((LandTable**)0x97DB30, &landtable_000AF120);
-	WriteData((LandTable**)0x97DB34, &landtable_000D8440);
+	WriteData((LandTable**)0x97DB28, STG09_0);
+	WriteData((LandTable**)0x97DB2C, STG09_1);
+	WriteData((LandTable**)0x97DB30, STG09_2);
+	WriteData((LandTable**)0x97DB34, STG09_3);
 	//Lantern stuff
 	ReplaceBIN("PL_90B", "PL_90X");
 	if (DLLLoaded_Lantern)
@@ -1126,10 +1159,10 @@ void Casinopolis_OnFrame()
 		{
 			if (CurrentCharacter == 3)
 			{
-				if (entity->Position.y > -30.0f) collist_00023DA0[LengthOfArray(collist_00023DA0) - 2].Flags = 0xA0040002;
-				else collist_00023DA0[LengthOfArray(collist_00023DA0) - 2].Flags = 0xA0040000;
+				if (entity->Position.y > -30.0f) STG09_0->Col[STG09_0->COLCount - 2].Flags = 0xA0040002;
+				else STG09_0->Col[STG09_0->COLCount - 2].Flags = 0xA0040000;
 			}
-			else collist_00023DA0[LengthOfArray(collist_00023DA0) - 2].Flags = 0xA0040000;
+			else STG09_0->Col[STG09_0->COLCount - 2].Flags = 0xA0040000;
 		}
 		//Rotating thing
 		matlistSTG09_001C448C[3].attr_texId = monitorimage + 140;
@@ -1154,8 +1187,8 @@ void Casinopolis_OnFrame()
 		if (anim1_actual == 12) anim1 = 79;
 		if (anim1_actual == 13) anim1 = 80;
 		if (anim1_actual > 13) anim1_actual = 0;
-		matlistSTG09_00066F5C[1].attr_texId = anim1;
-		matlistSTG09_01979784[0].attr_texId = anim1;
+		((NJS_MATERIAL*)STG09_0_Info->getdata("matlistSTG09_00066F5C"))[1].attr_texId = anim1;
+		((NJS_MATERIAL*)STG09_0_Info->getdata("matlistSTG09_01979784"))[0].attr_texId = anim1;
 		if (FramerateSetting < 2 && FrameCounter % 3 == 0 || FramerateSetting == 2 && FrameCounter % 2 == 0 || FramerateSetting > 2) anim1_actual++;
 		//Card machine and lion top animation
 		if (FrameCounter % 8 == 0)
@@ -1246,8 +1279,8 @@ void Casinopolis_OnFrame()
 		if (anim2_actual == 12) anim2 = 20;
 		if (anim2_actual == 13) anim2 = 21;
 		if (anim2_actual > 13) anim2_actual = 0;
-		matlistSTG09_000ACC44[0].attr_texId = anim2;
-		matlistSTG09_000ACB40[0].attr_texId = anim2;
+		((NJS_MATERIAL*)STG09_1_Info->getdata("matlistSTG09_000ACC44"))[0].attr_texId = anim2;
+		((NJS_MATERIAL*)STG09_1_Info->getdata("matlistSTG09_000ACB40"))[0].attr_texId = anim2;
 		if (FramerateSetting < 2 && FrameCounter % 3 == 0 || FramerateSetting == 2 && FrameCounter % 2 == 0 || FramerateSetting > 2) anim2_actual++;
 	}
 	if (CurrentLevel == 9 && CurrentAct == 3 && GameState != 16)
