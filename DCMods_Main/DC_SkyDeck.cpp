@@ -1,9 +1,23 @@
 #include "stdafx.h"
-#include "SkyDeck3_Fixes.h"
-#include "SkyDeck1.h"
-#include "SkyDeck2.h"
-#include "SkyDeck3.h"
+
+LandTableInfo *STG06_0_Info = nullptr;
+LandTableInfo *STG06_1_Info = nullptr;
+LandTableInfo *STG06_2_Info = nullptr;
+LandTable *STG06_0 = nullptr;
+LandTable *STG06_1 = nullptr;
+LandTable *STG06_2 = nullptr;
+
+NJS_TEXNAME textures_skydeck1[76];
+NJS_TEXLIST texlist_skydeck1 = { arrayptrandlength(textures_skydeck1) };
+
+NJS_TEXNAME textures_skydeck2[58];
+NJS_TEXLIST texlist_skydeck2 = { arrayptrandlength(textures_skydeck2) };
+
+NJS_TEXNAME textures_skydeck3[65];
+NJS_TEXLIST texlist_skydeck3 = { arrayptrandlength(textures_skydeck3) };
+
 #include "SkyDeck_objects.h"
+#include "SkyDeck3_Fixes.h"
 
 static int UVShift1 = 0;
 static int UVShift2 = 0;
@@ -616,6 +630,18 @@ void __cdecl Talap0Display_FixedRotation(ObjectMaster *a2)
 
 void SkyDeck_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 {
+	LandTableInfo *STG06_0_Info_ptr = new LandTableInfo(ModPath + "\\data\\STG06\\0.sa1lvl");
+	LandTableInfo *STG06_1_Info_ptr = new LandTableInfo(ModPath + "\\data\\STG06\\1.sa1lvl");
+	LandTableInfo *STG06_2_Info_ptr = new LandTableInfo(ModPath + "\\data\\STG06\\2.sa1lvl");
+	STG06_0_Info = STG06_0_Info_ptr;
+	STG06_1_Info = STG06_1_Info_ptr;
+	STG06_2_Info = STG06_2_Info_ptr;
+	STG06_0 = STG06_0_Info->getlandtable();
+	LandTable *STG06_1 = STG06_1_Info->getlandtable();
+	LandTable *STG06_2 = STG06_2_Info->getlandtable();
+	STG06_0->TexList = &texlist_skydeck1;
+	STG06_1->TexList = &texlist_skydeck2;
+	STG06_2->TexList = &texlist_skydeck3;
 	ReplaceBIN_DC("SET0600M");
 	ReplaceBIN_DC("SET0600S");
 	ReplaceBIN_DC("SET0601M");
@@ -652,9 +678,9 @@ void SkyDeck_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 	ReplacePVM("SKYDECK01");
 	ReplacePVM("SKYDECK02");
 	ReplacePVM("SKYDECK03");
-	WriteData((LandTable**)0x97DAC8, &landtable_0001F018);
-	WriteData((LandTable**)0x97DACC, &landtable_00021094);
-	WriteData((LandTable**)0x97DAD0, &landtable_00023EB4);
+	WriteData((LandTable**)0x97DAC8, STG06_0);
+	WriteData((LandTable**)0x97DACC, STG06_1);
+	WriteData((LandTable**)0x97DAD0, STG06_2);
 	//Skybox transparency
 	((NJS_OBJECT*)0x214E2A0)->basicdxmodel->nbMeshset = 2; //Disable the annoying sky mesh
 	stru_214E2A0.basicdxmodel->mats[0].diffuse.color = 0x11FFFFFF;
@@ -702,8 +728,8 @@ void SkyDeck_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 	WriteData((float*)0x005F4D28, 1.0f);
 	WriteData((float*)0x005F4D30, 1.0f);
 	WriteData((float*)0x005F4D38, 1.0f);
-	((LandTable*)0x022369A0)->COLCount = landtable_00021094.COLCount;
-	((LandTable*)0x022369A0)->Col = landtable_00021094.Col;
+	((LandTable*)0x022369A0)->COLCount = STG06_1->COLCount;
+	((LandTable*)0x022369A0)->Col = STG06_1->Col;
 	((NJS_OBJECT *)0x214BF20)->basicdxmodel->meshsets->vertuv = uvSTG06_01D4E2F4_2;
 	((NJS_OBJECT *)0x214E3AC)->basicdxmodel->meshsets->vertuv = uvSTG06_01D4E2F4_3;
 	*(NJS_MODEL_SADX *)0x961300 = attachSTG06_001E10F8; //Aircraft pad
@@ -809,10 +835,10 @@ void SkyDeck_OnFrame()
 	{
 		{
 			if (GameState == 3 || GameState == 4 || GameState == 7 || GameState == 21)
-				for (int i = 0; i < landtable_00021094.COLCount; i++)
+				for (int i = 0; i < STG06_0->COLCount; i++)
 				{
-					if (landtable_00021094.Col[i].anonymous_6 & 4)
-						landtable_00021094.Col[i].Flags |= ColFlags_Solid;
+					if (STG06_0->Col[i].anonymous_6 & 4)
+						STG06_0->Col[i].Flags |= ColFlags_Solid;
 				}
 		}
 	}
