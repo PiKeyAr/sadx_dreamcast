@@ -3,17 +3,13 @@
 #pragma warning(push)
 #pragma warning(disable: 4267 4838)
 
-NJS_TEXNAME textures_twinklecircuit[12];
-
-NJS_TEXLIST texlist_twinklecircuit = { arrayptrandlength(textures_twinklecircuit) };
-
-NJS_MATERIAL matlistCIRCUIT_0001835C[] = {
+extern "C" __declspec(dllexport) NJS_MATERIAL matlistCIRCUIT_0001835C[] = {
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 9, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 11, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_FLIP_U | NJD_FLAG_USE_TEXTURE | NJD_FLAG_DOUBLE_SIDE | NJD_FLAG_IGNORE_LIGHT | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 10, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_FLIP_V | NJD_FLAG_FLIP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 polyCIRCUIT_00018398[] = {
+extern "C" __declspec(dllexport) Sint16 polyCIRCUIT_00018398[] = {
 	22, 0, 1, 12, 13, 24, 25, 36, 37, 48, 49, 60, 61, 72, 73, 84, 85, 96, 97, 108, 109, 120, 121,
 	22, 1, 2, 13, 14, 25, 26, 37, 38, 49, 50, 61, 62, 73, 74, 85, 86, 97, 98, 109, 110, 121, 122,
 	22, 3, 132, 15, 134, 27, 136, 39, 138, 51, 140, 63, 142, 75, 144, 87, 146, 99, 148, 111, 150, 123, 152,
@@ -24,18 +20,18 @@ Sint16 polyCIRCUIT_00018398[] = {
 	22, 123, 122, 111, 110, 99, 98, 87, 86, 75, 74, 63, 62, 51, 50, 39, 38, 27, 26, 15, 14, 3, 2
 };
 
-Sint16 polyCIRCUIT_00018508[] = {
+extern "C" __declspec(dllexport) Sint16 polyCIRCUIT_00018508[] = {
 	22, 4, 5, 16, 17, 28, 29, 40, 41, 52, 53, 64, 65, 76, 77, 88, 89, 100, 101, 112, 113, 124, 125,
 	22, 7, 133, 19, 135, 31, 137, 43, 139, 55, 141, 67, 143, 79, 145, 91, 147, 103, 149, 115, 151, 127, 153,
 	22, 127, 126, 115, 114, 103, 102, 91, 90, 79, 78, 67, 66, 55, 54, 43, 42, 31, 30, 19, 18, 7, 6,
 	22, 124, 152, 112, 150, 100, 148, 88, 146, 76, 144, 64, 142, 52, 140, 40, 138, 28, 136, 16, 134, 4, 132
 };
 
-Sint16 polyCIRCUIT_000185C0[] = {
+extern "C" __declspec(dllexport) Sint16 polyCIRCUIT_000185C0[] = {
 	22, 126, 125, 114, 113, 102, 101, 90, 89, 78, 77, 66, 65, 54, 53, 42, 41, 30, 29, 18, 17, 6, 5
 };
 
-NJS_TEX uvCIRCUIT_000185F0[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCIRCUIT_000185F0[] = {
 	{ 2550, 0 },
 	{ 2550, 63 },
 	{ 2295, 0 },
@@ -214,7 +210,7 @@ NJS_TEX uvCIRCUIT_000185F0[] = {
 	{ 2550, 127 }
 };
 
-NJS_TEX uvCIRCUIT_000188B0[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCIRCUIT_000188B0[] = {
 	{ 2550, 72 },
 	{ 2550, 255 },
 	{ 2295, 72 },
@@ -305,7 +301,7 @@ NJS_TEX uvCIRCUIT_000188B0[] = {
 	{ 2550, 0 }
 };
 
-NJS_TEX uvCIRCUIT_00018A10[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCIRCUIT_00018A10[] = {
 	{ 0, 255 },
 	{ 1020, 255 },
 	{ 0, 50 },
@@ -330,13 +326,13 @@ NJS_TEX uvCIRCUIT_00018A10[] = {
 	{ 1020, -1785 }
 };
 
-NJS_MESHSET_SADX meshlistCIRCUIT_00018A68[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlistCIRCUIT_00018A68[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 8, polyCIRCUIT_00018398, NULL, NULL, NULL, uvCIRCUIT_000185F0, NULL },
 	{ NJD_MESHSET_TRIMESH | 1, 4, polyCIRCUIT_00018508, NULL, NULL, NULL, uvCIRCUIT_000188B0, NULL },
 	{ NJD_MESHSET_TRIMESH | 2, 1, polyCIRCUIT_000185C0, NULL, NULL, NULL, uvCIRCUIT_00018A10, NULL }
 };
 
-NJS_VECTOR vertexCIRCUIT_00018AB0[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertexCIRCUIT_00018AB0[] = {
 	{ -100, 20, 0 },
 	{ -97.07107f, 27.07107f, 0 },
 	{ -90, 30, 0 },
@@ -493,7 +489,7 @@ NJS_VECTOR vertexCIRCUIT_00018AB0[] = {
 	{ -300, 20, -380 }
 };
 
-NJS_VECTOR normalCIRCUIT_000191E8[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normalCIRCUIT_000191E8[] = {
 	{ -0.921447f, 0.381675f, 0.072519f },
 	{ -0.696238f, 0.715717f, 0.054795f },
 	{ 0.019128f, 0.9998159f, -0.001505f },
@@ -650,17 +646,17 @@ NJS_VECTOR normalCIRCUIT_000191E8[] = {
 	{ -0.06314f, 0.593608f, 0.802274f }
 };
 
-NJS_MODEL_SADX attachCIRCUIT_00019920 = { vertexCIRCUIT_00018AB0, normalCIRCUIT_000191E8, LengthOfArray(vertexCIRCUIT_00018AB0), meshlistCIRCUIT_00018A68, matlistCIRCUIT_0001835C, LengthOfArray(meshlistCIRCUIT_00018A68), LengthOfArray(matlistCIRCUIT_0001835C),{ -100, 15, -200 }, 282.8427f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attachCIRCUIT_00019920 = { vertexCIRCUIT_00018AB0, normalCIRCUIT_000191E8, LengthOfArray(vertexCIRCUIT_00018AB0), meshlistCIRCUIT_00018A68, matlistCIRCUIT_0001835C, LengthOfArray(meshlistCIRCUIT_00018A68), LengthOfArray(matlistCIRCUIT_0001835C),{ -100, 15, -200 }, 282.8427f, NULL };
 
-NJS_OBJECT objectCIRCUIT_00019948 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00019920, -389, -9557, 2650, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00019948 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00019920, -389, -9557, 2650, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
-NJS_MATERIAL matlistCIRCUIT_0001997C[] = {
+extern "C" __declspec(dllexport) NJS_MATERIAL matlistCIRCUIT_0001997C[] = {
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 9, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 11, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_FLIP_U | NJD_FLAG_USE_TEXTURE | NJD_FLAG_DOUBLE_SIDE | NJD_FLAG_IGNORE_LIGHT | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 10, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_FLIP_V | NJD_FLAG_FLIP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 polyCIRCUIT_000199B8[] = {
+extern "C" __declspec(dllexport) Sint16 polyCIRCUIT_000199B8[] = {
 	22, 1, 2, 13, 14, 25, 26, 37, 38, 49, 50, 61, 62, 73, 74, 85, 86, 97, 98, 109, 110, 121, 122,
 	22, 3, 132, 15, 134, 27, 136, 39, 138, 51, 140, 63, 142, 75, 144, 87, 146, 99, 148, 111, 150, 123, 152,
 	22, 130, 129, 118, 117, 106, 105, 94, 93, 82, 81, 70, 69, 58, 57, 46, 45, 34, 33, 22, 21, 10, 9,
@@ -671,18 +667,18 @@ Sint16 polyCIRCUIT_000199B8[] = {
 	22, 121, 120, 109, 108, 97, 96, 85, 84, 73, 72, 61, 60, 49, 48, 37, 36, 25, 24, 13, 12, 1, 0
 };
 
-Sint16 polyCIRCUIT_00019B28[] = {
+extern "C" __declspec(dllexport) Sint16 polyCIRCUIT_00019B28[] = {
 	22, 4, 5, 16, 17, 28, 29, 40, 41, 52, 53, 64, 65, 76, 77, 88, 89, 100, 101, 112, 113, 124, 125,
 	22, 7, 133, 19, 135, 31, 137, 43, 139, 55, 141, 67, 143, 79, 145, 91, 147, 103, 149, 115, 151, 127, 153,
 	22, 127, 126, 115, 114, 103, 102, 91, 90, 79, 78, 67, 66, 55, 54, 43, 42, 31, 30, 19, 18, 7, 6,
 	22, 124, 152, 112, 150, 100, 148, 88, 146, 76, 144, 64, 142, 52, 140, 40, 138, 28, 136, 16, 134, 4, 132
 };
 
-Sint16 polyCIRCUIT_00019BE0[] = {
+extern "C" __declspec(dllexport) Sint16 polyCIRCUIT_00019BE0[] = {
 	22, 126, 125, 114, 113, 102, 101, 90, 89, 78, 77, 66, 65, 54, 53, 42, 41, 30, 29, 18, 17, 6, 5
 };
 
-NJS_TEX uvCIRCUIT_00019C10[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCIRCUIT_00019C10[] = {
 	{ 2550, 63 },
 	{ 2550, 127 },
 	{ 2295, 63 },
@@ -861,7 +857,7 @@ NJS_TEX uvCIRCUIT_00019C10[] = {
 	{ 2550, 0 }
 };
 
-NJS_TEX uvCIRCUIT_00019ED0[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCIRCUIT_00019ED0[] = {
 	{ 2550, 72 },
 	{ 2550, 255 },
 	{ 2295, 72 },
@@ -952,7 +948,7 @@ NJS_TEX uvCIRCUIT_00019ED0[] = {
 	{ 2550, 0 }
 };
 
-NJS_TEX uvCIRCUIT_0001A030[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCIRCUIT_0001A030[] = {
 	{ 0, 255 },
 	{ 1020, 255 },
 	{ 0, 50 },
@@ -977,13 +973,13 @@ NJS_TEX uvCIRCUIT_0001A030[] = {
 	{ 1020, -1785 }
 };
 
-NJS_MESHSET_SADX meshlistCIRCUIT_0001A088[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlistCIRCUIT_0001A088[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 8, polyCIRCUIT_000199B8, NULL, NULL, NULL, uvCIRCUIT_00019C10, NULL },
 	{ NJD_MESHSET_TRIMESH | 1, 4, polyCIRCUIT_00019B28, NULL, NULL, NULL, uvCIRCUIT_00019ED0, NULL },
 	{ NJD_MESHSET_TRIMESH | 2, 1, polyCIRCUIT_00019BE0, NULL, NULL, NULL, uvCIRCUIT_0001A030, NULL }
 };
 
-NJS_VECTOR vertexCIRCUIT_0001A0D0[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertexCIRCUIT_0001A0D0[] = {
 	{ -100, 20, 0 },
 	{ -97.07107f, 27.07107f, 0 },
 	{ -90, 30, 0 },
@@ -1140,7 +1136,7 @@ NJS_VECTOR vertexCIRCUIT_0001A0D0[] = {
 	{ -400.0001f, 20, -480 }
 };
 
-NJS_VECTOR normalCIRCUIT_0001A808[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normalCIRCUIT_0001A808[] = {
 	{ -0.921448f, 0.381674f, 0.072519f },
 	{ -0.696238f, 0.7157159f, 0.054795f },
 	{ 0.019127f, 0.9998159f, -0.001505f },
@@ -1297,11 +1293,11 @@ NJS_VECTOR normalCIRCUIT_0001A808[] = {
 	{ -0.06314f, 0.5936069f, 0.802274f }
 };
 
-NJS_MODEL_SADX attachCIRCUIT_0001AF40 = { vertexCIRCUIT_0001A0D0, normalCIRCUIT_0001A808, LengthOfArray(vertexCIRCUIT_0001A0D0), meshlistCIRCUIT_0001A088, matlistCIRCUIT_0001997C, LengthOfArray(meshlistCIRCUIT_0001A088), LengthOfArray(matlistCIRCUIT_0001997C),{ -150, 15, -250 }, 353.5534f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attachCIRCUIT_0001AF40 = { vertexCIRCUIT_0001A0D0, normalCIRCUIT_0001A808, LengthOfArray(vertexCIRCUIT_0001A0D0), meshlistCIRCUIT_0001A088, matlistCIRCUIT_0001997C, LengthOfArray(meshlistCIRCUIT_0001A088), LengthOfArray(matlistCIRCUIT_0001997C),{ -150, 15, -250 }, 353.5534f, NULL };
 
-NJS_OBJECT objectCIRCUIT_0001AF68 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_0001AF40, 576, -9557, 2650, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_0001AF68 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_0001AF40, 576, -9557, 2650, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
-NJS_MATERIAL matlistCIRCUIT_0001AF9C[] = {
+extern "C" __declspec(dllexport) NJS_MATERIAL matlistCIRCUIT_0001AF9C[] = {
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 9, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_FLAG_DOUBLE_SIDE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 11, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_FLIP_U | NJD_FLAG_USE_TEXTURE | NJD_FLAG_DOUBLE_SIDE | NJD_FLAG_IGNORE_LIGHT | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 4, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_FLIP_V | NJD_FLAG_FLIP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
@@ -1317,7 +1313,7 @@ NJS_MATERIAL matlistCIRCUIT_0001AF9C[] = {
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 6, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_FLIP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 polyCIRCUIT_0001B0A0[] = {
+extern "C" __declspec(dllexport) Sint16 polyCIRCUIT_0001B0A0[] = {
 	0x8000u | 10, 66, 64, 15, 3, 14, 2, 13, 1, 12, 0,
 	4, 77, 76, 71, 70,
 	4, 74, 30, 68, 24,
@@ -1334,45 +1330,45 @@ Sint16 polyCIRCUIT_0001B0A0[] = {
 	0x8000u | 8, 81, 83, 44, 56, 45, 57, 46, 58
 };
 
-Sint16 polyCIRCUIT_0001B184[] = {
+extern "C" __declspec(dllexport) Sint16 polyCIRCUIT_0001B184[] = {
 	12, 4, 5, 16, 17, 25, 26, 31, 32, 40, 41, 52, 53,
 	12, 7, 65, 19, 67, 28, 72, 34, 78, 43, 81, 55, 83,
 	12, 52, 82, 40, 80, 31, 77, 25, 71, 16, 66, 4, 64,
 	12, 55, 54, 43, 42, 34, 33, 28, 27, 19, 18, 7, 6
 };
 
-Sint16 polyCIRCUIT_0001B1EC[] = {
+extern "C" __declspec(dllexport) Sint16 polyCIRCUIT_0001B1EC[] = {
 	12, 5, 6, 17, 18, 26, 27, 32, 33, 41, 42, 53, 54
 };
 
-Sint16 polyCIRCUIT_0001B206[] = {
+extern "C" __declspec(dllexport) Sint16 polyCIRCUIT_0001B206[] = {
 	4, 101, 100, 95, 94,
 	4, 88, 89, 87, 86,
 	4, 98, 99, 97, 96,
 	4, 117, 116, 85, 84
 };
 
-Sint16 polyCIRCUIT_0001B22E[] = {
+extern "C" __declspec(dllexport) Sint16 polyCIRCUIT_0001B22E[] = {
 	8, 131, 118, 129, 106, 130, 107, 88, 89,
 	3, 100, 101, 108,
 	7, 101, 109, 108, 105, 103, 104, 102
 };
 
-Sint16 polyCIRCUIT_0001B258[] = {
+extern "C" __declspec(dllexport) Sint16 polyCIRCUIT_0001B258[] = {
 	0x8000u | 6, 99, 96, 63, 79, 101, 95,
 	0x8000u | 6, 97, 98, 73, 62, 94, 100,
 	0x8000u | 6, 89, 86, 61, 75, 117, 85,
 	0x8000u | 6, 116, 84, 60, 69, 88, 87
 };
 
-Sint16 polyCIRCUIT_0001B290[] = {
+extern "C" __declspec(dllexport) Sint16 polyCIRCUIT_0001B290[] = {
 	4, 94, 91, 95, 93,
 	4, 86, 74, 87, 68,
 	4, 96, 92, 97, 90,
 	4, 84, 70, 85, 76
 };
 
-Sint16 polyCIRCUIT_0001B2B8[] = {
+extern "C" __declspec(dllexport) Sint16 polyCIRCUIT_0001B2B8[] = {
 	3, 68, 69, 87,
 	3, 93, 79, 95,
 	3, 91, 94, 73,
@@ -1383,28 +1379,28 @@ Sint16 polyCIRCUIT_0001B2B8[] = {
 	3, 76, 75, 85
 };
 
-Sint16 polyCIRCUIT_0001B2F8[] = {
+extern "C" __declspec(dllexport) Sint16 polyCIRCUIT_0001B2F8[] = {
 	0x8000u | 6, 88, 130, 60, 129, 116, 131,
 	0x8000u | 6, 107, 89, 106, 61, 118, 117,
 	0x8000u | 6, 108, 100, 103, 62, 102, 98,
 	0x8000u | 6, 101, 109, 63, 105, 99, 104
 };
 
-Sint16 polyCIRCUIT_0001B330[] = {
+extern "C" __declspec(dllexport) Sint16 polyCIRCUIT_0001B330[] = {
 	4, 118, 131, 115, 113,
 	4, 110, 111, 104, 102,
 	4, 120, 119, 98, 99,
 	4, 116, 117, 112, 114
 };
 
-Sint16 polyCIRCUIT_0001B358[] = {
+extern "C" __declspec(dllexport) Sint16 polyCIRCUIT_0001B358[] = {
 	4, 119, 110, 99, 104,
 	4, 111, 120, 102, 98,
 	4, 131, 116, 113, 112,
 	4, 117, 118, 114, 115
 };
 
-Sint16 polyCIRCUIT_0001B380[] = {
+extern "C" __declspec(dllexport) Sint16 polyCIRCUIT_0001B380[] = {
 	4, 112, 121, 113, 124,
 	8, 123, 115, 126, 110, 128, 119, 122, 114,
 	4, 113, 124, 111, 125,
@@ -1413,12 +1409,12 @@ Sint16 polyCIRCUIT_0001B380[] = {
 	4, 111, 125, 120, 127
 };
 
-Sint16 polyCIRCUIT_0001B3C4[] = {
+extern "C" __declspec(dllexport) Sint16 polyCIRCUIT_0001B3C4[] = {
 	4, 112, 114, 120, 119,
 	4, 115, 113, 110, 111
 };
 
-NJS_TEX uvCIRCUIT_0001B3D8[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCIRCUIT_0001B3D8[] = {
 	{ 255, 255 },
 	{ 510, 255 },
 	{ 255, 191 },
@@ -1521,7 +1517,7 @@ NJS_TEX uvCIRCUIT_0001B3D8[] = {
 	{ 0, 63 }
 };
 
-NJS_TEX uvCIRCUIT_0001B568[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCIRCUIT_0001B568[] = {
 	{ 1020, 50 },
 	{ 1020, 255 },
 	{ 816, 50 },
@@ -1572,7 +1568,7 @@ NJS_TEX uvCIRCUIT_0001B568[] = {
 	{ 1020, 255 }
 };
 
-NJS_TEX uvCIRCUIT_0001B628[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCIRCUIT_0001B628[] = {
 	{ 1020, -765 },
 	{ 0, -765 },
 	{ 1020, -561 },
@@ -1587,7 +1583,7 @@ NJS_TEX uvCIRCUIT_0001B628[] = {
 	{ 0, 255 }
 };
 
-NJS_TEX uvCIRCUIT_0001B658[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCIRCUIT_0001B658[] = {
 	{ 101, 0 },
 	{ 406, 0 },
 	{ 0, 254 },
@@ -1606,7 +1602,7 @@ NJS_TEX uvCIRCUIT_0001B658[] = {
 	{ 510, 254 }
 };
 
-NJS_TEX uvCIRCUIT_0001B698[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCIRCUIT_0001B698[] = {
 	{ 458, 36 },
 	{ 50, 36 },
 	{ 510, 0 },
@@ -1627,7 +1623,7 @@ NJS_TEX uvCIRCUIT_0001B698[] = {
 	{ 458, 36 }
 };
 
-NJS_TEX uvCIRCUIT_0001B6E0[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCIRCUIT_0001B6E0[] = {
 	{ 1785, 0 },
 	{ 1889, 254 },
 	{ 1839, 0 },
@@ -1654,7 +1650,7 @@ NJS_TEX uvCIRCUIT_0001B6E0[] = {
 	{ 0, 254 }
 };
 
-NJS_TEX uvCIRCUIT_0001B740[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCIRCUIT_0001B740[] = {
 	{ 765, 0 },
 	{ 765, 255 },
 	{ 0 },
@@ -1673,7 +1669,7 @@ NJS_TEX uvCIRCUIT_0001B740[] = {
 	{ 0, 255 }
 };
 
-NJS_TEX uvCIRCUIT_0001B780[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCIRCUIT_0001B780[] = {
 	{ 0, 255 },
 	{ 278, 0 },
 	{ 0 },
@@ -1700,7 +1696,7 @@ NJS_TEX uvCIRCUIT_0001B780[] = {
 	{ 557, 0 }
 };
 
-NJS_TEX uvCIRCUIT_0001B7E0[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCIRCUIT_0001B7E0[] = {
 	{ 0, 254 },
 	{ 0, 36 },
 	{ 62, 254 },
@@ -1727,7 +1723,7 @@ NJS_TEX uvCIRCUIT_0001B7E0[] = {
 	{ 1913, 36 }
 };
 
-NJS_TEX uvCIRCUIT_0001B840[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCIRCUIT_0001B840[] = {
 	{ 0, 255 },
 	{ 0, -255 },
 	{ 134, 191 },
@@ -1746,7 +1742,7 @@ NJS_TEX uvCIRCUIT_0001B840[] = {
 	{ 134, 127 }
 };
 
-NJS_TEX uvCIRCUIT_0001B880[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCIRCUIT_0001B880[] = {
 	{ 1394, 255 },
 	{ 1394, -255 },
 	{ 1530, 153 },
@@ -1765,7 +1761,7 @@ NJS_TEX uvCIRCUIT_0001B880[] = {
 	{ 134, -255 }
 };
 
-NJS_TEX uvCIRCUIT_0001B8C0[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCIRCUIT_0001B8C0[] = {
 	{ 4486, 255 },
 	{ 4418, 0 },
 	{ 3161, 255 },
@@ -1796,7 +1792,7 @@ NJS_TEX uvCIRCUIT_0001B8C0[] = {
 	{ 4418, 0 }
 };
 
-NJS_TEX uvCIRCUIT_0001B930[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCIRCUIT_0001B930[] = {
 	{ 0, 42 },
 	{ 0, 212 },
 	{ 1020, 42 },
@@ -1807,7 +1803,7 @@ NJS_TEX uvCIRCUIT_0001B930[] = {
 	{ 1020, 0 }
 };
 
-NJS_MESHSET_SADX meshlistCIRCUIT_0001B950[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlistCIRCUIT_0001B950[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 14, polyCIRCUIT_0001B0A0, NULL, NULL, NULL, uvCIRCUIT_0001B3D8, NULL },
 	{ NJD_MESHSET_TRIMESH | 1, 4, polyCIRCUIT_0001B184, NULL, NULL, NULL, uvCIRCUIT_0001B568, NULL },
 	{ NJD_MESHSET_TRIMESH | 2, 1, polyCIRCUIT_0001B1EC, NULL, NULL, NULL, uvCIRCUIT_0001B628, NULL },
@@ -1823,7 +1819,7 @@ NJS_MESHSET_SADX meshlistCIRCUIT_0001B950[] = {
 	{ NJD_MESHSET_TRIMESH | 12, 2, polyCIRCUIT_0001B3C4, NULL, NULL, NULL, uvCIRCUIT_0001B930, NULL }
 };
 
-NJS_VECTOR vertexCIRCUIT_0001BA88[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertexCIRCUIT_0001BA88[] = {
 	{ -100, 20, 0 },
 	{ -97.07107f, 27.07107f, 0 },
 	{ -90, 30, 0 },
@@ -1958,7 +1954,7 @@ NJS_VECTOR vertexCIRCUIT_0001BA88[] = {
 	{ -72.92892f, 90, -105 }
 };
 
-NJS_VECTOR normalCIRCUIT_0001C0B8[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normalCIRCUIT_0001C0B8[] = {
 	{ -0.92388f, 0.382683f, 0 },
 	{ -0.7071069f, 0.7071069f, 0 },
 	{ 0, 1, 0 },
@@ -2093,17 +2089,17 @@ NJS_VECTOR normalCIRCUIT_0001C0B8[] = {
 	{ 0.612698f, 0.390244f, 0.687248f }
 };
 
-NJS_MODEL_SADX attachCIRCUIT_0001C6E8 = { vertexCIRCUIT_0001BA88, normalCIRCUIT_0001C0B8, LengthOfArray(vertexCIRCUIT_0001BA88), meshlistCIRCUIT_0001B950, matlistCIRCUIT_0001AF9C, LengthOfArray(meshlistCIRCUIT_0001B950), LengthOfArray(matlistCIRCUIT_0001AF9C),{ 0, 50, -125 }, 160.0781f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attachCIRCUIT_0001C6E8 = { vertexCIRCUIT_0001BA88, normalCIRCUIT_0001C0B8, LengthOfArray(vertexCIRCUIT_0001BA88), meshlistCIRCUIT_0001B950, matlistCIRCUIT_0001AF9C, LengthOfArray(meshlistCIRCUIT_0001B950), LengthOfArray(matlistCIRCUIT_0001AF9C),{ 0, 50, -125 }, 160.0781f, NULL };
 
-NJS_OBJECT objectCIRCUIT_0001C710 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_0001C6E8, 1501, 0, 74, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_0001C710 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_0001C6E8, 1501, 0, 74, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
 
-NJS_MATERIAL matlistCIRCUIT_0001C744[] = {
+extern "C" __declspec(dllexport) NJS_MATERIAL matlistCIRCUIT_0001C744[] = {
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 9, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 11, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_FLIP_U | NJD_FLAG_USE_TEXTURE | NJD_FLAG_DOUBLE_SIDE | NJD_FLAG_IGNORE_LIGHT | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 10, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_FLIP_V | NJD_FLAG_FLIP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 polyCIRCUIT_0001C780[] = {
+extern "C" __declspec(dllexport) Sint16 polyCIRCUIT_0001C780[] = {
 	22, 1, 2, 13, 14, 25, 26, 37, 38, 49, 50, 61, 62, 73, 74, 85, 86, 97, 98, 109, 110, 121, 122,
 	22, 3, 132, 15, 134, 27, 136, 39, 138, 51, 140, 63, 142, 75, 144, 87, 146, 99, 148, 111, 150, 123, 152,
 	22, 130, 129, 118, 117, 106, 105, 94, 93, 82, 81, 70, 69, 58, 57, 46, 45, 34, 33, 22, 21, 10, 9,
@@ -2114,18 +2110,18 @@ Sint16 polyCIRCUIT_0001C780[] = {
 	22, 121, 120, 109, 108, 97, 96, 85, 84, 73, 72, 61, 60, 49, 48, 37, 36, 25, 24, 13, 12, 1, 0
 };
 
-Sint16 polyCIRCUIT_0001C8F0[] = {
+extern "C" __declspec(dllexport) Sint16 polyCIRCUIT_0001C8F0[] = {
 	22, 132, 4, 134, 16, 136, 28, 138, 40, 140, 52, 142, 64, 144, 76, 146, 88, 148, 100, 150, 112, 152, 124,
 	22, 4, 5, 16, 17, 28, 29, 40, 41, 52, 53, 64, 65, 76, 77, 88, 89, 100, 101, 112, 113, 124, 125,
 	22, 7, 133, 19, 135, 31, 137, 43, 139, 55, 141, 67, 143, 79, 145, 91, 147, 103, 149, 115, 151, 127, 153,
 	22, 127, 126, 115, 114, 103, 102, 91, 90, 79, 78, 67, 66, 55, 54, 43, 42, 31, 30, 19, 18, 7, 6
 };
 
-Sint16 polyCIRCUIT_0001C9A8[] = {
+extern "C" __declspec(dllexport) Sint16 polyCIRCUIT_0001C9A8[] = {
 	22, 126, 125, 114, 113, 102, 101, 90, 89, 78, 77, 66, 65, 54, 53, 42, 41, 30, 29, 18, 17, 6, 5
 };
 
-NJS_TEX uvCIRCUIT_0001C9D8[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCIRCUIT_0001C9D8[] = {
 	{ 2550, 63 },
 	{ 2550, 127 },
 	{ 2295, 63 },
@@ -2304,7 +2300,7 @@ NJS_TEX uvCIRCUIT_0001C9D8[] = {
 	{ 2550, 0 }
 };
 
-NJS_TEX uvCIRCUIT_0001CC98[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCIRCUIT_0001CC98[] = {
 	{ 2550, 0 },
 	{ 2550, 72 },
 	{ 2295, 0 },
@@ -2395,7 +2391,7 @@ NJS_TEX uvCIRCUIT_0001CC98[] = {
 	{ 2550, 255 }
 };
 
-NJS_TEX uvCIRCUIT_0001CDF8[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCIRCUIT_0001CDF8[] = {
 	{ 0, 255 },
 	{ 1020, 255 },
 	{ 0, 50 },
@@ -2420,13 +2416,13 @@ NJS_TEX uvCIRCUIT_0001CDF8[] = {
 	{ 1020, -1785 }
 };
 
-NJS_MESHSET_SADX meshlistCIRCUIT_0001CE50[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlistCIRCUIT_0001CE50[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 8, polyCIRCUIT_0001C780, NULL, NULL, NULL, uvCIRCUIT_0001C9D8, NULL },
 	{ NJD_MESHSET_TRIMESH | 1, 4, polyCIRCUIT_0001C8F0, NULL, NULL, NULL, uvCIRCUIT_0001CC98, NULL },
 	{ NJD_MESHSET_TRIMESH | 2, 1, polyCIRCUIT_0001C9A8, NULL, NULL, NULL, uvCIRCUIT_0001CDF8, NULL }
 };
 
-NJS_VECTOR vertexCIRCUIT_0001CE98[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertexCIRCUIT_0001CE98[] = {
 	{ -100, 20, 0 },
 	{ -97.07107f, 27.07107f, 0 },
 	{ -90, 30, 0 },
@@ -2583,7 +2579,7 @@ NJS_VECTOR vertexCIRCUIT_0001CE98[] = {
 	{ -500.0001f, 20, -580 }
 };
 
-NJS_VECTOR normalCIRCUIT_0001D5D0[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normalCIRCUIT_0001D5D0[] = {
 	{ -0.921448f, 0.381674f, 0.072519f },
 	{ -0.696238f, 0.715717f, 0.054795f },
 	{ 0.019128f, 0.9998159f, -0.001505f },
@@ -2740,43 +2736,43 @@ NJS_VECTOR normalCIRCUIT_0001D5D0[] = {
 	{ -0.06314f, 0.593608f, 0.802273f }
 };
 
-NJS_MODEL_SADX attachCIRCUIT_0001DD08 = { vertexCIRCUIT_0001CE98, normalCIRCUIT_0001D5D0, LengthOfArray(vertexCIRCUIT_0001CE98), meshlistCIRCUIT_0001CE50, matlistCIRCUIT_0001C744, LengthOfArray(meshlistCIRCUIT_0001CE50), LengthOfArray(matlistCIRCUIT_0001C744),{ -200, 15, -300 }, 424.2641f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attachCIRCUIT_0001DD08 = { vertexCIRCUIT_0001CE98, normalCIRCUIT_0001D5D0, LengthOfArray(vertexCIRCUIT_0001CE98), meshlistCIRCUIT_0001CE50, matlistCIRCUIT_0001C744, LengthOfArray(meshlistCIRCUIT_0001CE50), LengthOfArray(matlistCIRCUIT_0001C744),{ -200, 15, -300 }, 424.2641f, NULL };
 
-NJS_OBJECT objectCIRCUIT_0001DD30 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_0001DD08, 2254, -9557, 2650, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_0001DD30 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_0001DD08, 2254, -9557, 2650, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
-NJS_MATERIAL matlistCIRCUIT_0001DD64[] = {
+extern "C" __declspec(dllexport) NJS_MATERIAL matlistCIRCUIT_0001DD64[] = {
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 9, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_FLAG_DOUBLE_SIDE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 9, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 11, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_FLIP_U | NJD_FLAG_USE_TEXTURE | NJD_FLAG_DOUBLE_SIDE | NJD_FLAG_IGNORE_LIGHT | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 10, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_FLIP_V | NJD_FLAG_FLIP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_FLAG_DOUBLE_SIDE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 polyCIRCUIT_0001DDB4[] = {
+extern "C" __declspec(dllexport) Sint16 polyCIRCUIT_0001DDB4[] = {
 	22, 2, 3, 14, 15, 26, 27, 38, 39, 50, 51, 62, 63, 74, 75, 86, 87, 98, 99, 110, 111, 122, 123,
 	22, 3, 132, 15, 134, 27, 136, 39, 138, 51, 140, 63, 142, 75, 144, 87, 146, 99, 148, 111, 150, 123, 152,
 	22, 122, 121, 110, 109, 98, 97, 86, 85, 74, 73, 62, 61, 50, 49, 38, 37, 26, 25, 14, 13, 2, 1,
 	22, 121, 120, 109, 108, 97, 96, 85, 84, 73, 72, 61, 60, 49, 48, 37, 36, 25, 24, 13, 12, 1, 0
 };
 
-Sint16 polyCIRCUIT_0001DE6C[] = {
+extern "C" __declspec(dllexport) Sint16 polyCIRCUIT_0001DE6C[] = {
 	22, 9, 10, 21, 22, 33, 34, 45, 46, 57, 58, 69, 70, 81, 82, 93, 94, 105, 106, 117, 118, 129, 130,
 	22, 10, 11, 22, 23, 34, 35, 46, 47, 58, 59, 70, 71, 82, 83, 94, 95, 106, 107, 118, 119, 130, 131,
 	22, 129, 128, 117, 116, 105, 104, 93, 92, 81, 80, 69, 68, 57, 56, 45, 44, 33, 32, 21, 20, 9, 8,
 	22, 128, 153, 116, 151, 104, 149, 92, 147, 80, 145, 68, 143, 56, 141, 44, 139, 32, 137, 20, 135, 8, 133
 };
 
-Sint16 polyCIRCUIT_0001DF24[] = {
+extern "C" __declspec(dllexport) Sint16 polyCIRCUIT_0001DF24[] = {
 	22, 4, 5, 16, 17, 28, 29, 40, 41, 52, 53, 64, 65, 76, 77, 88, 89, 100, 101, 112, 113, 124, 125,
 	22, 7, 133, 19, 135, 31, 137, 43, 139, 55, 141, 67, 143, 79, 145, 91, 147, 103, 149, 115, 151, 127, 153,
 	22, 127, 126, 115, 114, 103, 102, 91, 90, 79, 78, 67, 66, 55, 54, 43, 42, 31, 30, 19, 18, 7, 6,
 	22, 124, 152, 112, 150, 100, 148, 88, 146, 76, 144, 64, 142, 52, 140, 40, 138, 28, 136, 16, 134, 4, 132
 };
 
-Sint16 polyCIRCUIT_0001DFDC[] = {
+extern "C" __declspec(dllexport) Sint16 polyCIRCUIT_0001DFDC[] = {
 	22, 126, 125, 114, 113, 102, 101, 90, 89, 78, 77, 66, 65, 54, 53, 42, 41, 30, 29, 18, 17, 6, 5
 };
 
-NJS_TEX uvCIRCUIT_0001E00C[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCIRCUIT_0001E00C[] = {
 	{ 2550, 127 },
 	{ 2550, 191 },
 	{ 2295, 127 },
@@ -2867,7 +2863,7 @@ NJS_TEX uvCIRCUIT_0001E00C[] = {
 	{ 2550, 0 }
 };
 
-NJS_TEX uvCIRCUIT_0001E16C[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCIRCUIT_0001E16C[] = {
 	{ 2550, 127 },
 	{ 2550, 63 },
 	{ 2295, 127 },
@@ -2958,7 +2954,7 @@ NJS_TEX uvCIRCUIT_0001E16C[] = {
 	{ 2550, 255 }
 };
 
-NJS_TEX uvCIRCUIT_0001E2CC[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCIRCUIT_0001E2CC[] = {
 	{ 2550, 72 },
 	{ 2550, 255 },
 	{ 2295, 72 },
@@ -3049,7 +3045,7 @@ NJS_TEX uvCIRCUIT_0001E2CC[] = {
 	{ 2550, 0 }
 };
 
-NJS_TEX uvCIRCUIT_0001E42C[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCIRCUIT_0001E42C[] = {
 	{ 0, 255 },
 	{ 1020, 255 },
 	{ 0 },
@@ -3074,14 +3070,14 @@ NJS_TEX uvCIRCUIT_0001E42C[] = {
 	{ 1020, -2295 }
 };
 
-NJS_MESHSET_SADX meshlistCIRCUIT_0001E484[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlistCIRCUIT_0001E484[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 4, polyCIRCUIT_0001DDB4, NULL, NULL, NULL, uvCIRCUIT_0001E00C, NULL },
 	{ NJD_MESHSET_TRIMESH | 1, 4, polyCIRCUIT_0001DE6C, NULL, NULL, NULL, uvCIRCUIT_0001E16C, NULL },
 	{ NJD_MESHSET_TRIMESH | 2, 4, polyCIRCUIT_0001DF24, NULL, NULL, NULL, uvCIRCUIT_0001E2CC, NULL },
 	{ NJD_MESHSET_TRIMESH | 3, 1, polyCIRCUIT_0001DFDC, NULL, NULL, NULL, uvCIRCUIT_0001E42C, NULL }
 };
 
-NJS_VECTOR vertexCIRCUIT_0001E4E4[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertexCIRCUIT_0001E4E4[] = {
 	{ -100, 20, 0 },
 	{ -97.07107f, 27.07107f, 0 },
 	{ -90, 30, 0 },
@@ -3238,7 +3234,7 @@ NJS_VECTOR vertexCIRCUIT_0001E4E4[] = {
 	{ -500.0001f, 120, -580 }
 };
 
-NJS_VECTOR normalCIRCUIT_0001EC1C[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normalCIRCUIT_0001EC1C[] = {
 	{ -0.915046f, 0.380981f, 0.132458f },
 	{ -0.703364f, 0.691704f, 0.163784f },
 	{ 0.03005f, 0.9881769f, 0.150341f },
@@ -3395,11 +3391,11 @@ NJS_VECTOR normalCIRCUIT_0001EC1C[] = {
 	{ -0.000137f, 0.581012f, 0.813895f }
 };
 
-NJS_MODEL_SADX attachCIRCUIT_0001F354 = { vertexCIRCUIT_0001E4E4, normalCIRCUIT_0001EC1C, LengthOfArray(vertexCIRCUIT_0001E4E4), meshlistCIRCUIT_0001E484, matlistCIRCUIT_0001DD64, LengthOfArray(meshlistCIRCUIT_0001E484), LengthOfArray(matlistCIRCUIT_0001DD64),{ -200, 65, -300 }, 424.2641f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attachCIRCUIT_0001F354 = { vertexCIRCUIT_0001E4E4, normalCIRCUIT_0001EC1C, LengthOfArray(vertexCIRCUIT_0001E4E4), meshlistCIRCUIT_0001E484, matlistCIRCUIT_0001DD64, LengthOfArray(meshlistCIRCUIT_0001E484), LengthOfArray(matlistCIRCUIT_0001DD64),{ -200, 65, -300 }, 424.2641f, NULL };
 
-NJS_OBJECT objectCIRCUIT_0001F37C = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_0001F354, 1653, -9557, 2650, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_0001F37C = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_0001F354, 1653, -9557, 2650, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
-NJS_MATERIAL matlistCIRCUIT_0001F3B0[] = {
+extern "C" __declspec(dllexport) NJS_MATERIAL matlistCIRCUIT_0001F3B0[] = {
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 9, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 9, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 11, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_FLIP_U | NJD_FLAG_USE_TEXTURE | NJD_FLAG_DOUBLE_SIDE | NJD_FLAG_IGNORE_LIGHT | NJD_DA_INV_SRC | NJD_SA_SRC },
@@ -3409,7 +3405,7 @@ NJS_MATERIAL matlistCIRCUIT_0001F3B0[] = {
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 11, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_USE_TEXTURE | NJD_FLAG_DOUBLE_SIDE | NJD_FLAG_IGNORE_LIGHT | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 polyCIRCUIT_0001F43C[] = {
+extern "C" __declspec(dllexport) Sint16 polyCIRCUIT_0001F43C[] = {
 	0x8000u | 10, 0, 10, 1, 11, 82, 12, 2, 13, 83, 86,
 	0x8000u | 10, 21, 9, 20, 8, 19, 85, 18, 7, 87, 84,
 	0x8000u | 10, 46, 48, 49, 51, 52, 85, 54, 56, 57, 59,
@@ -3422,14 +3418,14 @@ Sint16 polyCIRCUIT_0001F43C[] = {
 	0x8000u | 5, 95, 47, 50, 46, 49
 };
 
-Sint16 polyCIRCUIT_0001F4E8[] = {
+extern "C" __declspec(dllexport) Sint16 polyCIRCUIT_0001F4E8[] = {
 	0x8000u | 5, 85, 51, 7, 48, 84,
 	0x8000u | 5, 83, 35, 2, 32, 82,
 	0x8000u | 5, 85, 8, 56, 9, 59,
 	0x8000u | 5, 82, 26, 1, 27, 0
 };
 
-Sint16 polyCIRCUIT_0001F518[] = {
+extern "C" __declspec(dllexport) Sint16 polyCIRCUIT_0001F518[] = {
 	10, 14, 86, 3, 83, 38, 35, 36, 33, 37, 34,
 	10, 17, 16, 6, 5, 45, 42, 43, 41, 44, 89,
 	10, 37, 88, 36, 39, 38, 40, 3, 4, 14, 15,
@@ -3439,12 +3435,12 @@ Sint16 polyCIRCUIT_0001F518[] = {
 	0x8000u | 6, 66, 89, 67, 77, 91, 93
 };
 
-Sint16 polyCIRCUIT_0001F592[] = {
+extern "C" __declspec(dllexport) Sint16 polyCIRCUIT_0001F592[] = {
 	7, 88, 89, 39, 41, 40, 42, 5,
 	0x8000u | 5, 40, 4, 5, 15, 16
 };
 
-Sint16 polyCIRCUIT_0001F5AE[] = {
+extern "C" __declspec(dllexport) Sint16 polyCIRCUIT_0001F5AE[] = {
 	7, 26, 27, 22, 23, 25, 24, 105,
 	9, 82, 26, 28, 22, 29, 25, 104, 105, 72,
 	12, 32, 82, 30, 28, 31, 29, 103, 104, 73, 72, 61, 60,
@@ -3454,18 +3450,18 @@ Sint16 polyCIRCUIT_0001F5AE[] = {
 	0x8000u | 5, 102, 75, 74, 63, 62
 };
 
-Sint16 polyCIRCUIT_0001F628[] = {
+extern "C" __declspec(dllexport) Sint16 polyCIRCUIT_0001F628[] = {
 	4, 89, 88, 66, 65
 };
 
-Sint16 polyCIRCUIT_0001F632[] = {
+extern "C" __declspec(dllexport) Sint16 polyCIRCUIT_0001F632[] = {
 	6, 44, 89, 94, 77, 95, 93,
 	4, 95, 47, 94, 44,
 	6, 76, 88, 100, 37, 101, 34,
 	4, 101, 92, 100, 76
 };
 
-NJS_TEX uvCIRCUIT_0001F664[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCIRCUIT_0001F664[] = {
 	{ 510, 0 },
 	{ 0 },
 	{ 510, 63 },
@@ -3544,7 +3540,7 @@ NJS_TEX uvCIRCUIT_0001F664[] = {
 	{ 1721, 191 }
 };
 
-NJS_TEX uvCIRCUIT_0001F794[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCIRCUIT_0001F794[] = {
 	{ 137, 131 },
 	{ 185, 206 },
 	{ 106, 204 },
@@ -3567,7 +3563,7 @@ NJS_TEX uvCIRCUIT_0001F794[] = {
 	{ 1, 1 }
 };
 
-NJS_TEX uvCIRCUIT_0001F7E4[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCIRCUIT_0001F7E4[] = {
 	{ 2550, 72 },
 	{ 2550, 0 },
 	{ 1862, 72 },
@@ -3624,7 +3620,7 @@ NJS_TEX uvCIRCUIT_0001F7E4[] = {
 	{ 0 }
 };
 
-NJS_TEX uvCIRCUIT_0001F8BC[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCIRCUIT_0001F8BC[] = {
 	{ 1020, -1911 },
 	{ 0, -1911 },
 	{ 1020, -1259 },
@@ -3639,7 +3635,7 @@ NJS_TEX uvCIRCUIT_0001F8BC[] = {
 	{ 0, 255 }
 };
 
-NJS_TEX uvCIRCUIT_0001F8EC[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCIRCUIT_0001F8EC[] = {
 	{ 0, 63 },
 	{ 0 },
 	{ 827, 63 },
@@ -3696,14 +3692,14 @@ NJS_TEX uvCIRCUIT_0001F8EC[] = {
 	{ 2550, 127 }
 };
 
-NJS_TEX uvCIRCUIT_0001F9C4[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCIRCUIT_0001F9C4[] = {
 	{ 0 },
 	{ 1020, 0 },
 	{ 0, 255 },
 	{ 1020, 255 }
 };
 
-NJS_TEX uvCIRCUIT_0001F9D4[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCIRCUIT_0001F9D4[] = {
 	{ 127, 52 },
 	{ 0, 254 },
 	{ 61, 52 },
@@ -3726,7 +3722,7 @@ NJS_TEX uvCIRCUIT_0001F9D4[] = {
 	{ -1, 52 }
 };
 
-NJS_MESHSET_SADX meshlistCIRCUIT_0001FA24[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlistCIRCUIT_0001FA24[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 10, polyCIRCUIT_0001F43C, NULL, NULL, NULL, uvCIRCUIT_0001F664, NULL },
 	{ NJD_MESHSET_TRIMESH | 1, 4, polyCIRCUIT_0001F4E8, NULL, NULL, NULL, uvCIRCUIT_0001F794, NULL },
 	{ NJD_MESHSET_TRIMESH | 2, 7, polyCIRCUIT_0001F518, NULL, NULL, NULL, uvCIRCUIT_0001F7E4, NULL },
@@ -3736,7 +3732,7 @@ NJS_MESHSET_SADX meshlistCIRCUIT_0001FA24[] = {
 	{ NJD_MESHSET_TRIMESH | 6, 4, polyCIRCUIT_0001F632, NULL, NULL, NULL, uvCIRCUIT_0001F9D4, NULL }
 };
 
-NJS_VECTOR vertexCIRCUIT_0001FACC[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertexCIRCUIT_0001FACC[] = {
 	{ -100, -180, -80 },
 	{ -97.07107f, -172.9289f, -80 },
 	{ -82.92892f, -172.9289f, -80 },
@@ -3845,7 +3841,7 @@ NJS_VECTOR vertexCIRCUIT_0001FACC[] = {
 	{ -100, 14.5f, -64.5f }
 };
 
-NJS_VECTOR normalCIRCUIT_0001FFC4[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normalCIRCUIT_0001FFC4[] = {
 	{ -0.916245f, 0.37952f, -0.128293f },
 	{ -0.729401f, 0.623262f, -0.28199f },
 	{ 0.729401f, 0.623262f, -0.28199f },
@@ -3954,17 +3950,17 @@ NJS_VECTOR normalCIRCUIT_0001FFC4[] = {
 	{ -0.926848f, 0.265475f, -0.265475f }
 };
 
-NJS_MODEL_SADX attachCIRCUIT_000204BC = { vertexCIRCUIT_0001FACC, normalCIRCUIT_0001FFC4, LengthOfArray(vertexCIRCUIT_0001FACC), meshlistCIRCUIT_0001FA24, matlistCIRCUIT_0001F3B0, LengthOfArray(meshlistCIRCUIT_0001FA24), LengthOfArray(matlistCIRCUIT_0001F3B0),{ 0, -85, -75 }, 152.3975f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attachCIRCUIT_000204BC = { vertexCIRCUIT_0001FACC, normalCIRCUIT_0001FFC4, LengthOfArray(vertexCIRCUIT_0001FACC), meshlistCIRCUIT_0001FA24, matlistCIRCUIT_0001F3B0, LengthOfArray(meshlistCIRCUIT_0001FA24), LengthOfArray(matlistCIRCUIT_0001F3B0),{ 0, -85, -75 }, 152.3975f, NULL };
 
-NJS_OBJECT objectCIRCUIT_000204E4 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_000204BC, 2086, -9464, 2933, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_000204E4 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_000204BC, 2086, -9464, 2933, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
 
-NJS_MATERIAL matlistCIRCUIT_00020518[] = {
+extern "C" __declspec(dllexport) NJS_MATERIAL matlistCIRCUIT_00020518[] = {
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 9, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 10, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_FLIP_V | NJD_FLAG_FLIP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 11, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_FLIP_U | NJD_FLAG_USE_TEXTURE | NJD_FLAG_DOUBLE_SIDE | NJD_FLAG_IGNORE_LIGHT | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 polyCIRCUIT_00020554[] = {
+extern "C" __declspec(dllexport) Sint16 polyCIRCUIT_00020554[] = {
 	0x8000u | 10, 53, 0, 54, 1, 55, 2, 56, 3, 57, 67,
 	14, 8, 68, 63, 62, 38, 47, 32, 46, 26, 45, 81, 80, 20, 70,
 	14, 9, 8, 64, 63, 39, 38, 33, 32, 27, 26, 82, 81, 21, 20,
@@ -3975,20 +3971,20 @@ Sint16 polyCIRCUIT_00020554[] = {
 	0x8000u | 10, 42, 53, 48, 54, 43, 55, 49, 56, 50, 57
 };
 
-Sint16 polyCIRCUIT_00020624[] = {
+extern "C" __declspec(dllexport) Sint16 polyCIRCUIT_00020624[] = {
 	3, 52, 30, 36,
 	8, 30, 52, 24, 51, 78, 77, 18, 17,
 	0x8000u | 7, 52, 51, 36, 59, 60, 5, 6
 };
 
-Sint16 polyCIRCUIT_0002064E[] = {
+extern "C" __declspec(dllexport) Sint16 polyCIRCUIT_0002064E[] = {
 	10, 4, 67, 58, 57, 44, 50, 76, 75, 16, 69,
 	14, 7, 6, 61, 60, 37, 36, 31, 30, 25, 24, 79, 78, 19, 18,
 	10, 16, 17, 76, 77, 44, 51, 58, 59, 4, 5,
 	14, 19, 70, 79, 80, 25, 45, 31, 46, 37, 47, 61, 62, 7, 68
 };
 
-NJS_TEX uvCIRCUIT_000206B8[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCIRCUIT_000206B8[] = {
 	{ 408, 0 },
 	{ 0 },
 	{ 398, 63 },
@@ -4087,7 +4083,7 @@ NJS_TEX uvCIRCUIT_000206B8[] = {
 	{ 350, 255 }
 };
 
-NJS_TEX uvCIRCUIT_00020838[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCIRCUIT_00020838[] = {
 	{ 510, -508 },
 	{ 1020, -764 },
 	{ 1020, -254 },
@@ -4108,7 +4104,7 @@ NJS_TEX uvCIRCUIT_00020838[] = {
 	{ 1020, 254 }
 };
 
-NJS_TEX uvCIRCUIT_00020880[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCIRCUIT_00020880[] = {
 	{ 0, 72 },
 	{ 0 },
 	{ 340, 72 },
@@ -4159,13 +4155,13 @@ NJS_TEX uvCIRCUIT_00020880[] = {
 	{ 0 }
 };
 
-NJS_MESHSET_SADX meshlistCIRCUIT_00020940[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlistCIRCUIT_00020940[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 8, polyCIRCUIT_00020554, NULL, NULL, NULL, uvCIRCUIT_000206B8, NULL },
 	{ NJD_MESHSET_TRIMESH | 1, 3, polyCIRCUIT_00020624, NULL, NULL, NULL, uvCIRCUIT_00020838, NULL },
 	{ NJD_MESHSET_TRIMESH | 2, 4, polyCIRCUIT_0002064E, NULL, NULL, NULL, uvCIRCUIT_00020880, NULL }
 };
 
-NJS_VECTOR vertexCIRCUIT_00020988[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertexCIRCUIT_00020988[] = {
 	{ -225, 20, -125 },
 	{ -225, 27.07107f, -127.9289f },
 	{ -225, 30, -135 },
@@ -4253,7 +4249,7 @@ NJS_VECTOR vertexCIRCUIT_00020988[] = {
 	{ 100, 20, -50 }
 };
 
-NJS_VECTOR normalCIRCUIT_00020D84[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normalCIRCUIT_00020D84[] = {
 	{ 0, 0.382683f, 0.92388f },
 	{ 0, 0.7071069f, 0.7071069f },
 	{ 0, 1, 0 },
@@ -4341,31 +4337,31 @@ NJS_VECTOR normalCIRCUIT_00020D84[] = {
 	{ 0.92388f, 0.382683f, 0 }
 };
 
-NJS_MODEL_SADX attachCIRCUIT_00021180 = { vertexCIRCUIT_00020988, normalCIRCUIT_00020D84, LengthOfArray(vertexCIRCUIT_00020988), meshlistCIRCUIT_00020940, matlistCIRCUIT_00020518, LengthOfArray(meshlistCIRCUIT_00020940), LengthOfArray(matlistCIRCUIT_00020518),{ -62.5f, 15, -162.5f }, 229.8097f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attachCIRCUIT_00021180 = { vertexCIRCUIT_00020988, normalCIRCUIT_00020D84, LengthOfArray(vertexCIRCUIT_00020988), meshlistCIRCUIT_00020940, matlistCIRCUIT_00020518, LengthOfArray(meshlistCIRCUIT_00020940), LengthOfArray(matlistCIRCUIT_00020518),{ -62.5f, 15, -162.5f }, 229.8097f, NULL };
 
-NJS_OBJECT objectCIRCUIT_000211A8 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00021180, -87, -9557, 3091, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_000211A8 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00021180, -87, -9557, 3091, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
-NJS_MATERIAL matlistCIRCUIT_000211DC[] = {
+extern "C" __declspec(dllexport) NJS_MATERIAL matlistCIRCUIT_000211DC[] = {
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 9, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 11, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_FLIP_U | NJD_FLAG_USE_TEXTURE | NJD_FLAG_DOUBLE_SIDE | NJD_FLAG_IGNORE_LIGHT | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 10, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_FLIP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 polyCIRCUIT_00021218[] = {
+extern "C" __declspec(dllexport) Sint16 polyCIRCUIT_00021218[] = {
 	0x8000u | 10, 26, 24, 15, 3, 14, 2, 13, 1, 12, 0,
 	0x8000u | 10, 25, 27, 8, 20, 9, 21, 10, 22, 11, 23
 };
 
-Sint16 polyCIRCUIT_00021244[] = {
+extern "C" __declspec(dllexport) Sint16 polyCIRCUIT_00021244[] = {
 	0x8000u | 6, 17, 5, 16, 4, 26, 24,
 	0x8000u | 6, 27, 25, 19, 7, 18, 6
 };
 
-Sint16 polyCIRCUIT_00021260[] = {
+extern "C" __declspec(dllexport) Sint16 polyCIRCUIT_00021260[] = {
 	4, 18, 17, 6, 5
 };
 
-NJS_TEX uvCIRCUIT_0002126C[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCIRCUIT_0002126C[] = {
 	{ 0, 255 },
 	{ 255, 255 },
 	{ 0, 191 },
@@ -4388,7 +4384,7 @@ NJS_TEX uvCIRCUIT_0002126C[] = {
 	{ 255, 0 }
 };
 
-NJS_TEX uvCIRCUIT_000212BC[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCIRCUIT_000212BC[] = {
 	{ 0, 255 },
 	{ 510, 255 },
 	{ 0, 72 },
@@ -4403,20 +4399,20 @@ NJS_TEX uvCIRCUIT_000212BC[] = {
 	{ 0, 255 }
 };
 
-NJS_TEX uvCIRCUIT_000212EC[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCIRCUIT_000212EC[] = {
 	{ 0, 255 },
 	{ 1020, 255 },
 	{ 0 },
 	{ 1020, 0 }
 };
 
-NJS_MESHSET_SADX meshlistCIRCUIT_000212FC[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlistCIRCUIT_000212FC[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 2, polyCIRCUIT_00021218, NULL, NULL, NULL, uvCIRCUIT_0002126C, NULL },
 	{ NJD_MESHSET_TRIMESH | 1, 2, polyCIRCUIT_00021244, NULL, NULL, NULL, uvCIRCUIT_000212BC, NULL },
 	{ NJD_MESHSET_TRIMESH | 2, 1, polyCIRCUIT_00021260, NULL, NULL, NULL, uvCIRCUIT_000212EC, NULL }
 };
 
-NJS_VECTOR vertexCIRCUIT_00021344[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertexCIRCUIT_00021344[] = {
 	{ -100, 20, 0 },
 	{ -97.07107f, 27.07107f, 0 },
 	{ -90, 30, 0 },
@@ -4447,7 +4443,7 @@ NJS_VECTOR vertexCIRCUIT_00021344[] = {
 	{ 80, 27.5f, -50 }
 };
 
-NJS_VECTOR normalCIRCUIT_00021494[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normalCIRCUIT_00021494[] = {
 	{ -0.922361f, 0.382055f, 0.057308f },
 	{ -0.721823f, 0.6844209f, 0.102663f },
 	{ 0, 0.9889359f, 0.14834f },
@@ -4478,31 +4474,31 @@ NJS_VECTOR normalCIRCUIT_00021494[] = {
 	{ -0.8077779f, 0.582965f, 0.087445f }
 };
 
-NJS_MODEL_SADX attachCIRCUIT_000215E4 = { vertexCIRCUIT_00021344, normalCIRCUIT_00021494, LengthOfArray(vertexCIRCUIT_00021344), meshlistCIRCUIT_000212FC, matlistCIRCUIT_000211DC, LengthOfArray(meshlistCIRCUIT_000212FC), LengthOfArray(matlistCIRCUIT_000211DC),{ 0, 18.75f, -25 }, 103.0777f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attachCIRCUIT_000215E4 = { vertexCIRCUIT_00021344, normalCIRCUIT_00021494, LengthOfArray(vertexCIRCUIT_00021344), meshlistCIRCUIT_000212FC, matlistCIRCUIT_000211DC, LengthOfArray(meshlistCIRCUIT_000212FC), LengthOfArray(matlistCIRCUIT_000211DC),{ 0, 18.75f, -25 }, 103.0777f, NULL };
 
-NJS_OBJECT objectCIRCUIT_0002160C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_000215E4, 381, -9890, 3060, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_0002160C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_000215E4, 381, -9890, 3060, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
 
-NJS_MATERIAL matlistCIRCUIT_00021640[] = {
+extern "C" __declspec(dllexport) NJS_MATERIAL matlistCIRCUIT_00021640[] = {
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 9, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 11, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_FLIP_U | NJD_FLAG_USE_TEXTURE | NJD_FLAG_DOUBLE_SIDE | NJD_FLAG_IGNORE_LIGHT | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 10, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_FLIP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 polyCIRCUIT_0002167C[] = {
+extern "C" __declspec(dllexport) Sint16 polyCIRCUIT_0002167C[] = {
 	0x8000u | 10, 26, 24, 15, 3, 14, 2, 13, 1, 12, 0,
 	0x8000u | 10, 25, 27, 8, 20, 9, 21, 10, 22, 11, 23
 };
 
-Sint16 polyCIRCUIT_000216A8[] = {
+extern "C" __declspec(dllexport) Sint16 polyCIRCUIT_000216A8[] = {
 	0x8000u | 6, 17, 5, 16, 4, 26, 24,
 	0x8000u | 6, 27, 25, 19, 7, 18, 6
 };
 
-Sint16 polyCIRCUIT_000216C4[] = {
+extern "C" __declspec(dllexport) Sint16 polyCIRCUIT_000216C4[] = {
 	4, 18, 17, 6, 5
 };
 
-NJS_TEX uvCIRCUIT_000216D0[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCIRCUIT_000216D0[] = {
 	{ 255, 255 },
 	{ 0, 255 },
 	{ 255, 191 },
@@ -4525,7 +4521,7 @@ NJS_TEX uvCIRCUIT_000216D0[] = {
 	{ 0 }
 };
 
-NJS_TEX uvCIRCUIT_00021720[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCIRCUIT_00021720[] = {
 	{ 0, 255 },
 	{ 510, 255 },
 	{ 0, 72 },
@@ -4540,20 +4536,20 @@ NJS_TEX uvCIRCUIT_00021720[] = {
 	{ 0, 255 }
 };
 
-NJS_TEX uvCIRCUIT_00021750[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCIRCUIT_00021750[] = {
 	{ 0, 255 },
 	{ 1020, 255 },
 	{ 0 },
 	{ 1020, 0 }
 };
 
-NJS_MESHSET_SADX meshlistCIRCUIT_00021760[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlistCIRCUIT_00021760[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 2, polyCIRCUIT_0002167C, NULL, NULL, NULL, uvCIRCUIT_000216D0, NULL },
 	{ NJD_MESHSET_TRIMESH | 1, 2, polyCIRCUIT_000216A8, NULL, NULL, NULL, uvCIRCUIT_00021720, NULL },
 	{ NJD_MESHSET_TRIMESH | 2, 1, polyCIRCUIT_000216C4, NULL, NULL, NULL, uvCIRCUIT_00021750, NULL }
 };
 
-NJS_VECTOR vertexCIRCUIT_000217A8[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertexCIRCUIT_000217A8[] = {
 	{ -100, 20, 0 },
 	{ -97.07107f, 27.07107f, 0 },
 	{ -90, 30, 0 },
@@ -4584,7 +4580,7 @@ NJS_VECTOR vertexCIRCUIT_000217A8[] = {
 	{ 80, 35, -50 }
 };
 
-NJS_VECTOR normalCIRCUIT_000218F8[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normalCIRCUIT_000218F8[] = {
 	{ -0.917851f, 0.380186f, 0.114056f },
 	{ -0.729542f, 0.6550919f, 0.196527f },
 	{ 0, 0.957826f, 0.287348f },
@@ -4615,17 +4611,17 @@ NJS_VECTOR normalCIRCUIT_000218F8[] = {
 	{ -0.810132f, 0.561523f, 0.168457f }
 };
 
-NJS_MODEL_SADX attachCIRCUIT_00021A48 = { vertexCIRCUIT_000217A8, normalCIRCUIT_000218F8, LengthOfArray(vertexCIRCUIT_000217A8), meshlistCIRCUIT_00021760, matlistCIRCUIT_00021640, LengthOfArray(meshlistCIRCUIT_00021760), LengthOfArray(matlistCIRCUIT_00021640),{ 0, 22.5f, -25 }, 103.0777f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attachCIRCUIT_00021A48 = { vertexCIRCUIT_000217A8, normalCIRCUIT_000218F8, LengthOfArray(vertexCIRCUIT_000217A8), meshlistCIRCUIT_00021760, matlistCIRCUIT_00021640, LengthOfArray(meshlistCIRCUIT_00021760), LengthOfArray(matlistCIRCUIT_00021640),{ 0, 22.5f, -25 }, 103.0777f, NULL };
 
-NJS_OBJECT objectCIRCUIT_00021A70 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00021A48, 194, -9890, 3060, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00021A70 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00021A48, 194, -9890, 3060, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
 
-NJS_MATERIAL matlistCIRCUIT_00021AA4[] = {
+extern "C" __declspec(dllexport) NJS_MATERIAL matlistCIRCUIT_00021AA4[] = {
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 9, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 11, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_FLIP_U | NJD_FLAG_USE_TEXTURE | NJD_FLAG_DOUBLE_SIDE | NJD_FLAG_IGNORE_LIGHT | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 10, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_FLIP_V | NJD_FLAG_FLIP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 polyCIRCUIT_00021AE0[] = {
+extern "C" __declspec(dllexport) Sint16 polyCIRCUIT_00021AE0[] = {
 	22, 2, 3, 14, 15, 26, 27, 38, 39, 50, 51, 62, 63, 74, 75, 86, 87, 98, 99, 110, 111, 122, 123,
 	22, 3, 132, 15, 134, 27, 136, 39, 138, 51, 140, 63, 142, 75, 144, 87, 146, 99, 148, 111, 150, 123, 152,
 	22, 8, 9, 20, 21, 32, 33, 44, 45, 56, 57, 68, 69, 80, 81, 92, 93, 104, 105, 116, 117, 128, 129,
@@ -4636,18 +4632,18 @@ Sint16 polyCIRCUIT_00021AE0[] = {
 	22, 121, 120, 109, 108, 97, 96, 85, 84, 73, 72, 61, 60, 49, 48, 37, 36, 25, 24, 13, 12, 1, 0
 };
 
-Sint16 polyCIRCUIT_00021C50[] = {
+extern "C" __declspec(dllexport) Sint16 polyCIRCUIT_00021C50[] = {
 	22, 4, 5, 16, 17, 28, 29, 40, 41, 52, 53, 64, 65, 76, 77, 88, 89, 100, 101, 112, 113, 124, 125,
 	22, 7, 133, 19, 135, 31, 137, 43, 139, 55, 141, 67, 143, 79, 145, 91, 147, 103, 149, 115, 151, 127, 153,
 	22, 127, 126, 115, 114, 103, 102, 91, 90, 79, 78, 67, 66, 55, 54, 43, 42, 31, 30, 19, 18, 7, 6,
 	22, 124, 152, 112, 150, 100, 148, 88, 146, 76, 144, 64, 142, 52, 140, 40, 138, 28, 136, 16, 134, 4, 132
 };
 
-Sint16 polyCIRCUIT_00021D08[] = {
+extern "C" __declspec(dllexport) Sint16 polyCIRCUIT_00021D08[] = {
 	22, 126, 125, 114, 113, 102, 101, 90, 89, 78, 77, 66, 65, 54, 53, 42, 41, 30, 29, 18, 17, 6, 5
 };
 
-NJS_TEX uvCIRCUIT_00021D38[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCIRCUIT_00021D38[] = {
 	{ 2550, 127 },
 	{ 2550, 191 },
 	{ 2295, 127 },
@@ -4826,7 +4822,7 @@ NJS_TEX uvCIRCUIT_00021D38[] = {
 	{ 2550, 0 }
 };
 
-NJS_TEX uvCIRCUIT_00021FF8[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCIRCUIT_00021FF8[] = {
 	{ 2550, 72 },
 	{ 2550, 255 },
 	{ 2295, 72 },
@@ -4917,7 +4913,7 @@ NJS_TEX uvCIRCUIT_00021FF8[] = {
 	{ 2550, 0 }
 };
 
-NJS_TEX uvCIRCUIT_00022158[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCIRCUIT_00022158[] = {
 	{ 0, -1785 },
 	{ 1020, -1785 },
 	{ 0, -1579 },
@@ -4942,13 +4938,13 @@ NJS_TEX uvCIRCUIT_00022158[] = {
 	{ 1020, 255 }
 };
 
-NJS_MESHSET_SADX meshlistCIRCUIT_000221B0[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlistCIRCUIT_000221B0[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 8, polyCIRCUIT_00021AE0, NULL, NULL, NULL, uvCIRCUIT_00021D38, NULL },
 	{ NJD_MESHSET_TRIMESH | 1, 4, polyCIRCUIT_00021C50, NULL, NULL, NULL, uvCIRCUIT_00021FF8, NULL },
 	{ NJD_MESHSET_TRIMESH | 2, 1, polyCIRCUIT_00021D08, NULL, NULL, NULL, uvCIRCUIT_00022158, NULL }
 };
 
-NJS_VECTOR vertexCIRCUIT_000221F8[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertexCIRCUIT_000221F8[] = {
 	{ -100, 20, 0 },
 	{ -97.07107f, 27.07107f, 0 },
 	{ -90, 30, 0 },
@@ -5105,7 +5101,7 @@ NJS_VECTOR vertexCIRCUIT_000221F8[] = {
 	{ -300, 120, -380 }
 };
 
-NJS_VECTOR normalCIRCUIT_00022930[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normalCIRCUIT_00022930[] = {
 	{ -0.905561f, 0.378963f, 0.190646f },
 	{ -0.70403f, 0.661235f, 0.259056f },
 	{ 0.039366f, 0.958132f, 0.283607f },
@@ -5262,17 +5258,17 @@ NJS_VECTOR normalCIRCUIT_00022930[] = {
 	{ 0.031765f, 0.573474f, 0.818608f }
 };
 
-NJS_MODEL_SADX attachCIRCUIT_00023068 = { vertexCIRCUIT_000221F8, normalCIRCUIT_00022930, LengthOfArray(vertexCIRCUIT_000221F8), meshlistCIRCUIT_000221B0, matlistCIRCUIT_00021AA4, LengthOfArray(meshlistCIRCUIT_000221B0), LengthOfArray(matlistCIRCUIT_00021AA4),{ -100, 65, -200 }, 282.8427f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attachCIRCUIT_00023068 = { vertexCIRCUIT_000221F8, normalCIRCUIT_00022930, LengthOfArray(vertexCIRCUIT_000221F8), meshlistCIRCUIT_000221B0, matlistCIRCUIT_00021AA4, LengthOfArray(meshlistCIRCUIT_000221B0), LengthOfArray(matlistCIRCUIT_00021AA4),{ -100, 65, -200 }, 282.8427f, NULL };
 
-NJS_OBJECT objectCIRCUIT_00023090 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00023068, 68, -9557, 2650, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00023090 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00023068, 68, -9557, 2650, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
-NJS_MATERIAL matlistCIRCUIT_000230C4[] = {
+extern "C" __declspec(dllexport) NJS_MATERIAL matlistCIRCUIT_000230C4[] = {
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 9, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 11, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_FLIP_U | NJD_FLAG_USE_TEXTURE | NJD_FLAG_IGNORE_LIGHT | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 10, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_FLIP_V | NJD_FLAG_FLIP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 polyCIRCUIT_00023100[] = {
+extern "C" __declspec(dllexport) Sint16 polyCIRCUIT_00023100[] = {
 	22, 3, 132, 15, 134, 27, 136, 39, 138, 51, 140, 63, 142, 75, 144, 87, 146, 99, 148, 111, 150, 123, 152,
 	22, 131, 130, 119, 118, 107, 106, 95, 94, 83, 82, 71, 70, 59, 58, 47, 46, 35, 34, 23, 22, 11, 10,
 	22, 9, 10, 21, 22, 33, 34, 45, 46, 57, 58, 69, 70, 81, 82, 93, 94, 105, 106, 117, 118, 129, 130,
@@ -5283,18 +5279,18 @@ Sint16 polyCIRCUIT_00023100[] = {
 	22, 121, 120, 109, 108, 97, 96, 85, 84, 73, 72, 61, 60, 49, 48, 37, 36, 25, 24, 13, 12, 1, 0
 };
 
-Sint16 polyCIRCUIT_00023270[] = {
+extern "C" __declspec(dllexport) Sint16 polyCIRCUIT_00023270[] = {
 	22, 4, 5, 16, 17, 28, 29, 40, 41, 52, 53, 64, 65, 76, 77, 88, 89, 100, 101, 112, 113, 124, 125,
 	22, 7, 133, 19, 135, 31, 137, 43, 139, 55, 141, 67, 143, 79, 145, 91, 147, 103, 149, 115, 151, 127, 153,
 	22, 127, 126, 115, 114, 103, 102, 91, 90, 79, 78, 67, 66, 55, 54, 43, 42, 31, 30, 19, 18, 7, 6,
 	22, 124, 152, 112, 150, 100, 148, 88, 146, 76, 144, 64, 142, 52, 140, 40, 138, 28, 136, 16, 134, 4, 132
 };
 
-Sint16 polyCIRCUIT_00023328[] = {
+extern "C" __declspec(dllexport) Sint16 polyCIRCUIT_00023328[] = {
 	22, 5, 6, 17, 18, 29, 30, 41, 42, 53, 54, 65, 66, 77, 78, 89, 90, 101, 102, 113, 114, 125, 126
 };
 
-NJS_TEX uvCIRCUIT_00023358[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCIRCUIT_00023358[] = {
 	{ 2550, 191 },
 	{ 2550, 255 },
 	{ 2295, 191 },
@@ -5473,7 +5469,7 @@ NJS_TEX uvCIRCUIT_00023358[] = {
 	{ 2550, 0 }
 };
 
-NJS_TEX uvCIRCUIT_00023618[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCIRCUIT_00023618[] = {
 	{ 2550, 72 },
 	{ 2550, 255 },
 	{ 2295, 72 },
@@ -5564,7 +5560,7 @@ NJS_TEX uvCIRCUIT_00023618[] = {
 	{ 2550, 0 }
 };
 
-NJS_TEX uvCIRCUIT_00023778[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCIRCUIT_00023778[] = {
 	{ 1020, 255 },
 	{ 0, 255 },
 	{ 1020, 51 },
@@ -5589,13 +5585,13 @@ NJS_TEX uvCIRCUIT_00023778[] = {
 	{ 0, -1785 }
 };
 
-NJS_MESHSET_SADX meshlistCIRCUIT_000237D0[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlistCIRCUIT_000237D0[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 8, polyCIRCUIT_00023100, NULL, NULL, NULL, uvCIRCUIT_00023358, NULL },
 	{ NJD_MESHSET_TRIMESH | 1, 4, polyCIRCUIT_00023270, NULL, NULL, NULL, uvCIRCUIT_00023618, NULL },
 	{ NJD_MESHSET_TRIMESH | 2, 1, polyCIRCUIT_00023328, NULL, NULL, NULL, uvCIRCUIT_00023778, NULL }
 };
 
-NJS_VECTOR vertexCIRCUIT_00023818[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertexCIRCUIT_00023818[] = {
 	{ -100, 20, 0 },
 	{ -97.07111f, 27.07107f, 0 },
 	{ -90.00003f, 30, 0 },
@@ -5752,7 +5748,7 @@ NJS_VECTOR vertexCIRCUIT_00023818[] = {
 	{ -400, 122, -480 }
 };
 
-NJS_VECTOR normalCIRCUIT_00023F50[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normalCIRCUIT_00023F50[] = {
 	{ -0.912212f, 0.38045f, 0.152076f },
 	{ -0.704254f, 0.682036f, 0.197109f },
 	{ 0.033327f, 0.979822f, 0.197073f },
@@ -5909,31 +5905,31 @@ NJS_VECTOR normalCIRCUIT_00023F50[] = {
 	{ 0.02724f, 0.574591f, 0.817987f }
 };
 
-NJS_MODEL_SADX attachCIRCUIT_00024688 = { vertexCIRCUIT_00023818, normalCIRCUIT_00023F50, LengthOfArray(vertexCIRCUIT_00023818), meshlistCIRCUIT_000237D0, matlistCIRCUIT_000230C4, LengthOfArray(meshlistCIRCUIT_000237D0), LengthOfArray(matlistCIRCUIT_000230C4),{ -150, 66, -250 }, 353.5534f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attachCIRCUIT_00024688 = { vertexCIRCUIT_00023818, normalCIRCUIT_00023F50, LengthOfArray(vertexCIRCUIT_00023818), meshlistCIRCUIT_000237D0, matlistCIRCUIT_000230C4, LengthOfArray(meshlistCIRCUIT_000237D0), LengthOfArray(matlistCIRCUIT_000230C4),{ -150, 66, -250 }, 353.5534f, NULL };
 
-NJS_OBJECT objectCIRCUIT_000246B0 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024688, 1118, -9557, 2650, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_000246B0 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024688, 1118, -9557, 2650, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
-NJS_MATERIAL matlistCIRCUIT_000246E4[] = {
+extern "C" __declspec(dllexport) NJS_MATERIAL matlistCIRCUIT_000246E4[] = {
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 9, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 11, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_FLIP_U | NJD_FLAG_USE_TEXTURE | NJD_FLAG_DOUBLE_SIDE | NJD_FLAG_IGNORE_LIGHT | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 10, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_FLIP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 polyCIRCUIT_00024720[] = {
+extern "C" __declspec(dllexport) Sint16 polyCIRCUIT_00024720[] = {
 	0x8000u | 10, 0, 12, 1, 13, 2, 14, 3, 15, 24, 26,
 	0x8000u | 10, 23, 11, 22, 10, 21, 9, 20, 8, 27, 25
 };
 
-Sint16 polyCIRCUIT_0002474C[] = {
+extern "C" __declspec(dllexport) Sint16 polyCIRCUIT_0002474C[] = {
 	0x8000u | 6, 17, 5, 16, 4, 26, 24,
 	0x8000u | 6, 6, 18, 7, 19, 25, 27
 };
 
-Sint16 polyCIRCUIT_00024768[] = {
+extern "C" __declspec(dllexport) Sint16 polyCIRCUIT_00024768[] = {
 	4, 18, 17, 6, 5
 };
 
-NJS_TEX uvCIRCUIT_00024774[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCIRCUIT_00024774[] = {
 	{ 0 },
 	{ 255, 0 },
 	{ 0, 63 },
@@ -5956,7 +5952,7 @@ NJS_TEX uvCIRCUIT_00024774[] = {
 	{ 255, 255 }
 };
 
-NJS_TEX uvCIRCUIT_000247C4[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCIRCUIT_000247C4[] = {
 	{ 0, 255 },
 	{ 510, 255 },
 	{ 0, 51 },
@@ -5971,20 +5967,20 @@ NJS_TEX uvCIRCUIT_000247C4[] = {
 	{ 0 }
 };
 
-NJS_TEX uvCIRCUIT_000247F4[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCIRCUIT_000247F4[] = {
 	{ 0, 255 },
 	{ 1020, 255 },
 	{ 0 },
 	{ 1020, 0 }
 };
 
-NJS_MESHSET_SADX meshlistCIRCUIT_00024804[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlistCIRCUIT_00024804[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 2, polyCIRCUIT_00024720, NULL, NULL, NULL, uvCIRCUIT_00024774, NULL },
 	{ NJD_MESHSET_TRIMESH | 1, 2, polyCIRCUIT_0002474C, NULL, NULL, NULL, uvCIRCUIT_000247C4, NULL },
 	{ NJD_MESHSET_TRIMESH | 2, 1, polyCIRCUIT_00024768, NULL, NULL, NULL, uvCIRCUIT_000247F4, NULL }
 };
 
-NJS_VECTOR vertexCIRCUIT_0002484C[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertexCIRCUIT_0002484C[] = {
 	{ -100, 20, 0 },
 	{ -97.07107f, 27.07107f, 0 },
 	{ -90, 30, 0 },
@@ -6015,7 +6011,7 @@ NJS_VECTOR vertexCIRCUIT_0002484C[] = {
 	{ 80, 20, -50 }
 };
 
-NJS_VECTOR normalCIRCUIT_0002499C[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normalCIRCUIT_0002499C[] = {
 	{ -0.92388f, 0.382683f, 0 },
 	{ -0.7071069f, 0.7071069f, 0 },
 	{ 0, 1, 0 },
@@ -6046,11 +6042,11 @@ NJS_VECTOR normalCIRCUIT_0002499C[] = {
 	{ -0.7994739f, 0.600701f, 0 }
 };
 
-NJS_MODEL_SADX attachCIRCUIT_00024AEC = { vertexCIRCUIT_0002484C, normalCIRCUIT_0002499C, LengthOfArray(vertexCIRCUIT_0002484C), meshlistCIRCUIT_00024804, matlistCIRCUIT_000246E4, LengthOfArray(meshlistCIRCUIT_00024804), LengthOfArray(matlistCIRCUIT_000246E4),{ 0, 15, -25 }, 103.0776f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attachCIRCUIT_00024AEC = { vertexCIRCUIT_0002484C, normalCIRCUIT_0002499C, LengthOfArray(vertexCIRCUIT_0002484C), meshlistCIRCUIT_00024804, matlistCIRCUIT_000246E4, LengthOfArray(meshlistCIRCUIT_00024804), LengthOfArray(matlistCIRCUIT_000246E4),{ 0, 15, -25 }, 103.0776f, NULL };
 
-NJS_OBJECT objectCIRCUIT_00024B14 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 1646, -9891, 3092, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00024B14 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 1646, -9891, 3092, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
 
-NJS_MATERIAL matlistCIRCUIT_00024B48[] = {
+extern "C" __declspec(dllexport) NJS_MATERIAL matlistCIRCUIT_00024B48[] = {
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 9, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_FLAG_DOUBLE_SIDE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 11, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_FLIP_U | NJD_FLAG_USE_TEXTURE | NJD_FLAG_DOUBLE_SIDE | NJD_FLAG_IGNORE_LIGHT | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 4, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_FLIP_V | NJD_FLAG_FLIP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
@@ -6067,7 +6063,7 @@ NJS_MATERIAL matlistCIRCUIT_00024B48[] = {
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 3, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_FLIP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 polyCIRCUIT_00024C60[] = {
+extern "C" __declspec(dllexport) Sint16 polyCIRCUIT_00024C60[] = {
 	0x8000u | 10, 66, 64, 15, 3, 14, 2, 13, 1, 12, 0,
 	4, 77, 76, 71, 70,
 	4, 74, 30, 68, 24,
@@ -6084,45 +6080,45 @@ Sint16 polyCIRCUIT_00024C60[] = {
 	0x8000u | 8, 81, 83, 44, 56, 45, 57, 46, 58
 };
 
-Sint16 polyCIRCUIT_00024D44[] = {
+extern "C" __declspec(dllexport) Sint16 polyCIRCUIT_00024D44[] = {
 	12, 4, 5, 16, 17, 25, 26, 31, 32, 40, 41, 52, 53,
 	12, 7, 65, 19, 67, 28, 72, 34, 78, 43, 81, 55, 83,
 	12, 52, 82, 40, 80, 31, 77, 25, 71, 16, 66, 4, 64,
 	12, 55, 54, 43, 42, 34, 33, 28, 27, 19, 18, 7, 6
 };
 
-Sint16 polyCIRCUIT_00024DAC[] = {
+extern "C" __declspec(dllexport) Sint16 polyCIRCUIT_00024DAC[] = {
 	12, 5, 6, 17, 18, 26, 27, 32, 33, 41, 42, 53, 54
 };
 
-Sint16 polyCIRCUIT_00024DC6[] = {
+extern "C" __declspec(dllexport) Sint16 polyCIRCUIT_00024DC6[] = {
 	4, 101, 100, 95, 94,
 	4, 88, 89, 87, 86,
 	4, 98, 99, 97, 96,
 	4, 117, 116, 85, 84
 };
 
-Sint16 polyCIRCUIT_00024DEE[] = {
+extern "C" __declspec(dllexport) Sint16 polyCIRCUIT_00024DEE[] = {
 	8, 131, 118, 129, 106, 130, 107, 88, 89,
 	3, 100, 101, 108,
 	7, 101, 109, 108, 105, 103, 104, 102
 };
 
-Sint16 polyCIRCUIT_00024E18[] = {
+extern "C" __declspec(dllexport) Sint16 polyCIRCUIT_00024E18[] = {
 	0x8000u | 6, 99, 96, 63, 79, 101, 95,
 	0x8000u | 6, 97, 98, 73, 62, 94, 100,
 	0x8000u | 6, 89, 86, 61, 75, 117, 85,
 	0x8000u | 6, 116, 84, 60, 69, 88, 87
 };
 
-Sint16 polyCIRCUIT_00024E50[] = {
+extern "C" __declspec(dllexport) Sint16 polyCIRCUIT_00024E50[] = {
 	4, 94, 91, 95, 93,
 	4, 86, 74, 87, 68,
 	4, 96, 92, 97, 90,
 	4, 84, 70, 85, 76
 };
 
-Sint16 polyCIRCUIT_00024E78[] = {
+extern "C" __declspec(dllexport) Sint16 polyCIRCUIT_00024E78[] = {
 	3, 68, 69, 87,
 	3, 93, 79, 95,
 	3, 91, 94, 73,
@@ -6133,38 +6129,38 @@ Sint16 polyCIRCUIT_00024E78[] = {
 	3, 76, 75, 85
 };
 
-Sint16 polyCIRCUIT_00024EB8[] = {
+extern "C" __declspec(dllexport) Sint16 polyCIRCUIT_00024EB8[] = {
 	0x8000u | 6, 88, 130, 60, 129, 116, 131,
 	0x8000u | 6, 107, 89, 106, 61, 118, 117,
 	0x8000u | 6, 108, 100, 103, 62, 102, 98,
 	0x8000u | 6, 101, 109, 63, 105, 99, 104
 };
 
-Sint16 polyCIRCUIT_00024EF0[] = {
+extern "C" __declspec(dllexport) Sint16 polyCIRCUIT_00024EF0[] = {
 	4, 118, 131, 115, 113,
 	4, 110, 111, 104, 102,
 	4, 120, 119, 98, 99,
 	4, 116, 117, 112, 114
 };
 
-Sint16 polyCIRCUIT_00024F18[] = {
+extern "C" __declspec(dllexport) Sint16 polyCIRCUIT_00024F18[] = {
 	4, 119, 110, 99, 104,
 	4, 111, 120, 102, 98,
 	4, 131, 116, 113, 112,
 	4, 117, 118, 114, 115
 };
 
-Sint16 polyCIRCUIT_00024F40[] = {
+extern "C" __declspec(dllexport) Sint16 polyCIRCUIT_00024F40[] = {
 	4, 127, 125, 121, 124,
 	4, 128, 122, 126, 123
 };
 
-Sint16 polyCIRCUIT_00024F54[] = {
+extern "C" __declspec(dllexport) Sint16 polyCIRCUIT_00024F54[] = {
 	4, 112, 114, 120, 119,
 	4, 115, 113, 110, 111
 };
 
-Sint16 polyCIRCUIT_00024F68[] = {
+extern "C" __declspec(dllexport) Sint16 polyCIRCUIT_00024F68[] = {
 	4, 113, 124, 111, 125,
 	4, 120, 127, 112, 121,
 	4, 115, 123, 114, 122,
@@ -6173,7 +6169,7 @@ Sint16 polyCIRCUIT_00024F68[] = {
 	8, 123, 115, 126, 110, 128, 119, 122, 114
 };
 
-NJS_TEX uvCIRCUIT_00024FAC[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCIRCUIT_00024FAC[] = {
 	{ 255, 255 },
 	{ 510, 255 },
 	{ 255, 191 },
@@ -6276,7 +6272,7 @@ NJS_TEX uvCIRCUIT_00024FAC[] = {
 	{ 0, 63 }
 };
 
-NJS_TEX uvCIRCUIT_0002513C[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCIRCUIT_0002513C[] = {
 	{ 1020, 50 },
 	{ 1020, 255 },
 	{ 816, 50 },
@@ -6327,7 +6323,7 @@ NJS_TEX uvCIRCUIT_0002513C[] = {
 	{ 1020, 255 }
 };
 
-NJS_TEX uvCIRCUIT_000251FC[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCIRCUIT_000251FC[] = {
 	{ 1020, -765 },
 	{ 0, -765 },
 	{ 1020, -561 },
@@ -6342,7 +6338,7 @@ NJS_TEX uvCIRCUIT_000251FC[] = {
 	{ 0, 255 }
 };
 
-NJS_TEX uvCIRCUIT_0002522C[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCIRCUIT_0002522C[] = {
 	{ 101, 0 },
 	{ 406, 0 },
 	{ 0, 254 },
@@ -6361,7 +6357,7 @@ NJS_TEX uvCIRCUIT_0002522C[] = {
 	{ 510, 254 }
 };
 
-NJS_TEX uvCIRCUIT_0002526C[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCIRCUIT_0002526C[] = {
 	{ 458, 36 },
 	{ 50, 36 },
 	{ 510, 0 },
@@ -6382,7 +6378,7 @@ NJS_TEX uvCIRCUIT_0002526C[] = {
 	{ 458, 36 }
 };
 
-NJS_TEX uvCIRCUIT_000252B4[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCIRCUIT_000252B4[] = {
 	{ 1785, 0 },
 	{ 1889, 254 },
 	{ 1839, 0 },
@@ -6409,7 +6405,7 @@ NJS_TEX uvCIRCUIT_000252B4[] = {
 	{ 0, 254 }
 };
 
-NJS_TEX uvCIRCUIT_00025314[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCIRCUIT_00025314[] = {
 	{ 765, 0 },
 	{ 765, 255 },
 	{ 0 },
@@ -6428,7 +6424,7 @@ NJS_TEX uvCIRCUIT_00025314[] = {
 	{ 0, 255 }
 };
 
-NJS_TEX uvCIRCUIT_00025354[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCIRCUIT_00025354[] = {
 	{ 0, 255 },
 	{ 278, 0 },
 	{ 0 },
@@ -6455,7 +6451,7 @@ NJS_TEX uvCIRCUIT_00025354[] = {
 	{ 557, 0 }
 };
 
-NJS_TEX uvCIRCUIT_000253B4[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCIRCUIT_000253B4[] = {
 	{ 0, 254 },
 	{ 0, 36 },
 	{ 62, 254 },
@@ -6482,7 +6478,7 @@ NJS_TEX uvCIRCUIT_000253B4[] = {
 	{ 1913, 36 }
 };
 
-NJS_TEX uvCIRCUIT_00025414[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCIRCUIT_00025414[] = {
 	{ 0, 255 },
 	{ 0, -255 },
 	{ 134, 191 },
@@ -6501,7 +6497,7 @@ NJS_TEX uvCIRCUIT_00025414[] = {
 	{ 134, 127 }
 };
 
-NJS_TEX uvCIRCUIT_00025454[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCIRCUIT_00025454[] = {
 	{ 1394, 255 },
 	{ 1394, -255 },
 	{ 1530, 153 },
@@ -6520,7 +6516,7 @@ NJS_TEX uvCIRCUIT_00025454[] = {
 	{ 134, -255 }
 };
 
-NJS_TEX uvCIRCUIT_00025494[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCIRCUIT_00025494[] = {
 	{ 0, 255 },
 	{ 0 },
 	{ 508, 255 },
@@ -6531,7 +6527,7 @@ NJS_TEX uvCIRCUIT_00025494[] = {
 	{ 508, 0 }
 };
 
-NJS_TEX uvCIRCUIT_000254B4[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCIRCUIT_000254B4[] = {
 	{ 0, 42 },
 	{ 0, 212 },
 	{ 1020, 42 },
@@ -6542,7 +6538,7 @@ NJS_TEX uvCIRCUIT_000254B4[] = {
 	{ 1020, 0 }
 };
 
-NJS_TEX uvCIRCUIT_000254D4[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCIRCUIT_000254D4[] = {
 	{ 4486, 255 },
 	{ 4418, 0 },
 	{ 7650, 255 },
@@ -6573,7 +6569,7 @@ NJS_TEX uvCIRCUIT_000254D4[] = {
 	{ 0, 255 }
 };
 
-NJS_MESHSET_SADX meshlistCIRCUIT_00025544[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlistCIRCUIT_00025544[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 14, polyCIRCUIT_00024C60, NULL, NULL, NULL, uvCIRCUIT_00024FAC, NULL },
 	{ NJD_MESHSET_TRIMESH | 1, 4, polyCIRCUIT_00024D44, NULL, NULL, NULL, uvCIRCUIT_0002513C, NULL },
 	{ NJD_MESHSET_TRIMESH | 2, 1, polyCIRCUIT_00024DAC, NULL, NULL, NULL, uvCIRCUIT_000251FC, NULL },
@@ -6590,7 +6586,7 @@ NJS_MESHSET_SADX meshlistCIRCUIT_00025544[] = {
 	{ NJD_MESHSET_TRIMESH | 13, 6, polyCIRCUIT_00024F68, NULL, NULL, NULL, uvCIRCUIT_000254D4, NULL }
 };
 
-NJS_VECTOR vertexCIRCUIT_00025694[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertexCIRCUIT_00025694[] = {
 	{ -100, 20, 0 },
 	{ -97.07107f, 27.07107f, 0 },
 	{ -90, 30, 0 },
@@ -6725,7 +6721,7 @@ NJS_VECTOR vertexCIRCUIT_00025694[] = {
 	{ -72.92892f, 90, -105 }
 };
 
-NJS_VECTOR normalCIRCUIT_00025CC4[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normalCIRCUIT_00025CC4[] = {
 	{ -0.92388f, 0.382683f, 0 },
 	{ -0.7071069f, 0.7071069f, 0 },
 	{ 0, 1, 0 },
@@ -6860,43 +6856,43 @@ NJS_VECTOR normalCIRCUIT_00025CC4[] = {
 	{ 0.612698f, 0.390244f, 0.687248f }
 };
 
-NJS_MODEL_SADX attachCIRCUIT_000262F4 = { vertexCIRCUIT_00025694, normalCIRCUIT_00025CC4, LengthOfArray(vertexCIRCUIT_00025694), meshlistCIRCUIT_00025544, matlistCIRCUIT_00024B48, LengthOfArray(meshlistCIRCUIT_00025544), LengthOfArray(matlistCIRCUIT_00024B48),{ 0, 50, -125 }, 160.0781f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attachCIRCUIT_000262F4 = { vertexCIRCUIT_00025694, normalCIRCUIT_00025CC4, LengthOfArray(vertexCIRCUIT_00025694), meshlistCIRCUIT_00025544, matlistCIRCUIT_00024B48, LengthOfArray(meshlistCIRCUIT_00025544), LengthOfArray(matlistCIRCUIT_00024B48),{ 0, 50, -125 }, 160.0781f, NULL };
 
-NJS_OBJECT objectCIRCUIT_0002631C = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_000262F4, 1169.5f, -9557, 3077.416f, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_0002631C = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_000262F4, 1169.5f, -9557, 3077.416f, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
-NJS_MATERIAL matlistCIRCUIT_00026350[] = {
+extern "C" __declspec(dllexport) NJS_MATERIAL matlistCIRCUIT_00026350[] = {
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 9, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 9, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_FLAG_DOUBLE_SIDE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 11, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_FLIP_U | NJD_FLAG_USE_TEXTURE | NJD_FLAG_DOUBLE_SIDE | NJD_FLAG_IGNORE_LIGHT | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 10, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_FLIP_V | NJD_FLAG_FLIP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 polyCIRCUIT_000263A0[] = {
+extern "C" __declspec(dllexport) Sint16 polyCIRCUIT_000263A0[] = {
 	16, 2, 3, 14, 15, 26, 27, 38, 39, 50, 51, 62, 63, 74, 75, 86, 87,
 	16, 3, 96, 15, 98, 27, 100, 39, 102, 51, 104, 63, 106, 75, 108, 87, 110,
 	16, 86, 85, 74, 73, 62, 61, 50, 49, 38, 37, 26, 25, 14, 13, 2, 1,
 	16, 85, 84, 73, 72, 61, 60, 49, 48, 37, 36, 25, 24, 13, 12, 1, 0
 };
 
-Sint16 polyCIRCUIT_00026428[] = {
+extern "C" __declspec(dllexport) Sint16 polyCIRCUIT_00026428[] = {
 	16, 95, 94, 83, 82, 71, 70, 59, 58, 47, 46, 35, 34, 23, 22, 11, 10,
 	16, 94, 93, 82, 81, 70, 69, 58, 57, 46, 45, 34, 33, 22, 21, 10, 9,
 	16, 8, 9, 20, 21, 32, 33, 44, 45, 56, 57, 68, 69, 80, 81, 92, 93,
 	16, 92, 111, 80, 109, 68, 107, 56, 105, 44, 103, 32, 101, 20, 99, 8, 97
 };
 
-Sint16 polyCIRCUIT_000264B0[] = {
+extern "C" __declspec(dllexport) Sint16 polyCIRCUIT_000264B0[] = {
 	16, 4, 5, 16, 17, 28, 29, 40, 41, 52, 53, 64, 65, 76, 77, 88, 89,
 	16, 7, 97, 19, 99, 31, 101, 43, 103, 55, 105, 67, 107, 79, 109, 91, 111,
 	16, 91, 90, 79, 78, 67, 66, 55, 54, 43, 42, 31, 30, 19, 18, 7, 6,
 	16, 88, 110, 76, 108, 64, 106, 52, 104, 40, 102, 28, 100, 16, 98, 4, 96
 };
 
-Sint16 polyCIRCUIT_00026538[] = {
+extern "C" __declspec(dllexport) Sint16 polyCIRCUIT_00026538[] = {
 	16, 5, 6, 17, 18, 29, 30, 41, 42, 53, 54, 65, 66, 77, 78, 89, 90
 };
 
-NJS_TEX uvCIRCUIT_0002655C[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCIRCUIT_0002655C[] = {
 	{ 1530, 127 },
 	{ 1530, 191 },
 	{ 1394, 127 },
@@ -6963,7 +6959,7 @@ NJS_TEX uvCIRCUIT_0002655C[] = {
 	{ 1530, 0 }
 };
 
-NJS_TEX uvCIRCUIT_0002665C[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCIRCUIT_0002665C[] = {
 	{ 0 },
 	{ 0, 63 },
 	{ 194, 0 },
@@ -7030,7 +7026,7 @@ NJS_TEX uvCIRCUIT_0002665C[] = {
 	{ 1530, 255 }
 };
 
-NJS_TEX uvCIRCUIT_0002675C[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCIRCUIT_0002675C[] = {
 	{ 1530, 72 },
 	{ 1530, 255 },
 	{ 1378, 72 },
@@ -7097,7 +7093,7 @@ NJS_TEX uvCIRCUIT_0002675C[] = {
 	{ 1530, 0 }
 };
 
-NJS_TEX uvCIRCUIT_0002685C[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCIRCUIT_0002685C[] = {
 	{ 1020, 255 },
 	{ 0, 255 },
 	{ 1020, 85 },
@@ -7116,14 +7112,14 @@ NJS_TEX uvCIRCUIT_0002685C[] = {
 	{ 0, -1275 }
 };
 
-NJS_MESHSET_SADX meshlistCIRCUIT_0002689C[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlistCIRCUIT_0002689C[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 4, polyCIRCUIT_000263A0, NULL, NULL, NULL, uvCIRCUIT_0002655C, NULL },
 	{ NJD_MESHSET_TRIMESH | 1, 4, polyCIRCUIT_00026428, NULL, NULL, NULL, uvCIRCUIT_0002665C, NULL },
 	{ NJD_MESHSET_TRIMESH | 2, 4, polyCIRCUIT_000264B0, NULL, NULL, NULL, uvCIRCUIT_0002675C, NULL },
 	{ NJD_MESHSET_TRIMESH | 3, 1, polyCIRCUIT_00026538, NULL, NULL, NULL, uvCIRCUIT_0002685C, NULL }
 };
 
-NJS_VECTOR vertexCIRCUIT_000268FC[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertexCIRCUIT_000268FC[] = {
 	{ -100, 20, 0 },
 	{ -97.07104f, 27.07104f, 0 },
 	{ -90, 30, 0 },
@@ -7238,7 +7234,7 @@ NJS_VECTOR vertexCIRCUIT_000268FC[] = {
 	{ 80, 120, -250 }
 };
 
-NJS_VECTOR normalCIRCUIT_00026E3C[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normalCIRCUIT_00026E3C[] = {
 	{ -0.923596f, 0.381552f, 0.037265f },
 	{ -0.718155f, 0.692557f, 0.067957f },
 	{ 0.000001f, 0.995232f, 0.09753399f },
@@ -7353,325 +7349,325 @@ NJS_VECTOR normalCIRCUIT_00026E3C[] = {
 	{ -0.805678f, 0.5899619f, 0.053171f }
 };
 
-NJS_MODEL_SADX attachCIRCUIT_0002737C = { vertexCIRCUIT_000268FC, normalCIRCUIT_00026E3C, LengthOfArray(vertexCIRCUIT_000268FC), meshlistCIRCUIT_0002689C, matlistCIRCUIT_00026350, LengthOfArray(meshlistCIRCUIT_0002689C), LengthOfArray(matlistCIRCUIT_00026350),{ 0.000031f, 64.99982f, -125 }, 160.0781f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attachCIRCUIT_0002737C = { vertexCIRCUIT_000268FC, normalCIRCUIT_00026E3C, LengthOfArray(vertexCIRCUIT_000268FC), meshlistCIRCUIT_0002689C, matlistCIRCUIT_00026350, LengthOfArray(meshlistCIRCUIT_0002689C), LengthOfArray(matlistCIRCUIT_00026350),{ 0.000031f, 64.99982f, -125 }, 160.0781f, NULL };
 
-NJS_OBJECT objectCIRCUIT_000273A4 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_0002737C, 746, -9741.561f, 3075, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_000273A4 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_0002737C, 746, -9741.561f, 3075, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_000273D8 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_0001AF40, 401, 0, 74, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_000273D8 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_0001AF40, 401, 0, 74, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_0002740C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00019920, 4126, 500, -1751, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_0002740C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00019920, 4126, 500, -1751, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_00027440 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_0001AF40, -274, -198, -1901, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00027440 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_0001AF40, -274, -198, -1901, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_00027474 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_0001DD08, 2826, 300, -1401, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00027474 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_0001DD08, 2826, 300, -1401, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_000274A8 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_0001DD08, 2826, 300, -1401, 0, 0x8000, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_000274A8 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_0001DD08, 2826, 300, -1401, 0, 0x8000, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_000274DC = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_0001DD08, 4626, 500, -1251, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_000274DC = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_0001DD08, 4626, 500, -1251, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_00027510 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_0001DD08, 2922, -9667, 2626, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00027510 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_0001DD08, 2922, -9667, 2626, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_00027544 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_0001F354, -499, -100, 1574, 0, 0xFFFFC001, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00027544 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_0001F354, -499, -100, 1574, 0, 0xFFFFC001, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_00027578 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_0001F354, -999, -200, 1074, 0, 0x8000, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00027578 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_0001F354, -999, -200, 1074, 0, 0x8000, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_000275AC = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_0001F354, -1349, -198, -976, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_000275AC = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_0001F354, -1349, -198, -976, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_000275E0 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_000204BC, 3151, 200, 74, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_000275E0 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_000204BC, 3151, 200, 74, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_00027614 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00021180, -899, -198, -976, 0, 0xFFFFC001, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00027614 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00021180, -899, -198, -976, 0, 0xFFFFC001, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_00027648 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00021180, 4401, 700, 74, 0, 0xFFFFC001, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00027648 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00021180, 4401, 700, 74, 0, 0xFFFFC001, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_0002767C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00023068, -1849, -98, -276, 0, 0x8000, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_0002767C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00023068, -1849, -98, -276, 0, 0x8000, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_000276B0 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00023068, 3526, 300, -901, 0, 0xFFFFC001, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_000276B0 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00023068, 3526, 300, -901, 0, 0xFFFFC001, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_000276E4 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024688, -999, -100, 424, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_000276E4 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024688, -999, -100, 424, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_00027718 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 501, 0, 74, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00027718 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 501, 0, 74, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_0002774C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 2901, 0, 74, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_0002774C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 2901, 0, 74, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_00027780 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 2951, 0, 74, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00027780 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 2951, 0, 74, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_000277B4 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 3001, 0, 74, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_000277B4 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 3001, 0, 74, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_000277E8 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 1901, 0, 74, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_000277E8 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 1901, 0, 74, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_0002781C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 26, -298, -1901, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_0002781C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 26, -298, -1901, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_00027850 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 451, 0, 74, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00027850 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 451, 0, 74, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_00027884 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 76, -298, -1901, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00027884 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 76, -298, -1901, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_000278B8 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 126, -298, -1901, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_000278B8 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 126, -298, -1901, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_000278EC = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 176, -298, -1901, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_000278EC = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 176, -298, -1901, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_00027920 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 226, -298, -1901, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00027920 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 226, -298, -1901, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_00027954 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 614, -116, -1903, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00027954 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 614, -116, -1903, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_00027988 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 664, -116, -1903, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00027988 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 664, -116, -1903, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_000279BC = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 714, -116, -1903, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_000279BC = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 714, -116, -1903, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_000279F0 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 764, -116, -1903, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_000279F0 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 764, -116, -1903, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_00027A24 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 814, -116, -1903, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00027A24 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 814, -116, -1903, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_00027A58 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 864, -116, -1903, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00027A58 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 864, -116, -1903, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_00027A8C = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 1, 0, 524, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00027A8C = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 1, 0, 524, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_00027AC0 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 1257, 67, -1903, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00027AC0 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 1257, 67, -1903, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_00027AF4 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 1307, 67, -1903, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00027AF4 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 1307, 67, -1903, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_00027B28 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 1357, 67, -1903, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00027B28 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 1357, 67, -1903, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_00027B5C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 1407, 67, -1903, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00027B5C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 1407, 67, -1903, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_00027B90 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 1457, 67, -1903, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00027B90 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 1457, 67, -1903, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_00027BC4 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 1507, 67, -1903, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00027BC4 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 1507, 67, -1903, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_00027BF8 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 1951, 0, 74, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00027BF8 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 1951, 0, 74, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_00027C2C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 2001, 0, 74, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00027C2C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 2001, 0, 74, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_00027C60 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 2051, 0, 74, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00027C60 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 2051, 0, 74, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_00027C94 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 2101, 0, 74, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00027C94 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 2101, 0, 74, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_00027CC8 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 1, 0, 574, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00027CC8 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 1, 0, 574, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_00027CFC = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 2151, 0, 74, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00027CFC = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 2151, 0, 74, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_00027D30 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 2201, 0, 74, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00027D30 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 2201, 0, 74, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_00027D64 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 2251, 0, 74, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00027D64 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 2251, 0, 74, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_00027D98 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 2301, 0, 74, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00027D98 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 2301, 0, 74, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_00027DCC = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 2351, 0, 74, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00027DCC = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 2351, 0, 74, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_00027E00 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 2401, 0, 74, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00027E00 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 2401, 0, 74, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_00027E34 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 2451, 0, 74, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00027E34 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 2451, 0, 74, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_00027E68 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 2501, 0, 74, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00027E68 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 2501, 0, 74, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_00027E9C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 2551, 0, 74, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00027E9C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 2551, 0, 74, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_00027ED0 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 2601, 0, 74, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00027ED0 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 2601, 0, 74, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_00027F04 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 1, 0, 624, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00027F04 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 1, 0, 624, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_00027F38 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 2651, 0, 74, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00027F38 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 2651, 0, 74, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_00027F6C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 2701, 0, 74, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00027F6C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 2701, 0, 74, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_00027FA0 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 2751, 0, 74, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00027FA0 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 2751, 0, 74, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_00027FD4 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 1, 0, 674, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00027FD4 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 1, 0, 674, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_00028008 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 1, 0, 724, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00028008 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 1, 0, 724, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_0002803C = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 1, 0, 774, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_0002803C = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 1, 0, 774, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_00028070 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 1, 0, 824, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00028070 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 1, 0, 824, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_000280A4 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 1, 0, 874, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_000280A4 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 1, 0, 874, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_000280D8 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 1, 0, 924, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_000280D8 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 1, 0, 924, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_0002810C = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 1, 0, 974, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_0002810C = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 1, 0, 974, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_00028140 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 1, 0, 1024, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00028140 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 1, 0, 1024, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_00028174 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 1, 0, 1074, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00028174 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 1, 0, 1074, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_000281A8 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, -999, -200, 1074, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_000281A8 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, -999, -200, 1074, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_000281DC = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, -999, -200, 1024, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_000281DC = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, -999, -200, 1024, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_00028210 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, -999, -200, 974, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00028210 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, -999, -200, 974, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_00028244 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, -999, -200, 924, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00028244 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, -999, -200, 924, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_00028278 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, -999, -200, 874, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00028278 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, -999, -200, 874, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_000282AC = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, -999, -100, 574, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_000282AC = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, -999, -100, 574, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_000282E0 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, -999, -100, 524, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_000282E0 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, -999, -100, 524, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_00028314 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, -999, -100, 474, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00028314 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, -999, -100, 474, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_00028348 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, -1399, 1.999998f, 24, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00028348 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, -1399, 1.999998f, 24, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_0002837C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, -1449, 2, 24, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_0002837C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, -1449, 2, 24, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_000283B0 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, -1499, 2, 24, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_000283B0 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, -1499, 2, 24, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_000283E4 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, -1849, -98, -276, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_000283E4 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, -1849, -98, -276, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_00028418 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, -1849, -98, -326, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00028418 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, -1849, -98, -326, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_0002844C = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, -1849, -98, -376, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_0002844C = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, -1849, -98, -376, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_00028480 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, -1849, -98, -426, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00028480 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, -1849, -98, -426, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_000284B4 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, -1299, -198, -976, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_000284B4 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, -1299, -198, -976, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_000284E8 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, -1249, -198, -976, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_000284E8 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, -1249, -198, -976, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_0002851C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, -1199, -198, -976, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_0002851C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, -1199, -198, -976, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_00028550 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, -1149, -198, -976, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00028550 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, -1149, -198, -976, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_00028584 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, -1099, -198, -976, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00028584 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, -1099, -198, -976, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_000285B8 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, -1049, -198, -976, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_000285B8 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, -1049, -198, -976, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_000285EC = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, -999, -198, -976, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_000285EC = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, -999, -198, -976, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_00028620 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, -949, -198, -976, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00028620 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, -949, -198, -976, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_00028654 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, -899, -198, -976, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00028654 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, -899, -198, -976, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_00028688 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, -674, -198, -1201, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00028688 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, -674, -198, -1201, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_000286BC = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 751, 0, 74, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_000286BC = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 751, 0, 74, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_000286F0 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, -674, -198, -1251, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_000286F0 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, -674, -198, -1251, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_00028724 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, -674, -198, -1301, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00028724 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, -674, -198, -1301, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_00028758 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, -674, -198, -1351, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00028758 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, -674, -198, -1351, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_0002878C = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, -674, -198, -1401, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_0002878C = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, -674, -198, -1401, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_000287C0 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, -674, -198, -1451, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_000287C0 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, -674, -198, -1451, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_000287F4 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 1926, 300, -1901, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_000287F4 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 1926, 300, -1901, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_00028828 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 1976, 300, -1901, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00028828 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 1976, 300, -1901, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_0002885C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 2026, 300, -1901, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_0002885C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 2026, 300, -1901, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_00028890 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 2076, 300, -1901, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00028890 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 2076, 300, -1901, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_000288C4 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 2126, 300, -1901, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_000288C4 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 2126, 300, -1901, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_000288F8 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 701, 0, 74, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_000288F8 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 701, 0, 74, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_0002892C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 2176, 300, -1901, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_0002892C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 2176, 300, -1901, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_00028960 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 2226, 300, -1901, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00028960 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 2226, 300, -1901, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_00028994 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 2276, 300, -1901, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00028994 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 2276, 300, -1901, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_000289C8 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 2326, 300, -1901, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_000289C8 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 2326, 300, -1901, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_000289FC = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 3376, 300, -901, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_000289FC = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 3376, 300, -901, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_00028A30 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 3426, 300, -901, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00028A30 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 3426, 300, -901, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_00028A64 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 3476, 300, -901, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00028A64 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 3476, 300, -901, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_00028A98 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 3526, 300, -901, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00028A98 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 3526, 300, -901, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_00028ACC = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 4626, 500, -1201, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00028ACC = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 4626, 500, -1201, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_00028B00 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 4626, 500, -1151, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00028B00 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 4626, 500, -1151, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_00028B34 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 651, 0, 74, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00028B34 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 651, 0, 74, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_00028B68 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 4626, 500, -1101, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00028B68 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 4626, 500, -1101, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_00028B9C = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 4626, 500, -1051, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00028B9C = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 4626, 500, -1051, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_00028BD0 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 4626, 500, -1001, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00028BD0 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 4626, 500, -1001, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_00028C04 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 4626, 500, -951, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00028C04 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 4626, 500, -951, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_00028C38 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 4626, 500, -901, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00028C38 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 4626, 500, -901, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_00028C6C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 2851, 0, 74, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00028C6C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 2851, 0, 74, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_00028CA0 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 2801, 0, 74, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00028CA0 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 2801, 0, 74, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_00028CD4 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 1851, 0, 74, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00028CD4 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 1851, 0, 74, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_00028D08 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 1801, 0, 74, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00028D08 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 1801, 0, 74, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_00028D3C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 601, 0, 74, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00028D3C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 601, 0, 74, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_00028D70 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 1751, 0, 74, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00028D70 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 1751, 0, 74, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_00028DA4 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 1701, 0, 74, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00028DA4 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 1701, 0, 74, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_00028DD8 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 1651, 0, 74, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00028DD8 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 1651, 0, 74, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_00028E0C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 1601, 0, 74, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00028E0C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 1601, 0, 74, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_00028E40 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 1551, 0, 74, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00028E40 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 1551, 0, 74, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_00028E74 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 1251, 0, 74, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00028E74 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 1251, 0, 74, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_00028EA8 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 1201, 0, 74, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00028EA8 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 1201, 0, 74, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_00028EDC = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 1151, 0, 74, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00028EDC = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 1151, 0, 74, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_00028F10 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 1101, 0, 74, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00028F10 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 1101, 0, 74, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_00028F44 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 1051, 0, 74, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00028F44 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 1051, 0, 74, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_00028F78 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 551, 0, 74, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00028F78 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 551, 0, 74, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_00028FAC = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 1001, 0, 74, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00028FAC = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 1001, 0, 74, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_00028FE0 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 951, 0, 74, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00028FE0 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 951, 0, 74, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_00029014 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 901, 0, 74, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00029014 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 901, 0, 74, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_00029048 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 851, 0, 74, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00029048 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 851, 0, 74, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_0002907C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 801, 0, 74, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_0002907C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 801, 0, 74, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_000290B0 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 4626, 700, -351, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_000290B0 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 4626, 700, -351, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_000290E4 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 4626, 700, -301, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_000290E4 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 4626, 700, -301, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_00029118 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 4626, 700, -251, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00029118 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 4626, 700, -251, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_0002914C = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 4626, 700, -201, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_0002914C = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 4626, 700, -201, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_00029180 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 4626, 700, -151, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00029180 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_00024AEC, 4626, 700, -151, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_000291B4 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_0002737C, -999, -200, 824, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_000291B4 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_0002737C, -999, -200, 824, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_000291E8 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_0002737C, 3401, 300, 74, 0, 0xFFFFC001, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_000291E8 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_0002737C, 3401, 300, 74, 0, 0xFFFFC001, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_0002921C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_0002737C, 3651, 400, 74, 0, 0xFFFFC001, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_0002921C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_0002737C, 3651, 400, 74, 0, 0xFFFFC001, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_00029250 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_0002737C, -24, -298, -1901, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00029250 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_0002737C, -24, -298, -1901, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_00029284 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_0002737C, 3826, 400, -1201, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00029284 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_0002737C, 3826, 400, -1201, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_000292B8 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_0002737C, 4626, 500, -901, 0, 0x8000, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_000292B8 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_0002737C, 4626, 500, -901, 0, 0x8000, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_000292EC = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_0002737C, 4626, 600, -651, 0, 0x8000, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_000292EC = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_0002737C, 4626, 600, -651, 0, 0x8000, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_00029320 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_0002737C, 3151, 200, 74, 0, 0xFFFFC001, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00029320 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_0002737C, 3151, 200, 74, 0, 0xFFFFC001, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_00029354 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_0002737C, 4151, 600, 74, 0, 0xFFFFC001, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00029354 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_0002737C, 4151, 600, 74, 0, 0xFFFFC001, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT objectCIRCUIT_00029388 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_0002737C, 3901, 500, 74, 0, 0xFFFFC001, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCIRCUIT_00029388 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCIRCUIT_0002737C, 3901, 500, 74, 0, 0xFFFFC001, 0, 1, 1, 1, NULL, NULL };
 
-COL collist_00000230[] = {
+extern "C" __declspec(dllexport) COL collist_00000230[] = {
 	{ { -489, -9542, 2450 }, 283.2402f, 0, 0, &objectCIRCUIT_00019948, 0, 0xA0000001 },
 	{ { 425.9999f, -9542, 2400 }, 353.8715f, 0, 0, &objectCIRCUIT_0001AF68, 0, 0xA0000001 },
 	{ { 1376, 50, 74 }, 167.7051f, 0, 0, &objectCIRCUIT_0001C710, 0, 0xA0000001 },
@@ -7845,6 +7841,6 @@ COL collist_00000230[] = {
 	{ { 4026, 564.9998f, 74.00003f }, 172.7716f, 0, 0, &objectCIRCUIT_00029388, 0, 0xA0000001 }
 };
 
-LandTable landtable_00001A3C = { LengthOfArray(collist_00000230), 0, 0xC, 3000, collist_00000230, NULL, "MINI_CART01", (NJS_TEXLIST *)&texlist_twinklecircuit, 0, 0 };
+extern "C" __declspec(dllexport) LandTable landtable_00001A3C = { LengthOfArray(collist_00000230), 0, 0xC, 3000, collist_00000230, NULL, "MINI_CART01", (NJS_TEXLIST *)&texlist_twinklecircuit, 0, 0 };
 
 #pragma warning(pop)

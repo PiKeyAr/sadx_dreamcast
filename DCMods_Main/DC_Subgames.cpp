@@ -1,7 +1,15 @@
 #include "stdafx.h"
-#include "SandHill.h"
-#include "TwinkleCircuit.h"
+#include "SandHill_Objects.h"
 #include "SkyChaseModels.h"
+
+NJS_TEXNAME textures_sandhill[50];
+NJS_TEXLIST texlist_sandhill = { arrayptrandlength(textures_sandhill) };
+
+NJS_TEXNAME textures_twinklecircuit[12];
+NJS_TEXLIST texlist_twinklecircuit = { arrayptrandlength(textures_twinklecircuit) };
+
+LandTableInfo *SBOARD_Info = nullptr;
+LandTableInfo *MINICART_Info = nullptr;
 
 DataArray(FogData, FogData_SandHill, 0x0173BB74, 3);
 DataArray(FogData, FogData_HedgehogHammer, 0x027C69C4, 3);
@@ -694,6 +702,14 @@ void FixSkybox(NJS_OBJECT *a1, float scale)
 
 void Subgames_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 {
+	LandTableInfo *SBOARD_Info_ptr = new LandTableInfo(ModPath + "\\data\\SBOARD\\0.sa1lvl");
+	LandTableInfo *MINICART_Info_ptr = new LandTableInfo(ModPath + "\\data\\MINICART\\0.sa1lvl");
+	SBOARD_Info = SBOARD_Info_ptr;
+	MINICART_Info = MINICART_Info_ptr;
+	LandTable *SBOARD = SBOARD_Info->getlandtable();
+	LandTable *MINICART = MINICART_Info->getlandtable();
+	SBOARD->TexList = &texlist_sandhill;
+	MINICART->TexList = &texlist_twinklecircuit;
 	ReplaceBIN_DC("SET0000A");
 	ReplaceBIN_DC("SET0000S");
 	ReplaceBIN_DC("SET0001S");
@@ -719,7 +735,7 @@ void Subgames_Init(const IniFile *config, const HelperFunctions &helperFunctions
 		ReplacePVM("EFF_SANDBOARD");
 		ReplacePVM("OBJ_SANDBOARD");
 		ReplacePVM("SANDBOARD");
-		WriteData((LandTable**)0x7D2051, &landtable_00002DEC); //Sand Hill
+		WriteData((LandTable**)0x7D2051, SBOARD); //Sand Hill
 		*(NJS_OBJECT *)0x017424DC = objectSBOARD_0006EA40; //Sand Hill ramp
 	}
 	if (EnableTwinkleCircuit)
@@ -763,7 +779,7 @@ void Subgames_Init(const IniFile *config, const HelperFunctions &helperFunctions
 		ReplacePVM("MINI_CART05");
 		ReplacePVM("MINI_CART06");
 		if (DLLLoaded_HDGUI == false) ReplacePVM("OBJ_MINI_CART");
-		WriteData((LandTable**)0x7D205B, &landtable_00001A3C); //Twinkle Circuit
+		WriteData((LandTable**)0x7D205B, MINICART); //Twinkle Circuit
 	}
 		ReplaceBIN_DC("SETSHT1S");
 		ReplaceBIN_DC("SETSHT2S");
