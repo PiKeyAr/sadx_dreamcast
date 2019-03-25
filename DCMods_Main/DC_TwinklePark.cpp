@@ -416,55 +416,17 @@ void RenderCatapult(NJS_ACTION *a1, float frame, float scale)
 	DrawQueueDepthBias = 0.0f;
 }
 
-void TwinklePark_Init(const IniFile *config, const HelperFunctions &helperFunctions)
+void TwinklePark_Init()
 {
-	LandTableInfo *STG03_0_Info_ptr = new LandTableInfo(ModPath + "\\data\\STG03\\0.sa1lvl");
-	LandTableInfo *STG03_1_Info_ptr = new LandTableInfo(ModPath + "\\data\\STG03\\1.sa1lvl");
-	LandTableInfo *STG03_2_Info_ptr = new LandTableInfo(ModPath + "\\data\\STG03\\2.sa1lvl");
-	STG03_0_Info = STG03_0_Info_ptr;
-	STG03_1_Info = STG03_1_Info_ptr;
-	STG03_2_Info = STG03_2_Info_ptr;
+	STG03_0_Info = new LandTableInfo(ModPath + "\\data\\STG03\\0.sa1lvl");;
+	STG03_1_Info = new LandTableInfo(ModPath + "\\data\\STG03\\1.sa1lvl");;
+	STG03_2_Info = new LandTableInfo(ModPath + "\\data\\STG03\\2.sa1lvl");;
 	LandTable *STG03_0 = STG03_0_Info->getlandtable();
 	LandTable *STG03_1 = STG03_1_Info->getlandtable();
 	LandTable *STG03_2 = STG03_2_Info->getlandtable();
 	STG03_0->TexList = &texlist_twinkle1;
 	STG03_1->TexList = &texlist_twinkle2;
 	STG03_2->TexList = &texlist_twinkle3;
-	ReplaceBIN_DC("CAM0300S");
-	ReplaceBIN_DC("CAM0301A");
-	ReplaceBIN_DC("CAM0301B");
-	ReplaceBIN_DC("CAM0301S");
-	ReplaceBIN_DC("CAM0302A");
-	ReplaceBIN_DC("CAM0302S");
-	ReplaceBIN_DC("SET0300S");
-	ReplaceBIN_DC("SET0301A");
-	ReplaceBIN_DC("SET0301B");
-	ReplaceBIN_DC("SET0301S");
-	ReplaceBIN_DC("SET0302A");
-	ReplaceBIN_DC("SET0302S");
-	switch (EnableSETFixes)
-	{
-		case SETFixes_Normal:
-			AddSETFix("SET0301A");
-			AddSETFix("SET0301B");
-			AddSETFix("SET0301S");
-			AddSETFix("SET0302A");
-			break;
-		case SETFixes_Extra:
-			AddSETFix_Extra("SET0301A");
-			AddSETFix_Extra("SET0301B");
-			AddSETFix_Extra("SET0301S");
-			AddSETFix_Extra("SET0302A");
-			break;
-		default:
-			break;
-	}
-	ReplacePVM("BG_SHAREOBJ");
-	ReplacePVM("OBJ_SHAREOBJ");
-	ReplacePVM("OBJ_TWINKLE");
-	ReplacePVM("TWINKLE01");
-	ReplacePVM("TWINKLE02");
-	ReplacePVM("TWINKLE03");
 	ResizeTextureList(&OBJ_TWINKLE_TEXLIST, 96);
 	WriteData((LandTable**)0x97DA68, STG03_0);
 	WriteData((LandTable**)0x97DA6C, STG03_1);
@@ -617,7 +579,7 @@ void TwinklePark_Init(const IniFile *config, const HelperFunctions &helperFuncti
 void TwinklePark_OnFrame()
 {
 	{
-		if (CurrentLevel == 3 && CurrentAct == 1)
+		if (STG03_1_Info && CurrentLevel == 3 && CurrentAct == 1)
 		{
 			if (GameState != 16)
 			{

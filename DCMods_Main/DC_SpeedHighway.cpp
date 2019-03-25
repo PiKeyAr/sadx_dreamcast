@@ -151,61 +151,17 @@ static void __cdecl FountainDisplay_r(ObjectMaster *a1)
 	original(a1);
 }
 
-void SpeedHighway_Init(const IniFile *config, const HelperFunctions &helperFunctions)
+void SpeedHighway_Init()
 {
-	LandTableInfo *STG04_0_Info_ptr = new LandTableInfo(ModPath + "\\data\\STG04\\0.sa1lvl");
-	LandTableInfo *STG04_1_Info_ptr = new LandTableInfo(ModPath + "\\data\\STG04\\1.sa1lvl");
-	LandTableInfo *STG04_2_Info_ptr = new LandTableInfo(ModPath + "\\data\\STG04\\2.sa1lvl");
-	STG04_0_Info = STG04_0_Info_ptr;
-	STG04_1_Info = STG04_1_Info_ptr;
-	STG04_2_Info = STG04_2_Info_ptr;
+	STG04_0_Info = new LandTableInfo(ModPath + "\\data\\STG04\\0.sa1lvl");
+	STG04_1_Info = new LandTableInfo(ModPath + "\\data\\STG04\\1.sa1lvl");
+	STG04_2_Info = new LandTableInfo(ModPath + "\\data\\STG04\\2.sa1lvl");
 	LandTable *STG04_0 = STG04_0_Info->getlandtable();
 	LandTable *STG04_1 = STG04_1_Info->getlandtable();
 	LandTable *STG04_2 = STG04_2_Info->getlandtable();
 	STG04_0->TexList = &texlist_hw1;
 	STG04_1->TexList = &texlist_hw2;
 	STG04_2->TexList = &texlist_hw3;
-	ReplaceBIN("PL_40B", "PL_40X");
-	ReplaceBIN("PL_41B", "PL_41X");
-	ReplaceBIN_DC("CAM0400M");
-	ReplaceBIN_DC("CAM0400S");
-	ReplaceBIN_DC("CAM0401S");
-	ReplaceBIN_DC("CAM0402K");
-	ReplaceBIN_DC("CAM0402S");
-	ReplaceBIN_DC("SET0400M");
-	ReplaceBIN_DC("SET0400S");
-	ReplaceBIN_DC("SET0401S");
-	ReplaceBIN_DC("SET0402K");
-	ReplaceBIN_DC("SET0402S");
-	switch (EnableSETFixes)
-	{
-	case SETFixes_Normal:
-		AddSETFix("SET0400M");
-		AddSETFix("SET0400S");
-		AddSETFix("SET0401S");
-		AddSETFix("SET0402K");
-		AddSETFix("SET0402S");
-		break;
-	case SETFixes_Extra:
-		AddSETFix_Extra("SET0400M");
-		AddSETFix_Extra("SET0400S");
-		AddSETFix_Extra("SET0401S");
-		AddSETFix_Extra("SET0402K");
-		AddSETFix_Extra("SET0402S");
-		break;
-	default:
-		break;
-	}
-	ReplacePVM("BG_HIGHWAY");
-	ReplacePVM("BG_HIGHWAY01");
-	ReplacePVM("BG_HIGHWAY02");
-	ReplacePVM("BG_HIGHWAY03");
-	ReplacePVM("HIGHWAY01");
-	ReplacePVM("HIGHWAY02");
-	ReplacePVM("HIGHWAY03");
-	ReplacePVM("HIGHWAY_CAR");
-	ReplacePVM("OBJ_HIGHWAY");
-	ReplacePVM("OBJ_HIGHWAY2");
 	ResizeTextureList(&HIGHWAY_CAR_TEXLIST, 16);
 	WriteData((LandTable**)0x97DA88, STG04_0);
 	WriteData((LandTable**)0x97DA8C, STG04_1);
@@ -375,7 +331,7 @@ void SpeedHighway_OnFrame()
 {
 	if (CurrentLevel == 4)
 	{
-		if (CurrentAct == 2 && GameState != 16)
+		if (STG04_2_Info && CurrentAct == 2 && GameState != 16)
 		{
 			if ((FramerateSetting < 2 && FrameCounterUnpaused % 4 == 0) || (FramerateSetting >= 2 && FrameCounterUnpaused % 2 == 0)) shwwater++;
 			if (shwwater > 13) shwwater = 0;

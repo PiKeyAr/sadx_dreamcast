@@ -44,7 +44,6 @@ static int carduvSTG09_reala = 1;
 static float cowgirlframe = 0;
 static int cowgirl_shift1 = 65;
 static int cowgirl_shift2 = 0;
-static bool CowgirlOn = true;
 static bool WhiteSonic = false;
 FunctionPointer(void, sub_5DD900, (int a1, int a2), 0x5DD900);
 FunctionPointer(void, sub_5DD920, (int a1, int a2), 0x5DD920);
@@ -787,16 +786,12 @@ void IdeyaCapFix(void *a1, int a2, float a3, int a4, int a5)
 	DrawQueueDepthBias = 0;
 }
 
-void Casinopolis_Init(const IniFile *config, const HelperFunctions &helperFunctions)
+void Casinopolis_Init()
 {
-	LandTableInfo *STG09_0_Info_ptr = new LandTableInfo(ModPath + "\\data\\STG09\\0.sa1lvl");
-	LandTableInfo *STG09_1_Info_ptr = new LandTableInfo(ModPath + "\\data\\STG09\\1.sa1lvl");
-	LandTableInfo *STG09_2_Info_ptr = new LandTableInfo(ModPath + "\\data\\STG09\\2.sa1lvl");
-	LandTableInfo *STG09_3_Info_ptr = new LandTableInfo(ModPath + "\\data\\STG09\\3.sa1lvl");
-	STG09_0_Info = STG09_0_Info_ptr;
-	STG09_1_Info = STG09_1_Info_ptr;
-	STG09_2_Info = STG09_2_Info_ptr;
-	STG09_3_Info = STG09_3_Info_ptr;
+	STG09_0_Info = new LandTableInfo(ModPath + "\\data\\STG09\\0.sa1lvl");
+	STG09_1_Info = new LandTableInfo(ModPath + "\\data\\STG09\\1.sa1lvl");
+	STG09_2_Info = new LandTableInfo(ModPath + "\\data\\STG09\\2.sa1lvl");
+	STG09_3_Info = new LandTableInfo(ModPath + "\\data\\STG09\\3.sa1lvl");
 	STG09_0 = STG09_0_Info->getlandtable();
 	STG09_1 = STG09_1_Info->getlandtable();
 	STG09_2 = STG09_2_Info->getlandtable();
@@ -805,54 +800,10 @@ void Casinopolis_Init(const IniFile *config, const HelperFunctions &helperFuncti
 	STG09_1->TexList = &texlist_casino2;
 	STG09_2->TexList = &texlist_casino3;
 	STG09_3->TexList = &texlist_casino4;
-	ReplaceBIN_DC("CAM0900K");
-	ReplaceBIN_DC("CAM0900S");
-	ReplaceBIN_DC("CAM0901M");
-	ReplaceBIN_DC("CAM0901S");
-	ReplaceBIN_DC("CAM0902S");
-	ReplaceBIN_DC("CAM0903S");
-	ReplaceBIN_DC("SET0900K");
-	ReplaceBIN_DC("SET0900S");
-	ReplaceBIN_DC("SET0901M");
-	ReplaceBIN_DC("SET0901S");
-	ReplaceBIN_DC("SET0902S");
-	ReplaceBIN_DC("SET0903S");
-	ReplaceBIN_DC("SETMI0900K");
-	switch (EnableSETFixes)
-	{
-		case SETFixes_Normal:
-			AddSETFix("SET0900K");
-			AddSETFix("SET0900S");
-			AddSETFix("SET0901M");
-			AddSETFix("SET0901S");
-			AddSETFix("SET0902S");
-			AddSETFix("SET0903S");
-			break;
-		case SETFixes_Extra:
-			AddSETFix_Extra("SET0900K");
-			AddSETFix_Extra("SET0900S");
-			AddSETFix_Extra("SET0901M");
-			AddSETFix_Extra("SET0901S");
-			AddSETFix_Extra("SET0902S");
-			AddSETFix_Extra("SET0903S");
-			break;
-		default:
-			break;
-	}
-	ReplacePVM("CASINO01");
-	ReplacePVM("CASINO02");
-	ReplacePVM("CASINO03");
-	ReplacePVM("CASINO04");
-	ReplacePVM("OBJ_CASINO2");
-	ReplacePVM("OBJ_CASINO8");
-	ReplacePVM("OBJ_CASINO9");
-	ReplacePVM("OBJ_CASINO_E");
 	WriteData((LandTable**)0x97DB28, STG09_0);
 	WriteData((LandTable**)0x97DB2C, STG09_1);
 	WriteData((LandTable**)0x97DB30, STG09_2);
 	WriteData((LandTable**)0x97DB34, STG09_3);
-	//Lantern stuff
-	ReplaceBIN("PL_90B", "PL_90X");
 	if (DLLLoaded_Lantern)
 	{
 		if (set_alpha_reject_ptr != nullptr) material_register_ptr(DisableAlphaRejection_Casino, LengthOfArray(DisableAlphaRejection_Casino), &DisableAlphaRejection);
@@ -899,8 +850,6 @@ void Casinopolis_Init(const IniFile *config, const HelperFunctions &helperFuncti
 	WriteJump((void*)0x5D44A0, TutuB_Display); //OTutuB display
 	WriteJump((void*)0x5D4550, TutuC_Display); //OTutuC display
 	WriteData((int*)0x1E77E58, 128); //Gear rotation speed
-	//Load configuration settings
-	CowgirlOn = config->getBool("Miscellaneous", "EnableCasinopolisCowgirl", true);
 	if (CowgirlOn)
 	{
 		stru_1E763B8[0].scale.y = stru_1E763B8[0].scale.y * 4;
@@ -1152,7 +1101,7 @@ void Casinopolis_OnFrame()
 			}
 		}
 	}
-	if (CurrentLevel == 9 && CurrentAct == 0 && GameState != 16)
+	if (STG09_0_Info && CurrentLevel == 9 && CurrentAct == 0 && GameState != 16)
 	{
 		//This game's collision is fucking awful
 		if (entity != nullptr)
@@ -1262,7 +1211,7 @@ void Casinopolis_OnFrame()
 		}
 
 	}
-	if (CurrentLevel == 9 && CurrentAct == 1 && GameState != 16)
+	if (STG09_1_Info && CurrentLevel == 9 && CurrentAct == 1 && GameState != 16)
 	{
 		if (anim2_actual == 0) anim2 = 7;
 		if (anim2_actual == 1) anim2 = 10;

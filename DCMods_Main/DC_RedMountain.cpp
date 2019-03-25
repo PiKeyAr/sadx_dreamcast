@@ -74,55 +74,17 @@ void SetCloudColor(NJS_ARGB *a)
 	SetMaterialAndSpriteColor_Float(0.2f + a->a, 0.2f + a->r, 0.2f + a->g, 0.2f + a->b);
 }
 
-void RedMountain_Init(const IniFile *config, const HelperFunctions &helperFunctions)
+void RedMountain_Init()
 {
-	LandTableInfo *STG05_0_Info_ptr = new LandTableInfo(ModPath + "\\data\\STG05\\0.sa1lvl");
-	LandTableInfo *STG05_1_Info_ptr = new LandTableInfo(ModPath + "\\data\\STG05\\1.sa1lvl");
-	LandTableInfo *STG05_2_Info_ptr = new LandTableInfo(ModPath + "\\data\\STG05\\2.sa1lvl");
-	STG05_0_Info = STG05_0_Info_ptr;
-	STG05_1_Info = STG05_1_Info_ptr;
-	STG05_2_Info = STG05_2_Info_ptr;
+	STG05_0_Info = new LandTableInfo(ModPath + "\\data\\STG05\\0.sa1lvl");
+	STG05_1_Info = new LandTableInfo(ModPath + "\\data\\STG05\\1.sa1lvl");
+	STG05_2_Info = new LandTableInfo(ModPath + "\\data\\STG05\\2.sa1lvl");
 	LandTable *STG05_0 = STG05_0_Info->getlandtable();
 	LandTable *STG05_1 = STG05_1_Info->getlandtable();
 	LandTable *STG05_2 = STG05_2_Info->getlandtable();
 	STG05_0->TexList = &texlist_mountain1;
 	STG05_1->TexList = &texlist_mountain2;
 	STG05_2->TexList = &texlist_mountain3;
-	ReplaceBIN_DC("CAM0500S");
-	ReplaceBIN_DC("CAM0501E");
-	ReplaceBIN_DC("CAM0501S");
-	ReplaceBIN_DC("CAM0502K");
-	ReplaceBIN_DC("SET0500S");
-	ReplaceBIN_DC("SET0501E");
-	ReplaceBIN_DC("SET0501S");
-	ReplaceBIN_DC("SET0502K");
-	switch (EnableSETFixes)
-	{
-		case SETFixes_Normal:
-			AddSETFix("SET0500S");
-			AddSETFix("SET0501E");
-			AddSETFix("SET0501S");
-			AddSETFix("SET0502K");
-			break;
-		case SETFixes_Extra:
-			AddSETFix_Extra("SET0500S");
-			AddSETFix_Extra("SET0501E");
-			AddSETFix_Extra("SET0501S");
-			AddSETFix_Extra("SET0502K");
-			break;
-		default:
-			break;
-	}
-	ReplacePVM("MOUNTAIN01");
-	ReplacePVM("MOUNTAIN02");
-	ReplacePVM("MOUNTAIN03");
-	ReplacePVM("MOUNTAIN_CARRIER");
-	ReplacePVM("MOUNTAIN_E104");
-	ReplacePVM("MOUNTAIN_MEXPLOSION");
-	ReplacePVM("MOUNTAIN_STEAM");
-	ReplacePVM("OBJ_MOUNTAIN");
-	ReplacePVM("YOUGAN_ANIM");
-	ReplaceBIN("PL_51B", "PL_51X");
 	WriteData((LandTable**)0x97DAA8, STG05_0);
 	WriteData((LandTable**)0x97DAAC, STG05_1);
 	WriteData((LandTable**)0x97DAB0, STG05_2);
@@ -196,7 +158,7 @@ void RedMountain_OnFrame()
 			uvSTG05_0206C9F0[q].u = uvSTG05_0206C9F0_0[q].u + UVShift1;
 			uvSTG05_0206C9F0_2[q].u = uvSTG05_0206C9F0_0[q].u + UVShift2;
 		}
-		if (CurrentAct == 1 && Camera_Data1 != nullptr)
+		if (STG05_1_Info && CurrentAct == 1 && Camera_Data1 != nullptr)
 		{
 			if (Camera_Data1->Position.y > 900) CurrentDrawDistance = -9000.0f;
 		}

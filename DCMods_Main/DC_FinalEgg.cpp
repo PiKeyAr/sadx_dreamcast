@@ -32,7 +32,6 @@ FunctionPointer(void, sub_405450, (NJS_ACTION *a1, float frame, float scale), 0x
 FunctionPointer(void, sub_5ADCF0, (), 0x5ADCF0);
 
 static int cylinderframe = 0;
-float OFunAnimationSpeedOverride = 0.25f; //Floating Fan Animation Speed Tweak
 SETObjData setdata_fe = {};
 
 PVMEntry FinalEggObjectTextures[] = {
@@ -657,60 +656,17 @@ void GachaponExplosionFix(NJS_MODEL_SADX *a1)
 	DrawQueueDepthBias = 0;
 }
 
-void FinalEgg_Init(const IniFile *config, const HelperFunctions &helperFunctions)
+void FinalEgg_Init()
 {
-	LandTableInfo *STG10_0_Info_ptr = new LandTableInfo(ModPath + "\\data\\STG10\\0.sa1lvl");
-	LandTableInfo *STG10_1_Info_ptr = new LandTableInfo(ModPath + "\\data\\STG10\\1.sa1lvl");
-	LandTableInfo *STG10_2_Info_ptr = new LandTableInfo(ModPath + "\\data\\STG10\\2.sa1lvl");
-	STG10_0_Info = STG10_0_Info_ptr;
-	STG10_1_Info = STG10_1_Info_ptr;
-	STG10_2_Info = STG10_2_Info_ptr;
+	STG10_0_Info = new LandTableInfo(ModPath + "\\data\\STG10\\0.sa1lvl");
+	STG10_1_Info = new LandTableInfo(ModPath + "\\data\\STG10\\1.sa1lvl");
+	STG10_2_Info = new LandTableInfo(ModPath + "\\data\\STG10\\2.sa1lvl");
 	STG10_0 = STG10_0_Info->getlandtable();
 	STG10_1 = STG10_1_Info->getlandtable();
 	STG10_2 = STG10_2_Info->getlandtable();
 	STG10_0->TexList = &texlist_finalegg1;
 	STG10_1->TexList = &texlist_finalegg2;
 	STG10_2->TexList = &texlist_finalegg3;
-	ReplaceBIN_DC("CAM1000A");
-	ReplaceBIN_DC("CAM1000S");
-	ReplaceBIN_DC("CAM1001S");
-	ReplaceBIN_DC("CAM1002E");
-	ReplaceBIN_DC("CAM1002S");
-	ReplaceBIN_DC("CAM1003S");
-	ReplaceBIN_DC("SET1000A");
-	ReplaceBIN_DC("SET1000S");
-	ReplaceBIN_DC("SET1001S");
-	ReplaceBIN_DC("SET1002E");
-	ReplaceBIN_DC("SET1002S");
-	ReplaceBIN_DC("SET1003S");
-	switch (EnableSETFixes)
-	{
-		case SETFixes_Normal:
-			AddSETFix("SET1000A");
-			AddSETFix("SET1000S");
-			AddSETFix("SET1001S");
-			AddSETFix("SET1002E");
-			AddSETFix("SET1002S");
-			AddSETFix("SET1003S");
-			break;
-		case SETFixes_Extra:
-			AddSETFix_Extra("SET1000A");
-			AddSETFix_Extra("SET1000S");
-			AddSETFix_Extra("SET1001S");
-			AddSETFix_Extra("SET1002E");
-			AddSETFix_Extra("SET1002S");
-			AddSETFix_Extra("SET1003S");
-			break;
-		default:
-			break;
-	}
-	ReplacePVM("EFF_FINALEGG_POM");
-	ReplacePVM("FINALEGG1");
-	ReplacePVM("FINALEGG2");
-	ReplacePVM("FINALEGG3");
-	ReplacePVM("FINALEGG4");
-	ReplaceBIN("PL_A0B", "PL_A0X");
-	ReplaceBIN("PL_A2B", "PL_A2X");
 	TexLists_Obj[10] = FinalEggObjectTextures;
 	WriteData((LandTable**)0x97DB48, STG10_0); //Act 1
 	WriteData((LandTable**)0x97DB4C, STG10_1); //Act 2
@@ -719,7 +675,6 @@ void FinalEgg_Init(const IniFile *config, const HelperFunctions &helperFunctions
 	WriteCall((void*)0x005AE0A5, FinalEggHook);
 	WriteCall((void*)0x005AE060, FinalEggHook);
 	WriteData<1>((void*)0x005ADC40, 0xC3u); //Kill the SetClip function
-	WriteData((float**)0x005B7530, &OFunAnimationSpeedOverride);//Floating Fan Animation Speed Tweaks
 	for (unsigned int i = 0; i < LengthOfArray(NeutralMaterials); i++)
 	{
 		RemoveMaterialColors(NeutralMaterials[i]);
@@ -739,9 +694,7 @@ void FinalEgg_Init(const IniFile *config, const HelperFunctions &helperFunctions
 			DisableAlphaRejection_FinalEgg[8] = &((NJS_MATERIAL*)STG10_2_Info->getdata("matlistSTG10_0014DB7C"))[0]; //Not DA_ONE but better include this too
 			DisableAlphaRejection_FinalEgg[9] = &((NJS_MATERIAL*)STG10_2_Info->getdata("matlistSTG10_001AEB58"))[0]; //Light object
 			material_register_ptr(DisableAlphaRejection_FinalEgg, LengthOfArray(DisableAlphaRejection_FinalEgg), &DisableAlphaRejection);
-			ReplacePVM("OBJ_FINALEGG");
 		}
-		else ReplaceGeneric("OBJ_FINALEGG.PVM", "OBJ_FINALEGG_DC_OLD.PVM");
 		material_register_ptr(LevelSpecular_FinalEgg, LengthOfArray(LevelSpecular_FinalEgg), &ForceDiffuse0Specular0);
 		material_register_ptr(ObjectSpecular_FinalEgg, LengthOfArray(ObjectSpecular_FinalEgg), &ForceDiffuse0Specular1);
 		//1
@@ -775,7 +728,6 @@ void FinalEgg_Init(const IniFile *config, const HelperFunctions &helperFunctions
 		WhiteDiffuse_FinalEgg[25] = &((NJS_MATERIAL*)STG10_2_Info->getdata("matlistSTG10_001228E4"))[3];
 		material_register_ptr(WhiteDiffuse_FinalEgg, LengthOfArray(WhiteDiffuse_FinalEgg), &ForceWhiteDiffuse1);
 	}
-	else ReplaceGeneric("OBJ_FINALEGG.PVM", "OBJ_FINALEGG_DC_OLD.PVM");
 	//Environment maps thing
 	WriteCall((void*)0x005B3785, SetGachaponEnvMaps1);
 	WriteCall((void*)0x005B3744, sub_5B36E0X);
@@ -885,8 +837,4 @@ void FinalEgg_OnFrame()
 		((NJS_OBJECT*)0x1A4583C)->basicdxmodel->mats[0].attr_texId = cylinderframe;
 		((NJS_OBJECT*)0x1A45620)->basicdxmodel->mats->attr_texId = cylinderframe;
 	}
-	//Floating Fan Animation Speed Tweak
-	if (FramerateSetting >= 2)
-		OFunAnimationSpeedOverride = 1.0f; else
-		OFunAnimationSpeedOverride = 0.25f;
 }

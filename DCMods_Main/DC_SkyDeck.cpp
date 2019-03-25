@@ -40,6 +40,13 @@ DataArray(NJS_OBJECT*, Connect0DebrisArray, 0x223AE90, 9);
 DataArray(NJS_OBJECT*, Talap0DebrisArray, 0x0223AF78, 34);
 DataArray(char, byte_223AEB4, 0x223AEB4, 100);
 DataArray(char, byte_223B000, 0x223B000, 4);
+DataArray(FogData, SkyDeck1Fog, 0x0203A094, 3);
+DataArray(FogData, SkyDeck2Fog, 0x0203A0C4, 3);
+DataArray(FogData, SkyDeck3Fog, 0x0203A0F4, 3);
+DataArray(SkyboxScale, SkyDeck3SkyboxScale, 0x02039FE0, 3);
+DataArray(DrawDistance, SkyDeck1DrawDist, 0x0203A04C, 3);
+DataArray(DrawDistance, SkyDeck2DrawDist, 0x0203A064, 3);
+DataArray(DrawDistance, SkyDeck3DrawDist, 0x0203A07C, 3);
 FunctionPointer(void, sub_408530, (NJS_OBJECT *a1), 0x408530);
 FunctionPointer(void, sub_407A00, (NJS_MODEL_SADX *model, float scale), 0x407A00);
 FunctionPointer(void, sub_5ED790, (ObjectMaster *a1, NJS_OBJECT *a2), 0x5ED790);
@@ -628,56 +635,17 @@ void __cdecl Talap0Display_FixedRotation(ObjectMaster *a2)
 	}
 }
 
-void SkyDeck_Init(const IniFile *config, const HelperFunctions &helperFunctions)
+void SkyDeck_Init()
 {
-	LandTableInfo *STG06_0_Info_ptr = new LandTableInfo(ModPath + "\\data\\STG06\\0.sa1lvl");
-	LandTableInfo *STG06_1_Info_ptr = new LandTableInfo(ModPath + "\\data\\STG06\\1.sa1lvl");
-	LandTableInfo *STG06_2_Info_ptr = new LandTableInfo(ModPath + "\\data\\STG06\\2.sa1lvl");
-	STG06_0_Info = STG06_0_Info_ptr;
-	STG06_1_Info = STG06_1_Info_ptr;
-	STG06_2_Info = STG06_2_Info_ptr;
+	STG06_0_Info = new LandTableInfo(ModPath + "\\data\\STG06\\0.sa1lvl");
+	STG06_1_Info = new LandTableInfo(ModPath + "\\data\\STG06\\1.sa1lvl");
+	STG06_2_Info = new LandTableInfo(ModPath + "\\data\\STG06\\2.sa1lvl");
 	STG06_0 = STG06_0_Info->getlandtable();
 	STG06_1 = STG06_1_Info->getlandtable();
 	STG06_2 = STG06_2_Info->getlandtable();
 	STG06_0->TexList = &texlist_skydeck1;
 	STG06_1->TexList = &texlist_skydeck2;
 	STG06_2->TexList = &texlist_skydeck3;
-	ReplaceBIN_DC("SET0600M");
-	ReplaceBIN_DC("SET0600S");
-	ReplaceBIN_DC("SET0601M");
-	ReplaceBIN_DC("SET0601S");
-	ReplaceBIN_DC("SET0602K");
-	ReplaceBIN_DC("SET0602M");
-	ReplaceBIN_DC("SET0602S");
-	ReplaceBIN_DC("CAM0600M");
-	ReplaceBIN_DC("CAM0600S");
-	ReplaceBIN_DC("CAM0601S");
-	ReplaceBIN_DC("CAM0602K");
-	ReplaceBIN_DC("CAM0602S");
-	switch (EnableSETFixes)
-	{
-		case SETFixes_Normal:
-			AddSETFix("SET0600M");
-			AddSETFix("SET0600S");
-			AddSETFix("SET0601S");
-			AddSETFix("SET0602K");
-			AddSETFix("SET0602S");
-			break;
-		case SETFixes_Extra:
-			AddSETFix_Extra("SET0600M");
-			AddSETFix_Extra("SET0600S");
-			AddSETFix_Extra("SET0601S");
-			AddSETFix_Extra("SET0602K");
-			AddSETFix_Extra("SET0602S");
-			break;
-		default:
-			break;
-	}
-	ReplacePVM("E_AIRCRAFT");
-	ReplacePVM("OBJ_SKYDECK");
-	ReplacePVM("SKYDECK01");
-	ReplacePVM("SKYDECK02");
-	ReplacePVM("SKYDECK03");
 	WriteData((LandTable**)0x97DAC8, STG06_0);
 	WriteData((LandTable**)0x97DACC, STG06_1);
 	WriteData((LandTable**)0x97DAD0, STG06_2);
@@ -797,13 +765,6 @@ void SkyDeck_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 	ResizeTextureList((NJS_TEXLIST*)0x20AA63C, textures_skydeck2);
 	ResizeTextureList((NJS_TEXLIST*)0x203ACE0, textures_skydeck3);
 	ResizeTextureList(&OBJ_SKYDECK_TEXLIST, 213);
-	DataArray(FogData, SkyDeck1Fog, 0x0203A094, 3);
-	DataArray(FogData, SkyDeck2Fog, 0x0203A0C4, 3);
-	DataArray(FogData, SkyDeck3Fog, 0x0203A0F4, 3);
-	DataArray(SkyboxScale, SkyDeck3SkyboxScale, 0x02039FE0, 3);
-	DataArray(DrawDistance, SkyDeck1DrawDist, 0x0203A04C, 3);
-	DataArray(DrawDistance, SkyDeck2DrawDist, 0x0203A064, 3);
-	DataArray(DrawDistance, SkyDeck3DrawDist, 0x0203A07C, 3);
 	for (unsigned int i = 0; i < 3; i++)
 	{
 		SkyDeck1Fog[i].Layer = 4000.0f;
@@ -834,7 +795,7 @@ void SkyDeck_OnFrame()
 	if (CurrentLevel == 6)
 	{
 		{
-			if (GameState == 3 || GameState == 4 || GameState == 7 || GameState == 21)
+			if (STG06_0_Info && (GameState == 3 || GameState == 4 || GameState == 7 || GameState == 21))
 				for (int i = 0; i < STG06_0->COLCount; i++)
 				{
 					if (STG06_0->Col[i].anonymous_6 & 4)

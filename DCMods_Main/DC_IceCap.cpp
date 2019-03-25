@@ -189,30 +189,33 @@ void Obj_Icecap_DoColFlagThingsX(int some_flags)
 	int count; // edx
 	Uint32 flags; // eax
 	unsigned __int32 _flags; // eax
-	if (STG08_3->COLCount - 1 >= 0)
+	if (STG08_3_Info)
 	{
-		ptr = (Uint32*)STG08_3->Col->Flags;
-		count = STG08_3->COLCount;
-		do
+		if (STG08_3->COLCount - 1 >= 0)
 		{
-			flags = *ptr;
-			if (*ptr & 0x60000000)
+			ptr = (Uint32*)STG08_3->Col->Flags;
+			count = STG08_3->COLCount;
+			do
 			{
-				if (some_flags & *(ptr - 1))
+				flags = *ptr;
+				if (*ptr & 0x60000000)
 				{
-					//PrintDebug("Solid\n");
-					_flags = flags | ColFlags_Solid;
+					if (some_flags & *(ptr - 1))
+					{
+						//PrintDebug("Solid\n");
+						_flags = flags | ColFlags_Solid;
+					}
+					else
+					{
+						//PrintDebug("Not solid\n");
+						_flags = flags & ~ColFlags_Solid;
+					}
+					*ptr = _flags;
 				}
-				else
-				{
-					//PrintDebug("Not solid\n");
-					_flags = flags & ~ColFlags_Solid;
-				}
-				*ptr = _flags;
-			}
-			ptr += 9;
-			--count;
-		} while (count);
+				ptr += 9;
+				--count;
+			} while (count);
+		}
 	}
 }
 
@@ -230,16 +233,12 @@ static void __declspec(naked) Obj_Icecap_DoColFlagThings_a()
 	}
 }
 
-void IceCap_Init(const IniFile *config, const HelperFunctions &helperFunctions)
+void IceCap_Init()
 {
-	LandTableInfo *STG08_0_Info_ptr = new LandTableInfo(ModPath + "\\data\\STG08\\0.sa1lvl");
-	LandTableInfo *STG08_1_Info_ptr = new LandTableInfo(ModPath + "\\data\\STG08\\1.sa1lvl");
-	LandTableInfo *STG08_2_Info_ptr = new LandTableInfo(ModPath + "\\data\\STG08\\2.sa1lvl");
-	LandTableInfo *STG08_3_Info_ptr = new LandTableInfo(ModPath + "\\data\\STG08\\3.sa1lvl");
-	STG08_0_Info = STG08_0_Info_ptr;
-	STG08_1_Info = STG08_1_Info_ptr;
-	STG08_2_Info = STG08_2_Info_ptr;
-	STG08_3_Info = STG08_3_Info_ptr;
+	STG08_0_Info = new LandTableInfo(ModPath + "\\data\\STG08\\0.sa1lvl");
+	STG08_1_Info = new LandTableInfo(ModPath + "\\data\\STG08\\1.sa1lvl");
+	STG08_2_Info = new LandTableInfo(ModPath + "\\data\\STG08\\2.sa1lvl");
+	STG08_3_Info = new LandTableInfo(ModPath + "\\data\\STG08\\3.sa1lvl");
 	STG08_0 = STG08_0_Info->getlandtable();
 	STG08_1 = STG08_1_Info->getlandtable();
 	STG08_2 = STG08_2_Info->getlandtable();
@@ -248,43 +247,6 @@ void IceCap_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 	STG08_1->TexList = &texlist_icecap2;
 	STG08_2->TexList = &texlist_icecap3;
 	STG08_3->TexList = &texlist_icecap2;
-	ReplaceBIN_DC("CAM0800S");
-	ReplaceBIN_DC("CAM0801S");
-	ReplaceBIN_DC("CAM0802S");
-	ReplaceBIN_DC("CAM0803B");
-	ReplaceBIN_DC("SET0800S");
-	ReplaceBIN_DC("SET0801S");
-	ReplaceBIN_DC("SET0802M");
-	ReplaceBIN_DC("SET0802S");
-	ReplaceBIN_DC("SET0803B");
-	switch (EnableSETFixes)
-	{
-		case SETFixes_Normal:
-			AddSETFix("SET0800S");
-			AddSETFix("SET0801S");
-			AddSETFix("SET0802M");
-			AddSETFix("SET0802S");
-			AddSETFix("SET0803B");
-			break;
-		case SETFixes_Extra:
-			AddSETFix_Extra("SET0800S");
-			AddSETFix_Extra("SET0801S");
-			AddSETFix_Extra("SET0802M");
-			AddSETFix_Extra("SET0802S");
-			AddSETFix_Extra("SET0803B");
-			break;
-		default:
-			break;
-	}
-	ReplacePVM("BG_ICECAP");
-	ReplacePVM("ICECAP01");
-	ReplacePVM("ICECAP02");
-	ReplacePVM("ICECAP03");
-	ReplacePVM("OBJ_ICECAP");
-	ReplacePVM("OBJ_ICECAP2");
-	ReplacePVR("MIW_B001");
-	ReplacePVR("MTX_BOARD0");
-	ReplacePVR("SB_BOARD1");
 	WriteData((LandTable**)0x97DB08, STG08_0);
 	WriteData((LandTable**)0x97DB0C, STG08_1);
 	WriteData((LandTable**)0x97DB10, STG08_2);
@@ -372,7 +334,7 @@ void IceCap_OnFrame()
 			}
 		}
 	}
-	if (CurrentLevel == 8 && CurrentAct == 3 && GameState != 16)
+	if (STG08_3_Info && CurrentLevel == 8 && CurrentAct == 3 && GameState != 16)
 	{
 		if (animframe > 54) animframe = 16;
 		if (animframe > 16 && animframe < 41) animframe = 41;

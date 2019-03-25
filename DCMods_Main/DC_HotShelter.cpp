@@ -266,60 +266,17 @@ void PlayMusicHook_DisableE105Fog(MusicIDs song)
 	ReduceHotShelterFog = true;
 }
 
-void HotShelter_Init(const IniFile *config, const HelperFunctions &helperFunctions)
+void HotShelter_Init()
 {
-	LandTableInfo *STG12_0_Info_ptr = new LandTableInfo(ModPath + "\\data\\STG12\\0.sa1lvl");
-	LandTableInfo *STG12_1_Info_ptr = new LandTableInfo(ModPath + "\\data\\STG12\\1.sa1lvl");
-	LandTableInfo *STG12_2_Info_ptr = new LandTableInfo(ModPath + "\\data\\STG12\\2.sa1lvl");
-	STG12_0_Info = STG12_0_Info_ptr;
-	STG12_1_Info = STG12_1_Info_ptr;
-	STG12_2_Info = STG12_2_Info_ptr;
+	STG12_0_Info = new LandTableInfo(ModPath + "\\data\\STG12\\0.sa1lvl");
+	STG12_1_Info = new LandTableInfo(ModPath + "\\data\\STG12\\1.sa1lvl");
+	STG12_2_Info = new LandTableInfo(ModPath + "\\data\\STG12\\2.sa1lvl");
 	STG12_0 = STG12_0_Info->getlandtable();
 	STG12_1 = STG12_1_Info->getlandtable();
 	STG12_2 = STG12_2_Info->getlandtable();
 	STG12_0->TexList = &texlist_hotshelter1;
 	STG12_1->TexList = &texlist_hotshelter2;
 	STG12_2->TexList = &texlist_hotshelter3;
-	ReplaceBIN_DC("SET1200A");
-	ReplaceBIN_DC("SET1200B");
-	ReplaceBIN_DC("SET1200S");
-	ReplaceBIN_DC("SET1201A");
-	ReplaceBIN_DC("SET1201S");
-	ReplaceBIN_DC("SET1202E");
-	ReplaceBIN_DC("SET1202S");
-	ReplaceBIN_DC("SET1203S");
-	ReplaceBIN_DC("CAM1200A");
-	ReplaceBIN_DC("CAM1200B");
-	ReplaceBIN_DC("CAM1200S");
-	ReplaceBIN_DC("CAM1201A");
-	ReplaceBIN_DC("CAM1201S");
-	ReplaceBIN_DC("CAM1202E");
-	ReplaceBIN_DC("CAM1202S");
-	ReplaceBIN_DC("CAM1203S");
-	switch (EnableSETFixes)
-	{
-		case SETFixes_Normal:
-			AddSETFix("SET1200A");
-			AddSETFix("SET1200B");
-			AddSETFix("SET1201A");
-			AddSETFix("SET1202E");
-			break;
-		case SETFixes_Extra:
-			AddSETFix_Extra("SET1200A");
-			AddSETFix_Extra("SET1200B");
-			AddSETFix_Extra("SET1201A");
-			AddSETFix_Extra("SET1202E");
-			break;
-		default:
-			break;
-	}
-	ReplacePVM("HOTSHELTER0");
-	ReplacePVM("HOTSHELTER1");
-	ReplacePVM("HOTSHELTER2");
-	ReplacePVM("HOTSHELTER3");
-	ReplacePVM("HOTSHELTER4");
-	ReplacePVM("SHELTER_COLUMN");
-	ReplacePVM("SHELTER_SUIMEN");
 	WriteCall((void*)0x5A3A03, PlayMusicHook_DisableE105Fog); //Hook to disable fog in E105 room
 	WriteCall((void*)0x005A3C99, E105Animation); //Add missing E105 Zeta animation
 	WriteCall((void*)0x0059F75C, AmyHatchFix); //Don't make the ventilation hatch solid when playing as Amy

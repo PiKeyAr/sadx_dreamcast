@@ -31,11 +31,11 @@ static int beachsea_water = 0;
 static int inside_secret_area = 0;
 static int water_anim = 17;
 static bool lilocean = false;
-static bool IamStupidAndIWantFuckedUpOcean = false;
 static NJS_VECTOR oldpos{ 0,0,0 };
 
 DataArray(NJS_TEX, uvSTG01_00CC0530, 0x10C0530, 4);
 DataArray(NJS_TEX, uvSTG01_00CBB000_data, 0x10BB000, LengthOfArray(uvSTG01_00CBB000));
+
 DataArray(FogData, EmeraldCoast1Fog, 0x00E99DDC, 3);
 DataArray(FogData, EmeraldCoast2Fog, 0x00E99E0C, 3);
 DataArray(FogData, EmeraldCoast3Fog, 0x00E99E3C, 3);
@@ -464,49 +464,20 @@ void WhaleSplash(NJS_OBJECT *a1)
 	ProcessModelNode(a1, (QueuedModelFlagsB)0, 1.0f);
 }
 
-void EmeraldCoast_Init(const IniFile *config, const HelperFunctions &helperFunctions)
+void EmeraldCoast_Init()
 {
-	LandTableInfo *STG01_0_Info_ptr = new LandTableInfo(ModPath + "\\data\\STG01\\0.sa1lvl");
-	LandTableInfo *STG01_1_Info_ptr = new LandTableInfo(ModPath + "\\data\\STG01\\1.sa1lvl");
-	LandTableInfo *STG01_2_Info_ptr = new LandTableInfo(ModPath + "\\data\\STG01\\2.sa1lvl");
-	STG01_0_Info = STG01_0_Info_ptr;
-	STG01_1_Info = STG01_1_Info_ptr;
-	STG01_2_Info = STG01_2_Info_ptr;
+	//LandTableInfo *STG01_0_Info_ptr = new LandTableInfo(ModPath + "\\data\\STG01\\0.sa1lvl");
+	//LandTableInfo *STG01_1_Info_ptr = new LandTableInfo(ModPath + "\\data\\STG01\\1.sa1lvl");
+	//LandTableInfo *STG01_2_Info_ptr = new LandTableInfo(ModPath + "\\data\\STG01\\2.sa1lvl");
+	STG01_0_Info = new LandTableInfo(ModPath + "\\data\\STG01\\0.sa1lvl");
+	STG01_1_Info = new LandTableInfo(ModPath + "\\data\\STG01\\1.sa1lvl");
+	STG01_2_Info = new LandTableInfo(ModPath + "\\data\\STG01\\2.sa1lvl");
 	LandTable *STG01_0 = STG01_0_Info->getlandtable();
 	LandTable *STG01_1 = STG01_1_Info->getlandtable();
 	LandTable *STG01_2 = STG01_2_Info->getlandtable();
 	STG01_0->TexList = &texlist_ecoast1;
 	STG01_1->TexList = &texlist_ecoast2;
 	STG01_2->TexList = &texlist_ecoast3;
-	ReplaceBIN_DC("SET0100E");
-	ReplaceBIN_DC("SET0100S");
-	ReplaceBIN_DC("SET0101M");
-	ReplaceBIN_DC("SET0101S");
-	ReplaceBIN_DC("SET0102B");
-	ReplaceBIN_DC("SET0102S");
-	switch (EnableSETFixes)
-	{
-		case SETFixes_Normal:
-			AddSETFix("SET0100S");
-			AddSETFix("SET0100E");
-			AddSETFix("SET0101S");
-			break;
-		case SETFixes_Extra:
-			AddSETFix_Extra("SET0100S");
-			AddSETFix_Extra("SET0100E");
-			AddSETFix_Extra("SET0101S");
-			break;
-		default:
-			break;
-	}
-	ReplacePVM("BEACH01");
-	ReplacePVM("BEACH02");
-	ReplacePVM("BEACH03");
-	ReplacePVM("BG_BEACH");
-	ReplacePVM("OBJ_BEACH");
-	ReplacePVM("BEACH_SEA");
-	// Load configuration settings
-	IamStupidAndIWantFuckedUpOcean = config->getBool("Miscellaneous", "RevertEmeraldCoastDrawDistance", false);
 	//Landtables
 	WriteData((LandTable**)0x97DA28, STG01_0); //Act 1
 	WriteData((LandTable**)0x97DA2C, STG01_1); //Act 2
@@ -637,46 +608,19 @@ void EmeraldCoast_Init(const IniFile *config, const HelperFunctions &helperFunct
 		EmeraldCoast3Fog[i].Distance = -3000.0f;
 		EmeraldCoast3Fog[i].Color = 0xFFFFFFFF;
 	}
-	if (!IamStupidAndIWantFuckedUpOcean)
-	{
-		for (unsigned int i = 0; i < 3; i++)
-		{
-			ReplaceBIN_DC("CAM0100E");
-			ReplaceBIN_DC("CAM0100S");
-			ReplaceBIN_DC("CAM0101S");
-			ReplaceBIN_DC("CAM0102B");
-			ReplaceBIN_DC("CAM0102S");
-			SkyboxScale_EmeraldCoast1[i].x = 1.0f;
-			SkyboxScale_EmeraldCoast1[i].y = 1.0f;
-			SkyboxScale_EmeraldCoast1[i].z = 1.0f;
-			SkyboxScale_EmeraldCoast2[i].x = 1.0f;
-			SkyboxScale_EmeraldCoast2[i].y = 1.0f;
-			SkyboxScale_EmeraldCoast2[i].z = 1.0f;
-			SkyboxScale_EmeraldCoast3[i].x = 1.0f;
-			SkyboxScale_EmeraldCoast3[i].y = 1.0f;
-			SkyboxScale_EmeraldCoast3[i].z = 1.0f;
-			DrawDist_EmeraldCoast1[i].Maximum = -6000.0f;
-			DrawDist_EmeraldCoast2[i].Maximum = -3900.0f;
-			EmeraldCoast1Fog[i].Distance = -12000.0f;
-			EmeraldCoast1Fog[i].Layer = -12000.0f;
-			EmeraldCoast2Fog[i].Distance = -12000.0f;
-			EmeraldCoast2Fog[i].Layer = -12000.0f;
-		}
-	}
-	else
-	{
-		ReplaceBIN("CAM0100E", "CAM0100E_R");
-		ReplaceBIN("CAM0100S", "CAM0100S_R");
-		ReplaceBIN("CAM0101S", "CAM0101S_R");
-		ReplaceBIN("CAM0102S", "CAM0102S_R");
-		ReplaceBIN("CAM0102B", "CAM0102B_R");
-	}
+}
+
+void EmeraldCoast_Clear()
+{
+	delete STG01_0_Info;
+	delete STG01_1_Info;
+	delete STG01_2_Info;
 }
 
 void EmeraldCoast_OnFrame()
 {
 	//Hide skybox bottom in Act 3
-	if (!IamStupidAndIWantFuckedUpOcean)
+	if (STG01_2_Info && !IamStupidAndIWantFuckedUpOcean)
 	{
 		if (CurrentLevel == 1 && CurrentAct == 2 && Camera_Data1 != nullptr)
 		{
@@ -732,7 +676,7 @@ void EmeraldCoast_OnFrame()
 			}
 		}
 	}
-	if (CurrentLevel == 1 && CurrentAct == 0 && GameState != 16)
+	if (STG01_0_Info && CurrentLevel == 1 && CurrentAct == 0 && GameState != 16)
 	{
 		if (anim1 > 96) anim1 = 82;
 		if (anim2 > 81) anim2 = 67;
@@ -779,7 +723,7 @@ void EmeraldCoast_OnFrame()
 			}
 		}
 	}
-	if (CurrentLevel == 1 && CurrentAct == 1 && GameState != 16)
+	if (STG01_1_Info && CurrentLevel == 1 && CurrentAct == 1 && GameState != 16)
 	{
 		if (anim3 > 56) anim3 = 42;
 		if (anim4 > 85) anim4 = 71;
@@ -826,7 +770,7 @@ void EmeraldCoast_OnFrame()
 			}
 		}
 	}
-	if (CurrentLevel == 1 && CurrentAct == 2 && GameState != 16)
+	if (STG01_2_Info && CurrentLevel == 1 && CurrentAct == 2 && GameState != 16)
 	{
 		if (GameState == 3 || GameState == 4)
 		{
