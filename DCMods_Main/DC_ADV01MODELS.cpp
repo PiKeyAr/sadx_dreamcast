@@ -1,11 +1,4 @@
 #include "stdafx.h"
-/*#include "ADV01_0_animlist.h"
-#include "ADV01_0.h"
-#include "ADV01_1.h"
-#include "ADV01_2.h"
-#include "ADV01_3.h"
-#include "ADV01_4.h"
-#include "ADV01_5.h"*/
 
 NJS_TEXNAME textures_ec00[98];
 NJS_TEXLIST texlist_ec00 = { arrayptrandlength(textures_ec00) };
@@ -44,12 +37,6 @@ NJS_TEXNAME textures_ec35[14];
 NJS_TEXLIST texlist_ec35 = { arrayptrandlength(textures_ec35) };
 
 #include "EggCarrier_Objects.h"
-/*#include "ADV01C_00.h"
-#include "ADV01C_01.h"
-#include "ADV01C_02.h"
-#include "ADV01C_03.h"
-#include "ADV01C_04.h"
-#include "ADV01C_05.h"*/
 #include "EC_Tornado.h"
 #include "EC_Transform.h"
 

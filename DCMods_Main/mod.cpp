@@ -161,6 +161,12 @@ bool EnableSandHill = true;
 bool EnableSkyChaseFixes = true;
 bool EnableSkyChaseEnemyModels = true;
 
+bool EnableSSGarden = true;
+bool EnableMRGarden = true;
+bool EnableECGarden = true;
+bool ReplaceEggs = true;
+int ReplaceFruits = 0;
+
 bool SADXWater_EmeraldCoast = false;
 bool SADXWater_StationSquare = false;
 bool SADXWater_MysticRuins = false;
@@ -347,7 +353,14 @@ extern "C"
 		EnableZeroE101R = config->getBool("Bosses", "EnableZeroE101R", true);
 		EnableTwinkleCircuit = config->getBool("Miscellaneous", "EnableTwinkleCircuit", true);
 		EnableSandHill = config->getBool("Miscellaneous", "EnableSandHill", true);
+		CowgirlOn = config->getBool("Miscellaneous", "EnableCasinopolisCowgirl", true);
+		IamStupidAndIWantFuckedUpOcean = config->getBool("Miscellaneous", "RevertEmeraldCoastDrawDistance", false);
 		EnableSkyChaseEnemyModels = config->getBool("Miscellaneous", "EnableSkyChaseEnemyModels", true);
+		EnableSSGarden = config->getBool("Chao Gardens", "EnableStationSquareGarden", true);
+		EnableMRGarden = config->getBool("Chao Gardens", "EnableMysticRuinsGarden", true);
+		EnableECGarden = config->getBool("Chao Gardens", "EnableEggCarrierGarden", true);
+		ReplaceFruits = config->getInt("Chao Gardens", "ReplaceFruits", 0);
+		ReplaceEggs = config->getBool("Chao Gardens", "ReplaceEggs", true);
 		//Autodemo mods check
 		if (Autodemo_WindyValley != nullptr) EnableWindyValley = false;
 		if (Autodemo_SpeedHighway != nullptr) EnableSpeedHighway = false;
@@ -401,7 +414,6 @@ extern "C"
 		Bosses_Init();
 		if (!WaterEffect && EnableEmeraldCoast)
 		{
-			IamStupidAndIWantFuckedUpOcean = config->getBool("Miscellaneous", "RevertEmeraldCoastDrawDistance", false);
 			WriteCall((void*)0x422B68, LoadLevelFiles_STG01);
 			EmeraldCoast_Init();
 		}
@@ -442,7 +454,6 @@ extern "C"
 		}
 		if (EnableCasinopolis)
 		{
-			CowgirlOn = config->getBool("Miscellaneous", "EnableCasinopolisCowgirl", true);
 			WriteCall((void*)0x422EE8, LoadLevelFiles_STG09);
 			Casinopolis_Init();
 		}
@@ -518,6 +529,7 @@ extern "C"
 		{
 			WriteCall((void*)0x42370F, LoadLevelFiles_SBOARD);
 		}
+		WriteCall((void*)0x423795, LoadLevelFiles_Chao);
 		ChaoGardens_Init(config, helperFunctions);
 		ChaoRace_Init(config, helperFunctions);
 		General_Init(config, helperFunctions);
