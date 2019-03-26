@@ -27,8 +27,6 @@ FunctionPointer(void, sub_4BA5D0, (NJS_OBJECT *a1, ObjectThingC *a2), 0x4BA5D0);
 FunctionPointer(void, sub_408530, (NJS_OBJECT *a1), 0x408530);
 FunctionPointer(void, sub_405450, (NJS_ACTION *a1, float frame, float scale), 0x405450);
 
-HMODULE CHRMODELS2 = GetModuleHandle(L"CHRMODELS2_orig");
-
 SETObjData setdata_tp = {};
 static int anim = 74;
 static int animlight = 95;
@@ -72,11 +70,11 @@ NJS_MATERIAL* ObjectSpecular_Twinkle[] = {
 	&matlistSTG03_023A0598[10],
 	&matlistSTG03_023A0598[11],
 	//Amy's barrel
-	((NJS_MATERIAL*)((size_t)CHRMODELS2 + 0x00016498)),
-	((NJS_MATERIAL*)((size_t)CHRMODELS2 + 0x000164AC)),
-	((NJS_MATERIAL*)((size_t)CHRMODELS2 + 0x000164C0)),
-	((NJS_MATERIAL*)((size_t)CHRMODELS2 + 0x000164D4)),
-	((NJS_MATERIAL*)((size_t)CHRMODELS2 + 0x000164E8)),
+	((NJS_MATERIAL*)((size_t)GetModuleHandle(L"CHRMODELS_orig") + 0x00016498)),
+	((NJS_MATERIAL*)((size_t)GetModuleHandle(L"CHRMODELS_orig") + 0x000164AC)),
+	((NJS_MATERIAL*)((size_t)GetModuleHandle(L"CHRMODELS_orig") + 0x000164C0)),
+	((NJS_MATERIAL*)((size_t)GetModuleHandle(L"CHRMODELS_orig") + 0x000164D4)),
+	((NJS_MATERIAL*)((size_t)GetModuleHandle(L"CHRMODELS_orig") + 0x000164E8)),
 	//O Arch 2
 	((NJS_MATERIAL*)0x038BEF00),
 	((NJS_MATERIAL*)0x038BEF14),
@@ -524,13 +522,9 @@ void TwinklePark_Init()
 	WriteJump((void*)0x0061CAFE, TwinkleParkHook);
 	WriteJump((void*)0x0061D570, SkyBox_TwinklePark_LoadX);
 	//Amy's barrel fix
-	HMODULE CHRMODELS2 = GetModuleHandle(L"CHRMODELS_orig");
-	if (CHRMODELS2 != nullptr)
-	{
-		NJS_OBJECT **___AMY_OBJECTS = (NJS_OBJECT **)GetProcAddress(CHRMODELS2, "___AMY_OBJECTS");
-		___AMY_OBJECTS[1]->child->child->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		___AMY_OBJECTS[1]->child->child->basicdxmodel->mats[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	}
+	NJS_OBJECT **___AMY_OBJECTS = (NJS_OBJECT **)GetProcAddress(GetModuleHandle(L"CHRMODELS_orig"), "___AMY_OBJECTS");
+	___AMY_OBJECTS[1]->child->child->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	___AMY_OBJECTS[1]->child->child->basicdxmodel->mats[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
 	((NJS_OBJECT*)0x008BF3A0)->basicdxmodel->mats[0].attrflags |= NJD_FLAG_IGNORE_LIGHT; //shadow blob
 	if (DLLLoaded_Lantern)
 	{

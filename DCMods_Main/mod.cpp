@@ -99,6 +99,18 @@ NJS_OBJECT **___BOSSCHAOS0_OBJECTS = nullptr;
 NJS_TEXLIST **___BOSSCHAOS0_TEXLISTS = nullptr;
 NJS_TEXLIST **___ADV00_TEXLISTS = nullptr;
 LandTable **___LANDTABLESS = nullptr;
+NJS_OBJECT **___MILES_OBJECTS = nullptr;
+NJS_TEXLIST **___ADV01_TEXLISTS = nullptr;
+NJS_MODEL_SADX **___ADV01_MODELS = nullptr;
+NJS_TEXLIST **___ADV01C_TEXLISTS = nullptr;
+LandTable **___LANDTABLEEC = nullptr;
+LandTable **___LANDTABLEECC = nullptr;
+NJS_OBJECT **___ADV01C_OBJECTS = nullptr;
+NJS_ACTION **___ADV01C_ACTIONS = nullptr;
+NJS_ACTION **___ADV01_ACTIONS = nullptr;
+NJS_OBJECT **___ADV01_OBJECTS = nullptr;
+NJS_OBJECT **___ADV01EC00_OBJECTS = nullptr;
+NJS_MODEL_SADX **___ADV01C_MODELS = nullptr;
 
 HelperFunctions HelperFunctionsGlobal;
 bool EnableWindowTitle = true;
@@ -204,6 +216,18 @@ extern "C"
 		___BOSSCHAOS0_TEXLISTS = (NJS_TEXLIST **)GetProcAddress(GetModuleHandle(L"BOSSCHAOS0MODELS"), "___BOSSCHAOS0_TEXLISTS");
 		___ADV00_TEXLISTS = (NJS_TEXLIST **)GetProcAddress(GetModuleHandle(L"ADV00MODELS"), "___ADV00_TEXLISTS");
 		___LANDTABLESS = (LandTable **)GetProcAddress(GetModuleHandle(L"ADV00MODELS"), "___LANDTABLESS");
+		___MILES_OBJECTS = (NJS_OBJECT **)GetProcAddress(GetModuleHandle(L"CHRMODELS_orig"), "___MILES_OBJECTS");
+		___ADV01_TEXLISTS = (NJS_TEXLIST **)GetProcAddress(GetModuleHandle(L"ADV01MODELS"), "___ADV01_TEXLISTS");
+		___ADV01_MODELS = (NJS_MODEL_SADX **)GetProcAddress(GetModuleHandle(L"ADV01MODELS"), "___ADV01_MODELS");
+		___ADV01C_TEXLISTS = (NJS_TEXLIST **)GetProcAddress(GetModuleHandle(L"ADV01CMODELS"), "___ADV01C_TEXLISTS");
+		___LANDTABLEEC = (LandTable **)GetProcAddress(GetModuleHandle(L"ADV01MODELS"), "___LANDTABLEEC");
+		___LANDTABLEECC = (LandTable **)GetProcAddress(GetModuleHandle(L"ADV01CMODELS"), "___LANDTABLEEC");
+		___ADV01C_OBJECTS = (NJS_OBJECT **)GetProcAddress(GetModuleHandle(L"ADV01CMODELS"), "___ADV01C_OBJECTS");
+		___ADV01C_ACTIONS = (NJS_ACTION **)GetProcAddress(GetModuleHandle(L"ADV01CMODELS"), "___ADV01C_ACTIONS");
+		___ADV01_ACTIONS = (NJS_ACTION **)GetProcAddress(GetModuleHandle(L"ADV01MODELS"), "___ADV01_ACTIONS");
+		___ADV01_OBJECTS = (NJS_OBJECT **)GetProcAddress(GetModuleHandle(L"ADV01MODELS"), "___ADV01_OBJECTS");
+		___ADV01EC00_OBJECTS = (NJS_OBJECT **)GetProcAddress(GetModuleHandle(L"ADV01MODELS"), "___ADV01EC00_OBJECTS");
+		___ADV01C_MODELS = (NJS_MODEL_SADX **)GetProcAddress(GetModuleHandle(L"ADV01CMODELS"), "___ADV01C_MODELS");
 		HelperFunctionsGlobal = helperFunctions;
 		//Global mod path
 		ModPath = std::string(path);

@@ -16,9 +16,8 @@
 #include "MR_Objects.h"
 #include "MR_Palms.h"
 
-HMODULE ADV02MODELS = GetModuleHandle(L"ADV02MODELS");
-NJS_TEXLIST **___ADV02_TEXLISTS = (NJS_TEXLIST **)GetProcAddress(ADV02MODELS, "___ADV02_TEXLISTS");
-NJS_ACTION **___ADV02_ACTIONS = (NJS_ACTION **)GetProcAddress(ADV02MODELS, "___ADV02_ACTIONS");
+NJS_TEXLIST **___ADV02_TEXLISTS = (NJS_TEXLIST **)GetProcAddress(GetModuleHandle(L"ADV02MODELS"), "___ADV02_TEXLISTS");
+NJS_ACTION **___ADV02_ACTIONS = (NJS_ACTION **)GetProcAddress(GetModuleHandle(L"ADV02MODELS"), "___ADV02_ACTIONS");
 DataPointer(float, dword_111DB90, 0x111DB90);
 DataPointer(float, CurrentFogDist, 0x03ABDC64);
 DataPointer(float, CurrentFogLayer, 0x03ABDC60);
@@ -78,55 +77,55 @@ void __cdecl MRWater(OceanData *x)
 
 NJS_MATERIAL* LevelSpecular[] = {
 	//ODigPlace1
-	(NJS_MATERIAL*)((size_t)ADV02MODELS + 0x000168E8),
-	(NJS_MATERIAL*)((size_t)ADV02MODELS + 0x000168FC),
-	(NJS_MATERIAL*)((size_t)ADV02MODELS + 0x00017B40),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x000168E8),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x000168FC),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x00017B40),
 	//Echidna statue
-	(NJS_MATERIAL*)((size_t)ADV02MODELS + 0x0002C8F8),
-	(NJS_MATERIAL*)((size_t)ADV02MODELS + 0x0002C90C),
-	(NJS_MATERIAL*)((size_t)ADV02MODELS + 0x0002C920),
-	(NJS_MATERIAL*)((size_t)ADV02MODELS + 0x0002C934),
-	(NJS_MATERIAL*)((size_t)ADV02MODELS + 0x0002C948),
-	(NJS_MATERIAL*)((size_t)ADV02MODELS + 0x0002C95C),
-	(NJS_MATERIAL*)((size_t)ADV02MODELS + 0x0002C970),
-	(NJS_MATERIAL*)((size_t)ADV02MODELS + 0x0002C984),
-	(NJS_MATERIAL*)((size_t)ADV02MODELS + 0x0002C998),
-	(NJS_MATERIAL*)((size_t)ADV02MODELS + 0x0002BC60),
-	(NJS_MATERIAL*)((size_t)ADV02MODELS + 0x0002BC74),
-	(NJS_MATERIAL*)((size_t)ADV02MODELS + 0x0002BC88),
-	(NJS_MATERIAL*)((size_t)ADV02MODELS + 0x0002BC9C),
-	(NJS_MATERIAL*)((size_t)ADV02MODELS + 0x0002BCB0),
-	(NJS_MATERIAL*)((size_t)ADV02MODELS + 0x0002BCC4),
-	(NJS_MATERIAL*)((size_t)ADV02MODELS + 0x0002BCD8),
-	(NJS_MATERIAL*)((size_t)ADV02MODELS + 0x0002BCEC),
-	(NJS_MATERIAL*)((size_t)ADV02MODELS + 0x0002BD00),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x0002C8F8),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x0002C90C),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x0002C920),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x0002C934),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x0002C948),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x0002C95C),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x0002C970),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x0002C984),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x0002C998),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x0002BC60),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x0002BC74),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x0002BC88),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x0002BC9C),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x0002BCB0),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x0002BCC4),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x0002BCD8),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x0002BCEC),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x0002BD00),
 	//Other stuff
-	(NJS_MATERIAL*)((size_t)ADV02MODELS + 0x0002AD38),
-	(NJS_MATERIAL*)((size_t)ADV02MODELS + 0x0002AD4C),
-	(NJS_MATERIAL*)((size_t)ADV02MODELS + 0x0002AD60),
-	(NJS_MATERIAL*)((size_t)ADV02MODELS + 0x0002AD74),
-	(NJS_MATERIAL*)((size_t)ADV02MODELS + 0x0002AC2C),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x0002AD38),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x0002AD4C),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x0002AD60),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x0002AD74),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x0002AC2C),
 };
 
 NJS_MATERIAL* ObjectSpecular[] = {
 	//Shovel Claws
-	(NJS_MATERIAL*)((size_t)ADV02MODELS + 0x000964F8),
-	(NJS_MATERIAL*)((size_t)ADV02MODELS + 0x0009650C),
-	(NJS_MATERIAL*)((size_t)ADV02MODELS + 0x00095E48),
-	(NJS_MATERIAL*)((size_t)ADV02MODELS + 0x00095E5C),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x000964F8),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x0009650C),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x00095E48),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x00095E5C),
 	//ODigPlace1
-	(NJS_MATERIAL*)((size_t)ADV02MODELS + 0x00017150),
-	(NJS_MATERIAL*)((size_t)ADV02MODELS + 0x00017164),
-	(NJS_MATERIAL*)((size_t)ADV02MODELS + 0x00017178),
-	(NJS_MATERIAL*)((size_t)ADV02MODELS + 0x0001718C),
-	(NJS_MATERIAL*)((size_t)ADV02MODELS + 0x000171A0),
-	(NJS_MATERIAL*)((size_t)ADV02MODELS + 0x000171B4),
-	(NJS_MATERIAL*)((size_t)ADV02MODELS + 0x00016698),
-	(NJS_MATERIAL*)((size_t)ADV02MODELS + 0x00016448),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x00017150),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x00017164),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x00017178),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x0001718C),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x000171A0),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x000171B4),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x00016698),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x00016448),
 };
 
 NJS_MATERIAL* WhiteDiffuse[] = {
-	(NJS_MATERIAL*)((size_t)ADV02MODELS + 0x0003CD50), //Button on HiddenGate
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x0003CD50), //Button on HiddenGate
 	&matlistADV02_001FCA84[8], //MR train
 	//Palm trees
 	&matlistADV02_001D76E0[1],
@@ -228,13 +227,12 @@ void SetBlockEntryMaterialColor(float a, float r, float g, float b)
 
 void ADV02_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 {
-	HMODULE handle = GetModuleHandle(L"ADV02MODELS");
-	NJS_TEXLIST **___ADV02_TEXLISTS = (NJS_TEXLIST **)GetProcAddress(handle, "___ADV02_TEXLISTS");
-	NJS_MODEL_SADX **___ADV02_MODELS = (NJS_MODEL_SADX **)GetProcAddress(handle, "___ADV02_MODELS");
-	NJS_OBJECT **___ADV02_OBJECTS = (NJS_OBJECT **)GetProcAddress(handle, "___ADV02_OBJECTS");
-	NJS_OBJECT **___ADV02MR02_OBJECTS = (NJS_OBJECT **)GetProcAddress(handle, "___ADV02MR02_OBJECTS");
-	NJS_ACTION **___ADV02_ACTIONS = (NJS_ACTION **)GetProcAddress(handle, "___ADV02_ACTIONS");
-	LandTable **___LANDTABLEMR = (LandTable **)GetProcAddress(handle, "___LANDTABLEMR");
+	NJS_TEXLIST **___ADV02_TEXLISTS = (NJS_TEXLIST **)GetProcAddress(GetModuleHandle(L"ADV02MODELS"), "___ADV02_TEXLISTS");
+	NJS_MODEL_SADX **___ADV02_MODELS = (NJS_MODEL_SADX **)GetProcAddress(GetModuleHandle(L"ADV02MODELS"), "___ADV02_MODELS");
+	NJS_OBJECT **___ADV02_OBJECTS = (NJS_OBJECT **)GetProcAddress(GetModuleHandle(L"ADV02MODELS"), "___ADV02_OBJECTS");
+	NJS_OBJECT **___ADV02MR02_OBJECTS = (NJS_OBJECT **)GetProcAddress(GetModuleHandle(L"ADV02MODELS"), "___ADV02MR02_OBJECTS");
+	NJS_ACTION **___ADV02_ACTIONS = (NJS_ACTION **)GetProcAddress(GetModuleHandle(L"ADV02MODELS"), "___ADV02_ACTIONS");
+	LandTable **___LANDTABLEMR = (LandTable **)GetProcAddress(GetModuleHandle(L"ADV02MODELS"), "___LANDTABLEMR");
 	ReplaceBIN_DC("SETMR00A");
 	ReplaceBIN_DC("SETMR00B");
 	ReplaceBIN_DC("SETMR00E");
@@ -330,7 +328,7 @@ void ADV02_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 	ReplaceBIN("SL_X0B", "SL_X0X");
 	ReplaceBIN("SL_X1B", "SL_X1X");
 	ReplaceBIN("SL_X2B", "SL_X2X");
-	if (handle != nullptr && DLLLoaded_Lantern)
+	if (GetModuleHandle(L"ADV02MODELS") != nullptr && DLLLoaded_Lantern)
 	{
 		material_register_ptr(ObjectSpecular, LengthOfArray(ObjectSpecular), &ForceDiffuse0Specular1);
 		material_register_ptr(LevelSpecular, LengthOfArray(LevelSpecular), &ForceDiffuse0Specular0);

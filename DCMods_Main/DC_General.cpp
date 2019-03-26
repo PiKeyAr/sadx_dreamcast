@@ -10,12 +10,6 @@
 #include "HintMonitor.h"
 #include "StageLights.h"
 
-HMODULE CHRMODELS3 = GetModuleHandle(L"CHRMODELS_orig");
-HMODULE ADV01MODELS2 = GetModuleHandle(L"ADV01MODELS");
-HMODULE ADV01CMODELS2 = GetModuleHandle(L"ADV01CMODELS");
-HMODULE ADV02MODELS2 = GetModuleHandle(L"ADV02MODELS");
-HMODULE ADV03MODELS = GetModuleHandle(L"ADV03MODELS");
-
 NJS_TEXANIM EmeraldGlowTexanim = { 32, 32, 0, 0, 0, 0, 0xFF, 0xFF, 3, 0 };
 NJS_SPRITE EmeraldGlowSprite = { { -16.0f, -10.5f, 0.0f }, 1.0f, 1.0f, 0, (NJS_TEXLIST*)0x00C3FE20, &EmeraldGlowTexanim };
 
@@ -64,7 +58,7 @@ static bool SkipPressed_Cutscene = false;
 NJS_MATERIAL* AlphaRejectMaterials[] = {
 	((NJS_MATERIAL*)0x8B26E4), //Magnetic barrier
 	((NJS_MATERIAL*)0x8BF2C0), //Shadow blob
-	(NJS_MATERIAL*)((size_t)ADV02MODELS2 + 0x0007C334), //Emerald shards (cutscene)
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x0007C334), //Emerald shards (cutscene)
 };
 
 NJS_MATERIAL* RemoveColors_General[] = {
@@ -238,18 +232,18 @@ NJS_MATERIAL* ObjectSpecular_General[] = {
 	((NJS_MATERIAL*)0x0331789C),
 	((NJS_MATERIAL*)0x033178B0),
 	//OSkyDeck
-	(NJS_MATERIAL*)((size_t)ADV01MODELS2 + 0x001F2600),
-	(NJS_MATERIAL*)((size_t)ADV01MODELS2 + 0x001F2614),
-	(NJS_MATERIAL*)((size_t)ADV01MODELS2 + 0x001F2628),
-	(NJS_MATERIAL*)((size_t)ADV01MODELS2 + 0x001F263C),
-	(NJS_MATERIAL*)((size_t)ADV01MODELS2 + 0x001F2650),
-	(NJS_MATERIAL*)((size_t)ADV01MODELS2 + 0x001F2664),
-	(NJS_MATERIAL*)((size_t)ADV01MODELS2 + 0x001F2678),
-	(NJS_MATERIAL*)((size_t)ADV01MODELS2 + 0x001F268C),
-	(NJS_MATERIAL*)((size_t)ADV01MODELS2 + 0x001F26A0),
-	(NJS_MATERIAL*)((size_t)ADV01MODELS2 + 0x001F26B4),
-	(NJS_MATERIAL*)((size_t)ADV01MODELS2 + 0x001F26C8),
-	(NJS_MATERIAL*)((size_t)ADV01MODELS2 + 0x001F26DC),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01MODELS") + 0x001F2600),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01MODELS") + 0x001F2614),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01MODELS") + 0x001F2628),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01MODELS") + 0x001F263C),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01MODELS") + 0x001F2650),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01MODELS") + 0x001F2664),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01MODELS") + 0x001F2678),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01MODELS") + 0x001F268C),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01MODELS") + 0x001F26A0),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01MODELS") + 0x001F26B4),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01MODELS") + 0x001F26C8),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01MODELS") + 0x001F26DC),
 };
 
 bool E101Function(NJS_MATERIAL* material, Uint32 flags)
@@ -401,7 +395,7 @@ void __cdecl Sonic_DisplayLightDashModelX(EntityData1 *data1, CharObj2 **data2_p
 	double v7; // st7
 	NJS_ACTION v8; // [esp+4h] [ebp-18h]
 	NJS_ARGB a1; // [esp+Ch] [ebp-10h]
-	NJS_OBJECT **___SONIC_OBJECTS = (NJS_OBJECT **)GetProcAddress(CHRMODELS3, "___SONIC_OBJECTS");
+	NJS_OBJECT **___SONIC_OBJECTS = (NJS_OBJECT **)GetProcAddress(GetModuleHandle(L"CHRMODELS_orig"), "___SONIC_OBJECTS");
 	if (!MissedFrames)
 	{
 		v3 = (unsigned __int16)data2->AnimationThing.Index;
@@ -1206,8 +1200,7 @@ void General_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 	//Underwater overlay
 	WriteCall((void*)0x43708D, DrawUnderwaterOverlay);
 	//Gamma's chest patch lol
-	HMODULE CHRMODELS = GetModuleHandle(L"CHRMODELS_orig");
-	((NJS_MATERIAL*)((size_t)CHRMODELS + 0x00200DE8))->attrflags &= ~NJD_FLAG_USE_ALPHA; //Unnecessary alpha in Gamma's model
+	((NJS_MATERIAL*)((size_t)GetModuleHandle(L"CHRMODELS_orig") + 0x00200DE8))->attrflags &= ~NJD_FLAG_USE_ALPHA; //Unnecessary alpha in Gamma's model
 	WriteCall((void*)0x0047FE13, GammaHook); //Gamma's chest transparency
 	//Character effects
 	WriteJump((void*)0x004A1630, Sonic_DisplayLightDashModelX);

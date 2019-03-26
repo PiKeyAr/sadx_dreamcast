@@ -84,6 +84,18 @@ extern NJS_OBJECT **___BOSSCHAOS0_OBJECTS;
 extern NJS_TEXLIST **___BOSSCHAOS0_TEXLISTS;
 extern NJS_TEXLIST **___ADV00_TEXLISTS;
 extern LandTable **___LANDTABLESS;
+extern NJS_OBJECT **___MILES_OBJECTS;
+extern NJS_TEXLIST **___ADV01_TEXLISTS;
+extern NJS_MODEL_SADX **___ADV01_MODELS;
+extern NJS_TEXLIST **___ADV01C_TEXLISTS;
+extern LandTable **___LANDTABLEEC;
+extern LandTable **___LANDTABLEECC;
+extern NJS_OBJECT **___ADV01C_OBJECTS;
+extern NJS_ACTION **___ADV01C_ACTIONS;
+extern NJS_ACTION **___ADV01_ACTIONS;
+extern NJS_OBJECT **___ADV01_OBJECTS;
+extern NJS_OBJECT **___ADV01EC00_OBJECTS;
+extern NJS_MODEL_SADX **___ADV01C_MODELS;
 
 void FixMRBase_Apply(const IniFile *config, const HelperFunctions &helperFunctions);
 void DisableSADXWaterFog();

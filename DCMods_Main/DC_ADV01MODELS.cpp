@@ -20,8 +20,6 @@ FunctionPointer(void, sub_409FB0, (NJS_ACTION *a1, float frameNumber), 0x409FB0)
 FunctionPointer(void, sub_6F4570, (ObjectMaster *a1), 0x6F4570);
 FunctionPointer(void, sub_407A00, (NJS_MODEL_SADX *model, float scale), 0x407A00);
 DataPointer(ObjectMaster*, dword_3C85138, 0x3C85138);
-HMODULE ADV01MODELS = GetModuleHandle(L"ADV01MODELS");
-HMODULE ADV01CMODELS = GetModuleHandle(L"ADV01CMODELS");
 DataArray(PVMEntry, stru_10F34A8, 0x10F34A8, 6);
 DataArray(PVMEntry, stru_1101360, 0x1101360, 2);
 static int ocean_dc = 4;
@@ -44,74 +42,55 @@ DataArray(FogData, EggCarrierInside5Fog, 0x01100CD8, 3);
 DataArray(FogData, EggCarrierInside6Fog, 0x01100D08, 3);
 DataArray(NJS_VECTOR, SkyboxScale_EggCarrier4, 0x010F212C, 3);
 DataArray(PVMEntry, EggCarrierObjectTexlist_Sea, 0x010F34A8, 6);
-HMODULE CHRMODELS = GetModuleHandle(L"CHRMODELS_orig");
-NJS_OBJECT **___MILES_OBJECTS = (NJS_OBJECT **)GetProcAddress(CHRMODELS, "___MILES_OBJECTS");
-NJS_TEXLIST **___ADV01_TEXLISTS = (NJS_TEXLIST **)GetProcAddress(ADV01MODELS, "___ADV01_TEXLISTS");
-NJS_MODEL_SADX **___ADV01_MODELS = (NJS_MODEL_SADX **)GetProcAddress(ADV01MODELS, "___ADV01_MODELS");
-NJS_TEXLIST **___ADV01C_TEXLISTS = (NJS_TEXLIST **)GetProcAddress(ADV01CMODELS, "___ADV01C_TEXLISTS");
-LandTable **___LANDTABLEEC = (LandTable **)GetProcAddress(ADV01MODELS, "___LANDTABLEEC");
-LandTable **___LANDTABLEECC = (LandTable **)GetProcAddress(ADV01CMODELS, "___LANDTABLEEC");
-NJS_OBJECT **___ADV01C_OBJECTS = (NJS_OBJECT **)GetProcAddress(ADV01CMODELS, "___ADV01C_OBJECTS");
-NJS_ACTION **___ADV01C_ACTIONS = (NJS_ACTION **)GetProcAddress(ADV01CMODELS, "___ADV01C_ACTIONS");
-NJS_ACTION **___ADV01_ACTIONS = (NJS_ACTION **)GetProcAddress(ADV01MODELS, "___ADV01_ACTIONS");
-NJS_OBJECT **___ADV01_OBJECTS = (NJS_OBJECT **)GetProcAddress(ADV01MODELS, "___ADV01_OBJECTS");
-NJS_OBJECT **___ADV01EC00_OBJECTS = (NJS_OBJECT **)GetProcAddress(ADV01MODELS, "___ADV01EC00_OBJECTS");
-NJS_MODEL_SADX **___ADV01C_MODELS = (NJS_MODEL_SADX **)GetProcAddress(ADV01CMODELS, "___ADV01C_MODELS");
 
 NJS_MATERIAL* ObjectSpecularADV01[] = {
 	//OMast
-	(NJS_MATERIAL*)((size_t)ADV01MODELS + 0x00216050),
-	(NJS_MATERIAL*)((size_t)ADV01MODELS + 0x00216050),
-	(NJS_MATERIAL*)((size_t)ADV01MODELS + 0x00216064),
-	(NJS_MATERIAL*)((size_t)ADV01MODELS + 0x00216078),
-	(NJS_MATERIAL*)((size_t)ADV01MODELS + 0x0021608C),
-	(NJS_MATERIAL*)((size_t)ADV01MODELS + 0x002160A0),
-	(NJS_MATERIAL*)((size_t)ADV01MODELS + 0x002160B4),
-	(NJS_MATERIAL*)((size_t)ADV01MODELS + 0x002160C8),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01MODELS") + 0x00216050),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01MODELS") + 0x00216050),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01MODELS") + 0x00216064),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01MODELS") + 0x00216078),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01MODELS") + 0x0021608C),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01MODELS") + 0x002160A0),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01MODELS") + 0x002160B4),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01MODELS") + 0x002160C8),
 	//OBChair
-	(NJS_MATERIAL*)((size_t)ADV01MODELS + 0x00243B98),
-	(NJS_MATERIAL*)((size_t)ADV01MODELS + 0x00243BAC),
-	(NJS_MATERIAL*)((size_t)ADV01MODELS + 0x00243BC0),
-	(NJS_MATERIAL*)((size_t)ADV01MODELS + 0x00243BD4),
-	(NJS_MATERIAL*)((size_t)ADV01MODELS + 0x00243BE8),
-	(NJS_MATERIAL*)((size_t)ADV01MODELS + 0x00243BFC),
-	(NJS_MATERIAL*)((size_t)ADV01MODELS + 0x00243C10),
-	(NJS_MATERIAL*)((size_t)ADV01MODELS + 0x0024398C),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01MODELS") + 0x00243B98),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01MODELS") + 0x00243BAC),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01MODELS") + 0x00243BC0),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01MODELS") + 0x00243BD4),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01MODELS") + 0x00243BE8),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01MODELS") + 0x00243BFC),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01MODELS") + 0x00243C10),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01MODELS") + 0x0024398C),
 	//Gunsight
-	(NJS_MATERIAL*)((size_t)ADV01MODELS + 0x002336A0),
-	(NJS_MATERIAL*)((size_t)ADV01MODELS + 0x00233160),
-	(NJS_MATERIAL*)((size_t)ADV01MODELS + 0x00233174),
-	(NJS_MATERIAL*)((size_t)ADV01MODELS + 0x00231358),
-	(NJS_MATERIAL*)((size_t)ADV01MODELS + 0x0023136C),
-	(NJS_MATERIAL*)((size_t)ADV01MODELS + 0x00231380),
-	(NJS_MATERIAL*)((size_t)ADV01MODELS + 0x00231394),
-	(NJS_MATERIAL*)((size_t)ADV01MODELS + 0x002313A8),
-	(NJS_MATERIAL*)((size_t)ADV01MODELS + 0x002313BC),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01MODELS") + 0x002336A0),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01MODELS") + 0x00233160),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01MODELS") + 0x00233174),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01MODELS") + 0x00231358),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01MODELS") + 0x0023136C),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01MODELS") + 0x00231380),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01MODELS") + 0x00231394),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01MODELS") + 0x002313A8),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01MODELS") + 0x002313BC),
 	//OEggmanBed
-	(NJS_MATERIAL*)((size_t)ADV01MODELS + 0x002380D8),
-	(NJS_MATERIAL*)((size_t)ADV01MODELS + 0x002380EC),
-	(NJS_MATERIAL*)((size_t)ADV01MODELS + 0x00238100),
-	(NJS_MATERIAL*)((size_t)ADV01MODELS + 0x00238114),
-	(NJS_MATERIAL*)((size_t)ADV01MODELS + 0x00238128),
-	(NJS_MATERIAL*)((size_t)ADV01MODELS + 0x0023813C),
-	(NJS_MATERIAL*)((size_t)ADV01MODELS + 0x00238150),
-	(NJS_MATERIAL*)((size_t)ADV01MODELS + 0x00238164),
-	(NJS_MATERIAL*)((size_t)ADV01MODELS + 0x00238178),
-	(NJS_MATERIAL*)((size_t)ADV01MODELS + 0x0023818C),
-	(NJS_MATERIAL*)((size_t)ADV01MODELS + 0x002381A0),
-	(NJS_MATERIAL*)((size_t)ADV01MODELS + 0x002381B4),
-	(NJS_MATERIAL*)((size_t)ADV01MODELS + 0x002381C8),
-	(NJS_MATERIAL*)((size_t)ADV01MODELS + 0x002381DC),
-	(NJS_MATERIAL*)((size_t)ADV01MODELS + 0x002381F0),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01MODELS") + 0x002380D8),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01MODELS") + 0x002380EC),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01MODELS") + 0x00238100),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01MODELS") + 0x00238114),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01MODELS") + 0x00238128),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01MODELS") + 0x0023813C),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01MODELS") + 0x00238150),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01MODELS") + 0x00238164),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01MODELS") + 0x00238178),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01MODELS") + 0x0023818C),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01MODELS") + 0x002381A0),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01MODELS") + 0x002381B4),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01MODELS") + 0x002381C8),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01MODELS") + 0x002381DC),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01MODELS") + 0x002381F0),
 };
 
-NJS_MATERIAL* WhiteDiffuseADV01[] = {
-	//OHammerSW
-	(NJS_MATERIAL*)((size_t)ADV01CMODELS + 0x00110B04),
-	//Tarai button
-	//&matlistADV01_0011154C[0],
-	//&matlistADV01_0011154C[1],
-	//&matlistADV01_0011154C[2],
+NJS_MATERIAL* WhiteDiffuseADV01External[] = {
 	//Level stuff
 	&matlistADV01_00081DF0[0],
 	&matlistADV01_00081DF0[1],
@@ -121,6 +100,15 @@ NJS_MATERIAL* WhiteDiffuseADV01[] = {
 	&matlistADV01_00082450[1],
 	&matlistADV01_00082450[2],
 	&matlistADV01_00082450[3],
+};
+
+NJS_MATERIAL* WhiteDiffuseADV01[] = {
+	//OHammerSW
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01CMODELS") + 0x00110B04),
+	//Tarai button
+	//&matlistADV01_0011154C[0],
+	//&matlistADV01_0011154C[1],
+	//&matlistADV01_0011154C[2],
 	//OTornado2
 	&matlistADV01_0024BE40[23],
 	&matlistADV01_0024BE40[24],
@@ -145,49 +133,49 @@ NJS_MATERIAL* WhiteDiffuseADV01[] = {
 };
 
 NJS_MATERIAL* DisableAlphaRejection_EggCarrier[] = {
-	(NJS_MATERIAL*)((size_t)ADV01MODELS + 0x00209B6C), //Rotating lights outside
-	(NJS_MATERIAL*)((size_t)ADV01MODELS + 0x001F7A58), //Monorail sign (outside)
-	(NJS_MATERIAL*)((size_t)ADV01CMODELS + 0x000ED480), //Monorail sign (inside)
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01MODELS") + 0x00209B6C), //Rotating lights outside
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01MODELS") + 0x001F7A58), //Monorail sign (outside)
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01CMODELS") + 0x000ED480), //Monorail sign (inside)
 };
 
 NJS_MATERIAL* HedgehogHammerDolls[] = {
 	//Hedgehog Hammer targets (possibly SL objects?)
-	(NJS_MATERIAL*)((size_t)ADV01CMODELS + 0x0011C478),
-	(NJS_MATERIAL*)((size_t)ADV01CMODELS + 0x0011BF60),
-	(NJS_MATERIAL*)((size_t)ADV01CMODELS + 0x0011BF74),
-	(NJS_MATERIAL*)((size_t)ADV01CMODELS + 0x0011BBC8),
-	(NJS_MATERIAL*)((size_t)ADV01CMODELS + 0x0011B364),
-	(NJS_MATERIAL*)((size_t)ADV01CMODELS + 0x0011A9E8),
-	(NJS_MATERIAL*)((size_t)ADV01CMODELS + 0x0011A504),
-	(NJS_MATERIAL*)((size_t)ADV01CMODELS + 0x0011A1CC),
-	(NJS_MATERIAL*)((size_t)ADV01CMODELS + 0x0011A07C),
-	(NJS_MATERIAL*)((size_t)ADV01CMODELS + 0x0011A090),
-	(NJS_MATERIAL*)((size_t)ADV01CMODELS + 0x00119F2C),
-	(NJS_MATERIAL*)((size_t)ADV01CMODELS + 0x00119F40),
-	(NJS_MATERIAL*)((size_t)ADV01CMODELS + 0x001247C8),
-	(NJS_MATERIAL*)((size_t)ADV01CMODELS + 0x001242B0),
-	(NJS_MATERIAL*)((size_t)ADV01CMODELS + 0x001242C4),
-	(NJS_MATERIAL*)((size_t)ADV01CMODELS + 0x00123F18),
-	(NJS_MATERIAL*)((size_t)ADV01CMODELS + 0x001236B4),
-	(NJS_MATERIAL*)((size_t)ADV01CMODELS + 0x00122D38),
-	(NJS_MATERIAL*)((size_t)ADV01CMODELS + 0x00122854),
-	(NJS_MATERIAL*)((size_t)ADV01CMODELS + 0x0012251C),
-	(NJS_MATERIAL*)((size_t)ADV01CMODELS + 0x001223CC), //Super Sonic ears (disable alpha rejection)
-	(NJS_MATERIAL*)((size_t)ADV01CMODELS + 0x001223E0), //Super Sonic ears (disable alpha rejection)
-	(NJS_MATERIAL*)((size_t)ADV01CMODELS + 0x0012227C), //Super Sonic ears (disable alpha rejection)
-	(NJS_MATERIAL*)((size_t)ADV01CMODELS + 0x00122290), //Super Sonic ears (disable alpha rejection)
-	(NJS_MATERIAL*)((size_t)ADV01CMODELS + 0x00115630),
-	(NJS_MATERIAL*)((size_t)ADV01CMODELS + 0x00114C38),
-	(NJS_MATERIAL*)((size_t)ADV01CMODELS + 0x00114C4C),
-	(NJS_MATERIAL*)((size_t)ADV01CMODELS + 0x00114C60),
-	(NJS_MATERIAL*)((size_t)ADV01CMODELS + 0x00114C74),
-	(NJS_MATERIAL*)((size_t)ADV01CMODELS + 0x00114568),
-	(NJS_MATERIAL*)((size_t)ADV01CMODELS + 0x0011457C),
-	(NJS_MATERIAL*)((size_t)ADV01CMODELS + 0x001142D4),
-	(NJS_MATERIAL*)((size_t)ADV01CMODELS + 0x001140CC),
-	(NJS_MATERIAL*)((size_t)ADV01CMODELS + 0x00113EB4),
-	(NJS_MATERIAL*)((size_t)ADV01CMODELS + 0x00113B4C),
-	(NJS_MATERIAL*)((size_t)ADV01CMODELS + 0x001137E4),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01CMODELS") + 0x0011C478),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01CMODELS") + 0x0011BF60),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01CMODELS") + 0x0011BF74),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01CMODELS") + 0x0011BBC8),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01CMODELS") + 0x0011B364),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01CMODELS") + 0x0011A9E8),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01CMODELS") + 0x0011A504),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01CMODELS") + 0x0011A1CC),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01CMODELS") + 0x0011A07C),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01CMODELS") + 0x0011A090),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01CMODELS") + 0x00119F2C),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01CMODELS") + 0x00119F40),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01CMODELS") + 0x001247C8),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01CMODELS") + 0x001242B0),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01CMODELS") + 0x001242C4),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01CMODELS") + 0x00123F18),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01CMODELS") + 0x001236B4),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01CMODELS") + 0x00122D38),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01CMODELS") + 0x00122854),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01CMODELS") + 0x0012251C),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01CMODELS") + 0x001223CC), //Super Sonic ears (disable alpha rejection)
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01CMODELS") + 0x001223E0), //Super Sonic ears (disable alpha rejection)
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01CMODELS") + 0x0012227C), //Super Sonic ears (disable alpha rejection)
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01CMODELS") + 0x00122290), //Super Sonic ears (disable alpha rejection)
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01CMODELS") + 0x00115630),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01CMODELS") + 0x00114C38),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01CMODELS") + 0x00114C4C),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01CMODELS") + 0x00114C60),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01CMODELS") + 0x00114C74),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01CMODELS") + 0x00114568),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01CMODELS") + 0x0011457C),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01CMODELS") + 0x001142D4),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01CMODELS") + 0x001140CC),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01CMODELS") + 0x00113EB4),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01CMODELS") + 0x00113B4C),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01CMODELS") + 0x001137E4),
 };
 
 void __cdecl ECDoorBarrier1X(ObjectMaster *a1)
@@ -566,7 +554,6 @@ void ADV01_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 	WriteData((float*)0x00678CCB, -143.85f); //X2
 	WriteData((float*)0x00678CC6, 15.93f); //Y2
 	WriteData((float*)0x00678CC1, 80.25f); //Z2
-	HMODULE Lantern = GetModuleHandle(L"sadx-dc-lighting");
 	ReplaceBIN("PL_W1B", "PL_W1X");
 	for (unsigned int i = 0; i < LengthOfArray(HedgehogHammerDolls); i++)
 	{
@@ -597,8 +584,8 @@ void ADV01_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 		ReplaceGeneric("OBJ_EC00.PVM", "OBJ_EC00_DC_OLD.PVM");
 		ReplaceGeneric("OBJ_EC30.PVM", "OBJ_EC30_DC_OLD.PVM");
 	}
-	WriteJump((char *)GetProcAddress(ADV01MODELS, "SetClip_EC00"), SetClip_EC00);
-	WriteJump((char *)GetProcAddress(ADV01MODELS, "SetClip_EC01"), SetClip_EC01);
+	WriteJump((char *)GetProcAddress(GetModuleHandle(L"ADV01MODELS"), "SetClip_EC00"), SetClip_EC00);
+	WriteJump((char *)GetProcAddress(GetModuleHandle(L"ADV01MODELS"), "SetClip_EC01"), SetClip_EC01);
 	WriteData<5>((void *)0x0051BB8C, 0x90); //disable that stupid DisableFog thing
 	((NJS_OBJECT*)0x03104130)->basicdxmodel->mats[0].diffuse.color = 0xFFFFFFFF;
 	___ADV01_TEXLISTS[0] = &texlist_ec00;
