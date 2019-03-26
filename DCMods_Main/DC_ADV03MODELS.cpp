@@ -1,9 +1,15 @@
 #include "stdafx.h"
 #include "Palm.h"
-#include "ADV03_00_PC.h"
-#include "ADV03_00.h"
-#include "ADV03_01.h"
-#include "ADV03_02.h"
+
+NJS_TEXNAME textures_past0[60];
+NJS_TEXLIST texlist_past0 = { arrayptrandlength(textures_past0) };
+
+NJS_TEXNAME textures_past1[83];
+NJS_TEXLIST texlist_past01 = { arrayptrandlength(textures_past1) };
+
+NJS_TEXNAME textures_past2[85];
+NJS_TEXLIST texlist_past02 = { arrayptrandlength(textures_past2) };
+
 #include "Past_objects.h"
 #include "Past_Chao.h"
 
@@ -298,16 +304,16 @@ NJS_MATERIAL* FirstCharacterSpecular[] = {
 
 void __cdecl Past_OceanDraw_r(OceanData *a1)
 {
-	if (CurrentAct == 1)
+	if (ADV03_1_Info && CurrentAct == 1)
 	{
 		if (GameState != 16)
 		{
 			if (ocean_act1 > 82) ocean_act1 = 73;
 			if (water_act1 > 72) water_act1 = 59;
-			matlistADV03_0006DBD0[0].attr_texId = ocean_act1;
-			matlistADV03_00095CF8[0].attr_texId = water_act1;
-			matlistADV03_000950C4[0].attr_texId = water_act1;
-			matlistADV03_0009542C[0].attr_texId = water_act1;
+			((NJS_MATERIAL*)ADV03_1_Info->getdata("matlistADV03_0006DBD0"))[0].attr_texId = ocean_act1;
+			((NJS_MATERIAL*)ADV03_1_Info->getdata("matlistADV03_00095CF8"))[0].attr_texId = water_act1;
+			((NJS_MATERIAL*)ADV03_1_Info->getdata("matlistADV03_000950C4"))[0].attr_texId = water_act1;
+			((NJS_MATERIAL*)ADV03_1_Info->getdata("matlistADV03_0009542C"))[0].attr_texId = water_act1;
 			if ((FramerateSetting < 2 && FrameCounter % 4 == 0) || (FramerateSetting == 2 && FrameCounter % 2 == 0) || FramerateSetting > 2)
 			{
 				ocean_act1++;
@@ -317,12 +323,12 @@ void __cdecl Past_OceanDraw_r(OceanData *a1)
 		//Reflections act 1
 		njSetTexture(&texlist_past01);
 		DrawQueueDepthBias = 1000.0f;
-		ProcessModelNode(&objectADV03_0008B2E0Z, QueuedModelFlagsB_SomeTextureThing, 1.0f);
+		ProcessModelNode((NJS_OBJECT*)ADV03_1_Info->getdata("objectADV03_0008B2E0Z"), QueuedModelFlagsB_SomeTextureThing, 1.0f);
 		DrawQueueDepthBias = 2500.0f;
-		ProcessModelNode(&objectADV03_0009609C, QueuedModelFlagsB_SomeTextureThing, 1.0f);
+		ProcessModelNode((NJS_OBJECT*)ADV03_1_Info->getdata("objectADV03_0009609C"), QueuedModelFlagsB_SomeTextureThing, 1.0f);
 		DrawQueueDepthBias = 0;
 	}
-	if (CurrentAct == 2)
+	if (ADV03_2_Info && CurrentAct == 2)
 	{
 		if (GameState != 16)
 		{
@@ -331,7 +337,7 @@ void __cdecl Past_OceanDraw_r(OceanData *a1)
 			//matlistADV03_000C7840[0].attr_texId = water_act2; //Apparently SADX does it on its own
 			//matlistADV03_000C6C0C[0].attr_texId = water_act2; //Apparently SADX does it on its own
 			//matlistADV03_000C6F74[0].attr_texId = water_act2; //Apparently SADX does it on its own
-			matlistADV03_0009DEBC[0].attr_texId = ocean_act2;
+			((NJS_MATERIAL*)ADV03_2_Info->getdata("matlistADV03_0009DEBC"))[0].attr_texId = ocean_act2;
 			if (FramerateSetting < 2 && FrameCounter % 4 == 0 || FramerateSetting == 2 && FrameCounter % 2 == 0 || FramerateSetting > 2)
 			{
 				ocean_act2++;
@@ -341,9 +347,9 @@ void __cdecl Past_OceanDraw_r(OceanData *a1)
 		//Reflections act 2
 		njSetTexture(&texlist_past02);
 		DrawQueueDepthBias = 1000.0f;
-		ProcessModelNode(&objectADV03_000BCC28Z, QueuedModelFlagsB_SomeTextureThing, 1.0f);
+		ProcessModelNode((NJS_OBJECT*)ADV03_2_Info->getdata("objectADV03_000BCC28Z"), QueuedModelFlagsB_SomeTextureThing, 1.0f);
 		DrawQueueDepthBias = 2500.0f;
-		ProcessModelNode(&objectADV03_000C7BE4, QueuedModelFlagsB_SomeTextureThing, 1.0f);
+		ProcessModelNode((NJS_OBJECT*)ADV03_2_Info->getdata("objectADV03_000C7BE4"), QueuedModelFlagsB_SomeTextureThing, 1.0f);
 		DrawQueueDepthBias = 0;
 	}
 	if (SADXWater_Past) Past_OceanDraw_SADXStyle(a1);
@@ -413,7 +419,44 @@ void AllocateEventChao_10(ObjectMaster *a1, NJS_ACTION *a2, NJS_TEXLIST *a3, flo
 	AllocateEventObject(a1, &newaction, a3, a4, a5, a6);
 }
 
-void ADV03_Init(const IniFile *config, const HelperFunctions &helperFunctions)
+void LoadLevelFiles_ADV03()
+{
+	ADV03_0_Info = new LandTableInfo(ModPath + "\\data\\ADV03\\0.sa1lvl");
+	ADV03_1_Info = new LandTableInfo(ModPath + "\\data\\ADV03\\1.sa1lvl");
+	ADV03_2_Info = new LandTableInfo(ModPath + "\\data\\ADV03\\2.sa1lvl");
+	LandTable *ADV03_0 = ADV03_0_Info->getlandtable();
+	LandTable *ADV03_1 = ADV03_1_Info->getlandtable();
+	LandTable *ADV03_2 = ADV03_2_Info->getlandtable();
+	ADV03_0->TexList = &texlist_past0;
+	ADV03_1->TexList = &texlist_past01;
+	ADV03_2->TexList = &texlist_past02;
+	___ADV03_TEXLISTS[4] = &texlist_past0;
+	___ADV03_TEXLISTS[5] = &texlist_past01;
+	___ADV03_TEXLISTS[6] = &texlist_past02;
+	LandTableArray[152] = ADV03_0;
+	LandTableArray[153] = ADV03_1;
+	LandTableArray[154] = ADV03_2;
+	___LANDTABLEPAST[0] = ADV03_0;
+	___LANDTABLEPAST[1] = ADV03_1;
+	___LANDTABLEPAST[2] = ADV03_2;
+	___ADV03PAST01_OBJECTS[213] = (NJS_OBJECT*)ADV03_1_Info->getdata("objectADV03_00095CC4");
+	___ADV03PAST02_OBJECTS[212] = (NJS_OBJECT*)ADV03_2_Info->getdata("objectADV03_000C7BE4");
+	___ADV03PAST02_OBJECTS[209] = (NJS_OBJECT*)ADV03_2_Info->getdata("objectADV03_000C6F40");
+	___ADV03PAST02_OBJECTS[210] = (NJS_OBJECT*)ADV03_2_Info->getdata("objectADV03_000C71B4");
+	___ADV03PAST02_OBJECTS[211] = (NJS_OBJECT*)ADV03_2_Info->getdata("objectADV03_000FB49C");
+	if (SADXWater_Past)
+	{
+		ADV03_1->Col[0].Flags = 0x00000020;
+		ADV03_2->Col[0].Flags = 0x00000020;
+	}
+	else
+	{
+		ADV03_1->Col[0].Flags = 0x80000020;
+		ADV03_2->Col[0].Flags = 0x80000020;
+	}
+}
+
+void ADV03_Init()
 {
 	ReplaceBIN_DC("CAMPAST00S");
 	ReplaceBIN_DC("CAMPAST01S");
@@ -496,16 +539,6 @@ void ADV03_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 		material_register_ptr(FirstCharacterSpecular, LengthOfArray(FirstCharacterSpecular), &ForceDiffuse2Specular2);
 		material_register_ptr(Past_ObjectSpecular, LengthOfArray(Past_ObjectSpecular), &ForceDiffuse0Specular1);
 	}
-	if (SADXWater_Past)
-	{
-		collist_0006735C[0].Flags = 0x00000020;
-		collist_000976C0[0].Flags = 0x00000020;
-	}
-	else
-	{
-		collist_0006735C[0].Flags = 0x80000020;
-		collist_000976C0[0].Flags = 0x80000020;
-	}
 	//Fog data
 	for (unsigned int i = 0; i < 3; i++)
 	{
@@ -519,26 +552,10 @@ void ADV03_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 		DrawDist_Past2[i].Maximum = -16000.0f;
 		DrawDist_Past3[i].Maximum = -16000.0f;
 	}
-	NJS_TEXLIST **___ADV03_TEXLISTS = (NJS_TEXLIST **)GetProcAddress(GetModuleHandle(L"ADV03MODELS"), "___ADV03_TEXLISTS");
-	___ADV03_TEXLISTS[4] = &texlist_past0;
-	___ADV03_TEXLISTS[5] = &texlist_past01;
-	___ADV03_TEXLISTS[6] = &texlist_past02;
-	LandTable **___LANDTABLEPAST = (LandTable **)GetProcAddress(GetModuleHandle(L"ADV03MODELS"), "___LANDTABLEPAST");
-	___LANDTABLEPAST[0] = &landtable_00000278;
-	___LANDTABLEPAST[1] = &landtable_0000029C;
-	___LANDTABLEPAST[2] = &landtable_000002C0;
-	NJS_OBJECT **___ADV03PAST01_OBJECTS = (NJS_OBJECT **)GetProcAddress(GetModuleHandle(L"ADV03MODELS"), "___ADV03PAST01_OBJECTS");
 	//___ADV03PAST01_OBJECTS[211] = &objectADV03_000953F8; //water 1
 	//___ADV03PAST01_OBJECTS[212] = &objectADV03_0009566C; //water 2
-	___ADV03PAST01_OBJECTS[213] = &objectADV03_00095CC4;
 	//___ADV03PAST01_OBJECTS[214] = &objectADV03_0009609C; //water 3
-	NJS_OBJECT **___ADV03PAST02_OBJECTS = (NJS_OBJECT **)GetProcAddress(GetModuleHandle(L"ADV03MODELS"), "___ADV03PAST02_OBJECTS");
-	___ADV03PAST02_OBJECTS[212] = &objectADV03_000C7BE4;
-	___ADV03PAST02_OBJECTS[209] = &objectADV03_000C6F40;
-	___ADV03PAST02_OBJECTS[210] = &objectADV03_000C71B4;
-	___ADV03PAST02_OBJECTS[211] = &objectADV03_000FB49C;
-	NJS_OBJECT **___ADV03_OBJECTS = (NJS_OBJECT **)GetProcAddress(GetModuleHandle(L"ADV03MODELS"), "___ADV03_OBJECTS");
-	___ADV03_OBJECTS[16] = &objectADV03_0001EDDC; //tree 16
+		___ADV03_OBJECTS[16] = &objectADV03_0001EDDC; //tree 16
 	___ADV03_OBJECTS[17] = &objectADV03_0001EDDC; //tree 17
 	___ADV03_OBJECTS[15] = &objectADV03_00027158; //small tree shadow
 	___ADV03_OBJECTS[13] = &objectADV03_00016CA0; //OWell

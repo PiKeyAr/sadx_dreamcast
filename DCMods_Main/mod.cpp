@@ -111,6 +111,17 @@ NJS_ACTION **___ADV01_ACTIONS = nullptr;
 NJS_OBJECT **___ADV01_OBJECTS = nullptr;
 NJS_OBJECT **___ADV01EC00_OBJECTS = nullptr;
 NJS_MODEL_SADX **___ADV01C_MODELS = nullptr;
+NJS_TEXLIST **___ADV02_TEXLISTS = nullptr;
+NJS_MODEL_SADX **___ADV02_MODELS = nullptr;
+NJS_OBJECT **___ADV02_OBJECTS = nullptr;
+NJS_OBJECT **___ADV02MR02_OBJECTS = nullptr;
+NJS_ACTION **___ADV02_ACTIONS = nullptr;
+LandTable **___LANDTABLEMR = nullptr;
+NJS_TEXLIST **___ADV03_TEXLISTS = nullptr;
+LandTable **___LANDTABLEPAST = nullptr;
+NJS_OBJECT **___ADV03PAST01_OBJECTS = nullptr;
+NJS_OBJECT **___ADV03PAST02_OBJECTS = nullptr;
+NJS_OBJECT **___ADV03_OBJECTS = nullptr;
 
 HelperFunctions HelperFunctionsGlobal;
 bool EnableWindowTitle = true;
@@ -228,6 +239,17 @@ extern "C"
 		___ADV01_OBJECTS = (NJS_OBJECT **)GetProcAddress(GetModuleHandle(L"ADV01MODELS"), "___ADV01_OBJECTS");
 		___ADV01EC00_OBJECTS = (NJS_OBJECT **)GetProcAddress(GetModuleHandle(L"ADV01MODELS"), "___ADV01EC00_OBJECTS");
 		___ADV01C_MODELS = (NJS_MODEL_SADX **)GetProcAddress(GetModuleHandle(L"ADV01CMODELS"), "___ADV01C_MODELS");
+		___ADV02_TEXLISTS = (NJS_TEXLIST **)GetProcAddress(GetModuleHandle(L"ADV02MODELS"), "___ADV02_TEXLISTS");
+		___ADV02_MODELS = (NJS_MODEL_SADX **)GetProcAddress(GetModuleHandle(L"ADV02MODELS"), "___ADV02_MODELS");
+		___ADV02_OBJECTS = (NJS_OBJECT **)GetProcAddress(GetModuleHandle(L"ADV02MODELS"), "___ADV02_OBJECTS");
+		___ADV02MR02_OBJECTS = (NJS_OBJECT **)GetProcAddress(GetModuleHandle(L"ADV02MODELS"), "___ADV02MR02_OBJECTS");
+		___ADV02_ACTIONS = (NJS_ACTION **)GetProcAddress(GetModuleHandle(L"ADV02MODELS"), "___ADV02_ACTIONS");
+		___LANDTABLEMR = (LandTable **)GetProcAddress(GetModuleHandle(L"ADV02MODELS"), "___LANDTABLEMR");
+		___ADV03_TEXLISTS = (NJS_TEXLIST **)GetProcAddress(GetModuleHandle(L"ADV03MODELS"), "___ADV03_TEXLISTS");
+		___LANDTABLEPAST = (LandTable **)GetProcAddress(GetModuleHandle(L"ADV03MODELS"), "___LANDTABLEPAST");
+		___ADV03PAST01_OBJECTS = (NJS_OBJECT **)GetProcAddress(GetModuleHandle(L"ADV03MODELS"), "___ADV03PAST01_OBJECTS");
+		___ADV03PAST02_OBJECTS = (NJS_OBJECT **)GetProcAddress(GetModuleHandle(L"ADV03MODELS"), "___ADV03PAST02_OBJECTS");
+		___ADV03_OBJECTS = (NJS_OBJECT **)GetProcAddress(GetModuleHandle(L"ADV03MODELS"), "___ADV03_OBJECTS");
 		HelperFunctionsGlobal = helperFunctions;
 		//Global mod path
 		ModPath = std::string(path);
@@ -359,10 +381,23 @@ extern "C"
 			WriteCall((void*)0x4231E6, LoadLevelFiles_ADV00);
 			ADV00_Init();
 		}
-		if (EnableEggCarrier) ADV01_Init(config, helperFunctions);
+		if (EnableEggCarrier)
+		{
+			WriteCall((void*)0x4232C9, LoadLevelFiles_ADV01);
+			WriteCall((void*)0x4233BB, LoadLevelFiles_ADV01C);
+			ADV01_Init(config, helperFunctions);
+		}
 		FixMRBase_Apply(config, helperFunctions);
-		if (EnableMysticRuins) ADV02_Init(config, helperFunctions);
-		if (EnablePast) ADV03_Init(config, helperFunctions);
+		if (EnableMysticRuins)
+		{
+			WriteCall((void*)0x4234AD, LoadLevelFiles_ADV02);
+			ADV02_Init();
+		}
+		if (EnablePast)
+		{
+			WriteCall((void*)0x423554, LoadLevelFiles_ADV03);
+			ADV03_Init();
+		}
 		Bosses_Init();
 		if (!WaterEffect && EnableEmeraldCoast)
 		{
