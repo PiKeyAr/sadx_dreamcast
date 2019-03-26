@@ -173,7 +173,6 @@
     <ClInclude Include="Data\Chaos4.h" />
     <ClInclude Include="Data\Chaos4_water.h" />
     <ClInclude Include="Data\Chaos6_Act1.h" />
-    <ClInclude Include="Data\Chaos6_Act1_PC.h" />
     <ClInclude Include="Data\Chaos6_Act2.h" />
     <ClInclude Include="Data\Chaos6_models.h" />
     <ClInclude Include="Data\Chaos7.h" />
@@ -190,8 +189,10 @@
     <ClInclude Include="Data\EggCarrier_Objects.h" />
     <ClInclude Include="Data\EggHornet.h" />
     <ClInclude Include="Data\EggHornet_Model.h" />
+    <ClInclude Include="Data\EggHornet_Water.h" />
     <ClInclude Include="Data\EggmobileNPC.h" />
     <ClInclude Include="Data\EggViper.h" />
+    <ClInclude Include="Data\EggViper_Head.h" />
     <ClInclude Include="Data\EggWalker.h" />
     <ClInclude Include="Data\EmeraldCoast1.h" />
     <ClInclude Include="Data\EmeraldCoast1_PC.h" />
@@ -279,6 +280,7 @@
     <ClInclude Include="Data\windy2.h" />
     <ClInclude Include="Data\windy3.h" />
     <ClInclude Include="Data\Zero.h" />
+    <ClInclude Include="Data\ZeroE101R_Water.h" />
     <ClInclude Include="DC_Levels.h" />
     <ClInclude Include="Frogs.h" />
     <ClInclude Include="Lantern\lanternapi.h" />

@@ -323,9 +323,6 @@
     <ClInclude Include="Data\Chaos6_Act1.h">
       <Filter>Header Files\Levels\Bosses</Filter>
     </ClInclude>
-    <ClInclude Include="Data\Chaos6_Act1_PC.h">
-      <Filter>Header Files\Levels\Bosses</Filter>
-    </ClInclude>
     <ClInclude Include="Data\Chaos6_Act2.h">
       <Filter>Header Files\Levels\Bosses</Filter>
     </ClInclude>
@@ -667,6 +664,15 @@
     </ClInclude>
     <ClInclude Include="Data\SandHill_objects.h">
       <Filter>Header Files\Levels\Subgames</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\EggHornet_Water.h">
+      <Filter>Header Files\Levels\Bosses</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\EggViper_Head.h">
+      <Filter>Header Files\Levels\Bosses</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\ZeroE101R_Water.h">
+      <Filter>Header Files\Levels\Bosses</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
