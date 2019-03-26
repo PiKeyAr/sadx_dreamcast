@@ -1,8 +1,5 @@
 #include "stdafx.h"
 
-LandTableInfo *STG06_0_Info = nullptr;
-LandTableInfo *STG06_1_Info = nullptr;
-LandTableInfo *STG06_2_Info = nullptr;
 LandTable *STG06_0 = nullptr;
 LandTable *STG06_1 = nullptr;
 LandTable *STG06_2 = nullptr;
@@ -635,7 +632,7 @@ void __cdecl Talap0Display_FixedRotation(ObjectMaster *a2)
 	}
 }
 
-void SkyDeck_Init()
+void LoadLevelFiles_STG06()
 {
 	STG06_0_Info = new LandTableInfo(ModPath + "\\data\\STG06\\0.sa1lvl");
 	STG06_1_Info = new LandTableInfo(ModPath + "\\data\\STG06\\1.sa1lvl");
@@ -649,6 +646,48 @@ void SkyDeck_Init()
 	WriteData((LandTable**)0x97DAC8, STG06_0);
 	WriteData((LandTable**)0x97DACC, STG06_1);
 	WriteData((LandTable**)0x97DAD0, STG06_2);
+	((LandTable*)0x022369A0)->COLCount = STG06_1->COLCount;
+	((LandTable*)0x022369A0)->Col = STG06_1->Col;
+}
+
+void SkyDeck_Init()
+{
+	ReplaceBIN_DC("SET0600M");
+	ReplaceBIN_DC("SET0600S");
+	ReplaceBIN_DC("SET0601M");
+	ReplaceBIN_DC("SET0601S");
+	ReplaceBIN_DC("SET0602K");
+	ReplaceBIN_DC("SET0602M");
+	ReplaceBIN_DC("SET0602S");
+	ReplaceBIN_DC("CAM0600M");
+	ReplaceBIN_DC("CAM0600S");
+	ReplaceBIN_DC("CAM0601S");
+	ReplaceBIN_DC("CAM0602K");
+	ReplaceBIN_DC("CAM0602S");
+	switch (EnableSETFixes)
+	{
+	case SETFixes_Normal:
+		AddSETFix("SET0600M");
+		AddSETFix("SET0600S");
+		AddSETFix("SET0601S");
+		AddSETFix("SET0602K");
+		AddSETFix("SET0602S");
+		break;
+	case SETFixes_Extra:
+		AddSETFix_Extra("SET0600M");
+		AddSETFix_Extra("SET0600S");
+		AddSETFix_Extra("SET0601S");
+		AddSETFix_Extra("SET0602K");
+		AddSETFix_Extra("SET0602S");
+		break;
+	default:
+		break;
+	}
+	ReplacePVM("E_AIRCRAFT");
+	ReplacePVM("OBJ_SKYDECK");
+	ReplacePVM("SKYDECK01");
+	ReplacePVM("SKYDECK02");
+	ReplacePVM("SKYDECK03");
 	//Skybox transparency
 	((NJS_OBJECT*)0x214E2A0)->basicdxmodel->nbMeshset = 2; //Disable the annoying sky mesh
 	stru_214E2A0.basicdxmodel->mats[0].diffuse.color = 0x11FFFFFF;
@@ -696,8 +735,6 @@ void SkyDeck_Init()
 	WriteData((float*)0x005F4D28, 1.0f);
 	WriteData((float*)0x005F4D30, 1.0f);
 	WriteData((float*)0x005F4D38, 1.0f);
-	((LandTable*)0x022369A0)->COLCount = STG06_1->COLCount;
-	((LandTable*)0x022369A0)->Col = STG06_1->Col;
 	((NJS_OBJECT *)0x214BF20)->basicdxmodel->meshsets->vertuv = uvSTG06_01D4E2F4_2;
 	((NJS_OBJECT *)0x214E3AC)->basicdxmodel->meshsets->vertuv = uvSTG06_01D4E2F4_3;
 	*(NJS_MODEL_SADX *)0x961300 = attachSTG06_001E10F8; //Aircraft pad

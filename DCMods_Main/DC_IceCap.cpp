@@ -11,10 +11,6 @@ NJS_TEXLIST texlist_icecap2 = { arrayptrandlength(textures_icecap2) };
 NJS_TEXNAME textures_icecap3[40];
 NJS_TEXLIST texlist_icecap3 = { arrayptrandlength(textures_icecap3) };
 
-LandTableInfo *STG08_0_Info = nullptr;
-LandTableInfo *STG08_1_Info = nullptr;
-LandTableInfo *STG08_2_Info = nullptr;
-LandTableInfo *STG08_3_Info = nullptr;
 LandTable *STG08_0 = nullptr;
 LandTable *STG08_1 = nullptr;
 LandTable *STG08_2 = nullptr;
@@ -233,7 +229,7 @@ static void __declspec(naked) Obj_Icecap_DoColFlagThings_a()
 	}
 }
 
-void IceCap_Init()
+void LoadLevelFiles_STG08()
 {
 	STG08_0_Info = new LandTableInfo(ModPath + "\\data\\STG08\\0.sa1lvl");
 	STG08_1_Info = new LandTableInfo(ModPath + "\\data\\STG08\\1.sa1lvl");
@@ -251,6 +247,59 @@ void IceCap_Init()
 	WriteData((LandTable**)0x97DB0C, STG08_1);
 	WriteData((LandTable**)0x97DB10, STG08_2);
 	WriteData((LandTable**)0x97DB14, STG08_3);
+}
+
+void UnloadLevelFiles_STG08()
+{
+	STG08_0 = nullptr;
+	STG08_1 = nullptr;
+	STG08_2 = nullptr;
+	STG08_3 = nullptr;
+	delete STG08_0_Info;
+	delete STG08_1_Info;
+	delete STG08_2_Info;
+	delete STG08_3_Info;
+}
+
+void IceCap_Init()
+{
+	ReplaceBIN_DC("CAM0800S");
+	ReplaceBIN_DC("CAM0801S");
+	ReplaceBIN_DC("CAM0802S");
+	ReplaceBIN_DC("CAM0803B");
+	ReplaceBIN_DC("SET0800S");
+	ReplaceBIN_DC("SET0801S");
+	ReplaceBIN_DC("SET0802M");
+	ReplaceBIN_DC("SET0802S");
+	ReplaceBIN_DC("SET0803B");
+	switch (EnableSETFixes)
+	{
+	case SETFixes_Normal:
+		AddSETFix("SET0800S");
+		AddSETFix("SET0801S");
+		AddSETFix("SET0802M");
+		AddSETFix("SET0802S");
+		AddSETFix("SET0803B");
+		break;
+	case SETFixes_Extra:
+		AddSETFix_Extra("SET0800S");
+		AddSETFix_Extra("SET0801S");
+		AddSETFix_Extra("SET0802M");
+		AddSETFix_Extra("SET0802S");
+		AddSETFix_Extra("SET0803B");
+		break;
+	default:
+		break;
+	}
+	ReplacePVM("BG_ICECAP");
+	ReplacePVM("ICECAP01");
+	ReplacePVM("ICECAP02");
+	ReplacePVM("ICECAP03");
+	ReplacePVM("OBJ_ICECAP");
+	ReplacePVM("OBJ_ICECAP2");
+	ReplacePVR("MIW_B001");
+	ReplacePVR("MTX_BOARD0");
+	ReplacePVR("SB_BOARD1");
 	WriteJump((void*)0x4E91C0, Obj_Icecap_DoColFlagThings_a); //Weird COL flag function
 	/*Crystal fixes, hopefully someday
 	//stru_E76598.basicdxmodel->mats[0].attrflags |= NJD_FLAG_USE_ALPHA;

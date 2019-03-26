@@ -14,10 +14,6 @@ NJS_TEXLIST texlist_casino3 = { arrayptrandlength(textures_casino3) };
 NJS_TEXNAME textures_casino4[71];
 NJS_TEXLIST texlist_casino4 = { arrayptrandlength(textures_casino4) };
 
-LandTableInfo *STG09_0_Info = nullptr;
-LandTableInfo *STG09_1_Info = nullptr;
-LandTableInfo *STG09_2_Info = nullptr;
-LandTableInfo *STG09_3_Info = nullptr;
 LandTable *STG09_0 = nullptr;
 LandTable *STG09_1 = nullptr;
 LandTable *STG09_2 = nullptr;
@@ -786,7 +782,7 @@ void IdeyaCapFix(void *a1, int a2, float a3, int a4, int a5)
 	DrawQueueDepthBias = 0;
 }
 
-void Casinopolis_Init()
+void LoadLevelFiles_STG09()
 {
 	STG09_0_Info = new LandTableInfo(ModPath + "\\data\\STG09\\0.sa1lvl");
 	STG09_1_Info = new LandTableInfo(ModPath + "\\data\\STG09\\1.sa1lvl");
@@ -804,6 +800,54 @@ void Casinopolis_Init()
 	WriteData((LandTable**)0x97DB2C, STG09_1);
 	WriteData((LandTable**)0x97DB30, STG09_2);
 	WriteData((LandTable**)0x97DB34, STG09_3);
+}
+
+void Casinopolis_Init()
+{
+	ReplaceBIN_DC("CAM0900K");
+	ReplaceBIN_DC("CAM0900S");
+	ReplaceBIN_DC("CAM0901M");
+	ReplaceBIN_DC("CAM0901S");
+	ReplaceBIN_DC("CAM0902S");
+	ReplaceBIN_DC("CAM0903S");
+	ReplaceBIN_DC("SET0900K");
+	ReplaceBIN_DC("SET0900S");
+	ReplaceBIN_DC("SET0901M");
+	ReplaceBIN_DC("SET0901S");
+	ReplaceBIN_DC("SET0902S");
+	ReplaceBIN_DC("SET0903S");
+	ReplaceBIN_DC("SETMI0900K");
+	switch (EnableSETFixes)
+	{
+	case SETFixes_Normal:
+		AddSETFix("SET0900K");
+		AddSETFix("SET0900S");
+		AddSETFix("SET0901M");
+		AddSETFix("SET0901S");
+		AddSETFix("SET0902S");
+		AddSETFix("SET0903S");
+		break;
+	case SETFixes_Extra:
+		AddSETFix_Extra("SET0900K");
+		AddSETFix_Extra("SET0900S");
+		AddSETFix_Extra("SET0901M");
+		AddSETFix_Extra("SET0901S");
+		AddSETFix_Extra("SET0902S");
+		AddSETFix_Extra("SET0903S");
+		break;
+	default:
+		break;
+	}
+	ReplacePVM("CASINO01");
+	ReplacePVM("CASINO02");
+	ReplacePVM("CASINO03");
+	ReplacePVM("CASINO04");
+	ReplacePVM("OBJ_CASINO2");
+	ReplacePVM("OBJ_CASINO8");
+	ReplacePVM("OBJ_CASINO9");
+	ReplacePVM("OBJ_CASINO_E");
+	//Lantern stuff
+	ReplaceBIN("PL_90B", "PL_90X");
 	if (DLLLoaded_Lantern)
 	{
 		if (set_alpha_reject_ptr != nullptr) material_register_ptr(DisableAlphaRejection_Casino, LengthOfArray(DisableAlphaRejection_Casino), &DisableAlphaRejection);

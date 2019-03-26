@@ -1,10 +1,6 @@
 #include "stdafx.h"
 #include "RM_Objects.h"
 
-LandTableInfo *STG05_0_Info = nullptr;
-LandTableInfo *STG05_1_Info = nullptr;
-LandTableInfo *STG05_2_Info = nullptr;
-
 NJS_TEXNAME textures_mountain1[45];
 NJS_TEXLIST texlist_mountain1 = { arrayptrandlength(textures_mountain1) };
 
@@ -74,7 +70,7 @@ void SetCloudColor(NJS_ARGB *a)
 	SetMaterialAndSpriteColor_Float(0.2f + a->a, 0.2f + a->r, 0.2f + a->g, 0.2f + a->b);
 }
 
-void RedMountain_Init()
+void LoadLevelFiles_STG05()
 {
 	STG05_0_Info = new LandTableInfo(ModPath + "\\data\\STG05\\0.sa1lvl");
 	STG05_1_Info = new LandTableInfo(ModPath + "\\data\\STG05\\1.sa1lvl");
@@ -88,6 +84,45 @@ void RedMountain_Init()
 	WriteData((LandTable**)0x97DAA8, STG05_0);
 	WriteData((LandTable**)0x97DAAC, STG05_1);
 	WriteData((LandTable**)0x97DAB0, STG05_2);
+}
+
+void RedMountain_Init()
+{
+	ReplaceBIN_DC("CAM0500S");
+	ReplaceBIN_DC("CAM0501E");
+	ReplaceBIN_DC("CAM0501S");
+	ReplaceBIN_DC("CAM0502K");
+	ReplaceBIN_DC("SET0500S");
+	ReplaceBIN_DC("SET0501E");
+	ReplaceBIN_DC("SET0501S");
+	ReplaceBIN_DC("SET0502K");
+	switch (EnableSETFixes)
+	{
+	case SETFixes_Normal:
+		AddSETFix("SET0500S");
+		AddSETFix("SET0501E");
+		AddSETFix("SET0501S");
+		AddSETFix("SET0502K");
+		break;
+	case SETFixes_Extra:
+		AddSETFix_Extra("SET0500S");
+		AddSETFix_Extra("SET0501E");
+		AddSETFix_Extra("SET0501S");
+		AddSETFix_Extra("SET0502K");
+		break;
+	default:
+		break;
+	}
+	ReplacePVM("MOUNTAIN01");
+	ReplacePVM("MOUNTAIN02");
+	ReplacePVM("MOUNTAIN03");
+	ReplacePVM("MOUNTAIN_CARRIER");
+	ReplacePVM("MOUNTAIN_E104");
+	ReplacePVM("MOUNTAIN_MEXPLOSION");
+	ReplacePVM("MOUNTAIN_STEAM");
+	ReplacePVM("OBJ_MOUNTAIN");
+	ReplacePVM("YOUGAN_ANIM");
+	ReplaceBIN("PL_51B", "PL_51X");
 	WriteData((double**)0x600C8F, &cloudcoloroffset);
 	WriteCall((void*)0x006011D8, RenderRMSky1);
 	WriteCall((void*)0x0060121C, RenderRMSky2);

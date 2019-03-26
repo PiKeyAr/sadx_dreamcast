@@ -10,10 +10,6 @@ NJS_TEXLIST texlist_hw2 = { arrayptrandlength(textures_highway2) };
 NJS_TEXNAME textures_highway3[107];
 NJS_TEXLIST texlist_hw3 = { arrayptrandlength(textures_highway3) };
 
-LandTableInfo *STG04_0_Info = nullptr;
-LandTableInfo *STG04_1_Info = nullptr;
-LandTableInfo *STG04_2_Info = nullptr;
-
 #include "SH_bus.h"
 #include "SH_yellowcar.h"
 #include "SH_bluecar.h"
@@ -58,7 +54,7 @@ NJS_MATERIAL* DisableAlphaRejection_SpeedHighway[] = {
 	((NJS_MATERIAL*)0x02696920), //OLmpa
 };
 
-NJS_MATERIAL* WhiteDiffuse_Highway[] = {
+NJS_MATERIAL* WhiteDiffuse_HighwayExternal[] = {
 	//Level stuff
 	nullptr,
 	nullptr,
@@ -70,6 +66,9 @@ NJS_MATERIAL* WhiteDiffuse_Highway[] = {
 	nullptr,
 	nullptr,
 	nullptr,
+};
+
+NJS_MATERIAL* WhiteDiffuse_Highway[] = {
 	//OAntena
 	((NJS_MATERIAL*)0x02691188),
 	((NJS_MATERIAL*)0x0269119C),
@@ -151,7 +150,7 @@ static void __cdecl FountainDisplay_r(ObjectMaster *a1)
 	original(a1);
 }
 
-void SpeedHighway_Init()
+void LoadLevelFiles_STG04()
 {
 	STG04_0_Info = new LandTableInfo(ModPath + "\\data\\STG04\\0.sa1lvl");
 	STG04_1_Info = new LandTableInfo(ModPath + "\\data\\STG04\\1.sa1lvl");
@@ -162,10 +161,69 @@ void SpeedHighway_Init()
 	STG04_0->TexList = &texlist_hw1;
 	STG04_1->TexList = &texlist_hw2;
 	STG04_2->TexList = &texlist_hw3;
-	ResizeTextureList(&HIGHWAY_CAR_TEXLIST, 16);
 	WriteData((LandTable**)0x97DA88, STG04_0);
 	WriteData((LandTable**)0x97DA8C, STG04_1);
 	WriteData((LandTable**)0x97DA90, STG04_2);
+	if (DLLLoaded_Lantern)
+	{
+		WhiteDiffuse_HighwayExternal[0] = &((NJS_MATERIAL*)STG04_0_Info->getdata("matlistSTG04_000774B8"))[0];
+		WhiteDiffuse_HighwayExternal[1] = &((NJS_MATERIAL*)STG04_0_Info->getdata("matlistSTG04_000774B8"))[1];
+		WhiteDiffuse_HighwayExternal[2] = &((NJS_MATERIAL*)STG04_0_Info->getdata("matlistSTG04_000774B8"))[2];
+		WhiteDiffuse_HighwayExternal[3] = &((NJS_MATERIAL*)STG04_0_Info->getdata("matlistSTG04_000774B8"))[3];
+		WhiteDiffuse_HighwayExternal[4] = &((NJS_MATERIAL*)STG04_0_Info->getdata("matlistSTG04_000774B8"))[4];
+		WhiteDiffuse_HighwayExternal[5] = &((NJS_MATERIAL*)STG04_0_Info->getdata("matlistSTG04_000774B8"))[5];
+		WhiteDiffuse_HighwayExternal[6] = &((NJS_MATERIAL*)STG04_0_Info->getdata("matlistSTG04_000774B8"))[6];
+		WhiteDiffuse_HighwayExternal[7] = &((NJS_MATERIAL*)STG04_0_Info->getdata("matlistSTG04_000774B8"))[7];
+		WhiteDiffuse_HighwayExternal[8] = &((NJS_MATERIAL*)STG04_0_Info->getdata("matlistSTG04_000774B8"))[8];
+		WhiteDiffuse_HighwayExternal[9] = &((NJS_MATERIAL*)STG04_0_Info->getdata("matlistSTG04_000774B8"))[9];
+		material_register_ptr(WhiteDiffuse_HighwayExternal, LengthOfArray(WhiteDiffuse_HighwayExternal), &ForceWhiteDiffuse1);
+	}
+}
+
+void SpeedHighway_Init()
+{
+	ReplaceBIN("PL_40B", "PL_40X");
+	ReplaceBIN("PL_41B", "PL_41X");
+	ReplaceBIN_DC("CAM0400M");
+	ReplaceBIN_DC("CAM0400S");
+	ReplaceBIN_DC("CAM0401S");
+	ReplaceBIN_DC("CAM0402K");
+	ReplaceBIN_DC("CAM0402S");
+	ReplaceBIN_DC("SET0400M");
+	ReplaceBIN_DC("SET0400S");
+	ReplaceBIN_DC("SET0401S");
+	ReplaceBIN_DC("SET0402K");
+	ReplaceBIN_DC("SET0402S");
+	switch (EnableSETFixes)
+	{
+	case SETFixes_Normal:
+		AddSETFix("SET0400M");
+		AddSETFix("SET0400S");
+		AddSETFix("SET0401S");
+		AddSETFix("SET0402K");
+		AddSETFix("SET0402S");
+		break;
+	case SETFixes_Extra:
+		AddSETFix_Extra("SET0400M");
+		AddSETFix_Extra("SET0400S");
+		AddSETFix_Extra("SET0401S");
+		AddSETFix_Extra("SET0402K");
+		AddSETFix_Extra("SET0402S");
+		break;
+	default:
+		break;
+	}
+	ReplacePVM("BG_HIGHWAY");
+	ReplacePVM("BG_HIGHWAY01");
+	ReplacePVM("BG_HIGHWAY02");
+	ReplacePVM("BG_HIGHWAY03");
+	ReplacePVM("HIGHWAY01");
+	ReplacePVM("HIGHWAY02");
+	ReplacePVM("HIGHWAY03");
+	ReplacePVM("HIGHWAY_CAR");
+	ReplacePVM("OBJ_HIGHWAY");
+	ReplacePVM("OBJ_HIGHWAY2");
+	ResizeTextureList(&HIGHWAY_CAR_TEXLIST, 16);
 	//Fountain fixes
 	WriteCall((void*)0x0061BAA0, FountainPart1);
 	WriteCall((void*)0x0061BAF1, FountainPart2);
@@ -193,16 +251,6 @@ void SpeedHighway_Init()
 	WriteCall((void*)0x00614122, RocketSprite);
 	if (DLLLoaded_Lantern)
 	{
-		WhiteDiffuse_Highway[0] = &((NJS_MATERIAL*)STG04_0_Info->getdata("matlistSTG04_000774B8"))[0];
-		WhiteDiffuse_Highway[1] = &((NJS_MATERIAL*)STG04_0_Info->getdata("matlistSTG04_000774B8"))[1];
-		WhiteDiffuse_Highway[2] = &((NJS_MATERIAL*)STG04_0_Info->getdata("matlistSTG04_000774B8"))[2];
-		WhiteDiffuse_Highway[3] = &((NJS_MATERIAL*)STG04_0_Info->getdata("matlistSTG04_000774B8"))[3];
-		WhiteDiffuse_Highway[4] = &((NJS_MATERIAL*)STG04_0_Info->getdata("matlistSTG04_000774B8"))[4];
-		WhiteDiffuse_Highway[5] = &((NJS_MATERIAL*)STG04_0_Info->getdata("matlistSTG04_000774B8"))[5];
-		WhiteDiffuse_Highway[6] = &((NJS_MATERIAL*)STG04_0_Info->getdata("matlistSTG04_000774B8"))[6];
-		WhiteDiffuse_Highway[7] = &((NJS_MATERIAL*)STG04_0_Info->getdata("matlistSTG04_000774B8"))[7];
-		WhiteDiffuse_Highway[8] = &((NJS_MATERIAL*)STG04_0_Info->getdata("matlistSTG04_000774B8"))[8];
-		WhiteDiffuse_Highway[9] = &((NJS_MATERIAL*)STG04_0_Info->getdata("matlistSTG04_000774B8"))[9];
 		material_register_ptr(WhiteDiffuse_Highway, LengthOfArray(WhiteDiffuse_Highway), &ForceWhiteDiffuse1);
 		if (set_alpha_reject_ptr != nullptr) material_register_ptr(DisableAlphaRejection_SpeedHighway, LengthOfArray(DisableAlphaRejection_SpeedHighway), &DisableAlphaRejection);
 	}

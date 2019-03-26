@@ -1,9 +1,6 @@
 #include "stdafx.h"
 #include "LostWorld_objects.h"
 
-LandTableInfo *STG07_0_Info = nullptr;
-LandTableInfo *STG07_1_Info = nullptr;
-LandTableInfo *STG07_2_Info = nullptr;
 LandTable *STG07_0 = nullptr;
 LandTable *STG07_1 = nullptr;
 LandTable *STG07_2 = nullptr;
@@ -46,7 +43,7 @@ void RenderLWPlatformLight(NJS_MODEL_SADX *model, QueuedModelFlagsB blend, float
 	DrawQueueDepthBias = 0.0f;
 }
 
-void LostWorld_Init()
+void LoadLevelFiles_STG07()
 {
 	STG07_0_Info = new LandTableInfo(ModPath + "\\data\\STG07\\0.sa1lvl");
 	STG07_1_Info = new LandTableInfo(ModPath + "\\data\\STG07\\1.sa1lvl");
@@ -60,6 +57,41 @@ void LostWorld_Init()
 	WriteData((LandTable**)0x97DAE8, STG07_0);
 	WriteData((LandTable**)0x97DAEC, STG07_1);
 	WriteData((LandTable**)0x97DAF0, STG07_2);
+}
+
+void LostWorld_Init()
+{
+	ReplaceBIN_DC("CAM0700S");
+	ReplaceBIN_DC("CAM0701K");
+	ReplaceBIN_DC("CAM0701S");
+	ReplaceBIN_DC("CAM0702S");
+	ReplaceBIN_DC("SET0700S");
+	ReplaceBIN_DC("SET0701K");
+	ReplaceBIN_DC("SET0701S");
+	ReplaceBIN_DC("SET0702S");
+	switch (EnableSETFixes)
+	{
+	case SETFixes_Normal:
+		AddSETFix("SET0700S");
+		AddSETFix("SET0701K");
+		AddSETFix("SET0701S");
+		AddSETFix("SET0702S");
+		break;
+	case SETFixes_Extra:
+		AddSETFix_Extra("SET0700S");
+		AddSETFix_Extra("SET0701K");
+		AddSETFix_Extra("SET0701S");
+		AddSETFix_Extra("SET0702S");
+		break;
+	default:
+		break;
+	}
+	ReplacePVM("BG_RUIN");
+	ReplacePVM("RUIN01");
+	ReplacePVM("RUIN02");
+	ReplacePVM("RUIN03");
+	ReplacePVM("OBJ_RUIN");
+	ReplacePVM("OBJ_RUIN2");
 	if (DLLLoaded_Lantern)
 	{
 		material_register_ptr(ObjectSpecular_LostWorld, LengthOfArray(ObjectSpecular_LostWorld), &ForceDiffuse0Specular1);

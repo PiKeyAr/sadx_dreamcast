@@ -10,10 +10,6 @@ NJS_TEXLIST texlist_windy2 = { arrayptrandlength(textures_windy2) };
 NJS_TEXNAME textures_windy3[28];
 NJS_TEXLIST texlist_windy3 = { arrayptrandlength(textures_windy3) };
 
-LandTableInfo *STG02_0_Info = nullptr;
-LandTableInfo *STG02_1_Info = nullptr;
-LandTableInfo *STG02_2_Info = nullptr;
-
 DataArray(SkyboxScale, SkyboxScale_Windy1, 0x00AFE924, 3);
 DataArray(FogData, FogData_Windy1, 0x00AFEA20, 3);
 DataArray(FogData, FogData_Windy2, 0x00AFEA50, 3);
@@ -122,7 +118,7 @@ void FixBranch(NJS_ACTION *a1, float a2, int a3, float a4)
 	sub_408350(&action_OTREEM_Action, a2, a3, a4);
 }
 
-void WindyValley_Init()
+void LoadLevelFiles_STG02()
 {
 	STG02_0_Info = new LandTableInfo(ModPath + "\\data\\STG02\\0.sa1lvl");
 	STG02_1_Info = new LandTableInfo(ModPath + "\\data\\STG02\\1.sa1lvl");
@@ -136,6 +132,46 @@ void WindyValley_Init()
 	WriteData((LandTable**)0x97DA48, STG02_0); //Act 1
 	WriteData((LandTable**)0x97DA4C, STG02_1); //Act 2
 	WriteData((LandTable**)0x97DA50, STG02_2); //Act 3
+}
+
+void WindyValley_Init()
+{
+	ReplaceBIN_DC("SET0200S");
+	ReplaceBIN_DC("SET0200E");
+	ReplaceBIN_DC("SET0201S");
+	ReplaceBIN_DC("SET0202M");
+	ReplaceBIN_DC("SET0202S");
+	ReplaceBIN_DC("CAM0200E");
+	ReplaceBIN_DC("CAM0200S");
+	ReplaceBIN_DC("CAM0201S");
+	ReplaceBIN_DC("CAM0202M");
+	ReplaceBIN_DC("CAM0202S");
+	switch (EnableSETFixes)
+	{
+	case SETFixes_Normal:
+		AddSETFix("SET0200E");
+		AddSETFix("SET0200S");
+		AddSETFix("SET0201S");
+		AddSETFix("SET0202M");
+		AddSETFix("SET0202S");
+		break;
+	case SETFixes_Extra:
+		AddSETFix_Extra("SET0200E");
+		AddSETFix_Extra("SET0200S");
+		AddSETFix_Extra("SET0201S");
+		AddSETFix_Extra("SET0202M");
+		AddSETFix_Extra("SET0202S");
+		break;
+	default:
+		break;
+	}
+	ReplacePVM("OBJ_WINDY");
+	ReplacePVM("WINDY01");
+	ReplacePVM("WINDY02");
+	ReplacePVM("WINDY03");
+	ReplacePVM("WINDY_BACK");
+	ReplacePVM("WINDY_BACK2");
+	ReplacePVM("WINDY_BACK3");
 	*(NJS_MODEL_SADX*)0xC1E168 = attachSTG02_000C4CFC; //Fixed bridge rope
 	//Skybox stuff
 	WriteCall((void*)0x004DD794, RetrieveWindy1SkyTransparency);

@@ -11,10 +11,6 @@ NJS_TEXLIST texlist_twinkle2 = { arrayptrandlength(textures_twinkle2) };
 NJS_TEXNAME textures_twinkle3[30];
 NJS_TEXLIST texlist_twinkle3 = { arrayptrandlength(textures_twinkle3) };
 
-LandTableInfo *STG03_0_Info = nullptr;
-LandTableInfo *STG03_1_Info = nullptr;
-LandTableInfo *STG03_2_Info = nullptr;
-
 struct __declspec(align(2)) ObjectThingC
 {
 	NJS_OBJECT *object;
@@ -50,9 +46,12 @@ NJS_MATERIAL* DisableAlphaRejection_TwinklePark[] = {
 	((NJS_MATERIAL*)0x027A0488), //OFlagWLamp
 };
 
-NJS_MATERIAL* ObjectSpecular_Twinkle[] = {
+NJS_MATERIAL* ObjectSpecular_TwinkleExternal[] = {
 	//Last mirror 
 	nullptr, nullptr,
+};
+
+NJS_MATERIAL* ObjectSpecular_Twinkle[] = {
 	//OFence2
 	((NJS_MATERIAL*)0x027A24B0),
 	((NJS_MATERIAL*)0x027A24C4),
@@ -191,8 +190,7 @@ NJS_MATERIAL* CartMaterials[] =
 	((NJS_MATERIAL*)0x038BA890),
 };
 
-NJS_MATERIAL* LevelSpecular_Twinkle[] = {
-	//Use_Env stuff
+NJS_MATERIAL* LevelSpecular_TwinkleExternal[] = {
 	nullptr,
 	nullptr,
 	nullptr,
@@ -216,6 +214,9 @@ NJS_MATERIAL* LevelSpecular_Twinkle[] = {
 	nullptr,
 	nullptr,
 	nullptr,
+};
+
+NJS_MATERIAL* LevelSpecular_Twinkle[]={
 	//Barrel pieces
 	((NJS_MATERIAL*)0x0279D398),
 	((NJS_MATERIAL*)0x0279D3AC),
@@ -416,7 +417,7 @@ void RenderCatapult(NJS_ACTION *a1, float frame, float scale)
 	DrawQueueDepthBias = 0.0f;
 }
 
-void TwinklePark_Init()
+void LoadLevelFiles_STG03()
 {
 	STG03_0_Info = new LandTableInfo(ModPath + "\\data\\STG03\\0.sa1lvl");;
 	STG03_1_Info = new LandTableInfo(ModPath + "\\data\\STG03\\1.sa1lvl");;
@@ -431,6 +432,75 @@ void TwinklePark_Init()
 	WriteData((LandTable**)0x97DA68, STG03_0);
 	WriteData((LandTable**)0x97DA6C, STG03_1);
 	WriteData((LandTable**)0x97DA70, STG03_2);
+	if (DLLLoaded_Lantern)
+	{
+		LevelSpecular_TwinkleExternal[0] = &((NJS_MATERIAL*)STG03_1_Info->getdata("matlistSTG03_000263FC"))[0];
+		LevelSpecular_TwinkleExternal[1] = &((NJS_MATERIAL*)STG03_1_Info->getdata("matlistSTG03_00026884"))[0];
+		LevelSpecular_TwinkleExternal[2] = &((NJS_MATERIAL*)STG03_1_Info->getdata("matlistSTG03_00026884"))[1];
+		LevelSpecular_TwinkleExternal[3] = &((NJS_MATERIAL*)STG03_1_Info->getdata("matlistSTG03_00028260"))[0];
+		LevelSpecular_TwinkleExternal[4] = &((NJS_MATERIAL*)STG03_1_Info->getdata("matlistSTG03_00028260"))[1];
+		LevelSpecular_TwinkleExternal[5] = &((NJS_MATERIAL*)STG03_1_Info->getdata("matlistSTG03_0002B274"))[0];
+		LevelSpecular_TwinkleExternal[6] = &((NJS_MATERIAL*)STG03_1_Info->getdata("matlistSTG03_0002B274"))[1];
+		LevelSpecular_TwinkleExternal[7] = &((NJS_MATERIAL*)STG03_1_Info->getdata("matlistSTG03_0002E288"))[0];
+		LevelSpecular_TwinkleExternal[8] = &((NJS_MATERIAL*)STG03_1_Info->getdata("matlistSTG03_0002E288"))[1];
+		LevelSpecular_TwinkleExternal[9] = &((NJS_MATERIAL*)STG03_1_Info->getdata("matlistSTG03_000312B8"))[0];
+		LevelSpecular_TwinkleExternal[10] = &((NJS_MATERIAL*)STG03_1_Info->getdata("matlistSTG03_000312B8"))[1];
+		LevelSpecular_TwinkleExternal[11] = &((NJS_MATERIAL*)STG03_1_Info->getdata("matlistSTG03_000342E8"))[0];
+		LevelSpecular_TwinkleExternal[12] = &((NJS_MATERIAL*)STG03_1_Info->getdata("matlistSTG03_000342E8"))[1];
+		LevelSpecular_TwinkleExternal[13] = &((NJS_MATERIAL*)STG03_1_Info->getdata("matlistSTG03_00035CA8"))[0];
+		LevelSpecular_TwinkleExternal[14] = &((NJS_MATERIAL*)STG03_1_Info->getdata("matlistSTG03_00035CA8"))[1];
+		LevelSpecular_TwinkleExternal[15] = &((NJS_MATERIAL*)STG03_1_Info->getdata("matlistSTG03_0003763C"))[0];
+		LevelSpecular_TwinkleExternal[16] = &((NJS_MATERIAL*)STG03_1_Info->getdata("matlistSTG03_0003763C"))[1];
+		LevelSpecular_TwinkleExternal[17] = &((NJS_MATERIAL*)STG03_1_Info->getdata("matlistSTG03_00038FD0"))[0];
+		LevelSpecular_TwinkleExternal[18] = &((NJS_MATERIAL*)STG03_1_Info->getdata("matlistSTG03_00038FD0"))[1];
+		LevelSpecular_TwinkleExternal[19] = &((NJS_MATERIAL*)STG03_1_Info->getdata("matlistSTG03_0003A974"))[0];
+		LevelSpecular_TwinkleExternal[20] = &((NJS_MATERIAL*)STG03_1_Info->getdata("matlistSTG03_0003A974"))[1];
+		LevelSpecular_TwinkleExternal[21] = &((NJS_MATERIAL*)STG03_1_Info->getdata("matlistSTG03_0003C0C8"))[0];
+		LevelSpecular_TwinkleExternal[22] = &((NJS_MATERIAL*)STG03_1_Info->getdata("matlistSTG03_0003C0C8"))[1];
+		material_register_ptr(LevelSpecular_TwinkleExternal, LengthOfArray(LevelSpecular_TwinkleExternal), &ForceDiffuse0Specular0);
+		ObjectSpecular_TwinkleExternal[0] = &((NJS_MATERIAL*)STG03_2_Info->getdata("matlistSTG03_00091C40X"))[0];
+		ObjectSpecular_TwinkleExternal[1] = &((NJS_MATERIAL*)STG03_2_Info->getdata("matlistSTG03_00091F0CX"))[0];
+		material_register_ptr(ObjectSpecular_TwinkleExternal, LengthOfArray(ObjectSpecular_TwinkleExternal), &ForceDiffuse0Specular1);
+	}
+}
+
+void TwinklePark_Init()
+{
+	ReplaceBIN_DC("CAM0300S");
+	ReplaceBIN_DC("CAM0301A");
+	ReplaceBIN_DC("CAM0301B");
+	ReplaceBIN_DC("CAM0301S");
+	ReplaceBIN_DC("CAM0302A");
+	ReplaceBIN_DC("CAM0302S");
+	ReplaceBIN_DC("SET0300S");
+	ReplaceBIN_DC("SET0301A");
+	ReplaceBIN_DC("SET0301B");
+	ReplaceBIN_DC("SET0301S");
+	ReplaceBIN_DC("SET0302A");
+	ReplaceBIN_DC("SET0302S");
+	switch (EnableSETFixes)
+	{
+	case SETFixes_Normal:
+		AddSETFix("SET0301A");
+		AddSETFix("SET0301B");
+		AddSETFix("SET0301S");
+		AddSETFix("SET0302A");
+		break;
+	case SETFixes_Extra:
+		AddSETFix_Extra("SET0301A");
+		AddSETFix_Extra("SET0301B");
+		AddSETFix_Extra("SET0301S");
+		AddSETFix_Extra("SET0302A");
+		break;
+	default:
+		break;
+	}
+	ReplacePVM("BG_SHAREOBJ");
+	ReplacePVM("OBJ_SHAREOBJ");
+	ReplacePVM("OBJ_TWINKLE");
+	ReplacePVM("TWINKLE01");
+	ReplacePVM("TWINKLE02");
+	ReplacePVM("TWINKLE03");
 	//Arch light fixes
 	WriteCall((void*)0x0079C5FD, FixArchLight);
 	WriteCall((void*)0x0079C36A, FixArchLight_Pause);
@@ -465,32 +535,7 @@ void TwinklePark_Init()
 	if (DLLLoaded_Lantern)
 	{
 		if (set_alpha_reject_ptr != nullptr) material_register_ptr(DisableAlphaRejection_TwinklePark, LengthOfArray(DisableAlphaRejection_TwinklePark), &DisableAlphaRejection);
-		LevelSpecular_Twinkle[0] = &((NJS_MATERIAL*)STG03_1_Info->getdata("matlistSTG03_000263FC"))[0];
-		LevelSpecular_Twinkle[1] = &((NJS_MATERIAL*)STG03_1_Info->getdata("matlistSTG03_00026884"))[0];
-		LevelSpecular_Twinkle[2] = &((NJS_MATERIAL*)STG03_1_Info->getdata("matlistSTG03_00026884"))[1];
-		LevelSpecular_Twinkle[3] = &((NJS_MATERIAL*)STG03_1_Info->getdata("matlistSTG03_00028260"))[0];
-		LevelSpecular_Twinkle[4] = &((NJS_MATERIAL*)STG03_1_Info->getdata("matlistSTG03_00028260"))[1];
-		LevelSpecular_Twinkle[5] = &((NJS_MATERIAL*)STG03_1_Info->getdata("matlistSTG03_0002B274"))[0];
-		LevelSpecular_Twinkle[6] = &((NJS_MATERIAL*)STG03_1_Info->getdata("matlistSTG03_0002B274"))[1];
-		LevelSpecular_Twinkle[7] = &((NJS_MATERIAL*)STG03_1_Info->getdata("matlistSTG03_0002E288"))[0];
-		LevelSpecular_Twinkle[8] = &((NJS_MATERIAL*)STG03_1_Info->getdata("matlistSTG03_0002E288"))[1];
-		LevelSpecular_Twinkle[9] = &((NJS_MATERIAL*)STG03_1_Info->getdata("matlistSTG03_000312B8"))[0];
-		LevelSpecular_Twinkle[10] = &((NJS_MATERIAL*)STG03_1_Info->getdata("matlistSTG03_000312B8"))[1];
-		LevelSpecular_Twinkle[11] = &((NJS_MATERIAL*)STG03_1_Info->getdata("matlistSTG03_000342E8"))[0];
-		LevelSpecular_Twinkle[12] = &((NJS_MATERIAL*)STG03_1_Info->getdata("matlistSTG03_000342E8"))[1];
-		LevelSpecular_Twinkle[13] = &((NJS_MATERIAL*)STG03_1_Info->getdata("matlistSTG03_00035CA8"))[0];
-		LevelSpecular_Twinkle[14] = &((NJS_MATERIAL*)STG03_1_Info->getdata("matlistSTG03_00035CA8"))[1];
-		LevelSpecular_Twinkle[15] = &((NJS_MATERIAL*)STG03_1_Info->getdata("matlistSTG03_0003763C"))[0];
-		LevelSpecular_Twinkle[16] = &((NJS_MATERIAL*)STG03_1_Info->getdata("matlistSTG03_0003763C"))[1];
-		LevelSpecular_Twinkle[17] = &((NJS_MATERIAL*)STG03_1_Info->getdata("matlistSTG03_00038FD0"))[0];
-		LevelSpecular_Twinkle[18] = &((NJS_MATERIAL*)STG03_1_Info->getdata("matlistSTG03_00038FD0"))[1];
-		LevelSpecular_Twinkle[19] = &((NJS_MATERIAL*)STG03_1_Info->getdata("matlistSTG03_0003A974"))[0];
-		LevelSpecular_Twinkle[20] = &((NJS_MATERIAL*)STG03_1_Info->getdata("matlistSTG03_0003A974"))[1];
-		LevelSpecular_Twinkle[21] = &((NJS_MATERIAL*)STG03_1_Info->getdata("matlistSTG03_0003C0C8"))[0];
-		LevelSpecular_Twinkle[22] = &((NJS_MATERIAL*)STG03_1_Info->getdata("matlistSTG03_0003C0C8"))[1];
 		material_register_ptr(LevelSpecular_Twinkle, LengthOfArray(LevelSpecular_Twinkle), &ForceDiffuse0Specular0);
-		ObjectSpecular_Twinkle[0] = &((NJS_MATERIAL*)STG03_2_Info->getdata("matlistSTG03_00091C40X"))[0];
-		ObjectSpecular_Twinkle[1] = &((NJS_MATERIAL*)STG03_2_Info->getdata("matlistSTG03_00091F0CX"))[0];
 		material_register_ptr(ObjectSpecular_Twinkle, LengthOfArray(ObjectSpecular_Twinkle), &ForceDiffuse0Specular1);
 		material_register_ptr(WhiteDiffuse_Twinkle, LengthOfArray(WhiteDiffuse_Twinkle), &ForceWhiteDiffuse3);
 		material_register_ptr(ObjectSpecularWhiteDiffuse_Twinkle, LengthOfArray(ObjectSpecularWhiteDiffuse_Twinkle), &ForceWhiteDiffuse3Specular1);

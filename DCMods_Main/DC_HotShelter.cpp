@@ -1,9 +1,6 @@
 #include "stdafx.h"
 #include "HotShelter_Objects.h"
 
-LandTableInfo *STG12_0_Info = nullptr;
-LandTableInfo *STG12_1_Info = nullptr;
-LandTableInfo *STG12_2_Info = nullptr;
 LandTable *STG12_0 = nullptr;
 LandTable *STG12_1 = nullptr;
 LandTable *STG12_2 = nullptr;
@@ -34,7 +31,7 @@ static int WaterThing_VShift = 0;
 static bool ReduceHotShelterFog = false;
 static Angle E105Angle = 0;
 
-NJS_MATERIAL* DisableAlphaRejection_HotShelter[] = {
+NJS_MATERIAL* DisableAlphaRejection_HotShelterExternal[] = {
 	nullptr,
 	nullptr,
 	nullptr,
@@ -191,12 +188,15 @@ NJS_MATERIAL* ObjectSpecular_HotShelter[] = {
 	((NJS_MATERIAL*)0x01813708),
 };
 
-NJS_MATERIAL* WhiteDiffuse_HotShelter[] = {
+NJS_MATERIAL* WhiteDiffuse_HotShelterExternal[] = {
 	//Level stuff
 	nullptr,
 	nullptr,
 	nullptr,
 	nullptr,
+};
+
+NJS_MATERIAL* WhiteDiffuse_HotShelter[] = {
 	//OKazari2
 	((NJS_MATERIAL*)0x0181751C),
 	//OCarne
@@ -266,7 +266,7 @@ void PlayMusicHook_DisableE105Fog(MusicIDs song)
 	ReduceHotShelterFog = true;
 }
 
-void HotShelter_Init()
+void LoadLevelFiles_STG12()
 {
 	STG12_0_Info = new LandTableInfo(ModPath + "\\data\\STG12\\0.sa1lvl");
 	STG12_1_Info = new LandTableInfo(ModPath + "\\data\\STG12\\1.sa1lvl");
@@ -277,6 +277,71 @@ void HotShelter_Init()
 	STG12_0->TexList = &texlist_hotshelter1;
 	STG12_1->TexList = &texlist_hotshelter2;
 	STG12_2->TexList = &texlist_hotshelter3;
+	WriteData((LandTable**)0x97DB88, STG12_0);
+	WriteData((LandTable**)0x97DB8C, STG12_1);
+	WriteData((LandTable**)0x97DB90, STG12_2);
+	if (DLLLoaded_Lantern)
+	{
+		if (set_alpha_reject_ptr != nullptr)
+		{
+			DisableAlphaRejection_HotShelterExternal[0] = &((NJS_MATERIAL*)STG12_0_Info->getdata("matlistSTG12_00032C20"))[0]; //Act 1 green light
+			DisableAlphaRejection_HotShelterExternal[1] = &((NJS_MATERIAL*)STG12_1_Info->getdata("matlistSTG12_00096220"))[0]; //Act 2 green light
+			DisableAlphaRejection_HotShelterExternal[2] = &((NJS_MATERIAL*)STG12_1_Info->getdata("matlistSTG12_0009639C"))[0]; //Act 2 green light
+			DisableAlphaRejection_HotShelterExternal[3] = &((NJS_MATERIAL*)STG12_1_Info->getdata("matlistSTG12_000964DC"))[0]; //Act 2 green light
+			DisableAlphaRejection_HotShelterExternal[4] = &((NJS_MATERIAL*)STG12_2_Info->getdata("matlistSTG12_000DCC38"))[10]; //Act 3 blue light
+			DisableAlphaRejection_HotShelterExternal[5] = &((NJS_MATERIAL*)STG12_2_Info->getdata("matlistSTG12_000DEBEC_2"))[0]; //Act 3 blue light
+			material_register_ptr(DisableAlphaRejection_HotShelterExternal, LengthOfArray(DisableAlphaRejection_HotShelterExternal), &DisableAlphaRejection);
+		}
+		WhiteDiffuse_HotShelterExternal[0] = &((NJS_MATERIAL*)STG12_0_Info->getdata("matlistSTG12_000D7B10"))[2];
+		WhiteDiffuse_HotShelterExternal[1] = &((NJS_MATERIAL*)STG12_0_Info->getdata("matlistSTG12_000D7878"))[2];
+		WhiteDiffuse_HotShelterExternal[2] = &((NJS_MATERIAL*)STG12_0_Info->getdata("matlistSTG12_000F3C6C"))[5];
+		WhiteDiffuse_HotShelterExternal[3] = &((NJS_MATERIAL*)STG12_0_Info->getdata("matlistSTG12_000F4D74"))[5];
+		material_register_ptr(WhiteDiffuse_HotShelterExternal, LengthOfArray(WhiteDiffuse_HotShelterExternal), &ForceWhiteDiffuse1);
+	}
+}
+
+void HotShelter_Init()
+{
+	ReplaceBIN_DC("SET1200A");
+	ReplaceBIN_DC("SET1200B");
+	ReplaceBIN_DC("SET1200S");
+	ReplaceBIN_DC("SET1201A");
+	ReplaceBIN_DC("SET1201S");
+	ReplaceBIN_DC("SET1202E");
+	ReplaceBIN_DC("SET1202S");
+	ReplaceBIN_DC("SET1203S");
+	ReplaceBIN_DC("CAM1200A");
+	ReplaceBIN_DC("CAM1200B");
+	ReplaceBIN_DC("CAM1200S");
+	ReplaceBIN_DC("CAM1201A");
+	ReplaceBIN_DC("CAM1201S");
+	ReplaceBIN_DC("CAM1202E");
+	ReplaceBIN_DC("CAM1202S");
+	ReplaceBIN_DC("CAM1203S");
+	switch (EnableSETFixes)
+	{
+	case SETFixes_Normal:
+		AddSETFix("SET1200A");
+		AddSETFix("SET1200B");
+		AddSETFix("SET1201A");
+		AddSETFix("SET1202E");
+		break;
+	case SETFixes_Extra:
+		AddSETFix_Extra("SET1200A");
+		AddSETFix_Extra("SET1200B");
+		AddSETFix_Extra("SET1201A");
+		AddSETFix_Extra("SET1202E");
+		break;
+	default:
+		break;
+	}
+	ReplacePVM("HOTSHELTER0");
+	ReplacePVM("HOTSHELTER1");
+	ReplacePVM("HOTSHELTER2");
+	ReplacePVM("HOTSHELTER3");
+	ReplacePVM("HOTSHELTER4");
+	ReplacePVM("SHELTER_COLUMN");
+	ReplacePVM("SHELTER_SUIMEN");
 	WriteCall((void*)0x5A3A03, PlayMusicHook_DisableE105Fog); //Hook to disable fog in E105 room
 	WriteCall((void*)0x005A3C99, E105Animation); //Add missing E105 Zeta animation
 	WriteCall((void*)0x0059F75C, AmyHatchFix); //Don't make the ventilation hatch solid when playing as Amy
@@ -287,31 +352,14 @@ void HotShelter_Init()
 	WriteCall((void*)0x5AD4BF, RenderWaterThing);
 	WriteCall((void*)0x5AD506, RenderWaterThing);
 	WriteCall((void*)0x5AD54D, RenderWaterThing);
-	WriteData((LandTable**)0x97DB88, STG12_0);
-	WriteData((LandTable**)0x97DB8C, STG12_1);
-	WriteData((LandTable**)0x97DB90, STG12_2);
 	//Texlists
 	ResizeTextureList((NJS_TEXLIST*)0x180DFF4, textures_shelter1);
 	ResizeTextureList((NJS_TEXLIST*)0x17F56F4, textures_shelter2);
 	ResizeTextureList((NJS_TEXLIST*)0x17F4F74, textures_shelter3);
 	if (DLLLoaded_Lantern)
 	{
-		if (set_alpha_reject_ptr != nullptr)
-		{
-			DisableAlphaRejection_HotShelter[0] = &((NJS_MATERIAL*)STG12_0_Info->getdata("matlistSTG12_00032C20"))[0]; //Act 1 green light
-			DisableAlphaRejection_HotShelter[1] = &((NJS_MATERIAL*)STG12_1_Info->getdata("matlistSTG12_00096220"))[0]; //Act 2 green light
-			DisableAlphaRejection_HotShelter[2] = &((NJS_MATERIAL*)STG12_1_Info->getdata("matlistSTG12_0009639C"))[0]; //Act 2 green light
-			DisableAlphaRejection_HotShelter[3] = &((NJS_MATERIAL*)STG12_1_Info->getdata("matlistSTG12_000964DC"))[0]; //Act 2 green light
-			DisableAlphaRejection_HotShelter[4] = &((NJS_MATERIAL*)STG12_2_Info->getdata("matlistSTG12_000DCC38"))[10]; //Act 3 blue light
-			DisableAlphaRejection_HotShelter[5] = &((NJS_MATERIAL*)STG12_2_Info->getdata("matlistSTG12_000DEBEC_2"))[0]; //Act 3 blue light
-			material_register_ptr(DisableAlphaRejection_HotShelter, LengthOfArray(DisableAlphaRejection_HotShelter), &DisableAlphaRejection);
-		}
 		material_register_ptr(LevelSpecular_HotShelter, LengthOfArray(LevelSpecular_HotShelter), &ForceDiffuse0Specular0);
 		material_register_ptr(ObjectSpecular_HotShelter, LengthOfArray(ObjectSpecular_HotShelter), &ForceDiffuse0Specular1);
-		WhiteDiffuse_HotShelter[0] = &((NJS_MATERIAL*)STG12_0_Info->getdata("matlistSTG12_000D7B10"))[2];
-		WhiteDiffuse_HotShelter[1] = &((NJS_MATERIAL*)STG12_0_Info->getdata("matlistSTG12_000D7878"))[2];
-		WhiteDiffuse_HotShelter[2] = &((NJS_MATERIAL*)STG12_0_Info->getdata("matlistSTG12_000F3C6C"))[5];
-		WhiteDiffuse_HotShelter[3] = &((NJS_MATERIAL*)STG12_0_Info->getdata("matlistSTG12_000F4D74"))[5];
 		material_register_ptr(WhiteDiffuse_HotShelter, LengthOfArray(WhiteDiffuse_HotShelter), &ForceWhiteDiffuse1);
 	}
 	//Material fixes
