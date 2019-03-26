@@ -11,7 +11,17 @@ NJS_TEXNAME textures_past2[85];
 NJS_TEXLIST texlist_past02 = { arrayptrandlength(textures_past2) };
 
 #include "Past_objects.h"
-#include "Past_Chao.h"
+
+ModelInfo *PastChaoModel_2_Info = nullptr;
+ModelInfo *PastChaoModel_7_Info = nullptr;
+ModelInfo *PastChaoModel_8_Info = nullptr;
+ModelInfo *PastChaoModel_9_Info = nullptr;
+ModelInfo *PastChaoModel_10_Info = nullptr;
+NJS_OBJECT *PastChaoModel_2 = nullptr;
+NJS_OBJECT *PastChaoModel_7 = nullptr;
+NJS_OBJECT *PastChaoModel_8 = nullptr;
+NJS_OBJECT *PastChaoModel_9 = nullptr;
+NJS_OBJECT *PastChaoModel_10 = nullptr;
 
 FunctionPointer(void, AllocateEventObject, (ObjectMaster *a1, NJS_ACTION *a2, NJS_TEXLIST *a3, float a4, char a5, char a6), 0x42FE00);
 FunctionPointer(void, sub_408350, (NJS_ACTION *a1, float a2, int a3, float a4), 0x408350);
@@ -209,12 +219,8 @@ NJS_MATERIAL* PatyaMaterials[] = {
 
 NJS_MATERIAL* SecondCharacterSpecular[] = {
 	//Chao
+	nullptr,nullptr,nullptr,nullptr,nullptr,
 	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x0013CA54),
-	&matlist6_0013CA54[0],
-	&matlist7_0013CA54[0],
-	&matlist8_0013CA54[0],
-	&matlist9_0013CA54[0],
-	&matlist10_0013CA54[0],
 };
 
 NJS_MATERIAL* Past_ObjectSpecular[] = {
@@ -226,6 +232,11 @@ NJS_MATERIAL* Past_ObjectSpecular[] = {
 };
 
 NJS_MATERIAL* FirstCharacterSpecular[] = {
+	nullptr, nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,
+	nullptr, nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,
+	nullptr, nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,
+	nullptr, nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,
+	nullptr, nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,
 	//Chao
 	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x0013C668),
 	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x0013C190),
@@ -239,67 +250,6 @@ NJS_MATERIAL* FirstCharacterSpecular[] = {
 	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x0013A94C),
 	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x0013A4DC),
 	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x0013A068),
-	&matlist6_0013A068[0],
-	&matlist6_0013A4DC[0],
-	&matlist6_0013A94C[0],
-	&matlist6_0013AA54[0],
-	&matlist6_0013ADEC[0],
-	&matlist6_0013B184[0],
-	&matlist6_0013B6F0[0],
-	&matlist6_0013BA40[0],
-	&matlist6_0013BB7C[0],
-	&matlist6_0013BCB8[0],
-	&matlist6_0013C190[0],
-	&matlist6_0013C668[0],
-	&matlist7_0013A068[0],
-	&matlist7_0013A4DC[0],
-	&matlist7_0013A94C[0],
-	&matlist7_0013AA54[0],
-	&matlist7_0013ADEC[0],
-	&matlist7_0013B184[0],
-	&matlist7_0013B6F0[0],
-	&matlist7_0013BA40[0],
-	&matlist7_0013BB7C[0],
-	&matlist7_0013BCB8[0],
-	&matlist7_0013C190[0],
-	&matlist7_0013C668[0],
-	&matlist8_0013A068[0],
-	&matlist8_0013A4DC[0],
-	&matlist8_0013A94C[0],
-	&matlist8_0013AA54[0],
-	&matlist8_0013ADEC[0],
-	&matlist8_0013B184[0],
-	&matlist8_0013B6F0[0],
-	&matlist8_0013BA40[0],
-	&matlist8_0013BB7C[0],
-	&matlist8_0013BCB8[0],
-	&matlist8_0013C190[0],
-	&matlist8_0013C668[0],
-	&matlist9_0013A068[0],
-	&matlist9_0013A4DC[0],
-	&matlist9_0013A94C[0],
-	&matlist9_0013AA54[0],
-	&matlist9_0013ADEC[0],
-	&matlist9_0013B184[0],
-	&matlist9_0013B6F0[0],
-	&matlist9_0013BA40[0],
-	&matlist9_0013BB7C[0],
-	&matlist9_0013BCB8[0],
-	&matlist9_0013C190[0],
-	&matlist9_0013C668[0],
-	&matlist10_0013A068[0],
-	&matlist10_0013A4DC[0],
-	&matlist10_0013A94C[0],
-	&matlist10_0013AA54[0],
-	&matlist10_0013ADEC[0],
-	&matlist10_0013B184[0],
-	&matlist10_0013B6F0[0],
-	&matlist10_0013BA40[0],
-	&matlist10_0013BB7C[0],
-	&matlist10_0013BCB8[0],
-	&matlist10_0013C190[0],
-	&matlist10_0013C668[0],
-
 };
 
 void __cdecl Past_OceanDraw_r(OceanData *a1)
@@ -375,15 +325,7 @@ void AllocateEventChao_2(ObjectMaster *a1, NJS_ACTION *a2, NJS_TEXLIST *a3, floa
 {
 	NJS_ACTION newaction;
 	newaction.motion = a2->motion;
-	newaction.object = a2->object;
-	AllocateEventObject(a1, &newaction, a3, a4, a5, a6);
-}
-
-void AllocateEventChao_6(ObjectMaster *a1, NJS_ACTION *a2, NJS_TEXLIST *a3, float a4, char a5, char a6)
-{
-	NJS_ACTION newaction;
-	newaction.motion = a2->motion;
-	newaction.object = &object6_0013CB5C;
+	newaction.object = PastChaoModel_2;
 	AllocateEventObject(a1, &newaction, a3, a4, a5, a6);
 }
 
@@ -391,7 +333,7 @@ void AllocateEventChao_7(ObjectMaster *a1, NJS_ACTION *a2, NJS_TEXLIST *a3, floa
 {
 	NJS_ACTION newaction;
 	newaction.motion = a2->motion;
-	newaction.object = &object7_0013CB5C;
+	newaction.object = PastChaoModel_7;
 	AllocateEventObject(a1, &newaction, a3, a4, a5, a6);
 }
 
@@ -399,7 +341,7 @@ void AllocateEventChao_8(ObjectMaster *a1, NJS_ACTION *a2, NJS_TEXLIST *a3, floa
 {
 	NJS_ACTION newaction;
 	newaction.motion = a2->motion;
-	newaction.object = &object8_0013CB5C;
+	newaction.object = PastChaoModel_8;
 	AllocateEventObject(a1, &newaction, a3, a4, a5, a6);
 }
 
@@ -407,7 +349,7 @@ void AllocateEventChao_9(ObjectMaster *a1, NJS_ACTION *a2, NJS_TEXLIST *a3, floa
 {
 	NJS_ACTION newaction;
 	newaction.motion = a2->motion;
-	newaction.object = &object9_0013CB5C;
+	newaction.object = PastChaoModel_9;
 	AllocateEventObject(a1, &newaction, a3, a4, a5, a6);
 }
 
@@ -415,12 +357,30 @@ void AllocateEventChao_10(ObjectMaster *a1, NJS_ACTION *a2, NJS_TEXLIST *a3, flo
 {
 	NJS_ACTION newaction;
 	newaction.motion = a2->motion;
-	newaction.object = &object10_0013CB5C;
+	newaction.object = PastChaoModel_10;
 	AllocateEventObject(a1, &newaction, a3, a4, a5, a6);
 }
 
 void LoadLevelFiles_ADV03()
 {
+	PastChaoModel_2_Info = new ModelInfo(ModPath + "\\data\\ADV03\\Models\\Chao.sa1mdl");
+	PastChaoModel_7_Info = new ModelInfo(ModPath + "\\data\\ADV03\\Models\\Chao.sa1mdl");
+	PastChaoModel_8_Info = new ModelInfo(ModPath + "\\data\\ADV03\\Models\\Chao.sa1mdl");
+	PastChaoModel_9_Info = new ModelInfo(ModPath + "\\data\\ADV03\\Models\\Chao.sa1mdl");
+	PastChaoModel_10_Info = new ModelInfo(ModPath + "\\data\\ADV03\\Models\\Chao.sa1mdl");
+	PastChaoModel_2 = (NJS_OBJECT*)PastChaoModel_2_Info->getmodel();
+	PastChaoModel_7 = (NJS_OBJECT*)PastChaoModel_7_Info->getmodel();
+	PastChaoModel_8 = (NJS_OBJECT*)PastChaoModel_8_Info->getmodel();
+	PastChaoModel_9 = (NJS_OBJECT*)PastChaoModel_9_Info->getmodel();
+	PastChaoModel_10 = (NJS_OBJECT*)PastChaoModel_10_Info->getmodel();
+	PastChaoModel_7->child->sibling->child->sibling->sibling->sibling->sibling->sibling->child->basicdxmodel->mats[0].attr_texId = 7;
+	PastChaoModel_7->child->sibling->child->sibling->sibling->sibling->sibling->sibling->child->sibling->basicdxmodel->mats[0].attr_texId = 7;
+	PastChaoModel_8->child->sibling->child->sibling->sibling->sibling->sibling->sibling->child->basicdxmodel->mats[0].attr_texId = 8;
+	PastChaoModel_8->child->sibling->child->sibling->sibling->sibling->sibling->sibling->child->sibling->basicdxmodel->mats[0].attr_texId = 8;
+	PastChaoModel_9->child->sibling->child->sibling->sibling->sibling->sibling->sibling->child->basicdxmodel->mats[0].attr_texId = 9;
+	PastChaoModel_9->child->sibling->child->sibling->sibling->sibling->sibling->sibling->child->sibling->basicdxmodel->mats[0].attr_texId = 9;
+	PastChaoModel_10->child->sibling->child->sibling->sibling->sibling->sibling->sibling->child->basicdxmodel->mats[0].attr_texId = 10;
+	PastChaoModel_10->child->sibling->child->sibling->sibling->sibling->sibling->sibling->child->sibling->basicdxmodel->mats[0].attr_texId = 10;
 	ADV03_0_Info = new LandTableInfo(ModPath + "\\data\\ADV03\\0.sa1lvl");
 	ADV03_1_Info = new LandTableInfo(ModPath + "\\data\\ADV03\\1.sa1lvl");
 	ADV03_2_Info = new LandTableInfo(ModPath + "\\data\\ADV03\\2.sa1lvl");
@@ -453,6 +413,64 @@ void LoadLevelFiles_ADV03()
 	{
 		ADV03_1->Col[0].Flags = 0x80000020;
 		ADV03_2->Col[0].Flags = 0x80000020;
+	}
+	if (DLLLoaded_Lantern)
+	{
+		SecondCharacterSpecular[0] = &((NJS_MATERIAL*)PastChaoModel_2_Info->getdata("matlist_0013CA54"))[0];
+		SecondCharacterSpecular[1] = &((NJS_MATERIAL*)PastChaoModel_7_Info->getdata("matlist_0013CA54"))[0];
+		SecondCharacterSpecular[2] = &((NJS_MATERIAL*)PastChaoModel_8_Info->getdata("matlist_0013CA54"))[0];
+		SecondCharacterSpecular[3] = &((NJS_MATERIAL*)PastChaoModel_9_Info->getdata("matlist_0013CA54"))[0];
+		SecondCharacterSpecular[4] = &((NJS_MATERIAL*)PastChaoModel_10_Info->getdata("matlist_0013CA54"))[0];
+		material_register_ptr(SecondCharacterSpecular, LengthOfArray(SecondCharacterSpecular), &ForceDiffuse2Specular3);
+		FirstCharacterSpecular[0] = &((NJS_MATERIAL*)PastChaoModel_7_Info->getdata("matlist_0013A068"))[0];
+		FirstCharacterSpecular[1] = &((NJS_MATERIAL*)PastChaoModel_7_Info->getdata("matlist_0013A4DC"))[0];
+		FirstCharacterSpecular[2] = &((NJS_MATERIAL*)PastChaoModel_7_Info->getdata("matlist_0013A94C"))[0];
+		FirstCharacterSpecular[3] = &((NJS_MATERIAL*)PastChaoModel_7_Info->getdata("matlist_0013AA54"))[0];
+		FirstCharacterSpecular[4] = &((NJS_MATERIAL*)PastChaoModel_7_Info->getdata("matlist_0013ADEC"))[0];
+		FirstCharacterSpecular[5] = &((NJS_MATERIAL*)PastChaoModel_7_Info->getdata("matlist_0013B184"))[0];
+		FirstCharacterSpecular[6] = &((NJS_MATERIAL*)PastChaoModel_7_Info->getdata("matlist_0013B6F0"))[0];
+		FirstCharacterSpecular[7] = &((NJS_MATERIAL*)PastChaoModel_7_Info->getdata("matlist_0013BA40"))[0];
+		FirstCharacterSpecular[8] = &((NJS_MATERIAL*)PastChaoModel_7_Info->getdata("matlist_0013BB7C"))[0];
+		FirstCharacterSpecular[9] = &((NJS_MATERIAL*)PastChaoModel_7_Info->getdata("matlist_0013BCB8"))[0];
+		FirstCharacterSpecular[10] = &((NJS_MATERIAL*)PastChaoModel_7_Info->getdata("matlist_0013C190"))[0];
+		FirstCharacterSpecular[11] = &((NJS_MATERIAL*)PastChaoModel_7_Info->getdata("matlist_0013C668"))[0];
+		FirstCharacterSpecular[12] = &((NJS_MATERIAL*)PastChaoModel_10_Info->getdata("matlist_0013A068"))[0];
+		FirstCharacterSpecular[13] = &((NJS_MATERIAL*)PastChaoModel_10_Info->getdata("matlist_0013A4DC"))[0];
+		FirstCharacterSpecular[14] = &((NJS_MATERIAL*)PastChaoModel_10_Info->getdata("matlist_0013A94C"))[0];
+		FirstCharacterSpecular[15] = &((NJS_MATERIAL*)PastChaoModel_10_Info->getdata("matlist_0013AA54"))[0];
+		FirstCharacterSpecular[16] = &((NJS_MATERIAL*)PastChaoModel_10_Info->getdata("matlist_0013ADEC"))[0];
+		FirstCharacterSpecular[17] = &((NJS_MATERIAL*)PastChaoModel_10_Info->getdata("matlist_0013B184"))[0];
+		FirstCharacterSpecular[18] = &((NJS_MATERIAL*)PastChaoModel_10_Info->getdata("matlist_0013B6F0"))[0];
+		FirstCharacterSpecular[19] = &((NJS_MATERIAL*)PastChaoModel_10_Info->getdata("matlist_0013BA40"))[0];
+		FirstCharacterSpecular[20] = &((NJS_MATERIAL*)PastChaoModel_10_Info->getdata("matlist_0013BB7C"))[0];
+		FirstCharacterSpecular[21] = &((NJS_MATERIAL*)PastChaoModel_10_Info->getdata("matlist_0013BCB8"))[0];
+		FirstCharacterSpecular[22] = &((NJS_MATERIAL*)PastChaoModel_10_Info->getdata("matlist_0013C190"))[0];
+		FirstCharacterSpecular[23] = &((NJS_MATERIAL*)PastChaoModel_10_Info->getdata("matlist_0013C668"))[0];
+		FirstCharacterSpecular[24] = &((NJS_MATERIAL*)PastChaoModel_9_Info->getdata("matlist_0013A068"))[0];
+		FirstCharacterSpecular[25] = &((NJS_MATERIAL*)PastChaoModel_9_Info->getdata("matlist_0013A4DC"))[0];
+		FirstCharacterSpecular[26] = &((NJS_MATERIAL*)PastChaoModel_9_Info->getdata("matlist_0013A94C"))[0];
+		FirstCharacterSpecular[27] = &((NJS_MATERIAL*)PastChaoModel_9_Info->getdata("matlist_0013AA54"))[0];
+		FirstCharacterSpecular[28] = &((NJS_MATERIAL*)PastChaoModel_9_Info->getdata("matlist_0013ADEC"))[0];
+		FirstCharacterSpecular[29] = &((NJS_MATERIAL*)PastChaoModel_9_Info->getdata("matlist_0013B184"))[0];
+		FirstCharacterSpecular[30] = &((NJS_MATERIAL*)PastChaoModel_9_Info->getdata("matlist_0013B6F0"))[0];
+		FirstCharacterSpecular[31] = &((NJS_MATERIAL*)PastChaoModel_9_Info->getdata("matlist_0013BA40"))[0];
+		FirstCharacterSpecular[32] = &((NJS_MATERIAL*)PastChaoModel_9_Info->getdata("matlist_0013BB7C"))[0];
+		FirstCharacterSpecular[33] = &((NJS_MATERIAL*)PastChaoModel_9_Info->getdata("matlist_0013BCB8"))[0];
+		FirstCharacterSpecular[34] = &((NJS_MATERIAL*)PastChaoModel_9_Info->getdata("matlist_0013C190"))[0];
+		FirstCharacterSpecular[35] = &((NJS_MATERIAL*)PastChaoModel_9_Info->getdata("matlist_0013C668"))[0];
+		FirstCharacterSpecular[36] = &((NJS_MATERIAL*)PastChaoModel_8_Info->getdata("matlist_0013A068"))[0];
+		FirstCharacterSpecular[37] = &((NJS_MATERIAL*)PastChaoModel_8_Info->getdata("matlist_0013A4DC"))[0];
+		FirstCharacterSpecular[38] = &((NJS_MATERIAL*)PastChaoModel_8_Info->getdata("matlist_0013A94C"))[0];
+		FirstCharacterSpecular[39] = &((NJS_MATERIAL*)PastChaoModel_8_Info->getdata("matlist_0013AA54"))[0];
+		FirstCharacterSpecular[40] = &((NJS_MATERIAL*)PastChaoModel_8_Info->getdata("matlist_0013ADEC"))[0];
+		FirstCharacterSpecular[41] = &((NJS_MATERIAL*)PastChaoModel_8_Info->getdata("matlist_0013B184"))[0];
+		FirstCharacterSpecular[42] = &((NJS_MATERIAL*)PastChaoModel_8_Info->getdata("matlist_0013B6F0"))[0];
+		FirstCharacterSpecular[43] = &((NJS_MATERIAL*)PastChaoModel_8_Info->getdata("matlist_0013BA40"))[0];
+		FirstCharacterSpecular[44] = &((NJS_MATERIAL*)PastChaoModel_8_Info->getdata("matlist_0013BB7C"))[0];
+		FirstCharacterSpecular[45] = &((NJS_MATERIAL*)PastChaoModel_8_Info->getdata("matlist_0013BCB8"))[0];
+		FirstCharacterSpecular[46] = &((NJS_MATERIAL*)PastChaoModel_8_Info->getdata("matlist_0013C190"))[0];
+		FirstCharacterSpecular[47] = &((NJS_MATERIAL*)PastChaoModel_8_Info->getdata("matlist_0013C668"))[0];
+		material_register_ptr(FirstCharacterSpecular, LengthOfArray(FirstCharacterSpecular), &ForceDiffuse2Specular2);
 	}
 }
 
@@ -535,8 +553,6 @@ void ADV03_Init()
 	WriteData((float*)0x0068BA8A, 52.42f); //Ripple 3 Z
 	if (GetModuleHandle(L"ADV03MODELS") != nullptr && DLLLoaded_Lantern)
 	{
-		material_register_ptr(SecondCharacterSpecular, LengthOfArray(SecondCharacterSpecular), &ForceDiffuse2Specular3);
-		material_register_ptr(FirstCharacterSpecular, LengthOfArray(FirstCharacterSpecular), &ForceDiffuse2Specular2);
 		material_register_ptr(Past_ObjectSpecular, LengthOfArray(Past_ObjectSpecular), &ForceDiffuse0Specular1);
 	}
 	//Fog data
@@ -568,10 +584,10 @@ void ADV03_OnFrame()
 	if (CurrentLevel == LevelIDs_Past && CurrentAct > 0 && EV_MainThread_ptr != nullptr)
 	{
 		((NJS_OBJECT*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x0013CB28))->ang[1] = Camera_Data1->Rotation.y;
-		object6_0013CB28.ang[1] = Camera_Data1->Rotation.y;
-		object7_0013CB28.ang[1] = Camera_Data1->Rotation.y;
-		object8_0013CB28.ang[1] = Camera_Data1->Rotation.y;
-		object9_0013CB28.ang[1] = Camera_Data1->Rotation.y;
-		object10_0013CB28.ang[1] = Camera_Data1->Rotation.y;
+		if (PastChaoModel_2_Info) ((NJS_OBJECT*)PastChaoModel_2_Info->getdata("object_0013CB28"))->ang[1] = Camera_Data1->Rotation.y;
+		if (PastChaoModel_7_Info) ((NJS_OBJECT*)PastChaoModel_7_Info->getdata("object_0013CB28"))->ang[1] = Camera_Data1->Rotation.y;
+		if (PastChaoModel_8_Info) ((NJS_OBJECT*)PastChaoModel_8_Info->getdata("object_0013CB28"))->ang[1] = Camera_Data1->Rotation.y;
+		if (PastChaoModel_9_Info) ((NJS_OBJECT*)PastChaoModel_9_Info->getdata("object_0013CB28"))->ang[1] = Camera_Data1->Rotation.y;
+		if (PastChaoModel_10_Info) ((NJS_OBJECT*)PastChaoModel_10_Info->getdata("object_0013CB28"))->ang[1] = Camera_Data1->Rotation.y;
 	}
 }

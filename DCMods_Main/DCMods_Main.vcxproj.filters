@@ -656,9 +656,6 @@
     <ClInclude Include="StageLights.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Data\Past_Chao.h">
-      <Filter>Header Files\Levels\ADV03MODELS</Filter>
-    </ClInclude>
     <ClInclude Include="Data\TwinkleCircuit.h">
       <Filter>Header Files\Levels\Subgames</Filter>
     </ClInclude>
