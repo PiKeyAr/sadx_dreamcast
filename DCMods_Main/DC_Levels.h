@@ -82,12 +82,14 @@ extern LandTable **___LANDTABLEBOSSCHAOS0;
 extern NJS_ACTION **___BOSSCHAOS0_ACTIONS;
 extern NJS_OBJECT **___BOSSCHAOS0_OBJECTS;
 extern NJS_TEXLIST **___BOSSCHAOS0_TEXLISTS;
+extern NJS_TEXLIST **___ADV00_TEXLISTS;
+extern LandTable **___LANDTABLESS;
 
 void FixMRBase_Apply(const IniFile *config, const HelperFunctions &helperFunctions);
 void DisableSADXWaterFog();
 void Branding_Init(const IniFile *config, const HelperFunctions &helperFunctions);
 void Branding_OnFrame();
-void ADV00_Init(const IniFile *config, const HelperFunctions &helperFunctions);
+void ADV00_Init();
 void ADV00_OnFrame();
 void ADV01_Init(const IniFile *config, const HelperFunctions &helperFunctions);
 void ADV01_OnFrame();

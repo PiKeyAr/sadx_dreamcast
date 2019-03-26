@@ -1,14 +1,24 @@
 #include "stdafx.h"
 #include "textures.h"
 #include "SS_Objects.h"
-#include "ADVSS00(CityHall).h"
-#include "ADVSS01(CasinoArea).h"
-#include "ADVSS02(Sewers).h"
-#include "ADVSS03Fixes.h"
-#include "ADVSS03(StationMainArea).h"
-#include "ADVSS04Collision.h"
-#include "ADVSS04(Hotel).h"
-#include "ADVSS05(TwinkleParkEntrance).h"
+
+NJS_TEXNAME textures_advss00[220];
+NJS_TEXLIST texlist_advss00 = { arrayptrandlength(textures_advss00) };
+
+NJS_TEXNAME textures_advss01[266];
+NJS_TEXLIST texlist_advss01 = { arrayptrandlength(textures_advss01) };
+
+NJS_TEXNAME textures_advss02[56];
+NJS_TEXLIST texlist_advss02 = { arrayptrandlength(textures_advss02) };
+
+NJS_TEXNAME textures_advss03[264];
+NJS_TEXLIST texlist_advss03 = { arrayptrandlength(textures_advss03) };
+
+NJS_TEXNAME textures_advss04[119];
+NJS_TEXLIST texlist_advss04 = { arrayptrandlength(textures_advss04) };
+
+NJS_TEXNAME textures_advss05[33];
+NJS_TEXLIST texlist_advss05 = { arrayptrandlength(textures_advss05) };
 
 static int WaterAnimation_Sewers = 46;
 static int SandwaveAnimation = 183;
@@ -39,14 +49,14 @@ int __cdecl CheckIfCameraIsInHotel_Lol()
 
 void __cdecl SSMainAreaWater(OceanData *x)
 {
-	if (CurrentAct == 3)
+	if (CurrentAct == 3 && ADV00_3_Info)
 	{
 		if (!DroppedFrames)
 		{
 			njSetTexture(&texlist_advss03); //Act 3
 			njPushMatrix(0);
 			njTranslate(0, 0, 0, 0);
-			ProcessModelNode_AB_Wrapper(&objectADV00_00114E50Z, 1.0f);
+			ProcessModelNode_AB_Wrapper((NJS_OBJECT*)ADV00_3_Info->getdata("objectADV00_00114E50Z"), 1.0f);
 			njPopMatrix(1u);
 		}
 	}
@@ -661,6 +671,11 @@ NJS_MATERIAL* CharacterStuff[] = {
 	&matlistADV00_0000DE08[0],
 };
 
+NJS_MATERIAL* WhiteDiffuseADV00External[] = {
+	//Level stuff
+	nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,
+};
+
 NJS_MATERIAL* WhiteDiffuseADV00[] = {
 	//Helicopter
 	&matlistADV00_0000E238[0],
@@ -669,32 +684,11 @@ NJS_MATERIAL* WhiteDiffuseADV00[] = {
 	((NJS_MATERIAL*)0x02DBE574),
 	((NJS_MATERIAL*)0x02DBE588),
 	((NJS_MATERIAL*)0x02DBE59C),
-	//Level stuff
-	&matlistADV00_0008E8EC[3],
-	&matlistADV00_0008E8EC[4],
-	&matlistADV00_0008E8EC[5],
-	&matlistADV00_0008E8EC[6],
-	&matlistADV00_0008E8EC[7],
-	&matlistADV00_00082400[1],
-	&matlistADV00_00082400[2],
-	&matlistADV00_000D8D58[0],
-	&matlistADV00_000D8D58[1],
-	&matlistADV00_000D8D58[2],
-	&matlistADV00_000D8D58[3],
-	&matlistADV00_000D8D58[4],
-	&matlistADV00_000D8D58[5],
-	&matlistADV00_000D8D58[6],
-	&matlistADV00_000D8D58[7],
-	&matlistADV00_000D8D58[8],
-	&matlistADV00_000D8D58[9],
 	&matlistADV00_00190C2C[8], //Train
 };
 
 NJS_MATERIAL* WhiteDiffuseADV00_Night[] = {
-	&matlistADV00_00126720[2],
-	&matlistADV00_00126720[2],
-	&matlistADV00_00125F20[2],
-	&matlistADV00_00125408[1],
+	nullptr, nullptr, nullptr,
 };
 
 NJS_MATERIAL* ObjectSpecularADV00[] = {
@@ -833,132 +827,141 @@ void RenderStreetLight(NJS_MODEL_SADX *model, QueuedModelFlagsB blend, float sca
 void SwitchLight_Night()
 {
 	//Night reflections Act 0
-	matlistADV00_0003B3C4[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_0003AFD4[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_000522AC[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_0004D3FC[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_0004F4B4[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_0004F4B4[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_0004F4B4[4].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_000642F8[2].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00059BFC[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_000638C4[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00066CF0[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00066CF0[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00066CF0[2].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_0017D59C[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00031C48[3].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00030274[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00022CC0[5].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00022CC0[12].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00025990[5].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_0001E1DC[4].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_0001E1DC[5].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_000285A0[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_0002C924[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_0002C2BC[4].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00052FA8[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_000483CC[3].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00042DBC[2].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_0005AB04[2].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_0005F744[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00061B50[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_0005C6C4[4].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_000309E0[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_000309E0[3].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_000309E0[4].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_000309E0[6].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00046404[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00046404[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_000631AC[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_000631AC[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_000631AC[2].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00063748[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00021684[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_000203BC[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_0002B718[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_0002F984[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_0003B3C4[1].attr_texId = 207;
-	matlistADV00_0003BBA4[1].attr_texId = 207;
-	matlistADV00_0003BF94[1].attr_texId = 207;
-	matlistADV00_0003C384[1].attr_texId = 207;
-	matlistADV00_0003AFD4[1].attr_texId = 207;
-	matlistADV00_0003B7B4[1].attr_texId = 207;
-	matlistADV00_0003BBA4[1].attr_texId = 207;
-	matlistADV00_000631AC[2].attr_texId = 207;
-	matlistADV00_00046404[0].attr_texId = 209;
-	matlistADV00_00046404[1].attr_texId = 209;
-	matlistADV00_0007C240[0].attr_texId = 209;
-	matlistADV00_0007C240[1].attr_texId = 209;
-	matlistADV00_0002B718[0].attr_texId = 211;
-	matlistADV00_0002F984[0].attr_texId = 211;
-	matlistADV00_000631AC[0].attr_texId = 213;
-	matlistADV00_00063748[0].attr_texId = 213;
-	matlistADV00_000203BC[0].attr_texId = 215;
-	matlistADV00_00021684[0].attr_texId = 217;
-	matlistADV00_000631AC[1].attr_texId = 219;
+	if (ADV00_0_Info)
+	{
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0003B3C4"))[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0003AFD4"))[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_000522AC"))[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0004D3FC"))[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0004F4B4"))[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0004F4B4"))[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0004F4B4"))[4].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_000642F8"))[2].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_00059BFC"))[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_000638C4"))[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_00066CF0"))[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_00066CF0"))[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_00066CF0"))[2].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0017D59C"))[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_00031C48"))[3].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_00030274"))[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_00022CC0"))[5].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_00022CC0"))[12].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_00025990"))[5].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0001E1DC"))[4].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0001E1DC"))[5].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_000285A0"))[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0002C924"))[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0002C2BC"))[4].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_00052FA8"))[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_000483CC"))[3].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_00042DBC"))[2].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0005AB04"))[2].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0005F744"))[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_00061B50"))[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0005C6C4"))[4].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_000309E0"))[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_000309E0"))[3].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_000309E0"))[4].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_000309E0"))[6].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_00046404"))[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_00046404"))[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_000631AC"))[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_000631AC"))[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_000631AC"))[2].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_00063748"))[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_00021684"))[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_000203BC"))[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0002B718"))[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0002F984"))[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0003B3C4"))[1].attr_texId = 207;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0003BBA4"))[1].attr_texId = 207;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0003BF94"))[1].attr_texId = 207;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0003C384"))[1].attr_texId = 207;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0003AFD4"))[1].attr_texId = 207;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0003B7B4"))[1].attr_texId = 207;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0003BBA4"))[1].attr_texId = 207;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_000631AC"))[2].attr_texId = 207;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_00046404"))[0].attr_texId = 209;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_00046404"))[1].attr_texId = 209;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0007C240"))[0].attr_texId = 209;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0007C240"))[1].attr_texId = 209;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0002B718"))[0].attr_texId = 211;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0002F984"))[0].attr_texId = 211;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_000631AC"))[0].attr_texId = 213;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_00063748"))[0].attr_texId = 213;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_000203BC"))[0].attr_texId = 215;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_00021684"))[0].attr_texId = 217;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_000631AC"))[1].attr_texId = 219;
+	}
 	//Night textures for Act 1 (Casino)
-	matlistADV00_000B59E0[0].attr_texId = 265;
+	if (ADV00_1_Info) ((NJS_MATERIAL*)ADV00_1_Info->getdata("matlistADV00_000B59E0"))[0].attr_texId = 265;
 	//Night textures for Act 3 (Main area)
-	matlistADV00_000E4358[2].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00103FFC[2].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_000FAA28[4].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00129C8C[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00129C8C[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_000F4178[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00124B94[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_0012A874[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00125F20_2[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00101184_2[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00126720_2[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_000E3CC4[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_000F5934[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_0012BD98[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_0012BD98[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_0012BD98[2].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_001163FC[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00115CE0[3].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_0011EACC[2].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_0011DEFC[3].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00109760[4].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00109378[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_0010956C[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00109CCC[4].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_000E4358[8].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_000FE7A4[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_000FC250[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_000F7940[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_000F7314[3].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_000EF170[2].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_001129AC[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_000F002C[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_000F1C08[4].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_000F43F0[7].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00104E6C[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00104E6C[3].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00102CD4[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_0011ABE0[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_0011ABE0[3].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_000FA4D4[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_000FBD0C[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_001209D8[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_000EFA74[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_000F062C[5].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00128FA8[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00128FA8[3].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00125408[2].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00125038[2].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00129814[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00129814[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00124B94[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_000F062C[5].attr_texId = 259;
-	matlistADV00_000EF934[0].attr_texId = 259;
-	matlistADV00_000FA4D4[0].attr_texId = 263;
-	matlistADV00_000FBD0C[0].attr_texId = 261;
-	matlistADV00_0011BE68[2].attr_texId = 257;
+	if (ADV00_3_Info)
+	{
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_000E4358"))[2].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_00103FFC"))[2].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_000FAA28"))[4].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_00129C8C"))[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_00129C8C"))[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_000F4178"))[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_00124B94"))[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_0012A874"))[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_00125F20_2"))[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_00101184_2"))[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_00126720_2"))[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_000E3CC4"))[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_000F5934"))[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_0012BD98"))[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_0012BD98"))[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_0012BD98"))[2].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_001163FC"))[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_00115CE0"))[3].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_0011EACC"))[2].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_0011DEFC"))[3].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_00109760"))[4].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_00109378"))[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_0010956C"))[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_00109CCC"))[4].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_000E4358"))[8].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_000FE7A4"))[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_000FC250"))[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_000F7940"))[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_000F7314"))[3].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_000EF170"))[2].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_001129AC"))[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_000F002C"))[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_000F1C08"))[4].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_000F43F0"))[7].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_00104E6C"))[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_00104E6C"))[3].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_00102CD4"))[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_0011ABE0"))[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_0011ABE0"))[3].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_000FA4D4"))[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_000FBD0C"))[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_001209D8"))[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_000EFA74"))[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_000F062C"))[5].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_00128FA8"))[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_00128FA8"))[3].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_00125408"))[2].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_00125038"))[2].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_00129814"))[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_00129814"))[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_00124B94"))[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_000F062C"))[5].attr_texId = 259;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_000EF934"))[0].attr_texId = 259;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_000FA4D4"))[0].attr_texId = 263;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_000FBD0C"))[0].attr_texId = 261;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_0011BE68"))[2].attr_texId = 257;
+	}
 	//Night textures for Act 4 (Hotel)
-	matlistADV00_00151F58[0].attr_texId = 118;
-	matlistADV00_00152110[0].attr_texId = 117;
+	if (ADV00_4_Info)
+	{
+		((NJS_MATERIAL*)ADV00_4_Info->getdata("matlistADV00_00151F58"))[0].attr_texId = 118;
+		((NJS_MATERIAL*)ADV00_4_Info->getdata("matlistADV00_00152110"))[0].attr_texId = 117;
+	}
 	//Lamp pole
 	attachADV00_0017D7A8.mats[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
 }
@@ -966,131 +969,140 @@ void SwitchLight_Night()
 void SwitchLight_Evening()
 {
 	//Evening reflections Act 0
-	matlistADV00_0003B3C4[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_0003AFD4[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_000522AC[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_0004D3FC[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_0004F4B4[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_0004F4B4[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_0004F4B4[4].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_000642F8[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00059BFC[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_000638C4[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00066CF0[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00066CF0[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00066CF0[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00031C48[3].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00030274[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00022CC0[5].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00022CC0[12].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00025990[5].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_0001E1DC[4].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_0001E1DC[5].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_000285A0[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_0002C924[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_0002C2BC[4].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00052FA8[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_000483CC[3].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00042DBC[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_0005AB04[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_0005F744[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00061B50[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_0005C6C4[4].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_000309E0[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_000309E0[3].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_000309E0[4].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_000309E0[6].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00046404[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00046404[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_000631AC[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_000631AC[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_000631AC[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00063748[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00021684[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_000203BC[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_0002B718[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_0002F984[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_0003B3C4[1].attr_texId = 206;
-	matlistADV00_0003BBA4[1].attr_texId = 206;
-	matlistADV00_0003BF94[1].attr_texId = 206;
-	matlistADV00_0003C384[1].attr_texId = 206;
-	matlistADV00_0003AFD4[1].attr_texId = 206;
-	matlistADV00_0003B7B4[1].attr_texId = 206;
-	matlistADV00_0003BBA4[1].attr_texId = 206;
-	matlistADV00_000631AC[2].attr_texId = 206;
-	matlistADV00_00046404[0].attr_texId = 208;
-	matlistADV00_00046404[1].attr_texId = 208;
-	matlistADV00_0007C240[0].attr_texId = 208;
-	matlistADV00_0007C240[1].attr_texId = 208;
-	matlistADV00_0002B718[0].attr_texId = 210;
-	matlistADV00_0002F984[0].attr_texId = 210;
-	matlistADV00_000631AC[0].attr_texId = 212;
-	matlistADV00_00063748[0].attr_texId = 212;
-	matlistADV00_000203BC[0].attr_texId = 214;
-	matlistADV00_00021684[0].attr_texId = 216;
-	matlistADV00_000631AC[1].attr_texId = 218;
+	if (ADV00_0_Info)
+	{
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0003B3C4"))[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0003AFD4"))[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_000522AC"))[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0004D3FC"))[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0004F4B4"))[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0004F4B4"))[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0004F4B4"))[4].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_000642F8"))[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_00059BFC"))[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_000638C4"))[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_00066CF0"))[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_00066CF0"))[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_00066CF0"))[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_00031C48"))[3].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_00030274"))[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_00022CC0"))[5].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_00022CC0"))[12].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_00025990"))[5].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0001E1DC"))[4].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0001E1DC"))[5].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_000285A0"))[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0002C924"))[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0002C2BC"))[4].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_00052FA8"))[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_000483CC"))[3].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_00042DBC"))[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0005AB04"))[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0005F744"))[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_00061B50"))[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0005C6C4"))[4].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_000309E0"))[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_000309E0"))[3].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_000309E0"))[4].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_000309E0"))[6].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_00046404"))[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_00046404"))[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_000631AC"))[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_000631AC"))[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_000631AC"))[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_00063748"))[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_00021684"))[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_000203BC"))[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0002B718"))[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0002F984"))[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0003B3C4"))[1].attr_texId = 206;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0003BBA4"))[1].attr_texId = 206;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0003BF94"))[1].attr_texId = 206;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0003C384"))[1].attr_texId = 206;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0003AFD4"))[1].attr_texId = 206;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0003B7B4"))[1].attr_texId = 206;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0003BBA4"))[1].attr_texId = 206;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_000631AC"))[2].attr_texId = 206;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_00046404"))[0].attr_texId = 208;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_00046404"))[1].attr_texId = 208;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0007C240"))[0].attr_texId = 208;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0007C240"))[1].attr_texId = 208;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0002B718"))[0].attr_texId = 210;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0002F984"))[0].attr_texId = 210;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_000631AC"))[0].attr_texId = 212;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_00063748"))[0].attr_texId = 212;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_000203BC"))[0].attr_texId = 214;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_00021684"))[0].attr_texId = 216;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_000631AC"))[1].attr_texId = 218;
+	}
 	//Evening textures for Act 1 (Casino)
-	matlistADV00_000B59E0[0].attr_texId = 264;
+	if (ADV00_1_Info) ((NJS_MATERIAL*)ADV00_1_Info->getdata("matlistADV00_000B59E0"))[0].attr_texId = 264;
 	//Evening textures for Act 3 (Main area)
-	matlistADV00_000E4358[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00103FFC[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_000FAA28[4].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00129C8C[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00129C8C[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_000F4178[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00124B94[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_0012A874[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00125F20_2[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00101184_2[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00126720_2[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_000E3CC4[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_000F5934[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_0012BD98[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_0012BD98[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_0012BD98[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_001163FC[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00115CE0[3].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_0011EACC[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_0011DEFC[3].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00109760[4].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00109378[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_0010956C[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00109CCC[4].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_000E4358[8].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_000FE7A4[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_000FC250[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_000F7940[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_000F7314[3].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_000EF170[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_001129AC[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_000F002C[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_000F1C08[4].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_000F43F0[7].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00104E6C[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00104E6C[3].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00102CD4[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_0011ABE0[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_0011ABE0[3].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_000FA4D4[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_000FBD0C[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_001209D8[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_000EFA74[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_000F062C[5].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00128FA8[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00128FA8[3].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00125408[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00125038[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00129814[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00129814[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00124B94[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_000F062C[5].attr_texId = 258;
-	matlistADV00_000EF934[0].attr_texId = 258;
-	matlistADV00_000FA4D4[0].attr_texId = 262;
-	matlistADV00_000FBD0C[0].attr_texId = 260;
-	matlistADV00_0011BE68[2].attr_texId = 256;
+	if (ADV00_3_Info)
+	{
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_000E4358"))[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_00103FFC"))[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_000FAA28"))[4].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_00129C8C"))[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_00129C8C"))[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_000F4178"))[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_00124B94"))[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_0012A874"))[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_00125F20_2"))[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_00101184_2"))[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_00126720_2"))[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_000E3CC4"))[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_000F5934"))[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_0012BD98"))[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_0012BD98"))[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_0012BD98"))[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_001163FC"))[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_00115CE0"))[3].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_0011EACC"))[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_0011DEFC"))[3].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_00109760"))[4].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_00109378"))[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_0010956C"))[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_00109CCC"))[4].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_000E4358"))[8].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_000FE7A4"))[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_000FC250"))[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_000F7940"))[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_000F7314"))[3].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_000EF170"))[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_001129AC"))[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_000F002C"))[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_000F1C08"))[4].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_000F43F0"))[7].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_00104E6C"))[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_00104E6C"))[3].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_00102CD4"))[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_0011ABE0"))[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_0011ABE0"))[3].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_000FA4D4"))[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_000FBD0C"))[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_001209D8"))[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_000EFA74"))[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_000F062C"))[5].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_00128FA8"))[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_00128FA8"))[3].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_00125408"))[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_00125038"))[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_00129814"))[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_00129814"))[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_00124B94"))[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_000F062C"))[5].attr_texId = 258;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_000EF934"))[0].attr_texId = 258;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_000FA4D4"))[0].attr_texId = 262;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_000FBD0C"))[0].attr_texId = 260;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_0011BE68"))[2].attr_texId = 256;
+	}
 	//Evening textures for Act 4 (Hotel)
-	matlistADV00_00151F58[0].attr_texId = 116;
-	matlistADV00_00152110[0].attr_texId = 115;
+	if (ADV00_4_Info)
+	{
+		((NJS_MATERIAL*)ADV00_4_Info->getdata("matlistADV00_00151F58"))[0].attr_texId = 116;
+		((NJS_MATERIAL*)ADV00_4_Info->getdata("matlistADV00_00152110"))[0].attr_texId = 115;
+	}
 	//Lamp pole
 	attachADV00_0017D7A8.mats[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
 
@@ -1099,136 +1111,267 @@ void SwitchLight_Evening()
 void SwitchLight_Day()
 {
 	//Day reflections Act 0
-	matlistADV00_0003B3C4[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_0003AFD4[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_000522AC[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_0004D3FC[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_0004F4B4[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_0004F4B4[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_0004F4B4[4].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_000642F8[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00059BFC[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_000638C4[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00066CF0[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00066CF0[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00066CF0[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00031C48[3].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00030274[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00022CC0[5].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00022CC0[12].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00025990[5].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_0001E1DC[4].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_0001E1DC[5].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_000285A0[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_0002C924[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_0002C2BC[4].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00052FA8[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_000483CC[3].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00042DBC[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_0005AB04[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_0005F744[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00061B50[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_0005C6C4[4].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_000309E0[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_000309E0[3].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_000309E0[4].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_000309E0[6].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00046404[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00046404[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_000631AC[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_000631AC[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_000631AC[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00063748[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00021684[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_000203BC[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_0002B718[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_0002F984[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_0003B3C4[1].attr_texId = 124;
-	matlistADV00_0003BBA4[1].attr_texId = 124;
-	matlistADV00_0003BF94[1].attr_texId = 124;
-	matlistADV00_0003C384[1].attr_texId = 124;
-	matlistADV00_0003AFD4[1].attr_texId = 124;
-	matlistADV00_0003B7B4[1].attr_texId = 124;
-	matlistADV00_0003BBA4[1].attr_texId = 124;
-	matlistADV00_000631AC[2].attr_texId = 124;
-	matlistADV00_00046404[0].attr_texId = 145;
-	matlistADV00_00046404[1].attr_texId = 145;
-	matlistADV00_0007C240[0].attr_texId = 145;
-	matlistADV00_0007C240[1].attr_texId = 145;
-	matlistADV00_0002B718[0].attr_texId = 69;
-	matlistADV00_0002F984[0].attr_texId = 69;
-	matlistADV00_000631AC[0].attr_texId = 184;
-	matlistADV00_00063748[0].attr_texId = 184;
-	matlistADV00_000203BC[0].attr_texId = 36;
-	matlistADV00_00021684[0].attr_texId = 39;
-	matlistADV00_000631AC[1].attr_texId = 185;
+	if (ADV00_0_Info)
+	{
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0003B3C4"))[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0003AFD4"))[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_000522AC"))[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0004D3FC"))[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0004F4B4"))[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0004F4B4"))[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0004F4B4"))[4].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_000642F8"))[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_00059BFC"))[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_000638C4"))[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_00066CF0"))[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_00066CF0"))[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_00066CF0"))[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_00031C48"))[3].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_00030274"))[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_00022CC0"))[5].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_00022CC0"))[12].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_00025990"))[5].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0001E1DC"))[4].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0001E1DC"))[5].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_000285A0"))[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0002C924"))[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0002C2BC"))[4].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_00052FA8"))[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_000483CC"))[3].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_00042DBC"))[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0005AB04"))[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0005F744"))[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_00061B50"))[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0005C6C4"))[4].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_000309E0"))[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_000309E0"))[3].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_000309E0"))[4].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_000309E0"))[6].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_00046404"))[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_00046404"))[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_000631AC"))[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_000631AC"))[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_000631AC"))[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_00063748"))[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_00021684"))[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_000203BC"))[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0002B718"))[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0002F984"))[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0003B3C4"))[1].attr_texId = 124;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0003BBA4"))[1].attr_texId = 124;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0003BF94"))[1].attr_texId = 124;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0003C384"))[1].attr_texId = 124;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0003AFD4"))[1].attr_texId = 124;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0003B7B4"))[1].attr_texId = 124;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0003BBA4"))[1].attr_texId = 124;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_000631AC"))[2].attr_texId = 124;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_00046404"))[0].attr_texId = 145;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_00046404"))[1].attr_texId = 145;
+		//((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0007C240"))[0].attr_texId = 145; //this is not in the COL list?
+		//((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0007C240"))[1].attr_texId = 145;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0002B718"))[0].attr_texId = 69;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0002F984"))[0].attr_texId = 69;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_000631AC"))[0].attr_texId = 184;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_00063748"))[0].attr_texId = 184;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_000203BC"))[0].attr_texId = 36;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_00021684"))[0].attr_texId = 39;
+		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_000631AC"))[1].attr_texId = 185;
+	}
 	//Day textures for Act 1 (Casino)
-	matlistADV00_000B59E0[0].attr_texId = 240;
+	if (ADV00_1_Info) ((NJS_MATERIAL*)ADV00_1_Info->getdata("matlistADV00_000B59E0"))[0].attr_texId = 240;
 	//Day reflections Act 3 (Main area)
-	matlistADV00_000E4358[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00103FFC[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_000FAA28[4].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00129C8C[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00129C8C[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_000F4178[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00124B94[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_0012A874[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00125F20_2[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00101184_2[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00126720_2[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_000E3CC4[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_000F5934[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_0012BD98[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_0012BD98[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_0012BD98[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_001163FC[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00115CE0[3].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_0011EACC[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_0011DEFC[3].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00109760[4].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00109378[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_0010956C[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00109CCC[4].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_000E4358[8].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_000FE7A4[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_000FC250[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_000F7940[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_000F7314[3].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_000EF170[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_001129AC[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_000F002C[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_000F1C08[4].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_000F43F0[7].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00104E6C[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00104E6C[3].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00102CD4[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_0011ABE0[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_0011ABE0[3].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_000FA4D4[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_000FBD0C[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_001209D8[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_000EFA74[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_000F062C[5].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00128FA8[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00128FA8[3].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00125408[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00125038[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00129814[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00129814[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_00124B94[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	matlistADV00_000EF934[0].attr_texId = 52;
-	matlistADV00_000F062C[5].attr_texId = 60;
-	matlistADV00_000FA4D4[0].attr_texId = 89;
-	matlistADV00_000FBD0C[0].attr_texId = 94;
-	matlistADV00_0011BE68[2].attr_texId = 165;
+	if (ADV00_3_Info)
+	{
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_000E4358"))[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_00103FFC"))[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_000FAA28"))[4].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_00129C8C"))[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_00129C8C"))[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_000F4178"))[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_00124B94"))[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_0012A874"))[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_00125F20_2"))[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_00101184_2"))[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_00126720_2"))[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_000E3CC4"))[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_000F5934"))[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_0012BD98"))[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_0012BD98"))[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_0012BD98"))[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_001163FC"))[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_00115CE0"))[3].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_0011EACC"))[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_0011DEFC"))[3].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_00109760"))[4].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_00109378"))[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_0010956C"))[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_00109CCC"))[4].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_000E4358"))[8].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_000FE7A4"))[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_000FC250"))[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_000F7940"))[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_000F7314"))[3].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_000EF170"))[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_001129AC"))[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_000F002C"))[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_000F1C08"))[4].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_000F43F0"))[7].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_00104E6C"))[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_00104E6C"))[3].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_00102CD4"))[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_0011ABE0"))[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_0011ABE0"))[3].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_000FA4D4"))[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_000FBD0C"))[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_001209D8"))[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_000EFA74"))[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_000F062C"))[5].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_00128FA8"))[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_00128FA8"))[3].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_00125408"))[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_00125038"))[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_00129814"))[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_00129814"))[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_00124B94"))[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_000EF934"))[0].attr_texId = 52;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_000F062C"))[5].attr_texId = 60;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_000FA4D4"))[0].attr_texId = 89;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_000FBD0C"))[0].attr_texId = 94;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_0011BE68"))[2].attr_texId = 165;
+	}
 	//Day textures for Act 4 (Hotel)
-	matlistADV00_00151F58[0].attr_texId = 69;
-	matlistADV00_00152110[0].attr_texId = 70;
+	if (ADV00_4_Info)
+	{
+		((NJS_MATERIAL*)ADV00_4_Info->getdata("matlistADV00_00151F58"))[0].attr_texId = 69;
+		((NJS_MATERIAL*)ADV00_4_Info->getdata("matlistADV00_00152110"))[0].attr_texId = 70;
+	}
 	//Lamp pole
 	attachADV00_0017D7A8.mats[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
 }
 
-void ADV00_Init(const IniFile *config, const HelperFunctions &helperFunctions)
+void LoadLevelFiles_ADV00()
+{
+	ADV00_0_Info = new LandTableInfo(ModPath + "\\data\\ADV00\\0.sa1lvl");
+	ADV00_1_Info = new LandTableInfo(ModPath + "\\data\\ADV00\\1.sa1lvl");
+	ADV00_2_Info = new LandTableInfo(ModPath + "\\data\\ADV00\\2.sa1lvl");
+	ADV00_3_Info = new LandTableInfo(ModPath + "\\data\\ADV00\\3.sa1lvl");
+	ADV00_4_Info = new LandTableInfo(ModPath + "\\data\\ADV00\\4.sa1lvl");
+	ADV00_5_Info = new LandTableInfo(ModPath + "\\data\\ADV00\\5.sa1lvl");
+	LandTable *ADV00_0 = ADV00_0_Info->getlandtable();
+	LandTable *ADV00_1 = ADV00_1_Info->getlandtable();
+	LandTable *ADV00_2 = ADV00_2_Info->getlandtable();
+	LandTable *ADV00_3 = ADV00_3_Info->getlandtable();
+	LandTable *ADV00_4 = ADV00_4_Info->getlandtable();
+	LandTable *ADV00_5 = ADV00_5_Info->getlandtable();
+	ADV00_0->TexList = &texlist_advss00;
+	ADV00_1->TexList = &texlist_advss01;
+	ADV00_2->TexList = &texlist_advss02;
+	ADV00_3->TexList = &texlist_advss03;
+	ADV00_4->TexList = &texlist_advss04;
+	ADV00_5->TexList = &texlist_advss05;
+	LandTableArray[88] = ADV00_0;
+	LandTableArray[89] = ADV00_1;
+	LandTableArray[90] = ADV00_2;
+	LandTableArray[91] = ADV00_3;
+	LandTableArray[92] = ADV00_4;
+	LandTableArray[93] = ADV00_5;
+	LandTableArray[96] = ADV00_0;
+	LandTableArray[97] = ADV00_1;
+	LandTableArray[98] = ADV00_2;
+	LandTableArray[99] = ADV00_3;
+	LandTableArray[100] = ADV00_4;
+	LandTableArray[101] = ADV00_5;
+	LandTableArray[104] = ADV00_0;
+	LandTableArray[105] = ADV00_1;
+	LandTableArray[106] = ADV00_2;
+	LandTableArray[107] = ADV00_3;
+	LandTableArray[108] = ADV00_4;
+	LandTableArray[109] = ADV00_5;
+	___LANDTABLESS[0] = ADV00_0;
+	___LANDTABLESS[1] = ADV00_1;
+	___LANDTABLESS[2] = ADV00_2;
+	___LANDTABLESS[3] = ADV00_3;
+	___LANDTABLESS[4] = ADV00_4;
+	___LANDTABLESS[5] = ADV00_5;
+	___ADV00_TEXLISTS[0] = &texlist_advss00;
+	___ADV00_TEXLISTS[1] = &texlist_advss01;
+	___ADV00_TEXLISTS[2] = &texlist_advss02;
+	___ADV00_TEXLISTS[3] = &texlist_advss03;
+	___ADV00_TEXLISTS[4] = &texlist_advss04;
+	___ADV00_TEXLISTS[5] = &texlist_advss05;
+	if (SADXWater_StationSquare)
+	{
+		//Act 2
+		((NJS_MATERIAL*)ADV00_2_Info->getdata("matlistADV00_000D9890"))[0].diffuse.color = 0xD2B2B2B2;
+		//Act 3
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_00123C24"))[0].attrflags |= NJD_FLAG_USE_ALPHA;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_00122894_2"))[0].attrflags |= NJD_FLAG_USE_ALPHA;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_00133D3C"))[0].attrflags &= ~NJD_FLAG_USE_ALPHA;
+		ADV00_3->Col[ADV00_3->COLCount - 11].Flags = 0x80000000; //SADX sea bottom
+		ADV00_3->Col[ADV00_3->COLCount - 3].Flags = 0x00000002; //Sewers water
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_00114D80"))[0].diffuse.argb.a = 178; //SADX sea bottom
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_00114D80"))[0].attrflags |= NJD_FLAG_USE_ALPHA; //SADX sea bottom
+		((NJS_MESHSET_SADX*)ADV00_3_Info->getdata("meshlistADV00_00114DB0"))[0].vertcolor = vcolor_0015EFF0; //SADX sea bottom
+		//Act 4
+		((NJS_MESHSET_SADX*)ADV00_4_Info->getdata("meshlistADV00_00151E84"))[0].vertcolor = vcolor_001B6370; //SADX sea bottom (hotel)
+		((NJS_MATERIAL*)ADV00_4_Info->getdata("matlistADV00_0014B314"))[0].attr_texId = 65;
+		((NJS_MATERIAL*)ADV00_4_Info->getdata("matlistADV00_0014BED8"))[0].attr_texId = 65;
+		((NJS_MATERIAL*)ADV00_4_Info->getdata("matlistADV00_00151E54"))[0].attr_texId = 59;
+		((NJS_MATERIAL*)ADV00_4_Info->getdata("matlistADV00_001566E4"))[0].attr_texId = 65;
+		((NJS_MATERIAL*)ADV00_4_Info->getdata("matlistADV00_00151E54"))[0].attrflags &= ~NJD_FLAG_USE_ALPHA;
+		((NJS_MATERIAL*)ADV00_4_Info->getdata("matlistADV00_001566E4"))[0].diffuse.argb.a = 0;
+		((NJS_OBJECT*)ADV00_4_Info->getdata("objectADV00_00151F24"))->pos[1] = -29.5f;
+	}
+	else
+	{
+		WriteJump((void*)0x631140, SSMainAreaWater);
+		//Act 2
+		((NJS_MATERIAL*)ADV00_2_Info->getdata("matlistADV00_000D9890"))[0].diffuse.color = 0xB2B2B2B2;
+		//Act 3
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_00123C24"))[0].attrflags |= NJD_FLAG_USE_ALPHA;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_00122894_2"))[0].attrflags |= NJD_FLAG_USE_ALPHA;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_00133D3C"))[0].attrflags |= NJD_FLAG_USE_ALPHA;
+		ADV00_3->Col[ADV00_3->COLCount - 11].Flags = 0x00000000; //SADX sea bottom
+		ADV00_3->Col[ADV00_3->COLCount - 3].Flags = 0x80000002; //Sewers water
+		((NJS_MESHSET_SADX*)ADV00_3_Info->getdata("meshlistADV00_00114DB0"))[0].vertcolor = NULL; //SADX sea bottom
+		//Act 4
+		((NJS_MESHSET_SADX*)ADV00_4_Info->getdata("meshlistADV00_00151E84"))[0].vertcolor = NULL; //SADX sea bottom (hotel)
+		((NJS_MATERIAL*)ADV00_4_Info->getdata("matlistADV00_0014B314"))[0].attr_texId = 78;
+		((NJS_MATERIAL*)ADV00_4_Info->getdata("matlistADV00_0014BED8"))[0].attr_texId = 78;
+		((NJS_MATERIAL*)ADV00_4_Info->getdata("matlistADV00_00151E54"))[0].attr_texId = 78;
+		((NJS_MATERIAL*)ADV00_4_Info->getdata("matlistADV00_001566E4"))[0].attr_texId = 78;
+		((NJS_MATERIAL*)ADV00_4_Info->getdata("matlistADV00_00151E54"))[0].attrflags |= NJD_FLAG_USE_ALPHA;
+		((NJS_MATERIAL*)ADV00_4_Info->getdata("matlistADV00_001566E4"))[0].diffuse.argb.a = 178;
+		((NJS_OBJECT*)ADV00_4_Info->getdata("objectADV00_00151F24"))->pos[1] = -13;
+	}
+	if (DLLLoaded_Lantern)
+	{
+		WhiteDiffuseADV00_Night[0] = &((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_00126720"))[2], //there was a duplicate, needs a double check
+		WhiteDiffuseADV00_Night[1] = &((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_00125F20"))[2],
+		WhiteDiffuseADV00_Night[2] = &((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_00125408"))[1],
+		material_register_ptr(WhiteDiffuseADV00_Night, LengthOfArray(WhiteDiffuseADV00_Night), &ForceWhiteDiffuse3_Night);
+		WhiteDiffuseADV00External[0] = &((NJS_MATERIAL*)ADV00_1_Info->getdata("matlistADV00_0008E8EC"))[3];
+		WhiteDiffuseADV00External[1] = &((NJS_MATERIAL*)ADV00_1_Info->getdata("matlistADV00_0008E8EC"))[4];
+		WhiteDiffuseADV00External[2] = &((NJS_MATERIAL*)ADV00_1_Info->getdata("matlistADV00_0008E8EC"))[5];
+		WhiteDiffuseADV00External[3] = &((NJS_MATERIAL*)ADV00_1_Info->getdata("matlistADV00_0008E8EC"))[6];
+		WhiteDiffuseADV00External[4] = &((NJS_MATERIAL*)ADV00_1_Info->getdata("matlistADV00_0008E8EC"))[7];
+		WhiteDiffuseADV00External[5] = &((NJS_MATERIAL*)ADV00_1_Info->getdata("matlistADV00_00082400"))[1];
+		WhiteDiffuseADV00External[6] = &((NJS_MATERIAL*)ADV00_1_Info->getdata("matlistADV00_00082400"))[2];
+		WhiteDiffuseADV00External[7] = &((NJS_MATERIAL*)ADV00_2_Info->getdata("matlistADV00_000D8D58"))[0];
+		WhiteDiffuseADV00External[8] = &((NJS_MATERIAL*)ADV00_2_Info->getdata("matlistADV00_000D8D58"))[1];
+		WhiteDiffuseADV00External[9] = &((NJS_MATERIAL*)ADV00_2_Info->getdata("matlistADV00_000D8D58"))[2];
+		WhiteDiffuseADV00External[10] = &((NJS_MATERIAL*)ADV00_2_Info->getdata("matlistADV00_000D8D58"))[3];
+		WhiteDiffuseADV00External[11] = &((NJS_MATERIAL*)ADV00_2_Info->getdata("matlistADV00_000D8D58"))[4];
+		WhiteDiffuseADV00External[12] = &((NJS_MATERIAL*)ADV00_2_Info->getdata("matlistADV00_000D8D58"))[5];
+		WhiteDiffuseADV00External[13] = &((NJS_MATERIAL*)ADV00_2_Info->getdata("matlistADV00_000D8D58"))[6];
+		WhiteDiffuseADV00External[14] = &((NJS_MATERIAL*)ADV00_2_Info->getdata("matlistADV00_000D8D58"))[7];
+		WhiteDiffuseADV00External[15] = &((NJS_MATERIAL*)ADV00_2_Info->getdata("matlistADV00_000D8D58"))[8];
+		WhiteDiffuseADV00External[16] = &((NJS_MATERIAL*)ADV00_2_Info->getdata("matlistADV00_000D8D58"))[9];
+		material_register_ptr(WhiteDiffuseADV00External, LengthOfArray(WhiteDiffuseADV00External), &ForceWhiteDiffuse1);
+	}
+}
+
+void ADV00_Init()
 {
 	ReplaceBIN_DC("SETSS00A");
 	ReplaceBIN_DC("SETSS00B");
@@ -1388,53 +1531,6 @@ void ADV00_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 	{
 		RemoveMaterialColors(NPCMaterials[i]);
 	}
-	if (DLLLoaded_Lantern)
-	{
-		material_register_ptr(CharacterStuff, LengthOfArray(CharacterStuff), &ForceDiffuse2Specular2);
-		material_register_ptr(LevelSpecularADV00, LengthOfArray(LevelSpecularADV00), &ForceDiffuse0Specular0);
-		material_register_ptr(ObjectSpecularADV00, LengthOfArray(ObjectSpecularADV00), &ForceDiffuse0Specular1);
-		material_register_ptr(WhiteDiffuseADV00, LengthOfArray(WhiteDiffuseADV00), &ForceWhiteDiffuse1);
-		material_register_ptr(WhiteDiffuseADV00_Night, LengthOfArray(WhiteDiffuseADV00_Night), &ForceWhiteDiffuse3_Night);
-	}
-	if (SADXWater_StationSquare)
-	{
-		matlistADV00_00123C24[0].attrflags |= NJD_FLAG_USE_ALPHA;
-		matlistADV00_00122894_2[0].attrflags |= NJD_FLAG_USE_ALPHA;
-		matlistADV00_00133D3C[0].attrflags &= ~NJD_FLAG_USE_ALPHA;
-		collist_000DA99C[LengthOfArray(collist_000DA99C) - 11].Flags = 0x80000000; //SADX sea bottom
-		matlistADV00_00114D80[0].diffuse.argb.a = 178; //SADX sea bottom
-		matlistADV00_00114D80[0].attrflags |= NJD_FLAG_USE_ALPHA; //SADX sea bottom
-		meshlistADV00_00114DB0[0].vertcolor = vcolor_0015EFF0; //SADX sea bottom
-		meshlistADV00_00151E84[0].vertcolor = vcolor_001B6370; //SADX sea bottom (hotel)
-		collist_000DA99C[LengthOfArray(collist_000DA99C) - 3].Flags = 0x00000002; //Sewers water
-		matlistADV00_000D9890[0].diffuse.color = 0xD2B2B2B2;
-		matlistADV00_0014B314[0].attr_texId = 65;
-		matlistADV00_0014BED8[0].attr_texId = 65;
-		matlistADV00_00151E54[0].attr_texId = 59;
-		matlistADV00_001566E4[0].attr_texId = 65;
-		matlistADV00_00151E54[0].attrflags &= ~NJD_FLAG_USE_ALPHA;
-		matlistADV00_001566E4[0].diffuse.argb.a = 0;
-		objectADV00_00151F24.pos[1] = -29.5f;
-	}
-	else
-	{
-		WriteJump((void*)0x631140, SSMainAreaWater);
-		matlistADV00_00123C24[0].attrflags |= NJD_FLAG_USE_ALPHA;
-		matlistADV00_00122894_2[0].attrflags |= NJD_FLAG_USE_ALPHA;
-		matlistADV00_00133D3C[0].attrflags |= NJD_FLAG_USE_ALPHA;
-		collist_000DA99C[LengthOfArray(collist_000DA99C) - 11].Flags = 0x00000000; //SADX sea bottom
-		meshlistADV00_00114DB0[0].vertcolor = NULL; //SADX sea bottom
-		meshlistADV00_00151E84[0].vertcolor = NULL; //SADX sea bottom (hotel)
-		collist_000DA99C[LengthOfArray(collist_000DA99C) - 3].Flags = 0x80000002; //Sewers water
-		matlistADV00_000D9890[0].diffuse.color = 0xB2B2B2B2;
-		matlistADV00_0014B314[0].attr_texId = 78;
-		matlistADV00_0014BED8[0].attr_texId = 78;
-		matlistADV00_00151E54[0].attr_texId = 78;
-		matlistADV00_001566E4[0].attr_texId = 78;
-		matlistADV00_00151E54[0].attrflags |= NJD_FLAG_USE_ALPHA;
-		matlistADV00_001566E4[0].diffuse.argb.a = 178;
-		objectADV00_00151F24.pos[1] = -13;
-	}
 	WriteData<5>((void*)0x630ADA, 0x90); //Hotel door fix 1
 	WriteData<5>((void*)0x630AE6, 0x90); //Hotel door fix 2
 	WriteData<5>((void*)0x630B03, 0x90); //Hotel door fix 3
@@ -1466,23 +1562,13 @@ void ADV00_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 	*(NJS_OBJECT*)0x02AD14C8 = objectADV00_00183B8C; // Gamma's target (O M Saku)
 	*(NJS_MODEL_SADX*)0x02AC95BC = attachADV00_0017D540; // Fire hydrant
 	*(NJS_OBJECT*)0x02AD484C = objectADV00_0018684C; // Ice Key 1
-	//Landtables
-	HMODULE handle = GetModuleHandle(L"ADV00MODELS");
-	NJS_TEXLIST **___ADV00_TEXLISTS = (NJS_TEXLIST **)GetProcAddress(handle, "___ADV00_TEXLISTS");
-	LandTable **___LANDTABLESS = (LandTable **)GetProcAddress(handle, "___LANDTABLESS");
-	___LANDTABLESS[0] = &landtable_000157F4;
-	___LANDTABLESS[1] = &landtable_000738F4;
-	___LANDTABLESS[2] = &landtable_000C21F0;
-	___LANDTABLESS[3] = &landtable_000DCEBC;
-	___LANDTABLESS[4] = &landtable_00135A90;
-	___LANDTABLESS[5] = &landtable_001573CC;
-	___ADV00_TEXLISTS[0] = &texlist_advss00;
-	___ADV00_TEXLISTS[1] = &texlist_advss01;
-	___ADV00_TEXLISTS[2] = &texlist_advss02;
-	___ADV00_TEXLISTS[3] = &texlist_advss03;
-	___ADV00_TEXLISTS[4] = &texlist_advss04;
-	___ADV00_TEXLISTS[5] = &texlist_advss05;
 	ResizeTextureList(&OBJ_SS_TEXLIST, 177);
+	if (DLLLoaded_Lantern)
+	{
+		material_register_ptr(CharacterStuff, LengthOfArray(CharacterStuff), &ForceDiffuse2Specular2);
+		material_register_ptr(LevelSpecularADV00, LengthOfArray(LevelSpecularADV00), &ForceDiffuse0Specular0);
+		material_register_ptr(ObjectSpecularADV00, LengthOfArray(ObjectSpecularADV00), &ForceDiffuse0Specular1);
+	}
 	//Fog data
 	for (unsigned int i = 0; i < 3; i++)
 	{
@@ -1520,7 +1606,7 @@ void ADV00_OnFrame()
 		PreviousTimeOfDay = GetTimeOfDay();
 	}
 	//Act 2 (Sewers)
-	if (CurrentLevel == 26 && CurrentAct == 2)
+	if (ADV00_2_Info && CurrentLevel == 26 && CurrentAct == 2)
 	{
 		//Fix Sonic's rotation after the Light Speed Shoes cutscene
 		if (CharObj1PtrsThing != nullptr && EV_MainThread_ptr != nullptr && CutsceneID == 358)
@@ -1533,13 +1619,13 @@ void ADV00_OnFrame()
 		if (GameState != 16)
 		{
 			if (WaterAnimation_Sewers > 55) WaterAnimation_Sewers = 46;
-			matlistADV00_000D9890[0].attr_texId = WaterAnimation_Sewers;
-			matlistADV00_000C24BC[0].attr_texId = WaterAnimation_Sewers;
+			((NJS_MATERIAL*)ADV00_2_Info->getdata("matlistADV00_000D9890"))[0].attr_texId = WaterAnimation_Sewers;
+			((NJS_MATERIAL*)ADV00_2_Info->getdata("matlistADV00_000C24BC"))[0].attr_texId = WaterAnimation_Sewers;
 			if (FramerateSetting < 2 && FrameCounter % 4 == 0 || FramerateSetting == 2 && FrameCounter % 2 == 0 || FramerateSetting > 2) WaterAnimation_Sewers++;
 		}
 	}
 	//Sea animations Act 3 (Main area)
-	if (CurrentLevel == 26 && CurrentAct == 3 && GameState != 16)
+	if (ADV00_3_Info && CurrentLevel == 26 && CurrentAct == 3 && GameState != 16)
 	{
 		if (SewerMainAnimation > 227) SewerMainAnimation = 219;
 		if (SandwaveAnimation > 255) SandwaveAnimation = 183;
@@ -1547,21 +1633,21 @@ void ADV00_OnFrame()
 		if (SeashoreAnimation > 241) SeashoreAnimation = 29;
 		if (SeashoreAnimation > 29 && SeashoreAnimation < 228) SeashoreAnimation = 228;
 		//Sand waves
-		matlistADV00_0012231C[0].attr_texId = SandwaveAnimation;
-		matlistADV00_00123620[0].attr_texId = SandwaveAnimation;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_0012231C"))[0].attr_texId = SandwaveAnimation;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_00123620"))[0].attr_texId = SandwaveAnimation;
 		//Seashore
-		matlistADV00_000E7180[1].attr_texId = SeashoreAnimation;
-		matlistADV00_00122894[2].attr_texId = SeashoreAnimation;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_000E7180"))[1].attr_texId = SeashoreAnimation;
+		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_00122894"))[2].attr_texId = SeashoreAnimation;
 		//Sea bottom
 		if (SADXWater_StationSquare)
 		{
-			matlistADV00_00114D80[0].attr_texId = SeashoreAnimation;
+			((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_00114D80"))[0].attr_texId = SeashoreAnimation;
 		}
 		//Sewers water
 		else
 		{
-			matlistADV00_00133D3C[0].attr_texId = SewerMainAnimation;
-			matlistADV00_00114D80Z[0].attr_texId = SewerMainAnimation;
+			((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_00133D3C"))[0].attr_texId = SewerMainAnimation;
+			((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_00114D80"))[0].attr_texId = SewerMainAnimation;
 		}
 		if (FramerateSetting < 2 && FrameCounter % 4 == 0 || FramerateSetting == 2 && FrameCounter % 2 == 0 || FramerateSetting > 2)
 		{
@@ -1571,7 +1657,7 @@ void ADV00_OnFrame()
 		}
 	}
 	//Sea animations Act 4 (Hotel)
-	if (CurrentLevel == 26 && CurrentAct == 4 && GameState != 16)
+	if (ADV00_4_Info && CurrentLevel == 26 && CurrentAct == 4 && GameState != 16)
 	{
 		if (PoolWaterAnimation > 86) PoolWaterAnimation = 65;
 		if (PoolWaterAnimation > 65 && PoolWaterAnimation < 78) PoolWaterAnimation = 78;
@@ -1579,17 +1665,17 @@ void ADV00_OnFrame()
 		if (SeashoreAnimation_Pool > 59 && SeashoreAnimation_Pool < 87) SeashoreAnimation_Pool = 87;
 		if (SandwaveAnimation_Pool > 114) SandwaveAnimation_Pool = 60;
 		if (SandwaveAnimation_Pool > 60 && SandwaveAnimation_Pool < 101) SandwaveAnimation_Pool = 101;
-		matlistADV00_00147958[2].attr_texId = SeashoreAnimation_Pool;
-		matlistADV00_00150A50[1].attr_texId = SeashoreAnimation_Pool;
-		matlistADV00_00150A50[3].attr_texId = SandwaveAnimation_Pool;
-		matlistADV00_00148688[0].attr_texId = SandwaveAnimation_Pool;
-		if (SADXWater_StationSquare) matlistADV00_00151E54[0].attr_texId = SeashoreAnimation_Pool;
+		((NJS_MATERIAL*)ADV00_4_Info->getdata("matlistADV00_00147958"))[2].attr_texId = SeashoreAnimation_Pool;
+		((NJS_MATERIAL*)ADV00_4_Info->getdata("matlistADV00_00150A50"))[1].attr_texId = SeashoreAnimation_Pool;
+		((NJS_MATERIAL*)ADV00_4_Info->getdata("matlistADV00_00150A50"))[3].attr_texId = SandwaveAnimation_Pool;
+		((NJS_MATERIAL*)ADV00_4_Info->getdata("matlistADV00_00148688"))[0].attr_texId = SandwaveAnimation_Pool;
+		if (SADXWater_StationSquare) ((NJS_MATERIAL*)ADV00_4_Info->getdata("matlistADV00_00151E54"))[0].attr_texId = SeashoreAnimation_Pool;
 		else
 		{
-			matlistADV00_00151E54[0].attr_texId = PoolWaterAnimation;
-			matlistADV00_001566E4[0].attr_texId = PoolWaterAnimation;
-			matlistADV00_0014B314[0].attr_texId = PoolWaterAnimation;
-			matlistADV00_0014BED8[0].attr_texId = PoolWaterAnimation;
+			((NJS_MATERIAL*)ADV00_4_Info->getdata("matlistADV00_00151E54"))[0].attr_texId = PoolWaterAnimation;
+			((NJS_MATERIAL*)ADV00_4_Info->getdata("matlistADV00_001566E4"))[0].attr_texId = PoolWaterAnimation;
+			((NJS_MATERIAL*)ADV00_4_Info->getdata("matlistADV00_0014B314"))[0].attr_texId = PoolWaterAnimation;
+			((NJS_MATERIAL*)ADV00_4_Info->getdata("matlistADV00_0014BED8"))[0].attr_texId = PoolWaterAnimation;
 		}
 		if (FramerateSetting < 2 && FrameCounter % 4 == 0 || FramerateSetting == 2 && FrameCounter % 2 == 0 || FramerateSetting > 2)
 		{

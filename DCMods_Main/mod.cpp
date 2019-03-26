@@ -97,6 +97,9 @@ LandTable **___LANDTABLEBOSSCHAOS0 = nullptr;
 NJS_ACTION **___BOSSCHAOS0_ACTIONS = nullptr;
 NJS_OBJECT **___BOSSCHAOS0_OBJECTS = nullptr;
 NJS_TEXLIST **___BOSSCHAOS0_TEXLISTS = nullptr;
+NJS_TEXLIST **___ADV00_TEXLISTS = nullptr;
+LandTable **___LANDTABLESS = nullptr;
+
 HelperFunctions HelperFunctionsGlobal;
 bool EnableWindowTitle = true;
 bool EnableDCBranding = true;
@@ -194,10 +197,13 @@ extern "C"
 {
 	__declspec(dllexport) void __cdecl Init(const char *path, const HelperFunctions &helperFunctions)
 	{
+		//Get handles for all DLLs
 		___LANDTABLEBOSSCHAOS0 = (LandTable **)GetProcAddress(GetModuleHandle(L"BOSSCHAOS0MODELS"), "___LANDTABLEBOSSCHAOS0");
 		___BOSSCHAOS0_ACTIONS = (NJS_ACTION **)GetProcAddress(GetModuleHandle(L"BOSSCHAOS0MODELS"), "___BOSSCHAOS0_ACTIONS");
 		___BOSSCHAOS0_OBJECTS = (NJS_OBJECT **)GetProcAddress(GetModuleHandle(L"BOSSCHAOS0MODELS"), "___BOSSCHAOS0_OBJECTS");
 		___BOSSCHAOS0_TEXLISTS = (NJS_TEXLIST **)GetProcAddress(GetModuleHandle(L"BOSSCHAOS0MODELS"), "___BOSSCHAOS0_TEXLISTS");
+		___ADV00_TEXLISTS = (NJS_TEXLIST **)GetProcAddress(GetModuleHandle(L"ADV00MODELS"), "___ADV00_TEXLISTS");
+		___LANDTABLESS = (LandTable **)GetProcAddress(GetModuleHandle(L"ADV00MODELS"), "___LANDTABLESS");
 		HelperFunctionsGlobal = helperFunctions;
 		//Global mod path
 		ModPath = std::string(path);
@@ -324,7 +330,11 @@ extern "C"
 		//Init functions
 		SADXStyleWater_Init(config, helperFunctions);
 		if (EnableDCBranding) Branding_Init(config, helperFunctions);
-		if (EnableStationSquare) ADV00_Init(config, helperFunctions);
+		if (EnableStationSquare)
+		{
+			WriteCall((void*)0x4231E6, LoadLevelFiles_ADV00);
+			ADV00_Init();
+		}
 		if (EnableEggCarrier) ADV01_Init(config, helperFunctions);
 		FixMRBase_Apply(config, helperFunctions);
 		if (EnableMysticRuins) ADV02_Init(config, helperFunctions);
