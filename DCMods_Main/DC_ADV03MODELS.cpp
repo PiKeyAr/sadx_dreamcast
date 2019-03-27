@@ -416,60 +416,68 @@ void LoadLevelFiles_ADV03()
 	}
 	if (DLLLoaded_Lantern)
 	{
-		SecondCharacterSpecular[0] = &((NJS_MATERIAL*)PastChaoModel_2_Info->getdata("matlist_0013CA54"))[0];
-		SecondCharacterSpecular[1] = &((NJS_MATERIAL*)PastChaoModel_7_Info->getdata("matlist_0013CA54"))[0];
-		SecondCharacterSpecular[2] = &((NJS_MATERIAL*)PastChaoModel_8_Info->getdata("matlist_0013CA54"))[0];
-		SecondCharacterSpecular[3] = &((NJS_MATERIAL*)PastChaoModel_9_Info->getdata("matlist_0013CA54"))[0];
-		SecondCharacterSpecular[4] = &((NJS_MATERIAL*)PastChaoModel_10_Info->getdata("matlist_0013CA54"))[0];
+		SecondCharacterSpecular[0] = &((NJS_MATERIAL*)PastChaoModel_2_Info->getdata("matlist_000DD7A8"))[0];
+		SecondCharacterSpecular[1] = &((NJS_MATERIAL*)PastChaoModel_7_Info->getdata("matlist_000DD7A8"))[0];
+		SecondCharacterSpecular[2] = &((NJS_MATERIAL*)PastChaoModel_8_Info->getdata("matlist_000DD7A8"))[0];
+		SecondCharacterSpecular[3] = &((NJS_MATERIAL*)PastChaoModel_9_Info->getdata("matlist_000DD7A8"))[0];
+		SecondCharacterSpecular[4] = &((NJS_MATERIAL*)PastChaoModel_10_Info->getdata("matlist_000DD7A8"))[0];
+		for (unsigned int i = 0; i < LengthOfArray(SecondCharacterSpecular); i++)
+		{
+			RemoveMaterialColors(SecondCharacterSpecular[i]);
+		}
 		material_register_ptr(SecondCharacterSpecular, LengthOfArray(SecondCharacterSpecular), &ForceDiffuse2Specular3);
-		FirstCharacterSpecular[0] = &((NJS_MATERIAL*)PastChaoModel_7_Info->getdata("matlist_0013A068"))[0];
-		FirstCharacterSpecular[1] = &((NJS_MATERIAL*)PastChaoModel_7_Info->getdata("matlist_0013A4DC"))[0];
-		FirstCharacterSpecular[2] = &((NJS_MATERIAL*)PastChaoModel_7_Info->getdata("matlist_0013A94C"))[0];
-		FirstCharacterSpecular[3] = &((NJS_MATERIAL*)PastChaoModel_7_Info->getdata("matlist_0013AA54"))[0];
-		FirstCharacterSpecular[4] = &((NJS_MATERIAL*)PastChaoModel_7_Info->getdata("matlist_0013ADEC"))[0];
-		FirstCharacterSpecular[5] = &((NJS_MATERIAL*)PastChaoModel_7_Info->getdata("matlist_0013B184"))[0];
-		FirstCharacterSpecular[6] = &((NJS_MATERIAL*)PastChaoModel_7_Info->getdata("matlist_0013B6F0"))[0];
-		FirstCharacterSpecular[7] = &((NJS_MATERIAL*)PastChaoModel_7_Info->getdata("matlist_0013BA40"))[0];
-		FirstCharacterSpecular[8] = &((NJS_MATERIAL*)PastChaoModel_7_Info->getdata("matlist_0013BB7C"))[0];
-		FirstCharacterSpecular[9] = &((NJS_MATERIAL*)PastChaoModel_7_Info->getdata("matlist_0013BCB8"))[0];
-		FirstCharacterSpecular[10] = &((NJS_MATERIAL*)PastChaoModel_7_Info->getdata("matlist_0013C190"))[0];
-		FirstCharacterSpecular[11] = &((NJS_MATERIAL*)PastChaoModel_7_Info->getdata("matlist_0013C668"))[0];
-		FirstCharacterSpecular[12] = &((NJS_MATERIAL*)PastChaoModel_10_Info->getdata("matlist_0013A068"))[0];
-		FirstCharacterSpecular[13] = &((NJS_MATERIAL*)PastChaoModel_10_Info->getdata("matlist_0013A4DC"))[0];
-		FirstCharacterSpecular[14] = &((NJS_MATERIAL*)PastChaoModel_10_Info->getdata("matlist_0013A94C"))[0];
-		FirstCharacterSpecular[15] = &((NJS_MATERIAL*)PastChaoModel_10_Info->getdata("matlist_0013AA54"))[0];
-		FirstCharacterSpecular[16] = &((NJS_MATERIAL*)PastChaoModel_10_Info->getdata("matlist_0013ADEC"))[0];
-		FirstCharacterSpecular[17] = &((NJS_MATERIAL*)PastChaoModel_10_Info->getdata("matlist_0013B184"))[0];
-		FirstCharacterSpecular[18] = &((NJS_MATERIAL*)PastChaoModel_10_Info->getdata("matlist_0013B6F0"))[0];
-		FirstCharacterSpecular[19] = &((NJS_MATERIAL*)PastChaoModel_10_Info->getdata("matlist_0013BA40"))[0];
-		FirstCharacterSpecular[20] = &((NJS_MATERIAL*)PastChaoModel_10_Info->getdata("matlist_0013BB7C"))[0];
-		FirstCharacterSpecular[21] = &((NJS_MATERIAL*)PastChaoModel_10_Info->getdata("matlist_0013BCB8"))[0];
-		FirstCharacterSpecular[22] = &((NJS_MATERIAL*)PastChaoModel_10_Info->getdata("matlist_0013C190"))[0];
-		FirstCharacterSpecular[23] = &((NJS_MATERIAL*)PastChaoModel_10_Info->getdata("matlist_0013C668"))[0];
-		FirstCharacterSpecular[24] = &((NJS_MATERIAL*)PastChaoModel_9_Info->getdata("matlist_0013A068"))[0];
-		FirstCharacterSpecular[25] = &((NJS_MATERIAL*)PastChaoModel_9_Info->getdata("matlist_0013A4DC"))[0];
-		FirstCharacterSpecular[26] = &((NJS_MATERIAL*)PastChaoModel_9_Info->getdata("matlist_0013A94C"))[0];
-		FirstCharacterSpecular[27] = &((NJS_MATERIAL*)PastChaoModel_9_Info->getdata("matlist_0013AA54"))[0];
-		FirstCharacterSpecular[28] = &((NJS_MATERIAL*)PastChaoModel_9_Info->getdata("matlist_0013ADEC"))[0];
-		FirstCharacterSpecular[29] = &((NJS_MATERIAL*)PastChaoModel_9_Info->getdata("matlist_0013B184"))[0];
-		FirstCharacterSpecular[30] = &((NJS_MATERIAL*)PastChaoModel_9_Info->getdata("matlist_0013B6F0"))[0];
-		FirstCharacterSpecular[31] = &((NJS_MATERIAL*)PastChaoModel_9_Info->getdata("matlist_0013BA40"))[0];
-		FirstCharacterSpecular[32] = &((NJS_MATERIAL*)PastChaoModel_9_Info->getdata("matlist_0013BB7C"))[0];
-		FirstCharacterSpecular[33] = &((NJS_MATERIAL*)PastChaoModel_9_Info->getdata("matlist_0013BCB8"))[0];
-		FirstCharacterSpecular[34] = &((NJS_MATERIAL*)PastChaoModel_9_Info->getdata("matlist_0013C190"))[0];
-		FirstCharacterSpecular[35] = &((NJS_MATERIAL*)PastChaoModel_9_Info->getdata("matlist_0013C668"))[0];
-		FirstCharacterSpecular[36] = &((NJS_MATERIAL*)PastChaoModel_8_Info->getdata("matlist_0013A068"))[0];
-		FirstCharacterSpecular[37] = &((NJS_MATERIAL*)PastChaoModel_8_Info->getdata("matlist_0013A4DC"))[0];
-		FirstCharacterSpecular[38] = &((NJS_MATERIAL*)PastChaoModel_8_Info->getdata("matlist_0013A94C"))[0];
-		FirstCharacterSpecular[39] = &((NJS_MATERIAL*)PastChaoModel_8_Info->getdata("matlist_0013AA54"))[0];
-		FirstCharacterSpecular[40] = &((NJS_MATERIAL*)PastChaoModel_8_Info->getdata("matlist_0013ADEC"))[0];
-		FirstCharacterSpecular[41] = &((NJS_MATERIAL*)PastChaoModel_8_Info->getdata("matlist_0013B184"))[0];
-		FirstCharacterSpecular[42] = &((NJS_MATERIAL*)PastChaoModel_8_Info->getdata("matlist_0013B6F0"))[0];
-		FirstCharacterSpecular[43] = &((NJS_MATERIAL*)PastChaoModel_8_Info->getdata("matlist_0013BA40"))[0];
-		FirstCharacterSpecular[44] = &((NJS_MATERIAL*)PastChaoModel_8_Info->getdata("matlist_0013BB7C"))[0];
-		FirstCharacterSpecular[45] = &((NJS_MATERIAL*)PastChaoModel_8_Info->getdata("matlist_0013BCB8"))[0];
-		FirstCharacterSpecular[46] = &((NJS_MATERIAL*)PastChaoModel_8_Info->getdata("matlist_0013C190"))[0];
-		FirstCharacterSpecular[47] = &((NJS_MATERIAL*)PastChaoModel_8_Info->getdata("matlist_0013C668"))[0];
+		FirstCharacterSpecular[0] = &((NJS_MATERIAL*)PastChaoModel_7_Info->getdata("matlist_000DB2C4"))[0];
+		FirstCharacterSpecular[1] = &((NJS_MATERIAL*)PastChaoModel_7_Info->getdata("matlist_000DB720"))[0];
+		FirstCharacterSpecular[2] = &((NJS_MATERIAL*)PastChaoModel_7_Info->getdata("matlist_000DB820"))[0];
+		FirstCharacterSpecular[3] = &((NJS_MATERIAL*)PastChaoModel_7_Info->getdata("matlist_000DBBA8"))[0];
+		FirstCharacterSpecular[4] = &((NJS_MATERIAL*)PastChaoModel_7_Info->getdata("matlist_000DBF30"))[0];
+		FirstCharacterSpecular[5] = &((NJS_MATERIAL*)PastChaoModel_7_Info->getdata("matlist_000DC48C"))[0];
+		FirstCharacterSpecular[6] = &((NJS_MATERIAL*)PastChaoModel_7_Info->getdata("matlist_000DC7CC"))[0];
+		FirstCharacterSpecular[7] = &((NJS_MATERIAL*)PastChaoModel_7_Info->getdata("matlist_000DC900"))[0];
+		FirstCharacterSpecular[8] = &((NJS_MATERIAL*)PastChaoModel_7_Info->getdata("matlist_000DCA34"))[0];
+		FirstCharacterSpecular[9] = &((NJS_MATERIAL*)PastChaoModel_7_Info->getdata("matlist_000DCF00"))[0];
+		FirstCharacterSpecular[10] = &((NJS_MATERIAL*)PastChaoModel_7_Info->getdata("matlist_000DD3CC"))[0];
+		FirstCharacterSpecular[11] = &((NJS_MATERIAL*)PastChaoModel_7_Info->getdata("matlist_000DD7A8"))[0];
+		FirstCharacterSpecular[12] = &((NJS_MATERIAL*)PastChaoModel_10_Info->getdata("matlist_000DB2C4"))[0];
+		FirstCharacterSpecular[13] = &((NJS_MATERIAL*)PastChaoModel_10_Info->getdata("matlist_000DB720"))[0];
+		FirstCharacterSpecular[14] = &((NJS_MATERIAL*)PastChaoModel_10_Info->getdata("matlist_000DB820"))[0];
+		FirstCharacterSpecular[15] = &((NJS_MATERIAL*)PastChaoModel_10_Info->getdata("matlist_000DBBA8"))[0];
+		FirstCharacterSpecular[16] = &((NJS_MATERIAL*)PastChaoModel_10_Info->getdata("matlist_000DBF30"))[0];
+		FirstCharacterSpecular[17] = &((NJS_MATERIAL*)PastChaoModel_10_Info->getdata("matlist_000DC48C"))[0];
+		FirstCharacterSpecular[18] = &((NJS_MATERIAL*)PastChaoModel_10_Info->getdata("matlist_000DC7CC"))[0];
+		FirstCharacterSpecular[19] = &((NJS_MATERIAL*)PastChaoModel_10_Info->getdata("matlist_000DC900"))[0];
+		FirstCharacterSpecular[20] = &((NJS_MATERIAL*)PastChaoModel_10_Info->getdata("matlist_000DCA34"))[0];
+		FirstCharacterSpecular[21] = &((NJS_MATERIAL*)PastChaoModel_10_Info->getdata("matlist_000DCF00"))[0];
+		FirstCharacterSpecular[22] = &((NJS_MATERIAL*)PastChaoModel_10_Info->getdata("matlist_000DD3CC"))[0];
+		FirstCharacterSpecular[23] = &((NJS_MATERIAL*)PastChaoModel_10_Info->getdata("matlist_000DD7A8"))[0];
+		FirstCharacterSpecular[24] = &((NJS_MATERIAL*)PastChaoModel_9_Info->getdata("matlist_000DB2C4"))[0];
+		FirstCharacterSpecular[25] = &((NJS_MATERIAL*)PastChaoModel_9_Info->getdata("matlist_000DB720"))[0];
+		FirstCharacterSpecular[26] = &((NJS_MATERIAL*)PastChaoModel_9_Info->getdata("matlist_000DB820"))[0];
+		FirstCharacterSpecular[27] = &((NJS_MATERIAL*)PastChaoModel_9_Info->getdata("matlist_000DBBA8"))[0];
+		FirstCharacterSpecular[28] = &((NJS_MATERIAL*)PastChaoModel_9_Info->getdata("matlist_000DBF30"))[0];
+		FirstCharacterSpecular[29] = &((NJS_MATERIAL*)PastChaoModel_9_Info->getdata("matlist_000DC48C"))[0];
+		FirstCharacterSpecular[30] = &((NJS_MATERIAL*)PastChaoModel_9_Info->getdata("matlist_000DC7CC"))[0];
+		FirstCharacterSpecular[31] = &((NJS_MATERIAL*)PastChaoModel_9_Info->getdata("matlist_000DC900"))[0];
+		FirstCharacterSpecular[32] = &((NJS_MATERIAL*)PastChaoModel_9_Info->getdata("matlist_000DCA34"))[0];
+		FirstCharacterSpecular[33] = &((NJS_MATERIAL*)PastChaoModel_9_Info->getdata("matlist_000DCF00"))[0];
+		FirstCharacterSpecular[34] = &((NJS_MATERIAL*)PastChaoModel_9_Info->getdata("matlist_000DD3CC"))[0];
+		FirstCharacterSpecular[35] = &((NJS_MATERIAL*)PastChaoModel_9_Info->getdata("matlist_000DD7A8"))[0];
+		FirstCharacterSpecular[36] = &((NJS_MATERIAL*)PastChaoModel_8_Info->getdata("matlist_000DB2C4"))[0];
+		FirstCharacterSpecular[37] = &((NJS_MATERIAL*)PastChaoModel_8_Info->getdata("matlist_000DB720"))[0];
+		FirstCharacterSpecular[38] = &((NJS_MATERIAL*)PastChaoModel_8_Info->getdata("matlist_000DB820"))[0];
+		FirstCharacterSpecular[39] = &((NJS_MATERIAL*)PastChaoModel_8_Info->getdata("matlist_000DBBA8"))[0];
+		FirstCharacterSpecular[40] = &((NJS_MATERIAL*)PastChaoModel_8_Info->getdata("matlist_000DBF30"))[0];
+		FirstCharacterSpecular[41] = &((NJS_MATERIAL*)PastChaoModel_8_Info->getdata("matlist_000DC48C"))[0];
+		FirstCharacterSpecular[42] = &((NJS_MATERIAL*)PastChaoModel_8_Info->getdata("matlist_000DC7CC"))[0];
+		FirstCharacterSpecular[43] = &((NJS_MATERIAL*)PastChaoModel_8_Info->getdata("matlist_000DC900"))[0];
+		FirstCharacterSpecular[44] = &((NJS_MATERIAL*)PastChaoModel_8_Info->getdata("matlist_000DCA34"))[0];
+		FirstCharacterSpecular[45] = &((NJS_MATERIAL*)PastChaoModel_8_Info->getdata("matlist_000DCF00"))[0];
+		FirstCharacterSpecular[46] = &((NJS_MATERIAL*)PastChaoModel_8_Info->getdata("matlist_000DD3CC"))[0];
+		FirstCharacterSpecular[47] = &((NJS_MATERIAL*)PastChaoModel_8_Info->getdata("matlist_000DD7A8"))[0];
+		for (unsigned int i = 0; i < LengthOfArray(FirstCharacterSpecular); i++)
+		{
+			RemoveMaterialColors(FirstCharacterSpecular[i]);
+		}
 		material_register_ptr(FirstCharacterSpecular, LengthOfArray(FirstCharacterSpecular), &ForceDiffuse2Specular2);
 	}
 }
@@ -584,10 +592,10 @@ void ADV03_OnFrame()
 	if (CurrentLevel == LevelIDs_Past && CurrentAct > 0 && EV_MainThread_ptr != nullptr)
 	{
 		((NJS_OBJECT*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x0013CB28))->ang[1] = Camera_Data1->Rotation.y;
-		if (PastChaoModel_2_Info) ((NJS_OBJECT*)PastChaoModel_2_Info->getdata("object_0013CB28"))->ang[1] = Camera_Data1->Rotation.y;
-		if (PastChaoModel_7_Info) ((NJS_OBJECT*)PastChaoModel_7_Info->getdata("object_0013CB28"))->ang[1] = Camera_Data1->Rotation.y;
-		if (PastChaoModel_8_Info) ((NJS_OBJECT*)PastChaoModel_8_Info->getdata("object_0013CB28"))->ang[1] = Camera_Data1->Rotation.y;
-		if (PastChaoModel_9_Info) ((NJS_OBJECT*)PastChaoModel_9_Info->getdata("object_0013CB28"))->ang[1] = Camera_Data1->Rotation.y;
-		if (PastChaoModel_10_Info) ((NJS_OBJECT*)PastChaoModel_10_Info->getdata("object_0013CB28"))->ang[1] = Camera_Data1->Rotation.y;
+		if (PastChaoModel_2_Info) ((NJS_OBJECT*)PastChaoModel_2_Info->getdata("object_000DD874"))->ang[1] = Camera_Data1->Rotation.y;
+		if (PastChaoModel_7_Info) ((NJS_OBJECT*)PastChaoModel_7_Info->getdata("object_000DD874"))->ang[1] = Camera_Data1->Rotation.y;
+		if (PastChaoModel_8_Info) ((NJS_OBJECT*)PastChaoModel_8_Info->getdata("object_000DD874"))->ang[1] = Camera_Data1->Rotation.y;
+		if (PastChaoModel_9_Info) ((NJS_OBJECT*)PastChaoModel_9_Info->getdata("object_000DD874"))->ang[1] = Camera_Data1->Rotation.y;
+		if (PastChaoModel_10_Info) ((NJS_OBJECT*)PastChaoModel_10_Info->getdata("object_000DD874"))->ang[1] = Camera_Data1->Rotation.y;
 	}
 }
