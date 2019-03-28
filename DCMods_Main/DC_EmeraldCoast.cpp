@@ -70,11 +70,12 @@ void __cdecl Obj_EC23Water_DisplayX(ObjectMaster *a1)
 			njSetTexture((NJS_TEXLIST*)0x010C0508); //BEACH_SEA
 			njPushMatrix(0);
 			njTranslate(0, v1->Position.x, v1->Position.y, v1->Position.z);
-			OceanUVShift1 = int(njSin(FrameCounterUnpaused << 7) * 96.0f + 2.5f) % 255;
-			uvSTG01_00CC0530[0].u = uvSTG01_00CC0530_d[0].u + OceanUVShift1;
-			uvSTG01_00CC0530[1].u = uvSTG01_00CC0530_d[1].u + OceanUVShift1;
-			uvSTG01_00CC0530[2].u = uvSTG01_00CC0530_d[2].u + OceanUVShift1;
-			uvSTG01_00CC0530[3].u = uvSTG01_00CC0530_d[3].u + OceanUVShift1;
+			//It looks kinda jumpy when you load the stage so I disabled it
+			/*OceanUVShift1 = njSin(FrameCounterUnpaused << 7) * 96.0f + 2.5f;
+			uvSTG01_00CC0530[0].u = uvSTG01_00CC0530_d[0].u + OceanUVShift1 % 255;
+			uvSTG01_00CC0530[1].u = uvSTG01_00CC0530_d[1].u + OceanUVShift1 % 255;
+			uvSTG01_00CC0530[2].u = uvSTG01_00CC0530_d[2].u + OceanUVShift1 % 255;
+			uvSTG01_00CC0530[3].u = uvSTG01_00CC0530_d[3].u + OceanUVShift1 % 255;*/
 			DrawQueueDepthBias = -25952.0f;
 			ProcessModelNode_A_Wrapper((NJS_OBJECT*)0x10C05E8, QueuedModelFlagsB_SomeTextureThing, 1.0f);
 			DrawQueueDepthBias = 0;
@@ -186,11 +187,14 @@ void __cdecl Obj_EC1Water_DisplayX(ObjectMaster *a1)
 				njSetTexture((NJS_TEXLIST*)0x010C0508); //BEACH_SEA
 				njPushMatrix(0);
 				njTranslate(0, v1->Position.x, v1->Position.y, v1->Position.z);
+				//It looks kinda jumpy when you load the stage so I disabled it
+				/*
 				OceanUVShift1 = int(njSin(FrameCounterUnpaused << 7) * 96.0f + 2.5f) % 255;
 				uvSTG01_00CC0530[0].u = uvSTG01_00CC0530_d[0].u + OceanUVShift1;
 				uvSTG01_00CC0530[1].u = uvSTG01_00CC0530_d[1].u + OceanUVShift1;
 				uvSTG01_00CC0530[2].u = uvSTG01_00CC0530_d[2].u + OceanUVShift1;
 				uvSTG01_00CC0530[3].u = uvSTG01_00CC0530_d[3].u + OceanUVShift1;
+				*/
 				DrawQueueDepthBias = -19952.0f;
 				ProcessModelNode_A_Wrapper((NJS_OBJECT*)0x10C05E8, QueuedModelFlagsB_SomeTextureThing, 1.0f);
 				njPopMatrix(1u);
@@ -463,8 +467,23 @@ void WhaleSplash(NJS_OBJECT *a1)
 	ProcessModelNode(a1, (QueuedModelFlagsB)0, 1.0f);
 }
 
+void UnloadLevelFiles_STG01()
+{
+	if (DLLLoaded_Lantern)
+	{
+		material_unregister_ptr(LevelSpecular_STG01External, LengthOfArray(LevelSpecular_STG01External), ForceDiffuse0Specular0);
+	}
+	delete STG01_0_Info;
+	delete STG01_1_Info;
+	delete STG01_2_Info;
+	STG01_0_Info = nullptr;
+	STG01_1_Info = nullptr;
+	STG01_2_Info = nullptr;
+}
+
 void LoadLevelFiles_STG01()
 {
+	CheckAndUnloadLevelFiles();
 	STG01_0_Info = new LandTableInfo(ModPath + "\\data\\STG01\\0.sa1lvl");
 	STG01_1_Info = new LandTableInfo(ModPath + "\\data\\STG01\\1.sa1lvl");
 	STG01_2_Info = new LandTableInfo(ModPath + "\\data\\STG01\\2.sa1lvl");
@@ -562,6 +581,7 @@ void LoadLevelFiles_STG01()
 		LevelSpecular_STG01External[2] = &((NJS_MATERIAL*)STG01_0_Info->getdata("matlistSTG01_00BE30C0"))[16];
 		LevelSpecular_STG01External[3] = &((NJS_MATERIAL*)STG01_0_Info->getdata("matlistSTG01_0004DB6C"))[11];
 		LevelSpecular_STG01External[4] = &((NJS_MATERIAL*)STG01_2_Info->getdata("matlistSTG01_00108488"))[6];
+		material_register_ptr(LevelSpecular_STG01External, LengthOfArray(LevelSpecular_STG01External), ForceDiffuse0Specular0);
 	}
 }
 
