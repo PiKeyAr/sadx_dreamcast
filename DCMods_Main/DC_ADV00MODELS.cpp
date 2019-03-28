@@ -1248,8 +1248,30 @@ void SwitchLight_Day()
 	attachADV00_0017D7A8.mats[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
 }
 
+void UnloadLevelFiles_ADV00()
+{
+	if (DLLLoaded_Lantern) 
+	{
+		material_unregister_ptr(WhiteDiffuseADV00_Night, LengthOfArray(WhiteDiffuseADV00_Night), &ForceWhiteDiffuse3_Night);
+		material_unregister_ptr(WhiteDiffuseADV00External, LengthOfArray(WhiteDiffuseADV00External), &ForceWhiteDiffuse1);
+	}
+	delete ADV00_0_Info;
+	delete ADV00_1_Info;
+	delete ADV00_2_Info;
+	delete ADV00_3_Info;
+	delete ADV00_4_Info;
+	delete ADV00_5_Info;
+	ADV00_0_Info = nullptr;
+	ADV00_1_Info = nullptr;
+	ADV00_2_Info = nullptr;
+	ADV00_3_Info = nullptr;
+	ADV00_4_Info = nullptr;
+	ADV00_5_Info = nullptr;
+}
+
 void LoadLevelFiles_ADV00()
 {
+	CheckAndUnloadLevelFiles();
 	ADV00_0_Info = new LandTableInfo(ModPath + "\\data\\ADV00\\0.sa1lvl");
 	ADV00_1_Info = new LandTableInfo(ModPath + "\\data\\ADV00\\1.sa1lvl");
 	ADV00_2_Info = new LandTableInfo(ModPath + "\\data\\ADV00\\2.sa1lvl");

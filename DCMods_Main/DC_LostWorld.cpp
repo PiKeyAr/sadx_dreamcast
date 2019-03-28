@@ -43,8 +43,19 @@ void RenderLWPlatformLight(NJS_MODEL_SADX *model, QueuedModelFlagsB blend, float
 	DrawQueueDepthBias = 0.0f;
 }
 
+void UnloadLevelFiles_STG07()
+{
+	delete STG07_0_Info;
+	delete STG07_1_Info;
+	delete STG07_2_Info;
+	STG07_0_Info = nullptr;
+	STG07_1_Info = nullptr;
+	STG07_2_Info = nullptr;
+}
+
 void LoadLevelFiles_STG07()
 {
+	CheckAndUnloadLevelFiles();
 	STG07_0_Info = new LandTableInfo(ModPath + "\\data\\STG07\\0.sa1lvl");
 	STG07_1_Info = new LandTableInfo(ModPath + "\\data\\STG07\\1.sa1lvl");
 	STG07_2_Info = new LandTableInfo(ModPath + "\\data\\STG07\\2.sa1lvl");

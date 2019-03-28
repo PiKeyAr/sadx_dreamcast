@@ -150,8 +150,23 @@ static void __cdecl FountainDisplay_r(ObjectMaster *a1)
 	original(a1);
 }
 
+void UnloadLevelFiles_STG04()
+{
+	if (DLLLoaded_Lantern)
+	{
+		material_unregister_ptr(WhiteDiffuse_HighwayExternal, LengthOfArray(WhiteDiffuse_HighwayExternal), &ForceWhiteDiffuse1);
+	}
+	delete STG04_0_Info;
+	delete STG04_1_Info;
+	delete STG04_2_Info;
+	STG04_0_Info = nullptr;
+	STG04_1_Info = nullptr;
+	STG04_2_Info = nullptr;
+}
+
 void LoadLevelFiles_STG04()
 {
+	CheckAndUnloadLevelFiles();
 	STG04_0_Info = new LandTableInfo(ModPath + "\\data\\STG04\\0.sa1lvl");
 	STG04_1_Info = new LandTableInfo(ModPath + "\\data\\STG04\\1.sa1lvl");
 	STG04_2_Info = new LandTableInfo(ModPath + "\\data\\STG04\\2.sa1lvl");

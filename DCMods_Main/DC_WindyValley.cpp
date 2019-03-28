@@ -118,8 +118,19 @@ void FixBranch(NJS_ACTION *a1, float a2, int a3, float a4)
 	sub_408350(&action_OTREEM_Action, a2, a3, a4);
 }
 
+void UnloadLevelFiles_STG02()
+{
+	delete STG02_0_Info;
+	delete STG02_1_Info;
+	delete STG02_2_Info;
+	STG02_0_Info = nullptr;
+	STG02_1_Info = nullptr;
+	STG02_2_Info = nullptr;
+}
+
 void LoadLevelFiles_STG02()
 {
+	CheckAndUnloadLevelFiles();
 	STG02_0_Info = new LandTableInfo(ModPath + "\\data\\STG02\\0.sa1lvl");
 	STG02_1_Info = new LandTableInfo(ModPath + "\\data\\STG02\\1.sa1lvl");
 	STG02_2_Info = new LandTableInfo(ModPath + "\\data\\STG02\\2.sa1lvl");

@@ -656,8 +656,24 @@ void GachaponExplosionFix(NJS_MODEL_SADX *a1)
 	DrawQueueDepthBias = 0;
 }
 
+void UnloadLevelFiles_STG10()
+{
+	if (DLLLoaded_Lantern)
+	{
+		material_unregister_ptr(WhiteDiffuse_FinalEggExternal, LengthOfArray(WhiteDiffuse_FinalEggExternal), &ForceWhiteDiffuse1);
+		if (set_alpha_reject_ptr != nullptr) material_unregister_ptr(DisableAlphaRejection_FinalEggExternal, LengthOfArray(DisableAlphaRejection_FinalEggExternal), &DisableAlphaRejection);
+	}
+	STG10_0 = nullptr;
+	STG10_1 = nullptr;
+	STG10_2 = nullptr;
+	delete STG10_0_Info;
+	delete STG10_1_Info;
+	delete STG10_2_Info;
+}
+
 void LoadLevelFiles_STG10()
 {
+	CheckAndUnloadLevelFiles();
 	STG10_0_Info = new LandTableInfo(ModPath + "\\data\\STG10\\0.sa1lvl");
 	STG10_1_Info = new LandTableInfo(ModPath + "\\data\\STG10\\1.sa1lvl");
 	STG10_2_Info = new LandTableInfo(ModPath + "\\data\\STG10\\2.sa1lvl");

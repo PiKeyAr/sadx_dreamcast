@@ -1955,8 +1955,19 @@ void PlayElevatorSound(int ID, void *a2, int a3, void *a4)
 	else PlaySound(685, a2, a3, a4);
 }
 
+void UnloadLevelFiles_Chao()
+{
+	delete AL_GARDEN00_Info;
+	AL_GARDEN00_Info = nullptr;
+	delete AL_GARDEN01_Info;
+	AL_GARDEN01_Info = nullptr;
+	delete AL_GARDEN02_Info;
+	AL_GARDEN02_Info = nullptr;
+}
+
 void LoadLevelFiles_Chao()
 {
+	CheckAndUnloadLevelFiles();
 	AL_GARDEN00_Info = new LandTableInfo(ModPath + "\\data\\AL_GARDEN00\\0.sa1lvl");
 	AL_GARDEN01_Info = new LandTableInfo(ModPath + "\\data\\AL_GARDEN01\\0.sa1lvl");
 	AL_GARDEN02_Info = new LandTableInfo(ModPath + "\\data\\AL_GARDEN02\\0.sa1lvl");

@@ -266,8 +266,24 @@ void PlayMusicHook_DisableE105Fog(MusicIDs song)
 	ReduceHotShelterFog = true;
 }
 
+void UnloadLevelFiles_STG12()
+{
+	if (DLLLoaded_Lantern)
+	{
+		material_unregister_ptr(WhiteDiffuse_HotShelterExternal, LengthOfArray(WhiteDiffuse_HotShelterExternal), &ForceWhiteDiffuse1);
+		if (set_alpha_reject_ptr != nullptr) material_unregister_ptr(DisableAlphaRejection_HotShelterExternal, LengthOfArray(DisableAlphaRejection_HotShelterExternal), &DisableAlphaRejection);
+	}
+	STG12_0 = nullptr;
+	STG12_1 = nullptr;
+	STG12_2 = nullptr;
+	delete STG12_0_Info;
+	delete STG12_1_Info;
+	delete STG12_2_Info;
+}
+
 void LoadLevelFiles_STG12()
 {
+	CheckAndUnloadLevelFiles();
 	STG12_0_Info = new LandTableInfo(ModPath + "\\data\\STG12\\0.sa1lvl");
 	STG12_1_Info = new LandTableInfo(ModPath + "\\data\\STG12\\1.sa1lvl");
 	STG12_2_Info = new LandTableInfo(ModPath + "\\data\\STG12\\2.sa1lvl");

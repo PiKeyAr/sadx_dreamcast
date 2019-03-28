@@ -782,8 +782,21 @@ void IdeyaCapFix(void *a1, int a2, float a3, int a4, int a5)
 	DrawQueueDepthBias = 0;
 }
 
+void UnloadLevelFiles_STG09()
+{
+	delete STG09_0_Info;
+	delete STG09_1_Info;
+	delete STG09_2_Info;
+	delete STG09_3_Info;
+	STG09_0_Info = nullptr;
+	STG09_1_Info = nullptr;
+	STG09_2_Info = nullptr;
+	STG09_3_Info = nullptr;
+}
+
 void LoadLevelFiles_STG09()
 {
+	CheckAndUnloadLevelFiles();
 	STG09_0_Info = new LandTableInfo(ModPath + "\\data\\STG09\\0.sa1lvl");
 	STG09_1_Info = new LandTableInfo(ModPath + "\\data\\STG09\\1.sa1lvl");
 	STG09_2_Info = new LandTableInfo(ModPath + "\\data\\STG09\\2.sa1lvl");

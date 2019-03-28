@@ -426,8 +426,42 @@ void OLivingLightFix(NJS_OBJECT *a1, int blend_mode, float scale)
 	ProcessModelNode_D_WrapperB(a1, blend_mode, scale);
 }
 
+void UnloadLevelFiles_ADV01()
+{
+	if (DLLLoaded_Lantern) material_unregister_ptr(WhiteDiffuseADV01External, LengthOfArray(WhiteDiffuseADV01External), &ForceWhiteDiffuse1);
+	delete ADV01_0_Info;
+	delete ADV01_1_Info;
+	delete ADV01_2_Info;
+	delete ADV01_3_Info;
+	delete ADV01_4_Info;
+	delete ADV01_5_Info;
+	ADV01_0_Info = nullptr;
+	ADV01_1_Info = nullptr;
+	ADV01_2_Info = nullptr;
+	ADV01_3_Info = nullptr;
+	ADV01_4_Info = nullptr;
+	ADV01_5_Info = nullptr;
+}
+
+void UnloadLevelFiles_ADV01C()
+{
+	delete ADV01C_0_Info;
+	delete ADV01C_1_Info;
+	delete ADV01C_2_Info;
+	delete ADV01C_3_Info;
+	delete ADV01C_4_Info;
+	delete ADV01C_5_Info;
+	ADV01C_0_Info = nullptr;
+	ADV01C_1_Info = nullptr;
+	ADV01C_2_Info = nullptr;
+	ADV01C_3_Info = nullptr;
+	ADV01C_4_Info = nullptr;
+	ADV01C_5_Info = nullptr;
+}
+
 void LoadLevelFiles_ADV01()
 {
+	CheckAndUnloadLevelFiles();
 	ADV01_0_Info = new LandTableInfo(ModPath + "\\data\\ADV01\\0.sa1lvl");
 	ADV01_1_Info = new LandTableInfo(ModPath + "\\data\\ADV01\\1.sa1lvl");
 	ADV01_2_Info = new LandTableInfo(ModPath + "\\data\\ADV01\\2.sa1lvl");
@@ -495,6 +529,7 @@ void LoadLevelFiles_ADV01()
 
 void LoadLevelFiles_ADV01C()
 {
+	CheckAndUnloadLevelFiles();
 	ADV01C_0_Info = new LandTableInfo(ModPath + "\\data\\ADV01C\\0.sa1lvl");
 	ADV01C_1_Info = new LandTableInfo(ModPath + "\\data\\ADV01C\\1.sa1lvl");
 	ADV01C_2_Info = new LandTableInfo(ModPath + "\\data\\ADV01C\\2.sa1lvl");

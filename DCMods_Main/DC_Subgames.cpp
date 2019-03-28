@@ -692,8 +692,21 @@ void FixSkybox(NJS_OBJECT *a1, float scale)
 	}
 }
 
+void UnloadLevelFiles_MINICART()
+{
+	delete MINICART_Info;
+	MINICART_Info = nullptr;
+}
+
+void UnloadLevelFiles_SBOARD()
+{
+	delete SBOARD_Info;
+	SBOARD_Info = nullptr;
+}
+
 void LoadLevelFiles_MINICART()
 {
+	CheckAndUnloadLevelFiles();
 	MINICART_Info = new LandTableInfo(ModPath + "\\data\\MINICART\\0.sa1lvl");
 	LandTable *MINICART = MINICART_Info->getlandtable();
 	MINICART->TexList = &texlist_twinklecircuit;
@@ -702,6 +715,7 @@ void LoadLevelFiles_MINICART()
 
 void LoadLevelFiles_SBOARD()
 {
+	CheckAndUnloadLevelFiles();
 	SBOARD_Info = new LandTableInfo(ModPath + "\\data\\SBOARD\\0.sa1lvl");
 	LandTable *SBOARD = SBOARD_Info->getlandtable();
 	SBOARD->TexList = &texlist_sandhill;

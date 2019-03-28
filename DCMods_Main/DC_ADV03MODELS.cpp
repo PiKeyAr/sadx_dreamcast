@@ -363,6 +363,7 @@ void AllocateEventChao_10(ObjectMaster *a1, NJS_ACTION *a2, NJS_TEXLIST *a3, flo
 
 void LoadLevelFiles_ADV03()
 {
+	CheckAndUnloadLevelFiles();
 	PastChaoModel_2_Info = new ModelInfo(ModPath + "\\data\\ADV03\\Models\\Chao.sa1mdl");
 	PastChaoModel_7_Info = new ModelInfo(ModPath + "\\data\\ADV03\\Models\\Chao.sa1mdl");
 	PastChaoModel_8_Info = new ModelInfo(ModPath + "\\data\\ADV03\\Models\\Chao.sa1mdl");
@@ -482,6 +483,31 @@ void LoadLevelFiles_ADV03()
 	}
 }
 
+void UnloadLevelFiles_ADV03()
+{
+	if (DLLLoaded_Lantern)
+	{
+		material_unregister_ptr(FirstCharacterSpecular, LengthOfArray(FirstCharacterSpecular), &ForceDiffuse2Specular2);
+		material_unregister_ptr(SecondCharacterSpecular, LengthOfArray(SecondCharacterSpecular), &ForceDiffuse2Specular3);
+	}
+	delete ADV03_0_Info;
+	delete ADV03_1_Info;
+	delete ADV03_2_Info;
+	ADV03_0_Info = nullptr;
+	ADV03_1_Info = nullptr;
+	ADV03_2_Info = nullptr;
+	delete PastChaoModel_2_Info;
+	delete PastChaoModel_7_Info;
+	delete PastChaoModel_8_Info;
+	delete PastChaoModel_9_Info;
+	delete PastChaoModel_10_Info;
+	PastChaoModel_2_Info = nullptr;
+	PastChaoModel_7_Info = nullptr;
+	PastChaoModel_8_Info = nullptr;
+	PastChaoModel_9_Info = nullptr;
+	PastChaoModel_10_Info = nullptr;
+}
+
 void ADV03_Init()
 {
 	ReplaceBIN_DC("CAMPAST00S");
@@ -592,10 +618,10 @@ void ADV03_OnFrame()
 	if (CurrentLevel == LevelIDs_Past && CurrentAct > 0 && EV_MainThread_ptr != nullptr)
 	{
 		((NJS_OBJECT*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x0013CB28))->ang[1] = Camera_Data1->Rotation.y;
-		if (PastChaoModel_2_Info) ((NJS_OBJECT*)PastChaoModel_2_Info->getdata("object_000DD874"))->ang[1] = Camera_Data1->Rotation.y;
-		if (PastChaoModel_7_Info) ((NJS_OBJECT*)PastChaoModel_7_Info->getdata("object_000DD874"))->ang[1] = Camera_Data1->Rotation.y;
-		if (PastChaoModel_8_Info) ((NJS_OBJECT*)PastChaoModel_8_Info->getdata("object_000DD874"))->ang[1] = Camera_Data1->Rotation.y;
-		if (PastChaoModel_9_Info) ((NJS_OBJECT*)PastChaoModel_9_Info->getdata("object_000DD874"))->ang[1] = Camera_Data1->Rotation.y;
-		if (PastChaoModel_10_Info) ((NJS_OBJECT*)PastChaoModel_10_Info->getdata("object_000DD874"))->ang[1] = Camera_Data1->Rotation.y;
+		if (PastChaoModel_2_Info) ((NJS_OBJECT*)PastChaoModel_2_Info->getmodel()->child)->ang[1] = Camera_Data1->Rotation.y;
+		if (PastChaoModel_7_Info) ((NJS_OBJECT*)PastChaoModel_7_Info->getmodel()->child)->ang[1] = Camera_Data1->Rotation.y;
+		if (PastChaoModel_8_Info) ((NJS_OBJECT*)PastChaoModel_8_Info->getmodel()->child)->ang[1] = Camera_Data1->Rotation.y;
+		if (PastChaoModel_9_Info) ((NJS_OBJECT*)PastChaoModel_9_Info->getmodel()->child)->ang[1] = Camera_Data1->Rotation.y;
+		if (PastChaoModel_10_Info) ((NJS_OBJECT*)PastChaoModel_10_Info->getmodel()->child)->ang[1] = Camera_Data1->Rotation.y;
 	}
 }

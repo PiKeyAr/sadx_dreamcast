@@ -223,8 +223,22 @@ void SetBlockEntryMaterialColor(float a, float r, float g, float b)
 	SetMaterialAndSpriteColor_Float(0, 0, 0, 0);
 }
 
+void UnloadLevelFiles_ADV02()
+{
+	if (DLLLoaded_Lantern) material_unregister_ptr(WhiteDiffuseADV02_External, LengthOfArray(WhiteDiffuseADV02_External), &ForceWhiteDiffuse1);
+	delete ADV02_0_Info;
+	delete ADV02_1_Info;
+	delete ADV02_2_Info;
+	delete ADV02_3_Info;
+	ADV02_0_Info = nullptr;
+	ADV02_1_Info = nullptr;
+	ADV02_2_Info = nullptr;
+	ADV02_3_Info = nullptr;
+}
+
 void LoadLevelFiles_ADV02()
 {
+	CheckAndUnloadLevelFiles();
 	ADV02_0_Info = new LandTableInfo(ModPath + "\\data\\ADV02\\0.sa1lvl");
 	ADV02_1_Info = new LandTableInfo(ModPath + "\\data\\ADV02\\1.sa1lvl");
 	ADV02_2_Info = new LandTableInfo(ModPath + "\\data\\ADV02\\2.sa1lvl");

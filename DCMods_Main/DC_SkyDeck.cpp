@@ -632,8 +632,19 @@ void __cdecl Talap0Display_FixedRotation(ObjectMaster *a2)
 	}
 }
 
+void UnloadLevelFiles_STG06()
+{
+	delete STG06_0_Info;
+	delete STG06_1_Info;
+	delete STG06_2_Info;
+	STG06_0_Info = nullptr;
+	STG06_1_Info = nullptr;
+	STG06_2_Info = nullptr;
+}
+
 void LoadLevelFiles_STG06()
 {
+	CheckAndUnloadLevelFiles();
 	STG06_0_Info = new LandTableInfo(ModPath + "\\data\\STG06\\0.sa1lvl");
 	STG06_1_Info = new LandTableInfo(ModPath + "\\data\\STG06\\1.sa1lvl");
 	STG06_2_Info = new LandTableInfo(ModPath + "\\data\\STG06\\2.sa1lvl");

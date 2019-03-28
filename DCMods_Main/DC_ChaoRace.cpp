@@ -4007,8 +4007,17 @@ void LoadChaoRaceJewelAndText(int a1, NJS_VECTOR *a2)
 	ChaoRaceStartGoalSprite_Load(3);
 }
 
+void UnloadLevelFiles_AL_RACE()
+{
+	delete AL_RACE_0_Info;
+	delete AL_RACE_1_Info;
+	AL_RACE_0_Info = nullptr;
+	AL_RACE_1_Info = nullptr;
+}
+
 void LoadLevelFiles_AL_RACE()
 {
+	CheckAndUnloadLevelFiles();
 	AL_RACE_0_Info = new LandTableInfo(ModPath + "\\data\\AL_RACE\\0.sa1lvl");
 	AL_RACE_1_Info = new LandTableInfo(ModPath + "\\data\\AL_RACE\\1.sa1lvl");
 	LandTable *AL_RACE_0 = AL_RACE_0_Info->getlandtable();

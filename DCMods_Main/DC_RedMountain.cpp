@@ -70,8 +70,19 @@ void SetCloudColor(NJS_ARGB *a)
 	SetMaterialAndSpriteColor_Float(0.2f + a->a, 0.2f + a->r, 0.2f + a->g, 0.2f + a->b);
 }
 
+void UnloadLevelFiles_STG05()
+{
+	delete STG05_0_Info;
+	delete STG05_1_Info;
+	delete STG05_2_Info;
+	STG05_0_Info = nullptr;
+	STG05_1_Info = nullptr;
+	STG05_2_Info = nullptr;
+}
+
 void LoadLevelFiles_STG05()
 {
+	CheckAndUnloadLevelFiles();
 	STG05_0_Info = new LandTableInfo(ModPath + "\\data\\STG05\\0.sa1lvl");
 	STG05_1_Info = new LandTableInfo(ModPath + "\\data\\STG05\\1.sa1lvl");
 	STG05_2_Info = new LandTableInfo(ModPath + "\\data\\STG05\\2.sa1lvl");

@@ -231,6 +231,7 @@ static void __declspec(naked) Obj_Icecap_DoColFlagThings_a()
 
 void LoadLevelFiles_STG08()
 {
+	CheckAndUnloadLevelFiles();
 	STG08_0_Info = new LandTableInfo(ModPath + "\\data\\STG08\\0.sa1lvl");
 	STG08_1_Info = new LandTableInfo(ModPath + "\\data\\STG08\\1.sa1lvl");
 	STG08_2_Info = new LandTableInfo(ModPath + "\\data\\STG08\\2.sa1lvl");

@@ -415,8 +415,24 @@ void RenderCatapult(NJS_ACTION *a1, float frame, float scale)
 	DrawQueueDepthBias = 0.0f;
 }
 
+void UnloadLevelFiles_STG03()
+{
+	if (DLLLoaded_Lantern)
+	{
+		material_unregister_ptr(LevelSpecular_TwinkleExternal, LengthOfArray(LevelSpecular_TwinkleExternal), &ForceDiffuse0Specular0);
+		material_unregister_ptr(ObjectSpecular_TwinkleExternal, LengthOfArray(ObjectSpecular_TwinkleExternal), &ForceDiffuse0Specular1);
+	}
+	delete STG03_0_Info;
+	delete STG03_1_Info;
+	delete STG03_2_Info;
+	STG03_0_Info = nullptr;
+	STG03_1_Info = nullptr;
+	STG03_2_Info = nullptr;
+}
+
 void LoadLevelFiles_STG03()
 {
+	CheckAndUnloadLevelFiles();
 	STG03_0_Info = new LandTableInfo(ModPath + "\\data\\STG03\\0.sa1lvl");;
 	STG03_1_Info = new LandTableInfo(ModPath + "\\data\\STG03\\1.sa1lvl");;
 	STG03_2_Info = new LandTableInfo(ModPath + "\\data\\STG03\\2.sa1lvl");;
