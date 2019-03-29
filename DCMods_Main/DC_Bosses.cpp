@@ -40,6 +40,7 @@ NJS_TEXLIST texlist_e101 = { arrayptrandlength(textures_e101) };
 #include "Chaos0_Model.h"
 #include "Chaos2_Column.h"
 #include "Chaos4_water.h"
+#include "Chaos6_Motion.h"
 #include "Chaos7_fixes.h"
 #include "ZeroE101R_Water.h"
 #include "E101Kai_Model.h"
@@ -1408,6 +1409,7 @@ void Chaos6_Init()
 	ResizeTextureList((NJS_TEXLIST*)0x11F04A0, textures_chaos6_2);
 	WriteJump((void*)0x556FD0, Chaos6SkyboxBottom);
 	WriteJump((void*)0x556F20, Chaos6SkyboxMain);
+	((NJS_ACTION*)0x134C56C)->motion = &Chaos6Animation3; //Fix flickering stuff in Chaos 6' walking animation
 	if (DLLLoaded_Lantern)
 	{
 		material_register_ptr(Chaos6ObjectMaterials, LengthOfArray(Chaos6ObjectMaterials), &ForceDiffuse0Specular0or1);

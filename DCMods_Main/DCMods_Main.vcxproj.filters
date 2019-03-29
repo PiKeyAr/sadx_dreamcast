@@ -671,5 +671,8 @@
     <ClInclude Include="Data\ZeroE101R_Water.h">
       <Filter>Header Files\Levels\Bosses</Filter>
     </ClInclude>
+    <ClInclude Include="Data\Chaos6_Motion.h">
+      <Filter>Header Files\Levels\Bosses</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
