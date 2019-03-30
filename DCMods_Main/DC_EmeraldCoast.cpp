@@ -9,10 +9,6 @@ NJS_TEXLIST texlist_ecoast2 = { arrayptrandlength(textures_ecoast2) };
 NJS_TEXNAME textures_ecoast3[94];
 NJS_TEXLIST texlist_ecoast3 = { arrayptrandlength(textures_ecoast3) };
 
-LandTable *STG01_0 = nullptr;
-LandTable *STG01_1 = nullptr;
-LandTable *STG01_2 = nullptr;
-
 #include "EmeraldCoast_Objects.h"
 #include "BigBeach.h"
 
@@ -487,9 +483,9 @@ void LoadLevelFiles_STG01()
 	STG01_0_Info = new LandTableInfo(ModPath + "\\data\\STG01\\0.sa1lvl");
 	STG01_1_Info = new LandTableInfo(ModPath + "\\data\\STG01\\1.sa1lvl");
 	STG01_2_Info = new LandTableInfo(ModPath + "\\data\\STG01\\2.sa1lvl");
-	STG01_0 = STG01_0_Info->getlandtable();
-	STG01_1 = STG01_1_Info->getlandtable();
-	STG01_2 = STG01_2_Info->getlandtable();
+	LandTable *STG01_0 = STG01_0_Info->getlandtable();
+	LandTable *STG01_1 = STG01_1_Info->getlandtable();
+	LandTable *STG01_2 = STG01_2_Info->getlandtable();
 	STG01_0->TexList = &texlist_ecoast1;
 	STG01_1->TexList = &texlist_ecoast2;
 	STG01_2->TexList = &texlist_ecoast3;

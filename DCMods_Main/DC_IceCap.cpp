@@ -11,10 +11,6 @@ NJS_TEXLIST texlist_icecap2 = { arrayptrandlength(textures_icecap2) };
 NJS_TEXNAME textures_icecap3[40];
 NJS_TEXLIST texlist_icecap3 = { arrayptrandlength(textures_icecap3) };
 
-LandTable *STG08_0 = nullptr;
-LandTable *STG08_1 = nullptr;
-LandTable *STG08_2 = nullptr;
-LandTable *STG08_3 = nullptr;
 
 DataPointer(float, CurrentFogDist, 0x03ABDC64);
 DataPointer(float, CurrentFogLayer, 0x03ABDC60);
@@ -187,10 +183,10 @@ void Obj_Icecap_DoColFlagThingsX(int some_flags)
 	unsigned __int32 _flags; // eax
 	if (STG08_3_Info)
 	{
-		if (STG08_3->COLCount - 1 >= 0)
+		if (STG08_3_Info->getlandtable()->COLCount - 1 >= 0)
 		{
-			ptr = (Uint32*)STG08_3->Col->Flags;
-			count = STG08_3->COLCount;
+			ptr = (Uint32*)&STG08_3_Info->getlandtable()->Col->Flags;
+			count = STG08_3_Info->getlandtable()->COLCount;
 			do
 			{
 				flags = *ptr;
@@ -236,10 +232,10 @@ void LoadLevelFiles_STG08()
 	STG08_1_Info = new LandTableInfo(ModPath + "\\data\\STG08\\1.sa1lvl");
 	STG08_2_Info = new LandTableInfo(ModPath + "\\data\\STG08\\2.sa1lvl");
 	STG08_3_Info = new LandTableInfo(ModPath + "\\data\\STG08\\3.sa1lvl");
-	STG08_0 = STG08_0_Info->getlandtable();
-	STG08_1 = STG08_1_Info->getlandtable();
-	STG08_2 = STG08_2_Info->getlandtable();
-	STG08_3 = STG08_3_Info->getlandtable();
+	LandTable *STG08_0 = STG08_0_Info->getlandtable();
+	LandTable *STG08_1 = STG08_1_Info->getlandtable();
+	LandTable *STG08_2 = STG08_2_Info->getlandtable();
+	LandTable *STG08_3 = STG08_3_Info->getlandtable();
 	STG08_0->TexList = &texlist_icecap1;
 	STG08_1->TexList = &texlist_icecap2;
 	STG08_2->TexList = &texlist_icecap3;

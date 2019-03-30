@@ -1,9 +1,5 @@
 #include "stdafx.h"
 
-LandTable *STG06_0 = nullptr;
-LandTable *STG06_1 = nullptr;
-LandTable *STG06_2 = nullptr;
-
 NJS_TEXNAME textures_skydeck1[76];
 NJS_TEXLIST texlist_skydeck1 = { arrayptrandlength(textures_skydeck1) };
 
@@ -648,9 +644,9 @@ void LoadLevelFiles_STG06()
 	STG06_0_Info = new LandTableInfo(ModPath + "\\data\\STG06\\0.sa1lvl");
 	STG06_1_Info = new LandTableInfo(ModPath + "\\data\\STG06\\1.sa1lvl");
 	STG06_2_Info = new LandTableInfo(ModPath + "\\data\\STG06\\2.sa1lvl");
-	STG06_0 = STG06_0_Info->getlandtable();
-	STG06_1 = STG06_1_Info->getlandtable();
-	STG06_2 = STG06_2_Info->getlandtable();
+	LandTable *STG06_0 = STG06_0_Info->getlandtable();
+	LandTable *STG06_1 = STG06_1_Info->getlandtable();
+	LandTable *STG06_2 = STG06_2_Info->getlandtable();
 	STG06_0->TexList = &texlist_skydeck1;
 	STG06_1->TexList = &texlist_skydeck2;
 	STG06_2->TexList = &texlist_skydeck3;
@@ -843,11 +839,11 @@ void SkyDeck_OnFrame()
 	if (CurrentLevel == 6)
 	{
 		{
-			if (STG06_0_Info && (GameState == 3 || GameState == 4 || GameState == 7 || GameState == 21))
-				for (int i = 0; i < STG06_0->COLCount; i++)
+			if (STG06_1_Info && (GameState == 3 || GameState == 4 || GameState == 7 || GameState == 21))
+				for (int i = 0; i < STG06_1_Info->getlandtable()->COLCount; i++)
 				{
-					if (STG06_0->Col[i].anonymous_6 & 4)
-						STG06_0->Col[i].Flags |= ColFlags_Solid;
+					if (STG06_1_Info->getlandtable()->Col[i].anonymous_6 & 4)
+						STG06_1_Info->getlandtable()->Col[i].Flags |= ColFlags_Solid;
 				}
 		}
 	}

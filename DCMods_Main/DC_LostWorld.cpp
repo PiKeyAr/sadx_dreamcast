@@ -1,10 +1,6 @@
 #include "stdafx.h"
 #include "LostWorld_objects.h"
 
-LandTable *STG07_0 = nullptr;
-LandTable *STG07_1 = nullptr;
-LandTable *STG07_2 = nullptr;
-
 NJS_TEXNAME textures_lw1[58];
 NJS_TEXLIST texlist_lw1 = { arrayptrandlength(textures_lw1) };
 
@@ -59,9 +55,9 @@ void LoadLevelFiles_STG07()
 	STG07_0_Info = new LandTableInfo(ModPath + "\\data\\STG07\\0.sa1lvl");
 	STG07_1_Info = new LandTableInfo(ModPath + "\\data\\STG07\\1.sa1lvl");
 	STG07_2_Info = new LandTableInfo(ModPath + "\\data\\STG07\\2.sa1lvl");
-	STG07_0 = STG07_0_Info->getlandtable();
-	STG07_1 = STG07_1_Info->getlandtable();
-	STG07_2 = STG07_2_Info->getlandtable();
+	LandTable *STG07_0 = STG07_0_Info->getlandtable();
+	LandTable *STG07_1 = STG07_1_Info->getlandtable();
+	LandTable *STG07_2 = STG07_2_Info->getlandtable();
 	STG07_0->TexList = &texlist_lw1;
 	STG07_1->TexList = &texlist_lw2;
 	STG07_2->TexList = &texlist_lw3;

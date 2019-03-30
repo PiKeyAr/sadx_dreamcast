@@ -14,10 +14,6 @@ NJS_TEXLIST texlist_finalegg3 = { arrayptrandlength(textures_finalegg3) };
 NJS_TEXNAME textures_cylinder[257];
 NJS_TEXLIST texlist_cylinder = { arrayptrandlength(textures_cylinder) };
 
-LandTable *STG10_0 = nullptr;
-LandTable *STG10_1 = nullptr;
-LandTable *STG10_2 = nullptr;
-
 DataPointer(NJS_ACTION, off_1A1F944, 0x1A1F944);
 DataArray(FogData, FinalEgg1Fog, 0x019C8FF0, 3);
 DataArray(FogData, FinalEgg2Fog, 0x019C9020, 3);
@@ -677,9 +673,9 @@ void LoadLevelFiles_STG10()
 	STG10_0_Info = new LandTableInfo(ModPath + "\\data\\STG10\\0.sa1lvl");
 	STG10_1_Info = new LandTableInfo(ModPath + "\\data\\STG10\\1.sa1lvl");
 	STG10_2_Info = new LandTableInfo(ModPath + "\\data\\STG10\\2.sa1lvl");
-	STG10_0 = STG10_0_Info->getlandtable();
-	STG10_1 = STG10_1_Info->getlandtable();
-	STG10_2 = STG10_2_Info->getlandtable();
+	LandTable *STG10_0 = STG10_0_Info->getlandtable();
+	LandTable *STG10_1 = STG10_1_Info->getlandtable();
+	LandTable *STG10_2 = STG10_2_Info->getlandtable();
 	STG10_0->TexList = &texlist_finalegg1;
 	STG10_1->TexList = &texlist_finalegg2;
 	STG10_2->TexList = &texlist_finalegg3;

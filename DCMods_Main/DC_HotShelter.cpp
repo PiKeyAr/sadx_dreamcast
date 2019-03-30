@@ -1,10 +1,6 @@
 #include "stdafx.h"
 #include "HotShelter_Objects.h"
 
-LandTable *STG12_0 = nullptr;
-LandTable *STG12_1 = nullptr;
-LandTable *STG12_2 = nullptr;
-
 NJS_TEXNAME textures_shelter1[78];
 NJS_TEXLIST texlist_hotshelter1 = { arrayptrandlength(textures_shelter1) };
 
@@ -287,9 +283,9 @@ void LoadLevelFiles_STG12()
 	STG12_0_Info = new LandTableInfo(ModPath + "\\data\\STG12\\0.sa1lvl");
 	STG12_1_Info = new LandTableInfo(ModPath + "\\data\\STG12\\1.sa1lvl");
 	STG12_2_Info = new LandTableInfo(ModPath + "\\data\\STG12\\2.sa1lvl");
-	STG12_0 = STG12_0_Info->getlandtable();
-	STG12_1 = STG12_1_Info->getlandtable();
-	STG12_2 = STG12_2_Info->getlandtable();
+	LandTable *STG12_0 = STG12_0_Info->getlandtable();
+	LandTable *STG12_1 = STG12_1_Info->getlandtable();
+	LandTable *STG12_2 = STG12_2_Info->getlandtable();
 	STG12_0->TexList = &texlist_hotshelter1;
 	STG12_1->TexList = &texlist_hotshelter2;
 	STG12_2->TexList = &texlist_hotshelter3;
