@@ -14,11 +14,6 @@ NJS_TEXLIST texlist_casino3 = { arrayptrandlength(textures_casino3) };
 NJS_TEXNAME textures_casino4[71];
 NJS_TEXLIST texlist_casino4 = { arrayptrandlength(textures_casino4) };
 
-LandTable *STG09_0 = nullptr;
-LandTable *STG09_1 = nullptr;
-LandTable *STG09_2 = nullptr;
-LandTable *STG09_3 = nullptr;
-
 static short CurrentPlayer = -1;
 static float distance_float;
 static int anim1 = 75;
@@ -37,7 +32,6 @@ static int shift1 = 65;
 static int shift2 = -10;
 static int shift3 = 0;
 static int carduvSTG09_reala = 1;
-static float cowgirlframe = 0;
 static int cowgirl_shift1 = 65;
 static int cowgirl_shift2 = 0;
 static bool WhiteSonic = false;
@@ -150,6 +144,27 @@ void __cdecl Loop_DisplayF(ObjectMaster *a1)
 	}
 }
 
+void AddDynamicCollision(ObjectMaster *a1) 
+{
+	EntityData1 *original = a1->Data1;
+	NJS_OBJECT *colobject;
+
+	colobject = ObjectArray_GetFreeObject();
+	colobject->scl[0] = 1.0f;
+	colobject->scl[1] = 1.0f;
+	colobject->scl[2] = 1.0f;
+	colobject->ang[0] = original->Rotation.x;
+	colobject->ang[1] = original->Rotation.y;
+	colobject->ang[2] = original->Rotation.z;
+	colobject->pos[0] = original->Position.x;
+	colobject->pos[1] = original->Position.y;
+	colobject->pos[2] = original->Position.z;
+	colobject->basicdxmodel = a1->Data1->Object->basicdxmodel;
+	colobject->evalflags = NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK | NJD_EVAL_SKIP | NJD_EVAL_HIDE;
+	a1->Data1->Object = colobject;
+	DynamicCOL_Add((ColFlags)0x8000000, a1, colobject);
+}
+
 void __cdecl Cowgirl_Display(ObjectMaster *a1)
 {
 	EntityData1 *v1; // esi@1
@@ -169,8 +184,48 @@ void __cdecl Cowgirl_Display(ObjectMaster *a1)
 		njPushMatrix(0);
 		njTranslate(0, 311.62f, 0, 338.93f);
 		njRotateXYZ(0, 0, 0x1E00, 0);
-		sub_405450(&action_cowgirl_anim, cowgirlframe, 1.0f);
+		sub_405450(&action_cowgirl_anim, *(float*)&a1->Data1->CharIndex, 1.0f);
 		njPopMatrix(1u);
+	}
+}
+
+void Cowgirl_Main(ObjectMaster *a1)
+{
+	EntityData1 *v1 = a1->Data1;
+	float CowgirlFrame;
+	CowgirlFrame = *(float*)&a1->Data1->CharIndex + 0.08f;
+	if (CowgirlFrame > 30) CowgirlFrame = 0;
+	//a1->Data1->Object->ang[0] = a1->Data1->Rotation.x + 0x8 + cowgirl_anim_5_rot[(int)CowgirlFrame].key[0] + cowgirl_anim_6_rot[(int)CowgirlFrame].key[0];
+	//a1->Data1->Object->ang[1] = a1->Data1->Rotation.y + 0xFFFFEAB0 + cowgirl_anim_5_rot[(int)CowgirlFrame].key[1] + cowgirl_anim_6_rot[(int)CowgirlFrame].key[1];
+	//a1->Data1->Object->ang[2] = a1->Data1->Rotation.z + 0 + cowgirl_anim_5_rot[(int)CowgirlFrame].key[2] + cowgirl_anim_6_rot[(int)CowgirlFrame].key[2];
+	*(float*)&a1->Data1->CharIndex = CowgirlFrame;
+	Cowgirl_Display(a1);
+	AddToCollisionList(v1);
+}
+
+void Cowgirl_Delete(ObjectMaster *a1)
+{
+	if (a1->Data1->Object)
+	{
+		DynamicCOL_Remove(a1, a1->Data1->Object);
+		ObjectArray_Remove(a1->Data1->Object);
+	}
+	CheckThingButThenDeleteObject(a1);
+}
+
+void Cowgirl_Load(ObjectMaster *a1)
+{
+	if (!ClipObject(a1, 640010.0f))
+	{
+		Collision_Init(a1, stru_1E763B8, 3, 4u);
+		//a1->Data1->Object = &objectSTG09_001D1C80;
+		//AddDynamicCollision(a1);
+		//a1->Data1->Object->pos[0] = a1->Data1->Position.x + 54.19999f - 36.88602;
+		//a1->Data1->Object->pos[1] = a1->Data1->Position.y + 101 + 60.00005;
+		//a1->Data1->Object->pos[2] = a1->Data1->Position.z -28 + 0.511601;
+		a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Cowgirl_Display;
+		a1->MainSub = (void(__cdecl *)(ObjectMaster *))Cowgirl_Main;
+		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))Cowgirl_Delete;
 	}
 }
 
@@ -801,10 +856,10 @@ void LoadLevelFiles_STG09()
 	STG09_1_Info = new LandTableInfo(ModPath + "\\data\\STG09\\1.sa1lvl");
 	STG09_2_Info = new LandTableInfo(ModPath + "\\data\\STG09\\2.sa1lvl");
 	STG09_3_Info = new LandTableInfo(ModPath + "\\data\\STG09\\3.sa1lvl");
-	STG09_0 = STG09_0_Info->getlandtable();
-	STG09_1 = STG09_1_Info->getlandtable();
-	STG09_2 = STG09_2_Info->getlandtable();
-	STG09_3 = STG09_3_Info->getlandtable();
+	LandTable *STG09_0 = STG09_0_Info->getlandtable();
+	LandTable *STG09_1 = STG09_1_Info->getlandtable();
+	LandTable *STG09_2 = STG09_2_Info->getlandtable();
+	LandTable *STG09_3 = STG09_3_Info->getlandtable();
 	STG09_0->TexList = &texlist_casino1;
 	STG09_1->TexList = &texlist_casino2;
 	STG09_2->TexList = &texlist_casino3;
@@ -918,7 +973,7 @@ void Casinopolis_Init()
 		stru_1E763B8[0].origin.z = stru_1E763B8[0].origin.z - 14;
 		stru_1E763B8[1].origin.z = stru_1E763B8[1].origin.z - 14;
 		stru_1E763B8[2].origin.z = stru_1E763B8[2].origin.z - 14;
-		WriteJump((void*)0x5CAA90, Cowgirl_Display);
+		WriteJump(ONeonk, Cowgirl_Load);
 	}
 	*(NJS_MODEL_SADX*)0x01DF7140 = attachSTG09_00177188; //Slot red
 	*(NJS_MODEL_SADX*)0x01DF5138 = attachSTG09_00175E44; //Slot blue
@@ -1070,8 +1125,6 @@ void Casinopolis_OnFrame()
 	//Cowgirl
 	if (CurrentLevel == 9 && CurrentCharacter == 3 && CowgirlOn && GameState != 16)
 	{
-		if (cowgirlframe > 30) cowgirlframe = 0;
-		cowgirlframe = cowgirlframe + 0.08f;
 		//Cowgirl UVs
 		if (FrameCounter % 16 == 0)
 		{
@@ -1165,10 +1218,10 @@ void Casinopolis_OnFrame()
 		{
 			if (CurrentCharacter == 3)
 			{
-				if (entity->Position.y > -30.0f) STG09_0->Col[STG09_0->COLCount - 2].Flags = 0xA0040002;
-				else STG09_0->Col[STG09_0->COLCount - 2].Flags = 0xA0040000;
+				if (entity->Position.y > -30.0f) STG09_0_Info->getlandtable()->Col[STG09_0_Info->getlandtable()->COLCount - 2].Flags = 0xA0040002;
+				else STG09_0_Info->getlandtable()->Col[STG09_0_Info->getlandtable()->COLCount - 2].Flags = 0xA0040000;
 			}
-			else STG09_0->Col[STG09_0->COLCount - 2].Flags = 0xA0040000;
+			else STG09_0_Info->getlandtable()->Col[STG09_0_Info->getlandtable()->COLCount - 2].Flags = 0xA0040000;
 		}
 		//Rotating thing
 		matlistSTG09_001C448C[3].attr_texId = monitorimage + 140;
