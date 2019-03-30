@@ -410,8 +410,8 @@ void ADV02_Init()
 	WriteCall((void*)0x0053CD37, SetColor); //Master Emerald glow
 	for (int i = 0; i < 3; i++)
 	{
-		MR1FogDay[i].Distance = -9000.0f;
-		MR1FogDay[i].Layer = -1500.0f;
+		MR1FogDay[i].Distance = -10000.0f;
+		MR1FogDay[i].Layer = -2500.0f;
 		MR1FogDay[i].Toggle = 1;
 		MR1FogDay[i].Color = 0xFFA0A0A0;
 		MR1FogEvening[i].Distance = -9000.0f;
