@@ -872,6 +872,11 @@ void SetHintMonitorTransparency(NJS_ARGB *a1)
 	SetMaterialAndSpriteColor_Float(min(0.69f, a1->a), min(0.69f, a1->r), min(0.69f, a1->g), min(0.69f, a1->b));
 }
 
+void DrawNPCShadowFix(NJS_MODEL_SADX *a1)
+{
+	DrawModel_Queue(a1, QueuedModelFlagsB_EnableZWrite);
+}
+
 void General_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 {
 	ReplacePVR("AL_BARRIA");
@@ -1034,6 +1039,8 @@ void General_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 	ReplacePVM("WING_P");
 	ReplacePVM("WING_T");
 	ReplacePVM("ZOU");
+	//NPC shadow fix
+	WriteCall((void*)0x5252E8, DrawNPCShadowFix);
 	//Replace SADX DirLight data with SA1 DirLight data
 	DefaultDirLight_SADX.LightDirection.x = DirLights_SA1[0].LightDirection.x;
 	DefaultDirLight_SADX.LightDirection.y = DirLights_SA1[0].LightDirection.y;
