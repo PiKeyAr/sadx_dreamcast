@@ -738,7 +738,11 @@ static Trampoline SetGlobalPoint2Col_Colors_t(0x402F10, 0x402F18, SetGlobalPoint
 static void __cdecl SetGlobalPoint2Col_Colors_r(Uint32 one, Uint32 two, Uint32 threefour)
 {
 	auto original = reinterpret_cast<decltype(SetGlobalPoint2Col_Colors_r)*>(SetGlobalPoint2Col_Colors_t.Target());
-	if (ScreenFade_Alpha < 255 || ScreenFade_Color.color == 0xFFFFFFFF) original(one, two, threefour);
+	if (ScreenFade_Alpha < 200 || ScreenFade_Color.color == 0xFFFFFFFF)
+	{
+		original(one, two, threefour);
+		GlobalColor_wait = false;
+	}
 	else
 	{
 		original(0, 0, 0);
@@ -1333,10 +1337,13 @@ void General_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 void General_OnFrame()
 {
 	//Global colors screen fade fix
-	if (GlobalColor_wait && ScreenFade_Alpha < 255)
+	if (GlobalColor_wait)
 	{
-		SetGlobalPoint2Col_Colors(GlobalColor_one, GlobalColor_two, GlobalColor_threefour);
-		GlobalColor_wait = false;
+		if (ScreenFade_Alpha < 200)
+		{
+			SetGlobalPoint2Col_Colors(GlobalColor_one, GlobalColor_two, GlobalColor_threefour);
+			GlobalColor_wait = false;
+		}
 	}
 	//Frame counter for cutscenes
 	if (EV_MainThread_ptr != nullptr)
