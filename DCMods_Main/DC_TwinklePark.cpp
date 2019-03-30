@@ -567,27 +567,27 @@ void TwinklePark_Init()
 	WriteCall((void*)0x621FE5, RenderCatapult); //Catapult fix
 	*(NJS_OBJECT*)0x027B5884 = objectSTG03_000B2A40; //O Foothold
 	*(NJS_OBJECT*)0x038E50C4 = objectSTG03_034E50C4; //Buyon material fixes
-	*(NJS_OBJECT*)0x038E3584 = objectSTG03_034E3584;	//Buyon material fixes
-	*(NJS_OBJECT*)0x038E3B2C = objectSTG03_034E3B2C;	//Buyon material fixes
+	*(NJS_OBJECT*)0x038E3584 = objectSTG03_034E3584; //Buyon material fixes
+	*(NJS_OBJECT*)0x038E3B2C = objectSTG03_034E3B2C; //Buyon material fixes
 	ResizeTextureList((NJS_TEXLIST*)0x26B9960, textures_twinkle1);
 	ResizeTextureList((NJS_TEXLIST*)0x2721A8C, textures_twinkle2);
 	ResizeTextureList((NJS_TEXLIST*)0x26FEA54, textures_twinkle3);
-	*(NJS_OBJECT*)0x0279D364 = objectSTG03_000A0E58; // barrel
-	*(NJS_OBJECT *)0x027A247C = objectSTG03_023A247C; // rollercoaster
-	((NJS_OBJECT *)0x38BAA3C)->basicdxmodel->mats[0].diffuse.color = 0xFFB2B2B2; //cart
-	((NJS_OBJECT *)0x38BAA3C)->basicdxmodel->mats[1].diffuse.color = 0xFFB2B2B2; //cart
+	*(NJS_OBJECT*)0x0279D364 = objectSTG03_000A0E58; //Barrel
+	*(NJS_OBJECT *)0x027A247C = objectSTG03_023A247C; //Rollercoaster
+	((NJS_OBJECT *)0x38BAA3C)->basicdxmodel->mats[0].diffuse.color = 0xFFB2B2B2; //Cart
+	((NJS_OBJECT *)0x38BAA3C)->basicdxmodel->mats[1].diffuse.color = 0xFFB2B2B2; //Cart
 	((NJS_OBJECT *)0x027AC44C)->basicdxmodel->mats[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
 	((NJS_OBJECT *)0x027AC44C)->basicdxmodel->mats[2].attrflags |= NJD_FLAG_IGNORE_LIGHT;
 	((NJS_OBJECT *)0x027AC44C)->basicdxmodel->mats[4].attrflags |= NJD_FLAG_IGNORE_LIGHT;
 	((NJS_OBJECT *)0x027AC44C)->basicdxmodel->mats[5].attrflags |= NJD_FLAG_IGNORE_LIGHT;
 	((NJS_OBJECT *)0x027AC44C)->basicdxmodel->mats[8].attrflags |= NJD_FLAG_IGNORE_LIGHT;
 	WriteData<1>((char*)0x0079DB92, 0x01); //OPanel blending
-	*(NJS_OBJECT*)0x027AAFF4 = objectSTG03_000AA710; // pirate ship
-	*(NJS_MODEL_SADX*)0x027AC420 = attachSTG03_000AB6B4;//pirate ship blinking supporter
-	*(NJS_MODEL_SADX*)0x027AB6B4 = attachSTG03_000AACA0;//pirate ship rotating thing right
-	*(NJS_MODEL_SADX*)0x027A6E74 = attachSTG03_000A92F0;//pirate ship rotating thing left
-	*(NJS_OBJECT*)0x027BF9DC = objectSTG03_000B9E98; // spinning roof
-	*(NJS_OBJECT*)0x027BCD7C = objectSTG03_000B812C; // lilypad
+	*(NJS_OBJECT*)0x027AAFF4 = objectSTG03_000AA710; //Pirate ship
+	*(NJS_MODEL_SADX*)0x027AC420 = attachSTG03_000AB6B4;//Pirate ship blinking supporter
+	*(NJS_MODEL_SADX*)0x027AB6B4 = attachSTG03_000AACA0;//Pirate ship rotating thing right
+	*(NJS_MODEL_SADX*)0x027A6E74 = attachSTG03_000A92F0;//Pirate ship rotating thing left
+	*(NJS_OBJECT*)0x027BF9DC = objectSTG03_000B9E98; //Spinning roof
+	*(NJS_OBJECT*)0x027BCD7C = objectSTG03_000B812C; //Lilypad
 	*(NJS_OBJECT *)0x027C05FC = objectSTG03_000BA81C; //Monitor in Act 1
 	*(NJS_OBJECT *)0x027A62E4 = objectSTG03_000A89E4; //Flag with lamp
 	((NJS_ACTION*)0x027C295C)->object = &objectSTG03_000A7A7C; //Flag 1
@@ -609,12 +609,12 @@ void TwinklePark_Init()
 	((NJS_OBJECT *)0x027A5464)->basicdxmodel->mats[2].attrflags |= NJD_FLAG_IGNORE_LIGHT; //Flag with lamp 2
 	((NJS_OBJECT *)0x027A58A4)->basicdxmodel->mats[1].attrflags |= NJD_FLAG_IGNORE_LIGHT; //Flag with lamp 3
 	((NJS_OBJECT *)0x027A58A4)->basicdxmodel->mats[2].attrflags |= NJD_FLAG_IGNORE_LIGHT; //Flag with lamp 4
-	*(NJS_OBJECT*)0x027B6170 = objectSTG03_000B34C8; // yellow flower pot (wall)
-	*(NJS_OBJECT*)0x027B80C4 = objectSTG03_000B4F1C; // yellow flower pot
-	*(NJS_OBJECT*)0x027B6A58 = objectSTG03_000B34C8_2; // pink flower pot (wall)
-	*(NJS_OBJECT*)0x027B972C = objectSTG03_000B5EE8; // pink flower pot
-	*(NJS_OBJECT*)0x027BAC54 = objectSTG03_000B6CF8; // yellow flower bed
-	*(NJS_OBJECT*)0x027BC1C4 = objectSTG03_000B6CF8_2; // pink flower bed
+	*(NJS_OBJECT*)0x027B6170 = objectSTG03_000B34C8; //Yellow flower pot (wall)
+	*(NJS_OBJECT*)0x027B80C4 = objectSTG03_000B4F1C; //Yellow flower pot
+	*(NJS_OBJECT*)0x027B6A58 = objectSTG03_000B34C8_2; //Pink flower pot (wall)
+	*(NJS_OBJECT*)0x027B972C = objectSTG03_000B5EE8; //Pink flower pot
+	*(NJS_OBJECT*)0x027BAC54 = objectSTG03_000B6CF8; //Yellow flower bed
+	*(NJS_OBJECT*)0x027BC1C4 = objectSTG03_000B6CF8_2; //Pink flower bed
 	for (unsigned int i = 0; i < 3; i++)
 	{
 		TwinklePark1Fog[i].Layer = 1500.0f;
@@ -638,7 +638,7 @@ void TwinklePark_OnFrame()
 		{
 			if (GameState != 16)
 			{
-				objectSTG03_000AEC6C.ang[1] = objectSTG03_000AEC6C.ang[1] + 64;
+				((NJS_OBJECT*)STG03_1_Info->getdata("objectSTG03_000AEC6C"))->ang[1] = ((NJS_OBJECT*)STG03_1_Info->getdata("objectSTG03_000AEC6C"))->ang[1] + 64;
 				if (anim > 87) anim = 74;
 				((NJS_MATERIAL*)STG03_1_Info->getdata("matlistSTG03_00065D8C"))[0].attr_texId = anim;
 				((NJS_MATERIAL*)STG03_1_Info->getdata("matlistSTG03_0001A3A8"))[0].attr_texId = anim;
