@@ -32,7 +32,10 @@ FunctionPointer(float, sub_49E920, (float x, float y, float z, Rotation3 *rotati
 FunctionPointer(SubtitleThing *, sub_6424A0, (int a1, int a2, float a3, float a4, float a5, float a6, float a7, float a8), 0x6424A0);
 FunctionPointer(void, sub_4014B0, (), 0x4014B0);
 FunctionPointer(void, sub_409E70, (NJS_MODEL_SADX *a1, int a2, float a3), 0x409E70);
-
+static Uint32 GlobalColor_one = 0;
+static Uint32 GlobalColor_two = 0;
+static Uint32 GlobalColor_threefour = 0;
+static bool GlobalColor_wait = false;
 static bool EnableCutsceneFix = true;
 int CutsceneSkipMode = 0;
 int CutsceneFrameCounter = 0;
@@ -730,6 +733,22 @@ static Sint32 __cdecl DisplayTitleCard_r()
 	return original();
 }
 
+static void SetGlobalPoint2Col_Colors_r(Uint32 one, Uint32 two, Uint32 threefour);
+static Trampoline SetGlobalPoint2Col_Colors_t(0x402F10, 0x402F18, SetGlobalPoint2Col_Colors_r);
+static void __cdecl SetGlobalPoint2Col_Colors_r(Uint32 one, Uint32 two, Uint32 threefour)
+{
+	auto original = reinterpret_cast<decltype(SetGlobalPoint2Col_Colors_r)*>(SetGlobalPoint2Col_Colors_t.Target());
+	if (ScreenFade_Alpha < 255 || ScreenFade_Color.color == 0xFFFFFFFF) original(one, two, threefour);
+	else
+	{
+		original(0, 0, 0);
+		GlobalColor_one = one;
+		GlobalColor_two = two;
+		GlobalColor_threefour = threefour;
+		GlobalColor_wait = true;
+	}
+}
+
 void DrawUnderwaterOverlay(NJS_MATRIX_PTR m)
 {
 	NJS_COLOR WaterOverlay_Colors;
@@ -1313,6 +1332,12 @@ void General_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 
 void General_OnFrame()
 {
+	//Global colors screen fade fix
+	if (GlobalColor_wait && ScreenFade_Alpha < 255)
+	{
+		SetGlobalPoint2Col_Colors(GlobalColor_one, GlobalColor_two, GlobalColor_threefour);
+		GlobalColor_wait = false;
+	}
 	//Frame counter for cutscenes
 	if (EV_MainThread_ptr != nullptr)
 	{
