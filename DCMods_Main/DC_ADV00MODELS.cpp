@@ -825,6 +825,7 @@ void RenderStreetLight(NJS_MODEL_SADX *model, QueuedModelFlagsB blend, float sca
 
 void SwitchLight_Night()
 {
+	//PrintDebug("Time: Night\n");
 	//Night reflections Act 0
 	if (ADV00_0_Info)
 	{
@@ -841,7 +842,6 @@ void SwitchLight_Night()
 		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_00066CF0"))[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
 		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_00066CF0"))[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
 		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_00066CF0"))[2].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0017D59C"))[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
 		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_00031C48"))[3].attrflags |= NJD_FLAG_IGNORE_LIGHT;
 		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_00030274"))[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
 		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_00022CC0"))[5].attrflags |= NJD_FLAG_IGNORE_LIGHT;
@@ -883,8 +883,6 @@ void SwitchLight_Night()
 		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_000631AC"))[2].attr_texId = 207;
 		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_00046404"))[0].attr_texId = 209;
 		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_00046404"))[1].attr_texId = 209;
-		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0007C240"))[0].attr_texId = 209;
-		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0007C240"))[1].attr_texId = 209;
 		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0002B718"))[0].attr_texId = 211;
 		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0002F984"))[0].attr_texId = 211;
 		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_000631AC"))[0].attr_texId = 213;
@@ -967,6 +965,7 @@ void SwitchLight_Night()
 
 void SwitchLight_Evening()
 {
+	//PrintDebug("Time: Evening\n");
 	//Evening reflections Act 0
 	if (ADV00_0_Info)
 	{
@@ -1024,8 +1023,6 @@ void SwitchLight_Evening()
 		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_000631AC"))[2].attr_texId = 206;
 		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_00046404"))[0].attr_texId = 208;
 		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_00046404"))[1].attr_texId = 208;
-		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0007C240"))[0].attr_texId = 208;
-		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0007C240"))[1].attr_texId = 208;
 		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0002B718"))[0].attr_texId = 210;
 		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0002F984"))[0].attr_texId = 210;
 		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_000631AC"))[0].attr_texId = 212;
@@ -1104,11 +1101,11 @@ void SwitchLight_Evening()
 	}
 	//Lamp pole
 	attachADV00_0017D7A8.mats[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-
 }
 
 void SwitchLight_Day()
 {
+	//PrintDebug("Time: Day\n");
 	//Day reflections Act 0
 	if (ADV00_0_Info)
 	{
@@ -1166,8 +1163,6 @@ void SwitchLight_Day()
 		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_000631AC"))[2].attr_texId = 124;
 		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_00046404"))[0].attr_texId = 145;
 		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_00046404"))[1].attr_texId = 145;
-		//((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0007C240"))[0].attr_texId = 145; //this is not in the COL list?
-		//((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0007C240"))[1].attr_texId = 145;
 		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0002B718"))[0].attr_texId = 69;
 		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0002F984"))[0].attr_texId = 69;
 		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_000631AC"))[0].attr_texId = 184;
@@ -1267,6 +1262,7 @@ void UnloadLevelFiles_ADV00()
 	ADV00_3_Info = nullptr;
 	ADV00_4_Info = nullptr;
 	ADV00_5_Info = nullptr;
+	PreviousTimeOfDay = -1;
 }
 
 void LoadLevelFiles_ADV00()
@@ -1390,6 +1386,7 @@ void LoadLevelFiles_ADV00()
 		WhiteDiffuseADV00External[16] = &((NJS_MATERIAL*)ADV00_2_Info->getdata("matlistADV00_000D8D58"))[9];
 		material_register_ptr(WhiteDiffuseADV00External, LengthOfArray(WhiteDiffuseADV00External), &ForceWhiteDiffuse1);
 	}
+	PreviousTimeOfDay = -1;
 }
 
 void ADV00_Init()
@@ -1667,6 +1664,7 @@ void ADV00_OnFrame()
 		//Sewers water
 		else
 		{
+			((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_00114D80Z"))[0].attr_texId = SewerMainAnimation; //Sea surface
 			((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_00133D3C"))[0].attr_texId = SewerMainAnimation;
 			((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_00114D80"))[0].attr_texId = SewerMainAnimation;
 		}
