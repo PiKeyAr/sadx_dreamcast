@@ -1324,8 +1324,8 @@ void LoadLevelFiles_ADV00()
 		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_00123C24"))[0].attrflags |= NJD_FLAG_USE_ALPHA;
 		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_00122894_2"))[0].attrflags |= NJD_FLAG_USE_ALPHA;
 		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_00133D3C"))[0].attrflags &= ~NJD_FLAG_USE_ALPHA;
-		ADV00_3->Col[ADV00_3->COLCount - 11].Flags = 0x80000000; //SADX sea bottom
-		ADV00_3->Col[ADV00_3->COLCount - 3].Flags = 0x00000002; //Sewers water
+		ADV00_3_Info->getlandtable()->Col[ADV00_3_Info->getlandtable()->COLCount - 11].Flags = 0x80000000; //SADX sea bottom
+		ADV00_3_Info->getlandtable()->Col[ADV00_3_Info->getlandtable()->COLCount - 3].Flags = 0x00000002; //Sewers water
 		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_00114D80"))[0].diffuse.argb.a = 178; //SADX sea bottom
 		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_00114D80"))[0].attrflags |= NJD_FLAG_USE_ALPHA; //SADX sea bottom
 		((NJS_MESHSET_SADX*)ADV00_3_Info->getdata("meshlistADV00_00114DB0"))[0].vertcolor = vcolor_0015EFF0; //SADX sea bottom
@@ -1348,8 +1348,8 @@ void LoadLevelFiles_ADV00()
 		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_00123C24"))[0].attrflags |= NJD_FLAG_USE_ALPHA;
 		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_00122894_2"))[0].attrflags |= NJD_FLAG_USE_ALPHA;
 		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_00133D3C"))[0].attrflags |= NJD_FLAG_USE_ALPHA;
-		ADV00_3->Col[ADV00_3->COLCount - 11].Flags = 0x00000000; //SADX sea bottom
-		ADV00_3->Col[ADV00_3->COLCount - 3].Flags = 0x80000002; //Sewers water
+		ADV00_3_Info->getlandtable()->Col[ADV00_3_Info->getlandtable()->COLCount - 11].Flags = 0x00000000; //SADX sea bottom
+		ADV00_3_Info->getlandtable()->Col[ADV00_3_Info->getlandtable()->COLCount - 3].Flags = 0x80000002; //Sewers water
 		((NJS_MESHSET_SADX*)ADV00_3_Info->getdata("meshlistADV00_00114DB0"))[0].vertcolor = NULL; //SADX sea bottom
 		//Act 4
 		((NJS_MESHSET_SADX*)ADV00_4_Info->getdata("meshlistADV00_00151E84"))[0].vertcolor = NULL; //SADX sea bottom (hotel)
@@ -1666,7 +1666,6 @@ void ADV00_OnFrame()
 		{
 			((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_00114D80Z"))[0].attr_texId = SewerMainAnimation; //Sea surface
 			((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_00133D3C"))[0].attr_texId = SewerMainAnimation;
-			((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_00114D80"))[0].attr_texId = SewerMainAnimation;
 		}
 		if (FramerateSetting < 2 && FrameCounter % 4 == 0 || FramerateSetting == 2 && FrameCounter % 2 == 0 || FramerateSetting > 2)
 		{
