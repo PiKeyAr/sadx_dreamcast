@@ -371,9 +371,6 @@
     <ClInclude Include="Data\EggHornet_Model.h">
       <Filter>Header Files\Levels\Bosses</Filter>
     </ClInclude>
-    <ClInclude Include="Data\EggmobileNPC.h">
-      <Filter>Header Files\Levels\Bosses</Filter>
-    </ClInclude>
     <ClInclude Include="Data\EggViper.h">
       <Filter>Header Files\Levels\Bosses</Filter>
     </ClInclude>
