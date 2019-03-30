@@ -663,12 +663,12 @@ void UnloadLevelFiles_STG10()
 		material_unregister_ptr(WhiteDiffuse_FinalEggExternal, LengthOfArray(WhiteDiffuse_FinalEggExternal), &ForceWhiteDiffuse1);
 		if (set_alpha_reject_ptr != nullptr) material_unregister_ptr(DisableAlphaRejection_FinalEggExternal, LengthOfArray(DisableAlphaRejection_FinalEggExternal), &DisableAlphaRejection);
 	}
-	STG10_0 = nullptr;
-	STG10_1 = nullptr;
-	STG10_2 = nullptr;
 	delete STG10_0_Info;
 	delete STG10_1_Info;
 	delete STG10_2_Info;
+	STG10_0_Info = nullptr;
+	STG10_1_Info = nullptr;
+	STG10_2_Info = nullptr;
 }
 
 void LoadLevelFiles_STG10()

@@ -273,12 +273,12 @@ void UnloadLevelFiles_STG12()
 		material_unregister_ptr(WhiteDiffuse_HotShelterExternal, LengthOfArray(WhiteDiffuse_HotShelterExternal), &ForceWhiteDiffuse1);
 		if (set_alpha_reject_ptr != nullptr) material_unregister_ptr(DisableAlphaRejection_HotShelterExternal, LengthOfArray(DisableAlphaRejection_HotShelterExternal), &DisableAlphaRejection);
 	}
-	STG12_0 = nullptr;
-	STG12_1 = nullptr;
-	STG12_2 = nullptr;
 	delete STG12_0_Info;
 	delete STG12_1_Info;
 	delete STG12_2_Info;
+	STG12_0_Info = nullptr;
+	STG12_1_Info = nullptr;
+	STG12_2_Info = nullptr;
 }
 
 void LoadLevelFiles_STG12()

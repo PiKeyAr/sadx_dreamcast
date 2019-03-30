@@ -252,14 +252,14 @@ void LoadLevelFiles_STG08()
 
 void UnloadLevelFiles_STG08()
 {
-	STG08_0 = nullptr;
-	STG08_1 = nullptr;
-	STG08_2 = nullptr;
-	STG08_3 = nullptr;
 	delete STG08_0_Info;
 	delete STG08_1_Info;
 	delete STG08_2_Info;
 	delete STG08_3_Info;
+	STG08_0_Info = nullptr;
+	STG08_1_Info = nullptr;
+	STG08_2_Info = nullptr;
+	STG08_3_Info = nullptr;
 }
 
 void IceCap_Init()
