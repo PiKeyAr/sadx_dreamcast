@@ -10,6 +10,8 @@ NJS_TEXLIST texlist_hotshelter2 = { arrayptrandlength(textures_shelter2) };
 NJS_TEXNAME textures_shelter3[121];
 NJS_TEXLIST texlist_hotshelter3 = { arrayptrandlength(textures_shelter3) };
 
+SETObjData setdata_hs = {};
+
 FunctionPointer(void, sub_4B9540, (NJS_VECTOR *position, NJS_VECTOR *scale_v, float scale), 0x4B9540);
 FunctionPointer(void, sub_405370, (NJS_OBJECT *a1, NJS_MOTION *a2, float a3, float a4), 0x405370);
 DataPointer(float, E105HitCounter, 0x03C58158);
@@ -25,9 +27,11 @@ static int suimen_direction = 1;
 static int TextureAnim = 78;
 static int WaterThing_VShift = 0;
 static bool ReduceHotShelterFog = false;
+static bool Act2LightsLoaded = false;
 static Angle E105Angle = 0;
 
 NJS_MATERIAL* DisableAlphaRejection_HotShelterExternal[] = {
+	nullptr,
 	nullptr,
 	nullptr,
 	nullptr,
@@ -262,6 +266,83 @@ void PlayMusicHook_DisableE105Fog(MusicIDs song)
 	ReduceHotShelterFog = true;
 }
 
+void HS2Light_Display(ObjectMaster *a1)
+{
+	EntityData1 *v1;
+	v1 = a1->Data1;
+	if (!DroppedFrames)
+	{
+		njSetTexture(&texlist_hotshelter2);
+		njPushMatrix(0);
+		njTranslateV(0, &v1->Position);
+		njScale(0, 1.0f, 1.0f, 1.0f);
+		njRotateXYZ(0, 0, 0, 0);
+		DrawQueueDepthBias = 4000.0f;
+		ProcessModelNode((NJS_OBJECT*)STG12_1_Info->getdata("objectSTG12_0007DE3C"), QueuedModelFlagsB_3, 1.0f);
+		ProcessModelNode((NJS_OBJECT*)STG12_1_Info->getdata("objectSTG12_000A7A10"), QueuedModelFlagsB_3, 1.0f);
+		ProcessModelNode((NJS_OBJECT*)STG12_1_Info->getdata("objectSTG12_000A7940"), QueuedModelFlagsB_3, 1.0f);
+		ProcessModelNode((NJS_OBJECT*)STG12_1_Info->getdata("objectSTG12_000A79DC"), QueuedModelFlagsB_3, 1.0f);
+		ProcessModelNode((NJS_OBJECT*)STG12_1_Info->getdata("objectSTG12_000A79A8"), QueuedModelFlagsB_3, 1.0f);
+		ProcessModelNode((NJS_OBJECT*)STG12_1_Info->getdata("objectSTG12_000A7974"), QueuedModelFlagsB_3, 1.0f);
+		DrawQueueDepthBias = 6000.0f;
+		ProcessModelNode((NJS_OBJECT*)STG12_1_Info->getdata("objectSTG12_000A4AB8_2"), (QueuedModelFlagsB)0, 1.0f);
+		njPopMatrix(1u);
+		DrawQueueDepthBias = 0;
+	}
+}
+
+void HS2Light_Delete(ObjectMaster *a1)
+{
+	Act2LightsLoaded = false;
+	CheckThingButThenDeleteObject(a1);
+}
+
+void HS2Light_Main(ObjectMaster *a1)
+{
+	if (CurrentLevel == 12)
+	{
+		if (CurrentAct == 1) HS2Light_Display(a1);
+	}
+	else HS2Light_Delete(a1);
+}
+
+void HS2Light_Load(ObjectMaster *a1)
+{
+	a1->MainSub = (void(__cdecl *)(ObjectMaster *))HS2Light_Main;
+	a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))HS2Light_Display;
+	a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))HS2Light_Delete;
+}
+
+void LoadHotShelterAct2Lights()
+{
+	ObjectMaster *obj;
+	EntityData1 *ent;
+	ObjectFunc(OF0, HS2Light_Load);
+	setdata_hs.Distance = 612800.0f;
+	obj = LoadObject((LoadObj)2, 3, OF0);
+	obj->SETData.SETData = &setdata_hs;
+	if (obj)
+	{
+		ent = obj->Data1;
+		ent->Position.x = 0;
+		ent->Position.y = 0;
+		ent->Position.z = 0;
+		ent->Rotation.x = 0;
+		ent->Rotation.y = 0;
+		ent->Rotation.z = 0;
+	}
+	Act2LightsLoaded = true;
+}
+
+static void SkyBox_HotShelter_Load_r(ObjectMaster *a1);
+static Trampoline SkyBox_HotShelter_Load_t(0x59A2A0, 0x59A2A9, SkyBox_HotShelter_Load_r);
+static void __cdecl SkyBox_HotShelter_Load_r(ObjectMaster *a1)
+{
+	auto original = reinterpret_cast<decltype(SkyBox_HotShelter_Load_r)*>(SkyBox_HotShelter_Load_t.Target());
+	original(a1);
+	if (EnableHotShelter && !Act2LightsLoaded) LoadHotShelterAct2Lights();
+}
+
 void UnloadLevelFiles_STG12()
 {
 	if (DLLLoaded_Lantern)
@@ -302,6 +383,7 @@ void LoadLevelFiles_STG12()
 			DisableAlphaRejection_HotShelterExternal[3] = &((NJS_MATERIAL*)STG12_1_Info->getdata("matlistSTG12_000964DC"))[0]; //Act 2 green light
 			DisableAlphaRejection_HotShelterExternal[4] = &((NJS_MATERIAL*)STG12_2_Info->getdata("matlistSTG12_000DCC38"))[10]; //Act 3 blue light
 			DisableAlphaRejection_HotShelterExternal[5] = &((NJS_MATERIAL*)STG12_2_Info->getdata("matlistSTG12_000DEBEC_2"))[0]; //Act 3 blue light
+			DisableAlphaRejection_HotShelterExternal[6] = &((NJS_MATERIAL*)STG12_1_Info->getdata("matlistSTG12_0007DB48"))[1]; //Act 2 green light underneath glass platform
 			material_register_ptr(DisableAlphaRejection_HotShelterExternal, LengthOfArray(DisableAlphaRejection_HotShelterExternal), &DisableAlphaRejection);
 		}
 		WhiteDiffuse_HotShelterExternal[0] = &((NJS_MATERIAL*)STG12_0_Info->getdata("matlistSTG12_000D7B10"))[2];
@@ -428,7 +510,10 @@ void HotShelter_Init()
 void HotShelter_OnFrame()
 {
 	{
-		if (GameState == 3 || GameState == 4 || GameState == 7 || GameState == 21) ReduceHotShelterFog = false;
+		if (GameState == 3 || GameState == 4 || GameState == 7 || GameState == 21)
+		{
+			ReduceHotShelterFog = false;
+		}
 		//Fog in E105 room
 		if (CurrentLevel == 12 && CurrentAct == 2 && GameState != 16)
 		{

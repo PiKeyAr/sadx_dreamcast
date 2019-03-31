@@ -24,6 +24,7 @@ FunctionPointer(void, sub_407A00, (NJS_MODEL_SADX *model, float a2), 0x407A00);
 FunctionPointer(void, sub_405450, (NJS_ACTION *a1, float frame, float scale), 0x405450);
 FunctionPointer(void, sub_5ADCF0, (), 0x5ADCF0);
 
+static bool Act2GlassLoaded = false;
 static int cylinderframe = 0;
 SETObjData setdata_fe = {};
 
@@ -585,6 +586,12 @@ static void __declspec(naked) sub_5B36E0X()
 	}
 }
 
+void Glass_Delete(ObjectMaster *a1)
+{
+	Act2GlassLoaded = false;
+	CheckThingButThenDeleteObject(a1);
+}
+
 void Glass_Display(ObjectMaster *a1)
 {
 	EntityData1 *v1;
@@ -609,14 +616,18 @@ void Glass_Display(ObjectMaster *a1)
 
 void Glass_Main(ObjectMaster *a1)
 {
-	Glass_Display(a1);
+	if (CurrentLevel == 10)
+	{
+		if (CurrentAct == 1) Glass_Display(a1);
+	}
+	else Glass_Delete(a1);
 }
 
 void Glass_Load(ObjectMaster *a1)
 {
 	a1->MainSub = (void(__cdecl *)(ObjectMaster *))Glass_Main;
 	a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Glass_Display;
-	a1->DeleteSub = DynamicCOL_DeleteObject;
+	a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))Glass_Delete;
 }
 
 void LoadGlass()
@@ -637,12 +648,16 @@ void LoadGlass()
 		ent->Rotation.y = 0;
 		ent->Rotation.z = 0;
 	}
+	Act2GlassLoaded = true;
 }
 
-void FinalEggHook()
+static void SkyBox_FinalEgg_Load_r(ObjectMaster *a1);
+static Trampoline SkyBox_FinalEgg_Load_t(0x5ADFE0, 0x5ADFE9, SkyBox_FinalEgg_Load_r);
+static void __cdecl SkyBox_FinalEgg_Load_r(ObjectMaster *a1)
 {
-	sub_5ADCF0();
-	if (CurrentLevel == 10 && CurrentAct == 1) LoadGlass();
+	auto original = reinterpret_cast<decltype(SkyBox_FinalEgg_Load_r)*>(SkyBox_FinalEgg_Load_t.Target());
+	original(a1);
+	if (EnableFinalEgg && !Act2GlassLoaded) LoadGlass();
 }
 
 void GachaponExplosionFix(NJS_MODEL_SADX *a1)
@@ -787,8 +802,6 @@ void FinalEgg_Init()
 	else ReplaceGeneric("OBJ_FINALEGG.PVM", "OBJ_FINALEGG_DC_OLD.PVM");
 	TexLists_Obj[10] = FinalEggObjectTextures;
 	WriteCall((void*)0x005AEF29, GachaponExplosionFix);
-	WriteCall((void*)0x005AE0A5, FinalEggHook);
-	WriteCall((void*)0x005AE060, FinalEggHook);
 	WriteData<1>((void*)0x005ADC40, 0xC3u); //Kill the SetClip function
 	for (unsigned int i = 0; i < LengthOfArray(NeutralMaterials); i++)
 	{

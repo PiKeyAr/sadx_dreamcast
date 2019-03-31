@@ -31,6 +31,7 @@ SETObjData setdata_tp = {};
 static int anim = 74;
 static int animlight = 95;
 static int animtimer = 0;
+static bool MirrorsLoaded = false;
 
 NJS_MATERIAL matlistSTG03_034C3AD0[] = {
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 5, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_FLAG_DOUBLE_SIDE | NJD_FLAG_IGNORE_LIGHT | NJD_DA_ONE | NJD_SA_SRC }
@@ -304,6 +305,12 @@ NJS_MATERIAL* LevelSpecular_Twinkle[]={
 	//&matlistSTG03_034E23EC[0],
 };
 
+void Mirror_Delete(ObjectMaster *a1)
+{
+	MirrorsLoaded = false;
+	CheckThingButThenDeleteObject(a1);
+}
+
 void Mirror_Display(ObjectMaster *a1)
 {
 	EntityData1 *v1;
@@ -340,15 +347,18 @@ void Mirror_Display(ObjectMaster *a1)
 
 void Mirror_Main(ObjectMaster *a1)
 {
-	if (CurrentLevel == 3 && CurrentAct == 2) Mirror_Display(a1);
-	else CheckThingButThenDeleteObject(a1);
+	if (CurrentLevel == 3)
+	{
+		if (CurrentAct == 2) Mirror_Display(a1);
+	}
+	else Mirror_Delete(a1);
 }
 
 void Mirror_Load(ObjectMaster *a1)
 {
 	a1->MainSub = (void(__cdecl *)(ObjectMaster *))Mirror_Main;
 	a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Mirror_Display;
-	a1->DeleteSub = DynamicCOL_DeleteObject;
+	a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))Mirror_Delete;
 }
 
 void LoadMirrors()
@@ -369,20 +379,16 @@ void LoadMirrors()
 		ent->Rotation.y = 0;
 		ent->Rotation.z = 0;
 	}
+	MirrorsLoaded = true;
 }
 
-void __cdecl SkyBox_TwinklePark_LoadX(ObjectMaster *a1)
+static void SkyBox_TwinklePark_Load_r(ObjectMaster *a1);
+static Trampoline SkyBox_TwinklePark_Load_t(0x61D570, 0x61D57B, SkyBox_TwinklePark_Load_r);
+static void __cdecl SkyBox_TwinklePark_Load_r(ObjectMaster *a1)
 {
-	a1->MainSub = sub_61D4E0;
-	a1->DisplaySub = sub_61D1F0;
-	a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))nullsub;
-	if (CurrentLevel == 3 && CurrentAct == 2) LoadMirrors();
-}
-
-void __cdecl TwinkleParkHook(ObjectMaster *a1)
-{
-	ToggleStageFog();
-	if (CurrentLevel == 3 && CurrentAct == 2) LoadMirrors();
+	auto original = reinterpret_cast<decltype(SkyBox_TwinklePark_Load_r)*>(SkyBox_TwinklePark_Load_t.Target());
+	original(a1);
+	if (EnableTwinklePark && !MirrorsLoaded) LoadMirrors();
 }
 
 void CartFunction(NJS_OBJECT *a1, ObjectThingC *a2)
@@ -534,9 +540,6 @@ void TwinklePark_Init()
 		CartMaterials[c]->diffuse.argb.g = 178;
 		CartMaterials[c]->diffuse.argb.b = 178;
 	}
-	//Mirror stuff
-	WriteJump((void*)0x0061CAFE, TwinkleParkHook);
-	WriteJump((void*)0x0061D570, SkyBox_TwinklePark_LoadX);
 	//Amy's barrel fix
 	NJS_OBJECT **___AMY_OBJECTS = (NJS_OBJECT **)GetProcAddress(GetModuleHandle(L"CHRMODELS_orig"), "___AMY_OBJECTS");
 	___AMY_OBJECTS[1]->child->child->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
