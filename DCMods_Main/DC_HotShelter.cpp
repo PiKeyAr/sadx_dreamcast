@@ -272,7 +272,7 @@ void HS2Light_Display(ObjectMaster *a1)
 {
 	EntityData1 *v1;
 	v1 = a1->Data1;
-	if (!DroppedFrames)
+	if (CurrentAct == 1 && !DroppedFrames)
 	{
 		njSetTexture(&texlist_hotshelter2);
 		njPushMatrix(0);
