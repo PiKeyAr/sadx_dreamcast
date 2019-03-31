@@ -543,11 +543,11 @@ void LoadLevelFiles_ADV01C()
 	LandTable *ADV01C_4 = ADV01C_4_Info->getlandtable();
 	LandTable *ADV01C_5 = ADV01C_5_Info->getlandtable();
 	ADV01C_0->TexList = &texlist_ec30;
-	ADV01C_1->TexList = &texlist_ec01;
-	ADV01C_2->TexList = &texlist_ec02;
-	ADV01C_3->TexList = &texlist_ec03;
-	ADV01C_4->TexList = &texlist_ec04;
-	ADV01C_5->TexList = &texlist_ec05;
+	ADV01C_1->TexList = &texlist_ec31;
+	ADV01C_2->TexList = &texlist_ec32;
+	ADV01C_3->TexList = &texlist_ec33;
+	ADV01C_4->TexList = &texlist_ec34;
+	ADV01C_5->TexList = &texlist_ec35;
 	LandTableArray[136] = ADV01C_0;
 	LandTableArray[137] = ADV01C_1;
 	LandTableArray[138] = ADV01C_2;
