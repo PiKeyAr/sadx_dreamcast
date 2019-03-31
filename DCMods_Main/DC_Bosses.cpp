@@ -1077,7 +1077,6 @@ void LoadLevelFiles_B_CHAOS0()
 	B_CHAOS0->TexList = &texlist_chaos0;
 	LandTableArray[0] = B_CHAOS0;
 	___LANDTABLEBOSSCHAOS0[0] = B_CHAOS0;
-	___BOSSCHAOS0_TEXLISTS[2] = &texlist_chaos0;
 }
 
 void LoadLevelFiles_B_CHAOS2()
@@ -1217,6 +1216,7 @@ void Chaos0_Init()
 	ReplacePVM("CHAOS0_OBJECT");
 	WriteData<1>((char*)0x54932B, 0x08); //Police car lights blending mode
 	WriteData<1>((char*)0x7AD16D, 0x08); //Chaos 0 puddle mark blending mode
+	___BOSSCHAOS0_TEXLISTS[2] = &texlist_chaos0;
 	___BOSSCHAOS0_TEXLISTS[3] = &chaos0_object;
 	___BOSSCHAOS0_OBJECTS[0]->child->child->child->child->sibling->basicdxmodel->mats[0].diffuse.color = 0x7FB2B2B2;
 	___BOSSCHAOS0_OBJECTS[0]->child->child->child->child->sibling->child->basicdxmodel->mats[0].diffuse.color = 0x7FB2B2B2;

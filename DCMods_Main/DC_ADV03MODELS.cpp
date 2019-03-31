@@ -391,9 +391,6 @@ void LoadLevelFiles_ADV03()
 	ADV03_0->TexList = &texlist_past0;
 	ADV03_1->TexList = &texlist_past01;
 	ADV03_2->TexList = &texlist_past02;
-	___ADV03_TEXLISTS[4] = &texlist_past0;
-	___ADV03_TEXLISTS[5] = &texlist_past01;
-	___ADV03_TEXLISTS[6] = &texlist_past02;
 	LandTableArray[152] = ADV03_0;
 	LandTableArray[153] = ADV03_1;
 	LandTableArray[154] = ADV03_2;
@@ -527,6 +524,10 @@ void ADV03_Init()
 	ReplacePVM("KNUCKLES_NORMAL");
 	ReplacePVM("KNUCKLES_DEBU");
 	ReplacePVM("KNUCKLES_LONG");
+	//Texlists
+	___ADV03_TEXLISTS[4] = &texlist_past0;
+	___ADV03_TEXLISTS[5] = &texlist_past01;
+	___ADV03_TEXLISTS[6] = &texlist_past02;
 	WriteJump((void*)0x542850, Past_OceanDraw_r);
 	//Material fixes for Pacman
 	for (unsigned int i = 0; i < LengthOfArray(PatyaMaterials); i++)
@@ -605,7 +606,7 @@ void ADV03_Init()
 	//___ADV03PAST01_OBJECTS[211] = &objectADV03_000953F8; //water 1
 	//___ADV03PAST01_OBJECTS[212] = &objectADV03_0009566C; //water 2
 	//___ADV03PAST01_OBJECTS[214] = &objectADV03_0009609C; //water 3
-		___ADV03_OBJECTS[16] = &objectADV03_0001EDDC; //tree 16
+	___ADV03_OBJECTS[16] = &objectADV03_0001EDDC; //tree 16
 	___ADV03_OBJECTS[17] = &objectADV03_0001EDDC; //tree 17
 	___ADV03_OBJECTS[15] = &objectADV03_00027158; //small tree shadow
 	___ADV03_OBJECTS[13] = &objectADV03_00016CA0; //OWell

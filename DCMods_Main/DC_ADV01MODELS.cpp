@@ -480,12 +480,6 @@ void LoadLevelFiles_ADV01()
 	ADV01_3->TexList = &texlist_ec03;
 	ADV01_4->TexList = &texlist_ec04;
 	ADV01_5->TexList = &texlist_ec05;
-	___ADV01_TEXLISTS[0] = &texlist_ec00;
-	___ADV01_TEXLISTS[1] = &texlist_ec01;
-	___ADV01_TEXLISTS[2] = &texlist_ec02;
-	___ADV01_TEXLISTS[3] = &texlist_ec03;
-	___ADV01_TEXLISTS[4] = &texlist_ec04;
-	___ADV01_TEXLISTS[5] = &texlist_ec05;
 	___LANDTABLEEC[0] = ADV01_0;
 	___LANDTABLEEC[1] = ADV01_1;
 	___LANDTABLEEC[2] = ADV01_2;
@@ -548,24 +542,18 @@ void LoadLevelFiles_ADV01C()
 	ADV01C_3->TexList = &texlist_ec33;
 	ADV01C_4->TexList = &texlist_ec34;
 	ADV01C_5->TexList = &texlist_ec35;
-	LandTableArray[136] = ADV01C_0;
-	LandTableArray[137] = ADV01C_1;
-	LandTableArray[138] = ADV01C_2;
-	LandTableArray[139] = ADV01C_3;
-	LandTableArray[140] = ADV01C_4;
-	LandTableArray[141] = ADV01C_5;
 	___LANDTABLEECC[0] = ADV01C_0;
 	___LANDTABLEECC[1] = ADV01C_1;
 	___LANDTABLEECC[2] = ADV01C_2;
 	___LANDTABLEECC[3] = ADV01C_3;
 	___LANDTABLEECC[4] = ADV01C_4;
 	___LANDTABLEECC[5] = ADV01C_5;
-	___ADV01C_TEXLISTS[15] = &texlist_ec30;
-	___ADV01C_TEXLISTS[16] = &texlist_ec31;
-	___ADV01C_TEXLISTS[17] = &texlist_ec32;
-	___ADV01C_TEXLISTS[18] = &texlist_ec33;
-	___ADV01C_TEXLISTS[19] = &texlist_ec34;
-	___ADV01C_TEXLISTS[20] = &texlist_ec35;
+	LandTableArray[136] = ADV01C_0;
+	LandTableArray[137] = ADV01C_1;
+	LandTableArray[138] = ADV01C_2;
+	LandTableArray[139] = ADV01C_3;
+	LandTableArray[140] = ADV01C_4;
+	LandTableArray[141] = ADV01C_5;
 }
 
 void ADV01_Init(const IniFile *config, const HelperFunctions &helperFunctions)
@@ -652,6 +640,9 @@ void ADV01_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 		default:
 			break;
 	}
+	ReplacePVM("ADV_EC00");
+	ReplacePVM("ADV_EC01");
+	ReplacePVM("ADV_EC02");
 	ReplacePVM("ADV_EC03");
 	ReplacePVM("ADV_EC04");
 	ReplacePVM("ADV_EC05");
@@ -678,11 +669,20 @@ void ADV01_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 	ReplacePVM("EC_WATER");
 	ReplacePVM("EV_ECCLOUD");
 	ReplacePVM("PVME101FACTORY");
-	ReplacePVM("ADV_EC00");
-	ReplacePVM("ADV_EC01");
-	ReplacePVM("ADV_EC02");
 	ReplacePVM("EC_SEA");
 	ResizeTextureList(&OBJ_EC00_TEXLIST, 206);
+	___ADV01_TEXLISTS[0] = &texlist_ec00;
+	___ADV01_TEXLISTS[1] = &texlist_ec01;
+	___ADV01_TEXLISTS[2] = &texlist_ec02;
+	___ADV01_TEXLISTS[3] = &texlist_ec03;
+	___ADV01_TEXLISTS[4] = &texlist_ec04;
+	___ADV01_TEXLISTS[5] = &texlist_ec05;
+	___ADV01C_TEXLISTS[15] = &texlist_ec30;
+	___ADV01C_TEXLISTS[16] = &texlist_ec31;
+	___ADV01C_TEXLISTS[17] = &texlist_ec32;
+	___ADV01C_TEXLISTS[18] = &texlist_ec33;
+	___ADV01C_TEXLISTS[19] = &texlist_ec34;
+	___ADV01C_TEXLISTS[20] = &texlist_ec35;
 	if (!SADXWater_EggCarrier) WriteJump((void*)0x0051C440, EggCarrierSea);
 	//Door barrier fixes (Gamma's story)
 	WriteJump((void*)0x52B2E0, ECDoorBarrier1X); 

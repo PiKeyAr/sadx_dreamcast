@@ -251,10 +251,6 @@ void LoadLevelFiles_ADV02()
 	ADV02_1->TexList = &texlist_mr01;
 	ADV02_2->TexList = &texlist_mr02;
 	ADV02_3->TexList = &texlist_mr03;
-	___ADV02_TEXLISTS[38] = &texlist_mr00;
-	___ADV02_TEXLISTS[39] = &texlist_mr01;
-	___ADV02_TEXLISTS[40] = &texlist_mr02;
-	___ADV02_TEXLISTS[41] = &texlist_mr03;
 	___ADV02MR02_OBJECTS[141] = (NJS_OBJECT*)ADV02_2_Info->getdata("objectADV02_001615BC");
 	___ADV02MR02_OBJECTS[142] = (NJS_OBJECT*)ADV02_2_Info->getdata("objectADV02_00161B8C");
 	___ADV02MR02_OBJECTS[143] = (NJS_OBJECT*)ADV02_2_Info->getdata("objectADV02_00161FD8");
@@ -435,6 +431,10 @@ void ADV02_Init()
 		MR2DrawDist[i].Maximum = -10000.0f;
 		MR4DrawDist[i].Maximum = -4000.0f;
 	}
+	___ADV02_TEXLISTS[38] = &texlist_mr00;
+	___ADV02_TEXLISTS[39] = &texlist_mr01;
+	___ADV02_TEXLISTS[40] = &texlist_mr02;
+	___ADV02_TEXLISTS[41] = &texlist_mr03;
 	MROBJ_TEXLISTS[0].TexList = &texlist_mrobj; //MROBJ
 	___ADV02_TEXLISTS[21] = &texlist_mrobj; //MROBJ
 	___ADV02_TEXLISTS[4] = &texlist_mrtrain;

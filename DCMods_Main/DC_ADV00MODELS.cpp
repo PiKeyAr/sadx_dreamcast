@@ -1310,12 +1310,6 @@ void LoadLevelFiles_ADV00()
 	___LANDTABLESS[3] = ADV00_3;
 	___LANDTABLESS[4] = ADV00_4;
 	___LANDTABLESS[5] = ADV00_5;
-	___ADV00_TEXLISTS[0] = &texlist_advss00;
-	___ADV00_TEXLISTS[1] = &texlist_advss01;
-	___ADV00_TEXLISTS[2] = &texlist_advss02;
-	___ADV00_TEXLISTS[3] = &texlist_advss03;
-	___ADV00_TEXLISTS[4] = &texlist_advss04;
-	___ADV00_TEXLISTS[5] = &texlist_advss05;
 	if (SADXWater_StationSquare)
 	{
 		//Act 2
@@ -1525,6 +1519,12 @@ void ADV00_Init()
 	ReplacePVR("SS_NIGHTSKYB");
 	ReplacePVR("SS_YUSKAY_MINI");
 	ResizeTextureList((NJS_TEXLIST*)0x2AEE920, 22); //SSCAR 
+	___ADV00_TEXLISTS[0] = &texlist_advss00;
+	___ADV00_TEXLISTS[1] = &texlist_advss01;
+	___ADV00_TEXLISTS[2] = &texlist_advss02;
+	___ADV00_TEXLISTS[3] = &texlist_advss03;
+	___ADV00_TEXLISTS[4] = &texlist_advss04;
+	___ADV00_TEXLISTS[5] = &texlist_advss05;
 	WriteData<1>((char*)0x02BBE9EC, 0x0B); //Texture ID for extra car type
 	WriteCall((void*)0x00636DE9, RenderOfficeDoor);
 	WriteCall((void*)0x00636E99, RenderOfficeDoor);
