@@ -38,6 +38,8 @@ NJS_MATERIAL* DisableAlphaRejection_HotShelterExternal[] = {
 	nullptr,
 	nullptr,
 	nullptr,
+	nullptr, 
+	nullptr, 
 };
 
 NJS_MATERIAL* LevelSpecular_HotShelter[] = {
@@ -377,6 +379,12 @@ void LoadLevelFiles_STG12()
 	{
 		if (set_alpha_reject_ptr != nullptr)
 		{
+			((NJS_MATERIAL*)STG12_1_Info->getdata("matlistSTG12_0008BD08"))[11].diffuse.color = 0xFFFFFFFF;
+			((NJS_MATERIAL*)STG12_1_Info->getdata("matlistSTG12_0008BD08"))[11].attrflags &= ~NJD_SA_SRC;
+			((NJS_MATERIAL*)STG12_1_Info->getdata("matlistSTG12_0008BD08"))[11].attrflags |= NJD_SA_ONE;
+			((NJS_MATERIAL*)STG12_1_Info->getdata("matlistSTG12_00089D48"))[10].diffuse.color = 0xFFFFFFFF;
+			((NJS_MATERIAL*)STG12_1_Info->getdata("matlistSTG12_00089D48"))[10].attrflags &= ~NJD_SA_SRC;
+			((NJS_MATERIAL*)STG12_1_Info->getdata("matlistSTG12_00089D48"))[10].attrflags |= NJD_SA_ONE;
 			DisableAlphaRejection_HotShelterExternal[0] = &((NJS_MATERIAL*)STG12_0_Info->getdata("matlistSTG12_00032C20"))[0]; //Act 1 green light
 			DisableAlphaRejection_HotShelterExternal[1] = &((NJS_MATERIAL*)STG12_1_Info->getdata("matlistSTG12_00096220"))[0]; //Act 2 green light
 			DisableAlphaRejection_HotShelterExternal[2] = &((NJS_MATERIAL*)STG12_1_Info->getdata("matlistSTG12_0009639C"))[0]; //Act 2 green light
@@ -384,6 +392,8 @@ void LoadLevelFiles_STG12()
 			DisableAlphaRejection_HotShelterExternal[4] = &((NJS_MATERIAL*)STG12_2_Info->getdata("matlistSTG12_000DCC38"))[10]; //Act 3 blue light
 			DisableAlphaRejection_HotShelterExternal[5] = &((NJS_MATERIAL*)STG12_2_Info->getdata("matlistSTG12_000DEBEC_2"))[0]; //Act 3 blue light
 			DisableAlphaRejection_HotShelterExternal[6] = &((NJS_MATERIAL*)STG12_1_Info->getdata("matlistSTG12_0007DB48"))[1]; //Act 2 green light underneath glass platform
+			DisableAlphaRejection_HotShelterExternal[7] = &((NJS_MATERIAL*)STG12_1_Info->getdata("matlistSTG12_0008BD08"))[11]; //Act 2 green light in the tube near Amy's balloon
+			DisableAlphaRejection_HotShelterExternal[8] = &((NJS_MATERIAL*)STG12_1_Info->getdata("matlistSTG12_00089D48"))[10]; //Act 2 green light in the tube near Amy's balloon
 			material_register_ptr(DisableAlphaRejection_HotShelterExternal, LengthOfArray(DisableAlphaRejection_HotShelterExternal), &DisableAlphaRejection);
 		}
 		WhiteDiffuse_HotShelterExternal[0] = &((NJS_MATERIAL*)STG12_0_Info->getdata("matlistSTG12_000D7B10"))[2];
