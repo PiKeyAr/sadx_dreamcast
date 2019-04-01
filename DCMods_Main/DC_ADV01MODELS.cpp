@@ -340,12 +340,10 @@ void __cdecl EggCarrierSkyBox(EntityData1 *a1, float a2)
 		njTranslate(0, Camera_Data1->Position.x, a2, Camera_Data1->Position.z);
 		njScaleV(0, &Skybox_Scale);
 		v2 = VectorMaxAbs(&Skybox_Scale);
-		DrawQueueDepthBias = -30000.0f;
-		ProcessModelNode(ADV01_OBJECTS[65], QueuedModelFlagsB_SomeTextureThing, v2);
+		ProcessModelNode_AB_Wrapper(ADV01_OBJECTS[65], v2);
 		njScale(0, 1.0, 1.0, 1.0);
 		njPopMatrix(1u);
 		ToggleStageFog();
-		DrawQueueDepthBias = 0.0f;
 	}
 }
 
@@ -371,9 +369,7 @@ void __cdecl EggCarrierSkyBottom(EntityData1 *a1, float a2)
 	njScale(0, 3.0, 1.0, 3.0);
 	njScaleV(0, &Skybox_Scale);
 	v5 = VectorMaxAbs(&Skybox_Scale);
-	DrawQueueDepthBias = -32000.0f;
-	ProcessModelNode(v2, QueuedModelFlagsB_SomeTextureThing, v5);
-	DrawQueueDepthBias = 0;
+	ProcessModelNode_AB_Wrapper(v2, v5);
 	njScale(0, 1.0, 1.0, 1.0);
 	njColorBlendingMode(0, NJD_COLOR_BLENDING_SRCALPHA);
 	njColorBlendingMode(NJD_DESTINATION_COLOR, NJD_COLOR_BLENDING_INVSRCALPHA);
@@ -691,8 +687,8 @@ void ADV01_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 	WriteCall((void*)0x51F669, ODoseiFix);
 	WriteCall((void*)0x51EB2C, OLivingLightFix);
 	WriteCall((void*)0x0051AB88, RenderEggCarrier0NPC); //Chaos 4 glitch fix
-	WriteJump((void*)0x51B210, EggCarrierSkyBox);
-	WriteJump((void*)0x51B3B0, EggCarrierSkyBottom);
+	WriteJump((void*)0x51B210, EggCarrierSkyBottom);
+	WriteJump((void*)0x51B3B0, EggCarrierSkyBox);
 	//Fix camera in Amy-Gamma prison cutscene
 	WriteData((float*)0x006A4EBE, -134.0f); //X1
 	WriteData((float*)0x006A4EB9, 15.0f); //Y1
