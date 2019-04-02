@@ -284,9 +284,9 @@ void __cdecl Past_OceanDraw_r(OceanData *a1)
 		{
 			if (water_act2 > 74) water_act2 = 61;
 			if (ocean_act2 > 84) ocean_act2 = 75;
-			//matlistADV03_000C7840[0].attr_texId = water_act2; //Apparently SADX does it on its own
-			//matlistADV03_000C6C0C[0].attr_texId = water_act2; //Apparently SADX does it on its own
-			//matlistADV03_000C6F74[0].attr_texId = water_act2; //Apparently SADX does it on its own
+			((NJS_MATERIAL*)ADV03_2_Info->getdata("matlistADV03_000C7840"))[0].attr_texId = water_act2;
+			((NJS_MATERIAL*)ADV03_2_Info->getdata("matlistADV03_000C6C0C"))[0].attr_texId = water_act2;
+			((NJS_MATERIAL*)ADV03_2_Info->getdata("matlistADV03_000C6F74"))[0].attr_texId = water_act2;
 			((NJS_MATERIAL*)ADV03_2_Info->getdata("matlistADV03_0009DEBC"))[0].attr_texId = ocean_act2;
 			if (FramerateSetting < 2 && FrameCounter % 4 == 0 || FramerateSetting == 2 && FrameCounter % 2 == 0 || FramerateSetting > 2)
 			{
