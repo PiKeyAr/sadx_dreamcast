@@ -1496,8 +1496,8 @@ void PerfectChaos_Init()
 	}
 	for (unsigned int i = 0; i < 3; i++)
 	{
-		Chaos7Fog[i].Layer = -4000.0f;
-		Chaos7Fog[i].Distance = 11000.0f;
+		Chaos7Fog[i].Layer = -6000.0f;
+		Chaos7Fog[i].Distance = -15000.0f;
 		Chaos7Fog[i].Toggle = 1;
 		Chaos7Fog[i].Color = 0xFF19CED3;
 		DrawDist_Chaos7[i].Maximum = -6500.0;
