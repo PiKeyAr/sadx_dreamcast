@@ -1,8 +1,14 @@
 #include "stdafx.h"
-#include "windy1.h"
-#include "windy2.h"
-#include "windy3.h"
 #include "Objects_Windy.h"
+
+NJS_TEXNAME textures_windy1[20];
+NJS_TEXLIST texlist_windy1 = { arrayptrandlength(textures_windy1) };
+
+NJS_TEXNAME textures_windy2[17];
+NJS_TEXLIST texlist_windy2 = { arrayptrandlength(textures_windy2) };
+
+NJS_TEXNAME textures_windy3[28];
+NJS_TEXLIST texlist_windy3 = { arrayptrandlength(textures_windy3) };
 
 DataArray(SkyboxScale, SkyboxScale_Windy1, 0x00AFE924, 3);
 DataArray(FogData, FogData_Windy1, 0x00AFEA20, 3);
@@ -112,7 +118,34 @@ void FixBranch(NJS_ACTION *a1, float a2, int a3, float a4)
 	sub_408350(&action_OTREEM_Action, a2, a3, a4);
 }
 
-void WindyValley_Init(const IniFile *config, const HelperFunctions &helperFunctions)
+void UnloadLevelFiles_STG02()
+{
+	delete STG02_0_Info;
+	delete STG02_1_Info;
+	delete STG02_2_Info;
+	STG02_0_Info = nullptr;
+	STG02_1_Info = nullptr;
+	STG02_2_Info = nullptr;
+}
+
+void LoadLevelFiles_STG02()
+{
+	CheckAndUnloadLevelFiles();
+	STG02_0_Info = new LandTableInfo(ModPath + "\\data\\STG02\\0.sa1lvl");
+	STG02_1_Info = new LandTableInfo(ModPath + "\\data\\STG02\\1.sa1lvl");
+	STG02_2_Info = new LandTableInfo(ModPath + "\\data\\STG02\\2.sa1lvl");
+	LandTable *STG02_0 = STG02_0_Info->getlandtable();
+	LandTable *STG02_1 = STG02_1_Info->getlandtable();
+	LandTable *STG02_2 = STG02_2_Info->getlandtable();
+	STG02_0->TexList = &texlist_windy1;
+	STG02_1->TexList = &texlist_windy2;
+	STG02_2->TexList = &texlist_windy3;
+	WriteData((LandTable**)0x97DA48, STG02_0); //Act 1
+	WriteData((LandTable**)0x97DA4C, STG02_1); //Act 2
+	WriteData((LandTable**)0x97DA50, STG02_2); //Act 3
+}
+
+void WindyValley_Init()
 {
 	ReplaceBIN_DC("SET0200S");
 	ReplaceBIN_DC("SET0200E");
@@ -126,22 +159,22 @@ void WindyValley_Init(const IniFile *config, const HelperFunctions &helperFuncti
 	ReplaceBIN_DC("CAM0202S");
 	switch (EnableSETFixes)
 	{
-		case SETFixes_Normal:
-			AddSETFix("SET0200E");
-			AddSETFix("SET0200S");
-			AddSETFix("SET0201S");
-			AddSETFix("SET0202M");
-			AddSETFix("SET0202S");
-			break;
-		case SETFixes_Extra:
-			AddSETFix_Extra("SET0200E");
-			AddSETFix_Extra("SET0200S");
-			AddSETFix_Extra("SET0201S");
-			AddSETFix_Extra("SET0202M");
-			AddSETFix_Extra("SET0202S");
-			break;
-		default:
-			break;
+	case SETFixes_Normal:
+		AddSETFix("SET0200E");
+		AddSETFix("SET0200S");
+		AddSETFix("SET0201S");
+		AddSETFix("SET0202M");
+		AddSETFix("SET0202S");
+		break;
+	case SETFixes_Extra:
+		AddSETFix_Extra("SET0200E");
+		AddSETFix_Extra("SET0200S");
+		AddSETFix_Extra("SET0201S");
+		AddSETFix_Extra("SET0202M");
+		AddSETFix_Extra("SET0202S");
+		break;
+	default:
+		break;
 	}
 	ReplacePVM("OBJ_WINDY");
 	ReplacePVM("WINDY01");
@@ -150,9 +183,6 @@ void WindyValley_Init(const IniFile *config, const HelperFunctions &helperFuncti
 	ReplacePVM("WINDY_BACK");
 	ReplacePVM("WINDY_BACK2");
 	ReplacePVM("WINDY_BACK3");
-	WriteData((LandTable**)0x97DA48, &landtable_0000D7E0); //Act 1
-	WriteData((LandTable**)0x97DA4C, &landtable_0000DB40); //Act 2
-	WriteData((LandTable**)0x97DA50, &landtable_0000F274); //Act 3
 	*(NJS_MODEL_SADX*)0xC1E168 = attachSTG02_000C4CFC; //Fixed bridge rope
 	//Skybox stuff
 	WriteCall((void*)0x004DD794, RetrieveWindy1SkyTransparency);

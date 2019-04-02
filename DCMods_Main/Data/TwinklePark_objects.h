@@ -5783,11 +5783,11 @@ NJS_MODEL_SADX attachSTG03_000B9578 = { vertexSTG03_000B8A98, normalSTG03_000B90
 NJS_OBJECT objectSTG03_000B95A0 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachSTG03_000B9578, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
 //Merry-go-round floor (landtable)
-NJS_MATERIAL matlistSTG03_000AE9CC[] = {
+extern "C" __declspec(dllexport) NJS_MATERIAL matlistSTG03_000AE9CC[] = {
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 0, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_USE_TEXTURE | NJD_FLAG_IGNORE_LIGHT | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 polySTG03_000AE9E0[] = {
+extern "C" __declspec(dllexport) Sint16 polySTG03_000AE9E0[] = {
 	3, 15, 16, 0,
 	0x8000u | 5, 3, 2, 0, 1, 16,
 	5, 12, 13, 0, 14, 15,
@@ -5796,7 +5796,7 @@ Sint16 polySTG03_000AE9E0[] = {
 	5, 6, 7, 0, 8, 9
 };
 
-NJS_TEX uvSTG03_000AEA24[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvSTG03_000AEA24[] = {
 	{ 448, -193 },
 	{ 116, -689 },
 	{ 1530, -1275 },
@@ -5827,11 +5827,11 @@ NJS_TEX uvSTG03_000AEA24[] = {
 	{ 3060, -1274 }
 };
 
-NJS_MESHSET_SADX meshlistSTG03_000AEA94[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlistSTG03_000AEA94[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 6, polySTG03_000AE9E0, NULL, NULL, NULL, uvSTG03_000AEA24, NULL }
 };
 
-NJS_VECTOR vertexSTG03_000AEAAC[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertexSTG03_000AEAAC[] = {
 	{ -0.001211f, 0, -0.000209f },
 	{ 179.9989f, 0, -0.000249f },
 	{ 166.2972f, 0, -68.88301f },
@@ -5851,7 +5851,7 @@ NJS_VECTOR vertexSTG03_000AEAAC[] = {
 	{ 166.2971f, 0, 68.88293f }
 };
 
-NJS_VECTOR normalSTG03_000AEB78[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normalSTG03_000AEB78[] = {
 	{ 0, 1, 0 },
 	{ 0, 1, 0 },
 	{ 0, 1, 0 },
@@ -5871,9 +5871,9 @@ NJS_VECTOR normalSTG03_000AEB78[] = {
 	{ 0, 1, 0 }
 };
 
-NJS_MODEL_SADX attachSTG03_000AEC44 = { vertexSTG03_000AEAAC, normalSTG03_000AEB78, LengthOfArray(vertexSTG03_000AEAAC), meshlistSTG03_000AEA94, matlistSTG03_000AE9CC, LengthOfArray(meshlistSTG03_000AEA94), LengthOfArray(matlistSTG03_000AE9CC),{ -0.001129f, 0, -0.00015f }, 254.5584f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attachSTG03_000AEC44 = { vertexSTG03_000AEAAC, normalSTG03_000AEB78, LengthOfArray(vertexSTG03_000AEAAC), meshlistSTG03_000AEA94, matlistSTG03_000AE9CC, LengthOfArray(meshlistSTG03_000AEA94), LengthOfArray(matlistSTG03_000AE9CC),{ -0.001129f, 0, -0.00015f }, 254.5584f, NULL };
 
-NJS_OBJECT objectSTG03_000AEC6C = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachSTG03_000AEC44, 880, 50, -187, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectSTG03_000AEC6C = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachSTG03_000AEC44, 880, 50, -187, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
 //Carousel
 NJS_MATERIAL matlistSTG03_000AC490[] = {

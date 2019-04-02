@@ -1,12 +1,24 @@
 #include "stdafx.h"
 #include "ChaoObjects.h"
 #include "Fountain.h"
-#include "SSGarden.h"
-#include "MRGarden.h"
-#include "ECGarden.h"
 #include "ChaoFruits.h"
 #include "ChaoEggs.h"
 #include "HintMessages.h"
+
+NJS_TEXNAME textures_ecgarden[79];
+NJS_TEXLIST texlist_ecgarden = { arrayptrandlength(textures_ecgarden) };
+
+NJS_TEXNAME textures_ecgardensky[5];
+NJS_TEXLIST texlist_ecgardensky = { arrayptrandlength(textures_ecgardensky) };
+
+NJS_TEXNAME textures_ssgarden[33];
+NJS_TEXLIST texlist_ssgarden = { arrayptrandlength(textures_ssgarden) };
+
+NJS_TEXNAME textures_mrgardensky[5];
+NJS_TEXLIST texlist_mrgardensky = { arrayptrandlength(textures_mrgardensky) };
+
+NJS_TEXNAME textures_mrgarden[52];
+NJS_TEXLIST texlist_mrgarden = { arrayptrandlength(textures_mrgarden) };
 
 DataPointer(NJS_CNK_OBJECT, Fruit_Strong, 0x33B9064);
 DataPointer(NJS_CNK_OBJECT, Fruit_Tasty, 0x33B9A44);
@@ -17,17 +29,9 @@ DataPointer(NJS_CNK_OBJECT, Fruit_Triangular, 0x33BB514);
 DataPointer(NJS_CNK_OBJECT, Fruit_Square, 0x33BBFF4);
 DataPointer(NJS_CNK_OBJECT, Fruit_Heart, 0x33BC574);
 DataPointer(NJS_CNK_OBJECT, Fruit_Chao, 0x33BCBC4);
-DataPointer(NJS_CNK_OBJECT, SADXChaoEgg, 0x3601B94);
-DataPointer(NJS_CNK_OBJECT, SADXChaoEggBroken, 0x36014D0);
-DataPointer(NJS_CNK_OBJECT, SADXChaoEggBottom, 0x3600F0C);
 DataPointer(NJS_CNK_OBJECT, SADXHatEyes, 0x35E2BBC);
 DataPointer(NJS_CNK_MODEL, SADXChaoEggTop_Model, 0x3601484);
 SecondaryEntrance BK_SSGardenStartPoint;
-static bool EnableSSGarden = true;
-static bool EnableMRGarden = true;
-static bool EnableECGarden = true;
-static bool ReplaceEggs = true;
-static int ReplaceFruits = 0;
 static int ssgardenwater = 0;
 static int ecgardensand = 64;
 static int ecgardenwater = 54;
@@ -51,7 +55,6 @@ struct ChaoTreeEntityData1
 
 FunctionPointer(void, sub_78AC80, (NJS_CNK_MODEL *a1, int a2), 0x78AC80);
 FunctionPointer(void, sub_78ABB0, (NJS_CNK_OBJECT *a1, int *a2, float a3), 0x78ABB0);
-FunctionPointer(void, RenderSADXChaoEgg, (NJS_CNK_OBJECT *a1, int a2, int *a3, float a4), 0x78AF80);
 FunctionPointer(void, RenderSADXChaoEgg_2, (NJS_CNK_OBJECT *a1, int a2), 0x78AF40);
 FunctionPointer(char, sub_436210, (int(__cdecl *a1)(int), char a2, char a3), 0x436210);
 FunctionPointer(int, sub_72A6C0, (int a1), 0x72A6C0);
@@ -70,7 +73,6 @@ FunctionPointer(char, sub_72CD70, (), 0x72CD70);
 FunctionPointer(int, sub_72CC00, (NJS_TEXLIST *a1, int a2, int a3, int a4), 0x72CC00);
 FunctionPointer(int, sub_72CBC0, (), 0x72CBC0);
 FunctionPointer(signed int, sub_717160, (), 0x717160);
-
 
 FunctionPointer(ObjectMaster *, sub_72CB40, (), 0x72CB40);
 FunctionPointer(ObjectMaster *, sub_72C4A0, (), 0x72C4A0);
@@ -1080,8 +1082,8 @@ void __cdecl sub_72A790()
 	PrintDebug("547369736F626C7961646920736F736E6F6F6C6579\n");
 	dword_3CA6E8C = (int)GetProcAddress(handle, "stg_garden02_mr_objects");
 	texlist_garden02mr_daytime = (NJS_TEXLIST *)&texlist_mrgarden;
-	objLandTableGarden02_Daytime = (LandTable *)&landtable_0000FD3C;
-	sub_745A20((NJS_TEX*)&uvCHAO_0000EC54, 48);
+	objLandTableGarden02_Daytime = (LandTable*)AL_GARDEN02_Info->getdata("landtable_0000FD3C");
+	sub_745A20((NJS_TEX*)AL_GARDEN02_Info->getdata("uvCHAO_0000EC54"), 48);
 }
 
 void __cdecl sub_72A820()
@@ -1090,8 +1092,8 @@ void __cdecl sub_72A820()
 	PrintDebug("ChaoStgGarden02MR_Evening _prolog\n");
 	dword_3CA6E8C = (int)GetProcAddress(handle, "stg_garden02_mr_objects");
 	texlist_garden02mr_evening = (NJS_TEXLIST *)&texlist_mrgarden;
-	objLandTableGarden02_Evening = (LandTable *)&landtable_0000FD3C;
-	sub_745A20((NJS_TEX*)&uvCHAO_0000EC54, 48);
+	objLandTableGarden02_Evening = (LandTable*)AL_GARDEN02_Info->getdata("landtable_0000FD3C");
+	sub_745A20((NJS_TEX*)AL_GARDEN02_Info->getdata("uvCHAO_0000EC54"), 48);
 }
 
 void __cdecl sub_72A8B0()
@@ -1100,8 +1102,8 @@ void __cdecl sub_72A8B0()
 	PrintDebug("ChaoStgGarden02MR_Night _prolog\n");
 	dword_3CA6E8C = (int)GetProcAddress(handle, "stg_garden02_mr_objects");
 	texlist_garden02mr_night = (NJS_TEXLIST *)&texlist_mrgarden;
-	objLandTableGarden02_Night = (LandTable *)&landtable_0000FD3C;
-	sub_745A20((NJS_TEX*)&uvCHAO_0000EC54, 48);
+	objLandTableGarden02_Night = (LandTable*)AL_GARDEN02_Info->getdata("landtable_0000FD3C");
+	sub_745A20((NJS_TEX*)AL_GARDEN02_Info->getdata("uvCHAO_0000EC54"), 48);
 }
 
 void RenderSA1ChaoFruits_Object(NJS_CNK_OBJECT *a1)
@@ -1227,7 +1229,7 @@ void __cdecl LoadSSGardenX()
 	SSGardenStartPoint.YRot = BK_SSGardenStartPoint.YRot;
 	LoadObject(LoadObj_Data1, 2, ChaoStgGarden00SS_Load);
 	LoadObjects_SS();
-	SetChaoLandTable(&landtable_00011DD4);
+	SetChaoLandTable((LandTable*)AL_GARDEN00_Info->getdata("landtable_00011DD4"));
 	PrintDebug("ChaoStgGarden00SS Prolog end\n");
 }
 
@@ -1281,7 +1283,7 @@ void __cdecl LoadECGardenX()
 	LoadObject(LoadObj_Data1, 2, ChaoStgGarden01EC_Load);
 	LoadObject(LoadObj_Data1, 2, ECGardenWater_Load);
 	LoadObjects_EC();
-	SetChaoLandTable(&landtable_0000DF3C);
+	SetChaoLandTable((LandTable*)AL_GARDEN01_Info->getdata("landtable_0000DF3C"));
 	PrintDebug("ChaoStgGarden01EC Prolog end\n");
 }
 
@@ -1953,6 +1955,31 @@ void PlayElevatorSound(int ID, void *a2, int a3, void *a4)
 	else PlaySound(685, a2, a3, a4);
 }
 
+void UnloadLevelFiles_Chao()
+{
+	delete AL_GARDEN00_Info;
+	AL_GARDEN00_Info = nullptr;
+	delete AL_GARDEN01_Info;
+	AL_GARDEN01_Info = nullptr;
+	delete AL_GARDEN02_Info;
+	AL_GARDEN02_Info = nullptr;
+}
+
+void LoadLevelFiles_Chao()
+{
+	CheckAndUnloadLevelFiles();
+	AL_GARDEN00_Info = new LandTableInfo(ModPath + "\\data\\AL_GARDEN00\\0.sa1lvl");
+	AL_GARDEN01_Info = new LandTableInfo(ModPath + "\\data\\AL_GARDEN01\\0.sa1lvl");
+	AL_GARDEN02_Info = new LandTableInfo(ModPath + "\\data\\AL_GARDEN02\\0.sa1lvl");
+	LandTable *AL_GARDEN00 = AL_GARDEN00_Info->getlandtable();
+	LandTable *AL_GARDEN01 = AL_GARDEN01_Info->getlandtable();
+	LandTable *AL_GARDEN02 = AL_GARDEN02_Info->getlandtable();
+	AL_GARDEN00->TexList = &texlist_ssgarden;
+	AL_GARDEN01->TexList = &texlist_ecgarden;
+	AL_GARDEN02->TexList = &texlist_mrgarden;
+	LoadLevelFiles_AL_RACE();
+}
+
 void ChaoGardens_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 {
 	ReplacePVM("CHAO");
@@ -1964,12 +1991,6 @@ void ChaoGardens_Init(const IniFile *config, const HelperFunctions &helperFuncti
 	ReplacePVM("CHAO_HYOUJI_S");
 	ReplacePVM("EC_ALIFE");
 	LoadChaoGardenHintMessages();
-	//Load configuration settings
-	EnableSSGarden = config->getBool("Chao Gardens", "EnableStationSquareGarden", true);
-	EnableMRGarden = config->getBool("Chao Gardens", "EnableMysticRuinsGarden", true);
-	EnableECGarden = config->getBool("Chao Gardens", "EnableEggCarrierGarden", true);
-	ReplaceFruits = config->getInt("Chao Gardens", "ReplaceFruits", 0);
-	ReplaceEggs = config->getBool("Chao Gardens", "ReplaceEggs", true);
 	//Garden transporters stuff
 	WriteData((NJS_TEXLIST**)0x07290FB, &CHAO_OBJECT_TEXLIST);
 	*(NJS_OBJECT*)0x036065B4 = object_00182198; //EC garden to EC transporter
@@ -2239,7 +2260,7 @@ void ChaoGardens_OnFrame()
 		}
 	}
 	//Station Square garden
-	if (CurrentChaoStage == 4 && GameState != 16 && EnableSSGarden)
+	if (AL_GARDEN00_Info && CurrentChaoStage == 4 && GameState != 16 && EnableSSGarden)
 	{
 		auto entity = EntityData1Ptrs[0];
 		if (entity != nullptr)
@@ -2250,18 +2271,18 @@ void ChaoGardens_OnFrame()
 			}
 		}
 		if (ssgardenwater > 9) ssgardenwater = 0;
-		matlistCHAO_00011388[0].attr_texId = ssgardenwater;
+		((NJS_MATERIAL*)AL_GARDEN00_Info->getdata("matlistCHAO_00011388"))[0].attr_texId = ssgardenwater;
 		if (FramerateSetting < 2 && FrameCounter % 4 == 0 || FramerateSetting == 2 && FrameCounter % 2 == 0 || FramerateSetting > 2) ssgardenwater++;
 	}
 	//Egg Carrier garden
-	if (CurrentChaoStage == 5 && GameState != 16 && EnableECGarden)
+	if (AL_GARDEN01_Info && CurrentChaoStage == 5 && GameState != 16 && EnableECGarden)
 	{
 		if (ecgardenwater > 63) ecgardenwater = 54;
 		if (ecgardensand > 78) ecgardensand = 64;
-		matlistCHAO_00006510[0].attr_texId = ecgardensand;
-		matlistCHAO_0000C748[0].attr_texId = ecgardenwater;
+		((NJS_MATERIAL*)AL_GARDEN01_Info->getdata("matlistCHAO_00006510"))[0].attr_texId = ecgardensand;
+		((NJS_MATERIAL*)AL_GARDEN01_Info->getdata("matlistCHAO_0000C748"))[0].attr_texId = ecgardenwater;
 		matlistCHAO_0000EF4C[0].attr_texId = ecgardenwater;
-		matlistCHAO_00001D00[0].attr_texId = ecgardenwater;
+		//((NJS_MATERIAL*)AL_GARDEN01_Info->getdata("matlistCHAO_00001D00"))[0].attr_texId = ecgardenwater; //This is unused and missing in the COL list
 		if (FramerateSetting < 2 && FrameCounter % 4 == 0 || FramerateSetting == 2 && FrameCounter % 2 == 0 || FramerateSetting > 2)
 		{
 			ecgardenwater++;
@@ -2269,18 +2290,21 @@ void ChaoGardens_OnFrame()
 		}
 	}
 	//Mystic Ruins garden
-	if (CurrentChaoStage == 6 && GameState != 16 && EnableMRGarden)
+	if (AL_GARDEN02_Info && CurrentChaoStage == 6 && GameState != 16 && EnableMRGarden)
 	{
-		for (unsigned int q3 = 0; q3 < LengthOfArray(uvCHAO_0000F184); q3++) { uvCHAO_0000F184[q3].v--; }
-		if (uvCHAO_0000F184[2].v <= -255)
+		for (unsigned int q3 = 0; q3 < LengthOfArray(uvCHAO_0000F184_R); q3++)
 		{
-			for (unsigned int r5 = 0; r5 < LengthOfArray(uvCHAO_0000F184); r5++)
+			((NJS_TEX*)AL_GARDEN02_Info->getdata("uvCHAO_0000F184"))[q3].v--;
+		}
+		if (((NJS_TEX*)AL_GARDEN02_Info->getdata("uvCHAO_0000F184"))[2].v <= -255)
+		{
+			for (unsigned int r5 = 0; r5 < LengthOfArray(uvCHAO_0000F184_R); r5++)
 			{
-				uvCHAO_0000F184[r5].v = uvCHAO_0000F184_R[r5].v;
+				((NJS_TEX*)AL_GARDEN02_Info->getdata("uvCHAO_0000F184"))[r5].v = uvCHAO_0000F184_R[r5].v;
 			}
 		}
 		if (mrgardenwater > 45) mrgardenwater = 36;
-		matlistCHAO_00002FF4[0].attr_texId = mrgardenwater;
+		((NJS_MATERIAL*)AL_GARDEN02_Info->getdata("matlistCHAO_00002FF4"))[0].attr_texId = mrgardenwater;
 		if (FramerateSetting < 2 && FrameCounter % 4 == 0 || FramerateSetting == 2 && FrameCounter % 2 == 0 || FramerateSetting > 2) mrgardenwater++;
 	}
 }

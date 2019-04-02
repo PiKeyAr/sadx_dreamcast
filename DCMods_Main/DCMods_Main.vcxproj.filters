@@ -323,9 +323,6 @@
     <ClInclude Include="Data\Chaos6_Act1.h">
       <Filter>Header Files\Levels\Bosses</Filter>
     </ClInclude>
-    <ClInclude Include="Data\Chaos6_Act1_PC.h">
-      <Filter>Header Files\Levels\Bosses</Filter>
-    </ClInclude>
     <ClInclude Include="Data\Chaos6_Act2.h">
       <Filter>Header Files\Levels\Bosses</Filter>
     </ClInclude>
@@ -372,9 +369,6 @@
       <Filter>Header Files\Levels\Bosses</Filter>
     </ClInclude>
     <ClInclude Include="Data\EggHornet_Model.h">
-      <Filter>Header Files\Levels\Bosses</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\EggmobileNPC.h">
       <Filter>Header Files\Levels\Bosses</Filter>
     </ClInclude>
     <ClInclude Include="Data\EggViper.h">
@@ -608,9 +602,6 @@
     <ClInclude Include="Data\Twinkle3_Trans.h">
       <Filter>Header Files\Levels\TwinklePark</Filter>
     </ClInclude>
-    <ClInclude Include="Data\TwinkleCircuit.h">
-      <Filter>Header Files\Levels\TwinklePark</Filter>
-    </ClInclude>
     <ClInclude Include="Data\TwinklePark_objects.h">
       <Filter>Header Files\Levels\TwinklePark</Filter>
     </ClInclude>
@@ -662,8 +653,23 @@
     <ClInclude Include="StageLights.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Data\Past_Chao.h">
-      <Filter>Header Files\Levels\ADV03MODELS</Filter>
+    <ClInclude Include="Data\TwinkleCircuit.h">
+      <Filter>Header Files\Levels\Subgames</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\SandHill_objects.h">
+      <Filter>Header Files\Levels\Subgames</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\EggHornet_Water.h">
+      <Filter>Header Files\Levels\Bosses</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\EggViper_Head.h">
+      <Filter>Header Files\Levels\Bosses</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\ZeroE101R_Water.h">
+      <Filter>Header Files\Levels\Bosses</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\Chaos6_Motion.h">
+      <Filter>Header Files\Levels\Bosses</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

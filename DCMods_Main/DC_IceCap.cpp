@@ -1,10 +1,16 @@
 #include "stdafx.h"
 #include "textures.h"
 #include "Icicle.h"
-#include "IceCap1.h"
-#include "IceCap2.h"
-#include "IceCap3.h"
-#include "IceCap4.h"
+
+NJS_TEXNAME textures_icecap1[34];
+NJS_TEXLIST texlist_icecap1 = { arrayptrandlength(textures_icecap1) };
+
+NJS_TEXNAME textures_icecap2[55];
+NJS_TEXLIST texlist_icecap2 = { arrayptrandlength(textures_icecap2) };
+
+NJS_TEXNAME textures_icecap3[40];
+NJS_TEXLIST texlist_icecap3 = { arrayptrandlength(textures_icecap3) };
+
 
 DataPointer(float, CurrentFogDist, 0x03ABDC64);
 DataPointer(float, CurrentFogLayer, 0x03ABDC60);
@@ -175,30 +181,33 @@ void Obj_Icecap_DoColFlagThingsX(int some_flags)
 	int count; // edx
 	Uint32 flags; // eax
 	unsigned __int32 _flags; // eax
-	if (landtable_00019950.COLCount - 1 >= 0)
+	if (STG08_3_Info)
 	{
-		ptr = (Uint32*)&landtable_00019950.Col->Flags;
-		count = landtable_00019950.COLCount;
-		do
+		if (STG08_3_Info->getlandtable()->COLCount - 1 >= 0)
 		{
-			flags = *ptr;
-			if (*ptr & 0x60000000)
+			ptr = (Uint32*)&STG08_3_Info->getlandtable()->Col->Flags;
+			count = STG08_3_Info->getlandtable()->COLCount;
+			do
 			{
-				if (some_flags & *(ptr - 1))
+				flags = *ptr;
+				if (*ptr & 0x60000000)
 				{
-					//PrintDebug("Solid\n");
-					_flags = flags | ColFlags_Solid;
+					if (some_flags & *(ptr - 1))
+					{
+						//PrintDebug("Solid\n");
+						_flags = flags | ColFlags_Solid;
+					}
+					else
+					{
+						//PrintDebug("Not solid\n");
+						_flags = flags & ~ColFlags_Solid;
+					}
+					*ptr = _flags;
 				}
-				else
-				{
-					//PrintDebug("Not solid\n");
-					_flags = flags & ~ColFlags_Solid;
-				}
-				*ptr = _flags;
-			}
-			ptr += 9;
-			--count;
-		} while (count);
+				ptr += 9;
+				--count;
+			} while (count);
+		}
 	}
 }
 
@@ -216,7 +225,40 @@ static void __declspec(naked) Obj_Icecap_DoColFlagThings_a()
 	}
 }
 
-void IceCap_Init(const IniFile *config, const HelperFunctions &helperFunctions)
+void LoadLevelFiles_STG08()
+{
+	CheckAndUnloadLevelFiles();
+	STG08_0_Info = new LandTableInfo(ModPath + "\\data\\STG08\\0.sa1lvl");
+	STG08_1_Info = new LandTableInfo(ModPath + "\\data\\STG08\\1.sa1lvl");
+	STG08_2_Info = new LandTableInfo(ModPath + "\\data\\STG08\\2.sa1lvl");
+	STG08_3_Info = new LandTableInfo(ModPath + "\\data\\STG08\\3.sa1lvl");
+	LandTable *STG08_0 = STG08_0_Info->getlandtable();
+	LandTable *STG08_1 = STG08_1_Info->getlandtable();
+	LandTable *STG08_2 = STG08_2_Info->getlandtable();
+	LandTable *STG08_3 = STG08_3_Info->getlandtable();
+	STG08_0->TexList = &texlist_icecap1;
+	STG08_1->TexList = &texlist_icecap2;
+	STG08_2->TexList = &texlist_icecap3;
+	STG08_3->TexList = &texlist_icecap2;
+	WriteData((LandTable**)0x97DB08, STG08_0);
+	WriteData((LandTable**)0x97DB0C, STG08_1);
+	WriteData((LandTable**)0x97DB10, STG08_2);
+	WriteData((LandTable**)0x97DB14, STG08_3);
+}
+
+void UnloadLevelFiles_STG08()
+{
+	delete STG08_0_Info;
+	delete STG08_1_Info;
+	delete STG08_2_Info;
+	delete STG08_3_Info;
+	STG08_0_Info = nullptr;
+	STG08_1_Info = nullptr;
+	STG08_2_Info = nullptr;
+	STG08_3_Info = nullptr;
+}
+
+void IceCap_Init()
 {
 	ReplaceBIN_DC("CAM0800S");
 	ReplaceBIN_DC("CAM0801S");
@@ -229,22 +271,22 @@ void IceCap_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 	ReplaceBIN_DC("SET0803B");
 	switch (EnableSETFixes)
 	{
-		case SETFixes_Normal:
-			AddSETFix("SET0800S");
-			AddSETFix("SET0801S");
-			AddSETFix("SET0802M");
-			AddSETFix("SET0802S");
-			AddSETFix("SET0803B");
-			break;
-		case SETFixes_Extra:
-			AddSETFix_Extra("SET0800S");
-			AddSETFix_Extra("SET0801S");
-			AddSETFix_Extra("SET0802M");
-			AddSETFix_Extra("SET0802S");
-			AddSETFix_Extra("SET0803B");
-			break;
-		default:
-			break;
+	case SETFixes_Normal:
+		AddSETFix("SET0800S");
+		AddSETFix("SET0801S");
+		AddSETFix("SET0802M");
+		AddSETFix("SET0802S");
+		AddSETFix("SET0803B");
+		break;
+	case SETFixes_Extra:
+		AddSETFix_Extra("SET0800S");
+		AddSETFix_Extra("SET0801S");
+		AddSETFix_Extra("SET0802M");
+		AddSETFix_Extra("SET0802S");
+		AddSETFix_Extra("SET0803B");
+		break;
+	default:
+		break;
 	}
 	ReplacePVM("BG_ICECAP");
 	ReplacePVM("ICECAP01");
@@ -255,10 +297,6 @@ void IceCap_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 	ReplacePVR("MIW_B001");
 	ReplacePVR("MTX_BOARD0");
 	ReplacePVR("SB_BOARD1");
-	WriteData((LandTable**)0x97DB08, &landtable_00014B44);
-	WriteData((LandTable**)0x97DB0C, &landtable_00015714);
-	WriteData((LandTable**)0x97DB10, &landtable_000180B4);
-	WriteData((LandTable**)0x97DB14, &landtable_00019950);
 	WriteJump((void*)0x4E91C0, Obj_Icecap_DoColFlagThings_a); //Weird COL flag function
 	/*Crystal fixes, hopefully someday
 	//stru_E76598.basicdxmodel->mats[0].attrflags |= NJD_FLAG_USE_ALPHA;
@@ -342,37 +380,37 @@ void IceCap_OnFrame()
 			}
 		}
 	}
-	if (CurrentLevel == 8 && CurrentAct == 3 && GameState != 16)
+	if (STG08_3_Info && CurrentLevel == 8 && CurrentAct == 3 && GameState != 16)
 	{
 		if (animframe > 54) animframe = 16;
 		if (animframe > 16 && animframe < 41) animframe = 41;
-		matlistSTG08_Q00076DC8[0].attr_texId = animframe;
-		matlistSTG08_Q00077244[0].attr_texId = animframe;
-		matlistSTG08_Q000820E4[0].attr_texId = animframe;
-		matlistSTG08_Q000820E4[1].attr_texId = animframe;
-		matlistSTG08_Q0008E8E0[0].attr_texId = animframe;
-		matlistSTG08_Q0008E9E4[0].attr_texId = animframe;
-		matlistSTG08_Q000A4F08[0].attr_texId = animframe;
-		matlistSTG08_Q000A773C[0].attr_texId = animframe;
-		matlistSTG08_Q000A773C[1].attr_texId = animframe;
-		matlistSTG08_Q000A9AD8[0].attr_texId = animframe;
-		matlistSTG08_Q000A9AD8[1].attr_texId = animframe;
-		matlistSTG08_Q000A9AD8[2].attr_texId = animframe;
-		matlistSTG08_Q000AB4B4[0].attr_texId = animframe;
-		matlistSTG08_Q000AC6B4[0].attr_texId = animframe;
-		matlistSTG08_Q0005BB68[0].attr_texId = animframe;
-		matlistSTG08_Q000B624C[0].attr_texId = animframe;
-		matlistSTG08_Q000B624C[1].attr_texId = animframe;
-		matlistSTG08_Q000B84C8[0].attr_texId = animframe;
-		matlistSTG08_Q000BCA5C[0].attr_texId = animframe;
-		matlistSTG08_Q000BCA5C[1].attr_texId = animframe;
-		matlistSTG08_Q000BD328[0].attr_texId = animframe;
-		matlistSTG08_Q000BD328[1].attr_texId = animframe;
-		matlistSTG08_Q000C4800[0].attr_texId = animframe;
-		matlistSTG08_Q000C4940[0].attr_texId = animframe;
-		matlistSTG08_Q000C4A44[0].attr_texId = animframe;
-		matlistSTG08_Q000C4B84[0].attr_texId = animframe;
-		matlistSTG08_Q000C4C88[0].attr_texId = animframe;
+		((NJS_MATERIAL*)STG08_3_Info->getdata("matlistSTG08_Q00076DC8"))[0].attr_texId = animframe;
+		((NJS_MATERIAL*)STG08_3_Info->getdata("matlistSTG08_Q00077244"))[0].attr_texId = animframe;
+		((NJS_MATERIAL*)STG08_3_Info->getdata("matlistSTG08_Q000820E4"))[0].attr_texId = animframe;
+		((NJS_MATERIAL*)STG08_3_Info->getdata("matlistSTG08_Q000820E4"))[1].attr_texId = animframe;
+		((NJS_MATERIAL*)STG08_3_Info->getdata("matlistSTG08_Q0008E8E0"))[0].attr_texId = animframe;
+		((NJS_MATERIAL*)STG08_3_Info->getdata("matlistSTG08_Q0008E9E4"))[0].attr_texId = animframe;
+		((NJS_MATERIAL*)STG08_3_Info->getdata("matlistSTG08_Q000A4F08"))[0].attr_texId = animframe;
+		((NJS_MATERIAL*)STG08_3_Info->getdata("matlistSTG08_Q000A773C"))[0].attr_texId = animframe;
+		((NJS_MATERIAL*)STG08_3_Info->getdata("matlistSTG08_Q000A773C"))[1].attr_texId = animframe;
+		((NJS_MATERIAL*)STG08_3_Info->getdata("matlistSTG08_Q000A9AD8"))[0].attr_texId = animframe;
+		((NJS_MATERIAL*)STG08_3_Info->getdata("matlistSTG08_Q000A9AD8"))[1].attr_texId = animframe;
+		((NJS_MATERIAL*)STG08_3_Info->getdata("matlistSTG08_Q000A9AD8"))[2].attr_texId = animframe;
+		((NJS_MATERIAL*)STG08_3_Info->getdata("matlistSTG08_Q000AB4B4"))[0].attr_texId = animframe;
+		((NJS_MATERIAL*)STG08_3_Info->getdata("matlistSTG08_Q000AC6B4"))[0].attr_texId = animframe;
+		((NJS_MATERIAL*)STG08_3_Info->getdata("matlistSTG08_Q0005BB68"))[0].attr_texId = animframe;
+		((NJS_MATERIAL*)STG08_3_Info->getdata("matlistSTG08_Q000B624C"))[0].attr_texId = animframe;
+		((NJS_MATERIAL*)STG08_3_Info->getdata("matlistSTG08_Q000B624C"))[1].attr_texId = animframe;
+		((NJS_MATERIAL*)STG08_3_Info->getdata("matlistSTG08_Q000B84C8"))[0].attr_texId = animframe;
+		((NJS_MATERIAL*)STG08_3_Info->getdata("matlistSTG08_Q000BCA5C"))[0].attr_texId = animframe;
+		((NJS_MATERIAL*)STG08_3_Info->getdata("matlistSTG08_Q000BCA5C"))[1].attr_texId = animframe;
+		((NJS_MATERIAL*)STG08_3_Info->getdata("matlistSTG08_Q000BD328"))[0].attr_texId = animframe;
+		((NJS_MATERIAL*)STG08_3_Info->getdata("matlistSTG08_Q000BD328"))[1].attr_texId = animframe;
+		((NJS_MATERIAL*)STG08_3_Info->getdata("matlistSTG08_Q000C4800"))[0].attr_texId = animframe;
+		((NJS_MATERIAL*)STG08_3_Info->getdata("matlistSTG08_Q000C4940"))[0].attr_texId = animframe;
+		((NJS_MATERIAL*)STG08_3_Info->getdata("matlistSTG08_Q000C4A44"))[0].attr_texId = animframe;
+		((NJS_MATERIAL*)STG08_3_Info->getdata("matlistSTG08_Q000C4B84"))[0].attr_texId = animframe;
+		((NJS_MATERIAL*)STG08_3_Info->getdata("matlistSTG08_Q000C4C88"))[0].attr_texId = animframe;
 		if (FramerateSetting < 2 && FrameCounter % 4 == 0 || FramerateSetting == 2 && FrameCounter % 2 == 0 || FramerateSetting > 2) animframe++;
 	}
 }

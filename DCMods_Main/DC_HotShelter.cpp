@@ -1,8 +1,16 @@
 #include "stdafx.h"
 #include "HotShelter_Objects.h"
-#include "HotShelter1.h"
-#include "HotShelter2.h"
-#include "HotShelter3.h"
+
+NJS_TEXNAME textures_shelter1[78];
+NJS_TEXLIST texlist_hotshelter1 = { arrayptrandlength(textures_shelter1) };
+
+NJS_TEXNAME textures_shelter2[156];
+NJS_TEXLIST texlist_hotshelter2 = { arrayptrandlength(textures_shelter2) };
+
+NJS_TEXNAME textures_shelter3[121];
+NJS_TEXLIST texlist_hotshelter3 = { arrayptrandlength(textures_shelter3) };
+
+SETObjData setdata_hs = {};
 
 FunctionPointer(void, sub_4B9540, (NJS_VECTOR *position, NJS_VECTOR *scale_v, float scale), 0x4B9540);
 FunctionPointer(void, sub_405370, (NJS_OBJECT *a1, NJS_MOTION *a2, float a3, float a4), 0x405370);
@@ -19,15 +27,19 @@ static int suimen_direction = 1;
 static int TextureAnim = 78;
 static int WaterThing_VShift = 0;
 static bool ReduceHotShelterFog = false;
+static bool Act2LightsLoaded = false;
 static Angle E105Angle = 0;
 
-NJS_MATERIAL* DisableAlphaRejection_HotShelter[] = {
-	&matlistSTG12_00032C20[0], //Act 1 green light
-	&matlistSTG12_00096220[0], //Act 2 green light
-	&matlistSTG12_0009639C[0], //Act 2 green light
-	&matlistSTG12_000964DC[0], //Act 2 green light
-	&matlistSTG12_000DCC38[10], //Act 3 blue light
-	&matlistSTG12_000DEBEC_2[0], //Act 3 blue light
+NJS_MATERIAL* DisableAlphaRejection_HotShelterExternal[] = {
+	nullptr,
+	nullptr,
+	nullptr,
+	nullptr,
+	nullptr,
+	nullptr,
+	nullptr,
+	nullptr, 
+	nullptr, 
 };
 
 NJS_MATERIAL* LevelSpecular_HotShelter[] = {
@@ -178,16 +190,19 @@ NJS_MATERIAL* ObjectSpecular_HotShelter[] = {
 	((NJS_MATERIAL*)0x01813708),
 };
 
+NJS_MATERIAL* WhiteDiffuse_HotShelterExternal[] = {
+	//Level stuff
+	nullptr,
+	nullptr,
+	nullptr,
+	nullptr,
+};
+
 NJS_MATERIAL* WhiteDiffuse_HotShelter[] = {
 	//OKazari2
 	((NJS_MATERIAL*)0x0181751C),
 	//OCarne
 	((NJS_MATERIAL*)0x0185B8B4),
-	//Level stuff
-	&matlistSTG12_000D7B10[2],
-	&matlistSTG12_000D7878[2],
-	&matlistSTG12_000F3C6C[5],
-	&matlistSTG12_000F4D74[5],
 	//Colored cubes
 	&matlistSTG12_00170E74[8],
 	&matlistSTG12_00170088[8],
@@ -253,7 +268,143 @@ void PlayMusicHook_DisableE105Fog(MusicIDs song)
 	ReduceHotShelterFog = true;
 }
 
-void HotShelter_Init(const IniFile *config, const HelperFunctions &helperFunctions)
+void HS2Light_Display(ObjectMaster *a1)
+{
+	EntityData1 *v1;
+	v1 = a1->Data1;
+	if (CurrentAct == 1 && !DroppedFrames)
+	{
+		njSetTexture(&texlist_hotshelter2);
+		njPushMatrix(0);
+		njTranslateV(0, &v1->Position);
+		njScale(0, 1.0f, 1.0f, 1.0f);
+		njRotateXYZ(0, 0, 0, 0);
+		DrawQueueDepthBias = 4000.0f;
+		ProcessModelNode((NJS_OBJECT*)STG12_1_Info->getdata("objectSTG12_0007DE3C"), QueuedModelFlagsB_3, 1.0f);
+		ProcessModelNode((NJS_OBJECT*)STG12_1_Info->getdata("objectSTG12_000A7A10"), QueuedModelFlagsB_3, 1.0f);
+		ProcessModelNode((NJS_OBJECT*)STG12_1_Info->getdata("objectSTG12_000A7940"), QueuedModelFlagsB_3, 1.0f);
+		ProcessModelNode((NJS_OBJECT*)STG12_1_Info->getdata("objectSTG12_000A79DC"), QueuedModelFlagsB_3, 1.0f);
+		ProcessModelNode((NJS_OBJECT*)STG12_1_Info->getdata("objectSTG12_000A79A8"), QueuedModelFlagsB_3, 1.0f);
+		ProcessModelNode((NJS_OBJECT*)STG12_1_Info->getdata("objectSTG12_000A7974"), QueuedModelFlagsB_3, 1.0f);
+		DrawQueueDepthBias = 6000.0f;
+		ProcessModelNode((NJS_OBJECT*)STG12_1_Info->getdata("objectSTG12_000A4AB8_2"), (QueuedModelFlagsB)0, 1.0f);
+		njPopMatrix(1u);
+		DrawQueueDepthBias = 0;
+	}
+}
+
+void HS2Light_Delete(ObjectMaster *a1)
+{
+	Act2LightsLoaded = false;
+	CheckThingButThenDeleteObject(a1);
+}
+
+void HS2Light_Main(ObjectMaster *a1)
+{
+	if (CurrentLevel == 12)
+	{
+		if (CurrentAct == 1) HS2Light_Display(a1);
+	}
+	else HS2Light_Delete(a1);
+}
+
+void HS2Light_Load(ObjectMaster *a1)
+{
+	a1->MainSub = (void(__cdecl *)(ObjectMaster *))HS2Light_Main;
+	a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))HS2Light_Display;
+	a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))HS2Light_Delete;
+}
+
+void LoadHotShelterAct2Lights()
+{
+	ObjectMaster *obj;
+	EntityData1 *ent;
+	ObjectFunc(OF0, HS2Light_Load);
+	setdata_hs.Distance = 612800.0f;
+	obj = LoadObject((LoadObj)2, 3, OF0);
+	obj->SETData.SETData = &setdata_hs;
+	if (obj)
+	{
+		ent = obj->Data1;
+		ent->Position.x = 0;
+		ent->Position.y = 0;
+		ent->Position.z = 0;
+		ent->Rotation.x = 0;
+		ent->Rotation.y = 0;
+		ent->Rotation.z = 0;
+	}
+	Act2LightsLoaded = true;
+}
+
+static void SkyBox_HotShelter_Load_r(ObjectMaster *a1);
+static Trampoline SkyBox_HotShelter_Load_t(0x59A2A0, 0x59A2A9, SkyBox_HotShelter_Load_r);
+static void __cdecl SkyBox_HotShelter_Load_r(ObjectMaster *a1)
+{
+	auto original = reinterpret_cast<decltype(SkyBox_HotShelter_Load_r)*>(SkyBox_HotShelter_Load_t.Target());
+	original(a1);
+	if (EnableHotShelter && !Act2LightsLoaded) LoadHotShelterAct2Lights();
+}
+
+void UnloadLevelFiles_STG12()
+{
+	if (DLLLoaded_Lantern)
+	{
+		material_unregister_ptr(WhiteDiffuse_HotShelterExternal, LengthOfArray(WhiteDiffuse_HotShelterExternal), &ForceWhiteDiffuse1);
+		if (set_alpha_reject_ptr != nullptr) material_unregister_ptr(DisableAlphaRejection_HotShelterExternal, LengthOfArray(DisableAlphaRejection_HotShelterExternal), &DisableAlphaRejection);
+	}
+	delete STG12_0_Info;
+	delete STG12_1_Info;
+	delete STG12_2_Info;
+	STG12_0_Info = nullptr;
+	STG12_1_Info = nullptr;
+	STG12_2_Info = nullptr;
+}
+
+void LoadLevelFiles_STG12()
+{
+	CheckAndUnloadLevelFiles();
+	STG12_0_Info = new LandTableInfo(ModPath + "\\data\\STG12\\0.sa1lvl");
+	STG12_1_Info = new LandTableInfo(ModPath + "\\data\\STG12\\1.sa1lvl");
+	STG12_2_Info = new LandTableInfo(ModPath + "\\data\\STG12\\2.sa1lvl");
+	LandTable *STG12_0 = STG12_0_Info->getlandtable();
+	LandTable *STG12_1 = STG12_1_Info->getlandtable();
+	LandTable *STG12_2 = STG12_2_Info->getlandtable();
+	STG12_0->TexList = &texlist_hotshelter1;
+	STG12_1->TexList = &texlist_hotshelter2;
+	STG12_2->TexList = &texlist_hotshelter3;
+	WriteData((LandTable**)0x97DB88, STG12_0);
+	WriteData((LandTable**)0x97DB8C, STG12_1);
+	WriteData((LandTable**)0x97DB90, STG12_2);
+	if (DLLLoaded_Lantern)
+	{
+		if (set_alpha_reject_ptr != nullptr)
+		{
+			((NJS_MATERIAL*)STG12_1_Info->getdata("matlistSTG12_0008BD08"))[11].diffuse.color = 0xFFFFFFFF;
+			((NJS_MATERIAL*)STG12_1_Info->getdata("matlistSTG12_0008BD08"))[11].attrflags &= ~NJD_SA_SRC;
+			((NJS_MATERIAL*)STG12_1_Info->getdata("matlistSTG12_0008BD08"))[11].attrflags |= NJD_SA_ONE;
+			((NJS_MATERIAL*)STG12_1_Info->getdata("matlistSTG12_00089D48"))[10].diffuse.color = 0xFFFFFFFF;
+			((NJS_MATERIAL*)STG12_1_Info->getdata("matlistSTG12_00089D48"))[10].attrflags &= ~NJD_SA_SRC;
+			((NJS_MATERIAL*)STG12_1_Info->getdata("matlistSTG12_00089D48"))[10].attrflags |= NJD_SA_ONE;
+			DisableAlphaRejection_HotShelterExternal[0] = &((NJS_MATERIAL*)STG12_0_Info->getdata("matlistSTG12_00032C20"))[0]; //Act 1 green light
+			DisableAlphaRejection_HotShelterExternal[1] = &((NJS_MATERIAL*)STG12_1_Info->getdata("matlistSTG12_00096220"))[0]; //Act 2 green light
+			DisableAlphaRejection_HotShelterExternal[2] = &((NJS_MATERIAL*)STG12_1_Info->getdata("matlistSTG12_0009639C"))[0]; //Act 2 green light
+			DisableAlphaRejection_HotShelterExternal[3] = &((NJS_MATERIAL*)STG12_1_Info->getdata("matlistSTG12_000964DC"))[0]; //Act 2 green light
+			DisableAlphaRejection_HotShelterExternal[4] = &((NJS_MATERIAL*)STG12_2_Info->getdata("matlistSTG12_000DCC38"))[10]; //Act 3 blue light
+			DisableAlphaRejection_HotShelterExternal[5] = &((NJS_MATERIAL*)STG12_2_Info->getdata("matlistSTG12_000DEBEC_2"))[0]; //Act 3 blue light
+			DisableAlphaRejection_HotShelterExternal[6] = &((NJS_MATERIAL*)STG12_1_Info->getdata("matlistSTG12_0007DB48"))[1]; //Act 2 green light underneath glass platform
+			DisableAlphaRejection_HotShelterExternal[7] = &((NJS_MATERIAL*)STG12_1_Info->getdata("matlistSTG12_0008BD08"))[11]; //Act 2 green light in the tube near Amy's balloon
+			DisableAlphaRejection_HotShelterExternal[8] = &((NJS_MATERIAL*)STG12_1_Info->getdata("matlistSTG12_00089D48"))[10]; //Act 2 green light in the tube near Amy's balloon
+			material_register_ptr(DisableAlphaRejection_HotShelterExternal, LengthOfArray(DisableAlphaRejection_HotShelterExternal), &DisableAlphaRejection);
+		}
+		WhiteDiffuse_HotShelterExternal[0] = &((NJS_MATERIAL*)STG12_0_Info->getdata("matlistSTG12_000D7B10"))[2];
+		WhiteDiffuse_HotShelterExternal[1] = &((NJS_MATERIAL*)STG12_0_Info->getdata("matlistSTG12_000D7878"))[2];
+		WhiteDiffuse_HotShelterExternal[2] = &((NJS_MATERIAL*)STG12_0_Info->getdata("matlistSTG12_000F3C6C"))[5];
+		WhiteDiffuse_HotShelterExternal[3] = &((NJS_MATERIAL*)STG12_0_Info->getdata("matlistSTG12_000F4D74"))[5];
+		material_register_ptr(WhiteDiffuse_HotShelterExternal, LengthOfArray(WhiteDiffuse_HotShelterExternal), &ForceWhiteDiffuse1);
+	}
+}
+
+void HotShelter_Init()
 {
 	ReplaceBIN_DC("SET1200A");
 	ReplaceBIN_DC("SET1200B");
@@ -273,20 +424,20 @@ void HotShelter_Init(const IniFile *config, const HelperFunctions &helperFunctio
 	ReplaceBIN_DC("CAM1203S");
 	switch (EnableSETFixes)
 	{
-		case SETFixes_Normal:
-			AddSETFix("SET1200A");
-			AddSETFix("SET1200B");
-			AddSETFix("SET1201A");
-			AddSETFix("SET1202E");
-			break;
-		case SETFixes_Extra:
-			AddSETFix_Extra("SET1200A");
-			AddSETFix_Extra("SET1200B");
-			AddSETFix_Extra("SET1201A");
-			AddSETFix_Extra("SET1202E");
-			break;
-		default:
-			break;
+	case SETFixes_Normal:
+		AddSETFix("SET1200A");
+		AddSETFix("SET1200B");
+		AddSETFix("SET1201A");
+		AddSETFix("SET1202E");
+		break;
+	case SETFixes_Extra:
+		AddSETFix_Extra("SET1200A");
+		AddSETFix_Extra("SET1200B");
+		AddSETFix_Extra("SET1201A");
+		AddSETFix_Extra("SET1202E");
+		break;
+	default:
+		break;
 	}
 	ReplacePVM("HOTSHELTER0");
 	ReplacePVM("HOTSHELTER1");
@@ -305,16 +456,12 @@ void HotShelter_Init(const IniFile *config, const HelperFunctions &helperFunctio
 	WriteCall((void*)0x5AD4BF, RenderWaterThing);
 	WriteCall((void*)0x5AD506, RenderWaterThing);
 	WriteCall((void*)0x5AD54D, RenderWaterThing);
-	WriteData((LandTable**)0x97DB88, &landtable_0001970C);
-	WriteData((LandTable**)0x97DB8C, &landtable_0005277C);
-	WriteData((LandTable**)0x97DB90, &landtable_000B0DA4);
 	//Texlists
 	ResizeTextureList((NJS_TEXLIST*)0x180DFF4, textures_shelter1);
 	ResizeTextureList((NJS_TEXLIST*)0x17F56F4, textures_shelter2);
 	ResizeTextureList((NJS_TEXLIST*)0x17F4F74, textures_shelter3);
 	if (DLLLoaded_Lantern)
 	{
-		if (set_alpha_reject_ptr != nullptr) material_register_ptr(DisableAlphaRejection_HotShelter, LengthOfArray(DisableAlphaRejection_HotShelter), &DisableAlphaRejection);
 		material_register_ptr(LevelSpecular_HotShelter, LengthOfArray(LevelSpecular_HotShelter), &ForceDiffuse0Specular0);
 		material_register_ptr(ObjectSpecular_HotShelter, LengthOfArray(ObjectSpecular_HotShelter), &ForceDiffuse0Specular1);
 		material_register_ptr(WhiteDiffuse_HotShelter, LengthOfArray(WhiteDiffuse_HotShelter), &ForceWhiteDiffuse1);
@@ -373,7 +520,10 @@ void HotShelter_Init(const IniFile *config, const HelperFunctions &helperFunctio
 void HotShelter_OnFrame()
 {
 	{
-		if (GameState == 3 || GameState == 4 || GameState == 7 || GameState == 21) ReduceHotShelterFog = false;
+		if (GameState == 3 || GameState == 4 || GameState == 7 || GameState == 21)
+		{
+			ReduceHotShelterFog = false;
+		}
 		//Fog in E105 room
 		if (CurrentLevel == 12 && CurrentAct == 2 && GameState != 16)
 		{

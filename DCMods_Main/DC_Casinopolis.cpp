@@ -1,10 +1,18 @@
 #include "stdafx.h"
 #include "Casino_objects.h"
-#include "Casino1.h"
-#include "Casino2.h"
-#include "Casino3.h"
-#include "Casino4.h"
 #include "Cowgirl.h"
+
+NJS_TEXNAME textures_casino1[131];
+NJS_TEXLIST texlist_casino1 = { arrayptrandlength(textures_casino1) };
+
+NJS_TEXNAME textures_casino2[58];
+NJS_TEXLIST texlist_casino2 = { arrayptrandlength(textures_casino2) };
+
+NJS_TEXNAME textures_casino3[26];
+NJS_TEXLIST texlist_casino3 = { arrayptrandlength(textures_casino3) };
+
+NJS_TEXNAME textures_casino4[71];
+NJS_TEXLIST texlist_casino4 = { arrayptrandlength(textures_casino4) };
 
 static short CurrentPlayer = -1;
 static float distance_float;
@@ -24,10 +32,8 @@ static int shift1 = 65;
 static int shift2 = -10;
 static int shift3 = 0;
 static int carduvSTG09_reala = 1;
-static float cowgirlframe = 0;
 static int cowgirl_shift1 = 65;
 static int cowgirl_shift2 = 0;
-static bool CowgirlOn = true;
 static bool WhiteSonic = false;
 FunctionPointer(void, sub_5DD900, (int a1, int a2), 0x5DD900);
 FunctionPointer(void, sub_5DD920, (int a1, int a2), 0x5DD920);
@@ -81,7 +87,7 @@ DataPointer(NJS_OBJECT*, unk_1E05954, 0x1E05954);
 DataPointer(CollisionData, stru_1E77604, 0x1E77604);
 DataPointer(NJS_OBJECT, stru_1DF198C, 0x1DF198C);
 
-void __cdecl Loop_Display(ObjectMaster *a1)
+void __cdecl Loop_DisplayF(ObjectMaster *a1)
 {
 	EntityData1 *v1; // esi@1
 	Angle v2; // eax@2
@@ -138,6 +144,27 @@ void __cdecl Loop_Display(ObjectMaster *a1)
 	}
 }
 
+void AddDynamicCollision(ObjectMaster *a1) 
+{
+	EntityData1 *original = a1->Data1;
+	NJS_OBJECT *colobject;
+
+	colobject = ObjectArray_GetFreeObject();
+	colobject->scl[0] = 1.0f;
+	colobject->scl[1] = 1.0f;
+	colobject->scl[2] = 1.0f;
+	colobject->ang[0] = original->Rotation.x;
+	colobject->ang[1] = original->Rotation.y;
+	colobject->ang[2] = original->Rotation.z;
+	colobject->pos[0] = original->Position.x;
+	colobject->pos[1] = original->Position.y;
+	colobject->pos[2] = original->Position.z;
+	colobject->basicdxmodel = a1->Data1->Object->basicdxmodel;
+	colobject->evalflags = NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK | NJD_EVAL_SKIP | NJD_EVAL_HIDE;
+	a1->Data1->Object = colobject;
+	DynamicCOL_Add((ColFlags)0x8000000, a1, colobject);
+}
+
 void __cdecl Cowgirl_Display(ObjectMaster *a1)
 {
 	EntityData1 *v1; // esi@1
@@ -157,8 +184,48 @@ void __cdecl Cowgirl_Display(ObjectMaster *a1)
 		njPushMatrix(0);
 		njTranslate(0, 311.62f, 0, 338.93f);
 		njRotateXYZ(0, 0, 0x1E00, 0);
-		sub_405450(&action_cowgirl_anim, cowgirlframe, 1.0f);
+		sub_405450(&action_cowgirl_anim, *(float*)&a1->Data1->CharIndex, 1.0f);
 		njPopMatrix(1u);
+	}
+}
+
+void Cowgirl_Main(ObjectMaster *a1)
+{
+	EntityData1 *v1 = a1->Data1;
+	float CowgirlFrame;
+	CowgirlFrame = *(float*)&a1->Data1->CharIndex + 0.08f;
+	if (CowgirlFrame > 30) CowgirlFrame = 0;
+	//a1->Data1->Object->ang[0] = a1->Data1->Rotation.x + 0x8 + cowgirl_anim_5_rot[(int)CowgirlFrame].key[0] + cowgirl_anim_6_rot[(int)CowgirlFrame].key[0];
+	//a1->Data1->Object->ang[1] = a1->Data1->Rotation.y + 0xFFFFEAB0 + cowgirl_anim_5_rot[(int)CowgirlFrame].key[1] + cowgirl_anim_6_rot[(int)CowgirlFrame].key[1];
+	//a1->Data1->Object->ang[2] = a1->Data1->Rotation.z + 0 + cowgirl_anim_5_rot[(int)CowgirlFrame].key[2] + cowgirl_anim_6_rot[(int)CowgirlFrame].key[2];
+	*(float*)&a1->Data1->CharIndex = CowgirlFrame;
+	Cowgirl_Display(a1);
+	AddToCollisionList(v1);
+}
+
+void Cowgirl_Delete(ObjectMaster *a1)
+{
+	if (a1->Data1->Object)
+	{
+		DynamicCOL_Remove(a1, a1->Data1->Object);
+		ObjectArray_Remove(a1->Data1->Object);
+	}
+	CheckThingButThenDeleteObject(a1);
+}
+
+void Cowgirl_Load(ObjectMaster *a1)
+{
+	if (!ClipObject(a1, 640010.0f))
+	{
+		Collision_Init(a1, stru_1E763B8, 3, 4u);
+		//a1->Data1->Object = &objectSTG09_001D1C80;
+		//AddDynamicCollision(a1);
+		//a1->Data1->Object->pos[0] = a1->Data1->Position.x + 54.19999f - 36.88602;
+		//a1->Data1->Object->pos[1] = a1->Data1->Position.y + 101 + 60.00005;
+		//a1->Data1->Object->pos[2] = a1->Data1->Position.z -28 + 0.511601;
+		a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Cowgirl_Display;
+		a1->MainSub = (void(__cdecl *)(ObjectMaster *))Cowgirl_Main;
+		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))Cowgirl_Delete;
 	}
 }
 
@@ -770,7 +837,40 @@ void IdeyaCapFix(void *a1, int a2, float a3, int a4, int a5)
 	DrawQueueDepthBias = 0;
 }
 
-void Casinopolis_Init(const IniFile *config, const HelperFunctions &helperFunctions)
+void UnloadLevelFiles_STG09()
+{
+	delete STG09_0_Info;
+	delete STG09_1_Info;
+	delete STG09_2_Info;
+	delete STG09_3_Info;
+	STG09_0_Info = nullptr;
+	STG09_1_Info = nullptr;
+	STG09_2_Info = nullptr;
+	STG09_3_Info = nullptr;
+}
+
+void LoadLevelFiles_STG09()
+{
+	CheckAndUnloadLevelFiles();
+	STG09_0_Info = new LandTableInfo(ModPath + "\\data\\STG09\\0.sa1lvl");
+	STG09_1_Info = new LandTableInfo(ModPath + "\\data\\STG09\\1.sa1lvl");
+	STG09_2_Info = new LandTableInfo(ModPath + "\\data\\STG09\\2.sa1lvl");
+	STG09_3_Info = new LandTableInfo(ModPath + "\\data\\STG09\\3.sa1lvl");
+	LandTable *STG09_0 = STG09_0_Info->getlandtable();
+	LandTable *STG09_1 = STG09_1_Info->getlandtable();
+	LandTable *STG09_2 = STG09_2_Info->getlandtable();
+	LandTable *STG09_3 = STG09_3_Info->getlandtable();
+	STG09_0->TexList = &texlist_casino1;
+	STG09_1->TexList = &texlist_casino2;
+	STG09_2->TexList = &texlist_casino3;
+	STG09_3->TexList = &texlist_casino4;
+	WriteData((LandTable**)0x97DB28, STG09_0);
+	WriteData((LandTable**)0x97DB2C, STG09_1);
+	WriteData((LandTable**)0x97DB30, STG09_2);
+	WriteData((LandTable**)0x97DB34, STG09_3);
+}
+
+void Casinopolis_Init()
 {
 	ReplaceBIN_DC("CAM0900K");
 	ReplaceBIN_DC("CAM0900S");
@@ -787,24 +887,24 @@ void Casinopolis_Init(const IniFile *config, const HelperFunctions &helperFuncti
 	ReplaceBIN_DC("SETMI0900K");
 	switch (EnableSETFixes)
 	{
-		case SETFixes_Normal:
-			AddSETFix("SET0900K");
-			AddSETFix("SET0900S");
-			AddSETFix("SET0901M");
-			AddSETFix("SET0901S");
-			AddSETFix("SET0902S");
-			AddSETFix("SET0903S");
-			break;
-		case SETFixes_Extra:
-			AddSETFix_Extra("SET0900K");
-			AddSETFix_Extra("SET0900S");
-			AddSETFix_Extra("SET0901M");
-			AddSETFix_Extra("SET0901S");
-			AddSETFix_Extra("SET0902S");
-			AddSETFix_Extra("SET0903S");
-			break;
-		default:
-			break;
+	case SETFixes_Normal:
+		AddSETFix("SET0900K");
+		AddSETFix("SET0900S");
+		AddSETFix("SET0901M");
+		AddSETFix("SET0901S");
+		AddSETFix("SET0902S");
+		AddSETFix("SET0903S");
+		break;
+	case SETFixes_Extra:
+		AddSETFix_Extra("SET0900K");
+		AddSETFix_Extra("SET0900S");
+		AddSETFix_Extra("SET0901M");
+		AddSETFix_Extra("SET0901S");
+		AddSETFix_Extra("SET0902S");
+		AddSETFix_Extra("SET0903S");
+		break;
+	default:
+		break;
 	}
 	ReplacePVM("CASINO01");
 	ReplacePVM("CASINO02");
@@ -814,10 +914,6 @@ void Casinopolis_Init(const IniFile *config, const HelperFunctions &helperFuncti
 	ReplacePVM("OBJ_CASINO8");
 	ReplacePVM("OBJ_CASINO9");
 	ReplacePVM("OBJ_CASINO_E");
-	WriteData((LandTable**)0x97DB28, &landtable_00025EAC);
-	WriteData((LandTable**)0x97DB2C, &landtable_0006C0B4);
-	WriteData((LandTable**)0x97DB30, &landtable_000AF120);
-	WriteData((LandTable**)0x97DB34, &landtable_000D8440);
 	//Lantern stuff
 	ReplaceBIN("PL_90B", "PL_90X");
 	if (DLLLoaded_Lantern)
@@ -853,7 +949,7 @@ void Casinopolis_Init(const IniFile *config, const HelperFunctions &helperFuncti
 	*(NJS_OBJECT*)0x01E40980 = OSlX_Blue; //OSlB light
 	*(NJS_OBJECT*)0x01E415F0 = OSlX_Red; //OSlR light
 	*(NJS_OBJECT*)0x01E41C28 = OSlX_Yellow; //OSlY light
-	WriteJump((void*)0x5D5E50, Loop_Display); //Add sound
+	WriteJump((void*)0x5D5E50, Loop_DisplayF); //Add sound
 	//Fixed gears
 	WriteCall((void*)0x005D09C7, FixedGear1);
 	WriteJump((void*)0x5D3A90, FixedGear2); //Gears main
@@ -866,8 +962,6 @@ void Casinopolis_Init(const IniFile *config, const HelperFunctions &helperFuncti
 	WriteJump((void*)0x5D44A0, TutuB_Display); //OTutuB display
 	WriteJump((void*)0x5D4550, TutuC_Display); //OTutuC display
 	WriteData((int*)0x1E77E58, 128); //Gear rotation speed
-	//Load configuration settings
-	CowgirlOn = config->getBool("Miscellaneous", "EnableCasinopolisCowgirl", true);
 	if (CowgirlOn)
 	{
 		stru_1E763B8[0].scale.y = stru_1E763B8[0].scale.y * 4;
@@ -879,7 +973,7 @@ void Casinopolis_Init(const IniFile *config, const HelperFunctions &helperFuncti
 		stru_1E763B8[0].origin.z = stru_1E763B8[0].origin.z - 14;
 		stru_1E763B8[1].origin.z = stru_1E763B8[1].origin.z - 14;
 		stru_1E763B8[2].origin.z = stru_1E763B8[2].origin.z - 14;
-		WriteJump((void*)0x5CAA90, Cowgirl_Display);
+		WriteJump(ONeonk, Cowgirl_Load);
 	}
 	*(NJS_MODEL_SADX*)0x01DF7140 = attachSTG09_00177188; //Slot red
 	*(NJS_MODEL_SADX*)0x01DF5138 = attachSTG09_00175E44; //Slot blue
@@ -1031,8 +1125,6 @@ void Casinopolis_OnFrame()
 	//Cowgirl
 	if (CurrentLevel == 9 && CurrentCharacter == 3 && CowgirlOn && GameState != 16)
 	{
-		if (cowgirlframe > 30) cowgirlframe = 0;
-		cowgirlframe = cowgirlframe + 0.08f;
 		//Cowgirl UVs
 		if (FrameCounter % 16 == 0)
 		{
@@ -1119,17 +1211,17 @@ void Casinopolis_OnFrame()
 			}
 		}
 	}
-	if (CurrentLevel == 9 && CurrentAct == 0 && GameState != 16)
+	if (STG09_0_Info && CurrentLevel == 9 && CurrentAct == 0 && GameState != 16)
 	{
 		//This game's collision is fucking awful
 		if (entity != nullptr)
 		{
 			if (CurrentCharacter == 3)
 			{
-				if (entity->Position.y > -30.0f) collist_00023DA0[LengthOfArray(collist_00023DA0) - 2].Flags = 0xA0040002;
-				else collist_00023DA0[LengthOfArray(collist_00023DA0) - 2].Flags = 0xA0040000;
+				if (entity->Position.y > -30.0f) STG09_0_Info->getlandtable()->Col[STG09_0_Info->getlandtable()->COLCount - 2].Flags = 0xA0040002;
+				else STG09_0_Info->getlandtable()->Col[STG09_0_Info->getlandtable()->COLCount - 2].Flags = 0xA0040000;
 			}
-			else collist_00023DA0[LengthOfArray(collist_00023DA0) - 2].Flags = 0xA0040000;
+			else STG09_0_Info->getlandtable()->Col[STG09_0_Info->getlandtable()->COLCount - 2].Flags = 0xA0040000;
 		}
 		//Rotating thing
 		matlistSTG09_001C448C[3].attr_texId = monitorimage + 140;
@@ -1154,8 +1246,8 @@ void Casinopolis_OnFrame()
 		if (anim1_actual == 12) anim1 = 79;
 		if (anim1_actual == 13) anim1 = 80;
 		if (anim1_actual > 13) anim1_actual = 0;
-		matlistSTG09_00066F5C[1].attr_texId = anim1;
-		matlistSTG09_01979784[0].attr_texId = anim1;
+		((NJS_MATERIAL*)STG09_0_Info->getdata("matlistSTG09_00066F5C"))[1].attr_texId = anim1;
+		((NJS_MATERIAL*)STG09_0_Info->getdata("matlistSTG09_01979784"))[0].attr_texId = anim1;
 		if (FramerateSetting < 2 && FrameCounter % 3 == 0 || FramerateSetting == 2 && FrameCounter % 2 == 0 || FramerateSetting > 2) anim1_actual++;
 		//Card machine and lion top animation
 		if (FrameCounter % 8 == 0)
@@ -1229,7 +1321,7 @@ void Casinopolis_OnFrame()
 		}
 
 	}
-	if (CurrentLevel == 9 && CurrentAct == 1 && GameState != 16)
+	if (STG09_1_Info && CurrentLevel == 9 && CurrentAct == 1 && GameState != 16)
 	{
 		if (anim2_actual == 0) anim2 = 7;
 		if (anim2_actual == 1) anim2 = 10;
@@ -1246,8 +1338,8 @@ void Casinopolis_OnFrame()
 		if (anim2_actual == 12) anim2 = 20;
 		if (anim2_actual == 13) anim2 = 21;
 		if (anim2_actual > 13) anim2_actual = 0;
-		matlistSTG09_000ACC44[0].attr_texId = anim2;
-		matlistSTG09_000ACB40[0].attr_texId = anim2;
+		((NJS_MATERIAL*)STG09_1_Info->getdata("matlistSTG09_000ACC44"))[0].attr_texId = anim2;
+		((NJS_MATERIAL*)STG09_1_Info->getdata("matlistSTG09_000ACB40"))[0].attr_texId = anim2;
 		if (FramerateSetting < 2 && FrameCounter % 3 == 0 || FramerateSetting == 2 && FrameCounter % 2 == 0 || FramerateSetting > 2) anim2_actual++;
 	}
 	if (CurrentLevel == 9 && CurrentAct == 3 && GameState != 16)

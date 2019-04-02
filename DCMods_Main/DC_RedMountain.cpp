@@ -1,8 +1,14 @@
 #include "stdafx.h"
-#include "Mountain1.h"
-#include "Mountain2.h"
-#include "Mountain3.h"
 #include "RM_Objects.h"
+
+NJS_TEXNAME textures_mountain1[45];
+NJS_TEXLIST texlist_mountain1 = { arrayptrandlength(textures_mountain1) };
+
+NJS_TEXNAME textures_mountain2[43];
+NJS_TEXLIST texlist_mountain2 = { arrayptrandlength(textures_mountain2) };
+
+NJS_TEXNAME textures_mountain3[27];
+NJS_TEXLIST texlist_mountain3 = { arrayptrandlength(textures_mountain3) };
 
 DataPointer(float, CurrentDrawDistance, 0x03ABDC74);
 FunctionPointer(void, sub_600BF0, (ObjectMaster *a1, NJS_OBJECT *a2), 0x600BF0);
@@ -64,7 +70,34 @@ void SetCloudColor(NJS_ARGB *a)
 	SetMaterialAndSpriteColor_Float(0.2f + a->a, 0.2f + a->r, 0.2f + a->g, 0.2f + a->b);
 }
 
-void RedMountain_Init(const IniFile *config, const HelperFunctions &helperFunctions)
+void UnloadLevelFiles_STG05()
+{
+	delete STG05_0_Info;
+	delete STG05_1_Info;
+	delete STG05_2_Info;
+	STG05_0_Info = nullptr;
+	STG05_1_Info = nullptr;
+	STG05_2_Info = nullptr;
+}
+
+void LoadLevelFiles_STG05()
+{
+	CheckAndUnloadLevelFiles();
+	STG05_0_Info = new LandTableInfo(ModPath + "\\data\\STG05\\0.sa1lvl");
+	STG05_1_Info = new LandTableInfo(ModPath + "\\data\\STG05\\1.sa1lvl");
+	STG05_2_Info = new LandTableInfo(ModPath + "\\data\\STG05\\2.sa1lvl");
+	LandTable *STG05_0 = STG05_0_Info->getlandtable();
+	LandTable *STG05_1 = STG05_1_Info->getlandtable();
+	LandTable *STG05_2 = STG05_2_Info->getlandtable();
+	STG05_0->TexList = &texlist_mountain1;
+	STG05_1->TexList = &texlist_mountain2;
+	STG05_2->TexList = &texlist_mountain3;
+	WriteData((LandTable**)0x97DAA8, STG05_0);
+	WriteData((LandTable**)0x97DAAC, STG05_1);
+	WriteData((LandTable**)0x97DAB0, STG05_2);
+}
+
+void RedMountain_Init()
 {
 	ReplaceBIN_DC("CAM0500S");
 	ReplaceBIN_DC("CAM0501E");
@@ -74,25 +107,23 @@ void RedMountain_Init(const IniFile *config, const HelperFunctions &helperFuncti
 	ReplaceBIN_DC("SET0501E");
 	ReplaceBIN_DC("SET0501S");
 	ReplaceBIN_DC("SET0502K");
-
 	switch (EnableSETFixes)
 	{
-		case SETFixes_Normal:
-			AddSETFix("SET0500S");
-			AddSETFix("SET0501E");
-			AddSETFix("SET0501S");
-			AddSETFix("SET0502K");
-			break;
-		case SETFixes_Extra:
-			AddSETFix_Extra("SET0500S");
-			AddSETFix_Extra("SET0501E");
-			AddSETFix_Extra("SET0501S");
-			AddSETFix_Extra("SET0502K");
-			break;
-		default:
-			break;
+	case SETFixes_Normal:
+		AddSETFix("SET0500S");
+		AddSETFix("SET0501E");
+		AddSETFix("SET0501S");
+		AddSETFix("SET0502K");
+		break;
+	case SETFixes_Extra:
+		AddSETFix_Extra("SET0500S");
+		AddSETFix_Extra("SET0501E");
+		AddSETFix_Extra("SET0501S");
+		AddSETFix_Extra("SET0502K");
+		break;
+	default:
+		break;
 	}
-
 	ReplacePVM("MOUNTAIN01");
 	ReplacePVM("MOUNTAIN02");
 	ReplacePVM("MOUNTAIN03");
@@ -103,9 +134,6 @@ void RedMountain_Init(const IniFile *config, const HelperFunctions &helperFuncti
 	ReplacePVM("OBJ_MOUNTAIN");
 	ReplacePVM("YOUGAN_ANIM");
 	ReplaceBIN("PL_51B", "PL_51X");
-	WriteData((LandTable**)0x97DAA8, &landtable_00018CB8);
-	WriteData((LandTable**)0x97DAAC, &landtable_0001A8FC);
-	WriteData((LandTable**)0x97DAB0, &landtable_0001E358);
 	WriteData((double**)0x600C8F, &cloudcoloroffset);
 	WriteCall((void*)0x006011D8, RenderRMSky1);
 	WriteCall((void*)0x0060121C, RenderRMSky2);
@@ -143,7 +171,6 @@ void RedMountain_Init(const IniFile *config, const HelperFunctions &helperFuncti
 	DataArray(DrawDistance, DrawDist_RedMountain1, 0x022406B8, 3);
 	DataArray(DrawDistance, DrawDist_RedMountain2, 0x022406D0, 3);
 	DataArray(DrawDistance, DrawDist_RedMountain3, 0x022406E8, 3);
-
 	for (unsigned int i = 0; i < 3; i++)
 	{
 		RedMountain1Fog[i].Color = 0xFFFFFFFF;
@@ -165,6 +192,7 @@ void RedMountain_Init(const IniFile *config, const HelperFunctions &helperFuncti
 		SkyboxScale_RedMountain2[i].z = 1.0f;
 	}
 }
+
 void RedMountain_OnFrame()
 {
 	if (CurrentLevel == 5 && GameState != 16)
@@ -176,7 +204,7 @@ void RedMountain_OnFrame()
 			uvSTG05_0206C9F0[q].u = uvSTG05_0206C9F0_0[q].u + UVShift1;
 			uvSTG05_0206C9F0_2[q].u = uvSTG05_0206C9F0_0[q].u + UVShift2;
 		}
-		if (CurrentAct == 1 && Camera_Data1 != nullptr)
+		if (STG05_1_Info && CurrentAct == 1 && Camera_Data1 != nullptr)
 		{
 			if (Camera_Data1->Position.y > 900) CurrentDrawDistance = -9000.0f;
 		}

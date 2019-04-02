@@ -1,7 +1,11 @@
 #include "stdafx.h"
-#include "ChaoRace.h"
-#include "ChaoRaceEntry.h"
 #include "ChaoObjects_Race.h"
+
+NJS_TEXNAME textures_chaorace[69];
+NJS_TEXLIST texlist_ChaoRace = { arrayptrandlength(textures_chaorace) };
+
+NJS_TEXNAME textures_chaoracebg[1];
+NJS_TEXLIST texlist_chaoracebg = { arrayptrandlength(textures_chaoracebg) };
 
 static bool EnableLobby = true;
 static int chaoracewater = 55;
@@ -745,7 +749,7 @@ void ChaoRaceNumbers_Load(ObjectMaster *a1)
 	NJS_OBJECT *v2;
 	a1->MainSub = (void(__cdecl *)(ObjectMaster *))ChaoNumbers_Main;
 	a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))ChaoNumbers_Display;
-	a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))DeleteObject_DynamicCOL;
+	a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))DynamicCOL_DeleteObject;
 	v1 = a1->Data1;
 	int ObjectIndex;
 	ObjectIndex = v1->CharIndex;
@@ -3949,7 +3953,7 @@ void __cdecl LoadRaceEntryX()
 		SSGardenStartPoint.YRot = NJM_DEG_ANG(180);
 		PrintDebug("ChaoStgEntrance _prolog begin.\n");
 		LoadObject(LoadObj_Data1, 5, ChaoStgEntrance_MainX);
-		SetChaoLandTable(&landtable_00000270); //DC
+		SetChaoLandTable((LandTable*)AL_RACE_0_Info->getdata("landtable_00000270"));
 		PrintDebug("ChaoStgEntrance _prolog end.\n");
 	}
 }
@@ -3985,7 +3989,7 @@ void __cdecl LoadChaoRaceX()
 	LoadPVM("BG_AL_RACE02", &texlist_chaoracebg);
 	LoadPVM("AL_TEX_COMMON", &ChaoTexLists[1]); //Name font
 	LoadObjects_Race();
-	SetChaoLandTableX(&landtable_00000E64);
+	SetChaoLandTable((LandTable*)AL_RACE_1_Info->getdata("landtable_00000E64"));
 	PrintDebug("ChaoStgRace _prolog end.\n");
 }
 
@@ -4001,6 +4005,25 @@ void LoadChaoRaceJewelAndText(int a1, NJS_VECTOR *a2)
 {
 	sub_751D70(a1, a2);
 	ChaoRaceStartGoalSprite_Load(3);
+}
+
+void UnloadLevelFiles_AL_RACE()
+{
+	delete AL_RACE_0_Info;
+	delete AL_RACE_1_Info;
+	AL_RACE_0_Info = nullptr;
+	AL_RACE_1_Info = nullptr;
+}
+
+void LoadLevelFiles_AL_RACE()
+{
+	CheckAndUnloadLevelFiles();
+	AL_RACE_0_Info = new LandTableInfo(ModPath + "\\data\\AL_RACE\\0.sa1lvl");
+	AL_RACE_1_Info = new LandTableInfo(ModPath + "\\data\\AL_RACE\\1.sa1lvl");
+	LandTable *AL_RACE_0 = AL_RACE_0_Info->getlandtable();
+	LandTable *AL_RACE_1 = AL_RACE_1_Info->getlandtable();
+	AL_RACE_0->TexList = (NJS_TEXLIST*)0x340E934;
+	AL_RACE_1->TexList = &texlist_ChaoRace;
 }
 
 void ChaoRace_Init(const IniFile *config, const HelperFunctions &helperFunctions)
@@ -4110,14 +4133,14 @@ void ChaoRace_OnFrame()
 		}
 	}
 	//Chao Race
-	if (CurrentChaoStage == 1 && GameState != 16)
+	if (AL_RACE_1_Info && CurrentChaoStage == 1 && GameState != 16)
 	{
 		if (!ChaoRaceEnded) ChaoRaceTimer += FramerateSetting;
 		if (FramerateSetting < 2 && FrameCounter % 3 == 0 || FramerateSetting == 2 && FrameCounter % 2 == 0 || FramerateSetting > 2) chaoracewater++;
 		if (chaoracewater > 68) chaoracewater = 55;
-		matlistCHAO_0002A548[0].attr_texId = chaoracewater;
-		matlistCHAO_0003EFB0[0].attr_texId = chaoracewater;
-		matlistCHAO_0003F2DC[0].attr_texId = chaoracewater;
+		((NJS_MATERIAL*)AL_RACE_1_Info->getdata("matlistCHAO_0002A548"))[0].attr_texId = chaoracewater;
+		((NJS_MATERIAL*)AL_RACE_1_Info->getdata("matlistCHAO_0003EFB0"))[0].attr_texId = chaoracewater;
+		((NJS_MATERIAL*)AL_RACE_1_Info->getdata("matlistCHAO_0003F2DC"))[0].attr_texId = chaoracewater;
 		//Winning the race (not jewel)
 		if (!MedalTextLoaded)
 		{

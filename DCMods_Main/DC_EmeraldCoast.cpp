@@ -1,8 +1,14 @@
 #include "stdafx.h"
-#include "EmeraldCoast1_PC.h"
-#include "EmeraldCoast1.h"
-#include "EmeraldCoast2.h"
-#include "EmeraldCoast3.h"
+
+NJS_TEXNAME textures_ecoast1[97];
+NJS_TEXLIST texlist_ecoast1 = { arrayptrandlength(textures_ecoast1) };
+
+NJS_TEXNAME textures_ecoast2[86];
+NJS_TEXLIST texlist_ecoast2 = { arrayptrandlength(textures_ecoast2) };
+
+NJS_TEXNAME textures_ecoast3[94];
+NJS_TEXLIST texlist_ecoast3 = { arrayptrandlength(textures_ecoast3) };
+
 #include "EmeraldCoast_Objects.h"
 #include "BigBeach.h"
 
@@ -21,11 +27,11 @@ static int beachsea_water = 0;
 static int inside_secret_area = 0;
 static int water_anim = 17;
 static bool lilocean = false;
-static bool IamStupidAndIWantFuckedUpOcean = false;
 static NJS_VECTOR oldpos{ 0,0,0 };
 
 DataArray(NJS_TEX, uvSTG01_00CC0530, 0x10C0530, 4);
 DataArray(NJS_TEX, uvSTG01_00CBB000_data, 0x10BB000, LengthOfArray(uvSTG01_00CBB000));
+
 DataArray(FogData, EmeraldCoast1Fog, 0x00E99DDC, 3);
 DataArray(FogData, EmeraldCoast2Fog, 0x00E99E0C, 3);
 DataArray(FogData, EmeraldCoast3Fog, 0x00E99E3C, 3);
@@ -60,11 +66,12 @@ void __cdecl Obj_EC23Water_DisplayX(ObjectMaster *a1)
 			njSetTexture((NJS_TEXLIST*)0x010C0508); //BEACH_SEA
 			njPushMatrix(0);
 			njTranslate(0, v1->Position.x, v1->Position.y, v1->Position.z);
-			OceanUVShift1 = int(njSin(FrameCounterUnpaused << 7) * 96.0f + 2.5f) % 255;
-			uvSTG01_00CC0530[0].u = uvSTG01_00CC0530_d[0].u + OceanUVShift1;
-			uvSTG01_00CC0530[1].u = uvSTG01_00CC0530_d[1].u + OceanUVShift1;
-			uvSTG01_00CC0530[2].u = uvSTG01_00CC0530_d[2].u + OceanUVShift1;
-			uvSTG01_00CC0530[3].u = uvSTG01_00CC0530_d[3].u + OceanUVShift1;
+			//It looks kinda jumpy when you load the stage so I disabled it
+			/*OceanUVShift1 = njSin(FrameCounterUnpaused << 7) * 96.0f + 2.5f;
+			uvSTG01_00CC0530[0].u = uvSTG01_00CC0530_d[0].u + OceanUVShift1 % 255;
+			uvSTG01_00CC0530[1].u = uvSTG01_00CC0530_d[1].u + OceanUVShift1 % 255;
+			uvSTG01_00CC0530[2].u = uvSTG01_00CC0530_d[2].u + OceanUVShift1 % 255;
+			uvSTG01_00CC0530[3].u = uvSTG01_00CC0530_d[3].u + OceanUVShift1 % 255;*/
 			DrawQueueDepthBias = -25952.0f;
 			ProcessModelNode_A_Wrapper((NJS_OBJECT*)0x10C05E8, QueuedModelFlagsB_SomeTextureThing, 1.0f);
 			DrawQueueDepthBias = 0;
@@ -77,12 +84,12 @@ void __cdecl Obj_EC23Water_DisplayX(ObjectMaster *a1)
 			njPushMatrix(0);
 			njTranslate(0, 0, 0, 0);
 			DrawQueueDepthBias = 1000.0f;
-			ProcessModelNode_A_Wrapper(&objectSTG01_000DB618, QueuedModelFlagsB_SomeTextureThing, 1.0f);
-			ProcessModelNode_A_Wrapper(&objectSTG01_000DB64C, QueuedModelFlagsB_SomeTextureThing, 1.0f);
-			ProcessModelNode_A_Wrapper(&objectSTG01_000DB680, QueuedModelFlagsB_SomeTextureThing, 1.0f);
-			ProcessModelNode_A_Wrapper(&objectSTG01_000DB6B4, QueuedModelFlagsB_SomeTextureThing, 1.0f);
-			ProcessModelNode_A_Wrapper(&objectSTG01_000DB6E8, QueuedModelFlagsB_SomeTextureThing, 1.0f);
-			ProcessModelNode_A_Wrapper(&objectSTG01_000DB71C, QueuedModelFlagsB_SomeTextureThing, 1.0f);
+			ProcessModelNode_A_Wrapper((NJS_OBJECT*)STG01_1_Info->getdata("objectSTG01_000DB618"), QueuedModelFlagsB_SomeTextureThing, 1.0f);
+			ProcessModelNode_A_Wrapper((NJS_OBJECT*)STG01_1_Info->getdata("objectSTG01_000DB64C"), QueuedModelFlagsB_SomeTextureThing, 1.0f); 
+			ProcessModelNode_A_Wrapper((NJS_OBJECT*)STG01_1_Info->getdata("objectSTG01_000DB680"), QueuedModelFlagsB_SomeTextureThing, 1.0f); 
+			ProcessModelNode_A_Wrapper((NJS_OBJECT*)STG01_1_Info->getdata("objectSTG01_000DB6B4"), QueuedModelFlagsB_SomeTextureThing, 1.0f); 
+			ProcessModelNode_A_Wrapper((NJS_OBJECT*)STG01_1_Info->getdata("objectSTG01_000DB6E8"), QueuedModelFlagsB_SomeTextureThing, 1.0f); 
+			ProcessModelNode_A_Wrapper((NJS_OBJECT*)STG01_1_Info->getdata("objectSTG01_000DB71C"), QueuedModelFlagsB_SomeTextureThing, 1.0f); 
 			DrawQueueDepthBias = 0;
 			njPopMatrix(1u);
 		}
@@ -176,11 +183,14 @@ void __cdecl Obj_EC1Water_DisplayX(ObjectMaster *a1)
 				njSetTexture((NJS_TEXLIST*)0x010C0508); //BEACH_SEA
 				njPushMatrix(0);
 				njTranslate(0, v1->Position.x, v1->Position.y, v1->Position.z);
+				//It looks kinda jumpy when you load the stage so I disabled it
+				/*
 				OceanUVShift1 = int(njSin(FrameCounterUnpaused << 7) * 96.0f + 2.5f) % 255;
 				uvSTG01_00CC0530[0].u = uvSTG01_00CC0530_d[0].u + OceanUVShift1;
 				uvSTG01_00CC0530[1].u = uvSTG01_00CC0530_d[1].u + OceanUVShift1;
 				uvSTG01_00CC0530[2].u = uvSTG01_00CC0530_d[2].u + OceanUVShift1;
 				uvSTG01_00CC0530[3].u = uvSTG01_00CC0530_d[3].u + OceanUVShift1;
+				*/
 				DrawQueueDepthBias = -19952.0f;
 				ProcessModelNode_A_Wrapper((NJS_OBJECT*)0x10C05E8, QueuedModelFlagsB_SomeTextureThing, 1.0f);
 				njPopMatrix(1u);
@@ -363,14 +373,16 @@ NJS_MATERIAL* ObjectSpecular_STG01[] = {
 	((NJS_MATERIAL*)0x0109AF50),
 };
 
+NJS_MATERIAL* LevelSpecular_STG01External[] = {
+	nullptr, nullptr, nullptr, nullptr, nullptr
+};
+
 NJS_MATERIAL* LevelSpecular_STG01[] = {
 	&matlistSTG01_0014B7BC[0],
 	&matlistSTG01_0014B7BC[1],
 	&matlistSTG01_0014B7BC[2],
 	&matlistSTG01_0014B7BC[3],
 	&matlistSTG01_0014B7BC[4],
-	&matlistSTG01_00059D88[6],
-	&matlistSTG01_00108488[6],
 	((NJS_MATERIAL*)0x0109BB18),
 	((NJS_MATERIAL*)0x0109BB2C),
 	((NJS_MATERIAL*)0x0109BB40),
@@ -403,9 +415,6 @@ NJS_MATERIAL* LevelSpecular_STG01[] = {
 	((NJS_MATERIAL*)0x038CA234),
 	((NJS_MATERIAL*)0x038C9DF8),
 	((NJS_MATERIAL*)0x038C9E0C),
-	&matlistSTG01_00C1AC80[4],
-	&matlistSTG01_00BE30C0[16],
-	&matlistSTG01_0004DB6C[11],
 	((NJS_MATERIAL*)0x0108B9F0),
 	((NJS_MATERIAL*)0x0108BA04),
 	((NJS_MATERIAL*)0x0108BA18),
@@ -454,112 +463,96 @@ void WhaleSplash(NJS_OBJECT *a1)
 	ProcessModelNode(a1, (QueuedModelFlagsB)0, 1.0f);
 }
 
-void EmeraldCoast_Init(const IniFile *config, const HelperFunctions &helperFunctions)
+void UnloadLevelFiles_STG01()
 {
-	ReplaceBIN_DC("SET0100E");
-	ReplaceBIN_DC("SET0100S");
-	ReplaceBIN_DC("SET0101M");
-	ReplaceBIN_DC("SET0101S");
-	ReplaceBIN_DC("SET0102B");
-	ReplaceBIN_DC("SET0102S");
-	switch (EnableSETFixes)
-	{
-		case SETFixes_Normal:
-			AddSETFix("SET0100S");
-			AddSETFix("SET0100E");
-			AddSETFix("SET0101S");
-			break;
-		case SETFixes_Extra:
-			AddSETFix_Extra("SET0100S");
-			AddSETFix_Extra("SET0100E");
-			AddSETFix_Extra("SET0101S");
-			break;
-		default:
-			break;
-	}
-	ReplacePVM("BEACH01");
-	ReplacePVM("BEACH02");
-	ReplacePVM("BEACH03");
-	ReplacePVM("BG_BEACH");
-	ReplacePVM("OBJ_BEACH");
-	ReplacePVM("BEACH_SEA");
-	// Load configuration settings
-	IamStupidAndIWantFuckedUpOcean = config->getBool("Miscellaneous", "RevertEmeraldCoastDrawDistance", false);
-	//Landtables
-	WriteData((LandTable**)0x97DA28, &landtable_00081554); //Act 1
-	WriteData((LandTable**)0x97DA2C, &landtable_000DEB60); //Act 2
-	WriteData((LandTable**)0x97DA30, &landtable_0011DD58); //Act 3
-	WriteCall((void*)0x00502F8F, WhaleSplash);
-	WriteCall((void*)0x00502F9A, WhaleSplash);
 	if (DLLLoaded_Lantern)
 	{
-		material_register_ptr(LevelSpecular_STG01, LengthOfArray(LevelSpecular_STG01), &ForceDiffuse0Specular0);
-		material_register_ptr(ObjectSpecular_STG01, LengthOfArray(ObjectSpecular_STG01), &ForceDiffuse0Specular1);
+		material_unregister_ptr(LevelSpecular_STG01External, LengthOfArray(LevelSpecular_STG01External), ForceDiffuse0Specular0);
 	}
-	WriteData<2>((void*)0x004F8A9A, 0x90); //Disable water animation in Act 1
-	WriteData<2>((char*)0x004F7816, 0xFF); //Disable water animation in Act 2
-	WriteData<2>((char*)0x004F78E6, 0xFF); //Disable water animation in Act 3
-	((NJS_OBJECT*)0x010C03FC)->basicdxmodel->mats[0].diffuse.argb.a = 0x99; //Match dynamic ocean alpha with normal ocean
+	delete STG01_0_Info;
+	delete STG01_1_Info;
+	delete STG01_2_Info;
+	STG01_0_Info = nullptr;
+	STG01_1_Info = nullptr;
+	STG01_2_Info = nullptr;
+}
+
+void LoadLevelFiles_STG01()
+{
+	CheckAndUnloadLevelFiles();
+	STG01_0_Info = new LandTableInfo(ModPath + "\\data\\STG01\\0.sa1lvl");
+	STG01_1_Info = new LandTableInfo(ModPath + "\\data\\STG01\\1.sa1lvl");
+	STG01_2_Info = new LandTableInfo(ModPath + "\\data\\STG01\\2.sa1lvl");
+	LandTable *STG01_0 = STG01_0_Info->getlandtable();
+	LandTable *STG01_1 = STG01_1_Info->getlandtable();
+	LandTable *STG01_2 = STG01_2_Info->getlandtable();
+	STG01_0->TexList = &texlist_ecoast1;
+	STG01_1->TexList = &texlist_ecoast2;
+	STG01_2->TexList = &texlist_ecoast3;
+	//Landtables
+	WriteData((LandTable**)0x97DA28, STG01_0); //Act 1
+	WriteData((LandTable**)0x97DA2C, STG01_1); //Act 2
+	WriteData((LandTable**)0x97DA30, STG01_2); //Act 3
 	if (SADXWater_EmeraldCoast)
 	{
 		WriteData((float*)0x004F8D2F, -2153.0f); //Remove gap in Act 2 small pool
 		//Act 1
-		collist_0007D6C0[LengthOfArray(collist_0007D6C0) - 1].Flags = 0x80000402;
-		collist_0007D6C0[LengthOfArray(collist_0007D6C0) - 2].Flags = 0x80000402;
-		collist_0007D6C0[LengthOfArray(collist_0007D6C0) - 3].Flags = 0x80000402;
-		collist_0007D6C0[LengthOfArray(collist_0007D6C0) - 4].Flags = 0x80000402;
-		collist_0007D6C0[LengthOfArray(collist_0007D6C0) - 5].Flags = 0x80000402;
-		collist_0007D6C0[LengthOfArray(collist_0007D6C0) - 6].Flags = 0x80000402;
-		collist_0007D6C0[LengthOfArray(collist_0007D6C0) - 7].Flags = 0x80000402;
-		collist_0007D6C0[LengthOfArray(collist_0007D6C0) - 8].Flags = 0x80000402;
-		collist_0007D6C0[LengthOfArray(collist_0007D6C0) - 9].Flags = 0x80000402;
-		collist_0007D6C0[LengthOfArray(collist_0007D6C0) - 10].Flags = 0x80000402;
-		collist_0007D6C0[LengthOfArray(collist_0007D6C0) - 11].Flags = 0x80000402;
-		collist_0007D6C0[LengthOfArray(collist_0007D6C0) - 12].Flags = 0x80000402;
-		collist_0007D6C0[LengthOfArray(collist_0007D6C0) - 13].Flags = 0x80000402;
-		collist_0007D6C0[LengthOfArray(collist_0007D6C0) - 14].Flags = 0x80000402;
-		collist_0007D6C0[LengthOfArray(collist_0007D6C0) - 15].Flags = 0x80000402;
-		collist_0007D6C0[LengthOfArray(collist_0007D6C0) - 16].Flags = 0x80000402;
-		collist_0007D6C0[LengthOfArray(collist_0007D6C0) - 17].Flags = 0x80000402;
+		STG01_0->Col[STG01_0->COLCount - 1].Flags = 0x80000402;
+		STG01_0->Col[STG01_0->COLCount - 2].Flags = 0x80000402;
+		STG01_0->Col[STG01_0->COLCount - 3].Flags = 0x80000402;
+		STG01_0->Col[STG01_0->COLCount - 4].Flags = 0x80000402;
+		STG01_0->Col[STG01_0->COLCount - 5].Flags = 0x80000402;
+		STG01_0->Col[STG01_0->COLCount - 6].Flags = 0x80000402;
+		STG01_0->Col[STG01_0->COLCount - 7].Flags = 0x80000402;
+		STG01_0->Col[STG01_0->COLCount - 8].Flags = 0x80000402;
+		STG01_0->Col[STG01_0->COLCount - 9].Flags = 0x80000402;
+		STG01_0->Col[STG01_0->COLCount - 10].Flags = 0x80000402;
+		STG01_0->Col[STG01_0->COLCount - 11].Flags = 0x80000402;
+		STG01_0->Col[STG01_0->COLCount - 12].Flags = 0x80000402;
+		STG01_0->Col[STG01_0->COLCount - 13].Flags = 0x80000402;
+		STG01_0->Col[STG01_0->COLCount - 14].Flags = 0x80000402;
+		STG01_0->Col[STG01_0->COLCount - 15].Flags = 0x80000402;
+		STG01_0->Col[STG01_0->COLCount - 16].Flags = 0x80000402;
+		STG01_0->Col[STG01_0->COLCount - 17].Flags = 0x80000402;
 		//Act 2
-		collist_000DD600[LengthOfArray(collist_000DD600) - 1].Flags = 0x80000402;
-		collist_000DD600[LengthOfArray(collist_000DD600) - 2].Flags = 0x80000402;
-		collist_000DD600[LengthOfArray(collist_000DD600) - 3].Flags = 0x80000402;
-		collist_000DD600[LengthOfArray(collist_000DD600) - 4].Flags = 0x80000402;
-		collist_000DD600[LengthOfArray(collist_000DD600) - 5].Flags = 0x80000402;
-		collist_000DD600[LengthOfArray(collist_000DD600) - 6].Flags = 0x80000402;
-		collist_000DD600[LengthOfArray(collist_000DD600) - 7].Flags = 0x80000402;
-		collist_000DD600[LengthOfArray(collist_000DD600) - 8].Flags = 0x80000402;
-		collist_000DD600[LengthOfArray(collist_000DD600) - 9].Flags = 0x80000402;
-		collist_000DD600[LengthOfArray(collist_000DD600) - 10].Flags = 0x80000402;
-		collist_000DD600[LengthOfArray(collist_000DD600) - 11].Flags = 0x80000402;
-		collist_000DD600[LengthOfArray(collist_000DD600) - 12].Flags = 0x80000402;
-		collist_000DD600[LengthOfArray(collist_000DD600) - 13].Flags = 0x80000402;
-		collist_000DD600[LengthOfArray(collist_000DD600) - 14].Flags = 0x80000402;
-		collist_000DD600[LengthOfArray(collist_000DD600) - 15].Flags = 0x00000002;
-		collist_000DD600[LengthOfArray(collist_000DD600) - 16].Flags = 0x00000002;
-		collist_000DD600[LengthOfArray(collist_000DD600) - 17].Flags = 0x00000002;
-		collist_000DD600[LengthOfArray(collist_000DD600) - 18].Flags = 0x00000002;
-		collist_000DD600[LengthOfArray(collist_000DD600) - 19].Flags = 0x00000002;
-		collist_000DD600[LengthOfArray(collist_000DD600) - 20].Flags = 0x00000002;
-		collist_000DD600[LengthOfArray(collist_000DD600) - 21].Flags = 0x00000002;
-		collist_000DD600[LengthOfArray(collist_000DD600) - 22].Flags = 0x00000002;
-		collist_000DD600[LengthOfArray(collist_000DD600) - 23].Flags = 0x00000002;
-		collist_000DD600[LengthOfArray(collist_000DD600) - 24].Flags = 0x00000002;
-		collist_000DD600[LengthOfArray(collist_000DD600) - 25].Flags = 0x00000002;
-		collist_000DD600[LengthOfArray(collist_000DD600) - 26].Flags = 0x00000002;
-		collist_000DD600[LengthOfArray(collist_000DD600) - 27].Flags = 0x00000002;
-		collist_000DD600[LengthOfArray(collist_000DD600) - 28].Flags = 0x00000002;
-		collist_000DD600[LengthOfArray(collist_000DD600) - 29].Flags = 0x00000002;
-		collist_000DD600[LengthOfArray(collist_000DD600) - 30].Flags = 0x00000002;
-		collist_000DD600[LengthOfArray(collist_000DD600) - 31].Flags = 0x00000002;
+		STG01_1->Col[STG01_1->COLCount - 1].Flags = 0x80000402;
+		STG01_1->Col[STG01_1->COLCount - 2].Flags = 0x80000402;
+		STG01_1->Col[STG01_1->COLCount - 3].Flags = 0x80000402;
+		STG01_1->Col[STG01_1->COLCount - 4].Flags = 0x80000402;
+		STG01_1->Col[STG01_1->COLCount - 5].Flags = 0x80000402;
+		STG01_1->Col[STG01_1->COLCount - 6].Flags = 0x80000402;
+		STG01_1->Col[STG01_1->COLCount - 7].Flags = 0x80000402;
+		STG01_1->Col[STG01_1->COLCount - 8].Flags = 0x80000402;
+		STG01_1->Col[STG01_1->COLCount - 9].Flags = 0x80000402;
+		STG01_1->Col[STG01_1->COLCount - 10].Flags = 0x80000402;
+		STG01_1->Col[STG01_1->COLCount - 11].Flags = 0x80000402;
+		STG01_1->Col[STG01_1->COLCount - 12].Flags = 0x80000402;
+		STG01_1->Col[STG01_1->COLCount - 13].Flags = 0x80000402;
+		STG01_1->Col[STG01_1->COLCount - 14].Flags = 0x80000402;
+		STG01_1->Col[STG01_1->COLCount - 15].Flags = 0x00000002;
+		STG01_1->Col[STG01_1->COLCount - 16].Flags = 0x00000002;
+		STG01_1->Col[STG01_1->COLCount - 17].Flags = 0x00000002;
+		STG01_1->Col[STG01_1->COLCount - 18].Flags = 0x00000002;
+		STG01_1->Col[STG01_1->COLCount - 19].Flags = 0x00000002;
+		STG01_1->Col[STG01_1->COLCount - 20].Flags = 0x00000002;
+		STG01_1->Col[STG01_1->COLCount - 21].Flags = 0x00000002;
+		STG01_1->Col[STG01_1->COLCount - 22].Flags = 0x00000002;
+		STG01_1->Col[STG01_1->COLCount - 23].Flags = 0x00000002;
+		STG01_1->Col[STG01_1->COLCount - 24].Flags = 0x00000002;
+		STG01_1->Col[STG01_1->COLCount - 25].Flags = 0x00000002;
+		STG01_1->Col[STG01_1->COLCount - 26].Flags = 0x00000002;
+		STG01_1->Col[STG01_1->COLCount - 27].Flags = 0x00000002;
+		STG01_1->Col[STG01_1->COLCount - 28].Flags = 0x00000002;
+		STG01_1->Col[STG01_1->COLCount - 29].Flags = 0x00000002;
+		STG01_1->Col[STG01_1->COLCount - 30].Flags = 0x00000002;
+		STG01_1->Col[STG01_1->COLCount - 31].Flags = 0x00000002;
 		//Act 3
-		collist_0011C2A0[LengthOfArray(collist_0011C2A0) - 1].Flags = 0x80000402;
-		collist_0011C2A0[LengthOfArray(collist_0011C2A0) - 2].Flags = 0x80000402;
-		collist_0011C2A0[LengthOfArray(collist_0011C2A0) - 3].Flags = 0x80000402;
-		collist_0011C2A0[LengthOfArray(collist_0011C2A0) - 4].Flags = 0x80000402;
-		collist_0011C2A0[LengthOfArray(collist_0011C2A0) - 5].Flags = 0x80000402;
-		collist_0011C2A0[LengthOfArray(collist_0011C2A0) - 6].Flags = 0x80000402;
+		STG01_2->Col[STG01_2->COLCount - 1].Flags = 0x80000402;
+		STG01_2->Col[STG01_2->COLCount - 2].Flags = 0x80000402;
+		STG01_2->Col[STG01_2->COLCount - 3].Flags = 0x80000402;
+		STG01_2->Col[STG01_2->COLCount - 4].Flags = 0x80000402;
+		STG01_2->Col[STG01_2->COLCount - 5].Flags = 0x80000402;
+		STG01_2->Col[STG01_2->COLCount - 6].Flags = 0x80000402;
 		for (unsigned int rq = 0; rq < LengthOfArray(uvSTG01_00CBB000_d); rq++)
 		{
 			uvSTG01_00CBB000_d[rq].u = round(0.5 * uvSTG01_00CBB000_d[rq].u);
@@ -577,6 +570,91 @@ void EmeraldCoast_Init(const IniFile *config, const HelperFunctions &helperFunct
 		WriteData<1>((void*)0x004F783A, 0x0F); //15 animation frames for water in Act 2
 		WriteData<1>((void*)0x004F790A, 0x0F); //15 animation frames for water in Act 3
 	}
+	if (DLLLoaded_Lantern)
+	{
+		LevelSpecular_STG01External[0] = &((NJS_MATERIAL*)STG01_0_Info->getdata("matlistSTG01_00059D88"))[6];
+		LevelSpecular_STG01External[1] = &((NJS_MATERIAL*)STG01_0_Info->getdata("matlistSTG01_00C1AC80"))[4];
+		LevelSpecular_STG01External[2] = &((NJS_MATERIAL*)STG01_0_Info->getdata("matlistSTG01_00BE30C0"))[16];
+		LevelSpecular_STG01External[3] = &((NJS_MATERIAL*)STG01_0_Info->getdata("matlistSTG01_0004DB6C"))[11];
+		LevelSpecular_STG01External[4] = &((NJS_MATERIAL*)STG01_2_Info->getdata("matlistSTG01_00108488"))[6];
+		material_register_ptr(LevelSpecular_STG01External, LengthOfArray(LevelSpecular_STG01External), ForceDiffuse0Specular0);
+	}
+}
+
+void EmeraldCoast_Init()
+{
+	ReplaceBIN_DC("SET0100E");
+	ReplaceBIN_DC("SET0100S");
+	ReplaceBIN_DC("SET0101M");
+	ReplaceBIN_DC("SET0101S");
+	ReplaceBIN_DC("SET0102B");
+	ReplaceBIN_DC("SET0102S");
+	switch (EnableSETFixes)
+	{
+	case SETFixes_Normal:
+		AddSETFix("SET0100S");
+		AddSETFix("SET0100E");
+		AddSETFix("SET0101S");
+		break;
+	case SETFixes_Extra:
+		AddSETFix_Extra("SET0100S");
+		AddSETFix_Extra("SET0100E");
+		AddSETFix_Extra("SET0101S");
+		break;
+	default:
+		break;
+	}
+	ReplacePVM("BEACH01");
+	ReplacePVM("BEACH02");
+	ReplacePVM("BEACH03");
+	ReplacePVM("BG_BEACH");
+	ReplacePVM("OBJ_BEACH");
+	ReplacePVM("BEACH_SEA");
+	if (!IamStupidAndIWantFuckedUpOcean)
+	{
+		for (unsigned int i = 0; i < 3; i++)
+		{
+			ReplaceBIN_DC("CAM0100E");
+			ReplaceBIN_DC("CAM0100S");
+			ReplaceBIN_DC("CAM0101S");
+			ReplaceBIN_DC("CAM0102B");
+			ReplaceBIN_DC("CAM0102S");
+			SkyboxScale_EmeraldCoast1[i].x = 1.0f;
+			SkyboxScale_EmeraldCoast1[i].y = 1.0f;
+			SkyboxScale_EmeraldCoast1[i].z = 1.0f;
+			SkyboxScale_EmeraldCoast2[i].x = 1.0f;
+			SkyboxScale_EmeraldCoast2[i].y = 1.0f;
+			SkyboxScale_EmeraldCoast2[i].z = 1.0f;
+			SkyboxScale_EmeraldCoast3[i].x = 1.0f;
+			SkyboxScale_EmeraldCoast3[i].y = 1.0f;
+			SkyboxScale_EmeraldCoast3[i].z = 1.0f;
+			DrawDist_EmeraldCoast1[i].Maximum = -6000.0f;
+			DrawDist_EmeraldCoast2[i].Maximum = -3900.0f;
+			FogData_EmeraldCoast1[i].Distance = -12000.0f;
+			FogData_EmeraldCoast1[i].Layer = -12000.0f;
+			FogData_EmeraldCoast2[i].Distance = -12000.0f;
+			FogData_EmeraldCoast2[i].Layer = -12000.0f;
+		}
+	}
+	else
+	{
+		ReplaceBIN("CAM0100E", "CAM0100E_R");
+		ReplaceBIN("CAM0100S", "CAM0100S_R");
+		ReplaceBIN("CAM0101S", "CAM0101S_R");
+		ReplaceBIN("CAM0102S", "CAM0102S_R");
+		ReplaceBIN("CAM0102B", "CAM0102B_R");
+	}
+	WriteCall((void*)0x00502F8F, WhaleSplash);
+	WriteCall((void*)0x00502F9A, WhaleSplash);
+	if (DLLLoaded_Lantern)
+	{
+		material_register_ptr(LevelSpecular_STG01, LengthOfArray(LevelSpecular_STG01), &ForceDiffuse0Specular0);
+		material_register_ptr(ObjectSpecular_STG01, LengthOfArray(ObjectSpecular_STG01), &ForceDiffuse0Specular1);
+	}
+	WriteData<2>((void*)0x004F8A9A, 0x90); //Disable water animation in Act 1
+	WriteData<2>((char*)0x004F7816, 0xFF); //Disable water animation in Act 2
+	WriteData<2>((char*)0x004F78E6, 0xFF); //Disable water animation in Act 3
+	((NJS_OBJECT*)0x010C03FC)->basicdxmodel->mats[0].diffuse.argb.a = 0x99; //Match dynamic ocean alpha with normal ocean
 	ResizeTextureList((NJS_TEXLIST*)0x010C0508, 10); //BEACH_SEA
 	ResizeTextureList((NJS_TEXLIST*)0xF812AC, textures_ecoast1);
 	ResizeTextureList((NJS_TEXLIST*)0xEF553C, textures_ecoast2);
@@ -615,46 +693,12 @@ void EmeraldCoast_Init(const IniFile *config, const HelperFunctions &helperFunct
 		EmeraldCoast3Fog[i].Distance = -3000.0f;
 		EmeraldCoast3Fog[i].Color = 0xFFFFFFFF;
 	}
-	if (!IamStupidAndIWantFuckedUpOcean)
-	{
-		for (unsigned int i = 0; i < 3; i++)
-		{
-			ReplaceBIN_DC("CAM0100E");
-			ReplaceBIN_DC("CAM0100S");
-			ReplaceBIN_DC("CAM0101S");
-			ReplaceBIN_DC("CAM0102B");
-			ReplaceBIN_DC("CAM0102S");
-			SkyboxScale_EmeraldCoast1[i].x = 1.0f;
-			SkyboxScale_EmeraldCoast1[i].y = 1.0f;
-			SkyboxScale_EmeraldCoast1[i].z = 1.0f;
-			SkyboxScale_EmeraldCoast2[i].x = 1.0f;
-			SkyboxScale_EmeraldCoast2[i].y = 1.0f;
-			SkyboxScale_EmeraldCoast2[i].z = 1.0f;
-			SkyboxScale_EmeraldCoast3[i].x = 1.0f;
-			SkyboxScale_EmeraldCoast3[i].y = 1.0f;
-			SkyboxScale_EmeraldCoast3[i].z = 1.0f;
-			DrawDist_EmeraldCoast1[i].Maximum = -6000.0f;
-			DrawDist_EmeraldCoast2[i].Maximum = -3900.0f;
-			EmeraldCoast1Fog[i].Distance = -12000.0f;
-			EmeraldCoast1Fog[i].Layer = -12000.0f;
-			EmeraldCoast2Fog[i].Distance = -12000.0f;
-			EmeraldCoast2Fog[i].Layer = -12000.0f;
-		}
-	}
-	else
-	{
-		ReplaceBIN("CAM0100E", "CAM0100E_R");
-		ReplaceBIN("CAM0100S", "CAM0100S_R");
-		ReplaceBIN("CAM0101S", "CAM0101S_R");
-		ReplaceBIN("CAM0102S", "CAM0102S_R");
-		ReplaceBIN("CAM0102B", "CAM0102B_R");
-	}
 }
 
 void EmeraldCoast_OnFrame()
 {
 	//Hide skybox bottom in Act 3
-	if (!IamStupidAndIWantFuckedUpOcean)
+	if (STG01_2_Info && !IamStupidAndIWantFuckedUpOcean)
 	{
 		if (CurrentLevel == 1 && CurrentAct == 2 && Camera_Data1 != nullptr)
 		{
@@ -710,41 +754,41 @@ void EmeraldCoast_OnFrame()
 			}
 		}
 	}
-	if (CurrentLevel == 1 && CurrentAct == 0 && GameState != 16)
+	if (STG01_0_Info && CurrentLevel == 1 && CurrentAct == 0 && GameState != 16)
 	{
 		if (anim1 > 96) anim1 = 82;
 		if (anim2 > 81) anim2 = 67;
-		matlistSTG01_000755F8[0].attr_texId = anim1;
-		matlistSTG01_000759CC[0].attr_texId = anim1;
-		matlistSTG01_00075C74[0].attr_texId = anim1;
-		matlistSTG01_00075F1C[0].attr_texId = anim1;
-		matlistSTG01_00076278[0].attr_texId = anim1;
-		matlistSTG01_00076278[1].attr_texId = anim1;
-		matlistSTG01_00076654[0].attr_texId = anim1;
-		matlistSTG01_00076FA0[0].attr_texId = anim1;
-		matlistSTG01_00076B90[0].attr_texId = anim1;
-		matlistSTG01_00078634[0].attr_texId = anim1;
-		matlistSTG01_00078120[0].attr_texId = anim1;
-		matlistSTG01_00078918[0].attr_texId = anim1;
-		matlistSTG01_000783C8[0].attr_texId = anim1;
-		matlistSTG01_00078C18[0].attr_texId = anim1;
-		matlistSTG01_00077EB4[0].attr_texId = anim1;
-		matlistSTG01_00077374[0].attr_texId = anim1;
-		matlistSTG01_000776D0[0].attr_texId = anim1;
-		matlistSTG01_00077A2C[0].attr_texId = anim1;
-		matlistSTG01_00BAC3E8[4].attr_texId = anim2;
-		matlistSTG01_00027A00[2].attr_texId = anim2;
-		matlistSTG01_00026CA0[2].attr_texId = anim2;
-		matlistSTG01_000246F8[0].attr_texId = anim2;
-		matlistSTG01_00023628[3].attr_texId = anim2;
-		matlistSTG01_0002276C[3].attr_texId = anim2;
-		matlistSTG01_000216E0[3].attr_texId = anim2;
-		matlistSTG01_0002091C[3].attr_texId = anim2;
-		matlistSTG01_0001F254[3].attr_texId = anim2;
-		matlistSTG01_0001E8C4[0].attr_texId = anim2;
-		matlistSTG01_0001FFE0[2].attr_texId = anim2;
-		matlistSTG01_0001FFE0[4].attr_texId = anim2;
-		matlistSTG01_0001DC78[1].attr_texId = anim2;
+		((NJS_MATERIAL*)STG01_0_Info->getdata("matlistSTG01_000755F8"))[0].attr_texId = anim1;
+		((NJS_MATERIAL*)STG01_0_Info->getdata("matlistSTG01_000759CC"))[0].attr_texId = anim1;
+		((NJS_MATERIAL*)STG01_0_Info->getdata("matlistSTG01_00075C74"))[0].attr_texId = anim1;
+		((NJS_MATERIAL*)STG01_0_Info->getdata("matlistSTG01_00075F1C"))[0].attr_texId = anim1;
+		((NJS_MATERIAL*)STG01_0_Info->getdata("matlistSTG01_00076278"))[0].attr_texId = anim1;
+		((NJS_MATERIAL*)STG01_0_Info->getdata("matlistSTG01_00076278"))[1].attr_texId = anim1;
+		((NJS_MATERIAL*)STG01_0_Info->getdata("matlistSTG01_00076654"))[0].attr_texId = anim1;
+		((NJS_MATERIAL*)STG01_0_Info->getdata("matlistSTG01_00076FA0"))[0].attr_texId = anim1;
+		((NJS_MATERIAL*)STG01_0_Info->getdata("matlistSTG01_00076B90"))[0].attr_texId = anim1;
+		((NJS_MATERIAL*)STG01_0_Info->getdata("matlistSTG01_00078634"))[0].attr_texId = anim1;
+		((NJS_MATERIAL*)STG01_0_Info->getdata("matlistSTG01_00078120"))[0].attr_texId = anim1;
+		((NJS_MATERIAL*)STG01_0_Info->getdata("matlistSTG01_00078918"))[0].attr_texId = anim1;
+		((NJS_MATERIAL*)STG01_0_Info->getdata("matlistSTG01_000783C8"))[0].attr_texId = anim1;
+		((NJS_MATERIAL*)STG01_0_Info->getdata("matlistSTG01_00078C18"))[0].attr_texId = anim1;
+		((NJS_MATERIAL*)STG01_0_Info->getdata("matlistSTG01_00077EB4"))[0].attr_texId = anim1;
+		((NJS_MATERIAL*)STG01_0_Info->getdata("matlistSTG01_00077374"))[0].attr_texId = anim1;
+		((NJS_MATERIAL*)STG01_0_Info->getdata("matlistSTG01_000776D0"))[0].attr_texId = anim1;
+		((NJS_MATERIAL*)STG01_0_Info->getdata("matlistSTG01_00077A2C"))[0].attr_texId = anim1;
+		((NJS_MATERIAL*)STG01_0_Info->getdata("matlistSTG01_00BAC3E8"))[4].attr_texId = anim2;
+		((NJS_MATERIAL*)STG01_0_Info->getdata("matlistSTG01_00027A00"))[2].attr_texId = anim2;
+		((NJS_MATERIAL*)STG01_0_Info->getdata("matlistSTG01_00026CA0"))[2].attr_texId = anim2;
+		((NJS_MATERIAL*)STG01_0_Info->getdata("matlistSTG01_000246F8"))[0].attr_texId = anim2;
+		((NJS_MATERIAL*)STG01_0_Info->getdata("matlistSTG01_00023628"))[3].attr_texId = anim2;
+		((NJS_MATERIAL*)STG01_0_Info->getdata("matlistSTG01_0002276C"))[3].attr_texId = anim2;
+		((NJS_MATERIAL*)STG01_0_Info->getdata("matlistSTG01_000216E0"))[3].attr_texId = anim2;
+		((NJS_MATERIAL*)STG01_0_Info->getdata("matlistSTG01_0002091C"))[3].attr_texId = anim2;
+		((NJS_MATERIAL*)STG01_0_Info->getdata("matlistSTG01_0001F254"))[3].attr_texId = anim2;
+		((NJS_MATERIAL*)STG01_0_Info->getdata("matlistSTG01_0001E8C4"))[0].attr_texId = anim2;
+		((NJS_MATERIAL*)STG01_0_Info->getdata("matlistSTG01_0001FFE0"))[2].attr_texId = anim2;
+		((NJS_MATERIAL*)STG01_0_Info->getdata("matlistSTG01_0001FFE0"))[4].attr_texId = anim2;
+		((NJS_MATERIAL*)STG01_0_Info->getdata("matlistSTG01_0001DC78"))[1].attr_texId = anim2;
 		if (GameState != 16)
 		{
 			if ((FramerateSetting < 2 && FrameCounter % 4 == 0) || (FramerateSetting == 2 && FrameCounter % 2 == 0) || (FramerateSetting > 2))
@@ -757,40 +801,40 @@ void EmeraldCoast_OnFrame()
 			}
 		}
 	}
-	if (CurrentLevel == 1 && CurrentAct == 1 && GameState != 16)
+	if (STG01_1_Info && CurrentLevel == 1 && CurrentAct == 1 && GameState != 16)
 	{
 		if (anim3 > 56) anim3 = 42;
 		if (anim4 > 85) anim4 = 71;
 		if (anim7 > 70) anim7 = 57;
-		matlistSTG01_000D7BB8[0].attr_texId = anim7;
-		matlistSTG01_0008F1FC[0].attr_texId = anim3;
-		matlistSTG01_0008F7CC[2].attr_texId = anim3;
-		matlistSTG01_000907D4[4].attr_texId = anim3;
-		matlistSTG01_00091358[3].attr_texId = anim3;
-		matlistSTG01_000920EC[1].attr_texId = anim3;
-		matlistSTG01_00092E40[2].attr_texId = anim3;
-		matlistSTG01_00094E34[0].attr_texId = anim3;
-		matlistSTG01_00095C20[0].attr_texId = anim3;
-		matlistSTG01_00093FE0[3].attr_texId = anim3;
-		matlistSTG01_00096A10[2].attr_texId = anim3;
-		matlistSTG01_0009712C[3].attr_texId = anim3;
-		matlistSTG01_000DBBA4[0].attr_texId = anim3;
-		matlistSTG01_000DBBA4[1].attr_texId = anim3;
-		matlistSTG01_000DBBA4[2].attr_texId = anim3;
-		matlistSTG01_000DA750[0].attr_texId = anim4;
-		matlistSTG01_000DA9BC[0].attr_texId = anim4;
-		matlistSTG01_000DA188[0].attr_texId = anim4;
-		matlistSTG01_000DA46C[0].attr_texId = anim4;
-		matlistSTG01_000D9B10[0].attr_texId = anim4;
-		matlistSTG01_000D9E30[0].attr_texId = anim4;
-		matlistSTG01_000D9584[0].attr_texId = anim4;
-		matlistSTG01_000D98A4[0].attr_texId = anim4;
-		matlistSTG01_000D9084[0].attr_texId = anim4;
-		matlistSTG01_000D8E18[0].attr_texId = anim4;
-		matlistSTG01_000D8BA0[0].attr_texId = anim4;
-		matlistSTG01_000D86A0[0].attr_texId = anim4;
-		matlistSTG01_000D8254[0].attr_texId = anim4;
-		matlistSTG01_000D7D64[0].attr_texId = anim4;
+		((NJS_MATERIAL*)STG01_1_Info->getdata("matlistSTG01_000D7BB8"))[0].attr_texId = anim7;
+		((NJS_MATERIAL*)STG01_1_Info->getdata("matlistSTG01_0008F1FC"))[0].attr_texId = anim3;
+		((NJS_MATERIAL*)STG01_1_Info->getdata("matlistSTG01_0008F7CC"))[2].attr_texId = anim3;
+		((NJS_MATERIAL*)STG01_1_Info->getdata("matlistSTG01_000907D4"))[4].attr_texId = anim3;
+		((NJS_MATERIAL*)STG01_1_Info->getdata("matlistSTG01_00091358"))[3].attr_texId = anim3;
+		((NJS_MATERIAL*)STG01_1_Info->getdata("matlistSTG01_000920EC"))[1].attr_texId = anim3;
+		((NJS_MATERIAL*)STG01_1_Info->getdata("matlistSTG01_00092E40"))[2].attr_texId = anim3;
+		((NJS_MATERIAL*)STG01_1_Info->getdata("matlistSTG01_00094E34"))[0].attr_texId = anim3;
+		((NJS_MATERIAL*)STG01_1_Info->getdata("matlistSTG01_00095C20"))[0].attr_texId = anim3;
+		((NJS_MATERIAL*)STG01_1_Info->getdata("matlistSTG01_00093FE0"))[3].attr_texId = anim3;
+		((NJS_MATERIAL*)STG01_1_Info->getdata("matlistSTG01_00096A10"))[2].attr_texId = anim3;
+		((NJS_MATERIAL*)STG01_1_Info->getdata("matlistSTG01_0009712C"))[3].attr_texId = anim3;
+		((NJS_MATERIAL*)STG01_1_Info->getdata("matlistSTG01_000DBBA4"))[0].attr_texId = anim3;
+		((NJS_MATERIAL*)STG01_1_Info->getdata("matlistSTG01_000DBBA4"))[1].attr_texId = anim3;
+		((NJS_MATERIAL*)STG01_1_Info->getdata("matlistSTG01_000DBBA4"))[2].attr_texId = anim3;
+		((NJS_MATERIAL*)STG01_1_Info->getdata("matlistSTG01_000DA750"))[0].attr_texId = anim4;
+		((NJS_MATERIAL*)STG01_1_Info->getdata("matlistSTG01_000DA9BC"))[0].attr_texId = anim4;
+		((NJS_MATERIAL*)STG01_1_Info->getdata("matlistSTG01_000DA188"))[0].attr_texId = anim4;
+		((NJS_MATERIAL*)STG01_1_Info->getdata("matlistSTG01_000DA46C"))[0].attr_texId = anim4;
+		((NJS_MATERIAL*)STG01_1_Info->getdata("matlistSTG01_000D9B10"))[0].attr_texId = anim4;
+		((NJS_MATERIAL*)STG01_1_Info->getdata("matlistSTG01_000D9E30"))[0].attr_texId = anim4;
+		((NJS_MATERIAL*)STG01_1_Info->getdata("matlistSTG01_000D9584"))[0].attr_texId = anim4;
+		((NJS_MATERIAL*)STG01_1_Info->getdata("matlistSTG01_000D98A4"))[0].attr_texId = anim4;
+		((NJS_MATERIAL*)STG01_1_Info->getdata("matlistSTG01_000D9084"))[0].attr_texId = anim4;
+		((NJS_MATERIAL*)STG01_1_Info->getdata("matlistSTG01_000D8E18"))[0].attr_texId = anim4;
+		((NJS_MATERIAL*)STG01_1_Info->getdata("matlistSTG01_000D8BA0"))[0].attr_texId = anim4;
+		((NJS_MATERIAL*)STG01_1_Info->getdata("matlistSTG01_000D86A0"))[0].attr_texId = anim4;
+		((NJS_MATERIAL*)STG01_1_Info->getdata("matlistSTG01_000D8254"))[0].attr_texId = anim4;
+		((NJS_MATERIAL*)STG01_1_Info->getdata("matlistSTG01_000D7D64"))[0].attr_texId = anim4;
 		if (GameState != 16)
 		{
 			if ((FramerateSetting < 2 && FrameCounter % 4 == 0) || (FramerateSetting == 2 && FrameCounter % 2 == 0) || FramerateSetting > 2)
@@ -804,7 +848,7 @@ void EmeraldCoast_OnFrame()
 			}
 		}
 	}
-	if (CurrentLevel == 1 && CurrentAct == 2 && GameState != 16)
+	if (STG01_2_Info && CurrentLevel == 1 && CurrentAct == 2 && GameState != 16)
 	{
 		if (GameState == 3 || GameState == 4)
 		{
@@ -846,50 +890,50 @@ void EmeraldCoast_OnFrame()
 		if (anim5 > 64) anim5 = 50;
 		if (anim6 > 79) anim6 = 65;
 		if (anim8 > 93) anim8 = 80;
-		matlistSTG01_00114D08[0].attr_texId = anim8;
-		matlistSTG01_00117310[0].attr_texId = anim5;
-		matlistSTG01_0011784C[0].attr_texId = anim5;
-		matlistSTG01_00117C5C[0].attr_texId = anim5;
-		matlistSTG01_00118030[0].attr_texId = anim5;
-		matlistSTG01_0011829C[0].attr_texId = anim5;
-		matlistSTG01_00118544[0].attr_texId = anim5;
-		matlistSTG01_001187B0[0].attr_texId = anim5;
-		matlistSTG01_00118A94[0].attr_texId = anim5;
-		matlistSTG01_00118D94[0].attr_texId = anim5;
-		matlistSTG01_000E5260[3].attr_texId = anim6;
-		matlistSTG01_000E611C[3].attr_texId = anim6;
-		matlistSTG01_000E71EC[0].attr_texId = anim6;
-		matlistSTG01_000E97EC[2].attr_texId = anim6;
-		matlistSTG01_000EA520[2].attr_texId = anim6;
-		matlistSTG01_000EB0E0[0].attr_texId = anim6;
-		matlistSTG01_000EF7E4[0].attr_texId = anim6;
-		matlistSTG01_000EF7E4[2].attr_texId = anim6;
-		matlistSTG01_000F8F6C[0].attr_texId = anim6;
-		matlistSTG01_000F95F0[0].attr_texId = anim6;
-		matlistSTG01_000F9D10[0].attr_texId = anim6;
-		matlistSTG01_000F9D10[1].attr_texId = anim6;
-		matlistSTG01_000FB004[0].attr_texId = anim6;
-		matlistSTG01_000FB004[1].attr_texId = anim6;
-		matlistSTG01_000FEE58[0].attr_texId = anim6;
-		matlistSTG01_000FF3A0[0].attr_texId = anim6;
-		matlistSTG01_000FFD48[0].attr_texId = anim6;
-		matlistSTG01_00101320[0].attr_texId = anim6;
-		matlistSTG01_00101E9C[0].attr_texId = anim6;
-		matlistSTG01_0010280C[0].attr_texId = anim6;
-		matlistSTG01_001033A8[0].attr_texId = anim6;
-		matlistSTG01_00103DC8[0].attr_texId = anim6;
-		matlistSTG01_00104920[0].attr_texId = anim6;
-		matlistSTG01_00105630[0].attr_texId = anim6;
-		matlistSTG01_00108120[0].attr_texId = anim6;
-		matlistSTG01_0010C7F4[0].attr_texId = anim6;
-		matlistSTG01_0010D618[0].attr_texId = anim6;
-		matlistSTG01_0010E304[0].attr_texId = anim6;
-		matlistSTG01_0010F148[0].attr_texId = anim6;
-		matlistSTG01_00110184[0].attr_texId = anim6;
-		matlistSTG01_00110184[1].attr_texId = anim6;
-		matlistSTG01_00110DFC[0].attr_texId = anim6;
-		matlistSTG01_0011B12C[0].attr_texId = anim6;
-		matlistSTG01_0011B12C[1].attr_texId = anim6;
+		((NJS_MATERIAL*)STG01_2_Info->getdata("matlistSTG01_00114D08"))[0].attr_texId = anim8;
+		((NJS_MATERIAL*)STG01_2_Info->getdata("matlistSTG01_00117310"))[0].attr_texId = anim5;
+		((NJS_MATERIAL*)STG01_2_Info->getdata("matlistSTG01_0011784C"))[0].attr_texId = anim5;
+		((NJS_MATERIAL*)STG01_2_Info->getdata("matlistSTG01_00117C5C"))[0].attr_texId = anim5;
+		((NJS_MATERIAL*)STG01_2_Info->getdata("matlistSTG01_00118030"))[0].attr_texId = anim5;
+		((NJS_MATERIAL*)STG01_2_Info->getdata("matlistSTG01_0011829C"))[0].attr_texId = anim5;
+		((NJS_MATERIAL*)STG01_2_Info->getdata("matlistSTG01_00118544"))[0].attr_texId = anim5;
+		((NJS_MATERIAL*)STG01_2_Info->getdata("matlistSTG01_001187B0"))[0].attr_texId = anim5;
+		((NJS_MATERIAL*)STG01_2_Info->getdata("matlistSTG01_00118A94"))[0].attr_texId = anim5;
+		((NJS_MATERIAL*)STG01_2_Info->getdata("matlistSTG01_00118D94"))[0].attr_texId = anim5;
+		((NJS_MATERIAL*)STG01_2_Info->getdata("matlistSTG01_000E5260"))[3].attr_texId = anim6;
+		((NJS_MATERIAL*)STG01_2_Info->getdata("matlistSTG01_000E611C"))[3].attr_texId = anim6;
+		((NJS_MATERIAL*)STG01_2_Info->getdata("matlistSTG01_000E71EC"))[0].attr_texId = anim6;
+		((NJS_MATERIAL*)STG01_2_Info->getdata("matlistSTG01_000E97EC"))[2].attr_texId = anim6;
+		((NJS_MATERIAL*)STG01_2_Info->getdata("matlistSTG01_000EA520"))[2].attr_texId = anim6;
+		((NJS_MATERIAL*)STG01_2_Info->getdata("matlistSTG01_000EB0E0"))[0].attr_texId = anim6;
+		((NJS_MATERIAL*)STG01_2_Info->getdata("matlistSTG01_000EF7E4"))[0].attr_texId = anim6;
+		((NJS_MATERIAL*)STG01_2_Info->getdata("matlistSTG01_000EF7E4"))[2].attr_texId = anim6;
+		((NJS_MATERIAL*)STG01_2_Info->getdata("matlistSTG01_000F8F6C"))[0].attr_texId = anim6;
+		((NJS_MATERIAL*)STG01_2_Info->getdata("matlistSTG01_000F95F0"))[0].attr_texId = anim6;
+		((NJS_MATERIAL*)STG01_2_Info->getdata("matlistSTG01_000F9D10"))[0].attr_texId = anim6;
+		((NJS_MATERIAL*)STG01_2_Info->getdata("matlistSTG01_000F9D10"))[1].attr_texId = anim6;
+		((NJS_MATERIAL*)STG01_2_Info->getdata("matlistSTG01_000FB004"))[0].attr_texId = anim6;
+		((NJS_MATERIAL*)STG01_2_Info->getdata("matlistSTG01_000FB004"))[1].attr_texId = anim6;
+		((NJS_MATERIAL*)STG01_2_Info->getdata("matlistSTG01_000FEE58"))[0].attr_texId = anim6;
+		((NJS_MATERIAL*)STG01_2_Info->getdata("matlistSTG01_000FF3A0"))[0].attr_texId = anim6;
+		((NJS_MATERIAL*)STG01_2_Info->getdata("matlistSTG01_000FFD48"))[0].attr_texId = anim6;
+		((NJS_MATERIAL*)STG01_2_Info->getdata("matlistSTG01_00101320"))[0].attr_texId = anim6;
+		((NJS_MATERIAL*)STG01_2_Info->getdata("matlistSTG01_00101E9C"))[0].attr_texId = anim6;
+		((NJS_MATERIAL*)STG01_2_Info->getdata("matlistSTG01_0010280C"))[0].attr_texId = anim6;
+		((NJS_MATERIAL*)STG01_2_Info->getdata("matlistSTG01_001033A8"))[0].attr_texId = anim6;
+		((NJS_MATERIAL*)STG01_2_Info->getdata("matlistSTG01_00103DC8"))[0].attr_texId = anim6;
+		((NJS_MATERIAL*)STG01_2_Info->getdata("matlistSTG01_00104920"))[0].attr_texId = anim6;
+		((NJS_MATERIAL*)STG01_2_Info->getdata("matlistSTG01_00105630"))[0].attr_texId = anim6;
+		((NJS_MATERIAL*)STG01_2_Info->getdata("matlistSTG01_00108120"))[0].attr_texId = anim6;
+		((NJS_MATERIAL*)STG01_2_Info->getdata("matlistSTG01_0010C7F4"))[0].attr_texId = anim6;
+		((NJS_MATERIAL*)STG01_2_Info->getdata("matlistSTG01_0010D618"))[0].attr_texId = anim6;
+		((NJS_MATERIAL*)STG01_2_Info->getdata("matlistSTG01_0010E304"))[0].attr_texId = anim6;
+		((NJS_MATERIAL*)STG01_2_Info->getdata("matlistSTG01_0010F148"))[0].attr_texId = anim6;
+		((NJS_MATERIAL*)STG01_2_Info->getdata("matlistSTG01_00110184"))[0].attr_texId = anim6;
+		((NJS_MATERIAL*)STG01_2_Info->getdata("matlistSTG01_00110184"))[1].attr_texId = anim6;
+		((NJS_MATERIAL*)STG01_2_Info->getdata("matlistSTG01_00110DFC"))[0].attr_texId = anim6;
+		((NJS_MATERIAL*)STG01_2_Info->getdata("matlistSTG01_0011B12C"))[0].attr_texId = anim6;
+		((NJS_MATERIAL*)STG01_2_Info->getdata("matlistSTG01_0011B12C"))[1].attr_texId = anim6;
 		if (GameState != 16)
 		{
 			if ((FramerateSetting < 2 && FrameCounter % 4 == 0) || (FramerateSetting == 2 && FrameCounter % 2 == 0) || FramerateSetting > 2)

@@ -115,6 +115,9 @@ char OTPanelTimer = 120;
 char LostWorldDoorFix = 34;
 char LostWorldDoorFix1 = 6;
 
+//Final Egg
+float OFunAnimationSpeedOverride = 0.25f; //Floating Fan Animation Speed Tweak
+
 //Animals
 float BubbleMovementSpeed = 0.0049999999f; //0.0099999998 at 60
 float BubbleMovementSpeed2 = 0.0249999985f; //0.049999997 at 60
@@ -688,6 +691,8 @@ void SpeedFixes_Init()
 	WriteData((char*)0x005E78E1, LostWorldDoorFix);
 	WriteData((char*)0x005E7C63, LostWorldDoorFix1);
 	WriteData((char*)0x005E7841, LostWorldDoorFix1);
+	//Final Egg
+	WriteData((float**)0x005B7530, &OFunAnimationSpeedOverride); //Floating Fan Animation Speed Tweaks
 }
 
 void SpeedFixes_OnFrame()
@@ -762,6 +767,8 @@ void SpeedFixes_OnFrame()
 			OTPanelTimer = 60;
 			LostWorldDoorFix = 17;
 			LostWorldDoorFix1 = 3;
+			//Final Egg
+			OFunAnimationSpeedOverride = 1.0f;
 			}
 		//60 FPS values
 		else
@@ -823,11 +830,13 @@ void SpeedFixes_OnFrame()
 			//Casinopolis
 			OKaizAnimationSpeedOverride = 0.001388885f;
 			OCrystalAnimationSpeedOverride = 168;
-			//LostWorld
+			//Lost World
 			OTPanel1SpeedOverride = 0.0084745765f;
 			OTPanelTimer = 120;
 			LostWorldDoorFix = 34;
 			LostWorldDoorFix1 = 6;
+			//Final Egg
+			OFunAnimationSpeedOverride = 0.25f;
 			}
 		SpeedFixes_Init();
 		FramerateSettingOld = FramerateSetting;

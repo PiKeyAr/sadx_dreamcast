@@ -1,10 +1,22 @@
 #include "stdafx.h"
 #include "button.h"
 #include "MasterEmerald.h"
-#include "ADV_MR00(StationArea).h"
-#include "ADV_MR01(AngelIsland).h"
-#include "ADV_MR02(JungleArea).h"
-#include "ADV_MR03(FinalEggEntrance).h"
+
+NJS_TEXNAME textures_mr00[153];
+NJS_TEXLIST texlist_mr00 = { arrayptrandlength(textures_mr00) };
+
+NJS_TEXNAME textures_mr01[90];
+NJS_TEXLIST texlist_mr01 = { arrayptrandlength(textures_mr01) };
+
+NJS_TEXNAME textures_mr02[126];
+NJS_TEXLIST texlist_mr02 = { arrayptrandlength(textures_mr02) };
+
+NJS_TEXNAME textures_mr03[104];
+NJS_TEXLIST texlist_mr03 = { arrayptrandlength(textures_mr03) };
+
+NJS_TEXNAME textures_mrobj[207];
+NJS_TEXLIST texlist_mrobj = { arrayptrandlength(textures_mrobj) };
+
 #include "OFinalEgg.h"
 #include "MR_train.h"
 #include "MR_Rock.h"
@@ -16,9 +28,6 @@
 #include "MR_Objects.h"
 #include "MR_Palms.h"
 
-HMODULE ADV02MODELS = GetModuleHandle(L"ADV02MODELS");
-NJS_TEXLIST **___ADV02_TEXLISTS = (NJS_TEXLIST **)GetProcAddress(ADV02MODELS, "___ADV02_TEXLISTS");
-NJS_ACTION **___ADV02_ACTIONS = (NJS_ACTION **)GetProcAddress(ADV02MODELS, "___ADV02_ACTIONS");
 DataPointer(float, dword_111DB90, 0x111DB90);
 DataPointer(float, CurrentFogDist, 0x03ABDC64);
 DataPointer(float, CurrentFogLayer, 0x03ABDC60);
@@ -46,7 +55,7 @@ NJS_TEXLIST texlist_mrtrain = { arrayptrandlength(textures_mrtrain) };
 
 void __cdecl MRWater(OceanData *x)
 {
-	if (CurrentAct == 0)
+	if (ADV02_0_Info && CurrentAct == 0)
 	{
 		if (!DroppedFrames)
 		{
@@ -58,19 +67,19 @@ void __cdecl MRWater(OceanData *x)
 			njPopMatrix(1u);
 			njPushMatrix(0);
 			njTranslate(0, 0, 0, 0);
-			ProcessModelNode_A_Wrapper(&objectADV02_000538B0, QueuedModelFlagsB_3, 1.0f);
+			ProcessModelNode_A_Wrapper((NJS_OBJECT*)ADV02_0_Info->getdata("objectADV02_000538B0"), QueuedModelFlagsB_3, 1.0f);
 			njPopMatrix(1u);
 			njPushMatrix(0);
 			njTranslate(0, 0, 0, 0);
-			ProcessModelNode_A_Wrapper(&objectADV02_000534DC, QueuedModelFlagsB_3, 1.0f);
+			ProcessModelNode_A_Wrapper((NJS_OBJECT*)ADV02_0_Info->getdata("objectADV02_000534DC"), QueuedModelFlagsB_3, 1.0f);
 			njPopMatrix(1u);
 			njPushMatrix(0);
 			njTranslate(0, 0, 0, 0);
-			ProcessModelNode_A_Wrapper(&objectADV02_00059734, QueuedModelFlagsB_3, 1.0f);
+			ProcessModelNode_A_Wrapper((NJS_OBJECT*)ADV02_0_Info->getdata("objectADV02_00059734"), QueuedModelFlagsB_3, 1.0f);
 			njPopMatrix(1u);
 			njPushMatrix(0);
 			njTranslate(0, 0, 0, 0);
-			ProcessModelNode_A_Wrapper(&objectADV02_000599DC, QueuedModelFlagsB_3, 1.0f);
+			ProcessModelNode_A_Wrapper((NJS_OBJECT*)ADV02_0_Info->getdata("objectADV02_000599DC"), QueuedModelFlagsB_3, 1.0f);
 			njPopMatrix(1u);
 		}
 	}
@@ -78,55 +87,59 @@ void __cdecl MRWater(OceanData *x)
 
 NJS_MATERIAL* LevelSpecular[] = {
 	//ODigPlace1
-	(NJS_MATERIAL*)((size_t)ADV02MODELS + 0x000168E8),
-	(NJS_MATERIAL*)((size_t)ADV02MODELS + 0x000168FC),
-	(NJS_MATERIAL*)((size_t)ADV02MODELS + 0x00017B40),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x000168E8),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x000168FC),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x00017B40),
 	//Echidna statue
-	(NJS_MATERIAL*)((size_t)ADV02MODELS + 0x0002C8F8),
-	(NJS_MATERIAL*)((size_t)ADV02MODELS + 0x0002C90C),
-	(NJS_MATERIAL*)((size_t)ADV02MODELS + 0x0002C920),
-	(NJS_MATERIAL*)((size_t)ADV02MODELS + 0x0002C934),
-	(NJS_MATERIAL*)((size_t)ADV02MODELS + 0x0002C948),
-	(NJS_MATERIAL*)((size_t)ADV02MODELS + 0x0002C95C),
-	(NJS_MATERIAL*)((size_t)ADV02MODELS + 0x0002C970),
-	(NJS_MATERIAL*)((size_t)ADV02MODELS + 0x0002C984),
-	(NJS_MATERIAL*)((size_t)ADV02MODELS + 0x0002C998),
-	(NJS_MATERIAL*)((size_t)ADV02MODELS + 0x0002BC60),
-	(NJS_MATERIAL*)((size_t)ADV02MODELS + 0x0002BC74),
-	(NJS_MATERIAL*)((size_t)ADV02MODELS + 0x0002BC88),
-	(NJS_MATERIAL*)((size_t)ADV02MODELS + 0x0002BC9C),
-	(NJS_MATERIAL*)((size_t)ADV02MODELS + 0x0002BCB0),
-	(NJS_MATERIAL*)((size_t)ADV02MODELS + 0x0002BCC4),
-	(NJS_MATERIAL*)((size_t)ADV02MODELS + 0x0002BCD8),
-	(NJS_MATERIAL*)((size_t)ADV02MODELS + 0x0002BCEC),
-	(NJS_MATERIAL*)((size_t)ADV02MODELS + 0x0002BD00),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x0002C8F8),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x0002C90C),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x0002C920),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x0002C934),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x0002C948),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x0002C95C),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x0002C970),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x0002C984),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x0002C998),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x0002BC60),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x0002BC74),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x0002BC88),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x0002BC9C),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x0002BCB0),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x0002BCC4),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x0002BCD8),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x0002BCEC),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x0002BD00),
 	//Other stuff
-	(NJS_MATERIAL*)((size_t)ADV02MODELS + 0x0002AD38),
-	(NJS_MATERIAL*)((size_t)ADV02MODELS + 0x0002AD4C),
-	(NJS_MATERIAL*)((size_t)ADV02MODELS + 0x0002AD60),
-	(NJS_MATERIAL*)((size_t)ADV02MODELS + 0x0002AD74),
-	(NJS_MATERIAL*)((size_t)ADV02MODELS + 0x0002AC2C),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x0002AD38),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x0002AD4C),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x0002AD60),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x0002AD74),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x0002AC2C),
 };
 
 NJS_MATERIAL* ObjectSpecular[] = {
 	//Shovel Claws
-	(NJS_MATERIAL*)((size_t)ADV02MODELS + 0x000964F8),
-	(NJS_MATERIAL*)((size_t)ADV02MODELS + 0x0009650C),
-	(NJS_MATERIAL*)((size_t)ADV02MODELS + 0x00095E48),
-	(NJS_MATERIAL*)((size_t)ADV02MODELS + 0x00095E5C),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x000964F8),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x0009650C),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x00095E48),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x00095E5C),
 	//ODigPlace1
-	(NJS_MATERIAL*)((size_t)ADV02MODELS + 0x00017150),
-	(NJS_MATERIAL*)((size_t)ADV02MODELS + 0x00017164),
-	(NJS_MATERIAL*)((size_t)ADV02MODELS + 0x00017178),
-	(NJS_MATERIAL*)((size_t)ADV02MODELS + 0x0001718C),
-	(NJS_MATERIAL*)((size_t)ADV02MODELS + 0x000171A0),
-	(NJS_MATERIAL*)((size_t)ADV02MODELS + 0x000171B4),
-	(NJS_MATERIAL*)((size_t)ADV02MODELS + 0x00016698),
-	(NJS_MATERIAL*)((size_t)ADV02MODELS + 0x00016448),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x00017150),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x00017164),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x00017178),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x0001718C),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x000171A0),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x000171B4),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x00016698),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x00016448),
+};
+
+NJS_MATERIAL* WhiteDiffuseADV02_External[] = {
+	nullptr, nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,
 };
 
 NJS_MATERIAL* WhiteDiffuse[] = {
-	(NJS_MATERIAL*)((size_t)ADV02MODELS + 0x0003CD50), //Button on HiddenGate
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x0003CD50), //Button on HiddenGate
 	&matlistADV02_001FCA84[8], //MR train
 	//Palm trees
 	&matlistADV02_001D76E0[1],
@@ -135,28 +148,12 @@ NJS_MATERIAL* WhiteDiffuse[] = {
 	&matlistADV02_001DA32C[1],
 	&matlistADV02_001DB210[1],
 	&matlistADV02_001DC0BC[1],
-	&matlistADV02_00148D38_3[0], //Jungle stuff
-	&matlistADV02_00146334_3[0],
 	//Final Egg stuff
 	&matlistADV02_002069C8[5],
 	&matlistADV02_002069C8[6],
 	&matlistADV02_002069C8[7],
 	&matlistADV02_00208504Z[13],
 	&matlistADV02_00208504[13],
-	//Jungle stuff
-	&matlistADV02_0007ABA8[0],
-	&matlistADV02_0007ABA8[1],
-	&matlistADV02_0007ABA8[2],
-	&matlistADV02_0007ABA8[3],
-	&matlistADV02_0007ABA8[4],
-	&matlistADV02_0007ABA8[5],
-	&matlistADV02_0007ABA8[6],
-	//Final Egg Base stuff
-	&matlistADV02_00025A74[0],
-	&matlistADV02_00025A74[1],
-	&matlistADV02_00025A74[2],
-	&matlistADV02_00025A74[3],
-	&matlistADV02_00025A74[4],
 	//OHiddenGate buttons
 	&matlistADV02_0003CD28[2],
 };
@@ -226,15 +223,82 @@ void SetBlockEntryMaterialColor(float a, float r, float g, float b)
 	SetMaterialAndSpriteColor_Float(0, 0, 0, 0);
 }
 
-void ADV02_Init(const IniFile *config, const HelperFunctions &helperFunctions)
+void UnloadLevelFiles_ADV02()
 {
-	HMODULE handle = GetModuleHandle(L"ADV02MODELS");
-	NJS_TEXLIST **___ADV02_TEXLISTS = (NJS_TEXLIST **)GetProcAddress(handle, "___ADV02_TEXLISTS");
-	NJS_MODEL_SADX **___ADV02_MODELS = (NJS_MODEL_SADX **)GetProcAddress(handle, "___ADV02_MODELS");
-	NJS_OBJECT **___ADV02_OBJECTS = (NJS_OBJECT **)GetProcAddress(handle, "___ADV02_OBJECTS");
-	NJS_OBJECT **___ADV02MR02_OBJECTS = (NJS_OBJECT **)GetProcAddress(handle, "___ADV02MR02_OBJECTS");
-	NJS_ACTION **___ADV02_ACTIONS = (NJS_ACTION **)GetProcAddress(handle, "___ADV02_ACTIONS");
-	LandTable **___LANDTABLEMR = (LandTable **)GetProcAddress(handle, "___LANDTABLEMR");
+	if (DLLLoaded_Lantern) material_unregister_ptr(WhiteDiffuseADV02_External, LengthOfArray(WhiteDiffuseADV02_External), &ForceWhiteDiffuse1);
+	delete ADV02_0_Info;
+	delete ADV02_1_Info;
+	delete ADV02_2_Info;
+	delete ADV02_3_Info;
+	ADV02_0_Info = nullptr;
+	ADV02_1_Info = nullptr;
+	ADV02_2_Info = nullptr;
+	ADV02_3_Info = nullptr;
+}
+
+void LoadLevelFiles_ADV02()
+{
+	CheckAndUnloadLevelFiles();
+	ADV02_0_Info = new LandTableInfo(ModPath + "\\data\\ADV02\\0.sa1lvl");
+	ADV02_1_Info = new LandTableInfo(ModPath + "\\data\\ADV02\\1.sa1lvl");
+	ADV02_2_Info = new LandTableInfo(ModPath + "\\data\\ADV02\\2.sa1lvl");
+	ADV02_3_Info = new LandTableInfo(ModPath + "\\data\\ADV02\\3.sa1lvl");
+	LandTable *ADV02_0 = ADV02_0_Info->getlandtable();
+	LandTable *ADV02_1 = ADV02_1_Info->getlandtable();
+	LandTable *ADV02_2 = ADV02_2_Info->getlandtable();
+	LandTable *ADV02_3 = ADV02_3_Info->getlandtable();
+	ADV02_0->TexList = &texlist_mr00;
+	ADV02_1->TexList = &texlist_mr01;
+	ADV02_2->TexList = &texlist_mr02;
+	ADV02_3->TexList = &texlist_mr03;
+	___ADV02MR02_OBJECTS[141] = (NJS_OBJECT*)ADV02_2_Info->getdata("objectADV02_001615BC");
+	___ADV02MR02_OBJECTS[142] = (NJS_OBJECT*)ADV02_2_Info->getdata("objectADV02_00161B8C");
+	___ADV02MR02_OBJECTS[143] = (NJS_OBJECT*)ADV02_2_Info->getdata("objectADV02_00161FD8");
+	___ADV02MR02_OBJECTS[144] = (NJS_OBJECT*)ADV02_2_Info->getdata("objectADV02_0016221C");
+	___ADV02MR02_OBJECTS[145] = (NJS_OBJECT*)ADV02_2_Info->getdata("objectADV02_00162820");
+	___LANDTABLEMR[0] = ADV02_0;
+	___LANDTABLEMR[1] = ADV02_1;
+	___LANDTABLEMR[2] = ADV02_2;
+	___LANDTABLEMR[3] = ADV02_3;
+	LandTableArray[144] = ADV02_0;
+	LandTableArray[145] = ADV02_1;
+	LandTableArray[146] = ADV02_2;
+	LandTableArray[147] = ADV02_3;
+	if (SADXWater_MysticRuins)
+	{
+		ADV02_0->Col[ADV02_0->COLCount - 2].Flags = 0x81000000;
+		ADV02_0->Col[ADV02_0->COLCount - 3].Flags = 0x81000000;
+		ADV02_0->Col[ADV02_0->COLCount - 4].Flags = 0x81000000;
+		ADV02_0->Col[ADV02_0->COLCount - 5].Flags = 0x81000000;
+	}
+	else
+	{
+		WriteJump(MysticRuins_OceanDraw, MRWater);
+	}
+	if (DLLLoaded_Lantern)
+	{
+		//Jungle stuff
+		WhiteDiffuseADV02_External[0] = &((NJS_MATERIAL*)ADV02_2_Info->getdata("matlistADV02_00148D38_3"))[0];
+		WhiteDiffuseADV02_External[1] = &((NJS_MATERIAL*)ADV02_2_Info->getdata("matlistADV02_00146334_3"))[0];
+		WhiteDiffuseADV02_External[2] = &((NJS_MATERIAL*)ADV02_2_Info->getdata("matlistADV02_0007ABA8"))[0];
+		WhiteDiffuseADV02_External[3] = &((NJS_MATERIAL*)ADV02_2_Info->getdata("matlistADV02_0007ABA8"))[1];
+		WhiteDiffuseADV02_External[4] = &((NJS_MATERIAL*)ADV02_2_Info->getdata("matlistADV02_0007ABA8"))[2];
+		WhiteDiffuseADV02_External[5] = &((NJS_MATERIAL*)ADV02_2_Info->getdata("matlistADV02_0007ABA8"))[3];
+		WhiteDiffuseADV02_External[6] = &((NJS_MATERIAL*)ADV02_2_Info->getdata("matlistADV02_0007ABA8"))[4];
+		WhiteDiffuseADV02_External[7] = &((NJS_MATERIAL*)ADV02_2_Info->getdata("matlistADV02_0007ABA8"))[5];
+		WhiteDiffuseADV02_External[8] = &((NJS_MATERIAL*)ADV02_2_Info->getdata("matlistADV02_0007ABA8"))[6];
+		//Final Egg Base stuff
+		WhiteDiffuseADV02_External[9] = &((NJS_MATERIAL*)ADV02_2_Info->getdata("matlistADV02_00025A74"))[0];
+		WhiteDiffuseADV02_External[10] = &((NJS_MATERIAL*)ADV02_2_Info->getdata("matlistADV02_00025A74"))[1];
+		WhiteDiffuseADV02_External[12] = &((NJS_MATERIAL*)ADV02_2_Info->getdata("matlistADV02_00025A74"))[2];
+		WhiteDiffuseADV02_External[12] = &((NJS_MATERIAL*)ADV02_2_Info->getdata("matlistADV02_00025A74"))[3];
+		WhiteDiffuseADV02_External[13] = &((NJS_MATERIAL*)ADV02_2_Info->getdata("matlistADV02_00025A74"))[4];
+		material_register_ptr(WhiteDiffuseADV02_External, LengthOfArray(WhiteDiffuseADV02_External), &ForceWhiteDiffuse1);
+	}
+}
+
+void ADV02_Init()
+{
 	ReplaceBIN_DC("SETMR00A");
 	ReplaceBIN_DC("SETMR00B");
 	ReplaceBIN_DC("SETMR00E");
@@ -330,7 +394,7 @@ void ADV02_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 	ReplaceBIN("SL_X0B", "SL_X0X");
 	ReplaceBIN("SL_X1B", "SL_X1X");
 	ReplaceBIN("SL_X2B", "SL_X2X");
-	if (handle != nullptr && DLLLoaded_Lantern)
+	if (GetModuleHandle(L"ADV02MODELS") != nullptr && DLLLoaded_Lantern)
 	{
 		material_register_ptr(ObjectSpecular, LengthOfArray(ObjectSpecular), &ForceDiffuse0Specular1);
 		material_register_ptr(LevelSpecular, LengthOfArray(LevelSpecular), &ForceDiffuse0Specular0);
@@ -340,21 +404,10 @@ void ADV02_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 	*(NJS_OBJECT*)0x110CF34 = object2_00229334; //TANKEN 2
 	*(NJS_OBJECT*)0x11112CC = object_0022DDA4; //TANKEN 3
 	WriteCall((void*)0x0053CD37, SetColor); //Master Emerald glow
-	if (SADXWater_MysticRuins)
-	{
-		collist_00015E60[LengthOfArray(collist_00015E60) - 2].Flags = 0x81000000;
-		collist_00015E60[LengthOfArray(collist_00015E60) - 3].Flags = 0x81000000;
-		collist_00015E60[LengthOfArray(collist_00015E60) - 4].Flags = 0x81000000;
-		collist_00015E60[LengthOfArray(collist_00015E60) - 5].Flags = 0x81000000;
-	}
-	else
-	{
-		WriteJump(MysticRuins_OceanDraw, MRWater);
-	}
 	for (int i = 0; i < 3; i++)
 	{
-		MR1FogDay[i].Distance = -9000.0f;
-		MR1FogDay[i].Layer = -1500.0f;
+		MR1FogDay[i].Distance = -10000.0f;
+		MR1FogDay[i].Layer = -2500.0f;
 		MR1FogDay[i].Toggle = 1;
 		MR1FogDay[i].Color = 0xFFA0A0A0;
 		MR1FogEvening[i].Distance = -9000.0f;
@@ -378,17 +431,13 @@ void ADV02_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 		MR2DrawDist[i].Maximum = -10000.0f;
 		MR4DrawDist[i].Maximum = -4000.0f;
 	}
-	MROBJ_TEXLISTS[0].TexList = &texlist_mrobj; //MROBJ
-	___ADV02_TEXLISTS[21] = &texlist_mrobj; //MROBJ
-	___ADV02_TEXLISTS[4] = &texlist_mrtrain;
 	___ADV02_TEXLISTS[38] = &texlist_mr00;
 	___ADV02_TEXLISTS[39] = &texlist_mr01;
 	___ADV02_TEXLISTS[40] = &texlist_mr02;
 	___ADV02_TEXLISTS[41] = &texlist_mr03;
-	___LANDTABLEMR[0] = &landtable_00017960;
-	___LANDTABLEMR[1] = &landtable_0009E7B0;
-	___LANDTABLEMR[2] = &landtable_00000178;
-	___LANDTABLEMR[3] = &landtable_0000019C;
+	MROBJ_TEXLISTS[0].TexList = &texlist_mrobj; //MROBJ
+	___ADV02_TEXLISTS[21] = &texlist_mrobj; //MROBJ
+	___ADV02_TEXLISTS[4] = &texlist_mrtrain;
 	//Palm trees near Tails' house
 	___ADV02_OBJECTS[67]->child->model = &attachADV02_001DCF1C;
 	___ADV02_OBJECTS[67]->child->child->model = &attachADV02_001DCC88;
@@ -436,11 +485,6 @@ void ADV02_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 	___ADV02_OBJECTS[69]->basicdxmodel->mats[0].diffuse.color = 0xFFB2B2B2;
 	___ADV02_MODELS[15] = &attachADV02_0007C3B8; //Master Emerald glow
 	WriteData<1>((void*)0x52F800, 0xC3u); //Disable SADX jungle
-	___ADV02MR02_OBJECTS[141] = &objectADV02_001615BC;
-	___ADV02MR02_OBJECTS[142] = &objectADV02_00161B8C;
-	___ADV02MR02_OBJECTS[143] = &objectADV02_00161FD8;
-	___ADV02MR02_OBJECTS[144] = &objectADV02_0016221C;
-	___ADV02MR02_OBJECTS[145] = &objectADV02_00162820;
 	___ADV02MR02_OBJECTS[0] = &objectADV02_001A08EC;
 	___ADV02MR02_OBJECTS[117] = &objectADV02_001A08EC;
 	___ADV02MR02_OBJECTS[135] = &objectADV02_001A08EC;
@@ -483,49 +527,49 @@ void ADV02_OnFrame()
 		matlistADV02_00208504[2].attrflags |= NJD_FLAG_IGNORE_LIGHT;
 	}
 	auto entity = EntityData1Ptrs[0];
-	if (GameState != 16 && CurrentLevel == 33 && CurrentAct == 0)
+	if (ADV02_0_Info && GameState != 16 && CurrentLevel == 33 && CurrentAct == 0)
 	{
-		if (GameMode == GameModes_Mission && CurrentCharacter == 5) collist_00015E60[LengthOfArray(collist_00015E60) - 1].Flags = 0x00000001; else collist_00015E60[LengthOfArray(collist_00015E60) - 1].Flags = 0x00000000;
-		for (unsigned int q = 0; q < LengthOfArray(uvADV02_00075EC0); q++)
+		if (GameMode == GameModes_Mission && CurrentCharacter == 5) LANDTABLEMR[0]->Col[LANDTABLEMR[0]->COLCount - 1].Flags = 0x00000001; else LANDTABLEMR[0]->Col[LANDTABLEMR[0]->COLCount - 1].Flags = 0x00000000;
+		for (unsigned int q = 0; q < LengthOfArray(uvADV02_00075EC0_0); q++)
 		{
-			uvADV02_00075EC0[q].v = uvADV02_00075EC0_0[q].v + uvADV02_anim;
+			((NJS_TEX*)ADV02_0_Info->getdata("uvADV02_00075EC0"))[q].v = uvADV02_00075EC0_0[q].v + uvADV02_anim;
 		}
-		for (unsigned int q2 = 0; q2 < LengthOfArray(uvADV02_000755A4); q2++)
+		for (unsigned int q2 = 0; q2 < LengthOfArray(uvADV02_000755A4_0); q2++)
 		{
-			uvADV02_000755A4[q2].v = uvADV02_000755A4_0[q2].v - uvADV02_anim;
+			((NJS_TEX*)ADV02_0_Info->getdata("uvADV02_000755A4"))[q2].v = uvADV02_000755A4_0[q2].v - uvADV02_anim;
 		}
 		if (MRSeaAnimation1 > 139) MRSeaAnimation1 = 130;
 		if (MRSeaAnimation2 > 154) MRSeaAnimation2 = 140;
-		matlistADV02_0007523C[0].attr_texId = MRSeaAnimation1;
+		((NJS_MATERIAL*)ADV02_0_Info->getdata("matlistADV02_0007523C"))[0].attr_texId = MRSeaAnimation1;
 		matlistADV02_00057F04[0].attr_texId = MRSeaAnimation1;
-		matlistADV02_00053510[0].attr_texId = MRSeaAnimation2;
-		matlistADV02_00053010[0].attr_texId = MRSeaAnimation2;
-		matlistADV02_00059768[0].attr_texId = MRSeaAnimation2;
-		matlistADV02_000594C0[0].attr_texId = MRSeaAnimation2;
+		((NJS_MATERIAL*)ADV02_0_Info->getdata("matlistADV02_00053510"))[0].attr_texId = MRSeaAnimation2;
+		((NJS_MATERIAL*)ADV02_0_Info->getdata("matlistADV02_00053010"))[0].attr_texId = MRSeaAnimation2;
+		((NJS_MATERIAL*)ADV02_0_Info->getdata("matlistADV02_00059768"))[0].attr_texId = MRSeaAnimation2;
+		((NJS_MATERIAL*)ADV02_0_Info->getdata("matlistADV02_000594C0"))[0].attr_texId = MRSeaAnimation2;
 		if (FramerateSetting < 2 && FrameCounter % 5 == 0 || FramerateSetting == 2 && FrameCounter % 2 == 0 || FramerateSetting > 2)
 		{
 			MRSeaAnimation1++;
 			MRSeaAnimation2++;
 		}
 	}
-	if (GameState != 16 && CurrentLevel == 33 && CurrentAct == 1)
+	if (ADV02_1_Info && GameState != 16 && CurrentLevel == 33 && CurrentAct == 1)
 	{
 		if (IceCapCaveWaterAnimation > 89) IceCapCaveWaterAnimation = 76;
-		matlistADV02_000A3884[0].attr_texId = IceCapCaveWaterAnimation;
-		matlistADV02_000A6CF8[1].attr_texId = IceCapCaveWaterAnimation;
-		matlistADV02_000A6CF8[2].attr_texId = IceCapCaveWaterAnimation;
-		matlistADV02_000A6CF8[3].attr_texId = IceCapCaveWaterAnimation;
+		((NJS_MATERIAL*)ADV02_1_Info->getdata("matlistADV02_000A3884"))[0].attr_texId = IceCapCaveWaterAnimation;
+		((NJS_MATERIAL*)ADV02_1_Info->getdata("matlistADV02_000A6CF8"))[1].attr_texId = IceCapCaveWaterAnimation;
+		((NJS_MATERIAL*)ADV02_1_Info->getdata("matlistADV02_000A6CF8"))[2].attr_texId = IceCapCaveWaterAnimation;
+		((NJS_MATERIAL*)ADV02_1_Info->getdata("matlistADV02_000A6CF8"))[3].attr_texId = IceCapCaveWaterAnimation;
 		if (FramerateSetting < 2 && FrameCounter % 2 == 0 || FramerateSetting >= 2)
 		{
 			IceCapCaveWaterAnimation++;
 		}
 	}
-	if (GameState != 16 && CurrentLevel == 33 && CurrentAct == 2)
+	if (ADV02_2_Info && GameState != 16 && CurrentLevel == 33 && CurrentAct == 2)
 	{
-		objectADV02_0007B4A8.ang[1] = (objectADV02_0007B4A8.ang[1] + 256) % 65535;
-		objectADV02_0007AB74.ang[1] = (objectADV02_0007AB74.ang[1] + 256) % 65535;
-		objectADV02_0007A904.ang[0] = (objectADV02_0007A904.ang[0] + 512) % 65535;
-		objectADV02_0007A6CC.ang[0] = (objectADV02_0007A6CC.ang[0] + 1024) % 65535;
+		((NJS_OBJECT*)ADV02_2_Info->getdata("objectADV02_0007B4A8"))->ang[1] = (((NJS_OBJECT*)ADV02_2_Info->getdata("objectADV02_0007B4A8"))->ang[1] + 256) % 65535;
+		((NJS_OBJECT*)ADV02_2_Info->getdata("objectADV02_0007AB74"))->ang[1] = (((NJS_OBJECT*)ADV02_2_Info->getdata("objectADV02_0007AB74"))->ang[1] + 256) % 65535;
+		((NJS_OBJECT*)ADV02_2_Info->getdata("objectADV02_0007A904"))->ang[0] = (((NJS_OBJECT*)ADV02_2_Info->getdata("objectADV02_0007A904"))->ang[0] + 512) % 65535;
+		((NJS_OBJECT*)ADV02_2_Info->getdata("objectADV02_0007A6CC"))->ang[0] = (((NJS_OBJECT*)ADV02_2_Info->getdata("objectADV02_0007A6CC"))->ang[0] + 1024) % 65535;
 		if (Camera_Data1 != nullptr && Camera_Data1->Position.z < -548 && Camera_Data1->Position.z > -1560 && Camera_Data1->Position.x < -80 && Camera_Data1->Position.x > -900)
 		{
 			InsideTemple = 1;
@@ -565,25 +609,25 @@ void ADV02_OnFrame()
 				if (CurrentFogDist > -16000.0f) CurrentFogDist = CurrentFogDist - 128.0f;
 			}
 		}
-		for (unsigned int q6 = 0; q6 < LengthOfArray(uvADV02_00162054); q6++)
+		for (unsigned int q6 = 0; q6 < LengthOfArray(uvADV02_00162054_0); q6++)
 		{
-			uvADV02_00162054[q6].v = uvADV02_00162054_0[q6].v + uvADV02_anim;
+			((NJS_TEX*)ADV02_2_Info->getdata("uvADV02_00162054"))[q6].v = uvADV02_00162054_0[q6].v + uvADV02_anim;
 		}
-		for (unsigned int q7 = 0; q7 < LengthOfArray(uvADV02_001622D8); q7++)
+		for (unsigned int q7 = 0; q7 < LengthOfArray(uvADV02_001622D8_0); q7++)
 		{
-			uvADV02_001622D8[q7].v = uvADV02_001622D8_0[q7].v + uvADV02_anim;
+			((NJS_TEX*)ADV02_2_Info->getdata("uvADV02_001622D8"))[q7].v = uvADV02_001622D8_0[q7].v + uvADV02_anim;
 		}
-		for (unsigned int q3 = 0; q3 < LengthOfArray(uvADV02_00160D9C); q3++)
+		for (unsigned int q3 = 0; q3 < LengthOfArray(uvADV02_00160D9C_0); q3++)
 		{
-			uvADV02_00160D9C[q3].v = uvADV02_00160D9C_0[q3].v - uvADV02_anim;
+			((NJS_TEX*)ADV02_2_Info->getdata("uvADV02_00160D9C"))[q3].v = uvADV02_00160D9C_0[q3].v - uvADV02_anim;
 		}
-		for (unsigned int q4 = 0; q4 < LengthOfArray(uvADV02_0016166C); q4++)
+		for (unsigned int q4 = 0; q4 < LengthOfArray(uvADV02_0016166C_0); q4++)
 		{
-			uvADV02_0016166C[q4].v = uvADV02_0016166C_0[q4].v + uvADV02_anim;
+			((NJS_TEX*)ADV02_2_Info->getdata("uvADV02_0016166C"))[q4].v = uvADV02_0016166C_0[q4].v + uvADV02_anim;
 		}
-		for (unsigned int q5 = 0; q5 < LengthOfArray(uvADV02_00161C18); q5++)
+		for (unsigned int q5 = 0; q5 < LengthOfArray(uvADV02_00161C18_0); q5++)
 		{
-			uvADV02_00161C18[q5].v = uvADV02_00161C18_0[q5].v + uvADV02_anim;
+			((NJS_TEX*)ADV02_2_Info->getdata("uvADV02_00161C18"))[q5].v = uvADV02_00161C18_0[q5].v + uvADV02_anim;
 		}
 	}
 }

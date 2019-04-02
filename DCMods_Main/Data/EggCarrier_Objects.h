@@ -3,6 +3,45 @@
 #pragma warning(push)
 #pragma warning(disable: 4267 4838)
 
+//Water
+
+extern "C" __declspec(dllexport) NJS_MATERIAL matlistADV01_00007B80[] = {
+	{ { 0x99B2B2B2 },{ 0xFFFFFFFF }, 11, 0, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
+};
+
+
+extern "C" __declspec(dllexport) Sint16 polyADV01_00007B94[] = {
+	4, 3, 2, 1, 0
+};
+
+extern "C" __declspec(dllexport) NJS_TEX uvADV01_00007BA0[] = {
+	{ 20400, -9945 },
+	{ 10200, 255 },
+	{ 10199, -20145 },
+	{ 0, -9944 }
+};
+
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlistADV01_00007BB0[] = {
+	{ NJD_MESHSET_TRIMESH | 0, 1, polyADV01_00007B94, NULL, NULL, NULL, uvADV01_00007BA0, NULL }
+};
+
+extern "C" __declspec(dllexport) NJS_VECTOR vertexADV01_00007BC8[] = {
+	{ -8099.999f, 415, -8099.999f },
+	{ -8099.999f, 415, 8099.999f },
+	{ 8099.999f, 415, -8099.999f },
+	{ 8099.999f, 415, 8099.999f }
+};
+
+extern "C" __declspec(dllexport) NJS_VECTOR normalADV01_00007BF8[] = {
+	{ 0, 1, 0 },
+	{ 0, 1, 0 },
+	{ 0, 1, 0 },
+	{ 0, 1, 0 }
+};
+
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attachADV01_00007C28 = { vertexADV01_00007BC8, normalADV01_00007BF8, LengthOfArray(vertexADV01_00007BC8), meshlistADV01_00007BB0, matlistADV01_00007B80, LengthOfArray(meshlistADV01_00007BB0), LengthOfArray(matlistADV01_00007B80),{ 0, 415, 0 }, 11455.13f, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectADV01_00007C50 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachADV01_00007C28, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
+
 enum EC_TARAITexName
 {
 	EC_TARAITexName_edc_k_jmedama,

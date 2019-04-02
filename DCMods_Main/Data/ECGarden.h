@@ -3,32 +3,32 @@
 #pragma warning(push)
 #pragma warning(disable: 4267 4838)
 
-NJS_MATERIAL matlistCHAO_000015E8[] = {
+extern "C" __declspec(dllexport) NJS_MATERIAL matlistCHAO_000015E8[] = {
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 44, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 42, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_FLIP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 45, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 44, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 polyCHAO_00001638[] = {
+extern "C" __declspec(dllexport) Sint16 polyCHAO_00001638[] = {
 	3, 18, 1, 20,
 	0x8000u | 9, 14, 22, 24, 23, 27, 15, 18, 7, 20
 };
 
-Sint16 polyCHAO_00001654[] = {
+extern "C" __declspec(dllexport) Sint16 polyCHAO_00001654[] = {
 	3, 5, 21, 0,
 	0x8000u | 17, 19, 2, 16, 9, 28, 10, 13, 11, 17, 12, 26, 8, 4, 6, 5, 3, 0
 };
 
-Sint16 polyCHAO_00001680[] = {
+extern "C" __declspec(dllexport) Sint16 polyCHAO_00001680[] = {
 	0x8000u | 18, 21, 23, 5, 22, 4, 14, 26, 24, 17, 27, 13, 18, 28, 1, 16, 20, 19, 7
 };
 
-Sint16 polyCHAO_000016A6[] = {
+extern "C" __declspec(dllexport) Sint16 polyCHAO_000016A6[] = {
 	0x8000u | 6, 23, 21, 15, 25, 7, 19
 };
 
-NJS_TEX uvCHAO_000016B4[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCHAO_000016B4[] = {
 	{ 533, -255 },
 	{ 764, -255 },
 	{ 765, 255 },
@@ -43,7 +43,7 @@ NJS_TEX uvCHAO_000016B4[] = {
 	{ 765, 255 }
 };
 
-NJS_TEX uvCHAO_000016E4[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCHAO_000016E4[] = {
 	{ 912, 255 },
 	{ 1020, 255 },
 	{ 1020, 0 },
@@ -66,7 +66,7 @@ NJS_TEX uvCHAO_000016E4[] = {
 	{ 1020, 0 }
 };
 
-NJS_TEX uvCHAO_00001734[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCHAO_00001734[] = {
 	{ 1020, 254 },
 	{ 1020, 0 },
 	{ 912, 255 },
@@ -87,7 +87,7 @@ NJS_TEX uvCHAO_00001734[] = {
 	{ 0 }
 };
 
-NJS_TEX uvCHAO_0000177C[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCHAO_0000177C[] = {
 	{ 0 },
 	{ 0, 254 },
 	{ 220, 0 },
@@ -96,14 +96,14 @@ NJS_TEX uvCHAO_0000177C[] = {
 	{ 510, 255 }
 };
 
-NJS_MESHSET_SADX meshlistCHAO_00001794[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlistCHAO_00001794[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 2, polyCHAO_00001638, NULL, NULL, NULL, uvCHAO_000016B4, NULL },
 	{ NJD_MESHSET_TRIMESH | 1, 2, polyCHAO_00001654, NULL, NULL, NULL, uvCHAO_000016E4, NULL },
 	{ NJD_MESHSET_TRIMESH | 2, 1, polyCHAO_00001680, NULL, NULL, NULL, uvCHAO_00001734, NULL },
 	{ NJD_MESHSET_TRIMESH | 3, 1, polyCHAO_000016A6, NULL, NULL, NULL, uvCHAO_0000177C, NULL }
 };
 
-NJS_VECTOR vertexCHAO_000017F4[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertexCHAO_000017F4[] = {
 	{ -63.68887f, 70.68724f, -29.92168f },
 	{ -131.4339f, 135.4171f, 29.52648f },
 	{ -63.68885f, 70.68724f, 45.07834f },
@@ -135,7 +135,7 @@ NJS_VECTOR vertexCHAO_000017F4[] = {
 	{ -152.4974f, 110.0263f, 32.33603f }
 };
 
-NJS_VECTOR normalCHAO_00001950[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normalCHAO_00001950[] = {
 	{ 0.602524f, 0.07697599f, -0.7943799f },
 	{ -0.30272f, 0.923712f, 0.234768f },
 	{ 0.330864f, 0, 0.943678f },
@@ -167,21 +167,21 @@ NJS_VECTOR normalCHAO_00001950[] = {
 	{ -0.797252f, 0.481933f, 0.363497f }
 };
 
-NJS_MODEL_SADX attachCHAO_00001AAC = { vertexCHAO_000017F4, normalCHAO_00001950, LengthOfArray(vertexCHAO_000017F4), meshlistCHAO_00001794, matlistCHAO_000015E8, LengthOfArray(meshlistCHAO_00001794), LengthOfArray(matlistCHAO_000015E8),{ -114.1273f, 102.7535f, 6.023741f }, 80.43569f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attachCHAO_00001AAC = { vertexCHAO_000017F4, normalCHAO_00001950, LengthOfArray(vertexCHAO_000017F4), meshlistCHAO_00001794, matlistCHAO_000015E8, LengthOfArray(meshlistCHAO_00001794), LengthOfArray(matlistCHAO_000015E8),{ -114.1273f, 102.7535f, 6.023741f }, 80.43569f, NULL };
 
-NJS_OBJECT objectCHAO_00001AD4 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCHAO_00001AAC, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCHAO_00001AD4 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCHAO_00001AAC, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
-Sint16 polyCHAO_00001B1C[] = {
+extern "C" __declspec(dllexport) Sint16 polyCHAO_00001B1C[] = {
 	5, 12, 2, 0, 4, 6,
 	0x8000u | 5, 12, 10, 0, 8, 6,
 	14, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 12, 11, 10
 };
 
-NJS_MESHSET_SADX meshlistCHAO_00001B54[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlistCHAO_00001B54[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 3, polyCHAO_00001B1C, NULL, NULL, NULL, NULL, NULL }
 };
 
-NJS_VECTOR vertexCHAO_00001B6C[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertexCHAO_00001B6C[] = {
 	{ 3.696177f, 223.4438f, 8.13159f },
 	{ 59.35772f, 118.7668f, 8.13159f },
 	{ 69.44057f, 178.1393f, 8.13159f },
@@ -197,7 +197,7 @@ NJS_VECTOR vertexCHAO_00001B6C[] = {
 	{ 36.5684f, 178.1393f, 61.38071f }
 };
 
-NJS_VECTOR normalCHAO_00001C08[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normalCHAO_00001C08[] = {
 	{ 0, 1, 0 },
 	{ 0.985885f, -0.167427f, 0 },
 	{ 0.941712f, 0.33642f, 0 },
@@ -213,22 +213,22 @@ NJS_VECTOR normalCHAO_00001C08[] = {
 	{ 0.46252f, 0.33426f, 0.821185f }
 };
 
-NJS_MODEL_SADX attachCHAO_00001CA4 = { vertexCHAO_00001B6C, normalCHAO_00001C08, LengthOfArray(vertexCHAO_00001B6C), meshlistCHAO_00001B54, NULL, LengthOfArray(meshlistCHAO_00001B54), 0,{ 3.696173f, 171.1053f, 8.131596f }, 84.60376f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attachCHAO_00001CA4 = { vertexCHAO_00001B6C, normalCHAO_00001C08, LengthOfArray(vertexCHAO_00001B6C), meshlistCHAO_00001B54, NULL, LengthOfArray(meshlistCHAO_00001B54), 0,{ 3.696173f, 171.1053f, 8.131596f }, 84.60376f, NULL };
 
-NJS_OBJECT objectCHAO_00001CCC = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCHAO_00001CA4, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCHAO_00001CCC = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCHAO_00001CA4, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
-NJS_MATERIAL matlistCHAO_00001D00[] = {
+extern "C" __declspec(dllexport) NJS_MATERIAL matlistCHAO_00001D00[] = {
 	{ { 0x7FB2B2B2 },{ 0xFFFFFFFF }, 11, 54, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 polyCHAO_00001D14[] = {
+extern "C" __declspec(dllexport) Sint16 polyCHAO_00001D14[] = {
 	8, 2, 3, 1, 0, 8, 9, 11, 10,
 	4, 7, 2, 4, 1,
 	8, 14, 15, 13, 12, 4, 5, 7, 6,
 	4, 11, 14, 8, 13
 };
 
-NJS_TEX uvCHAO_00001D4C[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCHAO_00001D4C[] = {
 	{ 1784, 255 },
 	{ 0, 255 },
 	{ 1778, -1553 },
@@ -255,11 +255,11 @@ NJS_TEX uvCHAO_00001D4C[] = {
 	{ 3570, -3304 }
 };
 
-NJS_MESHSET_SADX meshlistCHAO_00001DAC[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlistCHAO_00001DAC[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 4, polyCHAO_00001D14, NULL, NULL, NULL, uvCHAO_00001D4C, NULL }
 };
 
-NJS_VECTOR vertexCHAO_00001DC4[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertexCHAO_00001DC4[] = {
 	{ -1320.315f, 0, -445.2226f },
 	{ -442.1088f, 0, -433.0809f },
 	{ -440.1052f, 0, -1335.668f },
@@ -278,7 +278,7 @@ NJS_VECTOR vertexCHAO_00001DC4[] = {
 	{ 1320.315f, 0, 1335.668f }
 };
 
-NJS_VECTOR normalCHAO_00001E84[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normalCHAO_00001E84[] = {
 	{ 0, 1, 0 },
 	{ 0, 1, 0 },
 	{ 0, 1, 0 },
@@ -297,11 +297,11 @@ NJS_VECTOR normalCHAO_00001E84[] = {
 	{ 0, 1, 0 }
 };
 
-NJS_MODEL_SADX attachCHAO_00001F44 = { vertexCHAO_00001DC4, normalCHAO_00001E84, LengthOfArray(vertexCHAO_00001DC4), meshlistCHAO_00001DAC, matlistCHAO_00001D00, LengthOfArray(meshlistCHAO_00001DAC), LengthOfArray(matlistCHAO_00001D00),{ 0 }, 1878.095f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attachCHAO_00001F44 = { vertexCHAO_00001DC4, normalCHAO_00001E84, LengthOfArray(vertexCHAO_00001DC4), meshlistCHAO_00001DAC, matlistCHAO_00001D00, LengthOfArray(meshlistCHAO_00001DAC), LengthOfArray(matlistCHAO_00001D00),{ 0 }, 1878.095f, NULL };
 
-NJS_OBJECT objectCHAO_00001F6C = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCHAO_00001F44, 0, 0, -89.53647f, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCHAO_00001F6C = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCHAO_00001F44, 0, 0, -89.53647f, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
-Sint16 polyCHAO_00001FB4[] = {
+extern "C" __declspec(dllexport) Sint16 polyCHAO_00001FB4[] = {
 	7, 11, 10, 4, 5, 13, 14, 12,
 	4, 6, 3, 2, 1,
 	3, 9, 0, 7,
@@ -309,11 +309,11 @@ Sint16 polyCHAO_00001FB4[] = {
 	0x8000u | 8, 15, 8, 9, 6, 7, 3, 0, 1
 };
 
-NJS_MESHSET_SADX meshlistCHAO_00002000[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlistCHAO_00002000[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 5, polyCHAO_00001FB4, NULL, NULL, NULL, NULL, NULL }
 };
 
-NJS_VECTOR vertexCHAO_00002018[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertexCHAO_00002018[] = {
 	{ -88.38981f, 7.802674f, -235.4621f },
 	{ -88.38981f, 2.707352f, -235.4621f },
 	{ -98.17001f, 2.707352f, -228.1771f },
@@ -332,7 +332,7 @@ NJS_VECTOR vertexCHAO_00002018[] = {
 	{ -79.57385f, 8.153008f, -224.6547f }
 };
 
-NJS_VECTOR normalCHAO_000020D8[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normalCHAO_000020D8[] = {
 	{ -0.40994f, 0.887922f, -0.208672f },
 	{ -0.981886f, 0, -0.189475f },
 	{ -0.991742f, 0, -0.128246f },
@@ -351,20 +351,20 @@ NJS_VECTOR normalCHAO_000020D8[] = {
 	{ -0.099873f, 0.619748f, 0.77842f }
 };
 
-NJS_MODEL_SADX attachCHAO_00002198 = { vertexCHAO_00002018, normalCHAO_000020D8, LengthOfArray(vertexCHAO_00002018), meshlistCHAO_00002000, NULL, LengthOfArray(meshlistCHAO_00002000), 0,{ -83.84785f, 8.145268f, -232.9528f }, 19.49033f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attachCHAO_00002198 = { vertexCHAO_00002018, normalCHAO_000020D8, LengthOfArray(vertexCHAO_00002018), meshlistCHAO_00002000, NULL, LengthOfArray(meshlistCHAO_00002000), 0,{ -83.84785f, 8.145268f, -232.9528f }, 19.49033f, NULL };
 
-NJS_OBJECT objectCHAO_000021C0 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCHAO_00002198, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCHAO_000021C0 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCHAO_00002198, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
-Sint16 polyCHAO_00002208[] = {
+extern "C" __declspec(dllexport) Sint16 polyCHAO_00002208[] = {
 	10, 5, 3, 1, 2, 0, 6, 4, 7, 5, 3,
 	4, 2, 3, 6, 7
 };
 
-NJS_MESHSET_SADX meshlistCHAO_00002228[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlistCHAO_00002228[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 2, polyCHAO_00002208, NULL, NULL, NULL, NULL, NULL }
 };
 
-NJS_VECTOR vertexCHAO_00002240[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertexCHAO_00002240[] = {
 	{ -306.9194f, -29.96085f, -159.2487f },
 	{ -297.2644f, -36.24608f, -58.40707f },
 	{ -320.8966f, 4.530756f, -159.2493f },
@@ -375,7 +375,7 @@ NJS_VECTOR vertexCHAO_00002240[] = {
 	{ -245.1147f, 4.530756f, -40.60403f }
 };
 
-NJS_VECTOR normalCHAO_000022A0[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normalCHAO_000022A0[] = {
 	{ -0.619181f, -0.367891f, -0.693737f },
 	{ -0.696198f, -0.357266f, 0.622631f },
 	{ -0.696112f, 0.398299f, -0.597315f },
@@ -386,11 +386,11 @@ NJS_VECTOR normalCHAO_000022A0[] = {
 	{ 0.517615f, 0.6033069f, 0.6067089f }
 };
 
-NJS_MODEL_SADX attachCHAO_00002300 = { vertexCHAO_00002240, normalCHAO_000022A0, LengthOfArray(vertexCHAO_00002240), meshlistCHAO_00002228, NULL, LengthOfArray(meshlistCHAO_00002228), 0,{ -282.6513f, -15.85766f, -99.92637f }, 70.62254f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attachCHAO_00002300 = { vertexCHAO_00002240, normalCHAO_000022A0, LengthOfArray(vertexCHAO_00002240), meshlistCHAO_00002228, NULL, LengthOfArray(meshlistCHAO_00002228), 0,{ -282.6513f, -15.85766f, -99.92637f }, 70.62254f, NULL };
 
-NJS_OBJECT objectCHAO_00002328 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCHAO_00002300, -3.106121f, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCHAO_00002328 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCHAO_00002300, -3.106121f, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
-NJS_MATERIAL matlistCHAO_0000235C[] = {
+extern "C" __declspec(dllexport) NJS_MATERIAL matlistCHAO_0000235C[] = {
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 19, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_USE_TEXTURE | NJD_FLAG_USE_ENV | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 15, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 13, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
@@ -401,7 +401,7 @@ NJS_MATERIAL matlistCHAO_0000235C[] = {
 	{ { 0x7FB2B2B2 },{ 0xFFFFFFFF }, 11, 37, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 polyCHAO_000023FC[] = {
+extern "C" __declspec(dllexport) Sint16 polyCHAO_000023FC[] = {
 	4, 12, 23, 24, 26,
 	4, 22, 12, 18, 24,
 	4, 18, 24, 20, 17,
@@ -432,7 +432,7 @@ Sint16 polyCHAO_000023FC[] = {
 	4, 21, 2, 14, 27
 };
 
-Sint16 polyCHAO_00002514[] = {
+extern "C" __declspec(dllexport) Sint16 polyCHAO_00002514[] = {
 	4, 44, 112, 40, 46,
 	0x8000u | 5, 55, 51, 114, 58, 54,
 	3, 114, 55, 59,
@@ -449,7 +449,7 @@ Sint16 polyCHAO_00002514[] = {
 	0x8000u | 5, 46, 33, 112, 37, 41
 };
 
-Sint16 polyCHAO_000025A8[] = {
+extern "C" __declspec(dllexport) Sint16 polyCHAO_000025A8[] = {
 	4, 35, 127, 39, 131,
 	4, 39, 131, 43, 130,
 	4, 43, 130, 47, 129,
@@ -484,7 +484,7 @@ Sint16 polyCHAO_000025A8[] = {
 	4, 58, 116, 51, 118
 };
 
-Sint16 polyCHAO_000026E8[] = {
+extern "C" __declspec(dllexport) Sint16 polyCHAO_000026E8[] = {
 	4, 66, 106, 65, 104,
 	4, 70, 71, 69, 68,
 	4, 74, 111, 73, 109,
@@ -501,7 +501,7 @@ Sint16 polyCHAO_000026E8[] = {
 	4, 72, 109, 75, 111
 };
 
-Sint16 polyCHAO_00002774[] = {
+extern "C" __declspec(dllexport) Sint16 polyCHAO_00002774[] = {
 	4, 82, 105, 81, 107,
 	4, 86, 110, 85, 108,
 	4, 94, 95, 93, 92,
@@ -513,7 +513,7 @@ Sint16 polyCHAO_00002774[] = {
 	4, 80, 107, 83, 105
 };
 
-Sint16 polyCHAO_000027CE[] = {
+extern "C" __declspec(dllexport) Sint16 polyCHAO_000027CE[] = {
 	4, 67, 106, 84, 108,
 	4, 65, 104, 82, 105,
 	4, 75, 111, 86, 110,
@@ -535,7 +535,7 @@ Sint16 polyCHAO_000027CE[] = {
 	4, 83, 105, 64, 104
 };
 
-Sint16 polyCHAO_0000288C[] = {
+extern "C" __declspec(dllexport) Sint16 polyCHAO_0000288C[] = {
 	3, 64, 77, 83,
 	3, 78, 67, 84,
 	3, 76, 73, 80,
@@ -546,13 +546,13 @@ Sint16 polyCHAO_0000288C[] = {
 	3, 95, 70, 102
 };
 
-Sint16 polyCHAO_000028CC[] = {
+extern "C" __declspec(dllexport) Sint16 polyCHAO_000028CC[] = {
 	3, 133, 132, 138,
 	0x8000u | 6, 134, 137, 136, 138, 139, 133,
 	3, 134, 135, 136
 };
 
-NJS_TEX uvCHAO_000028EC[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCHAO_000028EC[] = {
 	{ -1, 254 },
 	{ 255, 254 },
 	{ 0 },
@@ -667,7 +667,7 @@ NJS_TEX uvCHAO_000028EC[] = {
 	{ 255, 0 }
 };
 
-NJS_TEX uvCHAO_00002AAC[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCHAO_00002AAC[] = {
 	{ 37, 217 },
 	{ 127, 127 },
 	{ 127, 254 },
@@ -730,7 +730,7 @@ NJS_TEX uvCHAO_00002AAC[] = {
 	{ 127, 0 }
 };
 
-NJS_TEX uvCHAO_00002B9C[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCHAO_00002B9C[] = {
 	{ 0, 255 },
 	{ 0 },
 	{ 254, 255 },
@@ -861,7 +861,7 @@ NJS_TEX uvCHAO_00002B9C[] = {
 	{ 254, 0 }
 };
 
-NJS_TEX uvCHAO_00002D9C[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCHAO_00002D9C[] = {
 	{ 254, 255 },
 	{ 0, 255 },
 	{ 254, 0 },
@@ -920,7 +920,7 @@ NJS_TEX uvCHAO_00002D9C[] = {
 	{ 0 }
 };
 
-NJS_TEX uvCHAO_00002E7C[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCHAO_00002E7C[] = {
 	{ 0 },
 	{ 254, 0 },
 	{ 0, 254 },
@@ -959,7 +959,7 @@ NJS_TEX uvCHAO_00002E7C[] = {
 	{ 254, 254 }
 };
 
-NJS_TEX uvCHAO_00002F0C[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCHAO_00002F0C[] = {
 	{ 0, 255 },
 	{ 0 },
 	{ 255, 255 },
@@ -1038,7 +1038,7 @@ NJS_TEX uvCHAO_00002F0C[] = {
 	{ 255, 0 }
 };
 
-NJS_TEX uvCHAO_0000303C[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCHAO_0000303C[] = {
 	{ 0, 203 },
 	{ 0 },
 	{ 255, 254 },
@@ -1065,7 +1065,7 @@ NJS_TEX uvCHAO_0000303C[] = {
 	{ 255, 254 }
 };
 
-NJS_TEX uvCHAO_0000309C[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCHAO_0000309C[] = {
 	{ 254, 20 },
 	{ 254, 228 },
 	{ 178, 254 },
@@ -1080,7 +1080,7 @@ NJS_TEX uvCHAO_0000309C[] = {
 	{ 42, 0 }
 };
 
-NJS_MESHSET_SADX meshlistCHAO_000030CC[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlistCHAO_000030CC[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 28, polyCHAO_000023FC, NULL, NULL, NULL, uvCHAO_000028EC, NULL },
 	{ NJD_MESHSET_TRIMESH | 1, 14, polyCHAO_00002514, NULL, NULL, NULL, uvCHAO_00002AAC, NULL },
 	{ NJD_MESHSET_TRIMESH | 2, 32, polyCHAO_000025A8, NULL, NULL, NULL, uvCHAO_00002B9C, NULL },
@@ -1091,7 +1091,7 @@ NJS_MESHSET_SADX meshlistCHAO_000030CC[] = {
 	{ NJD_MESHSET_TRIMESH | 7, 3, polyCHAO_000028CC, NULL, NULL, NULL, uvCHAO_0000309C, NULL }
 };
 
-NJS_VECTOR vertexCHAO_0000318C[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertexCHAO_0000318C[] = {
 	{ -89.89234f, 6.556928f, -219.1539f },
 	{ -80.544f, 5.708417f, -224.9044f },
 	{ -90.85477f, 6.556928f, -219.5016f },
@@ -1234,7 +1234,7 @@ NJS_VECTOR vertexCHAO_0000318C[] = {
 	{ -91.92324f, 3.706958f, -220.0405f }
 };
 
-NJS_VECTOR normalCHAO_0000381C[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normalCHAO_0000381C[] = {
 	{ -0.028122f, 0.804557f, -0.59321f },
 	{ 0.428379f, -0.7071069f, 0.562575f },
 	{ 0.372862f, 0.776616f, -0.507781f },
@@ -1377,18 +1377,18 @@ NJS_VECTOR normalCHAO_0000381C[] = {
 	{ 0, 1, 0 }
 };
 
-NJS_MODEL_SADX attachCHAO_00003EAC = { vertexCHAO_0000318C, normalCHAO_0000381C, LengthOfArray(vertexCHAO_0000318C), meshlistCHAO_000030CC, matlistCHAO_0000235C, LengthOfArray(meshlistCHAO_000030CC), LengthOfArray(matlistCHAO_0000235C),{ -85.20665f, 8.682523f, -231.7746f }, 19.32428f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attachCHAO_00003EAC = { vertexCHAO_0000318C, normalCHAO_0000381C, LengthOfArray(vertexCHAO_0000318C), meshlistCHAO_000030CC, matlistCHAO_0000235C, LengthOfArray(meshlistCHAO_000030CC), LengthOfArray(matlistCHAO_0000235C),{ -85.20665f, 8.682523f, -231.7746f }, 19.32428f, NULL };
 
-NJS_OBJECT objectCHAO_00003ED4 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCHAO_00003EAC, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCHAO_00003ED4 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCHAO_00003EAC, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
-NJS_MATERIAL matlistCHAO_00003F08[] = {
+extern "C" __declspec(dllexport) NJS_MATERIAL matlistCHAO_00003F08[] = {
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 19, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_USE_TEXTURE | NJD_FLAG_USE_ENV | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 20, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_FLAG_USE_ENV | NJD_FLAG_DOUBLE_SIDE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 21, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_FLAG_USE_ENV | NJD_FLAG_DOUBLE_SIDE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0x7FB2B2B2 },{ 0xFFFFFFFF }, 11, 37, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 polyCHAO_00003F58[] = {
+extern "C" __declspec(dllexport) Sint16 polyCHAO_00003F58[] = {
 	4, 6, 15, 8, 17,
 	4, 9, 7, 8, 6,
 	4, 0, 18, 2, 19,
@@ -1406,24 +1406,24 @@ Sint16 polyCHAO_00003F58[] = {
 	4, 10, 19, 14, 18
 };
 
-Sint16 polyCHAO_00003FEE[] = {
+extern "C" __declspec(dllexport) Sint16 polyCHAO_00003FEE[] = {
 	0x8000u | 5, 20, 28, 26, 27, 25,
 	0x8000u | 5, 20, 24, 22, 23, 21,
 	0x8000u | 5, 20, 30, 32, 29, 31
 };
 
-Sint16 polyCHAO_00004012[] = {
+extern "C" __declspec(dllexport) Sint16 polyCHAO_00004012[] = {
 	0x8000u | 5, 20, 22, 30, 21, 29,
 	0x8000u | 5, 20, 32, 28, 31, 27,
 	0x8000u | 5, 20, 26, 24, 25, 23
 };
 
-Sint16 polyCHAO_00004036[] = {
+extern "C" __declspec(dllexport) Sint16 polyCHAO_00004036[] = {
 	0x8000u | 5, 37, 39, 33, 34, 36,
 	0x8000u | 5, 36, 38, 33, 35, 37
 };
 
-NJS_TEX uvCHAO_00004050[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCHAO_00004050[] = {
 	{ 0, 1 },
 	{ 0, 255 },
 	{ 254, 2 },
@@ -1486,7 +1486,7 @@ NJS_TEX uvCHAO_00004050[] = {
 	{ 254, 255 }
 };
 
-NJS_TEX uvCHAO_00004140[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCHAO_00004140[] = {
 	{ 127, 127 },
 	{ 54, 127 },
 	{ 90, 200 },
@@ -1504,7 +1504,7 @@ NJS_TEX uvCHAO_00004140[] = {
 	{ 63, 0 }
 };
 
-NJS_TEX uvCHAO_0000417C[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCHAO_0000417C[] = {
 	{ 127, 127 },
 	{ 200, 127 },
 	{ 164, 54 },
@@ -1522,7 +1522,7 @@ NJS_TEX uvCHAO_0000417C[] = {
 	{ 191, 255 }
 };
 
-NJS_TEX uvCHAO_000041B8[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCHAO_000041B8[] = {
 	{ 191, 0 },
 	{ 63, 0 },
 	{ 127, 127 },
@@ -1535,14 +1535,14 @@ NJS_TEX uvCHAO_000041B8[] = {
 	{ 191, 0 }
 };
 
-NJS_MESHSET_SADX meshlistCHAO_000041E0[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlistCHAO_000041E0[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 15, polyCHAO_00003F58, NULL, NULL, NULL, uvCHAO_00004050, NULL },
 	{ NJD_MESHSET_TRIMESH | 1, 3, polyCHAO_00003FEE, NULL, NULL, NULL, uvCHAO_00004140, NULL },
 	{ NJD_MESHSET_TRIMESH | 2, 3, polyCHAO_00004012, NULL, NULL, NULL, uvCHAO_0000417C, NULL },
 	{ NJD_MESHSET_TRIMESH | 3, 2, polyCHAO_00004036, NULL, NULL, NULL, uvCHAO_000041B8, NULL }
 };
 
-NJS_VECTOR vertexCHAO_00004240[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertexCHAO_00004240[] = {
 	{ -69.957f, 23.68196f, -229.9898f },
 	{ -69.957f, 32.13095f, -229.9898f },
 	{ -69.76443f, 23.68196f, -230.6312f },
@@ -1585,7 +1585,7 @@ NJS_VECTOR vertexCHAO_00004240[] = {
 	{ -90.14059f, 3.756958f, -227.906f }
 };
 
-NJS_VECTOR normalCHAO_00004420[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normalCHAO_00004420[] = {
 	{ 0.60583f, 0, 0.795594f },
 	{ 0.60583f, 0, 0.795594f },
 	{ 0.943867f, 0, -0.330326f },
@@ -1628,11 +1628,11 @@ NJS_VECTOR normalCHAO_00004420[] = {
 	{ 0, 1, 0 }
 };
 
-NJS_MODEL_SADX attachCHAO_00004600 = { vertexCHAO_00004240, normalCHAO_00004420, LengthOfArray(vertexCHAO_00004240), meshlistCHAO_000041E0, matlistCHAO_00003F08, LengthOfArray(meshlistCHAO_000041E0), LengthOfArray(matlistCHAO_00003F08),{ -70.30215f, 18.15646f, -230.4431f }, 27.09123f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attachCHAO_00004600 = { vertexCHAO_00004240, normalCHAO_00004420, LengthOfArray(vertexCHAO_00004240), meshlistCHAO_000041E0, matlistCHAO_00003F08, LengthOfArray(meshlistCHAO_000041E0), LengthOfArray(matlistCHAO_00003F08),{ -70.30215f, 18.15646f, -230.4431f }, 27.09123f, NULL };
 
-NJS_OBJECT objectCHAO_00004628 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCHAO_00004600, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCHAO_00004628 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCHAO_00004600, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
-NJS_MATERIAL matlistCHAO_0000465C[] = {
+extern "C" __declspec(dllexport) NJS_MATERIAL matlistCHAO_0000465C[] = {
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 32, NJD_D_025 | NJD_FLAG_FLIP_V | NJD_FLAG_FLIP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_FLAG_IGNORE_LIGHT | 0x1 },
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 30, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 28, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_FLIP_U | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
@@ -1649,7 +1649,7 @@ NJS_MATERIAL matlistCHAO_0000465C[] = {
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 26, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 polyCHAO_00004774[] = {
+extern "C" __declspec(dllexport) Sint16 polyCHAO_00004774[] = {
 	4, 5, 0, 2, 15,
 	0x8000u | 5, 15, 6, 0, 9, 14,
 	0x8000u | 5, 14, 11, 0, 8, 5,
@@ -1658,22 +1658,22 @@ Sint16 polyCHAO_00004774[] = {
 	5, 28, 31, 17, 26, 23
 };
 
-Sint16 polyCHAO_000047B8[] = {
+extern "C" __declspec(dllexport) Sint16 polyCHAO_000047B8[] = {
 	18, 7, 5, 4, 2, 1, 15, 12, 6, 3, 9, 16, 14, 13, 11, 10, 8, 7, 5,
 	18, 27, 25, 24, 22, 21, 19, 18, 32, 29, 23, 20, 26, 33, 31, 30, 28, 27, 25
 };
 
-Sint16 polyCHAO_00004804[] = {
+extern "C" __declspec(dllexport) Sint16 polyCHAO_00004804[] = {
 	0x8000u | 6, 34, 36, 35, 37, 77, 39,
 	0x8000u | 6, 79, 61, 57, 59, 56, 58
 };
 
-Sint16 polyCHAO_00004820[] = {
+extern "C" __declspec(dllexport) Sint16 polyCHAO_00004820[] = {
 	4, 38, 39, 76, 77,
 	4, 78, 79, 60, 61
 };
 
-Sint16 polyCHAO_00004834[] = {
+extern "C" __declspec(dllexport) Sint16 polyCHAO_00004834[] = {
 	4, 59, 58, 61, 60,
 	4, 39, 38, 37, 36,
 	3, 51, 49, 41,
@@ -1681,37 +1681,37 @@ Sint16 polyCHAO_00004834[] = {
 	3, 45, 53, 55
 };
 
-Sint16 polyCHAO_0000486A[] = {
+extern "C" __declspec(dllexport) Sint16 polyCHAO_0000486A[] = {
 	10, 66, 69, 67, 65, 63, 64, 62, 68, 66, 69
 };
 
-Sint16 polyCHAO_00004880[] = {
+extern "C" __declspec(dllexport) Sint16 polyCHAO_00004880[] = {
 	6, 51, 41, 43, 45, 47, 55
 };
 
-Sint16 polyCHAO_0000488E[] = {
+extern "C" __declspec(dllexport) Sint16 polyCHAO_0000488E[] = {
 	8, 52, 53, 44, 45, 40, 41, 48, 49
 };
 
-Sint16 polyCHAO_000048A0[] = {
+extern "C" __declspec(dllexport) Sint16 polyCHAO_000048A0[] = {
 	4, 79, 78, 77, 76
 };
 
-Sint16 polyCHAO_000048AA[] = {
+extern "C" __declspec(dllexport) Sint16 polyCHAO_000048AA[] = {
 	4, 63, 62, 67, 66
 };
 
-Sint16 polyCHAO_000048B4[] = {
+extern "C" __declspec(dllexport) Sint16 polyCHAO_000048B4[] = {
 	0x8000u | 8, 70, 80, 71, 81, 73, 83, 72, 82,
 	3, 85, 83, 82,
 	3, 80, 81, 84
 };
 
-Sint16 polyCHAO_000048D6[] = {
+extern "C" __declspec(dllexport) Sint16 polyCHAO_000048D6[] = {
 	6, 84, 81, 74, 83, 75, 85
 };
 
-NJS_TEX uvCHAO_000048E4[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCHAO_000048E4[] = {
 	{ 434, 180 },
 	{ 255, -53 },
 	{ 510, 0 },
@@ -1742,7 +1742,7 @@ NJS_TEX uvCHAO_000048E4[] = {
 	{ 255, -255 }
 };
 
-NJS_TEX uvCHAO_00004954[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCHAO_00004954[] = {
 	{ 127, 255 },
 	{ 205, 184 },
 	{ 217, 218 },
@@ -1781,7 +1781,7 @@ NJS_TEX uvCHAO_00004954[] = {
 	{ 127, 215 }
 };
 
-NJS_TEX uvCHAO_000049E4[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCHAO_000049E4[] = {
 	{ 0, 255 },
 	{ 0, -1785 },
 	{ 452, 255 },
@@ -1796,7 +1796,7 @@ NJS_TEX uvCHAO_000049E4[] = {
 	{ 0, -1785 }
 };
 
-NJS_TEX uvCHAO_00004A14[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCHAO_00004A14[] = {
 	{ 0, -1785 },
 	{ 255, -1785 },
 	{ 0, 255 },
@@ -1807,7 +1807,7 @@ NJS_TEX uvCHAO_00004A14[] = {
 	{ 254, -1785 }
 };
 
-NJS_TEX uvCHAO_00004A34[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCHAO_00004A34[] = {
 	{ 255, 28 },
 	{ 254, 254 },
 	{ 229, 0 },
@@ -1832,7 +1832,7 @@ NJS_TEX uvCHAO_00004A34[] = {
 	{ 1, 1 }
 };
 
-NJS_TEX uvCHAO_00004A8C[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCHAO_00004A8C[] = {
 	{ 440, 0 },
 	{ 510, 255 },
 	{ 440, 0 },
@@ -1845,7 +1845,7 @@ NJS_TEX uvCHAO_00004A8C[] = {
 	{ 510, 255 }
 };
 
-NJS_TEX uvCHAO_00004AB4[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCHAO_00004AB4[] = {
 	{ 0 },
 	{ 170, 255 },
 	{ 170, 0 },
@@ -1854,7 +1854,7 @@ NJS_TEX uvCHAO_00004AB4[] = {
 	{ 510, 0 }
 };
 
-NJS_TEX uvCHAO_00004ACC[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCHAO_00004ACC[] = {
 	{ 255, 255 },
 	{ 255, 185 },
 	{ 169, 255 },
@@ -1865,21 +1865,21 @@ NJS_TEX uvCHAO_00004ACC[] = {
 	{ 0, 185 }
 };
 
-NJS_TEX uvCHAO_00004AEC[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCHAO_00004AEC[] = {
 	{ 2039, 0 },
 	{ 1847, 254 },
 	{ 0 },
 	{ 191, 254 }
 };
 
-NJS_TEX uvCHAO_00004AFC[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCHAO_00004AFC[] = {
 	{ 69, -127 },
 	{ 69, 127 },
 	{ 440, -127 },
 	{ 440, 127 }
 };
 
-NJS_TEX uvCHAO_00004B0C[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCHAO_00004B0C[] = {
 	{ 0, 255 },
 	{ 0, 127 },
 	{ 85, 255 },
@@ -1896,7 +1896,7 @@ NJS_TEX uvCHAO_00004B0C[] = {
 	{ 0, 21 }
 };
 
-NJS_TEX uvCHAO_00004B44[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCHAO_00004B44[] = {
 	{ 0, 255 },
 	{ 85, 0 },
 	{ 85, 255 },
@@ -1905,7 +1905,7 @@ NJS_TEX uvCHAO_00004B44[] = {
 	{ 254, 255 }
 };
 
-NJS_MESHSET_SADX meshlistCHAO_00004B5C[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlistCHAO_00004B5C[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 6, polyCHAO_00004774, NULL, NULL, NULL, uvCHAO_000048E4, NULL },
 	{ NJD_MESHSET_TRIMESH | 1, 2, polyCHAO_000047B8, NULL, NULL, NULL, uvCHAO_00004954, NULL },
 	{ NJD_MESHSET_TRIMESH | 2, 2, polyCHAO_00004804, NULL, NULL, NULL, uvCHAO_000049E4, NULL },
@@ -1920,7 +1920,7 @@ NJS_MESHSET_SADX meshlistCHAO_00004B5C[] = {
 	{ NJD_MESHSET_TRIMESH | 11, 1, polyCHAO_000048D6, NULL, NULL, NULL, uvCHAO_00004B44, NULL }
 };
 
-NJS_VECTOR vertexCHAO_00004C7C[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertexCHAO_00004C7C[] = {
 	{ 17.89685f, 103.1321f, -70.48732f },
 	{ 14.83813f, 102.699f, -70.65491f },
 	{ 15.30588f, 102.9155f, -70.85172f },
@@ -2009,7 +2009,7 @@ NJS_VECTOR vertexCHAO_00004C7C[] = {
 	{ 5.147599f, 100.0299f, -66.58982f }
 };
 
-NJS_VECTOR normalCHAO_00005084[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normalCHAO_00005084[] = {
 	{ 0.209434f, 0.572981f, -0.792357f },
 	{ -0.5097899f, 0.41739f, -0.7522629f },
 	{ -0.292564f, 0.499063f, -0.815685f },
@@ -2098,11 +2098,11 @@ NJS_VECTOR normalCHAO_00005084[] = {
 	{ 0.131539f, 0, -0.991311f }
 };
 
-NJS_MODEL_SADX attachCHAO_0000548C = { vertexCHAO_00004C7C, normalCHAO_00005084, LengthOfArray(vertexCHAO_00004C7C), meshlistCHAO_00004B5C, matlistCHAO_0000465C, LengthOfArray(meshlistCHAO_00004B5C), LengthOfArray(matlistCHAO_0000465C),{ 19.56338f, 90.02985f, -63.50652f }, 21.73587f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attachCHAO_0000548C = { vertexCHAO_00004C7C, normalCHAO_00005084, LengthOfArray(vertexCHAO_00004C7C), meshlistCHAO_00004B5C, matlistCHAO_0000465C, LengthOfArray(meshlistCHAO_00004B5C), LengthOfArray(matlistCHAO_0000465C),{ 19.56338f, 90.02985f, -63.50652f }, 21.73587f, NULL };
 
-NJS_OBJECT objectCHAO_000054B4 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCHAO_0000548C, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCHAO_000054B4 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCHAO_0000548C, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
-NJS_MATERIAL matlistCHAO_000054E8[] = {
+extern "C" __declspec(dllexport) NJS_MATERIAL matlistCHAO_000054E8[] = {
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 34, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 4, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_FLIP_U | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 24, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_FLIP_V | NJD_FLAG_FLIP_U | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
@@ -2112,32 +2112,32 @@ NJS_MATERIAL matlistCHAO_000054E8[] = {
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 23, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 polyCHAO_00005574[] = {
+extern "C" __declspec(dllexport) Sint16 polyCHAO_00005574[] = {
 	4, 15, 14, 12, 13
 };
 
-Sint16 polyCHAO_0000557E[] = {
+extern "C" __declspec(dllexport) Sint16 polyCHAO_0000557E[] = {
 	0x8000u | 10, 10, 3, 8, 2, 5, 0, 4, 1, 10, 3
 };
 
-Sint16 polyCHAO_00005594[] = {
+extern "C" __declspec(dllexport) Sint16 polyCHAO_00005594[] = {
 	4, 7, 11, 4, 10,
 	4, 6, 7, 5, 4,
 	4, 9, 6, 8, 5,
 	4, 11, 9, 10, 8
 };
 
-Sint16 polyCHAO_000055BC[] = {
+extern "C" __declspec(dllexport) Sint16 polyCHAO_000055BC[] = {
 	4, 9, 14, 6, 15
 };
 
-Sint16 polyCHAO_000055C6[] = {
+extern "C" __declspec(dllexport) Sint16 polyCHAO_000055C6[] = {
 	4, 7, 12, 11, 13,
 	4, 6, 15, 7, 12,
 	4, 11, 13, 9, 14
 };
 
-Sint16 polyCHAO_000055E4[] = {
+extern "C" __declspec(dllexport) Sint16 polyCHAO_000055E4[] = {
 	0x8000u | 10, 78, 77, 75, 74, 72, 71, 69, 68, 66, 65,
 	0x8000u | 10, 79, 78, 76, 75, 73, 72, 70, 69, 67, 66,
 	0x8000u | 10, 58, 59, 61, 62, 49, 50, 52, 53, 55, 56,
@@ -2148,7 +2148,7 @@ Sint16 polyCHAO_000055E4[] = {
 	0x8000u | 10, 17, 18, 20, 21, 23, 24, 26, 27, 29, 30
 };
 
-Sint16 polyCHAO_00005694[] = {
+extern "C" __declspec(dllexport) Sint16 polyCHAO_00005694[] = {
 	5, 70, 73, 64, 76, 79,
 	3, 67, 70, 64,
 	3, 54, 57, 48,
@@ -2159,14 +2159,14 @@ Sint16 polyCHAO_00005694[] = {
 	0x8000u | 5, 28, 25, 16, 22, 19
 };
 
-NJS_TEX uvCHAO_000056E4[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCHAO_000056E4[] = {
 	{ 0, -2040 },
 	{ 1275, -2040 },
 	{ 0, 254 },
 	{ 1275, 254 }
 };
 
-NJS_TEX uvCHAO_000056F4[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCHAO_000056F4[] = {
 	{ 5607, 2 },
 	{ 5627, 254 },
 	{ 3748, 2 },
@@ -2179,7 +2179,7 @@ NJS_TEX uvCHAO_000056F4[] = {
 	{ 17, 254 }
 };
 
-NJS_TEX uvCHAO_0000571C[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCHAO_0000571C[] = {
 	{ 0, 254 },
 	{ 1784, 254 },
 	{ 264, -142 },
@@ -2198,14 +2198,14 @@ NJS_TEX uvCHAO_0000571C[] = {
 	{ 248, -1926 }
 };
 
-NJS_TEX uvCHAO_0000575C[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCHAO_0000575C[] = {
 	{ 0 },
 	{ 226, 254 },
 	{ 1530, 0 },
 	{ 1305, 255 }
 };
 
-NJS_TEX uvCHAO_0000576C[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCHAO_0000576C[] = {
 	{ 1530, 0 },
 	{ 1305, 254 },
 	{ 0 },
@@ -2220,7 +2220,7 @@ NJS_TEX uvCHAO_0000576C[] = {
 	{ 248, 255 }
 };
 
-NJS_TEX uvCHAO_0000579C[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCHAO_0000579C[] = {
 	{ 255, 255 },
 	{ 0, 255 },
 	{ 255, -18 },
@@ -2303,7 +2303,7 @@ NJS_TEX uvCHAO_0000579C[] = {
 	{ 255, 255 }
 };
 
-NJS_TEX uvCHAO_000058DC[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCHAO_000058DC[] = {
 	{ 151, 255 },
 	{ 32, 223 },
 	{ 119, 137 },
@@ -2338,7 +2338,7 @@ NJS_TEX uvCHAO_000058DC[] = {
 	{ 105, 255 }
 };
 
-NJS_MESHSET_SADX meshlistCHAO_0000595C[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlistCHAO_0000595C[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 1, polyCHAO_00005574, NULL, NULL, NULL, uvCHAO_000056E4, NULL },
 	{ NJD_MESHSET_TRIMESH | 1, 1, polyCHAO_0000557E, NULL, NULL, NULL, uvCHAO_000056F4, NULL },
 	{ NJD_MESHSET_TRIMESH | 2, 4, polyCHAO_00005594, NULL, NULL, NULL, uvCHAO_0000571C, NULL },
@@ -2348,7 +2348,7 @@ NJS_MESHSET_SADX meshlistCHAO_0000595C[] = {
 	{ NJD_MESHSET_TRIMESH | 6, 8, polyCHAO_00005694, NULL, NULL, NULL, uvCHAO_000058DC, NULL }
 };
 
-NJS_VECTOR vertexCHAO_00005A04[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertexCHAO_00005A04[] = {
 	{ -308.4612f, -5.704341f, -55.67855f },
 	{ -308.4612f, -5.704341f, -145.7157f },
 	{ -258.498f, -5.704341f, -55.67855f },
@@ -2431,7 +2431,7 @@ NJS_VECTOR vertexCHAO_00005A04[] = {
 	{ -309.138f, 2.812592f, -133.7296f }
 };
 
-NJS_VECTOR normalCHAO_00005DC4[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normalCHAO_00005DC4[] = {
 	{ -0.695244f, -0.261977f, 0.6693299f },
 	{ -0.681341f, -0.19856f, -0.70452f },
 	{ 0.674276f, -0.296893f, 0.6761709f },
@@ -2514,21 +2514,21 @@ NJS_VECTOR normalCHAO_00005DC4[] = {
 	{ -0.447023f, 0.779969f, 0.437971f }
 };
 
-NJS_MODEL_SADX attachCHAO_00006184 = { vertexCHAO_00005A04, normalCHAO_00005DC4, LengthOfArray(vertexCHAO_00005A04), meshlistCHAO_0000595C, matlistCHAO_000054E8, LengthOfArray(meshlistCHAO_0000595C), LengthOfArray(matlistCHAO_000054E8),{ -283.3496f, -0.46784f, -100.4063f }, 69.01742f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attachCHAO_00006184 = { vertexCHAO_00005A04, normalCHAO_00005DC4, LengthOfArray(vertexCHAO_00005A04), meshlistCHAO_0000595C, matlistCHAO_000054E8, LengthOfArray(meshlistCHAO_0000595C), LengthOfArray(matlistCHAO_000054E8),{ -283.3496f, -0.46784f, -100.4063f }, 69.01742f, NULL };
 
-NJS_OBJECT objectCHAO_000061AC = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCHAO_00006184, -1.811932f, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCHAO_000061AC = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCHAO_00006184, -1.811932f, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
-NJS_MATERIAL matlistCHAO_000061E0[] = {
+extern "C" __declspec(dllexport) NJS_MATERIAL matlistCHAO_000061E0[] = {
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 25, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_FLIP_U | NJD_FLAG_USE_TEXTURE | NJD_FLAG_IGNORE_LIGHT | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 polyCHAO_000061F4[] = {
+extern "C" __declspec(dllexport) Sint16 polyCHAO_000061F4[] = {
 	0x8000u | 6, 5, 4, 3, 2, 1, 0,
 	0x8000u | 12, 1, 0, 21, 20, 19, 18, 17, 16, 15, 14, 13, 12,
 	0x8000u | 6, 11, 10, 9, 8, 7, 6
 };
 
-NJS_TEX uvCHAO_0000622C[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCHAO_0000622C[] = {
 	{ 533, 0 },
 	{ 533, 255 },
 	{ 0 },
@@ -2555,11 +2555,11 @@ NJS_TEX uvCHAO_0000622C[] = {
 	{ 1052, 255 }
 };
 
-NJS_MESHSET_SADX meshlistCHAO_0000628C[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlistCHAO_0000628C[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 3, polyCHAO_000061F4, NULL, NULL, NULL, uvCHAO_0000622C, NULL }
 };
 
-NJS_VECTOR vertexCHAO_000062A4[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertexCHAO_000062A4[] = {
 	{ 77.01308f, 92.25404f, 7.578329f },
 	{ 77.01308f, 103.3478f, 7.578329f },
 	{ 66.8645f, 92.25404f, -30.29668f },
@@ -2584,7 +2584,7 @@ NJS_VECTOR vertexCHAO_000062A4[] = {
 	{ 66.86449f, 103.3478f, 45.45333f }
 };
 
-NJS_VECTOR normalCHAO_000063AC[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normalCHAO_000063AC[] = {
 	{ 1, 0, 0 },
 	{ 1, 0, 0 },
 	{ 0.866025f, 0, -0.5f },
@@ -2609,20 +2609,20 @@ NJS_VECTOR normalCHAO_000063AC[] = {
 	{ 0.866025f, 0, 0.5f }
 };
 
-NJS_MODEL_SADX attachCHAO_000064B4 = { vertexCHAO_000062A4, normalCHAO_000063AC, LengthOfArray(vertexCHAO_000062A4), meshlistCHAO_0000628C, matlistCHAO_000061E0, LengthOfArray(meshlistCHAO_0000628C), LengthOfArray(matlistCHAO_000061E0),{ 6.337345f, 97.80093f, 7.578331f }, 103.6008f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attachCHAO_000064B4 = { vertexCHAO_000062A4, normalCHAO_000063AC, LengthOfArray(vertexCHAO_000062A4), meshlistCHAO_0000628C, matlistCHAO_000061E0, LengthOfArray(meshlistCHAO_0000628C), LengthOfArray(matlistCHAO_000061E0),{ 6.337345f, 97.80093f, 7.578331f }, 103.6008f, NULL };
 
-NJS_OBJECT objectCHAO_000064DC = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCHAO_000064B4, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCHAO_000064DC = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCHAO_000064B4, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
-NJS_MATERIAL matlistCHAO_00006510[] = {
+extern "C" __declspec(dllexport) NJS_MATERIAL matlistCHAO_00006510[] = {
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 64, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 polyCHAO_00006524[] = {
+extern "C" __declspec(dllexport) Sint16 polyCHAO_00006524[] = {
 	5, 9, 25, 24, 22, 10,
 	0x8000u | 23, 25, 21, 9, 20, 8, 19, 7, 18, 6, 17, 5, 16, 4, 15, 3, 14, 2, 13, 1, 12, 0, 23, 11
 };
 
-NJS_TEX uvCHAO_00006560[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCHAO_00006560[] = {
 	{ 1008, 0 },
 	{ 392, 254 },
 	{ 440, 0 },
@@ -2653,11 +2653,11 @@ NJS_TEX uvCHAO_00006560[] = {
 	{ 7650, 0 }
 };
 
-NJS_MESHSET_SADX meshlistCHAO_000065D0[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlistCHAO_000065D0[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 2, polyCHAO_00006524, NULL, NULL, NULL, uvCHAO_00006560, NULL }
 };
 
-NJS_VECTOR vertexCHAO_000065E8[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertexCHAO_000065E8[] = {
 	{ 219.0319f, 3.274697f, -114.9798f },
 	{ 210.0354f, 3.821558f, -185.2415f },
 	{ 173.9325f, 3.821562f, -236.8559f },
@@ -2686,7 +2686,7 @@ NJS_VECTOR vertexCHAO_000065E8[] = {
 	{ -256.8708f, -0.027322f, -74.65668f }
 };
 
-NJS_VECTOR normalCHAO_00006720[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normalCHAO_00006720[] = {
 	{ 0.119018f, 0.9927419f, 0.017261f },
 	{ 0.084333f, 0.996085f, -0.026502f },
 	{ 0.053696f, 0.996117f, -0.069771f },
@@ -2715,15 +2715,15 @@ NJS_VECTOR normalCHAO_00006720[] = {
 	{ -0.068389f, 0.997637f, 0.006515f }
 };
 
-NJS_MODEL_SADX attachCHAO_00006858 = { vertexCHAO_000065E8, normalCHAO_00006720, LengthOfArray(vertexCHAO_000065E8), meshlistCHAO_000065D0, matlistCHAO_00006510, LengthOfArray(meshlistCHAO_000065D0), LengthOfArray(matlistCHAO_00006510),{ -3.373703f, 1.82394f, -169.7943f }, 296.7954f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attachCHAO_00006858 = { vertexCHAO_000065E8, normalCHAO_00006720, LengthOfArray(vertexCHAO_000065E8), meshlistCHAO_000065D0, matlistCHAO_00006510, LengthOfArray(meshlistCHAO_000065D0), LengthOfArray(matlistCHAO_00006510),{ -3.373703f, 1.82394f, -169.7943f }, 296.7954f, NULL };
 
-NJS_OBJECT objectCHAO_00006880 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCHAO_00006858, 0, -0.8f, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCHAO_00006880 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCHAO_00006858, 0, -0.8f, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
-NJS_MATERIAL matlistCHAO_000068B4[] = {
+extern "C" __declspec(dllexport) NJS_MATERIAL matlistCHAO_000068B4[] = {
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 0, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 polyCHAO_000068C8[] = {
+extern "C" __declspec(dllexport) Sint16 polyCHAO_000068C8[] = {
 	3, 3, 5, 0,
 	3, 4, 2, 0,
 	3, 2, 6, 0,
@@ -2732,11 +2732,11 @@ Sint16 polyCHAO_000068C8[] = {
 	3, 5, 4, 0
 };
 
-NJS_MESHSET_SADX meshlistCHAO_000068F8[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlistCHAO_000068F8[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 6, polyCHAO_000068C8, NULL, NULL, NULL, NULL, NULL }
 };
 
-NJS_VECTOR vertexCHAO_00006910[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertexCHAO_00006910[] = {
 	{ -70.30213f, 32.45579f, -230.443f },
 	{ -58.18574f, 23.68196f, -214.531f },
 	{ -90.14057f, 23.68196f, -227.9059f },
@@ -2746,7 +2746,7 @@ NJS_VECTOR vertexCHAO_00006910[] = {
 	{ -78.02415f, 23.68196f, -211.9939f }
 };
 
-NJS_VECTOR normalCHAO_00006964[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normalCHAO_00006964[] = {
 	{ 0, 1, 0 },
 	{ 0.243379f, 0.915756f, 0.319621f },
 	{ -0.398489f, 0.915756f, 0.050962f },
@@ -2756,11 +2756,11 @@ NJS_VECTOR normalCHAO_00006964[] = {
 	{ -0.15511f, 0.915756f, 0.370583f }
 };
 
-NJS_MODEL_SADX attachCHAO_000069B8 = { vertexCHAO_00006910, normalCHAO_00006964, LengthOfArray(vertexCHAO_00006910), meshlistCHAO_000068F8, matlistCHAO_000068B4, LengthOfArray(meshlistCHAO_000068F8), LengthOfArray(matlistCHAO_000068B4),{ -70.30213f, 28.06887f, -230.443f }, 27.09121f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attachCHAO_000069B8 = { vertexCHAO_00006910, normalCHAO_00006964, LengthOfArray(vertexCHAO_00006910), meshlistCHAO_000068F8, matlistCHAO_000068B4, LengthOfArray(meshlistCHAO_000068F8), LengthOfArray(matlistCHAO_000068B4),{ -70.30213f, 28.06887f, -230.443f }, 27.09121f, NULL };
 
-NJS_OBJECT objectCHAO_000069E0 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCHAO_000069B8, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCHAO_000069E0 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCHAO_000069B8, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
-NJS_MATERIAL matlistCHAO_00006A14[] = {
+extern "C" __declspec(dllexport) NJS_MATERIAL matlistCHAO_00006A14[] = {
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 35, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 47, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_FLIP_V | NJD_FLAG_FLIP_U | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 51, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
@@ -2769,23 +2769,23 @@ NJS_MATERIAL matlistCHAO_00006A14[] = {
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 37, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_USE_TEXTURE | NJD_FLAG_IGNORE_LIGHT | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 polyCHAO_00006A8C[] = {
+extern "C" __declspec(dllexport) Sint16 polyCHAO_00006A8C[] = {
 	0x8000u | 26, 4, 3, 46, 45, 42, 41, 38, 37, 34, 33, 30, 29, 26, 25, 24, 23, 20, 19, 16, 15, 12, 11, 8, 7, 4, 3
 };
 
-Sint16 polyCHAO_00006AC2[] = {
+extern "C" __declspec(dllexport) Sint16 polyCHAO_00006AC2[] = {
 	0x8000u | 12, 3, 2, 45, 44, 41, 40, 37, 36, 33, 32, 29, 28,
 	0x8000u | 6, 11, 10, 7, 6, 3, 2,
 	0x8000u | 6, 23, 22, 19, 18, 15, 14
 };
 
-Sint16 polyCHAO_00006AF8[] = {
+extern "C" __declspec(dllexport) Sint16 polyCHAO_00006AF8[] = {
 	0x8000u | 12, 2, 1, 44, 43, 40, 39, 36, 35, 32, 31, 28, 27,
 	0x8000u | 6, 10, 9, 6, 5, 2, 1,
 	0x8000u | 6, 22, 21, 18, 17, 14, 13
 };
 
-Sint16 polyCHAO_00006B2E[] = {
+extern "C" __declspec(dllexport) Sint16 polyCHAO_00006B2E[] = {
 	3, 46, 4, 0,
 	3, 4, 8, 0,
 	3, 8, 12, 0,
@@ -2800,11 +2800,11 @@ Sint16 polyCHAO_00006B2E[] = {
 	3, 26, 30, 0
 };
 
-Sint16 polyCHAO_00006B8E[] = {
+extern "C" __declspec(dllexport) Sint16 polyCHAO_00006B8E[] = {
 	4, 9, 13, 11, 15
 };
 
-NJS_TEX uvCHAO_00006B98[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCHAO_00006B98[] = {
 	{ 11681, -765 },
 	{ 11681, 254 },
 	{ 10655, -765 },
@@ -2833,7 +2833,7 @@ NJS_TEX uvCHAO_00006B98[] = {
 	{ -1066, 254 }
 };
 
-NJS_TEX uvCHAO_00006C00[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCHAO_00006C00[] = {
 	{ 2803, 0 },
 	{ 2803, 255 },
 	{ 2560, 0 },
@@ -2860,7 +2860,7 @@ NJS_TEX uvCHAO_00006C00[] = {
 	{ 512, 255 }
 };
 
-NJS_TEX uvCHAO_00006C60[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCHAO_00006C60[] = {
 	{ 19627, -255 },
 	{ 19627, 255 },
 	{ 17921, -255 },
@@ -2887,7 +2887,7 @@ NJS_TEX uvCHAO_00006C60[] = {
 	{ 3584, 255 }
 };
 
-NJS_TEX uvCHAO_00006CC0[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCHAO_00006CC0[] = {
 	{ 757, 245 },
 	{ 5, 245 },
 	{ 388, -1008 },
@@ -2926,14 +2926,14 @@ NJS_TEX uvCHAO_00006CC0[] = {
 	{ 388, -1008 }
 };
 
-NJS_TEX uvCHAO_00006D50[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCHAO_00006D50[] = {
 	{ 255, 255 },
 	{ 0, 255 },
 	{ 255, 0 },
 	{ 0 }
 };
 
-NJS_MESHSET_SADX meshlistCHAO_00006D60[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlistCHAO_00006D60[] = {
 	{ NJD_MESHSET_TRIMESH | 1, 1, polyCHAO_00006A8C, NULL, NULL, NULL, uvCHAO_00006B98, NULL },
 	{ NJD_MESHSET_TRIMESH | 2, 3, polyCHAO_00006AC2, NULL, NULL, NULL, uvCHAO_00006C00, NULL },
 	{ NJD_MESHSET_TRIMESH | 3, 3, polyCHAO_00006AF8, NULL, NULL, NULL, uvCHAO_00006C60, NULL },
@@ -2941,7 +2941,7 @@ NJS_MESHSET_SADX meshlistCHAO_00006D60[] = {
 	{ NJD_MESHSET_TRIMESH | 5, 1, polyCHAO_00006B8E, NULL, NULL, NULL, uvCHAO_00006D50, NULL }
 };
 
-NJS_VECTOR vertexCHAO_00006DD8[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertexCHAO_00006DD8[] = {
 	{ 1.263055f, 118.8368f, 7.578329f },
 	{ 76.26308f, 70.68724f, 7.578329f },
 	{ 76.26308f, 81.76915f, 7.578329f },
@@ -2991,7 +2991,7 @@ NJS_VECTOR vertexCHAO_00006DD8[] = {
 	{ 57.12169f, 118.8368f, 40.2033f }
 };
 
-NJS_VECTOR normalCHAO_0000700C[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normalCHAO_0000700C[] = {
 	{ 0, 1, 0 },
 	{ 1, 0, 0 },
 	{ 1, 0, 0 },
@@ -3041,11 +3041,11 @@ NJS_VECTOR normalCHAO_0000700C[] = {
 	{ 0.32293f, 0.9275939f, 0.187846f }
 };
 
-NJS_MODEL_SADX attachCHAO_00007240 = { vertexCHAO_00006DD8, normalCHAO_0000700C, LengthOfArray(vertexCHAO_00006DD8), meshlistCHAO_00006D60, matlistCHAO_00006A14, LengthOfArray(meshlistCHAO_00006D60), LengthOfArray(matlistCHAO_00006A14),{ 1.263058f, 94.76201f, 7.578331f }, 106.066f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attachCHAO_00007240 = { vertexCHAO_00006DD8, normalCHAO_0000700C, LengthOfArray(vertexCHAO_00006DD8), meshlistCHAO_00006D60, matlistCHAO_00006A14, LengthOfArray(meshlistCHAO_00006D60), LengthOfArray(matlistCHAO_00006A14),{ 1.263058f, 94.76201f, 7.578331f }, 106.066f, NULL };
 
-NJS_OBJECT objectCHAO_00007268 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCHAO_00007240, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCHAO_00007268 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCHAO_00007240, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
-NJS_MATERIAL matlistCHAO_0000729C[] = {
+extern "C" __declspec(dllexport) NJS_MATERIAL matlistCHAO_0000729C[] = {
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 40, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 40, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 41, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
@@ -3054,30 +3054,30 @@ NJS_MATERIAL matlistCHAO_0000729C[] = {
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 42, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 polyCHAO_00007314[] = {
+extern "C" __declspec(dllexport) Sint16 polyCHAO_00007314[] = {
 	3, 8, 9, 37,
 	5, 4, 19, 3, 1, 2,
 	0x8000u | 9, 12, 11, 17, 10, 39, 9, 19, 37, 4,
 	6, 17, 12, 16, 13, 15, 14
 };
 
-Sint16 polyCHAO_0000734A[] = {
+extern "C" __declspec(dllexport) Sint16 polyCHAO_0000734A[] = {
 	0x8000u | 36, 39, 50, 17, 33, 16, 27, 15, 28, 14, 22, 13, 23, 12, 34, 11, 35, 10, 31, 9, 32, 8, 53, 7, 26, 6, 21, 5, 43, 4, 44, 3, 47, 2, 51, 1, 38,
 	3, 40, 38, 1,
 	3, 50, 19, 39
 };
 
-Sint16 polyCHAO_000073A4[] = {
+extern "C" __declspec(dllexport) Sint16 polyCHAO_000073A4[] = {
 	0x8000u | 29, 23, 24, 34, 36, 35, 57, 31, 56, 32, 55, 53, 54, 26, 20, 21, 49, 43, 46, 44, 45, 47, 48, 51, 52, 38, 42, 40, 41, 18,
 	6, 50, 33, 0, 27, 30, 29,
 	7, 27, 28, 29, 22, 25, 23, 24
 };
 
-Sint16 polyCHAO_000073FE[] = {
+extern "C" __declspec(dllexport) Sint16 polyCHAO_000073FE[] = {
 	6, 0, 18, 50, 40, 19, 1
 };
 
-NJS_TEX uvCHAO_0000740C[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCHAO_0000740C[] = {
 	{ 328, -1841 },
 	{ 1051, -1976 },
 	{ 308, -884 },
@@ -3103,7 +3103,7 @@ NJS_TEX uvCHAO_0000740C[] = {
 	{ 3139, -110 }
 };
 
-NJS_TEX uvCHAO_00007468[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCHAO_00007468[] = {
 	{ 7650, 0 },
 	{ 7650, 255 },
 	{ 6958, 0 },
@@ -3148,7 +3148,7 @@ NJS_TEX uvCHAO_00007468[] = {
 	{ 2, 0 }
 };
 
-NJS_TEX uvCHAO_00007510[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCHAO_00007510[] = {
 	{ 5119, 3 },
 	{ 5126, 253 },
 	{ 4878, 0 },
@@ -3193,7 +3193,7 @@ NJS_TEX uvCHAO_00007510[] = {
 	{ 26, 253 }
 };
 
-NJS_TEX uvCHAO_000075B8[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCHAO_000075B8[] = {
 	{ 0, 255 },
 	{ 0, -255 },
 	{ 1838, 254 },
@@ -3202,14 +3202,14 @@ NJS_TEX uvCHAO_000075B8[] = {
 	{ 2538, -9 }
 };
 
-NJS_MESHSET_SADX meshlistCHAO_000075D0[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlistCHAO_000075D0[] = {
 	{ NJD_MESHSET_TRIMESH | 1, 4, polyCHAO_00007314, NULL, NULL, NULL, uvCHAO_0000740C, NULL },
 	{ NJD_MESHSET_TRIMESH | 2, 3, polyCHAO_0000734A, NULL, NULL, NULL, uvCHAO_00007468, NULL },
 	{ NJD_MESHSET_TRIMESH | 3, 3, polyCHAO_000073A4, NULL, NULL, NULL, uvCHAO_00007510, NULL },
 	{ NJD_MESHSET_TRIMESH | 4, 1, polyCHAO_000073FE, NULL, NULL, NULL, uvCHAO_000075B8, NULL }
 };
 
-NJS_VECTOR vertexCHAO_00007630[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertexCHAO_00007630[] = {
 	{ 26.12831f, 33.46525f, -110.9958f },
 	{ -100.8625f, 71.00017f, -111.4343f },
 	{ -125.1837f, 71.00357f, -103.5047f },
@@ -3270,7 +3270,7 @@ NJS_VECTOR vertexCHAO_00007630[] = {
 	{ 80.77854f, 33.5777f, 96.77409f }
 };
 
-NJS_VECTOR normalCHAO_000078E8[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normalCHAO_000078E8[] = {
 	{ -0.047898f, 0.495503f, -0.867284f },
 	{ 0.040367f, 0.933674f, -0.355841f },
 	{ -0.218977f, 0.929736f, -0.29604f },
@@ -3331,11 +3331,11 @@ NJS_VECTOR normalCHAO_000078E8[] = {
 	{ 0.494998f, 0.350045f, 0.7952639f }
 };
 
-NJS_MODEL_SADX attachCHAO_00007BA0 = { vertexCHAO_00007630, normalCHAO_000078E8, LengthOfArray(vertexCHAO_00007630), meshlistCHAO_000075D0, matlistCHAO_0000729C, LengthOfArray(meshlistCHAO_000075D0), LengthOfArray(matlistCHAO_0000729C),{ -17.97964f, 52.23857f, -9.104156f }, 219.148f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attachCHAO_00007BA0 = { vertexCHAO_00007630, normalCHAO_000078E8, LengthOfArray(vertexCHAO_00007630), meshlistCHAO_000075D0, matlistCHAO_0000729C, LengthOfArray(meshlistCHAO_000075D0), LengthOfArray(matlistCHAO_0000729C),{ -17.97964f, 52.23857f, -9.104156f }, 219.148f, NULL };
 
-NJS_OBJECT objectCHAO_00007BC8 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCHAO_00007BA0, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCHAO_00007BC8 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCHAO_00007BA0, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
-NJS_MATERIAL matlistCHAO_00007BFC[] = {
+extern "C" __declspec(dllexport) NJS_MATERIAL matlistCHAO_00007BFC[] = {
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 39, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 41, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_FLIP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 43, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
@@ -3343,13 +3343,13 @@ NJS_MATERIAL matlistCHAO_00007BFC[] = {
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 41, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_U | NJD_FLAG_FLIP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 polyCHAO_00007C60[] = {
+extern "C" __declspec(dllexport) Sint16 polyCHAO_00007C60[] = {
 	0x8000u | 5, 37, 1, 59, 58, 57,
 	0x8000u | 12, 13, 6, 43, 42, 44, 41, 22, 21, 47, 17, 45, 46,
 	0x8000u | 21, 58, 27, 57, 28, 56, 2, 55, 24, 54, 38, 53, 10, 52, 32, 51, 7, 50, 11, 49, 45, 48
 };
 
-Sint16 polyCHAO_00007CB2[] = {
+extern "C" __declspec(dllexport) Sint16 polyCHAO_00007CB2[] = {
 	20, 59, 37, 69, 60, 61, 25, 62, 26, 63, 31, 64, 8, 65, 9, 66, 33, 67, 19, 68, 20,
 	0x8000u | 9, 15, 23, 46, 5, 48, 4, 49, 68, 50,
 	4, 46, 15, 36, 30,
@@ -3358,16 +3358,16 @@ Sint16 polyCHAO_00007CB2[] = {
 	18, 59, 69, 57, 61, 56, 62, 55, 63, 54, 64, 53, 65, 52, 66, 51, 67, 50, 68
 };
 
-Sint16 polyCHAO_00007D50[] = {
+extern "C" __declspec(dllexport) Sint16 polyCHAO_00007D50[] = {
 	3, 17, 46, 18,
 	6, 46, 36, 18, 30, 16, 35
 };
 
-Sint16 polyCHAO_00007D66[] = {
+extern "C" __declspec(dllexport) Sint16 polyCHAO_00007D66[] = {
 	3, 46, 45, 48
 };
 
-NJS_TEX uvCHAO_00007D70[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCHAO_00007D70[] = {
 	{ 7649, 254 },
 	{ 7650, -255 },
 	{ 7196, 254 },
@@ -3408,7 +3408,7 @@ NJS_TEX uvCHAO_00007D70[] = {
 	{ 0, 255 }
 };
 
-NJS_TEX uvCHAO_00007E08E[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCHAO_00007E08E[] = {
 	{ 1639, 131 },
 	{ 1426, 254 },
 	{ 1611, 194 },
@@ -3484,7 +3484,7 @@ NJS_TEX uvCHAO_00007E08E[] = {
 	{ 3643, 202 }
 };
 
-NJS_TEX uvCHAO_00007F2C[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCHAO_00007F2C[] = {
 	{ 1016, -255 },
 	{ 1274, -127 },
 	{ 733, -89 },
@@ -3496,20 +3496,20 @@ NJS_TEX uvCHAO_00007F2C[] = {
 	{ 0, 54 }
 };
 
-NJS_TEX uvCHAO_00007F50[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCHAO_00007F50[] = {
 	{ 5, 242 },
 	{ 210, -254 },
 	{ 258, 255 }
 };
 
-NJS_MESHSET_SADX meshlistCHAO_00007F5C[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlistCHAO_00007F5C[] = {
 	{ NJD_MESHSET_TRIMESH | 1, 3, polyCHAO_00007C60, NULL, NULL, NULL, uvCHAO_00007D70, NULL },
 	{ NJD_MESHSET_TRIMESH | 2, 6, polyCHAO_00007CB2, NULL, NULL, NULL, uvCHAO_00007E08E, NULL },
 	{ NJD_MESHSET_TRIMESH | 3, 2, polyCHAO_00007D50, NULL, NULL, NULL, uvCHAO_00007F2C, NULL },
 	{ NJD_MESHSET_TRIMESH | 4, 1, polyCHAO_00007D66, NULL, NULL, NULL, uvCHAO_00007F50, NULL }
 };
 
-NJS_VECTOR vertexCHAO_00007FBC[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertexCHAO_00007FBC[] = {
 	{ -182.6802f, 10.45318f, -112.0323f },
 	{ -197.9595f, 7.066403f, -71.83762f },
 	{ -133.455f, 33.5777f, 86.35073f },
@@ -3582,7 +3582,7 @@ NJS_VECTOR vertexCHAO_00007FBC[] = {
 	{ -232.2811f, 6.309341f, -25.66773f }
 };
 
-NJS_VECTOR normalCHAO_00008304[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normalCHAO_00008304[] = {
 	{ -0.6781819f, 0.650082f, -0.342728f },
 	{ -0.535244f, 0.823221f, -0.189262f },
 	{ -0.002447f, 0.999986f, 0.00479f },
@@ -3655,31 +3655,31 @@ NJS_VECTOR normalCHAO_00008304[] = {
 	{ -0.693245f, 0.720691f, -0.003932f }
 };
 
-NJS_MODEL_SADX attachCHAO_0000864C = { vertexCHAO_00007FBC, normalCHAO_00008304, LengthOfArray(vertexCHAO_00007FBC), meshlistCHAO_00007F5C, matlistCHAO_00007BFC, LengthOfArray(meshlistCHAO_00007F5C), LengthOfArray(matlistCHAO_00007BFC),{ -18.46379f, 16.75622f, -11.93361f }, 301.4989f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attachCHAO_0000864C = { vertexCHAO_00007FBC, normalCHAO_00008304, LengthOfArray(vertexCHAO_00007FBC), meshlistCHAO_00007F5C, matlistCHAO_00007BFC, LengthOfArray(meshlistCHAO_00007F5C), LengthOfArray(matlistCHAO_00007BFC),{ -18.46379f, 16.75622f, -11.93361f }, 301.4989f, NULL };
 
-NJS_OBJECT objectCHAO_00008674 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCHAO_0000864C, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCHAO_00008674 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCHAO_0000864C, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
-NJS_MATERIAL matlistCHAO_000086A8[] = {
+extern "C" __declspec(dllexport) NJS_MATERIAL matlistCHAO_000086A8[] = {
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 10, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 44, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 11, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 11, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 polyCHAO_000086F8[] = {
+extern "C" __declspec(dllexport) Sint16 polyCHAO_000086F8[] = {
 	3, 77, 64, 67,
 	3, 0, 3, 76,
 	23, 75, 76, 54, 3, 55, 20, 56, 28, 57, 46, 58, 52, 59, 29, 60, 32, 61, 39, 62, 11, 63, 14, 65,
 	0x8000u | 23, 75, 5, 54, 21, 55, 41, 56, 47, 57, 25, 58, 26, 59, 44, 60, 37, 61, 38, 62, 64, 63, 67, 65
 };
 
-Sint16 polyCHAO_00008768[] = {
+extern "C" __declspec(dllexport) Sint16 polyCHAO_00008768[] = {
 	18, 10, 35, 69, 36, 70, 51, 71, 17, 72, 18, 73, 49, 74, 43, 22, 24, 6, 7,
 	0x8000u | 5, 10, 34, 69, 33, 50,
 	15, 6, 68, 22, 23, 74, 42, 73, 48, 72, 15, 71, 16, 70, 50, 69
 };
 
-Sint16 polyCHAO_000087BA[] = {
+extern "C" __declspec(dllexport) Sint16 polyCHAO_000087BA[] = {
 	3, 1, 2, 0,
 	4, 7, 9, 4, 8,
 	4, 1, 0, 8, 76,
@@ -3688,11 +3688,11 @@ Sint16 polyCHAO_000087BA[] = {
 	0x8000u | 5, 66, 65, 35, 67, 77
 };
 
-Sint16 polyCHAO_00008818[] = {
+extern "C" __declspec(dllexport) Sint16 polyCHAO_00008818[] = {
 	4, 8, 76, 4, 75
 };
 
-NJS_TEX uvCHAO_00008824[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCHAO_00008824[] = {
 	{ 4884, -2295 },
 	{ 5079, -1634 },
 	{ 4781, -2284 },
@@ -3747,7 +3747,7 @@ NJS_TEX uvCHAO_00008824[] = {
 	{ 4694, -2276 }
 };
 
-NJS_TEX uvCHAO_000088F4[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCHAO_000088F4[] = {
 	{ 1815, 152 },
 	{ 1808, 28 },
 	{ 1577, 151 },
@@ -3788,7 +3788,7 @@ NJS_TEX uvCHAO_000088F4[] = {
 	{ 1577, 151 }
 };
 
-NJS_TEX uvCHAO_0000898C[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCHAO_0000898C[] = {
 	{ 0 },
 	{ 604, 0 },
 	{ 0, 255 },
@@ -3832,21 +3832,21 @@ NJS_TEX uvCHAO_0000898C[] = {
 	{ 1020, 246 }
 };
 
-NJS_TEX uvCHAO_00008A30[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCHAO_00008A30[] = {
 	{ 132, 89 },
 	{ 210, 166 },
 	{ 44, 149 },
 	{ 103, 231 }
 };
 
-NJS_MESHSET_SADX meshlistCHAO_00008A40[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlistCHAO_00008A40[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 4, polyCHAO_000086F8, NULL, NULL, NULL, uvCHAO_00008824, NULL },
 	{ NJD_MESHSET_TRIMESH | 1, 3, polyCHAO_00008768, NULL, NULL, NULL, uvCHAO_000088F4, NULL },
 	{ NJD_MESHSET_TRIMESH | 2, 6, polyCHAO_000087BA, NULL, NULL, NULL, uvCHAO_0000898C, NULL },
 	{ NJD_MESHSET_TRIMESH | 3, 1, polyCHAO_00008818, NULL, NULL, NULL, uvCHAO_00008A30, NULL }
 };
 
-NJS_VECTOR vertexCHAO_00008AA0[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertexCHAO_00008AA0[] = {
 	{ -206.3618f, 4.585427f, -85.46254f },
 	{ -197.9595f, 7.066403f, -71.83762f },
 	{ -182.6802f, 10.45318f, -112.0323f },
@@ -3927,7 +3927,7 @@ NJS_VECTOR vertexCHAO_00008AA0[] = {
 	{ 216.1594f, -0.090366f, -45.589f }
 };
 
-NJS_VECTOR normalCHAO_00008E48[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normalCHAO_00008E48[] = {
 	{ -0.236538f, 0.966055f, -0.103862f },
 	{ -0.331845f, 0.933018f, -0.139126f },
 	{ -0.474498f, 0.838839f, -0.266834f },
@@ -4008,16 +4008,16 @@ NJS_VECTOR normalCHAO_00008E48[] = {
 	{ 0.146618f, 0.9884689f, 0.037857f }
 };
 
-NJS_MODEL_SADX attachCHAO_000091F0 = { vertexCHAO_00008AA0, normalCHAO_00008E48, LengthOfArray(vertexCHAO_00008AA0), meshlistCHAO_00008A40, matlistCHAO_000086A8, LengthOfArray(meshlistCHAO_00008A40), LengthOfArray(matlistCHAO_000086A8),{ -25.20074f, -17.09345f, -49.13211f }, 362.1143f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attachCHAO_000091F0 = { vertexCHAO_00008AA0, normalCHAO_00008E48, LengthOfArray(vertexCHAO_00008AA0), meshlistCHAO_00008A40, matlistCHAO_000086A8, LengthOfArray(meshlistCHAO_00008A40), LengthOfArray(matlistCHAO_000086A8),{ -25.20074f, -17.09345f, -49.13211f }, 362.1143f, NULL };
 
-NJS_OBJECT objectCHAO_00009218 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCHAO_000091F0, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCHAO_00009218 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCHAO_000091F0, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
-NJS_MATERIAL matlistCHAO_0000924C[] = {
+extern "C" __declspec(dllexport) NJS_MATERIAL matlistCHAO_0000924C[] = {
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 44, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 42, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 polyCHAO_00009274[] = {
+extern "C" __declspec(dllexport) Sint16 polyCHAO_00009274[] = {
 	4, 57, 55, 54, 43,
 	0x8000u | 8, 55, 59, 57, 42, 14, 41, 16, 7,
 	12, 35, 36, 1, 37, 12, 38, 18, 39, 8, 40, 7, 41,
@@ -4027,14 +4027,14 @@ Sint16 polyCHAO_00009274[] = {
 	4, 4, 20, 50, 22
 };
 
-Sint16 polyCHAO_0000930A[] = {
+extern "C" __declspec(dllexport) Sint16 polyCHAO_0000930A[] = {
 	3, 0, 11, 36,
 	0x8000u | 18, 51, 19, 50, 21, 49, 23, 48, 25, 47, 27, 46, 29, 45, 31, 44, 33, 43, 55,
 	8, 19, 3, 51, 52, 53, 0, 35, 36,
 	0x8000u | 5, 58, 59, 56, 55, 33
 };
 
-NJS_TEX uvCHAO_00009358[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCHAO_00009358[] = {
 	{ 68, -1433 },
 	{ 183, -1081 },
 	{ 0, -1081 },
@@ -4105,7 +4105,7 @@ NJS_TEX uvCHAO_00009358[] = {
 	{ 1909, 211 }
 };
 
-NJS_TEX uvCHAO_00009468[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCHAO_00009468[] = {
 	{ 2343, 0 },
 	{ 2549, 0 },
 	{ 2550, 255 },
@@ -4142,12 +4142,12 @@ NJS_TEX uvCHAO_00009468[] = {
 	{ 392, 0 }
 };
 
-NJS_MESHSET_SADX meshlistCHAO_000094F0[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlistCHAO_000094F0[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 7, polyCHAO_00009274, NULL, NULL, NULL, uvCHAO_00009358, NULL },
 	{ NJD_MESHSET_TRIMESH | 1, 4, polyCHAO_0000930A, NULL, NULL, NULL, uvCHAO_00009468, NULL }
 };
 
-NJS_VECTOR vertexCHAO_00009520[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertexCHAO_00009520[] = {
 	{ 288.9637f, -63.44786f, -92.30618f },
 	{ 334.0872f, -84.81708f, 80.1529f },
 	{ 396.5135f, -84.81708f, -49.74422f },
@@ -4210,7 +4210,7 @@ NJS_VECTOR vertexCHAO_00009520[] = {
 	{ -348.9237f, -74.42979f, 23.49274f }
 };
 
-NJS_VECTOR normalCHAO_000097F0[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normalCHAO_000097F0[] = {
 	{ 0.163107f, 0.9824049f, 0.09097899f },
 	{ 0.13348f, 0.987974f, 0.078048f },
 	{ 0.142774f, 0.987815f, 0.06195f },
@@ -4273,27 +4273,27 @@ NJS_VECTOR normalCHAO_000097F0[] = {
 	{ -0.125953f, 0.991489f, 0.032952f }
 };
 
-NJS_MODEL_SADX attachCHAO_00009AC0 = { vertexCHAO_00009520, normalCHAO_000097F0, LengthOfArray(vertexCHAO_00009520), meshlistCHAO_000094F0, matlistCHAO_0000924C, LengthOfArray(meshlistCHAO_000094F0), LengthOfArray(matlistCHAO_0000924C),{ 2.343491f, -73.73426f, -74.49799f }, 634.4666f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attachCHAO_00009AC0 = { vertexCHAO_00009520, normalCHAO_000097F0, LengthOfArray(vertexCHAO_00009520), meshlistCHAO_000094F0, matlistCHAO_0000924C, LengthOfArray(meshlistCHAO_000094F0), LengthOfArray(matlistCHAO_0000924C),{ 2.343491f, -73.73426f, -74.49799f }, 634.4666f, NULL };
 
-NJS_OBJECT objectCHAO_00009AE8 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCHAO_00009AC0, 0, 18.80779f, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCHAO_00009AE8 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCHAO_00009AC0, 0, 18.80779f, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
-NJS_MATERIAL matlistCHAO_00009B1C[] = {
+extern "C" __declspec(dllexport) NJS_MATERIAL matlistCHAO_00009B1C[] = {
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 10, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 11, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 polyCHAO_00009B44[] = {
+extern "C" __declspec(dllexport) Sint16 polyCHAO_00009B44[] = {
 	3, 40, 1, 4,
 	3, 6, 8, 39,
 	0x8000u | 24, 39, 28, 8, 21, 10, 20, 19, 24, 25, 15, 16, 14, 13, 26, 27, 22, 23, 11, 12, 2, 3, 1, 0, 4
 };
 
-Sint16 polyCHAO_00009B86[] = {
+extern "C" __declspec(dllexport) Sint16 polyCHAO_00009B86[] = {
 	3, 39, 18, 6,
 	29, 18, 17, 6, 7, 8, 9, 10, 29, 19, 30, 25, 31, 16, 32, 13, 33, 27, 34, 23, 35, 12, 36, 3, 37, 0, 38, 4, 5, 40
 };
 
-NJS_TEX uvCHAO_00009BCC[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCHAO_00009BCC[] = {
 	{ 629, -4845 },
 	{ 648, -4176 },
 	{ 320, -4707 },
@@ -4326,7 +4326,7 @@ NJS_TEX uvCHAO_00009BCC[] = {
 	{ 320, -4707 }
 };
 
-NJS_TEX uvCHAO_00009C44[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCHAO_00009C44[] = {
 	{ 0, 255 },
 	{ 0 },
 	{ 422, 255 },
@@ -4361,12 +4361,12 @@ NJS_TEX uvCHAO_00009C44[] = {
 	{ 12750, 255 }
 };
 
-NJS_MESHSET_SADX meshlistCHAO_00009CC4[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlistCHAO_00009CC4[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 3, polyCHAO_00009B44, NULL, NULL, NULL, uvCHAO_00009BCC, NULL },
 	{ NJD_MESHSET_TRIMESH | 1, 2, polyCHAO_00009B86, NULL, NULL, NULL, uvCHAO_00009C44, NULL }
 };
 
-NJS_VECTOR vertexCHAO_00009CF4[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertexCHAO_00009CF4[] = {
 	{ -310.1466f, -36.24608f, -64.12811f },
 	{ -245.9999f, -0.018054f, -72.48222f },
 	{ -239.2659f, -0.172131f, -140.6273f },
@@ -4410,7 +4410,7 @@ NJS_VECTOR vertexCHAO_00009CF4[] = {
 	{ -248.2827f, -0.00562f, -26.39636f }
 };
 
-NJS_VECTOR normalCHAO_00009EE0[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normalCHAO_00009EE0[] = {
 	{ -0.375631f, 0.921456f, 0.099097f },
 	{ -0.448865f, 0.893445f, 0.016603f },
 	{ -0.362476f, 0.9281f, -0.085098f },
@@ -4454,23 +4454,23 @@ NJS_VECTOR normalCHAO_00009EE0[] = {
 	{ -0.6141f, 0.7885669f, 0.032306f }
 };
 
-NJS_MODEL_SADX attachCHAO_0000A0CC = { vertexCHAO_00009CF4, normalCHAO_00009EE0, LengthOfArray(vertexCHAO_00009CF4), meshlistCHAO_00009CC4, matlistCHAO_00009B1C, LengthOfArray(meshlistCHAO_00009CC4), LengthOfArray(matlistCHAO_00009B1C),{ -13.09611f, -22.31117f, -213.007f }, 383.2796f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attachCHAO_0000A0CC = { vertexCHAO_00009CF4, normalCHAO_00009EE0, LengthOfArray(vertexCHAO_00009CF4), meshlistCHAO_00009CC4, matlistCHAO_00009B1C, LengthOfArray(meshlistCHAO_00009CC4), LengthOfArray(matlistCHAO_00009B1C),{ -13.09611f, -22.31117f, -213.007f }, 383.2796f, NULL };
 
-NJS_OBJECT objectCHAO_0000A0F4 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCHAO_0000A0CC, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCHAO_0000A0F4 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCHAO_0000A0CC, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
-NJS_MATERIAL matlistCHAO_0000A128[] = {
+extern "C" __declspec(dllexport) NJS_MATERIAL matlistCHAO_0000A128[] = {
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 0, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 polyCHAO_0000A13C[] = {
+extern "C" __declspec(dllexport) Sint16 polyCHAO_0000A13C[] = {
 	46, 10, 11, 9, 25, 24, 2, 0, 3, 1, 13, 12, 27, 26, 39, 38, 6, 4, 7, 5, 22, 20, 23, 21, 19, 18, 16, 14, 17, 15, 37, 36, 30, 28, 31, 29, 34, 32, 35, 33, 41, 40, 42, 43, 10, 8, 9
 };
 
-NJS_MESHSET_SADX meshlistCHAO_0000A19C[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlistCHAO_0000A19C[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 1, polyCHAO_0000A13C, NULL, NULL, NULL, NULL, NULL }
 };
 
-NJS_VECTOR vertexCHAO_0000A1B4[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertexCHAO_0000A1B4[] = {
 	{ -468.4655f, -0.032792f, -196.427f },
 	{ -432.668f, -0.032792f, -367.1424f },
 	{ -449.0635f, -66.00929f, -182.9856f },
@@ -4517,7 +4517,7 @@ NJS_VECTOR vertexCHAO_0000A1B4[] = {
 	{ -411.7759f, -0.032792f, 283.968f }
 };
 
-NJS_VECTOR normalCHAO_0000A3C4[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normalCHAO_0000A3C4[] = {
 	{ 0.934438f, 0.335463f, 0.119537f },
 	{ 0.848734f, 0.345347f, 0.400482f },
 	{ 0.934922f, 0.340046f, 0.101436f },
@@ -4564,11 +4564,11 @@ NJS_VECTOR normalCHAO_0000A3C4[] = {
 	{ 0.802547f, 0.338203f, -0.491465f }
 };
 
-NJS_MODEL_SADX attachCHAO_0000A5D4 = { vertexCHAO_0000A1B4, normalCHAO_0000A3C4, LengthOfArray(vertexCHAO_0000A1B4), meshlistCHAO_0000A19C, matlistCHAO_0000A128, LengthOfArray(meshlistCHAO_0000A19C), LengthOfArray(matlistCHAO_0000A128),{ 2.238281f, -33.02104f, -77.0201f }, 666.5706f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attachCHAO_0000A5D4 = { vertexCHAO_0000A1B4, normalCHAO_0000A3C4, LengthOfArray(vertexCHAO_0000A1B4), meshlistCHAO_0000A19C, matlistCHAO_0000A128, LengthOfArray(meshlistCHAO_0000A19C), LengthOfArray(matlistCHAO_0000A128),{ 2.238281f, -33.02104f, -77.0201f }, 666.5706f, NULL };
 
-NJS_OBJECT objectCHAO_0000A5FC = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCHAO_0000A5D4, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCHAO_0000A5FC = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCHAO_0000A5D4, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
-NJS_MATERIAL matlistCHAO_0000A630[] = {
+extern "C" __declspec(dllexport) NJS_MATERIAL matlistCHAO_0000A630[] = {
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 6, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 7, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_FLIP_V | NJD_FLAG_FLIP_U | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 12, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_FLIP_V | NJD_FLAG_FLIP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
@@ -4579,25 +4579,25 @@ NJS_MATERIAL matlistCHAO_0000A630[] = {
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 6, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 polyCHAO_0000A6D0[] = {
+extern "C" __declspec(dllexport) Sint16 polyCHAO_0000A6D0[] = {
 	0x8000u | 18, 22, 21, 57, 56, 52, 51, 47, 46, 42, 41, 37, 36, 32, 31, 27, 26, 22, 21
 };
 
-Sint16 polyCHAO_0000A6F6[] = {
+extern "C" __declspec(dllexport) Sint16 polyCHAO_0000A6F6[] = {
 	0x8000u | 18, 22, 23, 27, 28, 32, 33, 37, 38, 42, 43, 47, 48, 52, 53, 57, 58, 22, 23
 };
 
-Sint16 polyCHAO_0000A71C[] = {
+extern "C" __declspec(dllexport) Sint16 polyCHAO_0000A71C[] = {
 	0x8000u | 18, 23, 24, 28, 29, 33, 34, 38, 39, 43, 44, 48, 49, 53, 54, 58, 59, 23, 24
 };
 
-Sint16 polyCHAO_0000A742[] = {
+extern "C" __declspec(dllexport) Sint16 polyCHAO_0000A742[] = {
 	0x8000u | 5, 40, 35, 20, 30, 25,
 	4, 50, 20, 45, 40,
 	5, 50, 55, 20, 60, 25
 };
 
-Sint16 polyCHAO_0000A764[] = {
+extern "C" __declspec(dllexport) Sint16 polyCHAO_0000A764[] = {
 	4, 24, 25, 59, 60,
 	4, 29, 30, 24, 25,
 	4, 34, 35, 29, 30,
@@ -4608,17 +4608,17 @@ Sint16 polyCHAO_0000A764[] = {
 	4, 54, 55, 49, 50
 };
 
-Sint16 polyCHAO_0000A7B4[] = {
+extern "C" __declspec(dllexport) Sint16 polyCHAO_0000A7B4[] = {
 	7, 19, 16, 18, 15, 17, 19, 18
 };
 
-Sint16 polyCHAO_0000A7C4[] = {
+extern "C" __declspec(dllexport) Sint16 polyCHAO_0000A7C4[] = {
 	0x8000u | 7, 0, 1, 3, 4, 2, 0, 3,
 	7, 9, 6, 8, 5, 7, 9, 8,
 	7, 14, 11, 13, 10, 12, 14, 13
 };
 
-NJS_TEX uvCHAO_0000A7F4[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCHAO_0000A7F4[] = {
 	{ 2550, 1785 },
 	{ 2550, 920 },
 	{ 2244, 1785 },
@@ -4639,7 +4639,7 @@ NJS_TEX uvCHAO_0000A7F4[] = {
 	{ 0, 920 }
 };
 
-NJS_TEX uvCHAO_0000A83C[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCHAO_0000A83C[] = {
 	{ 0, 254 },
 	{ 0, -255 },
 	{ 316, 254 },
@@ -4660,7 +4660,7 @@ NJS_TEX uvCHAO_0000A83C[] = {
 	{ 2550, -255 }
 };
 
-NJS_TEX uvCHAO_0000A884[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCHAO_0000A884[] = {
 	{ 0, 66 },
 	{ 0, 1784 },
 	{ 316, 66 },
@@ -4681,7 +4681,7 @@ NJS_TEX uvCHAO_0000A884[] = {
 	{ 2550, 1784 }
 };
 
-NJS_TEX uvCHAO_0000A8CC[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCHAO_0000A8CC[] = {
 	{ 37, 255 },
 	{ 127, 255 },
 	{ 127, 0 },
@@ -4698,7 +4698,7 @@ NJS_TEX uvCHAO_0000A8CC[] = {
 	{ 254, 255 }
 };
 
-NJS_TEX uvCHAO_0000A904[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCHAO_0000A904[] = {
 	{ 1, -253 },
 	{ 113, 253 },
 	{ 508, -253 },
@@ -4733,7 +4733,7 @@ NJS_TEX uvCHAO_0000A904[] = {
 	{ 404, 253 }
 };
 
-NJS_TEX uvCHAO_0000A984[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCHAO_0000A984[] = {
 	{ 0, 238 },
 	{ 0, 238 },
 	{ 0 },
@@ -4743,7 +4743,7 @@ NJS_TEX uvCHAO_0000A984[] = {
 	{ 0 }
 };
 
-NJS_TEX uvCHAO_0000A9A0[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCHAO_0000A9A0[] = {
 	{ 254, 255 },
 	{ 0, 238 },
 	{ 0 },
@@ -4767,7 +4767,7 @@ NJS_TEX uvCHAO_0000A9A0[] = {
 	{ 0 }
 };
 
-NJS_MESHSET_SADX meshlistCHAO_0000A9F4[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlistCHAO_0000A9F4[] = {
 	{ NJD_MESHSET_TRIMESH | 1, 1, polyCHAO_0000A6D0, NULL, NULL, NULL, uvCHAO_0000A7F4, NULL },
 	{ NJD_MESHSET_TRIMESH | 2, 1, polyCHAO_0000A6F6, NULL, NULL, NULL, uvCHAO_0000A83C, NULL },
 	{ NJD_MESHSET_TRIMESH | 3, 1, polyCHAO_0000A71C, NULL, NULL, NULL, uvCHAO_0000A884, NULL },
@@ -4777,7 +4777,7 @@ NJS_MESHSET_SADX meshlistCHAO_0000A9F4[] = {
 	{ NJD_MESHSET_TRIMESH | 7, 3, polyCHAO_0000A7C4, NULL, NULL, NULL, uvCHAO_0000A9A0, NULL }
 };
 
-NJS_VECTOR vertexCHAO_0000AA9C[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertexCHAO_0000AA9C[] = {
 	{ 401.68f, 184.8217f, -203.0411f },
 	{ 366.9961f, 135.0025f, -184.3029f },
 	{ 398.9634f, 155.7264f, -140.5601f },
@@ -4841,7 +4841,7 @@ NJS_VECTOR vertexCHAO_0000AA9C[] = {
 	{ 426.3291f, 195.8712f, -246.3859f }
 };
 
-NJS_VECTOR normalCHAO_0000AD78[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normalCHAO_0000AD78[] = {
 	{ 0.734024f, 0.602874f, 0.312653f },
 	{ 0.121437f, -0.99244f, -0.017779f },
 	{ 0.734026f, 0.602872f, 0.312652f },
@@ -4905,11 +4905,11 @@ NJS_VECTOR normalCHAO_0000AD78[] = {
 	{ 0.9334199f, 0.357922f, 0.024882f }
 };
 
-NJS_MODEL_SADX attachCHAO_0000B054 = { vertexCHAO_0000AA9C, normalCHAO_0000AD78, LengthOfArray(vertexCHAO_0000AA9C), meshlistCHAO_0000A9F4, matlistCHAO_0000A630, LengthOfArray(meshlistCHAO_0000A9F4), LengthOfArray(matlistCHAO_0000A630),{ 290.1808f, 97.3833f, -230.9362f }, 176.8629f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attachCHAO_0000B054 = { vertexCHAO_0000AA9C, normalCHAO_0000AD78, LengthOfArray(vertexCHAO_0000AA9C), meshlistCHAO_0000A9F4, matlistCHAO_0000A630, LengthOfArray(meshlistCHAO_0000A9F4), LengthOfArray(matlistCHAO_0000A630),{ 290.1808f, 97.3833f, -230.9362f }, 176.8629f, NULL };
 
-NJS_OBJECT objectCHAO_0000B07C = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCHAO_0000B054, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCHAO_0000B07C = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCHAO_0000B054, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
-NJS_MATERIAL matlistCHAO_0000BCA0[] = {
+extern "C" __declspec(dllexport) NJS_MATERIAL matlistCHAO_0000BCA0[] = {
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 52, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 53, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 52, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
@@ -4918,7 +4918,7 @@ NJS_MATERIAL matlistCHAO_0000BCA0[] = {
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 53, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 polyCHAO_0000BD18[] = {
+extern "C" __declspec(dllexport) Sint16 polyCHAO_0000BD18[] = {
 	0x8000u | 10, 1, 2, 21, 12, 39, 13, 31, 33, 32, 15,
 	6, 27, 28, 26, 25, 30, 29,
 	0x8000u | 10, 32, 35, 31, 34, 39, 40, 21, 22, 1, 5,
@@ -4931,7 +4931,7 @@ Sint16 polyCHAO_0000BD18[] = {
 	6, 27, 37, 45, 9, 19, 8
 };
 
-Sint16 polyCHAO_0000BDB4E[] = {
+extern "C" __declspec(dllexport) Sint16 polyCHAO_0000BDB4E[] = {
 	0x8000u | 10, 1, 5, 0, 4, 23, 24, 41, 42, 32, 35,
 	0x8000u | 10, 6, 9, 7, 8, 18, 19, 46, 43, 63, 44,
 	6, 2, 12, 14, 13, 15, 33,
@@ -4942,11 +4942,11 @@ Sint16 polyCHAO_0000BDB4E[] = {
 	0x8000u | 10, 63, 64, 46, 47, 18, 20, 7, 11, 6, 10
 };
 
-Sint16 polyCHAO_0000BE4C[] = {
+extern "C" __declspec(dllexport) Sint16 polyCHAO_0000BE4C[] = {
 	0x8000u | 5, 50, 49, 51, 48, 54
 };
 
-NJS_TEX uvCHAO_0000BE58[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCHAO_0000BE58[] = {
 	{ 0, 16 },
 	{ 0, 255 },
 	{ 202, 13 },
@@ -5017,7 +5017,7 @@ NJS_TEX uvCHAO_0000BE58[] = {
 	{ 0, -255 }
 };
 
-NJS_TEX uvCHAO_0000BF68E[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCHAO_0000BF68E[] = {
 	{ 525, -510 },
 	{ 0, -510 },
 	{ 568, -350 },
@@ -5088,7 +5088,7 @@ NJS_TEX uvCHAO_0000BF68E[] = {
 	{ 1020, 255 }
 };
 
-NJS_TEX uvCHAO_0000C078[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCHAO_0000C078[] = {
 	{ 0, 97 },
 	{ 166, 254 },
 	{ 128, 0 },
@@ -5096,13 +5096,13 @@ NJS_TEX uvCHAO_0000C078[] = {
 	{ 226, 64 }
 };
 
-NJS_MESHSET_SADX meshlistCHAO_0000C08C[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlistCHAO_0000C08C[] = {
 	{ NJD_MESHSET_TRIMESH | 1, 10, polyCHAO_0000BD18, NULL, NULL, NULL, uvCHAO_0000BE58, NULL },
 	{ NJD_MESHSET_TRIMESH | 2, 8, polyCHAO_0000BDB4E, NULL, NULL, NULL, uvCHAO_0000BF68E, NULL },
 	{ NJD_MESHSET_TRIMESH | 3, 1, polyCHAO_0000BE4C, NULL, NULL, NULL, uvCHAO_0000C078, NULL }
 };
 
-NJS_VECTOR vertexCHAO_0000C0D4[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertexCHAO_0000C0D4[] = {
 	{ -14.74882f, -1.810961f, 223.0755f },
 	{ -35.82878f, -1.810961f, 234.3719f },
 	{ -29.83441f, 35.65292f, 238.376f },
@@ -5170,7 +5170,7 @@ NJS_VECTOR vertexCHAO_0000C0D4[] = {
 	{ -351.8848f, -66.73518f, 141.0505f }
 };
 
-NJS_VECTOR normalCHAO_0000C3E0[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normalCHAO_0000C3E0[] = {
 	{ -0.135916f, 0.133002f, -0.981752f },
 	{ -0.836253f, 0.095654f, -0.539937f },
 	{ -0.5707549f, 0.692625f, -0.441032f },
@@ -5238,15 +5238,15 @@ NJS_VECTOR normalCHAO_0000C3E0[] = {
 	{ -0.602384f, 0.516216f, -0.6088139f }
 };
 
-NJS_MODEL_SADX attachCHAO_0000C6EC = { vertexCHAO_0000C0D4, normalCHAO_0000C3E0, LengthOfArray(vertexCHAO_0000C0D4), meshlistCHAO_0000C08C, matlistCHAO_0000BCA0, LengthOfArray(meshlistCHAO_0000C08C), LengthOfArray(matlistCHAO_0000BCA0),{ -152.8306f, -7.403938f, 221.567f }, 236.3645f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attachCHAO_0000C6EC = { vertexCHAO_0000C0D4, normalCHAO_0000C3E0, LengthOfArray(vertexCHAO_0000C0D4), meshlistCHAO_0000C08C, matlistCHAO_0000BCA0, LengthOfArray(meshlistCHAO_0000C08C), LengthOfArray(matlistCHAO_0000BCA0),{ -152.8306f, -7.403938f, 221.567f }, 236.3645f, NULL };
 
-NJS_OBJECT objectCHAO_0000C714 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCHAO_0000C6EC, 0, 0, 7.124646f, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCHAO_0000C714 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCHAO_0000C6EC, 0, 0, 7.124646f, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
-NJS_MATERIAL matlistCHAO_0000C748[] = {
+extern "C" __declspec(dllexport) NJS_MATERIAL matlistCHAO_0000C748[] = {
 	{ { 0x7FB2B2B2 },{ 0xFFFFFFFF }, 11, 54, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 polyCHAO_0000C75C[] = {
+extern "C" __declspec(dllexport) Sint16 polyCHAO_0000C75C[] = {
 	16, 54, 56, 53, 55, 42, 43, 34, 35, 27, 63, 19, 20, 11, 12, 3, 4,
 	16, 1, 0, 9, 8, 17, 16, 25, 24, 32, 31, 40, 39, 47, 48, 50, 49,
 	16, 2, 1, 10, 9, 18, 17, 26, 25, 33, 32, 41, 40, 51, 47, 52, 50,
@@ -5256,7 +5256,7 @@ Sint16 polyCHAO_0000C75C[] = {
 	16, 60, 62, 59, 61, 45, 46, 37, 38, 29, 30, 22, 23, 14, 15, 6, 7
 };
 
-NJS_TEX uvCHAO_0000C84C[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCHAO_0000C84C[] = {
 	{ 765, -1530 },
 	{ 1019, -1530 },
 	{ 765, -1275 },
@@ -5371,11 +5371,11 @@ NJS_TEX uvCHAO_0000C84C[] = {
 	{ 1785, 255 }
 };
 
-NJS_MESHSET_SADX meshlistCHAO_0000CA0C[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlistCHAO_0000CA0C[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 7, polyCHAO_0000C75C, NULL, NULL, NULL, uvCHAO_0000C84C, NULL }
 };
 
-NJS_VECTOR vertexCHAO_0000CA24[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertexCHAO_0000CA24[] = {
 	{ -504.9124f, 0, -374.5739f },
 	{ -378.6843f, 0, -374.5739f },
 	{ -252.4562f, 0, -374.5739f },
@@ -5442,7 +5442,7 @@ NJS_VECTOR vertexCHAO_0000CA24[] = {
 	{ 0 }
 };
 
-NJS_VECTOR normalCHAO_0000CD24[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normalCHAO_0000CD24[] = {
 	{ 0, 1, 0 },
 	{ 0, 1, 0 },
 	{ 0, 1, 0 },
@@ -5509,40 +5509,40 @@ NJS_VECTOR normalCHAO_0000CD24[] = {
 	{ 0, 1, 0 }
 };
 
-NJS_MODEL_SADX attachCHAO_0000D024 = { vertexCHAO_0000CA24, normalCHAO_0000CD24, LengthOfArray(vertexCHAO_0000CA24), meshlistCHAO_0000CA0C, matlistCHAO_0000C748, LengthOfArray(meshlistCHAO_0000CA0C), LengthOfArray(matlistCHAO_0000C748),{ -63.11404f, 0, 62.42899f }, 621.4155f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attachCHAO_0000D024 = { vertexCHAO_0000CA24, normalCHAO_0000CD24, LengthOfArray(vertexCHAO_0000CA24), meshlistCHAO_0000CA0C, matlistCHAO_0000C748, LengthOfArray(meshlistCHAO_0000CA0C), LengthOfArray(matlistCHAO_0000C748),{ -63.11404f, 0, 62.42899f }, 621.4155f, NULL };
 
-NJS_OBJECT objectCHAO_0000D04C = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCHAO_0000D024, 62.8035f, -0.022168f, -148.0435f, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCHAO_0000D04C = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCHAO_0000D024, 62.8035f, -0.022168f, -148.0435f, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
-NJS_MATERIAL matlistCHAO_0000AEBC[] = {
+extern "C" __declspec(dllexport) NJS_MATERIAL matlistCHAO_0000AEBC[] = {
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 9, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 46, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_FLIP_U | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 5, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 49, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_U | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 polyCHAO_0000AF0C[] = {
+extern "C" __declspec(dllexport) Sint16 polyCHAO_0000AF0C[] = {
 	3, 0, 6, 3,
 	3, 0, 9, 6,
 	3, 0, 2, 9,
 	3, 0, 3, 2
 };
 
-Sint16 polyCHAO_0000AF2C[] = {
+extern "C" __declspec(dllexport) Sint16 polyCHAO_0000AF2C[] = {
 	10, 4, 6, 7, 9, 8, 2, 5, 3, 4, 6
 };
 
-Sint16 polyCHAO_0000AF44[] = {
+extern "C" __declspec(dllexport) Sint16 polyCHAO_0000AF44[] = {
 	3, 4, 7, 1,
 	0x8000u | 5, 4, 5, 1, 8, 7
 };
 
-Sint16 polyCHAO_0000AF58[] = {
+extern "C" __declspec(dllexport) Sint16 polyCHAO_0000AF58[] = {
 	5, 16, 10, 18, 17, 15,
 	5, 15, 13, 18, 11, 14,
 	4, 14, 12, 18, 16
 };
 
-NJS_TEX uvCHAO_0000AF7C[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCHAO_0000AF7C[] = {
 	{ 127, 0 },
 	{ 9, 253 },
 	{ 253, 253 },
@@ -5557,7 +5557,7 @@ NJS_TEX uvCHAO_0000AF7C[] = {
 	{ 253, 253 }
 };
 
-NJS_TEX uvCHAO_0000AFAC[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCHAO_0000AFAC[] = {
 	{ 185, 255 },
 	{ 254, -508 },
 	{ 254, 255 },
@@ -5570,7 +5570,7 @@ NJS_TEX uvCHAO_0000AFAC[] = {
 	{ 254, -508 }
 };
 
-NJS_TEX uvCHAO_0000AFD4[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCHAO_0000AFD4[] = {
 	{ 221, 255 },
 	{ 127, 255 },
 	{ 127, 0 },
@@ -5581,7 +5581,7 @@ NJS_TEX uvCHAO_0000AFD4[] = {
 	{ 127, 255 }
 };
 
-NJS_TEX uvCHAO_0000AFF4[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCHAO_0000AFF4[] = {
 	{ 229, -251 },
 	{ 25, -251 },
 	{ 125, 251 },
@@ -5598,14 +5598,14 @@ NJS_TEX uvCHAO_0000AFF4[] = {
 	{ 229, -251 }
 };
 
-NJS_MESHSET_SADX meshlistCHAO_0000B02C[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlistCHAO_0000B02C[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 4, polyCHAO_0000AF0C, NULL, NULL, NULL, uvCHAO_0000AF7C, NULL },
 	{ NJD_MESHSET_TRIMESH | 1, 1, polyCHAO_0000AF2C, NULL, NULL, NULL, uvCHAO_0000AFAC, NULL },
 	{ NJD_MESHSET_TRIMESH | 2, 2, polyCHAO_0000AF44, NULL, NULL, NULL, uvCHAO_0000AFD4, NULL },
 	{ NJD_MESHSET_TRIMESH | 3, 3, polyCHAO_0000AF58, NULL, NULL, NULL, uvCHAO_0000AFF4, NULL }
 };
 
-NJS_VECTOR vertexCHAO_0000B08C[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertexCHAO_0000B08C[] = {
 	{ -2.784608f, -2.26307f, 0.053466f },
 	{ 49.57749f, 32.85671f, 0.053468f },
 	{ 7.164582f, 4.409966f, 8.209861f },
@@ -5627,7 +5627,7 @@ NJS_VECTOR vertexCHAO_0000B08C[] = {
 	{ 20.88237f, 13.88134f, 0.05346f }
 };
 
-NJS_VECTOR normalCHAO_0000B170[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normalCHAO_0000B170[] = {
 	{ -0.830497f, -0.557023f, 0 },
 	{ 0.830496f, 0.557025f, 0.000001f },
 	{ -0.101392f, -0.06834099f, 0.992496f },
@@ -5649,18 +5649,18 @@ NJS_VECTOR normalCHAO_0000B170[] = {
 	{ -0.830497f, -0.557023f, 0 }
 };
 
-NJS_MODEL_SADX attachCHAO_0000B254 = { vertexCHAO_0000B08C, normalCHAO_0000B170, LengthOfArray(vertexCHAO_0000B08C), meshlistCHAO_0000B02C, matlistCHAO_0000AEBC, LengthOfArray(meshlistCHAO_0000B02C), LengthOfArray(matlistCHAO_0000AEBC),{ 27.60859f, 20.0978f, 0.053474f }, 61.48037f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attachCHAO_0000B254 = { vertexCHAO_0000B08C, normalCHAO_0000B170, LengthOfArray(vertexCHAO_0000B08C), meshlistCHAO_0000B02C, matlistCHAO_0000AEBC, LengthOfArray(meshlistCHAO_0000B02C), LengthOfArray(matlistCHAO_0000AEBC),{ 27.60859f, 20.0978f, 0.053474f }, 61.48037f, NULL };
 
-NJS_OBJECT objectCHAO_0000B27C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCHAO_0000B254, -0.023083f, 159.3034f, -0.05169f, 0, 0, 0xEF8, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCHAO_0000B27C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCHAO_0000B254, -0.023083f, 159.3034f, -0.05169f, 0, 0, 0xEF8, 1, 1, 1, NULL, NULL };
 
-NJS_MATERIAL matlistCHAO_0000B2B0[] = {
+extern "C" __declspec(dllexport) NJS_MATERIAL matlistCHAO_0000B2B0[] = {
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 7, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_FLIP_V | NJD_FLAG_FLIP_U | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 50, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 9, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 8, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_FLIP_V | NJD_FLAG_FLIP_U | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 polyCHAO_0000B300[] = {
+extern "C" __declspec(dllexport) Sint16 polyCHAO_0000B300[] = {
 	3, 12, 2, 0,
 	3, 2, 4, 0,
 	3, 4, 6, 0,
@@ -5669,11 +5669,11 @@ Sint16 polyCHAO_0000B300[] = {
 	3, 8, 10, 0
 };
 
-Sint16 polyCHAO_0000B330[] = {
+extern "C" __declspec(dllexport) Sint16 polyCHAO_0000B330[] = {
 	0x8000u | 14, 2, 1, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1
 };
 
-Sint16 polyCHAO_0000B350[] = {
+extern "C" __declspec(dllexport) Sint16 polyCHAO_0000B350[] = {
 	3, 25, 15, 13,
 	3, 15, 17, 13,
 	3, 17, 19, 13,
@@ -5682,11 +5682,11 @@ Sint16 polyCHAO_0000B350[] = {
 	3, 21, 23, 13
 };
 
-Sint16 polyCHAO_0000B380[] = {
+extern "C" __declspec(dllexport) Sint16 polyCHAO_0000B380[] = {
 	0x8000u | 14, 15, 14, 25, 24, 23, 22, 21, 20, 19, 18, 17, 16, 15, 14
 };
 
-NJS_TEX uvCHAO_0000B3A0[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCHAO_0000B3A0[] = {
 	{ 83, -251 },
 	{ 426, -251 },
 	{ 251, 251 },
@@ -5707,7 +5707,7 @@ NJS_TEX uvCHAO_0000B3A0[] = {
 	{ 251, 251 }
 };
 
-NJS_TEX uvCHAO_0000B3E8[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCHAO_0000B3E8[] = {
 	{ 3060, 0 },
 	{ 3060, 255 },
 	{ 2550, 0 },
@@ -5724,7 +5724,7 @@ NJS_TEX uvCHAO_0000B3E8[] = {
 	{ 0, 255 }
 };
 
-NJS_TEX uvCHAO_0000B420[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCHAO_0000B420[] = {
 	{ 9, 253 },
 	{ 245, 253 },
 	{ 129, 1 },
@@ -5745,7 +5745,7 @@ NJS_TEX uvCHAO_0000B420[] = {
 	{ 129, 1 }
 };
 
-NJS_TEX uvCHAO_0000B468[] = {
+extern "C" __declspec(dllexport) NJS_TEX uvCHAO_0000B468[] = {
 	{ 0, 254 },
 	{ 0, -255 },
 	{ 169, 254 },
@@ -5762,14 +5762,14 @@ NJS_TEX uvCHAO_0000B468[] = {
 	{ 1020, -255 }
 };
 
-NJS_MESHSET_SADX meshlistCHAO_0000B4A0[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlistCHAO_0000B4A0[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 6, polyCHAO_0000B300, NULL, NULL, NULL, uvCHAO_0000B3A0, NULL },
 	{ NJD_MESHSET_TRIMESH | 1, 1, polyCHAO_0000B330, NULL, NULL, NULL, uvCHAO_0000B3E8, NULL },
 	{ NJD_MESHSET_TRIMESH | 2, 6, polyCHAO_0000B350, NULL, NULL, NULL, uvCHAO_0000B420, NULL },
 	{ NJD_MESHSET_TRIMESH | 3, 1, polyCHAO_0000B380, NULL, NULL, NULL, uvCHAO_0000B468, NULL }
 };
 
-NJS_VECTOR vertexCHAO_0000B500[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertexCHAO_0000B500[] = {
 	{ 0.00431f, 123.3029f, 0.001772f },
 	{ 35.00433f, 118.7212f, 0.001785f },
 	{ 32.72233f, 123.3029f, 0.001784f },
@@ -5798,7 +5798,7 @@ NJS_VECTOR vertexCHAO_0000B500[] = {
 	{ 6.748812f, 151.8619f, 11.68359f }
 };
 
-NJS_VECTOR normalCHAO_0000B638[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normalCHAO_0000B638[] = {
 	{ 0, 1, 0 },
 	{ 0.895118f, 0.445829f, 0.000001f },
 	{ 0.630377f, 0.776289f, 0 },
@@ -5827,11 +5827,11 @@ NJS_VECTOR normalCHAO_0000B638[] = {
 	{ 0.435019f, 0.492986f, 0.753475f }
 };
 
-NJS_MODEL_SADX attachCHAO_0000B770 = { vertexCHAO_0000B500, normalCHAO_0000B638, LengthOfArray(vertexCHAO_0000B500), meshlistCHAO_0000B4A0, matlistCHAO_0000B2B0, LengthOfArray(meshlistCHAO_0000B4A0), LengthOfArray(matlistCHAO_0000B2B0),{ 0.004326f, 139.0143f, 0.001759f }, 46.68652f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attachCHAO_0000B770 = { vertexCHAO_0000B500, normalCHAO_0000B638, LengthOfArray(vertexCHAO_0000B500), meshlistCHAO_0000B4A0, matlistCHAO_0000B2B0, LengthOfArray(meshlistCHAO_0000B4A0), LengthOfArray(matlistCHAO_0000B2B0),{ 0.004326f, 139.0143f, 0.001759f }, 46.68652f, NULL };
 
-NJS_OBJECT objectCHAO_0000B798 = { NJD_EVAL_UNIT_SCL, &attachCHAO_0000B770, 1.237903f, 0, 7.504487f, 0, 0x2C23, 0, 1, 1, 1, &objectCHAO_0000B27C, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectCHAO_0000B798 = { NJD_EVAL_UNIT_SCL, &attachCHAO_0000B770, 1.237903f, 0, 7.504487f, 0, 0x2C23, 0, 1, 1, 1, &objectCHAO_0000B27C, NULL };
 
-NJS_MKEY_A animation_0000BA3C_0_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A animation_0000BA3C_0_rot[] = {
 	{ 0, 0, 0, 0 },
 	{ 1, 0, 0x8D3, 0 },
 	{ 2, 0, 0x11A7, 0 },
@@ -5864,7 +5864,7 @@ NJS_MKEY_A animation_0000BA3C_0_rot[] = {
 	{ 29, 0, 0xFFFE, 0 }
 };
 
-NJS_MKEY_A animation_0000BA3C_1_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A animation_0000BA3C_1_rot[] = {
 	{ 0, 0, 0, 0 },
 	{ 5, 0, 0, 0xEF8 },
 	{ 13, 0, 0, 0xE47 },
@@ -5874,2834 +5874,16 @@ NJS_MKEY_A animation_0000BA3C_1_rot[] = {
 	{ 29, 0, 0, 0 }
 };
 
-NJS_MDATA2 animation_0000BA3C_mdat[] = {
+extern "C" __declspec(dllexport) NJS_MDATA2 animation_0000BA3C_mdat[] = {
 	{ NULL, animation_0000BA3C_0_rot, 0, LengthOfArray(animation_0000BA3C_0_rot) },
 	{ NULL, animation_0000BA3C_1_rot, 0, LengthOfArray(animation_0000BA3C_1_rot) }
 };
 
-NJS_MOTION animation_0000BA3C = { animation_0000BA3C_mdat, 30, NJD_MTYPE_POS_0 | NJD_MTYPE_ANG_1, 2 };
+extern "C" __declspec(dllexport) NJS_MOTION animation_0000BA3C = { animation_0000BA3C_mdat, 30, NJD_MTYPE_POS_0 | NJD_MTYPE_ANG_1, 2 };
 
-NJS_ACTION action_animation_0000BA3C = { &objectCHAO_0000B798, &animation_0000BA3C };
+extern "C" __declspec(dllexport) NJS_ACTION action_animation_0000BA3C = { &objectCHAO_0000B798, &animation_0000BA3C };
 
-//Skybox
-
-NJS_MATERIAL matlistCHAO_0000F050[] = {
-	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 4, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_FLIP_V | NJD_FLAG_USE_TEXTURE | NJD_FLAG_IGNORE_LIGHT | NJD_DA_INV_SRC | NJD_SA_SRC },
-	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 5, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_USE_TEXTURE | NJD_FLAG_IGNORE_LIGHT | NJD_DA_INV_SRC | NJD_SA_SRC },
-	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 6, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_USE_TEXTURE | NJD_FLAG_IGNORE_LIGHT | NJD_DA_INV_SRC | NJD_SA_SRC },
-	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 7, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_USE_TEXTURE | NJD_FLAG_IGNORE_LIGHT | NJD_DA_INV_SRC | NJD_SA_SRC }
-};
-
-
-Sint16 polyCHAO_8D4699596122D8A9591[] = {
-	0, 1, 2,
-	3, 4, 5,
-	6, 7, 8,
-	9, 10, 11,
-	12, 13, 14,
-	15, 16, 17,
-	18, 19, 20,
-	21, 22, 23,
-	24, 25, 26,
-	27, 28, 29,
-	30, 31, 32,
-	33, 34, 35,
-	36, 37, 38,
-	39, 40, 41,
-	42, 43, 44,
-	45, 46, 47,
-	48, 49, 50,
-	51, 52, 53,
-	54, 55, 56,
-	57, 58, 59,
-	60, 61, 62,
-	63, 64, 65,
-	66, 67, 68,
-	69, 70, 71,
-	72, 73, 74,
-	75, 76, 77,
-	78, 79, 80,
-	81, 82, 83,
-	84, 85, 86,
-	87, 88, 89,
-	90, 91, 92,
-	93, 94, 95,
-	96, 97, 98,
-	99, 100, 101,
-	102, 103, 104,
-	105, 106, 107,
-	108, 109, 110,
-	111, 112, 113,
-	114, 115, 116,
-	117, 118, 119,
-	120, 121, 122,
-	123, 124, 125,
-	126, 127, 128,
-	129, 130, 131,
-	132, 133, 134,
-	135, 136, 137,
-	138, 139, 140,
-	141, 142, 143,
-	144, 145, 146,
-	147, 148, 149,
-	150, 151, 152,
-	153, 154, 155,
-	156, 157, 158,
-	159, 160, 161,
-	162, 163, 164,
-	165, 166, 167,
-	168, 169, 170,
-	171, 172, 173,
-	174, 175, 176,
-	177, 178, 179,
-	180, 181, 182,
-	183, 184, 185,
-	186, 187, 188,
-	189, 190, 191,
-	192, 193, 194,
-	195, 196, 197,
-	198, 199, 200,
-	201, 202, 203,
-	204, 205, 206,
-	207, 208, 209,
-	210, 211, 212,
-	213, 214, 215,
-	216, 217, 218,
-	219, 220, 221,
-	222, 223, 224,
-	225, 226, 227,
-	228, 229, 230,
-	231, 232, 233,
-	234, 235, 236,
-	237, 238, 239,
-	240, 241, 242,
-	243, 244, 245,
-	246, 247, 248,
-	249, 250, 251,
-	252, 253, 254,
-	255, 256, 257,
-	258, 259, 260,
-	261, 262, 263,
-	264, 265, 266,
-	267, 268, 269,
-	270, 271, 272,
-	273, 274, 275,
-	276, 277, 278,
-	279, 280, 281,
-	282, 283, 284,
-	285, 286, 287,
-	288, 289, 290,
-	291, 292, 293,
-	294, 295, 296,
-	297, 298, 299,
-	300, 301, 302,
-	303, 304, 305,
-	306, 307, 308,
-	309, 310, 311,
-	312, 313, 314,
-	315, 316, 317,
-	318, 319, 320,
-	321, 322, 323,
-	324, 325, 326,
-	327, 328, 329,
-	330, 331, 332,
-	333, 334, 335,
-	336, 337, 338,
-	339, 340, 341,
-	342, 343, 344,
-	345, 346, 347,
-	348, 349, 350,
-	351, 352, 353,
-	354, 355, 356,
-	357, 358, 359,
-	360, 361, 362,
-	363, 364, 365,
-	366, 367, 368,
-	369, 370, 371,
-	372, 373, 374,
-	375, 376, 377,
-	378, 379, 380,
-	381, 382, 383
-};
-
-Sint16 polyCHAO_8D4699596122D8AB4F0[] = {
-	384, 385, 386,
-	387, 388, 389,
-	390, 391, 392,
-	393, 394, 395
-};
-
-Sint16 polyCHAO_8D4699596122D8A341A[] = {
-	396, 397, 398,
-	399, 400, 401,
-	402, 403, 404,
-	405, 406, 407,
-	408, 409, 410,
-	411, 412, 413,
-	414, 415, 416,
-	417, 418, 419,
-	420, 421, 422,
-	423, 424, 425,
-	426, 427, 428,
-	429, 430, 431
-};
-
-Sint16 polyCHAO_8D4699596122D8A45FC[] = {
-	432, 433, 434,
-	435, 436, 437,
-	438, 439, 440,
-	441, 442, 443,
-	444, 445, 446,
-	447, 448, 449,
-	450, 451, 452,
-	453, 454, 455,
-	456, 457, 458,
-	459, 460, 461,
-	462, 463, 464,
-	465, 466, 467,
-	468, 469, 470,
-	471, 472, 473,
-	474, 475, 476,
-	477, 478, 479,
-	480, 481, 482,
-	483, 484, 485,
-	486, 487, 488,
-	489, 490, 491,
-	492, 493, 494,
-	495, 496, 497,
-	498, 499, 500,
-	501, 502, 503,
-	504, 505, 506,
-	507, 508, 509,
-	510, 511, 512,
-	513, 514, 515,
-	516, 517, 518,
-	519, 520, 521,
-	522, 523, 524,
-	525, 526, 527,
-	528, 529, 530,
-	531, 532, 533,
-	534, 535, 536,
-	537, 538, 539,
-	540, 541, 542,
-	543, 544, 545,
-	546, 547, 548,
-	549, 550, 551,
-	552, 553, 554,
-	555, 556, 557,
-	558, 559, 560,
-	561, 562, 563,
-	564, 565, 566,
-	567, 568, 569,
-	570, 571, 572,
-	573, 574, 575,
-	576, 577, 578,
-	579, 580, 581,
-	582, 583, 584,
-	585, 586, 587,
-	588, 589, 590,
-	591, 592, 593,
-	594, 595, 596,
-	597, 598, 599,
-	600, 601, 602,
-	603, 604, 605,
-	606, 607, 608,
-	609, 610, 611,
-	612, 613, 614,
-	615, 616, 617,
-	618, 619, 620,
-	621, 622, 623,
-	624, 625, 626,
-	627, 628, 629,
-	630, 631, 632,
-	633, 634, 635,
-	636, 637, 638,
-	639, 640, 641,
-	642, 643, 644,
-	645, 646, 647,
-	648, 649, 650,
-	651, 652, 653,
-	654, 655, 656,
-	657, 658, 659,
-	660, 661, 662,
-	663, 664, 665,
-	666, 667, 668,
-	669, 670, 671,
-	672, 673, 674,
-	675, 676, 677,
-	678, 679, 680,
-	681, 682, 683,
-	684, 685, 686,
-	687, 688, 689,
-	690, 691, 692,
-	693, 694, 695,
-	696, 697, 698,
-	699, 700, 701,
-	702, 703, 704,
-	705, 706, 707,
-	708, 709, 710,
-	711, 712, 713,
-	714, 715, 716,
-	717, 718, 719,
-	720, 721, 722,
-	723, 724, 725,
-	726, 727, 728,
-	729, 730, 731,
-	732, 733, 734,
-	735, 736, 737,
-	738, 739, 740,
-	741, 742, 743,
-	744, 745, 746,
-	747, 748, 749,
-	750, 751, 752,
-	753, 754, 755,
-	756, 757, 758,
-	759, 760, 761,
-	762, 763, 764,
-	765, 766, 767,
-	768, 769, 770,
-	771, 772, 773,
-	774, 775, 776,
-	777, 778, 779,
-	780, 781, 782,
-	783, 784, 785,
-	786, 787, 788,
-	789, 790, 791,
-	792, 793, 794,
-	795, 796, 797,
-	798, 799, 800,
-	801, 802, 803,
-	804, 805, 806,
-	807, 808, 809,
-	810, 811, 812,
-	813, 814, 815
-};
-
-NJS_TEX uvCHAO_8D4699596122D8AF116[] = {
-	{ 0, 96 },
-	{ 0, 172 },
-	{ -79, 172 },
-	{ 0, 96 },
-	{ -79, 172 },
-	{ -77, 96 },
-	{ -77, 96 },
-	{ -79, 172 },
-	{ -158, 172 },
-	{ -77, 96 },
-	{ -158, 172 },
-	{ -158, 96 },
-	{ -158, 96 },
-	{ -158, 172 },
-	{ -239, 172 },
-	{ -158, 96 },
-	{ -239, 172 },
-	{ -239, 96 },
-	{ -239, 96 },
-	{ -239, 172 },
-	{ -320, 172 },
-	{ -239, 96 },
-	{ -320, 172 },
-	{ -320, 96 },
-	{ -320, 96 },
-	{ -320, 172 },
-	{ -402, 172 },
-	{ -320, 96 },
-	{ -402, 172 },
-	{ -402, 96 },
-	{ -402, 96 },
-	{ -402, 172 },
-	{ -482, 172 },
-	{ -402, 96 },
-	{ -482, 172 },
-	{ -482, 96 },
-	{ -482, 96 },
-	{ -482, 172 },
-	{ -562, 172 },
-	{ -482, 96 },
-	{ -562, 172 },
-	{ -564, 96 },
-	{ -564, 96 },
-	{ -562, 172 },
-	{ -642, 172 },
-	{ -564, 96 },
-	{ -642, 172 },
-	{ -642, 96 },
-	{ -642, 96 },
-	{ -642, 172 },
-	{ -721, 172 },
-	{ -642, 96 },
-	{ -721, 172 },
-	{ -721, 96 },
-	{ -721, 96 },
-	{ -721, 172 },
-	{ -801, 172 },
-	{ -721, 96 },
-	{ -801, 172 },
-	{ -801, 96 },
-	{ -801, 96 },
-	{ -801, 172 },
-	{ -881, 172 },
-	{ -801, 96 },
-	{ -881, 172 },
-	{ -881, 96 },
-	{ -881, 96 },
-	{ -881, 172 },
-	{ -963, 172 },
-	{ -881, 96 },
-	{ -963, 172 },
-	{ -963, 96 },
-	{ -963, 96 },
-	{ -963, 172 },
-	{ -1045, 172 },
-	{ -963, 96 },
-	{ -1045, 172 },
-	{ -1045, 96 },
-	{ -1045, 96 },
-	{ -1045, 172 },
-	{ -1125, 172 },
-	{ -1045, 96 },
-	{ -1125, 172 },
-	{ -1126, 96 },
-	{ -1126, 96 },
-	{ -1125, 172 },
-	{ -1205, 172 },
-	{ -1126, 96 },
-	{ -1205, 172 },
-	{ -1206, 96 },
-	{ -1206, 96 },
-	{ -1205, 172 },
-	{ -1281, 172 },
-	{ -1206, 96 },
-	{ -1281, 172 },
-	{ -1281, 96 },
-	{ -1281, 255 },
-	{ -1281, 172 },
-	{ -1205, 172 },
-	{ -1281, 255 },
-	{ -1205, 172 },
-	{ -1205, 255 },
-	{ -1205, 255 },
-	{ -1205, 172 },
-	{ -1125, 172 },
-	{ -1205, 255 },
-	{ -1125, 172 },
-	{ -1124, 255 },
-	{ -1124, 255 },
-	{ -1125, 172 },
-	{ -1045, 172 },
-	{ -1124, 255 },
-	{ -1045, 172 },
-	{ -1044, 255 },
-	{ -1044, 255 },
-	{ -1045, 172 },
-	{ -963, 172 },
-	{ -1044, 255 },
-	{ -963, 172 },
-	{ -963, 255 },
-	{ -963, 255 },
-	{ -963, 172 },
-	{ -881, 172 },
-	{ -963, 255 },
-	{ -881, 172 },
-	{ -884, 255 },
-	{ -884, 255 },
-	{ -881, 172 },
-	{ -801, 172 },
-	{ -884, 255 },
-	{ -801, 172 },
-	{ -803, 255 },
-	{ -803, 255 },
-	{ -801, 172 },
-	{ -721, 172 },
-	{ -803, 255 },
-	{ -721, 172 },
-	{ -722, 255 },
-	{ -722, 255 },
-	{ -721, 172 },
-	{ -642, 172 },
-	{ -722, 255 },
-	{ -642, 172 },
-	{ -642, 255 },
-	{ -642, 255 },
-	{ -642, 172 },
-	{ -562, 172 },
-	{ -642, 255 },
-	{ -562, 172 },
-	{ -561, 255 },
-	{ -561, 255 },
-	{ -562, 172 },
-	{ -482, 172 },
-	{ -561, 255 },
-	{ -482, 172 },
-	{ -480, 255 },
-	{ -480, 255 },
-	{ -482, 172 },
-	{ -402, 172 },
-	{ -480, 255 },
-	{ -402, 172 },
-	{ -402, 255 },
-	{ -402, 255 },
-	{ -402, 172 },
-	{ -320, 172 },
-	{ -402, 255 },
-	{ -320, 172 },
-	{ -320, 255 },
-	{ -320, 255 },
-	{ -320, 172 },
-	{ -239, 172 },
-	{ -320, 255 },
-	{ -239, 172 },
-	{ -240, 255 },
-	{ -240, 255 },
-	{ -239, 172 },
-	{ -158, 172 },
-	{ -240, 255 },
-	{ -158, 172 },
-	{ -160, 255 },
-	{ -160, 255 },
-	{ -158, 172 },
-	{ -79, 172 },
-	{ -160, 255 },
-	{ -79, 172 },
-	{ -80, 255 },
-	{ -80, 255 },
-	{ -79, 172 },
-	{ 0, 172 },
-	{ -80, 255 },
-	{ 0, 172 },
-	{ 0, 255 },
-	{ -1281, 96 },
-	{ -1281, 28 },
-	{ -1205, 28 },
-	{ -1281, 96 },
-	{ -1205, 28 },
-	{ -1206, 96 },
-	{ -1206, 96 },
-	{ -1205, 28 },
-	{ -1125, 28 },
-	{ -1206, 96 },
-	{ -1125, 28 },
-	{ -1126, 96 },
-	{ -1126, 96 },
-	{ -1125, 28 },
-	{ -1045, 28 },
-	{ -1126, 96 },
-	{ -1045, 28 },
-	{ -1045, 96 },
-	{ -1045, 96 },
-	{ -1045, 28 },
-	{ -963, 28 },
-	{ -1045, 96 },
-	{ -963, 28 },
-	{ -963, 96 },
-	{ -963, 96 },
-	{ -963, 28 },
-	{ -881, 28 },
-	{ -963, 96 },
-	{ -881, 28 },
-	{ -881, 96 },
-	{ -881, 96 },
-	{ -881, 28 },
-	{ -801, 28 },
-	{ -881, 96 },
-	{ -801, 28 },
-	{ -801, 96 },
-	{ -801, 96 },
-	{ -801, 28 },
-	{ -721, 28 },
-	{ -801, 96 },
-	{ -721, 28 },
-	{ -721, 96 },
-	{ -721, 96 },
-	{ -721, 28 },
-	{ -642, 28 },
-	{ -721, 96 },
-	{ -642, 28 },
-	{ -642, 96 },
-	{ -642, 96 },
-	{ -642, 28 },
-	{ -562, 28 },
-	{ -642, 96 },
-	{ -562, 28 },
-	{ -564, 96 },
-	{ -564, 96 },
-	{ -562, 28 },
-	{ -482, 28 },
-	{ -564, 96 },
-	{ -482, 28 },
-	{ -482, 96 },
-	{ -482, 96 },
-	{ -482, 28 },
-	{ -402, 28 },
-	{ -482, 96 },
-	{ -402, 28 },
-	{ -402, 96 },
-	{ -402, 96 },
-	{ -402, 28 },
-	{ -320, 28 },
-	{ -402, 96 },
-	{ -320, 28 },
-	{ -320, 96 },
-	{ -320, 96 },
-	{ -320, 28 },
-	{ -239, 28 },
-	{ -320, 96 },
-	{ -239, 28 },
-	{ -239, 96 },
-	{ -239, 96 },
-	{ -239, 28 },
-	{ -158, 28 },
-	{ -239, 96 },
-	{ -158, 28 },
-	{ -158, 96 },
-	{ -158, 96 },
-	{ -158, 28 },
-	{ -79, 28 },
-	{ -158, 96 },
-	{ -79, 28 },
-	{ -77, 96 },
-	{ -77, 96 },
-	{ -79, 28 },
-	{ 0, 28 },
-	{ -77, 96 },
-	{ 0, 28 },
-	{ 0, 96 },
-	{ -1281, 28 },
-	{ -1281, 0 },
-	{ -1205, 28 },
-	{ -1205, 28 },
-	{ -1281, 0 },
-	{ -1201, 0 },
-	{ -1205, 28 },
-	{ -1201, 0 },
-	{ -1125, 28 },
-	{ -1125, 28 },
-	{ -1201, 0 },
-	{ -1118, 0 },
-	{ -1125, 28 },
-	{ -1118, 0 },
-	{ -1045, 28 },
-	{ -1045, 28 },
-	{ -1118, 0 },
-	{ -1040, 0 },
-	{ -1045, 28 },
-	{ -1040, 0 },
-	{ -963, 28 },
-	{ -963, 28 },
-	{ -1040, 0 },
-	{ -963, 0 },
-	{ -963, 28 },
-	{ -963, 0 },
-	{ -881, 28 },
-	{ -881, 28 },
-	{ -963, 0 },
-	{ -888, 0 },
-	{ -881, 28 },
-	{ -888, 0 },
-	{ -801, 28 },
-	{ -801, 28 },
-	{ -888, 0 },
-	{ -809, 0 },
-	{ -801, 28 },
-	{ -809, 0 },
-	{ -721, 28 },
-	{ -721, 28 },
-	{ -809, 0 },
-	{ -728, 0 },
-	{ -721, 28 },
-	{ -728, 0 },
-	{ -642, 28 },
-	{ -642, 28 },
-	{ -728, 0 },
-	{ -642, 0 },
-	{ -642, 28 },
-	{ -642, 0 },
-	{ -562, 28 },
-	{ -562, 28 },
-	{ -642, 0 },
-	{ -557, 0 },
-	{ -562, 28 },
-	{ -557, 0 },
-	{ -482, 28 },
-	{ -482, 28 },
-	{ -557, 0 },
-	{ -474, 0 },
-	{ -482, 28 },
-	{ -474, 0 },
-	{ -402, 28 },
-	{ -402, 28 },
-	{ -474, 0 },
-	{ -396, 0 },
-	{ -402, 28 },
-	{ -396, 0 },
-	{ -320, 28 },
-	{ -320, 28 },
-	{ -396, 0 },
-	{ -320, 0 },
-	{ -320, 28 },
-	{ -320, 0 },
-	{ -239, 28 },
-	{ -239, 28 },
-	{ -320, 0 },
-	{ -244, 0 },
-	{ -239, 28 },
-	{ -244, 0 },
-	{ -158, 28 },
-	{ -158, 28 },
-	{ -244, 0 },
-	{ -167, 0 },
-	{ -158, 28 },
-	{ -167, 0 },
-	{ -79, 28 },
-	{ -79, 28 },
-	{ -167, 0 },
-	{ -84, 0 },
-	{ -79, 28 },
-	{ -84, 0 },
-	{ 0, 28 },
-	{ 0, 28 },
-	{ -84, 0 },
-	{ 0 }
-};
-
-NJS_TEX uvCHAO_8D4699596122D8A9625[] = {
-	{ 0, 253 },
-	{ -249, 255 },
-	{ -19, 158 },
-	{ -72, 77 },
-	{ -19, 158 },
-	{ -249, 255 },
-	{ -72, 77 },
-	{ -249, 255 },
-	{ -154, 22 },
-	{ -154, 22 },
-	{ -249, 255 },
-	{ -251, 3 }
-};
-
-NJS_TEX uvCHAO_8D4699596122D8A97AD[] = {
-	{ -68, 40 },
-	{ -31, 63 },
-	{ -110, 142 },
-	{ -110, 142 },
-	{ -31, 63 },
-	{ -8, 100 },
-	{ -110, 142 },
-	{ -8, 100 },
-	{ 0, 142 },
-	{ -110, 31 },
-	{ -68, 40 },
-	{ -110, 142 },
-	{ -110, 31 },
-	{ -110, 142 },
-	{ -154, 40 },
-	{ -154, 40 },
-	{ -110, 142 },
-	{ -189, 63 },
-	{ -214, 100 },
-	{ -189, 63 },
-	{ -110, 142 },
-	{ -214, 100 },
-	{ -110, 142 },
-	{ -223, 142 },
-	{ -223, 142 },
-	{ -110, 142 },
-	{ -214, 186 },
-	{ -189, 221 },
-	{ -214, 186 },
-	{ -110, 142 },
-	{ -189, 221 },
-	{ -110, 142 },
-	{ -154, 246 },
-	{ -154, 246 },
-	{ -110, 142 },
-	{ -110, 253 }
-};
-
-NJS_TEX uvCHAO_8D4699596122D8ABD53[] = {
-	{ -7, 28 },
-	{ -7, 0 },
-	{ -80, 28 },
-	{ -80, 28 },
-	{ -7, 0 },
-	{ -80, 0 },
-	{ -80, 28 },
-	{ -80, 0 },
-	{ -161, 28 },
-	{ -161, 28 },
-	{ -80, 0 },
-	{ -161, 0 },
-	{ -161, 28 },
-	{ -161, 0 },
-	{ -242, 28 },
-	{ -242, 28 },
-	{ -161, 0 },
-	{ -242, 0 },
-	{ -242, 28 },
-	{ -242, 0 },
-	{ -322, 28 },
-	{ -322, 28 },
-	{ -242, 0 },
-	{ -322, 0 },
-	{ -322, 28 },
-	{ -322, 0 },
-	{ -402, 28 },
-	{ -402, 28 },
-	{ -322, 0 },
-	{ -402, 0 },
-	{ -402, 28 },
-	{ -402, 0 },
-	{ -482, 28 },
-	{ -482, 28 },
-	{ -402, 0 },
-	{ -482, 0 },
-	{ -482, 28 },
-	{ -482, 0 },
-	{ -564, 28 },
-	{ -564, 28 },
-	{ -482, 0 },
-	{ -564, 0 },
-	{ -564, 28 },
-	{ -564, 0 },
-	{ -642, 28 },
-	{ -642, 28 },
-	{ -564, 0 },
-	{ -642, 0 },
-	{ -642, 28 },
-	{ -642, 0 },
-	{ -724, 28 },
-	{ -724, 28 },
-	{ -642, 0 },
-	{ -724, 0 },
-	{ -724, 28 },
-	{ -724, 0 },
-	{ -804, 28 },
-	{ -804, 28 },
-	{ -724, 0 },
-	{ -804, 0 },
-	{ -804, 28 },
-	{ -804, 0 },
-	{ -884, 28 },
-	{ -884, 28 },
-	{ -804, 0 },
-	{ -884, 0 },
-	{ -884, 28 },
-	{ -884, 0 },
-	{ -964, 28 },
-	{ -964, 28 },
-	{ -884, 0 },
-	{ -964, 0 },
-	{ -964, 28 },
-	{ -964, 0 },
-	{ -1045, 28 },
-	{ -1045, 28 },
-	{ -964, 0 },
-	{ -1045, 0 },
-	{ -1045, 28 },
-	{ -1045, 0 },
-	{ -1126, 28 },
-	{ -1126, 28 },
-	{ -1045, 0 },
-	{ -1126, 0 },
-	{ -1126, 28 },
-	{ -1126, 0 },
-	{ -1206, 28 },
-	{ -1206, 28 },
-	{ -1126, 0 },
-	{ -1206, 0 },
-	{ -1206, 28 },
-	{ -1206, 0 },
-	{ -1282, 28 },
-	{ -1282, 28 },
-	{ -1206, 0 },
-	{ -1282, 0 },
-	{ -7, 253 },
-	{ -7, 170 },
-	{ -80, 170 },
-	{ -7, 253 },
-	{ -80, 170 },
-	{ -80, 253 },
-	{ -80, 253 },
-	{ -80, 170 },
-	{ -161, 170 },
-	{ -80, 253 },
-	{ -161, 170 },
-	{ -161, 253 },
-	{ -161, 253 },
-	{ -161, 170 },
-	{ -242, 170 },
-	{ -161, 253 },
-	{ -242, 170 },
-	{ -242, 253 },
-	{ -242, 253 },
-	{ -242, 170 },
-	{ -320, 170 },
-	{ -242, 253 },
-	{ -320, 170 },
-	{ -320, 253 },
-	{ -320, 253 },
-	{ -320, 170 },
-	{ -402, 170 },
-	{ -320, 253 },
-	{ -402, 170 },
-	{ -402, 253 },
-	{ -402, 253 },
-	{ -402, 170 },
-	{ -482, 170 },
-	{ -402, 253 },
-	{ -482, 170 },
-	{ -482, 253 },
-	{ -482, 253 },
-	{ -482, 170 },
-	{ -564, 170 },
-	{ -482, 253 },
-	{ -564, 170 },
-	{ -564, 253 },
-	{ -564, 253 },
-	{ -564, 170 },
-	{ -642, 170 },
-	{ -564, 253 },
-	{ -642, 170 },
-	{ -642, 253 },
-	{ -642, 253 },
-	{ -642, 170 },
-	{ -724, 170 },
-	{ -642, 253 },
-	{ -724, 170 },
-	{ -724, 253 },
-	{ -724, 253 },
-	{ -724, 170 },
-	{ -804, 170 },
-	{ -724, 253 },
-	{ -804, 170 },
-	{ -804, 253 },
-	{ -804, 253 },
-	{ -804, 170 },
-	{ -884, 170 },
-	{ -804, 253 },
-	{ -884, 170 },
-	{ -884, 253 },
-	{ -884, 253 },
-	{ -884, 170 },
-	{ -964, 170 },
-	{ -884, 253 },
-	{ -964, 170 },
-	{ -964, 253 },
-	{ -964, 253 },
-	{ -964, 170 },
-	{ -1045, 170 },
-	{ -964, 253 },
-	{ -1045, 170 },
-	{ -1045, 253 },
-	{ -1045, 253 },
-	{ -1045, 170 },
-	{ -1126, 170 },
-	{ -1045, 253 },
-	{ -1126, 170 },
-	{ -1126, 253 },
-	{ -1126, 253 },
-	{ -1126, 170 },
-	{ -1206, 170 },
-	{ -1126, 253 },
-	{ -1206, 170 },
-	{ -1206, 253 },
-	{ -1206, 253 },
-	{ -1206, 170 },
-	{ -1282, 170 },
-	{ -1206, 253 },
-	{ -1282, 170 },
-	{ -1282, 253 },
-	{ -1282, 96 },
-	{ -1282, 170 },
-	{ -1206, 170 },
-	{ -1282, 96 },
-	{ -1206, 170 },
-	{ -1208, 96 },
-	{ -1208, 96 },
-	{ -1206, 170 },
-	{ -1126, 170 },
-	{ -1208, 96 },
-	{ -1126, 170 },
-	{ -1128, 96 },
-	{ -1128, 96 },
-	{ -1126, 170 },
-	{ -1045, 170 },
-	{ -1128, 96 },
-	{ -1045, 170 },
-	{ -1046, 96 },
-	{ -1046, 96 },
-	{ -1045, 170 },
-	{ -964, 170 },
-	{ -1046, 96 },
-	{ -964, 170 },
-	{ -964, 96 },
-	{ -964, 96 },
-	{ -964, 170 },
-	{ -884, 170 },
-	{ -964, 96 },
-	{ -884, 170 },
-	{ -884, 96 },
-	{ -884, 96 },
-	{ -884, 170 },
-	{ -804, 170 },
-	{ -884, 96 },
-	{ -804, 170 },
-	{ -803, 96 },
-	{ -803, 96 },
-	{ -804, 170 },
-	{ -724, 170 },
-	{ -803, 96 },
-	{ -724, 170 },
-	{ -724, 96 },
-	{ -724, 96 },
-	{ -724, 170 },
-	{ -642, 170 },
-	{ -724, 96 },
-	{ -642, 170 },
-	{ -642, 96 },
-	{ -642, 96 },
-	{ -642, 170 },
-	{ -564, 170 },
-	{ -642, 96 },
-	{ -564, 170 },
-	{ -564, 96 },
-	{ -564, 96 },
-	{ -564, 170 },
-	{ -482, 170 },
-	{ -564, 96 },
-	{ -482, 170 },
-	{ -482, 96 },
-	{ -482, 96 },
-	{ -482, 170 },
-	{ -402, 170 },
-	{ -482, 96 },
-	{ -402, 170 },
-	{ -404, 96 },
-	{ -404, 96 },
-	{ -402, 170 },
-	{ -320, 170 },
-	{ -404, 96 },
-	{ -320, 170 },
-	{ -320, 96 },
-	{ -320, 96 },
-	{ -320, 170 },
-	{ -242, 170 },
-	{ -320, 96 },
-	{ -242, 170 },
-	{ -240, 96 },
-	{ -240, 96 },
-	{ -242, 170 },
-	{ -161, 170 },
-	{ -240, 96 },
-	{ -161, 170 },
-	{ -161, 96 },
-	{ -161, 96 },
-	{ -161, 170 },
-	{ -80, 170 },
-	{ -161, 96 },
-	{ -80, 170 },
-	{ -80, 96 },
-	{ -80, 96 },
-	{ -80, 170 },
-	{ -7, 170 },
-	{ -80, 96 },
-	{ -7, 170 },
-	{ -7, 96 },
-	{ -1282, 28 },
-	{ -1282, 96 },
-	{ -1208, 96 },
-	{ -1282, 28 },
-	{ -1208, 96 },
-	{ -1206, 28 },
-	{ -1206, 28 },
-	{ -1208, 96 },
-	{ -1128, 96 },
-	{ -1206, 28 },
-	{ -1128, 96 },
-	{ -1126, 28 },
-	{ -1126, 28 },
-	{ -1128, 96 },
-	{ -1046, 96 },
-	{ -1126, 28 },
-	{ -1046, 96 },
-	{ -1045, 28 },
-	{ -1045, 28 },
-	{ -1046, 96 },
-	{ -964, 96 },
-	{ -1045, 28 },
-	{ -964, 96 },
-	{ -964, 28 },
-	{ -964, 28 },
-	{ -964, 96 },
-	{ -884, 96 },
-	{ -964, 28 },
-	{ -884, 96 },
-	{ -884, 28 },
-	{ -884, 28 },
-	{ -884, 96 },
-	{ -803, 96 },
-	{ -884, 28 },
-	{ -803, 96 },
-	{ -804, 28 },
-	{ -804, 28 },
-	{ -803, 96 },
-	{ -724, 96 },
-	{ -804, 28 },
-	{ -724, 96 },
-	{ -724, 28 },
-	{ -724, 28 },
-	{ -724, 96 },
-	{ -642, 96 },
-	{ -724, 28 },
-	{ -642, 96 },
-	{ -642, 28 },
-	{ -642, 28 },
-	{ -642, 96 },
-	{ -564, 96 },
-	{ -642, 28 },
-	{ -564, 96 },
-	{ -564, 28 },
-	{ -564, 28 },
-	{ -564, 96 },
-	{ -482, 96 },
-	{ -564, 28 },
-	{ -482, 96 },
-	{ -482, 28 },
-	{ -482, 28 },
-	{ -482, 96 },
-	{ -404, 96 },
-	{ -482, 28 },
-	{ -404, 96 },
-	{ -402, 28 },
-	{ -402, 28 },
-	{ -404, 96 },
-	{ -320, 96 },
-	{ -402, 28 },
-	{ -320, 96 },
-	{ -322, 28 },
-	{ -322, 28 },
-	{ -320, 96 },
-	{ -240, 96 },
-	{ -322, 28 },
-	{ -240, 96 },
-	{ -242, 28 },
-	{ -242, 28 },
-	{ -240, 96 },
-	{ -161, 96 },
-	{ -242, 28 },
-	{ -161, 96 },
-	{ -161, 28 },
-	{ -161, 28 },
-	{ -161, 96 },
-	{ -80, 96 },
-	{ -161, 28 },
-	{ -80, 96 },
-	{ -80, 28 },
-	{ -80, 28 },
-	{ -80, 96 },
-	{ -7, 96 },
-	{ -80, 28 },
-	{ -7, 96 },
-	{ -7, 28 }
-};
-
-NJS_MESHSET_SADX meshlistCHAO_8D4699596122D8A926F[] = {
-	{ NJD_MESHSET_3 | 0, 128, polyCHAO_8D4699596122D8A9591, NULL, NULL, NULL, uvCHAO_8D4699596122D8AF116, NULL },
-	{ NJD_MESHSET_3 | 1, 4, polyCHAO_8D4699596122D8AB4F0, NULL, NULL, NULL, uvCHAO_8D4699596122D8A9625, NULL },
-	{ NJD_MESHSET_3 | 2, 12, polyCHAO_8D4699596122D8A341A, NULL, NULL, NULL, uvCHAO_8D4699596122D8A97AD, NULL },
-	{ NJD_MESHSET_3 | 3, 128, polyCHAO_8D4699596122D8A45FC, NULL, NULL, NULL, uvCHAO_8D4699596122D8ABD53, NULL }
-};
-
-NJS_VECTOR vertexCHAO_8D4699596122D8A1F67[] = {
-	{ 6768.295f, -1606.877f, -10.33391f },
-	{ 7389.043f, -627.3585f, -11.32471f },
-	{ 6821.898f, -627.3585f, -2808.902f },
-	{ 6768.295f, -1606.877f, -10.33391f },
-	{ 6821.898f, -627.3585f, -2808.902f },
-	{ 6248.812f, -1606.877f, -2548.581f },
-	{ 6248.812f, -1606.877f, -2548.581f },
-	{ 6821.898f, -627.3585f, -2808.902f },
-	{ 5215.826f, -627.3585f, -5178.8f },
-	{ 6248.812f, -1606.877f, -2548.581f },
-	{ 5215.826f, -627.3585f, -5178.8f },
-	{ 4777.636f, -1606.877f, -4698.773f },
-	{ 4777.636f, -1606.877f, -4698.773f },
-	{ 5215.826f, -627.3585f, -5178.8f },
-	{ 2815.333f, -627.3585f, -6760.218f },
-	{ 4777.636f, -1606.877f, -4698.773f },
-	{ 2815.333f, -627.3585f, -6760.218f },
-	{ 2578.74f, -1606.877f, -6133.568f },
-	{ 2578.74f, -1606.877f, -6133.568f },
-	{ 2815.333f, -627.3585f, -6760.218f },
-	{ -14.12063f, -627.3585f, -7312.401f },
-	{ 2578.74f, -1606.877f, -6133.568f },
-	{ -14.12063f, -627.3585f, -7312.401f },
-	{ -13.1113f, -1606.877f, -6634.527f },
-	{ -13.1113f, -1606.877f, -6634.527f },
-	{ -14.12063f, -627.3585f, -7312.401f },
-	{ -2841.779f, -627.3585f, -6751.286f },
-	{ -13.1113f, -1606.877f, -6634.527f },
-	{ -2841.779f, -627.3585f, -6751.286f },
-	{ -2603.335f, -1606.877f, -6125.386f },
-	{ -2603.335f, -1606.877f, -6125.386f },
-	{ -2841.779f, -627.3585f, -6751.286f },
-	{ -5237.158f, -627.3585f, -5162.299f },
-	{ -2603.335f, -1606.877f, -6125.386f },
-	{ -5237.158f, -627.3585f, -5162.299f },
-	{ -4797.588f, -1606.877f, -4683.659f },
-	{ -4797.588f, -1606.877f, -4683.659f },
-	{ -5237.158f, -627.3585f, -5162.299f },
-	{ -6835.581f, -627.3585f, -2787.343f },
-	{ -4797.588f, -1606.877f, -4683.659f },
-	{ -6835.581f, -627.3585f, -2787.343f },
-	{ -6261.822f, -1606.877f, -2528.828f },
-	{ -6261.822f, -1606.877f, -2528.828f },
-	{ -6835.581f, -627.3585f, -2787.343f },
-	{ -7393.703f, -627.3585f, 12.00588f },
-	{ -6261.822f, -1606.877f, -2528.828f },
-	{ -7393.703f, -627.3585f, 12.00588f },
-	{ -6773.116f, -1606.877f, 11.0405f },
-	{ -6773.116f, -1606.877f, 11.0405f },
-	{ -7393.703f, -627.3585f, 12.00588f },
-	{ -6826.555f, -627.3585f, 2809.585f },
-	{ -6773.116f, -1606.877f, 11.0405f },
-	{ -6826.555f, -627.3585f, 2809.585f },
-	{ -6253.633f, -1606.877f, 2549.287f },
-	{ -6253.633f, -1606.877f, 2549.287f },
-	{ -6826.555f, -627.3585f, 2809.585f },
-	{ -5220.484f, -627.3585f, 5179.482f },
-	{ -6253.633f, -1606.877f, 2549.287f },
-	{ -5220.484f, -627.3585f, 5179.482f },
-	{ -4782.458f, -1606.877f, 4699.479f },
-	{ -4782.458f, -1606.877f, 4699.479f },
-	{ -5220.484f, -627.3585f, 5179.482f },
-	{ -2819.99f, -627.3585f, 6760.9f },
-	{ -4782.458f, -1606.877f, 4699.479f },
-	{ -2819.99f, -627.3585f, 6760.9f },
-	{ -2583.564f, -1606.877f, 6134.273f },
-	{ -2583.564f, -1606.877f, 6134.273f },
-	{ -2819.99f, -627.3585f, 6760.9f },
-	{ 9.463404f, -627.3585f, 7313.084f },
-	{ -2583.564f, -1606.877f, 6134.273f },
-	{ 9.463404f, -627.3585f, 7313.084f },
-	{ 8.2893f, -1606.877f, 6635.235f },
-	{ 8.2893f, -1606.877f, 6635.235f },
-	{ 9.463404f, -627.3585f, 7313.084f },
-	{ 2837.121f, -627.3585f, 6751.97f },
-	{ 8.2893f, -1606.877f, 6635.235f },
-	{ 2837.121f, -627.3585f, 6751.97f },
-	{ 2598.512f, -1606.877f, 6126.095f },
-	{ 2598.512f, -1606.877f, 6126.095f },
-	{ 2837.121f, -627.3585f, 6751.97f },
-	{ 5232.501f, -627.3585f, 5162.982f },
-	{ 2598.512f, -1606.877f, 6126.095f },
-	{ 5232.501f, -627.3585f, 5162.982f },
-	{ 4792.768f, -1606.877f, 4684.368f },
-	{ 4792.768f, -1606.877f, 4684.368f },
-	{ 5232.501f, -627.3585f, 5162.982f },
-	{ 6830.923f, -627.3585f, 2788.029f },
-	{ 4792.768f, -1606.877f, 4684.368f },
-	{ 6830.923f, -627.3585f, 2788.029f },
-	{ 6257.001f, -1606.877f, 2529.54f },
-	{ 6257.001f, -1606.877f, 2529.54f },
-	{ 6830.923f, -627.3585f, 2788.029f },
-	{ 7389.043f, -627.3585f, -11.32471f },
-	{ 6257.001f, -1606.877f, 2529.54f },
-	{ 7389.043f, -627.3585f, -11.32471f },
-	{ 6768.295f, -1606.877f, -10.33391f },
-	{ 7623.721f, 415, -11.82398f },
-	{ 7389.043f, -627.3585f, -11.32471f },
-	{ 6830.923f, -627.3585f, 2788.029f },
-	{ 7623.721f, 415, -11.82398f },
-	{ 6830.923f, -627.3585f, 2788.029f },
-	{ 7047.879f, 415, 2907.458f },
-	{ 7047.879f, 415, 2907.458f },
-	{ 6830.923f, -627.3585f, 2788.029f },
-	{ 5232.501f, -627.3585f, 5162.982f },
-	{ 7047.879f, 415, 2907.458f },
-	{ 5232.501f, -627.3585f, 5162.982f },
-	{ 5398.712f, 415, 5384.157f },
-	{ 5398.712f, 415, 5384.157f },
-	{ 5232.501f, -627.3585f, 5162.982f },
-	{ 2837.121f, -627.3585f, 6751.97f },
-	{ 5398.712f, 415, 5384.157f },
-	{ 2837.121f, -627.3585f, 6751.97f },
-	{ 2927.286f, 415, 7041.218f },
-	{ 2927.286f, 415, 7041.218f },
-	{ 2837.121f, -627.3585f, 6751.97f },
-	{ 9.463404f, -627.3585f, 7313.084f },
-	{ 2927.286f, 415, 7041.218f },
-	{ 9.463404f, -627.3585f, 7313.084f },
-	{ 9.857071f, 415, 7626.369f },
-	{ 9.857071f, 415, 7626.369f },
-	{ 9.463404f, -627.3585f, 7313.084f },
-	{ -2819.99f, -627.3585f, 6760.9f },
-	{ 9.857071f, 415, 7626.369f },
-	{ -2819.99f, -627.3585f, 6760.9f },
-	{ -2909.423f, 415, 7050.529f },
-	{ -2909.423f, 415, 7050.529f },
-	{ -2819.99f, -627.3585f, 6760.9f },
-	{ -5220.484f, -627.3585f, 5179.482f },
-	{ -2909.423f, 415, 7050.529f },
-	{ -5220.484f, -627.3585f, 5179.482f },
-	{ -5386.125f, 415, 5401.362f },
-	{ -5386.125f, 415, 5401.362f },
-	{ -5220.484f, -627.3585f, 5179.482f },
-	{ -6826.555f, -627.3585f, 2809.585f },
-	{ -5386.125f, 415, 5401.362f },
-	{ -6826.555f, -627.3585f, 2809.585f },
-	{ -7043.183f, 415, 2929.934f },
-	{ -7043.183f, 415, 2929.934f },
-	{ -6826.555f, -627.3585f, 2809.585f },
-	{ -7393.703f, -627.3585f, 12.00588f },
-	{ -7043.183f, 415, 2929.934f },
-	{ -7393.703f, -627.3585f, 12.00588f },
-	{ -7628.336f, 415, 12.50638f },
-	{ -7628.336f, 415, 12.50638f },
-	{ -7393.703f, -627.3585f, 12.00588f },
-	{ -6835.581f, -627.3585f, -2787.343f },
-	{ -7628.336f, 415, 12.50638f },
-	{ -6835.581f, -627.3585f, -2787.343f },
-	{ -7052.498f, 415, -2906.77f },
-	{ -7052.498f, 415, -2906.77f },
-	{ -6835.581f, -627.3585f, -2787.343f },
-	{ -5237.158f, -627.3585f, -5162.299f },
-	{ -7052.498f, 415, -2906.77f },
-	{ -5237.158f, -627.3585f, -5162.299f },
-	{ -5403.329f, 415, -5383.473f },
-	{ -5403.329f, 415, -5383.473f },
-	{ -5237.158f, -627.3585f, -5162.299f },
-	{ -2841.779f, -627.3585f, -6751.286f },
-	{ -5403.329f, 415, -5383.473f },
-	{ -2841.779f, -627.3585f, -6751.286f },
-	{ -2931.904f, 415, -7040.534f },
-	{ -2931.904f, 415, -7040.534f },
-	{ -2841.779f, -627.3585f, -6751.286f },
-	{ -14.12063f, -627.3585f, -7312.401f },
-	{ -2931.904f, 415, -7040.534f },
-	{ -14.12063f, -627.3585f, -7312.401f },
-	{ -14.47484f, 415, -7625.687f },
-	{ -14.47484f, 415, -7625.687f },
-	{ -14.12063f, -627.3585f, -7312.401f },
-	{ 2815.333f, -627.3585f, -6760.218f },
-	{ -14.47484f, 415, -7625.687f },
-	{ 2815.333f, -627.3585f, -6760.218f },
-	{ 2904.806f, 415, -7049.848f },
-	{ 2904.806f, 415, -7049.848f },
-	{ 2815.333f, -627.3585f, -6760.218f },
-	{ 5215.826f, -627.3585f, -5178.8f },
-	{ 2904.806f, 415, -7049.848f },
-	{ 5215.826f, -627.3585f, -5178.8f },
-	{ 5381.508f, 415, -5400.678f },
-	{ 5381.508f, 415, -5400.678f },
-	{ 5215.826f, -627.3585f, -5178.8f },
-	{ 6821.898f, -627.3585f, -2808.902f },
-	{ 5381.508f, 415, -5400.678f },
-	{ 6821.898f, -627.3585f, -2808.902f },
-	{ 7038.567f, 415, -2929.253f },
-	{ 7038.567f, 415, -2929.253f },
-	{ 6821.898f, -627.3585f, -2808.902f },
-	{ 7389.043f, -627.3585f, -11.32471f },
-	{ 7038.567f, 415, -2929.253f },
-	{ 7389.043f, -627.3585f, -11.32471f },
-	{ 7623.721f, 415, -11.82398f },
-	{ 6768.295f, -1606.877f, -10.33391f },
-	{ 5356.187f, -2484.395f, -8.045405f },
-	{ 4951.532f, -2484.395f, 2021.583f },
-	{ 6768.295f, -1606.877f, -10.33391f },
-	{ 4951.532f, -2484.395f, 2021.583f },
-	{ 6257.001f, -1606.877f, 2529.54f },
-	{ 6257.001f, -1606.877f, 2529.54f },
-	{ 4951.532f, -2484.395f, 2021.583f },
-	{ 3792.62f, -2484.395f, 3743.505f },
-	{ 6257.001f, -1606.877f, 2529.54f },
-	{ 3792.62f, -2484.395f, 3743.505f },
-	{ 4792.768f, -1606.877f, 4684.368f },
-	{ 4792.768f, -1606.877f, 4684.368f },
-	{ 3792.62f, -2484.395f, 3743.505f },
-	{ 2055.887f, -2484.395f, 4895.574f },
-	{ 4792.768f, -1606.877f, 4684.368f },
-	{ 2055.887f, -2484.395f, 4895.574f },
-	{ 2598.512f, -1606.877f, 6126.095f },
-	{ 2598.512f, -1606.877f, 6126.095f },
-	{ 2055.887f, -2484.395f, 4895.574f },
-	{ 5.737093f, -2484.395f, 5302.403f },
-	{ 2598.512f, -1606.877f, 6126.095f },
-	{ 5.737093f, -2484.395f, 5302.403f },
-	{ 8.2893f, -1606.877f, 6635.235f },
-	{ 8.2893f, -1606.877f, 6635.235f },
-	{ 5.737093f, -2484.395f, 5302.403f },
-	{ -2045.714f, -2484.395f, 4902.048f },
-	{ 8.2893f, -1606.877f, 6635.235f },
-	{ -2045.714f, -2484.395f, 4902.048f },
-	{ -2583.564f, -1606.877f, 6134.273f },
-	{ -2583.564f, -1606.877f, 6134.273f },
-	{ -2045.714f, -2484.395f, 4902.048f },
-	{ -3786.153f, -2484.395f, 3755.467f },
-	{ -2583.564f, -1606.877f, 6134.273f },
-	{ -3786.153f, -2484.395f, 3755.467f },
-	{ -4782.458f, -1606.877f, 4699.479f },
-	{ -4782.458f, -1606.877f, 4699.479f },
-	{ -3786.153f, -2484.395f, 3755.467f },
-	{ -4950.611f, -2484.395f, 2037.212f },
-	{ -4782.458f, -1606.877f, 4699.479f },
-	{ -4950.611f, -2484.395f, 2037.212f },
-	{ -6253.633f, -1606.877f, 2549.287f },
-	{ -6253.633f, -1606.877f, 2549.287f },
-	{ -4950.611f, -2484.395f, 2037.212f },
-	{ -5361.811f, -2484.395f, 8.871887f },
-	{ -6253.633f, -1606.877f, 2549.287f },
-	{ -5361.811f, -2484.395f, 8.871887f },
-	{ -6773.116f, -1606.877f, 11.0405f },
-	{ -6773.116f, -1606.877f, 11.0405f },
-	{ -5361.811f, -2484.395f, 8.871887f },
-	{ -4957.152f, -2484.395f, -2020.754f },
-	{ -6773.116f, -1606.877f, 11.0405f },
-	{ -4957.152f, -2484.395f, -2020.754f },
-	{ -6261.822f, -1606.877f, -2528.828f },
-	{ -6261.822f, -1606.877f, -2528.828f },
-	{ -4957.152f, -2484.395f, -2020.754f },
-	{ -3798.244f, -2484.395f, -3742.676f },
-	{ -6261.822f, -1606.877f, -2528.828f },
-	{ -3798.244f, -2484.395f, -3742.676f },
-	{ -4797.588f, -1606.877f, -4683.659f },
-	{ -4797.588f, -1606.877f, -4683.659f },
-	{ -3798.244f, -2484.395f, -3742.676f },
-	{ -2061.513f, -2484.395f, -4894.747f },
-	{ -4797.588f, -1606.877f, -4683.659f },
-	{ -2061.513f, -2484.395f, -4894.747f },
-	{ -2603.335f, -1606.877f, -6125.386f },
-	{ -2603.335f, -1606.877f, -6125.386f },
-	{ -2061.513f, -2484.395f, -4894.747f },
-	{ -11.36321f, -2484.395f, -5301.577f },
-	{ -2603.335f, -1606.877f, -6125.386f },
-	{ -11.36321f, -2484.395f, -5301.577f },
-	{ -13.1113f, -1606.877f, -6634.527f },
-	{ -13.1113f, -1606.877f, -6634.527f },
-	{ -11.36321f, -2484.395f, -5301.577f },
-	{ 2040.089f, -2484.395f, -4901.224f },
-	{ -13.1113f, -1606.877f, -6634.527f },
-	{ 2040.089f, -2484.395f, -4901.224f },
-	{ 2578.74f, -1606.877f, -6133.568f },
-	{ 2578.74f, -1606.877f, -6133.568f },
-	{ 2040.089f, -2484.395f, -4901.224f },
-	{ 3780.527f, -2484.395f, -3754.643f },
-	{ 2578.74f, -1606.877f, -6133.568f },
-	{ 3780.527f, -2484.395f, -3754.643f },
-	{ 4777.636f, -1606.877f, -4698.773f },
-	{ 4777.636f, -1606.877f, -4698.773f },
-	{ 3780.527f, -2484.395f, -3754.643f },
-	{ 4944.985f, -2484.395f, -2036.387f },
-	{ 4777.636f, -1606.877f, -4698.773f },
-	{ 4944.985f, -2484.395f, -2036.387f },
-	{ 6248.812f, -1606.877f, -2548.581f },
-	{ 6248.812f, -1606.877f, -2548.581f },
-	{ 4944.985f, -2484.395f, -2036.387f },
-	{ 5356.187f, -2484.395f, -8.045405f },
-	{ 6248.812f, -1606.877f, -2548.581f },
-	{ 5356.187f, -2484.395f, -8.045405f },
-	{ 6768.295f, -1606.877f, -10.33391f },
-	{ 5356.187f, -2484.395f, -8.045405f },
-	{ 1871.782f, -2862.894f, -2.918277f },
-	{ 4951.532f, -2484.395f, 2021.583f },
-	{ 4951.532f, -2484.395f, 2021.583f },
-	{ 1871.782f, -2862.894f, -2.918277f },
-	{ 1730.315f, -2862.894f, 763.4088f },
-	{ 4951.532f, -2484.395f, 2021.583f },
-	{ 1730.315f, -2862.894f, 763.4088f },
-	{ 3792.62f, -2484.395f, 3743.505f },
-	{ 3792.62f, -2484.395f, 3743.505f },
-	{ 1730.315f, -2862.894f, 763.4088f },
-	{ 1325.156f, -2862.894f, 1413.556f },
-	{ 3792.62f, -2484.395f, 3743.505f },
-	{ 1325.156f, -2862.894f, 1413.556f },
-	{ 2055.887f, -2484.395f, 4895.574f },
-	{ 2055.887f, -2484.395f, 4895.574f },
-	{ 1325.156f, -2862.894f, 1413.556f },
-	{ 717.9912f, -2862.894f, 1848.543f },
-	{ 2055.887f, -2484.395f, 4895.574f },
-	{ 717.9912f, -2862.894f, 1848.543f },
-	{ 5.737093f, -2484.395f, 5302.403f },
-	{ 5.737093f, -2484.395f, 5302.403f },
-	{ 717.9912f, -2862.894f, 1848.543f },
-	{ 1.254332f, -2862.894f, 2002.148f },
-	{ 5.737093f, -2484.395f, 5302.403f },
-	{ 1.254332f, -2862.894f, 2002.148f },
-	{ -2045.714f, -2484.395f, 4902.048f },
-	{ -2045.714f, -2484.395f, 4902.048f },
-	{ 1.254332f, -2862.894f, 2002.148f },
-	{ -715.9375f, -2862.894f, 1850.987f },
-	{ -2045.714f, -2484.395f, 4902.048f },
-	{ -715.9375f, -2862.894f, 1850.987f },
-	{ -3786.153f, -2484.395f, 3755.467f },
-	{ -3786.153f, -2484.395f, 3755.467f },
-	{ -715.9375f, -2862.894f, 1850.987f },
-	{ -1324.398f, -2862.894f, 1418.071f },
-	{ -3786.153f, -2484.395f, 3755.467f },
-	{ -1324.398f, -2862.894f, 1418.071f },
-	{ -4950.611f, -2484.395f, 2037.212f },
-	{ -4950.611f, -2484.395f, 2037.212f },
-	{ -1324.398f, -2862.894f, 1418.071f },
-	{ -1731.496f, -2862.894f, 769.3094f },
-	{ -4950.611f, -2484.395f, 2037.212f },
-	{ -1731.496f, -2862.894f, 769.3094f },
-	{ -5361.811f, -2484.395f, 8.871887f },
-	{ -5361.811f, -2484.395f, 8.871887f },
-	{ -1731.496f, -2862.894f, 769.3094f },
-	{ -1875.252f, -2862.894f, 3.468501f },
-	{ -5361.811f, -2484.395f, 8.871887f },
-	{ -1875.252f, -2862.894f, 3.468501f },
-	{ -4957.152f, -2484.395f, -2020.754f },
-	{ -4957.152f, -2484.395f, -2020.754f },
-	{ -1875.252f, -2862.894f, 3.468501f },
-	{ -1733.782f, -2862.894f, -762.8569f },
-	{ -4957.152f, -2484.395f, -2020.754f },
-	{ -1733.782f, -2862.894f, -762.8569f },
-	{ -3798.244f, -2484.395f, -3742.676f },
-	{ -3798.244f, -2484.395f, -3742.676f },
-	{ -1733.782f, -2862.894f, -762.8569f },
-	{ -1328.625f, -2862.894f, -1413.005f },
-	{ -3798.244f, -2484.395f, -3742.676f },
-	{ -1328.625f, -2862.894f, -1413.005f },
-	{ -2061.513f, -2484.395f, -4894.747f },
-	{ -2061.513f, -2484.395f, -4894.747f },
-	{ -1328.625f, -2862.894f, -1413.005f },
-	{ -721.4603f, -2862.894f, -1847.992f },
-	{ -2061.513f, -2484.395f, -4894.747f },
-	{ -721.4603f, -2862.894f, -1847.992f },
-	{ -11.36321f, -2484.395f, -5301.577f },
-	{ -11.36321f, -2484.395f, -5301.577f },
-	{ -721.4603f, -2862.894f, -1847.992f },
-	{ -4.72366f, -2862.894f, -2001.599f },
-	{ -11.36321f, -2484.395f, -5301.577f },
-	{ -4.72366f, -2862.894f, -2001.599f },
-	{ 2040.089f, -2484.395f, -4901.224f },
-	{ 2040.089f, -2484.395f, -4901.224f },
-	{ -4.72366f, -2862.894f, -2001.599f },
-	{ 712.4684f, -2862.894f, -1850.437f },
-	{ 2040.089f, -2484.395f, -4901.224f },
-	{ 712.4684f, -2862.894f, -1850.437f },
-	{ 3780.527f, -2484.395f, -3754.643f },
-	{ 3780.527f, -2484.395f, -3754.643f },
-	{ 712.4684f, -2862.894f, -1850.437f },
-	{ 1320.929f, -2862.894f, -1417.522f },
-	{ 3780.527f, -2484.395f, -3754.643f },
-	{ 1320.929f, -2862.894f, -1417.522f },
-	{ 4944.985f, -2484.395f, -2036.387f },
-	{ 4944.985f, -2484.395f, -2036.387f },
-	{ 1320.929f, -2862.894f, -1417.522f },
-	{ 1728.026f, -2862.894f, -768.7598f },
-	{ 4944.985f, -2484.395f, -2036.387f },
-	{ 1728.026f, -2862.894f, -768.7598f },
-	{ 5356.187f, -2484.395f, -8.045405f },
-	{ 5356.187f, -2484.395f, -8.045405f },
-	{ 1728.026f, -2862.894f, -768.7598f },
-	{ 1871.782f, -2862.894f, -2.918277f },
-	{ -10.58599f, 6326.608f, -4198.082f },
-	{ -2.453177f, 6522.781f, 0.364453f },
-	{ -1616.833f, 6326.608f, -3875.914f },
-	{ -2977.524f, 6326.608f, -2963.585f },
-	{ -1616.833f, 6326.608f, -3875.914f },
-	{ -2.453177f, 6522.781f, 0.364453f },
-	{ -2977.524f, 6326.608f, -2963.585f },
-	{ -2.453177f, 6522.781f, 0.364453f },
-	{ -3885.503f, 6326.608f, -1599.989f },
-	{ -3885.503f, 6326.608f, -1599.989f },
-	{ -2.453177f, 6522.781f, 0.364453f },
-	{ -4202.545f, 6326.608f, 7.27471f },
-	{ -1604.456f, 6326.608f, 3882.195f },
-	{ -2968.05f, 6326.608f, 2974.212f },
-	{ -2.453177f, 6522.781f, 0.364453f },
-	{ -2.453177f, 6522.781f, 0.364453f },
-	{ -2968.05f, 6326.608f, 2974.212f },
-	{ -3880.379f, 6326.608f, 1613.522f },
-	{ -2.453177f, 6522.781f, 0.364453f },
-	{ -3880.379f, 6326.608f, 1613.522f },
-	{ -4202.545f, 6326.608f, 7.27471f },
-	{ 2.811029f, 6326.608f, 4199.235f },
-	{ -1604.456f, 6326.608f, 3882.195f },
-	{ -2.453177f, 6522.781f, 0.364453f },
-	{ 2.811029f, 6326.608f, 4199.235f },
-	{ -2.453177f, 6522.781f, 0.364453f },
-	{ 1609.059f, 6326.608f, 3877.068f },
-	{ 1609.059f, 6326.608f, 3877.068f },
-	{ -2.453177f, 6522.781f, 0.364453f },
-	{ 2969.751f, 6326.608f, 2964.742f },
-	{ 3877.732f, 6326.608f, 1601.147f },
-	{ 2969.751f, 6326.608f, 2964.742f },
-	{ -2.453177f, 6522.781f, 0.364453f },
-	{ 3877.732f, 6326.608f, 1601.147f },
-	{ -2.453177f, 6522.781f, 0.364453f },
-	{ 4194.771f, 6326.608f, -6.12069f },
-	{ 4194.771f, 6326.608f, -6.12069f },
-	{ -2.453177f, 6522.781f, 0.364453f },
-	{ 3872.604f, 6326.608f, -1612.37f },
-	{ 2960.277f, 6326.608f, -2973.06f },
-	{ 3872.604f, 6326.608f, -1612.37f },
-	{ -2.453177f, 6522.781f, 0.364453f },
-	{ 2960.277f, 6326.608f, -2973.06f },
-	{ -2.453177f, 6522.781f, 0.364453f },
-	{ 1596.682f, 6326.608f, -3881.042f },
-	{ 1596.682f, 6326.608f, -3881.042f },
-	{ -2.453177f, 6522.781f, 0.364453f },
-	{ -10.58599f, 6326.608f, -4198.082f },
-	{ 6001.759f, 5653.72f, -9.112043f },
-	{ 4194.771f, 6326.608f, -6.12069f },
-	{ 5540.998f, 5653.72f, -2306.366f },
-	{ 5540.998f, 5653.72f, -2306.366f },
-	{ 4194.771f, 6326.608f, -6.12069f },
-	{ 3872.604f, 6326.608f, -1612.37f },
-	{ 5540.998f, 5653.72f, -2306.366f },
-	{ 3872.604f, 6326.608f, -1612.37f },
-	{ 4236.188f, 5653.72f, -4252.423f },
-	{ 4236.188f, 5653.72f, -4252.423f },
-	{ 3872.604f, 6326.608f, -1612.37f },
-	{ 2960.277f, 6326.608f, -2973.06f },
-	{ 4236.188f, 5653.72f, -4252.423f },
-	{ 2960.277f, 6326.608f, -2973.06f },
-	{ 2285.978f, 5653.72f, -5551.014f },
-	{ 2285.978f, 5653.72f, -5551.014f },
-	{ 2960.277f, 6326.608f, -2973.06f },
-	{ 1596.682f, 6326.608f, -3881.042f },
-	{ 2285.978f, 5653.72f, -5551.014f },
-	{ 1596.682f, 6326.608f, -3881.042f },
-	{ -12.7328f, 5653.72f, -6004.445f },
-	{ -12.7328f, 5653.72f, -6004.445f },
-	{ 1596.682f, 6326.608f, -3881.042f },
-	{ -10.58599f, 6326.608f, -4198.082f },
-	{ -12.7328f, 5653.72f, -6004.445f },
-	{ -10.58599f, 6326.608f, -4198.082f },
-	{ -2309.985f, 5653.72f, -5543.68f },
-	{ -2309.985f, 5653.72f, -5543.68f },
-	{ -10.58599f, 6326.608f, -4198.082f },
-	{ -1616.833f, 6326.608f, -3875.914f },
-	{ -2309.985f, 5653.72f, -5543.68f },
-	{ -1616.833f, 6326.608f, -3875.914f },
-	{ -4256.041f, 5653.72f, -4238.869f },
-	{ -4256.041f, 5653.72f, -4238.869f },
-	{ -1616.833f, 6326.608f, -3875.914f },
-	{ -2977.524f, 6326.608f, -2963.585f },
-	{ -4256.041f, 5653.72f, -4238.869f },
-	{ -2977.524f, 6326.608f, -2963.585f },
-	{ -5554.631f, 5653.72f, -2288.659f },
-	{ -5554.631f, 5653.72f, -2288.659f },
-	{ -2977.524f, 6326.608f, -2963.585f },
-	{ -3885.503f, 6326.608f, -1599.989f },
-	{ -5554.631f, 5653.72f, -2288.659f },
-	{ -3885.503f, 6326.608f, -1599.989f },
-	{ -6008.062f, 5653.72f, 10.0481f },
-	{ -6008.062f, 5653.72f, 10.0481f },
-	{ -3885.503f, 6326.608f, -1599.989f },
-	{ -4202.545f, 6326.608f, 7.27471f },
-	{ -6008.062f, 5653.72f, 10.0481f },
-	{ -4202.545f, 6326.608f, 7.27471f },
-	{ -5547.301f, 5653.72f, 2307.3f },
-	{ -5547.301f, 5653.72f, 2307.3f },
-	{ -4202.545f, 6326.608f, 7.27471f },
-	{ -3880.379f, 6326.608f, 1613.522f },
-	{ -5547.301f, 5653.72f, 2307.3f },
-	{ -3880.379f, 6326.608f, 1613.522f },
-	{ -4242.492f, 5653.72f, 4253.355f },
-	{ -4242.492f, 5653.72f, 4253.355f },
-	{ -3880.379f, 6326.608f, 1613.522f },
-	{ -2968.05f, 6326.608f, 2974.212f },
-	{ -4242.492f, 5653.72f, 4253.355f },
-	{ -2968.05f, 6326.608f, 2974.212f },
-	{ -2292.281f, 5653.72f, 5551.948f },
-	{ -2292.281f, 5653.72f, 5551.948f },
-	{ -2968.05f, 6326.608f, 2974.212f },
-	{ -1604.456f, 6326.608f, 3882.195f },
-	{ -2292.281f, 5653.72f, 5551.948f },
-	{ -1604.456f, 6326.608f, 3882.195f },
-	{ 6.428576f, 5653.72f, 6005.38f },
-	{ 6.428576f, 5653.72f, 6005.38f },
-	{ -1604.456f, 6326.608f, 3882.195f },
-	{ 2.811029f, 6326.608f, 4199.235f },
-	{ 6.428576f, 5653.72f, 6005.38f },
-	{ 2.811029f, 6326.608f, 4199.235f },
-	{ 2303.68f, 5653.72f, 5544.616f },
-	{ 2303.68f, 5653.72f, 5544.616f },
-	{ 2.811029f, 6326.608f, 4199.235f },
-	{ 1609.059f, 6326.608f, 3877.068f },
-	{ 2303.68f, 5653.72f, 5544.616f },
-	{ 1609.059f, 6326.608f, 3877.068f },
-	{ 4249.738f, 5653.72f, 4239.808f },
-	{ 4249.738f, 5653.72f, 4239.808f },
-	{ 1609.059f, 6326.608f, 3877.068f },
-	{ 2969.751f, 6326.608f, 2964.742f },
-	{ 4249.738f, 5653.72f, 4239.808f },
-	{ 2969.751f, 6326.608f, 2964.742f },
-	{ 5548.333f, 5653.72f, 2289.598f },
-	{ 5548.333f, 5653.72f, 2289.598f },
-	{ 2969.751f, 6326.608f, 2964.742f },
-	{ 3877.732f, 6326.608f, 1601.147f },
-	{ 5548.333f, 5653.72f, 2289.598f },
-	{ 3877.732f, 6326.608f, 1601.147f },
-	{ 6001.759f, 5653.72f, -9.112043f },
-	{ 6001.759f, 5653.72f, -9.112043f },
-	{ 3877.732f, 6326.608f, 1601.147f },
-	{ 4194.771f, 6326.608f, -6.12069f },
-	{ 7623.721f, 415, -11.82398f },
-	{ 7782.857f, 2352.323f, -12.05655f },
-	{ 7185.484f, 2352.323f, -2990.42f },
-	{ 7623.721f, 415, -11.82398f },
-	{ 7185.484f, 2352.323f, -2990.42f },
-	{ 7038.567f, 415, -2929.253f },
-	{ 7038.567f, 415, -2929.253f },
-	{ 7185.484f, 2352.323f, -2990.42f },
-	{ 5493.812f, 2352.323f, -5513.466f },
-	{ 7038.567f, 415, -2929.253f },
-	{ 5493.812f, 2352.323f, -5513.466f },
-	{ 5381.508f, 415, -5400.678f },
-	{ 5381.508f, 415, -5400.678f },
-	{ 5493.812f, 2352.323f, -5513.466f },
-	{ 2965.382f, 2352.323f, -7197.08f },
-	{ 5381.508f, 415, -5400.678f },
-	{ 2965.382f, 2352.323f, -7197.08f },
-	{ 2904.806f, 415, -7049.848f },
-	{ 2904.806f, 415, -7049.848f },
-	{ 2965.382f, 2352.323f, -7197.08f },
-	{ -14.87322f, 2352.323f, -7784.947f },
-	{ 2904.806f, 415, -7049.848f },
-	{ -14.87322f, 2352.323f, -7784.947f },
-	{ -14.47484f, 415, -7625.687f },
-	{ -14.47484f, 415, -7625.687f },
-	{ -14.87322f, 2352.323f, -7784.947f },
-	{ -2993.236f, 2352.323f, -7187.57f },
-	{ -14.47484f, 415, -7625.687f },
-	{ -2993.236f, 2352.323f, -7187.57f },
-	{ -2931.904f, 415, -7040.534f },
-	{ -2931.904f, 415, -7040.534f },
-	{ -2993.236f, 2352.323f, -7187.57f },
-	{ -5516.282f, 2352.323f, -5495.9f },
-	{ -2931.904f, 415, -7040.534f },
-	{ -5516.282f, 2352.323f, -5495.9f },
-	{ -5403.329f, 415, -5383.473f },
-	{ -5403.329f, 415, -5383.473f },
-	{ -5516.282f, 2352.323f, -5495.9f },
-	{ -7199.896f, 2352.323f, -2967.469f },
-	{ -5403.329f, 415, -5383.473f },
-	{ -7199.896f, 2352.323f, -2967.469f },
-	{ -7052.498f, 415, -2906.77f },
-	{ -7052.498f, 415, -2906.77f },
-	{ -7199.896f, 2352.323f, -2967.469f },
-	{ -7787.764f, 2352.323f, 12.78173f },
-	{ -7052.498f, 415, -2906.77f },
-	{ -7787.764f, 2352.323f, 12.78173f },
-	{ -7628.336f, 415, 12.50638f },
-	{ -7628.336f, 415, 12.50638f },
-	{ -7787.764f, 2352.323f, 12.78173f },
-	{ -7190.388f, 2352.323f, 2991.147f },
-	{ -7628.336f, 415, 12.50638f },
-	{ -7190.388f, 2352.323f, 2991.147f },
-	{ -7043.183f, 415, 2929.934f },
-	{ -7043.183f, 415, 2929.934f },
-	{ -7190.388f, 2352.323f, 2991.147f },
-	{ -5498.718f, 2352.323f, 5514.194f },
-	{ -7043.183f, 415, 2929.934f },
-	{ -5498.718f, 2352.323f, 5514.194f },
-	{ -5386.125f, 415, 5401.362f },
-	{ -5386.125f, 415, 5401.362f },
-	{ -5498.718f, 2352.323f, 5514.194f },
-	{ -2970.287f, 2352.323f, 7197.807f },
-	{ -5386.125f, 415, 5401.362f },
-	{ -2970.287f, 2352.323f, 7197.807f },
-	{ -2909.423f, 415, 7050.529f },
-	{ -2909.423f, 415, 7050.529f },
-	{ -2970.287f, 2352.323f, 7197.807f },
-	{ 9.967772f, 2352.323f, 7785.675f },
-	{ -2909.423f, 415, 7050.529f },
-	{ 9.967772f, 2352.323f, 7785.675f },
-	{ 9.857071f, 415, 7626.369f },
-	{ 9.857071f, 415, 7626.369f },
-	{ 9.967772f, 2352.323f, 7785.675f },
-	{ 2988.331f, 2352.323f, 7188.298f },
-	{ 9.857071f, 415, 7626.369f },
-	{ 2988.331f, 2352.323f, 7188.298f },
-	{ 2927.286f, 415, 7041.218f },
-	{ 2927.286f, 415, 7041.218f },
-	{ 2988.331f, 2352.323f, 7188.298f },
-	{ 5511.378f, 2352.323f, 5496.628f },
-	{ 2927.286f, 415, 7041.218f },
-	{ 5511.378f, 2352.323f, 5496.628f },
-	{ 5398.712f, 415, 5384.157f },
-	{ 5398.712f, 415, 5384.157f },
-	{ 5511.378f, 2352.323f, 5496.628f },
-	{ 7194.991f, 2352.323f, 2968.199f },
-	{ 5398.712f, 415, 5384.157f },
-	{ 7194.991f, 2352.323f, 2968.199f },
-	{ 7047.879f, 415, 2907.458f },
-	{ 7047.879f, 415, 2907.458f },
-	{ 7194.991f, 2352.323f, 2968.199f },
-	{ 7782.857f, 2352.323f, -12.05655f },
-	{ 7047.879f, 415, 2907.458f },
-	{ 7782.857f, 2352.323f, -12.05655f },
-	{ 7623.721f, 415, -11.82398f },
-	{ 7584.067f, 4093.689f, -11.70395f },
-	{ 7782.857f, 2352.323f, -12.05655f },
-	{ 7194.991f, 2352.323f, 2968.199f },
-	{ 7584.067f, 4093.689f, -11.70395f },
-	{ 7194.991f, 2352.323f, 2968.199f },
-	{ 7011.148f, 4093.689f, 2864.899f },
-	{ 7011.148f, 4093.689f, 2864.899f },
-	{ 7194.991f, 2352.323f, 2968.199f },
-	{ 5511.378f, 2352.323f, 5496.628f },
-	{ 7011.148f, 4093.689f, 2864.899f },
-	{ 5511.378f, 2352.323f, 5496.628f },
-	{ 5370.432f, 4093.689f, 5305.407f },
-	{ 5370.432f, 4093.689f, 5305.407f },
-	{ 5511.378f, 2352.323f, 5496.628f },
-	{ 2988.331f, 2352.323f, 7188.298f },
-	{ 5370.432f, 4093.689f, 5305.407f },
-	{ 2988.331f, 2352.323f, 7188.298f },
-	{ 2911.707f, 4093.689f, 6938.275f },
-	{ 2911.707f, 4093.689f, 6938.275f },
-	{ 2988.331f, 2352.323f, 7188.298f },
-	{ 9.967772f, 2352.323f, 7785.675f },
-	{ 2911.707f, 4093.689f, 6938.275f },
-	{ 9.967772f, 2352.323f, 7785.675f },
-	{ 9.288399f, 4093.689f, 7514.914f },
-	{ 9.288399f, 4093.689f, 7514.914f },
-	{ 9.967772f, 2352.323f, 7785.675f },
-	{ -2970.287f, 2352.323f, 7197.807f },
-	{ 9.288399f, 4093.689f, 7514.914f },
-	{ -2970.287f, 2352.323f, 7197.807f },
-	{ -2894.957f, 4093.689f, 6947.539f },
-	{ -2894.957f, 4093.689f, 6947.539f },
-	{ -2970.287f, 2352.323f, 7197.807f },
-	{ -5498.718f, 2352.323f, 5514.194f },
-	{ -2894.957f, 4093.689f, 6947.539f },
-	{ -5498.718f, 2352.323f, 5514.194f },
-	{ -5358.88f, 4093.689f, 5322.522f },
-	{ -5358.88f, 4093.689f, 5322.522f },
-	{ -5498.718f, 2352.323f, 5514.194f },
-	{ -7190.388f, 2352.323f, 2991.147f },
-	{ -5358.88f, 4093.689f, 5322.522f },
-	{ -7190.388f, 2352.323f, 2991.147f },
-	{ -7007.373f, 4093.689f, 2887.263f },
-	{ -7007.373f, 4093.689f, 2887.263f },
-	{ -7190.388f, 2352.323f, 2991.147f },
-	{ -7787.764f, 2352.323f, 12.78173f },
-	{ -7007.373f, 4093.689f, 2887.263f },
-	{ -7787.764f, 2352.323f, 12.78173f },
-	{ -7589.469f, 4093.689f, 12.50422f },
-	{ -7589.469f, 4093.689f, 12.50422f },
-	{ -7787.764f, 2352.323f, 12.78173f },
-	{ -7199.896f, 2352.323f, -2967.469f },
-	{ -7589.469f, 4093.689f, 12.50422f },
-	{ -7199.896f, 2352.323f, -2967.469f },
-	{ -7016.55f, 4093.689f, -2864.092f },
-	{ -7016.55f, 4093.689f, -2864.092f },
-	{ -7199.896f, 2352.323f, -2967.469f },
-	{ -5516.282f, 2352.323f, -5495.9f },
-	{ -7016.55f, 4093.689f, -2864.092f },
-	{ -5516.282f, 2352.323f, -5495.9f },
-	{ -5375.834f, 4093.689f, -5304.604f },
-	{ -5375.834f, 4093.689f, -5304.604f },
-	{ -5516.282f, 2352.323f, -5495.9f },
-	{ -2993.236f, 2352.323f, -7187.57f },
-	{ -5375.834f, 4093.689f, -5304.604f },
-	{ -2993.236f, 2352.323f, -7187.57f },
-	{ -2917.111f, 4093.689f, -6937.472f },
-	{ -2917.111f, 4093.689f, -6937.472f },
-	{ -2993.236f, 2352.323f, -7187.57f },
-	{ -14.87322f, 2352.323f, -7784.947f },
-	{ -2917.111f, 4093.689f, -6937.472f },
-	{ -14.87322f, 2352.323f, -7784.947f },
-	{ -14.69158f, 4093.689f, -7514.113f },
-	{ -14.69158f, 4093.689f, -7514.113f },
-	{ -14.87322f, 2352.323f, -7784.947f },
-	{ 2965.382f, 2352.323f, -7197.08f },
-	{ -14.69158f, 4093.689f, -7514.113f },
-	{ 2965.382f, 2352.323f, -7197.08f },
-	{ 2889.552f, 4093.689f, -6946.738f },
-	{ 2889.552f, 4093.689f, -6946.738f },
-	{ 2965.382f, 2352.323f, -7197.08f },
-	{ 5493.812f, 2352.323f, -5513.466f },
-	{ 2889.552f, 4093.689f, -6946.738f },
-	{ 5493.812f, 2352.323f, -5513.466f },
-	{ 5353.477f, 4093.689f, -5321.723f },
-	{ 5353.477f, 4093.689f, -5321.723f },
-	{ 5493.812f, 2352.323f, -5513.466f },
-	{ 7185.484f, 2352.323f, -2990.42f },
-	{ 5353.477f, 4093.689f, -5321.723f },
-	{ 7185.484f, 2352.323f, -2990.42f },
-	{ 7001.971f, 4093.689f, -2886.465f },
-	{ 7001.971f, 4093.689f, -2886.465f },
-	{ 7185.484f, 2352.323f, -2990.42f },
-	{ 7782.857f, 2352.323f, -12.05655f },
-	{ 7001.971f, 4093.689f, -2886.465f },
-	{ 7782.857f, 2352.323f, -12.05655f },
-	{ 7584.067f, 4093.689f, -11.70395f },
-	{ 6001.759f, 5653.72f, -9.112043f },
-	{ 7584.067f, 4093.689f, -11.70395f },
-	{ 7011.148f, 4093.689f, 2864.899f },
-	{ 6001.759f, 5653.72f, -9.112043f },
-	{ 7011.148f, 4093.689f, 2864.899f },
-	{ 5548.333f, 5653.72f, 2289.598f },
-	{ 5548.333f, 5653.72f, 2289.598f },
-	{ 7011.148f, 4093.689f, 2864.899f },
-	{ 5370.432f, 4093.689f, 5305.407f },
-	{ 5548.333f, 5653.72f, 2289.598f },
-	{ 5370.432f, 4093.689f, 5305.407f },
-	{ 4249.738f, 5653.72f, 4239.808f },
-	{ 4249.738f, 5653.72f, 4239.808f },
-	{ 5370.432f, 4093.689f, 5305.407f },
-	{ 2911.707f, 4093.689f, 6938.275f },
-	{ 4249.738f, 5653.72f, 4239.808f },
-	{ 2911.707f, 4093.689f, 6938.275f },
-	{ 2303.68f, 5653.72f, 5544.616f },
-	{ 2303.68f, 5653.72f, 5544.616f },
-	{ 2911.707f, 4093.689f, 6938.275f },
-	{ 9.288399f, 4093.689f, 7514.914f },
-	{ 2303.68f, 5653.72f, 5544.616f },
-	{ 9.288399f, 4093.689f, 7514.914f },
-	{ 6.428576f, 5653.72f, 6005.38f },
-	{ 6.428576f, 5653.72f, 6005.38f },
-	{ 9.288399f, 4093.689f, 7514.914f },
-	{ -2894.957f, 4093.689f, 6947.539f },
-	{ 6.428576f, 5653.72f, 6005.38f },
-	{ -2894.957f, 4093.689f, 6947.539f },
-	{ -2292.281f, 5653.72f, 5551.948f },
-	{ -2292.281f, 5653.72f, 5551.948f },
-	{ -2894.957f, 4093.689f, 6947.539f },
-	{ -5358.88f, 4093.689f, 5322.522f },
-	{ -2292.281f, 5653.72f, 5551.948f },
-	{ -5358.88f, 4093.689f, 5322.522f },
-	{ -4242.492f, 5653.72f, 4253.355f },
-	{ -4242.492f, 5653.72f, 4253.355f },
-	{ -5358.88f, 4093.689f, 5322.522f },
-	{ -7007.373f, 4093.689f, 2887.263f },
-	{ -4242.492f, 5653.72f, 4253.355f },
-	{ -7007.373f, 4093.689f, 2887.263f },
-	{ -5547.301f, 5653.72f, 2307.3f },
-	{ -5547.301f, 5653.72f, 2307.3f },
-	{ -7007.373f, 4093.689f, 2887.263f },
-	{ -7589.469f, 4093.689f, 12.50422f },
-	{ -5547.301f, 5653.72f, 2307.3f },
-	{ -7589.469f, 4093.689f, 12.50422f },
-	{ -6008.062f, 5653.72f, 10.0481f },
-	{ -6008.062f, 5653.72f, 10.0481f },
-	{ -7589.469f, 4093.689f, 12.50422f },
-	{ -7016.55f, 4093.689f, -2864.092f },
-	{ -6008.062f, 5653.72f, 10.0481f },
-	{ -7016.55f, 4093.689f, -2864.092f },
-	{ -5554.631f, 5653.72f, -2288.659f },
-	{ -5554.631f, 5653.72f, -2288.659f },
-	{ -7016.55f, 4093.689f, -2864.092f },
-	{ -5375.834f, 4093.689f, -5304.604f },
-	{ -5554.631f, 5653.72f, -2288.659f },
-	{ -5375.834f, 4093.689f, -5304.604f },
-	{ -4256.041f, 5653.72f, -4238.869f },
-	{ -4256.041f, 5653.72f, -4238.869f },
-	{ -5375.834f, 4093.689f, -5304.604f },
-	{ -2917.111f, 4093.689f, -6937.472f },
-	{ -4256.041f, 5653.72f, -4238.869f },
-	{ -2917.111f, 4093.689f, -6937.472f },
-	{ -2309.985f, 5653.72f, -5543.68f },
-	{ -2309.985f, 5653.72f, -5543.68f },
-	{ -2917.111f, 4093.689f, -6937.472f },
-	{ -14.69158f, 4093.689f, -7514.113f },
-	{ -2309.985f, 5653.72f, -5543.68f },
-	{ -14.69158f, 4093.689f, -7514.113f },
-	{ -12.7328f, 5653.72f, -6004.445f },
-	{ -12.7328f, 5653.72f, -6004.445f },
-	{ -14.69158f, 4093.689f, -7514.113f },
-	{ 2889.552f, 4093.689f, -6946.738f },
-	{ -12.7328f, 5653.72f, -6004.445f },
-	{ 2889.552f, 4093.689f, -6946.738f },
-	{ 2285.978f, 5653.72f, -5551.014f },
-	{ 2285.978f, 5653.72f, -5551.014f },
-	{ 2889.552f, 4093.689f, -6946.738f },
-	{ 5353.477f, 4093.689f, -5321.723f },
-	{ 2285.978f, 5653.72f, -5551.014f },
-	{ 5353.477f, 4093.689f, -5321.723f },
-	{ 4236.188f, 5653.72f, -4252.423f },
-	{ 4236.188f, 5653.72f, -4252.423f },
-	{ 5353.477f, 4093.689f, -5321.723f },
-	{ 7001.971f, 4093.689f, -2886.465f },
-	{ 4236.188f, 5653.72f, -4252.423f },
-	{ 7001.971f, 4093.689f, -2886.465f },
-	{ 5540.998f, 5653.72f, -2306.366f },
-	{ 5540.998f, 5653.72f, -2306.366f },
-	{ 7001.971f, 4093.689f, -2886.465f },
-	{ 7584.067f, 4093.689f, -11.70395f },
-	{ 5540.998f, 5653.72f, -2306.366f },
-	{ 7584.067f, 4093.689f, -11.70395f },
-	{ 6001.759f, 5653.72f, -9.112043f }
-};
-
-NJS_VECTOR normalCHAO_8D4699596122D8A8C26[] = {
-	{ -0.7029f, 0.711193f, 0.011712f },
-	{ -0.922949f, 0.384888f, 0.005205f },
-	{ -0.846413f, 0.393039f, 0.359312f },
-	{ -0.7029f, 0.711193f, 0.011712f },
-	{ -0.846413f, 0.393039f, 0.359312f },
-	{ -0.64131f, 0.713453f, 0.282322f },
-	{ -0.64131f, 0.713453f, 0.282322f },
-	{ -0.846413f, 0.393039f, 0.359312f },
-	{ -0.638001f, 0.410561f, 0.651455f },
-	{ -0.64131f, 0.713453f, 0.282322f },
-	{ -0.638001f, 0.410561f, 0.651455f },
-	{ -0.482118f, 0.715652f, 0.505376f },
-	{ -0.482118f, 0.715652f, 0.505376f },
-	{ -0.638001f, 0.410561f, 0.651455f },
-	{ -0.337937f, 0.42688f, 0.838792f },
-	{ -0.482118f, 0.715652f, 0.505376f },
-	{ -0.337937f, 0.42688f, 0.838792f },
-	{ -0.253756f, 0.71642f, 0.649885f },
-	{ -0.253756f, 0.71642f, 0.649885f },
-	{ -0.337937f, 0.42688f, 0.838792f },
-	{ 0.006362f, 0.432767f, 0.901483f },
-	{ -0.253756f, 0.71642f, 0.649885f },
-	{ 0.006362f, 0.432767f, 0.901483f },
-	{ 0.010149f, 0.715427f, 0.698613f },
-	{ 0.010149f, 0.715427f, 0.698613f },
-	{ 0.006362f, 0.432767f, 0.901483f },
-	{ 0.349745f, 0.42507f, 0.834862f },
-	{ 0.010149f, 0.715427f, 0.698613f },
-	{ 0.349745f, 0.42507f, 0.834862f },
-	{ 0.274163f, 0.713321f, 0.644986f },
-	{ 0.274163f, 0.713321f, 0.644986f },
-	{ 0.349745f, 0.42507f, 0.834862f },
-	{ 0.647078f, 0.407959f, 0.644096f },
-	{ 0.274163f, 0.713321f, 0.644986f },
-	{ 0.647078f, 0.407959f, 0.644096f },
-	{ 0.500866f, 0.711198f, 0.493285f },
-	{ 0.500866f, 0.711198f, 0.493285f },
-	{ 0.647078f, 0.407959f, 0.644096f },
-	{ 0.851309f, 0.391151f, 0.349677f },
-	{ 0.500866f, 0.711198f, 0.493285f },
-	{ 0.851309f, 0.391151f, 0.349677f },
-	{ 0.653242f, 0.710212f, 0.262438f },
-	{ 0.653242f, 0.710212f, 0.262438f },
-	{ 0.851309f, 0.391151f, 0.349677f },
-	{ 0.922979f, 0.384815f, -0.005203f },
-	{ 0.653242f, 0.710212f, 0.262438f },
-	{ 0.922979f, 0.384815f, -0.005203f },
-	{ 0.703032f, 0.711062f, -0.011708f },
-	{ 0.703032f, 0.711062f, -0.011708f },
-	{ 0.922979f, 0.384815f, -0.005203f },
-	{ 0.846441f, 0.392969f, -0.359322f },
-	{ 0.703032f, 0.711062f, -0.011708f },
-	{ 0.846441f, 0.392969f, -0.359322f },
-	{ 0.641434f, 0.713324f, -0.282367f },
-	{ 0.641434f, 0.713324f, -0.282367f },
-	{ 0.846441f, 0.392969f, -0.359322f },
-	{ 0.638021f, 0.410505f, -0.651472f },
-	{ 0.641434f, 0.713324f, -0.282367f },
-	{ 0.638021f, 0.410505f, -0.651472f },
-	{ 0.482202f, 0.715542f, -0.50545f },
-	{ 0.482202f, 0.715542f, -0.50545f },
-	{ 0.638021f, 0.410505f, -0.651472f },
-	{ 0.337946f, 0.426845f, -0.838806f },
-	{ 0.482202f, 0.715542f, -0.50545f },
-	{ 0.337946f, 0.426845f, -0.838806f },
-	{ 0.253791f, 0.716348f, -0.649951f },
-	{ 0.253791f, 0.716348f, -0.649951f },
-	{ 0.337946f, 0.426845f, -0.838806f },
-	{ -0.00636f, 0.432757f, -0.901488f },
-	{ 0.253791f, 0.716348f, -0.649951f },
-	{ -0.00636f, 0.432757f, -0.901488f },
-	{ -0.010142f, 0.715404f, -0.698638f },
-	{ -0.010142f, 0.715404f, -0.698638f },
-	{ -0.00636f, 0.432757f, -0.901488f },
-	{ -0.349741f, 0.425087f, -0.834855f },
-	{ -0.010142f, 0.715404f, -0.698638f },
-	{ -0.349741f, 0.425087f, -0.834855f },
-	{ -0.274148f, 0.71335f, -0.644961f },
-	{ -0.274148f, 0.71335f, -0.644961f },
-	{ -0.349741f, 0.425087f, -0.834855f },
-	{ -0.647065f, 0.408f, -0.644083f },
-	{ -0.274148f, 0.71335f, -0.644961f },
-	{ -0.647065f, 0.408f, -0.644083f },
-	{ -0.50081f, 0.711276f, -0.493231f },
-	{ -0.50081f, 0.711276f, -0.493231f },
-	{ -0.647065f, 0.408f, -0.644083f },
-	{ -0.851285f, 0.391212f, -0.349666f },
-	{ -0.50081f, 0.711276f, -0.493231f },
-	{ -0.851285f, 0.391212f, -0.349666f },
-	{ -0.653138f, 0.710325f, -0.262392f },
-	{ -0.653138f, 0.710325f, -0.262392f },
-	{ -0.851285f, 0.391212f, -0.349666f },
-	{ -0.922949f, 0.384888f, 0.005205f },
-	{ -0.653138f, 0.710325f, -0.262392f },
-	{ -0.922949f, 0.384888f, 0.005205f },
-	{ -0.7029f, 0.711193f, 0.011712f },
-	{ -0.988373f, 0.152034f, 0.001956f },
-	{ -0.922949f, 0.384888f, 0.005205f },
-	{ -0.851285f, 0.391212f, -0.349666f },
-	{ -0.988373f, 0.152034f, 0.001956f },
-	{ -0.851285f, 0.391212f, -0.349666f },
-	{ -0.912746f, 0.159279f, -0.376197f },
-	{ -0.912746f, 0.159279f, -0.376197f },
-	{ -0.851285f, 0.391212f, -0.349666f },
-	{ -0.647065f, 0.408f, -0.644083f },
-	{ -0.912746f, 0.159279f, -0.376197f },
-	{ -0.647065f, 0.408f, -0.644083f },
-	{ -0.697986f, 0.171974f, -0.695156f },
-	{ -0.697986f, 0.171974f, -0.695156f },
-	{ -0.647065f, 0.408f, -0.644083f },
-	{ -0.349741f, 0.425087f, -0.834855f },
-	{ -0.697986f, 0.171974f, -0.695156f },
-	{ -0.349741f, 0.425087f, -0.834855f },
-	{ -0.378627f, 0.182612f, -0.907355f },
-	{ -0.378627f, 0.182612f, -0.907355f },
-	{ -0.349741f, 0.425087f, -0.834855f },
-	{ -0.00636f, 0.432757f, -0.901488f },
-	{ -0.378627f, 0.182612f, -0.907355f },
-	{ -0.00636f, 0.432757f, -0.901488f },
-	{ -0.003097f, 0.18514f, -0.982707f },
-	{ -0.003097f, 0.18514f, -0.982707f },
-	{ -0.00636f, 0.432757f, -0.901488f },
-	{ 0.337946f, 0.426845f, -0.838806f },
-	{ -0.003097f, 0.18514f, -0.982707f },
-	{ 0.337946f, 0.426845f, -0.838806f },
-	{ 0.373525f, 0.178152f, -0.910352f },
-	{ 0.373525f, 0.178152f, -0.910352f },
-	{ 0.337946f, 0.426845f, -0.838806f },
-	{ 0.638021f, 0.410505f, -0.651472f },
-	{ 0.373525f, 0.178152f, -0.910352f },
-	{ 0.638021f, 0.410505f, -0.651472f },
-	{ 0.695185f, 0.165571f, -0.699503f },
-	{ 0.695185f, 0.165571f, -0.699503f },
-	{ 0.638021f, 0.410505f, -0.651472f },
-	{ 0.846441f, 0.392969f, -0.359322f },
-	{ 0.695185f, 0.165571f, -0.699503f },
-	{ 0.846441f, 0.392969f, -0.359322f },
-	{ 0.911792f, 0.154702f, -0.380397f },
-	{ 0.911792f, 0.154702f, -0.380397f },
-	{ 0.846441f, 0.392969f, -0.359322f },
-	{ 0.922979f, 0.384815f, -0.005203f },
-	{ 0.911792f, 0.154702f, -0.380397f },
-	{ 0.922979f, 0.384815f, -0.005203f },
-	{ 0.988365f, 0.152089f, -0.001955f },
-	{ 0.988365f, 0.152089f, -0.001955f },
-	{ 0.922979f, 0.384815f, -0.005203f },
-	{ 0.851309f, 0.391151f, 0.349677f },
-	{ 0.988365f, 0.152089f, -0.001955f },
-	{ 0.851309f, 0.391151f, 0.349677f },
-	{ 0.912739f, 0.159328f, 0.376194f },
-	{ 0.912739f, 0.159328f, 0.376194f },
-	{ 0.851309f, 0.391151f, 0.349677f },
-	{ 0.647078f, 0.407959f, 0.644096f },
-	{ 0.912739f, 0.159328f, 0.376194f },
-	{ 0.647078f, 0.407959f, 0.644096f },
-	{ 0.697981f, 0.17201f, 0.695151f },
-	{ 0.697981f, 0.17201f, 0.695151f },
-	{ 0.647078f, 0.407959f, 0.644096f },
-	{ 0.349745f, 0.42507f, 0.834862f },
-	{ 0.697981f, 0.17201f, 0.695151f },
-	{ 0.349745f, 0.42507f, 0.834862f },
-	{ 0.378626f, 0.182629f, 0.907353f },
-	{ 0.378626f, 0.182629f, 0.907353f },
-	{ 0.349745f, 0.42507f, 0.834862f },
-	{ 0.006362f, 0.432767f, 0.901483f },
-	{ 0.378626f, 0.182629f, 0.907353f },
-	{ 0.006362f, 0.432767f, 0.901483f },
-	{ 0.003098f, 0.185135f, 0.982708f },
-	{ 0.003098f, 0.185135f, 0.982708f },
-	{ 0.006362f, 0.432767f, 0.901483f },
-	{ -0.337937f, 0.42688f, 0.838792f },
-	{ 0.003098f, 0.185135f, 0.982708f },
-	{ -0.337937f, 0.42688f, 0.838792f },
-	{ -0.373526f, 0.178126f, 0.910357f },
-	{ -0.373526f, 0.178126f, 0.910357f },
-	{ -0.337937f, 0.42688f, 0.838792f },
-	{ -0.638001f, 0.410561f, 0.651455f },
-	{ -0.373526f, 0.178126f, 0.910357f },
-	{ -0.638001f, 0.410561f, 0.651455f },
-	{ -0.69519f, 0.165527f, 0.699508f },
-	{ -0.69519f, 0.165527f, 0.699508f },
-	{ -0.638001f, 0.410561f, 0.651455f },
-	{ -0.846413f, 0.393039f, 0.359312f },
-	{ -0.69519f, 0.165527f, 0.699508f },
-	{ -0.846413f, 0.393039f, 0.359312f },
-	{ -0.911799f, 0.15465f, 0.380401f },
-	{ -0.911799f, 0.15465f, 0.380401f },
-	{ -0.846413f, 0.393039f, 0.359312f },
-	{ -0.922949f, 0.384888f, 0.005205f },
-	{ -0.911799f, 0.15465f, 0.380401f },
-	{ -0.922949f, 0.384888f, 0.005205f },
-	{ -0.988373f, 0.152034f, 0.001956f },
-	{ -0.7029f, 0.711193f, 0.011712f },
-	{ -0.325647f, 0.945229f, 0.022284f },
-	{ -0.310062f, 0.944831f, -0.105622f },
-	{ -0.7029f, 0.711193f, 0.011712f },
-	{ -0.310062f, 0.944831f, -0.105622f },
-	{ -0.653138f, 0.710325f, -0.262392f },
-	{ -0.653138f, 0.710325f, -0.262392f },
-	{ -0.310062f, 0.944831f, -0.105622f },
-	{ -0.24914f, 0.943199f, -0.219785f },
-	{ -0.653138f, 0.710325f, -0.262392f },
-	{ -0.24914f, 0.943199f, -0.219785f },
-	{ -0.50081f, 0.711276f, -0.493231f },
-	{ -0.50081f, 0.711276f, -0.493231f },
-	{ -0.24914f, 0.943199f, -0.219785f },
-	{ -0.148899f, 0.941225f, -0.303192f },
-	{ -0.50081f, 0.711276f, -0.493231f },
-	{ -0.148899f, 0.941225f, -0.303192f },
-	{ -0.274148f, 0.71335f, -0.644961f },
-	{ -0.274148f, 0.71335f, -0.644961f },
-	{ -0.148899f, 0.941225f, -0.303192f },
-	{ -0.022948f, 0.940088f, -0.340159f },
-	{ -0.274148f, 0.71335f, -0.644961f },
-	{ -0.022948f, 0.940088f, -0.340159f },
-	{ -0.010142f, 0.715404f, -0.698638f },
-	{ -0.010142f, 0.715404f, -0.698638f },
-	{ -0.022948f, 0.940088f, -0.340159f },
-	{ 0.107382f, 0.940517f, -0.32233f },
-	{ -0.010142f, 0.715404f, -0.698638f },
-	{ 0.107382f, 0.940517f, -0.32233f },
-	{ 0.253791f, 0.716348f, -0.649951f },
-	{ 0.253791f, 0.716348f, -0.649951f },
-	{ 0.107382f, 0.940517f, -0.32233f },
-	{ 0.218947f, 0.942229f, -0.253509f },
-	{ 0.253791f, 0.716348f, -0.649951f },
-	{ 0.218947f, 0.942229f, -0.253509f },
-	{ 0.482202f, 0.715542f, -0.50545f },
-	{ 0.482202f, 0.715542f, -0.50545f },
-	{ 0.218947f, 0.942229f, -0.253509f },
-	{ 0.294569f, 0.944156f, -0.147642f },
-	{ 0.482202f, 0.715542f, -0.50545f },
-	{ 0.294569f, 0.944156f, -0.147642f },
-	{ 0.641434f, 0.713324f, -0.282367f },
-	{ 0.641434f, 0.713324f, -0.282367f },
-	{ 0.294569f, 0.944156f, -0.147642f },
-	{ 0.325736f, 0.945198f, -0.022291f },
-	{ 0.641434f, 0.713324f, -0.282367f },
-	{ 0.325736f, 0.945198f, -0.022291f },
-	{ 0.703032f, 0.711062f, -0.011708f },
-	{ 0.703032f, 0.711062f, -0.011708f },
-	{ 0.325736f, 0.945198f, -0.022291f },
-	{ 0.310138f, 0.944803f, 0.105646f },
-	{ 0.703032f, 0.711062f, -0.011708f },
-	{ 0.310138f, 0.944803f, 0.105646f },
-	{ 0.653242f, 0.710212f, 0.262438f },
-	{ 0.653242f, 0.710212f, 0.262438f },
-	{ 0.310138f, 0.944803f, 0.105646f },
-	{ 0.249185f, 0.943178f, 0.219822f },
-	{ 0.653242f, 0.710212f, 0.262438f },
-	{ 0.249185f, 0.943178f, 0.219822f },
-	{ 0.500866f, 0.711198f, 0.493285f },
-	{ 0.500866f, 0.711198f, 0.493285f },
-	{ 0.249185f, 0.943178f, 0.219822f },
-	{ 0.148914f, 0.941215f, 0.303215f },
-	{ 0.500866f, 0.711198f, 0.493285f },
-	{ 0.148914f, 0.941215f, 0.303215f },
-	{ 0.274163f, 0.713321f, 0.644986f },
-	{ 0.274163f, 0.713321f, 0.644986f },
-	{ 0.148914f, 0.941215f, 0.303215f },
-	{ 0.02295f, 0.940091f, 0.34015f },
-	{ 0.274163f, 0.713321f, 0.644986f },
-	{ 0.02295f, 0.940091f, 0.34015f },
-	{ 0.010149f, 0.715427f, 0.698613f },
-	{ 0.010149f, 0.715427f, 0.698613f },
-	{ 0.02295f, 0.940091f, 0.34015f },
-	{ -0.107366f, 0.940533f, 0.32229f },
-	{ 0.010149f, 0.715427f, 0.698613f },
-	{ -0.107366f, 0.940533f, 0.32229f },
-	{ -0.253756f, 0.71642f, 0.649885f },
-	{ -0.253756f, 0.71642f, 0.649885f },
-	{ -0.107366f, 0.940533f, 0.32229f },
-	{ -0.2189f, 0.942254f, 0.253456f },
-	{ -0.253756f, 0.71642f, 0.649885f },
-	{ -0.2189f, 0.942254f, 0.253456f },
-	{ -0.482118f, 0.715652f, 0.505376f },
-	{ -0.482118f, 0.715652f, 0.505376f },
-	{ -0.2189f, 0.942254f, 0.253456f },
-	{ -0.294491f, 0.944187f, 0.147603f },
-	{ -0.482118f, 0.715652f, 0.505376f },
-	{ -0.294491f, 0.944187f, 0.147603f },
-	{ -0.64131f, 0.713453f, 0.282322f },
-	{ -0.64131f, 0.713453f, 0.282322f },
-	{ -0.294491f, 0.944187f, 0.147603f },
-	{ -0.325647f, 0.945229f, 0.022284f },
-	{ -0.64131f, 0.713453f, 0.282322f },
-	{ -0.325647f, 0.945229f, 0.022284f },
-	{ -0.7029f, 0.711193f, 0.011712f },
-	{ -0.325647f, 0.945229f, 0.022284f },
-	{ -0.108308f, 0.994092f, -0.007128f },
-	{ -0.310062f, 0.944831f, -0.105622f },
-	{ -0.310062f, 0.944831f, -0.105622f },
-	{ -0.108308f, 0.994092f, -0.007128f },
-	{ -0.099134f, 0.993945f, -0.047388f },
-	{ -0.310062f, 0.944831f, -0.105622f },
-	{ -0.099134f, 0.993945f, -0.047388f },
-	{ -0.24914f, 0.943199f, -0.219785f },
-	{ -0.24914f, 0.943199f, -0.219785f },
-	{ -0.099134f, 0.993945f, -0.047388f },
-	{ -0.075378f, 0.993708f, -0.082838f },
-	{ -0.24914f, 0.943199f, -0.219785f },
-	{ -0.075378f, 0.993708f, -0.082838f },
-	{ -0.148899f, 0.941225f, -0.303192f },
-	{ -0.148899f, 0.941225f, -0.303192f },
-	{ -0.075378f, 0.993708f, -0.082838f },
-	{ -0.038067f, 0.993519f, -0.107105f },
-	{ -0.148899f, 0.941225f, -0.303192f },
-	{ -0.038067f, 0.993519f, -0.107105f },
-	{ -0.022948f, 0.940088f, -0.340159f },
-	{ -0.022948f, 0.940088f, -0.340159f },
-	{ -0.038067f, 0.993519f, -0.107105f },
-	{ 0.007208f, 0.993502f, -0.113587f },
-	{ -0.022948f, 0.940088f, -0.340159f },
-	{ 0.007208f, 0.993502f, -0.113587f },
-	{ 0.107382f, 0.940517f, -0.32233f },
-	{ 0.107382f, 0.940517f, -0.32233f },
-	{ 0.007208f, 0.993502f, -0.113587f },
-	{ 0.050779f, 0.993669f, -0.100216f },
-	{ 0.107382f, 0.940517f, -0.32233f },
-	{ 0.050779f, 0.993669f, -0.100216f },
-	{ 0.218947f, 0.942229f, -0.253509f },
-	{ 0.218947f, 0.942229f, -0.253509f },
-	{ 0.050779f, 0.993669f, -0.100216f },
-	{ 0.08405f, 0.993909f, -0.071271f },
-	{ 0.218947f, 0.942229f, -0.253509f },
-	{ 0.08405f, 0.993909f, -0.071271f },
-	{ 0.294569f, 0.944156f, -0.147642f },
-	{ 0.294569f, 0.944156f, -0.147642f },
-	{ 0.08405f, 0.993909f, -0.071271f },
-	{ 0.103282f, 0.994082f, -0.033667f },
-	{ 0.294569f, 0.944156f, -0.147642f },
-	{ 0.103282f, 0.994082f, -0.033667f },
-	{ 0.325736f, 0.945198f, -0.022291f },
-	{ 0.325736f, 0.945198f, -0.022291f },
-	{ 0.103282f, 0.994082f, -0.033667f },
-	{ 0.108242f, 0.994099f, 0.007124f },
-	{ 0.325736f, 0.945198f, -0.022291f },
-	{ 0.108242f, 0.994099f, 0.007124f },
-	{ 0.310138f, 0.944803f, 0.105646f },
-	{ 0.310138f, 0.944803f, 0.105646f },
-	{ 0.108242f, 0.994099f, 0.007124f },
-	{ 0.099081f, 0.993951f, 0.047364f },
-	{ 0.310138f, 0.944803f, 0.105646f },
-	{ 0.099081f, 0.993951f, 0.047364f },
-	{ 0.249185f, 0.943178f, 0.219822f },
-	{ 0.249185f, 0.943178f, 0.219822f },
-	{ 0.099081f, 0.993951f, 0.047364f },
-	{ 0.075349f, 0.993713f, 0.082809f },
-	{ 0.249185f, 0.943178f, 0.219822f },
-	{ 0.075349f, 0.993713f, 0.082809f },
-	{ 0.148914f, 0.941215f, 0.303215f },
-	{ 0.148914f, 0.941215f, 0.303215f },
-	{ 0.075349f, 0.993713f, 0.082809f },
-	{ 0.038059f, 0.99352f, 0.107091f },
-	{ 0.148914f, 0.941215f, 0.303215f },
-	{ 0.038059f, 0.99352f, 0.107091f },
-	{ 0.02295f, 0.940091f, 0.34015f },
-	{ 0.02295f, 0.940091f, 0.34015f },
-	{ 0.038059f, 0.99352f, 0.107091f },
-	{ -0.007212f, 0.9935f, 0.113601f },
-	{ 0.02295f, 0.940091f, 0.34015f },
-	{ -0.007212f, 0.9935f, 0.113601f },
-	{ -0.107366f, 0.940533f, 0.32229f },
-	{ -0.107366f, 0.940533f, 0.32229f },
-	{ -0.007212f, 0.9935f, 0.113601f },
-	{ -0.050799f, 0.993665f, 0.100251f },
-	{ -0.107366f, 0.940533f, 0.32229f },
-	{ -0.050799f, 0.993665f, 0.100251f },
-	{ -0.2189f, 0.942254f, 0.253456f },
-	{ -0.2189f, 0.942254f, 0.253456f },
-	{ -0.050799f, 0.993665f, 0.100251f },
-	{ -0.084095f, 0.993903f, 0.071308f },
-	{ -0.2189f, 0.942254f, 0.253456f },
-	{ -0.084095f, 0.993903f, 0.071308f },
-	{ -0.294491f, 0.944187f, 0.147603f },
-	{ -0.294491f, 0.944187f, 0.147603f },
-	{ -0.084095f, 0.993903f, 0.071308f },
-	{ -0.103345f, 0.994075f, 0.033687f },
-	{ -0.294491f, 0.944187f, 0.147603f },
-	{ -0.103345f, 0.994075f, 0.033687f },
-	{ -0.325647f, 0.945229f, 0.022284f },
-	{ -0.325647f, 0.945229f, 0.022284f },
-	{ -0.103345f, 0.994075f, 0.033687f },
-	{ -0.108308f, 0.994092f, -0.007128f },
-	{ 0.014405f, -0.972952f, 0.230557f },
-	{ -0.00008f, -1, 0.000001f },
-	{ 0.101551f, -0.972946f, 0.207519f },
-	{ 0.173254f, -0.97294f, 0.152877f },
-	{ 0.101551f, -0.972946f, 0.207519f },
-	{ -0.00008f, -1, 0.000001f },
-	{ 0.173254f, -0.97294f, 0.152877f },
-	{ -0.00008f, -1, 0.000001f },
-	{ 0.218586f, -0.972936f, 0.074945f },
-	{ 0.218586f, -0.972936f, 0.074945f },
-	{ -0.00008f, -1, 0.000001f },
-	{ 0.230635f, -0.972934f, -0.014408f },
-	{ 0.074938f, -0.972943f, -0.218553f },
-	{ 0.152885f, -0.972938f, -0.173257f },
-	{ -0.00008f, -1, 0.000001f },
-	{ -0.00008f, -1, 0.000001f },
-	{ 0.152885f, -0.972938f, -0.173257f },
-	{ 0.207562f, -0.972935f, -0.101569f },
-	{ -0.00008f, -1, 0.000001f },
-	{ 0.207562f, -0.972935f, -0.101569f },
-	{ 0.230635f, -0.972934f, -0.014408f },
-	{ -0.014401f, -0.97295f, -0.230567f },
-	{ 0.074938f, -0.972943f, -0.218553f },
-	{ -0.00008f, -1, 0.000001f },
-	{ -0.014401f, -0.97295f, -0.230567f },
-	{ -0.00008f, -1, 0.000001f },
-	{ -0.101526f, -0.972956f, -0.207481f },
-	{ -0.101526f, -0.972956f, -0.207481f },
-	{ -0.00008f, -1, 0.000001f },
-	{ -0.173179f, -0.972962f, -0.152818f },
-	{ -0.218461f, -0.972967f, -0.074906f },
-	{ -0.173179f, -0.972962f, -0.152818f },
-	{ -0.00008f, -1, 0.000001f },
-	{ -0.218461f, -0.972967f, -0.074906f },
-	{ -0.00008f, -1, 0.000001f },
-	{ -0.23049f, -0.972968f, 0.014397f },
-	{ -0.23049f, -0.972968f, 0.014397f },
-	{ -0.00008f, -1, 0.000001f },
-	{ -0.207438f, -0.972967f, 0.101508f },
-	{ -0.152811f, -0.972964f, 0.173175f },
-	{ -0.207438f, -0.972967f, 0.101508f },
-	{ -0.00008f, -1, 0.000001f },
-	{ -0.152811f, -0.972964f, 0.173175f },
-	{ -0.00008f, -1, 0.000001f },
-	{ -0.074914f, -0.972959f, 0.218493f },
-	{ -0.074914f, -0.972959f, 0.218493f },
-	{ -0.00008f, -1, 0.000001f },
-	{ 0.014405f, -0.972952f, 0.230557f },
-	{ -0.536728f, -0.84303f, -0.03498f },
-	{ -0.23049f, -0.972968f, 0.014397f },
-	{ -0.509704f, -0.842597f, 0.173871f },
-	{ -0.509704f, -0.842597f, 0.173871f },
-	{ -0.23049f, -0.972968f, 0.014397f },
-	{ -0.207438f, -0.972967f, 0.101508f },
-	{ -0.509704f, -0.842597f, 0.173871f },
-	{ -0.207438f, -0.972967f, 0.101508f },
-	{ -0.406345f, -0.840681f, 0.357967f },
-	{ -0.406345f, -0.840681f, 0.357967f },
-	{ -0.207438f, -0.972967f, 0.101508f },
-	{ -0.152811f, -0.972964f, 0.173175f },
-	{ -0.406345f, -0.840681f, 0.357967f },
-	{ -0.152811f, -0.972964f, 0.173175f },
-	{ -0.24004f, -0.838362f, 0.489418f },
-	{ -0.24004f, -0.838362f, 0.489418f },
-	{ -0.152811f, -0.972964f, 0.173175f },
-	{ -0.074914f, -0.972959f, 0.218493f },
-	{ -0.24004f, -0.838362f, 0.489418f },
-	{ -0.074914f, -0.972959f, 0.218493f },
-	{ -0.035071f, -0.837005f, 0.54607f },
-	{ -0.035071f, -0.837005f, 0.54607f },
-	{ -0.074914f, -0.972959f, 0.218493f },
-	{ 0.014405f, -0.972952f, 0.230557f },
-	{ -0.035071f, -0.837005f, 0.54607f },
-	{ 0.014405f, -0.972952f, 0.230557f },
-	{ 0.175779f, -0.83743f, 0.517507f },
-	{ 0.175779f, -0.83743f, 0.517507f },
-	{ 0.014405f, -0.972952f, 0.230557f },
-	{ 0.101551f, -0.972946f, 0.207519f },
-	{ 0.175779f, -0.83743f, 0.517507f },
-	{ 0.101551f, -0.972946f, 0.207519f },
-	{ 0.358181f, -0.839359f, 0.408881f },
-	{ 0.358181f, -0.839359f, 0.408881f },
-	{ 0.101551f, -0.972946f, 0.207519f },
-	{ 0.173254f, -0.97294f, 0.152877f },
-	{ 0.358181f, -0.839359f, 0.408881f },
-	{ 0.173254f, -0.97294f, 0.152877f },
-	{ 0.484267f, -0.841615f, 0.2391f },
-	{ 0.484267f, -0.841615f, 0.2391f },
-	{ 0.173254f, -0.97294f, 0.152877f },
-	{ 0.218586f, -0.972936f, 0.074945f },
-	{ 0.484267f, -0.841615f, 0.2391f },
-	{ 0.218586f, -0.972936f, 0.074945f },
-	{ 0.536958f, -0.842883f, 0.034994f },
-	{ 0.536958f, -0.842883f, 0.034994f },
-	{ 0.218586f, -0.972936f, 0.074945f },
-	{ 0.230635f, -0.972934f, -0.014408f },
-	{ 0.536958f, -0.842883f, 0.034994f },
-	{ 0.230635f, -0.972934f, -0.014408f },
-	{ 0.509925f, -0.842449f, -0.173945f },
-	{ 0.509925f, -0.842449f, -0.173945f },
-	{ 0.230635f, -0.972934f, -0.014408f },
-	{ 0.207562f, -0.972935f, -0.101569f },
-	{ 0.509925f, -0.842449f, -0.173945f },
-	{ 0.207562f, -0.972935f, -0.101569f },
-	{ 0.406498f, -0.840552f, -0.358094f },
-	{ 0.406498f, -0.840552f, -0.358094f },
-	{ 0.207562f, -0.972935f, -0.101569f },
-	{ 0.152885f, -0.972938f, -0.173257f },
-	{ 0.406498f, -0.840552f, -0.358094f },
-	{ 0.152885f, -0.972938f, -0.173257f },
-	{ 0.240106f, -0.838274f, -0.489536f },
-	{ 0.240106f, -0.838274f, -0.489536f },
-	{ 0.152885f, -0.972938f, -0.173257f },
-	{ 0.074938f, -0.972943f, -0.218553f },
-	{ 0.240106f, -0.838274f, -0.489536f },
-	{ 0.074938f, -0.972943f, -0.218553f },
-	{ 0.035082f, -0.836972f, -0.54612f },
-	{ 0.035082f, -0.836972f, -0.54612f },
-	{ 0.074938f, -0.972943f, -0.218553f },
-	{ -0.014401f, -0.97295f, -0.230567f },
-	{ 0.035082f, -0.836972f, -0.54612f },
-	{ -0.014401f, -0.97295f, -0.230567f },
-	{ -0.175758f, -0.837457f, -0.517469f },
-	{ -0.175758f, -0.837457f, -0.517469f },
-	{ -0.014401f, -0.97295f, -0.230567f },
-	{ -0.101526f, -0.972956f, -0.207481f },
-	{ -0.175758f, -0.837457f, -0.517469f },
-	{ -0.101526f, -0.972956f, -0.207481f },
-	{ -0.35809f, -0.839442f, -0.408789f },
-	{ -0.35809f, -0.839442f, -0.408789f },
-	{ -0.101526f, -0.972956f, -0.207481f },
-	{ -0.173179f, -0.972962f, -0.152818f },
-	{ -0.35809f, -0.839442f, -0.408789f },
-	{ -0.173179f, -0.972962f, -0.152818f },
-	{ -0.484091f, -0.84174f, -0.239018f },
-	{ -0.484091f, -0.84174f, -0.239018f },
-	{ -0.173179f, -0.972962f, -0.152818f },
-	{ -0.218461f, -0.972967f, -0.074906f },
-	{ -0.484091f, -0.84174f, -0.239018f },
-	{ -0.218461f, -0.972967f, -0.074906f },
-	{ -0.536728f, -0.84303f, -0.03498f },
-	{ -0.536728f, -0.84303f, -0.03498f },
-	{ -0.218461f, -0.972967f, -0.074906f },
-	{ -0.23049f, -0.972968f, 0.014397f },
-	{ -0.988373f, 0.152034f, 0.001956f },
-	{ -0.999864f, -0.016373f, 0.001791f },
-	{ -0.92286f, -0.02058f, 0.384584f },
-	{ -0.988373f, 0.152034f, 0.001956f },
-	{ -0.92286f, -0.02058f, 0.384584f },
-	{ -0.911799f, 0.15465f, 0.380401f },
-	{ -0.911799f, 0.15465f, 0.380401f },
-	{ -0.92286f, -0.02058f, 0.384584f },
-	{ -0.705371f, -0.027974f, 0.708286f },
-	{ -0.911799f, 0.15465f, 0.380401f },
-	{ -0.705371f, -0.027974f, 0.708286f },
-	{ -0.69519f, 0.165527f, 0.699508f },
-	{ -0.69519f, 0.165527f, 0.699508f },
-	{ -0.705371f, -0.027974f, 0.708286f },
-	{ -0.380984f, -0.034202f, 0.923949f },
-	{ -0.69519f, 0.165527f, 0.699508f },
-	{ -0.380984f, -0.034202f, 0.923949f },
-	{ -0.373526f, 0.178126f, 0.910357f },
-	{ -0.373526f, 0.178126f, 0.910357f },
-	{ -0.380984f, -0.034202f, 0.923949f },
-	{ 0.001034f, -0.035637f, 0.999364f },
-	{ -0.373526f, 0.178126f, 0.910357f },
-	{ 0.001034f, -0.035637f, 0.999364f },
-	{ 0.003098f, 0.185135f, 0.982708f },
-	{ 0.003098f, 0.185135f, 0.982708f },
-	{ 0.001034f, -0.035637f, 0.999364f },
-	{ 0.383133f, -0.031437f, 0.923158f },
-	{ 0.003098f, 0.185135f, 0.982708f },
-	{ 0.383133f, -0.031437f, 0.923158f },
-	{ 0.378626f, 0.182629f, 0.907353f },
-	{ 0.378626f, 0.182629f, 0.907353f },
-	{ 0.383133f, -0.031437f, 0.923158f },
-	{ 0.707441f, -0.024006f, 0.706365f },
-	{ 0.378626f, 0.182629f, 0.907353f },
-	{ 0.707441f, -0.024006f, 0.706365f },
-	{ 0.697981f, 0.17201f, 0.695151f },
-	{ 0.697981f, 0.17201f, 0.695151f },
-	{ 0.707441f, -0.024006f, 0.706365f },
-	{ 0.924199f, -0.017666f, 0.381503f },
-	{ 0.697981f, 0.17201f, 0.695151f },
-	{ 0.924199f, -0.017666f, 0.381503f },
-	{ 0.912739f, 0.159328f, 0.376194f },
-	{ 0.912739f, 0.159328f, 0.376194f },
-	{ 0.924199f, -0.017666f, 0.381503f },
-	{ 0.999868f, -0.016157f, -0.001792f },
-	{ 0.912739f, 0.159328f, 0.376194f },
-	{ 0.999868f, -0.016157f, -0.001792f },
-	{ 0.988365f, 0.152089f, -0.001955f },
-	{ 0.988365f, 0.152089f, -0.001955f },
-	{ 0.999868f, -0.016157f, -0.001792f },
-	{ 0.922864f, -0.02037f, -0.384587f },
-	{ 0.988365f, 0.152089f, -0.001955f },
-	{ 0.922864f, -0.02037f, -0.384587f },
-	{ 0.911792f, 0.154702f, -0.380397f },
-	{ 0.911792f, 0.154702f, -0.380397f },
-	{ 0.922864f, -0.02037f, -0.384587f },
-	{ 0.705374f, -0.027803f, -0.70829f },
-	{ 0.911792f, 0.154702f, -0.380397f },
-	{ 0.705374f, -0.027803f, -0.70829f },
-	{ 0.695185f, 0.165571f, -0.699503f },
-	{ 0.695185f, 0.165571f, -0.699503f },
-	{ 0.705374f, -0.027803f, -0.70829f },
-	{ 0.380985f, -0.034094f, -0.923952f },
-	{ 0.695185f, 0.165571f, -0.699503f },
-	{ 0.380985f, -0.034094f, -0.923952f },
-	{ 0.373525f, 0.178152f, -0.910352f },
-	{ 0.373525f, 0.178152f, -0.910352f },
-	{ 0.380985f, -0.034094f, -0.923952f },
-	{ -0.001033f, -0.035609f, -0.999365f },
-	{ 0.373525f, 0.178152f, -0.910352f },
-	{ -0.001033f, -0.035609f, -0.999365f },
-	{ -0.003097f, 0.18514f, -0.982707f },
-	{ -0.003097f, 0.18514f, -0.982707f },
-	{ -0.001033f, -0.035609f, -0.999365f },
-	{ -0.383131f, -0.031493f, -0.923157f },
-	{ -0.003097f, 0.18514f, -0.982707f },
-	{ -0.383131f, -0.031493f, -0.923157f },
-	{ -0.378627f, 0.182612f, -0.907355f },
-	{ -0.378627f, 0.182612f, -0.907355f },
-	{ -0.383131f, -0.031493f, -0.923157f },
-	{ -0.707437f, -0.024138f, -0.706364f },
-	{ -0.378627f, 0.182612f, -0.907355f },
-	{ -0.707437f, -0.024138f, -0.706364f },
-	{ -0.697986f, 0.171974f, -0.695156f },
-	{ -0.697986f, 0.171974f, -0.695156f },
-	{ -0.707437f, -0.024138f, -0.706364f },
-	{ -0.924195f, -0.017854f, -0.381502f },
-	{ -0.697986f, 0.171974f, -0.695156f },
-	{ -0.924195f, -0.017854f, -0.381502f },
-	{ -0.912746f, 0.159279f, -0.376197f },
-	{ -0.912746f, 0.159279f, -0.376197f },
-	{ -0.924195f, -0.017854f, -0.381502f },
-	{ -0.999864f, -0.016373f, 0.001791f },
-	{ -0.912746f, 0.159279f, -0.376197f },
-	{ -0.999864f, -0.016373f, 0.001791f },
-	{ -0.988373f, 0.152034f, 0.001956f },
-	{ -0.898199f, -0.439508f, -0.008483f },
-	{ -0.999864f, -0.016373f, 0.001791f },
-	{ -0.924195f, -0.017854f, -0.381502f },
-	{ -0.898199f, -0.439508f, -0.008483f },
-	{ -0.924195f, -0.017854f, -0.381502f },
-	{ -0.824525f, -0.442395f, -0.352769f },
-	{ -0.824525f, -0.442395f, -0.352769f },
-	{ -0.924195f, -0.017854f, -0.381502f },
-	{ -0.707437f, -0.024138f, -0.706364f },
-	{ -0.824525f, -0.442395f, -0.352769f },
-	{ -0.707437f, -0.024138f, -0.706364f },
-	{ -0.625235f, -0.445631f, -0.640698f },
-	{ -0.625235f, -0.445631f, -0.640698f },
-	{ -0.707437f, -0.024138f, -0.706364f },
-	{ -0.383131f, -0.031493f, -0.923157f },
-	{ -0.625235f, -0.445631f, -0.640698f },
-	{ -0.383131f, -0.031493f, -0.923157f },
-	{ -0.333172f, -0.447255f, -0.830036f },
-	{ -0.333172f, -0.447255f, -0.830036f },
-	{ -0.383131f, -0.031493f, -0.923157f },
-	{ -0.001033f, -0.035609f, -0.999365f },
-	{ -0.333172f, -0.447255f, -0.830036f },
-	{ -0.001033f, -0.035609f, -0.999365f },
-	{ 0.007736f, -0.446352f, -0.894824f },
-	{ 0.007736f, -0.446352f, -0.894824f },
-	{ -0.001033f, -0.035609f, -0.999365f },
-	{ 0.380985f, -0.034094f, -0.923952f },
-	{ 0.007736f, -0.446352f, -0.894824f },
-	{ 0.380985f, -0.034094f, -0.923952f },
-	{ 0.348398f, -0.44348f, -0.825799f },
-	{ 0.348398f, -0.44348f, -0.825799f },
-	{ 0.380985f, -0.034094f, -0.923952f },
-	{ 0.705374f, -0.027803f, -0.70829f },
-	{ 0.348398f, -0.44348f, -0.825799f },
-	{ 0.705374f, -0.027803f, -0.70829f },
-	{ 0.638617f, -0.440244f, -0.631152f },
-	{ 0.638617f, -0.440244f, -0.631152f },
-	{ 0.705374f, -0.027803f, -0.70829f },
-	{ 0.922864f, -0.02037f, -0.384587f },
-	{ 0.638617f, -0.440244f, -0.631152f },
-	{ 0.922864f, -0.02037f, -0.384587f },
-	{ 0.832742f, -0.438474f, -0.338055f },
-	{ 0.832742f, -0.438474f, -0.338055f },
-	{ 0.922864f, -0.02037f, -0.384587f },
-	{ 0.999868f, -0.016157f, -0.001792f },
-	{ 0.832742f, -0.438474f, -0.338055f },
-	{ 0.999868f, -0.016157f, -0.001792f },
-	{ 0.898323f, -0.439253f, 0.008476f },
-	{ 0.898323f, -0.439253f, 0.008476f },
-	{ 0.999868f, -0.016157f, -0.001792f },
-	{ 0.924199f, -0.017666f, 0.381503f },
-	{ 0.898323f, -0.439253f, 0.008476f },
-	{ 0.924199f, -0.017666f, 0.381503f },
-	{ 0.824628f, -0.442174f, 0.352804f },
-	{ 0.824628f, -0.442174f, 0.352804f },
-	{ 0.924199f, -0.017666f, 0.381503f },
-	{ 0.707441f, -0.024006f, 0.706365f },
-	{ 0.824628f, -0.442174f, 0.352804f },
-	{ 0.707441f, -0.024006f, 0.706365f },
-	{ 0.625295f, -0.445477f, 0.640747f },
-	{ 0.625295f, -0.445477f, 0.640747f },
-	{ 0.707441f, -0.024006f, 0.706365f },
-	{ 0.383133f, -0.031437f, 0.923158f },
-	{ 0.625295f, -0.445477f, 0.640747f },
-	{ 0.383133f, -0.031437f, 0.923158f },
-	{ 0.333191f, -0.447192f, 0.830062f },
-	{ 0.333191f, -0.447192f, 0.830062f },
-	{ 0.383133f, -0.031437f, 0.923158f },
-	{ 0.001034f, -0.035637f, 0.999364f },
-	{ 0.333191f, -0.447192f, 0.830062f },
-	{ 0.001034f, -0.035637f, 0.999364f },
-	{ -0.007731f, -0.446389f, 0.894805f },
-	{ -0.007731f, -0.446389f, 0.894805f },
-	{ 0.001034f, -0.035637f, 0.999364f },
-	{ -0.380984f, -0.034202f, 0.923949f },
-	{ -0.007731f, -0.446389f, 0.894805f },
-	{ -0.380984f, -0.034202f, 0.923949f },
-	{ -0.348371f, -0.443613f, 0.825739f },
-	{ -0.348371f, -0.443613f, 0.825739f },
-	{ -0.380984f, -0.034202f, 0.923949f },
-	{ -0.705371f, -0.027974f, 0.708286f },
-	{ -0.348371f, -0.443613f, 0.825739f },
-	{ -0.705371f, -0.027974f, 0.708286f },
-	{ -0.638546f, -0.440452f, 0.631079f },
-	{ -0.638546f, -0.440452f, 0.631079f },
-	{ -0.705371f, -0.027974f, 0.708286f },
-	{ -0.92286f, -0.02058f, 0.384584f },
-	{ -0.638546f, -0.440452f, 0.631079f },
-	{ -0.92286f, -0.02058f, 0.384584f },
-	{ -0.832631f, -0.438725f, 0.338003f },
-	{ -0.832631f, -0.438725f, 0.338003f },
-	{ -0.92286f, -0.02058f, 0.384584f },
-	{ -0.999864f, -0.016373f, 0.001791f },
-	{ -0.832631f, -0.438725f, 0.338003f },
-	{ -0.999864f, -0.016373f, 0.001791f },
-	{ -0.898199f, -0.439508f, -0.008483f },
-	{ -0.536728f, -0.84303f, -0.03498f },
-	{ -0.898199f, -0.439508f, -0.008483f },
-	{ -0.824525f, -0.442395f, -0.352769f },
-	{ -0.536728f, -0.84303f, -0.03498f },
-	{ -0.824525f, -0.442395f, -0.352769f },
-	{ -0.484091f, -0.84174f, -0.239018f },
-	{ -0.484091f, -0.84174f, -0.239018f },
-	{ -0.824525f, -0.442395f, -0.352769f },
-	{ -0.625235f, -0.445631f, -0.640698f },
-	{ -0.484091f, -0.84174f, -0.239018f },
-	{ -0.625235f, -0.445631f, -0.640698f },
-	{ -0.35809f, -0.839442f, -0.408789f },
-	{ -0.35809f, -0.839442f, -0.408789f },
-	{ -0.625235f, -0.445631f, -0.640698f },
-	{ -0.333172f, -0.447255f, -0.830036f },
-	{ -0.35809f, -0.839442f, -0.408789f },
-	{ -0.333172f, -0.447255f, -0.830036f },
-	{ -0.175758f, -0.837457f, -0.517469f },
-	{ -0.175758f, -0.837457f, -0.517469f },
-	{ -0.333172f, -0.447255f, -0.830036f },
-	{ 0.007736f, -0.446352f, -0.894824f },
-	{ -0.175758f, -0.837457f, -0.517469f },
-	{ 0.007736f, -0.446352f, -0.894824f },
-	{ 0.035082f, -0.836972f, -0.54612f },
-	{ 0.035082f, -0.836972f, -0.54612f },
-	{ 0.007736f, -0.446352f, -0.894824f },
-	{ 0.348398f, -0.44348f, -0.825799f },
-	{ 0.035082f, -0.836972f, -0.54612f },
-	{ 0.348398f, -0.44348f, -0.825799f },
-	{ 0.240106f, -0.838274f, -0.489536f },
-	{ 0.240106f, -0.838274f, -0.489536f },
-	{ 0.348398f, -0.44348f, -0.825799f },
-	{ 0.638617f, -0.440244f, -0.631152f },
-	{ 0.240106f, -0.838274f, -0.489536f },
-	{ 0.638617f, -0.440244f, -0.631152f },
-	{ 0.406498f, -0.840552f, -0.358094f },
-	{ 0.406498f, -0.840552f, -0.358094f },
-	{ 0.638617f, -0.440244f, -0.631152f },
-	{ 0.832742f, -0.438474f, -0.338055f },
-	{ 0.406498f, -0.840552f, -0.358094f },
-	{ 0.832742f, -0.438474f, -0.338055f },
-	{ 0.509925f, -0.842449f, -0.173945f },
-	{ 0.509925f, -0.842449f, -0.173945f },
-	{ 0.832742f, -0.438474f, -0.338055f },
-	{ 0.898323f, -0.439253f, 0.008476f },
-	{ 0.509925f, -0.842449f, -0.173945f },
-	{ 0.898323f, -0.439253f, 0.008476f },
-	{ 0.536958f, -0.842883f, 0.034994f },
-	{ 0.536958f, -0.842883f, 0.034994f },
-	{ 0.898323f, -0.439253f, 0.008476f },
-	{ 0.824628f, -0.442174f, 0.352804f },
-	{ 0.536958f, -0.842883f, 0.034994f },
-	{ 0.824628f, -0.442174f, 0.352804f },
-	{ 0.484267f, -0.841615f, 0.2391f },
-	{ 0.484267f, -0.841615f, 0.2391f },
-	{ 0.824628f, -0.442174f, 0.352804f },
-	{ 0.625295f, -0.445477f, 0.640747f },
-	{ 0.484267f, -0.841615f, 0.2391f },
-	{ 0.625295f, -0.445477f, 0.640747f },
-	{ 0.358181f, -0.839359f, 0.408881f },
-	{ 0.358181f, -0.839359f, 0.408881f },
-	{ 0.625295f, -0.445477f, 0.640747f },
-	{ 0.333191f, -0.447192f, 0.830062f },
-	{ 0.358181f, -0.839359f, 0.408881f },
-	{ 0.333191f, -0.447192f, 0.830062f },
-	{ 0.175779f, -0.83743f, 0.517507f },
-	{ 0.175779f, -0.83743f, 0.517507f },
-	{ 0.333191f, -0.447192f, 0.830062f },
-	{ -0.007731f, -0.446389f, 0.894805f },
-	{ 0.175779f, -0.83743f, 0.517507f },
-	{ -0.007731f, -0.446389f, 0.894805f },
-	{ -0.035071f, -0.837005f, 0.54607f },
-	{ -0.035071f, -0.837005f, 0.54607f },
-	{ -0.007731f, -0.446389f, 0.894805f },
-	{ -0.348371f, -0.443613f, 0.825739f },
-	{ -0.035071f, -0.837005f, 0.54607f },
-	{ -0.348371f, -0.443613f, 0.825739f },
-	{ -0.24004f, -0.838362f, 0.489418f },
-	{ -0.24004f, -0.838362f, 0.489418f },
-	{ -0.348371f, -0.443613f, 0.825739f },
-	{ -0.638546f, -0.440452f, 0.631079f },
-	{ -0.24004f, -0.838362f, 0.489418f },
-	{ -0.638546f, -0.440452f, 0.631079f },
-	{ -0.406345f, -0.840681f, 0.357967f },
-	{ -0.406345f, -0.840681f, 0.357967f },
-	{ -0.638546f, -0.440452f, 0.631079f },
-	{ -0.832631f, -0.438725f, 0.338003f },
-	{ -0.406345f, -0.840681f, 0.357967f },
-	{ -0.832631f, -0.438725f, 0.338003f },
-	{ -0.509704f, -0.842597f, 0.173871f },
-	{ -0.509704f, -0.842597f, 0.173871f },
-	{ -0.832631f, -0.438725f, 0.338003f },
-	{ -0.898199f, -0.439508f, -0.008483f },
-	{ -0.509704f, -0.842597f, 0.173871f },
-	{ -0.898199f, -0.439508f, -0.008483f },
-	{ -0.536728f, -0.84303f, -0.03498f }
-};
-
-NJS_MODEL_SADX attachCHAO_8D4699596122D8AE7F2 = { vertexCHAO_8D4699596122D8A1F67, normalCHAO_8D4699596122D8A8C26, LengthOfArray(vertexCHAO_8D4699596122D8A1F67), meshlistCHAO_8D4699596122D8A926F, matlistCHAO_0000F050, LengthOfArray(meshlistCHAO_8D4699596122D8A926F), LengthOfArray(matlistCHAO_0000F050),{ 302.6233f, 1712.613f, -22.17934f }, 8243.534f, NULL };
-
-NJS_OBJECT objectCHAO_000105E4 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCHAO_8D4699596122D8AE7F2, 0, -420, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
-
-//Some water?
-
-NJS_MATERIAL matlistCHAO_0000EF4C[] = {
-	{ { 0x7FB2B2B2 },{ 0xFFFFFFFF }, 11, 54, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
-};
-
-Sint16 polyCHAO_0000EF60[] = {
-	4, 3, 2, 1, 0
-};
-
-NJS_TEX uvCHAO_0000EF6C[] = {
-	{ 0, 255 },
-	{ 0, -30090 },
-	{ 30600, 255 },
-	{ 30600, -30090 }
-};
-
-NJS_MESHSET_SADX meshlistCHAO_0000EF7C[] = {
-	{ NJD_MESHSET_TRIMESH | 0, 1, polyCHAO_0000EF60, NULL, NULL, NULL, uvCHAO_0000EF6C, NULL }
-};
-
-NJS_VECTOR vertexCHAO_0000EF94[] = {
-	{ -8099.999f, 415, -8099.999f },
-	{ -8099.999f, 415, 8099.999f },
-	{ 8099.999f, 415, -8099.999f },
-	{ 8099.999f, 415, 8099.999f }
-};
-
-NJS_VECTOR normalCHAO_0000EFC4[] = {
-	{ 0, 1, 0 },
-	{ 0, 1, 0 },
-	{ 0, 1, 0 },
-	{ 0, 1, 0 }
-};
-
-NJS_MODEL_SADX attachCHAO_0000EFF4 = { vertexCHAO_0000EF94, normalCHAO_0000EFC4, LengthOfArray(vertexCHAO_0000EF94), meshlistCHAO_0000EF7C, matlistCHAO_0000EF4C, LengthOfArray(meshlistCHAO_0000EF7C), LengthOfArray(matlistCHAO_0000EF4C),{ 0, 415, 0 }, 11455.13f, NULL };
-
-NJS_OBJECT objectCHAO_0000F01C = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCHAO_0000EFF4, 0, -415.8f, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
-
-NJS_MATERIAL matlistCHAO_0000EF4CX[] = {
-	{ { 0xFF000000 },{ 0xFFFFFFFF }, 11, 0, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_FLAG_IGNORE_LIGHT | NJD_DA_INV_SRC | NJD_SA_SRC }
-};
-NJS_MODEL_SADX attachCHAO_0000EFF4X = { vertexCHAO_0000EF94, normalCHAO_0000EFC4, LengthOfArray(vertexCHAO_0000EF94), meshlistCHAO_0000EF7C, matlistCHAO_0000EF4CX, LengthOfArray(meshlistCHAO_0000EF7C), LengthOfArray(matlistCHAO_0000EF4CX),{ 0, 415, 0 }, 11455.13f, NULL };
-
-NJS_OBJECT objectCHAO_0000F01CX = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachCHAO_0000EFF4X, 0, -4415.8f, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
-
-
-COL collist_0000DC0C[] = {
+extern "C" __declspec(dllexport) COL collist_0000DC0C[] = {
 	{ { -114.1273f, 102.7535f, 6.023741f }, 86.81482f, 0, 0, &objectCHAO_00001AD4, 0, 0xC0000001 },
 	{ { 3.696172f, 171.1053f, 8.131595f }, 99.48425f, 0, 0, &objectCHAO_00001CCC, 0, 0x40200001 },
 	{ { -83.84785f, 8.145269f, -232.9527f }, 20.23472f, 0, 0, &objectCHAO_000021C0, 0, 0x60000001 },
@@ -8725,16 +5907,10 @@ COL collist_0000DC0C[] = {
 	{ { -0.310543f, 0, -85.61452f }, 12000, 0, 0, &objectCHAO_0000D04C, 0, 0x00000002 },//water small
 };
 
-GeoAnimData animlist_0000DF24[] = {
+extern "C" __declspec(dllexport) GeoAnimData animlist_0000DF24[] = {
 	{ 0, 0.2f, 30, &objectCHAO_0000B798, &action_animation_0000BA3C, (NJS_TEXLIST *)0 }
 };
 
-NJS_TEXNAME textures_ecgarden[79];
-NJS_TEXLIST texlist_ecgarden = { arrayptrandlength(textures_ecgarden) };
-
-NJS_TEXNAME textures_ecgardensky[5];
-NJS_TEXLIST texlist_ecgardensky = { arrayptrandlength(textures_ecgardensky) };
-
-LandTable landtable_0000DF3C = { LengthOfArray(collist_0000DC0C), LengthOfArray(animlist_0000DF24), 0xD, 1700, collist_0000DC0C, animlist_0000DF24, "GARDEN01", (NJS_TEXLIST *)&texlist_ecgarden, 0, 0 };
+extern "C" __declspec(dllexport) LandTable landtable_0000DF3C = { LengthOfArray(collist_0000DC0C), LengthOfArray(animlist_0000DF24), 0xD, 1700, collist_0000DC0C, animlist_0000DF24, "GARDEN01", (NJS_TEXLIST *)&texlist_ecgarden, 0, 0 };
 
 #pragma warning(pop)

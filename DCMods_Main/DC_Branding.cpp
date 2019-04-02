@@ -1,17 +1,5 @@
 #include "stdafx.h"
 
-struct TutorialScreenData
-{
-	__int16 BoxX;
-	__int16 BoxY;
-	__int16 anonymous_2;
-	__int16 BoxScaleX;
-	__int16 BoxScaleY;
-	__int16 anonymous_3;
-	void *Pointer1;
-	void *Pointer2;
-};
-
 struct TutorialScreenItem
 {
 	char TexID;
@@ -40,57 +28,25 @@ DataArray(PVMEntry, GUITextures_Spanish, 0x007EEFC0, 30);
 DataArray(PVMEntry, GUITextures_German, 0x007EF0B0, 30);
 DataArray(NJS_TEXANIM, PauseMenu_TEXANIMs, 0x009177B8, 15);
 
-//Tutorial screens
-DataArray(TutorialScreenData, TutoScreenSonic_E, 0x2BC3C30, 7);
-DataArray(TutorialScreenData, TutoScreenSonic_J, 0x2BC3BA0, 7);
-DataArray(TutorialScreenData, TutoScreenSonic_F, 0x2BC3CC0, 7);
-DataArray(TutorialScreenData, TutoScreenSonic_G, 0x2BC3DE0, 7);
-DataArray(TutorialScreenData, TutoScreenSonic_S, 0x2BC3D50, 7);
-DataArray(TutorialScreenData, TutoScreenTails_E, 0x2BC4018, 7);
-DataArray(TutorialScreenData, TutoScreenTails_J, 0x2BC3F78, 7);
-DataArray(TutorialScreenData, TutoScreenTails_F, 0x2BC40A8, 7);
-DataArray(TutorialScreenData, TutoScreenTails_S, 0x2BC4138, 7);
-DataArray(TutorialScreenData, TutoScreenTails_G, 0x2BC41C8, 7);
-DataArray(TutorialScreenData, TutoScreenKnuckles_E, 0x2BC4450, 7);
-DataArray(TutorialScreenData, TutoScreenKnuckles_J, 0x2BC4398, 7);
-DataArray(TutorialScreenData, TutoScreenKnuckles_F, 0x2BC44F0, 7);
-DataArray(TutorialScreenData, TutoScreenKnuckles_G, 0x2BC4630, 7);
-DataArray(TutorialScreenData, TutoScreenKnuckles_S, 0x2BC4590, 7);
-DataArray(TutorialScreenData, TutoScreenAmy_E, 0x2BC4830, 7);
-DataArray(TutorialScreenData, TutoScreenAmy_J, 0x2BC47A0, 7);
-DataArray(TutorialScreenData, TutoScreenAmy_F, 0x2BC48C0, 7);
-DataArray(TutorialScreenData, TutoScreenAmy_G, 0x2BC49E0, 7);
-DataArray(TutorialScreenData, TutoScreenAmy_S, 0x2BC4950, 7);
-DataArray(TutorialScreenData, TutoScreenBig_E, 0x2BC5158, 9);
-DataArray(TutorialScreenData, TutoScreenBig_J, 0x2BC5090, 10);
-DataArray(TutorialScreenData, TutoScreenBig_F, 0x2BC5210, 9);
-DataArray(TutorialScreenData, TutoScreenBig_G, 0x2BC5380, 9);
-DataArray(TutorialScreenData, TutoScreenBig_S, 0x2BC52C8, 9);
-DataArray(TutorialScreenData, TutoScreenGamma_E, 0x2BC4C08, 8);
-DataArray(TutorialScreenData, TutoScreenGamma_J, 0x2BC4B68, 8);
-DataArray(TutorialScreenData, TutoScreenGamma_F, 0x2BC4CA8, 8);
-DataArray(TutorialScreenData, TutoScreenGamma_G, 0x2BC4DE8, 8);
-DataArray(TutorialScreenData, TutoScreenGamma_S, 0x2BC4D48, 8);
-
 //Tutorial screen items
-DataArray(TutorialScreenItem, TutorialLayout_Sonic_Page1_E, 0x02BC3ACE, 6);
-DataArray(TutorialScreenItem, TutorialLayout_Sonic_Page1_J, 0x02BC3A8E, 5);
-DataArray(TutorialScreenItem, TutorialLayout_SharedTailsKnucklesPage1_E, 0x2BC3E90, 4);
-DataArray(TutorialScreenItem, TutorialLayout_SharedTailsKnucklesPage1_J, 0x2BC3E74, 3);
-DataPointer(TutorialScreenItem, TutorialLayout_Tails_Page1_E, 0x2BC3EB2);
-DataPointer(TutorialScreenItem, TutorialLayout_Tails_Page1_J, 0x2BC3EAA);
-DataPointer(TutorialScreenItem, TutorialLayout_Knuckles_Page1_E, 0x2BC425E);
-DataPointer(TutorialScreenItem, TutorialLayout_Knuckles_Page1_J, 0x2BC4256);
-DataArray(TutorialScreenItem, TutorialLayout_AmyGamma_Page1_E, 0x2BC46E6, 4);
-DataArray(TutorialScreenItem, TutorialLayout_AmyGamma_Page1_J, 0x2BC46D2, 3);
-DataArray(TutorialScreenItem, TutorialLayout_Amy_Page1_E, 0x2BC4712, 2);
-DataArray(TutorialScreenItem, TutorialLayout_Amy_Page1_J, 0x2BC4702, 2);
-DataArray(TutorialScreenItem, TutorialLayout_BigPage1_E, 0x2BC4E8A, 4);
-DataArray(TutorialScreenItem, TutorialLayout_BigPage1Part2_E, 0x2BC4EB6, 2);
-DataArray(TutorialScreenItem, TutorialLayout_BigPage1Part2_J, 0x2BC4EA6, 2);
-DataArray(TutorialScreenItem, TutorialLayout_BigPage5_E, 0x2BC4F46, 6);
-DataArray(TutorialScreenItem, TutorialLayout_Gamma_Page1_E, 0x2BC4A7E, 2);
-DataArray(TutorialScreenItem, TutorialLayout_Gamma_Page1_J, 0x2BC4A6E, 2);
+DataArray(TutorialScreenItem, TutorialScreenLayout_Sonic_Page1_E, 0x02BC3ACE, 6);
+DataArray(TutorialScreenItem, TutorialScreenLayout_Sonic_Page1_J, 0x02BC3A8E, 5);
+DataArray(TutorialScreenItem, TutorialScreenLayout_SharedTailsKnucklesPage1_E, 0x2BC3E90, 4);
+DataArray(TutorialScreenItem, TutorialScreenLayout_SharedTailsKnucklesPage1_J, 0x2BC3E74, 3);
+DataPointer(TutorialScreenItem, TutorialScreenLayout_Tails_Page1_E, 0x2BC3EB2);
+DataPointer(TutorialScreenItem, TutorialScreenLayout_Tails_Page1_J, 0x2BC3EAA);
+DataPointer(TutorialScreenItem, TutorialScreenLayout_Knuckles_Page1_E, 0x2BC425E);
+DataPointer(TutorialScreenItem, TutorialScreenLayout_Knuckles_Page1_J, 0x2BC4256);
+DataArray(TutorialScreenItem, TutorialScreenLayout_AmyGamma_Page1_E, 0x2BC46E6, 4);
+DataArray(TutorialScreenItem, TutorialScreenLayout_AmyGamma_Page1_J, 0x2BC46D2, 3);
+DataArray(TutorialScreenItem, TutorialScreenLayout_Amy_Page1_E, 0x2BC4712, 2);
+DataArray(TutorialScreenItem, TutorialScreenLayout_Amy_Page1_J, 0x2BC4702, 2);
+DataArray(TutorialScreenItem, TutorialScreenLayout_BigPage1_E, 0x2BC4E8A, 4);
+DataArray(TutorialScreenItem, TutorialScreenLayout_BigPage1Part2_E, 0x2BC4EB6, 2);
+DataArray(TutorialScreenItem, TutorialScreenLayout_BigPage1Part2_J, 0x2BC4EA6, 2);
+DataArray(TutorialScreenItem, TutorialScreenLayout_BigPage5_E, 0x2BC4F46, 6);
+DataArray(TutorialScreenItem, TutorialScreenLayout_Gamma_Page1_E, 0x2BC4A7E, 2);
+DataArray(TutorialScreenItem, TutorialScreenLayout_Gamma_Page1_J, 0x2BC4A6E, 2);
 
 NJS_TEXANIM PauseBar_Top = { 0x10, 0x10, 0, 0, 0, 0, 0, 0, 8, 0x20 };
 NJS_TEXANIM PauseBar_Bottom = { 0x10, 0x10, 0, 0, 0, 255, 0, 255, 8, 0x20 };
@@ -1650,32 +1606,32 @@ void Branding_Init(const IniFile *config, const HelperFunctions &helperFunctions
 		TutoScreenSonic_E[0].BoxScaleY = 144;
 		TutoScreenSonic_E[0].BoxX = 210;
 		TutoScreenSonic_E[4].BoxScaleY = 160;
-		TutorialLayout_Sonic_Page1_E[1].XOffset = 136; //Rotate camera
-		TutorialLayout_Sonic_Page1_E[1].YOffset = 0; //Rotate camera
-		TutorialLayout_Sonic_Page1_E[2].XOffset = 136; //Maneuver character
-		TutorialLayout_Sonic_Page1_E[2].YOffset = 24; //Maneuver character
-		TutorialLayout_Sonic_Page1_E[4].XOffset = 136; //A button
-		TutorialLayout_Sonic_Page1_E[4].YOffset = 64; //A button
-		TutorialLayout_Sonic_Page1_E[4].TexID = 3;
-		TutorialLayout_Sonic_Page1_E[5].TexID = 4;
-		TutorialLayout_Sonic_Page1_E[5].XOffset = 136;
-		TutorialLayout_Sonic_Page1_E[5].YOffset = 96;
+		TutorialScreenLayout_Sonic_Page1_E[1].XOffset = 136; //Rotate camera
+		TutorialScreenLayout_Sonic_Page1_E[1].YOffset = 0; //Rotate camera
+		TutorialScreenLayout_Sonic_Page1_E[2].XOffset = 136; //Maneuver character
+		TutorialScreenLayout_Sonic_Page1_E[2].YOffset = 24; //Maneuver character
+		TutorialScreenLayout_Sonic_Page1_E[4].XOffset = 136; //A button
+		TutorialScreenLayout_Sonic_Page1_E[4].YOffset = 64; //A button
+		TutorialScreenLayout_Sonic_Page1_E[4].TexID = 3;
+		TutorialScreenLayout_Sonic_Page1_E[5].TexID = 4;
+		TutorialScreenLayout_Sonic_Page1_E[5].XOffset = 136;
+		TutorialScreenLayout_Sonic_Page1_E[5].YOffset = 96;
 		WriteData((__int16*)0x02BC3AE2, (__int16)2000); //Hide an extra item in controls page (all langs)
 		//Japanese
 		TutoScreenSonic_J[0].BoxScaleX = 400;
 		TutoScreenSonic_J[0].BoxScaleY = 144;
 		TutoScreenSonic_J[0].BoxX = 200;
 		TutoScreenSonic_J[4].BoxScaleY = 160;
-		TutorialLayout_Sonic_Page1_J[1].XOffset = 136; //Rotate camera
-		TutorialLayout_Sonic_Page1_J[1].YOffset = 0; //Rotate camera
-		TutorialLayout_Sonic_Page1_J[2].XOffset = 136; //Maneuver character
-		TutorialLayout_Sonic_Page1_J[2].YOffset = 24; //Maneuver character
-		TutorialLayout_Sonic_Page1_J[3].XOffset = 136; //A button
-		TutorialLayout_Sonic_Page1_J[3].YOffset = 64; //A button
-		TutorialLayout_Sonic_Page1_J[3].TexID = 3;
-		TutorialLayout_Sonic_Page1_J[4].TexID = 4;
-		TutorialLayout_Sonic_Page1_J[4].XOffset = 136;
-		TutorialLayout_Sonic_Page1_J[4].YOffset = 96;
+		TutorialScreenLayout_Sonic_Page1_J[1].XOffset = 136; //Rotate camera
+		TutorialScreenLayout_Sonic_Page1_J[1].YOffset = 0; //Rotate camera
+		TutorialScreenLayout_Sonic_Page1_J[2].XOffset = 136; //Maneuver character
+		TutorialScreenLayout_Sonic_Page1_J[2].YOffset = 24; //Maneuver character
+		TutorialScreenLayout_Sonic_Page1_J[3].XOffset = 136; //A button
+		TutorialScreenLayout_Sonic_Page1_J[3].YOffset = 64; //A button
+		TutorialScreenLayout_Sonic_Page1_J[3].TexID = 3;
+		TutorialScreenLayout_Sonic_Page1_J[4].TexID = 4;
+		TutorialScreenLayout_Sonic_Page1_J[4].XOffset = 136;
+		TutorialScreenLayout_Sonic_Page1_J[4].YOffset = 96;
 		//German
 		TutoScreenSonic_G[0].BoxScaleX = 380;
 		TutoScreenSonic_G[0].BoxScaleY = 144;
@@ -1698,27 +1654,27 @@ void Branding_Init(const IniFile *config, const HelperFunctions &helperFunctions
 		TutoScreenTails_E[0].BoxScaleY = 144;
 		TutoScreenTails_E[0].BoxX = 210;
 		TutoScreenTails_E[4].BoxScaleY = 160;
-		TutorialLayout_SharedTailsKnucklesPage1_E[0].XOffset = 136; //Rotate camera
-		TutorialLayout_SharedTailsKnucklesPage1_E[0].YOffset = 0; //Rotate camera
-		TutorialLayout_SharedTailsKnucklesPage1_E[1].XOffset = 136; //Maneuver character
-		TutorialLayout_SharedTailsKnucklesPage1_E[1].YOffset = 24; //Maneuver character
-		TutorialLayout_SharedTailsKnucklesPage1_E[3].XOffset = 136; //A button
-		TutorialLayout_SharedTailsKnucklesPage1_E[3].YOffset = 96; //A button
-		TutorialLayout_Tails_Page1_E.XOffset = 136; //Tail attack
-		TutorialLayout_Tails_Page1_E.YOffset = 64; //Tail attack
+		TutorialScreenLayout_SharedTailsKnucklesPage1_E[0].XOffset = 136; //Rotate camera
+		TutorialScreenLayout_SharedTailsKnucklesPage1_E[0].YOffset = 0; //Rotate camera
+		TutorialScreenLayout_SharedTailsKnucklesPage1_E[1].XOffset = 136; //Maneuver character
+		TutorialScreenLayout_SharedTailsKnucklesPage1_E[1].YOffset = 24; //Maneuver character
+		TutorialScreenLayout_SharedTailsKnucklesPage1_E[3].XOffset = 136; //A button
+		TutorialScreenLayout_SharedTailsKnucklesPage1_E[3].YOffset = 96; //A button
+		TutorialScreenLayout_Tails_Page1_E.XOffset = 136; //Tail attack
+		TutorialScreenLayout_Tails_Page1_E.YOffset = 64; //Tail attack
 		//Japanese
 		TutoScreenTails_J[0].BoxScaleX = 400;
 		TutoScreenTails_J[0].BoxScaleY = 144;
 		TutoScreenTails_J[0].BoxX = 200;
 		TutoScreenTails_J[4].BoxScaleY = 160;
-		TutorialLayout_SharedTailsKnucklesPage1_J[0].XOffset = 136; //Rotate camera
-		TutorialLayout_SharedTailsKnucklesPage1_J[0].YOffset = 0; //Rotate camera
-		TutorialLayout_SharedTailsKnucklesPage1_J[1].XOffset = 136; //Maneuver character
-		TutorialLayout_SharedTailsKnucklesPage1_J[1].YOffset = 24; //Maneuver character
-		TutorialLayout_SharedTailsKnucklesPage1_J[2].XOffset = 136; //A button
-		TutorialLayout_SharedTailsKnucklesPage1_J[2].YOffset = 96; //A button
-		TutorialLayout_Tails_Page1_J.XOffset = 136; //Tail attack
-		TutorialLayout_Tails_Page1_J.YOffset = 64; //Tail attack
+		TutorialScreenLayout_SharedTailsKnucklesPage1_J[0].XOffset = 136; //Rotate camera
+		TutorialScreenLayout_SharedTailsKnucklesPage1_J[0].YOffset = 0; //Rotate camera
+		TutorialScreenLayout_SharedTailsKnucklesPage1_J[1].XOffset = 136; //Maneuver character
+		TutorialScreenLayout_SharedTailsKnucklesPage1_J[1].YOffset = 24; //Maneuver character
+		TutorialScreenLayout_SharedTailsKnucklesPage1_J[2].XOffset = 136; //A button
+		TutorialScreenLayout_SharedTailsKnucklesPage1_J[2].YOffset = 96; //A button
+		TutorialScreenLayout_Tails_Page1_J.XOffset = 136; //Tail attack
+		TutorialScreenLayout_Tails_Page1_J.YOffset = 64; //Tail attack
 		//French
 		TutoScreenTails_F[4].BoxScaleY = 192;
 		TutoScreenTails_F[0].BoxScaleX = 425;
@@ -1748,8 +1704,8 @@ void Branding_Init(const IniFile *config, const HelperFunctions &helperFunctions
 		TutoScreenKnuckles_E[4].BoxScaleY = 128;
 		TutoScreenKnuckles_E[4].BoxScaleX = 425;
 		TutoScreenKnuckles_E[5].BoxScaleY = 160;
-		TutorialLayout_Knuckles_Page1_E.XOffset = 136; //Punch attack
-		TutorialLayout_Knuckles_Page1_E.YOffset = 64; //Punch attack
+		TutorialScreenLayout_Knuckles_Page1_E.XOffset = 136; //Punch attack
+		TutorialScreenLayout_Knuckles_Page1_E.YOffset = 64; //Punch attack
 		WriteData<1>((char*)0x02BC4308, 0x03); //Number of items in Maximum Heat screen, remove unnecessary line
 		//Japanese
 		TutoScreenKnuckles_J[0].BoxScaleX = 400;
@@ -1759,8 +1715,8 @@ void Branding_Init(const IniFile *config, const HelperFunctions &helperFunctions
 		TutoScreenKnuckles_J[4].BoxScaleY = 128;
 		TutoScreenKnuckles_J[4].BoxScaleX = 425;
 		TutoScreenKnuckles_J[5].BoxScaleY = 160;
-		TutorialLayout_Knuckles_Page1_J.XOffset = 136; //Punch attack
-		TutorialLayout_Knuckles_Page1_J.YOffset = 64; //Punch attack
+		TutorialScreenLayout_Knuckles_Page1_J.XOffset = 136; //Punch attack
+		TutorialScreenLayout_Knuckles_Page1_J.YOffset = 64; //Punch attack
 		//German
 		TutoScreenKnuckles_G[0].BoxScaleX = 380;
 		TutoScreenKnuckles_G[0].BoxScaleY = 144;
@@ -1798,27 +1754,27 @@ void Branding_Init(const IniFile *config, const HelperFunctions &helperFunctions
 		TutoScreenAmy_E[0].BoxScaleY = 144;
 		TutoScreenAmy_E[0].BoxX = 210;
 		TutoScreenAmy_E[4].BoxScaleY = 160;
-		TutorialLayout_AmyGamma_Page1_E[1].XOffset = 136; //Rotate camera
-		TutorialLayout_AmyGamma_Page1_E[1].YOffset = 0; //Rotate camera
-		TutorialLayout_AmyGamma_Page1_E[2].XOffset = 136; //Maneuver character
-		TutorialLayout_AmyGamma_Page1_E[2].YOffset = 24; //Maneuver character
-		TutorialLayout_Amy_Page1_E[0].XOffset = 136; //A
-		TutorialLayout_Amy_Page1_E[0].YOffset = 96; //A
-		TutorialLayout_Amy_Page1_E[1].XOffset = 136; //B
-		TutorialLayout_Amy_Page1_E[1].YOffset = 64; //B
+		TutorialScreenLayout_AmyGamma_Page1_E[1].XOffset = 136; //Rotate camera
+		TutorialScreenLayout_AmyGamma_Page1_E[1].YOffset = 0; //Rotate camera
+		TutorialScreenLayout_AmyGamma_Page1_E[2].XOffset = 136; //Maneuver character
+		TutorialScreenLayout_AmyGamma_Page1_E[2].YOffset = 24; //Maneuver character
+		TutorialScreenLayout_Amy_Page1_E[0].XOffset = 136; //A
+		TutorialScreenLayout_Amy_Page1_E[0].YOffset = 96; //A
+		TutorialScreenLayout_Amy_Page1_E[1].XOffset = 136; //B
+		TutorialScreenLayout_Amy_Page1_E[1].YOffset = 64; //B
 		//Japanese
 		TutoScreenAmy_J[0].BoxScaleX = 400;
 		TutoScreenAmy_J[0].BoxScaleY = 144;
 		TutoScreenAmy_J[0].BoxX = 200;
 		TutoScreenAmy_J[4].BoxScaleY = 160;
-		TutorialLayout_AmyGamma_Page1_J[1].XOffset = 136; //Rotate camera
-		TutorialLayout_AmyGamma_Page1_J[1].YOffset = 0; //Rotate camera
-		TutorialLayout_AmyGamma_Page1_J[2].XOffset = 136; //Maneuver character
-		TutorialLayout_AmyGamma_Page1_J[2].YOffset = 24; //Maneuver character
-		TutorialLayout_Amy_Page1_J[0].XOffset = 136; //A
-		TutorialLayout_Amy_Page1_J[0].YOffset = 96; //A
-		TutorialLayout_Amy_Page1_J[1].XOffset = 136; //B
-		TutorialLayout_Amy_Page1_J[1].YOffset = 64; //B
+		TutorialScreenLayout_AmyGamma_Page1_J[1].XOffset = 136; //Rotate camera
+		TutorialScreenLayout_AmyGamma_Page1_J[1].YOffset = 0; //Rotate camera
+		TutorialScreenLayout_AmyGamma_Page1_J[2].XOffset = 136; //Maneuver character
+		TutorialScreenLayout_AmyGamma_Page1_J[2].YOffset = 24; //Maneuver character
+		TutorialScreenLayout_Amy_Page1_J[0].XOffset = 136; //A
+		TutorialScreenLayout_Amy_Page1_J[0].YOffset = 96; //A
+		TutorialScreenLayout_Amy_Page1_J[1].XOffset = 136; //B
+		TutorialScreenLayout_Amy_Page1_J[1].YOffset = 64; //B
 		//German
 		TutoScreenAmy_G[0].BoxScaleX = 380;
 		TutoScreenAmy_G[0].BoxScaleY = 144;
@@ -1843,17 +1799,17 @@ void Branding_Init(const IniFile *config, const HelperFunctions &helperFunctions
 		TutoScreenBig_E[4].BoxScaleY = 128;
 		TutoScreenBig_E[7].BoxScaleX = 420;
 		TutoScreenBig_E[7].BoxX = 180;
-		TutorialLayout_BigPage1_E[1].XOffset = 136; //Rotate camera
-		TutorialLayout_BigPage1_E[1].YOffset = 0; //Rotate camera
-		TutorialLayout_BigPage1_E[2].XOffset = 136; //Maneuver character
-		TutorialLayout_BigPage1_E[2].YOffset = 24; //Maneuver character
-		TutorialLayout_BigPage1Part2_E[0].XOffset = 136; //A
-		TutorialLayout_BigPage1Part2_E[0].YOffset = 96; //A
-		TutorialLayout_BigPage1Part2_E[1].XOffset = 136; //B
-		TutorialLayout_BigPage1Part2_E[1].YOffset = 64; //B
-		TutorialLayout_BigPage5_E[2].TexID = 32; //Hide "Tugging the rod"
-		TutorialLayout_BigPage5_E[3].YOffset = 64; //Move A up
-		TutorialLayout_BigPage5_E[4].YOffset = 96; //Move B up
+		TutorialScreenLayout_BigPage1_E[1].XOffset = 136; //Rotate camera
+		TutorialScreenLayout_BigPage1_E[1].YOffset = 0; //Rotate camera
+		TutorialScreenLayout_BigPage1_E[2].XOffset = 136; //Maneuver character
+		TutorialScreenLayout_BigPage1_E[2].YOffset = 24; //Maneuver character
+		TutorialScreenLayout_BigPage1Part2_E[0].XOffset = 136; //A
+		TutorialScreenLayout_BigPage1Part2_E[0].YOffset = 96; //A
+		TutorialScreenLayout_BigPage1Part2_E[1].XOffset = 136; //B
+		TutorialScreenLayout_BigPage1Part2_E[1].YOffset = 64; //B
+		TutorialScreenLayout_BigPage5_E[2].TexID = 32; //Hide "Tugging the rod"
+		TutorialScreenLayout_BigPage5_E[3].YOffset = 64; //Move A up
+		TutorialScreenLayout_BigPage5_E[4].YOffset = 96; //Move B up
 		//Japanese
 		TutoScreenBig_J[0].BoxScaleX = 400;
 		TutoScreenBig_J[0].BoxScaleY = 144;
@@ -1861,10 +1817,10 @@ void Branding_Init(const IniFile *config, const HelperFunctions &helperFunctions
 		TutoScreenBig_J[4].BoxScaleY = 160;
 		TutoScreenBig_J[7].BoxScaleX = 400;
 		TutoScreenBig_J[7].BoxX = 200;
-		TutorialLayout_BigPage1Part2_J[0].XOffset = 136; //A
-		TutorialLayout_BigPage1Part2_J[0].YOffset = 96; //A
-		TutorialLayout_BigPage1Part2_J[1].XOffset = 136; //B
-		TutorialLayout_BigPage1Part2_J[1].YOffset = 64; //B
+		TutorialScreenLayout_BigPage1Part2_J[0].XOffset = 136; //A
+		TutorialScreenLayout_BigPage1Part2_J[0].YOffset = 96; //A
+		TutorialScreenLayout_BigPage1Part2_J[1].XOffset = 136; //B
+		TutorialScreenLayout_BigPage1Part2_J[1].YOffset = 64; //B
 		//German
 		TutoScreenBig_G[0].BoxScaleX = 395;
 		TutoScreenBig_G[0].BoxScaleY = 144;
@@ -1895,19 +1851,19 @@ void Branding_Init(const IniFile *config, const HelperFunctions &helperFunctions
 		TutoScreenGamma_E[0].BoxScaleY = 144;
 		TutoScreenGamma_E[0].BoxX = 210;
 		TutoScreenGamma_E[4].BoxScaleY = 160;
-		TutorialLayout_Gamma_Page1_E[0].XOffset = 136; //A
-		TutorialLayout_Gamma_Page1_E[0].YOffset = 96; //A
-		TutorialLayout_Gamma_Page1_E[1].XOffset = 136; //B
-		TutorialLayout_Gamma_Page1_E[1].YOffset = 64; //B
+		TutorialScreenLayout_Gamma_Page1_E[0].XOffset = 136; //A
+		TutorialScreenLayout_Gamma_Page1_E[0].YOffset = 96; //A
+		TutorialScreenLayout_Gamma_Page1_E[1].XOffset = 136; //B
+		TutorialScreenLayout_Gamma_Page1_E[1].YOffset = 64; //B
 		//Japanese
 		TutoScreenGamma_J[0].BoxScaleX = 400;
 		TutoScreenGamma_J[0].BoxScaleY = 144;
 		TutoScreenGamma_J[0].BoxX = 200;
 		TutoScreenGamma_J[4].BoxScaleY = 160;
-		TutorialLayout_Gamma_Page1_J[0].XOffset = 136; //A
-		TutorialLayout_Gamma_Page1_J[0].YOffset = 96; //A
-		TutorialLayout_Gamma_Page1_J[1].XOffset = 136; //B
-		TutorialLayout_Gamma_Page1_J[1].YOffset = 64; //B
+		TutorialScreenLayout_Gamma_Page1_J[0].XOffset = 136; //A
+		TutorialScreenLayout_Gamma_Page1_J[0].YOffset = 96; //A
+		TutorialScreenLayout_Gamma_Page1_J[1].XOffset = 136; //B
+		TutorialScreenLayout_Gamma_Page1_J[1].YOffset = 64; //B
 		//German
 		TutoScreenGamma_G[4].BoxScaleY = 160;
 		TutoScreenGamma_G[0].BoxScaleX = 380;
@@ -2443,10 +2399,10 @@ void Branding_Init(const IniFile *config, const HelperFunctions &helperFunctions
 		WriteData((float*)0x004333A0, -1.0f); //Screen fade for tutorials
 		WriteData((float*)0x004333AE, -1.0f); //Screen fade for tutorials
 		WriteCall((void*)0x0042BF52, ScreenFadeFix);
-		WriteData<5>((char*)0x0040BF27, 0x90); //Disable "Now saving..."
-		WriteData<5>((void*)0x0040BE0D, 0x90); //Disable "Now loading..."
-		WriteData<5>((void*)0x00503438, 0x90); //Disable "Now loading..."
-		WriteData<5>((void*)0x0050346D, 0x90); //Disable "Now loading..."
+		WriteData<1>((char*)0x0040BE40, 0xC3); //Disable "Now saving..."
+		WriteData<5>((char*)0x0040BE0D, 0x90); //Disable "Now loading..."
+		WriteData<5>((char*)0x00503438, 0x90); //Disable "Now loading..."
+		WriteData<5>((char*)0x0050346D, 0x90); //Disable "Now loading..."
 		//Character select screen fixes
 		WriteCall((void*)0x00511AD0, RetrievePlayerSelectStuff); //Player select text in character select screen
 		WriteCall((void*)0x00511C76, RetrieveBottomThingStuff); //Bottom thing in character select screen

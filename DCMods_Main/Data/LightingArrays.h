@@ -740,14 +740,14 @@ NJS_MATERIAL* PerfectChaosCars[] = {
 };
 
 NJS_MATERIAL* WhiteDiffuse_Boss[] = {
-	//Egg Hornet level
-	&matlist_0005B834[0],
 	//Chaos 0 helicopter
 	&matlist_0005528C[0],
 	&matlist_0005528C[1],
-	//Chaos 4 level
-	&matlist_0004C318[0],
 };
+
+NJS_MATERIAL* WhiteDiffuse_EGM1External[] = { nullptr };
+
+NJS_MATERIAL* WhiteDiffuse_Chaos4External[] = { nullptr };
 
 NJS_MATERIAL* Chaos6ObjectMaterials[] = {
 	//E101

@@ -1,9 +1,15 @@
 #include "stdafx.h"
 #include "textures.h"
-#include "Highway1.h"
-#include "Highway2 Fixes.h"
-#include "Highway2.h"
-#include "Highway3.h"
+
+NJS_TEXNAME textures_highway1[89];
+NJS_TEXLIST texlist_hw1 = { arrayptrandlength(textures_highway1) };
+
+NJS_TEXNAME textures_highway2[32];
+NJS_TEXLIST texlist_hw2 = { arrayptrandlength(textures_highway2) };
+
+NJS_TEXNAME textures_highway3[107];
+NJS_TEXLIST texlist_hw3 = { arrayptrandlength(textures_highway3) };
+
 #include "SH_bus.h"
 #include "SH_yellowcar.h"
 #include "SH_bluecar.h"
@@ -48,18 +54,21 @@ NJS_MATERIAL* DisableAlphaRejection_SpeedHighway[] = {
 	((NJS_MATERIAL*)0x02696920), //OLmpa
 };
 
-NJS_MATERIAL* WhiteDiffuse_Highway[] = {
+NJS_MATERIAL* WhiteDiffuse_HighwayExternal[] = {
 	//Level stuff
-	&matlistSTG04_000774B8[0],
-	&matlistSTG04_000774B8[1],
-	&matlistSTG04_000774B8[2],
-	&matlistSTG04_000774B8[3],
-	&matlistSTG04_000774B8[4],
-	&matlistSTG04_000774B8[5],
-	&matlistSTG04_000774B8[6],
-	&matlistSTG04_000774B8[7],
-	&matlistSTG04_000774B8[8],
-	&matlistSTG04_000774B8[9],
+	nullptr,
+	nullptr,
+	nullptr,
+	nullptr,
+	nullptr,
+	nullptr,
+	nullptr,
+	nullptr,
+	nullptr,
+	nullptr,
+};
+
+NJS_MATERIAL* WhiteDiffuse_Highway[] = {
 	//OAntena
 	((NJS_MATERIAL*)0x02691188),
 	((NJS_MATERIAL*)0x0269119C),
@@ -132,15 +141,61 @@ static void __cdecl FountainDisplay_r(ObjectMaster *a1)
 		{
 			njSetTexture((NJS_TEXLIST*)0x10F30A0);
 			njPushMatrix(0);
-			njTranslate(0, objectSTG04_00133AD8.pos[0], objectSTG04_00133AD8.pos[1], objectSTG04_00133AD8.pos[2]);
-			sub_407FC0(&attachSTG04_00133AB0, 4);
+			
+			njTranslate(0, ((NJS_OBJECT*)STG04_2_Info->getdata("objectSTG04_00133AD8"))->pos[0], ((NJS_OBJECT*)STG04_2_Info->getdata("objectSTG04_00133AD8"))->pos[1], ((NJS_OBJECT*)STG04_2_Info->getdata("objectSTG04_00133AD8"))->pos[2]);
+			sub_407FC0((NJS_MODEL_SADX*)STG04_2_Info->getdata("attachSTG04_00133AB0"), 4);
 			njPopMatrix(1u);
 		}
 	}
 	original(a1);
 }
 
-void SpeedHighway_Init(const IniFile *config, const HelperFunctions &helperFunctions)
+void UnloadLevelFiles_STG04()
+{
+	if (DLLLoaded_Lantern)
+	{
+		material_unregister_ptr(WhiteDiffuse_HighwayExternal, LengthOfArray(WhiteDiffuse_HighwayExternal), &ForceWhiteDiffuse1);
+	}
+	delete STG04_0_Info;
+	delete STG04_1_Info;
+	delete STG04_2_Info;
+	STG04_0_Info = nullptr;
+	STG04_1_Info = nullptr;
+	STG04_2_Info = nullptr;
+}
+
+void LoadLevelFiles_STG04()
+{
+	CheckAndUnloadLevelFiles();
+	STG04_0_Info = new LandTableInfo(ModPath + "\\data\\STG04\\0.sa1lvl");
+	STG04_1_Info = new LandTableInfo(ModPath + "\\data\\STG04\\1.sa1lvl");
+	STG04_2_Info = new LandTableInfo(ModPath + "\\data\\STG04\\2.sa1lvl");
+	LandTable *STG04_0 = STG04_0_Info->getlandtable();
+	LandTable *STG04_1 = STG04_1_Info->getlandtable();
+	LandTable *STG04_2 = STG04_2_Info->getlandtable();
+	STG04_0->TexList = &texlist_hw1;
+	STG04_1->TexList = &texlist_hw2;
+	STG04_2->TexList = &texlist_hw3;
+	WriteData((LandTable**)0x97DA88, STG04_0);
+	WriteData((LandTable**)0x97DA8C, STG04_1);
+	WriteData((LandTable**)0x97DA90, STG04_2);
+	if (DLLLoaded_Lantern)
+	{
+		WhiteDiffuse_HighwayExternal[0] = &((NJS_MATERIAL*)STG04_0_Info->getdata("matlistSTG04_000774B8"))[0];
+		WhiteDiffuse_HighwayExternal[1] = &((NJS_MATERIAL*)STG04_0_Info->getdata("matlistSTG04_000774B8"))[1];
+		WhiteDiffuse_HighwayExternal[2] = &((NJS_MATERIAL*)STG04_0_Info->getdata("matlistSTG04_000774B8"))[2];
+		WhiteDiffuse_HighwayExternal[3] = &((NJS_MATERIAL*)STG04_0_Info->getdata("matlistSTG04_000774B8"))[3];
+		WhiteDiffuse_HighwayExternal[4] = &((NJS_MATERIAL*)STG04_0_Info->getdata("matlistSTG04_000774B8"))[4];
+		WhiteDiffuse_HighwayExternal[5] = &((NJS_MATERIAL*)STG04_0_Info->getdata("matlistSTG04_000774B8"))[5];
+		WhiteDiffuse_HighwayExternal[6] = &((NJS_MATERIAL*)STG04_0_Info->getdata("matlistSTG04_000774B8"))[6];
+		WhiteDiffuse_HighwayExternal[7] = &((NJS_MATERIAL*)STG04_0_Info->getdata("matlistSTG04_000774B8"))[7];
+		WhiteDiffuse_HighwayExternal[8] = &((NJS_MATERIAL*)STG04_0_Info->getdata("matlistSTG04_000774B8"))[8];
+		WhiteDiffuse_HighwayExternal[9] = &((NJS_MATERIAL*)STG04_0_Info->getdata("matlistSTG04_000774B8"))[9];
+		material_register_ptr(WhiteDiffuse_HighwayExternal, LengthOfArray(WhiteDiffuse_HighwayExternal), &ForceWhiteDiffuse1);
+	}
+}
+
+void SpeedHighway_Init()
 {
 	ReplaceBIN("PL_40B", "PL_40X");
 	ReplaceBIN("PL_41B", "PL_41X");
@@ -184,9 +239,6 @@ void SpeedHighway_Init(const IniFile *config, const HelperFunctions &helperFunct
 	ReplacePVM("OBJ_HIGHWAY");
 	ReplacePVM("OBJ_HIGHWAY2");
 	ResizeTextureList(&HIGHWAY_CAR_TEXLIST, 16);
-	WriteData((LandTable**)0x97DA88, &landtable_0001853C);
-	WriteData((LandTable**)0x97DA8C, &landtable_00019178);
-	WriteData((LandTable**)0x97DA90, &landtable_0001B08C);
 	//Fountain fixes
 	WriteCall((void*)0x0061BAA0, FountainPart1);
 	WriteCall((void*)0x0061BAF1, FountainPart2);
@@ -342,11 +394,11 @@ void SpeedHighway_OnFrame()
 {
 	if (CurrentLevel == 4)
 	{
-		if (CurrentAct == 2 && GameState != 16)
+		if (STG04_2_Info && CurrentAct == 2 && GameState != 16)
 		{
 			if ((FramerateSetting < 2 && FrameCounterUnpaused % 4 == 0) || (FramerateSetting >= 2 && FrameCounterUnpaused % 2 == 0)) shwwater++;
 			if (shwwater > 13) shwwater = 0;
-			matlistSTG04_001338A0[0].attr_texId = shwwater;
+			((NJS_MATERIAL*)STG04_2_Info->getdata("matlistSTG04_001338A0"))[0].attr_texId = shwwater;
 		}
 	}
 }

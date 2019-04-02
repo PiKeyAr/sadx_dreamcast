@@ -21,6 +21,8 @@
 #include "SADXModLoader.h"
 #include "IniFile.hpp"
 #include "Trampoline.h"
+#include "ModelInfo.h"
+#include "LandTableInfo.h"
 
 // Lantern engine.
 #include "lanternapi.h"

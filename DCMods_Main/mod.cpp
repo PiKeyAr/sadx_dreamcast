@@ -1,5 +1,87 @@
 #include "stdafx.h"
 
+//Level files
+LandTableInfo *STG00_0_Info = nullptr;
+LandTableInfo *STG01_0_Info = nullptr;
+LandTableInfo *STG01_1_Info = nullptr;
+LandTableInfo *STG01_2_Info = nullptr;
+LandTableInfo *STG02_0_Info = nullptr;
+LandTableInfo *STG02_1_Info = nullptr;
+LandTableInfo *STG02_2_Info = nullptr;
+LandTableInfo *STG03_0_Info = nullptr;
+LandTableInfo *STG03_1_Info = nullptr;
+LandTableInfo *STG03_2_Info = nullptr;
+LandTableInfo *STG04_0_Info = nullptr;
+LandTableInfo *STG04_1_Info = nullptr;
+LandTableInfo *STG04_2_Info = nullptr;
+LandTableInfo *STG05_0_Info = nullptr;
+LandTableInfo *STG05_1_Info = nullptr;
+LandTableInfo *STG05_2_Info = nullptr;
+LandTableInfo *STG06_0_Info = nullptr;
+LandTableInfo *STG06_1_Info = nullptr;
+LandTableInfo *STG06_2_Info = nullptr;
+LandTableInfo *STG07_0_Info = nullptr;
+LandTableInfo *STG07_1_Info = nullptr;
+LandTableInfo *STG07_2_Info = nullptr;
+LandTableInfo *STG08_0_Info = nullptr;
+LandTableInfo *STG08_1_Info = nullptr;
+LandTableInfo *STG08_2_Info = nullptr;
+LandTableInfo *STG08_3_Info = nullptr;
+LandTableInfo *STG09_0_Info = nullptr;
+LandTableInfo *STG09_1_Info = nullptr;
+LandTableInfo *STG09_2_Info = nullptr;
+LandTableInfo *STG09_3_Info = nullptr;
+LandTableInfo *STG10_0_Info = nullptr;
+LandTableInfo *STG10_1_Info = nullptr;
+LandTableInfo *STG10_2_Info = nullptr;
+LandTableInfo *STG12_0_Info = nullptr;
+LandTableInfo *STG12_1_Info = nullptr;
+LandTableInfo *STG12_2_Info = nullptr;
+LandTableInfo *B_CHAOS0_Info = nullptr;
+LandTableInfo *B_CHAOS2_Info = nullptr;
+LandTableInfo *B_CHAOS4_Info = nullptr;
+LandTableInfo *B_CHAOS6_0_Info = nullptr;
+LandTableInfo *B_CHAOS6_1_Info = nullptr;
+LandTableInfo *B_CHAOS7_Info = nullptr;
+LandTableInfo *B_EGM1_Info = nullptr;
+LandTableInfo *B_EGM2_Info = nullptr;
+LandTableInfo *B_EGM3_Info = nullptr;
+LandTableInfo *B_E101_Info = nullptr;
+LandTableInfo *B_ROBO_Info = nullptr;
+LandTableInfo *B_E101_R_Info = nullptr;
+LandTableInfo *ADV00_0_Info = nullptr;
+LandTableInfo *ADV00_1_Info = nullptr;
+LandTableInfo *ADV00_2_Info = nullptr;
+LandTableInfo *ADV00_3_Info = nullptr;
+LandTableInfo *ADV00_4_Info = nullptr;
+LandTableInfo *ADV00_5_Info = nullptr;
+LandTableInfo *ADV01_0_Info = nullptr;
+LandTableInfo *ADV01_1_Info = nullptr;
+LandTableInfo *ADV01_2_Info = nullptr;
+LandTableInfo *ADV01_3_Info = nullptr;
+LandTableInfo *ADV01_4_Info = nullptr;
+LandTableInfo *ADV01_5_Info = nullptr;
+LandTableInfo *ADV01C_0_Info = nullptr;
+LandTableInfo *ADV01C_1_Info = nullptr;
+LandTableInfo *ADV01C_2_Info = nullptr;
+LandTableInfo *ADV01C_3_Info = nullptr;
+LandTableInfo *ADV01C_4_Info = nullptr;
+LandTableInfo *ADV01C_5_Info = nullptr;
+LandTableInfo *ADV02_0_Info = nullptr;
+LandTableInfo *ADV02_1_Info = nullptr;
+LandTableInfo *ADV02_2_Info = nullptr;
+LandTableInfo *ADV02_3_Info = nullptr;
+LandTableInfo *ADV03_0_Info = nullptr;
+LandTableInfo *ADV03_1_Info = nullptr;
+LandTableInfo *ADV03_2_Info = nullptr;
+LandTableInfo *MINICART_Info = nullptr;
+LandTableInfo *SBOARD_Info = nullptr;
+LandTableInfo *AL_GARDEN00_Info = nullptr;
+LandTableInfo *AL_GARDEN01_Info = nullptr;
+LandTableInfo *AL_GARDEN02_Info = nullptr;
+LandTableInfo *AL_RACE_0_Info = nullptr;
+LandTableInfo *AL_RACE_1_Info = nullptr;
+
 HMODULE LanternDLL;
 set_shader_flags* set_shader_flags_ptr;
 material_register* material_register_ptr;
@@ -11,9 +93,41 @@ set_blend_factor* set_blend_factor_ptr;
 set_diffuse_blend* set_diffuse_blend_ptr;
 set_specular_blend* set_specular_blend_ptr;
 
+LandTable **___LANDTABLEBOSSCHAOS0 = nullptr;
+NJS_ACTION **___BOSSCHAOS0_ACTIONS = nullptr;
+NJS_OBJECT **___BOSSCHAOS0_OBJECTS = nullptr;
+NJS_TEXLIST **___BOSSCHAOS0_TEXLISTS = nullptr;
+NJS_TEXLIST **___ADV00_TEXLISTS = nullptr;
+LandTable **___LANDTABLESS = nullptr;
+NJS_OBJECT **___MILES_OBJECTS = nullptr;
+NJS_TEXLIST **___ADV01_TEXLISTS = nullptr;
+NJS_MODEL_SADX **___ADV01_MODELS = nullptr;
+NJS_TEXLIST **___ADV01C_TEXLISTS = nullptr;
+LandTable **___LANDTABLEEC = nullptr;
+LandTable **___LANDTABLEECC = nullptr;
+NJS_OBJECT **___ADV01C_OBJECTS = nullptr;
+NJS_ACTION **___ADV01C_ACTIONS = nullptr;
+NJS_ACTION **___ADV01_ACTIONS = nullptr;
+NJS_OBJECT **___ADV01_OBJECTS = nullptr;
+NJS_OBJECT **___ADV01EC00_OBJECTS = nullptr;
+NJS_MODEL_SADX **___ADV01C_MODELS = nullptr;
+NJS_TEXLIST **___ADV02_TEXLISTS = nullptr;
+NJS_MODEL_SADX **___ADV02_MODELS = nullptr;
+NJS_OBJECT **___ADV02_OBJECTS = nullptr;
+NJS_OBJECT **___ADV02MR02_OBJECTS = nullptr;
+NJS_ACTION **___ADV02_ACTIONS = nullptr;
+LandTable **___LANDTABLEMR = nullptr;
+NJS_TEXLIST **___ADV03_TEXLISTS = nullptr;
+LandTable **___LANDTABLEPAST = nullptr;
+NJS_OBJECT **___ADV03PAST01_OBJECTS = nullptr;
+NJS_OBJECT **___ADV03PAST02_OBJECTS = nullptr;
+NJS_OBJECT **___ADV03_OBJECTS = nullptr;
+
+HelperFunctions HelperFunctionsGlobal;
 bool EnableWindowTitle = true;
 bool EnableDCBranding = true;
 bool EnableEmeraldCoast = true;
+bool IamStupidAndIWantFuckedUpOcean = false;
 bool EnableWindyValley = true;
 bool EnableTwinklePark = true;
 bool EnableSpeedHighway = true;
@@ -22,6 +136,7 @@ bool EnableSkyDeck = true;
 bool EnableLostWorld = true; 
 bool EnableIceCap = true;
 bool EnableCasinopolis = true;
+bool CowgirlOn = true;
 bool EnableFinalEgg = true;
 bool EnableHotShelter = true;
 bool EnableStationSquare = true;
@@ -29,6 +144,28 @@ bool EnableMysticRuins = true;
 bool EnableEggCarrier = true;
 bool EnablePast = true;
 bool DisableAllVideoStuff = true;
+
+bool EnableChaos0 = true;
+bool EnableChaos2 = true;
+bool EnableChaos4 = true;
+bool EnableChaos6 = true;
+bool EnablePerfectChaos = true;
+bool EnableEggHornet = true;
+bool EnableEggWalker = true;
+bool EnableEggViper = true;
+bool EnableE101 = true;
+bool EnableZeroE101R = true;
+
+bool EnableTwinkleCircuit = true;
+bool EnableSandHill = true;
+bool EnableSkyChaseFixes = true;
+bool EnableSkyChaseEnemyModels = true;
+
+bool EnableSSGarden = true;
+bool EnableMRGarden = true;
+bool EnableECGarden = true;
+bool ReplaceEggs = true;
+int ReplaceFruits = 0;
 
 bool SADXWater_EmeraldCoast = false;
 bool SADXWater_StationSquare = false;
@@ -44,6 +181,8 @@ bool DLLLoaded_HDGUI = false;
 bool DLLLoaded_DLCs = false;
 bool DLLLoaded_SADXFE = false;
 bool EnableSpeedFixes = true;
+
+std::string ModPath = "";
 
 static const wchar_t *const OldModDLLs[] = {
 	L"DC_Bosses",
@@ -83,10 +222,81 @@ void AnimateTextures(NJS_MATERIAL *material, int startframe, int endframe, int s
 	material->attr_texId = texid;
 }
 
+void CheckAndUnloadLevelFiles()
+{
+	if (CurrentLevel != LevelIDs_StationSquare && ADV00_0_Info) UnloadLevelFiles_ADV00();
+	if (CurrentLevel != LevelIDs_EggCarrierOutside && ADV01_0_Info) UnloadLevelFiles_ADV01();
+	if (CurrentLevel != LevelIDs_EggCarrierInside && ADV01C_0_Info) UnloadLevelFiles_ADV01C();
+	if (CurrentLevel != LevelIDs_MysticRuins && ADV02_0_Info) UnloadLevelFiles_ADV02();
+	if (CurrentLevel != LevelIDs_Past && ADV00_0_Info) UnloadLevelFiles_ADV03();
+	if (CurrentLevel != LevelIDs_Chaos0 && B_CHAOS0_Info) UnloadLevelFiles_B_CHAOS0();
+	if (CurrentLevel != LevelIDs_Chaos2 && B_CHAOS2_Info) UnloadLevelFiles_B_CHAOS2();
+	if (CurrentLevel != LevelIDs_Chaos4 && B_CHAOS4_Info) UnloadLevelFiles_B_CHAOS4();
+	if (CurrentLevel != LevelIDs_Chaos6 && B_CHAOS6_0_Info) UnloadLevelFiles_B_CHAOS6();
+	if (CurrentLevel != LevelIDs_PerfectChaos && B_CHAOS7_Info) UnloadLevelFiles_B_CHAOS7();
+	if (CurrentLevel != LevelIDs_EggHornet && B_EGM1_Info) UnloadLevelFiles_B_EGM1();
+	if (CurrentLevel != LevelIDs_EggWalker && B_EGM2_Info) UnloadLevelFiles_B_EGM2();
+	if (CurrentLevel != LevelIDs_EggViper && B_EGM3_Info) UnloadLevelFiles_B_EGM3();
+	if (CurrentLevel != LevelIDs_Zero && B_ROBO_Info) UnloadLevelFiles_B_ROBO();
+	if (CurrentLevel != LevelIDs_Zero && B_E101_Info) UnloadLevelFiles_B_E101();
+	if (CurrentLevel != LevelIDs_Zero && B_E101_R_Info) UnloadLevelFiles_B_E101_R();
+	if (CurrentLevel != LevelIDs_EmeraldCoast && STG01_0_Info) UnloadLevelFiles_STG01();
+	if (CurrentLevel != LevelIDs_WindyValley && STG02_0_Info) UnloadLevelFiles_STG02();
+	if (CurrentLevel != LevelIDs_TwinklePark && STG03_0_Info) UnloadLevelFiles_STG03();
+	if (CurrentLevel != LevelIDs_SpeedHighway && STG04_0_Info) UnloadLevelFiles_STG04();
+	if (CurrentLevel != LevelIDs_RedMountain && STG05_0_Info) UnloadLevelFiles_STG05();
+	if (CurrentLevel != LevelIDs_SkyDeck && STG06_0_Info) UnloadLevelFiles_STG06();
+	if (CurrentLevel != LevelIDs_LostWorld && STG07_0_Info) UnloadLevelFiles_STG07();
+	if (CurrentLevel != LevelIDs_IceCap && STG08_0_Info) UnloadLevelFiles_STG08();
+	if (CurrentLevel != LevelIDs_Casinopolis && STG09_0_Info) UnloadLevelFiles_STG09();
+	if (CurrentLevel != LevelIDs_FinalEgg && STG10_0_Info) UnloadLevelFiles_STG10();
+	if (CurrentLevel != LevelIDs_HotShelter && STG12_0_Info) UnloadLevelFiles_STG12();
+	if (CurrentLevel != LevelIDs_SandHill && SBOARD_Info) UnloadLevelFiles_SBOARD();
+	if (CurrentLevel != LevelIDs_TwinkleCircuit && SBOARD_Info) UnloadLevelFiles_MINICART();
+	if (CurrentLevel < 39 && AL_RACE_0_Info)
+	{
+		UnloadLevelFiles_Chao();
+		UnloadLevelFiles_AL_RACE();
+	}
+}
+
 extern "C"
 {
 	__declspec(dllexport) void __cdecl Init(const char *path, const HelperFunctions &helperFunctions)
 	{
+		//Get handles for all DLLs
+		___LANDTABLEBOSSCHAOS0 = (LandTable **)GetProcAddress(GetModuleHandle(L"BOSSCHAOS0MODELS"), "___LANDTABLEBOSSCHAOS0");
+		___BOSSCHAOS0_ACTIONS = (NJS_ACTION **)GetProcAddress(GetModuleHandle(L"BOSSCHAOS0MODELS"), "___BOSSCHAOS0_ACTIONS");
+		___BOSSCHAOS0_OBJECTS = (NJS_OBJECT **)GetProcAddress(GetModuleHandle(L"BOSSCHAOS0MODELS"), "___BOSSCHAOS0_OBJECTS");
+		___BOSSCHAOS0_TEXLISTS = (NJS_TEXLIST **)GetProcAddress(GetModuleHandle(L"BOSSCHAOS0MODELS"), "___BOSSCHAOS0_TEXLISTS");
+		___ADV00_TEXLISTS = (NJS_TEXLIST **)GetProcAddress(GetModuleHandle(L"ADV00MODELS"), "___ADV00_TEXLISTS");
+		___LANDTABLESS = (LandTable **)GetProcAddress(GetModuleHandle(L"ADV00MODELS"), "___LANDTABLESS");
+		___MILES_OBJECTS = (NJS_OBJECT **)GetProcAddress(GetModuleHandle(L"CHRMODELS_orig"), "___MILES_OBJECTS");
+		___ADV01_TEXLISTS = (NJS_TEXLIST **)GetProcAddress(GetModuleHandle(L"ADV01MODELS"), "___ADV01_TEXLISTS");
+		___ADV01_MODELS = (NJS_MODEL_SADX **)GetProcAddress(GetModuleHandle(L"ADV01MODELS"), "___ADV01_MODELS");
+		___ADV01C_TEXLISTS = (NJS_TEXLIST **)GetProcAddress(GetModuleHandle(L"ADV01CMODELS"), "___ADV01C_TEXLISTS");
+		___LANDTABLEEC = (LandTable **)GetProcAddress(GetModuleHandle(L"ADV01MODELS"), "___LANDTABLEEC");
+		___LANDTABLEECC = (LandTable **)GetProcAddress(GetModuleHandle(L"ADV01CMODELS"), "___LANDTABLEEC");
+		___ADV01C_OBJECTS = (NJS_OBJECT **)GetProcAddress(GetModuleHandle(L"ADV01CMODELS"), "___ADV01C_OBJECTS");
+		___ADV01C_ACTIONS = (NJS_ACTION **)GetProcAddress(GetModuleHandle(L"ADV01CMODELS"), "___ADV01C_ACTIONS");
+		___ADV01_ACTIONS = (NJS_ACTION **)GetProcAddress(GetModuleHandle(L"ADV01MODELS"), "___ADV01_ACTIONS");
+		___ADV01_OBJECTS = (NJS_OBJECT **)GetProcAddress(GetModuleHandle(L"ADV01MODELS"), "___ADV01_OBJECTS");
+		___ADV01EC00_OBJECTS = (NJS_OBJECT **)GetProcAddress(GetModuleHandle(L"ADV01MODELS"), "___ADV01EC00_OBJECTS");
+		___ADV01C_MODELS = (NJS_MODEL_SADX **)GetProcAddress(GetModuleHandle(L"ADV01CMODELS"), "___ADV01C_MODELS");
+		___ADV02_TEXLISTS = (NJS_TEXLIST **)GetProcAddress(GetModuleHandle(L"ADV02MODELS"), "___ADV02_TEXLISTS");
+		___ADV02_MODELS = (NJS_MODEL_SADX **)GetProcAddress(GetModuleHandle(L"ADV02MODELS"), "___ADV02_MODELS");
+		___ADV02_OBJECTS = (NJS_OBJECT **)GetProcAddress(GetModuleHandle(L"ADV02MODELS"), "___ADV02_OBJECTS");
+		___ADV02MR02_OBJECTS = (NJS_OBJECT **)GetProcAddress(GetModuleHandle(L"ADV02MODELS"), "___ADV02MR02_OBJECTS");
+		___ADV02_ACTIONS = (NJS_ACTION **)GetProcAddress(GetModuleHandle(L"ADV02MODELS"), "___ADV02_ACTIONS");
+		___LANDTABLEMR = (LandTable **)GetProcAddress(GetModuleHandle(L"ADV02MODELS"), "___LANDTABLEMR");
+		___ADV03_TEXLISTS = (NJS_TEXLIST **)GetProcAddress(GetModuleHandle(L"ADV03MODELS"), "___ADV03_TEXLISTS");
+		___LANDTABLEPAST = (LandTable **)GetProcAddress(GetModuleHandle(L"ADV03MODELS"), "___LANDTABLEPAST");
+		___ADV03PAST01_OBJECTS = (NJS_OBJECT **)GetProcAddress(GetModuleHandle(L"ADV03MODELS"), "___ADV03PAST01_OBJECTS");
+		___ADV03PAST02_OBJECTS = (NJS_OBJECT **)GetProcAddress(GetModuleHandle(L"ADV03MODELS"), "___ADV03PAST02_OBJECTS");
+		___ADV03_OBJECTS = (NJS_OBJECT **)GetProcAddress(GetModuleHandle(L"ADV03MODELS"), "___ADV03_OBJECTS");
+		HelperFunctionsGlobal = helperFunctions;
+		//Global mod path
+		ModPath = std::string(path);
 		//Set up function pointers for Lantern API
 		HMODULE LanternDLL = GetModuleHandle(L"sadx-dc-lighting");
 		set_shader_flags_ptr = (void(*)(uint32_t, bool))GetProcAddress(LanternDLL, "set_shader_flags");
@@ -99,11 +309,11 @@ extern "C"
 		set_diffuse_blend_ptr = (void(*)(int32_t, int32_t))GetProcAddress(LanternDLL, "set_diffuse_blend");
 		set_specular_blend_ptr = (void(*)(int32_t, int32_t))GetProcAddress(LanternDLL, "set_specular_blend");
 		//Check which DLLs are loaded
-		DLLLoaded_HDGUI    = (GetModuleHandle(L"HD_GUI") != nullptr);
+		DLLLoaded_HDGUI = (GetModuleHandle(L"HD_GUI") != nullptr);
 		DLLLoaded_SA1Chars = (GetModuleHandle(L"SA1_Chars") != nullptr);
-		DLLLoaded_Lantern  = (GetModuleHandle(L"sadx-dc-lighting") != nullptr);
-		DLLLoaded_DLCs     = (GetModuleHandle(L"DLCs_Main") != nullptr);
-		DLLLoaded_SADXFE   = (GetModuleHandle(L"sadx-fixed-edition") != nullptr);
+		DLLLoaded_Lantern = (GetModuleHandle(L"sadx-dc-lighting") != nullptr);
+		DLLLoaded_DLCs = (GetModuleHandle(L"DLCs_Main") != nullptr);
+		DLLLoaded_SADXFE = (GetModuleHandle(L"sadx-fixed-edition") != nullptr);
 		HMODULE WaterEffect = GetModuleHandle(L"WaterEffect");
 		HMODULE Autodemo_WindyValley = GetModuleHandle(L"AutoDemo_WindyValley");
 		HMODULE Autodemo_SpeedHighway = GetModuleHandle(L"AutoDemo_SpeedHighway");
@@ -169,6 +379,26 @@ extern "C"
 		SADXWater_MysticRuins = config->getBool("SADX Style Water", "MysticRuins", false);
 		SADXWater_EggCarrier = config->getBool("SADX Style Water", "EggCarrier", false);
 		SADXWater_Past = config->getBool("SADX Style Water", "Past", false);
+		EnableChaos0 = config->getBool("Bosses", "EnableChaos0", true);
+		EnableChaos2 = config->getBool("Bosses", "EnableChaos2", true);
+		EnableChaos4 = config->getBool("Bosses", "EnableChaos4", true);
+		EnableChaos6 = config->getBool("Bosses", "EnableChaos6", true);
+		EnablePerfectChaos = config->getBool("Bosses", "EnablePerfectChaos", true);
+		EnableEggHornet = config->getBool("Bosses", "EnableEggHornet", true);
+		EnableEggWalker = config->getBool("Bosses", "EnableEggWalker", true);
+		EnableEggViper = config->getBool("Bosses", "EnableEggViper", true);
+		EnableE101 = config->getBool("Bosses", "EnableE101", true);
+		EnableZeroE101R = config->getBool("Bosses", "EnableZeroE101R", true);
+		EnableTwinkleCircuit = config->getBool("Miscellaneous", "EnableTwinkleCircuit", true);
+		EnableSandHill = config->getBool("Miscellaneous", "EnableSandHill", true);
+		CowgirlOn = config->getBool("Miscellaneous", "EnableCasinopolisCowgirl", true);
+		IamStupidAndIWantFuckedUpOcean = config->getBool("Miscellaneous", "RevertEmeraldCoastDrawDistance", false);
+		EnableSkyChaseEnemyModels = config->getBool("Miscellaneous", "EnableSkyChaseEnemyModels", true);
+		EnableSSGarden = config->getBool("Chao Gardens", "EnableStationSquareGarden", true);
+		EnableMRGarden = config->getBool("Chao Gardens", "EnableMysticRuinsGarden", true);
+		EnableECGarden = config->getBool("Chao Gardens", "EnableEggCarrierGarden", true);
+		ReplaceFruits = config->getInt("Chao Gardens", "ReplaceFruits", 0);
+		ReplaceEggs = config->getBool("Chao Gardens", "ReplaceEggs", true);
 		//Autodemo mods check
 		if (Autodemo_WindyValley != nullptr) EnableWindyValley = false;
 		if (Autodemo_SpeedHighway != nullptr) EnableSpeedHighway = false;
@@ -197,25 +427,147 @@ extern "C"
 		//Init functions
 		SADXStyleWater_Init(config, helperFunctions);
 		if (EnableDCBranding) Branding_Init(config, helperFunctions);
-		if (EnableStationSquare) ADV00_Init(config, helperFunctions);
-		if (EnableEggCarrier) ADV01_Init(config, helperFunctions);
+		if (EnableStationSquare)
+		{
+			WriteCall((void*)0x4231E6, LoadLevelFiles_ADV00);
+			ADV00_Init();
+		}
+		if (EnableEggCarrier)
+		{
+			WriteCall((void*)0x4232C9, LoadLevelFiles_ADV01);
+			WriteCall((void*)0x4233BB, LoadLevelFiles_ADV01C);
+			ADV01_Init(config, helperFunctions);
+		}
 		FixMRBase_Apply(config, helperFunctions);
-		if (EnableMysticRuins) ADV02_Init(config, helperFunctions);
-		if (EnablePast) ADV03_Init(config, helperFunctions);
-		Bosses_Init(config, helperFunctions);
-		if (!WaterEffect && EnableEmeraldCoast) EmeraldCoast_Init(config, helperFunctions);
-		if (EnableWindyValley) WindyValley_Init(config, helperFunctions);
-		if (EnableTwinklePark) TwinklePark_Init(config, helperFunctions);
-		if (EnableSpeedHighway) SpeedHighway_Init(config, helperFunctions);
-		if (EnableRedMountain) RedMountain_Init(config, helperFunctions);
-		if (EnableSkyDeck) SkyDeck_Init(config, helperFunctions);
-		if (EnableLostWorld) LostWorld_Init(config, helperFunctions);
-		if (EnableIceCap) IceCap_Init(config, helperFunctions);
-		if (EnableCasinopolis) Casinopolis_Init(config, helperFunctions);
-		if (EnableFinalEgg) FinalEgg_Init(config, helperFunctions);
-		if (EnableHotShelter) HotShelter_Init(config, helperFunctions);
+		if (EnableMysticRuins)
+		{
+			WriteCall((void*)0x4234AD, LoadLevelFiles_ADV02);
+			ADV02_Init();
+		}
+		if (EnablePast)
+		{
+			WriteCall((void*)0x423554, LoadLevelFiles_ADV03);
+			ADV03_Init();
+		}
+		Bosses_Init();
+		if (!WaterEffect && EnableEmeraldCoast)
+		{
+			WriteCall((void*)0x422B68, LoadLevelFiles_STG01);
+			EmeraldCoast_Init();
+		}
+		if (EnableWindyValley)
+		{
+			WriteCall((void*)0x422BD3, LoadLevelFiles_STG02);
+			WindyValley_Init();
+		}
+		if (EnableTwinklePark)
+		{
+			WriteCall((void*)0x422C3E, LoadLevelFiles_STG03);
+			TwinklePark_Init();
+		}
+		if (EnableSpeedHighway)
+		{
+			WriteCall((void*)0x422CA9, LoadLevelFiles_STG04);
+			SpeedHighway_Init();
+		}
+		if (EnableRedMountain)
+		{
+			WriteCall((void*)0x422D14, LoadLevelFiles_STG05);
+			RedMountain_Init();
+		}
+		if (EnableSkyDeck)
+		{
+			WriteCall((void*)0x422D84, LoadLevelFiles_STG06);
+			SkyDeck_Init();
+		}
+		if (EnableLostWorld)
+		{
+			WriteCall((void*)0x422DEF, LoadLevelFiles_STG07);
+			LostWorld_Init();
+		}
+		if (EnableIceCap)
+		{
+			WriteCall((void*)0x422E5A, LoadLevelFiles_STG08);
+			IceCap_Init();
+		}
+		if (EnableCasinopolis)
+		{
+			WriteCall((void*)0x422EE8, LoadLevelFiles_STG09);
+			Casinopolis_Init();
+		}
+		if (EnableFinalEgg)
+		{
+			WriteCall((void*)0x422F71, LoadLevelFiles_STG10);
+			FinalEgg_Init();
+		}
+		if (EnableHotShelter)
+		{
+			WriteCall((void*)0x422FFF, LoadLevelFiles_STG12);
+			HotShelter_Init();
+		}
+		if (EnableChaos0)
+		{
+			WriteCall((void*)0x423088, LoadLevelFiles_B_CHAOS0);
+			Chaos0_Init();
+		}
+		if (EnableChaos2)
+		{
+			WriteCall((void*)0x4230B7, LoadLevelFiles_B_CHAOS2);
+			Chaos2_Init();
+		}
+		if (EnableChaos4)
+		{
+			WriteCall((void*)0x4230CD, LoadLevelFiles_B_CHAOS4);
+			Chaos4_Init();
+		}
+		if (EnableChaos6)
+		{
+			WriteCall((void*)0x4230E3, LoadLevelFiles_B_CHAOS6);
+			Chaos6_Init();
+		}
+		if (EnablePerfectChaos)
+		{
+			WriteCall((void*)0x423108, LoadLevelFiles_B_CHAOS7);
+			PerfectChaos_Init();
+		}
+		if (EnableEggHornet)
+		{
+			WriteCall((void*)0x423146, LoadLevelFiles_B_EGM1);
+			EggHornet_Init();
+		}
+		if (EnableEggWalker)
+		{
+			WriteCall((void*)0x42315F, LoadLevelFiles_B_EGM2);
+			EggWalker_Init();
+		}
+		if (EnableEggViper)
+		{
+			WriteCall((void*)0x423178, LoadLevelFiles_B_EGM3);
+			EggViper_Init();
+		}
+		if (EnableE101)
+		{
+			WriteCall((void*)0x4231AF, LoadLevelFiles_B_E101);
+			E101_Init();
+		}
+		if (EnableZeroE101R)
+		{
+			WriteCall((void*)0x423196, LoadLevelFiles_B_ROBO);
+			WriteCall((void*)0x4231CD, LoadLevelFiles_B_E101_R);
+			Zero_Init();
+			E101R_Init();
+		}
 		SkyChaseFix_Init();
-		Subgames_Init(config, helperFunctions);
+		Subgames_Init();
+		if (EnableTwinkleCircuit)
+		{
+			WriteCall((void*)0x4235EC, LoadLevelFiles_MINICART);
+		}
+		if (EnableSandHill)
+		{
+			WriteCall((void*)0x42370F, LoadLevelFiles_SBOARD);
+		}
+		WriteCall((void*)0x423795, LoadLevelFiles_Chao);
 		ChaoGardens_Init(config, helperFunctions);
 		ChaoRace_Init(config, helperFunctions);
 		General_Init(config, helperFunctions);
@@ -223,7 +575,7 @@ extern "C"
 		if (EnableSpeedFixes) SpeedFixes_Init();
 		delete config;
 	}
-
+		
 	__declspec(dllexport) void __cdecl OnFrame()
 	{
 		if (EnableDCBranding) Branding_OnFrame();

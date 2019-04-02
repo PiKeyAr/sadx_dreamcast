@@ -1,9 +1,15 @@
 #include "stdafx.h"
-#include "FinalEgg1.h"
-#include "FinalEgg2.h"
-#include "FinalEgg3.h"
 #include "FinalEgg_objects.h"
 #include "OStandLight.h"
+
+NJS_TEXNAME textures_finalegg1[80];
+NJS_TEXLIST texlist_finalegg1 = { arrayptrandlength(textures_finalegg1) };
+
+NJS_TEXNAME textures_finalegg2[68];
+NJS_TEXLIST texlist_finalegg2 = { arrayptrandlength(textures_finalegg2) };
+
+NJS_TEXNAME textures_finalegg3[90];
+NJS_TEXLIST texlist_finalegg3 = { arrayptrandlength(textures_finalegg3) };
 
 NJS_TEXNAME textures_cylinder[257];
 NJS_TEXLIST texlist_cylinder = { arrayptrandlength(textures_cylinder) };
@@ -18,8 +24,8 @@ FunctionPointer(void, sub_407A00, (NJS_MODEL_SADX *model, float a2), 0x407A00);
 FunctionPointer(void, sub_405450, (NJS_ACTION *a1, float frame, float scale), 0x405450);
 FunctionPointer(void, sub_5ADCF0, (), 0x5ADCF0);
 
+static bool Act2GlassLoaded = false;
 static int cylinderframe = 0;
-float OFunAnimationSpeedOverride = 0.25f; //Floating Fan Animation Speed Tweak
 SETObjData setdata_fe = {};
 
 PVMEntry FinalEggObjectTextures[] = {
@@ -37,17 +43,17 @@ PVMEntry FinalEggObjectTextures[] = {
 	{ 0 }
 };
 
-NJS_MATERIAL* DisableAlphaRejection_FinalEgg[] = {
-	&matlistSTG10_001AEB58[0], //Light object
-	&matlistSTG10_00153094[0], //Blue light in Act 3
-	&matlistSTG10_00145448[0], //Lights around the tube you fall through in Act 3
-	&matlistSTG10_00145448[1], //Lights around the tube you fall through in Act 3
-	&matlistSTG10_00152708[0], //Probably same as above
-	&matlistSTG10_00152708[1], //Probably same as above
-	&matlistSTG10_0015329C[0], //Not DA_ONE but better include this too
-	&matlistSTG10_00153514[0], //Not DA_ONE but better include this too
-	&matlistSTG10_00153780[0], //Not DA_ONE but better include this too
-	&matlistSTG10_0014DB7C[0], //Not DA_ONE but better include this too
+NJS_MATERIAL* DisableAlphaRejection_FinalEggExternal[] = {
+	nullptr,
+	nullptr,
+	nullptr,
+	nullptr,
+	nullptr,
+	nullptr,
+	nullptr,
+	nullptr,
+	nullptr,
+	nullptr,
 };
 
 //O Tatekan
@@ -289,28 +295,28 @@ void __cdecl sub_5AE330(ObjectMaster *a1)
 }
 
 NJS_MATERIAL* LevelSpecular_FinalEgg[] = {
-((NJS_MATERIAL*)0x01A3AD08),
-((NJS_MATERIAL*)0x01A26E18),
-((NJS_MATERIAL*)0x01A26E2C),
-((NJS_MATERIAL*)0x01A26E40),
-((NJS_MATERIAL*)0x01A26E54),
-((NJS_MATERIAL*)0x01A26E68),
-((NJS_MATERIAL*)0x01A26E7C),
-((NJS_MATERIAL*)0x01A26E90),
-((NJS_MATERIAL*)0x01A26EA4),
-((NJS_MATERIAL*)0x01A26EB8),
-((NJS_MATERIAL*)0x01A26ECC),
-//OEggKanban
-((NJS_MATERIAL*)0x01C26FBC),
-//Side_Arm
-((NJS_MATERIAL*)0x019DEB20),
-((NJS_MATERIAL*)0x019DEB34),
-((NJS_MATERIAL*)0x019DEB48),
-((NJS_MATERIAL*)0x019DEB5C),
-((NJS_MATERIAL*)0x019DEB70),
-//Top_Arm
-((NJS_MATERIAL*)0x019DC710),
-((NJS_MATERIAL*)0x019DC724),
+	((NJS_MATERIAL*)0x01A3AD08),
+	((NJS_MATERIAL*)0x01A26E18),
+	((NJS_MATERIAL*)0x01A26E2C),
+	((NJS_MATERIAL*)0x01A26E40),
+	((NJS_MATERIAL*)0x01A26E54),
+	((NJS_MATERIAL*)0x01A26E68),
+	((NJS_MATERIAL*)0x01A26E7C),
+	((NJS_MATERIAL*)0x01A26E90),
+	((NJS_MATERIAL*)0x01A26EA4),
+	((NJS_MATERIAL*)0x01A26EB8),
+	((NJS_MATERIAL*)0x01A26ECC),
+	//OEggKanban
+	((NJS_MATERIAL*)0x01C26FBC),
+	//Side_Arm
+	((NJS_MATERIAL*)0x019DEB20),
+	((NJS_MATERIAL*)0x019DEB34),
+	((NJS_MATERIAL*)0x019DEB48),
+	((NJS_MATERIAL*)0x019DEB5C),
+	((NJS_MATERIAL*)0x019DEB70),
+	//Top_Arm
+	((NJS_MATERIAL*)0x019DC710),
+	((NJS_MATERIAL*)0x019DC724),
 };
 
 NJS_MATERIAL* ObjectSpecular_FinalEgg[] = {
@@ -478,6 +484,39 @@ NJS_MATERIAL* NeutralMaterials[] = {
 	((NJS_MATERIAL*)0x01C33C90),
 };
 
+NJS_MATERIAL* WhiteDiffuse_FinalEggExternal[] = {
+	//Level stuff
+	//1
+	nullptr,
+	nullptr,
+	nullptr,
+	nullptr,
+	nullptr,
+	nullptr,
+	//2
+	nullptr,
+	nullptr,
+	nullptr,
+	nullptr,
+	nullptr,
+	nullptr,
+	nullptr,
+	nullptr,
+	nullptr,
+	nullptr,
+	nullptr,
+	nullptr,
+	//3
+	nullptr,
+	nullptr,
+	nullptr,
+	nullptr,
+	nullptr,
+	nullptr,
+	nullptr,
+	nullptr,
+};
+
 NJS_MATERIAL* WhiteDiffuse_FinalEgg[] = {
 	//0LightCamera
 	((NJS_MATERIAL*)0x019FD098),
@@ -504,33 +543,6 @@ NJS_MATERIAL* WhiteDiffuse_FinalEgg[] = {
 	//OEggKanban
 	((NJS_MATERIAL*)0x01C26FD0),
 	((NJS_MATERIAL*)0x01C26FE4),
-	//Level stuff
-	&matlistSTG10_000DA1C4[7],
-	&matlistSTG10_000D61B8[8],
-	&matlistSTG10_000D8E98[8],
-	&matlistSTG10_000D2870[9],
-	&matlistSTG10_000D0E5C[2],
-	&matlistSTG10_000D0E5C[3],
-	&matlistSTG10_000D0E5C[5],
-	&matlistSTG10_000D0E5C[6],
-	&matlistSTG10_000D0E5C[7],
-	&matlistSTG10_000D0E5C[8],
-	&matlistSTG10_0009A5FC[1],
-	&matlistSTG10_00085FB4[8],
-	&matlistSTG10_001357BC[0],
-	&matlistSTG10_001357BC[1],
-	&matlistSTG10_001357BC[2],
-	&matlistSTG10_001357BC[3],
-	&matlistSTG10_00148C90_2[0],
-	&matlistSTG10_00146E8C_2[0],
-	&matlistSTG10_00146E8C_2[0],
-	&matlistSTG10_001228E4[3],
-	&matlistSTG10_0002CF50[0],
-	&matlistSTG10_0002CF50[1],
-	&matlistSTG10_0002CF50[2],
-	&matlistSTG10_0002CF50[3],
-	&matlistSTG10_0002CF50[4],
-	&matlistSTG10_0002CF50[5],
 };
 
 void SetGachaponEnvMaps1()
@@ -574,23 +586,29 @@ static void __declspec(naked) sub_5B36E0X()
 	}
 }
 
+void Glass_Delete(ObjectMaster *a1)
+{
+	Act2GlassLoaded = false;
+	CheckThingButThenDeleteObject(a1);
+}
+
 void Glass_Display(ObjectMaster *a1)
 {
 	EntityData1 *v1;
 	v1 = a1->Data1;
-	if (!DroppedFrames)
+	if (CurrentAct == 1 && !DroppedFrames)
 	{
 		njSetTexture(&texlist_finalegg2);
 		njPushMatrix(0);
 		njTranslateV(0, &v1->Position);
 		njScale(0, 1.0f, 1.0f, 1.0f);
 		njRotateXYZ(0, 0, 0, 0);
-		DrawQueueDepthBias = 6000.0f;
-		ProcessModelNode(&objectSTG10_000C1350, (QueuedModelFlagsB)0, 1.0f); //tube 1
-		ProcessModelNode(&objectSTG10_000C0E68, (QueuedModelFlagsB)0, 1.0f); //tube 2
-		ProcessModelNode(&objectSTG10_000C1A48, (QueuedModelFlagsB)0, 1.0f); //tube 3
-		ProcessModelNode(&objectSTG10_000B9E54_2, (QueuedModelFlagsB)0, 1.0f); //elevator glass
-		ProcessModelNode(&objectSTG10_00089114_2, (QueuedModelFlagsB)0, 1.0f); //big glass inner layer
+		DrawQueueDepthBias = 6000.0f;  
+		ProcessModelNode((NJS_OBJECT*)STG10_1_Info->getdata("objectSTG10_000C1350"), (QueuedModelFlagsB)0, 1.0f); //tube 1
+		ProcessModelNode((NJS_OBJECT*)STG10_1_Info->getdata("objectSTG10_000C0E68"), (QueuedModelFlagsB)0, 1.0f); //tube 2 
+		ProcessModelNode((NJS_OBJECT*)STG10_1_Info->getdata("objectSTG10_000C1A48"), (QueuedModelFlagsB)0, 1.0f); //tube 3 
+		ProcessModelNode((NJS_OBJECT*)STG10_1_Info->getdata("objectSTG10_000B9E54_2"), (QueuedModelFlagsB)0, 1.0f); //elevator glass 
+		ProcessModelNode((NJS_OBJECT*)STG10_1_Info->getdata("objectSTG10_00089114_2"), (QueuedModelFlagsB)0, 1.0f); //big glass inner layer 
 		njPopMatrix(1u);
 		DrawQueueDepthBias = 0;
 	}
@@ -598,14 +616,18 @@ void Glass_Display(ObjectMaster *a1)
 
 void Glass_Main(ObjectMaster *a1)
 {
-	Glass_Display(a1);
+	if (CurrentLevel == 10)
+	{
+		if (CurrentAct == 1) Glass_Display(a1);
+	}
+	else Glass_Delete(a1);
 }
 
 void Glass_Load(ObjectMaster *a1)
 {
 	a1->MainSub = (void(__cdecl *)(ObjectMaster *))Glass_Main;
 	a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Glass_Display;
-	a1->DeleteSub = DeleteObject_DynamicCOL;
+	a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))Glass_Delete;
 }
 
 void LoadGlass()
@@ -626,12 +648,16 @@ void LoadGlass()
 		ent->Rotation.y = 0;
 		ent->Rotation.z = 0;
 	}
+	Act2GlassLoaded = true;
 }
 
-void FinalEggHook()
+static void SkyBox_FinalEgg_Load_r(ObjectMaster *a1);
+static Trampoline SkyBox_FinalEgg_Load_t(0x5ADFE0, 0x5ADFE9, SkyBox_FinalEgg_Load_r);
+static void __cdecl SkyBox_FinalEgg_Load_r(ObjectMaster *a1)
 {
-	sub_5ADCF0();
-	if (CurrentLevel == 10 && CurrentAct == 1) LoadGlass();
+	auto original = reinterpret_cast<decltype(SkyBox_FinalEgg_Load_r)*>(SkyBox_FinalEgg_Load_t.Target());
+	original(a1);
+	if (EnableFinalEgg && !Act2GlassLoaded) LoadGlass();
 }
 
 void GachaponExplosionFix(NJS_MODEL_SADX *a1)
@@ -641,7 +667,86 @@ void GachaponExplosionFix(NJS_MODEL_SADX *a1)
 	DrawQueueDepthBias = 0;
 }
 
-void FinalEgg_Init(const IniFile *config, const HelperFunctions &helperFunctions)
+void UnloadLevelFiles_STG10()
+{
+	if (DLLLoaded_Lantern)
+	{
+		material_unregister_ptr(WhiteDiffuse_FinalEggExternal, LengthOfArray(WhiteDiffuse_FinalEggExternal), &ForceWhiteDiffuse1);
+		if (set_alpha_reject_ptr != nullptr) material_unregister_ptr(DisableAlphaRejection_FinalEggExternal, LengthOfArray(DisableAlphaRejection_FinalEggExternal), &DisableAlphaRejection);
+	}
+	delete STG10_0_Info;
+	delete STG10_1_Info;
+	delete STG10_2_Info;
+	STG10_0_Info = nullptr;
+	STG10_1_Info = nullptr;
+	STG10_2_Info = nullptr;
+}
+
+void LoadLevelFiles_STG10()
+{
+	CheckAndUnloadLevelFiles();
+	STG10_0_Info = new LandTableInfo(ModPath + "\\data\\STG10\\0.sa1lvl");
+	STG10_1_Info = new LandTableInfo(ModPath + "\\data\\STG10\\1.sa1lvl");
+	STG10_2_Info = new LandTableInfo(ModPath + "\\data\\STG10\\2.sa1lvl");
+	LandTable *STG10_0 = STG10_0_Info->getlandtable();
+	LandTable *STG10_1 = STG10_1_Info->getlandtable();
+	LandTable *STG10_2 = STG10_2_Info->getlandtable();
+	STG10_0->TexList = &texlist_finalegg1;
+	STG10_1->TexList = &texlist_finalegg2;
+	STG10_2->TexList = &texlist_finalegg3;
+	WriteData((LandTable**)0x97DB48, STG10_0); //Act 1
+	WriteData((LandTable**)0x97DB4C, STG10_1); //Act 2
+	WriteData((LandTable**)0x97DB50, STG10_2); //Act 3
+	if (DLLLoaded_Lantern)
+	{
+		//1
+		WhiteDiffuse_FinalEggExternal[0] = &((NJS_MATERIAL*)STG10_0_Info->getdata("matlistSTG10_0002CF50"))[0];
+		WhiteDiffuse_FinalEggExternal[1] = &((NJS_MATERIAL*)STG10_0_Info->getdata("matlistSTG10_0002CF50"))[1];
+		WhiteDiffuse_FinalEggExternal[2] = &((NJS_MATERIAL*)STG10_0_Info->getdata("matlistSTG10_0002CF50"))[2];
+		WhiteDiffuse_FinalEggExternal[3] = &((NJS_MATERIAL*)STG10_0_Info->getdata("matlistSTG10_0002CF50"))[3];
+		WhiteDiffuse_FinalEggExternal[4] = &((NJS_MATERIAL*)STG10_0_Info->getdata("matlistSTG10_0002CF50"))[4];
+		WhiteDiffuse_FinalEggExternal[5] = &((NJS_MATERIAL*)STG10_0_Info->getdata("matlistSTG10_0002CF50"))[5];
+		//2
+		WhiteDiffuse_FinalEggExternal[6] = &((NJS_MATERIAL*)STG10_1_Info->getdata("matlistSTG10_000DA1C4"))[7];
+		WhiteDiffuse_FinalEggExternal[7] = &((NJS_MATERIAL*)STG10_1_Info->getdata("matlistSTG10_000D61B8"))[8];
+		WhiteDiffuse_FinalEggExternal[8] = &((NJS_MATERIAL*)STG10_1_Info->getdata("matlistSTG10_000D8E98"))[8];
+		WhiteDiffuse_FinalEggExternal[9] = &((NJS_MATERIAL*)STG10_1_Info->getdata("matlistSTG10_000D2870"))[9];
+		WhiteDiffuse_FinalEggExternal[10] = &((NJS_MATERIAL*)STG10_1_Info->getdata("matlistSTG10_000D0E5C"))[2];
+		WhiteDiffuse_FinalEggExternal[11] = &((NJS_MATERIAL*)STG10_1_Info->getdata("matlistSTG10_000D0E5C"))[3];
+		WhiteDiffuse_FinalEggExternal[12] = &((NJS_MATERIAL*)STG10_1_Info->getdata("matlistSTG10_000D0E5C"))[5];
+		WhiteDiffuse_FinalEggExternal[13] = &((NJS_MATERIAL*)STG10_1_Info->getdata("matlistSTG10_000D0E5C"))[6];
+		WhiteDiffuse_FinalEggExternal[14] = &((NJS_MATERIAL*)STG10_1_Info->getdata("matlistSTG10_000D0E5C"))[7];
+		WhiteDiffuse_FinalEggExternal[15] = &((NJS_MATERIAL*)STG10_1_Info->getdata("matlistSTG10_000D0E5C"))[8];
+		WhiteDiffuse_FinalEggExternal[16] = &((NJS_MATERIAL*)STG10_1_Info->getdata("matlistSTG10_0009A5FC"))[1];
+		WhiteDiffuse_FinalEggExternal[17] = &((NJS_MATERIAL*)STG10_1_Info->getdata("matlistSTG10_00085FB4"))[8];
+		//3
+		WhiteDiffuse_FinalEggExternal[18] = &((NJS_MATERIAL*)STG10_2_Info->getdata("matlistSTG10_001357BC"))[0];
+		WhiteDiffuse_FinalEggExternal[19] = &((NJS_MATERIAL*)STG10_2_Info->getdata("matlistSTG10_001357BC"))[1];
+		WhiteDiffuse_FinalEggExternal[20] = &((NJS_MATERIAL*)STG10_2_Info->getdata("matlistSTG10_001357BC"))[2];
+		WhiteDiffuse_FinalEggExternal[21] = &((NJS_MATERIAL*)STG10_2_Info->getdata("matlistSTG10_001357BC"))[3];
+		WhiteDiffuse_FinalEggExternal[22] = &((NJS_MATERIAL*)STG10_2_Info->getdata("matlistSTG10_00148C90_2"))[0];
+		WhiteDiffuse_FinalEggExternal[23] = &((NJS_MATERIAL*)STG10_2_Info->getdata("matlistSTG10_00146E8C_2"))[0];
+		WhiteDiffuse_FinalEggExternal[24] = &((NJS_MATERIAL*)STG10_2_Info->getdata("matlistSTG10_00146E8C_2"))[0];
+		WhiteDiffuse_FinalEggExternal[25] = &((NJS_MATERIAL*)STG10_2_Info->getdata("matlistSTG10_001228E4"))[3];
+		material_register_ptr(WhiteDiffuse_FinalEggExternal, LengthOfArray(WhiteDiffuse_FinalEggExternal), &ForceWhiteDiffuse1);
+		if (set_alpha_reject_ptr != nullptr)
+		{
+			DisableAlphaRejection_FinalEggExternal[0] = &((NJS_MATERIAL*)STG10_2_Info->getdata("matlistSTG10_00153094"))[0]; //Blue light in Act 3
+			DisableAlphaRejection_FinalEggExternal[1] = &((NJS_MATERIAL*)STG10_2_Info->getdata("matlistSTG10_00145448"))[0]; //Lights around the tube you fall through in Act 3
+			DisableAlphaRejection_FinalEggExternal[2] = &((NJS_MATERIAL*)STG10_2_Info->getdata("matlistSTG10_00145448"))[1]; //Lights around the tube you fall through in Act 3
+			DisableAlphaRejection_FinalEggExternal[3] = &((NJS_MATERIAL*)STG10_2_Info->getdata("matlistSTG10_00152708"))[0]; //Probably same as above
+			DisableAlphaRejection_FinalEggExternal[4] = &((NJS_MATERIAL*)STG10_2_Info->getdata("matlistSTG10_00152708"))[1]; //Probably same as above
+			DisableAlphaRejection_FinalEggExternal[5] = &((NJS_MATERIAL*)STG10_2_Info->getdata("matlistSTG10_0015329C"))[0]; //Not DA_ONE but better include this too
+			DisableAlphaRejection_FinalEggExternal[6] = &((NJS_MATERIAL*)STG10_2_Info->getdata("matlistSTG10_00153514"))[0]; //Not DA_ONE but better include this too
+			DisableAlphaRejection_FinalEggExternal[7] = &((NJS_MATERIAL*)STG10_2_Info->getdata("matlistSTG10_00153780"))[0]; //Not DA_ONE but better include this too
+			DisableAlphaRejection_FinalEggExternal[8] = &((NJS_MATERIAL*)STG10_2_Info->getdata("matlistSTG10_0014DB7C"))[0]; //Not DA_ONE but better include this too
+			DisableAlphaRejection_FinalEggExternal[9] = &matlistSTG10_001AEB58[0]; //Light object
+			material_register_ptr(DisableAlphaRejection_FinalEggExternal, LengthOfArray(DisableAlphaRejection_FinalEggExternal), &DisableAlphaRejection);
+		}
+	}
+}
+
+void FinalEgg_Init()
 {
 	ReplaceBIN_DC("CAM1000A");
 	ReplaceBIN_DC("CAM1000S");
@@ -657,24 +762,24 @@ void FinalEgg_Init(const IniFile *config, const HelperFunctions &helperFunctions
 	ReplaceBIN_DC("SET1003S");
 	switch (EnableSETFixes)
 	{
-		case SETFixes_Normal:
-			AddSETFix("SET1000A");
-			AddSETFix("SET1000S");
-			AddSETFix("SET1001S");
-			AddSETFix("SET1002E");
-			AddSETFix("SET1002S");
-			AddSETFix("SET1003S");
-			break;
-		case SETFixes_Extra:
-			AddSETFix_Extra("SET1000A");
-			AddSETFix_Extra("SET1000S");
-			AddSETFix_Extra("SET1001S");
-			AddSETFix_Extra("SET1002E");
-			AddSETFix_Extra("SET1002S");
-			AddSETFix_Extra("SET1003S");
-			break;
-		default:
-			break;
+	case SETFixes_Normal:
+		AddSETFix("SET1000A");
+		AddSETFix("SET1000S");
+		AddSETFix("SET1001S");
+		AddSETFix("SET1002E");
+		AddSETFix("SET1002S");
+		AddSETFix("SET1003S");
+		break;
+	case SETFixes_Extra:
+		AddSETFix_Extra("SET1000A");
+		AddSETFix_Extra("SET1000S");
+		AddSETFix_Extra("SET1001S");
+		AddSETFix_Extra("SET1002E");
+		AddSETFix_Extra("SET1002S");
+		AddSETFix_Extra("SET1003S");
+		break;
+	default:
+		break;
 	}
 	ReplacePVM("EFF_FINALEGG_POM");
 	ReplacePVM("FINALEGG1");
@@ -683,32 +788,30 @@ void FinalEgg_Init(const IniFile *config, const HelperFunctions &helperFunctions
 	ReplacePVM("FINALEGG4");
 	ReplaceBIN("PL_A0B", "PL_A0X");
 	ReplaceBIN("PL_A2B", "PL_A2X");
+	if (DLLLoaded_Lantern)
+	{
+		if (set_alpha_reject_ptr != nullptr)
+		{
+			ReplacePVM("OBJ_FINALEGG");
+		}
+		else
+		{
+			ReplaceGeneric("OBJ_FINALEGG.PVM", "OBJ_FINALEGG_DC_OLD.PVM");
+		}
+	}
+	else ReplaceGeneric("OBJ_FINALEGG.PVM", "OBJ_FINALEGG_DC_OLD.PVM");
 	TexLists_Obj[10] = FinalEggObjectTextures;
-	WriteData((LandTable**)0x97DB48, &landtable_0001D108); //Act 1
-	WriteData((LandTable**)0x97DB4C, &landtable_00083CCC); //Act 2
-	WriteData((LandTable**)0x97DB50, &landtable_000E67D0); //Act 3
 	WriteCall((void*)0x005AEF29, GachaponExplosionFix);
-	WriteCall((void*)0x005AE0A5, FinalEggHook);
-	WriteCall((void*)0x005AE060, FinalEggHook);
 	WriteData<1>((void*)0x005ADC40, 0xC3u); //Kill the SetClip function
-	WriteData((float**)0x005B7530, &OFunAnimationSpeedOverride);//Floating Fan Animation Speed Tweaks
 	for (unsigned int i = 0; i < LengthOfArray(NeutralMaterials); i++)
 	{
 		RemoveMaterialColors(NeutralMaterials[i]);
 	}
 	if (DLLLoaded_Lantern)
 	{
-		if (set_alpha_reject_ptr != nullptr)
-		{
-			material_register_ptr(DisableAlphaRejection_FinalEgg, LengthOfArray(DisableAlphaRejection_FinalEgg), &DisableAlphaRejection);
-			ReplacePVM("OBJ_FINALEGG");
-		}
-		else ReplaceGeneric("OBJ_FINALEGG.PVM", "OBJ_FINALEGG_DC_OLD.PVM");
 		material_register_ptr(LevelSpecular_FinalEgg, LengthOfArray(LevelSpecular_FinalEgg), &ForceDiffuse0Specular0);
 		material_register_ptr(ObjectSpecular_FinalEgg, LengthOfArray(ObjectSpecular_FinalEgg), &ForceDiffuse0Specular1);
-		material_register_ptr(WhiteDiffuse_FinalEgg, LengthOfArray(WhiteDiffuse_FinalEgg), &ForceWhiteDiffuse1);
 	}
-	else ReplaceGeneric("OBJ_FINALEGG.PVM", "OBJ_FINALEGG_DC_OLD.PVM");
 	//Environment maps thing
 	WriteCall((void*)0x005B3785, SetGachaponEnvMaps1);
 	WriteCall((void*)0x005B3744, sub_5B36E0X);
@@ -778,6 +881,7 @@ void FinalEgg_Init(const IniFile *config, const HelperFunctions &helperFunctions
 		DrawDist_FinalEgg2[i].Maximum = -2400.0f;
 	}
 }
+
 void FinalEgg_OnFrame()
 {
 	auto entity = EntityData1Ptrs[0];
@@ -817,8 +921,4 @@ void FinalEgg_OnFrame()
 		((NJS_OBJECT*)0x1A4583C)->basicdxmodel->mats[0].attr_texId = cylinderframe;
 		((NJS_OBJECT*)0x1A45620)->basicdxmodel->mats->attr_texId = cylinderframe;
 	}
-	//Floating Fan Animation Speed Tweak
-	if (FramerateSetting >= 2)
-		OFunAnimationSpeedOverride = 1.0f; else
-		OFunAnimationSpeedOverride = 0.25f;
 }

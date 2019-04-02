@@ -2,19 +2,12 @@
 #include "Animals.h"
 #include "EmeraldGlow.h"
 #include "TornadoCrash.h"
-#include "EggmobileNPC.h"
 #include "CharacterEffects.h"
 #include "Ripple.h"
 #include "Frogs.h"
 #include "CommonObjects.h"
 #include "HintMonitor.h"
 #include "StageLights.h"
-
-HMODULE CHRMODELS3 = GetModuleHandle(L"CHRMODELS_orig");
-HMODULE ADV01MODELS2 = GetModuleHandle(L"ADV01MODELS");
-HMODULE ADV01CMODELS2 = GetModuleHandle(L"ADV01CMODELS");
-HMODULE ADV02MODELS2 = GetModuleHandle(L"ADV02MODELS");
-HMODULE ADV03MODELS = GetModuleHandle(L"ADV03MODELS");
 
 NJS_TEXANIM EmeraldGlowTexanim = { 32, 32, 0, 0, 0, 0, 0xFF, 0xFF, 3, 0 };
 NJS_SPRITE EmeraldGlowSprite = { { -16.0f, -10.5f, 0.0f }, 1.0f, 1.0f, 0, (NJS_TEXLIST*)0x00C3FE20, &EmeraldGlowTexanim };
@@ -39,7 +32,10 @@ FunctionPointer(float, sub_49E920, (float x, float y, float z, Rotation3 *rotati
 FunctionPointer(SubtitleThing *, sub_6424A0, (int a1, int a2, float a3, float a4, float a5, float a6, float a7, float a8), 0x6424A0);
 FunctionPointer(void, sub_4014B0, (), 0x4014B0);
 FunctionPointer(void, sub_409E70, (NJS_MODEL_SADX *a1, int a2, float a3), 0x409E70);
-
+static Uint32 GlobalColor_one = 0;
+static Uint32 GlobalColor_two = 0;
+static Uint32 GlobalColor_threefour = 0;
+static bool GlobalColor_wait = false;
 static bool EnableCutsceneFix = true;
 int CutsceneSkipMode = 0;
 int CutsceneFrameCounter = 0;
@@ -64,7 +60,7 @@ static bool SkipPressed_Cutscene = false;
 NJS_MATERIAL* AlphaRejectMaterials[] = {
 	((NJS_MATERIAL*)0x8B26E4), //Magnetic barrier
 	((NJS_MATERIAL*)0x8BF2C0), //Shadow blob
-	(NJS_MATERIAL*)((size_t)ADV02MODELS2 + 0x0007C334), //Emerald shards (cutscene)
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x0007C334), //Emerald shards (cutscene)
 };
 
 NJS_MATERIAL* RemoveColors_General[] = {
@@ -238,18 +234,18 @@ NJS_MATERIAL* ObjectSpecular_General[] = {
 	((NJS_MATERIAL*)0x0331789C),
 	((NJS_MATERIAL*)0x033178B0),
 	//OSkyDeck
-	(NJS_MATERIAL*)((size_t)ADV01MODELS2 + 0x001F2600),
-	(NJS_MATERIAL*)((size_t)ADV01MODELS2 + 0x001F2614),
-	(NJS_MATERIAL*)((size_t)ADV01MODELS2 + 0x001F2628),
-	(NJS_MATERIAL*)((size_t)ADV01MODELS2 + 0x001F263C),
-	(NJS_MATERIAL*)((size_t)ADV01MODELS2 + 0x001F2650),
-	(NJS_MATERIAL*)((size_t)ADV01MODELS2 + 0x001F2664),
-	(NJS_MATERIAL*)((size_t)ADV01MODELS2 + 0x001F2678),
-	(NJS_MATERIAL*)((size_t)ADV01MODELS2 + 0x001F268C),
-	(NJS_MATERIAL*)((size_t)ADV01MODELS2 + 0x001F26A0),
-	(NJS_MATERIAL*)((size_t)ADV01MODELS2 + 0x001F26B4),
-	(NJS_MATERIAL*)((size_t)ADV01MODELS2 + 0x001F26C8),
-	(NJS_MATERIAL*)((size_t)ADV01MODELS2 + 0x001F26DC),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01MODELS") + 0x001F2600),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01MODELS") + 0x001F2614),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01MODELS") + 0x001F2628),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01MODELS") + 0x001F263C),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01MODELS") + 0x001F2650),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01MODELS") + 0x001F2664),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01MODELS") + 0x001F2678),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01MODELS") + 0x001F268C),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01MODELS") + 0x001F26A0),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01MODELS") + 0x001F26B4),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01MODELS") + 0x001F26C8),
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01MODELS") + 0x001F26DC),
 };
 
 bool E101Function(NJS_MATERIAL* material, Uint32 flags)
@@ -401,7 +397,7 @@ void __cdecl Sonic_DisplayLightDashModelX(EntityData1 *data1, CharObj2 **data2_p
 	double v7; // st7
 	NJS_ACTION v8; // [esp+4h] [ebp-18h]
 	NJS_ARGB a1; // [esp+Ch] [ebp-10h]
-	NJS_OBJECT **___SONIC_OBJECTS = (NJS_OBJECT **)GetProcAddress(CHRMODELS3, "___SONIC_OBJECTS");
+	NJS_OBJECT **___SONIC_OBJECTS = (NJS_OBJECT **)GetProcAddress(GetModuleHandle(L"CHRMODELS_orig"), "___SONIC_OBJECTS");
 	if (!MissedFrames)
 	{
 		v3 = (unsigned __int16)data2->AnimationThing.Index;
@@ -737,6 +733,26 @@ static Sint32 __cdecl DisplayTitleCard_r()
 	return original();
 }
 
+static void SetGlobalPoint2Col_Colors_r(Uint32 one, Uint32 two, Uint32 threefour);
+static Trampoline SetGlobalPoint2Col_Colors_t(0x402F10, 0x402F18, SetGlobalPoint2Col_Colors_r);
+static void __cdecl SetGlobalPoint2Col_Colors_r(Uint32 one, Uint32 two, Uint32 threefour)
+{
+	auto original = reinterpret_cast<decltype(SetGlobalPoint2Col_Colors_r)*>(SetGlobalPoint2Col_Colors_t.Target());
+	if (ScreenFade_Alpha < 200 || ScreenFade_Color.color == 0xFFFFFFFF)
+	{
+		original(one, two, threefour);
+		GlobalColor_wait = false;
+	}
+	else
+	{
+		original(0, 0, 0);
+		GlobalColor_one = one;
+		GlobalColor_two = two;
+		GlobalColor_threefour = threefour;
+		GlobalColor_wait = true;
+	}
+}
+
 void DrawUnderwaterOverlay(NJS_MATRIX_PTR m)
 {
 	NJS_COLOR WaterOverlay_Colors;
@@ -854,6 +870,11 @@ void RenderHintMonitor_Main(NJS_MODEL_SADX *a1, int a2, float a3)
 void SetHintMonitorTransparency(NJS_ARGB *a1)
 {
 	SetMaterialAndSpriteColor_Float(min(0.69f, a1->a), min(0.69f, a1->r), min(0.69f, a1->g), min(0.69f, a1->b));
+}
+
+void DrawNPCShadowFix(NJS_MODEL_SADX *a1)
+{
+	DrawModel_Queue(a1, QueuedModelFlagsB_EnableZWrite);
 }
 
 void General_Init(const IniFile *config, const HelperFunctions &helperFunctions)
@@ -1018,6 +1039,8 @@ void General_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 	ReplacePVM("WING_P");
 	ReplacePVM("WING_T");
 	ReplacePVM("ZOU");
+	//NPC shadow fix
+	WriteCall((void*)0x5252E8, DrawNPCShadowFix);
 	//Replace SADX DirLight data with SA1 DirLight data
 	DefaultDirLight_SADX.LightDirection.x = DirLights_SA1[0].LightDirection.x;
 	DefaultDirLight_SADX.LightDirection.y = DirLights_SA1[0].LightDirection.y;
@@ -1206,8 +1229,7 @@ void General_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 	//Underwater overlay
 	WriteCall((void*)0x43708D, DrawUnderwaterOverlay);
 	//Gamma's chest patch lol
-	HMODULE CHRMODELS = GetModuleHandle(L"CHRMODELS_orig");
-	((NJS_MATERIAL*)((size_t)CHRMODELS + 0x00200DE8))->attrflags &= ~NJD_FLAG_USE_ALPHA; //Unnecessary alpha in Gamma's model
+	((NJS_MATERIAL*)((size_t)GetModuleHandle(L"CHRMODELS_orig") + 0x00200DE8))->attrflags &= ~NJD_FLAG_USE_ALPHA; //Unnecessary alpha in Gamma's model
 	WriteCall((void*)0x0047FE13, GammaHook); //Gamma's chest transparency
 	//Character effects
 	WriteJump((void*)0x004A1630, Sonic_DisplayLightDashModelX);
@@ -1240,10 +1262,7 @@ void General_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 	((NJS_OBJECT*)0x02EE25AC)->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_USE_ALPHA;
 	((NJS_OBJECT*)0x02EE4194)->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_USE_ALPHA;
 	((NJS_OBJECT*)0x02EE3E98)->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_USE_ALPHA;
-	//Eggmobile NPC model fix
-	*(NJS_OBJECT*)0x010FEF74 = object_02AEB524; //Fix materials on Eggmobile NPC model
 	((NJS_OBJECT*)0x01257754)->basicdxmodel->mats[15].diffuse.color = 0xFFFFFFFF; //Chaos6 Eggmobile
-	WriteData((NJS_TEXLIST**)0x007D2B22, (NJS_TEXLIST*)0x02EE0AA4); //Replace the texlist for the above model in the NPC data array
 	*(NJS_TEXLIST**)0x02BD5FE4 = (NJS_TEXLIST*)0x02EE0AA4; //Eggman Super Sonic cutscene texlist fix
 	//E101 Beta lighting fixes
 	((NJS_OBJECT*)0x014D76B4)->basicdxmodel->mats[0].attrflags |= NJD_FLAG_IGNORE_SPECULAR;
@@ -1324,6 +1343,15 @@ void General_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 
 void General_OnFrame()
 {
+	//Global colors screen fade fix
+	if (GlobalColor_wait)
+	{
+		if (ScreenFade_Alpha < 200)
+		{
+			SetGlobalPoint2Col_Colors(GlobalColor_one, GlobalColor_two, GlobalColor_threefour);
+			GlobalColor_wait = false;
+		}
+	}
 	//Frame counter for cutscenes
 	if (EV_MainThread_ptr != nullptr)
 	{
