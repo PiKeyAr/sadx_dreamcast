@@ -316,6 +316,7 @@ extern "C"
 		DLLLoaded_SADXFE = (GetModuleHandle(L"sadx-fixed-edition") != nullptr);
 		HMODULE WaterEffect = GetModuleHandle(L"WaterEffect");
 		HMODULE Autodemo_WindyValley = GetModuleHandle(L"AutoDemo_WindyValley");
+		HMODULE Autodemo_RedMountain = GetModuleHandle(L"AutoDemo_RedMountain");
 		HMODULE Autodemo_SpeedHighway = GetModuleHandle(L"AutoDemo_SpeedHighway");
 		//Error messages
 		if (helperFunctions.Version < 7)
@@ -402,6 +403,7 @@ extern "C"
 		//Autodemo mods check
 		if (Autodemo_WindyValley != nullptr) EnableWindyValley = false;
 		if (Autodemo_SpeedHighway != nullptr) EnableSpeedHighway = false;
+		if (Autodemo_RedMountain != nullptr) EnableRedMountain = false;
 		const std::string EnableSETFixes_String = config->getString("Miscellaneous", "EnableSETFixes", "Normal");
 		if (EnableSETFixes_String == "Off")
 			EnableSETFixes = SETFixes_Off;
