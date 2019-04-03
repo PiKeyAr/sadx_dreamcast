@@ -51,16 +51,12 @@ static bool ChaoRaceEnded = false;
 
 FunctionPointer(void, sub_7197E0, (ObjectMaster *a1), 0x7197E0);
 FunctionPointer(void, sub_7197C0, (ObjectMaster *a1), 0x7197C0);
-
 FunctionPointer(void, sub_72A750, (), 0x72A750);
 FunctionPointer(void, sub_72A570, (), 0x72A570);
 FunctionPointer(void, sub_724E60, (), 0x724E60);
 FunctionPointer(void, sub_722500, (), 0x722500);
-
 FunctionPointer(int, sub_79E400, (int ID, int a2, NJS_VECTOR *a3), 0x79E400);
-
 FunctionPointer(void, sub_715700, (int a1), 0x715700);
-
 FunctionPointer(void, SetChaoLandTableX, (LandTable *geo), 0x43A4C0);
 
 static NJS_VECTOR racebutton{ 2020, 0, -0.68f };

@@ -1,6 +1,16 @@
 #include "stdafx.h"
 #include "button.h"
 #include "MasterEmerald.h"
+#include "OFinalEgg.h"
+#include "MR_train.h"
+#include "MR_Rock.h"
+#include "MR_IceCapDoor.h"
+#include "Tanken.h"
+#include "Tanken2.h"
+#include "Tanken3.h"
+#include "Grass.h"
+#include "MR_Objects.h"
+#include "MR_Palms.h"
 
 NJS_TEXNAME textures_mr00[153];
 NJS_TEXLIST texlist_mr00 = { arrayptrandlength(textures_mr00) };
@@ -17,16 +27,8 @@ NJS_TEXLIST texlist_mr03 = { arrayptrandlength(textures_mr03) };
 NJS_TEXNAME textures_mrobj[207];
 NJS_TEXLIST texlist_mrobj = { arrayptrandlength(textures_mrobj) };
 
-#include "OFinalEgg.h"
-#include "MR_train.h"
-#include "MR_Rock.h"
-#include "MR_IceCapDoor.h"
-#include "Tanken.h"
-#include "Tanken2.h"
-#include "Tanken3.h"
-#include "Grass.h"
-#include "MR_Objects.h"
-#include "MR_Palms.h"
+NJS_TEXNAME textures_mrtrain[31];
+NJS_TEXLIST texlist_mrtrain = { arrayptrandlength(textures_mrtrain) };
 
 DataPointer(float, dword_111DB90, 0x111DB90);
 DataPointer(float, CurrentFogDist, 0x03ABDC64);
@@ -50,8 +52,6 @@ static int MRSeaAnimation1 = 130;
 static int MRSeaAnimation2 = 140;
 static int IceCapCaveWaterAnimation = 76;
 static int uvADV02_anim = 1;
-NJS_TEXNAME textures_mrtrain[31];
-NJS_TEXLIST texlist_mrtrain = { arrayptrandlength(textures_mrtrain) };
 
 void __cdecl MRWater(OceanData *x)
 {

@@ -1,4 +1,6 @@
 #include "stdafx.h"
+#include "SkyDeck_objects.h"
+#include "SkyDeck3_Fixes.h"
 
 NJS_TEXNAME textures_skydeck1[76];
 NJS_TEXLIST texlist_skydeck1 = { arrayptrandlength(textures_skydeck1) };
@@ -8,9 +10,6 @@ NJS_TEXLIST texlist_skydeck2 = { arrayptrandlength(textures_skydeck2) };
 
 NJS_TEXNAME textures_skydeck3[65];
 NJS_TEXLIST texlist_skydeck3 = { arrayptrandlength(textures_skydeck3) };
-
-#include "SkyDeck_objects.h"
-#include "SkyDeck3_Fixes.h"
 
 static int UVShift1 = 0;
 static int UVShift2 = 0;

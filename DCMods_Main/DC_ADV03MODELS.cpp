@@ -1,16 +1,15 @@
 #include "stdafx.h"
 #include "Palm.h"
+#include "Past_objects.h"
 
 NJS_TEXNAME textures_past0[60];
-NJS_TEXLIST texlist_past0 = { arrayptrandlength(textures_past0) };
+NJS_TEXLIST texlist_past00 = { arrayptrandlength(textures_past0) };
 
 NJS_TEXNAME textures_past1[83];
 NJS_TEXLIST texlist_past01 = { arrayptrandlength(textures_past1) };
 
 NJS_TEXNAME textures_past2[85];
 NJS_TEXLIST texlist_past02 = { arrayptrandlength(textures_past2) };
-
-#include "Past_objects.h"
 
 ModelInfo *PastChaoModel_2_Info = nullptr;
 ModelInfo *PastChaoModel_7_Info = nullptr;
@@ -388,7 +387,7 @@ void LoadLevelFiles_ADV03()
 	LandTable *ADV03_0 = ADV03_0_Info->getlandtable();
 	LandTable *ADV03_1 = ADV03_1_Info->getlandtable();
 	LandTable *ADV03_2 = ADV03_2_Info->getlandtable();
-	ADV03_0->TexList = &texlist_past0;
+	ADV03_0->TexList = &texlist_past00;
 	ADV03_1->TexList = &texlist_past01;
 	ADV03_2->TexList = &texlist_past02;
 	LandTableArray[152] = ADV03_0;
@@ -525,7 +524,7 @@ void ADV03_Init()
 	ReplacePVM("KNUCKLES_DEBU");
 	ReplacePVM("KNUCKLES_LONG");
 	//Texlists
-	___ADV03_TEXLISTS[4] = &texlist_past0;
+	___ADV03_TEXLISTS[4] = &texlist_past00;
 	___ADV03_TEXLISTS[5] = &texlist_past01;
 	___ADV03_TEXLISTS[6] = &texlist_past02;
 	WriteJump((void*)0x542850, Past_OceanDraw_r);

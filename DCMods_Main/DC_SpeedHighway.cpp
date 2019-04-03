@@ -1,15 +1,5 @@
 #include "stdafx.h"
 #include "textures.h"
-
-NJS_TEXNAME textures_highway1[89];
-NJS_TEXLIST texlist_hw1 = { arrayptrandlength(textures_highway1) };
-
-NJS_TEXNAME textures_highway2[32];
-NJS_TEXLIST texlist_hw2 = { arrayptrandlength(textures_highway2) };
-
-NJS_TEXNAME textures_highway3[107];
-NJS_TEXLIST texlist_hw3 = { arrayptrandlength(textures_highway3) };
-
 #include "SH_bus.h"
 #include "SH_yellowcar.h"
 #include "SH_bluecar.h"
@@ -19,6 +9,15 @@ NJS_TEXLIST texlist_hw3 = { arrayptrandlength(textures_highway3) };
 #include "SH_glass.h"
 #include "Highway_objects.h"
 #include "HW_Jammer.h"
+
+NJS_TEXNAME textures_highway1[89];
+NJS_TEXLIST texlist_hw1 = { arrayptrandlength(textures_highway1) };
+
+NJS_TEXNAME textures_highway2[32];
+NJS_TEXLIST texlist_hw2 = { arrayptrandlength(textures_highway2) };
+
+NJS_TEXNAME textures_highway3[107];
+NJS_TEXLIST texlist_hw3 = { arrayptrandlength(textures_highway3) };
 
 FunctionPointer(void, sub_409E70, (NJS_MODEL_SADX *a1, int a2, float a3), 0x409E70);
 FunctionPointer(long double, sub_49CC70, (float a1, float a2, float a3), 0x49CC70);

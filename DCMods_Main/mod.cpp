@@ -82,7 +82,6 @@ LandTableInfo *AL_GARDEN02_Info = nullptr;
 LandTableInfo *AL_RACE_0_Info = nullptr;
 LandTableInfo *AL_RACE_1_Info = nullptr;
 
-HMODULE LanternDLL;
 set_shader_flags* set_shader_flags_ptr;
 material_register* material_register_ptr;
 material_unregister* material_unregister_ptr;
@@ -214,14 +213,6 @@ static const wchar_t *const OldModDLLs[] = {
 	L"MRFinalEggFix"
 };
 
-void AnimateTextures(NJS_MATERIAL *material, int startframe, int endframe, int speed)
-{
-	int texid = material->attr_texId;
-	if (FrameCounter % (speed / FramerateSetting) == 0)	texid++;
-	if (texid > endframe) texid = startframe;
-	material->attr_texId = texid;
-}
-
 void CheckAndUnloadLevelFiles()
 {
 	if (CurrentLevel != LevelIDs_StationSquare && ADV00_0_Info) UnloadLevelFiles_ADV00();
@@ -314,10 +305,6 @@ extern "C"
 		DLLLoaded_Lantern = (GetModuleHandle(L"sadx-dc-lighting") != nullptr);
 		DLLLoaded_DLCs = (GetModuleHandle(L"DLCs_Main") != nullptr);
 		DLLLoaded_SADXFE = (GetModuleHandle(L"sadx-fixed-edition") != nullptr);
-		HMODULE WaterEffect = GetModuleHandle(L"WaterEffect");
-		HMODULE Autodemo_WindyValley = GetModuleHandle(L"AutoDemo_WindyValley");
-		HMODULE Autodemo_RedMountain = GetModuleHandle(L"AutoDemo_RedMountain");
-		HMODULE Autodemo_SpeedHighway = GetModuleHandle(L"AutoDemo_SpeedHighway");
 		//Error messages
 		if (helperFunctions.Version < 7)
 		{
@@ -401,9 +388,9 @@ extern "C"
 		ReplaceFruits = config->getInt("Chao Gardens", "ReplaceFruits", 0);
 		ReplaceEggs = config->getBool("Chao Gardens", "ReplaceEggs", true);
 		//Autodemo mods check
-		if (Autodemo_WindyValley != nullptr) EnableWindyValley = false;
-		if (Autodemo_SpeedHighway != nullptr) EnableSpeedHighway = false;
-		if (Autodemo_RedMountain != nullptr) EnableRedMountain = false;
+		if (GetModuleHandle(L"AutoDemo_WindyValley") != nullptr) EnableWindyValley = false;
+		if (GetModuleHandle(L"AutoDemo_SpeedHighway") != nullptr) EnableSpeedHighway = false;
+		if (GetModuleHandle(L"AutoDemo_RedMountain") != nullptr) EnableRedMountain = false;
 		const std::string EnableSETFixes_String = config->getString("Miscellaneous", "EnableSETFixes", "Normal");
 		if (EnableSETFixes_String == "Off")
 			EnableSETFixes = SETFixes_Off;
@@ -414,11 +401,11 @@ extern "C"
 		//Set window title
 		if (EnableWindowTitle) helperFunctions.SetWindowTitle("Sonic Adventure");
 		//Another error message
-		if (EnableEmeraldCoast && WaterEffect != nullptr)
+		if (EnableEmeraldCoast && GetModuleHandle(L"WaterEffect") != nullptr)
 		{
 			MessageBox(WindowHandle,
 				L"The Enhanced Emerald Coast mod is not "
-				L"compatible with DC Emerald Coast. Please "
+				L"compatible with Dreamcast Emerald Coast. Please "
 				L"disable Enhanced Emerald Coast for the "
 				L"Dreamcast level to work. To get SADX-like "
 				L"water in DC Emerald Coast, enable SADX "
@@ -452,7 +439,7 @@ extern "C"
 			ADV03_Init();
 		}
 		Bosses_Init();
-		if (!WaterEffect && EnableEmeraldCoast)
+		if (!GetModuleHandle(L"WaterEffect") && EnableEmeraldCoast)
 		{
 			WriteCall((void*)0x422B68, LoadLevelFiles_STG01);
 			EmeraldCoast_Init();
