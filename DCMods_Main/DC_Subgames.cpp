@@ -707,7 +707,7 @@ void UnloadLevelFiles_SBOARD()
 void LoadLevelFiles_MINICART()
 {
 	CheckAndUnloadLevelFiles();
-	MINICART_Info = new LandTableInfo(ModPath + "\\data\\MINICART\\0.sa1lvl");
+	MINICART_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\MINICART\\0.sa1lvl"));
 	LandTable *MINICART = MINICART_Info->getlandtable();
 	MINICART->TexList = &texlist_twinklecircuit;
 	LandTableArray[160] = MINICART; //Twinkle Circuit
@@ -716,7 +716,7 @@ void LoadLevelFiles_MINICART()
 void LoadLevelFiles_SBOARD()
 {
 	CheckAndUnloadLevelFiles();
-	SBOARD_Info = new LandTableInfo(ModPath + "\\data\\SBOARD\\0.sa1lvl");
+	SBOARD_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\SBOARD\\0.sa1lvl"));
 	LandTable *SBOARD = SBOARD_Info->getlandtable();
 	SBOARD->TexList = &texlist_sandhill;
 	LandTableArray[184] = SBOARD; //Sand Hill

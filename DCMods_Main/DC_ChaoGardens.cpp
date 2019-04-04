@@ -1968,9 +1968,9 @@ void UnloadLevelFiles_Chao()
 void LoadLevelFiles_Chao()
 {
 	CheckAndUnloadLevelFiles();
-	AL_GARDEN00_Info = new LandTableInfo(ModPath + "\\data\\AL_GARDEN00\\0.sa1lvl");
-	AL_GARDEN01_Info = new LandTableInfo(ModPath + "\\data\\AL_GARDEN01\\0.sa1lvl");
-	AL_GARDEN02_Info = new LandTableInfo(ModPath + "\\data\\AL_GARDEN02\\0.sa1lvl");
+	AL_GARDEN00_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\AL_GARDEN00\\0.sa1lvl"));
+	AL_GARDEN01_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\AL_GARDEN01\\0.sa1lvl"));
+	AL_GARDEN02_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\AL_GARDEN02\\0.sa1lvl"));
 	LandTable *AL_GARDEN00 = AL_GARDEN00_Info->getlandtable();
 	LandTable *AL_GARDEN01 = AL_GARDEN01_Info->getlandtable();
 	LandTable *AL_GARDEN02 = AL_GARDEN02_Info->getlandtable();

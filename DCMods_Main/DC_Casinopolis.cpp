@@ -509,7 +509,7 @@ void __cdecl TutuC_Display(ObjectMaster *a2) //TutuC
 	EntityData1 *v1; // esi@1
 	unsigned __int16 v2; // ax@3
 	__int16 v3; // ax
-	v1 = a2->Data1;;
+	v1 = a2->Data1;
 	if (!ClipObject((ObjectMaster *)a2, 62510.0) && !MissedFrames)
 	{
 		sub_5C09D0(12);
@@ -852,10 +852,10 @@ void UnloadLevelFiles_STG09()
 void LoadLevelFiles_STG09()
 {
 	CheckAndUnloadLevelFiles();
-	STG09_0_Info = new LandTableInfo(ModPath + "\\data\\STG09\\0.sa1lvl");
-	STG09_1_Info = new LandTableInfo(ModPath + "\\data\\STG09\\1.sa1lvl");
-	STG09_2_Info = new LandTableInfo(ModPath + "\\data\\STG09\\2.sa1lvl");
-	STG09_3_Info = new LandTableInfo(ModPath + "\\data\\STG09\\3.sa1lvl");
+	STG09_0_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG09\\0.sa1lvl"));
+	STG09_1_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG09\\1.sa1lvl"));
+	STG09_2_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG09\\2.sa1lvl"));
+	STG09_3_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG09\\3.sa1lvl"));
 	LandTable *STG09_0 = STG09_0_Info->getlandtable();
 	LandTable *STG09_1 = STG09_1_Info->getlandtable();
 	LandTable *STG09_2 = STG09_2_Info->getlandtable();

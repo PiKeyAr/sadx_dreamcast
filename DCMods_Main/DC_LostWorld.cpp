@@ -52,9 +52,9 @@ void UnloadLevelFiles_STG07()
 void LoadLevelFiles_STG07()
 {
 	CheckAndUnloadLevelFiles();
-	STG07_0_Info = new LandTableInfo(ModPath + "\\data\\STG07\\0.sa1lvl");
-	STG07_1_Info = new LandTableInfo(ModPath + "\\data\\STG07\\1.sa1lvl");
-	STG07_2_Info = new LandTableInfo(ModPath + "\\data\\STG07\\2.sa1lvl");
+	STG07_0_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG07\\0.sa1lvl"));
+	STG07_1_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG07\\1.sa1lvl"));
+	STG07_2_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG07\\2.sa1lvl"));
 	LandTable *STG07_0 = STG07_0_Info->getlandtable();
 	LandTable *STG07_1 = STG07_1_Info->getlandtable();
 	LandTable *STG07_2 = STG07_2_Info->getlandtable();

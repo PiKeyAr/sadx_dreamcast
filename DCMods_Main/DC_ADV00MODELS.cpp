@@ -1268,12 +1268,12 @@ void UnloadLevelFiles_ADV00()
 void LoadLevelFiles_ADV00()
 {
 	CheckAndUnloadLevelFiles();
-	ADV00_0_Info = new LandTableInfo(ModPath + "\\data\\ADV00\\0.sa1lvl");
-	ADV00_1_Info = new LandTableInfo(ModPath + "\\data\\ADV00\\1.sa1lvl");
-	ADV00_2_Info = new LandTableInfo(ModPath + "\\data\\ADV00\\2.sa1lvl");
-	ADV00_3_Info = new LandTableInfo(ModPath + "\\data\\ADV00\\3.sa1lvl");
-	ADV00_4_Info = new LandTableInfo(ModPath + "\\data\\ADV00\\4.sa1lvl");
-	ADV00_5_Info = new LandTableInfo(ModPath + "\\data\\ADV00\\5.sa1lvl");
+	ADV00_0_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV00\\0.sa1lvl"));
+	ADV00_1_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV00\\1.sa1lvl"));
+	ADV00_2_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV00\\2.sa1lvl"));
+	ADV00_3_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV00\\3.sa1lvl"));
+	ADV00_4_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV00\\4.sa1lvl"));
+	ADV00_5_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV00\\5.sa1lvl"));
 	LandTable *ADV00_0 = ADV00_0_Info->getlandtable();
 	LandTable *ADV00_1 = ADV00_1_Info->getlandtable();
 	LandTable *ADV00_2 = ADV00_2_Info->getlandtable();

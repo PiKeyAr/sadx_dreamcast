@@ -4018,8 +4018,8 @@ void UnloadLevelFiles_AL_RACE()
 void LoadLevelFiles_AL_RACE()
 {
 	CheckAndUnloadLevelFiles();
-	AL_RACE_0_Info = new LandTableInfo(ModPath + "\\data\\AL_RACE\\0.sa1lvl");
-	AL_RACE_1_Info = new LandTableInfo(ModPath + "\\data\\AL_RACE\\1.sa1lvl");
+	AL_RACE_0_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\AL_RACE\\0.sa1lvl"));
+	AL_RACE_1_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\AL_RACE\\1.sa1lvl"));
 	LandTable *AL_RACE_0 = AL_RACE_0_Info->getlandtable();
 	LandTable *AL_RACE_1 = AL_RACE_1_Info->getlandtable();
 	AL_RACE_0->TexList = (NJS_TEXLIST*)0x340E934;

@@ -458,12 +458,12 @@ void UnloadLevelFiles_ADV01C()
 void LoadLevelFiles_ADV01()
 {
 	CheckAndUnloadLevelFiles();
-	ADV01_0_Info = new LandTableInfo(ModPath + "\\data\\ADV01\\0.sa1lvl");
-	ADV01_1_Info = new LandTableInfo(ModPath + "\\data\\ADV01\\1.sa1lvl");
-	ADV01_2_Info = new LandTableInfo(ModPath + "\\data\\ADV01\\2.sa1lvl");
-	ADV01_3_Info = new LandTableInfo(ModPath + "\\data\\ADV01\\3.sa1lvl");
-	ADV01_4_Info = new LandTableInfo(ModPath + "\\data\\ADV01\\4.sa1lvl");
-	ADV01_5_Info = new LandTableInfo(ModPath + "\\data\\ADV01\\5.sa1lvl");
+	ADV01_0_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV01\\0.sa1lvl"));
+	ADV01_1_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV01\\1.sa1lvl"));
+	ADV01_2_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV01\\2.sa1lvl"));
+	ADV01_3_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV01\\3.sa1lvl"));
+	ADV01_4_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV01\\4.sa1lvl"));
+	ADV01_5_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV01\\5.sa1lvl"));
 	LandTable *ADV01_0 = ADV01_0_Info->getlandtable();
 	LandTable *ADV01_1 = ADV01_1_Info->getlandtable();
 	LandTable *ADV01_2 = ADV01_2_Info->getlandtable();
@@ -520,12 +520,12 @@ void LoadLevelFiles_ADV01()
 void LoadLevelFiles_ADV01C()
 {
 	CheckAndUnloadLevelFiles();
-	ADV01C_0_Info = new LandTableInfo(ModPath + "\\data\\ADV01C\\0.sa1lvl");
-	ADV01C_1_Info = new LandTableInfo(ModPath + "\\data\\ADV01C\\1.sa1lvl");
-	ADV01C_2_Info = new LandTableInfo(ModPath + "\\data\\ADV01C\\2.sa1lvl");
-	ADV01C_3_Info = new LandTableInfo(ModPath + "\\data\\ADV01C\\3.sa1lvl");
-	ADV01C_4_Info = new LandTableInfo(ModPath + "\\data\\ADV01C\\4.sa1lvl");
-	ADV01C_5_Info = new LandTableInfo(ModPath + "\\data\\ADV01C\\5.sa1lvl");
+	ADV01C_0_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV01C\\0.sa1lvl"));
+	ADV01C_1_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV01C\\1.sa1lvl"));
+	ADV01C_2_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV01C\\2.sa1lvl"));
+	ADV01C_3_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV01C\\3.sa1lvl"));
+	ADV01C_4_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV01C\\4.sa1lvl"));
+	ADV01C_5_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV01C\\5.sa1lvl"));
 	LandTable *ADV01C_0 = ADV01C_0_Info->getlandtable();
 	LandTable *ADV01C_1 = ADV01C_1_Info->getlandtable();
 	LandTable *ADV01C_2 = ADV01C_2_Info->getlandtable();

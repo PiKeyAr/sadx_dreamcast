@@ -364,11 +364,11 @@ void AllocateEventChao_10(ObjectMaster *a1, NJS_ACTION *a2, NJS_TEXLIST *a3, flo
 void LoadLevelFiles_ADV03()
 {
 	CheckAndUnloadLevelFiles();
-	PastChaoModel_2_Info = new ModelInfo(ModPath + "\\data\\ADV03\\Models\\Chao.sa1mdl");
-	PastChaoModel_7_Info = new ModelInfo(ModPath + "\\data\\ADV03\\Models\\Chao.sa1mdl");
-	PastChaoModel_8_Info = new ModelInfo(ModPath + "\\data\\ADV03\\Models\\Chao.sa1mdl");
-	PastChaoModel_9_Info = new ModelInfo(ModPath + "\\data\\ADV03\\Models\\Chao.sa1mdl");
-	PastChaoModel_10_Info = new ModelInfo(ModPath + "\\data\\ADV03\\Models\\Chao.sa1mdl");
+	PastChaoModel_2_Info = new ModelInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV03\\Models\\Chao.sa1mdl"));
+	PastChaoModel_7_Info = new ModelInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV03\\Models\\Chao.sa1mdl"));
+	PastChaoModel_8_Info = new ModelInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV03\\Models\\Chao.sa1mdl"));
+	PastChaoModel_9_Info = new ModelInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV03\\Models\\Chao.sa1mdl"));
+	PastChaoModel_10_Info = new ModelInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV03\\Models\\Chao.sa1mdl"));
 	PastChaoModel_2 = (NJS_OBJECT*)PastChaoModel_2_Info->getmodel();
 	PastChaoModel_7 = (NJS_OBJECT*)PastChaoModel_7_Info->getmodel();
 	PastChaoModel_8 = (NJS_OBJECT*)PastChaoModel_8_Info->getmodel();
@@ -382,9 +382,9 @@ void LoadLevelFiles_ADV03()
 	PastChaoModel_9->child->sibling->child->sibling->sibling->sibling->sibling->sibling->child->sibling->basicdxmodel->mats[0].attr_texId = 9;
 	PastChaoModel_10->child->sibling->child->sibling->sibling->sibling->sibling->sibling->child->basicdxmodel->mats[0].attr_texId = 10;
 	PastChaoModel_10->child->sibling->child->sibling->sibling->sibling->sibling->sibling->child->sibling->basicdxmodel->mats[0].attr_texId = 10;
-	ADV03_0_Info = new LandTableInfo(ModPath + "\\data\\ADV03\\0.sa1lvl");
-	ADV03_1_Info = new LandTableInfo(ModPath + "\\data\\ADV03\\1.sa1lvl");
-	ADV03_2_Info = new LandTableInfo(ModPath + "\\data\\ADV03\\2.sa1lvl");
+	ADV03_0_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV03\\0.sa1lvl"));
+	ADV03_1_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV03\\1.sa1lvl"));
+	ADV03_2_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV03\\2.sa1lvl"));
 	LandTable *ADV03_0 = ADV03_0_Info->getlandtable();
 	LandTable *ADV03_1 = ADV03_1_Info->getlandtable();
 	LandTable *ADV03_2 = ADV03_2_Info->getlandtable();
