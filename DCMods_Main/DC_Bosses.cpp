@@ -1,4 +1,17 @@
 #include "stdafx.h"
+#include "EggHornet_Water.h"
+#include "EggViper_Head.h"
+#include "Chaos0_PoliceCar.h"
+#include "Chaos0_helicopter.h"
+#include "Chaos0_Model.h"
+#include "Chaos2_Column.h"
+#include "Chaos4_water.h"
+#include "Chaos6_Motion.h"
+#include "Chaos7_fixes.h"
+#include "ZeroE101R_Water.h"
+#include "E101Kai_Model.h"
+#include "LightingArrays.h"
+#include "ERobo.h"
 
 NJS_TEXNAME textures_chaos0[34];
 NJS_TEXLIST texlist_chaos0 = { arrayptrandlength(textures_chaos0) };
@@ -32,20 +45,6 @@ NJS_TEXLIST texlist_eggviper = { arrayptrandlength(textures_eggviper) };
 
 NJS_TEXNAME textures_e101[77];
 NJS_TEXLIST texlist_e101 = { arrayptrandlength(textures_e101) };
-
-#include "EggHornet_Water.h"
-#include "EggViper_Head.h"
-#include "Chaos0_PoliceCar.h"
-#include "Chaos0_helicopter.h"
-#include "Chaos0_Model.h"
-#include "Chaos2_Column.h"
-#include "Chaos4_water.h"
-#include "Chaos6_Motion.h"
-#include "Chaos7_fixes.h"
-#include "ZeroE101R_Water.h"
-#include "E101Kai_Model.h"
-#include "LightingArrays.h"
-#include "ERobo.h"
 
 //Chaos 6 material arrays
 DataArray(NJS_MATERIAL, matlist_00F975B0, 0x013975B0, 3);
@@ -604,7 +603,6 @@ void __cdecl Chaos6SkyboxMain()
 		DrawQueueDepthBias = -30000.0f;
 		ProcessModelNode(&stru_11EEED8, QueuedModelFlagsB_SomeTextureThing, 3.0f);
 		DrawQueueDepthBias = 0;
-		//sub_408530(&stru_11EEED8);
 		njPopMatrix(1u);
 		ToggleStageFog();
 	}

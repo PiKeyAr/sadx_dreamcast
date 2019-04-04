@@ -1,4 +1,6 @@
 #include "stdafx.h"
+#include "EmeraldCoast_Objects.h"
+#include "BigBeach.h"
 
 NJS_TEXNAME textures_ecoast1[97];
 NJS_TEXLIST texlist_ecoast1 = { arrayptrandlength(textures_ecoast1) };
@@ -8,9 +10,6 @@ NJS_TEXLIST texlist_ecoast2 = { arrayptrandlength(textures_ecoast2) };
 
 NJS_TEXNAME textures_ecoast3[94];
 NJS_TEXLIST texlist_ecoast3 = { arrayptrandlength(textures_ecoast3) };
-
-#include "EmeraldCoast_Objects.h"
-#include "BigBeach.h"
 
 static int anim1 = 82;
 static int anim2 = 67;

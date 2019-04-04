@@ -1,4 +1,7 @@
 #include "stdafx.h"
+#include "EggCarrier_Objects.h"
+#include "EC_Tornado.h"
+#include "EC_Transform.h"
 
 NJS_TEXNAME textures_ec00[98];
 NJS_TEXLIST texlist_ec00 = { arrayptrandlength(textures_ec00) };
@@ -35,10 +38,6 @@ NJS_TEXLIST texlist_ec34 = { arrayptrandlength(textures_ec34) };
 
 NJS_TEXNAME textures_ec35[14];
 NJS_TEXLIST texlist_ec35 = { arrayptrandlength(textures_ec35) };
-
-#include "EggCarrier_Objects.h"
-#include "EC_Tornado.h"
-#include "EC_Transform.h"
 
 FunctionPointer(void, sub_409FB0, (NJS_ACTION *a1, float frameNumber), 0x409FB0);
 FunctionPointer(void, sub_6F4570, (ObjectMaster *a1), 0x6F4570);

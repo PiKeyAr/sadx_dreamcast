@@ -1377,12 +1377,12 @@ void General_OnFrame()
 			{
 				if (EV_MainThread_ptr != nullptr)
 				{
-					PrintDebug("Trying to skip the cutscene...\n");
+					//PrintDebug("Trying to skip the cutscene...\n");
 				}
 				else
 				{
 					CutsceneFadeMode = 2;
-					PrintDebug("Cutscene skipped!\n");
+					//PrintDebug("Cutscene skipped!\n");
 				}
 			}
 			if (CutsceneFadeMode == 2)
@@ -1402,14 +1402,14 @@ void General_OnFrame()
 			if (EV_MainThread_ptr != nullptr)
 			{
 				CutsceneFadeMode = 1;
-				PrintDebug("Trying to skip the cutscene...\n");
+				//PrintDebug("Trying to skip the cutscene...\n");
 			}
 			else
 			{
 				CutsceneFadeMode = 0;
 				CutsceneFadeValue = 0;
 				SkipPressed_Cutscene = false;
-				PrintDebug("Cutscene skipped!\n");
+				//PrintDebug("Cutscene skipped!\n");
 			}
 		}
 	}
@@ -1495,7 +1495,7 @@ void General_OnInput()
 	if (CutsceneSkipMode < 2 && !SkipPressed_Cutscene && !DemoPlaying)
 		if (EV_MainThread_ptr != 0 && ControllerPointers[0]->PressedButtons & Buttons_Start)
 		{
-			PrintDebug("Cutscene skip pressed!\n");
+			//PrintDebug("Cutscene skip pressed!\n");
 			SkipPressed_Cutscene = true;
 		}
 }
