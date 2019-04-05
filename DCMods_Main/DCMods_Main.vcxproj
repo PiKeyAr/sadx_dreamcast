@@ -106,7 +106,7 @@
     <ClCompile Include="DC_Subgames.cpp" />
     <ClCompile Include="DC_TwinklePark.cpp" />
     <ClCompile Include="DC_WindyValley.cpp" />
-    <ClCompile Include="Lighting.cpp" />
+    <ClCompile Include="GenericFunctions.cpp" />
     <ClCompile Include="mod.cpp" />
     <ClCompile Include="SADXStyleWater.cpp" />
     <ClCompile Include="SkyChaseFixes.cpp" />

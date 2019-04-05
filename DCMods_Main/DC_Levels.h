@@ -5,6 +5,14 @@
 #include <string>
 
 class IniFile;
+#define NJD_CUSTOMFLAG_TEXANIM1		(BIT_0)
+#define NJD_CUSTOMFLAG_TEXANIM2		(BIT_1)
+#define NJD_CUSTOMFLAG_WHITE		(BIT_2)
+#define NJD_CUSTOMFLAG_NIGHT		(BIT_3)
+#define NJD_CUSTOMFLAG_LIGHT0		(BIT_4)
+#define NJD_CUSTOMFLAG_LIGHT2		(BIT_5)
+#define NJD_CUSTOMFLAG_RESERVED_SA1		(BIT_6)
+#define NJD_CUSTOMFLAG_ALPHA_REJECT		(BIT_7)
 
 DataPointer(int, FramerateSetting_Config, 0x0089295C);
 DataPointer(int, FramerateSetting, 0x0389D7DC);
@@ -113,6 +121,227 @@ extern NJS_OBJECT **___ADV03PAST01_OBJECTS;
 extern NJS_OBJECT **___ADV03PAST02_OBJECTS;
 extern NJS_OBJECT **___ADV03_OBJECTS;
 
+#define ReplacePVM(a) HelperFunctionsGlobal.ReplaceFile("system\\" a ".PVM", "system\\" a "_DC.PVM")
+#define ReplacePVR(a) HelperFunctionsGlobal.ReplaceFile("system\\" a ".PVR", "system\\" a "_DC.PVR")
+#define ReplaceGeneric(a,b) HelperFunctionsGlobal.ReplaceFile("system\\" a, "system\\" b)
+#define ReplaceBIN(a,b) HelperFunctionsGlobal.ReplaceFile("system\\" a ".BIN", "system\\" b ".BIN")
+#define ReplaceBIN_DC(a) HelperFunctionsGlobal.ReplaceFile("system\\" a ".BIN", "system\\" a "_DC.BIN")
+#define AddSETFix(a) HelperFunctionsGlobal.ReplaceFile("system\\" a ".BIN", "system\\" a "_S.BIN")
+#define AddSETFix_Extra(a) HelperFunctionsGlobal.ReplaceFile("system\\" a ".BIN", "system\\" a "_E.BIN")
+#define ReplacePVMX_SADXStyleWater(a) HelperFunctionsGlobal.ReplaceFile("system\\" a ".PVM", "system\\" a "W.PVM")
+
+extern set_shader_flags* set_shader_flags_ptr;
+extern material_register* material_register_ptr;
+extern material_unregister* material_unregister_ptr;
+extern set_diffuse* set_diffuse_ptr;
+extern set_specular* set_specular_ptr;
+extern set_alpha_reject* set_alpha_reject_ptr;
+extern set_blend_factor* set_blend_factor_ptr;
+extern set_diffuse_blend* set_diffuse_blend_ptr;
+extern set_specular_blend* set_specular_blend_ptr;
+
+struct SubtitleThing
+{
+	char field_0;
+	char gap1[1];
+	float px;
+	float py;
+	int field_6;
+	int field_8;
+	float sx;
+	float sy;
+	__int16 width;
+	__int16 height;
+	__int16 field_12;
+	__int16 field_14;
+	__int16 field_16;
+	__int16 field_18;
+	__int16 field_1A;
+	NJS_BGRA colorA;
+	NJS_COLOR colorB;
+	float scale;
+	void *data_or_d3dtexture;
+	Uint32 gbix;
+	NJS_TEXLIST tlist;
+	NJS_TEXNAME texname;
+	int flags;
+};
+
+struct TextureAnimation
+{
+	NJS_MATERIAL* material;
+	char Speed;
+	bool NonSequential;
+	int Frame1;
+	int Frame2;
+	int Frame3;
+	int Frame4;
+	int Frame5;
+	int Frame6;
+	int Frame7;
+	int Frame8;
+	int Frame9;
+	int Frame10;
+	int Frame11;
+	int Frame12;
+	int Frame13;
+	int Frame14;
+	int Frame15;
+	int Frame16;
+};
+
+//Level files
+extern LandTableInfo *STG00_0_Info;
+extern LandTableInfo *STG01_0_Info;
+extern LandTableInfo *STG01_1_Info;
+extern LandTableInfo *STG01_2_Info;
+extern LandTableInfo *STG02_0_Info;
+extern LandTableInfo *STG02_1_Info;
+extern LandTableInfo *STG02_2_Info;
+extern LandTableInfo *STG03_0_Info;
+extern LandTableInfo *STG03_1_Info;
+extern LandTableInfo *STG03_2_Info;
+extern LandTableInfo *STG04_0_Info;
+extern LandTableInfo *STG04_1_Info;
+extern LandTableInfo *STG04_2_Info;
+extern LandTableInfo *STG05_0_Info;
+extern LandTableInfo *STG05_1_Info;
+extern LandTableInfo *STG05_2_Info;
+extern LandTableInfo *STG06_0_Info;
+extern LandTableInfo *STG06_1_Info;
+extern LandTableInfo *STG06_2_Info;
+extern LandTableInfo *STG07_0_Info;
+extern LandTableInfo *STG07_1_Info;
+extern LandTableInfo *STG07_2_Info;
+extern LandTableInfo *STG08_0_Info;
+extern LandTableInfo *STG08_1_Info;
+extern LandTableInfo *STG08_2_Info;
+extern LandTableInfo *STG08_3_Info;
+extern LandTableInfo *STG09_0_Info;
+extern LandTableInfo *STG09_1_Info;
+extern LandTableInfo *STG09_2_Info;
+extern LandTableInfo *STG09_3_Info;
+extern LandTableInfo *STG10_0_Info;
+extern LandTableInfo *STG10_1_Info;
+extern LandTableInfo *STG10_2_Info;
+extern LandTableInfo *STG12_0_Info;
+extern LandTableInfo *STG12_1_Info;
+extern LandTableInfo *STG12_2_Info;
+extern LandTableInfo *B_CHAOS0_Info;
+extern LandTableInfo *B_CHAOS2_Info;
+extern LandTableInfo *B_CHAOS4_Info;
+extern LandTableInfo *B_CHAOS6_0_Info;
+extern LandTableInfo *B_CHAOS6_1_Info;
+extern LandTableInfo *B_CHAOS7_Info;
+extern LandTableInfo *B_EGM1_Info;
+extern LandTableInfo *B_EGM2_Info;
+extern LandTableInfo *B_EGM3_Info;
+extern LandTableInfo *B_E101_Info;
+extern LandTableInfo *B_ROBO_Info;
+extern LandTableInfo *B_E101_R_Info;
+extern LandTableInfo *ADV00_0_Info;
+extern LandTableInfo *ADV00_1_Info;
+extern LandTableInfo *ADV00_2_Info;
+extern LandTableInfo *ADV00_3_Info;
+extern LandTableInfo *ADV00_4_Info;
+extern LandTableInfo *ADV00_5_Info;
+extern LandTableInfo *ADV01_0_Info;
+extern LandTableInfo *ADV01_1_Info;
+extern LandTableInfo *ADV01_2_Info;
+extern LandTableInfo *ADV01_3_Info;
+extern LandTableInfo *ADV01_4_Info;
+extern LandTableInfo *ADV01_5_Info;
+extern LandTableInfo *ADV01C_0_Info;
+extern LandTableInfo *ADV01C_1_Info;
+extern LandTableInfo *ADV01C_2_Info;
+extern LandTableInfo *ADV01C_3_Info;
+extern LandTableInfo *ADV01C_4_Info;
+extern LandTableInfo *ADV01C_5_Info;
+extern LandTableInfo *ADV02_0_Info;
+extern LandTableInfo *ADV02_1_Info;
+extern LandTableInfo *ADV02_2_Info;
+extern LandTableInfo *ADV02_3_Info;
+extern LandTableInfo *ADV03_0_Info;
+extern LandTableInfo *ADV03_1_Info;
+extern LandTableInfo *ADV03_2_Info;
+extern LandTableInfo *MINICART_Info;
+extern LandTableInfo *SBOARD_Info;
+extern LandTableInfo *AL_GARDEN00_Info;
+extern LandTableInfo *AL_GARDEN01_Info;
+extern LandTableInfo *AL_GARDEN02_Info;
+extern LandTableInfo *AL_RACE_0_Info;
+extern LandTableInfo *AL_RACE_1_Info;
+extern TextureAnimation TextureAnimationData[];
+
+//Level load functions
+void LoadLevelFiles_STG01();
+void LoadLevelFiles_STG02();
+void LoadLevelFiles_STG03();
+void LoadLevelFiles_STG04();
+void LoadLevelFiles_STG05();
+void LoadLevelFiles_STG06();
+void LoadLevelFiles_STG07();
+void LoadLevelFiles_STG08();
+void LoadLevelFiles_STG09();
+void LoadLevelFiles_STG10();
+void LoadLevelFiles_STG12();
+void LoadLevelFiles_B_CHAOS0();
+void LoadLevelFiles_B_CHAOS2();
+void LoadLevelFiles_B_CHAOS4();
+void LoadLevelFiles_B_CHAOS6();
+void LoadLevelFiles_B_CHAOS7();
+void LoadLevelFiles_B_EGM1();
+void LoadLevelFiles_B_EGM2();
+void LoadLevelFiles_B_EGM3();
+void LoadLevelFiles_B_ROBO();
+void LoadLevelFiles_B_E101();
+void LoadLevelFiles_B_E101_R();
+void LoadLevelFiles_ADV00();
+void LoadLevelFiles_ADV01();
+void LoadLevelFiles_ADV01C();
+void LoadLevelFiles_ADV02();
+void LoadLevelFiles_ADV03();
+void LoadLevelFiles_MINICART();
+void LoadLevelFiles_SBOARD();
+void LoadLevelFiles_Chao();
+void LoadLevelFiles_AL_RACE();
+//void LoadLevelFiles_GARDEN00();
+//void LoadLevelFiles_GARDEN01();
+//void LoadLevelFiles_GARDEN02();
+
+void CheckAndUnloadLevelFiles();
+void UnloadLevelFiles_STG01();
+void UnloadLevelFiles_STG02();
+void UnloadLevelFiles_STG03();
+void UnloadLevelFiles_STG04();
+void UnloadLevelFiles_STG05();
+void UnloadLevelFiles_STG06();
+void UnloadLevelFiles_STG07();
+void UnloadLevelFiles_STG08();
+void UnloadLevelFiles_STG09();
+void UnloadLevelFiles_STG10();
+void UnloadLevelFiles_STG12();
+void UnloadLevelFiles_B_CHAOS0();
+void UnloadLevelFiles_B_CHAOS2();
+void UnloadLevelFiles_B_CHAOS4();
+void UnloadLevelFiles_B_CHAOS6();
+void UnloadLevelFiles_B_CHAOS7();
+void UnloadLevelFiles_B_EGM1();
+void UnloadLevelFiles_B_EGM2();
+void UnloadLevelFiles_B_EGM3();
+void UnloadLevelFiles_B_ROBO();
+void UnloadLevelFiles_B_E101();
+void UnloadLevelFiles_B_E101_R();
+void UnloadLevelFiles_ADV00();
+void UnloadLevelFiles_ADV01();
+void UnloadLevelFiles_ADV01C();
+void UnloadLevelFiles_ADV02();
+void UnloadLevelFiles_ADV03();
+void UnloadLevelFiles_MINICART();
+void UnloadLevelFiles_SBOARD();
+void UnloadLevelFiles_Chao();
+void UnloadLevelFiles_AL_RACE();
+
 void FixMRBase_Apply(const IniFile *config, const HelperFunctions &helperFunctions);
 void DisableSADXWaterFog();
 void Branding_Init(const IniFile *config, const HelperFunctions &helperFunctions);
@@ -203,201 +432,9 @@ bool ForceDiffuse4Specular5(NJS_MATERIAL* material, uint32_t flags);
 
 void DisplayVideoFadeout(int fadeout, int mode);
 
-void AnimateTextures(NJS_MATERIAL *material, int startframe, int endframe, int speed);
-
-#define ReplacePVM(a) HelperFunctionsGlobal.ReplaceFile("system\\" a ".PVM", "system\\" a "_DC.PVM")
-#define ReplacePVR(a) HelperFunctionsGlobal.ReplaceFile("system\\" a ".PVR", "system\\" a "_DC.PVR")
-#define ReplaceGeneric(a,b) HelperFunctionsGlobal.ReplaceFile("system\\" a, "system\\" b)
-#define ReplaceBIN(a,b) HelperFunctionsGlobal.ReplaceFile("system\\" a ".BIN", "system\\" b ".BIN")
-#define ReplaceBIN_DC(a) HelperFunctionsGlobal.ReplaceFile("system\\" a ".BIN", "system\\" a "_DC.BIN")
-#define AddSETFix(a) HelperFunctionsGlobal.ReplaceFile("system\\" a ".BIN", "system\\" a "_S.BIN")
-#define AddSETFix_Extra(a) HelperFunctionsGlobal.ReplaceFile("system\\" a ".BIN", "system\\" a "_E.BIN")
-#define ReplacePVMX_SADXStyleWater(a) HelperFunctionsGlobal.ReplaceFile("system\\" a ".PVM", "system\\" a "W.PVM")
-
-extern set_shader_flags* set_shader_flags_ptr;
-extern material_register* material_register_ptr;
-extern material_unregister* material_unregister_ptr;
-extern set_diffuse* set_diffuse_ptr;
-extern set_specular* set_specular_ptr;
-extern set_alpha_reject* set_alpha_reject_ptr;
-extern set_blend_factor* set_blend_factor_ptr;
-extern set_diffuse_blend* set_diffuse_blend_ptr;
-extern set_specular_blend* set_specular_blend_ptr;
-
-struct SubtitleThing
-{
-	char field_0;
-	char gap1[1];
-	float px;
-	float py;
-	int field_6;
-	int field_8;
-	float sx;
-	float sy;
-	__int16 width;
-	__int16 height;
-	__int16 field_12;
-	__int16 field_14;
-	__int16 field_16;
-	__int16 field_18;
-	__int16 field_1A;
-	NJS_BGRA colorA;
-	NJS_COLOR colorB;
-	float scale;
-	void *data_or_d3dtexture;
-	Uint32 gbix;
-	NJS_TEXLIST tlist;
-	NJS_TEXNAME texname;
-	int flags;
-};
-
-//Level files
-extern LandTableInfo *STG00_0_Info;
-extern LandTableInfo *STG01_0_Info;
-extern LandTableInfo *STG01_1_Info;
-extern LandTableInfo *STG01_2_Info;
-extern LandTableInfo *STG02_0_Info;
-extern LandTableInfo *STG02_1_Info;
-extern LandTableInfo *STG02_2_Info;
-extern LandTableInfo *STG03_0_Info;
-extern LandTableInfo *STG03_1_Info;
-extern LandTableInfo *STG03_2_Info;
-extern LandTableInfo *STG04_0_Info;
-extern LandTableInfo *STG04_1_Info;
-extern LandTableInfo *STG04_2_Info;
-extern LandTableInfo *STG05_0_Info;
-extern LandTableInfo *STG05_1_Info;
-extern LandTableInfo *STG05_2_Info;
-extern LandTableInfo *STG06_0_Info;
-extern LandTableInfo *STG06_1_Info;
-extern LandTableInfo *STG06_2_Info;
-extern LandTableInfo *STG07_0_Info;
-extern LandTableInfo *STG07_1_Info;
-extern LandTableInfo *STG07_2_Info;
-extern LandTableInfo *STG08_0_Info;
-extern LandTableInfo *STG08_1_Info;
-extern LandTableInfo *STG08_2_Info;
-extern LandTableInfo *STG08_3_Info;
-extern LandTableInfo *STG09_0_Info;
-extern LandTableInfo *STG09_1_Info;
-extern LandTableInfo *STG09_2_Info;
-extern LandTableInfo *STG09_3_Info;
-extern LandTableInfo *STG10_0_Info;
-extern LandTableInfo *STG10_1_Info;
-extern LandTableInfo *STG10_2_Info;
-extern LandTableInfo *STG12_0_Info;
-extern LandTableInfo *STG12_1_Info;
-extern LandTableInfo *STG12_2_Info;
-extern LandTableInfo *B_CHAOS0_Info;
-extern LandTableInfo *B_CHAOS2_Info;
-extern LandTableInfo *B_CHAOS4_Info;
-extern LandTableInfo *B_CHAOS6_0_Info;
-extern LandTableInfo *B_CHAOS6_1_Info;
-extern LandTableInfo *B_CHAOS7_Info;
-extern LandTableInfo *B_EGM1_Info;
-extern LandTableInfo *B_EGM2_Info;
-extern LandTableInfo *B_EGM3_Info;
-extern LandTableInfo *B_E101_Info;
-extern LandTableInfo *B_ROBO_Info;
-extern LandTableInfo *B_E101_R_Info;
-extern LandTableInfo *ADV00_0_Info;
-extern LandTableInfo *ADV00_1_Info;
-extern LandTableInfo *ADV00_2_Info;
-extern LandTableInfo *ADV00_3_Info;
-extern LandTableInfo *ADV00_4_Info;
-extern LandTableInfo *ADV00_5_Info;
-extern LandTableInfo *ADV01_0_Info;
-extern LandTableInfo *ADV01_1_Info;
-extern LandTableInfo *ADV01_2_Info;
-extern LandTableInfo *ADV01_3_Info;
-extern LandTableInfo *ADV01_4_Info;
-extern LandTableInfo *ADV01_5_Info;
-extern LandTableInfo *ADV01C_0_Info;
-extern LandTableInfo *ADV01C_1_Info;
-extern LandTableInfo *ADV01C_2_Info;
-extern LandTableInfo *ADV01C_3_Info;
-extern LandTableInfo *ADV01C_4_Info;
-extern LandTableInfo *ADV01C_5_Info;
-extern LandTableInfo *ADV02_0_Info;
-extern LandTableInfo *ADV02_1_Info;
-extern LandTableInfo *ADV02_2_Info;
-extern LandTableInfo *ADV02_3_Info;
-extern LandTableInfo *ADV03_0_Info;
-extern LandTableInfo *ADV03_1_Info;
-extern LandTableInfo *ADV03_2_Info;
-extern LandTableInfo *MINICART_Info;
-extern LandTableInfo *SBOARD_Info;
-extern LandTableInfo *AL_GARDEN00_Info;
-extern LandTableInfo *AL_GARDEN01_Info;
-extern LandTableInfo *AL_GARDEN02_Info;
-extern LandTableInfo *AL_RACE_0_Info;
-extern LandTableInfo *AL_RACE_1_Info;
-
-//Level load functions
-void LoadLevelFiles_STG01();
-void LoadLevelFiles_STG02();
-void LoadLevelFiles_STG03();
-void LoadLevelFiles_STG04();
-void LoadLevelFiles_STG05();
-void LoadLevelFiles_STG06();
-void LoadLevelFiles_STG07();
-void LoadLevelFiles_STG08();
-void LoadLevelFiles_STG09();
-void LoadLevelFiles_STG10();
-void LoadLevelFiles_STG12();
-void LoadLevelFiles_B_CHAOS0();
-void LoadLevelFiles_B_CHAOS2();
-void LoadLevelFiles_B_CHAOS4();
-void LoadLevelFiles_B_CHAOS6();
-void LoadLevelFiles_B_CHAOS7();
-void LoadLevelFiles_B_EGM1();
-void LoadLevelFiles_B_EGM2();
-void LoadLevelFiles_B_EGM3();
-void LoadLevelFiles_B_ROBO();
-void LoadLevelFiles_B_E101();
-void LoadLevelFiles_B_E101_R();
-void LoadLevelFiles_ADV00();
-void LoadLevelFiles_ADV01();
-void LoadLevelFiles_ADV01C();
-void LoadLevelFiles_ADV02();
-void LoadLevelFiles_ADV03();
-void LoadLevelFiles_MINICART();
-void LoadLevelFiles_SBOARD();
-void LoadLevelFiles_Chao();
-void LoadLevelFiles_AL_RACE();
-//void LoadLevelFiles_GARDEN00();
-//void LoadLevelFiles_GARDEN01();
-//void LoadLevelFiles_GARDEN02();
-
-void CheckAndUnloadLevelFiles();
-void UnloadLevelFiles_STG01();
-void UnloadLevelFiles_STG02();
-void UnloadLevelFiles_STG03();
-void UnloadLevelFiles_STG04();
-void UnloadLevelFiles_STG05();
-void UnloadLevelFiles_STG06();
-void UnloadLevelFiles_STG07();
-void UnloadLevelFiles_STG08();
-void UnloadLevelFiles_STG09();
-void UnloadLevelFiles_STG10();
-void UnloadLevelFiles_STG12();
-void UnloadLevelFiles_B_CHAOS0();
-void UnloadLevelFiles_B_CHAOS2();
-void UnloadLevelFiles_B_CHAOS4();
-void UnloadLevelFiles_B_CHAOS6();
-void UnloadLevelFiles_B_CHAOS7();
-void UnloadLevelFiles_B_EGM1();
-void UnloadLevelFiles_B_EGM2();
-void UnloadLevelFiles_B_EGM3();
-void UnloadLevelFiles_B_ROBO();
-void UnloadLevelFiles_B_E101();
-void UnloadLevelFiles_B_E101_R();
-void UnloadLevelFiles_ADV00();
-void UnloadLevelFiles_ADV01();
-void UnloadLevelFiles_ADV01C();
-void UnloadLevelFiles_ADV02();
-void UnloadLevelFiles_ADV03();
-void UnloadLevelFiles_MINICART();
-void UnloadLevelFiles_SBOARD();
-void UnloadLevelFiles_Chao();
-void UnloadLevelFiles_AL_RACE();
+bool ParseCustomMaterialFlags(NJS_MATERIAL* material, uint32_t flags);
+void CheckLandtableMaterials_register(LandTable *landtable);
+void CheckLandtableMaterials_unregister(LandTable *landtable);
+void AnimateTexture(TextureAnimation *texanim);
+void ClearTextureAnimationData();
+void AddTextureAnimation(NJS_MATERIAL* material, bool nonsequential, int speed, int frame1, int frame2, int frame3, int frame4, int frame5, int frame6, int frame7, int frame8, int frame9, int frame10, int frame11, int frame12, int frame13, int frame14, int frame15, int frame16);
