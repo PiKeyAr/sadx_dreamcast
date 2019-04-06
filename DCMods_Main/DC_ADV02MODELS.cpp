@@ -391,8 +391,9 @@ void ADV02_Init()
 	WriteData((float*)0x006D1CF6, 14.52f); //Y after cutscene
 	WriteData((int*)0x006D1D13, 0); //X rotation after cutscene
 	WriteData((int*)0x006D1D1D, 0); //Z rotation after cutscene
-	ReplaceBIN("SL_X0B", "SL_X0X"); //Day light direction 0, -1, 0
-	ReplaceBIN("SL_X2B", "SL_X2X"); //Night light direction 0, -1, 0
+	ReplaceBIN("SL_X0B", "SL_X0X"); //Day light direction override
+	ReplaceBIN("SL_X1B", "SL_X1X"); //Evening light direction override
+	ReplaceBIN("SL_X2B", "SL_X2X"); //Night light direction override
 	if (GetModuleHandle(L"ADV02MODELS") != nullptr && DLLLoaded_Lantern)
 	{
 		material_register_ptr(ObjectSpecular, LengthOfArray(ObjectSpecular), &ForceDiffuse0Specular1);
