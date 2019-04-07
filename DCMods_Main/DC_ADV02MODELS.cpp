@@ -394,6 +394,9 @@ void ADV02_Init()
 	ReplaceBIN("SL_X0B", "SL_X0X"); //Day light direction override
 	ReplaceBIN("SL_X1B", "SL_X1X"); //Evening light direction override
 	ReplaceBIN("SL_X2B", "SL_X2X"); //Night light direction override
+	//Enable MR light direction adjustment code
+	WriteData<6>((char*)0x00412536, 0x90u);
+	WriteData<6>((char*)0x00412544, 0x90u);
 	if (GetModuleHandle(L"ADV02MODELS") != nullptr && DLLLoaded_Lantern)
 	{
 		material_register_ptr(ObjectSpecular, LengthOfArray(ObjectSpecular), &ForceDiffuse0Specular1);
@@ -508,6 +511,11 @@ void ADV02_Init()
 
 void ADV02_OnFrame()
 {
+	if (CurrentLevel == LevelIDs_MysticRuins && CurrentAct == 3)
+	{
+		CasinoLightRotation_Y = 0;
+		CasinoLightRotation_Z = 0;
+	}
 	uvADV02_anim = (uvADV02_anim + 1) % 255;
 	//Evening and night materials Act 3
 	if (CurrentLevel == 33 && CurrentAct == 2)
