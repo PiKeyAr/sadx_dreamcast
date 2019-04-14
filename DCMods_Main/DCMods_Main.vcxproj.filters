@@ -671,5 +671,17 @@
     <ClInclude Include="Data\Chaos6_Motion.h">
       <Filter>Header Files\Levels\Bosses</Filter>
     </ClInclude>
+    <ClInclude Include="Data\SS00_CityHall.h">
+      <Filter>Header Files\Levels\ADV00MODELS</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\SS01_Casino.h">
+      <Filter>Header Files\Levels\ADV00MODELS</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\SS02_Sewers.h">
+      <Filter>Header Files\Levels\ADV00MODELS</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\SS03_MainArea.h">
+      <Filter>Header Files\Levels\ADV00MODELS</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

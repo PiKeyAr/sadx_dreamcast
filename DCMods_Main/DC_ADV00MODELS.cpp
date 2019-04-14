@@ -20,6 +20,10 @@ NJS_TEXLIST texlist_advss04 = { arrayptrandlength(textures_advss04) };
 NJS_TEXNAME textures_advss05[33];
 NJS_TEXLIST texlist_advss05 = { arrayptrandlength(textures_advss05) };
 
+#include "SS00_CityHall.h"
+#include "SS01_Casino.h"
+#include "SS03_MainArea.h"
+
 static int WaterAnimation_Sewers = 46;
 static int SandwaveAnimation = 183;
 static int SeashoreAnimation = 29;
@@ -823,76 +827,86 @@ void RenderStreetLight(NJS_MODEL_SADX *model, QueuedModelFlagsB blend, float sca
 	DrawModel_QueueVisible(model, blend, scale);
 }
 
-void SwitchLight_Night()
+void SwitchLighting_TimeOfDay(int act)
 {
-	//PrintDebug("Time: Night\n");
-	//Night reflections Act 0
-	if (ADV00_0_Info)
+	Sint8 TimeOfDay = GetTimeOfDay();
+	Uint32 materialflags;
+	int texid;
+	LandTable *landtable;
+	if (act == 0) landtable = ___LANDTABLESS[0];
+	else if (act == 1) landtable = ___LANDTABLESS[1];
+	else if (act == 2) landtable = ___LANDTABLESS[2];
+	else if (act == 3) landtable = ___LANDTABLESS[3];
+	else if (act == 4) landtable = ___LANDTABLESS[4];
+	else landtable = ___LANDTABLESS[5];
+	//Add or remove "ignore light"
+	for (unsigned int j = 0; j < landtable->COLCount; j++)
 	{
-		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0003B3C4"))[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0003AFD4"))[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_000522AC"))[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0004D3FC"))[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0004F4B4"))[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0004F4B4"))[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0004F4B4"))[4].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_000642F8"))[2].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_00059BFC"))[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_000638C4"))[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_00066CF0"))[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_00066CF0"))[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_00066CF0"))[2].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_00031C48"))[3].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_00030274"))[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_00022CC0"))[5].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_00022CC0"))[12].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_00025990"))[5].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0001E1DC"))[4].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0001E1DC"))[5].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_000285A0"))[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0002C924"))[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0002C2BC"))[4].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_00052FA8"))[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_000483CC"))[3].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_00042DBC"))[2].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0005AB04"))[2].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0005F744"))[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_00061B50"))[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0005C6C4"))[4].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_000309E0"))[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_000309E0"))[3].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_000309E0"))[4].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_000309E0"))[6].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_00046404"))[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_00046404"))[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_000631AC"))[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_000631AC"))[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_000631AC"))[2].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_00063748"))[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_00021684"))[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_000203BC"))[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0002B718"))[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0002F984"))[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0003B3C4"))[1].attr_texId = 207;
-		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0003BBA4"))[1].attr_texId = 207;
-		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0003BF94"))[1].attr_texId = 207;
-		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0003C384"))[1].attr_texId = 207;
-		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0003AFD4"))[1].attr_texId = 207;
-		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0003B7B4"))[1].attr_texId = 207;
-		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0003BBA4"))[1].attr_texId = 207;
-		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_000631AC"))[2].attr_texId = 207;
-		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_00046404"))[0].attr_texId = 209;
-		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_00046404"))[1].attr_texId = 209;
-		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0002B718"))[0].attr_texId = 211;
-		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_0002F984"))[0].attr_texId = 211;
-		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_000631AC"))[0].attr_texId = 213;
-		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_00063748"))[0].attr_texId = 213;
-		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_000203BC"))[0].attr_texId = 215;
-		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_00021684"))[0].attr_texId = 217;
-		((NJS_MATERIAL*)ADV00_0_Info->getdata("matlistADV00_000631AC"))[1].attr_texId = 219;
+		for (int k = 0; k < landtable->Col[j].Model->basicdxmodel->nbMat; ++k)
+		{
+			materialflags = landtable->Col[j].Model->basicdxmodel->mats[k].attrflags;
+			texid = landtable->Col[j].Model->basicdxmodel->mats[k].attr_texId;
+			if (materialflags & NJD_CUSTOMFLAG_NIGHT && !(materialflags & NJD_CUSTOMFLAG_WHITE))
+			{
+				if (TimeOfDay == 2 && !(materialflags & NJD_FLAG_IGNORE_LIGHT)) landtable->Col[j].Model->basicdxmodel->mats[k].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+				else if (materialflags & NJD_FLAG_IGNORE_LIGHT) landtable->Col[j].Model->basicdxmodel->mats[k].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+			}
+			//Day textures
+			if (TimeOfDay == 0)
+			{
+				if (act == 0)
+				{
+					if (texid == 207 || texid == 206) landtable->Col[j].Model->basicdxmodel->mats[k].attr_texId = 124;
+					if (texid == 209 || texid == 208) landtable->Col[j].Model->basicdxmodel->mats[k].attr_texId = 145;
+					if (texid == 211 || texid == 210) landtable->Col[j].Model->basicdxmodel->mats[k].attr_texId = 69;
+					if (texid == 213 || texid == 212) landtable->Col[j].Model->basicdxmodel->mats[k].attr_texId = 184;
+					if (texid == 215 || texid == 214) landtable->Col[j].Model->basicdxmodel->mats[k].attr_texId = 36;
+					if (texid == 217 || texid == 216) landtable->Col[j].Model->basicdxmodel->mats[k].attr_texId = 39;
+					if (texid == 219 || texid == 218) landtable->Col[j].Model->basicdxmodel->mats[k].attr_texId = 185;
+				}
+				if (act == 1)
+				{
+					if (texid == 265 || texid == 264) landtable->Col[j].Model->basicdxmodel->mats[k].attr_texId = 240;
+				}
+			}
+			//Evening textures
+			else if (TimeOfDay == 1)
+			{
+				if (act == 0)
+				{
+					if (texid == 124 || texid == 207) landtable->Col[j].Model->basicdxmodel->mats[k].attr_texId = 206;
+					if (texid == 145 || texid == 209) landtable->Col[j].Model->basicdxmodel->mats[k].attr_texId = 208;
+					if (texid == 69 || texid == 211) landtable->Col[j].Model->basicdxmodel->mats[k].attr_texId = 210;
+					if (texid == 184 || texid == 213) landtable->Col[j].Model->basicdxmodel->mats[k].attr_texId = 212;
+					if (texid == 36 || texid == 215) landtable->Col[j].Model->basicdxmodel->mats[k].attr_texId = 214;
+					if (texid == 39 || texid == 217) landtable->Col[j].Model->basicdxmodel->mats[k].attr_texId = 216;
+					if (texid == 185 || texid == 219) landtable->Col[j].Model->basicdxmodel->mats[k].attr_texId = 218;
+				}
+				if (act == 1)
+				{
+					if (texid == 240 || texid == 265) landtable->Col[j].Model->basicdxmodel->mats[k].attr_texId = 264;
+				}
+			}
+			//Night textures
+			else
+			{
+				if (act == 0)
+				{
+					if (texid == 124 || texid == 206) landtable->Col[j].Model->basicdxmodel->mats[k].attr_texId = 207;
+					if (texid == 145 || texid == 208) landtable->Col[j].Model->basicdxmodel->mats[k].attr_texId = 209;
+					if (texid == 69 || texid == 210) landtable->Col[j].Model->basicdxmodel->mats[k].attr_texId = 211;
+					if (texid == 184 || texid == 212) landtable->Col[j].Model->basicdxmodel->mats[k].attr_texId = 213;
+					if (texid == 36 || texid == 214) landtable->Col[j].Model->basicdxmodel->mats[k].attr_texId = 215;
+					if (texid == 39 || texid == 216) landtable->Col[j].Model->basicdxmodel->mats[k].attr_texId = 217;
+					if (texid == 185 || texid == 218) landtable->Col[j].Model->basicdxmodel->mats[k].attr_texId = 219;
+				}
+				if (act == 1)
+				{
+					if (texid == 240 || texid == 264) landtable->Col[j].Model->basicdxmodel->mats[k].attr_texId = 265;
+				}
+			}
+		}
 	}
-	//Night textures for Act 1 (Casino)
-	if (ADV00_1_Info) ((NJS_MATERIAL*)ADV00_1_Info->getdata("matlistADV00_000B59E0"))[0].attr_texId = 265;
 	//Night textures for Act 3 (Main area)
 	if (ADV00_3_Info)
 	{
@@ -1274,10 +1288,10 @@ void LoadLevelFiles_ADV00()
 	ADV00_3_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV00\\3.sa1lvl"));
 	ADV00_4_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV00\\4.sa1lvl"));
 	ADV00_5_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV00\\5.sa1lvl"));
-	LandTable *ADV00_0 = ADV00_0_Info->getlandtable();
-	LandTable *ADV00_1 = ADV00_1_Info->getlandtable();
+	LandTable *ADV00_0 = &landtable_000157F4;// ADV00_0_Info->getlandtable();
+	LandTable *ADV00_1 = &landtable_000738F4;// ADV00_1_Info->getlandtable();
 	LandTable *ADV00_2 = ADV00_2_Info->getlandtable();
-	LandTable *ADV00_3 = ADV00_3_Info->getlandtable();
+	LandTable *ADV00_3 = &landtable_000DCEBC; //ADV00_3_Info->getlandtable();
 	LandTable *ADV00_4 = ADV00_4_Info->getlandtable();
 	LandTable *ADV00_5 = ADV00_5_Info->getlandtable();
 	ADV00_0->TexList = &texlist_advss00;
@@ -1618,9 +1632,10 @@ void ADV00_OnFrame()
 	//Switch textures/lighting depending on time of day
 	if (CurrentLevel == 26 && PreviousTimeOfDay != GetTimeOfDay())
 	{
-		if (GetTimeOfDay() == 0) SwitchLight_Day();
-		else if (GetTimeOfDay() == 1) SwitchLight_Evening();
-		else if (GetTimeOfDay() == 2) SwitchLight_Night();
+		SwitchLighting_TimeOfDay(0);
+		SwitchLighting_TimeOfDay(1);
+		SwitchLighting_TimeOfDay(3);
+		SwitchLighting_TimeOfDay(4);
 		PreviousTimeOfDay = GetTimeOfDay();
 	}
 	//Act 2 (Sewers)

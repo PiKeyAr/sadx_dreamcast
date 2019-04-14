@@ -102,25 +102,25 @@ bool ParseCustomMaterialFlags(NJS_MATERIAL* material, uint32_t flags)
 		}
 	}
 	//Light type override: 0
-	if (mflags & NJD_CUSTOMFLAG_LIGHT0 && mflags & !NJD_CUSTOMFLAG_LIGHT2)
+	if (mflags & NJD_CUSTOMFLAG_UVANIM1 && mflags & !NJD_CUSTOMFLAG_UVANIM2)
 	{
 		set_diffuse_ptr(0, false);
 		if (mflags & NJD_FLAG_IGNORE_SPECULAR) set_specular_ptr(0, false); else set_specular_ptr(1, false);
 	}
 	//Light type override: 2
-	if (mflags & NJD_CUSTOMFLAG_LIGHT2 && mflags & !NJD_CUSTOMFLAG_LIGHT0)
+	if (mflags & NJD_CUSTOMFLAG_UVANIM2 && mflags & !NJD_CUSTOMFLAG_UVANIM1)
 	{
 		set_diffuse_ptr(2, false);
 		if (mflags & NJD_FLAG_IGNORE_SPECULAR) set_specular_ptr(2, false); else set_specular_ptr(3, false);
 	}
 	//Light type override: 4
-	if (mflags & NJD_CUSTOMFLAG_LIGHT0 && mflags & NJD_CUSTOMFLAG_LIGHT2)
+	if (mflags & NJD_CUSTOMFLAG_UVANIM1 && mflags & NJD_CUSTOMFLAG_UVANIM2)
 	{
 		set_diffuse_ptr(4, false);
 		set_specular_ptr(5, false);
 	}
 	//Alpha rejection
-	if (mflags & NJD_CUSTOMFLAG_ALPHA_REJECT) set_alpha_reject_ptr(0.0f, false);
+	if (mflags & NJD_CUSTOMFLAG_NO_REJECT) set_alpha_reject_ptr(0.0f, false);
 	return true;
 }
 
@@ -134,7 +134,7 @@ void CheckLandtableMaterials_register(LandTable *landtable)
 			for (int k = 0; k < landtable->Col[j].Model->basicdxmodel->nbMat; ++k) 
 			{
 				materialflags = landtable->Col[j].Model->basicdxmodel->mats[k].attrflags;
-				if (materialflags & NJD_CUSTOMFLAG_ALPHA_REJECT || materialflags & NJD_CUSTOMFLAG_LIGHT0 || materialflags & NJD_CUSTOMFLAG_LIGHT2 || materialflags && NJD_CUSTOMFLAG_NIGHT || materialflags && NJD_CUSTOMFLAG_WHITE)
+				if (materialflags & NJD_CUSTOMFLAG_NO_REJECT || materialflags & NJD_CUSTOMFLAG_UVANIM1 || materialflags & NJD_CUSTOMFLAG_UVANIM2 || materialflags & NJD_CUSTOMFLAG_NIGHT || materialflags & NJD_CUSTOMFLAG_WHITE)
 				{
 					if (DLLLoaded_Lantern)
 					{
@@ -157,7 +157,7 @@ void CheckLandtableMaterials_unregister(LandTable *landtable)
 			for (int k = 0; k < landtable->Col[j].Model->basicdxmodel->nbMat; ++k)
 			{
 				materialflags = landtable->Col[j].Model->basicdxmodel->mats[k].attrflags;
-				if (materialflags & NJD_CUSTOMFLAG_ALPHA_REJECT || materialflags & NJD_CUSTOMFLAG_LIGHT0 || materialflags & NJD_CUSTOMFLAG_LIGHT2 || materialflags && NJD_CUSTOMFLAG_NIGHT || materialflags && NJD_CUSTOMFLAG_WHITE)
+				if (materialflags & NJD_CUSTOMFLAG_NO_REJECT || materialflags & NJD_CUSTOMFLAG_UVANIM1 || materialflags & NJD_CUSTOMFLAG_UVANIM2 || materialflags && NJD_CUSTOMFLAG_NIGHT || materialflags && NJD_CUSTOMFLAG_WHITE)
 				{
 					if (DLLLoaded_Lantern)
 					{

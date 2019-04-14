@@ -262,6 +262,10 @@
     <ClInclude Include="Data\SkyDeck3.h" />
     <ClInclude Include="Data\SkyDeck3_Fixes.h" />
     <ClInclude Include="Data\SkyDeck_objects.h" />
+    <ClInclude Include="Data\SS00_CityHall.h" />
+    <ClInclude Include="Data\SS01_Casino.h" />
+    <ClInclude Include="Data\SS02_Sewers.h" />
+    <ClInclude Include="Data\SS03_MainArea.h" />
     <ClInclude Include="Data\SSGarden.h" />
     <ClInclude Include="Data\SS_Objects.h" />
     <ClInclude Include="Data\Tanken.h" />
