@@ -20,6 +20,8 @@ NJS_TEXLIST texlist_advss04 = { arrayptrandlength(textures_advss04) };
 NJS_TEXNAME textures_advss05[33];
 NJS_TEXLIST texlist_advss05 = { arrayptrandlength(textures_advss05) };
 
+NJS_OBJECT *SS03SeaModel = nullptr;
+
 #include "SS00_CityHall.h"
 #include "SS01_Casino.h"
 #include "SS03_MainArea.h"
@@ -52,14 +54,14 @@ int __cdecl CheckIfCameraIsInHotel_Lol()
 
 void __cdecl SSMainAreaWater(OceanData *x)
 {
-	if (CurrentAct == 3 && ADV00_3_Info)
+	if (CurrentAct == 3 && SS03SeaModel)
 	{
 		if (!DroppedFrames)
 		{
 			njSetTexture(&texlist_advss03); //Act 3
 			njPushMatrix(0);
 			njTranslate(0, 0, 0, 0);
-			ProcessModelNode_AB_Wrapper((NJS_OBJECT*)ADV00_3_Info->getdata("objectADV00_00114E50Z"), 1.0f);
+			ProcessModelNode_AB_Wrapper(SS03SeaModel, 1.0f);
 			njPopMatrix(1u);
 		}
 	}
@@ -827,6 +829,28 @@ void RenderStreetLight(NJS_MODEL_SADX *model, QueuedModelFlagsB blend, float sca
 	DrawModel_QueueVisible(model, blend, scale);
 }
 
+void SetUpSSWaterAndStuff()
+{
+	int colflags;
+	LandTable *landtable;
+	//Main area
+	landtable = ___LANDTABLESS[3];
+	for (unsigned int j = 0; j < landtable->COLCount; j++)
+	{
+		colflags = landtable->Col[j].Flags;
+		if (!SADXWater_StationSquare)
+		{
+			if (colflags & 0x8000000) SS03SeaModel = landtable->Col[j].Model;
+		}
+		else
+		{
+			if (colflags == 0) landtable->Col[j].Flags = 0x80000000; //Show SADX sea bottom
+			if ((colflags & ColFlags_Visible) && (colflags & ColFlags_Water)) landtable->Col[j].Flags &= ~ColFlags_Visible; //Hide SA1 sewers water
+		}
+	}
+	//Hotel area
+}
+
 void SwitchLighting_TimeOfDay(int act)
 {
 	Sint8 TimeOfDay = GetTimeOfDay();
@@ -1277,6 +1301,7 @@ void UnloadLevelFiles_ADV00()
 	ADV00_4_Info = nullptr;
 	ADV00_5_Info = nullptr;
 	PreviousTimeOfDay = -1;
+	SS03SeaModel = nullptr;
 }
 
 void LoadLevelFiles_ADV00()
@@ -1324,6 +1349,7 @@ void LoadLevelFiles_ADV00()
 	___LANDTABLESS[3] = ADV00_3;
 	___LANDTABLESS[4] = ADV00_4;
 	___LANDTABLESS[5] = ADV00_5;
+	SetUpSSWaterAndStuff();
 	if (SADXWater_StationSquare)
 	{
 		//Act 2
