@@ -836,7 +836,7 @@ void RenderPoolChair(NJS_MODEL_SADX *a1, int a2, float a3)
 	DrawQueueDepthBias = 0.0f;
 }
 
-void SetUpSSWaterAndStuff()
+void ParseSSColFlags()
 {
 	int colflags;
 	LandTable *landtable;
@@ -884,7 +884,7 @@ void AddWhiteDiffuseMaterial(NJS_MATERIAL *material)
 	}
 }
 
-void SetUpMaterials()
+void ParseSSMaterials()
 {
 	Uint32 materialflags;
 	LandTable *landtable = ___LANDTABLESS[3];
@@ -1158,7 +1158,9 @@ void LoadLevelFiles_ADV00()
 	___LANDTABLESS[3] = ADV00_3;
 	___LANDTABLESS[4] = ADV00_4;
 	___LANDTABLESS[5] = ADV00_5;
-	SetUpSSWaterAndStuff();
+	ParseSSColFlags();
+	ParseSSMaterials();
+	PreviousTimeOfDay = -1;
 	if (SADXWater_StationSquare)
 	{
 		//Act 2
@@ -1172,7 +1174,6 @@ void LoadLevelFiles_ADV00()
 	}
 	if (DLLLoaded_Lantern)
 	{
-		SetUpMaterials();
 		material_register_ptr(WhiteDiffuseADV00_Night, LengthOfArray(WhiteDiffuseADV00_Night), &ForceWhiteDiffuse3_Night);
 		WhiteDiffuseADV00External[0] = &((NJS_MATERIAL*)ADV00_1_Info->getdata("matlistADV00_0008E8EC"))[3];
 		WhiteDiffuseADV00External[1] = &((NJS_MATERIAL*)ADV00_1_Info->getdata("matlistADV00_0008E8EC"))[4];
@@ -1193,7 +1194,14 @@ void LoadLevelFiles_ADV00()
 		WhiteDiffuseADV00External[16] = &((NJS_MATERIAL*)ADV00_2_Info->getdata("matlistADV00_000D8D58"))[9];
 		material_register_ptr(WhiteDiffuseADV00External, LengthOfArray(WhiteDiffuseADV00External), &ForceWhiteDiffuse1);
 	}
-	PreviousTimeOfDay = -1;
+}
+
+void LSCutsceneRotationFix()
+{
+	DisableControl();
+	EntityData1Ptrs[0]->Rotation.x = 0;
+	EntityData1Ptrs[0]->Rotation.z = 0;
+	EntityData1Ptrs[0]->Rotation.y = 49072;
 }
 
 void ADV00_Init()
@@ -1331,13 +1339,15 @@ void ADV00_Init()
 	ReplacePVR("SS_NIGHTSKY");
 	ReplacePVR("SS_NIGHTSKYB");
 	ReplacePVR("SS_YUSKAY_MINI");
-	ResizeTextureList((NJS_TEXLIST*)0x2AEE920, 22); //SSCAR 
 	___ADV00_TEXLISTS[0] = &texlist_advss00;
 	___ADV00_TEXLISTS[1] = &texlist_advss01;
 	___ADV00_TEXLISTS[2] = &texlist_advss02;
 	___ADV00_TEXLISTS[3] = &texlist_advss03;
 	___ADV00_TEXLISTS[4] = &texlist_advss04;
 	___ADV00_TEXLISTS[5] = &texlist_advss05;
+	ResizeTextureList((NJS_TEXLIST*)0x2AEE920, 22); //SSCAR 
+	ResizeTextureList((NJS_TEXLIST*)0x2AD9F58, 31); //SS_TRAIN
+	ResizeTextureList(&OBJ_SS_TEXLIST, 177);
 	WriteData<1>((char*)0x02BBE9EC, 0x0B); //Texture ID for extra car type
 	WriteCall((void*)0x00636DE9, RenderOfficeDoor);
 	WriteCall((void*)0x00636E99, RenderOfficeDoor);
@@ -1350,13 +1360,14 @@ void ADV00_Init()
 	WriteCall((void*)0x00638B50, RenderPoliceCarBarricade);
 	WriteCall((void*)0x00632773, FixPoliceCar);
 	WriteData<1>((char*)0x0063A906, 0x01u); //Street light blending
+	WriteData((float*)0x00634EB9, 0.601f); //Prevent Z fighting with SS NPC shadow when overlapping transparent stuff
 	//Fix camera in Light Speed Shoes cutscene
 	WriteData((float*)0x00652F74, 800.0f); //X1
 	WriteData((float*)0x00652F79, -92.6f); //Y1
 	WriteData((float*)0x006532BB, 509.9f); //X2
 	WriteData((float*)0x006532B6, -89.4f); //Y2
 	WriteData((float*)0x006532B1, 812.3f); //Z2
-	WriteData((float*)0x00634EB9, 0.601f); //Prevent Z fighting with SS NPC shadow when overlapping transparent stuff
+	WriteCall((void*)0x652F4F, LSCutsceneRotationFix); //Fix Sonic's rotation after getting the Light Speed Shoes
 	//Fix NPC materials
 	for (unsigned int i = 0; i < LengthOfArray(NPCMaterials); i++)
 	{
@@ -1366,34 +1377,32 @@ void ADV00_Init()
 	WriteData<5>((void*)0x630AE6, 0x90); //Hotel door fix 2
 	WriteData<5>((void*)0x630B03, 0x90); //Hotel door fix 3
 	WriteJump((void*)0x0062EA30, CheckIfCameraIsInHotel_Lol); //Disable hotel lighting check
-	ResizeTextureList((NJS_TEXLIST*)0x2AD9F58, 31); //SS_TRAIN
 	//Material stuff
 	((NJS_OBJECT*)0x02AB757C)->basicdxmodel->mats[2].attrflags &= ~NJD_FLAG_USE_ALPHA; //Speed Highway elevator door
 	((NJS_OBJECT*)0x02AB6E4C)->basicdxmodel->mats[2].attrflags &= ~NJD_FLAG_USE_ALPHA; //Speed Highway elevator door
 	//Objects
 	*(NJS_OBJECT*)0x2AB2CCC = objectADV00_001689C4; //Shop 2 door
 	((NJS_ACTION*)0x2AB2D9C)->object = &objectADV00_001689C4; //Shop 2 door
-	WriteCall((void*)0x0063A6A4, RenderPoolChair); // Pool chair
-	*(NJS_OBJECT*)0x02DBD6D0 = objectADV00_00011208; // Event helicopter
-	*(NJS_OBJECT*)0x02AD4EA4 = objectADV00_00186E88; // Hidden door 1
-	*(NJS_OBJECT*)0x02AD4CD4 = objectADV00_00186CC4; // Hidden door 2
-	*(NJS_OBJECT*)0x02AEE7B0 = objectADV00_0019AF04; // Boat
-	*(NJS_OBJECT*)0x02AAB0E4 = object_026AB0E4; // Hotel door 1
-	*(NJS_OBJECT*)0x02AAE0BC = object_026AB0E4; // Hotel door 2
-	*(NJS_MODEL_SADX*)0x02AC9EE4 = attachADV00_0017DDC0; // Lamp pole
-	*(NJS_MODEL_SADX*)0x02AC9840 = attachADV00_0017D7A8; // Lamp pole
-	*(NJS_OBJECT*)0x02ABDF0C = objectADV00_00172BD4; // Box in the sewers
-	*(NJS_OBJECT*)0x02AE8674 = objectADV00_00195DC0; // SS train
-	*(NJS_OBJECT*)0x02AF4FC0 = objectADV00_0019F390; // SS Police
-	*(NJS_OBJECT*)0x02AF1974 = objectADV00_0019CBD8; // SS Red Car
-	*(NJS_OBJECT*)0x02AF8400 = objectADV00_001A17C4; // SS Blue Car
-	*(NJS_OBJECT*)0x02AFBA64 = objectADV00_001A4268; // SS Taxi
-	*(NJS_OBJECT*)0x02AD362C = objectADV00_00185A20; // SS Twinkle Park Ball
-	*(NJS_OBJECT*)0x02AB6900 = objectADV00_0016C3FC; // SS Twinkle Park Elevator
-	*(NJS_OBJECT*)0x02AD14C8 = objectADV00_00183B8C; // Gamma's target (O M Saku)
-	*(NJS_MODEL_SADX*)0x02AC95BC = attachADV00_0017D540; // Fire hydrant
-	*(NJS_OBJECT*)0x02AD484C = objectADV00_0018684C; // Ice Key 1
-	ResizeTextureList(&OBJ_SS_TEXLIST, 177);
+	WriteCall((void*)0x0063A6A4, RenderPoolChair); //Pool chair
+	*(NJS_OBJECT*)0x02DBD6D0 = objectADV00_00011208; //Event helicopter
+	*(NJS_OBJECT*)0x02AD4EA4 = objectADV00_00186E88; //Hidden door 1
+	*(NJS_OBJECT*)0x02AD4CD4 = objectADV00_00186CC4; //Hidden door 2
+	*(NJS_OBJECT*)0x02AEE7B0 = objectADV00_0019AF04; //Boat
+	*(NJS_OBJECT*)0x02AAB0E4 = object_026AB0E4; //Hotel door 1
+	*(NJS_OBJECT*)0x02AAE0BC = object_026AB0E4; //Hotel door 2
+	*(NJS_MODEL_SADX*)0x02AC9EE4 = attachADV00_0017DDC0; //Lamp pole
+	*(NJS_MODEL_SADX*)0x02AC9840 = attachADV00_0017D7A8; //Lamp pole
+	*(NJS_OBJECT*)0x02ABDF0C = objectADV00_00172BD4; //Box in the sewers
+	*(NJS_OBJECT*)0x02AE8674 = objectADV00_00195DC0; //SS train
+	*(NJS_OBJECT*)0x02AF4FC0 = objectADV00_0019F390; //SS Police
+	*(NJS_OBJECT*)0x02AF1974 = objectADV00_0019CBD8; //SS Red Car
+	*(NJS_OBJECT*)0x02AF8400 = objectADV00_001A17C4; //SS Blue Car
+	*(NJS_OBJECT*)0x02AFBA64 = objectADV00_001A4268; //SS Taxi
+	*(NJS_OBJECT*)0x02AD362C = objectADV00_00185A20; //SS Twinkle Park Ball
+	*(NJS_OBJECT*)0x02AB6900 = objectADV00_0016C3FC; //SS Twinkle Park Elevator
+	*(NJS_OBJECT*)0x02AD14C8 = objectADV00_00183B8C; //Gamma's target (O M Saku)
+	*(NJS_MODEL_SADX*)0x02AC95BC = attachADV00_0017D540; //Fire hydrant
+	*(NJS_OBJECT*)0x02AD484C = objectADV00_0018684C; //Ice Key 1
 	if (DLLLoaded_Lantern)
 	{
 		material_register_ptr(CharacterStuff, LengthOfArray(CharacterStuff), &ForceDiffuse2Specular2);
@@ -1434,7 +1443,6 @@ void ADV00_OnFrame()
 			if (TextureAnimationData[i].material) AnimateTexture(&TextureAnimationData[i]);
 		}
 	}
-	auto CharObj1PtrsThing = EntityData1Ptrs[0];
 	//Switch textures/lighting depending on time of day
 	if (CurrentLevel == LevelIDs_StationSquare && PreviousTimeOfDay != GetTimeOfDay())
 	{
@@ -1447,13 +1455,6 @@ void ADV00_OnFrame()
 	//Act 2 (Sewers)
 	if (ADV00_2_Info && CurrentLevel == 26 && CurrentAct == 2)
 	{
-		//Fix Sonic's rotation after the Light Speed Shoes cutscene
-		if (CharObj1PtrsThing != nullptr && EV_MainThread_ptr != nullptr && CutsceneID == 358)
-		{
-			CharObj1PtrsThing->Rotation.x = 0;
-			CharObj1PtrsThing->Rotation.z = 0;
-			CharObj1PtrsThing->Rotation.y = 49072;
-		}
 		//Water animation
 		if (GameState != 16)
 		{
@@ -1461,66 +1462,6 @@ void ADV00_OnFrame()
 			((NJS_MATERIAL*)ADV00_2_Info->getdata("matlistADV00_000D9890"))[0].attr_texId = WaterAnimation_Sewers;
 			((NJS_MATERIAL*)ADV00_2_Info->getdata("matlistADV00_000C24BC"))[0].attr_texId = WaterAnimation_Sewers;
 			if (FramerateSetting < 2 && FrameCounter % 4 == 0 || FramerateSetting == 2 && FrameCounter % 2 == 0 || FramerateSetting > 2) WaterAnimation_Sewers++;
-		}
-	}
-	//Sea animations Act 3 (Main area)
-	if (ADV00_3_Info && CurrentLevel == 26 && CurrentAct == 3 && GameState != 16)
-	{
-		if (SewerMainAnimation > 227) SewerMainAnimation = 219;
-		if (SandwaveAnimation > 255) SandwaveAnimation = 183;
-		if (SandwaveAnimation > 183 && SandwaveAnimation < 242) SandwaveAnimation = 242;
-		if (SeashoreAnimation > 241) SeashoreAnimation = 29;
-		if (SeashoreAnimation > 29 && SeashoreAnimation < 228) SeashoreAnimation = 228;
-		//Sand waves
-		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_0012231C"))[0].attr_texId = SandwaveAnimation;
-		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_00123620"))[0].attr_texId = SandwaveAnimation;
-		//Seashore
-		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_000E7180"))[1].attr_texId = SeashoreAnimation;
-		((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_00122894"))[2].attr_texId = SeashoreAnimation;
-		//Sea bottom
-		if (SADXWater_StationSquare)
-		{
-			((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_00114D80"))[0].attr_texId = SeashoreAnimation;
-		}
-		//Sewers water
-		else
-		{
-			((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_00114D80Z"))[0].attr_texId = SewerMainAnimation; //Sea surface
-			((NJS_MATERIAL*)ADV00_3_Info->getdata("matlistADV00_00133D3C"))[0].attr_texId = SewerMainAnimation;
-		}
-		if (FramerateSetting < 2 && FrameCounter % 4 == 0 || FramerateSetting == 2 && FrameCounter % 2 == 0 || FramerateSetting > 2)
-		{
-			SandwaveAnimation++;
-			SeashoreAnimation++;
-			SewerMainAnimation++;
-		}
-	}
-	//Sea animations Act 4 (Hotel)
-	if (ADV00_4_Info && CurrentLevel == 26 && CurrentAct == 4 && GameState != 16)
-	{
-		if (PoolWaterAnimation > 86) PoolWaterAnimation = 65;
-		if (PoolWaterAnimation > 65 && PoolWaterAnimation < 78) PoolWaterAnimation = 78;
-		if (SeashoreAnimation_Pool > 100) SeashoreAnimation_Pool = 59;
-		if (SeashoreAnimation_Pool > 59 && SeashoreAnimation_Pool < 87) SeashoreAnimation_Pool = 87;
-		if (SandwaveAnimation_Pool > 114) SandwaveAnimation_Pool = 60;
-		if (SandwaveAnimation_Pool > 60 && SandwaveAnimation_Pool < 101) SandwaveAnimation_Pool = 101;
-		((NJS_MATERIAL*)ADV00_4_Info->getdata("matlistADV00_00147958"))[2].attr_texId = SeashoreAnimation_Pool;
-		((NJS_MATERIAL*)ADV00_4_Info->getdata("matlistADV00_00150A50"))[1].attr_texId = SeashoreAnimation_Pool;
-		((NJS_MATERIAL*)ADV00_4_Info->getdata("matlistADV00_00150A50"))[3].attr_texId = SandwaveAnimation_Pool;
-		((NJS_MATERIAL*)ADV00_4_Info->getdata("matlistADV00_00148688"))[0].attr_texId = SandwaveAnimation_Pool;
-		if (SADXWater_StationSquare) ((NJS_MATERIAL*)ADV00_4_Info->getdata("matlistADV00_00151E54"))[0].attr_texId = SeashoreAnimation_Pool;
-		else
-		{
-			((NJS_MATERIAL*)ADV00_4_Info->getdata("matlistADV00_00151E54"))[0].attr_texId = PoolWaterAnimation;
-			((NJS_MATERIAL*)ADV00_4_Info->getdata("matlistADV00_001566E4"))[0].attr_texId = PoolWaterAnimation;
-			((NJS_MATERIAL*)ADV00_4_Info->getdata("matlistADV00_0014B314"))[0].attr_texId = PoolWaterAnimation;
-			((NJS_MATERIAL*)ADV00_4_Info->getdata("matlistADV00_0014BED8"))[0].attr_texId = PoolWaterAnimation;
-		}
-		if (FramerateSetting < 2 && FrameCounter % 4 == 0 || FramerateSetting == 2 && FrameCounter % 2 == 0 || FramerateSetting > 2)
-		{
-			SeashoreAnimation_Pool++;
-			SandwaveAnimation_Pool++;
-			PoolWaterAnimation++;
 		}
 	}
 }
