@@ -683,5 +683,8 @@
     <ClInclude Include="Data\SS03_MainArea.h">
       <Filter>Header Files\Levels\ADV00MODELS</Filter>
     </ClInclude>
+    <ClInclude Include="Data\SS04_Hotel.h">
+      <Filter>Header Files\Levels\ADV00MODELS</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

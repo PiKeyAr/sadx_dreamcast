@@ -266,6 +266,7 @@
     <ClInclude Include="Data\SS01_Casino.h" />
     <ClInclude Include="Data\SS02_Sewers.h" />
     <ClInclude Include="Data\SS03_MainArea.h" />
+    <ClInclude Include="Data\SS04_Hotel.h" />
     <ClInclude Include="Data\SSGarden.h" />
     <ClInclude Include="Data\SS_Objects.h" />
     <ClInclude Include="Data\Tanken.h" />
