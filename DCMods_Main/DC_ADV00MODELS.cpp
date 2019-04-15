@@ -884,7 +884,7 @@ void AddWhiteDiffuseMaterial(NJS_MATERIAL *material)
 	}
 }
 
-void AddWhiteDiffuseNight()
+void SetUpMaterials()
 {
 	Uint32 materialflags;
 	LandTable *landtable = ___LANDTABLESS[3];
@@ -893,11 +893,62 @@ void AddWhiteDiffuseNight()
 	{
 		for (int k = 0; k < landtable->Col[j].Model->basicdxmodel->nbMat; ++k)
 		{
+			//White diffuse night
 			materialflags = landtable->Col[j].Model->basicdxmodel->mats[k].attrflags;
 			if ((materialflags & NJD_CUSTOMFLAG_NIGHT) && (materialflags & NJD_CUSTOMFLAG_WHITE))
 			{
 				material = (NJS_MATERIAL*)&landtable->Col[j].Model->basicdxmodel->mats[k];
 				AddWhiteDiffuseMaterial(material);
+			}
+			//Texanim 1
+			if ((materialflags & NJD_CUSTOMFLAG_TEXANIM1) && !(materialflags & NJD_CUSTOMFLAG_TEXANIM2))
+			{
+				material = (NJS_MATERIAL*)&landtable->Col[j].Model->basicdxmodel->mats[k];
+				AddTextureAnimation(material, true, 4, 183, 242, 243, 244, 245, 246, 247, 248, 249, 250, 251, 252, 253, 254, 255, -1);
+			}
+			//Texanim 2
+			if ((materialflags & NJD_CUSTOMFLAG_TEXANIM2) && !(materialflags & NJD_CUSTOMFLAG_TEXANIM1))
+			{
+				material = (NJS_MATERIAL*)&landtable->Col[j].Model->basicdxmodel->mats[k];
+				AddTextureAnimation(material, true, 4, 29, 228, 229, 230, 231, 232, 233, 234, 235, 236, 237, 238, 239, 240, 241, -1);
+			}
+			//Texanim 3
+			if ((materialflags & NJD_CUSTOMFLAG_TEXANIM1) && (materialflags & NJD_CUSTOMFLAG_TEXANIM2))
+			{
+				material = (NJS_MATERIAL*)&landtable->Col[j].Model->basicdxmodel->mats[k];
+				AddTextureAnimation(material, true, 4, 142, 219, 220, 221, 222, 223, 224, 225, 226, 227, -1, -1, -1, -1, -1, -1);
+			}
+		}
+	}
+	landtable = ___LANDTABLESS[4];
+	for (unsigned int j = 0; j < landtable->COLCount; j++)
+	{
+		for (int k = 0; k < landtable->Col[j].Model->basicdxmodel->nbMat; ++k)
+		{
+			//White diffuse night
+			materialflags = landtable->Col[j].Model->basicdxmodel->mats[k].attrflags;
+			if ((materialflags & NJD_CUSTOMFLAG_NIGHT) && (materialflags & NJD_CUSTOMFLAG_WHITE))
+			{
+				material = (NJS_MATERIAL*)&landtable->Col[j].Model->basicdxmodel->mats[k];
+				AddWhiteDiffuseMaterial(material);
+			}
+			//Texanim 1
+			if ((materialflags & NJD_CUSTOMFLAG_TEXANIM1) && !(materialflags & NJD_CUSTOMFLAG_TEXANIM2))
+			{
+				material = (NJS_MATERIAL*)&landtable->Col[j].Model->basicdxmodel->mats[k];
+				AddTextureAnimation(material, false, 4, 101, 114, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+			}
+			//Texanim 2
+			if ((materialflags & NJD_CUSTOMFLAG_TEXANIM2) && !(materialflags & NJD_CUSTOMFLAG_TEXANIM1))
+			{
+				material = (NJS_MATERIAL*)&landtable->Col[j].Model->basicdxmodel->mats[k];
+				AddTextureAnimation(material, false, 4, 87, 100, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+			}
+			//Texanim 3
+			if ((materialflags & NJD_CUSTOMFLAG_TEXANIM1) && (materialflags & NJD_CUSTOMFLAG_TEXANIM2))
+			{
+				material = (NJS_MATERIAL*)&landtable->Col[j].Model->basicdxmodel->mats[k];
+				AddTextureAnimation(material, true, 4, 65, 78, 79, 80, 81, 82, 83, 84, 85, 86, -1, 0, 0, 0, 0, 0);
 			}
 		}
 	}
@@ -1121,7 +1172,7 @@ void LoadLevelFiles_ADV00()
 	}
 	if (DLLLoaded_Lantern)
 	{
-		AddWhiteDiffuseNight();
+		SetUpMaterials();
 		material_register_ptr(WhiteDiffuseADV00_Night, LengthOfArray(WhiteDiffuseADV00_Night), &ForceWhiteDiffuse3_Night);
 		WhiteDiffuseADV00External[0] = &((NJS_MATERIAL*)ADV00_1_Info->getdata("matlistADV00_0008E8EC"))[3];
 		WhiteDiffuseADV00External[1] = &((NJS_MATERIAL*)ADV00_1_Info->getdata("matlistADV00_0008E8EC"))[4];
@@ -1376,6 +1427,13 @@ void ADV00_Init()
 
 void ADV00_OnFrame()
 {
+	if (!IsGamePaused())
+	{
+		for (int i = 0; i < 32; ++i)
+		{
+			if (TextureAnimationData[i].material) AnimateTexture(&TextureAnimationData[i]);
+		}
+	}
 	auto CharObj1PtrsThing = EntityData1Ptrs[0];
 	//Switch textures/lighting depending on time of day
 	if (CurrentLevel == LevelIDs_StationSquare && PreviousTimeOfDay != GetTimeOfDay())

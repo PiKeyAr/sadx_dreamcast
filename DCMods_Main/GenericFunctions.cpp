@@ -39,6 +39,7 @@ TextureAnimation TextureAnimationData[] = {
 
 void CheckAndUnloadLevelFiles()
 {
+	ClearTextureAnimationData();
 	if (CurrentLevel != LevelIDs_StationSquare && ADV00_0_Info) UnloadLevelFiles_ADV00();
 	if (CurrentLevel != LevelIDs_EggCarrierOutside && ADV01_0_Info) UnloadLevelFiles_ADV01();
 	if (CurrentLevel != LevelIDs_EggCarrierInside && ADV01C_0_Info) UnloadLevelFiles_ADV01C();
@@ -179,80 +180,101 @@ void AnimateTexture(TextureAnimation *texanim)
 		{
 			if (texanim->material->attr_texId == texanim->Frame1)
 			{
-				if (texanim->Frame2 != 0) texanim->material->attr_texId = texanim->Frame2; 
+				if (texanim->Frame2 != -1) texanim->material->attr_texId = texanim->Frame2; 
 				else texanim->material->attr_texId = texanim->Frame1;
+				goto nonseq_done;
 			}
 			if (texanim->material->attr_texId == texanim->Frame2)
 			{
-				if (texanim->Frame3 != 0) texanim->material->attr_texId = texanim->Frame3; 
+				if (texanim->Frame3 != -1) texanim->material->attr_texId = texanim->Frame3;
 				else texanim->material->attr_texId = texanim->Frame1;
+				goto nonseq_done;
 			}
 			if (texanim->material->attr_texId == texanim->Frame3)
 			{
-				if (texanim->Frame4 != 0) texanim->material->attr_texId = texanim->Frame4;
+				if (texanim->Frame4 != -1) texanim->material->attr_texId = texanim->Frame4;
 				else texanim->material->attr_texId = texanim->Frame1;
+				goto nonseq_done;
 			}
 			if (texanim->material->attr_texId == texanim->Frame4)
 			{
-				if (texanim->Frame5 != 0) texanim->material->attr_texId = texanim->Frame5; 
+				if (texanim->Frame5 != -1) texanim->material->attr_texId = texanim->Frame5;
 				else texanim->material->attr_texId = texanim->Frame1;
+				goto nonseq_done;
 			}
 			if (texanim->material->attr_texId == texanim->Frame5)
 			{
-				if (texanim->Frame6 != 0) texanim->material->attr_texId = texanim->Frame6;
+				if (texanim->Frame6 != -1) texanim->material->attr_texId = texanim->Frame6;
 				else texanim->material->attr_texId = texanim->Frame1;
+				goto nonseq_done;
 			}
 			if (texanim->material->attr_texId == texanim->Frame6)
 			{
-				if (texanim->Frame7 != 0) texanim->material->attr_texId = texanim->Frame7;
+				if (texanim->Frame7 != -1) texanim->material->attr_texId = texanim->Frame7;
 				else texanim->material->attr_texId = texanim->Frame1;
+				goto nonseq_done;
 			}
 			if (texanim->material->attr_texId == texanim->Frame7)
 			{
-				if (texanim->Frame8 != 0) texanim->material->attr_texId = texanim->Frame8;
+				if (texanim->Frame8 != -1) texanim->material->attr_texId = texanim->Frame8;
 				else texanim->material->attr_texId = texanim->Frame1;
+				goto nonseq_done;
 			}
 			if (texanim->material->attr_texId == texanim->Frame8)
 			{
-				if (texanim->Frame9 != 0) texanim->material->attr_texId = texanim->Frame9;
+				if (texanim->Frame9 != -1) texanim->material->attr_texId = texanim->Frame9;
 				else texanim->material->attr_texId = texanim->Frame1;
+				goto nonseq_done;
 			}
 			if (texanim->material->attr_texId == texanim->Frame9)
 			{
-				if (texanim->Frame10 != 0) texanim->material->attr_texId = texanim->Frame10;
+				if (texanim->Frame10 != -1) texanim->material->attr_texId = texanim->Frame10;
 				else texanim->material->attr_texId = texanim->Frame1;
+				goto nonseq_done;
 			}
 			if (texanim->material->attr_texId == texanim->Frame10)
 			{
-				if (texanim->Frame11 != 0) texanim->material->attr_texId = texanim->Frame11;
+				if (texanim->Frame11 != -1) texanim->material->attr_texId = texanim->Frame11;
 				else texanim->material->attr_texId = texanim->Frame1;
+				goto nonseq_done;
 			}
 			if (texanim->material->attr_texId == texanim->Frame11)
 			{
-				if (texanim->Frame12 != 0) texanim->material->attr_texId = texanim->Frame12;
+				if (texanim->Frame12 != -1) texanim->material->attr_texId = texanim->Frame12;
 				else texanim->material->attr_texId = texanim->Frame1;
+				goto nonseq_done;
 			}
 			if (texanim->material->attr_texId == texanim->Frame12)
 			{
-				if (texanim->Frame13 != 0) texanim->material->attr_texId = texanim->Frame13;
+				if (texanim->Frame13 != -1) texanim->material->attr_texId = texanim->Frame13;
 				else texanim->material->attr_texId = texanim->Frame1;
+				goto nonseq_done;
 			}
 			if (texanim->material->attr_texId == texanim->Frame13)
 			{
-				if (texanim->Frame14 != 0) texanim->material->attr_texId = texanim->Frame14;
+				if (texanim->Frame14 != -1) texanim->material->attr_texId = texanim->Frame14;
 				else texanim->material->attr_texId = texanim->Frame1;
+				goto nonseq_done;
 			}
 			if (texanim->material->attr_texId == texanim->Frame14)
 			{
-				if (texanim->Frame15 != 0) texanim->material->attr_texId = texanim->Frame15;
+				if (texanim->Frame15 != -1) texanim->material->attr_texId = texanim->Frame15;
 				else texanim->material->attr_texId = texanim->Frame1;
+				goto nonseq_done;
 			}
 			if (texanim->material->attr_texId == texanim->Frame15)
 			{
-				if (texanim->Frame16 != 0) texanim->material->attr_texId = texanim->Frame16;
+				if (texanim->Frame16 != -1) texanim->material->attr_texId = texanim->Frame16;
 				else texanim->material->attr_texId = texanim->Frame1;
+				goto nonseq_done;
 			}
-			if (texanim->material->attr_texId == texanim->Frame16) texanim->material->attr_texId = texanim->Frame1;
+			if (texanim->material->attr_texId == texanim->Frame16) 
+			{
+				texanim->material->attr_texId = texanim->Frame1;
+				goto nonseq_done;
+			}
+		nonseq_done:
+			return;
 		}
 		//Animate automatically if sequential
 		else
