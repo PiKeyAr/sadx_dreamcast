@@ -25,6 +25,7 @@ NJS_OBJECT *SS04SeaModel = nullptr;
 
 #include "SS00_CityHall.h"
 #include "SS01_Casino.h"
+#include "SS02_Sewers.h"
 #include "SS03_MainArea.h"
 #include "SS04_Hotel.h"
 
@@ -689,7 +690,7 @@ NJS_MATERIAL* CharacterStuff[] = {
 	&matlistADV00_0000DE08[0],
 };
 
-NJS_MATERIAL* WhiteDiffuseADV00External[] = {
+NJS_MATERIAL* WhiteDiffuseADV00_External[] = {
 	//Level stuff
 	nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,
 };
@@ -872,13 +873,27 @@ void ParseSSColFlags()
 	}
 }
 
-void AddWhiteDiffuseMaterial(NJS_MATERIAL *material)
+void AddWhiteDiffuseMaterial_Night(NJS_MATERIAL *material)
 {
 	for (int q = 0; q < LengthOfArray(WhiteDiffuseADV00_Night); ++q)
 	{
-		if (WhiteDiffuseADV00_Night[q] == nullptr)
+		if (WhiteDiffuseADV00_Night[q] == material) return;
+		else if (WhiteDiffuseADV00_Night[q] == nullptr)
 		{
 			WhiteDiffuseADV00_Night[q] = material;
+			return;
+		}
+	}
+}
+
+void AddWhiteDiffuseMaterial(NJS_MATERIAL *material)
+{
+	for (int q = 0; q < LengthOfArray(WhiteDiffuseADV00_External); ++q)
+	{
+		if (WhiteDiffuseADV00_External[q] == material) return;
+		else if (WhiteDiffuseADV00_External[q] == nullptr)
+		{
+			WhiteDiffuseADV00_External[q] = material;
 			return;
 		}
 	}
@@ -887,8 +902,30 @@ void AddWhiteDiffuseMaterial(NJS_MATERIAL *material)
 void ParseSSMaterials()
 {
 	Uint32 materialflags;
-	LandTable *landtable = ___LANDTABLESS[3];
 	NJS_MATERIAL *material;
+	LandTable *landtable;
+	//Sewers
+	landtable = ___LANDTABLESS[2];
+	for (unsigned int j = 0; j < landtable->COLCount; j++)
+	{
+		for (int k = 0; k < landtable->Col[j].Model->basicdxmodel->nbMat; ++k)
+		{
+			//White diffuse night
+			materialflags = landtable->Col[j].Model->basicdxmodel->mats[k].attrflags;
+			if (materialflags & NJD_CUSTOMFLAG_WHITE)
+			{
+				material = (NJS_MATERIAL*)&landtable->Col[j].Model->basicdxmodel->mats[k];
+				AddWhiteDiffuseMaterial(material);
+			}
+			//Texanim 1
+			if (materialflags & NJD_CUSTOMFLAG_TEXANIM1)
+			{
+				material = (NJS_MATERIAL*)&landtable->Col[j].Model->basicdxmodel->mats[k];
+				AddTextureAnimation(material, false, 4, 46, 55, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1);
+			}
+		}
+	}
+	landtable = ___LANDTABLESS[3];
 	for (unsigned int j = 0; j < landtable->COLCount; j++)
 	{
 		for (int k = 0; k < landtable->Col[j].Model->basicdxmodel->nbMat; ++k)
@@ -898,7 +935,7 @@ void ParseSSMaterials()
 			if ((materialflags & NJD_CUSTOMFLAG_NIGHT) && (materialflags & NJD_CUSTOMFLAG_WHITE))
 			{
 				material = (NJS_MATERIAL*)&landtable->Col[j].Model->basicdxmodel->mats[k];
-				AddWhiteDiffuseMaterial(material);
+				AddWhiteDiffuseMaterial_Night(material);
 			}
 			//Texanim 1
 			if ((materialflags & NJD_CUSTOMFLAG_TEXANIM1) && !(materialflags & NJD_CUSTOMFLAG_TEXANIM2))
@@ -930,7 +967,7 @@ void ParseSSMaterials()
 			if ((materialflags & NJD_CUSTOMFLAG_NIGHT) && (materialflags & NJD_CUSTOMFLAG_WHITE))
 			{
 				material = (NJS_MATERIAL*)&landtable->Col[j].Model->basicdxmodel->mats[k];
-				AddWhiteDiffuseMaterial(material);
+				AddWhiteDiffuseMaterial_Night(material);
 			}
 			//Texanim 1
 			if ((materialflags & NJD_CUSTOMFLAG_TEXANIM1) && !(materialflags & NJD_CUSTOMFLAG_TEXANIM2))
@@ -1086,14 +1123,14 @@ void UnloadLevelFiles_ADV00()
 	if (DLLLoaded_Lantern) 
 	{
 		material_unregister_ptr(WhiteDiffuseADV00_Night, LengthOfArray(WhiteDiffuseADV00_Night), &ForceWhiteDiffuse3_Night);
-		material_unregister_ptr(WhiteDiffuseADV00External, LengthOfArray(WhiteDiffuseADV00External), &ForceWhiteDiffuse1);
+		material_unregister_ptr(WhiteDiffuseADV00_External, LengthOfArray(WhiteDiffuseADV00_External), &ForceWhiteDiffuse1);
 		for (int k = 0; k < LengthOfArray(WhiteDiffuseADV00_Night); ++k)
 		{
 			WhiteDiffuseADV00_Night[k] = nullptr;
 		}
-		for (int l = 0; l < LengthOfArray(WhiteDiffuseADV00External); ++l)
+		for (int l = 0; l < LengthOfArray(WhiteDiffuseADV00_External); ++l)
 		{
-			WhiteDiffuseADV00External[l] = nullptr;
+			WhiteDiffuseADV00_External[l] = nullptr;
 		}
 	}
 	SS03SeaModel = nullptr;
@@ -1122,9 +1159,9 @@ void LoadLevelFiles_ADV00()
 	ADV00_3_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV00\\3.sa1lvl"));
 	ADV00_4_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV00\\4.sa1lvl"));
 	ADV00_5_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV00\\5.sa1lvl"));
-	LandTable *ADV00_0 = &landtable_000157F4;// ADV00_0_Info->getlandtable();
-	LandTable *ADV00_1 = &landtable_000738F4;// ADV00_1_Info->getlandtable();
-	LandTable *ADV00_2 = ADV00_2_Info->getlandtable();
+	LandTable *ADV00_0 = &landtable_000157F4; // ADV00_0_Info->getlandtable();
+	LandTable *ADV00_1 = &landtable_000738F4; // ADV00_1_Info->getlandtable();
+	LandTable *ADV00_2 = &landtable_000C21F0; // ADV00_2_Info->getlandtable();
 	LandTable *ADV00_3 = &landtable_000DCEBC; // ADV00_3_Info->getlandtable();
 	LandTable *ADV00_4 = &landtable_00135A90; // ADV00_4_Info->getlandtable();
 	LandTable *ADV00_5 = ADV00_5_Info->getlandtable();
@@ -1175,24 +1212,7 @@ void LoadLevelFiles_ADV00()
 	if (DLLLoaded_Lantern)
 	{
 		material_register_ptr(WhiteDiffuseADV00_Night, LengthOfArray(WhiteDiffuseADV00_Night), &ForceWhiteDiffuse3_Night);
-		WhiteDiffuseADV00External[0] = &((NJS_MATERIAL*)ADV00_1_Info->getdata("matlistADV00_0008E8EC"))[3];
-		WhiteDiffuseADV00External[1] = &((NJS_MATERIAL*)ADV00_1_Info->getdata("matlistADV00_0008E8EC"))[4];
-		WhiteDiffuseADV00External[2] = &((NJS_MATERIAL*)ADV00_1_Info->getdata("matlistADV00_0008E8EC"))[5];
-		WhiteDiffuseADV00External[3] = &((NJS_MATERIAL*)ADV00_1_Info->getdata("matlistADV00_0008E8EC"))[6];
-		WhiteDiffuseADV00External[4] = &((NJS_MATERIAL*)ADV00_1_Info->getdata("matlistADV00_0008E8EC"))[7];
-		WhiteDiffuseADV00External[5] = &((NJS_MATERIAL*)ADV00_1_Info->getdata("matlistADV00_00082400"))[1];
-		WhiteDiffuseADV00External[6] = &((NJS_MATERIAL*)ADV00_1_Info->getdata("matlistADV00_00082400"))[2];
-		WhiteDiffuseADV00External[7] = &((NJS_MATERIAL*)ADV00_2_Info->getdata("matlistADV00_000D8D58"))[0];
-		WhiteDiffuseADV00External[8] = &((NJS_MATERIAL*)ADV00_2_Info->getdata("matlistADV00_000D8D58"))[1];
-		WhiteDiffuseADV00External[9] = &((NJS_MATERIAL*)ADV00_2_Info->getdata("matlistADV00_000D8D58"))[2];
-		WhiteDiffuseADV00External[10] = &((NJS_MATERIAL*)ADV00_2_Info->getdata("matlistADV00_000D8D58"))[3];
-		WhiteDiffuseADV00External[11] = &((NJS_MATERIAL*)ADV00_2_Info->getdata("matlistADV00_000D8D58"))[4];
-		WhiteDiffuseADV00External[12] = &((NJS_MATERIAL*)ADV00_2_Info->getdata("matlistADV00_000D8D58"))[5];
-		WhiteDiffuseADV00External[13] = &((NJS_MATERIAL*)ADV00_2_Info->getdata("matlistADV00_000D8D58"))[6];
-		WhiteDiffuseADV00External[14] = &((NJS_MATERIAL*)ADV00_2_Info->getdata("matlistADV00_000D8D58"))[7];
-		WhiteDiffuseADV00External[15] = &((NJS_MATERIAL*)ADV00_2_Info->getdata("matlistADV00_000D8D58"))[8];
-		WhiteDiffuseADV00External[16] = &((NJS_MATERIAL*)ADV00_2_Info->getdata("matlistADV00_000D8D58"))[9];
-		material_register_ptr(WhiteDiffuseADV00External, LengthOfArray(WhiteDiffuseADV00External), &ForceWhiteDiffuse1);
+		material_register_ptr(WhiteDiffuseADV00_External, LengthOfArray(WhiteDiffuseADV00_External), &ForceWhiteDiffuse1);
 	}
 }
 

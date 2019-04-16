@@ -173,6 +173,7 @@ void CheckLandtableMaterials_unregister(LandTable *landtable)
 
 void AnimateTexture(TextureAnimation *texanim)
 {
+	int framenumber;
 	if (texanim->material && FrameCounter % texanim->Speed == 0)
 	{
 		//Deal with non-sequential animations manually
@@ -279,9 +280,11 @@ void AnimateTexture(TextureAnimation *texanim)
 		//Animate automatically if sequential
 		else
 		{
+			framenumber = texanim->material->attr_texId++;
+			framenumber++;
 			//Reset if reached end of animation or incorrect initial frame
-			if (texanim->material->attr_texId >= texanim->Frame2 || texanim->material->attr_texId < texanim->Frame1) texanim->material->attr_texId = texanim->Frame1;
-			else texanim->material->attr_texId++;
+			if (framenumber > texanim->Frame2 || framenumber < texanim->Frame1) framenumber = texanim->Frame1;
+			texanim->material->attr_texId = framenumber;
 		}
 	}
 }
@@ -316,6 +319,7 @@ void AddTextureAnimation(NJS_MATERIAL* material, bool nonsequential, int speed, 
 {
 	for (int i = 0; i < LengthOfArray(TextureAnimationData); i++)
 	{
+		if (TextureAnimationData[i].material == material) return;
 		if (!TextureAnimationData[i].material)
 		{
 			TextureAnimationData[i].material = material;
