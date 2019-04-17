@@ -29,13 +29,6 @@ NJS_OBJECT *SS04SeaModel = nullptr;
 #include "SS03_MainArea.h"
 #include "SS04_Hotel.h"
 
-static int WaterAnimation_Sewers = 46;
-static int SandwaveAnimation = 183;
-static int SeashoreAnimation = 29;
-static int SeashoreAnimation_Pool = 59;
-static int SandwaveAnimation_Pool = 60;
-static int SewerMainAnimation = 219;
-static int PoolWaterAnimation = 120;
 static Sint8 PreviousTimeOfDay = -1;
 
 DataArray(FogData, StationSquare1Fog, 0x02AA3D10, 3);
@@ -687,7 +680,7 @@ NJS_MATERIAL* NPCMaterials[] = {
 };
 
 NJS_MATERIAL* CharacterStuff[] = {
-	&matlistADV00_0000DE08[0],
+	&matlistADV00_0000DE08[0], //Event helicopter
 };
 
 NJS_MATERIAL* WhiteDiffuseADV00_External[] = {
@@ -841,6 +834,16 @@ void ParseSSColFlags()
 {
 	int colflags;
 	LandTable *landtable;
+	//Sewers
+	landtable = ___LANDTABLESS[2];
+	if (SADXWater_StationSquare)
+	{
+		for (unsigned int j = 0; j < landtable->COLCount; j++)
+		{
+			colflags = landtable->Col[j].Flags;
+			if ((colflags & ColFlags_Visible) && (colflags & ColFlags_Water)) landtable->Col[j].Model->basicdxmodel->mats[0].diffuse.argb.a = 0xD2; //Make the water less transparent
+		}
+	}
 	//Main area
 	landtable = ___LANDTABLESS[3];
 	for (unsigned int j = 0; j < landtable->COLCount; j++)
@@ -848,12 +851,11 @@ void ParseSSColFlags()
 		colflags = landtable->Col[j].Flags;
 		if (!SADXWater_StationSquare)
 		{
-			if (colflags & 0x8000000) SS03SeaModel = landtable->Col[j].Model;
+			if (colflags == 0x8000000) SS03SeaModel = landtable->Col[j].Model;
 		}
 		else
 		{
 			if (colflags == 0) landtable->Col[j].Flags = 0x80000000; //Show SADX sea bottom
-			if ((colflags & ColFlags_Visible) && (colflags & ColFlags_Water)) landtable->Col[j].Flags &= ~ColFlags_Visible; //Hide SA1 sewers water
 		}
 	}
 	//Hotel area
@@ -1198,17 +1200,7 @@ void LoadLevelFiles_ADV00()
 	ParseSSColFlags();
 	ParseSSMaterials();
 	PreviousTimeOfDay = -1;
-	if (SADXWater_StationSquare)
-	{
-		//Act 2
-		((NJS_MATERIAL*)ADV00_2_Info->getdata("matlistADV00_000D9890"))[0].diffuse.color = 0xD2B2B2B2;
-	}
-	else
-	{
-		WriteJump((void*)0x631140, RenderStationSquareOcean);
-		//Act 2
-		((NJS_MATERIAL*)ADV00_2_Info->getdata("matlistADV00_000D9890"))[0].diffuse.color = 0xB2B2B2B2;
-	}
+	if (!SADXWater_StationSquare) WriteJump((void*)0x631140, RenderStationSquareOcean); //Render SS ocean separately
 	if (DLLLoaded_Lantern)
 	{
 		material_register_ptr(WhiteDiffuseADV00_Night, LengthOfArray(WhiteDiffuseADV00_Night), &ForceWhiteDiffuse3_Night);
@@ -1472,16 +1464,3 @@ void ADV00_OnFrame()
 		SwitchLighting_TimeOfDay(4);
 		PreviousTimeOfDay = GetTimeOfDay();
 	}
-	//Act 2 (Sewers)
-	if (ADV00_2_Info && CurrentLevel == 26 && CurrentAct == 2)
-	{
-		//Water animation
-		if (GameState != 16)
-		{
-			if (WaterAnimation_Sewers > 55) WaterAnimation_Sewers = 46;
-			((NJS_MATERIAL*)ADV00_2_Info->getdata("matlistADV00_000D9890"))[0].attr_texId = WaterAnimation_Sewers;
-			((NJS_MATERIAL*)ADV00_2_Info->getdata("matlistADV00_000C24BC"))[0].attr_texId = WaterAnimation_Sewers;
-			if (FramerateSetting < 2 && FrameCounter % 4 == 0 || FramerateSetting == 2 && FrameCounter % 2 == 0 || FramerateSetting > 2) WaterAnimation_Sewers++;
-		}
-	}
-}
