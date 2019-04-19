@@ -16,7 +16,7 @@ clone_depth: 1
 init:
 - ps: mkdir C:\DreamcastConversion
 - ps: Set-Content -Value "Name=Dreamcast Conversion`r`nDescription=Brings back levels, textures, object models, special effects, branding etc. from the Dreamcast version of SA1. Fixes various SADX bugs.`r`nAuthor=PkR`r`nVersion=$env:APPVEYOR_BUILD_VERSION`r`nDLLFile=DCMods_Main.dll`r`nUpdateUrl=http://dcmods.unreliable.network/owncloud/data/PiKeyAr/files/DreamcastConversion/`r`nChangelogUrl=http://dcmods.unreliable.network/owncloud/data/PiKeyAr/files/Changelog.txt" -Path C:\DreamcastConversion\mod.ini
-- cmd: cinst wget
+- cmd: choco install wget --version 1.20
 
 before_build:
 - cmd: cd \
