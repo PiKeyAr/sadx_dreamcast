@@ -2272,6 +2272,7 @@ void ChaoGardens_OnFrame()
 		}
 		if (ssgardenwater > 9) ssgardenwater = 0;
 		((NJS_MATERIAL*)AL_GARDEN00_Info->getdata("matlistCHAO_00011388"))[0].attr_texId = ssgardenwater;
+		((NJS_MATERIAL*)AL_GARDEN00_Info->getdata("matlistCHAO_000111CC"))[0].attr_texId = ssgardenwater;
 		if (FramerateSetting < 2 && FrameCounter % 4 == 0 || FramerateSetting == 2 && FrameCounter % 2 == 0 || FramerateSetting > 2) ssgardenwater++;
 	}
 	//Egg Carrier garden
