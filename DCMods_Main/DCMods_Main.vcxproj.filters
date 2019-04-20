@@ -242,30 +242,6 @@
     <ClInclude Include="Data\ADV03_02.h">
       <Filter>Header Files\Levels\ADV03MODELS</Filter>
     </ClInclude>
-    <ClInclude Include="Data\ADVSS00(CityHall).h">
-      <Filter>Header Files\Levels\ADV00MODELS</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\ADVSS01(CasinoArea).h">
-      <Filter>Header Files\Levels\ADV00MODELS</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\ADVSS02(Sewers).h">
-      <Filter>Header Files\Levels\ADV00MODELS</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\ADVSS03(StationMainArea).h">
-      <Filter>Header Files\Levels\ADV00MODELS</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\ADVSS03Fixes.h">
-      <Filter>Header Files\Levels\ADV00MODELS</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\ADVSS04(Hotel).h">
-      <Filter>Header Files\Levels\ADV00MODELS</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\ADVSS04Collision.h">
-      <Filter>Header Files\Levels\ADV00MODELS</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\ADVSS05(TwinkleParkEntrance).h">
-      <Filter>Header Files\Levels\ADV00MODELS</Filter>
-    </ClInclude>
     <ClInclude Include="Data\Animals.h">
       <Filter>Header Files\Levels\General</Filter>
     </ClInclude>
@@ -684,6 +660,9 @@
       <Filter>Header Files\Levels\ADV00MODELS</Filter>
     </ClInclude>
     <ClInclude Include="Data\SS04_Hotel.h">
+      <Filter>Header Files\Levels\ADV00MODELS</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\SS05_Twinkle.h">
       <Filter>Header Files\Levels\ADV00MODELS</Filter>
     </ClInclude>
   </ItemGroup>

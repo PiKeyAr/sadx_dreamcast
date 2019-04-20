@@ -23,11 +23,14 @@ NJS_TEXLIST texlist_advss05 = { arrayptrandlength(textures_advss05) };
 NJS_OBJECT *SS03SeaModel = nullptr;
 NJS_OBJECT *SS04SeaModel = nullptr;
 
+/*
 #include "SS00_CityHall.h"
 #include "SS01_Casino.h"
 #include "SS02_Sewers.h"
 #include "SS03_MainArea.h"
 #include "SS04_Hotel.h"
+#include "SS05_Twinkle.h"
+*/
 
 static Sint8 PreviousTimeOfDay = -1;
 
@@ -1161,12 +1164,12 @@ void LoadLevelFiles_ADV00()
 	ADV00_3_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV00\\3.sa1lvl"));
 	ADV00_4_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV00\\4.sa1lvl"));
 	ADV00_5_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV00\\5.sa1lvl"));
-	LandTable *ADV00_0 = &landtable_000157F4; // ADV00_0_Info->getlandtable();
-	LandTable *ADV00_1 = &landtable_000738F4; // ADV00_1_Info->getlandtable();
-	LandTable *ADV00_2 = &landtable_000C21F0; // ADV00_2_Info->getlandtable();
-	LandTable *ADV00_3 = &landtable_000DCEBC; // ADV00_3_Info->getlandtable();
-	LandTable *ADV00_4 = &landtable_00135A90; // ADV00_4_Info->getlandtable();
-	LandTable *ADV00_5 = ADV00_5_Info->getlandtable();
+	LandTable *ADV00_0 = ADV00_0_Info->getlandtable(); // &landtable_000157F4; // 
+	LandTable *ADV00_1 = ADV00_1_Info->getlandtable(); // &landtable_000738F4; // 
+	LandTable *ADV00_2 = ADV00_2_Info->getlandtable(); // &landtable_000C21F0; // 
+	LandTable *ADV00_3 = ADV00_3_Info->getlandtable(); // &landtable_000DCEBC; // 
+	LandTable *ADV00_4 = ADV00_4_Info->getlandtable(); // &landtable_00135A90; // 
+	LandTable *ADV00_5 = ADV00_5_Info->getlandtable(); // &landtable_001573CC; // 
 	ADV00_0->TexList = &texlist_advss00;
 	ADV00_1->TexList = &texlist_advss01;
 	ADV00_2->TexList = &texlist_advss02;
@@ -1464,3 +1467,4 @@ void ADV00_OnFrame()
 		SwitchLighting_TimeOfDay(4);
 		PreviousTimeOfDay = GetTimeOfDay();
 	}
+}
