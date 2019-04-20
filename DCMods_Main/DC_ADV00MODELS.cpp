@@ -57,7 +57,7 @@ void __cdecl RenderStationSquareOcean(OceanData *x)
 	{
 		if (!DroppedFrames)
 		{
-			njSetTexture(&texlist_advss03); //Act 3
+			njSetTexture(&texlist_advss03);
 			njPushMatrix(0);
 			njTranslate(0, 0, 0, 0);
 			ProcessModelNode_AB_Wrapper(SS03SeaModel, 1.0f);
@@ -68,7 +68,7 @@ void __cdecl RenderStationSquareOcean(OceanData *x)
 	{
 		if (!DroppedFrames)
 		{
-			njSetTexture(&texlist_advss04); //Act 3
+			njSetTexture(&texlist_advss04);
 			njPushMatrix(0);
 			njTranslate(0, 0, 0, 0);
 			ProcessModelNode_AB_Wrapper(SS04SeaModel, 1.0f);
