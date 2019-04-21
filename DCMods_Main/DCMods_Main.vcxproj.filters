@@ -665,5 +665,17 @@
     <ClInclude Include="Data\SS05_Twinkle.h">
       <Filter>Header Files\Levels\ADV00MODELS</Filter>
     </ClInclude>
+    <ClInclude Include="Data\MR00_Station.h">
+      <Filter>Header Files\Levels\ADV02MODELS</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\MR01_Island.h">
+      <Filter>Header Files\Levels\ADV02MODELS</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\MR02_Jungle.h">
+      <Filter>Header Files\Levels\ADV02MODELS</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\MR03_FinalEgg.h">
+      <Filter>Header Files\Levels\ADV02MODELS</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

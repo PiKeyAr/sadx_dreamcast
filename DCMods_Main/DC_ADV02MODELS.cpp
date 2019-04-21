@@ -30,6 +30,11 @@ NJS_TEXLIST texlist_mrobj = { arrayptrandlength(textures_mrobj) };
 NJS_TEXNAME textures_mrtrain[31];
 NJS_TEXLIST texlist_mrtrain = { arrayptrandlength(textures_mrtrain) };
 
+#include "MR00_Station.h"
+//#include "MR01_Island.h"
+//#include "MR02_Jungle.h"
+//#include "MR03_FinalEgg.h"
+
 DataPointer(float, dword_111DB90, 0x111DB90);
 DataPointer(float, CurrentFogDist, 0x03ABDC64);
 DataPointer(float, CurrentFogLayer, 0x03ABDC60);
@@ -53,34 +58,98 @@ static int MRSeaAnimation2 = 140;
 static int IceCapCaveWaterAnimation = 76;
 static int uvADV02_anim = 1;
 
+NJS_OBJECT* MRWaterObjects[] = { nullptr, nullptr, nullptr, nullptr, nullptr };
+NJS_OBJECT* MROcean = nullptr;
+
+void AddMRWaterObject(NJS_OBJECT *object)
+{
+	for (int q = 0; q < LengthOfArray(MRWaterObjects); ++q)
+	{
+		if (MRWaterObjects[q] == object) return;
+		else if (MRWaterObjects[q] == nullptr)
+		{
+			MRWaterObjects[q] = object;
+			return;
+		}
+	}
+}
+
+void ParseMRColFlags()
+{
+	int colflags;
+	LandTable *landtable;
+	//Sewers
+	landtable = ___LANDTABLEMR[0];
+	for (unsigned int j = 0; j < landtable->COLCount; j++)
+	{
+		colflags = landtable->Col[j].Flags;
+		if (colflags == 0x08000000) AddMRWaterObject(landtable->Col[j].Model);
+		else if (colflags == 0x08000002) MROcean = landtable->Col[j].Model;
+	}
+}
+
+void ParseMRMaterials()
+{
+	Uint32 materialflags;
+	NJS_MATERIAL *material;
+	NJS_TEX *uv;
+	LandTable *landtable;
+	//Station area
+	landtable = ___LANDTABLEMR[0];
+	for (unsigned int j = 0; j < landtable->COLCount; j++)
+	{
+		for (int k = 0; k < landtable->Col[j].Model->basicdxmodel->nbMat; ++k)
+		{
+			materialflags = landtable->Col[j].Model->basicdxmodel->mats[k].attrflags;
+			//Texanim 1
+			if ((materialflags & NJD_CUSTOMFLAG_TEXANIM1) && !(materialflags & NJD_CUSTOMFLAG_TEXANIM2))
+			{
+				material = (NJS_MATERIAL*)&landtable->Col[j].Model->basicdxmodel->mats[k];
+				AddTextureAnimation(material, false, 5, 130, 139, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+			}
+			//Texanim 2
+			if ((materialflags & NJD_CUSTOMFLAG_TEXANIM2) && !(materialflags & NJD_CUSTOMFLAG_TEXANIM1))
+			{
+				material = (NJS_MATERIAL*)&landtable->Col[j].Model->basicdxmodel->mats[k];
+				AddTextureAnimation(material, false, 4, 140, 154, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+			}
+			//UVAnim 1
+			if ((materialflags & NJD_CUSTOMFLAG_UVANIM1) && !(materialflags & NJD_CUSTOMFLAG_UVANIM2))
+			{
+				if (!(landtable->Col[j].Flags & ColFlags_UvManipulation)) landtable->Col[j].Flags |= ColFlags_UvManipulation;
+				uv = landtable->Col[j].Model->basicdxmodel->meshsets[k].vertuv;
+				AddUVAnimation(uv, 32, 1, 0, 1);
+			}
+			//UVAnim 2
+			if ((materialflags & NJD_CUSTOMFLAG_UVANIM2) && !(materialflags & NJD_CUSTOMFLAG_UVANIM1))
+			{
+				if (!(landtable->Col[j].Flags & ColFlags_UvManipulation)) landtable->Col[j].Flags |= ColFlags_UvManipulation;
+				uv = landtable->Col[j].Model->basicdxmodel->meshsets[k].vertuv;
+				AddUVAnimation(uv, 184, 1, 0, -1);
+			}
+		}
+	}
+}
+
 void __cdecl MRWater(OceanData *x)
 {
-	if (ADV02_0_Info && CurrentAct == 0)
+	if (CurrentAct == 0 && !DroppedFrames && MROcean)
 	{
-		if (!DroppedFrames)
+		DisableFog();
+		njSetTexture(&texlist_mr00); //Act 1
+		njPushMatrix(0);
+		njTranslate(0, 0, 0, 0);
+		ProcessModelNode_A_Wrapper(MROcean, QueuedModelFlagsB_3, 1.0f);
+		njPopMatrix(1u);
+		for (unsigned int i = 0; i < LengthOfArray(MRWaterObjects); i++)
 		{
-			DisableFog();
-			njSetTexture(&texlist_mr00); //Act 1
-			njPushMatrix(0);
-			njTranslate(0, 0, 0, 0);
-			ProcessModelNode_A_Wrapper(&objectADV02_00057FD4, QueuedModelFlagsB_3, 1.0f);
-			njPopMatrix(1u);
-			njPushMatrix(0);
-			njTranslate(0, 0, 0, 0);
-			ProcessModelNode_A_Wrapper((NJS_OBJECT*)ADV02_0_Info->getdata("objectADV02_000538B0"), QueuedModelFlagsB_3, 1.0f);
-			njPopMatrix(1u);
-			njPushMatrix(0);
-			njTranslate(0, 0, 0, 0);
-			ProcessModelNode_A_Wrapper((NJS_OBJECT*)ADV02_0_Info->getdata("objectADV02_000534DC"), QueuedModelFlagsB_3, 1.0f);
-			njPopMatrix(1u);
-			njPushMatrix(0);
-			njTranslate(0, 0, 0, 0);
-			ProcessModelNode_A_Wrapper((NJS_OBJECT*)ADV02_0_Info->getdata("objectADV02_00059734"), QueuedModelFlagsB_3, 1.0f);
-			njPopMatrix(1u);
-			njPushMatrix(0);
-			njTranslate(0, 0, 0, 0);
-			ProcessModelNode_A_Wrapper((NJS_OBJECT*)ADV02_0_Info->getdata("objectADV02_000599DC"), QueuedModelFlagsB_3, 1.0f);
-			njPopMatrix(1u);
+			if (MRWaterObjects[i])
+			{
+				njPushMatrix(0);
+				njTranslate(0, 0, 0, 0);
+				ProcessModelNode_A_Wrapper(MRWaterObjects[i], QueuedModelFlagsB_3, 1.0f);
+				njPopMatrix(1u);
+			}
 		}
 	}
 }
@@ -243,7 +312,7 @@ void LoadLevelFiles_ADV02()
 	ADV02_1_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV02\\1.sa1lvl"));
 	ADV02_2_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV02\\2.sa1lvl"));
 	ADV02_3_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV02\\3.sa1lvl"));
-	LandTable *ADV02_0 = ADV02_0_Info->getlandtable();
+	LandTable *ADV02_0 = &landtable_00017960; //ADV02_0_Info->getlandtable();
 	LandTable *ADV02_1 = ADV02_1_Info->getlandtable();
 	LandTable *ADV02_2 = ADV02_2_Info->getlandtable();
 	LandTable *ADV02_3 = ADV02_3_Info->getlandtable();
@@ -264,12 +333,14 @@ void LoadLevelFiles_ADV02()
 	LandTableArray[145] = ADV02_1;
 	LandTableArray[146] = ADV02_2;
 	LandTableArray[147] = ADV02_3;
+	ParseMRColFlags();
+	ParseMRMaterials();
 	if (SADXWater_MysticRuins)
 	{
-		ADV02_0->Col[ADV02_0->COLCount - 2].Flags = 0x81000000;
-		ADV02_0->Col[ADV02_0->COLCount - 3].Flags = 0x81000000;
-		ADV02_0->Col[ADV02_0->COLCount - 4].Flags = 0x81000000;
-		ADV02_0->Col[ADV02_0->COLCount - 5].Flags = 0x81000000;
+		//ADV02_0->Col[ADV02_0->COLCount - 2].Flags = 0x81000000;
+		//ADV02_0->Col[ADV02_0->COLCount - 3].Flags = 0x81000000;
+		//ADV02_0->Col[ADV02_0->COLCount - 4].Flags = 0x81000000;
+		//ADV02_0->Col[ADV02_0->COLCount - 5].Flags = 0x81000000;
 	}
 	else
 	{
@@ -511,6 +582,13 @@ void ADV02_Init()
 
 void ADV02_OnFrame()
 {
+	if (!IsGamePaused())
+	{
+		for (int i = 0; i < 5; ++i)
+		{
+			if (UVAnimationData[i].uv_pointer) AnimateUVs(&UVAnimationData[i]);
+		}
+	}
 	if (CurrentLevel == LevelIDs_MysticRuins && CurrentAct == 3)
 	{
 		CasinoLightRotation_Y = 0;
@@ -537,7 +615,7 @@ void ADV02_OnFrame()
 	auto entity = EntityData1Ptrs[0];
 	if (ADV02_0_Info && GameState != 16 && CurrentLevel == 33 && CurrentAct == 0)
 	{
-		if (GameMode == GameModes_Mission && CurrentCharacter == 5) LANDTABLEMR[0]->Col[LANDTABLEMR[0]->COLCount - 1].Flags = 0x00000001; else LANDTABLEMR[0]->Col[LANDTABLEMR[0]->COLCount - 1].Flags = 0x00000000;
+		//if (GameMode == GameModes_Mission && CurrentCharacter == 5) LANDTABLEMR[0]->Col[LANDTABLEMR[0]->COLCount - 1].Flags = 0x00000001; else LANDTABLEMR[0]->Col[LANDTABLEMR[0]->COLCount - 1].Flags = 0x00000000;
 		for (unsigned int q = 0; q < LengthOfArray(uvADV02_00075EC0_0); q++)
 		{
 			((NJS_TEX*)ADV02_0_Info->getdata("uvADV02_00075EC0"))[q].v = uvADV02_00075EC0_0[q].v + uvADV02_anim;
@@ -546,7 +624,7 @@ void ADV02_OnFrame()
 		{
 			((NJS_TEX*)ADV02_0_Info->getdata("uvADV02_000755A4"))[q2].v = uvADV02_000755A4_0[q2].v - uvADV02_anim;
 		}
-		if (MRSeaAnimation1 > 139) MRSeaAnimation1 = 130;
+		/*if (MRSeaAnimation1 > 139) MRSeaAnimation1 = 130;
 		if (MRSeaAnimation2 > 154) MRSeaAnimation2 = 140;
 		((NJS_MATERIAL*)ADV02_0_Info->getdata("matlistADV02_0007523C"))[0].attr_texId = MRSeaAnimation1;
 		matlistADV02_00057F04[0].attr_texId = MRSeaAnimation1;
@@ -558,7 +636,7 @@ void ADV02_OnFrame()
 		{
 			MRSeaAnimation1++;
 			MRSeaAnimation2++;
-		}
+		}*/
 	}
 	if (ADV02_1_Info && GameState != 16 && CurrentLevel == 33 && CurrentAct == 1)
 	{
