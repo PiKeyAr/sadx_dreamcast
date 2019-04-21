@@ -3,44 +3,6 @@
 #pragma warning(push)
 #pragma warning(disable: 4267 4838)
 
-//Act 0 SA1 water
-NJS_MATERIAL matlistADV02_00057F04[] = {
-	{ { 0x65B2B2B2 },{ 0xFFFFFFFF }, 11, 131, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
-};
-
-Sint16 polyADV02_00057F18[] = {
-	4, 3, 2, 1, 0
-};
-
-NJS_TEX uvADV02_00057F24[] = {
-	{ 7650, -7395 },
-	{ 7650, 255 },
-	{ 0, -7395 },
-	{ 0, 255 }
-};
-
-NJS_MESHSET_SADX meshlistADV02_00057F34[] = {
-	{ NJD_MESHSET_TRIMESH | 0, 1, polyADV02_00057F18, NULL, NULL, NULL, uvADV02_00057F24, NULL }
-};
-
-NJS_VECTOR vertexADV02_00057F4C[] = {
-	{ -5554.648f, 0, -5593.767f },
-	{ -5554.648f, 0, 5593.767f },
-	{ 5554.648f, 0, -5593.767f },
-	{ 5554.648f, 0, 5593.767f }
-};
-
-NJS_VECTOR normalADV02_00057F7C[] = {
-	{ 0, 1, 0 },
-	{ 0, 1, 0 },
-	{ 0, 1, 0 },
-	{ 0, 1, 0 }
-};
-
-NJS_MODEL_SADX attachADV02_00057FAC = { vertexADV02_00057F4C, normalADV02_00057F7C, LengthOfArray(vertexADV02_00057F4C), meshlistADV02_00057F34, matlistADV02_00057F04, LengthOfArray(meshlistADV02_00057F34), LengthOfArray(matlistADV02_00057F04),{ 0 }, 7883.168f, NULL };
-
-NJS_OBJECT objectADV02_00057FD4 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachADV02_00057FAC, 711.6917f, -420.8741f, 3703.044f, 0, 0, 0, 1, 1, 1, NULL, NULL };
-
 //UVs for act 0
 NJS_TEX uvADV02_000755A4_0[] = {
 	{ 253, -251 },
