@@ -37,6 +37,42 @@ TextureAnimation TextureAnimationData[] = {
 	{ nullptr, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
 };
 
+UVAnimation UVAnimationData[] = 
+{
+	{ nullptr, 0, 0, 0, 0, 0, 0 },
+	{ nullptr, 0, 0, 0, 0, 0, 0 },
+	{ nullptr, 0, 0, 0, 0, 0, 0 },
+	{ nullptr, 0, 0, 0, 0, 0, 0 },
+	{ nullptr, 0, 0, 0, 0, 0, 0 },
+	{ nullptr, 0, 0, 0, 0, 0, 0 },
+	{ nullptr, 0, 0, 0, 0, 0, 0 },
+	{ nullptr, 0, 0, 0, 0, 0, 0 },
+	{ nullptr, 0, 0, 0, 0, 0, 0 },
+	{ nullptr, 0, 0, 0, 0, 0, 0 },
+	{ nullptr, 0, 0, 0, 0, 0, 0 },
+	{ nullptr, 0, 0, 0, 0, 0, 0 },
+	{ nullptr, 0, 0, 0, 0, 0, 0 },
+	{ nullptr, 0, 0, 0, 0, 0, 0 },
+	{ nullptr, 0, 0, 0, 0, 0, 0 },
+	{ nullptr, 0, 0, 0, 0, 0, 0 },
+	{ nullptr, 0, 0, 0, 0, 0, 0 },
+	{ nullptr, 0, 0, 0, 0, 0, 0 },
+	{ nullptr, 0, 0, 0, 0, 0, 0 },
+	{ nullptr, 0, 0, 0, 0, 0, 0 },
+	{ nullptr, 0, 0, 0, 0, 0, 0 },
+	{ nullptr, 0, 0, 0, 0, 0, 0 },
+	{ nullptr, 0, 0, 0, 0, 0, 0 },
+	{ nullptr, 0, 0, 0, 0, 0, 0 },
+	{ nullptr, 0, 0, 0, 0, 0, 0 },
+	{ nullptr, 0, 0, 0, 0, 0, 0 },
+	{ nullptr, 0, 0, 0, 0, 0, 0 },
+	{ nullptr, 0, 0, 0, 0, 0, 0 },
+	{ nullptr, 0, 0, 0, 0, 0, 0 },
+	{ nullptr, 0, 0, 0, 0, 0, 0 },
+	{ nullptr, 0, 0, 0, 0, 0, 0 },
+	{ nullptr, 0, 0, 0, 0, 0, 0 },
+};
+
 void CheckAndUnloadLevelFiles()
 {
 	ClearTextureAnimationData();
@@ -280,12 +316,66 @@ void AnimateTexture(TextureAnimation *texanim)
 		//Animate automatically if sequential
 		else
 		{
-			framenumber = texanim->material->attr_texId++;
+			framenumber = texanim->material->attr_texId;
 			framenumber++;
 			//Reset if reached end of animation or incorrect initial frame
 			if (framenumber > texanim->Frame2 || framenumber < texanim->Frame1) framenumber = texanim->Frame1;
 			texanim->material->attr_texId = framenumber;
+			//PrintDebug("Framenumber: %d\n", framenumber);
 		}
+	}
+}
+
+void AnimateUVs(UVAnimation *animation)
+{
+	if (animation->uv_pointer && animation->uv_count && FrameCounter % animation->timer == 0)
+	{
+		animation->v_shift += animation->v_speed;
+		animation->u_shift += animation->u_speed;
+		//PrintDebug("VShift: %d", animation->v_shift);
+		//Limit V +
+		if (animation->v_shift > 255)
+		{
+			animation->v_shift -= 255;
+			for (int i = 0; i < animation->uv_count; i++)
+			{
+				animation->uv_pointer[i].v -= 255;
+			}
+		}
+		//Limit V -
+		if (animation->v_shift < -255)
+		{
+			animation->v_shift += 255;
+			for (int i = 0; i < animation->uv_count; i++)
+			{
+				animation->uv_pointer[i].v += 255;
+			}
+		}
+		//Limit U +
+		if (animation->u_shift > 255)
+		{
+			animation->u_shift -= 255;
+			for (int i = 0; i < animation->uv_count; i++)
+			{
+				animation->uv_pointer[i].u -= 255;
+			}
+		}
+		//Limit U -
+		if (animation->u_shift < -255)
+		{
+			animation->u_shift += 255;
+			for (int i = 0; i < animation->uv_count; i++)
+			{
+				animation->uv_pointer[i].u += 255;
+			}
+		}
+		//Add U and V
+		for (int i = 0; i < animation->uv_count; i++)
+		{
+			animation->uv_pointer[i].v += animation->v_speed;
+			animation->uv_pointer[i].u += animation->u_speed;
+		}
+		//PrintDebug("AAAAAASSSSSS %d: %d\n", 0, animation->uv_pointer[0].v);
 	}
 }
 
@@ -312,6 +402,16 @@ void ClearTextureAnimationData()
 		TextureAnimationData[i].Frame14 = 0;
 		TextureAnimationData[i].Frame15 = 0;
 		TextureAnimationData[i].Frame16 = 0;
+	}
+	for (int i = 0; i < LengthOfArray(UVAnimationData); i++)
+	{
+		UVAnimationData[i].uv_pointer = nullptr;
+		UVAnimationData[i].uv_count = 0;
+		UVAnimationData[i].u_speed = 0;
+		UVAnimationData[i].v_speed = 0;
+		UVAnimationData[i].u_shift = 0;
+		UVAnimationData[i].v_shift = 0;
+		UVAnimationData[i].timer = 0;
 	}
 }
 
@@ -341,6 +441,23 @@ void AddTextureAnimation(NJS_MATERIAL* material, bool nonsequential, int speed, 
 			TextureAnimationData[i].Frame14 = frame14;
 			TextureAnimationData[i].Frame15 = frame15;
 			TextureAnimationData[i].Frame16 = frame16;
+			return;
+		}
+	}
+}
+
+void AddUVAnimation(NJS_TEX* uv, int uv_count, int timer, int u_speed, int v_speed)
+{
+	for (int i = 0; i < LengthOfArray(UVAnimationData); i++)
+	{
+		if (UVAnimationData[i].uv_pointer == uv) return;
+		if (!UVAnimationData[i].uv_pointer)
+		{
+			UVAnimationData[i].uv_pointer = uv;
+			UVAnimationData[i].uv_count = uv_count;
+			UVAnimationData[i].u_speed = u_speed;
+			UVAnimationData[i].v_speed = v_speed;
+			UVAnimationData[i].timer = timer;
 			return;
 		}
 	}
