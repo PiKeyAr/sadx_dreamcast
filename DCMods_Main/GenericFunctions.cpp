@@ -210,7 +210,10 @@ void CheckLandtableMaterials_unregister(LandTable *landtable)
 void AnimateTexture(TextureAnimation *texanim)
 {
 	int framenumber;
-	if (texanim->material && FrameCounter % texanim->Speed == 0)
+	int actualspeed = 1;
+	//Calculate animation speed if in 30 or 15 FPS mode
+	if (FramerateSetting > 1 && texanim->Speed > 1) actualspeed = texanim->Speed / 2; else actualspeed = texanim->Speed;
+	if (texanim->material && FrameCounter % actualspeed == 0)
 	{
 		//Deal with non-sequential animations manually
 		if (texanim->NonSequential)
@@ -328,7 +331,10 @@ void AnimateTexture(TextureAnimation *texanim)
 
 void AnimateUVs(UVAnimation *animation)
 {
-	if (animation->uv_pointer && animation->uv_count && FrameCounter % animation->timer == 0)
+	int actualtimer = 1;
+	//Calculate animation speed if in 30 or 15 FPS mode
+	if (FramerateSetting > 1 && animation->timer > 1) actualtimer = animation->timer / 2; else actualtimer = animation->timer;
+	if (animation->uv_pointer && animation->uv_count && FrameCounter % actualtimer == 0)
 	{
 		animation->v_shift += animation->v_speed;
 		animation->u_shift += animation->u_speed;
