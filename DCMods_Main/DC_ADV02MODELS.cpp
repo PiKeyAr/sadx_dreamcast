@@ -31,8 +31,8 @@ NJS_TEXNAME textures_mrtrain[31];
 NJS_TEXLIST texlist_mrtrain = { arrayptrandlength(textures_mrtrain) };
 
 #include "MR00_Station.h"
-//#include "MR01_Island.h"
-//#include "MR02_Jungle.h"
+#include "MR01_Island.h"
+#include "MR02_Jungle.h"
 //#include "MR03_FinalEgg.h"
 
 DataPointer(float, dword_111DB90, 0x111DB90);
@@ -129,9 +129,23 @@ void ParseMRMaterials()
 			}
 		}
 	}
+	landtable = ___LANDTABLEMR[1];
+	for (unsigned int j = 0; j < landtable->COLCount; j++)
+	{
+		for (int k = 0; k < landtable->Col[j].Model->basicdxmodel->nbMat; ++k)
+		{
+			materialflags = landtable->Col[j].Model->basicdxmodel->mats[k].attrflags;
+			//Texanim 1
+			if ((materialflags & NJD_CUSTOMFLAG_TEXANIM1) && !(materialflags & NJD_CUSTOMFLAG_TEXANIM2))
+			{
+				material = (NJS_MATERIAL*)&landtable->Col[j].Model->basicdxmodel->mats[k];
+				AddTextureAnimation(material, false, 2, 76, 89, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+			}
+		}
+	}
 }
 
-void __cdecl MRWater(OceanData *x)
+void __cdecl MRWater(void(__cdecl *function)(void *), void *data, float depth, QueuedModelFlagsB queueflags)
 {
 	if (CurrentAct == 0 && !DroppedFrames && MROcean)
 	{
@@ -139,9 +153,11 @@ void __cdecl MRWater(OceanData *x)
 		njSetTexture(&texlist_mr00); //Act 1
 		njPushMatrix(0);
 		njTranslate(0, 0, 0, 0);
-		ProcessModelNode_A_Wrapper(MROcean, QueuedModelFlagsB_3, 1.0f);
+		DrawQueueDepthBias = -47952.0f;
+		ProcessModelNode_AB_Wrapper(MROcean, 1.0f);
+		DrawQueueDepthBias = 0.0f;
 		njPopMatrix(1u);
-		for (unsigned int i = 0; i < LengthOfArray(MRWaterObjects); i++)
+		/*for (unsigned int i = 0; i < LengthOfArray(MRWaterObjects); i++)
 		{
 			if (MRWaterObjects[i])
 			{
@@ -150,7 +166,7 @@ void __cdecl MRWater(OceanData *x)
 				ProcessModelNode_A_Wrapper(MRWaterObjects[i], QueuedModelFlagsB_3, 1.0f);
 				njPopMatrix(1u);
 			}
-		}
+		}*/
 	}
 }
 
@@ -313,8 +329,8 @@ void LoadLevelFiles_ADV02()
 	ADV02_2_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV02\\2.sa1lvl"));
 	ADV02_3_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV02\\3.sa1lvl"));
 	LandTable *ADV02_0 = &landtable_00017960; //ADV02_0_Info->getlandtable();
-	LandTable *ADV02_1 = ADV02_1_Info->getlandtable();
-	LandTable *ADV02_2 = ADV02_2_Info->getlandtable();
+	LandTable *ADV02_1 = &landtable_0009E7B0; //ADV02_1_Info->getlandtable();
+	LandTable *ADV02_2 = &landtable_00000178; //ADV02_2_Info->getlandtable();
 	LandTable *ADV02_3 = ADV02_3_Info->getlandtable();
 	ADV02_0->TexList = &texlist_mr00;
 	ADV02_1->TexList = &texlist_mr01;
@@ -344,7 +360,7 @@ void LoadLevelFiles_ADV02()
 	}
 	else
 	{
-		WriteJump(MysticRuins_OceanDraw, MRWater);
+		WriteCall((void*)0x52FDC3, MRWater);
 	}
 	if (DLLLoaded_Lantern)
 	{
@@ -447,6 +463,8 @@ void ADV02_Init()
 	ReplacePVM("MR_EGG");
 	ReplacePVM("MR_PYRAMID");
 	ReplacePVM("MR_TORNADO2");
+	WriteData((float*)0x005343BE, 239.0f); //Windows in Tails' workshop
+	WriteData((float*)0x005343EF, 239.0f); //Windows in Tails' workshop 
 	WriteData<1>((char*)0x005370E0, 0x01); //Fix blending mode on floating bricks in WV entrance
 	WriteData<1>((char*)0x00537038, 0x01); //Fix blending mode on floating bricks in WV entrance
 	WriteData<1>((char*)0x00537181, 0x01); //Fix blending mode on floating bricks in WV entrance
@@ -558,17 +576,14 @@ void ADV02_Init()
 	___ADV02_OBJECTS[70]->basicdxmodel->mats[0].diffuse.color = 0xFFB2B2B2;
 	___ADV02_OBJECTS[69]->basicdxmodel->mats[0].diffuse.color = 0xFFB2B2B2;
 	___ADV02_MODELS[15] = &attachADV02_0007C3B8; //Master Emerald glow
-	WriteData<1>((void*)0x52F800, 0xC3u); //Disable SADX jungle
-	___ADV02MR02_OBJECTS[0] = &objectADV02_001A08EC;
-	___ADV02MR02_OBJECTS[117] = &objectADV02_001A08EC;
-	___ADV02MR02_OBJECTS[135] = &objectADV02_001A08EC;
+	//WriteData<1>((void*)0x52F800, 0xC3u); //Disable SADX jungle
+	___ADV02MR02_OBJECTS[118] = &object_00148D04;
+	___ADV02MR02_OBJECTS[119] = &object_0014B8F0_2;
+	___ADV02MR02_OBJECTS[135] = &object_0012E6C8;
 	___ADV02MR02_OBJECTS[136] = &objectADV02_001A08EC;
 	___ADV02MR02_OBJECTS[137] = &objectADV02_001A08EC;
 	___ADV02MR02_OBJECTS[138] = &objectADV02_001A08EC;
 	___ADV02MR02_OBJECTS[139] = &objectADV02_001A08EC;
-	___ADV02MR02_OBJECTS[118] = &objectADV02_001A08EC;
-	___ADV02MR02_OBJECTS[119] = &objectADV02_001A08EC;
-	___ADV02MR02_OBJECTS[178] = &objectADV02_001A08EC;
 	___ADV02_ACTIONS[11]->object = &objectADV02_001B5F40; //Torokko
 	___ADV02_ACTIONS[29]->object = &objectADV02_001BBA04; //Ice Stone
 	___ADV02_ACTIONS[32]->object = &objectADV02_001F41C0; //Rustling grass

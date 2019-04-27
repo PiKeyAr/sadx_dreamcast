@@ -229,7 +229,6 @@
     <ClInclude Include="Data\MR00_Station.h" />
     <ClInclude Include="Data\MR01_Island.h" />
     <ClInclude Include="Data\MR02_Jungle.h" />
-    <ClInclude Include="Data\MR03_FinalEgg.h" />
     <ClInclude Include="Data\MRGarden.h" />
     <ClInclude Include="Data\MR_IceCapDoor.h" />
     <ClInclude Include="Data\MR_Objects.h" />
