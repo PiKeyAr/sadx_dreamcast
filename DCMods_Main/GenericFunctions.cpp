@@ -338,7 +338,6 @@ void AnimateUVs(UVAnimation *animation)
 	{
 		animation->v_shift += animation->v_speed;
 		animation->u_shift += animation->u_speed;
-		//PrintDebug("VShift: %d", animation->v_shift);
 		//Limit V +
 		if (animation->v_shift > 255)
 		{
@@ -381,7 +380,7 @@ void AnimateUVs(UVAnimation *animation)
 			animation->uv_pointer[i].v += animation->v_speed;
 			animation->uv_pointer[i].u += animation->u_speed;
 		}
-		//PrintDebug("AAAAAASSSSSS %d: %d\n", 0, animation->uv_pointer[0].v);
+		//PrintDebug("UV Animation count %d, timer %d, add %d, current %d \n", animation->uv_count, animation->timer, animation->v_shift, animation->uv_pointer[0].v);
 	}
 }
 
@@ -456,7 +455,11 @@ void AddUVAnimation(NJS_TEX* uv, int uv_count, int timer, int u_speed, int v_spe
 {
 	for (int i = 0; i < LengthOfArray(UVAnimationData); i++)
 	{
-		if (UVAnimationData[i].uv_pointer == uv) return;
+		if (UVAnimationData[i].uv_pointer == uv) 
+		{
+			//PrintDebug("Duplicate UVs found\n");
+			return;
+		}
 		if (!UVAnimationData[i].uv_pointer)
 		{
 			UVAnimationData[i].uv_pointer = uv;
