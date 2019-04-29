@@ -11,6 +11,7 @@
 #include "Grass.h"
 #include "MR_Objects.h"
 #include "MR_Palms.h"
+#include "MR_JungleGeoAnim.h"
 
 NJS_TEXNAME textures_mr00[153];
 NJS_TEXLIST texlist_mr00 = { arrayptrandlength(textures_mr00) };
@@ -30,10 +31,12 @@ NJS_TEXLIST texlist_mrobj = { arrayptrandlength(textures_mrobj) };
 NJS_TEXNAME textures_mrtrain[31];
 NJS_TEXLIST texlist_mrtrain = { arrayptrandlength(textures_mrtrain) };
 
+/*
 #include "MR00_Station.h"
 #include "MR01_Island.h"
 #include "MR02_Jungle.h"
-//#include "MR03_FinalEgg.h"
+#include "MR03_FinalEgg.h"
+*/
 
 DataPointer(float, dword_111DB90, 0x111DB90);
 DataPointer(float, CurrentFogDist, 0x03ABDC64);
@@ -53,15 +56,38 @@ DataArray(DrawDistance, MR4DrawDist, 0x01103430, 3);
 FunctionPointer(void, sub_405450, (NJS_ACTION *a1, float frame, float scale), 0x405450);
 FunctionPointer(void, sub_409450, (NJS_MODEL_SADX *a1, char a2), 0x409450);
 static bool InsideTemple = 0;
-static int MRSeaAnimation1 = 130;
-static int MRSeaAnimation2 = 140;
-static int IceCapCaveWaterAnimation = 76;
-static int uvADV02_anim = 1;
-
-NJS_OBJECT* MRWaterObjects[] = { nullptr, nullptr, nullptr, nullptr, nullptr };
+static float MRGeoAnimFrame = 0;
 NJS_OBJECT* MROcean = nullptr;
+NJS_OBJECT* MRWaterObjects[] = { nullptr, nullptr, nullptr, nullptr, nullptr };
+NJS_OBJECT* MRJungleObjectAnimations_Propeller[] = { nullptr, nullptr, nullptr, nullptr, nullptr };
+NJS_OBJECT* MRJungleObjectAnimations_Lantern[] = { nullptr, nullptr, nullptr, nullptr, nullptr };
+NJS_OBJECT* MRJungleObjectsCallback[] = { nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr };
 
-void AddMRWaterObject(NJS_OBJECT *object)
+NJS_MATERIAL* WhiteDiffuseADV02_External[] = {
+	nullptr, nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,
+};
+
+NJS_MATERIAL* WhiteDiffuse[] = {
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x0003CD50), //Button on HiddenGate
+	&matlistADV02_001FCA84[8], //MR train
+	//Palm trees
+	&matlistADV02_001D76E0[1],
+	&matlistADV02_001D85A8[1],
+	&matlistADV02_001D9470[1],
+	&matlistADV02_001DA32C[1],
+	&matlistADV02_001DB210[1],
+	&matlistADV02_001DC0BC[1],
+	//Final Egg stuff
+	&matlistADV02_002069C8[5],
+	&matlistADV02_002069C8[6],
+	&matlistADV02_002069C8[7],
+	&matlistADV02_00208504Z[13],
+	&matlistADV02_00208504[13],
+	//OHiddenGate buttons
+	&matlistADV02_0003CD28[2],
+};
+
+void AddMRWater_DisplayObject(NJS_OBJECT *object)
 {
 	for (int q = 0; q < LengthOfArray(MRWaterObjects); ++q)
 	{
@@ -74,17 +100,88 @@ void AddMRWaterObject(NJS_OBJECT *object)
 	}
 }
 
+void AddMRLandtableRotation(NJS_OBJECT *object, bool propeller)
+{
+	if (propeller)
+	{
+		for (int q = 0; q < LengthOfArray(MRJungleObjectAnimations_Propeller); ++q)
+		{
+			if (MRJungleObjectAnimations_Propeller[q] == object) return;
+			else if (MRJungleObjectAnimations_Propeller[q] == nullptr)
+			{
+				MRJungleObjectAnimations_Propeller[q] = object;
+				return;
+			}
+		}
+	}
+	else
+	{
+		for (int q = 0; q < LengthOfArray(MRJungleObjectAnimations_Lantern); ++q)
+		{
+			if (MRJungleObjectAnimations_Lantern[q] == object) return;
+			else if (MRJungleObjectAnimations_Lantern[q] == nullptr)
+			{
+				MRJungleObjectAnimations_Lantern[q] = object;
+				return;
+			}
+		}
+	}
+}
+
+void AddMRJungleCallback(NJS_OBJECT *object)
+{
+	for (int q = 0; q < LengthOfArray(MRJungleObjectsCallback); ++q)
+	{
+		if (MRJungleObjectsCallback[q] == object) return;
+		else if (MRJungleObjectsCallback[q] == nullptr)
+		{
+			MRJungleObjectsCallback[q] = object;
+			return;
+		}
+	}
+}
+
 void ParseMRColFlags()
 {
 	int colflags;
 	LandTable *landtable;
-	//Sewers
+	//Station area
 	landtable = ___LANDTABLEMR[0];
 	for (unsigned int j = 0; j < landtable->COLCount; j++)
 	{
 		colflags = landtable->Col[j].Flags;
-		if (colflags == 0x08000000) AddMRWaterObject(landtable->Col[j].Model);
+		if (colflags == 0x08000000) AddMRWater_DisplayObject(landtable->Col[j].Model);
 		else if (colflags == 0x08000002) MROcean = landtable->Col[j].Model;
+	}
+	//Jungle area
+	landtable = ___LANDTABLEMR[2];
+	for (unsigned int j = 0; j < landtable->COLCount; j++)
+	{
+		colflags = landtable->Col[j].Flags;
+		if (colflags == 0x88001000 || colflags == 0x88000400) AddMRLandtableRotation(landtable->Col[j].Model, false);
+		else if (colflags == 0x88000000) AddMRLandtableRotation(landtable->Col[j].Model, true);
+		else if (colflags == 0) AddMRJungleCallback(landtable->Col[j].Model);
+	}
+	//Add models for MR jungle callback
+	___ADV02MR02_OBJECTS[118] = MRJungleObjectsCallback[0];
+	___ADV02MR02_OBJECTS[119] = MRJungleObjectsCallback[1];
+	___ADV02MR02_OBJECTS[135] = MRJungleObjectsCallback[2];
+	___ADV02MR02_OBJECTS[136] = MRJungleObjectsCallback[3];
+	___ADV02MR02_OBJECTS[137] = MRJungleObjectsCallback[4];
+	___ADV02MR02_OBJECTS[138] = MRJungleObjectsCallback[5];
+	___ADV02MR02_OBJECTS[139] = MRJungleObjectsCallback[6];
+}
+
+void AddWhiteDiffuseMaterial_MR(NJS_MATERIAL *material)
+{
+	for (int q = 0; q < LengthOfArray(WhiteDiffuseADV02_External); ++q)
+	{
+		if (WhiteDiffuseADV02_External[q] == material) return;
+		else if (WhiteDiffuseADV02_External[q] == nullptr)
+		{
+			WhiteDiffuseADV02_External[q] = material;
+			return;
+		}
 	}
 }
 
@@ -130,6 +227,7 @@ void ParseMRMaterials()
 			}
 		}
 	}
+	//Angel Island
 	landtable = ___LANDTABLEMR[1];
 	for (unsigned int j = 0; j < landtable->COLCount; j++)
 	{
@@ -144,6 +242,7 @@ void ParseMRMaterials()
 			}
 		}
 	}
+	//Jungle
 	landtable = ___LANDTABLEMR[2];
 	for (unsigned int j = 0; j < landtable->COLCount; j++)
 	{
@@ -151,13 +250,19 @@ void ParseMRMaterials()
 		{
 			texid = landtable->Col[j].Model->basicdxmodel->mats[k].attr_texId;
 			materialflags = landtable->Col[j].Model->basicdxmodel->mats[k].attrflags;
+			//White diffuse
+			if (materialflags & NJD_CUSTOMFLAG_WHITE)
+			{
+				material = (NJS_MATERIAL*)&landtable->Col[j].Model->basicdxmodel->mats[k];
+				AddWhiteDiffuseMaterial_MR(material);
+			}
 			//UVAnim 1
 			if ((materialflags & NJD_CUSTOMFLAG_UVANIM1) && !(materialflags & NJD_CUSTOMFLAG_UVANIM2))
 			{
 				if (!(landtable->Col[j].Flags & ColFlags_UvManipulation)) landtable->Col[j].Flags |= ColFlags_UvManipulation;
 				uv = landtable->Col[j].Model->basicdxmodel->meshsets[k].vertuv;
 				AddUVAnimation(uv, 32, 2, 0, 1);
-				PrintDebug("Added UVAnim1\n");
+				//PrintDebug("Added UVAnim1\n");
 			}
 			//UVAnim 2
 			if ((materialflags & NJD_CUSTOMFLAG_UVANIM2) && !(materialflags & NJD_CUSTOMFLAG_UVANIM1))
@@ -165,7 +270,7 @@ void ParseMRMaterials()
 				if (!(landtable->Col[j].Flags & ColFlags_UvManipulation)) landtable->Col[j].Flags |= ColFlags_UvManipulation;
 				uv = landtable->Col[j].Model->basicdxmodel->meshsets[k].vertuv;
 				AddUVAnimation(uv, 14, 2, 0, 1);
-				PrintDebug("Added UVAnim2\n");
+				//PrintDebug("Added UVAnim2\n");
 			}
 			//UVAnim 3
 			if ((materialflags & NJD_CUSTOMFLAG_UVANIM2) && (materialflags & NJD_CUSTOMFLAG_UVANIM1))
@@ -193,30 +298,69 @@ void ParseMRMaterials()
 			}
 		}
 	}
+	//Final Egg base
+	landtable = ___LANDTABLEMR[3];
+	for (unsigned int j = 0; j < landtable->COLCount; j++)
+	{
+		for (int k = 0; k < landtable->Col[j].Model->basicdxmodel->nbMat; ++k)
+		{
+			materialflags = landtable->Col[j].Model->basicdxmodel->mats[k].attrflags;
+			//White diffuse
+			if (materialflags & NJD_CUSTOMFLAG_WHITE)
+			{
+				material = (NJS_MATERIAL*)&landtable->Col[j].Model->basicdxmodel->mats[k];
+				AddWhiteDiffuseMaterial_MR(material);
+			}
+		}
+	}
 }
 
-void __cdecl MRWater(void(__cdecl *function)(void *), void *data, float depth, QueuedModelFlagsB queueflags)
+static void MRJungleCallback_r(void *a1);
+static Trampoline MRJungleCallback_t(0x52F800, 0x52F806, MRJungleCallback_r);
+static void __cdecl MRJungleCallback_r(void *a1)
 {
-	if (CurrentAct == 0 && !DroppedFrames && MROcean)
+	NJS_MATRIX a2;
+	if (EnableMysticRuins)
 	{
-		DisableFog();
-		njSetTexture(&texlist_mr00); //Act 1
-		njPushMatrix(0);
-		njTranslate(0, 0, 0, 0);
-		DrawQueueDepthBias = -47952.0f;
-		ProcessModelNode_AB_Wrapper(MROcean, 1.0f);
-		DrawQueueDepthBias = 0.0f;
-		njPopMatrix(1u);
-		/*for (unsigned int i = 0; i < LengthOfArray(MRWaterObjects); i++)
+		njSetTexture(ADV02_TEXLISTS[40]);
+		njGetMatrix(a2);
+		njAction(&action_animationADV02_000818F4_real, MRGeoAnimFrame);
+		njSetMatrix(0, a2);
+	}
+	auto original = reinterpret_cast<decltype(MRJungleCallback_r)*>(MRJungleCallback_t.Target());
+	original(a1);
+}
+
+void __cdecl MRWater_Display(void(__cdecl *function)(void *), void *data, float depth, QueuedModelFlagsB queueflags)
+{
+	if (CurrentAct == 0 && !DroppedFrames)
+	{
+		if (SADXWater_MysticRuins)
+		{
+			DrawModelCallback_Queue((void(__cdecl *)(void *))MysticRuins_OceanDraw, OceanDataArray, -7952.0f, QueuedModelFlagsB_EnableZWrite);
+		}
+		else
+		{
+			DisableFog();
+			njSetTexture(&texlist_mr00);
+			njPushMatrix(0);
+			njTranslate(0, 0, 0, 0);
+			DrawQueueDepthBias = -47952.0f;
+			if (MROcean) ProcessModelNode_AB_Wrapper(MROcean, 1.0f);
+			DrawQueueDepthBias = 0.0f;
+			njPopMatrix(1u);
+		}
+		for (unsigned int i = 0; i < LengthOfArray(MRWaterObjects); i++)
 		{
 			if (MRWaterObjects[i])
 			{
+				njSetTexture(&texlist_mr00);
 				njPushMatrix(0);
 				njTranslate(0, 0, 0, 0);
 				ProcessModelNode_A_Wrapper(MRWaterObjects[i], QueuedModelFlagsB_3, 1.0f);
 				njPopMatrix(1u);
 			}
-		}*/
+		}
 	}
 }
 
@@ -269,30 +413,6 @@ NJS_MATERIAL* ObjectSpecular[] = {
 	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x00016448),
 };
 
-NJS_MATERIAL* WhiteDiffuseADV02_External[] = {
-	nullptr, nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,
-};
-
-NJS_MATERIAL* WhiteDiffuse[] = {
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x0003CD50), //Button on HiddenGate
-	&matlistADV02_001FCA84[8], //MR train
-	//Palm trees
-	&matlistADV02_001D76E0[1],
-	&matlistADV02_001D85A8[1],
-	&matlistADV02_001D9470[1],
-	&matlistADV02_001DA32C[1],
-	&matlistADV02_001DB210[1],
-	&matlistADV02_001DC0BC[1],
-	//Final Egg stuff
-	&matlistADV02_002069C8[5],
-	&matlistADV02_002069C8[6],
-	&matlistADV02_002069C8[7],
-	&matlistADV02_00208504Z[13],
-	&matlistADV02_00208504[13],
-	//OHiddenGate buttons
-	&matlistADV02_0003CD28[2],
-};
-
 void SetColor(float a, float r, float g, float b)
 {
 	SetMaterialAndSpriteColor_Float(a, 0, g, 0);
@@ -302,7 +422,6 @@ void FixMRBase(ObjectMaster *a1)
 {
 	Angle v1; // eax
 	EntityData1 *v2; // esi
-
 	v2 = a1->Data1;
 	Direct3D_SetNearFarPlanes(-1.0f, -100000.0f);
 	DisableFog();
@@ -360,7 +479,33 @@ void SetBlockEntryMaterialColor(float a, float r, float g, float b)
 
 void UnloadLevelFiles_ADV02()
 {
-	if (DLLLoaded_Lantern) material_unregister_ptr(WhiteDiffuseADV02_External, LengthOfArray(WhiteDiffuseADV02_External), &ForceWhiteDiffuse1);
+	//Clear all pointers and arrays
+	MROcean = nullptr;
+	for (int k = 0; k < LengthOfArray(MRWaterObjects); ++k)
+	{
+		MRWaterObjects[k] = nullptr;
+	}
+	for (int k = 0; k < LengthOfArray(MRJungleObjectAnimations_Propeller); ++k)
+	{
+		MRJungleObjectAnimations_Propeller[k] = nullptr;
+	}
+	for (int k = 0; k < LengthOfArray(MRJungleObjectAnimations_Lantern); ++k)
+	{
+		MRJungleObjectAnimations_Lantern[k] = nullptr;
+	}
+	for (int k = 0; k < LengthOfArray(MRJungleObjectsCallback); ++k)
+	{
+		MRJungleObjectsCallback[k] = nullptr;
+	}
+	//Clear Lantern materials and remove pointers
+	if (DLLLoaded_Lantern)
+	{
+		material_unregister_ptr(WhiteDiffuseADV02_External, LengthOfArray(WhiteDiffuseADV02_External), &ForceWhiteDiffuse1);
+		for (int k = 0; k < LengthOfArray(WhiteDiffuseADV02_External); ++k)
+		{
+			WhiteDiffuseADV02_External[k] = nullptr;
+		}
+	}
 	delete ADV02_0_Info;
 	delete ADV02_1_Info;
 	delete ADV02_2_Info;
@@ -378,19 +523,14 @@ void LoadLevelFiles_ADV02()
 	ADV02_1_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV02\\1.sa1lvl"));
 	ADV02_2_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV02\\2.sa1lvl"));
 	ADV02_3_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV02\\3.sa1lvl"));
-	LandTable *ADV02_0 = &landtable_00017960; //ADV02_0_Info->getlandtable();
-	LandTable *ADV02_1 = &landtable_0009E7B0; //ADV02_1_Info->getlandtable();
-	LandTable *ADV02_2 = &landtable_00000178; //ADV02_2_Info->getlandtable();
-	LandTable *ADV02_3 = ADV02_3_Info->getlandtable();
+	LandTable *ADV02_0 = ADV02_0_Info->getlandtable(); //&landtable_00017960; //ADV02_0_Info->getlandtable();
+	LandTable *ADV02_1 = ADV02_1_Info->getlandtable(); //&landtable_0009E7B0; //ADV02_1_Info->getlandtable();
+	LandTable *ADV02_2 = ADV02_2_Info->getlandtable(); //&landtable_00000178; //ADV02_2_Info->getlandtable();
+	LandTable *ADV02_3 = ADV02_3_Info->getlandtable(); //&landtable_0000019C; //ADV02_3_Info->getlandtable();
 	ADV02_0->TexList = &texlist_mr00;
 	ADV02_1->TexList = &texlist_mr01;
 	ADV02_2->TexList = &texlist_mr02;
 	ADV02_3->TexList = &texlist_mr03;
-	___ADV02MR02_OBJECTS[141] = (NJS_OBJECT*)ADV02_2_Info->getdata("objectADV02_001615BC");
-	___ADV02MR02_OBJECTS[142] = (NJS_OBJECT*)ADV02_2_Info->getdata("objectADV02_00161B8C");
-	___ADV02MR02_OBJECTS[143] = (NJS_OBJECT*)ADV02_2_Info->getdata("objectADV02_00161FD8");
-	___ADV02MR02_OBJECTS[144] = (NJS_OBJECT*)ADV02_2_Info->getdata("objectADV02_0016221C");
-	___ADV02MR02_OBJECTS[145] = (NJS_OBJECT*)ADV02_2_Info->getdata("objectADV02_00162820");
 	___LANDTABLEMR[0] = ADV02_0;
 	___LANDTABLEMR[1] = ADV02_1;
 	___LANDTABLEMR[2] = ADV02_2;
@@ -401,37 +541,8 @@ void LoadLevelFiles_ADV02()
 	LandTableArray[147] = ADV02_3;
 	ParseMRColFlags();
 	ParseMRMaterials();
-	if (SADXWater_MysticRuins)
-	{
-		//ADV02_0->Col[ADV02_0->COLCount - 2].Flags = 0x81000000;
-		//ADV02_0->Col[ADV02_0->COLCount - 3].Flags = 0x81000000;
-		//ADV02_0->Col[ADV02_0->COLCount - 4].Flags = 0x81000000;
-		//ADV02_0->Col[ADV02_0->COLCount - 5].Flags = 0x81000000;
-	}
-	else
-	{
-		WriteCall((void*)0x52FDC3, MRWater);
-	}
-	if (DLLLoaded_Lantern)
-	{
-		//Jungle stuff
-		WhiteDiffuseADV02_External[0] = &((NJS_MATERIAL*)ADV02_2_Info->getdata("matlistADV02_00148D38_3"))[0];
-		WhiteDiffuseADV02_External[1] = &((NJS_MATERIAL*)ADV02_2_Info->getdata("matlistADV02_00146334_3"))[0];
-		WhiteDiffuseADV02_External[2] = &((NJS_MATERIAL*)ADV02_2_Info->getdata("matlistADV02_0007ABA8"))[0];
-		WhiteDiffuseADV02_External[3] = &((NJS_MATERIAL*)ADV02_2_Info->getdata("matlistADV02_0007ABA8"))[1];
-		WhiteDiffuseADV02_External[4] = &((NJS_MATERIAL*)ADV02_2_Info->getdata("matlistADV02_0007ABA8"))[2];
-		WhiteDiffuseADV02_External[5] = &((NJS_MATERIAL*)ADV02_2_Info->getdata("matlistADV02_0007ABA8"))[3];
-		WhiteDiffuseADV02_External[6] = &((NJS_MATERIAL*)ADV02_2_Info->getdata("matlistADV02_0007ABA8"))[4];
-		WhiteDiffuseADV02_External[7] = &((NJS_MATERIAL*)ADV02_2_Info->getdata("matlistADV02_0007ABA8"))[5];
-		WhiteDiffuseADV02_External[8] = &((NJS_MATERIAL*)ADV02_2_Info->getdata("matlistADV02_0007ABA8"))[6];
-		//Final Egg Base stuff
-		WhiteDiffuseADV02_External[9] = &((NJS_MATERIAL*)ADV02_2_Info->getdata("matlistADV02_00025A74"))[0];
-		WhiteDiffuseADV02_External[10] = &((NJS_MATERIAL*)ADV02_2_Info->getdata("matlistADV02_00025A74"))[1];
-		WhiteDiffuseADV02_External[12] = &((NJS_MATERIAL*)ADV02_2_Info->getdata("matlistADV02_00025A74"))[2];
-		WhiteDiffuseADV02_External[12] = &((NJS_MATERIAL*)ADV02_2_Info->getdata("matlistADV02_00025A74"))[3];
-		WhiteDiffuseADV02_External[13] = &((NJS_MATERIAL*)ADV02_2_Info->getdata("matlistADV02_00025A74"))[4];
-		material_register_ptr(WhiteDiffuseADV02_External, LengthOfArray(WhiteDiffuseADV02_External), &ForceWhiteDiffuse1);
-	}
+	WriteCall((void*)0x52FDC3, MRWater_Display);
+	if (DLLLoaded_Lantern) material_register_ptr(WhiteDiffuseADV02_External, LengthOfArray(WhiteDiffuseADV02_External), &ForceWhiteDiffuse1);
 }
 
 void ADV02_Init()
@@ -626,14 +737,6 @@ void ADV02_Init()
 	___ADV02_OBJECTS[70]->basicdxmodel->mats[0].diffuse.color = 0xFFB2B2B2;
 	___ADV02_OBJECTS[69]->basicdxmodel->mats[0].diffuse.color = 0xFFB2B2B2;
 	___ADV02_MODELS[15] = &attachADV02_0007C3B8; //Master Emerald glow
-	//WriteData<1>((void*)0x52F800, 0xC3u); //Disable SADX jungle
-	___ADV02MR02_OBJECTS[118] = &object_00148D04;
-	___ADV02MR02_OBJECTS[119] = &object_0014B8F0_2;
-	___ADV02MR02_OBJECTS[135] = &object_0012E6C8;
-	___ADV02MR02_OBJECTS[136] = &objectADV02_001A08EC;
-	___ADV02MR02_OBJECTS[137] = &objectADV02_001A08EC;
-	___ADV02MR02_OBJECTS[138] = &objectADV02_001A08EC;
-	___ADV02MR02_OBJECTS[139] = &objectADV02_001A08EC;
 	___ADV02_ACTIONS[11]->object = &objectADV02_001B5F40; //Torokko
 	___ADV02_ACTIONS[29]->object = &objectADV02_001BBA04; //Ice Stone
 	___ADV02_ACTIONS[32]->object = &objectADV02_001F41C0; //Rustling grass
@@ -649,17 +752,40 @@ void ADV02_OnFrame()
 {
 	if (!IsGamePaused())
 	{
-		for (int i = 0; i < 10; ++i)
+		if (CurrentAct != 1 && CurrentAct != 3)
 		{
-			if (UVAnimationData[i].uv_pointer) AnimateUVs(&UVAnimationData[i]);
+			for (int i = 0; i < 10; ++i)
+			{
+				if (UVAnimationData[i].uv_pointer) AnimateUVs(&UVAnimationData[i]);
+			}
+		}
+		//Animate rotating stuff in MR Jungle
+		if (CurrentAct == 2)
+		{
+			MRGeoAnimFrame += 0.4f*FramerateSetting;
+			if (MRGeoAnimFrame >= 120.0f) MRGeoAnimFrame = 0;
+			for (int q = 0; q < LengthOfArray(MRJungleObjectAnimations_Propeller); ++q)
+			{
+				if (MRJungleObjectAnimations_Propeller[q])
+				{
+					MRJungleObjectAnimations_Propeller[q]->ang[0] = (MRJungleObjectAnimations_Propeller[q]->ang[0] + (1024 - 512 * (q % 2)) * FramerateSetting) % 65535;
+				}
+			}
+			for (int q = 0; q < LengthOfArray(MRJungleObjectAnimations_Lantern); ++q)
+			{
+				if (MRJungleObjectAnimations_Lantern[q])
+				{
+					MRJungleObjectAnimations_Lantern[q]->ang[1] = (MRJungleObjectAnimations_Lantern[q]->ang[1] + (256 * FramerateSetting)) % 65535;
+				}
+			}
 		}
 	}
+	//Prevent dynamic direction from being adjusted in Eggman's base
 	if (CurrentLevel == LevelIDs_MysticRuins && CurrentAct == 3)
 	{
 		CasinoLightRotation_Y = 0;
 		CasinoLightRotation_Z = 0;
 	}
-	//uvADV02_anim = (uvADV02_anim + 1) % 255;
 	//Evening and night materials Act 3
 	if (CurrentLevel == 33 && CurrentAct == 2)
 	{
@@ -677,50 +803,10 @@ void ADV02_OnFrame()
 		matlistADV02_00208504[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
 		matlistADV02_00208504[2].attrflags |= NJD_FLAG_IGNORE_LIGHT;
 	}
+	//Dynamic fog in the jungle + cutscene exclusions
 	auto entity = EntityData1Ptrs[0];
-	if (ADV02_0_Info && GameState != 16 && CurrentLevel == 33 && CurrentAct == 0)
+	if (GameState != 16 && CurrentLevel == 33 && CurrentAct == 2)
 	{
-		//if (GameMode == GameModes_Mission && CurrentCharacter == 5) LANDTABLEMR[0]->Col[LANDTABLEMR[0]->COLCount - 1].Flags = 0x00000001; else LANDTABLEMR[0]->Col[LANDTABLEMR[0]->COLCount - 1].Flags = 0x00000000;
-		for (unsigned int q = 0; q < LengthOfArray(uvADV02_00075EC0_0); q++)
-		{
-			((NJS_TEX*)ADV02_0_Info->getdata("uvADV02_00075EC0"))[q].v = uvADV02_00075EC0_0[q].v + uvADV02_anim;
-		}
-		for (unsigned int q2 = 0; q2 < LengthOfArray(uvADV02_000755A4_0); q2++)
-		{
-			((NJS_TEX*)ADV02_0_Info->getdata("uvADV02_000755A4"))[q2].v = uvADV02_000755A4_0[q2].v - uvADV02_anim;
-		}
-		/*if (MRSeaAnimation1 > 139) MRSeaAnimation1 = 130;
-		if (MRSeaAnimation2 > 154) MRSeaAnimation2 = 140;
-		((NJS_MATERIAL*)ADV02_0_Info->getdata("matlistADV02_0007523C"))[0].attr_texId = MRSeaAnimation1;
-		matlistADV02_00057F04[0].attr_texId = MRSeaAnimation1;
-		((NJS_MATERIAL*)ADV02_0_Info->getdata("matlistADV02_00053510"))[0].attr_texId = MRSeaAnimation2;
-		((NJS_MATERIAL*)ADV02_0_Info->getdata("matlistADV02_00053010"))[0].attr_texId = MRSeaAnimation2;
-		((NJS_MATERIAL*)ADV02_0_Info->getdata("matlistADV02_00059768"))[0].attr_texId = MRSeaAnimation2;
-		((NJS_MATERIAL*)ADV02_0_Info->getdata("matlistADV02_000594C0"))[0].attr_texId = MRSeaAnimation2;
-		if (FramerateSetting < 2 && FrameCounter % 5 == 0 || FramerateSetting == 2 && FrameCounter % 2 == 0 || FramerateSetting > 2)
-		{
-			MRSeaAnimation1++;
-			MRSeaAnimation2++;
-		}*/
-	}
-	if (ADV02_1_Info && GameState != 16 && CurrentLevel == 33 && CurrentAct == 1)
-	{
-		if (IceCapCaveWaterAnimation > 89) IceCapCaveWaterAnimation = 76;
-		((NJS_MATERIAL*)ADV02_1_Info->getdata("matlistADV02_000A3884"))[0].attr_texId = IceCapCaveWaterAnimation;
-		((NJS_MATERIAL*)ADV02_1_Info->getdata("matlistADV02_000A6CF8"))[1].attr_texId = IceCapCaveWaterAnimation;
-		((NJS_MATERIAL*)ADV02_1_Info->getdata("matlistADV02_000A6CF8"))[2].attr_texId = IceCapCaveWaterAnimation;
-		((NJS_MATERIAL*)ADV02_1_Info->getdata("matlistADV02_000A6CF8"))[3].attr_texId = IceCapCaveWaterAnimation;
-		if (FramerateSetting < 2 && FrameCounter % 2 == 0 || FramerateSetting >= 2)
-		{
-			IceCapCaveWaterAnimation++;
-		}
-	}
-	if (ADV02_2_Info && GameState != 16 && CurrentLevel == 33 && CurrentAct == 2)
-	{
-		((NJS_OBJECT*)ADV02_2_Info->getdata("objectADV02_0007B4A8"))->ang[1] = (((NJS_OBJECT*)ADV02_2_Info->getdata("objectADV02_0007B4A8"))->ang[1] + 256) % 65535;
-		((NJS_OBJECT*)ADV02_2_Info->getdata("objectADV02_0007AB74"))->ang[1] = (((NJS_OBJECT*)ADV02_2_Info->getdata("objectADV02_0007AB74"))->ang[1] + 256) % 65535;
-		((NJS_OBJECT*)ADV02_2_Info->getdata("objectADV02_0007A904"))->ang[0] = (((NJS_OBJECT*)ADV02_2_Info->getdata("objectADV02_0007A904"))->ang[0] + 512) % 65535;
-		((NJS_OBJECT*)ADV02_2_Info->getdata("objectADV02_0007A6CC"))->ang[0] = (((NJS_OBJECT*)ADV02_2_Info->getdata("objectADV02_0007A6CC"))->ang[0] + 1024) % 65535;
 		if (Camera_Data1 != nullptr && Camera_Data1->Position.z < -548 && Camera_Data1->Position.z > -1560 && Camera_Data1->Position.x < -80 && Camera_Data1->Position.x > -900)
 		{
 			InsideTemple = 1;
@@ -759,26 +845,6 @@ void ADV02_OnFrame()
 				if (CurrentFogLayer > -4000.0f) CurrentFogLayer = CurrentFogLayer - 64.0f;
 				if (CurrentFogDist > -16000.0f) CurrentFogDist = CurrentFogDist - 128.0f;
 			}
-		}
-		for (unsigned int q6 = 0; q6 < LengthOfArray(uvADV02_00162054_0); q6++)
-		{
-			((NJS_TEX*)ADV02_2_Info->getdata("uvADV02_00162054"))[q6].v = uvADV02_00162054_0[q6].v + uvADV02_anim;
-		}
-		for (unsigned int q7 = 0; q7 < LengthOfArray(uvADV02_001622D8_0); q7++)
-		{
-			((NJS_TEX*)ADV02_2_Info->getdata("uvADV02_001622D8"))[q7].v = uvADV02_001622D8_0[q7].v + uvADV02_anim;
-		}
-		for (unsigned int q3 = 0; q3 < LengthOfArray(uvADV02_00160D9C_0); q3++)
-		{
-			((NJS_TEX*)ADV02_2_Info->getdata("uvADV02_00160D9C"))[q3].v = uvADV02_00160D9C_0[q3].v - uvADV02_anim;
-		}
-		for (unsigned int q4 = 0; q4 < LengthOfArray(uvADV02_0016166C_0); q4++)
-		{
-			((NJS_TEX*)ADV02_2_Info->getdata("uvADV02_0016166C"))[q4].v = uvADV02_0016166C_0[q4].v + uvADV02_anim;
-		}
-		for (unsigned int q5 = 0; q5 < LengthOfArray(uvADV02_00161C18_0); q5++)
-		{
-			((NJS_TEX*)ADV02_2_Info->getdata("uvADV02_00161C18"))[q5].v = uvADV02_00161C18_0[q5].v + uvADV02_anim;
 		}
 	}
 }

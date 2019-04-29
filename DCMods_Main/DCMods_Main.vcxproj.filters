@@ -674,5 +674,11 @@
     <ClInclude Include="Data\MR02_Jungle.h">
       <Filter>Header Files\Levels\ADV02MODELS</Filter>
     </ClInclude>
+    <ClInclude Include="Data\MR03_FinalEgg.h">
+      <Filter>Header Files\Levels\ADV02MODELS</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\MR_JungleGeoAnim.h">
+      <Filter>Header Files\Levels\ADV02MODELS</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
