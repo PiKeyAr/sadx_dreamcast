@@ -93,6 +93,7 @@ void ParseMRMaterials()
 	Uint32 materialflags;
 	NJS_MATERIAL *material;
 	NJS_TEX *uv;
+	int texid;
 	LandTable *landtable;
 	//Station area
 	landtable = ___LANDTABLEMR[0];
@@ -140,6 +141,55 @@ void ParseMRMaterials()
 			{
 				material = (NJS_MATERIAL*)&landtable->Col[j].Model->basicdxmodel->mats[k];
 				AddTextureAnimation(material, false, 2, 76, 89, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+			}
+		}
+	}
+	landtable = ___LANDTABLEMR[2];
+	for (unsigned int j = 0; j < landtable->COLCount; j++)
+	{
+		for (int k = 0; k < landtable->Col[j].Model->basicdxmodel->nbMat; ++k)
+		{
+			texid = landtable->Col[j].Model->basicdxmodel->mats[k].attr_texId;
+			materialflags = landtable->Col[j].Model->basicdxmodel->mats[k].attrflags;
+			//UVAnim 1
+			if ((materialflags & NJD_CUSTOMFLAG_UVANIM1) && !(materialflags & NJD_CUSTOMFLAG_UVANIM2))
+			{
+				if (!(landtable->Col[j].Flags & ColFlags_UvManipulation)) landtable->Col[j].Flags |= ColFlags_UvManipulation;
+				uv = landtable->Col[j].Model->basicdxmodel->meshsets[k].vertuv;
+				AddUVAnimation(uv, 32, 2, 0, 1);
+				PrintDebug("Added UVAnim1\n");
+			}
+			//UVAnim 2
+			if ((materialflags & NJD_CUSTOMFLAG_UVANIM2) && !(materialflags & NJD_CUSTOMFLAG_UVANIM1))
+			{
+				if (!(landtable->Col[j].Flags & ColFlags_UvManipulation)) landtable->Col[j].Flags |= ColFlags_UvManipulation;
+				uv = landtable->Col[j].Model->basicdxmodel->meshsets[k].vertuv;
+				AddUVAnimation(uv, 14, 2, 0, 1);
+				PrintDebug("Added UVAnim2\n");
+			}
+			//UVAnim 3
+			if ((materialflags & NJD_CUSTOMFLAG_UVANIM2) && (materialflags & NJD_CUSTOMFLAG_UVANIM1))
+			{
+				if (!(landtable->Col[j].Flags & ColFlags_UvManipulation)) landtable->Col[j].Flags |= ColFlags_UvManipulation;
+				uv = landtable->Col[j].Model->basicdxmodel->meshsets[k].vertuv;
+				if (texid == 83)
+				{
+					AddUVAnimation(uv, 126, 2, 0, -1);
+					//PrintDebug("Added UVAnim4 - 126\n");
+				}
+				else 
+				{
+					if (landtable->Col[j].Model->basicdxmodel->meshsets[k].nbMesh == 3)
+					{
+						AddUVAnimation(uv, 48, 2, 0, 1);
+						//PrintDebug("Added UVAnim3 - 48\n");
+					}
+					else
+					{
+						AddUVAnimation(uv, 46, 2, 0, 1);
+						//PrintDebug("Added UVAnim3 - 46\n");
+					}
+				}
 			}
 		}
 	}
@@ -599,7 +649,7 @@ void ADV02_OnFrame()
 {
 	if (!IsGamePaused())
 	{
-		for (int i = 0; i < 5; ++i)
+		for (int i = 0; i < 10; ++i)
 		{
 			if (UVAnimationData[i].uv_pointer) AnimateUVs(&UVAnimationData[i]);
 		}
@@ -609,7 +659,7 @@ void ADV02_OnFrame()
 		CasinoLightRotation_Y = 0;
 		CasinoLightRotation_Z = 0;
 	}
-	uvADV02_anim = (uvADV02_anim + 1) % 255;
+	//uvADV02_anim = (uvADV02_anim + 1) % 255;
 	//Evening and night materials Act 3
 	if (CurrentLevel == 33 && CurrentAct == 2)
 	{
