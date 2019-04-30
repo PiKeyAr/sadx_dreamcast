@@ -179,21 +179,6 @@
     <ClInclude Include="targetver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Data\ADV_MR00(StationArea).h">
-      <Filter>Header Files\Levels\ADV02MODELS</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\ADV_MR01(AngelIsland).h">
-      <Filter>Header Files\Levels\ADV02MODELS</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\ADV_MR01_Fixes.h">
-      <Filter>Header Files\Levels\ADV02MODELS</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\ADV_MR02(JungleArea).h">
-      <Filter>Header Files\Levels\ADV02MODELS</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\ADV_MR03(FinalEggEntrance).h">
-      <Filter>Header Files\Levels\ADV02MODELS</Filter>
-    </ClInclude>
     <ClInclude Include="Data\ADV01_0.h">
       <Filter>Header Files\Levels\ADV01MODELS</Filter>
     </ClInclude>
@@ -596,9 +581,6 @@
     <ClInclude Include="Data\Zero.h">
       <Filter>Header Files\Levels\Bosses</Filter>
     </ClInclude>
-    <ClInclude Include="Data\TornadoCrash.h">
-      <Filter>Header Files\Levels\ADV02MODELS</Filter>
-    </ClInclude>
     <ClInclude Include="OStandLight.h">
       <Filter>Header Files\Levels\FinalEgg</Filter>
     </ClInclude>
@@ -685,6 +667,9 @@
     </ClInclude>
     <ClInclude Include="Data\ADV01C_Objects.h">
       <Filter>Header Files\Levels\ADV01CMODELS</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\TornadoCrash.h">
+      <Filter>Header Files\Levels\General</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

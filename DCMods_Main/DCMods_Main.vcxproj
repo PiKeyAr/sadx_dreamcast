@@ -142,11 +142,6 @@
     <ClInclude Include="Data\ADV03_00_PC.h" />
     <ClInclude Include="Data\ADV03_01.h" />
     <ClInclude Include="Data\ADV03_02.h" />
-    <ClInclude Include="Data\ADV_MR00(StationArea).h" />
-    <ClInclude Include="Data\ADV_MR01(AngelIsland).h" />
-    <ClInclude Include="Data\ADV_MR01_Fixes.h" />
-    <ClInclude Include="Data\ADV_MR02(JungleArea).h" />
-    <ClInclude Include="Data\ADV_MR03(FinalEggEntrance).h" />
     <ClInclude Include="Data\Animals.h" />
     <ClInclude Include="Data\button.h" />
     <ClInclude Include="Data\Buyon.h" />

@@ -38,7 +38,6 @@ NJS_TEXLIST texlist_mrtrain = { arrayptrandlength(textures_mrtrain) };
 #include "MR03_FinalEgg.h"
 */
 
-DataPointer(float, dword_111DB90, 0x111DB90);
 DataPointer(float, CurrentFogDist, 0x03ABDC64);
 DataPointer(float, CurrentFogLayer, 0x03ABDC60);
 DataArray(FogData, MR1FogDay, 0x01103448, 3);
@@ -54,7 +53,6 @@ DataArray(DrawDistance, MR2DrawDist, 0x01103400, 3);
 DataArray(DrawDistance, MR3DrawDist, 0x01103418, 3);
 DataArray(DrawDistance, MR4DrawDist, 0x01103430, 3);
 FunctionPointer(void, sub_405450, (NJS_ACTION *a1, float frame, float scale), 0x405450);
-FunctionPointer(void, sub_409450, (NJS_MODEL_SADX *a1, char a2), 0x409450);
 static bool InsideTemple = 0;
 static float MRGeoAnimFrame = 0;
 NJS_OBJECT* MROcean = nullptr;
