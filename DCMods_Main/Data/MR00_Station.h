@@ -61764,7 +61764,7 @@ extern "C" __declspec(dllexport) NJS_VECTOR normal_000A3660[] = {
 
 extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_000A3AE0 = { vertex_00071440, normal_0007177C, LengthOfArray<Sint32>(vertex_00071440), meshlist_000713C8, matlist_000A2FE8, LengthOfArray<Uint16>(meshlist_000713C8), LengthOfArray<Uint16>(matlist_000A2FE8), { 0, -0.00001f, 0 }, 288.5835f, NULL };
 
-extern "C" __declspec(dllexport) NJS_OBJECT object_00071AE0_2 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_000A3AE0, 90.7555f, -32.89605f, -117.1203f, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_00071AE0_2 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_000A3AE0, 90.7555f, -32.89605f, -119.1203f, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
 extern "C" __declspec(dllexport) COL collist_00015E60[] = {
 	{ { 1443.416f, 247.6017f, 744.9271f }, 158.1291f, 0, 0, &objectSADX_000AC564, 0, 0x20001001 }, //SADX collision for Tails' workshop
