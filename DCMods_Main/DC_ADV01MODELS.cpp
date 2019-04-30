@@ -21,6 +21,13 @@ NJS_TEXLIST texlist_ec04 = { arrayptrandlength(textures_ec04) };
 NJS_TEXNAME textures_ec05[40];
 NJS_TEXLIST texlist_ec05 = { arrayptrandlength(textures_ec05) };
 
+#include "ADV01_0.h"
+#include "ADV01_1.h"
+#include "ADV01_2.h"
+#include "ADV01_3.h"
+#include "ADV01_4.h"
+#include "ADV01_5.h"
+
 FunctionPointer(void, sub_409FB0, (NJS_ACTION *a1, float frameNumber), 0x409FB0);
 FunctionPointer(void, sub_6F4570, (ObjectMaster *a1), 0x6F4570);
 FunctionPointer(void, sub_407A00, (NJS_MODEL_SADX *model, float scale), 0x407A00);
@@ -130,47 +137,9 @@ void sub_10001050(NJS_OBJECT *a1)
 	}
 }
 
-void __cdecl SetClip_EC00(signed int cliplevel)
+void __cdecl SetClip_EggCarrier(signed int cliplevel)
 {
-	if (ADV01_0_Info)
-	{
-		if (cliplevel >= 2)
-		{
-
-			sub_10001050((NJS_OBJECT*)ADV01_0_Info->getdata("objectADV01_00032A00"));
-			sub_10001050((NJS_OBJECT*)ADV01_0_Info->getdata("objectADV01_00032D2C"));
-			sub_10001050((NJS_OBJECT*)ADV01_0_Info->getdata("objectADV01_0003335C"));
-			sub_10001050((NJS_OBJECT*)ADV01_0_Info->getdata("objectADV01_00033688"));
-			ADV01_0_Info->getlandtable()->COLCount -= 4;
-		}
-		else
-		{
-			ADV01_0_Info->getlandtable()->Col = &((COL*)ADV01_0_Info->getdata("collist_0015F764"))[4];
-			ADV01_0_Info->getlandtable()->COLCount -= 4;
-		}
-	}
-}
-
-void __cdecl SetClip_EC01(signed int cliplevel)
-{
-	if (ADV01_1_Info)
-	{
-		if (cliplevel >= 2)
-		{
-			sub_10001050((NJS_OBJECT*)ADV01_1_Info->getdata("objectADV01_0007F56C"));
-			sub_10001050((NJS_OBJECT*)ADV01_1_Info->getdata("objectADV01_0007F898"));
-			sub_10001050((NJS_OBJECT*)ADV01_1_Info->getdata("objectADV01_0007EF3C"));
-			sub_10001050((NJS_OBJECT*)ADV01_1_Info->getdata("objectADV01_0007EC10"));
-			sub_10001050((NJS_OBJECT*)ADV01_1_Info->getdata("objectADV01_0008241C_2"));
-			sub_10001050((NJS_OBJECT*)ADV01_1_Info->getdata("objectADV01_00082A7C_2"));
-			ADV01_1_Info->getlandtable()->COLCount -= 6;
-		}
-		else
-		{
-			ADV01_1_Info->getlandtable()->Col = &((COL*)ADV01_1_Info->getdata("collist_00162284"))[6];
-			ADV01_1_Info->getlandtable()->COLCount -= 6;
-		}
-	}
+	PrintDebug("Fuck this\n");
 }
 
 void __cdecl EggCarrierSkyBox(EntityData1 *a1, float a2)
@@ -179,6 +148,7 @@ void __cdecl EggCarrierSkyBox(EntityData1 *a1, float a2)
 
 	if (!MissedFrames)
 	{
+		Direct3D_SetNearFarPlanes(SkyboxDrawDistance.Minimum, SkyboxDrawDistance.Maximum);
 		DisableFog();
 		njSetTexture(&EC_SKY_TEXLIST);
 		njPushMatrix(0);
@@ -189,6 +159,7 @@ void __cdecl EggCarrierSkyBox(EntityData1 *a1, float a2)
 		njScale(0, 1.0, 1.0, 1.0);
 		njPopMatrix(1u);
 		ToggleStageFog();
+		Direct3D_SetNearFarPlanes(LevelDrawDistance.Minimum, LevelDrawDistance.Maximum);
 	}
 }
 
@@ -285,12 +256,12 @@ void LoadLevelFiles_ADV01()
 	ADV01_3_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV01\\3.sa1lvl"));
 	ADV01_4_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV01\\4.sa1lvl"));
 	ADV01_5_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV01\\5.sa1lvl"));
-	LandTable *ADV01_0 = ADV01_0_Info->getlandtable();
-	LandTable *ADV01_1 = ADV01_1_Info->getlandtable();
-	LandTable *ADV01_2 = ADV01_2_Info->getlandtable();
-	LandTable *ADV01_3 = ADV01_3_Info->getlandtable();
-	LandTable *ADV01_4 = ADV01_4_Info->getlandtable();
-	LandTable *ADV01_5 = ADV01_5_Info->getlandtable();
+	LandTable *ADV01_0 = &landtable_00162260; // ADV01_0_Info->getlandtable();
+	LandTable *ADV01_1 = &landtable_001631F0; // ADV01_1_Info->getlandtable();
+	LandTable *ADV01_2 = &landtable_00163CE8; // ADV01_2_Info->getlandtable();
+	LandTable *ADV01_3 = &landtable_001650C8; // ADV01_3_Info->getlandtable();
+	LandTable *ADV01_4 = &landtable_00165830; // ADV01_4_Info->getlandtable();
+	LandTable *ADV01_5 = &landtable_001666F4; // ADV01_5_Info->getlandtable();
 	ADV01_0->TexList = &texlist_ec00;
 	ADV01_1->TexList = &texlist_ec01;
 	ADV01_2->TexList = &texlist_ec02;
@@ -309,8 +280,6 @@ void LoadLevelFiles_ADV01()
 	LandTableArray[115] = ADV01_3;
 	LandTableArray[116] = ADV01_4;
 	LandTableArray[117] = ADV01_5;
-	SetClip_EC00(ClipLevel);
-	SetClip_EC01(ClipLevel);
 	if (DLLLoaded_Lantern)
 	{
 		//Level stuff
@@ -426,8 +395,13 @@ void ADV01_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 	WriteCall((void*)0x51F669, ODoseiFix);
 	WriteCall((void*)0x51EB2C, OLivingLightFix);
 	WriteCall((void*)0x0051AB88, RenderEggCarrier0NPC); //Chaos 4 glitch fix
-	WriteJump((void*)0x51B210, EggCarrierSkyBottom);
-	WriteJump((void*)0x51B3B0, EggCarrierSkyBox);
+	WriteJump((void*)0x51B210, EggCarrierSkyBox);
+	WriteJump((void*)0x51B3B0, EggCarrierSkyBottom);
+	//Swap EC skybox draw calls to render the outer part last in Acts 1/2
+	WriteCall((void*)0x51B717, EggCarrierSkyBottom);
+	WriteCall((void*)0x51B76F, EggCarrierSkyBottom);
+	WriteCall((void*)0x51B71F, EggCarrierSkyBox);
+	WriteCall((void*)0x51B77A, EggCarrierSkyBox);
 	//Fix camera in Amy-Gamma prison cutscene
 	WriteData((float*)0x006A4EBE, -134.0f); //X1
 	WriteData((float*)0x006A4EB9, 15.0f); //Y1
@@ -461,9 +435,9 @@ void ADV01_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 	{
 		ReplaceGeneric("OBJ_EC00.PVM", "OBJ_EC00_DC_OLD.PVM");
 	}
-	WriteJump((char *)GetProcAddress(GetModuleHandle(L"ADV01MODELS"), "SetClip_EC00"), SetClip_EC00);
-	WriteJump((char *)GetProcAddress(GetModuleHandle(L"ADV01MODELS"), "SetClip_EC01"), SetClip_EC01);
-	WriteData<5>((void *)0x0051BB8C, 0x90); //disable that stupid DisableFog thing
+	WriteJump((char *)GetProcAddress(GetModuleHandle(L"ADV01MODELS"), "SetClip_EC00"), SetClip_EggCarrier);
+	WriteJump((char *)GetProcAddress(GetModuleHandle(L"ADV01MODELS"), "SetClip_EC01"), SetClip_EggCarrier);
+	WriteData<5>((void *)0x0051BB8C, 0x90); //Don't disable fog in EC transformation cutscene
 	((NJS_OBJECT*)0x03104130)->basicdxmodel->mats[0].diffuse.color = 0xFFFFFFFF;
 	___ADV01_ACTIONS[2]->object = &objectADV01_0019795C; //OEggChair
 	___ADV01_ACTIONS[2]->motion = &_197dbc; //OEggChair
@@ -503,12 +477,12 @@ void ADV01_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 	___ADV01_OBJECTS[70]->child->model = &attachADV01_001714D8; //Monorail back
 	WriteData<5>((void*)0x005244D6, 0x90); //Disable light flickering
 	//Fix materials on books
-	ADV01_OBJECTS[12]->basicdxmodel->mats[0].diffuse.color = 0xFFB2B2B2;
-	ADV01_OBJECTS[12]->basicdxmodel->mats[1].diffuse.color = 0xFFB2B2B2;
-	ADV01_OBJECTS[12]->basicdxmodel->mats[2].diffuse.color = 0xFFB2B2B2;
-	ADV01_OBJECTS[11]->basicdxmodel->mats[0].diffuse.color = 0xFFB2B2B2;
-	ADV01_OBJECTS[11]->basicdxmodel->mats[1].diffuse.color = 0xFFB2B2B2;
-	ADV01_OBJECTS[11]->basicdxmodel->mats[2].diffuse.color = 0xFFB2B2B2;
+	ADV01_OBJECTS[12]->basicdxmodel->mats[0].diffuse.color = 0xFFFFFFFF;
+	ADV01_OBJECTS[12]->basicdxmodel->mats[1].diffuse.color = 0xFFFFFFFF;
+	ADV01_OBJECTS[12]->basicdxmodel->mats[2].diffuse.color = 0xFFFFFFFF;
+	ADV01_OBJECTS[11]->basicdxmodel->mats[0].diffuse.color = 0xFFFFFFFF;
+	ADV01_OBJECTS[11]->basicdxmodel->mats[1].diffuse.color = 0xFFFFFFFF;
+	ADV01_OBJECTS[11]->basicdxmodel->mats[2].diffuse.color = 0xFFFFFFFF;
 	//Fix materials on elevator buttons
 	WriteData((float*)0x0051E818, 1.0f);
 	WriteData((float*)0x0051E81D, 1.0f);
@@ -519,7 +493,7 @@ void ADV01_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 		SkyboxScale_EggCarrier4[i].x = 1.0f;
 		SkyboxScale_EggCarrier4[i].y = 1.0f;
 		SkyboxScale_EggCarrier4[i].z = 1.0f;
-		EggCarrierOutsideSkyDrawDist3[i].Maximum = -7000;
+		EggCarrierOutsideSkyDrawDist3[i].Maximum = -9000;
 		EggCarrierOutsideDrawDist1[i].Maximum = -11000;
 		EggCarrierOutsideDrawDist2[i].Maximum = -11000;
 		EggCarrierOutsideDrawDist3[i].Maximum = -11000;
