@@ -162,6 +162,9 @@
     <ClCompile Include="GenericFunctions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="DC_ADV01CMODELS.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Data\textures.h">
@@ -679,6 +682,9 @@
     </ClInclude>
     <ClInclude Include="Data\MR_JungleGeoAnim.h">
       <Filter>Header Files\Levels\ADV02MODELS</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\ADV01C_Objects.h">
+      <Filter>Header Files\Levels\ADV01CMODELS</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

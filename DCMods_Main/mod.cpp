@@ -388,6 +388,7 @@ extern "C"
 			WriteCall((void*)0x4232C9, LoadLevelFiles_ADV01);
 			WriteCall((void*)0x4233BB, LoadLevelFiles_ADV01C);
 			ADV01_Init(config, helperFunctions);
+			ADV01C_Init(config, helperFunctions);
 		}
 		FixMRBase_Apply(config, helperFunctions);
 		if (EnableMysticRuins)
@@ -531,7 +532,7 @@ extern "C"
 	{
 		if (EnableDCBranding) Branding_OnFrame();
 		if (EnableStationSquare) ADV00_OnFrame();
-		if (EnableEggCarrier) ADV01_OnFrame();
+		if (EnableEggCarrier) ADV01C_OnFrame();
 		if (EnableMysticRuins) ADV02_OnFrame();
 		if (EnablePast) ADV03_OnFrame();
 		Bosses_OnFrame();
