@@ -687,8 +687,7 @@ NJS_MATERIAL* CharacterStuff[] = {
 };
 
 NJS_MATERIAL* WhiteDiffuseADV00_External[] = {
-	//Level stuff
-	nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,
+	nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,
 };
 
 NJS_MATERIAL* WhiteDiffuseADV00[] = {
@@ -878,7 +877,7 @@ void ParseSSColFlags()
 	}
 }
 
-void AddWhiteDiffuseMaterial_Night(NJS_MATERIAL *material)
+void AddWhiteDiffuseMaterial_SS_Night(NJS_MATERIAL *material)
 {
 	for (int q = 0; q < LengthOfArray(WhiteDiffuseADV00_Night); ++q)
 	{
@@ -891,7 +890,7 @@ void AddWhiteDiffuseMaterial_Night(NJS_MATERIAL *material)
 	}
 }
 
-void AddWhiteDiffuseMaterial(NJS_MATERIAL *material)
+void AddWhiteDiffuseMaterial_SS(NJS_MATERIAL *material)
 {
 	for (int q = 0; q < LengthOfArray(WhiteDiffuseADV00_External); ++q)
 	{
@@ -909,6 +908,21 @@ void ParseSSMaterials()
 	Uint32 materialflags;
 	NJS_MATERIAL *material;
 	LandTable *landtable;
+	//Casino
+	landtable = ___LANDTABLESS[1];
+	for (unsigned int j = 0; j < landtable->COLCount; j++)
+	{
+		for (int k = 0; k < landtable->Col[j].Model->basicdxmodel->nbMat; ++k)
+		{
+			//White diffuse night
+			materialflags = landtable->Col[j].Model->basicdxmodel->mats[k].attrflags;
+			if (materialflags & NJD_CUSTOMFLAG_WHITE)
+			{
+				material = (NJS_MATERIAL*)&landtable->Col[j].Model->basicdxmodel->mats[k];
+				AddWhiteDiffuseMaterial_SS(material);
+			}
+		}
+	}
 	//Sewers
 	landtable = ___LANDTABLESS[2];
 	for (unsigned int j = 0; j < landtable->COLCount; j++)
@@ -920,7 +934,7 @@ void ParseSSMaterials()
 			if (materialflags & NJD_CUSTOMFLAG_WHITE)
 			{
 				material = (NJS_MATERIAL*)&landtable->Col[j].Model->basicdxmodel->mats[k];
-				AddWhiteDiffuseMaterial(material);
+				AddWhiteDiffuseMaterial_SS(material);
 			}
 			//Texanim 1
 			if (materialflags & NJD_CUSTOMFLAG_TEXANIM1)
@@ -940,7 +954,7 @@ void ParseSSMaterials()
 			if ((materialflags & NJD_CUSTOMFLAG_NIGHT) && (materialflags & NJD_CUSTOMFLAG_WHITE))
 			{
 				material = (NJS_MATERIAL*)&landtable->Col[j].Model->basicdxmodel->mats[k];
-				AddWhiteDiffuseMaterial_Night(material);
+				AddWhiteDiffuseMaterial_SS_Night(material);
 			}
 			//Texanim 1
 			if ((materialflags & NJD_CUSTOMFLAG_TEXANIM1) && !(materialflags & NJD_CUSTOMFLAG_TEXANIM2))
@@ -972,7 +986,7 @@ void ParseSSMaterials()
 			if ((materialflags & NJD_CUSTOMFLAG_NIGHT) && (materialflags & NJD_CUSTOMFLAG_WHITE))
 			{
 				material = (NJS_MATERIAL*)&landtable->Col[j].Model->basicdxmodel->mats[k];
-				AddWhiteDiffuseMaterial_Night(material);
+				AddWhiteDiffuseMaterial_SS_Night(material);
 			}
 			//Texanim 1
 			if ((materialflags & NJD_CUSTOMFLAG_TEXANIM1) && !(materialflags & NJD_CUSTOMFLAG_TEXANIM2))

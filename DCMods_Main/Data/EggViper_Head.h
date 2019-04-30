@@ -2139,7 +2139,7 @@ extern "C" __declspec(dllexport) NJS_TEX uv_0003CC84[] = {
 	{ 0, 9 }
 };
 
-extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_0003CC98[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_0003CC98_EV[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 1, poly_0003CC78, NULL, NULL, NULL, uv_0003CC84, NULL }
 };
 
@@ -2159,7 +2159,7 @@ extern "C" __declspec(dllexport) NJS_VECTOR normal_0003CCEC[] = {
 	{ -0.021972f, 0.687358f, -0.7259859f }
 };
 
-extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_0003CD28 = { vertex_0003CCB0, normal_0003CCEC, LengthOfArray<Sint32>(vertex_0003CCB0), meshlist_0003CC98, matlist_0003CC64, LengthOfArray<Uint16>(meshlist_0003CC98), LengthOfArray<Uint16>(matlist_0003CC64),{ -0.257645f, -5.480481f, -4.467324f }, 7.11884f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_0003CD28 = { vertex_0003CCB0, normal_0003CCEC, LengthOfArray<Sint32>(vertex_0003CCB0), meshlist_0003CC98_EV, matlist_0003CC64, LengthOfArray<Uint16>(meshlist_0003CC98_EV), LengthOfArray<Uint16>(matlist_0003CC64),{ -0.257645f, -5.480481f, -4.467324f }, 7.11884f, NULL };
 
 extern "C" __declspec(dllexport) NJS_OBJECT object_0003CD50 = { NJD_EVAL_UNIT_SCL, &attach_0003CD28, 7.680298f, -7.955827f, -9.667521f, 0, 0, 0xFFFF9EA0, 1, 1, 1, &object_0003CC30, &object_0003CB10 };
 
@@ -3313,7 +3313,7 @@ extern "C" __declspec(dllexport) NJS_MATERIAL matlist_0003EFF8[] = {
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 58, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_USE_TEXTURE | NJD_FLAG_IGNORE_LIGHT | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-extern "C" __declspec(dllexport) Sint16 poly_0003F020[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0003F020_EV[] = {
 	4, 8, 6, 9, 7,
 	4, 2, 0, 3, 1,
 	4, 10, 8, 11, 9,
@@ -3363,7 +3363,7 @@ extern "C" __declspec(dllexport) NJS_TEX uv_0003F0CC[] = {
 };
 
 extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_0003F0E4[] = {
-	{ NJD_MESHSET_TRIMESH | 0, 6, poly_0003F020, NULL, NULL, NULL, uv_0003F06C, NULL },
+	{ NJD_MESHSET_TRIMESH | 0, 6, poly_0003F020_EV, NULL, NULL, NULL, uv_0003F06C, NULL },
 	{ NJD_MESHSET_TRIMESH | 1, 1, poly_0003F05C, NULL, NULL, NULL, uv_0003F0CC, NULL }
 };
 
