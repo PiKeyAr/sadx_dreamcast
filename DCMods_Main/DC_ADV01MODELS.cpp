@@ -605,3 +605,39 @@ void ADV01_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 		EggCarrierOutside7Fog[i].Distance = 17000;
 	}
 }
+
+void ADV01_OnFrame()
+{
+	//This dirty hack is needed to prevent the DX collision object from interfering with Gamma's hover animation in cutscenes
+	if (CurrentLevel == 29 && CurrentAct == 2)
+	{
+		if (EV_MainThread_ptr)
+		{
+			{
+				if (LANDTABLEEC0[2]->Col[0].Flags == 0x40000001 && LANDTABLEEC0[2]->Col[0].Radius < 53.0f)
+				{
+					if (LANDTABLEEC0[2]->Col[0].Model->pos[1] >= 1524.0f)
+					{
+						//PrintDebug("Disabling collision\n");
+						LANDTABLEEC0[2]->Col[0].Model->pos[1] = -1500.0f;
+						LANDTABLEEC0[2]->Col[0].Center = { 0, 0, 0 };
+						LANDTABLEEC0[2]->Col[0].Radius = 0;
+						LANDTABLEEC0[2]->Col[0].Flags = 0;
+					}
+					
+				}
+			}
+		}
+		else
+		{
+			if (LANDTABLEEC0[2]->Col[0].Model->pos[1] == -1500.0f)
+			{
+				//PrintDebug("Enabling collision\n");
+				LANDTABLEEC0[2]->Col[0].Model->pos[1] = 1525.692f;
+				LANDTABLEEC0[2]->Col[0].Center = { 1.572876f, 1527.742f, 3462.564f };
+				LANDTABLEEC0[2]->Col[0].Radius = 51.01946f;
+				LANDTABLEEC0[2]->Col[0].Flags = 0x40000001;
+			}
+		}
+	}
+}

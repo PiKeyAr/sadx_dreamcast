@@ -360,6 +360,7 @@ void Branding_OnFrame();
 void ADV00_Init();
 void ADV00_OnFrame();
 void ADV01_Init(const IniFile *config, const HelperFunctions &helperFunctions);
+void ADV01_OnFrame();
 void ADV01C_Init(const IniFile *config, const HelperFunctions &helperFunctions);
 void ADV01C_OnFrame();
 void ADV02_Init();

@@ -17623,7 +17623,7 @@ extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_000D07D8 = { vertex_000D0
 extern "C" __declspec(dllexport) NJS_OBJECT objectDX_000D0804 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_BREAK, &attach_000D07D8, 1.5729f, 1525.692f, 3462.564f, 0, 0, 0, 1.0506f, 1, 1.0506f, NULL, NULL };
 
 extern "C" __declspec(dllexport) COL collist_00163214[] = {
-	{ { 1.572876f, 1527.742f, 3462.564f }, 51.01946f, 0, 0, &objectDX_000D0804, 0, 0x40000001 }, //DX collision
+	{ { 1.572876f, 1527.742f, 3462.564f }, 51.01946f, 0, 0, &objectDX_000D0804, 0, 0x40000001 }, //DX collision (must be the first in the COL list!)
 	{ { -0.00084f, 1642.017f, 3705.703f }, 287.594f, 0, 0, &object_0009C954, 0, 0xA0000001 },
 	{ { -0.00084f, 1642.647f, 3975.626f }, 286.0599f, 0, 0, &object_0009E0F0, 0, 0xA0000001 },
 	{ { -79.48859f, 1610.931f, 3591.853f }, 82.10889f, 0, 0, &object_0009E3D4, 0, 0xC0000001 },

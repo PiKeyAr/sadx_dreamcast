@@ -532,7 +532,11 @@ extern "C"
 	{
 		if (EnableDCBranding) Branding_OnFrame();
 		if (EnableStationSquare) ADV00_OnFrame();
-		if (EnableEggCarrier) ADV01C_OnFrame();
+		if (EnableEggCarrier)
+		{
+			ADV01_OnFrame();
+			ADV01C_OnFrame();
+		}
 		if (EnableMysticRuins) ADV02_OnFrame();
 		if (EnablePast) ADV03_OnFrame();
 		Bosses_OnFrame();
