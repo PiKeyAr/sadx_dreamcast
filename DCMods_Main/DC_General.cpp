@@ -32,6 +32,8 @@ FunctionPointer(float, sub_49E920, (float x, float y, float z, Rotation3 *rotati
 FunctionPointer(SubtitleThing *, sub_6424A0, (int a1, int a2, float a3, float a4, float a5, float a6, float a7, float a8), 0x6424A0);
 FunctionPointer(void, sub_4014B0, (), 0x4014B0);
 FunctionPointer(void, sub_409E70, (NJS_MODEL_SADX *a1, int a2, float a3), 0x409E70);
+FunctionPointer(void, Cutscene_MoveCharacterAtoB, (ObjectMaster *a1, float a2, float a3, float a4, float a5, float a6, float a7, signed int a8), 0x6EC2B0);
+FunctionPointer(void, Cutscene_WaitForInput, (int a1), 0x4314D0);
 static Uint32 GlobalColor_one = 0;
 static Uint32 GlobalColor_two = 0;
 static Uint32 GlobalColor_threefour = 0;
@@ -877,6 +879,14 @@ void DrawNPCShadowFix(NJS_MODEL_SADX *a1)
 	DrawModel_Queue(a1, QueuedModelFlagsB_EnableZWrite);
 }
 
+void ECGammaCutsceneFix(ObjectMaster *a1, NJS_ACTION *a2, NJS_TEXLIST *a3, float a4, char a5, char a6)
+{
+	Cutscene_WaitForInput(25);
+	ObjectMaster *v112 = j_GetCharacterObject(4u);
+	InitCutsceneObjectAction(v112, E102_ACTIONS[49], &E102_TEXLIST, 1.0f, 1, 16);
+	Cutscene_MoveCharacterAtoB(v112, 0.0f, 1560.0f, 3426.0f, 0.0f, 1535.0f, 3426.0f, 85);
+}
+
 void General_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 {
 	ReplacePVR("AL_BARRIA");
@@ -1247,6 +1257,9 @@ void General_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 	EnvMap3 = 0.5f;
 	EnvMap4 = 0.5f;
 	//Various bugfixes
+	//Gamma cutscenes fix 
+	WriteCall((void*)0x6D9DA7, ECGammaCutsceneFix); //Fix Gamma hover scene in Sonic's story
+	WriteCall((void*)0x6B8D5E, ECGammaCutsceneFix); //Fix Gamma hover scene in Tails' story
 	//Zero holding Amy lighting fix
 	((NJS_OBJECT *)0x31A4DFC)->basicdxmodel->mats[11].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
 	((NJS_OBJECT *)0x31A4DFC)->basicdxmodel->mats[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
