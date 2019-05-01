@@ -964,7 +964,7 @@ NJS_TEX uv_0005670C[] = {
 	{ 245, 254 }
 };
 
-NJS_MESHSET_SADX meshlist_000567CC[] = {
+NJS_MESHSET_SADX meshlist_000567CC_C0[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 20, poly_00056384, NULL, NULL, NULL, uv_0005653C, NULL },
 	{ NJD_MESHSET_TRIMESH | 1, 4, poly_00056424, NULL, NULL, NULL, uv_0005662C, NULL },
 	{ NJD_MESHSET_TRIMESH | 2, 8, poly_0005645C, NULL, NULL, NULL, uv_0005668C, NULL },
@@ -1094,7 +1094,7 @@ NJS_VECTOR normal_00056AFC[] = {
 	{ -0.364607f, 0.466907f, 0.8056419f }
 };
 
-NJS_MODEL_SADX attach_00056DB4 = { vertex_00056844, normal_00056AFC, LengthOfArray<Sint32>(vertex_00056844), meshlist_000567CC, matlist_00056320, LengthOfArray<Uint16>(meshlist_000567CC), LengthOfArray<Uint16>(matlist_00056320),{ 3.012526f, 11.44883f, 0 }, 13.00247f, NULL };
+NJS_MODEL_SADX attach_00056DB4 = { vertex_00056844, normal_00056AFC, LengthOfArray<Sint32>(vertex_00056844), meshlist_000567CC_C0, matlist_00056320, LengthOfArray<Uint16>(meshlist_000567CC_C0), LengthOfArray<Uint16>(matlist_00056320),{ 3.012526f, 11.44883f, 0 }, 13.00247f, NULL };
 
 NJS_OBJECT object_00056DDC = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00056DB4, -0.00002f, -20, 0, 0, 0, 0, 1, 1, 1, NULL, &object_000562EC };
 
