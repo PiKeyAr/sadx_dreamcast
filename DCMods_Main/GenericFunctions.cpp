@@ -334,6 +334,7 @@ void AnimateUVs(UVAnimation *animation)
 	int actualtimer = 1;
 	//Calculate animation speed if in 30 or 15 FPS mode
 	if (FramerateSetting > 1 && animation->timer > 1) actualtimer = animation->timer / 2; else actualtimer = animation->timer;
+	if (actualtimer == 0) actualtimer = 1;
 	if (animation->uv_pointer && animation->uv_count && FrameCounter % actualtimer == 0)
 	{
 		animation->v_shift += animation->v_speed;

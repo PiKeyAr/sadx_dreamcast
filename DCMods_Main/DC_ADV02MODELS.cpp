@@ -750,13 +750,6 @@ void ADV02_OnFrame()
 {
 	if (!IsGamePaused())
 	{
-		if (CurrentAct != 1 && CurrentAct != 3)
-		{
-			for (int i = 0; i < 10; ++i)
-			{
-				if (UVAnimationData[i].uv_pointer) AnimateUVs(&UVAnimationData[i]);
-			}
-		}
 		//Animate rotating stuff in MR Jungle
 		if (CurrentAct == 2)
 		{
@@ -779,13 +772,13 @@ void ADV02_OnFrame()
 		}
 	}
 	//Prevent dynamic direction from being adjusted in Eggman's base
-	if (CurrentLevel == LevelIDs_MysticRuins && CurrentAct == 3)
+	if (CurrentAct == 3)
 	{
 		CasinoLightRotation_Y = 0;
 		CasinoLightRotation_Z = 0;
 	}
 	//Evening and night materials Act 3
-	if (CurrentLevel == 33 && CurrentAct == 2)
+	if (CurrentAct == 2)
 	{
 		matlistADV02_00208504Z[9].attrflags |= NJD_FLAG_IGNORE_LIGHT;
 		matlistADV02_00208504Z[10].attrflags |= NJD_FLAG_IGNORE_LIGHT;
@@ -803,7 +796,7 @@ void ADV02_OnFrame()
 	}
 	//Dynamic fog in the jungle + cutscene exclusions
 	auto entity = EntityData1Ptrs[0];
-	if (GameState != 16 && CurrentLevel == 33 && CurrentAct == 2)
+	if (GameState != 16 && CurrentAct == 2)
 	{
 		if (Camera_Data1 != nullptr && Camera_Data1->Position.z < -548 && Camera_Data1->Position.z > -1560 && Camera_Data1->Position.x < -80 && Camera_Data1->Position.x > -900)
 		{

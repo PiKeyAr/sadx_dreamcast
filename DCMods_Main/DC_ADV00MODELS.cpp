@@ -1465,13 +1465,6 @@ void ADV00_Init()
 
 void ADV00_OnFrame()
 {
-	if (!IsGamePaused())
-	{
-		for (int i = 0; i < 32; ++i)
-		{
-			if (TextureAnimationData[i].material) AnimateTexture(&TextureAnimationData[i]);
-		}
-	}
 	//Switch textures/lighting depending on time of day
 	if (CurrentLevel == LevelIDs_StationSquare && ADV00_0_Info && ADV00_1_Info && ADV00_3_Info && ADV00_4_Info && PreviousTimeOfDay != GetTimeOfDay())
 	{

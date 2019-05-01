@@ -609,7 +609,7 @@ void ADV01_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 void ADV01_OnFrame()
 {
 	//This dirty hack is needed to prevent the DX collision object from interfering with Gamma's hover animation in cutscenes
-	if (CurrentLevel == 29 && CurrentAct == 2)
+	if (CurrentAct == 2)
 	{
 		if (EV_MainThread_ptr)
 		{

@@ -585,12 +585,10 @@ void SADXStyleWater_Init(const IniFile *config, const HelperFunctions &helperFun
 
 void SADXStyleWater_OnFrame()
 {
-	if (GameState != 16)
+	//Runs only when the game isn't paused
+	if ((FramerateSetting < 2 && FrameCounter % 4 == 0) || (FramerateSetting == 2 && FrameCounter % 2 == 0) || FramerateSetting > 2)
 	{
-		if ((FramerateSetting < 2 && FrameCounter % 4 == 0) || (FramerateSetting == 2 && FrameCounter % 2 == 0) || FramerateSetting > 2)
-		{
-			SADXWaveAnimation++;
-			if (SADXWaveAnimation > 14) SADXWaveAnimation = 0;
-		}
+		SADXWaveAnimation++;
+		if (SADXWaveAnimation > 14) SADXWaveAnimation = 0;
 	}
 }
