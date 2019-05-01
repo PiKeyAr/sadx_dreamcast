@@ -163,7 +163,7 @@ void __cdecl EggCarrierSkyBox(EntityData1 *a1, float a2)
 
 	if (!MissedFrames)
 	{
-		Direct3D_SetNearFarPlanes(SkyboxDrawDistance.Minimum, SkyboxDrawDistance.Maximum);
+		if (CurrentAct != 6) Direct3D_SetNearFarPlanes(SkyboxDrawDistance.Minimum, SkyboxDrawDistance.Maximum);
 		DisableFog();
 		njSetTexture(&EC_SKY_TEXLIST);
 		njPushMatrix(0);
@@ -174,7 +174,7 @@ void __cdecl EggCarrierSkyBox(EntityData1 *a1, float a2)
 		njScale(0, 1.0, 1.0, 1.0);
 		njPopMatrix(1u);
 		ToggleStageFog();
-		Direct3D_SetNearFarPlanes(LevelDrawDistance.Minimum, LevelDrawDistance.Maximum);
+		if (CurrentAct != 6) Direct3D_SetNearFarPlanes(LevelDrawDistance.Minimum, LevelDrawDistance.Maximum);
 	}
 }
 
@@ -491,9 +491,9 @@ void ADV01_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 	WriteJump((void*)0x51B3B0, EggCarrierSkyBottom);
 	//Swap EC skybox draw calls to render the outer part last in Acts 1/2
 	WriteCall((void*)0x51B717, EggCarrierSkyBottom);
-	WriteCall((void*)0x51B76F, EggCarrierSkyBottom);
 	WriteCall((void*)0x51B71F, EggCarrierSkyBox);
-	WriteCall((void*)0x51B77A, EggCarrierSkyBox);
+	WriteCall((void*)0x51B76F, EggCarrierSkyBottom); //Transformation cutscene
+	WriteCall((void*)0x51B77A, EggCarrierSkyBox); //Transformation cutscene
 	//Fix camera in Amy-Gamma prison cutscene
 	WriteData((float*)0x006A4EBE, -134.0f); //X1
 	WriteData((float*)0x006A4EB9, 15.0f); //Y1
