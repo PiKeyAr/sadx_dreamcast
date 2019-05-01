@@ -218,9 +218,6 @@
     <ClInclude Include="Data\ADV03_00.h">
       <Filter>Header Files\Levels\ADV03MODELS</Filter>
     </ClInclude>
-    <ClInclude Include="Data\ADV03_00_PC.h">
-      <Filter>Header Files\Levels\ADV03MODELS</Filter>
-    </ClInclude>
     <ClInclude Include="Data\ADV03_01.h">
       <Filter>Header Files\Levels\ADV03MODELS</Filter>
     </ClInclude>

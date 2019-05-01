@@ -139,7 +139,6 @@
     <ClInclude Include="Data\ADV01_4.h" />
     <ClInclude Include="Data\ADV01_5.h" />
     <ClInclude Include="Data\ADV03_00.h" />
-    <ClInclude Include="Data\ADV03_00_PC.h" />
     <ClInclude Include="Data\ADV03_01.h" />
     <ClInclude Include="Data\ADV03_02.h" />
     <ClInclude Include="Data\Animals.h" />
