@@ -19,6 +19,15 @@ NJS_TEXLIST texlist_ec34 = { arrayptrandlength(textures_ec34) };
 NJS_TEXNAME textures_ec35[14];
 NJS_TEXLIST texlist_ec35 = { arrayptrandlength(textures_ec35) };
 
+/*
+#include "ADV01C_00.h"
+#include "ADV01C_01.h"
+#include "ADV01C_02.h"
+#include "ADV01C_03.h"
+#include "ADV01C_04.h"
+#include "ADV01C_05.h"
+*/
+
 FunctionPointer(void, sub_409FB0, (NJS_ACTION *a1, float frameNumber), 0x409FB0);
 FunctionPointer(void, sub_6F4570, (ObjectMaster *a1), 0x6F4570);
 FunctionPointer(void, sub_407A00, (NJS_MODEL_SADX *model, float scale), 0x407A00);
@@ -39,14 +48,14 @@ NJS_MATERIAL* DisableAlphaRejection_EggCarrierInside[] = {
 NJS_MATERIAL* WhiteDiffuseADV01C[] = {
 	//OHammerSW
 	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01CMODELS") + 0x00110B04),
-	//Tarai button
+	//Tarai button (doesn't work because the game does some copy shit)
 	//&matlistADV01_0011154C[0],
 	//&matlistADV01_0011154C[1],
 	//&matlistADV01_0011154C[2],
 };
 
 NJS_MATERIAL* HedgehogHammerDolls[] = {
-	//Hedgehog Hammer targets (possibly SL objects?)
+	//Hedgehog Hammer targets (I don't really need this now but if the SL system is ever implemented...)
 	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01CMODELS") + 0x0011C478),
 	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01CMODELS") + 0x0011BF60),
 	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01CMODELS") + 0x0011BF74),
@@ -67,10 +76,10 @@ NJS_MATERIAL* HedgehogHammerDolls[] = {
 	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01CMODELS") + 0x00122D38),
 	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01CMODELS") + 0x00122854),
 	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01CMODELS") + 0x0012251C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01CMODELS") + 0x001223CC), //Super Sonic ears (disable alpha rejection)
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01CMODELS") + 0x001223E0), //Super Sonic ears (disable alpha rejection)
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01CMODELS") + 0x0012227C), //Super Sonic ears (disable alpha rejection)
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01CMODELS") + 0x00122290), //Super Sonic ears (disable alpha rejection)
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01CMODELS") + 0x001223CC), //Super Sonic ears
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01CMODELS") + 0x001223E0), //Super Sonic ears
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01CMODELS") + 0x0012227C), //Super Sonic ears
+	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01CMODELS") + 0x00122290), //Super Sonic ears
 	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01CMODELS") + 0x00115630),
 	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01CMODELS") + 0x00114C38),
 	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01CMODELS") + 0x00114C4C),
@@ -201,12 +210,12 @@ void LoadLevelFiles_ADV01C()
 	ADV01C_3_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV01C\\3.sa1lvl"));
 	ADV01C_4_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV01C\\4.sa1lvl"));
 	ADV01C_5_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV01C\\5.sa1lvl"));
-	LandTable *ADV01C_0 = ADV01C_0_Info->getlandtable();
-	LandTable *ADV01C_1 = ADV01C_1_Info->getlandtable();
-	LandTable *ADV01C_2 = ADV01C_2_Info->getlandtable();
-	LandTable *ADV01C_3 = ADV01C_3_Info->getlandtable();
-	LandTable *ADV01C_4 = ADV01C_4_Info->getlandtable();
-	LandTable *ADV01C_5 = ADV01C_5_Info->getlandtable();
+	LandTable *ADV01C_0 = ADV01C_0_Info->getlandtable(); //&landtable_0000C64C; // ADV01C_0_Info->getlandtable();
+	LandTable *ADV01C_1 = ADV01C_1_Info->getlandtable(); //&landtable_0000D7B0; // ADV01C_1_Info->getlandtable();
+	LandTable *ADV01C_2 = ADV01C_2_Info->getlandtable(); //&landtable_0000E1D0; // ADV01C_2_Info->getlandtable();
+	LandTable *ADV01C_3 = ADV01C_3_Info->getlandtable(); //&landtable_0000EDB8; // ADV01C_3_Info->getlandtable();
+	LandTable *ADV01C_4 = ADV01C_4_Info->getlandtable(); //&landtable_0000F7A8; // ADV01C_4_Info->getlandtable();
+	LandTable *ADV01C_5 = ADV01C_5_Info->getlandtable(); //&landtable_0000FE44; // ADV01C_5_Info->getlandtable();
 	ADV01C_0->TexList = &texlist_ec30;
 	ADV01C_1->TexList = &texlist_ec31;
 	ADV01C_2->TexList = &texlist_ec32;
@@ -318,8 +327,8 @@ void ADV01C_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 		{
 			ReplaceGeneric("OBJ_EC30.PVM", "OBJ_EC30_DC_OLD.PVM");
 		}
-		WriteCall((void*)0x006F4577, TurnLightsOff); //Turn the lights off
-		WriteCall((void*)0x006F4620, TurnLightsOn); //Turn the lights on
+		WriteCall((void*)0x006F4577, TurnLightsOff); //Turn the lights off in Gamma's Froggy Hunt cutscene
+		WriteCall((void*)0x006F4620, TurnLightsOn); //Turn the lights on in Gamma's Froggy Hunt cutscene
 	}
 	else
 	{
@@ -328,9 +337,9 @@ void ADV01C_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 	((NJS_OBJECT*)0x03104130)->basicdxmodel->mats[0].diffuse.color = 0xFFFFFFFF;
 	___ADV01C_MODELS[28] = &attachADV01_00111938;
 	___ADV01C_MODELS[27] = &attachADV01_001114EC;
-	___ADV01C_OBJECTS[7] = &objectADV01_00111964; //tarai button
+	___ADV01C_OBJECTS[7] = &objectADV01_00111964; //Tarai button
 	___ADV01C_OBJECTS[7]->child = &objectADV01_00111518;
-	___ADV01C_OBJECTS[8] = &objectADV01_000D243C; //tarai
+	___ADV01C_OBJECTS[8] = &objectADV01_000D243C; //Tarai
 	___ADV01C_OBJECTS[43]->child->child->model = &attachADV01_000AEDD0; //Monorail 1 door
 	___ADV01C_OBJECTS[43]->child->model = &attachADV01_000AF564; //Monorail 1 door thing
 	___ADV01C_OBJECTS[44]->child->child->model = &attachADV01_000B2D3C; //Monorail 2 door 
