@@ -77,8 +77,6 @@ DataArray(PVMEntry, CHAOS4_OBJECT_TEXLISTS, 0x118FDB0, 18);
 DataPointer(PVMEntry, PVMEntry_CHAOS0EFFECT, 0x1120180);
 DataPointer(unsigned char, byte_3C5A7EF, 0x3C5A7EF);
 DataPointer(unsigned char, byte_3C5A7ED, 0x3C5A7ED);
-DataPointer(unsigned char, byte_03C6C944, 0x03C6C944);
-DataPointer(float, dword_3C6C930, 0x3C6C930);
 DataPointer(unsigned char, byte_03C5A7EF, 0x03C5A7EF);
 DataPointer(float, dword_3C6A998, 0x3C6A998);
 DataPointer(NJS_OBJECT, stru_13A6E8C, 0x13A6E8C);
@@ -96,6 +94,7 @@ DataPointer(ObjectMaster*, dword_3C84628, 0x3C84628);
 DataPointer(float, Chaos4NumaTransparency, 0x3C688D4);
 DataPointer(char, EggViperByteThing, 0x03C6E178);
 DataPointer(float, EggViperHitCount, 0x03C58158);
+FunctionPointer(void, sub_571AD0, (ObjectMaster *a1), 0x571AD0);
 FunctionPointer(void, sub_5632F0, (ObjectMaster *a1), 0x5632F0);
 FunctionPointer(void, sub_563370, (ObjectMaster *a1), 0x563370);
 FunctionPointer(void, sub_4B9540, (NJS_VECTOR *position, NJS_VECTOR *scale_v, float scale), 0x4B9540);
@@ -123,6 +122,7 @@ static float EggViperHitCount_Old = 0.0f;
 static int EggHornetOceanAnimationSA1 = 0;
 static int EggHornet_Rotation = 0;
 static int EggHornet_RotationDirection = 1;
+static bool EggHornet_RotationEnabled = false;
 static int E101REffectMode = 1;
 static float e101rframe = 0;
 static int e101rsea_dc = 4;
@@ -1502,6 +1502,28 @@ void PerfectChaos_Init()
 	}
 }
 
+void RotateEggHornet(ObjectMaster *a1)
+{
+	EntityData1 *v1 = a1->Data1;
+	sub_571AD0(a1);
+	njRotateY(0, EggHornet_Rotation);
+}
+
+static void EggHornetRotationObject_r(ObjectMaster *a1);
+static Trampoline EggHornetRotationObject_t(0x574CB0, 0x574CB6, EggHornetRotationObject_r);
+static void __cdecl EggHornetRotationObject_r(ObjectMaster *a1)
+{
+	auto original = reinterpret_cast<decltype(EggHornetRotationObject_r)*>(EggHornetRotationObject_t.Target());
+	original(a1);
+	if (EnableEggHornet) EggHornet_RotationEnabled = true;
+}
+
+void EggHornet_RotationDisable(ObjectMaster *a1)
+{
+	if (EnableEggHornet) EggHornet_RotationEnabled = false;
+	CheckThingButThenDeleteObject(a1);
+}
+
 void EggHornet_Init()
 {
 	ReplaceBIN_DC("SETEGM1S");
@@ -1557,6 +1579,10 @@ void EggHornet_Init()
 		EggHornetFog[i].Toggle = 1;
 		EggHornetFog[i].Color = 0xFFA0A0A0;
 	}
+	//Rotation stuff
+	WriteCall((void*)0x574BC3, EggHornet_RotationDisable);
+	WriteCall((void*)0x571F79, RotateEggHornet);
+	WriteCall((void*)0x5728C4, RotateEggHornet);
 }
 
 void EggWalker_Init()
@@ -1862,61 +1888,20 @@ void Bosses_OnFrame()
 		}
 	}
 	//Egg Hornet rotation
-	if (EnableEggHornet && CurrentLevel == 20 && GameState != 16)
+	if (EnableEggHornet && CurrentLevel == LevelIDs_EggHornet && !IsGamePaused())
 	{
 		if (GameState == 3 || GameState == 4 || GameState == 7 || GameState == 21)
 		{
 			EggHornet_Rotation = 0;
 			EggHornet_RotationDirection = 1;
-			EggHornetTrigger = 0;
+			EggHornet_RotationEnabled = false;
 		}
-		if (dword_3C6C930 != 1 && byte_03C6C944 != EggHornetTrigger)
+		if (EggHornet_RotationEnabled)
 		{
-			EggHornetTrigger = byte_03C6C944;
-			((NJS_OBJECT *)0x01561A70)->ang[1] = NJM_DEG_ANG(0); //Main model
-			((NJS_OBJECT *)0x015658E0)->ang[1] = NJM_DEG_ANG(90); //Eggman
-			((NJS_SPRITE *)0x3C6C884)->ang = NJM_DEG_ANG(0); //Main model
-			((NJS_OBJECT *)0x01567BCC)->ang[1] = NJM_DEG_ANG(0); //Jet
-			((NJS_OBJECT *)0x01567E64)->ang[1] = NJM_DEG_ANG(0); //Jet
-			((NJS_OBJECT *)0x015685CC)->ang[1] = NJM_DEG_ANG(0); //Jet
-			((NJS_OBJECT *)0x015680CC)->ang[1] = NJM_DEG_ANG(0); //Jet
-			((NJS_OBJECT *)0x01568334)->ang[1] = NJM_DEG_ANG(180); //Jet
-			((NJS_OBJECT *)0x015688C4)->ang[1] = NJM_DEG_ANG(0); //Jet 2
-			((NJS_OBJECT *)0x01568B5C)->ang[1] = NJM_DEG_ANG(0); //Jet 2
-			((NJS_OBJECT *)0x01568DC4)->ang[1] = NJM_DEG_ANG(0); //Jet 2
-			((NJS_OBJECT *)0x0156902C)->ang[1] = NJM_DEG_ANG(0); //Jet 2
-			((NJS_OBJECT *)0x015692C4)->ang[1] = NJM_DEG_ANG(0); //Jet 2
-		}
-		if (dword_3C6C930 == 1 && byte_03C6C944 != EggHornetTrigger)
-		{
-			if (EggHornet_RotationDirection == 1) EggHornet_Rotation = EggHornet_Rotation + 3 * FramerateSetting;
-			if (EggHornet_RotationDirection == -1) EggHornet_Rotation = EggHornet_Rotation - 3 * FramerateSetting;
-			if (EggHornet_Rotation > 10) EggHornet_RotationDirection = -1;
-			if (EggHornet_Rotation < -10) EggHornet_RotationDirection = 1;
-			((NJS_OBJECT *)0x01561A70)->ang[1] = NJM_DEG_ANG(EggHornet_Rotation); //Main model
-			((NJS_OBJECT *)0x015658E0)->ang[1] = NJM_DEG_ANG(EggHornet_Rotation + 90); //Eggman
-			((NJS_SPRITE *)0x3C6C884)->ang = NJM_DEG_ANG(EggHornet_Rotation); //Jet sprite
-			((NJS_OBJECT *)0x01567BCC)->evalflags &= ~NJD_EVAL_UNIT_ANG;
-			((NJS_OBJECT *)0x01567E64)->evalflags &= ~NJD_EVAL_UNIT_ANG;
-			((NJS_OBJECT *)0x015685CC)->evalflags &= ~NJD_EVAL_UNIT_ANG;
-			((NJS_OBJECT *)0x015680CC)->evalflags &= ~NJD_EVAL_UNIT_ANG;
-			((NJS_OBJECT *)0x01568334)->evalflags &= ~NJD_EVAL_UNIT_ANG;
-			((NJS_OBJECT *)0x01567BCC)->evalflags &= ~NJD_EVAL_UNIT_ANG;
-			((NJS_OBJECT *)0x015688C4)->evalflags &= ~NJD_EVAL_UNIT_ANG;
-			((NJS_OBJECT *)0x01568B5C)->evalflags &= ~NJD_EVAL_UNIT_ANG;
-			((NJS_OBJECT *)0x01568DC4)->evalflags &= ~NJD_EVAL_UNIT_ANG;
-			((NJS_OBJECT *)0x0156902C)->evalflags &= ~NJD_EVAL_UNIT_ANG;
-			((NJS_OBJECT *)0x015692C4)->evalflags &= ~NJD_EVAL_UNIT_ANG;
-			((NJS_OBJECT *)0x01567BCC)->ang[1] = NJM_DEG_ANG(EggHornet_Rotation); //Jet
-			((NJS_OBJECT *)0x01567E64)->ang[1] = NJM_DEG_ANG(EggHornet_Rotation); //Jet
-			((NJS_OBJECT *)0x015685CC)->ang[1] = NJM_DEG_ANG(EggHornet_Rotation); //Jet
-			((NJS_OBJECT *)0x015680CC)->ang[1] = NJM_DEG_ANG(EggHornet_Rotation); //Jet
-			((NJS_OBJECT *)0x01568334)->ang[1] = NJM_DEG_ANG(EggHornet_Rotation + 180); //Jet
-			((NJS_OBJECT *)0x015688C4)->ang[1] = NJM_DEG_ANG(EggHornet_Rotation); //Jet 2
-			((NJS_OBJECT *)0x01568B5C)->ang[1] = NJM_DEG_ANG(EggHornet_Rotation); //Jet 2
-			((NJS_OBJECT *)0x01568DC4)->ang[1] = NJM_DEG_ANG(EggHornet_Rotation); //Jet 2
-			((NJS_OBJECT *)0x0156902C)->ang[1] = NJM_DEG_ANG(EggHornet_Rotation); //Jet 2
-			((NJS_OBJECT *)0x015692C4)->ang[1] = NJM_DEG_ANG(EggHornet_Rotation); //Jet 2
+			if (EggHornet_RotationDirection == 1) EggHornet_Rotation = EggHornet_Rotation + 546 * FramerateSetting;
+			if (EggHornet_RotationDirection == -1) EggHornet_Rotation = EggHornet_Rotation - 546 * FramerateSetting;
+			if (EggHornet_Rotation > 1820) EggHornet_RotationDirection = -1;
+			if (EggHornet_Rotation < -1820) EggHornet_RotationDirection = 1;
 		}
 	}
 }
