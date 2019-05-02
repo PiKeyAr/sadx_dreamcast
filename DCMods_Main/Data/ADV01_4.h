@@ -17575,7 +17575,7 @@ extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_000FA654 = { vertex_000FA
 extern "C" __declspec(dllexport) NJS_OBJECT object_000FA67C = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_000FA654, 82.07108f, 65.77078f, 72.24805f, 0, 0, 0, 1, 1, 1, NULL, NULL };
 extern "C" __declspec(dllexport) NJS_MATERIAL matlist_000FA6B0[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 6, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
-	{ { 0x99FFFFFF }, { 0xFFFFFFFF }, 11, 15, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_FLAG_USE_ENV | NJD_DA_INV_SRC | NJD_SA_SRC },
+	{ { 0xD7FFFFFF }, { 0xFFFFFFFF }, 11, 15, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_FLAG_USE_ENV | NJD_DA_INV_SRC | NJD_SA_SRC }, //original opacity 99
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 18, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 19, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 16, 8, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
@@ -17598,6 +17598,43 @@ extern "C" __declspec(dllexport) Sint16 poly_000FA728[] = {
 };
 
 extern "C" __declspec(dllexport) Sint16 poly_000FA818[] = {
+	4, 87, 89, 69, 85,
+	4, 87, 72, 89, 57,
+	4, 58, 74, 72, 57,
+	4, 58, 60, 74, 77,
+	4, 62, 79, 60, 77,
+	4, 62, 64, 79, 80,
+	4, 83, 67, 64, 80,
+	4, 71, 67, 55, 83,
+	4, 71, 55, 70, 54,
+	4, 66, 67, 70, 71,
+	4, 66, 81, 67, 80,
+	4, 78, 79, 81, 80,
+	4, 78, 76, 79, 77,
+	4, 75, 74, 76, 77,
+	4, 75, 56, 74, 57,
+	4, 88, 89, 56, 57,
+	4, 85, 89, 84, 88,
+	4, 85, 84, 69, 68,
+	4, 87, 86, 72, 73,
+	4, 58, 72, 59, 73,
+	4, 61, 60, 59, 58,
+	4, 61, 63, 60, 62,
+	4, 65, 64, 63, 62,
+	4, 65, 82, 64, 83,
+	4, 83, 82, 55, 54,
+	4, 54, 82, 70, 66,
+	4, 65, 81, 82, 66,
+	4, 87, 69, 86, 68, //right side 1
+	4, 78, 63, 76, 61, //bottom start
+	4, 88, 86, 84, 68,
+	4, 78, 81, 63, 65,
+	4, 75, 76, 59, 61,
+	4, 75, 59, 56, 73,
+	4, 88, 56, 86, 73, //bottom end
+};
+
+Sint16 poly_000FA818_original[] = {
 	4, 78, 63, 76, 61,
 	4, 88, 86, 84, 68,
 	4, 78, 81, 63, 65,
@@ -17781,6 +17818,179 @@ extern "C" __declspec(dllexport) NJS_TEX uv_000FAA88[] = {
 };
 
 extern "C" __declspec(dllexport) NJS_TEX uv_000FAC38[] = {
+	
+	{ 3, 0 },
+	{ 255, 0 },
+	{ 0, 135 },
+	{ 248, 255 },
+
+	{ 0, 135 },
+	{ 3, 0 },
+	{ 248, 255 },
+	{ 255, 0 },
+
+	{ 3, 0 },
+	{ 255, 0 },
+	{ 0, 135 },
+	{ 248, 255 },
+
+	{ 0, 135 },
+	{ 3, 0 },
+	{ 248, 255 },
+	{ 255, 0 },
+
+	{ 3, 0 },
+	{ 255, 0 },
+	{ 0, 135 },
+	{ 248, 255 },
+
+	{ 0, 135 },
+	{ 3, 0 },
+	{ 248, 255 },
+	{ 255, 0 },
+
+	{ 3, 0 },
+	{ 255, 0 },
+	{ 0, 135 },
+	{ 248, 255 },
+
+	{ 255, 0 },
+	{ 248, 255 },
+	{ 3, 0 },
+	{ 0, 135 },
+
+	{ 3, 0 },
+	{ 255, 0 },
+	{ 0, 135 },
+	{ 248, 255 },
+
+	{ 0, 135 },
+	{ 3, 0 },
+	{ 248, 255 },
+	{ 255, 0 },
+
+	{ 248, 255 },
+	{ 0, 135 },
+	{ 255, 0 },
+	{ 3, 0 },
+
+	{ 0, 135 },
+	{ 3, 0 },
+	{ 248, 255 },
+	{ 255, 0 },
+
+	{ 248, 255 },
+	{ 0, 135 },
+	{ 255, 0 },
+	{ 3, 0 },
+
+	{ 0, 135 },
+	{ 3, 0 },
+	{ 248, 255 },
+	{ 255, 0 },
+
+	{ 248, 255 },
+	{ 0, 135 },
+	{ 255, 0 },
+	{ 3, 0 },
+
+	{ 0, 135 },
+	{ 3, 0 },
+	{ 248, 255 },
+	{ 255, 0 },
+
+	{ 0, 135 },
+	{ 3, 0 },
+	{ 248, 255 },
+	{ 255, 0 },
+
+	{ 0, 135 },
+	{ 3, 0 },
+	{ 248, 255 },
+	{ 255, 0 },
+
+	{ 0, 135 },
+	{ 3, 0 },
+	{ 248, 255 },
+	{ 255, 0 },
+
+	{ 248, 255 },
+	{ 0, 135 },
+	{ 255, 0 },
+	{ 3, 0 },
+
+	{ 255, 0 },
+	{ 248, 255 },
+	{ 3, 0 },
+	{ 0, 135 },
+
+	{ 3, 0 },
+	{ 255, 0 },
+	{ 0, 135 },
+	{ 248, 255 },
+
+	{ 255, 0 },
+	{ 248, 255 },
+	{ 3, 0 },
+	{ 0, 135 },
+
+	{ 3, 0 },
+	{ 255, 0 },
+	{ 0, 135 },
+	{ 248, 255 },
+
+	{ 0, 135 },
+	{ 3, 0 },
+	{ 248, 255 },
+	{ 255, 0 },
+
+	{ 0, 135 },
+	{ 3, 0 },
+	{ 248, 255 },
+	{ 255, 0 },
+
+	{ 3, 0 },
+	{ 255, 0 },
+	{ 0, 135 },
+	{ 248, 255 },
+
+	{ 248, 255 },
+	{ 0, 135 },
+	{ 255, 0 },
+	{ 3, 0 },
+
+	{ 248, 255 },
+	{ 0, 135 },
+	{ 255, 0 },
+	{ 3, 0 },
+
+	{ 248, 255 },
+	{ 0, 135 },
+	{ 255, 0 },
+	{ 3, 0 },
+
+	{ 255, 0 },
+	{ 248, 255 },
+	{ 3, 0 },
+	{ 0, 135 },
+
+	{ 255, 0 },
+	{ 248, 255 },
+	{ 3, 0 },
+	{ 0, 135 },
+
+	{ 248, 255 },
+	{ 0, 135 },
+	{ 255, 0 },
+	{ 3, 0 },
+
+	{ 255, 0 },
+	{ 248, 255 },
+	{ 3, 0 },
+	{ 0, 135 },
+};
+
+NJS_TEX uv_000FAC38_original[] = {
 	{ 248, 255 },
 	{ 0, 135 },
 	{ 255, 0 },
@@ -49267,7 +49477,7 @@ extern "C" __declspec(dllexport) COL collist_001650EC[] = {
 	{ { 39.70787f, 30.00002f, -179.6675f }, 38.32657f, 0, 0, &object_0013460C, 0, 0x80000000 },
 	{ { 174.6675f, 30.00002f, -179.2921f }, 38.32657f, 0, 0, &object_00134640, 0, 0x80000000 },
 	{ { 222, 25, 112.5f }, 32.78719f, 0, 0, &object_00134674, 0, 0xC0000001 },
-	{ { 107.0711f, 15.99999f, 112.0711f }, 142.3236f, 0, 0, &object_000FBD30_2, 0, 0x80040000 }, //Table
+	{ { 107.0711f, 15.99999f, 112.0711f }, 142.3236f, 0, 0, &object_000FBD30_2, 0, 0x86040000 }, //Table
 };
 
 extern "C" __declspec(dllexport) GeoAnimData animlist_00165818[] = {
