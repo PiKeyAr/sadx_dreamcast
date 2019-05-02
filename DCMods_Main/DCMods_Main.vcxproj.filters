@@ -341,9 +341,6 @@
     <ClInclude Include="Data\EmeraldCoast1.h">
       <Filter>Header Files\Levels\EmeraldCoast</Filter>
     </ClInclude>
-    <ClInclude Include="Data\EmeraldCoast1_PC.h">
-      <Filter>Header Files\Levels\EmeraldCoast</Filter>
-    </ClInclude>
     <ClInclude Include="Data\EmeraldCoast2.h">
       <Filter>Header Files\Levels\EmeraldCoast</Filter>
     </ClInclude>
