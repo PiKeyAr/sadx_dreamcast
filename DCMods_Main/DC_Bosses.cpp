@@ -1504,7 +1504,6 @@ void PerfectChaos_Init()
 
 void RotateEggHornet(ObjectMaster *a1)
 {
-	EntityData1 *v1 = a1->Data1;
 	sub_571AD0(a1);
 	njRotateY(0, EggHornet_Rotation);
 }
