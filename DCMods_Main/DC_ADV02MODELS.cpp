@@ -796,7 +796,7 @@ void ADV02_OnFrame()
 	}
 	//Dynamic fog in the jungle + cutscene exclusions
 	auto entity = EntityData1Ptrs[0];
-	if (GameState != 16 && CurrentAct == 2)
+	if (!IsGamePaused() && ADV02_2_Info && CurrentAct == 2)
 	{
 		if (Camera_Data1 != nullptr && Camera_Data1->Position.z < -548 && Camera_Data1->Position.z > -1560 && Camera_Data1->Position.x < -80 && Camera_Data1->Position.x > -900)
 		{

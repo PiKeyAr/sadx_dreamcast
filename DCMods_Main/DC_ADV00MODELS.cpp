@@ -1466,7 +1466,7 @@ void ADV00_Init()
 void ADV00_OnFrame()
 {
 	//Switch textures/lighting depending on time of day
-	if (CurrentLevel == LevelIDs_StationSquare && ADV00_0_Info && ADV00_1_Info && ADV00_3_Info && ADV00_4_Info && PreviousTimeOfDay != GetTimeOfDay())
+	if (ADV00_0_Info && ADV00_1_Info && ADV00_3_Info && ADV00_4_Info && PreviousTimeOfDay != GetTimeOfDay())
 	{
 		SwitchLighting_TimeOfDay(0);
 		SwitchLighting_TimeOfDay(1);

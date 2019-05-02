@@ -372,7 +372,7 @@ void ADV01C_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 
 void ADV01C_OnFrame()
 {
-	if (CurrentLevel == 32 && GameState != 16)
+	if (ADV01C_1_Info && GameState != 16)
 	{
 		if (DLLLoaded_Lantern && dword_3C85138 == 0)
 		{
