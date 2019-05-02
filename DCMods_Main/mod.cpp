@@ -533,7 +533,7 @@ extern "C"
 		//Animate materials and UVs
 		if (!IsGamePaused())
 		{
-			for (int i = 0; i < 32; ++i)
+			for (int i = 0; i < 64; ++i)
 			{
 				if (UVAnimationData[i].uv_pointer) AnimateUVs(&UVAnimationData[i]);
 				if (TextureAnimationData[i].material) AnimateTexture(&TextureAnimationData[i]);
