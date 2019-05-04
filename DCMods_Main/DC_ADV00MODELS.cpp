@@ -858,6 +858,8 @@ void ParseSSColFlags()
 		else
 		{
 			if (colflags == 0) landtable->Col[j].Flags = 0x80000000; //Show SADX sea bottom
+			if ((colflags & ColFlags_Visible) && (colflags & ColFlags_Water)) landtable->Col[j].Flags = 0x00000002; //Hide sewers water
+
 		}
 	}
 	//Hotel area
@@ -940,7 +942,7 @@ void ParseSSMaterials()
 			if (materialflags & NJD_CUSTOMFLAG_TEXANIM1)
 			{
 				material = (NJS_MATERIAL*)&landtable->Col[j].Model->basicdxmodel->mats[k];
-				AddTextureAnimation(material, false, 4, 46, 55, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1);
+				AddTextureAnimation(2, material, false, 4, 46, 55, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1);
 			}
 		}
 	}
@@ -960,19 +962,19 @@ void ParseSSMaterials()
 			if ((materialflags & NJD_CUSTOMFLAG_TEXANIM1) && !(materialflags & NJD_CUSTOMFLAG_TEXANIM2))
 			{
 				material = (NJS_MATERIAL*)&landtable->Col[j].Model->basicdxmodel->mats[k];
-				AddTextureAnimation(material, true, 4, 183, 242, 243, 244, 245, 246, 247, 248, 249, 250, 251, 252, 253, 254, 255, -1);
+				AddTextureAnimation(3, material, true, 4, 183, 242, 243, 244, 245, 246, 247, 248, 249, 250, 251, 252, 253, 254, 255, -1);
 			}
 			//Texanim 2
 			if ((materialflags & NJD_CUSTOMFLAG_TEXANIM2) && !(materialflags & NJD_CUSTOMFLAG_TEXANIM1))
 			{
 				material = (NJS_MATERIAL*)&landtable->Col[j].Model->basicdxmodel->mats[k];
-				AddTextureAnimation(material, true, 4, 29, 228, 229, 230, 231, 232, 233, 234, 235, 236, 237, 238, 239, 240, 241, -1);
+				AddTextureAnimation(3, material, true, 4, 29, 228, 229, 230, 231, 232, 233, 234, 235, 236, 237, 238, 239, 240, 241, -1);
 			}
 			//Texanim 3
 			if ((materialflags & NJD_CUSTOMFLAG_TEXANIM1) && (materialflags & NJD_CUSTOMFLAG_TEXANIM2))
 			{
 				material = (NJS_MATERIAL*)&landtable->Col[j].Model->basicdxmodel->mats[k];
-				AddTextureAnimation(material, true, 4, 142, 219, 220, 221, 222, 223, 224, 225, 226, 227, -1, -1, -1, -1, -1, -1);
+				AddTextureAnimation(3, material, true, 4, 142, 219, 220, 221, 222, 223, 224, 225, 226, 227, -1, -1, -1, -1, -1, -1);
 			}
 		}
 	}
@@ -992,19 +994,19 @@ void ParseSSMaterials()
 			if ((materialflags & NJD_CUSTOMFLAG_TEXANIM1) && !(materialflags & NJD_CUSTOMFLAG_TEXANIM2))
 			{
 				material = (NJS_MATERIAL*)&landtable->Col[j].Model->basicdxmodel->mats[k];
-				AddTextureAnimation(material, false, 4, 101, 114, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+				AddTextureAnimation(4, material, false, 4, 101, 114, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 			}
 			//Texanim 2
 			if ((materialflags & NJD_CUSTOMFLAG_TEXANIM2) && !(materialflags & NJD_CUSTOMFLAG_TEXANIM1))
 			{
 				material = (NJS_MATERIAL*)&landtable->Col[j].Model->basicdxmodel->mats[k];
-				AddTextureAnimation(material, false, 4, 87, 100, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+				AddTextureAnimation(4, material, false, 4, 87, 100, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 			}
 			//Texanim 3
 			if ((materialflags & NJD_CUSTOMFLAG_TEXANIM1) && (materialflags & NJD_CUSTOMFLAG_TEXANIM2))
 			{
 				material = (NJS_MATERIAL*)&landtable->Col[j].Model->basicdxmodel->mats[k];
-				AddTextureAnimation(material, true, 4, 65, 78, 79, 80, 81, 82, 83, 84, 85, 86, -1, 0, 0, 0, 0, 0);
+				AddTextureAnimation(4, material, true, 4, 65, 78, 79, 80, 81, 82, 83, 84, 85, 86, -1, 0, 0, 0, 0, 0);
 			}
 		}
 	}
