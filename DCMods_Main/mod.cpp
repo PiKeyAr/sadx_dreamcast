@@ -530,6 +530,11 @@ extern "C"
 		
 	__declspec(dllexport) void __cdecl OnFrame()
 	{
+		TextureAnimation* TextureAnimationData = TextureAnimationData_Act1;
+		if (CurrentAct == 0) TextureAnimationData = TextureAnimationData_Act1;
+		else if (CurrentAct == 1) TextureAnimationData = TextureAnimationData_Act2;
+		else if (CurrentAct == 2) TextureAnimationData = TextureAnimationData_Act3;
+		else TextureAnimationData = TextureAnimationData_Act4;
 		//Animate materials and UVs
 		if (!IsGamePaused())
 		{

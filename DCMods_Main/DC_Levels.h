@@ -282,7 +282,10 @@ extern LandTableInfo *AL_GARDEN01_Info;
 extern LandTableInfo *AL_GARDEN02_Info;
 extern LandTableInfo *AL_RACE_0_Info;
 extern LandTableInfo *AL_RACE_1_Info;
-extern TextureAnimation TextureAnimationData[];
+extern TextureAnimation TextureAnimationData_Act1[];
+extern TextureAnimation TextureAnimationData_Act2[];
+extern TextureAnimation TextureAnimationData_Act3[];
+extern TextureAnimation TextureAnimationData_Act4[];
 extern UVAnimation UVAnimationData[];
 
 //Level load functions
@@ -451,5 +454,5 @@ void CheckLandtableMaterials_unregister(LandTable *landtable);
 void AnimateTexture(TextureAnimation *texanim);
 void AnimateUVs(UVAnimation *animation);
 void ClearTextureAnimationData();
-void AddTextureAnimation(NJS_MATERIAL* material, bool nonsequential, int speed, int frame1, int frame2, int frame3, int frame4, int frame5, int frame6, int frame7, int frame8, int frame9, int frame10, int frame11, int frame12, int frame13, int frame14, int frame15, int frame16);
+void AddTextureAnimation(int act, NJS_MATERIAL* material, bool nonsequential, int speed, int frame1, int frame2, int frame3, int frame4, int frame5, int frame6, int frame7, int frame8, int frame9, int frame10, int frame11, int frame12, int frame13, int frame14, int frame15, int frame16);
 void AddUVAnimation(NJS_TEX* uv, int uv_count, int timer, int u_speed, int v_speed);
