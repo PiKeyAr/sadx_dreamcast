@@ -195,6 +195,21 @@ void __cdecl EmeraldCoast_OceanDraw_SADXStyle(OceanData *o)
 		x = _f + _o->Position.x;
 		njTranslate(0, x, _o->Position.y, z);
 		njPushMatrix(0);
+		njSetTextureNum(_o->VBuffIndex + 15);
+		v8 = 0;
+		if (_o->PlaneCount)
+		{
+			do
+			{
+				Direct3D_DrawFVF_H(
+					OceanGarbageArray[0x23 * (unsigned __int8)_o->VBuffIndex].points,
+					4 * (unsigned __int8)_o->PrimitiveCount);
+				njTranslate(0, _o->Offset.x, 0.0, 0.0);
+				++v8;
+			} while (v8 < (unsigned __int8)_o->PlaneCount);
+		}
+		njPopMatrix(1u);
+		njPushMatrix(0);
 		xb = _f * 0.5;
 		njTranslate(0, xb, -1.0, xb);
 		njSetTextureNum(SADXWaveAnimation);
@@ -209,21 +224,6 @@ void __cdecl EmeraldCoast_OceanDraw_SADXStyle(OceanData *o)
 				njTranslate(0, _o->Offset.x, 0.0, 0.0);
 				++v7;
 			} while (v7 < (unsigned __int8)_o->PlaneCount);
-		}
-		njPopMatrix(1u);
-		njPushMatrix(0);
-		njSetTextureNum(_o->VBuffIndex + 15);
-		v8 = 0;
-		if (_o->PlaneCount)
-		{
-			do
-			{
-				Direct3D_DrawFVF_H(
-					OceanGarbageArray[0x23 * (unsigned __int8)_o->VBuffIndex].points,
-					4 * (unsigned __int8)_o->PrimitiveCount);
-				njTranslate(0, _o->Offset.x, 0.0, 0.0);
-				++v8;
-			} while (v8 < (unsigned __int8)_o->PlaneCount);
 		}
 		njPopMatrix(1u);
 		njPopMatrix(1u);
