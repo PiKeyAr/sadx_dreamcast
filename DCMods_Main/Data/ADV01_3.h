@@ -9560,7 +9560,7 @@ extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_000D2000 = { vertex_000D1
 extern "C" __declspec(dllexport) NJS_OBJECT object_000D2028 = { NJD_EVAL_UNIT_SCL, &attach_000D2000, -118.6923f, 101.4629f, -31.83939f, 0, 0xFFFFED43, 0, 1, 1, 1, &object_000D1DA0, NULL };
 
 extern "C" __declspec(dllexport) NJS_MATERIAL matlist_000D205C[] = {
-	{ { 0x00B2B2B2 }, { 0xFFFFFFFF }, 11, 5, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_USE_ALPHA | NJD_DA_INV_SRC | NJD_SA_SRC }
+	{ { 0x00FFFFFF }, { 0xFFFFFFFF }, 11, 5, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_USE_ALPHA | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
 extern "C" __declspec(dllexport) Sint16 poly_000D2070[] = {
