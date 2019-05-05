@@ -3,19 +3,19 @@
 #pragma warning(push)
 #pragma warning(disable: 4267 4838)
 
-NJS_MATERIAL matlist_00011EC8[] = {
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_00011EC8[] = {
 	{ { 0x00FFFFFF }, { 0xFFFFFFFF }, 11, 0, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_ALPHA | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_00011EDC[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00011EDC[] = {
 	0x8000u | 12, 6, 0, 7, 1, 8, 2, 9, 3, 10, 4, 11, 5
 };
 
-NJS_MESHSET_SADX meshlist_00011EF8[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00011EF8[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 1, poly_00011EDC, NULL, NULL, NULL, NULL, NULL }
 };
 
-NJS_VECTOR vertex_00011F10[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_00011F10[] = {
 	{ 108.382f, -8, 778.1234f },
 	{ 40.42043f, -8, 849.8807f },
 	{ 5.724212f, -8, 892.4554f },
@@ -30,7 +30,7 @@ NJS_VECTOR vertex_00011F10[] = {
 	{ -52.54585f, 42, 1065.374f }
 };
 
-NJS_VECTOR normal_00011FA0[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_00011FA0[] = {
 	{ 0.7260489f, 0, 0.687643f },
 	{ 0.751137f, 0, 0.660146f },
 	{ 0.8171099f, 0, 0.576482f },
@@ -45,23 +45,23 @@ NJS_VECTOR normal_00011FA0[] = {
 	{ 0.994467f, 0, 0.105045f }
 };
 
-NJS_MODEL_SADX attach_00012030 = { vertex_00011F10, normal_00011FA0, LengthOfArray<Sint32>(vertex_00011F10), meshlist_00011EF8, matlist_00011EC8, LengthOfArray<Uint16>(meshlist_00011EF8), LengthOfArray<Uint16>(matlist_00011EC8), { 27.91808f, 42, 921.7485f }, 164.6288f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00012030 = { vertex_00011F10, normal_00011FA0, LengthOfArray<Sint32>(vertex_00011F10), meshlist_00011EF8, matlist_00011EC8, LengthOfArray<Uint16>(meshlist_00011EF8), LengthOfArray<Uint16>(matlist_00011EC8), { 27.91808f, 42, 921.7485f }, 164.6288f, NULL };
 
-NJS_OBJECT object_00012058 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00012030, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_0001208C[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_00012058 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00012030, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_0001208C[] = {
 	{ { 0x00FFFFFF }, { 0xFFFFFFFF }, 11, 0, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_ALPHA | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_000120A0[] = {
+extern "C" __declspec(dllexport) Sint16 poly_000120A0[] = {
 	4, 3, 2, 1, 0,
 	0x8000u | 10, 4, 9, 5, 10, 6, 11, 7, 12, 8, 13
 };
 
-NJS_MESHSET_SADX meshlist_000120C0[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_000120C0[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 2, poly_000120A0, NULL, NULL, NULL, NULL, NULL }
 };
 
-NJS_VECTOR vertex_000120D8[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_000120D8[] = {
 	{ -25.22012f, -50, 147.5596f },
 	{ -88.23562f, -50, 217.06f },
 	{ -25.22012f, 20, 147.5596f },
@@ -78,7 +78,7 @@ NJS_VECTOR vertex_000120D8[] = {
 	{ -25.22012f, 20, 147.5596f }
 };
 
-NJS_VECTOR normal_00012180[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_00012180[] = {
 	{ -0.740824f, 0, -0.6716999f },
 	{ -0.740824f, 0, -0.6716999f },
 	{ -0.740824f, 0, -0.6716999f },
@@ -95,22 +95,22 @@ NJS_VECTOR normal_00012180[] = {
 	{ -0.960363f, 0, -0.278753f }
 };
 
-NJS_MODEL_SADX attach_00012228 = { vertex_000120D8, normal_00012180, LengthOfArray<Sint32>(vertex_000120D8), meshlist_000120C0, matlist_0001208C, LengthOfArray<Uint16>(meshlist_000120C0), LengthOfArray<Uint16>(matlist_0001208C), { 0, 0, 0.000031f }, 234.3087f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00012228 = { vertex_000120D8, normal_00012180, LengthOfArray<Sint32>(vertex_000120D8), meshlist_000120C0, matlist_0001208C, LengthOfArray<Uint16>(meshlist_000120C0), LengthOfArray<Uint16>(matlist_0001208C), { 0, 0, 0.000031f }, 234.3087f, NULL };
 
-NJS_OBJECT object_00012250 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00012228, -489.3083f, 42, 637.077f, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_00012284[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_00012250 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00012228, -489.3083f, 42, 637.077f, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_00012284[] = {
 	{ { 0x00FFFFFF }, { 0xFFFFFFFF }, 11, 0, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_ALPHA | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_00012298[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00012298[] = {
 	0x8000u | 22, 0, 11, 1, 12, 2, 13, 3, 14, 4, 15, 5, 16, 6, 17, 7, 18, 8, 19, 9, 20, 10, 21
 };
 
-NJS_MESHSET_SADX meshlist_000122C8[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_000122C8[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 1, poly_00012298, NULL, NULL, NULL, NULL, NULL }
 };
 
-NJS_VECTOR vertex_000122E0[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_000122E0[] = {
 	{ 369.0454f, -8, 895.045f },
 	{ 389.8323f, -8, 998.012f },
 	{ 384.012f, -8, 1062.499f },
@@ -135,7 +135,7 @@ NJS_VECTOR vertex_000122E0[] = {
 	{ -24.18037f, 42, 1197.143f }
 };
 
-NJS_VECTOR normal_000123E8[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_000123E8[] = {
 	{ -0.980225f, 0, 0.197887f },
 	{ -0.9985099f, 0, 0.054568f },
 	{ -0.978501f, 0, -0.206244f },
@@ -160,22 +160,22 @@ NJS_VECTOR normal_000123E8[] = {
 	{ 0.697936f, 0, -0.71616f }
 };
 
-NJS_MODEL_SADX attach_000124F0 = { vertex_000122E0, normal_000123E8, LengthOfArray<Sint32>(vertex_000122E0), meshlist_000122C8, matlist_00012284, LengthOfArray<Uint16>(meshlist_000122C8), LengthOfArray<Uint16>(matlist_00012284), { 182.826f, 42, 1090.072f }, 284.4065f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_000124F0 = { vertex_000122E0, normal_000123E8, LengthOfArray<Sint32>(vertex_000122E0), meshlist_000122C8, matlist_00012284, LengthOfArray<Uint16>(meshlist_000122C8), LengthOfArray<Uint16>(matlist_00012284), { 182.826f, 42, 1090.072f }, 284.4065f, NULL };
 
-NJS_OBJECT object_00012518 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_000124F0, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_0001254C[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_00012518 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_000124F0, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_0001254C[] = {
 	{ { 0x00FFFFFF }, { 0xFFFFFFFF }, 11, 0, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_ALPHA | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_00012560[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00012560[] = {
 	0x8000u | 6, 0, 3, 1, 4, 2, 5
 };
 
-NJS_MESHSET_SADX meshlist_00012570[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00012570[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 1, poly_00012560, NULL, NULL, NULL, NULL, NULL }
 };
 
-NJS_VECTOR vertex_00012588[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_00012588[] = {
 	{ -24.18037f, -8, 1197.143f },
 	{ -47.4409f, -8, 1127.976f },
 	{ -52.54585f, -8, 1065.374f },
@@ -184,7 +184,7 @@ NJS_VECTOR vertex_00012588[] = {
 	{ -52.54585f, 42, 1065.374f }
 };
 
-NJS_VECTOR normal_000125D0[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_000125D0[] = {
 	{ 0.9478379f, 0, -0.318753f },
 	{ 0.979488f, 0, -0.2015f },
 	{ 0.9966919f, 0, -0.081276f },
@@ -193,22 +193,22 @@ NJS_VECTOR normal_000125D0[] = {
 	{ 0.9966919f, 0, -0.081276f }
 };
 
-NJS_MODEL_SADX attach_00012618 = { vertex_00012588, normal_000125D0, LengthOfArray<Sint32>(vertex_00012588), meshlist_00012570, matlist_0001254C, LengthOfArray<Uint16>(meshlist_00012570), LengthOfArray<Uint16>(matlist_0001254C), { -38.36311f, 17, 1131.259f }, 70.46851f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00012618 = { vertex_00012588, normal_000125D0, LengthOfArray<Sint32>(vertex_00012588), meshlist_00012570, matlist_0001254C, LengthOfArray<Uint16>(meshlist_00012570), LengthOfArray<Uint16>(matlist_0001254C), { -38.36311f, 17, 1131.259f }, 70.46851f, NULL };
 
-NJS_OBJECT object_00012640 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00012618, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_00012674[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_00012640 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00012618, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_00012674[] = {
 	{ { 0x00FFFFFF }, { 0xFFFFFFFF }, 11, 0, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_ALPHA | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_00012688[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00012688[] = {
 	0x8000u | 18, 0, 9, 1, 10, 2, 11, 3, 12, 4, 13, 5, 14, 6, 15, 7, 16, 8, 17
 };
 
-NJS_MESHSET_SADX meshlist_000126B0[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_000126B0[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 1, poly_00012688, NULL, NULL, NULL, NULL, NULL }
 };
 
-NJS_VECTOR vertex_000126C8[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_000126C8[] = {
 	{ 108.382f, -8, 778.1234f },
 	{ 171.2364f, -8, 710.1053f },
 	{ 266.2114f, -8, 600.5484f },
@@ -229,7 +229,7 @@ NJS_VECTOR vertex_000126C8[] = {
 	{ 607.524f, 92, 435.3092f }
 };
 
-NJS_VECTOR normal_000127A0[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_000127A0[] = {
 	{ 0.734435f, 0, 0.678679f },
 	{ 0.7451119f, 0, 0.666939f },
 	{ 0.7255549f, 0, 0.688164f },
@@ -250,22 +250,22 @@ NJS_VECTOR normal_000127A0[] = {
 	{ 0.041509f, 0, 0.999138f }
 };
 
-NJS_MODEL_SADX attach_00012878 = { vertex_000126C8, normal_000127A0, LengthOfArray<Sint32>(vertex_000126C8), meshlist_000126B0, matlist_00012674, LengthOfArray<Uint16>(meshlist_000126B0), LengthOfArray<Uint16>(matlist_00012674), { 357.953f, 42, 606.7163f }, 302.764f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00012878 = { vertex_000126C8, normal_000127A0, LengthOfArray<Sint32>(vertex_000126C8), meshlist_000126B0, matlist_00012674, LengthOfArray<Uint16>(meshlist_000126B0), LengthOfArray<Uint16>(matlist_00012674), { 357.953f, 42, 606.7163f }, 302.764f, NULL };
 
-NJS_OBJECT object_000128A0 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00012878, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_000128D4[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_000128A0 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00012878, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_000128D4[] = {
 	{ { 0x00FFFFFF }, { 0xFFFFFFFF }, 11, 0, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_ALPHA | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_000128E8[] = {
+extern "C" __declspec(dllexport) Sint16 poly_000128E8[] = {
 	0x8000u | 16, 8, 0, 9, 1, 10, 2, 11, 3, 12, 4, 13, 5, 14, 6, 15, 7
 };
 
-NJS_MESHSET_SADX meshlist_0001290C[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_0001290C[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 1, poly_000128E8, NULL, NULL, NULL, NULL, NULL }
 };
 
-NJS_VECTOR vertex_00012924[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_00012924[] = {
 	{ 369.0454f, -8, 895.045f },
 	{ 365.8186f, -8, 862.309f },
 	{ 371.0733f, -8, 831.8197f },
@@ -284,7 +284,7 @@ NJS_VECTOR vertex_00012924[] = {
 	{ 557.0498f, 92, 693.2881f }
 };
 
-NJS_VECTOR normal_000129E4[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_000129E4[] = {
 	{ -0.995177f, 0, 0.098095f },
 	{ -0.9993449f, 0, -0.0362f },
 	{ -0.951309f, 0, -0.308238f },
@@ -303,22 +303,22 @@ NJS_VECTOR normal_000129E4[] = {
 	{ 0.181859f, 0, -0.9833249f }
 };
 
-NJS_MODEL_SADX attach_00012AA4 = { vertex_00012924, normal_000129E4, LengthOfArray<Sint32>(vertex_00012924), meshlist_0001290C, matlist_000128D4, LengthOfArray<Uint16>(meshlist_0001290C), LengthOfArray<Uint16>(matlist_000128D4), { 461.4342f, 42, 789.3798f }, 142.5043f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00012AA4 = { vertex_00012924, normal_000129E4, LengthOfArray<Sint32>(vertex_00012924), meshlist_0001290C, matlist_000128D4, LengthOfArray<Uint16>(meshlist_0001290C), LengthOfArray<Uint16>(matlist_000128D4), { 461.4342f, 42, 789.3798f }, 142.5043f, NULL };
 
-NJS_OBJECT object_00012ACC = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00012AA4, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_00012B00[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_00012ACC = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00012AA4, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_00012B00[] = {
 	{ { 0x00FFFFFF }, { 0xFFFFFFFF }, 11, 0, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_ALPHA | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_00012B14[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00012B14[] = {
 	0x8000u | 26, 13, 0, 14, 1, 15, 2, 16, 3, 17, 4, 18, 5, 19, 6, 20, 7, 21, 8, 22, 9, 23, 10, 24, 11, 25, 12
 };
 
-NJS_MESHSET_SADX meshlist_00012B4C[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00012B4C[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 1, poly_00012B14, NULL, NULL, NULL, NULL, NULL }
 };
 
-NJS_VECTOR vertex_00012B64[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_00012B64[] = {
 	{ 557.0498f, -8, 693.2881f },
 	{ 609.7244f, -8, 731.715f },
 	{ 627.7177f, -8, 757.7518f },
@@ -347,7 +347,7 @@ NJS_VECTOR vertex_00012B64[] = {
 	{ 1069.587f, 92, 947.7285f }
 };
 
-NJS_VECTOR normal_00012C9C[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_00012C9C[] = {
 	{ 0.5893559f, 0, -0.807873f },
 	{ 0.716083f, 0, -0.698015f },
 	{ 0.880681f, 0, -0.47371f },
@@ -376,22 +376,22 @@ NJS_VECTOR normal_00012C9C[] = {
 	{ -0.941116f, 0, -0.338084f }
 };
 
-NJS_MODEL_SADX attach_00012DD4 = { vertex_00012B64, normal_00012C9C, LengthOfArray<Sint32>(vertex_00012B64), meshlist_00012B4C, matlist_00012B00, LengthOfArray<Uint16>(meshlist_00012B4C), LengthOfArray<Uint16>(matlist_00012B00), { 813.3182f, 42, 898.0592f }, 328.0316f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00012DD4 = { vertex_00012B64, normal_00012C9C, LengthOfArray<Sint32>(vertex_00012B64), meshlist_00012B4C, matlist_00012B00, LengthOfArray<Uint16>(meshlist_00012B4C), LengthOfArray<Uint16>(matlist_00012B00), { 813.3182f, 42, 898.0592f }, 328.0316f, NULL };
 
-NJS_OBJECT object_00012DFC = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00012DD4, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_00012E30[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_00012DFC = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00012DD4, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_00012E30[] = {
 	{ { 0x00FFFFFF }, { 0xFFFFFFFF }, 11, 0, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_ALPHA | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_00012E44[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00012E44[] = {
 	0x8000u | 22, 0, 11, 1, 12, 2, 13, 3, 14, 4, 15, 5, 16, 6, 17, 7, 18, 8, 19, 9, 20, 10, 21
 };
 
-NJS_MESHSET_SADX meshlist_00012E74[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00012E74[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 1, poly_00012E44, NULL, NULL, NULL, NULL, NULL }
 };
 
-NJS_VECTOR vertex_00012E8C[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_00012E8C[] = {
 	{ 607.524f, -8, 435.3092f },
 	{ 714.4308f, -8, 445.971f },
 	{ 818.0389f, -8, 473.7077f },
@@ -416,7 +416,7 @@ NJS_VECTOR vertex_00012E8C[] = {
 	{ 1083.126f, 92, 805.8298f }
 };
 
-NJS_VECTOR normal_00012F94[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_00012F94[] = {
 	{ -0.09923799f, 0, 0.995064f },
 	{ -0.179509f, 0, 0.9837559f },
 	{ -0.321882f, 0, 0.94678f },
@@ -441,22 +441,22 @@ NJS_VECTOR normal_00012F94[] = {
 	{ -0.992586f, 0, 0.121542f }
 };
 
-NJS_MODEL_SADX attach_0001309C = { vertex_00012E8C, normal_00012F94, LengthOfArray<Sint32>(vertex_00012E8C), meshlist_00012E74, matlist_00012E30, LengthOfArray<Uint16>(meshlist_00012E74), LengthOfArray<Uint16>(matlist_00012E30), { 845.325f, 42, 620.5695f }, 301.4478f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_0001309C = { vertex_00012E8C, normal_00012F94, LengthOfArray<Sint32>(vertex_00012E8C), meshlist_00012E74, matlist_00012E30, LengthOfArray<Uint16>(meshlist_00012E74), LengthOfArray<Uint16>(matlist_00012E30), { 845.325f, 42, 620.5695f }, 301.4478f, NULL };
 
-NJS_OBJECT object_000130C4 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0001309C, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_000130F8[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_000130C4 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0001309C, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_000130F8[] = {
 	{ { 0x00FFFFFF }, { 0xFFFFFFFF }, 11, 0, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_ALPHA | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_0001310C[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0001310C[] = {
 	0x8000u | 26, 0, 13, 1, 14, 2, 15, 3, 16, 4, 17, 5, 18, 6, 19, 7, 20, 8, 21, 9, 22, 10, 23, 11, 24, 12, 25
 };
 
-NJS_MESHSET_SADX meshlist_00013144[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00013144[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 1, poly_0001310C, NULL, NULL, NULL, NULL, NULL }
 };
 
-NJS_VECTOR vertex_0001315C[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_0001315C[] = {
 	{ 5824.432f, -8, 1244.611f },
 	{ 5732.767f, -8, 1235.073f },
 	{ 5635.25f, -8, 1226.762f },
@@ -485,7 +485,7 @@ NJS_VECTOR vertex_0001315C[] = {
 	{ 5843.892f, 92, 1039.063f }
 };
 
-NJS_VECTOR normal_00013294[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_00013294[] = {
 	{ 0.103494f, 0, -0.99463f },
 	{ 0.094214f, 0, -0.9955519f },
 	{ 0.12197f, 0, -0.992534f },
@@ -514,22 +514,22 @@ NJS_VECTOR normal_00013294[] = {
 	{ 0.062526f, 0, 0.9980429f }
 };
 
-NJS_MODEL_SADX attach_000133CC = { vertex_0001315C, normal_00013294, LengthOfArray<Sint32>(vertex_0001315C), meshlist_00013144, matlist_000130F8, LengthOfArray<Uint16>(meshlist_00013144), LengthOfArray<Uint16>(matlist_000130F8), { 5628.417f, 42, 1092.825f }, 263.5689f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_000133CC = { vertex_0001315C, normal_00013294, LengthOfArray<Sint32>(vertex_0001315C), meshlist_00013144, matlist_000130F8, LengthOfArray<Uint16>(meshlist_00013144), LengthOfArray<Uint16>(matlist_000130F8), { 5628.417f, 42, 1092.825f }, 263.5689f, NULL };
 
-NJS_OBJECT object_000133F4 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_000133CC, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_00013428[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_000133F4 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_000133CC, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_00013428[] = {
 	{ { 0x00FFFFFF }, { 0xFFFFFFFF }, 11, 0, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_ALPHA | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_0001343C[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0001343C[] = {
 	0x8000u | 24, 12, 0, 13, 1, 14, 2, 15, 3, 16, 4, 17, 5, 18, 6, 19, 7, 20, 8, 21, 9, 22, 10, 23, 11
 };
 
-NJS_MESHSET_SADX meshlist_00013470[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00013470[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 1, poly_0001343C, NULL, NULL, NULL, NULL, NULL }
 };
 
-NJS_VECTOR vertex_00013488[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_00013488[] = {
 	{ 5824.432f, -8, 1244.611f },
 	{ 5901.149f, -8, 1263.746f },
 	{ 5977.301f, -8, 1308.53f },
@@ -556,7 +556,7 @@ NJS_VECTOR vertex_00013488[] = {
 	{ 6463.516f, 92, 1126.933f }
 };
 
-NJS_VECTOR normal_000135A8[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_000135A8[] = {
 	{ 0.242011f, 0, -0.970273f },
 	{ 0.37836f, 0, -0.925658f },
 	{ 0.444793f, 0, -0.895634f },
@@ -583,22 +583,22 @@ NJS_VECTOR normal_000135A8[] = {
 	{ -0.987844f, 0, -0.155446f }
 };
 
-NJS_MODEL_SADX attach_000136C8 = { vertex_00013488, normal_000135A8, LengthOfArray<Sint32>(vertex_00013488), meshlist_00013470, matlist_00013428, LengthOfArray<Uint16>(meshlist_00013470), LengthOfArray<Uint16>(matlist_00013428), { 6143.974f, 42, 1244.839f }, 340.6003f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_000136C8 = { vertex_00013488, normal_000135A8, LengthOfArray<Sint32>(vertex_00013488), meshlist_00013470, matlist_00013428, LengthOfArray<Uint16>(meshlist_00013470), LengthOfArray<Uint16>(matlist_00013428), { 6143.974f, 42, 1244.839f }, 340.6003f, NULL };
 
-NJS_OBJECT object_000136F0 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_000136C8, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_00013724[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_000136F0 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_000136C8, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_00013724[] = {
 	{ { 0x00FFFFFF }, { 0xFFFFFFFF }, 11, 0, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_ALPHA | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_00013738[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00013738[] = {
 	0x8000u | 34, 17, 0, 18, 1, 19, 2, 20, 3, 21, 4, 22, 5, 23, 6, 24, 7, 25, 8, 26, 9, 27, 10, 28, 11, 29, 12, 30, 13, 31, 14, 32, 15, 33, 16
 };
 
-NJS_MESHSET_SADX meshlist_00013780[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00013780[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 1, poly_00013738, NULL, NULL, NULL, NULL, NULL }
 };
 
-NJS_VECTOR vertex_00013798[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_00013798[] = {
 	{ 6463.516f, -8, 1126.933f },
 	{ 6453.383f, -8, 1058.547f },
 	{ 6424.313f, -8, 996.5898f },
@@ -635,7 +635,7 @@ NJS_VECTOR vertex_00013798[] = {
 	{ 5843.892f, 92, 1039.063f }
 };
 
-NJS_VECTOR normal_00013930[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_00013930[] = {
 	{ -0.989199f, 0, 0.146577f },
 	{ -0.95741f, 0, 0.288732f },
 	{ -0.8364969f, 0, 0.547972f },
@@ -672,22 +672,22 @@ NJS_VECTOR normal_00013930[] = {
 	{ 0.342679f, 0, 0.9394529f }
 };
 
-NJS_MODEL_SADX attach_00013AC8 = { vertex_00013798, normal_00013930, LengthOfArray<Sint32>(vertex_00013798), meshlist_00013780, matlist_00013724, LengthOfArray<Uint16>(meshlist_00013780), LengthOfArray<Uint16>(matlist_00013724), { 6153.704f, 41, 969.3412f }, 347.59f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00013AC8 = { vertex_00013798, normal_00013930, LengthOfArray<Sint32>(vertex_00013798), meshlist_00013780, matlist_00013724, LengthOfArray<Uint16>(meshlist_00013780), LengthOfArray<Uint16>(matlist_00013724), { 6153.704f, 41, 969.3412f }, 347.59f, NULL };
 
-NJS_OBJECT object_00013AF0 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00013AC8, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_00013B24[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_00013AF0 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00013AC8, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_00013B24[] = {
 	{ { 0x00FFFFFF }, { 0xFFFFFFFF }, 11, 0, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_ALPHA | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_00013B38[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00013B38[] = {
 	0x8000u | 20, 0, 10, 1, 11, 2, 12, 3, 13, 4, 14, 5, 15, 6, 16, 7, 17, 8, 18, 9, 19
 };
 
-NJS_MESHSET_SADX meshlist_00013B64[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00013B64[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 1, poly_00013B38, NULL, NULL, NULL, NULL, NULL }
 };
 
-NJS_VECTOR vertex_00013B7C[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_00013B7C[] = {
 	{ 80.60376f, -8, -100.5812f },
 	{ 124.23f, -8, -2.413939f },
 	{ 139.7182f, -8, 55.5714f },
@@ -710,7 +710,7 @@ NJS_VECTOR vertex_00013B7C[] = {
 	{ -195.0154f, 94, 317.0058f }
 };
 
-NJS_VECTOR normal_00013C6C[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_00013C6C[] = {
 	{ -0.913824f, 0, 0.40611f },
 	{ -0.9428869f, 0, 0.333112f },
 	{ -0.987759f, 0, 0.155988f },
@@ -733,22 +733,22 @@ NJS_VECTOR normal_00013C6C[] = {
 	{ 0.030881f, 0, -0.999523f }
 };
 
-NJS_MODEL_SADX attach_00013D5C = { vertex_00013B7C, normal_00013C6C, LengthOfArray<Sint32>(vertex_00013B7C), meshlist_00013B64, matlist_00013B24, LengthOfArray<Uint16>(meshlist_00013B64), LengthOfArray<Uint16>(matlist_00013B24), { -25.95438f, 43, 109.7804f }, 269.8771f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00013D5C = { vertex_00013B7C, normal_00013C6C, LengthOfArray<Sint32>(vertex_00013B7C), meshlist_00013B64, matlist_00013B24, LengthOfArray<Uint16>(meshlist_00013B64), LengthOfArray<Uint16>(matlist_00013B24), { -25.95438f, 43, 109.7804f }, 269.8771f, NULL };
 
-NJS_OBJECT object_00013D84 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00013D5C, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_00013DB8[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_00013D84 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00013D5C, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_00013DB8[] = {
 	{ { 0x00FFFFFF }, { 0xFFFFFFFF }, 11, 0, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_ALPHA | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_00013DCC[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00013DCC[] = {
 	0x8000u | 14, 0, 7, 1, 8, 2, 9, 3, 10, 4, 11, 5, 12, 6, 13
 };
 
-NJS_MESHSET_SADX meshlist_00013DEC[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00013DEC[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 1, poly_00013DCC, NULL, NULL, NULL, NULL, NULL }
 };
 
-NJS_VECTOR vertex_00013E04[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_00013E04[] = {
 	{ -195.0154f, -5.999998f, 317.0058f },
 	{ -192.2732f, -13, 363.8144f },
 	{ -210.2163f, -13, 409.8012f },
@@ -765,7 +765,7 @@ NJS_VECTOR vertex_00013E04[] = {
 	{ -401.0726f, 92, 420.0171f }
 };
 
-NJS_VECTOR normal_00013EAC[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_00013EAC[] = {
 	{ -0.998288f, 0, 0.058482f },
 	{ -0.985993f, 0, -0.166789f },
 	{ -0.735101f, 0, -0.677958f },
@@ -782,22 +782,22 @@ NJS_VECTOR normal_00013EAC[] = {
 	{ -0.104372f, 0, -0.9945379f }
 };
 
-NJS_MODEL_SADX attach_00013F54 = { vertex_00013E04, normal_00013EAC, LengthOfArray<Sint32>(vertex_00013E04), meshlist_00013DEC, matlist_00013DB8, LengthOfArray<Uint16>(meshlist_00013DEC), LengthOfArray<Uint16>(matlist_00013DB8), { -296.6729f, 40.5f, 374.7134f }, 119.2873f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00013F54 = { vertex_00013E04, normal_00013EAC, LengthOfArray<Sint32>(vertex_00013E04), meshlist_00013DEC, matlist_00013DB8, LengthOfArray<Uint16>(meshlist_00013DEC), LengthOfArray<Uint16>(matlist_00013DB8), { -296.6729f, 40.5f, 374.7134f }, 119.2873f, NULL };
 
-NJS_OBJECT object_00013F7C = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00013F54, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_00013FB0[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_00013F7C = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00013F54, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_00013FB0[] = {
 	{ { 0x00FFFFFF }, { 0xFFFFFFFF }, 11, 0, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_ALPHA | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_00013FC4[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00013FC4[] = {
 	0x8000u | 14, 7, 0, 8, 1, 9, 2, 10, 3, 11, 4, 12, 5, 13, 6
 };
 
-NJS_MESHSET_SADX meshlist_00013FE4[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00013FE4[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 1, poly_00013FC4, NULL, NULL, NULL, NULL, NULL }
 };
 
-NJS_VECTOR vertex_00013FFC[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_00013FFC[] = {
 	{ -693.5332f, -8, 263.2652f },
 	{ -755.8804f, -8, 403.1379f },
 	{ -782.542f, -8, 508.5304f },
@@ -814,7 +814,7 @@ NJS_VECTOR vertex_00013FFC[] = {
 	{ -680, 41, 860 }
 };
 
-NJS_VECTOR normal_000140A4[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_000140A4[] = {
 	{ 0.913371f, 0, 0.407128f },
 	{ 0.9448889f, 0, 0.327392f },
 	{ 0.987133f, 0, 0.159902f },
@@ -831,22 +831,22 @@ NJS_VECTOR normal_000140A4[] = {
 	{ 0.659749f, 0.048152f, -0.7499419f }
 };
 
-NJS_MODEL_SADX attach_0001414C = { vertex_00013FFC, normal_000140A4, LengthOfArray<Sint32>(vertex_00013FFC), meshlist_00013FE4, matlist_00013FB0, LengthOfArray<Uint16>(meshlist_00013FE4), LengthOfArray<Uint16>(matlist_00013FB0), { -735.2225f, 42, 561.6326f }, 303.4347f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_0001414C = { vertex_00013FFC, normal_000140A4, LengthOfArray<Sint32>(vertex_00013FFC), meshlist_00013FE4, matlist_00013FB0, LengthOfArray<Uint16>(meshlist_00013FE4), LengthOfArray<Uint16>(matlist_00013FB0), { -735.2225f, 42, 561.6326f }, 303.4347f, NULL };
 
-NJS_OBJECT object_00014174 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0001414C, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_000141A8[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_00014174 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0001414C, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_000141A8[] = {
 	{ { 0x00FFFFFF }, { 0xFFFFFFFF }, 11, 0, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_ALPHA | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_000141BC[] = {
+extern "C" __declspec(dllexport) Sint16 poly_000141BC[] = {
 	0x8000u | 26, 0, 13, 1, 14, 2, 15, 3, 16, 4, 17, 5, 18, 6, 19, 7, 20, 8, 21, 9, 22, 10, 23, 11, 24, 12, 25
 };
 
-NJS_MESHSET_SADX meshlist_000141F4[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_000141F4[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 1, poly_000141BC, NULL, NULL, NULL, NULL, NULL }
 };
 
-NJS_VECTOR vertex_0001420C[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_0001420C[] = {
 	{ -1091.455f, -8, 1479.689f },
 	{ -1114.541f, -8, 1398.942f },
 	{ -1138.663f, -8, 1356.151f },
@@ -875,7 +875,7 @@ NJS_VECTOR vertex_0001420C[] = {
 	{ -800.4363f, 92, 1155.693f }
 };
 
-NJS_VECTOR normal_00014344[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_00014344[] = {
 	{ 0.961476f, 0, -0.274889f },
 	{ 0.922651f, 0, -0.385636f },
 	{ 0.911741f, 0, -0.410765f },
@@ -904,22 +904,22 @@ NJS_VECTOR normal_00014344[] = {
 	{ -0.694124f, 0, 0.719855f }
 };
 
-NJS_MODEL_SADX attach_0001447C = { vertex_0001420C, normal_00014344, LengthOfArray<Sint32>(vertex_0001420C), meshlist_000141F4, matlist_000141A8, LengthOfArray<Uint16>(meshlist_000141F4), LengthOfArray<Uint16>(matlist_000141A8), { -978.7737f, 42, 1281.162f }, 266.8651f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_0001447C = { vertex_0001420C, normal_00014344, LengthOfArray<Sint32>(vertex_0001420C), meshlist_000141F4, matlist_000141A8, LengthOfArray<Uint16>(meshlist_000141F4), LengthOfArray<Uint16>(matlist_000141A8), { -978.7737f, 42, 1281.162f }, 266.8651f, NULL };
 
-NJS_OBJECT object_000144A4 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0001447C, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_000144D8[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_000144A4 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0001447C, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_000144D8[] = {
 	{ { 0x00FFFFFF }, { 0xFFFFFFFF }, 11, 0, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_ALPHA | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_000144EC[] = {
+extern "C" __declspec(dllexport) Sint16 poly_000144EC[] = {
 	0x8000u | 30, 29, 14, 28, 13, 27, 12, 26, 11, 25, 10, 24, 9, 23, 8, 22, 7, 21, 6, 20, 5, 19, 4, 18, 3, 17, 2, 16, 1, 15, 0
 };
 
-NJS_MESHSET_SADX meshlist_0001452C[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_0001452C[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 1, poly_000144EC, NULL, NULL, NULL, NULL, NULL }
 };
 
-NJS_VECTOR vertex_00014544[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_00014544[] = {
 	{ -586.7737f, -8, 1453.911f },
 	{ -544.487f, -8, 1489.128f },
 	{ -514.6609f, -8, 1542.855f },
@@ -952,7 +952,7 @@ NJS_VECTOR vertex_00014544[] = {
 	{ -1091.455f, 92, 1479.689f }
 };
 
-NJS_VECTOR normal_000146AC[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_000146AC[] = {
 	{ -0.639951f, 0, 0.768416f },
 	{ -0.770243f, 0, 0.637751f },
 	{ -0.973774f, 0, 0.227516f },
@@ -985,22 +985,22 @@ NJS_VECTOR normal_000146AC[] = {
 	{ 0.998291f, 0, -0.058435f }
 };
 
-NJS_MODEL_SADX attach_00014814 = { vertex_00014544, normal_000146AC, LengthOfArray<Sint32>(vertex_00014544), meshlist_0001452C, matlist_000144D8, LengthOfArray<Uint16>(meshlist_0001452C), LengthOfArray<Uint16>(matlist_000144D8), { -803.0579f, 42, 1572.178f }, 311.7048f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00014814 = { vertex_00014544, normal_000146AC, LengthOfArray<Sint32>(vertex_00014544), meshlist_0001452C, matlist_000144D8, LengthOfArray<Uint16>(meshlist_0001452C), LengthOfArray<Uint16>(matlist_000144D8), { -803.0579f, 42, 1572.178f }, 311.7048f, NULL };
 
-NJS_OBJECT object_0001483C = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00014814, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_00014870[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_0001483C = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00014814, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_00014870[] = {
 	{ { 0x00FFFFFF }, { 0xFFFFFFFF }, 11, 0, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_ALPHA | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_00014884[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00014884[] = {
 	0x8000u | 12, 11, 5, 10, 4, 9, 3, 8, 2, 7, 1, 6, 0
 };
 
-NJS_MESHSET_SADX meshlist_000148A0[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_000148A0[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 1, poly_00014884, NULL, NULL, NULL, NULL, NULL }
 };
 
-NJS_VECTOR vertex_000148B8[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_000148B8[] = {
 	{ -800.4363f, -8, 1155.693f },
 	{ -769.5536f, -8, 1198.471f },
 	{ -727.739f, -8, 1290.691f },
@@ -1015,7 +1015,7 @@ NJS_VECTOR vertex_000148B8[] = {
 	{ -586.7737f, 42, 1453.911f }
 };
 
-NJS_VECTOR normal_00014948[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_00014948[] = {
 	{ -0.810794f, 0, 0.585331f },
 	{ -0.865077f, 0, 0.5016389f },
 	{ -0.9109769f, 0, 0.412457f },
@@ -1030,46 +1030,46 @@ NJS_VECTOR normal_00014948[] = {
 	{ -0.573971f, 0, 0.818875f }
 };
 
-NJS_MODEL_SADX attach_000149D8 = { vertex_000148B8, normal_00014948, LengthOfArray<Sint32>(vertex_000148B8), meshlist_000148A0, matlist_00014870, LengthOfArray<Uint16>(meshlist_000148A0), LengthOfArray<Uint16>(matlist_00014870), { -693.6049f, 17, 1304.802f }, 183.43f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_000149D8 = { vertex_000148B8, normal_00014948, LengthOfArray<Sint32>(vertex_000148B8), meshlist_000148A0, matlist_00014870, LengthOfArray<Uint16>(meshlist_000148A0), LengthOfArray<Uint16>(matlist_00014870), { -693.6049f, 17, 1304.802f }, 183.43f, NULL };
 
-NJS_OBJECT object_00014A00 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_000149D8, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_00014A34[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_00014A00 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_000149D8, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_00014A34[] = {
 	{ { 0x00FFFFFF }, { 0xFFFFFFFF }, 11, 0, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_ALPHA | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_00014A48[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00014A48[] = {
 	4, 3, 2, 1, 0
 };
 
-NJS_MESHSET_SADX meshlist_00014A54[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00014A54[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 1, poly_00014A48, NULL, NULL, NULL, NULL, NULL }
 };
 
-NJS_VECTOR vertex_00014A6C[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_00014A6C[] = {
 	{ -577.5438f, -8, 854.137f },
 	{ -680.3252f, -8, 856.5677f },
 	{ -577.5438f, 42, 854.137f },
 	{ -680.3252f, 42, 856.5677f }
 };
 
-NJS_VECTOR normal_00014A9C[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_00014A9C[] = {
 	{ -0.023642f, 0, -0.999721f },
 	{ -0.023642f, 0, -0.999721f },
 	{ -0.023642f, 0, -0.999721f },
 	{ -0.023642f, 0, -0.999721f }
 };
 
-NJS_MODEL_SADX attach_00014ACC = { vertex_00014A6C, normal_00014A9C, LengthOfArray<Sint32>(vertex_00014A6C), meshlist_00014A54, matlist_00014A34, LengthOfArray<Uint16>(meshlist_00014A54), LengthOfArray<Uint16>(matlist_00014A34), { -628.9345f, 17, 855.3524f }, 51.40506f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00014ACC = { vertex_00014A6C, normal_00014A9C, LengthOfArray<Sint32>(vertex_00014A6C), meshlist_00014A54, matlist_00014A34, LengthOfArray<Uint16>(meshlist_00014A54), LengthOfArray<Uint16>(matlist_00014A34), { -628.9345f, 17, 855.3524f }, 51.40506f, NULL };
 
-NJS_OBJECT object_00014AF4 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00014ACC, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_00014B28[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_00014AF4 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00014ACC, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_00014B28[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 2, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 1, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 3, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 0, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_00014B78[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00014B78[] = {
 	4, 10, 41, 9, 39,
 	4, 18, 17, 16, 53,
 	4, 14, 49, 13, 47,
@@ -1081,7 +1081,7 @@ Sint16 poly_00014B78[] = {
 	4, 5, 31, 4, 29
 };
 
-Sint16 poly_00014BD2[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00014BD2[] = {
 	4, 39, 38, 37, 36,
 	4, 17, 19, 53, 52,
 	4, 23, 22, 21, 20,
@@ -1101,11 +1101,11 @@ Sint16 poly_00014BD2[] = {
 	4, 33, 32, 31, 30
 };
 
-Sint16 poly_00014C7C[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00014C7C[] = {
 	4, 1, 23, 0, 21
 };
 
-Sint16 poly_00014C86[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00014C86[] = {
 	4, 7, 35, 6, 33,
 	4, 2, 25, 1, 23,
 	4, 16, 53, 15, 51,
@@ -1115,7 +1115,7 @@ Sint16 poly_00014C86[] = {
 	4, 12, 45, 11, 43
 };
 
-NJS_TEX uv_00014CCC[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00014CCC[] = {
 	{ 0 },
 	{ 0, 255 },
 	{ 510, 0 },
@@ -1154,7 +1154,7 @@ NJS_TEX uv_00014CCC[] = {
 	{ 510, 255 }
 };
 
-NJS_TEX uv_00014D5C[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00014D5C[] = {
 	{ 1020, -255 },
 	{ 0, -255 },
 	{ 1020, 255 },
@@ -1225,14 +1225,14 @@ NJS_TEX uv_00014D5C[] = {
 	{ 0, 255 }
 };
 
-NJS_TEX uv_00014E6C[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00014E6C[] = {
 	{ 0 },
 	{ 0, 255 },
 	{ 510, 0 },
 	{ 510, 255 }
 };
 
-NJS_TEX uv_00014E7C[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00014E7C[] = {
 	{ 0 },
 	{ 0, 255 },
 	{ 255, 0 },
@@ -1263,14 +1263,14 @@ NJS_TEX uv_00014E7C[] = {
 	{ 255, 255 }
 };
 
-NJS_MESHSET_SADX meshlist_00014EEC[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00014EEC[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 9, poly_00014B78, NULL, NULL, NULL, uv_00014CCC, NULL },
 	{ NJD_MESHSET_TRIMESH | 1, 17, poly_00014BD2, NULL, NULL, NULL, uv_00014D5C, NULL },
 	{ NJD_MESHSET_TRIMESH | 2, 1, poly_00014C7C, NULL, NULL, NULL, uv_00014E6C, NULL },
 	{ NJD_MESHSET_TRIMESH | 3, 7, poly_00014C86, NULL, NULL, NULL, uv_00014E7C, NULL }
 };
 
-NJS_VECTOR vertex_00014F4C[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_00014F4C[] = {
 	{ 2050, 40.80534f, 863.0803f },
 	{ 2069.828f, 38.73772f, 863.0144f },
 	{ 2089.791f, 36.91449f, 862.9376f },
@@ -1327,7 +1327,7 @@ NJS_VECTOR vertex_00014F4C[] = {
 	{ 2049.981f, 8.0174f, 946.9424f }
 };
 
-NJS_VECTOR normal_000151D4[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_000151D4[] = {
 	{ 0.061604f, 0.615817f, -0.785478f },
 	{ 0.053121f, 0.5692829f, -0.8204229f },
 	{ 0.044741f, 0.529303f, -0.847252f },
@@ -1384,24 +1384,24 @@ NJS_VECTOR normal_000151D4[] = {
 	{ -0.030299f, 0.814634f, 0.579184f }
 };
 
-NJS_MODEL_SADX attach_0001545C = { vertex_00014F4C, normal_000151D4, LengthOfArray<Sint32>(vertex_00014F4C), meshlist_00014EEC, matlist_00014B28, LengthOfArray<Uint16>(meshlist_00014EEC), LengthOfArray<Uint16>(matlist_00014B28), { 2125.563f, 27.62582f, 903.6666f }, 131.592f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_0001545C = { vertex_00014F4C, normal_000151D4, LengthOfArray<Sint32>(vertex_00014F4C), meshlist_00014EEC, matlist_00014B28, LengthOfArray<Uint16>(meshlist_00014EEC), LengthOfArray<Uint16>(matlist_00014B28), { 2125.563f, 27.62582f, 903.6666f }, 131.592f, NULL };
 
-NJS_OBJECT object_00015484 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0001545C, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_000154B8[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_00015484 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0001545C, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_000154B8[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 6, 0, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_000154CC[] = {
+extern "C" __declspec(dllexport) Sint16 poly_000154CC[] = {
 	0x8000u | 8, 1, 0, 3, 5, 7, 4, 6, 11,
 	14, 1, 8, 9, 18, 19, 12, 13, 15, 14, 16, 17, 11, 10, 6,
 	4, 9, 2, 1, 3
 };
 
-NJS_MESHSET_SADX meshlist_00015508[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00015508[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 3, poly_000154CC, NULL, NULL, NULL, NULL, NULL }
 };
 
-NJS_VECTOR vertex_00015520[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_00015520[] = {
 	{ -361, -25, -40 },
 	{ -361, -25, 40 },
 	{ -361, 75, 40 },
@@ -1424,7 +1424,7 @@ NJS_VECTOR vertex_00015520[] = {
 	{ -120.5833f, 75, 40 }
 };
 
-NJS_VECTOR normal_00015610[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_00015610[] = {
 	{ -1, 0, 0 },
 	{ -0.7071069f, 0, 0.7071069f },
 	{ -0.7071069f, 0, 0.7071069f },
@@ -1447,14 +1447,14 @@ NJS_VECTOR normal_00015610[] = {
 	{ 0, 0, 1 }
 };
 
-NJS_MODEL_SADX attach_00015700 = { vertex_00015520, normal_00015610, LengthOfArray<Sint32>(vertex_00015520), meshlist_00015508, matlist_000154B8, LengthOfArray<Uint16>(meshlist_00015508), LengthOfArray<Uint16>(matlist_000154B8), { -160.5f, 25, -39.5f }, 215.6861f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00015700 = { vertex_00015520, normal_00015610, LengthOfArray<Sint32>(vertex_00015520), meshlist_00015508, matlist_000154B8, LengthOfArray<Uint16>(meshlist_00015508), LengthOfArray<Uint16>(matlist_000154B8), { -160.5f, 25, -39.5f }, 215.6861f, NULL };
 
-NJS_OBJECT object_00015728 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00015700, -640, 115, 1550, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_0001575C[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_00015728 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00015700, -640, 115, 1550, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_0001575C[] = {
 	{ { 0x00FFFFFF }, { 0xFFFFFFFF }, 11, 0, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_USE_ALPHA | NJD_FLAG_IGNORE_LIGHT | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_00015770[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00015770[] = {
 	7, 19, 26, 41, 51, 50, 40, 30,
 	0x8000u | 16, 1, 32, 2, 33, 3, 34, 4, 35, 5, 36, 6, 37, 7, 38, 8, 39,
 	0x8000u | 7, 75, 10, 70, 71, 39, 9, 8,
@@ -1468,11 +1468,11 @@ Sint16 poly_00015770[] = {
 	0x8000u | 23, 76, 68, 67, 65, 11, 64, 12, 63, 28, 62, 22, 61, 21, 60, 18, 59, 17, 58, 20, 57, 27, 56, 52
 };
 
-NJS_MESHSET_SADX meshlist_000158A8[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_000158A8[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 11, poly_00015770, NULL, NULL, NULL, NULL, NULL }
 };
 
-NJS_VECTOR vertex_000158C0[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_000158C0[] = {
 	{ 2050, 47.74052f, 813.4727f },
 	{ 2133.031f, 48.33126f, 814.7242f },
 	{ 2165.588f, 47.10805f, 821.8469f },
@@ -1553,7 +1553,7 @@ NJS_VECTOR vertex_000158C0[] = {
 	{ 2032.106f, 27.04606f, 987.373f }
 };
 
-NJS_VECTOR normal_00015C68[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_00015C68[] = {
 	{ -0.011117f, 0.379388f, 0.925171f },
 	{ -0.113945f, 0, 0.9934869f },
 	{ -0.401441f, 0, 0.915885f },
@@ -1634,14 +1634,14 @@ NJS_VECTOR normal_00015C68[] = {
 	{ -0.6761079f, 0.321473f, -0.662973f }
 };
 
-NJS_MODEL_SADX attach_00016010 = { vertex_000158C0, normal_00015C68, LengthOfArray<Sint32>(vertex_000158C0), meshlist_000158A8, matlist_0001575C, LengthOfArray<Uint16>(meshlist_000158A8), LengthOfArray<Uint16>(matlist_0001575C), { 2132.654f, 44.41704f, 904.3437f }, 145.8771f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00016010 = { vertex_000158C0, normal_00015C68, LengthOfArray<Sint32>(vertex_000158C0), meshlist_000158A8, matlist_0001575C, LengthOfArray<Uint16>(meshlist_000158A8), LengthOfArray<Uint16>(matlist_0001575C), { 2132.654f, 44.41704f, 904.3437f }, 145.8771f, NULL };
 
-NJS_OBJECT object_00016038 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00016010, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_0001606C[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_00016038 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00016010, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_0001606C[] = {
 	{ { 0x00FFFFFF }, { 0xFFFFFFFF }, 11, 0, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_USE_ALPHA | NJD_FLAG_IGNORE_LIGHT | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_00016080[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00016080[] = {
 	0x8000u | 11, 12, 5, 9, 8, 48, 49, 10, 56, 11, 57, 6,
 	0x8000u | 9, 4, 14, 1, 0, 52, 53, 58, 3, 2,
 	4, 17, 18, 16, 23,
@@ -1661,11 +1661,11 @@ Sint16 poly_00016080[] = {
 	0x8000u | 6, 57, 56, 51, 49, 5, 8
 };
 
-NJS_MESHSET_SADX meshlist_0001617C[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_0001617C[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 17, poly_00016080, NULL, NULL, NULL, NULL, NULL }
 };
 
-NJS_VECTOR vertex_00016194[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_00016194[] = {
 	{ -299.9999f, 19, 0 },
 	{ -299.9999f, 19, -2 },
 	{ -405.9278f, 19, -1.008634f },
@@ -1728,7 +1728,7 @@ NJS_VECTOR vertex_00016194[] = {
 	{ -403.03f, 13, -2.072279f }
 };
 
-NJS_VECTOR normal_00016464[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_00016464[] = {
 	{ 0.57735f, 0.57735f, 0.577351f },
 	{ 0.57735f, 0.57735f, -0.57735f },
 	{ -0.311542f, 0.350736f, -0.8831339f },
@@ -1791,23 +1791,23 @@ NJS_VECTOR normal_00016464[] = {
 	{ -0.165525f, 0, -0.986205f }
 };
 
-NJS_MODEL_SADX attach_00016734 = { vertex_00016194, normal_00016464, LengthOfArray<Sint32>(vertex_00016194), meshlist_0001617C, matlist_0001606C, LengthOfArray<Uint16>(meshlist_0001617C), LengthOfArray<Uint16>(matlist_0001606C), { -202.964f, 18, -17.00011f }, 218.5829f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00016734 = { vertex_00016194, normal_00016464, LengthOfArray<Sint32>(vertex_00016194), meshlist_0001617C, matlist_0001606C, LengthOfArray<Uint16>(meshlist_0001617C), LengthOfArray<Uint16>(matlist_0001606C), { -202.964f, 18, -17.00011f }, 218.5829f, NULL };
 
-NJS_OBJECT object_0001675C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00016734, 6281, 387, 1057, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_00016790[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_0001675C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00016734, 6281, 387, 1057, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_00016790[] = {
 	{ { 0x00FFFFFF }, { 0xFFFFFFFF }, 11, 0, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_USE_ALPHA | NJD_FLAG_IGNORE_LIGHT | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_000167A4[] = {
+extern "C" __declspec(dllexport) Sint16 poly_000167A4[] = {
 	0x8000u | 8, 11, 3, 12, 4, 13, 5, 14, 6,
 	0x8000u | 8, 15, 7, 8, 0, 9, 1, 10, 2
 };
 
-NJS_MESHSET_SADX meshlist_000167C8[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_000167C8[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 2, poly_000167A4, NULL, NULL, NULL, NULL, NULL }
 };
 
-NJS_VECTOR vertex_000167E0[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_000167E0[] = {
 	{ -257.2596f, 21, -0.00002f },
 	{ -257.2593f, 21, -2.000214f },
 	{ -253.9998f, 15, -2 },
@@ -1826,7 +1826,7 @@ NJS_VECTOR vertex_000167E0[] = {
 	{ -169.9887f, 15, -0.236384f }
 };
 
-NJS_VECTOR normal_000168A0[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_000168A0[] = {
 	{ 0.001527f, 0.825359f, 0.564606f },
 	{ 0, 0.825722f, -0.564077f },
 	{ 0, -0.00018f, -1 },
@@ -1845,14 +1845,14 @@ NJS_VECTOR normal_000168A0[] = {
 	{ 0.002705f, 0.0007119999f, 0.9999959f }
 };
 
-NJS_MODEL_SADX attach_00016960 = { vertex_000167E0, normal_000168A0, LengthOfArray<Sint32>(vertex_000167E0), meshlist_000167C8, matlist_00016790, LengthOfArray<Uint16>(meshlist_000167C8), LengthOfArray<Uint16>(matlist_00016790), { -213.6242f, 18, -17.00003f }, 59.84153f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00016960 = { vertex_000167E0, normal_000168A0, LengthOfArray<Sint32>(vertex_000167E0), meshlist_000167C8, matlist_00016790, LengthOfArray<Uint16>(meshlist_000167C8), LengthOfArray<Uint16>(matlist_00016790), { -213.6242f, 18, -17.00003f }, 59.84153f, NULL };
 
-NJS_OBJECT object_00016988 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00016960, 5987.6f, 385, 850.7999f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_000169BC[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_00016988 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00016960, 5987.6f, 385, 850.7999f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_000169BC[] = {
 	{ { 0x00FFFFFF }, { 0xFFFFFFFF }, 11, 0, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_USE_ALPHA | NJD_FLAG_IGNORE_LIGHT | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_000169D0[] = {
+extern "C" __declspec(dllexport) Sint16 poly_000169D0[] = {
 	10, 74, 75, 53, 54, 168, 170, 88, 187, 28, 24,
 	0x8000u | 21, 169, 73, 143, 72, 142, 71, 141, 70, 140, 69, 139, 68, 138, 67, 137, 66, 146, 65, 145, 100, 3,
 	6, 181, 180, 116, 166, 122, 144,
@@ -1904,11 +1904,11 @@ Sint16 poly_000169D0[] = {
 	3, 132, 101, 122
 };
 
-NJS_MESHSET_SADX meshlist_00016D30[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00016D30[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 49, poly_000169D0, NULL, NULL, NULL, NULL, NULL }
 };
 
-NJS_VECTOR vertex_00016D48[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_00016D48[] = {
 	{ -115.2234f, 109.9297f, -120.8835f },
 	{ -112.4302f, 106.9297f, -152.4068f },
 	{ -31.24805f, 107.9297f, -151.1641f },
@@ -2106,7 +2106,7 @@ NJS_VECTOR vertex_00016D48[] = {
 	{ -53.58874f, -111.0702f, -49.0238f }
 };
 
-NJS_VECTOR normal_0001766C[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_0001766C[] = {
 	{ -0.980913f, -0.145272f, 0.129251f },
 	{ -0.983445f, -0.070696f, -0.166848f },
 	{ 0.903051f, 0.261232f, -0.340965f },
@@ -2304,25 +2304,25 @@ NJS_VECTOR normal_0001766C[] = {
 	{ -0.041712f, -0.334503f, -0.941471f }
 };
 
-NJS_MODEL_SADX attach_00017F90 = { vertex_00016D48, normal_0001766C, LengthOfArray<Sint32>(vertex_00016D48), meshlist_00016D30, matlist_000169BC, LengthOfArray<Uint16>(meshlist_00016D30), LengthOfArray<Uint16>(matlist_000169BC), { 0, -0.5f, 0 }, 239.689f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00017F90 = { vertex_00016D48, normal_0001766C, LengthOfArray<Sint32>(vertex_00016D48), meshlist_00016D30, matlist_000169BC, LengthOfArray<Uint16>(meshlist_00016D30), LengthOfArray<Uint16>(matlist_000169BC), { 0, -0.5f, 0 }, 239.689f, NULL };
 
-NJS_OBJECT object_00017FB8 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00017F90, 1943.944f, 88.07023f, 825.5958f, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_00017FEC[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_00017FB8 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00017F90, 1943.944f, 88.07023f, 825.5958f, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_00017FEC[] = {
 	{ { 0x00FFFFFF }, { 0xFFFFFFFF }, 11, 0, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_USE_ALPHA | NJD_FLAG_IGNORE_LIGHT | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_00018000[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00018000[] = {
 	31, 10, 57, 9, 62, 39, 56, 8, 58, 33, 61, 38, 55, 7, 60, 37, 54, 6, 53, 5, 52, 4, 51, 3, 50, 2, 49, 1, 59, 36, 48, 0,
 	0x8000u | 30, 11, 0, 40, 36, 12, 1, 13, 2, 14, 3, 15, 4, 16, 5, 17, 6, 41, 37, 18, 7, 42, 38, 34, 33, 19, 8, 43, 39, 20, 9,
 	6, 31, 32, 20, 21, 9, 10,
 	0x8000u | 30, 20, 31, 43, 47, 19, 30, 34, 35, 42, 46, 18, 29, 41, 45, 17, 28, 16, 27, 15, 26, 14, 25, 13, 24, 12, 23, 40, 44, 11, 22
 };
 
-NJS_MESHSET_SADX meshlist_000180CC[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_000180CC[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 4, poly_00018000, NULL, NULL, NULL, NULL, NULL }
 };
 
-NJS_VECTOR vertex_000180E4[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_000180E4[] = {
 	{ 2090, 158, 862.9998f },
 	{ 2145.258f, 158, 865.7784f },
 	{ 2158.633f, 158, 874.6989f },
@@ -2388,7 +2388,7 @@ NJS_VECTOR vertex_000180E4[] = {
 	{ 1990, 88, 950 }
 };
 
-NJS_VECTOR normal_000183D8[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_000183D8[] = {
 	{ -0.007052f, -0.053981f, -0.998517f },
 	{ 0.370568f, -0.061253f, -0.926783f },
 	{ 0.705359f, -0.06104f, -0.706217f },
@@ -2454,14 +2454,14 @@ NJS_VECTOR normal_000183D8[] = {
 	{ -0.034075f, 0.074293f, 0.996654f }
 };
 
-NJS_MODEL_SADX attach_000186CC = { vertex_000180E4, normal_000183D8, LengthOfArray<Sint32>(vertex_000180E4), meshlist_000180CC, matlist_00017FEC, LengthOfArray<Uint16>(meshlist_000180CC), LengthOfArray<Uint16>(matlist_00017FEC), { 2058.138f, 143, 905.2218f }, 132.3725f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_000186CC = { vertex_000180E4, normal_000183D8, LengthOfArray<Sint32>(vertex_000180E4), meshlist_000180CC, matlist_00017FEC, LengthOfArray<Uint16>(meshlist_000180CC), LengthOfArray<Uint16>(matlist_00017FEC), { 2058.138f, 143, 905.2218f }, 132.3725f, NULL };
 
-NJS_OBJECT object_000186F4 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_000186CC, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_00018728[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_000186F4 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_000186CC, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_00018728[] = {
 	{ { 0x00FFFFFF }, { 0xFFFFFFFF }, 11, 0, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_USE_ALPHA | NJD_FLAG_IGNORE_LIGHT | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_0001873C[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0001873C[] = {
 	0x8000u | 10, 64, 33, 48, 17, 32, 1, 16, 65, 72, 83,
 	0x8000u | 39, 0, 72, 82, 83, 86, 81, 71, 70, 13, 12, 28, 27, 43, 42, 58, 57, 59, 56, 53, 55, 54, 39, 38, 23, 22, 7, 6, 76, 5, 73, 4, 3, 19, 18, 34, 33, 49, 64, 63,
 	3, 71, 14, 13,
@@ -2487,11 +2487,11 @@ Sint16 poly_0001873C[] = {
 	0x8000u | 10, 59, 53, 60, 52, 61, 51, 62, 50, 49, 34
 };
 
-NJS_MESHSET_SADX meshlist_00018908[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00018908[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 23, poly_0001873C, NULL, NULL, NULL, NULL, NULL }
 };
 
-NJS_VECTOR vertex_00018920[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_00018920[] = {
 	{ 26.60081f, 30, -1.947663f },
 	{ 40.32678f, 80, -40.13226f },
 	{ 17.79476f, 80, -45.03377f },
@@ -2581,7 +2581,7 @@ NJS_VECTOR vertex_00018920[] = {
 	{ 15.08113f, -23, 8.977607f }
 };
 
-NJS_VECTOR normal_00018D34[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_00018D34[] = {
 	{ 0.9832439f, -0.182255f, -0.003728f },
 	{ 0.5607139f, -0.355851f, -0.747643f },
 	{ 0.346542f, -0.33324f, -0.876846f },
@@ -2671,24 +2671,24 @@ NJS_VECTOR normal_00018D34[] = {
 	{ 0.594191f, -0.718128f, 0.362256f }
 };
 
-NJS_MODEL_SADX attach_00019148 = { vertex_00018920, normal_00018D34, LengthOfArray<Sint32>(vertex_00018920), meshlist_00018908, matlist_00018728, LengthOfArray<Uint16>(meshlist_00018908), LengthOfArray<Uint16>(matlist_00018728), { 1.019876f, 46, 2.409241f }, 92.1179f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00019148 = { vertex_00018920, normal_00018D34, LengthOfArray<Sint32>(vertex_00018920), meshlist_00018908, matlist_00018728, LengthOfArray<Uint16>(meshlist_00018908), LengthOfArray<Uint16>(matlist_00018728), { 1.019876f, 46, 2.409241f }, 92.1179f, NULL };
 
-NJS_OBJECT object_00019170 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00019148, 1599, 0, 831, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_000191A4[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_00019170 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00019148, 1599, 0, 831, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_000191A4[] = {
 	{ { 0x00FFFFFF }, { 0xFFFFFFFF }, 11, 0, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_USE_ALPHA | NJD_FLAG_IGNORE_LIGHT | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_000191B8[] = {
+extern "C" __declspec(dllexport) Sint16 poly_000191B8[] = {
 	0x8000u | 12, 15, 16, 12, 13, 9, 10, 6, 7, 1, 2, 0, 3,
 	0x8000u | 12, 17, 15, 14, 12, 11, 9, 8, 6, 5, 1, 4, 0,
 	6, 16, 19, 15, 18, 17, 20
 };
 
-NJS_MESHSET_SADX meshlist_000191FC[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_000191FC[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 3, poly_000191B8, NULL, NULL, NULL, NULL, NULL }
 };
 
-NJS_VECTOR vertex_00019214[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_00019214[] = {
 	{ -105, 0, -40 },
 	{ -105, 6, -40 },
 	{ 0, 6, -40 },
@@ -2712,7 +2712,7 @@ NJS_VECTOR vertex_00019214[] = {
 	{ -210, 169, -80 }
 };
 
-NJS_VECTOR normal_00019310[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_00019310[] = {
 	{ 0, 0, 1 },
 	{ 0, 0.7071069f, 0.7071069f },
 	{ 0, 0.7071069f, 0.7071069f },
@@ -2736,14 +2736,14 @@ NJS_VECTOR normal_00019310[] = {
 	{ 0, 0, 1 }
 };
 
-NJS_MODEL_SADX attach_0001940C = { vertex_00019214, normal_00019310, LengthOfArray<Sint32>(vertex_00019214), meshlist_000191FC, matlist_000191A4, LengthOfArray<Uint16>(meshlist_000191FC), LengthOfArray<Uint16>(matlist_000191A4), { -105, 84.5f, -60 }, 120.6077f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_0001940C = { vertex_00019214, normal_00019310, LengthOfArray<Sint32>(vertex_00019214), meshlist_000191FC, matlist_000191A4, LengthOfArray<Uint16>(meshlist_000191FC), LengthOfArray<Uint16>(matlist_000191A4), { -105, 84.5f, -60 }, 120.6077f, NULL };
 
-NJS_OBJECT object_00019434 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0001940C, 131.634f, 0, -69.39082f, 0, 0x1111, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_00019468[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_00019434 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0001940C, 131.634f, 0, -69.39082f, 0, 0x1111, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_00019468[] = {
 	{ { 0x00FFFFFF }, { 0xFFFFFFFF }, 11, 0, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_USE_ALPHA | NJD_FLAG_IGNORE_LIGHT | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_0001947C[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0001947C[] = {
 	10, 4, 2, 1, 3, 0, 7, 6, 5, 4, 2,
 	10, 20, 15, 16, 12, 13, 9, 11, 17, 13, 16,
 	0x8000u | 5, 16, 20, 18, 23, 25,
@@ -2754,11 +2754,11 @@ Sint16 poly_0001947C[] = {
 	3, 15, 14, 12
 };
 
-NJS_MESHSET_SADX meshlist_000194F4[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_000194F4[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 8, poly_0001947C, NULL, NULL, NULL, NULL, NULL }
 };
 
-NJS_VECTOR vertex_0001950C[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_0001950C[] = {
 	{ -8.5f, 9, -67 },
 	{ -8.5f, 9, -61 },
 	{ -8.5f, 29, -61 },
@@ -2791,7 +2791,7 @@ NJS_VECTOR vertex_0001950C[] = {
 	{ -10, 9, -40 }
 };
 
-NJS_VECTOR normal_00019674[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_00019674[] = {
 	{ -0.7071069f, 0, -0.7071069f },
 	{ -0.7071069f, 0, 0.7071069f },
 	{ -0.7071069f, 0, 0.7071069f },
@@ -2824,14 +2824,14 @@ NJS_VECTOR normal_00019674[] = {
 	{ -0.57735f, 0.57735f, 0.57735f }
 };
 
-NJS_MODEL_SADX attach_000197DC = { vertex_0001950C, normal_00019674, LengthOfArray<Sint32>(vertex_0001950C), meshlist_000194F4, matlist_00019468, LengthOfArray<Uint16>(meshlist_000194F4), LengthOfArray<Uint16>(matlist_00019468), { -5, 73, -120 }, 121.8959f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_000197DC = { vertex_0001950C, normal_00019674, LengthOfArray<Sint32>(vertex_0001950C), meshlist_000194F4, matlist_00019468, LengthOfArray<Uint16>(meshlist_000194F4), LengthOfArray<Uint16>(matlist_00019468), { -5, 73, -120 }, 121.8959f, NULL };
 
-NJS_OBJECT object_00019804 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_000197DC, 140.7695f, 0, -73.45818f, 0, 0x1111, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_00019838[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_00019804 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_000197DC, 140.7695f, 0, -73.45818f, 0, 0x1111, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_00019838[] = {
 	{ { 0x00FFFFFF }, { 0xFFFFFFFF }, 11, 0, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_USE_ALPHA | NJD_FLAG_IGNORE_LIGHT | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_0001984C[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0001984C[] = {
 	10, 6, 0, 2, 1, 3, 5, 7, 4, 6, 0,
 	3, 15, 14, 12,
 	3, 21, 22, 24,
@@ -2843,11 +2843,11 @@ Sint16 poly_0001984C[] = {
 	4, 10, 17, 8, 9
 };
 
-NJS_MESHSET_SADX meshlist_000198C4[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_000198C4[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 9, poly_0001984C, NULL, NULL, NULL, NULL, NULL }
 };
 
-NJS_VECTOR vertex_000198DC[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_000198DC[] = {
 	{ 29.68561f, -75.5f, 55.01622f },
 	{ 31.23852f, -75.5f, 60.81177f },
 	{ 29.68561f, -55.5f, 55.01622f },
@@ -2878,7 +2878,7 @@ NJS_VECTOR vertex_000198DC[] = {
 	{ 39.99994f, -75.5f, 79.99998f }
 };
 
-NJS_VECTOR normal_00019A2C[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_00019A2C[] = {
 	{ -0.866026f, 0, -0.499999f },
 	{ -0.5f, 0, 0.866026f },
 	{ -0.866026f, 0, -0.499999f },
@@ -2909,14 +2909,14 @@ NJS_VECTOR normal_00019A2C[] = {
 	{ 0.217604f, 0.5414079f, 0.812112f }
 };
 
-NJS_MODEL_SADX attach_00019B7C = { vertex_000198DC, normal_00019A2C, LengthOfArray<Sint32>(vertex_000198DC), meshlist_000198C4, matlist_00019838, LengthOfArray<Uint16>(meshlist_000198C4), LengthOfArray<Uint16>(matlist_00019838), { -0.00015f, 0, 0 }, 111.7205f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00019B7C = { vertex_000198DC, normal_00019A2C, LengthOfArray<Sint32>(vertex_000198DC), meshlist_000198C4, matlist_00019838, LengthOfArray<Uint16>(meshlist_000198C4), LengthOfArray<Uint16>(matlist_00019838), { -0.00015f, 0, 0 }, 111.7205f, NULL };
 
-NJS_OBJECT object_00019BA4 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00019B7C, -547.5208f, 84.5f, 101.632f, 0, 0x1111, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_00019BD8[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_00019BA4 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00019B7C, -547.5208f, 84.5f, 101.632f, 0, 0x1111, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_00019BD8[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 6, 0, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_00019BEC[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00019BEC[] = {
 	10, 5, 3, 1, 2, 0, 6, 4, 7, 5, 3,
 	10, 13, 11, 9, 10, 8, 14, 12, 15, 13, 11,
 	10, 21, 19, 17, 18, 16, 22, 20, 23, 21, 19,
@@ -2927,11 +2927,11 @@ Sint16 poly_00019BEC[] = {
 	0x8000u | 10, 44, 40, 41, 38, 39, 36, 37, 47, 44, 40
 };
 
-NJS_MESHSET_SADX meshlist_00019C84[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00019C84[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 8, poly_00019BEC, NULL, NULL, NULL, NULL, NULL }
 };
 
-NJS_VECTOR vertex_00019C9C[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_00019C9C[] = {
 	{ -36.70001f, -36, -35.90002f },
 	{ -36.70001f, -36, -24.09998f },
 	{ -36.70001f, 28, -35.90002f },
@@ -2990,7 +2990,7 @@ NJS_VECTOR vertex_00019C9C[] = {
 	{ -36, 33, -40 }
 };
 
-NJS_VECTOR normal_00019F3C[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_00019F3C[] = {
 	{ -0.7071069f, 0, -0.7071069f },
 	{ -0.7071069f, 0, 0.7071069f },
 	{ -0.7071069f, 0, -0.7071069f },
@@ -3049,14 +3049,14 @@ NJS_VECTOR normal_00019F3C[] = {
 	{ 0, 1, 0 }
 };
 
-NJS_MODEL_SADX attach_0001A1DC = { vertex_00019C9C, normal_00019F3C, LengthOfArray<Sint32>(vertex_00019C9C), meshlist_00019C84, matlist_00019BD8, LengthOfArray<Uint16>(meshlist_00019C84), LengthOfArray<Uint16>(matlist_00019BD8), { 0 }, 56.56854f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_0001A1DC = { vertex_00019C9C, normal_00019F3C, LengthOfArray<Sint32>(vertex_00019C9C), meshlist_00019C84, matlist_00019BD8, LengthOfArray<Uint16>(meshlist_00019C84), LengthOfArray<Uint16>(matlist_00019BD8), { 0 }, 56.56854f, NULL };
 
-NJS_OBJECT object_0001A204 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0001A1DC, -880, 54, 1210, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_0001A238[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_0001A204 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0001A1DC, -880, 54, 1210, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_0001A238[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 6, 0, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_0001A24C[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0001A24C[] = {
 	10, 5, 3, 1, 2, 0, 6, 4, 7, 5, 3,
 	10, 13, 11, 9, 10, 8, 14, 12, 15, 13, 11,
 	10, 21, 19, 17, 18, 16, 22, 20, 23, 21, 19,
@@ -3071,11 +3071,11 @@ Sint16 poly_0001A24C[] = {
 	0x8000u | 8, 49, 53, 50, 52, 48, 51, 47, 54
 };
 
-NJS_MESHSET_SADX meshlist_0001A30C[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_0001A30C[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 12, poly_0001A24C, NULL, NULL, NULL, NULL, NULL }
 };
 
-NJS_VECTOR vertex_0001A324[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_0001A324[] = {
 	{ -36.70001f, -36, -35.90002f },
 	{ -36.70001f, -36, -24.09998f },
 	{ -36.70001f, 28, -35.90002f },
@@ -3141,7 +3141,7 @@ NJS_VECTOR vertex_0001A324[] = {
 	{ -40, 33, -40 }
 };
 
-NJS_VECTOR normal_0001A618[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_0001A618[] = {
 	{ -0.7071069f, 0, -0.7071069f },
 	{ -0.7071069f, 0, 0.7071069f },
 	{ -0.7071069f, 0, -0.7071069f },
@@ -3207,25 +3207,25 @@ NJS_VECTOR normal_0001A618[] = {
 	{ 0, 1, 0 }
 };
 
-NJS_MODEL_SADX attach_0001A90C = { vertex_0001A324, normal_0001A618, LengthOfArray<Sint32>(vertex_0001A324), meshlist_0001A30C, matlist_0001A238, LengthOfArray<Uint16>(meshlist_0001A30C), LengthOfArray<Uint16>(matlist_0001A238), { 0 }, 56.56854f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_0001A90C = { vertex_0001A324, normal_0001A618, LengthOfArray<Sint32>(vertex_0001A324), meshlist_0001A30C, matlist_0001A238, LengthOfArray<Uint16>(meshlist_0001A30C), LengthOfArray<Uint16>(matlist_0001A238), { 0 }, 56.56854f, NULL };
 
-NJS_OBJECT object_0001A934 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0001A90C, -960, 13, 1550, 0, 0xFFFFC001, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_0001A968[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_0001A934 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0001A90C, -960, 13, 1550, 0, 0xFFFFC001, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_0001A968[] = {
 	{ { 0x00FFFFFF }, { 0xFFFFFFFF }, 11, 0, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_USE_ALPHA | NJD_FLAG_IGNORE_LIGHT | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_0001A97C[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0001A97C[] = {
 	10, 5, 3, 1, 2, 0, 6, 4, 7, 5, 3,
 	10, 13, 11, 9, 10, 8, 14, 12, 15, 13, 11,
 	10, 21, 19, 17, 18, 16, 22, 20, 23, 21, 19,
 	10, 29, 27, 25, 26, 24, 30, 28, 31, 29, 27
 };
 
-NJS_MESHSET_SADX meshlist_0001A9D4[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_0001A9D4[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 4, poly_0001A97C, NULL, NULL, NULL, NULL, NULL }
 };
 
-NJS_VECTOR vertex_0001A9EC[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_0001A9EC[] = {
 	{ -36.70001f, -36, -35.90002f },
 	{ -36.70001f, -36, -24.09998f },
 	{ -36.70001f, 12, -35.90002f },
@@ -3260,7 +3260,7 @@ NJS_VECTOR vertex_0001A9EC[] = {
 	{ 36.70001f, 12, -24.09998f }
 };
 
-NJS_VECTOR normal_0001AB6C[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_0001AB6C[] = {
 	{ -0.7071069f, 0, -0.7071069f },
 	{ -0.7071069f, 0, 0.7071069f },
 	{ -0.7071069f, 0, -0.7071069f },
@@ -3295,25 +3295,25 @@ NJS_VECTOR normal_0001AB6C[] = {
 	{ 0.7071069f, 0, 0.7071069f }
 };
 
-NJS_MODEL_SADX attach_0001ACEC = { vertex_0001A9EC, normal_0001AB6C, LengthOfArray<Sint32>(vertex_0001A9EC), meshlist_0001A9D4, matlist_0001A968, LengthOfArray<Uint16>(meshlist_0001A9D4), LengthOfArray<Uint16>(matlist_0001A968), { 0, -4.25f, 0 }, 51.33909f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_0001ACEC = { vertex_0001A9EC, normal_0001AB6C, LengthOfArray<Sint32>(vertex_0001A9EC), meshlist_0001A9D4, matlist_0001A968, LengthOfArray<Uint16>(meshlist_0001A9D4), LengthOfArray<Uint16>(matlist_0001A968), { 0, -4.25f, 0 }, 51.33909f, NULL };
 
-NJS_OBJECT object_0001AD14 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0001ACEC, -640, 13, 820, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_0001AD48[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_0001AD14 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0001ACEC, -640, 13, 820, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_0001AD48[] = {
 	{ { 0x00FFFFFF }, { 0xFFFFFFFF }, 11, 0, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_USE_ALPHA | NJD_FLAG_IGNORE_LIGHT | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_0001AD5C[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0001AD5C[] = {
 	4, 10, 8, 11, 9,
 	4, 13, 14, 12, 15,
 	0x8000u | 8, 14, 0, 13, 1, 12, 6, 15, 7,
 	0x8000u | 8, 8, 3, 10, 2, 11, 5, 9, 4
 };
 
-NJS_MESHSET_SADX meshlist_0001AD94[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_0001AD94[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 4, poly_0001AD5C, NULL, NULL, NULL, NULL, NULL }
 };
 
-NJS_VECTOR vertex_0001ADAC[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_0001ADAC[] = {
 	{ 74.5f, 43.5f, 40 },
 	{ -85.5f, 14.5f, 40 },
 	{ -85.5f, 14.5f, -36 },
@@ -3332,7 +3332,7 @@ NJS_VECTOR vertex_0001ADAC[] = {
 	{ 74.5f, 50.5f, 36 }
 };
 
-NJS_VECTOR normal_0001AE6C[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_0001AE6C[] = {
 	{ 0, 0, 1 },
 	{ -0.7485369f, 0, 0.663093f },
 	{ -0.7485369f, 0, 0.663093f },
@@ -3351,14 +3351,14 @@ NJS_VECTOR normal_0001AE6C[] = {
 	{ -0.133497f, 0.736537f, -0.663093f }
 };
 
-NJS_MODEL_SADX attach_0001AF2C = { vertex_0001ADAC, normal_0001AE6C, LengthOfArray<Sint32>(vertex_0001ADAC), meshlist_0001AD94, matlist_0001AD48, LengthOfArray<Uint16>(meshlist_0001AD94), LengthOfArray<Uint16>(matlist_0001AD48), { -5.5f, 32.5f, 0 }, 89.44272f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_0001AF2C = { vertex_0001ADAC, normal_0001AE6C, LengthOfArray<Sint32>(vertex_0001ADAC), meshlist_0001AD94, matlist_0001AD48, LengthOfArray<Uint16>(meshlist_0001AD94), LengthOfArray<Uint16>(matlist_0001AD48), { -5.5f, 32.5f, 0 }, 89.44272f, NULL };
 
-NJS_OBJECT object_0001AF54 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0001AF2C, -515.5f, 72.5f, 1210, 0, 0xFFFF8000, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_0001AF88[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_0001AF54 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0001AF2C, -515.5f, 72.5f, 1210, 0, 0xFFFF8000, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_0001AF88[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 6, 0, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_0001AF9C[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0001AF9C[] = {
 	8, 7, 15, 2, 10, 3, 11, 4, 12,
 	8, 5, 13, 1, 9, 0, 8, 6, 14,
 	10, 60, 63, 61, 59, 57, 58, 56, 62, 60, 63,
@@ -3373,11 +3373,11 @@ Sint16 poly_0001AF9C[] = {
 	4, 84, 81, 86, 83
 };
 
-NJS_MESHSET_SADX meshlist_0001B084[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_0001B084[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 12, poly_0001AF9C, NULL, NULL, NULL, NULL, NULL }
 };
 
-NJS_VECTOR vertex_0001B09C[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_0001B09C[] = {
 	{ 36, 6, 80 },
 	{ 40, 6, 80 },
 	{ -36, 6, 80 },
@@ -3468,7 +3468,7 @@ NJS_VECTOR vertex_0001B09C[] = {
 	{ -36, 3, -80 }
 };
 
-NJS_VECTOR normal_0001B4BC[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_0001B4BC[] = {
 	{ -0.7071069f, 0.7071069f, 0 },
 	{ 0.7071069f, 0.7071069f, 0 },
 	{ 0.7071069f, 0.7071069f, 0 },
@@ -3559,25 +3559,25 @@ NJS_VECTOR normal_0001B4BC[] = {
 	{ 0, 1, 0 }
 };
 
-NJS_MODEL_SADX attach_0001B8DC = { vertex_0001B09C, normal_0001B4BC, LengthOfArray<Sint32>(vertex_0001B09C), meshlist_0001B084, matlist_0001AF88, LengthOfArray<Uint16>(meshlist_0001B084), LengthOfArray<Uint16>(matlist_0001AF88), { 0, -30, 0 }, 89.44272f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_0001B8DC = { vertex_0001B09C, normal_0001B4BC, LengthOfArray<Sint32>(vertex_0001B09C), meshlist_0001B084, matlist_0001AF88, LengthOfArray<Uint16>(meshlist_0001B084), LengthOfArray<Uint16>(matlist_0001AF88), { 0, -30, 0 }, 89.44272f, NULL };
 
-NJS_OBJECT object_0001B904 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0001B8DC, -640, 43, 940, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_0001B938[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_0001B904 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0001B8DC, -640, 43, 940, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_0001B938[] = {
 	{ { 0x00FFFFFF }, { 0xFFFFFFFF }, 11, 0, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_USE_ALPHA | NJD_FLAG_IGNORE_LIGHT | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_0001B94C[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0001B94C[] = {
 	3, 10, 1, 11,
 	0x8000u | 7, 11, 0, 1, 3, 2, 9, 8,
 	0x8000u | 7, 12, 5, 4, 7, 6, 14, 15,
 	3, 12, 13, 4
 };
 
-NJS_MESHSET_SADX meshlist_0001B97C[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_0001B97C[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 4, poly_0001B94C, NULL, NULL, NULL, NULL, NULL }
 };
 
-NJS_VECTOR vertex_0001B994[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_0001B994[] = {
 	{ 45, 45, 31 },
 	{ -45, 45, 31 },
 	{ -45, 45, 35 },
@@ -3596,7 +3596,7 @@ NJS_VECTOR vertex_0001B994[] = {
 	{ 45, 38, -45 }
 };
 
-NJS_VECTOR normal_0001BA54[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_0001BA54[] = {
 	{ 0, 0.7071069f, -0.7071069f },
 	{ 0, 0.7071069f, -0.7071069f },
 	{ 0, 0.7071069f, 0.7071069f },
@@ -3615,14 +3615,14 @@ NJS_VECTOR normal_0001BA54[] = {
 	{ 0, 0, -1 }
 };
 
-NJS_MODEL_SADX attach_0001BB14 = { vertex_0001B994, normal_0001BA54, LengthOfArray<Sint32>(vertex_0001B994), meshlist_0001B97C, matlist_0001B938, LengthOfArray<Uint16>(meshlist_0001B97C), LengthOfArray<Uint16>(matlist_0001B938), { 0, 41.5f, -5 }, 60.20797f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_0001BB14 = { vertex_0001B994, normal_0001BA54, LengthOfArray<Sint32>(vertex_0001B994), meshlist_0001B97C, matlist_0001B938, LengthOfArray<Uint16>(meshlist_0001B97C), LengthOfArray<Uint16>(matlist_0001B938), { 0, 41.5f, -5 }, 60.20797f, NULL };
 
-NJS_OBJECT object_0001BB3C = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0001BB14, -635, 78, 1215, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_0001BB70[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_0001BB3C = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0001BB14, -635, 78, 1215, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_0001BB70[] = {
 	{ { 0x00FFFFFF }, { 0xFFFFFFFF }, 11, 0, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_USE_ALPHA | NJD_FLAG_IGNORE_LIGHT | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_0001BB84[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0001BB84[] = {
 	8, 2, 3, 1, 0, 16, 17, 19, 18,
 	8, 9, 6, 8, 5, 24, 20, 25, 23,
 	8, 11, 2, 10, 1, 26, 16, 27, 19,
@@ -3633,11 +3633,11 @@ Sint16 poly_0001BB84[] = {
 	8, 31, 29, 30, 28, 14, 12, 15, 13
 };
 
-NJS_MESHSET_SADX meshlist_0001BC14[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_0001BC14[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 8, poly_0001BB84, NULL, NULL, NULL, NULL, NULL }
 };
 
-NJS_VECTOR vertex_0001BC2C[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_0001BC2C[] = {
 	{ -0.0008699999f, -32.33333f, 11.99995f },
 	{ -8.485369f, -32.33333f, 8.485235f },
 	{ -8.485369f, -173, 8.485235f },
@@ -3672,7 +3672,7 @@ NJS_VECTOR vertex_0001BC2C[] = {
 	{ -8.485369f, 249, -8.485327f }
 };
 
-NJS_VECTOR normal_0001BDAC[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_0001BDAC[] = {
 	{ 0, 0, 1 },
 	{ -0.7071069f, 0, 0.7071069f },
 	{ -0.7071069f, 0, 0.7071069f },
@@ -3707,24 +3707,24 @@ NJS_VECTOR normal_0001BDAC[] = {
 	{ -0.7071069f, 0, -0.7071069f }
 };
 
-NJS_MODEL_SADX attach_0001BF2C = { vertex_0001BC2C, normal_0001BDAC, LengthOfArray<Sint32>(vertex_0001BC2C), meshlist_0001BC14, matlist_0001BB70, LengthOfArray<Uint16>(meshlist_0001BC14), LengthOfArray<Uint16>(matlist_0001BB70), { -0.0008699999f, 38, -0.00045f }, 211.3309f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_0001BF2C = { vertex_0001BC2C, normal_0001BDAC, LengthOfArray<Sint32>(vertex_0001BC2C), meshlist_0001BC14, matlist_0001BB70, LengthOfArray<Uint16>(meshlist_0001BC14), LengthOfArray<Uint16>(matlist_0001BB70), { -0.0008699999f, 38, -0.00045f }, 211.3309f, NULL };
 
-NJS_OBJECT object_0001BF54 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0001BF2C, 6201.597f, 150, 980.4159f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_0001BF88[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_0001BF54 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0001BF2C, 6201.597f, 150, 980.4159f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_0001BF88[] = {
 	{ { 0x00FFFFFF }, { 0xFFFFFFFF }, 11, 0, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_USE_ALPHA | NJD_FLAG_IGNORE_LIGHT | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_0001BF9C[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0001BF9C[] = {
 	3, 4, 0, 6,
 	3, 1, 5, 3,
 	6, 5, 7, 3, 6, 2, 0
 };
 
-NJS_MESHSET_SADX meshlist_0001BFBC[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_0001BFBC[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 3, poly_0001BF9C, NULL, NULL, NULL, NULL, NULL }
 };
 
-NJS_VECTOR vertex_0001BFD4[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_0001BFD4[] = {
 	{ -67, 68, -75 },
 	{ -67, 68, -71 },
 	{ -67, 75, -75 },
@@ -3735,7 +3735,7 @@ NJS_VECTOR vertex_0001BFD4[] = {
 	{ 75, 75, -71 }
 };
 
-NJS_VECTOR normal_0001C034[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_0001C034[] = {
 	{ 0, 0, -1 },
 	{ 0, 0, 1 },
 	{ 0, 0.7071069f, -0.7071069f },
@@ -3746,24 +3746,24 @@ NJS_VECTOR normal_0001C034[] = {
 	{ 0, 0.7071069f, 0.7071069f }
 };
 
-NJS_MODEL_SADX attach_0001C094 = { vertex_0001BFD4, normal_0001C034, LengthOfArray<Sint32>(vertex_0001BFD4), meshlist_0001BFBC, matlist_0001BF88, LengthOfArray<Uint16>(meshlist_0001BFBC), LengthOfArray<Uint16>(matlist_0001BF88), { 4, 71.5f, -73 }, 71.0862f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_0001C094 = { vertex_0001BFD4, normal_0001C034, LengthOfArray<Sint32>(vertex_0001BFD4), meshlist_0001BFBC, matlist_0001BF88, LengthOfArray<Uint16>(meshlist_0001BFBC), LengthOfArray<Uint16>(matlist_0001BF88), { 4, 71.5f, -73 }, 71.0862f, NULL };
 
-NJS_OBJECT object_0001C0BC = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0001C094, 2645, -38, 369, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_0001C0F0[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_0001C0BC = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0001C094, 2645, -38, 369, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_0001C0F0[] = {
 	{ { 0x00FFFFFF }, { 0xFFFFFFFF }, 11, 0, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_USE_ALPHA | NJD_FLAG_IGNORE_LIGHT | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_0001C104[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0001C104[] = {
 	4, 2, 1, 3, 5,
 	0x8000u | 8, 4, 5, 7, 3, 6, 2, 0, 1,
 	4, 7, 4, 6, 0
 };
 
-NJS_MESHSET_SADX meshlist_0001C12C[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_0001C12C[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 3, poly_0001C104, NULL, NULL, NULL, NULL, NULL }
 };
 
-NJS_VECTOR vertex_0001C144[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_0001C144[] = {
 	{ -75, 68, -75 },
 	{ -75, 68, -71 },
 	{ -75, 75, -75 },
@@ -3774,7 +3774,7 @@ NJS_VECTOR vertex_0001C144[] = {
 	{ 75, 75, -71 }
 };
 
-NJS_VECTOR normal_0001C1A4[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_0001C1A4[] = {
 	{ -0.7071069f, 0, -0.7071069f },
 	{ -0.7071069f, 0, 0.7071069f },
 	{ -0.57735f, 0.57735f, -0.57735f },
@@ -3785,24 +3785,24 @@ NJS_VECTOR normal_0001C1A4[] = {
 	{ 0.57735f, 0.57735f, 0.57735f }
 };
 
-NJS_MODEL_SADX attach_0001C204 = { vertex_0001C144, normal_0001C1A4, LengthOfArray<Sint32>(vertex_0001C144), meshlist_0001C12C, matlist_0001C0F0, LengthOfArray<Uint16>(meshlist_0001C12C), LengthOfArray<Uint16>(matlist_0001C0F0), { 0, 71.5f, -73 }, 75.02666f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_0001C204 = { vertex_0001C144, normal_0001C1A4, LengthOfArray<Sint32>(vertex_0001C144), meshlist_0001C12C, matlist_0001C0F0, LengthOfArray<Uint16>(meshlist_0001C12C), LengthOfArray<Uint16>(matlist_0001C0F0), { 0, 71.5f, -73 }, 75.02666f, NULL };
 
-NJS_OBJECT object_0001C22C = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0001C204, 2645, -38, 511, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_0001C260[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_0001C22C = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0001C204, 2645, -38, 511, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_0001C260[] = {
 	{ { 0x00FFFFFF }, { 0xFFFFFFFF }, 11, 0, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_USE_ALPHA | NJD_FLAG_IGNORE_LIGHT | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_0001C274[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0001C274[] = {
 	3, 0, 1, 2,
 	0x8000u | 7, 5, 1, 3, 2, 6, 0, 4,
 	4, 6, 3, 7, 5
 };
 
-NJS_MESHSET_SADX meshlist_0001C298[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_0001C298[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 3, poly_0001C274, NULL, NULL, NULL, NULL, NULL }
 };
 
-NJS_VECTOR vertex_0001C2B0[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_0001C2B0[] = {
 	{ 54, 68, -75 },
 	{ 54, 68, -71 },
 	{ 54, 75, -75 },
@@ -3813,7 +3813,7 @@ NJS_VECTOR vertex_0001C2B0[] = {
 	{ 75, 75, -71 }
 };
 
-NJS_VECTOR normal_0001C310[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_0001C310[] = {
 	{ -0.7071069f, 0, -0.7071069f },
 	{ -0.7071069f, 0, 0.7071069f },
 	{ -0.57735f, 0.57735f, -0.57735f },
@@ -3824,14 +3824,14 @@ NJS_VECTOR normal_0001C310[] = {
 	{ 0, 0.7071069f, 0.7071069f }
 };
 
-NJS_MODEL_SADX attach_0001C370 = { vertex_0001C2B0, normal_0001C310, LengthOfArray<Sint32>(vertex_0001C2B0), meshlist_0001C298, matlist_0001C260, LengthOfArray<Uint16>(meshlist_0001C298), LengthOfArray<Uint16>(matlist_0001C260), { 64.5f, 71.5f, -73 }, 11.06797f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_0001C370 = { vertex_0001C2B0, normal_0001C310, LengthOfArray<Sint32>(vertex_0001C2B0), meshlist_0001C298, matlist_0001C260, LengthOfArray<Uint16>(meshlist_0001C298), LengthOfArray<Uint16>(matlist_0001C260), { 64.5f, 71.5f, -73 }, 11.06797f, NULL };
 
-NJS_OBJECT object_0001C398 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0001C370, 2791, -38, 369, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_0001C3CC[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_0001C398 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0001C370, 2791, -38, 369, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_0001C3CC[] = {
 	{ { 0x00FFFFFF }, { 0xFFFFFFFF }, 11, 0, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_USE_ALPHA | NJD_FLAG_IGNORE_LIGHT | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_0001C3E0[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0001C3E0[] = {
 	0x8000u | 12, 31, 7, 30, 6, 29, 5, 28, 4, 27, 3, 26, 2,
 	0x8000u | 12, 8, 32, 9, 33, 10, 34, 11, 35, 0, 24, 1, 25,
 	0x8000u | 12, 22, 46, 23, 47, 12, 36, 13, 37, 14, 38, 15, 39,
@@ -3840,11 +3840,11 @@ Sint16 poly_0001C3E0[] = {
 	0x8000u | 12, 1, 22, 0, 23, 11, 12, 10, 13, 9, 14, 8, 15
 };
 
-NJS_MESHSET_SADX meshlist_0001C47C[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_0001C47C[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 6, poly_0001C3E0, NULL, NULL, NULL, NULL, NULL }
 };
 
-NJS_VECTOR vertex_0001C494[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_0001C494[] = {
 	{ -0.00098f, 406, -61.99995f },
 	{ -30.94731f, 406, -53.60169f },
 	{ -53.6934f, 406, -30.99995f },
@@ -3895,7 +3895,7 @@ NJS_VECTOR vertex_0001C494[] = {
 	{ 0.000008999999f, 400, -65 }
 };
 
-NJS_VECTOR normal_0001C6D4[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_0001C6D4[] = {
 	{ 0.000498f, 0.768321f, 0.640065f },
 	{ 0.171322f, 0.7529989f, 0.635327f },
 	{ 0.633517f, 0.75512f, 0.168672f },
@@ -3946,14 +3946,14 @@ NJS_VECTOR normal_0001C6D4[] = {
 	{ 0, 0.000008f, -1 }
 };
 
-NJS_MODEL_SADX attach_0001C914 = { vertex_0001C494, normal_0001C6D4, LengthOfArray<Sint32>(vertex_0001C494), meshlist_0001C47C, matlist_0001C3CC, LengthOfArray<Uint16>(meshlist_0001C47C), LengthOfArray<Uint16>(matlist_0001C3CC), { -0.00034f, 403, 0.000019f }, 90.55518f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_0001C914 = { vertex_0001C494, normal_0001C6D4, LengthOfArray<Sint32>(vertex_0001C494), meshlist_0001C47C, matlist_0001C3CC, LengthOfArray<Uint16>(meshlist_0001C47C), LengthOfArray<Uint16>(matlist_0001C3CC), { -0.00034f, 403, 0.000019f }, 90.55518f, NULL };
 
-NJS_OBJECT object_0001C93C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0001C914, 5909.7f, 0, 775.2f, 0, 0x70A, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_0001C970[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_0001C93C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0001C914, 5909.7f, 0, 775.2f, 0, 0x70A, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_0001C970[] = {
 	{ { 0x00FFFFFF }, { 0xFFFFFFFF }, 11, 0, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_USE_ALPHA | NJD_FLAG_IGNORE_LIGHT | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_0001C984[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0001C984[] = {
 	26, 17, 4, 16, 3, 15, 2, 14, 1, 13, 0, 12, 11, 23, 10, 22, 9, 21, 8, 20, 7, 19, 6, 18, 5, 17, 4,
 	26, 30, 17, 29, 16, 28, 15, 27, 14, 26, 13, 25, 12, 24, 23, 35, 22, 34, 21, 33, 20, 32, 19, 31, 18, 30, 17,
 	26, 42, 29, 41, 28, 40, 27, 39, 26, 38, 25, 37, 24, 36, 35, 47, 34, 46, 33, 45, 32, 44, 31, 43, 30, 42, 29,
@@ -3961,11 +3961,11 @@ Sint16 poly_0001C984[] = {
 	26, 53, 66, 54, 67, 55, 68, 56, 69, 57, 70, 58, 71, 59, 60, 48, 61, 49, 62, 50, 63, 51, 64, 52, 65, 53, 66
 };
 
-NJS_MESHSET_SADX meshlist_0001CA94[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_0001CA94[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 5, poly_0001C984, NULL, NULL, NULL, NULL, NULL }
 };
 
-NJS_VECTOR vertex_0001CAAC[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_0001CAAC[] = {
 	{ 40, -65, 0 },
 	{ 34.64101f, -65, 20 },
 	{ 20, -65, 34.64102f },
@@ -4040,7 +4040,7 @@ NJS_VECTOR vertex_0001CAAC[] = {
 	{ 34.64102f, 55, -19.99999f }
 };
 
-NJS_VECTOR normal_0001CE0C[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_0001CE0C[] = {
 	{ 1, 0, 0 },
 	{ 0.866025f, 0, 0.5f },
 	{ 0.5f, 0, 0.866025f },
@@ -4115,14 +4115,14 @@ NJS_VECTOR normal_0001CE0C[] = {
 	{ 0.866026f, 0, -0.5f }
 };
 
-NJS_MODEL_SADX attach_0001D16C = { vertex_0001CAAC, normal_0001CE0C, LengthOfArray<Sint32>(vertex_0001CAAC), meshlist_0001CA94, matlist_0001C970, LengthOfArray<Uint16>(meshlist_0001CA94), LengthOfArray<Uint16>(matlist_0001C970), { 0, -5, 0 }, 71.78233f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_0001D16C = { vertex_0001CAAC, normal_0001CE0C, LengthOfArray<Sint32>(vertex_0001CAAC), meshlist_0001CA94, matlist_0001C970, LengthOfArray<Uint16>(meshlist_0001CA94), LengthOfArray<Uint16>(matlist_0001C970), { 0, -5, 0 }, 71.78233f, NULL };
 
-NJS_OBJECT object_0001D194 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0001D16C, 5909.7f, 465, 775.2f, 0, 0x70A, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_0001D1C8[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_0001D194 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0001D16C, 5909.7f, 465, 775.2f, 0, 0x70A, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_0001D1C8[] = {
 	{ { 0x00FFFFFF }, { 0xFFFFFFFF }, 11, 0, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_USE_ALPHA | NJD_FLAG_IGNORE_LIGHT | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_0001D1DC[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0001D1DC[] = {
 	3, 9, 14, 82,
 	0x8000u | 35, 9, 10, 81, 72, 89, 88, 27, 18, 78, 22, 37, 40, 7, 21, 38, 41, 4, 19, 39, 63, 42, 43, 5, 20, 56, 62, 54, 60, 33, 34, 55, 17, 61, 89, 27,
 	0x8000u | 5, 10, 71, 72, 25, 88,
@@ -4148,11 +4148,11 @@ Sint16 poly_0001D1DC[] = {
 	0x8000u | 5, 34, 23, 17, 24, 89
 };
 
-NJS_MESHSET_SADX meshlist_0001D394[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_0001D394[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 23, poly_0001D1DC, NULL, NULL, NULL, NULL, NULL }
 };
 
-NJS_VECTOR vertex_0001D3AC[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_0001D3AC[] = {
 	{ -78.29126f, -139, -105.9664f },
 	{ -21.802f, -139, -91.26864f },
 	{ 11.78613f, -192, -225.6583f },
@@ -4245,7 +4245,7 @@ NJS_VECTOR vertex_0001D3AC[] = {
 	{ 39.78857f, -49, 181.6318f }
 };
 
-NJS_VECTOR normal_0001D7E4[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_0001D7E4[] = {
 	{ -0.340893f, -0.055311f, 0.938473f },
 	{ -0.023123f, -0.071609f, 0.997165f },
 	{ 0.091564f, 0.688668f, -0.719272f },
@@ -4338,17 +4338,17 @@ NJS_VECTOR normal_0001D7E4[] = {
 	{ 0.835073f, -0.085649f, 0.543432f }
 };
 
-NJS_MODEL_SADX attach_0001DC1C = { vertex_0001D3AC, normal_0001D7E4, LengthOfArray<Sint32>(vertex_0001D3AC), meshlist_0001D394, matlist_0001D1C8, LengthOfArray<Uint16>(meshlist_0001D394), LengthOfArray<Uint16>(matlist_0001D1C8), { 0.422729f, 19, 0.697617f }, 309.4479f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_0001DC1C = { vertex_0001D3AC, normal_0001D7E4, LengthOfArray<Sint32>(vertex_0001D3AC), meshlist_0001D394, matlist_0001D1C8, LengthOfArray<Uint16>(meshlist_0001D394), LengthOfArray<Uint16>(matlist_0001D1C8), { 0.422729f, 19, 0.697617f }, 309.4479f, NULL };
 
-NJS_OBJECT object_0001DC44 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0001DC1C, 4113, 169, 315, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_0001DC78[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_0001DC44 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0001DC1C, 4113, 169, 315, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_0001DC78[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 6, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 67, NJD_CUSTOMFLAG_TEXANIM2 | NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 4, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 5, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_0001DCC8[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0001DCC8[] = {
 	0x8000u | 5, 54, 74, 55, 73, 56,
 	0x8000u | 13, 54, 53, 74, 52, 72, 51, 71, 50, 70, 80, 69, 49, 48,
 	3, 68, 48, 69,
@@ -4358,20 +4358,20 @@ Sint16 poly_0001DCC8[] = {
 	8, 46, 59, 58, 73, 57, 56, 44, 43
 };
 
-Sint16 poly_0001DD66[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0001DD66[] = {
 	3, 23, 22, 76,
 	0x8000u | 27, 34, 21, 33, 20, 32, 19, 31, 18, 30, 17, 29, 16, 28, 15, 27, 14, 26, 13, 25, 12, 24, 11, 78, 75, 23, 77, 76
 };
 
-Sint16 poly_0001DDA6[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0001DDA6[] = {
 	0x8000u | 22, 0, 11, 1, 12, 2, 13, 3, 14, 4, 15, 5, 16, 6, 17, 7, 18, 8, 19, 9, 20, 10, 21
 };
 
-Sint16 poly_0001DDD4[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0001DDD4[] = {
 	0x8000u | 28, 47, 34, 46, 33, 45, 32, 44, 31, 43, 30, 42, 29, 41, 28, 40, 27, 39, 26, 38, 25, 37, 24, 79, 78, 36, 23, 35, 22
 };
 
-NJS_TEX uv_0001DE10[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0001DE10[] = {
 	{ 3008, -2154 },
 	{ 2858, -908 },
 	{ 3288, -1977 },
@@ -4446,7 +4446,7 @@ NJS_TEX uv_0001DE10[] = {
 	{ 4038, -1957 }
 };
 
-NJS_TEX uv_0001DF30[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0001DF30[] = {
 	{ 163, 0 },
 	{ 0 },
 	{ 0, 255 },
@@ -4479,7 +4479,7 @@ NJS_TEX uv_0001DF30[] = {
 	{ 0, 255 }
 };
 
-NJS_TEX uv_0001DFA8[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0001DFA8[] = {
 	{ 0, 254 },
 	{ 0 },
 	{ 236, 255 },
@@ -4504,7 +4504,7 @@ NJS_TEX uv_0001DFA8[] = {
 	{ 2550, 0 }
 };
 
-NJS_TEX uv_0001E000[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0001E000[] = {
 	{ 5865, 0 },
 	{ 5864, 255 },
 	{ 5379, 0 },
@@ -4535,14 +4535,14 @@ NJS_TEX uv_0001E000[] = {
 	{ 0, 255 }
 };
 
-NJS_MESHSET_SADX meshlist_0001E070[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_0001E070[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 7, poly_0001DCC8, NULL, NULL, NULL, uv_0001DE10, NULL },
 	{ NJD_MESHSET_TRIMESH | 1, 2, poly_0001DD66, NULL, NULL, NULL, uv_0001DF30, NULL },
 	{ NJD_MESHSET_TRIMESH | 2, 1, poly_0001DDA6, NULL, NULL, NULL, uv_0001DFA8, NULL },
 	{ NJD_MESHSET_TRIMESH | 3, 1, poly_0001DDD4, NULL, NULL, NULL, uv_0001E000, NULL }
 };
 
-NJS_VECTOR vertex_0001E0D0[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_0001E0D0[] = {
 	{ -158.1215f, -15, 368.0329f },
 	{ -90.40527f, -15, 370.2718f },
 	{ -21.55804f, -15, 359.413f },
@@ -4626,7 +4626,7 @@ NJS_VECTOR vertex_0001E0D0[] = {
 	{ -168.167f, 4, 195.009f }
 };
 
-NJS_VECTOR normal_0001E49C[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_0001E49C[] = {
 	{ -0.004582f, 0.990342f, 0.138572f },
 	{ 0.008509999f, 0.990427f, 0.137775f },
 	{ 0.032957f, 0.990409f, 0.134175f },
@@ -4710,28 +4710,28 @@ NJS_VECTOR normal_0001E49C[] = {
 	{ -0.006066f, 0.999837f, 0.016989f }
 };
 
-NJS_MODEL_SADX attach_0001E868 = { vertex_0001E0D0, normal_0001E49C, LengthOfArray<Sint32>(vertex_0001E0D0), meshlist_0001E070, matlist_0001DC78, LengthOfArray<Uint16>(meshlist_0001E070), LengthOfArray<Uint16>(matlist_0001DC78), { -40.80415f, -5.5f, 130.1359f }, 335.4295f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_0001E868 = { vertex_0001E0D0, normal_0001E49C, LengthOfArray<Sint32>(vertex_0001E0D0), meshlist_0001E070, matlist_0001DC78, LengthOfArray<Uint16>(meshlist_0001E070), LengthOfArray<Uint16>(matlist_0001DC78), { -40.80415f, -5.5f, 130.1359f }, 335.4295f, NULL };
 
-NJS_OBJECT object_0001E890 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0001E868, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_0001E8C4[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_0001E890 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0001E868, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_0001E8C4[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 67, NJD_CUSTOMFLAG_TEXANIM2 | NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 4, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 6, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 5, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_0001E914[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0001E914[] = {
 	0x8000u | 11, 9, 17, 10, 18, 11, 19, 12, 20, 13, 21, 22,
 	9, 61, 25, 60, 24, 59, 23, 58, 22, 13,
 	0x8000u | 6, 6, 14, 7, 15, 8, 16
 };
 
-Sint16 poly_0001E94E[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0001E94E[] = {
 	0x8000u | 6, 0, 6, 1, 7, 2, 8,
 	0x8000u | 6, 11, 5, 10, 4, 9, 3
 };
 
-Sint16 poly_0001E96A[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0001E96A[] = {
 	0x8000u | 6, 26, 38, 27, 39, 28, 40,
 	0x8000u | 18, 29, 41, 30, 42, 31, 43, 32, 44, 33, 45, 34, 46, 35, 47, 36, 48, 37, 49,
 	4, 54, 47, 57, 48,
@@ -4739,12 +4739,12 @@ Sint16 poly_0001E96A[] = {
 	0x8000u | 15, 41, 40, 42, 39, 43, 38, 44, 51, 45, 52, 46, 50, 47, 53, 54
 };
 
-Sint16 poly_0001E9D6[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0001E9D6[] = {
 	0x8000u | 18, 37, 25, 36, 24, 35, 23, 34, 22, 33, 21, 32, 20, 31, 19, 30, 18, 29, 17,
 	0x8000u | 6, 28, 16, 27, 15, 26, 14
 };
 
-NJS_TEX uv_0001EA0C[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0001EA0C[] = {
 	{ 0, 255 },
 	{ 0 },
 	{ 292, 254 },
@@ -4773,7 +4773,7 @@ NJS_TEX uv_0001EA0C[] = {
 	{ 0 }
 };
 
-NJS_TEX uv_0001EA74[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0001EA74[] = {
 	{ 510, 255 },
 	{ 510, 0 },
 	{ 256, 255 },
@@ -4788,7 +4788,7 @@ NJS_TEX uv_0001EA74[] = {
 	{ 0, 255 }
 };
 
-NJS_TEX uv_0001EAA4[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0001EAA4[] = {
 	{ 1048, 64 },
 	{ 1222, -416 },
 	{ 520, -177 },
@@ -4840,7 +4840,7 @@ NJS_TEX uv_0001EAA4[] = {
 	{ 5427, -328 }
 };
 
-NJS_TEX uv_0001EB68[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0001EB68[] = {
 	{ 3825, 0 },
 	{ 3825, 255 },
 	{ 3383, 0 },
@@ -4867,14 +4867,14 @@ NJS_TEX uv_0001EB68[] = {
 	{ 1008, 255 }
 };
 
-NJS_MESHSET_SADX meshlist_0001EBC8[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_0001EBC8[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 3, poly_0001E914, NULL, NULL, NULL, uv_0001EA0C, NULL },
 	{ NJD_MESHSET_TRIMESH | 1, 2, poly_0001E94E, NULL, NULL, NULL, uv_0001EA74, NULL },
 	{ NJD_MESHSET_TRIMESH | 2, 5, poly_0001E96A, NULL, NULL, NULL, uv_0001EAA4, NULL },
 	{ NJD_MESHSET_TRIMESH | 3, 2, poly_0001E9D6, NULL, NULL, NULL, uv_0001EB68, NULL }
 };
 
-NJS_VECTOR vertex_0001EC28[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_0001EC28[] = {
 	{ -737.1955f, -15, 242.3843f },
 	{ -760.4671f, -15, 285.9389f },
 	{ -782.6299f, -15, 334.3782f },
@@ -4939,7 +4939,7 @@ NJS_VECTOR vertex_0001EC28[] = {
 	{ -250.3732f, -4, 282.8013f }
 };
 
-NJS_VECTOR normal_0001EF10[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_0001EF10[] = {
 	{ -0.123376f, 0.990335f, -0.063369f },
 	{ -0.124742f, 0.990343f, -0.060498f },
 	{ -0.126078f, 0.990342f, -0.057685f },
@@ -5004,17 +5004,17 @@ NJS_VECTOR normal_0001EF10[] = {
 	{ 0.000531f, 0.99753f, 0.070246f }
 };
 
-NJS_MODEL_SADX attach_0001F1F8 = { vertex_0001EC28, normal_0001EF10, LengthOfArray<Sint32>(vertex_0001EC28), meshlist_0001EBC8, matlist_0001E8C4, LengthOfArray<Uint16>(meshlist_0001EBC8), LengthOfArray<Uint16>(matlist_0001E8C4), { -513.2766f, -5.5f, 289.8055f }, 352.7697f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_0001F1F8 = { vertex_0001EC28, normal_0001EF10, LengthOfArray<Sint32>(vertex_0001EC28), meshlist_0001EBC8, matlist_0001E8C4, LengthOfArray<Uint16>(meshlist_0001EBC8), LengthOfArray<Uint16>(matlist_0001E8C4), { -513.2766f, -5.5f, 289.8055f }, 352.7697f, NULL };
 
-NJS_OBJECT object_0001F220 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0001F1F8, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_0001F254[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_0001F220 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0001F1F8, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_0001F254[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 6, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 4, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 5, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 67, NJD_CUSTOMFLAG_TEXANIM2 | NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_0001F2A4[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0001F2A4[] = {
 	9, 60, 77, 59, 76, 58, 75, 57, 74, 56,
 	0x8000u | 13, 61, 60, 78, 77, 86, 76, 87, 75, 88, 74, 73, 56, 55,
 	8, 78, 61, 79, 62, 80, 63, 81, 64,
@@ -5023,19 +5023,19 @@ Sint16 poly_0001F2A4[] = {
 	11, 86, 78, 85, 79, 84, 80, 83, 81, 82, 64, 65
 };
 
-Sint16 poly_0001F32C[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0001F32C[] = {
 	0x8000u | 36, 0, 18, 1, 19, 2, 20, 3, 21, 4, 22, 5, 23, 6, 24, 7, 25, 8, 26, 9, 27, 10, 28, 11, 29, 12, 30, 13, 31, 14, 32, 15, 33, 16, 34, 17, 35
 };
 
-Sint16 poly_0001F376[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0001F376[] = {
 	0x8000u | 36, 36, 54, 37, 55, 38, 56, 39, 57, 40, 58, 41, 59, 42, 60, 43, 61, 44, 62, 45, 63, 46, 64, 47, 65, 48, 66, 49, 67, 50, 68, 51, 69, 52, 70, 53, 71
 };
 
-Sint16 poly_0001F3C0[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0001F3C0[] = {
 	0x8000u | 36, 18, 36, 19, 37, 20, 38, 21, 39, 22, 40, 23, 41, 24, 42, 25, 43, 26, 44, 27, 45, 28, 46, 29, 47, 30, 48, 31, 49, 32, 50, 33, 51, 34, 52, 35, 53
 };
 
-NJS_TEX uv_0001F40C[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0001F40C[] = {
 	{ 521, -3522 },
 	{ 925, -2721 },
 	{ 318, -2916 },
@@ -5100,7 +5100,7 @@ NJS_TEX uv_0001F40C[] = {
 	{ 2549, -4082 }
 };
 
-NJS_TEX uv_0001F504[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0001F504[] = {
 	{ 0, 254 },
 	{ 0 },
 	{ 203, 255 },
@@ -5139,7 +5139,7 @@ NJS_TEX uv_0001F504[] = {
 	{ 4335, 0 }
 };
 
-NJS_TEX uv_0001F594[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0001F594[] = {
 	{ 0, 254 },
 	{ 0 },
 	{ 430, 255 },
@@ -5178,7 +5178,7 @@ NJS_TEX uv_0001F594[] = {
 	{ 7650, 0 }
 };
 
-NJS_TEX uv_0001F624[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0001F624[] = {
 	{ 0, 255 },
 	{ 0 },
 	{ 206, 255 },
@@ -5217,14 +5217,14 @@ NJS_TEX uv_0001F624[] = {
 	{ 4080, 0 }
 };
 
-NJS_MESHSET_SADX meshlist_0001F6B4[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_0001F6B4[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 6, poly_0001F2A4, NULL, NULL, NULL, uv_0001F40C, NULL },
 	{ NJD_MESHSET_TRIMESH | 1, 1, poly_0001F32C, NULL, NULL, NULL, uv_0001F504, NULL },
 	{ NJD_MESHSET_TRIMESH | 2, 1, poly_0001F376, NULL, NULL, NULL, uv_0001F594, NULL },
 	{ NJD_MESHSET_TRIMESH | 3, 1, poly_0001F3C0, NULL, NULL, NULL, uv_0001F624, NULL }
 };
 
-NJS_VECTOR vertex_0001F714[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_0001F714[] = {
 	{ -782.6299f, -15, 334.3782f },
 	{ -803.145f, -15, 386.7097f },
 	{ -820.1996f, -15, 442.7501f },
@@ -5317,7 +5317,7 @@ NJS_VECTOR vertex_0001F714[] = {
 	{ -554.3281f, 4, 450.8834f }
 };
 
-NJS_VECTOR normal_0001FB4C[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_0001FB4C[] = {
 	{ -0.129083f, 0.990342f, -0.050604f },
 	{ -0.130864f, 0.990356f, -0.045486f },
 	{ -0.13426f, 0.9903629f, -0.033986f },
@@ -5410,10 +5410,10 @@ NJS_VECTOR normal_0001FB4C[] = {
 	{ 0.034285f, 0.999319f, 0.013621f }
 };
 
-NJS_MODEL_SADX attach_0001FF84 = { vertex_0001F714, normal_0001FB4C, LengthOfArray<Sint32>(vertex_0001F714), meshlist_0001F6B4, matlist_0001F254, LengthOfArray<Uint16>(meshlist_0001F6B4), LengthOfArray<Uint16>(matlist_0001F254), { -619.2001f, -5.5f, 617.9969f }, 359.7325f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_0001FF84 = { vertex_0001F714, normal_0001FB4C, LengthOfArray<Sint32>(vertex_0001F714), meshlist_0001F6B4, matlist_0001F254, LengthOfArray<Uint16>(meshlist_0001F6B4), LengthOfArray<Uint16>(matlist_0001F254), { -619.2001f, -5.5f, 617.9969f }, 359.7325f, NULL };
 
-NJS_OBJECT object_0001FFAC = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0001FF84, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_0001FFE0[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_0001FFAC = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0001FF84, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_0001FFE0[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 6, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 4, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 67, NJD_CUSTOMFLAG_TEXANIM2 | NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
@@ -5421,7 +5421,7 @@ NJS_MATERIAL matlist_0001FFE0[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 67, NJD_CUSTOMFLAG_TEXANIM2 | NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_00020044[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00020044[] = {
 	12, 27, 26, 43, 45, 36, 35, 37, 44, 38, 46, 31, 32,
 	4, 44, 33, 46, 32,
 	0x8000u | 9, 33, 34, 44, 23, 35, 24, 45, 25, 26,
@@ -5429,7 +5429,7 @@ Sint16 poly_00020044[] = {
 	4, 36, 28, 43, 27
 };
 
-Sint16 poly_00020098[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00020098[] = {
 	0x8000u | 10, 4, 10, 3, 9, 2, 8, 1, 7, 0, 6,
 	3, 4, 10, 39,
 	3, 0, 40, 41,
@@ -5437,21 +5437,21 @@ Sint16 poly_00020098[] = {
 	3, 39, 5, 4
 };
 
-Sint16 poly_000200CE[] = {
+extern "C" __declspec(dllexport) Sint16 poly_000200CE[] = {
 	25, 18, 19, 48, 20, 47, 21, 51, 22, 41, 11, 6, 12, 7, 13, 8, 14, 9, 15, 10, 16, 39, 52, 42, 17, 50,
 	3, 48, 49, 18
 };
 
-Sint16 poly_0002010A[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0002010A[] = {
 	4, 16, 15, 28, 27,
 	0x8000u | 26, 28, 16, 53, 52, 29, 17, 30, 18, 31, 19, 32, 20, 33, 21, 34, 22, 23, 11, 24, 12, 25, 13, 26, 14, 27, 15
 };
 
-Sint16 poly_0002014A[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0002014A[] = {
 	4, 49, 50, 18, 17
 };
 
-NJS_TEX uv_00020154[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00020154[] = {
 	{ 458, 254 },
 	{ 195, 49 },
 	{ 537, 57 },
@@ -5491,7 +5491,7 @@ NJS_TEX uv_00020154[] = {
 	{ 458, 254 }
 };
 
-NJS_TEX uv_000201E8[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_000201E8[] = {
 	{ 0, 255 },
 	{ 0 },
 	{ 290, 255 },
@@ -5516,7 +5516,7 @@ NJS_TEX uv_000201E8[] = {
 	{ 0, 255 }
 };
 
-NJS_TEX uv_00020240[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00020240[] = {
 	{ 3570, 0 },
 	{ 3310, 0 },
 	{ 3332, 255 },
@@ -5547,7 +5547,7 @@ NJS_TEX uv_00020240[] = {
 	{ 3570, 0 }
 };
 
-NJS_TEX uv_000202B0[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_000202B0[] = {
 	{ 4011, 255 },
 	{ 4335, 255 },
 	{ 4051, 0 },
@@ -5580,14 +5580,14 @@ NJS_TEX uv_000202B0[] = {
 	{ 0, 255 }
 };
 
-NJS_TEX uv_00020328[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00020328[] = {
 	{ 0, 255 },
 	{ 254, 255 },
 	{ 0 },
 	{ 255, 0 }
 };
 
-NJS_MESHSET_SADX meshlist_00020338[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00020338[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 5, poly_00020044, NULL, NULL, NULL, uv_00020154, NULL },
 	{ NJD_MESHSET_TRIMESH | 1, 5, poly_00020098, NULL, NULL, NULL, uv_000201E8, NULL },
 	{ NJD_MESHSET_TRIMESH | 2, 2, poly_000200CE, NULL, NULL, NULL, uv_00020240, NULL },
@@ -5595,7 +5595,7 @@ NJS_MESHSET_SADX meshlist_00020338[] = {
 	{ NJD_MESHSET_TRIMESH | 4, 1, poly_0002014A, NULL, NULL, NULL, uv_00020328, NULL }
 };
 
-NJS_VECTOR vertex_000203B0[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_000203B0[] = {
 	{ -176.1215f, 8, 373.0329f },
 	{ -199.6196f, 8, 440.0379f },
 	{ -260.1773f, 8, 474.2476f },
@@ -5652,7 +5652,7 @@ NJS_VECTOR vertex_000203B0[] = {
 	{ -330.5138f, 24, 363.3602f }
 };
 
-NJS_VECTOR normal_00020638[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_00020638[] = {
 	{ 0.131209f, 0.988301f, 0.07775699f },
 	{ 0.113084f, 0.988887f, 0.09650999f },
 	{ 0.038476f, 0.989118f, 0.142003f },
@@ -5709,17 +5709,17 @@ NJS_VECTOR normal_00020638[] = {
 	{ -0.135214f, 0.98961f, -0.048884f }
 };
 
-NJS_MODEL_SADX attach_000208C0 = { vertex_000203B0, normal_00020638, LengthOfArray<Sint32>(vertex_000203B0), meshlist_00020338, matlist_0001FFE0, LengthOfArray<Uint16>(meshlist_00020338), LengthOfArray<Uint16>(matlist_0001FFE0), { -295.0556f, 16.5f, 382.6988f }, 156.1594f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_000208C0 = { vertex_000203B0, normal_00020638, LengthOfArray<Sint32>(vertex_000203B0), meshlist_00020338, matlist_0001FFE0, LengthOfArray<Uint16>(meshlist_00020338), LengthOfArray<Uint16>(matlist_0001FFE0), { -295.0556f, 16.5f, 382.6988f }, 156.1594f, NULL };
 
-NJS_OBJECT object_000208E8 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_000208C0, 18, -23, -5, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_0002091C[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_000208E8 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_000208C0, 18, -23, -5, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_0002091C[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 6, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 4, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 5, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 67, NJD_CUSTOMFLAG_TEXANIM2 | NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_0002096C[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0002096C[] = {
 	0x8000u | 15, 22, 5, 21, 4, 20, 3, 19, 2, 18, 1, 17, 0, 33, 16, 32,
 	17, 85, 5, 86, 4, 87, 3, 88, 2, 89, 1, 90, 0, 91, 16, 15, 32, 31,
 	0x8000u | 16, 30, 13, 29, 12, 28, 11, 27, 10, 26, 9, 25, 8, 24, 7, 23, 6,
@@ -5727,19 +5727,19 @@ Sint16 poly_0002096C[] = {
 	4, 31, 14, 15, 91
 };
 
-Sint16 poly_00020A02[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00020A02[] = {
 	0x8000u | 34, 73, 56, 72, 55, 71, 54, 70, 53, 69, 52, 68, 51, 84, 67, 83, 66, 82, 65, 81, 64, 80, 63, 79, 62, 78, 61, 77, 60, 76, 59, 75, 58, 74, 57
 };
 
-Sint16 poly_00020A48[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00020A48[] = {
 	0x8000u | 34, 23, 40, 24, 41, 25, 42, 26, 43, 27, 44, 28, 45, 29, 46, 30, 47, 31, 48, 32, 49, 33, 50, 17, 34, 18, 35, 19, 36, 20, 37, 21, 38, 22, 39
 };
 
-Sint16 poly_00020A8E[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00020A8E[] = {
 	0x8000u | 34, 56, 39, 55, 38, 54, 37, 53, 36, 52, 35, 51, 34, 67, 50, 66, 49, 65, 48, 64, 47, 63, 46, 62, 45, 61, 44, 60, 43, 59, 42, 58, 41, 57, 40
 };
 
-NJS_TEX uv_00020AD4[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00020AD4[] = {
 	{ 3408, -2805 },
 	{ 2948, -2627 },
 	{ 3617, -2305 },
@@ -5812,7 +5812,7 @@ NJS_TEX uv_00020AD4[] = {
 	{ 2405, -404 }
 };
 
-NJS_TEX uv_00020BEC[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00020BEC[] = {
 	{ 0, 255 },
 	{ 0 },
 	{ 215, 255 },
@@ -5849,7 +5849,7 @@ NJS_TEX uv_00020BEC[] = {
 	{ 4080, 0 }
 };
 
-NJS_TEX uv_00020C74[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00020C74[] = {
 	{ 7140, 0 },
 	{ 7140, 255 },
 	{ 6534, 0 },
@@ -5886,7 +5886,7 @@ NJS_TEX uv_00020C74[] = {
 	{ 0, 255 }
 };
 
-NJS_TEX uv_00020CFC[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00020CFC[] = {
 	{ 0, 255 },
 	{ 0 },
 	{ 238, 255 },
@@ -5923,14 +5923,14 @@ NJS_TEX uv_00020CFC[] = {
 	{ 4080, 0 }
 };
 
-NJS_MESHSET_SADX meshlist_00020D84[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00020D84[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 5, poly_0002096C, NULL, NULL, NULL, uv_00020AD4, NULL },
 	{ NJD_MESHSET_TRIMESH | 1, 1, poly_00020A02, NULL, NULL, NULL, uv_00020BEC, NULL },
 	{ NJD_MESHSET_TRIMESH | 2, 1, poly_00020A48, NULL, NULL, NULL, uv_00020C74, NULL },
 	{ NJD_MESHSET_TRIMESH | 3, 1, poly_00020A8E, NULL, NULL, NULL, uv_00020CFC, NULL }
 };
 
-NJS_VECTOR vertex_00020DE4[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_00020DE4[] = {
 	{ -50.73797f, -1, -215.5814f },
 	{ -31.65649f, 0, -204.9583f },
 	{ -9.868102f, 0, -183.9487f },
@@ -6025,7 +6025,7 @@ NJS_VECTOR vertex_00020DE4[] = {
 	{ -116.8155f, -1, -190.079f }
 };
 
-NJS_VECTOR normal_00021234[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_00021234[] = {
 	{ 0.003281f, 0.997988f, -0.063327f },
 	{ 0.023525f, 0.998303f, -0.053264f },
 	{ 0.039606f, 0.998625f, -0.034349f },
@@ -6120,17 +6120,17 @@ NJS_VECTOR normal_00021234[] = {
 	{ -0.021487f, 0.9990669f, -0.037455f }
 };
 
-NJS_MODEL_SADX attach_00021684 = { vertex_00020DE4, normal_00021234, LengthOfArray<Sint32>(vertex_00020DE4), meshlist_00020D84, matlist_0002091C, LengthOfArray<Uint16>(meshlist_00020D84), LengthOfArray<Uint16>(matlist_0002091C), { -70.34304f, -9.5f, -153.6086f }, 347.242f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00021684 = { vertex_00020DE4, normal_00021234, LengthOfArray<Sint32>(vertex_00020DE4), meshlist_00020D84, matlist_0002091C, LengthOfArray<Uint16>(meshlist_00020D84), LengthOfArray<Uint16>(matlist_0002091C), { -70.34304f, -9.5f, -153.6086f }, 347.242f, NULL };
 
-NJS_OBJECT object_000216AC = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00021684, -874, 4, 1412, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_000216E0[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_000216AC = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00021684, -874, 4, 1412, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_000216E0[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 6, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 4, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 5, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 67, NJD_CUSTOMFLAG_TEXANIM2 | NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_00021730[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00021730[] = {
 	0x8000u | 18, 16, 110, 13, 1, 12, 2, 11, 3, 10, 4, 9, 5, 8, 6, 109, 7, 24, 23,
 	3, 1, 0, 110,
 	15, 7, 23, 6, 22, 5, 21, 4, 20, 3, 19, 2, 18, 1, 17, 0,
@@ -6140,19 +6140,19 @@ Sint16 poly_00021730[] = {
 	0x8000u | 5, 39, 16, 38, 15, 37
 };
 
-Sint16 poly_000217CE[] = {
+extern "C" __declspec(dllexport) Sint16 poly_000217CE[] = {
 	0x8000u | 46, 63, 86, 64, 87, 65, 88, 66, 89, 67, 90, 68, 91, 69, 92, 70, 93, 71, 94, 72, 95, 73, 96, 74, 97, 75, 98, 76, 99, 77, 100, 78, 101, 79, 102, 80, 103, 81, 104, 82, 105, 83, 106, 84, 107, 85, 108
 };
 
-Sint16 poly_0002182C[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0002182C[] = {
 	0x8000u | 46, 17, 40, 18, 41, 19, 42, 20, 43, 21, 44, 22, 45, 23, 46, 24, 47, 25, 48, 26, 49, 27, 50, 28, 51, 29, 52, 30, 53, 31, 54, 32, 55, 33, 56, 34, 57, 35, 58, 36, 59, 37, 60, 38, 61, 39, 62
 };
 
-Sint16 poly_0002188A[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0002188A[] = {
 	0x8000u | 46, 85, 62, 84, 61, 83, 60, 82, 59, 81, 58, 80, 57, 79, 56, 78, 55, 77, 54, 76, 53, 75, 52, 74, 51, 73, 50, 72, 49, 71, 48, 70, 47, 69, 46, 68, 45, 67, 44, 66, 43, 65, 42, 64, 41, 63, 40
 };
 
-NJS_TEX uv_000218E8[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_000218E8[] = {
 	{ 264, -2709 },
 	{ 241, -1461 },
 	{ 1065, -1937 },
@@ -6227,7 +6227,7 @@ NJS_TEX uv_000218E8[] = {
 	{ 697, -3570 }
 };
 
-NJS_TEX uv_00021A08[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00021A08[] = {
 	{ 5610, 0 },
 	{ 5610, 255 },
 	{ 5385, 0 },
@@ -6276,7 +6276,7 @@ NJS_TEX uv_00021A08[] = {
 	{ 0, 255 }
 };
 
-NJS_TEX uv_00021AC0[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00021AC0[] = {
 	{ 8160, 0 },
 	{ 8160, 255 },
 	{ 7706, 0 },
@@ -6325,7 +6325,7 @@ NJS_TEX uv_00021AC0[] = {
 	{ 0, 255 }
 };
 
-NJS_TEX uv_00021B78[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00021B78[] = {
 	{ 0, 255 },
 	{ 0 },
 	{ 246, 255 },
@@ -6374,14 +6374,14 @@ NJS_TEX uv_00021B78[] = {
 	{ 5610, 0 }
 };
 
-NJS_MESHSET_SADX meshlist_00021C30[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00021C30[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 7, poly_00021730, NULL, NULL, NULL, uv_000218E8, NULL },
 	{ NJD_MESHSET_TRIMESH | 1, 1, poly_000217CE, NULL, NULL, NULL, uv_00021A08, NULL },
 	{ NJD_MESHSET_TRIMESH | 2, 1, poly_0002182C, NULL, NULL, NULL, uv_00021AC0, NULL },
 	{ NJD_MESHSET_TRIMESH | 3, 1, poly_0002188A, NULL, NULL, NULL, uv_00021B78, NULL }
 };
 
-NJS_VECTOR vertex_00021C90[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_00021C90[] = {
 	{ 43.50946f, 0, -82.03406f },
 	{ 62.13159f, 0, -32.4591f },
 	{ 92.60613f, 0, 23.78076f },
@@ -6496,7 +6496,7 @@ NJS_VECTOR vertex_00021C90[] = {
 	{ -98.18695f, -2, 102.7963f }
 };
 
-NJS_VECTOR normal_000221D0[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_000221D0[] = {
 	{ 0.053164f, 0.998386f, -0.01997f },
 	{ 0.043245f, 0.99887f, -0.019726f },
 	{ 0.036571f, 0.9989769f, -0.026608f },
@@ -6611,35 +6611,35 @@ NJS_VECTOR normal_000221D0[] = {
 	{ -0.016653f, 0.9991879f, 0.036686f }
 };
 
-NJS_MODEL_SADX attach_00022710 = { vertex_00021C90, normal_000221D0, LengthOfArray<Sint32>(vertex_00021C90), meshlist_00021C30, matlist_000216E0, LengthOfArray<Uint16>(meshlist_00021C30), LengthOfArray<Uint16>(matlist_000216E0), { 71.35886f, -9.5f, 95.15649f }, 411.7718f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00022710 = { vertex_00021C90, normal_000221D0, LengthOfArray<Sint32>(vertex_00021C90), meshlist_00021C30, matlist_000216E0, LengthOfArray<Uint16>(meshlist_00021C30), LengthOfArray<Uint16>(matlist_000216E0), { 71.35886f, -9.5f, 95.15649f }, 411.7718f, NULL };
 
-NJS_OBJECT object_00022738 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00022710, -874, 4, 1412, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_0002276C[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_00022738 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00022710, -874, 4, 1412, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_0002276C[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 6, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 4, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 5, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 67, NJD_CUSTOMFLAG_TEXANIM2 | NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_000227BC[] = {
+extern "C" __declspec(dllexport) Sint16 poly_000227BC[] = {
 	0x8000u | 22, 89, 90, 88, 91, 87, 92, 86, 93, 85, 94, 84, 95, 83, 96, 82, 97, 81, 98, 80, 99, 79, 78,
 	0x8000u | 21, 69, 89, 68, 88, 67, 87, 66, 86, 65, 85, 64, 84, 63, 83, 62, 82, 61, 81, 60, 80, 79,
 	0x8000u | 19, 90, 70, 91, 71, 92, 72, 93, 73, 94, 74, 95, 75, 96, 76, 97, 77, 98, 78, 99
 };
 
-Sint16 poly_0002283E[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0002283E[] = {
 	0x8000u | 40, 9, 29, 8, 28, 7, 27, 6, 26, 5, 25, 4, 24, 3, 23, 2, 22, 1, 21, 0, 20, 19, 39, 18, 38, 17, 37, 16, 36, 15, 35, 14, 34, 13, 33, 12, 32, 11, 31, 10, 30
 };
 
-Sint16 poly_00022890[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00022890[] = {
 	0x8000u | 40, 49, 69, 48, 68, 47, 67, 46, 66, 45, 65, 44, 64, 43, 63, 42, 62, 41, 61, 40, 60, 59, 79, 58, 78, 57, 77, 56, 76, 55, 75, 54, 74, 53, 73, 52, 72, 51, 71, 50, 70
 };
 
-Sint16 poly_000228E2[] = {
+extern "C" __declspec(dllexport) Sint16 poly_000228E2[] = {
 	0x8000u | 40, 29, 49, 28, 48, 27, 47, 26, 46, 25, 45, 24, 44, 23, 43, 22, 42, 21, 41, 20, 40, 39, 59, 38, 58, 37, 57, 36, 56, 35, 55, 34, 54, 33, 53, 32, 52, 31, 51, 30, 50
 };
 
-NJS_TEX uv_00022934[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00022934[] = {
 	{ 769, 108 },
 	{ 1695, -36 },
 	{ 681, -408 },
@@ -6704,7 +6704,7 @@ NJS_TEX uv_00022934[] = {
 	{ 1863, -2996 }
 };
 
-NJS_TEX uv_00022A2C[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00022A2C[] = {
 	{ 0, 255 },
 	{ 0 },
 	{ 176, 255 },
@@ -6747,7 +6747,7 @@ NJS_TEX uv_00022A2C[] = {
 	{ 5100, 0 }
 };
 
-NJS_TEX uv_00022ACC[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00022ACC[] = {
 	{ 0, 255 },
 	{ 0 },
 	{ 444, 255 },
@@ -6790,7 +6790,7 @@ NJS_TEX uv_00022ACC[] = {
 	{ 9180, 0 }
 };
 
-NJS_TEX uv_00022B6C[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00022B6C[] = {
 	{ 0, 255 },
 	{ 0 },
 	{ 205, 255 },
@@ -6833,14 +6833,14 @@ NJS_TEX uv_00022B6C[] = {
 	{ 5100, 0 }
 };
 
-NJS_MESHSET_SADX meshlist_00022C0C[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00022C0C[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 3, poly_000227BC, NULL, NULL, NULL, uv_00022934, NULL },
 	{ NJD_MESHSET_TRIMESH | 1, 1, poly_0002283E, NULL, NULL, NULL, uv_00022A2C, NULL },
 	{ NJD_MESHSET_TRIMESH | 2, 1, poly_00022890, NULL, NULL, NULL, uv_00022ACC, NULL },
 	{ NJD_MESHSET_TRIMESH | 3, 1, poly_000228E2, NULL, NULL, NULL, uv_00022B6C, NULL }
 };
 
-NJS_VECTOR vertex_00022C6C[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_00022C6C[] = {
 	{ 1.7319f, 8, 1292.213f },
 	{ -67.72378f, 8, 1224.525f },
 	{ -96.77917f, 8, 1138.126f },
@@ -6943,7 +6943,7 @@ NJS_VECTOR vertex_00022C6C[] = {
 	{ 126.191f, 27, 1162.334f }
 };
 
-NJS_VECTOR normal_0002311C[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_0002311C[] = {
 	{ -0.077369f, 0.990617f, 0.112662f },
 	{ -0.114152f, 0.990867f, 0.07178199f },
 	{ -0.134821f, 0.990482f, 0.027735f },
@@ -7046,17 +7046,17 @@ NJS_VECTOR normal_0002311C[] = {
 	{ -0.010593f, 0.999037f, 0.042576f }
 };
 
-NJS_MODEL_SADX attach_000235CC = { vertex_00022C6C, normal_0002311C, LengthOfArray<Sint32>(vertex_00022C6C), meshlist_00022C0C, matlist_0002276C, LengthOfArray<Uint16>(meshlist_00022C0C), LengthOfArray<Uint16>(matlist_0002276C), { 168.7189f, 17.5f, 1039.576f }, 401.6588f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_000235CC = { vertex_00022C6C, normal_0002311C, LengthOfArray<Sint32>(vertex_00022C6C), meshlist_00022C0C, matlist_0002276C, LengthOfArray<Uint16>(meshlist_00022C0C), LengthOfArray<Uint16>(matlist_0002276C), { 168.7189f, 17.5f, 1039.576f }, 401.6588f, NULL };
 
-NJS_OBJECT object_000235F4 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_000235CC, 0, -23, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_00023628[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_000235F4 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_000235CC, 0, -23, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_00023628[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 6, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 4, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 5, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 67, NJD_CUSTOMFLAG_TEXANIM2 | NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_00023678[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00023678[] = {
 	0x8000u | 19, 111, 92, 110, 93, 109, 94, 108, 95, 107, 96, 106, 97, 105, 98, 104, 99, 100, 77, 78,
 	0x8000u | 8, 100, 78, 101, 79, 102, 80, 114, 81,
 	0x8000u | 16, 77, 99, 76, 98, 75, 97, 74, 96, 73, 95, 72, 94, 71, 93, 70, 92,
@@ -7064,22 +7064,22 @@ Sint16 poly_00023678[] = {
 	5, 102, 101, 103, 100, 104
 };
 
-Sint16 poly_0002370C[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0002370C[] = {
 	0x8000u | 26, 12, 36, 11, 35, 10, 34, 9, 33, 8, 32, 7, 31, 6, 30, 5, 29, 4, 28, 3, 27, 2, 26, 1, 25, 0, 24,
 	0x8000u | 22, 23, 47, 22, 46, 21, 45, 20, 44, 19, 43, 18, 42, 17, 41, 16, 40, 15, 39, 14, 38, 13, 37
 };
 
-Sint16 poly_00023770[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00023770[] = {
 	0x8000u | 24, 59, 81, 58, 80, 57, 79, 56, 78, 55, 77, 54, 76, 53, 75, 52, 74, 51, 73, 50, 72, 49, 71, 48, 70,
 	0x8000u | 20, 69, 91, 68, 90, 67, 89, 66, 88, 65, 87, 64, 86, 63, 85, 62, 84, 61, 83, 60, 82
 };
 
-Sint16 poly_000237CC[] = {
+extern "C" __declspec(dllexport) Sint16 poly_000237CC[] = {
 	0x8000u | 26, 36, 112, 35, 59, 34, 58, 33, 57, 32, 56, 31, 55, 30, 54, 29, 53, 28, 52, 27, 51, 26, 50, 25, 49, 24, 48,
 	0x8000u | 22, 113, 37, 60, 38, 61, 39, 62, 40, 63, 41, 64, 42, 65, 43, 66, 44, 67, 45, 68, 46, 69, 47
 };
 
-NJS_TEX uv_00023830[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00023830[] = {
 	{ 1584, -4960 },
 	{ 708, -5050 },
 	{ 1235, -4538 },
@@ -7151,7 +7151,7 @@ NJS_TEX uv_00023830[] = {
 	{ 597, -1427 }
 };
 
-NJS_TEX uv_00023944[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00023944[] = {
 	{ 0, 255 },
 	{ 0 },
 	{ 280, 255 },
@@ -7202,7 +7202,7 @@ NJS_TEX uv_00023944[] = {
 	{ 1274, 0 }
 };
 
-NJS_TEX uv_00023A04[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00023A04[] = {
 	{ 0, 255 },
 	{ 0 },
 	{ 525, 255 },
@@ -7249,7 +7249,7 @@ NJS_TEX uv_00023A04[] = {
 	{ 4590, 0 }
 };
 
-NJS_TEX uv_00023AB4[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00023AB4[] = {
 	{ 0, 255 },
 	{ 0 },
 	{ 270, 255 },
@@ -7300,14 +7300,14 @@ NJS_TEX uv_00023AB4[] = {
 	{ 0, 255 }
 };
 
-NJS_MESHSET_SADX meshlist_00023B74[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00023B74[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 5, poly_00023678, NULL, NULL, NULL, uv_00023830, NULL },
 	{ NJD_MESHSET_TRIMESH | 1, 2, poly_0002370C, NULL, NULL, NULL, uv_00023944, NULL },
 	{ NJD_MESHSET_TRIMESH | 2, 2, poly_00023770, NULL, NULL, NULL, uv_00023A04, NULL },
 	{ NJD_MESHSET_TRIMESH | 3, 2, poly_000237CC, NULL, NULL, NULL, uv_00023AB4, NULL }
 };
 
-NJS_VECTOR vertex_00023BD4[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_00023BD4[] = {
 	{ 72.25692f, 8, 743.5543f },
 	{ 103.7053f, 8, 710.4201f },
 	{ 133.6886f, 8, 677.0831f },
@@ -7425,7 +7425,7 @@ NJS_VECTOR vertex_00023BD4[] = {
 	{ 550.5307f, 27, 557.1989f }
 };
 
-NJS_VECTOR normal_00024138[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_00024138[] = {
 	{ -0.100564f, 0.990342f, -0.095447f },
 	{ -0.101826f, 0.990343f, -0.094082f },
 	{ -0.104106f, 0.990343f, -0.09155799f },
@@ -7543,23 +7543,23 @@ NJS_VECTOR normal_00024138[] = {
 	{ -0.006584f, 0.9999599f, -0.005984f }
 };
 
-NJS_MODEL_SADX attach_0002469C = { vertex_00023BD4, normal_00024138, LengthOfArray<Sint32>(vertex_00023BD4), meshlist_00023B74, matlist_00023628, LengthOfArray<Uint16>(meshlist_00023B74), LengthOfArray<Uint16>(matlist_00023628), { 340.1082f, 17.5f, 650.5206f }, 376.9799f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_0002469C = { vertex_00023BD4, normal_00024138, LengthOfArray<Sint32>(vertex_00023BD4), meshlist_00023B74, matlist_00023628, LengthOfArray<Uint16>(meshlist_00023B74), LengthOfArray<Uint16>(matlist_00023628), { 340.1082f, 17.5f, 650.5206f }, 376.9799f, NULL };
 
-NJS_OBJECT object_000246C4 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0002469C, 0, -23, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_000246F8[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_000246C4 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0002469C, 0, -23, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_000246F8[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 67, NJD_CUSTOMFLAG_TEXANIM2 | NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 4, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_00024720[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00024720[] = {
 	0x8000u | 60, 88, 30, 60, 31, 61, 32, 62, 33, 63, 34, 64, 35, 65, 36, 66, 37, 67, 38, 68, 39, 69, 40, 70, 41, 71, 42, 72, 43, 73, 44, 74, 45, 75, 46, 76, 47, 77, 48, 78, 49, 79, 50, 80, 51, 81, 52, 82, 53, 83, 54, 84, 55, 85, 56, 86, 57, 87, 58, 89, 59
 };
 
-Sint16 poly_0002479A[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0002479A[] = {
 	0x8000u | 60, 30, 0, 31, 1, 32, 2, 33, 3, 34, 4, 35, 5, 36, 6, 37, 7, 38, 8, 39, 9, 40, 10, 41, 11, 42, 12, 43, 13, 44, 14, 45, 15, 46, 16, 47, 17, 48, 18, 49, 19, 50, 20, 51, 21, 52, 22, 53, 23, 54, 24, 55, 25, 56, 26, 57, 27, 58, 28, 59, 29
 };
 
-NJS_TEX uv_00024814[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00024814[] = {
 	{ 6120, 0 },
 	{ 6120, 255 },
 	{ 5910, 0 },
@@ -7622,7 +7622,7 @@ NJS_TEX uv_00024814[] = {
 	{ 0, 255 }
 };
 
-NJS_TEX uv_00024904[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00024904[] = {
 	{ 6885, 0 },
 	{ 6885, 255 },
 	{ 6656, 0 },
@@ -7685,12 +7685,12 @@ NJS_TEX uv_00024904[] = {
 	{ 0, 255 }
 };
 
-NJS_MESHSET_SADX meshlist_000249F4[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_000249F4[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 1, poly_00024720, NULL, NULL, NULL, uv_00024814, NULL },
 	{ NJD_MESHSET_TRIMESH | 1, 1, poly_0002479A, NULL, NULL, NULL, uv_00024904, NULL }
 };
 
-NJS_VECTOR vertex_00024A24[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_00024A24[] = {
 	{ 607.9595f, 8, 385.248f },
 	{ 666.548f, 8, 388.7038f },
 	{ 723.3859f, 8, 396.7399f },
@@ -7783,7 +7783,7 @@ NJS_VECTOR vertex_00024A24[] = {
 	{ 577.7662f, 21, 647.4747f }
 };
 
-NJS_VECTOR normal_00024E5C[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_00024E5C[] = {
 	{ 0.008164f, 0.990342f, -0.138407f },
 	{ 0.013787f, 0.990358f, -0.137847f },
 	{ 0.024794f, 0.990357f, -0.136305f },
@@ -7876,10 +7876,10 @@ NJS_VECTOR normal_00024E5C[] = {
 	{ -0.060249f, 0.9928769f, 0.102789f }
 };
 
-NJS_MODEL_SADX attach_00025294 = { vertex_00024A24, normal_00024E5C, LengthOfArray<Sint32>(vertex_00024A24), meshlist_000249F4, matlist_000246F8, LengthOfArray<Uint16>(meshlist_000249F4), LengthOfArray<Uint16>(matlist_000246F8), { 835.7756f, 14.5f, 769.4451f }, 487.1068f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00025294 = { vertex_00024A24, normal_00024E5C, LengthOfArray<Sint32>(vertex_00024A24), meshlist_000249F4, matlist_000246F8, LengthOfArray<Uint16>(meshlist_000249F4), LengthOfArray<Uint16>(matlist_000246F8), { 835.7756f, 14.5f, 769.4451f }, 487.1068f, NULL };
 
-NJS_OBJECT object_000252BC = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00025294, 0, -23, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_000252F0[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_000252BC = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00025294, 0, -23, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_000252F0[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 5, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 6, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 5, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
@@ -7889,12 +7889,12 @@ NJS_MATERIAL matlist_000252F0[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 11, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_0002537C[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0002537C[] = {
 	3, 74, 43, 1,
 	0x8000u | 8, 74, 75, 1, 19, 0, 64, 63, 26
 };
 
-Sint16 poly_00025396[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00025396[] = {
 	0x8000u | 6, 27, 26, 65, 64, 44, 19,
 	12, 47, 46, 59, 45, 24, 55, 60, 56, 62, 54, 68, 41,
 	6, 60, 62, 29, 68, 40, 69,
@@ -7909,24 +7909,24 @@ Sint16 poly_00025396[] = {
 	15, 31, 30, 24, 25, 59, 23, 58, 61, 57, 28, 50, 35, 51, 34, 36
 };
 
-Sint16 poly_00025458[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00025458[] = {
 	4, 4, 73, 70, 71,
 	0x8000u | 5, 71, 70, 72, 67, 66,
 	4, 4, 3, 73, 6
 };
 
-Sint16 poly_00025478[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00025478[] = {
 	4, 5, 6, 2, 3
 };
 
-Sint16 poly_00025482[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00025482[] = {
 	4, 17, 41, 16, 54,
 	4, 13, 45, 12, 46,
 	4, 11, 47, 10, 48,
 	4, 10, 48, 9, 49
 };
 
-Sint16 poly_000254AA[] = {
+extern "C" __declspec(dllexport) Sint16 poly_000254AA[] = {
 	4, 16, 54, 15, 56,
 	4, 15, 56, 14, 55,
 	4, 14, 55, 13, 45,
@@ -7937,11 +7937,11 @@ Sint16 poly_000254AA[] = {
 	3, 6, 5, 52
 };
 
-Sint16 poly_000254F8[] = {
+extern "C" __declspec(dllexport) Sint16 poly_000254F8[] = {
 	4, 42, 69, 41, 68
 };
 
-NJS_TEX uv_00025504[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00025504[] = {
 	{ 1065, 116 },
 	{ 1270, 235 },
 	{ 855, 255 },
@@ -7955,7 +7955,7 @@ NJS_TEX uv_00025504[] = {
 	{ 0 }
 };
 
-NJS_TEX uv_00025530[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00025530[] = {
 	{ 354, -1473 },
 	{ 0, -1094 },
 	{ 486, -1269 },
@@ -8043,7 +8043,7 @@ NJS_TEX uv_00025530[] = {
 	{ 2746, -820 }
 };
 
-NJS_TEX uv_00025684[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00025684[] = {
 	{ 255, 254 },
 	{ 255, 0 },
 	{ 0, 254 },
@@ -8059,14 +8059,14 @@ NJS_TEX uv_00025684[] = {
 	{ 255, 0 }
 };
 
-NJS_TEX uv_000256B8[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_000256B8[] = {
 	{ 255, 0 },
 	{ 0 },
 	{ 255, 255 },
 	{ 0, 255 }
 };
 
-NJS_TEX uv_000256C8[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_000256C8[] = {
 	{ 1020, 254 },
 	{ 1020, 0 },
 	{ 0, 254 },
@@ -8085,7 +8085,7 @@ NJS_TEX uv_000256C8[] = {
 	{ 0 }
 };
 
-NJS_TEX uv_00025708[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00025708[] = {
 	{ 765, 254 },
 	{ 765, 0 },
 	{ 0, 247 },
@@ -8119,14 +8119,14 @@ NJS_TEX uv_00025708[] = {
 	{ 765, 0 }
 };
 
-NJS_TEX uv_00025784[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00025784[] = {
 	{ 0 },
 	{ 0, 255 },
 	{ 1530, 0 },
 	{ 1530, 255 }
 };
 
-NJS_MESHSET_SADX meshlist_00025794[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00025794[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 2, poly_0002537C, NULL, NULL, NULL, uv_00025504, NULL },
 	{ NJD_MESHSET_TRIMESH | 1, 12, poly_00025396, NULL, NULL, NULL, uv_00025530, NULL },
 	{ NJD_MESHSET_TRIMESH | 2, 3, poly_00025458, NULL, NULL, NULL, uv_00025684, NULL },
@@ -8136,7 +8136,7 @@ NJS_MESHSET_SADX meshlist_00025794[] = {
 	{ NJD_MESHSET_TRIMESH | 6, 1, poly_000254F8, NULL, NULL, NULL, uv_00025784, NULL }
 };
 
-NJS_VECTOR vertex_0002583C[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_0002583C[] = {
 	{ 607.0885f, -2, 485.3704f },
 	{ 656.5878f, -2, 488.2901f },
 	{ 672.0255f, -2, 733.9191f },
@@ -8215,7 +8215,7 @@ NJS_VECTOR vertex_0002583C[] = {
 	{ 651.9863f, 4.56184f, 506.6706f }
 };
 
-NJS_VECTOR normal_00025BCC[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_00025BCC[] = {
 	{ -0.008646999f, 0.966513f, -0.256471f },
 	{ 0.017769f, 0.945878f, -0.324036f },
 	{ -0.394962f, 0.899804f, 0.18536f },
@@ -8294,22 +8294,22 @@ NJS_VECTOR normal_00025BCC[] = {
 	{ 0.007905f, 0.942379f, -0.334453f }
 };
 
-NJS_MODEL_SADX attach_00025F5C = { vertex_0002583C, normal_00025BCC, LengthOfArray<Sint32>(vertex_0002583C), meshlist_00025794, matlist_000252F0, LengthOfArray<Uint16>(meshlist_00025794), LengthOfArray<Uint16>(matlist_000252F0), { 775.5641f, 33.19008f, 758.5325f }, 362.3743f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00025F5C = { vertex_0002583C, normal_00025BCC, LengthOfArray<Sint32>(vertex_0002583C), meshlist_00025794, matlist_000252F0, LengthOfArray<Uint16>(meshlist_00025794), LengthOfArray<Uint16>(matlist_000252F0), { 775.5641f, 33.19008f, 758.5325f }, 362.3743f, NULL };
 
-NJS_OBJECT object_00025F84 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00025F5C, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_00025FB8[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_00025F84 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00025F5C, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_00025FB8[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 6, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 13, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 12, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_00025FF4[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00025FF4[] = {
 	40, 60, 62, 21, 63, 22, 64, 23, 65, 24, 66, 25, 67, 26, 68, 27, 69, 28, 70, 29, 71, 30, 72, 31, 73, 32, 74, 33, 75, 34, 76, 35, 77, 36, 78, 37, 79, 38, 80, 39, 81,
 	0x8000u | 5, 59, 1, 62, 83, 60,
 	40, 62, 59, 63, 2, 64, 3, 65, 4, 66, 5, 67, 6, 68, 7, 69, 8, 70, 9, 71, 10, 72, 11, 73, 12, 74, 13, 75, 14, 76, 15, 77, 16, 78, 17, 79, 18, 80, 19, 81, 20
 };
 
-Sint16 poly_000260A4[] = {
+extern "C" __declspec(dllexport) Sint16 poly_000260A4[] = {
 	4, 58, 57, 39, 38,
 	4, 55, 54, 36, 35,
 	4, 52, 51, 33, 32,
@@ -8320,7 +8320,7 @@ Sint16 poly_000260A4[] = {
 	4, 41, 40, 22, 21
 };
 
-Sint16 poly_000260F4[] = {
+extern "C" __declspec(dllexport) Sint16 poly_000260F4[] = {
 	4, 57, 56, 38, 37,
 	4, 56, 55, 37, 36,
 	4, 54, 53, 35, 34,
@@ -8336,7 +8336,7 @@ Sint16 poly_000260F4[] = {
 	4, 1, 83, 82, 0
 };
 
-NJS_TEX uv_00026178[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00026178[] = {
 	{ 5100, 0 },
 	{ 5100, 194 },
 	{ 4857, 0 },
@@ -8424,7 +8424,7 @@ NJS_TEX uv_00026178[] = {
 	{ 0, 255 }
 };
 
-NJS_TEX uv_000262CC[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_000262CC[] = {
 	{ 255, 0 },
 	{ 0 },
 	{ 255, 255 },
@@ -8459,7 +8459,7 @@ NJS_TEX uv_000262CC[] = {
 	{ 0, 255 }
 };
 
-NJS_TEX uv_0002634C[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0002634C[] = {
 	{ 255, 0 },
 	{ 0 },
 	{ 255, 255 },
@@ -8514,13 +8514,13 @@ NJS_TEX uv_0002634C[] = {
 	{ 255, 0 }
 };
 
-NJS_MESHSET_SADX meshlist_0002641C[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_0002641C[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 3, poly_00025FF4, NULL, NULL, NULL, uv_00026178, NULL },
 	{ NJD_MESHSET_TRIMESH | 1, 8, poly_000260A4, NULL, NULL, NULL, uv_000262CC, NULL },
 	{ NJD_MESHSET_TRIMESH | 2, 13, poly_000260F4, NULL, NULL, NULL, uv_0002634C, NULL }
 };
 
-NJS_VECTOR vertex_00026464[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_00026464[] = {
 	{ -168.3457f, -17.79359f, -177.9294f },
 	{ -182.3457f, -28.79359f, -171.9294f },
 	{ -173.2197f, -27.70537f, -117.0273f },
@@ -8607,7 +8607,7 @@ NJS_VECTOR vertex_00026464[] = {
 	{ -177.7094f, -27.15072f, -173.2476f }
 };
 
-NJS_VECTOR normal_00026854[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_00026854[] = {
 	{ -0.666826f, 0.630362f, -0.397475f },
 	{ -0.319359f, 0.9240479f, -0.210105f },
 	{ -0.157474f, 0.987523f, 0.000366f },
@@ -8694,35 +8694,35 @@ NJS_VECTOR normal_00026854[] = {
 	{ -0.5066749f, 0.749926f, -0.425313f }
 };
 
-NJS_MODEL_SADX attach_00026C44 = { vertex_00026464, normal_00026854, LengthOfArray<Sint32>(vertex_00026464), meshlist_0002641C, matlist_00025FB8, LengthOfArray<Uint16>(meshlist_0002641C), LengthOfArray<Uint16>(matlist_00025FB8), { -2.474831f, -4.670765f, 2.384521f }, 273.3003f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00026C44 = { vertex_00026464, normal_00026854, LengthOfArray<Sint32>(vertex_00026464), meshlist_0002641C, matlist_00025FB8, LengthOfArray<Uint16>(meshlist_0002641C), LengthOfArray<Uint16>(matlist_00025FB8), { -2.474831f, -4.670765f, 2.384521f }, 273.3003f, NULL };
 
-NJS_OBJECT object_00026C6C = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00026C44, 829.9417f, 39.61621f, 696.1371f, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_00026CA0[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_00026C6C = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00026C44, 829.9417f, 39.61621f, 696.1371f, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_00026CA0[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 6, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 5, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 67, NJD_CUSTOMFLAG_TEXANIM2 | NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 4, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_00026CF0[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00026CF0[] = {
 	19, 59, 77, 60, 78, 61, 79, 62, 80, 63, 81, 64, 82, 65, 83, 66, 84, 67, 85, 89,
 	0x8000u | 17, 68, 51, 69, 52, 70, 53, 71, 54, 72, 55, 73, 56, 74, 57, 75, 58, 76,
 	0x8000u | 20, 85, 68, 84, 69, 83, 70, 82, 71, 81, 72, 80, 73, 79, 74, 78, 75, 77, 76, 59, 58
 };
 
-Sint16 poly_00026D66[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00026D66[] = {
 	0x8000u | 36, 88, 89, 50, 67, 49, 66, 48, 65, 47, 64, 46, 63, 45, 62, 44, 61, 43, 60, 42, 59, 41, 58, 40, 57, 39, 56, 38, 55, 37, 54, 36, 53, 35, 52, 34, 51
 };
 
-Sint16 poly_00026DB0[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00026DB0[] = {
 	0x8000u | 36, 87, 88, 33, 50, 32, 49, 31, 48, 30, 47, 29, 46, 28, 45, 27, 44, 26, 43, 25, 42, 24, 41, 23, 40, 22, 39, 21, 38, 20, 37, 19, 36, 18, 35, 17, 34
 };
 
-Sint16 poly_00026DFA[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00026DFA[] = {
 	0x8000u | 36, 86, 87, 16, 33, 15, 32, 14, 31, 13, 30, 12, 29, 11, 28, 10, 27, 9, 26, 8, 25, 7, 24, 6, 23, 5, 22, 4, 21, 3, 20, 2, 19, 1, 18, 0, 17
 };
 
-NJS_TEX uv_00026E44[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00026E44[] = {
 	{ 0, -772 },
 	{ 480, -360 },
 	{ 70, -98 },
@@ -8781,7 +8781,7 @@ NJS_TEX uv_00026E44[] = {
 	{ 364, -1345 }
 };
 
-NJS_TEX uv_00026F24[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00026F24[] = {
 	{ 0, 255 },
 	{ 0 },
 	{ 468, 255 },
@@ -8820,7 +8820,7 @@ NJS_TEX uv_00026F24[] = {
 	{ 8924, 0 }
 };
 
-NJS_TEX uv_00026FB4[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00026FB4[] = {
 	{ 0, 255 },
 	{ 0 },
 	{ 180, 255 },
@@ -8859,7 +8859,7 @@ NJS_TEX uv_00026FB4[] = {
 	{ 4590, 0 }
 };
 
-NJS_TEX uv_00027044[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00027044[] = {
 	{ 0, 255 },
 	{ 0 },
 	{ 143, 255 },
@@ -8898,14 +8898,14 @@ NJS_TEX uv_00027044[] = {
 	{ 4845, 0 }
 };
 
-NJS_MESHSET_SADX meshlist_000270D4[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_000270D4[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 3, poly_00026CF0, NULL, NULL, NULL, uv_00026E44, NULL },
 	{ NJD_MESHSET_TRIMESH | 1, 1, poly_00026D66, NULL, NULL, NULL, uv_00026F24, NULL },
 	{ NJD_MESHSET_TRIMESH | 2, 1, poly_00026DB0, NULL, NULL, NULL, uv_00026FB4, NULL },
 	{ NJD_MESHSET_TRIMESH | 3, 1, poly_00026DFA, NULL, NULL, NULL, uv_00027044, NULL }
 };
 
-NJS_VECTOR vertex_00027134[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_00027134[] = {
 	{ -121.0825f, -5.5f, 196.0712f },
 	{ -163.521f, -5.5f, 191.0498f },
 	{ -209.5229f, -5.5f, 186.8895f },
@@ -8998,7 +8998,7 @@ NJS_VECTOR vertex_00027134[] = {
 	{ -81.77294f, 9.5f, 10.0896f }
 };
 
-NJS_VECTOR normal_0002756C[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_0002756C[] = {
 	{ -0.016291f, 0.990342f, 0.137687f },
 	{ -0.01439f, 0.990344f, 0.137886f },
 	{ -0.011899f, 0.990342f, 0.138135f },
@@ -9091,21 +9091,21 @@ NJS_VECTOR normal_0002756C[] = {
 	{ -0.002368f, 0.997713f, -0.067558f }
 };
 
-NJS_MODEL_SADX attach_000279A4 = { vertex_00027134, normal_0002756C, LengthOfArray<Sint32>(vertex_00027134), meshlist_000270D4, matlist_00026CA0, LengthOfArray<Uint16>(meshlist_000270D4), LengthOfArray<Uint16>(matlist_00026CA0), { -325.4106f, 4, -6.865082f }, 321.1653f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_000279A4 = { vertex_00027134, normal_0002756C, LengthOfArray<Sint32>(vertex_00027134), meshlist_000270D4, matlist_00026CA0, LengthOfArray<Uint16>(meshlist_000270D4), LengthOfArray<Uint16>(matlist_00026CA0), { -325.4106f, 4, -6.865082f }, 321.1653f, NULL };
 
-NJS_OBJECT object_000279CC = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_000279A4, 5938, -9.5f, 1098, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_00027A00[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_000279CC = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_000279A4, 5938, -9.5f, 1098, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_00027A00[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 5, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 6, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 67, NJD_CUSTOMFLAG_TEXANIM2 | NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 4, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_00027A50[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00027A50[] = {
 	0x8000u | 30, 45, 30, 46, 31, 47, 32, 48, 33, 49, 34, 50, 35, 51, 36, 52, 37, 53, 38, 54, 39, 55, 40, 56, 41, 57, 42, 58, 43, 59, 44
 };
 
-Sint16 poly_00027A8E[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00027A8E[] = {
 	0x8000u | 6, 74, 75, 73, 76, 72, 77,
 	3, 57, 56, 80,
 	0x8000u | 9, 54, 78, 53, 68, 52, 67, 51, 66, 65,
@@ -9114,15 +9114,15 @@ Sint16 poly_00027A8E[] = {
 	0x8000u | 7, 59, 74, 58, 73, 57, 72, 80
 };
 
-Sint16 poly_00027AF8[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00027AF8[] = {
 	0x8000u | 30, 30, 15, 31, 16, 32, 17, 33, 18, 34, 19, 35, 20, 36, 21, 37, 22, 38, 23, 39, 24, 40, 25, 41, 26, 42, 27, 43, 28, 44, 29
 };
 
-Sint16 poly_00027B36[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00027B36[] = {
 	0x8000u | 30, 15, 0, 16, 1, 17, 2, 18, 3, 19, 4, 20, 5, 21, 6, 22, 7, 23, 8, 24, 9, 25, 10, 26, 11, 27, 12, 28, 13, 29, 14
 };
 
-NJS_TEX uv_00027B74[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00027B74[] = {
 	{ 7140, 0 },
 	{ 7140, 255 },
 	{ 6630, 0 },
@@ -9155,7 +9155,7 @@ NJS_TEX uv_00027B74[] = {
 	{ 0, 255 }
 };
 
-NJS_TEX uv_00027BEC[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00027BEC[] = {
 	{ 68, -231 },
 	{ 374, 0 },
 	{ 756, -334 },
@@ -9205,7 +9205,7 @@ NJS_TEX uv_00027BEC[] = {
 	{ 1662, -660 }
 };
 
-NJS_TEX uv_00027CA8[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00027CA8[] = {
 	{ 3570, 0 },
 	{ 3570, 255 },
 	{ 3299, 0 },
@@ -9238,7 +9238,7 @@ NJS_TEX uv_00027CA8[] = {
 	{ 0, 255 }
 };
 
-NJS_TEX uv_00027D20[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00027D20[] = {
 	{ 3825, 0 },
 	{ 3825, 255 },
 	{ 3497, 0 },
@@ -9271,14 +9271,14 @@ NJS_TEX uv_00027D20[] = {
 	{ 0, 255 }
 };
 
-NJS_MESHSET_SADX meshlist_00027D98[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00027D98[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 1, poly_00027A50, NULL, NULL, NULL, uv_00027B74, NULL },
 	{ NJD_MESHSET_TRIMESH | 1, 6, poly_00027A8E, NULL, NULL, NULL, uv_00027BEC, NULL },
 	{ NJD_MESHSET_TRIMESH | 2, 1, poly_00027AF8, NULL, NULL, NULL, uv_00027CA8, NULL },
 	{ NJD_MESHSET_TRIMESH | 3, 1, poly_00027B36, NULL, NULL, NULL, uv_00027D20, NULL }
 };
 
-NJS_VECTOR vertex_00027DF8[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_00027DF8[] = {
 	{ 576.0961f, -5.5f, 29.16052f },
 	{ 563.3262f, -5.5f, 110.3133f },
 	{ 530.5336f, -5.5f, 184.7617f },
@@ -9362,7 +9362,7 @@ NJS_VECTOR vertex_00027DF8[] = {
 	{ 18.5039f, 11.5f, 82.13219f }
 };
 
-NJS_VECTOR normal_000281C4[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_000281C4[] = {
 	{ 0.136961f, 0.990342f, 0.021552f },
 	{ 0.131943f, 0.990501f, 0.038726f },
 	{ 0.116265f, 0.990541f, 0.072878f },
@@ -9446,10 +9446,10 @@ NJS_VECTOR normal_000281C4[] = {
 	{ -0.039514f, 0.997761f, 0.053964f }
 };
 
-NJS_MODEL_SADX attach_00028590 = { vertex_00027DF8, normal_000281C4, LengthOfArray<Sint32>(vertex_00027DF8), meshlist_00027D98, matlist_00027A00, LengthOfArray<Uint16>(meshlist_00027D98), LengthOfArray<Uint16>(matlist_00027A00), { 227.5068f, 3, 165.5725f }, 379.1721f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00028590 = { vertex_00027DF8, normal_000281C4, LengthOfArray<Sint32>(vertex_00027DF8), meshlist_00027D98, matlist_00027A00, LengthOfArray<Uint16>(meshlist_00027D98), LengthOfArray<Uint16>(matlist_00027A00), { 227.5068f, 3, 165.5725f }, 379.1721f, NULL };
 
-NJS_OBJECT object_000285B8 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00028590, 5938, -9.5f, 1098, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_000285EC[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_000285B8 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00028590, 5938, -9.5f, 1098, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_000285EC[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 4, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 4, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 4, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
@@ -9458,29 +9458,29 @@ NJS_MATERIAL matlist_000285EC[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 6, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_00028650[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00028650[] = {
 	0x8000u | 30, 65, 69, 64, 68, 63, 67, 66, 70, 113, 12, 97, 103, 0, 13, 1, 14, 2, 15, 3, 16, 4, 17, 5, 18, 6, 19, 7, 20, 8, 21,
 	10, 96, 98, 11, 26, 10, 25, 9, 24, 53, 23
 };
 
-Sint16 poly_000286A4[] = {
+extern "C" __declspec(dllexport) Sint16 poly_000286A4[] = {
 	0x8000u | 5, 23, 53, 22, 8, 21
 };
 
-Sint16 poly_000286B0[] = {
+extern "C" __declspec(dllexport) Sint16 poly_000286B0[] = {
 	31, 37, 36, 21, 35, 20, 34, 19, 33, 18, 32, 17, 31, 16, 30, 15, 29, 14, 28, 13, 27, 103, 104, 12, 74, 70, 71, 67, 72, 68, 73, 69,
 	0x8000u | 11, 99, 98, 41, 26, 40, 25, 39, 24, 38, 23, 22,
 	4, 21, 22, 37, 38
 };
 
-Sint16 poly_00028712[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00028712[] = {
 	26, 104, 27, 42, 28, 43, 29, 44, 30, 45, 31, 46, 32, 47, 33, 48, 34, 49, 35, 50, 36, 51, 37, 54, 38, 52, 55,
 	11, 42, 112, 104, 78, 74, 75, 71, 76, 72, 77, 73,
 	3, 99, 102, 101,
 	0x8000u | 8, 38, 55, 39, 56, 40, 101, 41, 99
 };
 
-Sint16 poly_0002877A[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0002877A[] = {
 	4, 55, 56, 100, 101,
 	3, 105, 112, 42,
 	0x8000u | 7, 52, 110, 55, 106, 100, 85, 84,
@@ -9494,7 +9494,7 @@ Sint16 poly_0002877A[] = {
 	0x8000u | 6, 94, 86, 110, 93, 106, 85
 };
 
-NJS_TEX uv_0002883C[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0002883C[] = {
 	{ 0, 255 },
 	{ 0 },
 	{ 404, 255 },
@@ -9537,7 +9537,7 @@ NJS_TEX uv_0002883C[] = {
 	{ 0 }
 };
 
-NJS_TEX uv_000288DC[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_000288DC[] = {
 	{ 255, 0 },
 	{ 255, 255 },
 	{ 165, 0 },
@@ -9545,7 +9545,7 @@ NJS_TEX uv_000288DC[] = {
 	{ 0 }
 };
 
-NJS_TEX uv_000288F0[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_000288F0[] = {
 	{ 3454, 0 },
 	{ 3237, 0 },
 	{ 3644, 255 },
@@ -9594,7 +9594,7 @@ NJS_TEX uv_000288F0[] = {
 	{ 3638, 0 }
 };
 
-NJS_TEX uv_000289A8[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_000289A8[] = {
 	{ 2424, 255 },
 	{ 2990, 255 },
 	{ 2811, 0 },
@@ -9645,7 +9645,7 @@ NJS_TEX uv_000289A8[] = {
 	{ 10200, 255 }
 };
 
-NJS_TEX uv_00028A68[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00028A68[] = {
 	{ 1920, -2361 },
 	{ 1298, -2548 },
 	{ 1299, -2679 },
@@ -9733,7 +9733,7 @@ NJS_TEX uv_00028A68[] = {
 	{ 1710, -3078 }
 };
 
-NJS_MESHSET_SADX meshlist_00028BBC[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00028BBC[] = {
 	{ NJD_MESHSET_TRIMESH | 1, 2, poly_00028650, NULL, NULL, NULL, uv_0002883C, NULL },
 	{ NJD_MESHSET_TRIMESH | 2, 1, poly_000286A4, NULL, NULL, NULL, uv_000288DC, NULL },
 	{ NJD_MESHSET_TRIMESH | 3, 3, poly_000286B0, NULL, NULL, NULL, uv_000288F0, NULL },
@@ -9741,7 +9741,7 @@ NJS_MESHSET_SADX meshlist_00028BBC[] = {
 	{ NJD_MESHSET_TRIMESH | 5, 11, poly_0002877A, NULL, NULL, NULL, uv_00028A68, NULL }
 };
 
-NJS_VECTOR vertex_00028C34[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_00028C34[] = {
 	{ 310.3652f, -5.5f, -256.8639f },
 	{ 261.4097f, -5.5f, -272.4879f },
 	{ 220.9507f, -5.5f, -286.3032f },
@@ -9858,7 +9858,7 @@ NJS_VECTOR vertex_00028C34[] = {
 	{ 411, -5.5f, -225 }
 };
 
-NJS_VECTOR normal_0002918C[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_0002918C[] = {
 	{ 0.047107f, 0.98512f, -0.165287f },
 	{ 0.049354f, 0.986393f, -0.156823f },
 	{ 0.05615f, 0.985954f, -0.157293f },
@@ -9975,14 +9975,14 @@ NJS_VECTOR normal_0002918C[] = {
 	{ 0.063723f, 0.988712f, -0.135601f }
 };
 
-NJS_MODEL_SADX attach_000296E4 = { vertex_00028C34, normal_0002918C, LengthOfArray<Sint32>(vertex_00028C34), meshlist_00028BBC, matlist_000285EC, LengthOfArray<Uint16>(meshlist_00028BBC), LengthOfArray<Uint16>(matlist_000285EC), { 236.5886f, 3, -138.5382f }, 382.0526f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_000296E4 = { vertex_00028C34, normal_0002918C, LengthOfArray<Sint32>(vertex_00028C34), meshlist_00028BBC, matlist_000285EC, LengthOfArray<Uint16>(meshlist_00028BBC), LengthOfArray<Uint16>(matlist_000285EC), { 236.5886f, 3, -138.5382f }, 382.0526f, NULL };
 
-NJS_OBJECT object_0002970C = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_000296E4, 5938, -9.5f, 1098, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_00029740[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_0002970C = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_000296E4, 5938, -9.5f, 1098, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_00029740[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 14, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_00029754[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00029754[] = {
 	4, 17, 15, 16, 14,
 	4, 3, 1, 2, 0,
 	4, 45, 43, 44, 42,
@@ -10009,7 +10009,7 @@ Sint16 poly_00029754[] = {
 	4, 13, 23, 12, 22
 };
 
-NJS_TEX uv_00029844[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00029844[] = {
 	{ 255, -510 },
 	{ 0, -510 },
 	{ 255, 255 },
@@ -10108,11 +10108,11 @@ NJS_TEX uv_00029844[] = {
 	{ 0, 255 }
 };
 
-NJS_MESHSET_SADX meshlist_000299C4[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_000299C4[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 24, poly_00029754, NULL, NULL, NULL, uv_00029844, NULL }
 };
 
-NJS_VECTOR vertex_000299DC[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_000299DC[] = {
 	{ 36.70825f, -36, 30 },
 	{ 36.70825f, 5, 30 },
 	{ 33.35413f, -36, 24.19055f },
@@ -10163,7 +10163,7 @@ NJS_VECTOR vertex_000299DC[] = {
 	{ 33.35413f, 5, -24.19055f }
 };
 
-NJS_VECTOR normal_00029C1C[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_00029C1C[] = {
 	{ 1, 0, 0 },
 	{ 1, 0, 0 },
 	{ 0.499998f, 0, -0.866027f },
@@ -10214,10 +10214,10 @@ NJS_VECTOR normal_00029C1C[] = {
 	{ 0.499998f, 0, 0.866027f }
 };
 
-NJS_MODEL_SADX attach_00029E5C = { vertex_000299DC, normal_00029C1C, LengthOfArray<Sint32>(vertex_000299DC), meshlist_000299C4, matlist_00029740, LengthOfArray<Uint16>(meshlist_000299C4), LengthOfArray<Uint16>(matlist_00029740), { 0, -15.5f, 0 }, 51.28169f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00029E5C = { vertex_000299DC, normal_00029C1C, LengthOfArray<Sint32>(vertex_000299DC), meshlist_000299C4, matlist_00029740, LengthOfArray<Uint16>(meshlist_000299C4), LengthOfArray<Uint16>(matlist_00029740), { 0, -15.5f, 0 }, 51.28169f, NULL };
 
-NJS_OBJECT object_00029E84 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00029E5C, -960, 13, 1210, 0, 0xFFFF8000, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_00029EB8[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_00029E84 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00029E5C, -960, 13, 1210, 0, 0xFFFF8000, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_00029EB8[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 17, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 17, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 15, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
@@ -10225,7 +10225,7 @@ NJS_MATERIAL matlist_00029EB8[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 16, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_00029F1C[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00029F1C[] = {
 	0x8000u | 22, 26, 0, 27, 1, 28, 2, 29, 3, 30, 4, 31, 5, 32, 6, 33, 7, 34, 8, 35, 9, 36, 10,
 	0x8000u | 20, 22, 46, 21, 45, 20, 44, 19, 43, 18, 42, 17, 41, 16, 40, 15, 39, 14, 38, 13, 37,
 	0x8000u | 22, 50, 26, 51, 27, 52, 28, 53, 29, 54, 30, 55, 31, 56, 32, 57, 33, 58, 34, 59, 35, 60, 36,
@@ -10238,7 +10238,7 @@ Sint16 poly_00029F1C[] = {
 	0x8000u | 20, 124, 150, 123, 149, 122, 148, 121, 147, 120, 146, 119, 145, 118, 144, 117, 143, 116, 142, 115, 141
 };
 
-Sint16 poly_0002A0D4[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0002A0D4[] = {
 	4, 11, 159, 12, 158,
 	12, 23, 22, 47, 46, 73, 72, 99, 98, 125, 124, 151, 150,
 	12, 24, 23, 48, 47, 74, 73, 100, 99, 126, 125, 152, 151,
@@ -10255,11 +10255,11 @@ Sint16 poly_0002A0D4[] = {
 	22, 155, 174, 175, 154, 88, 170, 171, 166, 167, 168, 169, 156, 87, 173, 172, 157, 61, 176, 36, 159, 10, 11
 };
 
-Sint16 poly_0002A1CE[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0002A1CE[] = {
 	6, 161, 162, 160, 163, 164, 165
 };
 
-Sint16 poly_0002A1DC[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0002A1DC[] = {
 	3, 161, 160, 178,
 	0x8000u | 7, 154, 170, 164, 166, 165, 168, 156,
 	0x8000u | 6, 156, 173, 163, 157, 162, 179,
@@ -10267,11 +10267,11 @@ Sint16 poly_0002A1DC[] = {
 	0x8000u | 6, 154, 164, 174, 160, 155, 178
 };
 
-Sint16 poly_0002A218[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0002A218[] = {
 	4, 162, 161, 179, 178
 };
 
-NJS_TEX uv_0002A224[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0002A224[] = {
 	{ 510, 146 },
 	{ 510, 255 },
 	{ 458, 146 },
@@ -10484,7 +10484,7 @@ NJS_TEX uv_0002A224[] = {
 	{ 510, 0 }
 };
 
-NJS_TEX uv_0002A56C[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0002A56C[] = {
 	{ 154, 255 },
 	{ 156, 170 },
 	{ 83, 255 },
@@ -10598,7 +10598,7 @@ NJS_TEX uv_0002A56C[] = {
 	{ 154, 255 }
 };
 
-NJS_TEX uv_0002A728[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0002A728[] = {
 	{ 0, 255 },
 	{ 254, 255 },
 	{ 0, 213 },
@@ -10607,7 +10607,7 @@ NJS_TEX uv_0002A728[] = {
 	{ 255, 0 }
 };
 
-NJS_TEX uv_0002A740[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0002A740[] = {
 	{ 86, 255 },
 	{ 86, 208 },
 	{ 765, 255 },
@@ -10635,14 +10635,14 @@ NJS_TEX uv_0002A740[] = {
 	{ 765, 255 }
 };
 
-NJS_TEX uv_0002A7A4[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0002A7A4[] = {
 	{ 0, 255 },
 	{ 0, -254 },
 	{ 1020, 255 },
 	{ 1020, -255 }
 };
 
-NJS_MESHSET_SADX meshlist_0002A7B4[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_0002A7B4[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 10, poly_00029F1C, NULL, NULL, NULL, uv_0002A224, NULL },
 	{ NJD_MESHSET_TRIMESH | 1, 14, poly_0002A0D4, NULL, NULL, NULL, uv_0002A56C, NULL },
 	{ NJD_MESHSET_TRIMESH | 2, 1, poly_0002A1CE, NULL, NULL, NULL, uv_0002A728, NULL },
@@ -10650,7 +10650,7 @@ NJS_MESHSET_SADX meshlist_0002A7B4[] = {
 	{ NJD_MESHSET_TRIMESH | 4, 1, poly_0002A218, NULL, NULL, NULL, uv_0002A7A4, NULL }
 };
 
-NJS_VECTOR vertex_0002A82C[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_0002A82C[] = {
 	{ 5906.826f, 362, 411.3075f },
 	{ 5915.576f, 362, 435.2216f },
 	{ 5915.321f, 362, 451.982f },
@@ -10833,7 +10833,7 @@ NJS_VECTOR vertex_0002A82C[] = {
 	{ 5798.118f, 400, 678.6709f }
 };
 
-NJS_VECTOR normal_0002B09C[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_0002B09C[] = {
 	{ 0.751301f, -0.599997f, -0.274866f },
 	{ 0.783955f, -0.606454f, -0.132774f },
 	{ 0.7662399f, -0.611024f, 0.198809f },
@@ -11016,26 +11016,26 @@ NJS_VECTOR normal_0002B09C[] = {
 	{ 0.111515f, 0.605536f, 0.787966f }
 };
 
-NJS_MODEL_SADX attach_0002B90C = { vertex_0002A82C, normal_0002B09C, LengthOfArray<Sint32>(vertex_0002A82C), meshlist_0002A7B4, matlist_00029EB8, LengthOfArray<Uint16>(meshlist_0002A7B4), LengthOfArray<Uint16>(matlist_00029EB8), { 5722.828f, 412, 563.4302f }, 275.7462f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_0002B90C = { vertex_0002A82C, normal_0002B09C, LengthOfArray<Sint32>(vertex_0002A82C), meshlist_0002A7B4, matlist_00029EB8, LengthOfArray<Uint16>(meshlist_0002A7B4), LengthOfArray<Uint16>(matlist_00029EB8), { 5722.828f, 412, 563.4302f }, 275.7462f, NULL };
 
-NJS_OBJECT object_0002B934 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0002B90C, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_0002B968[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_0002B934 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0002B90C, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_0002B968[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 17, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 17, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_0002B990[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0002B990[] = {
 	0x8000u | 46, 74, 22, 47, 21, 46, 20, 45, 19, 44, 18, 43, 17, 42, 16, 41, 15, 40, 14, 39, 13, 38, 12, 37, 11, 36, 10, 35, 9, 34, 8, 33, 7, 32, 6, 31, 5, 30, 4, 29, 3, 28, 2, 27, 1, 26, 0,
 	0x8000u | 46, 75, 74, 71, 47, 70, 46, 69, 45, 68, 44, 67, 43, 66, 42, 65, 41, 64, 40, 63, 39, 62, 38, 61, 37, 60, 36, 59, 35, 58, 34, 57, 33, 56, 32, 55, 31, 54, 30, 53, 29, 52, 28, 51, 27, 50, 26
 };
 
-Sint16 poly_0002BA4C[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0002BA4C[] = {
 	3, 22, 23, 74,
 	6, 23, 24, 74, 48, 75, 72,
 	6, 24, 25, 48, 49, 72, 73
 };
 
-NJS_TEX uv_0002BA70[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0002BA70[] = {
 	{ 0, 64 },
 	{ 0 },
 	{ 35, 64 },
@@ -11130,7 +11130,7 @@ NJS_TEX uv_0002BA70[] = {
 	{ 1020, 66 }
 };
 
-NJS_TEX uv_0002BBE0[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0002BBE0[] = {
 	{ 254, 0 },
 	{ 225, 0 },
 	{ 255, 63 },
@@ -11148,12 +11148,12 @@ NJS_TEX uv_0002BBE0[] = {
 	{ 100, 127 }
 };
 
-NJS_MESHSET_SADX meshlist_0002BC1C[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_0002BC1C[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 2, poly_0002B990, NULL, NULL, NULL, uv_0002BA70, NULL },
 	{ NJD_MESHSET_TRIMESH | 1, 3, poly_0002BA4C, NULL, NULL, NULL, uv_0002BBE0, NULL }
 };
 
-NJS_VECTOR vertex_0002BC4C[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_0002BC4C[] = {
 	{ 5906.826f, 42, 411.3075f },
 	{ 5915.576f, 42, 435.2216f },
 	{ 5915.321f, 42, 451.982f },
@@ -11232,7 +11232,7 @@ NJS_VECTOR vertex_0002BC4C[] = {
 	{ 5555.614f, -23, 556.2686f }
 };
 
-NJS_VECTOR normal_0002BFDC[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_0002BFDC[] = {
 	{ 0.84536f, -0.435563f, -0.309276f },
 	{ 0.8846509f, -0.441523f, -0.149832f },
 	{ 0.866452f, -0.445779f, 0.224814f },
@@ -11311,29 +11311,29 @@ NJS_VECTOR normal_0002BFDC[] = {
 	{ -0.612816f, -0.342051f, 0.71236f }
 };
 
-NJS_MODEL_SADX attach_0002C36C = { vertex_0002BC4C, normal_0002BFDC, LengthOfArray<Sint32>(vertex_0002BC4C), meshlist_0002BC1C, matlist_0002B968, LengthOfArray<Uint16>(meshlist_0002BC1C), LengthOfArray<Uint16>(matlist_0002B968), { 5722.788f, 9.5f, 553.5342f }, 239.5738f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_0002C36C = { vertex_0002BC4C, normal_0002BFDC, LengthOfArray<Sint32>(vertex_0002BC4C), meshlist_0002BC1C, matlist_0002B968, LengthOfArray<Uint16>(meshlist_0002BC1C), LengthOfArray<Uint16>(matlist_0002B968), { 5722.788f, 9.5f, 553.5342f }, 239.5738f, NULL };
 
-NJS_OBJECT object_0002C394 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0002C36C, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_0002C3C8[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_0002C394 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0002C36C, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_0002C3C8[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 17, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 17, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_0002C3F0[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0002C3F0[] = {
 	0x8000u | 46, 126, 22, 47, 21, 46, 20, 45, 19, 44, 18, 43, 17, 42, 16, 41, 15, 40, 14, 39, 13, 38, 12, 37, 11, 36, 10, 35, 9, 34, 8, 33, 7, 32, 6, 31, 5, 30, 4, 29, 3, 28, 2, 27, 1, 26, 0,
 	0x8000u | 46, 124, 126, 71, 47, 70, 46, 69, 45, 68, 44, 67, 43, 66, 42, 65, 41, 64, 40, 63, 39, 62, 38, 61, 37, 60, 36, 59, 35, 58, 34, 57, 33, 56, 32, 55, 31, 54, 30, 53, 29, 52, 28, 51, 27, 50, 26,
 	0x8000u | 46, 125, 124, 95, 71, 94, 70, 93, 69, 92, 68, 91, 67, 90, 66, 89, 65, 88, 64, 87, 63, 86, 62, 85, 61, 84, 60, 83, 59, 82, 58, 81, 57, 80, 56, 79, 55, 78, 54, 77, 53, 76, 52, 75, 51, 74, 50,
 	0x8000u | 46, 120, 125, 119, 95, 118, 94, 117, 93, 116, 92, 115, 91, 114, 90, 113, 89, 112, 88, 111, 87, 110, 86, 109, 85, 108, 84, 107, 83, 106, 82, 105, 81, 104, 80, 103, 79, 102, 78, 101, 77, 100, 76, 99, 75, 98, 74
 };
 
-Sint16 poly_0002C568[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0002C568[] = {
 	3, 22, 23, 126,
 	10, 122, 121, 96, 125, 72, 124, 48, 126, 24, 23,
 	10, 123, 122, 97, 96, 73, 72, 49, 48, 25, 24,
 	3, 125, 121, 120
 };
 
-NJS_TEX uv_0002C5A4[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0002C5A4[] = {
 	{ 0, 65 },
 	{ 0 },
 	{ 37, 64 },
@@ -11520,7 +11520,7 @@ NJS_TEX uv_0002C5A4[] = {
 	{ 1020, 191 }
 };
 
-NJS_TEX uv_0002C884[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0002C884[] = {
 	{ 254, 0 },
 	{ 225, 0 },
 	{ 254, 64 },
@@ -11549,12 +11549,12 @@ NJS_TEX uv_0002C884[] = {
 	{ 254, 255 }
 };
 
-NJS_MESHSET_SADX meshlist_0002C8EC[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_0002C8EC[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 4, poly_0002C3F0, NULL, NULL, NULL, uv_0002C5A4, NULL },
 	{ NJD_MESHSET_TRIMESH | 1, 4, poly_0002C568, NULL, NULL, NULL, uv_0002C884, NULL }
 };
 
-NJS_VECTOR vertex_0002C91C[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_0002C91C[] = {
 	{ 5906.826f, 362, 411.3075f },
 	{ 5915.576f, 362, 435.2216f },
 	{ 5915.321f, 362, 451.982f },
@@ -11684,7 +11684,7 @@ NJS_VECTOR vertex_0002C91C[] = {
 	{ 5545.772f, 322, 567.2048f }
 };
 
-NJS_VECTOR normal_0002CF10[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_0002CF10[] = {
 	{ 0.911084f, -0.242534f, -0.333322f },
 	{ 0.955559f, -0.246403f, -0.161839f },
 	{ 0.937416f, -0.249182f, 0.243228f },
@@ -11814,26 +11814,26 @@ NJS_VECTOR normal_0002CF10[] = {
 	{ -0.61821f, -0.226838f, 0.75257f }
 };
 
-NJS_MODEL_SADX attach_0002D504 = { vertex_0002C91C, normal_0002CF10, LengthOfArray<Sint32>(vertex_0002C91C), meshlist_0002C8EC, matlist_0002C3C8, LengthOfArray<Uint16>(meshlist_0002C8EC), LengthOfArray<Uint16>(matlist_0002C3C8), { 5722.788f, 282, 553.5342f }, 239.5738f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_0002D504 = { vertex_0002C91C, normal_0002CF10, LengthOfArray<Sint32>(vertex_0002C91C), meshlist_0002C8EC, matlist_0002C3C8, LengthOfArray<Uint16>(meshlist_0002C8EC), LengthOfArray<Uint16>(matlist_0002C3C8), { 5722.788f, 282, 553.5342f }, 239.5738f, NULL };
 
-NJS_OBJECT object_0002D52C = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0002D504, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_0002D560[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_0002D52C = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0002D504, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_0002D560[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 18, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 19, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_0002D588[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0002D588[] = {
 	0x8000u | 32, 45, 10, 44, 9, 43, 8, 42, 7, 41, 6, 40, 5, 39, 4, 38, 3, 37, 2, 36, 1, 35, 0, 69, 34, 68, 33, 67, 32, 66, 31, 65, 30,
 	0x8000u | 72, 61, 96, 62, 97, 63, 98, 64, 99, 65, 100, 66, 101, 67, 102, 68, 103, 69, 104, 35, 70, 36, 71, 37, 72, 38, 73, 39, 74, 40, 75, 41, 76, 42, 77, 43, 78, 44, 79, 45, 80, 46, 81, 47, 82, 48, 83, 49, 84, 50, 85, 51, 86, 52, 87, 53, 88, 54, 89, 55, 90, 56, 91, 57, 92, 58, 93, 59, 94, 60, 95, 61, 96,
 	0x8000u | 72, 96, 131, 97, 132, 98, 133, 99, 134, 100, 135, 101, 136, 102, 137, 103, 138, 104, 139, 70, 105, 71, 106, 72, 107, 73, 108, 74, 109, 75, 110, 76, 111, 77, 112, 78, 113, 79, 114, 80, 115, 81, 116, 82, 117, 83, 118, 84, 119, 85, 120, 86, 121, 87, 122, 88, 123, 89, 124, 90, 125, 91, 126, 92, 127, 93, 128, 94, 129, 95, 130, 96, 131
 };
 
-Sint16 poly_0002D6EE[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0002D6EE[] = {
 	0x8000u | 36, 62, 27, 61, 26, 60, 25, 59, 24, 58, 23, 57, 22, 56, 21, 55, 20, 54, 19, 53, 18, 52, 17, 51, 16, 50, 15, 49, 14, 48, 13, 47, 12, 46, 11, 45, 10,
 	0x8000u | 8, 65, 30, 64, 29, 63, 28, 62, 27
 };
 
-NJS_TEX uv_0002D74C[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0002D74C[] = {
 	{ 3125, 135 },
 	{ 3093, 255 },
 	{ 2980, 135 },
@@ -12012,7 +12012,7 @@ NJS_TEX uv_0002D74C[] = {
 	{ 5101, -207 }
 };
 
-NJS_TEX uv_0002DA0C[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0002DA0C[] = {
 	{ 5193, 0 },
 	{ 5123, 252 },
 	{ 5101, 0 },
@@ -12059,12 +12059,12 @@ NJS_TEX uv_0002DA0C[] = {
 	{ 23, 252 }
 };
 
-NJS_MESHSET_SADX meshlist_0002DABC[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_0002DABC[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 3, poly_0002D588, NULL, NULL, NULL, uv_0002D74C, NULL },
 	{ NJD_MESHSET_TRIMESH | 1, 2, poly_0002D6EE, NULL, NULL, NULL, uv_0002DA0C, NULL }
 };
 
-NJS_VECTOR vertex_0002DAEC[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_0002DAEC[] = {
 	{ 1991.411f, 328, 795.5377f },
 	{ 1965.139f, 328, 792.0322f },
 	{ 1941.74f, 328, 780.7359f },
@@ -12207,7 +12207,7 @@ NJS_VECTOR vertex_0002DAEC[] = {
 	{ 2015.535f, 366.9969f, 770.7595f }
 };
 
-NJS_VECTOR normal_0002E17C[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_0002E17C[] = {
 	{ -0.127596f, -0.725161f, -0.676654f },
 	{ 0.201729f, -0.711553f, -0.673051f },
 	{ -0.074075f, -0.76393f, -0.641033f },
@@ -12350,15 +12350,15 @@ NJS_VECTOR normal_0002E17C[] = {
 	{ -0.11913f, 0.360626f, -0.9250709f }
 };
 
-NJS_MODEL_SADX attach_0002E80C = { vertex_0002DAEC, normal_0002E17C, LengthOfArray<Sint32>(vertex_0002DAEC), meshlist_0002DABC, matlist_0002D560, LengthOfArray<Uint16>(meshlist_0002DABC), LengthOfArray<Uint16>(matlist_0002D560), { 2041.612f, 349.338f, 865.0146f }, 180.2014f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_0002E80C = { vertex_0002DAEC, normal_0002E17C, LengthOfArray<Sint32>(vertex_0002DAEC), meshlist_0002DABC, matlist_0002D560, LengthOfArray<Uint16>(meshlist_0002DABC), LengthOfArray<Uint16>(matlist_0002D560), { 2041.612f, 349.338f, 865.0146f }, 180.2014f, NULL };
 
-NJS_OBJECT object_0002E834 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0002E80C, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_0002E868[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_0002E834 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0002E80C, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_0002E868[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 16, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 20, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_0002E890[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0002E890[] = {
 	6, 12, 13, 1, 3, 0, 2,
 	6, 14, 15, 17, 16, 26, 27,
 	4, 19, 18, 21, 20,
@@ -12367,7 +12367,7 @@ Sint16 poly_0002E890[] = {
 	4, 11, 9, 10, 8
 };
 
-Sint16 poly_0002E8D4[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0002E8D4[] = {
 	6, 15, 2, 16, 3, 27, 13,
 	6, 0, 14, 1, 17, 12, 26,
 	4, 8, 23, 10, 22,
@@ -12380,7 +12380,7 @@ Sint16 poly_0002E8D4[] = {
 	4, 5, 19, 7, 21
 };
 
-NJS_TEX uv_0002E940[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0002E940[] = {
 	{ 29, 254 },
 	{ 478, 254 },
 	{ 29, 180 },
@@ -12411,7 +12411,7 @@ NJS_TEX uv_0002E940[] = {
 	{ 0, 255 }
 };
 
-NJS_TEX uv_0002E9B0[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0002E9B0[] = {
 	{ 2039, 0 },
 	{ 2039, 255 },
 	{ 99, 0 },
@@ -12458,12 +12458,12 @@ NJS_TEX uv_0002E9B0[] = {
 	{ 0 }
 };
 
-NJS_MESHSET_SADX meshlist_0002EA60[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_0002EA60[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 6, poly_0002E890, NULL, NULL, NULL, uv_0002E940, NULL },
 	{ NJD_MESHSET_TRIMESH | 1, 10, poly_0002E8D4, NULL, NULL, NULL, uv_0002E9B0, NULL }
 };
 
-NJS_VECTOR vertex_0002EA90[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_0002EA90[] = {
 	{ -299.9998f, 8, -2.001322f },
 	{ -398.0002f, 8, -2.001436f },
 	{ -299.9999f, 8, -32.00128f },
@@ -12494,7 +12494,7 @@ NJS_VECTOR vertex_0002EA90[] = {
 	{ -403.0302f, 13, -33.87979f }
 };
 
-NJS_VECTOR normal_0002EBE0[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_0002EBE0[] = {
 	{ 0.600054f, -0.662412f, 0.448492f },
 	{ -0.013082f, -0.82527f, 0.564586f },
 	{ 0.60006f, -0.66242f, -0.448473f },
@@ -12525,25 +12525,25 @@ NJS_VECTOR normal_0002EBE0[] = {
 	{ 0, 0.573068f, -0.819508f }
 };
 
-NJS_MODEL_SADX attach_0002ED30 = { vertex_0002EA90, normal_0002EBE0, LengthOfArray<Sint32>(vertex_0002EA90), meshlist_0002EA60, matlist_0002E868, LengthOfArray<Uint16>(meshlist_0002EA60), LengthOfArray<Uint16>(matlist_0002E868), { -201.5151f, 12.5f, -17.00152f }, 217.5028f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_0002ED30 = { vertex_0002EA90, normal_0002EBE0, LengthOfArray<Sint32>(vertex_0002EA90), meshlist_0002EA60, matlist_0002E868, LengthOfArray<Uint16>(meshlist_0002EA60), LengthOfArray<Uint16>(matlist_0002E868), { -201.5151f, 12.5f, -17.00152f }, 217.5028f, NULL };
 
-NJS_OBJECT object_0002ED58 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0002ED30, 6281, 387, 1057, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_0002ED8C[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_0002ED58 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0002ED30, 6281, 387, 1057, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_0002ED8C[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 20, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 16, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_0002EDB4[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0002EDB4[] = {
 	4, 1, 5, 3, 7,
 	4, 4, 0, 6, 2
 };
 
-Sint16 poly_0002EDC8[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0002EDC8[] = {
 	4, 0, 1, 2, 3,
 	4, 5, 4, 7, 6
 };
 
-NJS_TEX uv_0002EDDC[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0002EDDC[] = {
 	{ 0, 255 },
 	{ 0 },
 	{ 2550, 255 },
@@ -12554,7 +12554,7 @@ NJS_TEX uv_0002EDDC[] = {
 	{ 0, 255 }
 };
 
-NJS_TEX uv_0002EDFC[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0002EDFC[] = {
 	{ 0, -464 },
 	{ 0, 210 },
 	{ 1274, -464 },
@@ -12565,12 +12565,12 @@ NJS_TEX uv_0002EDFC[] = {
 	{ 1275, -504 }
 };
 
-NJS_MESHSET_SADX meshlist_0002EE1C[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_0002EE1C[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 2, poly_0002EDB4, NULL, NULL, NULL, uv_0002EDDC, NULL },
 	{ NJD_MESHSET_TRIMESH | 1, 2, poly_0002EDC8, NULL, NULL, NULL, uv_0002EDFC, NULL }
 };
 
-NJS_VECTOR vertex_0002EE4C[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_0002EE4C[] = {
 	{ -253.9998f, 10, -2.000077f },
 	{ -253.9999f, 10, -32.00003f },
 	{ -169.9999f, 10, -2.000124f },
@@ -12581,7 +12581,7 @@ NJS_VECTOR vertex_0002EE4C[] = {
 	{ -169.9888f, 15, -33.88292f }
 };
 
-NJS_VECTOR normal_0002EEAC[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_0002EEAC[] = {
 	{ 0.001604f, -0.822285f, 0.569073f },
 	{ 0, -0.825231f, -0.564795f },
 	{ 0.001605f, -0.8220029f, 0.5694799f },
@@ -12592,14 +12592,14 @@ NJS_VECTOR normal_0002EEAC[] = {
 	{ 0, 0.5659789f, -0.824419f }
 };
 
-NJS_MODEL_SADX attach_0002EF0C = { vertex_0002EE4C, normal_0002EEAC, LengthOfArray<Sint32>(vertex_0002EE4C), meshlist_0002EE1C, matlist_0002ED8C, LengthOfArray<Uint16>(meshlist_0002EE1C), LengthOfArray<Uint16>(matlist_0002ED8C), { -211.9942f, 12.5f, -16.99983f }, 58.19678f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_0002EF0C = { vertex_0002EE4C, normal_0002EEAC, LengthOfArray<Sint32>(vertex_0002EE4C), meshlist_0002EE1C, matlist_0002ED8C, LengthOfArray<Uint16>(meshlist_0002EE1C), LengthOfArray<Uint16>(matlist_0002ED8C), { -211.9942f, 12.5f, -16.99983f }, 58.19678f, NULL };
 
-NJS_OBJECT object_0002EF34 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0002EF0C, 5987.6f, 385, 850.8f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_0002EF68[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_0002EF34 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0002EF0C, 5987.6f, 385, 850.8f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_0002EF68[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 17, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_0002EF7C[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0002EF7C[] = {
 	0x8000u | 24, 84, 104, 83, 103, 82, 102, 81, 101, 80, 100, 79, 99, 78, 98, 77, 97, 76, 96, 75, 95, 74, 94, 73, 93,
 	0x8000u | 15, 7, 25, 6, 24, 5, 23, 4, 22, 3, 21, 2, 20, 1, 19, 18,
 	12, 8, 7, 26, 25, 45, 44, 65, 64, 85, 84, 105, 104,
@@ -12617,7 +12617,7 @@ Sint16 poly_0002EF7C[] = {
 	6, 70, 71, 50, 51, 31, 13
 };
 
-NJS_TEX uv_0002F130[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0002F130[] = {
 	{ 565, -119 },
 	{ 570, -249 },
 	{ 629, -119 },
@@ -12823,11 +12823,11 @@ NJS_TEX uv_0002F130[] = {
 	{ 149, 255 }
 };
 
-NJS_MESHSET_SADX meshlist_0002F45C[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_0002F45C[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 15, poly_0002EF7C, NULL, NULL, NULL, uv_0002F130, NULL }
 };
 
-NJS_VECTOR vertex_0002F474[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_0002F474[] = {
 	{ 1946.236f, 328, 946.0013f },
 	{ 2167.666f, 265.0078f, 888.2087f },
 	{ 2170.849f, 261.5516f, 904.2084f },
@@ -12939,7 +12939,7 @@ NJS_VECTOR vertex_0002F474[] = {
 	{ 2030.012f, 328, 951.0001f }
 };
 
-NJS_VECTOR normal_0002F990[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_0002F990[] = {
 	{ -0.048206f, -0.014808f, 0.998728f },
 	{ 0.8258449f, 0.527017f, -0.200582f },
 	{ 0.957038f, 0.284408f, 0.056478f },
@@ -13051,20 +13051,20 @@ NJS_VECTOR normal_0002F990[] = {
 	{ -0.035541f, -0.123729f, 0.991679f }
 };
 
-NJS_MODEL_SADX attach_0002FEAC = { vertex_0002F474, normal_0002F990, LengthOfArray<Sint32>(vertex_0002F474), meshlist_0002F45C, matlist_0002EF68, LengthOfArray<Uint16>(meshlist_0002F45C), LengthOfArray<Uint16>(matlist_0002EF68), { 2063.13f, 289.0202f, 905.222f }, 127.7904f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_0002FEAC = { vertex_0002F474, normal_0002F990, LengthOfArray<Sint32>(vertex_0002F474), meshlist_0002F45C, matlist_0002EF68, LengthOfArray<Uint16>(meshlist_0002F45C), LengthOfArray<Uint16>(matlist_0002EF68), { 2063.13f, 289.0202f, 905.222f }, 127.7904f, NULL };
 
-NJS_OBJECT object_0002FED4 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0002FEAC, 0, -240, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_0002FF08[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_0002FED4 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0002FEAC, 0, -240, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_0002FF08[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 17, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_0002FF1C[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0002FF1C[] = {
 	0x8000u | 40, 21, 0, 22, 1, 23, 2, 24, 3, 25, 4, 26, 5, 27, 6, 28, 7, 29, 8, 30, 9, 31, 10, 32, 11, 33, 12, 34, 13, 35, 14, 36, 15, 37, 16, 38, 17, 39, 18, 40, 19,
 	0x8000u | 5, 61, 40, 41, 19, 20,
 	0x8000u | 40, 42, 21, 43, 22, 44, 23, 45, 24, 46, 25, 47, 26, 48, 27, 49, 28, 50, 29, 51, 30, 52, 31, 53, 32, 54, 33, 55, 34, 56, 35, 57, 36, 58, 37, 59, 38, 60, 39, 61, 40
 };
 
-NJS_TEX uv_0002FFCC[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0002FFCC[] = {
 	{ 1020, 52 },
 	{ 1020, 84 },
 	{ 972, 50 },
@@ -13152,11 +13152,11 @@ NJS_TEX uv_0002FFCC[] = {
 	{ 0, 46 }
 };
 
-NJS_MESHSET_SADX meshlist_00030120[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00030120[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 3, poly_0002FF1C, NULL, NULL, NULL, uv_0002FFCC, NULL }
 };
 
-NJS_VECTOR vertex_00030138[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_00030138[] = {
 	{ 2092.588f, 158, 858.7222f },
 	{ 2109.719f, 158, 857.8459f },
 	{ 2127.433f, 158, 858.6115f },
@@ -13221,7 +13221,7 @@ NJS_VECTOR vertex_00030138[] = {
 	{ 1946.236f, 178, 946.0013f }
 };
 
-NJS_VECTOR normal_00030420[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_00030420[] = {
 	{ 0.003037f, 0.099506f, -0.995032f },
 	{ -0.005097f, -0.00082f, -0.9999869f },
 	{ 0.07934f, -0.09993199f, -0.991826f },
@@ -13286,10 +13286,10 @@ NJS_VECTOR normal_00030420[] = {
 	{ -0.184221f, 0.125498f, 0.97484f }
 };
 
-NJS_MODEL_SADX attach_00030708 = { vertex_00030138, normal_00030420, LengthOfArray<Sint32>(vertex_00030138), meshlist_00030120, matlist_0002FF08, LengthOfArray<Uint16>(meshlist_00030120), LengthOfArray<Uint16>(matlist_0002FF08), { 2058.138f, 168, 905.2218f }, 132.3725f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00030708 = { vertex_00030138, normal_00030420, LengthOfArray<Sint32>(vertex_00030138), meshlist_00030120, matlist_0002FF08, LengthOfArray<Uint16>(meshlist_00030120), LengthOfArray<Uint16>(matlist_0002FF08), { 2058.138f, 168, 905.2218f }, 132.3725f, NULL };
 
-NJS_OBJECT object_00030730 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00030708, 0, 40, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_00030764[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_00030730 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00030708, 0, 40, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_00030764[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 19, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 21, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 17, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
@@ -13300,7 +13300,7 @@ NJS_MATERIAL matlist_00030764[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 17, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_00030804[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00030804[] = {
 	4, 0, 105, 7, 106,
 	4, 1, 0, 8, 7,
 	4, 2, 1, 9, 8,
@@ -13316,24 +13316,24 @@ Sint16 poly_00030804[] = {
 	4, 73, 72, 80, 79
 };
 
-Sint16 poly_00030886[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00030886[] = {
 	4, 49, 6, 50, 13,
 	4, 75, 74, 82, 81
 };
 
-Sint16 poly_0003089A[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0003089A[] = {
 	0x8000u | 13, 40, 53, 41, 35, 42, 36, 43, 37, 54, 38, 39, 33, 34,
 	0x8000u | 10, 53, 29, 35, 30, 36, 31, 37, 32, 38, 33
 };
 
-Sint16 poly_000308CC[] = {
+extern "C" __declspec(dllexport) Sint16 poly_000308CC[] = {
 	8, 9, 8, 16, 15, 22, 21, 28, 27,
 	0x8000u | 7, 109, 108, 117, 107, 14, 106, 7,
 	0x8000u | 7, 27, 117, 21, 14, 15, 7, 8,
 	8, 28, 29, 22, 23, 16, 17, 9, 10
 };
 
-Sint16 poly_00030910[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00030910[] = {
 	0x8000u | 8, 17, 10, 18, 11, 19, 12, 20, 13,
 	0x8000u | 8, 23, 17, 24, 18, 25, 19, 26, 20,
 	0x8000u | 8, 29, 23, 30, 24, 31, 25, 32, 26,
@@ -13346,23 +13346,23 @@ Sint16 poly_00030910[] = {
 	0x8000u | 10, 118, 104, 96, 103, 95, 102, 94, 101, 93, 100
 };
 
-Sint16 poly_000309DC[] = {
+extern "C" __declspec(dllexport) Sint16 poly_000309DC[] = {
 	4, 54, 43, 48, 47,
 	4, 43, 42, 47, 46,
 	4, 41, 40, 45, 44
 };
 
-Sint16 poly_000309FA[] = {
+extern "C" __declspec(dllexport) Sint16 poly_000309FA[] = {
 	4, 42, 41, 46, 45
 };
 
-Sint16 poly_00030A04[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00030A04[] = {
 	14, 74, 75, 67, 68, 60, 61, 88, 89, 115, 116, 91, 90, 98, 97,
 	14, 73, 74, 66, 67, 59, 60, 87, 88, 114, 115, 92, 91, 99, 98,
 	14, 99, 100, 92, 93, 114, 113, 87, 86, 59, 58, 66, 65, 73, 72
 };
 
-NJS_TEX uv_00030A60[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00030A60[] = {
 	{ 0 },
 	{ 254, 0 },
 	{ 0, 255 },
@@ -13417,7 +13417,7 @@ NJS_TEX uv_00030A60[] = {
 	{ 0 }
 };
 
-NJS_TEX uv_00030B30[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00030B30[] = {
 	{ 0 },
 	{ 255, 0 },
 	{ 0, 255 },
@@ -13428,7 +13428,7 @@ NJS_TEX uv_00030B30[] = {
 	{ 255, 0 }
 };
 
-NJS_TEX uv_00030B50[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00030B50[] = {
 	{ 152, 247 },
 	{ 155, 135 },
 	{ 244, 247 },
@@ -13454,7 +13454,7 @@ NJS_TEX uv_00030B50[] = {
 	{ 486, 7 }
 };
 
-NJS_TEX uv_00030BAC[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00030BAC[] = {
 	{ 202, 63 },
 	{ 136, 63 },
 	{ 196, 127 },
@@ -13487,7 +13487,7 @@ NJS_TEX uv_00030BAC[] = {
 	{ 255, 63 }
 };
 
-NJS_TEX uv_00030C24[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00030C24[] = {
 	{ 0, 128 },
 	{ 0, 63 },
 	{ 67, 128 },
@@ -13582,7 +13582,7 @@ NJS_TEX uv_00030C24[] = {
 	{ 245, 254 }
 };
 
-NJS_TEX uv_00030D94[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00030D94[] = {
 	{ 510, 0 },
 	{ 0 },
 	{ 510, 255 },
@@ -13597,14 +13597,14 @@ NJS_TEX uv_00030D94[] = {
 	{ 0, 255 }
 };
 
-NJS_TEX uv_00030DC4[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00030DC4[] = {
 	{ 510, 0 },
 	{ 0 },
 	{ 510, 255 },
 	{ 0, 255 }
 };
 
-NJS_TEX uv_00030DD4[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00030DD4[] = {
 	{ 179, 39 },
 	{ 245, 39 },
 	{ 184, 78 },
@@ -13649,7 +13649,7 @@ NJS_TEX uv_00030DD4[] = {
 	{ 6, 39 }
 };
 
-NJS_MESHSET_SADX meshlist_00030E7C[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00030E7C[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 13, poly_00030804, NULL, NULL, NULL, uv_00030A60, NULL },
 	{ NJD_MESHSET_TRIMESH | 1, 2, poly_00030886, NULL, NULL, NULL, uv_00030B30, NULL },
 	{ NJD_MESHSET_TRIMESH | 2, 2, poly_0003089A, NULL, NULL, NULL, uv_00030B50, NULL },
@@ -13660,7 +13660,7 @@ NJS_MESHSET_SADX meshlist_00030E7C[] = {
 	{ NJD_MESHSET_TRIMESH | 7, 3, poly_00030A04, NULL, NULL, NULL, uv_00030DD4, NULL }
 };
 
-NJS_VECTOR vertex_00030F3C[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_00030F3C[] = {
 	{ -79.21899f, 65, -63.11517f },
 	{ -92.3468f, 65, -42.85962f },
 	{ -92.3468f, 65, -17.04559f },
@@ -13782,7 +13782,7 @@ NJS_VECTOR vertex_00030F3C[] = {
 	{ -53.63232f, -45, -84.03692f }
 };
 
-NJS_VECTOR normal_000314D0[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_000314D0[] = {
 	{ -0.717492f, 0.152572f, -0.679652f },
 	{ -0.947906f, 0.15211f, -0.279886f },
 	{ -0.96931f, 0.150128f, 0.19468f },
@@ -13904,10 +13904,10 @@ NJS_VECTOR normal_000314D0[] = {
 	{ 0.459043f, -0.110338f, -0.8815359f }
 };
 
-NJS_MODEL_SADX attach_00031A64 = { vertex_00030F3C, normal_000314D0, LengthOfArray<Sint32>(vertex_00030F3C), meshlist_00030E7C, matlist_00030764, LengthOfArray<Uint16>(meshlist_00030E7C), LengthOfArray<Uint16>(matlist_00030764), { -0.00061f, -0.00015f, 0 }, 128.0604f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00031A64 = { vertex_00030F3C, normal_000314D0, LengthOfArray<Sint32>(vertex_00030F3C), meshlist_00030E7C, matlist_00030764, LengthOfArray<Uint16>(meshlist_00030E7C), LengthOfArray<Uint16>(matlist_00030764), { -0.00061f, -0.00015f, 0 }, 128.0604f, NULL };
 
-NJS_OBJECT object_00031A8C = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00031A64, 2000.348f, 263, 860.5125f, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_00031AC0[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_00031A8C = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00031A64, 2000.348f, 263, 860.5125f, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_00031AC0[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 19, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 18, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 18, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
@@ -13921,12 +13921,12 @@ NJS_MATERIAL matlist_00031AC0[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 15, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_00031B9C[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00031B9C[] = {
 	3, 59, 48, 54,
 	0x8000u | 6, 59, 6, 54, 60, 53, 71
 };
 
-Sint16 poly_00031BB2[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00031BB2[] = {
 	3, 3, 66, 61,
 	6, 59, 62, 58, 61, 57, 56,
 	0x8000u | 8, 6, 59, 63, 62, 4, 61, 5, 3,
@@ -13934,20 +13934,20 @@ Sint16 poly_00031BB2[] = {
 	4, 4, 63, 0, 6
 };
 
-Sint16 poly_00031BF0[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00031BF0[] = {
 	0x8000u | 5, 68, 67, 1, 70, 0,
 	0x8000u | 7, 64, 55, 66, 69, 3, 2, 5,
 	0x8000u | 6, 4, 5, 1, 2, 68, 69,
 	3, 1, 4, 0
 };
 
-Sint16 poly_00031C22[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00031C22[] = {
 	4, 64, 43, 65, 42,
 	4, 55, 44, 64, 43,
 	4, 65, 42, 56, 51
 };
 
-Sint16 poly_00031C40[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00031C40[] = {
 	4, 56, 51, 57, 50,
 	4, 69, 45, 55, 44,
 	4, 68, 46, 69, 45,
@@ -13956,41 +13956,41 @@ Sint16 poly_00031C40[] = {
 	3, 47, 67, 70
 };
 
-Sint16 poly_00031C7A[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00031C7A[] = {
 	4, 33, 52, 53, 71,
 	0x8000u | 7, 37, 21, 36, 33, 35, 52, 34,
 	0x8000u | 5, 37, 22, 21, 48, 54
 };
 
-Sint16 poly_00031CA0[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00031CA0[] = {
 	4, 7, 36, 8, 37,
 	4, 9, 38, 10, 39,
 	4, 11, 40, 12, 41,
 	4, 19, 34, 20, 35
 };
 
-Sint16 poly_00031CC8[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00031CC8[] = {
 	4, 8, 37, 9, 38,
 	4, 10, 39, 11, 40,
 	4, 20, 35, 7, 36
 };
 
-Sint16 poly_00031CE6[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00031CE6[] = {
 	0x8000u | 12, 27, 13, 28, 14, 29, 15, 30, 16, 31, 17, 32, 18,
 	12, 27, 43, 28, 44, 29, 45, 30, 46, 31, 47, 32, 70
 };
 
-Sint16 poly_00031D1A[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00031D1A[] = {
 	4, 23, 49, 24, 50,
 	4, 25, 51, 26, 42,
 	10, 26, 41, 25, 40, 24, 39, 23, 38, 22, 37
 };
 
-Sint16 poly_00031D44[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00031D44[] = {
 	4, 26, 42, 27, 43
 };
 
-NJS_TEX uv_00031D50[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00031D50[] = {
 	{ 0, 74 },
 	{ 1, 254 },
 	{ 440, 254 },
@@ -14002,7 +14002,7 @@ NJS_TEX uv_00031D50[] = {
 	{ 1020, 121 }
 };
 
-NJS_TEX uv_00031D74[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00031D74[] = {
 	{ 360, -157 },
 	{ 107, -68 },
 	{ 474, -82 },
@@ -14031,7 +14031,7 @@ NJS_TEX uv_00031D74[] = {
 	{ 1274, -28 }
 };
 
-NJS_TEX uv_00031DDC[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00031DDC[] = {
 	{ 621, 154 },
 	{ 895, 151 },
 	{ 916, 77 },
@@ -14055,7 +14055,7 @@ NJS_TEX uv_00031DDC[] = {
 	{ 1275, 78 }
 };
 
-NJS_TEX uv_00031E30[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00031E30[] = {
 	{ 0 },
 	{ 0, 255 },
 	{ 255, 0 },
@@ -14070,7 +14070,7 @@ NJS_TEX uv_00031E30[] = {
 	{ 255, 255 }
 };
 
-NJS_TEX uv_00031E60[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00031E60[] = {
 	{ 510, 0 },
 	{ 510, 255 },
 	{ 0 },
@@ -14096,7 +14096,7 @@ NJS_TEX uv_00031E60[] = {
 	{ 508, 158 }
 };
 
-NJS_TEX uv_00031EBC[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00031EBC[] = {
 	{ 326, 178 },
 	{ 402, 156 },
 	{ 324, 44 },
@@ -14115,7 +14115,7 @@ NJS_TEX uv_00031EBC[] = {
 	{ 254, 44 }
 };
 
-NJS_TEX uv_00031EFC[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00031EFC[] = {
 	{ 765, 255 },
 	{ 765, 0 },
 	{ 0, 255 },
@@ -14134,7 +14134,7 @@ NJS_TEX uv_00031EFC[] = {
 	{ 0 }
 };
 
-NJS_TEX uv_00031F3C[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00031F3C[] = {
 	{ 765, 255 },
 	{ 765, 0 },
 	{ 0, 255 },
@@ -14149,7 +14149,7 @@ NJS_TEX uv_00031F3C[] = {
 	{ 0 }
 };
 
-NJS_TEX uv_00031F6C[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00031F6C[] = {
 	{ 7, 156 },
 	{ 0, 255 },
 	{ 79, 156 },
@@ -14176,7 +14176,7 @@ NJS_TEX uv_00031F6C[] = {
 	{ 506, 39 }
 };
 
-NJS_TEX uv_00031FCC[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00031FCC[] = {
 	{ 300, 173 },
 	{ 300, 39 },
 	{ 444, 173 },
@@ -14197,14 +14197,14 @@ NJS_TEX uv_00031FCC[] = {
 	{ 158, 249 }
 };
 
-NJS_TEX uv_00032014[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00032014[] = {
 	{ 64, 254 },
 	{ 104, 0 },
 	{ 144, 254 },
 	{ 190, 0 }
 };
 
-NJS_MESHSET_SADX meshlist_00032024[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00032024[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 2, poly_00031B9C, NULL, NULL, NULL, uv_00031D50, NULL },
 	{ NJD_MESHSET_TRIMESH | 1, 5, poly_00031BB2, NULL, NULL, NULL, uv_00031D74, NULL },
 	{ NJD_MESHSET_TRIMESH | 2, 4, poly_00031BF0, NULL, NULL, NULL, uv_00031DDC, NULL },
@@ -14218,7 +14218,7 @@ NJS_MESHSET_SADX meshlist_00032024[] = {
 	{ NJD_MESHSET_TRIMESH | 10, 1, poly_00031D44, NULL, NULL, NULL, uv_00032014, NULL }
 };
 
-NJS_VECTOR vertex_0003212C[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_0003212C[] = {
 	{ 2.53772f, 35, 41.73327f },
 	{ 2.246948f, 35, 4.180542f },
 	{ 3.029541f, 35, -24.94611f },
@@ -14293,7 +14293,7 @@ NJS_VECTOR vertex_0003212C[] = {
 	{ -1.918823f, 15, 115.313f }
 };
 
-NJS_VECTOR normal_0003248C[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_0003248C[] = {
 	{ 0.168553f, 0.9704379f, 0.172745f },
 	{ 0.655556f, 0.754886f, -0.019829f },
 	{ 0.6854849f, 0.712894f, -0.147961f },
@@ -14368,10 +14368,10 @@ NJS_VECTOR normal_0003248C[] = {
 	{ -0.508168f, 0.248581f, 0.824605f }
 };
 
-NJS_MODEL_SADX attach_000327EC = { vertex_0003212C, normal_0003248C, LengthOfArray<Sint32>(vertex_0003212C), meshlist_00032024, matlist_00031AC0, LengthOfArray<Uint16>(meshlist_00032024), LengthOfArray<Uint16>(matlist_00031AC0), { 0, 0.396324f, 7.107239f }, 116.3171f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_000327EC = { vertex_0003212C, normal_0003248C, LengthOfArray<Sint32>(vertex_0003212C), meshlist_00032024, matlist_00031AC0, LengthOfArray<Uint16>(meshlist_00032024), LengthOfArray<Uint16>(matlist_00031AC0), { 0, 0.396324f, 7.107239f }, 116.3171f, NULL };
 
-NJS_OBJECT object_00032814 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_000327EC, 1917.858f, 233, 754.8928f, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_00032848[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_00032814 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_000327EC, 1917.858f, 233, 754.8928f, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_00032848[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 18, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 23, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 17, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
@@ -14380,18 +14380,18 @@ NJS_MATERIAL matlist_00032848[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 19, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_000328C0[] = {
+extern "C" __declspec(dllexport) Sint16 poly_000328C0[] = {
 	9, 68, 64, 1, 65, 10, 66, 0, 67, 61,
 	0x8000u | 8, 68, 69, 1, 63, 10, 62, 0, 61,
 	0x8000u | 22, 52, 79, 67, 53, 66, 9, 65, 8, 64, 7, 68, 6, 69, 5, 63, 4, 62, 3, 61, 2, 67, 52
 };
 
-Sint16 poly_00032914[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00032914[] = {
 	4, 21, 73, 20, 72,
 	4, 23, 75, 22, 74
 };
 
-Sint16 poly_00032928[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00032928[] = {
 	5, 41, 60, 56, 57, 81,
 	6, 39, 40, 51, 55, 79, 80,
 	4, 37, 38, 49, 50,
@@ -14403,13 +14403,13 @@ Sint16 poly_00032928[] = {
 	14, 36, 72, 37, 73, 38, 74, 39, 75, 40, 76, 41, 77, 60, 78
 };
 
-Sint16 poly_000329D8[] = {
+extern "C" __declspec(dllexport) Sint16 poly_000329D8[] = {
 	3, 35, 34, 70,
 	0x8000u | 5, 36, 72, 35, 71, 70,
 	0x8000u | 6, 34, 46, 35, 47, 36, 48
 };
 
-Sint16 poly_000329FA[] = {
+extern "C" __declspec(dllexport) Sint16 poly_000329FA[] = {
 	4, 25, 77, 24, 76,
 	4, 22, 74, 21, 73,
 	4, 26, 78, 25, 77,
@@ -14418,7 +14418,7 @@ Sint16 poly_000329FA[] = {
 	4, 20, 72, 19, 71
 };
 
-Sint16 poly_00032A36[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00032A36[] = {
 	4, 2, 52, 43, 42,
 	4, 3, 2, 44, 43,
 	4, 4, 3, 45, 44,
@@ -14430,7 +14430,7 @@ Sint16 poly_00032A36[] = {
 	3, 79, 53, 51
 };
 
-NJS_TEX uv_00032A90[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00032A90[] = {
 	{ 141, -951 },
 	{ 350, -852 },
 	{ 266, -710 },
@@ -14472,7 +14472,7 @@ NJS_TEX uv_00032A90[] = {
 	{ 402, 65 }
 };
 
-NJS_TEX uv_00032B2C[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00032B2C[] = {
 	{ 510, 255 },
 	{ 510, 0 },
 	{ 0, 255 },
@@ -14483,7 +14483,7 @@ NJS_TEX uv_00032B2C[] = {
 	{ 0 }
 };
 
-NJS_TEX uv_00032B4C[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00032B4C[] = {
 	{ 669, 157 },
 	{ 753, 157 },
 	{ 669, 39 },
@@ -14565,7 +14565,7 @@ NJS_TEX uv_00032B4C[] = {
 	{ 761, 224 }
 };
 
-NJS_TEX uv_00032C88[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00032C88[] = {
 	{ 124, 161 },
 	{ 33, 161 },
 	{ 0, 249 },
@@ -14582,7 +14582,7 @@ NJS_TEX uv_00032C88[] = {
 	{ 240, 5 }
 };
 
-NJS_TEX uv_00032CC0[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00032CC0[] = {
 	{ 510, 255 },
 	{ 510, 0 },
 	{ 0, 255 },
@@ -14609,7 +14609,7 @@ NJS_TEX uv_00032CC0[] = {
 	{ 0 }
 };
 
-NJS_TEX uv_00032D20[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00032D20[] = {
 	{ 255, 0 },
 	{ 0 },
 	{ 254, 255 },
@@ -14648,7 +14648,7 @@ NJS_TEX uv_00032D20[] = {
 	{ 255, 0 }
 };
 
-NJS_MESHSET_SADX meshlist_00032DB0[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00032DB0[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 3, poly_000328C0, NULL, NULL, NULL, uv_00032A90, NULL },
 	{ NJD_MESHSET_TRIMESH | 1, 2, poly_00032914, NULL, NULL, NULL, uv_00032B2C, NULL },
 	{ NJD_MESHSET_TRIMESH | 2, 9, poly_00032928, NULL, NULL, NULL, uv_00032B4C, NULL },
@@ -14657,7 +14657,7 @@ NJS_MESHSET_SADX meshlist_00032DB0[] = {
 	{ NJD_MESHSET_TRIMESH | 5, 9, poly_00032A36, NULL, NULL, NULL, uv_00032D20, NULL }
 };
 
-NJS_VECTOR vertex_00032E40[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_00032E40[] = {
 	{ 1830.241f, 270, 800.2891f },
 	{ 1829.917f, 268, 836.2517f },
 	{ 1819.367f, 258, 781.1703f },
@@ -14744,7 +14744,7 @@ NJS_VECTOR vertex_00032E40[] = {
 	{ 1847.976f, 217.5903f, 656.4981f }
 };
 
-NJS_VECTOR normal_00033230[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_00033230[] = {
 	{ -0.040129f, 0.99806f, -0.047596f },
 	{ 0.028234f, 0.997005f, 0.07200199f },
 	{ -0.680573f, 0.5822909f, -0.4447f },
@@ -14831,10 +14831,10 @@ NJS_VECTOR normal_00033230[] = {
 	{ -0.494536f, 0.8297859f, -0.258631f }
 };
 
-NJS_MODEL_SADX attach_00033620 = { vertex_00032E40, normal_00033230, LengthOfArray<Sint32>(vertex_00032E40), meshlist_00032DB0, matlist_00032848, LengthOfArray<Uint16>(meshlist_00032DB0), LengthOfArray<Uint16>(matlist_00032848), { 1827.193f, 231.5903f, 768.0457f }, 120.2532f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00033620 = { vertex_00032E40, normal_00033230, LengthOfArray<Sint32>(vertex_00032E40), meshlist_00032DB0, matlist_00032848, LengthOfArray<Uint16>(meshlist_00032DB0), LengthOfArray<Uint16>(matlist_00032848), { 1827.193f, 231.5903f, 768.0457f }, 120.2532f, NULL };
 
-NJS_OBJECT object_00033648 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00033620, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_0003367C[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_00033648 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00033620, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_0003367C[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 15, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 17, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 24, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
@@ -14847,7 +14847,7 @@ NJS_MATERIAL matlist_0003367C[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 2, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_00033744[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00033744[] = {
 	4, 10, 13, 9, 11,
 	4, 13, 14, 11, 12,
 	4, 7, 8, 5, 6,
@@ -14855,7 +14855,7 @@ Sint16 poly_00033744[] = {
 	4, 8, 10, 6, 9
 };
 
-Sint16 poly_00033774[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00033774[] = {
 	9, 90, 0, 83, 85, 19, 88, 21, 29, 23,
 	0x8000u | 5, 89, 91, 1, 92, 84,
 	9, 12, 4, 11, 2, 9, 0, 6, 90, 5,
@@ -14867,7 +14867,7 @@ Sint16 poly_00033774[] = {
 	13, 28, 26, 27, 25, 31, 30, 33, 32, 34, 86, 84, 3, 92
 };
 
-Sint16 poly_00033818[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00033818[] = {
 	3, 92, 14, 81,
 	4, 13, 10, 80, 79,
 	4, 14, 13, 81, 80,
@@ -14875,7 +14875,7 @@ Sint16 poly_00033818[] = {
 	4, 8, 7, 82, 78
 };
 
-Sint16 poly_00033848[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00033848[] = {
 	4, 61, 60, 57, 56,
 	4, 69, 76, 68, 75,
 	4, 69, 68, 65, 64,
@@ -14889,7 +14889,7 @@ Sint16 poly_00033848[] = {
 	4, 57, 56, 54, 53
 };
 
-Sint16 poly_000338B6[] = {
+extern "C" __declspec(dllexport) Sint16 poly_000338B6[] = {
 	4, 62, 61, 58, 57,
 	4, 64, 63, 60, 59,
 	4, 68, 75, 67, 74,
@@ -14905,22 +14905,22 @@ Sint16 poly_000338B6[] = {
 	4, 58, 57, 55, 54
 };
 
-Sint16 poly_00033938[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00033938[] = {
 	3, 77, 73, 76,
 	4, 71, 74, 72, 75
 };
 
-Sint16 poly_0003394A[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0003394A[] = {
 	4, 72, 75, 73, 76
 };
 
-Sint16 poly_00033954[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00033954[] = {
 	4, 66, 65, 62, 61,
 	4, 56, 89, 53, 91,
 	4, 60, 59, 56, 89
 };
 
-Sint16 poly_00033972[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00033972[] = {
 	4, 38, 82, 35, 78,
 	4, 41, 79, 38, 82,
 	4, 44, 80, 41, 79,
@@ -14928,11 +14928,11 @@ Sint16 poly_00033972[] = {
 	4, 50, 92, 47, 81
 };
 
-Sint16 poly_000339A4[] = {
+extern "C" __declspec(dllexport) Sint16 poly_000339A4[] = {
 	4, 40, 39, 37, 36
 };
 
-NJS_TEX uv_000339B0[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_000339B0[] = {
 	{ 0, 255 },
 	{ 255, 255 },
 	{ 0 },
@@ -14954,7 +14954,7 @@ NJS_TEX uv_000339B0[] = {
 	{ 255, 0 }
 };
 
-NJS_TEX uv_000339FC[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_000339FC[] = {
 	{ 502, 91 },
 	{ 406, 58 },
 	{ 406, 86 },
@@ -15030,7 +15030,7 @@ NJS_TEX uv_000339FC[] = {
 	{ 139, -242 }
 };
 
-NJS_TEX uv_00033B20[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00033B20[] = {
 	{ 253, 254 },
 	{ 0, 1 },
 	{ 0, 255 },
@@ -15052,7 +15052,7 @@ NJS_TEX uv_00033B20[] = {
 	{ 0, 255 }
 };
 
-NJS_TEX uv_00033B6C[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00033B6C[] = {
 	{ 0 },
 	{ 765, 0 },
 	{ 0, 255 },
@@ -15099,7 +15099,7 @@ NJS_TEX uv_00033B6C[] = {
 	{ 765, 255 }
 };
 
-NJS_TEX uv_00033C1C[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00033C1C[] = {
 	{ 0 },
 	{ 0, 255 },
 	{ 510, 0 },
@@ -15154,7 +15154,7 @@ NJS_TEX uv_00033C1C[] = {
 	{ 510, 255 }
 };
 
-NJS_TEX uv_00033CEC[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00033CEC[] = {
 	{ 251, 138 },
 	{ 0, 1 },
 	{ 0, 147 },
@@ -15164,14 +15164,14 @@ NJS_TEX uv_00033CEC[] = {
 	{ 253, 118 }
 };
 
-NJS_TEX uv_00033D08[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00033D08[] = {
 	{ 1751, 238 },
 	{ 1751, 0 },
 	{ 53, 238 },
 	{ 53, 0 }
 };
 
-NJS_TEX uv_00033D18[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00033D18[] = {
 	{ 0 },
 	{ 0, 255 },
 	{ 255, 0 },
@@ -15186,7 +15186,7 @@ NJS_TEX uv_00033D18[] = {
 	{ 255, 0 }
 };
 
-NJS_TEX uv_00033D48[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00033D48[] = {
 	{ 0 },
 	{ 0, 255 },
 	{ 510, 0 },
@@ -15209,14 +15209,14 @@ NJS_TEX uv_00033D48[] = {
 	{ 506, 226 }
 };
 
-NJS_TEX uv_00033D98[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00033D98[] = {
 	{ 510, 0 },
 	{ 510, 255 },
 	{ 0 },
 	{ 0, 255 }
 };
 
-NJS_MESHSET_SADX meshlist_00033DA8[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00033DA8[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 5, poly_00033744, NULL, NULL, NULL, uv_000339B0, NULL },
 	{ NJD_MESHSET_TRIMESH | 1, 9, poly_00033774, NULL, NULL, NULL, uv_000339FC, NULL },
 	{ NJD_MESHSET_TRIMESH | 2, 5, poly_00033818, NULL, NULL, NULL, uv_00033B20, NULL },
@@ -15229,7 +15229,7 @@ NJS_MESHSET_SADX meshlist_00033DA8[] = {
 	{ NJD_MESHSET_TRIMESH | 9, 1, poly_000339A4, NULL, NULL, NULL, uv_00033D98, NULL }
 };
 
-NJS_VECTOR vertex_00033E98[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_00033E98[] = {
 	{ 32.46802f, -74.76293f, 26.54742f },
 	{ -38.16077f, -0.070236f, 22.49078f },
 	{ 12.88196f, -67.12023f, 27.04742f },
@@ -15325,7 +15325,7 @@ NJS_VECTOR vertex_00033E98[] = {
 	{ -24.63867f, -19.33114f, 11.04742f }
 };
 
-NJS_VECTOR normal_000342F4[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_000342F4[] = {
 	{ -0.031183f, -0.000856f, 0.999513f },
 	{ 0.731856f, -0.069587f, 0.677897f },
 	{ 0.038443f, 0.101976f, 0.9940439f },
@@ -15421,14 +15421,14 @@ NJS_VECTOR normal_000342F4[] = {
 	{ 0.931474f, 0.309775f, -0.190777f }
 };
 
-NJS_MODEL_SADX attach_00034750 = { vertex_00033E98, normal_000342F4, LengthOfArray<Sint32>(vertex_00033E98), meshlist_00033DA8, matlist_0003367C, LengthOfArray<Uint16>(meshlist_00033DA8), LengthOfArray<Uint16>(matlist_0003367C), { -0.097168f, -0.500004f, 3 }, 113.5751f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00034750 = { vertex_00033E98, normal_000342F4, LengthOfArray<Sint32>(vertex_00033E98), meshlist_00033DA8, matlist_0003367C, LengthOfArray<Uint16>(meshlist_00033DA8), LengthOfArray<Uint16>(matlist_0003367C), { -0.097168f, -0.500004f, 3 }, 113.5751f, NULL };
 
-NJS_OBJECT object_00034778 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00034750, 1976.791f, 88.07023f, 968.9539f, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_000347AC[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_00034778 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00034750, 1976.791f, 88.07023f, 968.9539f, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_000347AC[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 17, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_000347C0[] = {
+extern "C" __declspec(dllexport) Sint16 poly_000347C0[] = {
 	0x8000u | 16, 8, 22, 9, 23, 10, 24, 11, 25, 12, 26, 13, 27, 14, 28, 15, 29,
 	0x8000u | 8, 29, 47, 30, 48, 31, 49, 32, 50,
 	7, 21, 35, 20, 34, 19, 33, 71,
@@ -15442,7 +15442,7 @@ Sint16 poly_000347C0[] = {
 	0x8000u | 16, 0, 8, 1, 9, 2, 10, 3, 11, 4, 12, 5, 13, 6, 14, 7, 15
 };
 
-NJS_TEX uv_000348D4[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_000348D4[] = {
 	{ 470, 148 },
 	{ 472, 183 },
 	{ 440, 148 },
@@ -15571,11 +15571,11 @@ NJS_TEX uv_000348D4[] = {
 	{ 67, 148 }
 };
 
-NJS_MESHSET_SADX meshlist_00034ACC[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00034ACC[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 11, poly_000347C0, NULL, NULL, NULL, uv_000348D4, NULL }
 };
 
-NJS_VECTOR vertex_00034AE4[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_00034AE4[] = {
 	{ -84.61645f, 5.43961f, -96.92664f },
 	{ -63.25561f, 5.43961f, -97.10638f },
 	{ -43.15307f, 5.43961f, -97.26135f },
@@ -15651,7 +15651,7 @@ NJS_VECTOR vertex_00034AE4[] = {
 	{ 97.04369f, 9.679699f, 1.077637f }
 };
 
-NJS_VECTOR normal_00034E50[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_00034E50[] = {
 	{ -0.010027f, -0.265497f, -0.964059f },
 	{ -0.0059f, -0.260723f, -0.965396f },
 	{ -0.00043f, -0.251608f, -0.967829f },
@@ -15727,10 +15727,10 @@ NJS_VECTOR normal_00034E50[] = {
 	{ 0.992813f, -0.118139f, -0.019114f }
 };
 
-NJS_MODEL_SADX attach_000351BC = { vertex_00034AE4, normal_00034E50, LengthOfArray<Sint32>(vertex_00034AE4), meshlist_00034ACC, matlist_000347AC, LengthOfArray<Uint16>(meshlist_00034ACC), LengthOfArray<Uint16>(matlist_000347AC), { -3.913147f, -8.284539f, -0.913879f }, 141.983f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_000351BC = { vertex_00034AE4, normal_00034E50, LengthOfArray<Sint32>(vertex_00034AE4), meshlist_00034ACC, matlist_000347AC, LengthOfArray<Uint16>(meshlist_00034ACC), LengthOfArray<Uint16>(matlist_000347AC), { -3.913147f, -8.284539f, -0.913879f }, 141.983f, NULL };
 
-NJS_OBJECT object_000351E4 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_000351BC, 2134.529f, 22.56039f, 904.71f, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_00035218[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_000351E4 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_000351BC, 2134.529f, 22.56039f, 904.71f, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_00035218[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 17, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 29, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 17, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
@@ -15746,7 +15746,7 @@ NJS_MATERIAL matlist_00035218[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 28, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_0003531C[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0003531C[] = {
 	0x8000u | 6, 212, 266, 265, 47, 227, 225,
 	3, 226, 265, 48,
 	3, 225, 30, 47,
@@ -15783,7 +15783,7 @@ Sint16 poly_0003531C[] = {
 	3, 211, 201, 206
 };
 
-Sint16 poly_00035524[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00035524[] = {
 	3, 253, 249, 237,
 	0x8000u | 5, 254, 245, 257, 246, 258,
 	0x8000u | 5, 258, 236, 250, 237, 253,
@@ -15795,7 +15795,7 @@ Sint16 poly_00035524[] = {
 	3, 245, 244, 254
 };
 
-Sint16 poly_00035596[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00035596[] = {
 	3, 146, 263, 132,
 	9, 55, 54, 73, 72, 90, 89, 108, 107, 196,
 	9, 98, 97, 116, 115, 132, 131, 146, 130, 145,
@@ -15806,7 +15806,7 @@ Sint16 poly_00035596[] = {
 	0x8000u | 13, 233, 197, 140, 196, 125, 108, 109, 90, 91, 73, 74, 55, 56
 };
 
-Sint16 poly_00035628[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00035628[] = {
 	3, 261, 217, 263,
 	4, 205, 220, 202, 208,
 	3, 162, 176, 229,
@@ -15816,7 +15816,7 @@ Sint16 poly_00035628[] = {
 	4, 216, 292, 262, 293
 };
 
-Sint16 poly_0003566A[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0003566A[] = {
 	6, 163, 164, 147, 264, 261, 293,
 	3, 219, 64, 82,
 	0x8000u | 5, 264, 293, 148, 262, 149,
@@ -15836,41 +15836,41 @@ Sint16 poly_0003566A[] = {
 	27, 198, 239, 170, 183, 171, 184, 172, 185, 173, 186, 174, 187, 175, 188, 176, 189, 229, 190, 177, 191, 178, 192, 179, 193, 180, 200, 199
 };
 
-Sint16 poly_000357F2[] = {
+extern "C" __declspec(dllexport) Sint16 poly_000357F2[] = {
 	8, 6, 5, 24, 23, 41, 40, 60, 59,
 	8, 57, 58, 38, 39, 21, 22, 3, 4,
 	8, 58, 59, 39, 40, 22, 23, 4, 5
 };
 
-Sint16 poly_00035828[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00035828[] = {
 	8, 93, 92, 111, 110, 127, 126, 142, 141,
 	8, 142, 143, 127, 128, 111, 112, 93, 94,
 	8, 143, 144, 128, 129, 112, 113, 94, 95
 };
 
-Sint16 poly_0003585E[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0003585E[] = {
 	4, 261, 293, 217, 292,
 	4, 170, 156, 198, 231
 };
 
-Sint16 poly_00035872[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00035872[] = {
 	4, 157, 156, 171, 170,
 	4, 159, 158, 173, 172,
 	4, 160, 159, 174, 173,
 	4, 162, 161, 176, 175
 };
 
-Sint16 poly_0003589A[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0003589A[] = {
 	0x8000u | 24, 252, 239, 240, 183, 241, 184, 242, 185, 243, 186, 244, 187, 245, 188, 246, 189, 247, 190, 248, 191, 249, 192, 253, 193,
 	3, 253, 200, 193,
 	0x8000u | 8, 253, 200, 250, 194, 251, 195, 252, 239
 };
 
-Sint16 poly_000358E6[] = {
+extern "C" __declspec(dllexport) Sint16 poly_000358E6[] = {
 	3, 209, 204, 207
 };
 
-Sint16 poly_000358EE[] = {
+extern "C" __declspec(dllexport) Sint16 poly_000358EE[] = {
 	4, 267, 268, 11, 10,
 	4, 8, 9, 271, 270,
 	4, 7, 274, 6, 273,
@@ -15882,7 +15882,7 @@ Sint16 poly_000358EE[] = {
 	4, 17, 290, 285, 291
 };
 
-Sint16 poly_00035948[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00035948[] = {
 	4, 270, 9, 268, 10,
 	4, 12, 269, 11, 267,
 	4, 7, 8, 274, 271,
@@ -15894,7 +15894,7 @@ Sint16 poly_00035948[] = {
 	4, 287, 288, 15, 14
 };
 
-NJS_TEX uv_000359A4[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_000359A4[] = {
 	{ 34, -217 },
 	{ 106, -152 },
 	{ 3, -58 },
@@ -16123,7 +16123,7 @@ NJS_TEX uv_000359A4[] = {
 	{ 109, 59 }
 };
 
-NJS_TEX uv_00035D2C[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00035D2C[] = {
 	{ 573, 251 },
 	{ 765, 251 },
 	{ 765, 0 },
@@ -16174,7 +16174,7 @@ NJS_TEX uv_00035D2C[] = {
 	{ 765, 0 }
 };
 
-NJS_TEX uv_00035DEC[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00035DEC[] = {
 	{ 123, -144 },
 	{ 46, -118 },
 	{ 51, -52 },
@@ -16242,7 +16242,7 @@ NJS_TEX uv_00035DEC[] = {
 	{ 153, 251 }
 };
 
-NJS_TEX uv_00035EF0[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00035EF0[] = {
 	{ 0, 75 },
 	{ 0, 255 },
 	{ 1019, 138 },
@@ -16271,7 +16271,7 @@ NJS_TEX uv_00035EF0[] = {
 	{ 1020, 75 }
 };
 
-NJS_TEX uv_00035F58[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00035F58[] = {
 	{ 414, 106 },
 	{ 348, 106 },
 	{ 434, 216 },
@@ -16453,7 +16453,7 @@ NJS_TEX uv_00035F58[] = {
 	{ 0, 255 }
 };
 
-NJS_TEX uv_00036224[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00036224[] = {
 	{ 508, 241 },
 	{ 336, 241 },
 	{ 496, 78 },
@@ -16480,7 +16480,7 @@ NJS_TEX uv_00036224[] = {
 	{ 336, 241 }
 };
 
-NJS_TEX uv_00036284[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00036284[] = {
 	{ 172, 249 },
 	{ 246, 249 },
 	{ 169, 164 },
@@ -16507,7 +16507,7 @@ NJS_TEX uv_00036284[] = {
 	{ 8, 249 }
 };
 
-NJS_TEX uv_000362E4[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_000362E4[] = {
 	{ 510, 75 },
 	{ 0, 75 },
 	{ 510, 255 },
@@ -16518,7 +16518,7 @@ NJS_TEX uv_000362E4[] = {
 	{ 510, 255 }
 };
 
-NJS_TEX uv_00036304[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00036304[] = {
 	{ 0, 255 },
 	{ 1020, 255 },
 	{ 0, 75 },
@@ -16537,7 +16537,7 @@ NJS_TEX uv_00036304[] = {
 	{ 1020, 75 }
 };
 
-NJS_TEX uv_00036344[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00036344[] = {
 	{ 1785, 7 },
 	{ 1785, 255 },
 	{ 1654, 7 },
@@ -16575,13 +16575,13 @@ NJS_TEX uv_00036344[] = {
 	{ 0, 255 }
 };
 
-NJS_TEX uv_000363D0[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_000363D0[] = {
 	{ 0, 111 },
 	{ 255, 255 },
 	{ 255, 0 }
 };
 
-NJS_TEX uv_000363DC[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_000363DC[] = {
 	{ 0, 255 },
 	{ 510, 255 },
 	{ 0 },
@@ -16620,7 +16620,7 @@ NJS_TEX uv_000363DC[] = {
 	{ 0, 255 }
 };
 
-NJS_TEX uv_0003646C[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0003646C[] = {
 	{ 510, 255 },
 	{ 510, 3 },
 	{ 0, 255 },
@@ -16659,7 +16659,7 @@ NJS_TEX uv_0003646C[] = {
 	{ 510, 3 }
 };
 
-NJS_MESHSET_SADX meshlist_000364FC[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_000364FC[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 34, poly_0003531C, NULL, NULL, NULL, uv_000359A4, NULL },
 	{ NJD_MESHSET_TRIMESH | 1, 9, poly_00035524, NULL, NULL, NULL, uv_00035D2C, NULL },
 	{ NJD_MESHSET_TRIMESH | 2, 8, poly_00035596, NULL, NULL, NULL, uv_00035DEC, NULL },
@@ -16675,7 +16675,7 @@ NJS_MESHSET_SADX meshlist_000364FC[] = {
 	{ NJD_MESHSET_TRIMESH | 12, 9, poly_00035948, NULL, NULL, NULL, uv_0003646C, NULL }
 };
 
-NJS_VECTOR vertex_00036634[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_00036634[] = {
 	{ -1.3628f, -398, 975.2379f },
 	{ 41.50879f, -398, 988.216f },
 	{ 81.52099f, -398, 1009.787f },
@@ -16972,7 +16972,7 @@ NJS_VECTOR vertex_00036634[] = {
 	{ -41.10218f, -86.81382f, 1221.399f }
 };
 
-NJS_VECTOR normal_000373FC[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_000373FC[] = {
 	{ -0.403302f, 0.450541f, -0.796468f },
 	{ 0.360198f, 0.340047f, -0.868692f },
 	{ 0.5611939f, 0.353763f, -0.748273f },
@@ -17269,17 +17269,17 @@ NJS_VECTOR normal_000373FC[] = {
 	{ -0.386328f, 0.068005f, 0.9198509f }
 };
 
-NJS_MODEL_SADX attach_000381C4 = { vertex_00036634, normal_000373FC, LengthOfArray<Sint32>(vertex_00036634), meshlist_000364FC, matlist_00035218, LengthOfArray<Uint16>(meshlist_000364FC), LengthOfArray<Uint16>(matlist_00035218), { -5.329834f, -151.75f, 1126 }, 293.8663f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_000381C4 = { vertex_00036634, normal_000373FC, LengthOfArray<Sint32>(vertex_00036634), meshlist_000364FC, matlist_00035218, LengthOfArray<Uint16>(meshlist_000364FC), LengthOfArray<Uint16>(matlist_00035218), { -5.329834f, -151.75f, 1126 }, 293.8663f, NULL };
 
-NJS_OBJECT object_000381EC = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_000381C4, 6246, 404, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_00038220[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_000381EC = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_000381C4, 6246, 404, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_00038220[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 17, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 31, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 26, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 30, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_00038270[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00038270[] = {
 	8, 1, 60, 61, 7, 14, 15, 64, 22,
 	0x8000u | 8, 64, 62, 22, 30, 23, 31, 24, 32,
 	3, 51, 2, 53,
@@ -17294,14 +17294,14 @@ Sint16 poly_00038270[] = {
 	0x8000u | 9, 57, 3, 55, 8, 9, 16, 17, 23, 24
 };
 
-Sint16 poly_00038362[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00038362[] = {
 	3, 43, 44, 66,
 	9, 41, 42, 46, 43, 47, 66, 48, 44, 45,
 	9, 49, 62, 48, 38, 47, 39, 46, 40, 41,
 	4, 48, 45, 49, 65
 };
 
-Sint16 poly_0003839C[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0003839C[] = {
 	3, 30, 38, 62,
 	4, 40, 39, 32, 31,
 	4, 42, 41, 34, 33,
@@ -17309,14 +17309,14 @@ Sint16 poly_0003839C[] = {
 	3, 37, 65, 45
 };
 
-Sint16 poly_000383CA[] = {
+extern "C" __declspec(dllexport) Sint16 poly_000383CA[] = {
 	4, 39, 38, 31, 30,
 	4, 41, 40, 33, 32,
 	4, 43, 42, 35, 34,
 	4, 44, 43, 36, 35
 };
 
-NJS_TEX uv_000383F4[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_000383F4[] = {
 	{ 72, 117 },
 	{ 92, 117 },
 	{ 51, -19 },
@@ -17428,7 +17428,7 @@ NJS_TEX uv_000383F4[] = {
 	{ 239, -214 }
 };
 
-NJS_TEX uv_000385A8[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_000385A8[] = {
 	{ 274, 13 },
 	{ 75, -238 },
 	{ 330, -210 },
@@ -17456,7 +17456,7 @@ NJS_TEX uv_000385A8[] = {
 	{ 3, -764 }
 };
 
-NJS_TEX uv_0003860C[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0003860C[] = {
 	{ 508, 255 },
 	{ 508, 0 },
 	{ 0, 68 },
@@ -17477,7 +17477,7 @@ NJS_TEX uv_0003860C[] = {
 	{ 0 }
 };
 
-NJS_TEX uv_00038654[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00038654[] = {
 	{ 510, 0 },
 	{ 0 },
 	{ 510, 255 },
@@ -17496,14 +17496,14 @@ NJS_TEX uv_00038654[] = {
 	{ 0, 255 }
 };
 
-NJS_MESHSET_SADX meshlist_00038694[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00038694[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 12, poly_00038270, NULL, NULL, NULL, uv_000383F4, NULL },
 	{ NJD_MESHSET_TRIMESH | 1, 4, poly_00038362, NULL, NULL, NULL, uv_000385A8, NULL },
 	{ NJD_MESHSET_TRIMESH | 2, 5, poly_0003839C, NULL, NULL, NULL, uv_0003860C, NULL },
 	{ NJD_MESHSET_TRIMESH | 3, 4, poly_000383CA, NULL, NULL, NULL, uv_00038654, NULL }
 };
 
-NJS_VECTOR vertex_000386F4[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_000386F4[] = {
 	{ 49.47852f, 64.5f, -21.46081f },
 	{ -27.83252f, -15.5f, -22.25684f },
 	{ 2.850586f, -55.5f, 1.468872f },
@@ -17573,7 +17573,7 @@ NJS_VECTOR vertex_000386F4[] = {
 	{ 15.41113f, 93.5f, 14.22205f }
 };
 
-NJS_VECTOR normal_00038A18[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_00038A18[] = {
 	{ 0.832269f, -0.09864499f, 0.545525f },
 	{ -0.828042f, -0.010238f, 0.560573f },
 	{ 0.250572f, -0.128194f, 0.959573f },
@@ -17643,10 +17643,10 @@ NJS_VECTOR normal_00038A18[] = {
 	{ 0, 1, 0 }
 };
 
-NJS_MODEL_SADX attach_00038D3C = { vertex_000386F4, normal_00038A18, LengthOfArray<Sint32>(vertex_000386F4), meshlist_00038694, matlist_00038220, LengthOfArray<Uint16>(meshlist_00038694), LengthOfArray<Uint16>(matlist_00038220), { 0, -1, 0 }, 102.7717f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00038D3C = { vertex_000386F4, normal_00038A18, LengthOfArray<Sint32>(vertex_000386F4), meshlist_00038694, matlist_00038220, LengthOfArray<Uint16>(meshlist_00038694), LengthOfArray<Uint16>(matlist_00038220), { 0, -1, 0 }, 102.7717f, NULL };
 
-NJS_OBJECT object_00038D64 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00038D3C, 6217.588f, 221.5f, 1250.778f, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_00038D98[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_00038D64 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00038D3C, 6217.588f, 221.5f, 1250.778f, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_00038D98[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 17, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 22, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 31, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
@@ -17654,7 +17654,7 @@ NJS_MATERIAL matlist_00038D98[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 26, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_00038DFC[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00038DFC[] = {
 	9, 11, 13, 12, 14, 3, 33, 31, 34, 32,
 	8, 24, 23, 61, 1, 63, 18, 26, 17,
 	8, 23, 22, 1, 2, 18, 16, 17, 15,
@@ -17670,17 +17670,17 @@ Sint16 poly_00038DFC[] = {
 	4, 66, 24, 60, 61
 };
 
-Sint16 poly_00038ED0[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00038ED0[] = {
 	4, 55, 64, 52, 65
 };
 
-Sint16 poly_00038EDA[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00038EDA[] = {
 	17, 37, 39, 38, 20, 41, 21, 43, 44, 45, 46, 47, 48, 49, 50, 51, 65, 64,
 	0x8000u | 5, 39, 20, 42, 21, 44,
 	0x8000u | 5, 41, 38, 53, 40, 54
 };
 
-Sint16 poly_00038F16[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00038F16[] = {
 	4, 37, 38, 29, 19,
 	4, 39, 37, 30, 29,
 	3, 35, 40, 54,
@@ -17689,7 +17689,7 @@ Sint16 poly_00038F16[] = {
 	4, 24, 66, 50, 65
 };
 
-Sint16 poly_00038F50[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00038F50[] = {
 	4, 38, 40, 19, 35,
 	4, 42, 39, 32, 30,
 	4, 52, 65, 25, 66,
@@ -17697,7 +17697,7 @@ Sint16 poly_00038F50[] = {
 	4, 50, 48, 24, 23
 };
 
-NJS_TEX uv_00038F84[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00038F84[] = {
 	{ 74, 255 },
 	{ 0, 255 },
 	{ 76, 197 },
@@ -17793,14 +17793,14 @@ NJS_TEX uv_00038F84[] = {
 	{ 215, 124 }
 };
 
-NJS_TEX uv_000390F8[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_000390F8[] = {
 	{ 0 },
 	{ 0, 255 },
 	{ 1529, 0 },
 	{ 1529, 255 }
 };
 
-NJS_TEX uv_00039108[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00039108[] = {
 	{ 25, -789 },
 	{ 394, -1166 },
 	{ 290, -600 },
@@ -17830,7 +17830,7 @@ NJS_TEX uv_00039108[] = {
 	{ 672, 276 }
 };
 
-NJS_TEX uv_00039174[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00039174[] = {
 	{ 765, 0 },
 	{ 0 },
 	{ 765, 255 },
@@ -17856,7 +17856,7 @@ NJS_TEX uv_00039174[] = {
 	{ 510, 0 }
 };
 
-NJS_TEX uv_000391D0[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_000391D0[] = {
 	{ 1530, 0 },
 	{ 0 },
 	{ 1530, 255 },
@@ -17879,7 +17879,7 @@ NJS_TEX uv_000391D0[] = {
 	{ 0, 255 }
 };
 
-NJS_MESHSET_SADX meshlist_00039220[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00039220[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 13, poly_00038DFC, NULL, NULL, NULL, uv_00038F84, NULL },
 	{ NJD_MESHSET_TRIMESH | 1, 1, poly_00038ED0, NULL, NULL, NULL, uv_000390F8, NULL },
 	{ NJD_MESHSET_TRIMESH | 2, 3, poly_00038EDA, NULL, NULL, NULL, uv_00039108, NULL },
@@ -17887,7 +17887,7 @@ NJS_MESHSET_SADX meshlist_00039220[] = {
 	{ NJD_MESHSET_TRIMESH | 4, 5, poly_00038F50, NULL, NULL, NULL, uv_000391D0, NULL }
 };
 
-NJS_VECTOR vertex_00039298[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_00039298[] = {
 	{ -42.39404f, 0, -77.21521f },
 	{ 8.023438f, 0, -58.8656f },
 	{ 22.88574f, 0, -28.51819f },
@@ -17957,7 +17957,7 @@ NJS_VECTOR vertex_00039298[] = {
 	{ -13.69775f, 35.21954f, -89.81445f }
 };
 
-NJS_VECTOR normal_000395BC[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_000395BC[] = {
 	{ 0.198715f, 0.170162f, -0.965172f },
 	{ 0.793061f, -0.254803f, -0.5532899f },
 	{ 0.924365f, -0.256887f, -0.282062f },
@@ -18027,10 +18027,10 @@ NJS_VECTOR normal_000395BC[] = {
 	{ 0.269311f, -0.186442f, -0.944834f }
 };
 
-NJS_MODEL_SADX attach_000398E0 = { vertex_00039298, normal_000395BC, LengthOfArray<Sint32>(vertex_00039298), meshlist_00039220, matlist_00038D98, LengthOfArray<Uint16>(meshlist_00039220), LengthOfArray<Uint16>(matlist_00038D98), { -9.270264f, 0, 10.61755f }, 115.3723f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_000398E0 = { vertex_00039298, normal_000395BC, LengthOfArray<Sint32>(vertex_00039298), meshlist_00039220, matlist_00038D98, LengthOfArray<Uint16>(meshlist_00039220), LengthOfArray<Uint16>(matlist_00038D98), { -9.270264f, 0, 10.61755f }, 115.3723f, NULL };
 
-NJS_OBJECT object_00039908 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_000398E0, 6319.855f, 366, 1121.362f, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_0003993C[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_00039908 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_000398E0, 6319.855f, 366, 1121.362f, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_0003993C[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 30, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 30, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 26, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
@@ -18041,11 +18041,11 @@ NJS_MATERIAL matlist_0003993C[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 32, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_000399DC[] = {
+extern "C" __declspec(dllexport) Sint16 poly_000399DC[] = {
 	3, 13, 0, 60
 };
 
-Sint16 poly_000399E4[] = {
+extern "C" __declspec(dllexport) Sint16 poly_000399E4[] = {
 	4, 1, 0, 14, 13,
 	4, 3, 2, 16, 15,
 	4, 4, 3, 17, 16,
@@ -18056,7 +18056,7 @@ Sint16 poly_000399E4[] = {
 	3, 25, 61, 12
 };
 
-Sint16 poly_00039A32[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00039A32[] = {
 	4, 2, 1, 15, 14,
 	4, 5, 4, 18, 17,
 	4, 7, 6, 20, 19,
@@ -18064,13 +18064,13 @@ Sint16 poly_00039A32[] = {
 	4, 12, 11, 25, 24
 };
 
-Sint16 poly_00039A64[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00039A64[] = {
 	3, 6, 7, 59,
 	0x8000u | 11, 8, 58, 9, 57, 10, 56, 11, 55, 12, 54, 61,
 	13, 54, 0, 55, 1, 56, 2, 57, 3, 58, 4, 59, 5, 6
 };
 
-Sint16 poly_00039AA0[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00039AA0[] = {
 	0x8000u | 8, 13, 14, 26, 27, 38, 28, 39, 40,
 	0x8000u | 5, 16, 28, 15, 27, 14,
 	0x8000u | 5, 40, 28, 29, 16, 17,
@@ -18078,14 +18078,14 @@ Sint16 poly_00039AA0[] = {
 	0x8000u | 15, 60, 13, 64, 26, 37, 38, 50, 39, 51, 40, 41, 29, 30, 17, 18
 };
 
-Sint16 poly_00039AF8[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00039AF8[] = {
 	6, 19, 18, 31, 30, 42, 41,
 	4, 49, 44, 66, 43,
 	0x8000u | 13, 62, 50, 48, 51, 49, 41, 66, 42, 43, 31, 32, 19, 20,
 	0x8000u | 6, 44, 52, 49, 53, 48, 62
 };
 
-Sint16 poly_00039B3A[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00039B3A[] = {
 	10, 21, 34, 22, 35, 23, 36, 24, 67, 25, 61,
 	4, 44, 33, 43, 32,
 	4, 52, 53, 47, 68,
@@ -18093,17 +18093,17 @@ Sint16 poly_00039B3A[] = {
 	0x8000u | 15, 61, 69, 67, 68, 36, 47, 46, 52, 45, 44, 34, 33, 21, 32, 20
 };
 
-Sint16 poly_00039B90[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00039B90[] = {
 	4, 58, 59, 8, 7
 };
 
-NJS_TEX uv_00039B9C[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00039B9C[] = {
 	{ 255, 255 },
 	{ 255, 0 },
 	{ 1, 1 }
 };
 
-NJS_TEX uv_00039BA8[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00039BA8[] = {
 	{ 510, 0 },
 	{ 0 },
 	{ 510, 255 },
@@ -18137,7 +18137,7 @@ NJS_TEX uv_00039BA8[] = {
 	{ 0 }
 };
 
-NJS_TEX uv_00039C24[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00039C24[] = {
 	{ 510, 0 },
 	{ 0 },
 	{ 510, 254 },
@@ -18160,7 +18160,7 @@ NJS_TEX uv_00039C24[] = {
 	{ 0, 255 }
 };
 
-NJS_TEX uv_00039C74[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00039C74[] = {
 	{ 242, -1016 },
 	{ 420, -1019 },
 	{ 253, -829 },
@@ -18190,7 +18190,7 @@ NJS_TEX uv_00039C74[] = {
 	{ 242, -1016 }
 };
 
-NJS_TEX uv_00039CE0[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00039CE0[] = {
 	{ 484, -200 },
 	{ 400, -200 },
 	{ 402, -150 },
@@ -18232,7 +18232,7 @@ NJS_TEX uv_00039CE0[] = {
 	{ 57, -200 }
 };
 
-NJS_TEX uv_00039D7C[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00039D7C[] = {
 	{ 162, -255 },
 	{ 254, -227 },
 	{ 166, -208 },
@@ -18264,7 +18264,7 @@ NJS_TEX uv_00039D7C[] = {
 	{ 157, 254 }
 };
 
-NJS_TEX uv_00039DF0[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00039DF0[] = {
 	{ 420, 31 },
 	{ 344, 79 },
 	{ 340, 31 },
@@ -18305,14 +18305,14 @@ NJS_TEX uv_00039DF0[] = {
 	{ 516, 31 }
 };
 
-NJS_TEX uv_00039E88[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00039E88[] = {
 	{ 255, 0 },
 	{ 255, 255 },
 	{ 0 },
 	{ 0, 255 }
 };
 
-NJS_MESHSET_SADX meshlist_00039E98[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00039E98[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 1, poly_000399DC, NULL, NULL, NULL, uv_00039B9C, NULL },
 	{ NJD_MESHSET_TRIMESH | 1, 8, poly_000399E4, NULL, NULL, NULL, uv_00039BA8, NULL },
 	{ NJD_MESHSET_TRIMESH | 2, 5, poly_00039A32, NULL, NULL, NULL, uv_00039C24, NULL },
@@ -18323,7 +18323,7 @@ NJS_MESHSET_SADX meshlist_00039E98[] = {
 	{ NJD_MESHSET_TRIMESH | 7, 1, poly_00039B90, NULL, NULL, NULL, uv_00039E88, NULL }
 };
 
-NJS_VECTOR vertex_00039F58[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_00039F58[] = {
 	{ 24.33349f, 23, -59.45849f },
 	{ 13.63818f, 23, -45.52856f },
 	{ 0.529785f, 23, -34.49927f },
@@ -18396,7 +18396,7 @@ NJS_VECTOR vertex_00039F58[] = {
 	{ 66.17431f, -11, -0.499634f }
 };
 
-NJS_VECTOR normal_0003A2A0[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_0003A2A0[] = {
 	{ -0.728269f, 0.5399719f, -0.421965f },
 	{ -0.424361f, 0.809468f, -0.405808f },
 	{ -0.282232f, 0.823866f, -0.491519f },
@@ -18469,10 +18469,10 @@ NJS_VECTOR normal_0003A2A0[] = {
 	{ 0.198601f, 0.079492f, 0.976851f }
 };
 
-NJS_MODEL_SADX attach_0003A5E8 = { vertex_00039F58, normal_0003A2A0, LengthOfArray<Sint32>(vertex_00039F58), meshlist_00039E98, matlist_0003993C, LengthOfArray<Uint16>(meshlist_00039E98), LengthOfArray<Uint16>(matlist_0003993C), { 12.44922f, -17.49998f, -15.87134f }, 72.39118f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_0003A5E8 = { vertex_00039F58, normal_0003A2A0, LengthOfArray<Sint32>(vertex_00039F58), meshlist_00039E98, matlist_0003993C, LengthOfArray<Uint16>(meshlist_00039E98), LengthOfArray<Uint16>(matlist_0003993C), { 12.44922f, -17.49998f, -15.87134f }, 72.39118f, NULL };
 
-NJS_OBJECT object_0003A610 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0003A5E8, 6101.107f, 137, 1226.415f, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_0003A644[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_0003A610 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0003A5E8, 6101.107f, 137, 1226.415f, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_0003A644[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 27, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 17, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 26, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
@@ -18482,7 +18482,7 @@ NJS_MATERIAL matlist_0003A644[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 11, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_0003A6D0[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0003A6D0[] = {
 	4, 12, 11, 1, 0,
 	4, 13, 12, 2, 1,
 	4, 59, 66, 2, 13,
@@ -18493,7 +18493,7 @@ Sint16 poly_0003A6D0[] = {
 	4, 53, 67, 59, 66
 };
 
-Sint16 poly_0003A720[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0003A720[] = {
 	5, 55, 58, 54, 66, 67,
 	16, 21, 49, 20, 28, 19, 27, 18, 26, 17, 25, 16, 48, 15, 33, 14, 69,
 	0x8000u | 9, 35, 34, 63, 31, 62, 32, 61, 51, 60,
@@ -18505,7 +18505,7 @@ Sint16 poly_0003A720[] = {
 	0x8000u | 11, 13, 12, 57, 56, 24, 23, 30, 65, 29, 64, 50
 };
 
-Sint16 poly_0003A7C2[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0003A7C2[] = {
 	4, 41, 39, 34, 35,
 	4, 43, 41, 31, 34,
 	4, 71, 37, 55, 36,
@@ -18513,14 +18513,14 @@ Sint16 poly_0003A7C2[] = {
 	3, 70, 54, 68
 };
 
-Sint16 poly_0003A7F2[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0003A7F2[] = {
 	3, 40, 43, 44,
 	5, 37, 41, 42, 43, 40,
 	9, 68, 69, 70, 47, 71, 38, 37, 39, 41,
 	0x8000u | 5, 40, 50, 44, 52, 51
 };
 
-Sint16 poly_0003A826[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0003A826[] = {
 	4, 3, 14, 46, 69,
 	4, 16, 15, 5, 4,
 	4, 18, 17, 7, 6,
@@ -18528,7 +18528,7 @@ Sint16 poly_0003A826[] = {
 	4, 45, 68, 53, 67
 };
 
-Sint16 poly_0003A858[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0003A858[] = {
 	3, 29, 40, 50,
 	4, 42, 40, 30, 29,
 	3, 32, 51, 44,
@@ -18539,11 +18539,11 @@ Sint16 poly_0003A858[] = {
 	4, 54, 70, 55, 71
 };
 
-Sint16 poly_0003A8A2[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0003A8A2[] = {
 	4, 46, 69, 45, 68
 };
 
-NJS_TEX uv_0003A8AC[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0003A8AC[] = {
 	{ 510, 0 },
 	{ 0 },
 	{ 510, 255 },
@@ -18578,7 +18578,7 @@ NJS_TEX uv_0003A8AC[] = {
 	{ 0 }
 };
 
-NJS_TEX uv_0003A92C[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0003A92C[] = {
 	{ 190, -5 },
 	{ 210, 93 },
 	{ 77, 129 },
@@ -18653,7 +18653,7 @@ NJS_TEX uv_0003A92C[] = {
 	{ 618, -202 }
 };
 
-NJS_TEX uv_0003AA4C[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0003AA4C[] = {
 	{ 1020, 0 },
 	{ 0 },
 	{ 1020, 255 },
@@ -18675,7 +18675,7 @@ NJS_TEX uv_0003AA4C[] = {
 	{ 1020, 70 }
 };
 
-NJS_TEX uv_0003AA98[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0003AA98[] = {
 	{ 692, -81 },
 	{ 150, -252 },
 	{ 84, -21 },
@@ -18700,7 +18700,7 @@ NJS_TEX uv_0003AA98[] = {
 	{ 0, 245 }
 };
 
-NJS_TEX uv_0003AAF0[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0003AAF0[] = {
 	{ 510, 255 },
 	{ 508, 0 },
 	{ 0, 255 },
@@ -18723,7 +18723,7 @@ NJS_TEX uv_0003AAF0[] = {
 	{ 0 }
 };
 
-NJS_TEX uv_0003AB40[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0003AB40[] = {
 	{ 764, 255 },
 	{ 764, 0 },
 	{ 0, 84 },
@@ -18755,14 +18755,14 @@ NJS_TEX uv_0003AB40[] = {
 	{ 0 }
 };
 
-NJS_TEX uv_0003ABB4[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0003ABB4[] = {
 	{ 2040, 255 },
 	{ 2040, 0 },
 	{ 0, 255 },
 	{ 0 }
 };
 
-NJS_MESHSET_SADX meshlist_0003ABC4[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_0003ABC4[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 8, poly_0003A6D0, NULL, NULL, NULL, uv_0003A8AC, NULL },
 	{ NJD_MESHSET_TRIMESH | 1, 9, poly_0003A720, NULL, NULL, NULL, uv_0003A92C, NULL },
 	{ NJD_MESHSET_TRIMESH | 2, 5, poly_0003A7C2, NULL, NULL, NULL, uv_0003AA4C, NULL },
@@ -18772,7 +18772,7 @@ NJS_MESHSET_SADX meshlist_0003ABC4[] = {
 	{ NJD_MESHSET_TRIMESH | 6, 1, poly_0003A8A2, NULL, NULL, NULL, uv_0003ABB4, NULL }
 };
 
-NJS_VECTOR vertex_0003AC6C[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_0003AC6C[] = {
 	{ 9.515625f, -60, -32.87598f },
 	{ -17.61084f, -60, -28.31262f },
 	{ -45.62011f, -60, -31.04419f },
@@ -18847,7 +18847,7 @@ NJS_VECTOR vertex_0003AC6C[] = {
 	{ -81.7998f, -26.56968f, -6.1427f }
 };
 
-NJS_VECTOR normal_0003AFCC[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_0003AFCC[] = {
 	{ -0.149975f, 0.450392f, -0.880145f },
 	{ -0.02474f, 0.453077f, -0.8911279f },
 	{ 0.171605f, 0.513976f, -0.8404649f },
@@ -18922,10 +18922,10 @@ NJS_VECTOR normal_0003AFCC[] = {
 	{ -0.445766f, 0.844389f, -0.297153f }
 };
 
-NJS_MODEL_SADX attach_0003B32C = { vertex_0003AC6C, normal_0003AFCC, LengthOfArray<Sint32>(vertex_0003AC6C), meshlist_0003ABC4, matlist_0003A644, LengthOfArray<Uint16>(meshlist_0003ABC4), LengthOfArray<Uint16>(matlist_0003A644), { -43.55761f, -21.5f, 15.87463f }, 130.8095f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_0003B32C = { vertex_0003AC6C, normal_0003AFCC, LengthOfArray<Sint32>(vertex_0003AC6C), meshlist_0003ABC4, matlist_0003A644, LengthOfArray<Uint16>(meshlist_0003ABC4), LengthOfArray<Uint16>(matlist_0003A644), { -43.55761f, -21.5f, 15.87463f }, 130.8095f, NULL };
 
-NJS_OBJECT object_0003B354 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0003B32C, 6087, 62, 1159, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_0003B388[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_0003B354 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0003B32C, 6087, 62, 1159, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_0003B388[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 15, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 24, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 33, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_FLIP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
@@ -18933,7 +18933,7 @@ NJS_MATERIAL matlist_0003B388[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 34, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_FLIP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_0003B3EC[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0003B3EC[] = {
 	4, 33, 37, 67, 41,
 	4, 37, 57, 41, 59,
 	4, 23, 27, 28, 32,
@@ -18972,7 +18972,7 @@ Sint16 poly_0003B3EC[] = {
 	3, 89, 45, 47
 };
 
-Sint16 poly_0003B550[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0003B550[] = {
 	4, 57, 36, 59, 40,
 	4, 35, 56, 39, 58,
 	4, 53, 26, 55, 31,
@@ -18993,7 +18993,7 @@ Sint16 poly_0003B550[] = {
 	4, 64, 65, 40, 59
 };
 
-Sint16 poly_0003B608[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0003B608[] = {
 	4, 36, 35, 40, 39,
 	4, 31, 30, 36, 35,
 	4, 26, 25, 31, 30,
@@ -19004,7 +19004,7 @@ Sint16 poly_0003B608[] = {
 	4, 63, 64, 39, 40
 };
 
-Sint16 poly_0003B658[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0003B658[] = {
 	8, 79, 78, 80, 77, 69, 82, 83, 68,
 	0x8000u | 7, 77, 82, 76, 70, 73, 7, 3,
 	3, 75, 79, 81,
@@ -19015,11 +19015,11 @@ Sint16 poly_0003B658[] = {
 	4, 72, 4, 74, 0
 };
 
-Sint16 poly_0003B6C4[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0003B6C4[] = {
 	4, 2, 1, 6, 5
 };
 
-NJS_TEX uv_0003B6D0[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0003B6D0[] = {
 	{ 0 },
 	{ 0, 255 },
 	{ 255, 0 },
@@ -19164,7 +19164,7 @@ NJS_TEX uv_0003B6D0[] = {
 	{ 0, 255 }
 };
 
-NJS_TEX uv_0003B908[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0003B908[] = {
 	{ 0 },
 	{ 0, 255 },
 	{ 255, 0 },
@@ -19241,7 +19241,7 @@ NJS_TEX uv_0003B908[] = {
 	{ 0 }
 };
 
-NJS_TEX uv_0003BA30[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0003BA30[] = {
 	{ 0, 255 },
 	{ 510, 255 },
 	{ 0 },
@@ -19276,7 +19276,7 @@ NJS_TEX uv_0003BA30[] = {
 	{ 0, 255 }
 };
 
-NJS_TEX uv_0003BAB0[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0003BAB0[] = {
 	{ 255, 183 },
 	{ 152, 254 },
 	{ 127, 196 },
@@ -19325,14 +19325,14 @@ NJS_TEX uv_0003BAB0[] = {
 	{ 255, 8 }
 };
 
-NJS_TEX uv_0003BB68[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0003BB68[] = {
 	{ 0, 255 },
 	{ 510, 255 },
 	{ 0 },
 	{ 510, 0 }
 };
 
-NJS_MESHSET_SADX meshlist_0003BB78[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_0003BB78[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 36, poly_0003B3EC, NULL, NULL, NULL, uv_0003B6D0, NULL },
 	{ NJD_MESHSET_TRIMESH | 1, 18, poly_0003B550, NULL, NULL, NULL, uv_0003B908, NULL },
 	{ NJD_MESHSET_TRIMESH | 2, 8, poly_0003B608, NULL, NULL, NULL, uv_0003BA30, NULL },
@@ -19340,7 +19340,7 @@ NJS_MESHSET_SADX meshlist_0003BB78[] = {
 	{ NJD_MESHSET_TRIMESH | 4, 1, poly_0003B6C4, NULL, NULL, NULL, uv_0003BB68, NULL }
 };
 
-NJS_VECTOR vertex_0003BBF0[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_0003BBF0[] = {
 	{ 24.95703f, 34.79264f, 5.096497f },
 	{ 10.00037f, 40, 4.000061f },
 	{ -20, 40, 5.5f },
@@ -19433,7 +19433,7 @@ NJS_VECTOR vertex_0003BBF0[] = {
 	{ -26.91916f, 51.56632f, -24.94383f }
 };
 
-NJS_VECTOR normal_0003C028[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_0003C028[] = {
 	{ 0.972061f, 0.208276f, -0.108255f },
 	{ -0.503966f, 0.863504f, -0.019452f },
 	{ 0.49703f, 0.867641f, -0.012629f },
@@ -19526,46 +19526,46 @@ NJS_VECTOR normal_0003C028[] = {
 	{ -0.57818f, 0.775543f, -0.253457f }
 };
 
-NJS_MODEL_SADX attach_0003C460 = { vertex_0003BBF0, normal_0003C028, LengthOfArray<Sint32>(vertex_0003BBF0), meshlist_0003BB78, matlist_0003B388, LengthOfArray<Uint16>(meshlist_0003BB78), LengthOfArray<Uint16>(matlist_0003B388), { -4.516907f, -12.86697f, -112.8095f }, 141.04f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_0003C460 = { vertex_0003BBF0, normal_0003C028, LengthOfArray<Sint32>(vertex_0003BBF0), meshlist_0003BB78, matlist_0003B388, LengthOfArray<Uint16>(meshlist_0003BB78), LengthOfArray<Uint16>(matlist_0003B388), { -4.516907f, -12.86697f, -112.8095f }, 141.04f, NULL };
 
-NJS_OBJECT object_0003C488 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0003C460, 1879, 158, 649, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_0003C4BC[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_0003C488 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0003C460, 1879, 158, 649, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_0003C4BC[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 14, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_0003C4D0[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0003C4D0[] = {
 	4, 3, 2, 1, 0
 };
 
-NJS_TEX uv_0003C4DC[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0003C4DC[] = {
 	{ 1529, -255 },
 	{ 0, -255 },
 	{ 1529, 255 },
 	{ 0, 255 }
 };
 
-NJS_MESHSET_SADX meshlist_0003C4EC[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_0003C4EC[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 1, poly_0003C4D0, NULL, NULL, NULL, uv_0003C4DC, NULL }
 };
 
-NJS_VECTOR vertex_0003C504[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_0003C504[] = {
 	{ 24.01001f, -3, -65.25896f },
 	{ 115.3645f, -3, -105.9326f },
 	{ 24.01001f, 20, -65.25896f },
 	{ 115.3645f, 20, -105.9326f }
 };
 
-NJS_VECTOR normal_0003C534[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_0003C534[] = {
 	{ 0.406737f, 0, 0.913545f },
 	{ 0.406737f, 0, 0.913545f },
 	{ 0.406737f, 0, 0.913545f },
 	{ 0.406737f, 0, 0.913545f }
 };
 
-NJS_MODEL_SADX attach_0003C564 = { vertex_0003C504, normal_0003C534, LengthOfArray<Sint32>(vertex_0003C504), meshlist_0003C4EC, matlist_0003C4BC, LengthOfArray<Uint16>(meshlist_0003C4EC), LengthOfArray<Uint16>(matlist_0003C4BC), { 69.68728f, 8.5f, -85.59579f }, 50, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_0003C564 = { vertex_0003C504, normal_0003C534, LengthOfArray<Sint32>(vertex_0003C504), meshlist_0003C4EC, matlist_0003C4BC, LengthOfArray<Uint16>(meshlist_0003C4EC), LengthOfArray<Uint16>(matlist_0003C4BC), { 69.68728f, 8.5f, -85.59579f }, 50, NULL };
 
-NJS_OBJECT object_0003C58C = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0003C564, 0, -20, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_0003C5C0[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_0003C58C = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0003C564, 0, -20, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_0003C5C0[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 17, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 17, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 15, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
@@ -19576,7 +19576,7 @@ NJS_MATERIAL matlist_0003C5C0[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 31, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_0003C660[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0003C660[] = {
 	13, 52, 125, 49, 54, 47, 56, 45, 58, 43, 60, 41, 62, 39,
 	13, 80, 52, 81, 49, 84, 47, 86, 45, 87, 43, 18, 41, 39,
 	0x8000u | 8, 78, 48, 82, 46, 83, 44, 85, 118,
@@ -19601,7 +19601,7 @@ Sint16 poly_0003C660[] = {
 	0x8000u | 5, 94, 88, 5, 90, 1
 };
 
-Sint16 poly_0003C820[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0003C820[] = {
 	6, 126, 127, 53, 107, 125, 128,
 	4, 51, 53, 52, 125,
 	0x8000u | 5, 78, 51, 50, 53, 126,
@@ -19610,7 +19610,7 @@ Sint16 poly_0003C820[] = {
 	3, 91, 0, 4
 };
 
-Sint16 poly_0003C86C[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0003C86C[] = {
 	4, 153, 119, 161, 121,
 	4, 167, 152, 120, 154,
 	4, 135, 1, 137, 5,
@@ -19633,7 +19633,7 @@ Sint16 poly_0003C86C[] = {
 	4, 154, 162, 120, 122
 };
 
-Sint16 poly_0003C934[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0003C934[] = {
 	4, 124, 164, 77, 166,
 	4, 163, 123, 165, 76,
 	4, 122, 162, 124, 164,
@@ -19642,11 +19642,11 @@ Sint16 poly_0003C934[] = {
 	4, 159, 133, 76, 165
 };
 
-Sint16 poly_0003C970[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0003C970[] = {
 	4, 164, 163, 166, 165
 };
 
-Sint16 poly_0003C97A[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0003C97A[] = {
 	4, 162, 161, 164, 163,
 	4, 34, 33, 162, 161,
 	4, 32, 31, 34, 33,
@@ -19660,7 +19660,7 @@ Sint16 poly_0003C97A[] = {
 	4, 28, 27, 32, 31
 };
 
-Sint16 poly_0003C9E8[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0003C9E8[] = {
 	3, 162, 154, 34,
 	3, 161, 33, 153,
 	4, 31, 151, 33, 153,
@@ -19683,11 +19683,11 @@ Sint16 poly_0003C9E8[] = {
 	4, 150, 28, 152, 32
 };
 
-Sint16 poly_0003CAAC[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0003CAAC[] = {
 	4, 133, 134, 165, 166
 };
 
-NJS_TEX uv_0003CAB8[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0003CAB8[] = {
 	{ 430, 184 },
 	{ 414, 218 },
 	{ 410, 184 },
@@ -19892,7 +19892,7 @@ NJS_TEX uv_0003CAB8[] = {
 	{ 476, 7 }
 };
 
-NJS_TEX uv_0003CDE0[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0003CDE0[] = {
 	{ 70, 182 },
 	{ 92, 255 },
 	{ 128, 182 },
@@ -19927,7 +19927,7 @@ NJS_TEX uv_0003CDE0[] = {
 	{ 0, -251 }
 };
 
-NJS_TEX uv_0003CE60[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0003CE60[] = {
 	{ 0 },
 	{ 0, 255 },
 	{ 255, 165 },
@@ -20010,7 +20010,7 @@ NJS_TEX uv_0003CE60[] = {
 	{ 0, 255 }
 };
 
-NJS_TEX uv_0003CFA0[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0003CFA0[] = {
 	{ 510, 255 },
 	{ 510, 0 },
 	{ 0, 255 },
@@ -20037,14 +20037,14 @@ NJS_TEX uv_0003CFA0[] = {
 	{ 0 }
 };
 
-NJS_TEX uv_0003D000[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0003D000[] = {
 	{ 0 },
 	{ 510, 0 },
 	{ 0, 255 },
 	{ 510, 255 }
 };
 
-NJS_TEX uv_0003D010[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0003D010[] = {
 	{ 510, 255 },
 	{ 0, 255 },
 	{ 510, 0 },
@@ -20091,7 +20091,7 @@ NJS_TEX uv_0003D010[] = {
 	{ 0 }
 };
 
-NJS_TEX uv_0003D0C0[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0003D0C0[] = {
 	{ 0, 217 },
 	{ 510, 0 },
 	{ 510, 255 },
@@ -20172,14 +20172,14 @@ NJS_TEX uv_0003D0C0[] = {
 	{ 0, 255 }
 };
 
-NJS_TEX uv_0003D1F8[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0003D1F8[] = {
 	{ 0 },
 	{ 765, 0 },
 	{ 0, 255 },
 	{ 765, 255 }
 };
 
-NJS_MESHSET_SADX meshlist_0003D208[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_0003D208[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 22, poly_0003C660, NULL, NULL, NULL, uv_0003CAB8, NULL },
 	{ NJD_MESHSET_TRIMESH | 1, 6, poly_0003C820, NULL, NULL, NULL, uv_0003CDE0, NULL },
 	{ NJD_MESHSET_TRIMESH | 2, 20, poly_0003C86C, NULL, NULL, NULL, uv_0003CE60, NULL },
@@ -20190,7 +20190,7 @@ NJS_MESHSET_SADX meshlist_0003D208[] = {
 	{ NJD_MESHSET_TRIMESH | 7, 1, poly_0003CAAC, NULL, NULL, NULL, uv_0003D1F8, NULL }
 };
 
-NJS_VECTOR vertex_0003D2C8[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_0003D2C8[] = {
 	{ 1.456787f, 32.61172f, -10.31967f },
 	{ 25.00757f, 29.26607f, -11.00134f },
 	{ 17.88391f, 34.05265f, -14.91824f },
@@ -20361,7 +20361,7 @@ NJS_VECTOR vertex_0003D2C8[] = {
 	{ 120.6693f, -36.41586f, -201.6336f }
 };
 
-NJS_VECTOR normal_0003DAA8[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_0003DAA8[] = {
 	{ -0.195978f, -0.060302f, 0.978752f },
 	{ 0.8048339f, 0.041616f, 0.592038f },
 	{ -0.5358059f, 0.701616f, -0.469731f },
@@ -20532,10 +20532,10 @@ NJS_VECTOR normal_0003DAA8[] = {
 	{ -0.109576f, -0.068685f, -0.9916019f }
 };
 
-NJS_MODEL_SADX attach_0003E288 = { vertex_0003D2C8, normal_0003DAA8, LengthOfArray<Sint32>(vertex_0003D2C8), meshlist_0003D208, matlist_0003C5C0, LengthOfArray<Uint16>(meshlist_0003D208), LengthOfArray<Uint16>(matlist_0003C5C0), { 125.92f, -10.74828f, -110.1598f }, 176.9118f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_0003E288 = { vertex_0003D2C8, normal_0003DAA8, LengthOfArray<Sint32>(vertex_0003D2C8), meshlist_0003D208, matlist_0003C5C0, LengthOfArray<Uint16>(meshlist_0003D208), LengthOfArray<Uint16>(matlist_0003C5C0), { 125.92f, -10.74828f, -110.1598f }, 176.9118f, NULL };
 
-NJS_OBJECT object_0003E2B0 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0003E288, 1885, 43, 441, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_0003E2E4[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_0003E2B0 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0003E288, 1885, 43, 441, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_0003E2E4[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 37, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_FLAG_DOUBLE_SIDE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 38, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 42, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
@@ -20546,14 +20546,14 @@ NJS_MATERIAL matlist_0003E2E4[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 41, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_0003E384[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0003E384[] = {
 	4, 4, 7, 0, 3,
 	4, 5, 4, 1, 0,
 	4, 6, 5, 2, 1,
 	4, 7, 6, 3, 2
 };
 
-Sint16 poly_0003E3AC[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0003E3AC[] = {
 	0x8000u | 5, 9, 8, 10, 30, 31,
 	0x8000u | 6, 10, 11, 9, 29, 28, 23,
 	4, 26, 27, 24, 25,
@@ -20567,7 +20567,7 @@ Sint16 poly_0003E3AC[] = {
 	4, 27, 35, 25, 33
 };
 
-Sint16 poly_0003E42E[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0003E42E[] = {
 	4, 87, 85, 59, 57,
 	4, 86, 87, 58, 59,
 	4, 84, 86, 56, 58,
@@ -20586,14 +20586,14 @@ Sint16 poly_0003E42E[] = {
 	4, 83, 81, 63, 61
 };
 
-Sint16 poly_0003E4CE[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0003E4CE[] = {
 	4, 9, 8, 25, 24,
 	4, 25, 33, 21, 20,
 	4, 33, 32, 13, 12,
 	4, 17, 16, 24, 32
 };
 
-Sint16 poly_0003E4F6[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0003E4F6[] = {
 	10, 36, 40, 16, 42, 32, 43, 12, 41, 36, 40,
 	10, 33, 44, 20, 46, 38, 47, 13, 45, 33, 44,
 	4, 50, 48, 9, 28,
@@ -20601,28 +20601,28 @@ Sint16 poly_0003E4F6[] = {
 	10, 24, 53, 17, 54, 30, 55, 8, 52, 24, 53
 };
 
-Sint16 poly_0003E554[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0003E554[] = {
 	10, 52, 58, 53, 59, 54, 57, 55, 56, 52, 58,
 	10, 49, 62, 51, 63, 50, 61, 48, 60, 49, 62,
 	10, 45, 66, 44, 67, 46, 65, 47, 64, 45, 66,
 	10, 40, 70, 42, 71, 43, 69, 41, 68, 40, 70
 };
 
-Sint16 poly_0003E5AC[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0003E5AC[] = {
 	12, 90, 91, 89, 88, 98, 97, 102, 101, 106, 105, 109, 110,
 	12, 93, 95, 92, 94, 99, 100, 103, 104, 107, 108, 112, 113,
 	14, 110, 111, 109, 113, 106, 108, 102, 104, 98, 100, 89, 94, 90, 95,
 	14, 113, 111, 112, 110, 107, 105, 103, 101, 99, 97, 92, 88, 93, 91
 };
 
-Sint16 poly_0003E61C[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0003E61C[] = {
 	3, 93, 91, 96,
 	3, 90, 95, 96,
 	3, 96, 91, 90,
 	3, 96, 95, 93
 };
 
-NJS_TEX uv_0003E63C[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0003E63C[] = {
 	{ 2550, 0 },
 	{ 0 },
 	{ 2550, 255 },
@@ -20641,7 +20641,7 @@ NJS_TEX uv_0003E63C[] = {
 	{ 0, 255 }
 };
 
-NJS_TEX uv_0003E67C[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0003E67C[] = {
 	{ 1904, 254 },
 	{ 135, 254 },
 	{ 135, 0 },
@@ -20698,7 +20698,7 @@ NJS_TEX uv_0003E67C[] = {
 	{ 0, 255 }
 };
 
-NJS_TEX uv_0003E754[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0003E754[] = {
 	{ 0, 255 },
 	{ 765, 255 },
 	{ 0 },
@@ -20765,7 +20765,7 @@ NJS_TEX uv_0003E754[] = {
 	{ 765, 0 }
 };
 
-NJS_TEX uv_0003E854[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0003E854[] = {
 	{ 0 },
 	{ 2040, 0 },
 	{ 0, 255 },
@@ -20784,7 +20784,7 @@ NJS_TEX uv_0003E854[] = {
 	{ 2040, 255 }
 };
 
-NJS_TEX uv_0003E894[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0003E894[] = {
 	{ 0 },
 	{ 255, 255 },
 	{ 255, 0 },
@@ -20829,7 +20829,7 @@ NJS_TEX uv_0003E894[] = {
 	{ 0, 255 }
 };
 
-NJS_TEX uv_0003E93C[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0003E93C[] = {
 	{ 198, -2096 },
 	{ 0, -2062 },
 	{ 33, -2096 },
@@ -20872,7 +20872,7 @@ NJS_TEX uv_0003E93C[] = {
 	{ 231, 23 }
 };
 
-NJS_TEX uv_0003E9DC[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0003E9DC[] = {
 	{ 0, 255 },
 	{ 1019, 255 },
 	{ 72, 127 },
@@ -20927,7 +20927,7 @@ NJS_TEX uv_0003E9DC[] = {
 	{ 0, 255 }
 };
 
-NJS_TEX uv_0003EAAC[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0003EAAC[] = {
 	{ 764, 254 },
 	{ 0, 254 },
 	{ 382, -255 },
@@ -20942,7 +20942,7 @@ NJS_TEX uv_0003EAAC[] = {
 	{ 0, 254 }
 };
 
-NJS_MESHSET_SADX meshlist_0003EADC[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_0003EADC[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 4, poly_0003E384, NULL, NULL, NULL, uv_0003E63C, NULL },
 	{ NJD_MESHSET_TRIMESH | 1, 11, poly_0003E3AC, NULL, NULL, NULL, uv_0003E67C, NULL },
 	{ NJD_MESHSET_TRIMESH | 2, 16, poly_0003E42E, NULL, NULL, NULL, uv_0003E754, NULL },
@@ -20953,7 +20953,7 @@ NJS_MESHSET_SADX meshlist_0003EADC[] = {
 	{ NJD_MESHSET_TRIMESH | 7, 4, poly_0003E61C, NULL, NULL, NULL, uv_0003EAAC, NULL }
 };
 
-NJS_VECTOR vertex_0003EB9C[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_0003EB9C[] = {
 	{ 41, -3, 41 },
 	{ 41, -3, -41 },
 	{ -41, -3, -41 },
@@ -21070,7 +21070,7 @@ NJS_VECTOR vertex_0003EB9C[] = {
 	{ 7.666687f, 35.33332f, -7.666626f }
 };
 
-NJS_VECTOR normal_0003F0F4[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_0003F0F4[] = {
 	{ 0.680414f, 0.272166f, 0.680414f },
 	{ 0.680414f, 0.272166f, -0.680414f },
 	{ -0.680414f, 0.272166f, -0.680414f },
@@ -21187,10 +21187,10 @@ NJS_VECTOR normal_0003F0F4[] = {
 	{ 0.427632f, 0.796408f, -0.427627f }
 };
 
-NJS_MODEL_SADX attach_0003F64C = { vertex_0003EB9C, normal_0003F0F4, LengthOfArray<Sint32>(vertex_0003EB9C), meshlist_0003EADC, matlist_0003E2E4, LengthOfArray<Uint16>(meshlist_0003EADC), LengthOfArray<Uint16>(matlist_0003E2E4), { 0 }, 58.69412f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_0003F64C = { vertex_0003EB9C, normal_0003F0F4, LengthOfArray<Sint32>(vertex_0003EB9C), meshlist_0003EADC, matlist_0003E2E4, LengthOfArray<Uint16>(meshlist_0003EADC), LengthOfArray<Uint16>(matlist_0003E2E4), { 0 }, 58.69412f, NULL };
 
-NJS_OBJECT object_0003F674 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0003F64C, -640, 88, 1550, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_0003F6A8[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_0003F674 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0003F64C, -640, 88, 1550, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_0003F6A8[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 43, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 3, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 0, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
@@ -21204,7 +21204,7 @@ NJS_MATERIAL matlist_0003F6A8[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 30, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_0003F784[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0003F784[] = {
 	0x8000u | 6, 141, 139, 145, 144, 140, 138,
 	0x8000u | 5, 154, 518, 160, 517, 155,
 	0x8000u | 6, 97, 98, 105, 104, 96, 99,
@@ -21318,7 +21318,7 @@ Sint16 poly_0003F784[] = {
 	6, 494, 329, 491, 346, 327, 187
 };
 
-Sint16 poly_0003FCE8[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0003FCE8[] = {
 	0x8000u | 6, 161, 175, 149, 12, 146, 27,
 	0x8000u | 6, 161, 151, 175, 152, 13, 28,
 	0x8000u | 6, 51, 55, 177, 61, 6, 44,
@@ -21337,7 +21337,7 @@ Sint16 poly_0003FCE8[] = {
 	0x8000u | 6, 136, 139, 173, 141, 12, 27
 };
 
-Sint16 poly_0003FDC8[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0003FDC8[] = {
 	3, 155, 28, 13,
 	4, 513, 512, 3, 2,
 	4, 512, 514, 2, 1,
@@ -21346,18 +21346,18 @@ Sint16 poly_0003FDC8[] = {
 	4, 14, 517, 13, 155
 };
 
-Sint16 poly_0003FE06[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0003FE06[] = {
 	4, 508, 507, 0, 17,
 	4, 507, 509, 17, 16,
 	4, 511, 510, 15, 14,
 	4, 509, 511, 16, 15
 };
 
-Sint16 poly_0003FE2E[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0003FE2E[] = {
 	3, 14, 510, 517
 };
 
-Sint16 poly_0003FE36[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0003FE36[] = {
 	4, 341, 329, 251, 494,
 	4, 338, 345, 250, 249,
 	4, 343, 337, 257, 258,
@@ -21373,7 +21373,7 @@ Sint16 poly_0003FE36[] = {
 	4, 505, 248, 345, 249
 };
 
-Sint16 poly_0003FEB8[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0003FEB8[] = {
 	0x8000u | 12, 479, 255, 480, 254, 482, 260, 483, 259, 488, 493, 518, 496,
 	0x8000u | 9, 499, 519, 489, 515, 250, 513, 249, 512, 514,
 	3, 249, 248, 514,
@@ -21383,7 +21383,7 @@ Sint16 poly_0003FEB8[] = {
 	0x8000u | 5, 520, 500, 490, 502, 487
 };
 
-Sint16 poly_0003FF22[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0003FF22[] = {
 	4, 465, 466, 464, 463,
 	4, 437, 438, 436, 435,
 	4, 456, 468, 457, 467,
@@ -21411,17 +21411,17 @@ Sint16 poly_0003FF22[] = {
 	4, 444, 461, 445, 460
 };
 
-Sint16 poly_0004001C[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0004001C[] = {
 	11, 517, 510, 494, 511, 251, 509, 252, 507, 253, 508, 247,
 	0x8000u | 5, 517, 495, 494, 498, 491
 };
 
-Sint16 poly_00040040[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00040040[] = {
 	0x8000u | 8, 492, 491, 497, 498, 496, 495, 518, 517,
 	0x8000u | 8, 486, 487, 501, 502, 499, 500, 519, 520
 };
 
-Sint16 poly_00040064[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00040064[] = {
 	6, 347, 350, 381, 380, 478, 455,
 	6, 330, 347, 384, 381, 438, 478,
 	6, 346, 329, 382, 385, 477, 435,
@@ -21477,7 +21477,7 @@ Sint16 poly_00040064[] = {
 	0x8000u | 5, 505, 506, 430, 451, 447
 };
 
-NJS_TEX uv_00040334[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00040334[] = {
 	{ 0 },
 	{ 255, 0 },
 	{ 35, 128 },
@@ -22059,7 +22059,7 @@ NJS_TEX uv_00040334[] = {
 	{ 0, 254 }
 };
 
-NJS_TEX uv_00040C40[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00040C40[] = {
 	{ 765, 0 },
 	{ 765, 255 },
 	{ 550, 0 },
@@ -22158,7 +22158,7 @@ NJS_TEX uv_00040C40[] = {
 	{ 765, 0 }
 };
 
-NJS_TEX uv_00040DC0[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00040DC0[] = {
 	{ 510, 0 },
 	{ 1, 0 },
 	{ 0, 255 },
@@ -22186,7 +22186,7 @@ NJS_TEX uv_00040DC0[] = {
 	{ 2, 1 }
 };
 
-NJS_TEX uv_00040E24[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00040E24[] = {
 	{ 0, 255 },
 	{ 510, 255 },
 	{ 0 },
@@ -22205,13 +22205,13 @@ NJS_TEX uv_00040E24[] = {
 	{ 510, 0 }
 };
 
-NJS_TEX uv_00040E64[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00040E64[] = {
 	{ 174, 199 },
 	{ 164, 1 },
 	{ 0, 112 }
 };
 
-NJS_TEX uv_00040E70[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00040E70[] = {
 	{ 0 },
 	{ 508, 0 },
 	{ 0, 255 },
@@ -22266,7 +22266,7 @@ NJS_TEX uv_00040E70[] = {
 	{ 0, 255 }
 };
 
-NJS_TEX uv_00040F40[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00040F40[] = {
 	{ 0, 255 },
 	{ 15, 80 },
 	{ 223, 224 },
@@ -22315,7 +22315,7 @@ NJS_TEX uv_00040F40[] = {
 	{ 765, 65 }
 };
 
-NJS_TEX uv_00040FF8[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00040FF8[] = {
 	{ 0 },
 	{ 0, 255 },
 	{ 255, 0 },
@@ -22418,7 +22418,7 @@ NJS_TEX uv_00040FF8[] = {
 	{ 0 }
 };
 
-NJS_TEX uv_00041188[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00041188[] = {
 	{ 1410, 231 },
 	{ 1355, 233 },
 	{ 1351, 1 },
@@ -22437,7 +22437,7 @@ NJS_TEX uv_00041188[] = {
 	{ 1530, 0 }
 };
 
-NJS_TEX uv_000411C8[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_000411C8[] = {
 	{ 253, 2 },
 	{ 16, 0 },
 	{ 252, 50 },
@@ -22456,7 +22456,7 @@ NJS_TEX uv_000411C8[] = {
 	{ 0, 237 }
 };
 
-NJS_TEX uv_00041208[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00041208[] = {
 	{ 255, 255 },
 	{ 0, 255 },
 	{ 255, 90 },
@@ -22765,7 +22765,7 @@ NJS_TEX uv_00041208[] = {
 	{ 0 }
 };
 
-NJS_MESHSET_SADX meshlist_000416D0[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_000416D0[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 111, poly_0003F784, NULL, NULL, NULL, uv_00040334, NULL },
 	{ NJD_MESHSET_TRIMESH | 1, 16, poly_0003FCE8, NULL, NULL, NULL, uv_00040C40, NULL },
 	{ NJD_MESHSET_TRIMESH | 2, 6, poly_0003FDC8, NULL, NULL, NULL, uv_00040DC0, NULL },
@@ -22779,7 +22779,7 @@ NJS_MESHSET_SADX meshlist_000416D0[] = {
 	{ NJD_MESHSET_TRIMESH | 10, 53, poly_00040064, NULL, NULL, NULL, uv_00041208, NULL }
 };
 
-NJS_VECTOR vertex_000417D8[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_000417D8[] = {
 	{ -103.1844f, -37.34296f, 83.20562f },
 	{ -83.16406f, 3.397644f, -90.33612f },
 	{ -62.79126f, 3.485165f, -90.12719f },
@@ -23303,7 +23303,7 @@ NJS_VECTOR vertex_000417D8[] = {
 	{ -19.35791f, 7.264862f, -99.03177f }
 };
 
-NJS_VECTOR normal_00043044[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_00043044[] = {
 	{ 0.038111f, 0.311191f, -0.949583f },
 	{ -0.043787f, -0.00021f, 0.999041f },
 	{ -0.028351f, -0.00019f, 0.999598f },
@@ -23827,18 +23827,18 @@ NJS_VECTOR normal_00043044[] = {
 	{ 0.373088f, 0.167105f, -0.912623f }
 };
 
-NJS_MODEL_SADX attach_000448B0 = { vertex_000417D8, normal_00043044, LengthOfArray<Sint32>(vertex_000417D8), meshlist_000416D0, matlist_0003F6A8, LengthOfArray<Uint16>(meshlist_000416D0), LengthOfArray<Uint16>(matlist_0003F6A8), { -0.00061f, 0, 0 }, 147.3289f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_000448B0 = { vertex_000417D8, normal_00043044, LengthOfArray<Sint32>(vertex_000417D8), meshlist_000416D0, matlist_0003F6A8, LengthOfArray<Uint16>(meshlist_000416D0), LengthOfArray<Uint16>(matlist_0003F6A8), { -0.00061f, 0, 0 }, 147.3289f, NULL };
 
-NJS_OBJECT object_000448D8 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_000448B0, 2133.164f, 44.34288f, 903.8088f, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_0004490C[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_000448D8 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_000448B0, 2133.164f, 44.34288f, 903.8088f, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_0004490C[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 44, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_00044920[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00044920[] = {
 	0x8000u | 10, 4, 6, 0, 2, 1, 3, 5, 7, 4, 6
 };
 
-NJS_TEX uv_00044938[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00044938[] = {
 	{ 113, 255 },
 	{ 113, 0 },
 	{ 653, 255 },
@@ -23851,11 +23851,11 @@ NJS_TEX uv_00044938[] = {
 	{ 1642, 0 }
 };
 
-NJS_MESHSET_SADX meshlist_00044960[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00044960[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 1, poly_00044920, NULL, NULL, NULL, uv_00044938, NULL }
 };
 
-NJS_VECTOR vertex_00044978[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_00044978[] = {
 	{ -3, -1, -1 },
 	{ -3, -1, 1 },
 	{ -3, 3, -1 },
@@ -23866,7 +23866,7 @@ NJS_VECTOR vertex_00044978[] = {
 	{ 1, 3, 1 }
 };
 
-NJS_VECTOR normal_000449D8[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_000449D8[] = {
 	{ -0.7071069f, 0, -0.7071069f },
 	{ -0.7071069f, 0, 0.7071069f },
 	{ -0.7071069f, 0, -0.7071069f },
@@ -23877,20 +23877,20 @@ NJS_VECTOR normal_000449D8[] = {
 	{ 0.7071069f, 0, 0.7071069f }
 };
 
-NJS_MODEL_SADX attach_00044A38 = { vertex_00044978, normal_000449D8, LengthOfArray<Sint32>(vertex_00044978), meshlist_00044960, matlist_0004490C, LengthOfArray<Uint16>(meshlist_00044960), LengthOfArray<Uint16>(matlist_0004490C), { -1, 1, 0 }, 2.96026f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00044A38 = { vertex_00044978, normal_000449D8, LengthOfArray<Sint32>(vertex_00044978), meshlist_00044960, matlist_0004490C, LengthOfArray<Uint16>(meshlist_00044960), LengthOfArray<Uint16>(matlist_0004490C), { -1, 1, 0 }, 2.96026f, NULL };
 
-NJS_OBJECT object_00044A60 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6299.157f, 405, 1029.427f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_00044A94[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_00044A60 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6299.157f, 405, 1029.427f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_00044A94[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 44, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_00044AA8[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00044AA8[] = {
 	0x8000u | 6, 6, 4, 7, 5, 3, 1,
 	3, 4, 0, 6,
 	0x8000u | 5, 6, 2, 0, 9, 8
 };
 
-NJS_TEX uv_00044ACC[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00044ACC[] = {
 	{ 1070, 0 },
 	{ 1070, 255 },
 	{ 968, 0 },
@@ -23907,11 +23907,11 @@ NJS_TEX uv_00044ACC[] = {
 	{ 513, 255 }
 };
 
-NJS_MESHSET_SADX meshlist_00044B04[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00044B04[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 3, poly_00044AA8, NULL, NULL, NULL, uv_00044ACC, NULL }
 };
 
-NJS_VECTOR vertex_00044B1C[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_00044B1C[] = {
 	{ -2.029473f, -1, -1.074347f },
 	{ -2.030554f, -1, 0.76683f },
 	{ -2.000609f, 3, -1.001009f },
@@ -23924,7 +23924,7 @@ NJS_VECTOR vertex_00044B1C[] = {
 	{ -4.92828f, 3, -0.009610999f }
 };
 
-NJS_VECTOR normal_00044B94[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_00044B94[] = {
 	{ -0.169404f, 0.01427f, -0.985443f },
 	{ -0.07670499f, 0, 0.997054f },
 	{ -0.168462f, 0.014292f, -0.9856049f },
@@ -23937,20 +23937,20 @@ NJS_VECTOR normal_00044B94[] = {
 	{ -0.344763f, 0.009849f, -0.938638f }
 };
 
-NJS_MODEL_SADX attach_00044C0C = { vertex_00044B1C, normal_00044B94, LengthOfArray<Sint32>(vertex_00044B1C), meshlist_00044B04, matlist_00044A94, LengthOfArray<Uint16>(meshlist_00044B04), LengthOfArray<Uint16>(matlist_00044A94), { -1.96414f, 1, -0.037174f }, 3.438888f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00044C0C = { vertex_00044B1C, normal_00044B94, LengthOfArray<Sint32>(vertex_00044B1C), meshlist_00044B04, matlist_00044A94, LengthOfArray<Uint16>(meshlist_00044B04), LengthOfArray<Uint16>(matlist_00044A94), { -1.96414f, 1, -0.037174f }, 3.438888f, NULL };
 
-NJS_OBJECT object_00044C34 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044C0C, 5953.497f, 401, 825.606f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_00044C68[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_00044C34 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044C0C, 5953.497f, 401, 825.606f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_00044C68[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 44, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_00044C7C[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00044C7C[] = {
 	7, 8, 1, 3, 5, 7, 4, 6,
 	3, 3, 9, 8,
 	4, 2, 6, 0, 4
 };
 
-NJS_TEX uv_00044CA0[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00044CA0[] = {
 	{ 506, 255 },
 	{ 757, 255 },
 	{ 762, 0 },
@@ -23967,11 +23967,11 @@ NJS_TEX uv_00044CA0[] = {
 	{ 53, 255 }
 };
 
-NJS_MESHSET_SADX meshlist_00044CD8[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00044CD8[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 3, poly_00044C7C, NULL, NULL, NULL, uv_00044CA0, NULL }
 };
 
-NJS_VECTOR vertex_00044CF0[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_00044CF0[] = {
 	{ -2.0197f, -1, -0.864664f },
 	{ -2.020108f, -1, 0.9749219f },
 	{ -2.019981f, 3, -0.865063f },
@@ -23984,7 +23984,7 @@ NJS_VECTOR vertex_00044CF0[] = {
 	{ -4.916876f, 3, -0.088116f }
 };
 
-NJS_VECTOR normal_00044D68[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_00044D68[] = {
 	{ -0.044705f, -0.000103f, -0.999f },
 	{ -0.180991f, -0.001635f, 0.983483f },
 	{ -0.044705f, -0.000103f, -0.999f },
@@ -23997,18 +23997,18 @@ NJS_VECTOR normal_00044D68[] = {
 	{ -0.352281f, -0.003199f, 0.9358889f }
 };
 
-NJS_MODEL_SADX attach_00044DE0 = { vertex_00044CF0, normal_00044D68, LengthOfArray<Sint32>(vertex_00044CF0), meshlist_00044CD8, matlist_00044C68, LengthOfArray<Uint16>(meshlist_00044CD8), LengthOfArray<Uint16>(matlist_00044C68), { -1.958438f, 1, 0.006968f }, 3.435499f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00044DE0 = { vertex_00044CF0, normal_00044D68, LengthOfArray<Sint32>(vertex_00044CF0), meshlist_00044CD8, matlist_00044C68, LengthOfArray<Uint16>(meshlist_00044CD8), LengthOfArray<Uint16>(matlist_00044C68), { -1.958438f, 1, 0.006968f }, 3.435499f, NULL };
 
-NJS_OBJECT object_00044E08 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044DE0, 5971.896f, 401, 799.4062f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_00044E3C[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_00044E08 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044DE0, 5971.896f, 401, 799.4062f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_00044E3C[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 44, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_00044E50[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00044E50[] = {
 	0x8000u | 10, 4, 6, 0, 2, 1, 3, 5, 7, 4, 6
 };
 
-NJS_TEX uv_00044E68[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00044E68[] = {
 	{ 132, 255 },
 	{ 132, 0 },
 	{ 634, 255 },
@@ -24021,11 +24021,11 @@ NJS_TEX uv_00044E68[] = {
 	{ 1662, 0 }
 };
 
-NJS_MESHSET_SADX meshlist_00044E90[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00044E90[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 1, poly_00044E50, NULL, NULL, NULL, uv_00044E68, NULL }
 };
 
-NJS_VECTOR vertex_00044EA8[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_00044EA8[] = {
 	{ -3, -4, -2.5f },
 	{ -3, -4, 0.5f },
 	{ -3, 3, -2.5f },
@@ -24036,7 +24036,7 @@ NJS_VECTOR vertex_00044EA8[] = {
 	{ 2, 3, 0.5f }
 };
 
-NJS_VECTOR normal_00044F08[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_00044F08[] = {
 	{ -0.7071069f, 0, -0.7071069f },
 	{ -0.7071069f, 0, 0.7071069f },
 	{ -0.7071069f, 0, -0.7071069f },
@@ -24047,17 +24047,17 @@ NJS_VECTOR normal_00044F08[] = {
 	{ 0.7071069f, 0, 0.7071069f }
 };
 
-NJS_MODEL_SADX attach_00044F68 = { vertex_00044EA8, normal_00044F08, LengthOfArray<Sint32>(vertex_00044EA8), meshlist_00044E90, matlist_00044E3C, LengthOfArray<Uint16>(meshlist_00044E90), LengthOfArray<Uint16>(matlist_00044E3C), { -0.5f, -0.5f, -1 }, 3.807887f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00044F68 = { vertex_00044EA8, normal_00044F08, LengthOfArray<Sint32>(vertex_00044EA8), meshlist_00044E90, matlist_00044E3C, LengthOfArray<Uint16>(meshlist_00044E90), LengthOfArray<Uint16>(matlist_00044E3C), { -0.5f, -0.5f, -1 }, 3.807887f, NULL };
 
-NJS_OBJECT object_00044F90 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -834.5f, 91.19998f, 1173, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_00044FC4[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_00044F90 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -834.5f, 91.19998f, 1173, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_00044FC4[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 46, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 45, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 45, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 45, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_00045014[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00045014[] = {
 	4, 2, 3, 1, 0,
 	4, 10, 11, 9, 8,
 	4, 42, 43, 41, 40,
@@ -24076,7 +24076,7 @@ Sint16 poly_00045014[] = {
 	3, 54, 55, 57
 };
 
-Sint16 poly_000450B0[] = {
+extern "C" __declspec(dllexport) Sint16 poly_000450B0[] = {
 	4, 12, 9, 5, 8,
 	4, 4, 1, 14, 0,
 	4, 23, 16, 18, 17,
@@ -24095,7 +24095,7 @@ Sint16 poly_000450B0[] = {
 	4, 56, 57, 53, 55
 };
 
-Sint16 poly_00045150[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00045150[] = {
 	4, 13, 10, 12, 9,
 	4, 11, 6, 8, 5,
 	4, 18, 17, 26, 25,
@@ -24110,12 +24110,12 @@ Sint16 poly_00045150[] = {
 	4, 35, 38, 32, 37
 };
 
-Sint16 poly_000451C8[] = {
+extern "C" __declspec(dllexport) Sint16 poly_000451C8[] = {
 	0x8000u | 5, 56, 52, 53, 15, 7,
 	0x8000u | 5, 58, 48, 49, 6, 13
 };
 
-NJS_TEX uv_000451E0[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_000451E0[] = {
 	{ 0, 255 },
 	{ 0 },
 	{ 5100, 255 },
@@ -24180,7 +24180,7 @@ NJS_TEX uv_000451E0[] = {
 	{ 1020, 0 }
 };
 
-NJS_TEX uv_000452D8[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_000452D8[] = {
 	{ 255, 255 },
 	{ 255, 0 },
 	{ 0, 255 },
@@ -24247,7 +24247,7 @@ NJS_TEX uv_000452D8[] = {
 	{ 0 }
 };
 
-NJS_TEX uv_000453D8[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_000453D8[] = {
 	{ 0, 255 },
 	{ 0 },
 	{ 7650, 255 },
@@ -24298,14 +24298,14 @@ NJS_TEX uv_000453D8[] = {
 	{ 0, 255 }
 };
 
-NJS_MESHSET_SADX meshlist_00045498[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00045498[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 16, poly_00045014, NULL, NULL, NULL, uv_000451E0, NULL },
 	{ NJD_MESHSET_TRIMESH | 1, 16, poly_000450B0, NULL, NULL, NULL, uv_000452D8, NULL },
 	{ NJD_MESHSET_TRIMESH | 2, 12, poly_00045150, NULL, NULL, NULL, uv_000453D8, NULL },
 	{ NJD_MESHSET_TRIMESH | 3, 2, poly_000451C8, NULL, NULL, NULL, NULL, NULL }
 };
 
-NJS_VECTOR vertex_000454F8[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_000454F8[] = {
 	{ -299.9999f, 19, -0.001221f },
 	{ -299.9999f, 19, -2.001221f },
 	{ -398, 19, -2.001221f },
@@ -24368,7 +24368,7 @@ NJS_VECTOR vertex_000454F8[] = {
 	{ -405.9281f, 19, -33.10325f }
 };
 
-NJS_VECTOR normal_000457C8[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_000457C8[] = {
 	{ 0.57735f, 0.57735f, 0.57735f },
 	{ 0.57735f, 0.57735f, -0.57735f },
 	{ 0, 0.7071069f, -0.7071069f },
@@ -24431,29 +24431,29 @@ NJS_VECTOR normal_000457C8[] = {
 	{ -0.327518f, 0.368047f, 0.870215f }
 };
 
-NJS_MODEL_SADX attach_00045A98 = { vertex_000454F8, normal_000457C8, LengthOfArray<Sint32>(vertex_000454F8), meshlist_00045498, matlist_00044FC4, LengthOfArray<Uint16>(meshlist_00045498), LengthOfArray<Uint16>(matlist_00044FC4), { -202.964f, 20, -17.00122f }, 218.5827f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00045A98 = { vertex_000454F8, normal_000457C8, LengthOfArray<Sint32>(vertex_000454F8), meshlist_00045498, matlist_00044FC4, LengthOfArray<Uint16>(meshlist_00045498), LengthOfArray<Uint16>(matlist_00044FC4), { -202.964f, 20, -17.00122f }, 218.5827f, NULL };
 
-NJS_OBJECT object_00045AC0 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00045A98, 6281, 387, 1057, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_00045AF4[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_00045AC0 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00045A98, 6281, 387, 1057, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_00045AF4[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 45, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 46, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_00045B1C[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00045B1C[] = {
 	4, 2, 1, 10, 9,
 	4, 0, 7, 8, 15,
 	4, 4, 3, 12, 11,
 	4, 6, 5, 14, 13
 };
 
-Sint16 poly_00045B44[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00045B44[] = {
 	4, 2, 10, 7, 15,
 	4, 6, 14, 3, 11,
 	4, 5, 4, 13, 12,
 	4, 1, 0, 9, 8
 };
 
-NJS_TEX uv_00045B6C[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00045B6C[] = {
 	{ 0, 255 },
 	{ 0 },
 	{ 5100, 255 },
@@ -24472,7 +24472,7 @@ NJS_TEX uv_00045B6C[] = {
 	{ 5100, 0 }
 };
 
-NJS_TEX uv_00045BAC[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00045BAC[] = {
 	{ 0 },
 	{ 5100, 0 },
 	{ 0, 255 },
@@ -24491,12 +24491,12 @@ NJS_TEX uv_00045BAC[] = {
 	{ 5100, 0 }
 };
 
-NJS_MESHSET_SADX meshlist_00045BEC[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00045BEC[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 4, poly_00045B1C, NULL, NULL, NULL, uv_00045B6C, NULL },
 	{ NJD_MESHSET_TRIMESH | 1, 4, poly_00045B44, NULL, NULL, NULL, uv_00045BAC, NULL }
 };
 
-NJS_VECTOR vertex_00045C1C[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_00045C1C[] = {
 	{ -257.2595f, 21, 0 },
 	{ -257.2595f, 21, -2 },
 	{ -257.2595f, 19, -2 },
@@ -24515,7 +24515,7 @@ NJS_VECTOR vertex_00045C1C[] = {
 	{ -169.9891f, 19, -0.236103f }
 };
 
-NJS_VECTOR normal_00045CDC[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_00045CDC[] = {
 	{ 0.001915f, 0.7065009f, 0.707709f },
 	{ 0, 0.7071f, -0.707113f },
 	{ 0, -0.707113f, -0.7071f },
@@ -24534,16 +24534,16 @@ NJS_VECTOR normal_00045CDC[] = {
 	{ 0.001916f, -0.706319f, 0.707891f }
 };
 
-NJS_MODEL_SADX attach_00045D9C = { vertex_00045C1C, normal_00045CDC, LengthOfArray<Sint32>(vertex_00045C1C), meshlist_00045BEC, matlist_00045AF4, LengthOfArray<Uint16>(meshlist_00045BEC), LengthOfArray<Uint16>(matlist_00045AF4), { -213.6243f, 20, -17 }, 59.81907f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00045D9C = { vertex_00045C1C, normal_00045CDC, LengthOfArray<Sint32>(vertex_00045C1C), meshlist_00045BEC, matlist_00045AF4, LengthOfArray<Uint16>(meshlist_00045BEC), LengthOfArray<Uint16>(matlist_00045AF4), { -213.6243f, 20, -17 }, 59.81907f, NULL };
 
-NJS_OBJECT object_00045DC4 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00045D9C, 5987.6f, 385, 850.7999f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_00045DF8[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_00045DC4 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00045D9C, 5987.6f, 385, 850.7999f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_00045DF8[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 40, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 47, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 48, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_00045E34[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00045E34[] = {
 	4, 59, 58, 71, 70,
 	4, 48, 59, 60, 71,
 	4, 1, 0, 13, 12,
@@ -24570,7 +24570,7 @@ Sint16 poly_00045E34[] = {
 	4, 57, 56, 69, 68
 };
 
-Sint16 poly_00045F24[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00045F24[] = {
 	4, 13, 12, 25, 24,
 	4, 14, 13, 26, 25,
 	4, 15, 14, 27, 26,
@@ -24597,11 +24597,11 @@ Sint16 poly_00045F24[] = {
 	4, 16, 28, 17, 29
 };
 
-Sint16 poly_00046014[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00046014[] = {
 	0x8000u | 26, 36, 24, 37, 25, 38, 26, 39, 27, 40, 28, 41, 29, 42, 30, 43, 31, 44, 32, 45, 33, 46, 34, 47, 35, 36, 24
 };
 
-NJS_TEX uv_0004604C[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0004604C[] = {
 	{ 255, 255 },
 	{ 0, 255 },
 	{ 255, 0 },
@@ -24700,7 +24700,7 @@ NJS_TEX uv_0004604C[] = {
 	{ 0 }
 };
 
-NJS_TEX uv_000461CC[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_000461CC[] = {
 	{ 255, 255 },
 	{ 0, 255 },
 	{ 255, 0 },
@@ -24799,7 +24799,7 @@ NJS_TEX uv_000461CC[] = {
 	{ 255, 0 }
 };
 
-NJS_TEX uv_0004634C[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0004634C[] = {
 	{ 1020, 2 },
 	{ 1020, 252 },
 	{ 937, 2 },
@@ -24828,13 +24828,13 @@ NJS_TEX uv_0004634C[] = {
 	{ 0, 252 }
 };
 
-NJS_MESHSET_SADX meshlist_000463B4[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_000463B4[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 24, poly_00045E34, NULL, NULL, NULL, uv_0004604C, NULL },
 	{ NJD_MESHSET_TRIMESH | 1, 24, poly_00045F24, NULL, NULL, NULL, uv_000461CC, NULL },
 	{ NJD_MESHSET_TRIMESH | 2, 1, poly_00046014, NULL, NULL, NULL, uv_0004634C, NULL }
 };
 
-NJS_VECTOR vertex_000463FC[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_000463FC[] = {
 	{ 30, 411, 0.000366f },
 	{ 25.98076f, 411, 15.00037f },
 	{ 15, 411, 25.98113f },
@@ -24909,7 +24909,7 @@ NJS_VECTOR vertex_000463FC[] = {
 	{ 25.98076f, 456, -14.99963f }
 };
 
-NJS_VECTOR normal_0004675C[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_0004675C[] = {
 	{ 0, 1, 0 },
 	{ 0, 1, 0 },
 	{ 0, 1, 0 },
@@ -24984,10 +24984,10 @@ NJS_VECTOR normal_0004675C[] = {
 	{ 0, -1, 0 }
 };
 
-NJS_MODEL_SADX attach_00046ABC = { vertex_000463FC, normal_0004675C, LengthOfArray<Sint32>(vertex_000463FC), meshlist_000463B4, matlist_00045DF8, LengthOfArray<Uint16>(meshlist_000463B4), LengthOfArray<Uint16>(matlist_00045DF8), { 0, 433.5f, 0.000366f }, 41.79461f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00046ABC = { vertex_000463FC, normal_0004675C, LengthOfArray<Sint32>(vertex_000463FC), meshlist_000463B4, matlist_00045DF8, LengthOfArray<Uint16>(meshlist_000463B4), LengthOfArray<Uint16>(matlist_00045DF8), { 0, 433.5f, 0.000366f }, 41.79461f, NULL };
 
-NJS_OBJECT object_00046AE4 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00046ABC, 5909.7f, 8, 775.2f, 0, 0x70A, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_00046B18[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_00046AE4 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00046ABC, 5909.7f, 8, 775.2f, 0, 0x70A, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_00046B18[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 17, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 17, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 17, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
@@ -25004,7 +25004,7 @@ NJS_MATERIAL matlist_00046B18[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 30, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_00046C30[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00046C30[] = {
 	13, 32, 31, 39, 38, 46, 45, 55, 54, 64, 63, 72, 71, 73,
 	11, 31, 30, 38, 37, 45, 44, 54, 53, 63, 62, 71,
 	14, 87, 84, 67, 68, 59, 60, 50, 51, 41, 42, 34, 35, 27, 28,
@@ -25016,7 +25016,7 @@ Sint16 poly_00046C30[] = {
 	14, 230, 231, 210, 211, 189, 190, 168, 169, 147, 148, 126, 127, 107, 108
 };
 
-Sint16 poly_00046D16[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00046D16[] = {
 	8, 49, 48, 58, 57, 66, 65, 83, 75,
 	0x8000u | 11, 40, 49, 93, 48, 47, 57, 56, 65, 94, 75, 95,
 	6, 93, 40, 92, 33, 91, 26,
@@ -25026,7 +25026,7 @@ Sint16 poly_00046D16[] = {
 	6, 62, 70, 71, 76, 73, 416
 };
 
-Sint16 poly_00046DB6[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00046DB6[] = {
 	10, 75, 95, 1, 0, 7, 6, 88, 12, 16, 15,
 	8, 75, 1, 83, 2, 82, 8, 80, 81,
 	0x8000u | 8, 1, 2, 7, 8, 88, 81, 16, 85,
@@ -25035,7 +25035,7 @@ Sint16 poly_00046DB6[] = {
 	3, 82, 87, 83
 };
 
-Sint16 poly_00046E14[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00046E14[] = {
 	0x8000u | 7, 76, 416, 5, 407, 11, 408, 14,
 	10, 77, 84, 4, 3, 10, 9, 13, 89, 17, 86,
 	0x8000u | 7, 87, 84, 78, 3, 79, 9, 89,
@@ -25060,7 +25060,7 @@ Sint16 poly_00046E14[] = {
 	0x8000u | 9, 418, 96, 115, 116, 137, 138, 159, 160, 181
 };
 
-Sint16 poly_00046FCC[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00046FCC[] = {
 	18, 28, 20, 27, 19, 26, 90, 91, 25, 32, 24, 31, 23, 30, 22, 29, 21, 28, 20,
 	3, 252, 250, 258,
 	0x8000u | 7, 258, 256, 250, 257, 251, 260, 248,
@@ -25070,7 +25070,7 @@ Sint16 poly_00046FCC[] = {
 	3, 262, 402, 237
 };
 
-Sint16 poly_00047038[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00047038[] = {
 	12, 218, 217, 373, 372, 270, 269, 293, 292, 316, 315, 338, 337,
 	12, 223, 222, 378, 377, 275, 274, 298, 297, 321, 320, 343, 342,
 	12, 222, 221, 377, 376, 274, 273, 297, 296, 320, 319, 342, 341,
@@ -25080,13 +25080,13 @@ Sint16 poly_00047038[] = {
 	12, 343, 344, 321, 322, 298, 299, 275, 276, 378, 379, 223, 224
 };
 
-Sint16 poly_000470EE[] = {
+extern "C" __declspec(dllexport) Sint16 poly_000470EE[] = {
 	14, 240, 104, 241, 123, 242, 144, 243, 165, 244, 186, 245, 207, 246, 227,
 	14, 228, 229, 208, 209, 187, 188, 166, 167, 145, 146, 124, 125, 105, 106,
 	14, 246, 228, 245, 208, 244, 187, 243, 166, 242, 145, 241, 124, 240, 105
 };
 
-Sint16 poly_00047148[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00047148[] = {
 	0x8000u | 16, 385, 232, 386, 233, 387, 234, 388, 235, 389, 236, 390, 237, 391, 238, 392, 239,
 	4, 236, 237, 401, 402,
 	0x8000u | 16, 336, 357, 335, 356, 334, 355, 333, 354, 332, 353, 331, 352, 330, 351, 329, 350,
@@ -25095,7 +25095,7 @@ Sint16 poly_00047148[] = {
 	0x8000u | 16, 329, 307, 330, 308, 331, 309, 332, 310, 333, 311, 334, 312, 335, 313, 336, 314
 };
 
-Sint16 poly_000471FC[] = {
+extern "C" __declspec(dllexport) Sint16 poly_000471FC[] = {
 	6, 205, 204, 225, 224, 380, 379,
 	3, 371, 370, 278,
 	3, 205, 225, 266,
@@ -25108,7 +25108,7 @@ Sint16 poly_000471FC[] = {
 	14, 346, 347, 325, 326, 302, 303, 279, 280, 381, 382, 226, 227, 206, 207
 };
 
-Sint16 poly_000472B0[] = {
+extern "C" __declspec(dllexport) Sint16 poly_000472B0[] = {
 	14, 110, 109, 129, 128, 150, 149, 171, 170, 192, 191, 213, 212, 233, 232,
 	14, 112, 111, 131, 130, 152, 151, 173, 172, 194, 193, 215, 214, 235, 234,
 	14, 113, 112, 132, 131, 153, 152, 174, 173, 195, 194, 216, 215, 236, 235,
@@ -25117,7 +25117,7 @@ Sint16 poly_000472B0[] = {
 	14, 233, 234, 213, 214, 192, 193, 171, 172, 150, 151, 129, 130, 110, 111
 };
 
-Sint16 poly_00047350[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00047350[] = {
 	0x8000u | 8, 229, 403, 228, 383, 246, 393, 227, 382,
 	3, 383, 415, 403,
 	9, 382, 280, 281, 303, 304, 326, 327, 348, 411,
@@ -25127,17 +25127,17 @@ Sint16 poly_00047350[] = {
 	0x8000u | 5, 281, 282, 304, 305, 327
 };
 
-Sint16 poly_000473B2[] = {
+extern "C" __declspec(dllexport) Sint16 poly_000473B2[] = {
 	4, 260, 248, 261, 254,
 	0x8000u | 7, 247, 254, 262, 261, 237, 260, 238
 };
 
-Sint16 poly_000473CC[] = {
+extern "C" __declspec(dllexport) Sint16 poly_000473CC[] = {
 	4, 339, 338, 360, 359,
 	4, 343, 342, 364, 363
 };
 
-Sint16 poly_000473E0[] = {
+extern "C" __declspec(dllexport) Sint16 poly_000473E0[] = {
 	4, 338, 337, 359, 358,
 	4, 342, 341, 363, 362,
 	0x8000u | 5, 364, 343, 365, 344, 397,
@@ -25145,7 +25145,7 @@ Sint16 poly_000473E0[] = {
 	4, 340, 339, 361, 360
 };
 
-NJS_TEX uv_00047414[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00047414[] = {
 	{ 138, 254 },
 	{ 77, 254 },
 	{ 139, 233 },
@@ -25254,7 +25254,7 @@ NJS_TEX uv_00047414[] = {
 	{ 174, 249 }
 };
 
-NJS_TEX uv_000475BC[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_000475BC[] = {
 	{ 55, 148 },
 	{ 89, 148 },
 	{ 56, 106 },
@@ -25330,7 +25330,7 @@ NJS_TEX uv_000475BC[] = {
 	{ 255, 0 }
 };
 
-NJS_TEX uv_000476E0[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_000476E0[] = {
 	{ 148, 255 },
 	{ 81, 255 },
 	{ 152, 191 },
@@ -25374,7 +25374,7 @@ NJS_TEX uv_000476E0[] = {
 	{ 204, 255 }
 };
 
-NJS_TEX uv_00047784[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00047784[] = {
 	{ 276, 185 },
 	{ 191, 185 },
 	{ 272, 139 },
@@ -25575,7 +25575,7 @@ NJS_TEX uv_00047784[] = {
 	{ 165, 91 }
 };
 
-NJS_TEX uv_00047A9C[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00047A9C[] = {
 	{ 255, -88 },
 	{ 0, -172 },
 	{ 255, -179 },
@@ -25625,7 +25625,7 @@ NJS_TEX uv_00047A9C[] = {
 	{ 114, -255 }
 };
 
-NJS_TEX uv_00047B58[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00047B58[] = {
 	{ 456, 255 },
 	{ 510, 255 },
 	{ 424, 182 },
@@ -25712,7 +25712,7 @@ NJS_TEX uv_00047B58[] = {
 	{ 0, 255 }
 };
 
-NJS_TEX uv_00047CA8[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00047CA8[] = {
 	{ 177, 255 },
 	{ 217, 255 },
 	{ 175, 206 },
@@ -25757,7 +25757,7 @@ NJS_TEX uv_00047CA8[] = {
 	{ 114, 255 }
 };
 
-NJS_TEX uv_00047D50[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00047D50[] = {
 	{ 510, 186 },
 	{ 510, 255 },
 	{ 446, 186 },
@@ -25844,7 +25844,7 @@ NJS_TEX uv_00047D50[] = {
 	{ 0, 93 }
 };
 
-NJS_TEX uv_00047EA0[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00047EA0[] = {
 	{ 138, 241 },
 	{ 59, 241 },
 	{ 126, 166 },
@@ -25927,7 +25927,7 @@ NJS_TEX uv_00047EA0[] = {
 	{ 470, 241 }
 };
 
-NJS_TEX uv_00047FE0[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00047FE0[] = {
 	{ 79, 255 },
 	{ 0, 255 },
 	{ 79, 206 },
@@ -26004,7 +26004,7 @@ NJS_TEX uv_00047FE0[] = {
 	{ 154, 255 }
 };
 
-NJS_TEX uv_00048108[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00048108[] = {
 	{ 210, 255 },
 	{ 234, 206 },
 	{ 137, 255 },
@@ -26049,7 +26049,7 @@ NJS_TEX uv_00048108[] = {
 	{ 89, 46 }
 };
 
-NJS_TEX uv_000481B0[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_000481B0[] = {
 	{ 157, 8 },
 	{ 0, 9 },
 	{ 140, 97 },
@@ -26063,7 +26063,7 @@ NJS_TEX uv_000481B0[] = {
 	{ 255, 0 }
 };
 
-NJS_TEX uv_000481DC[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_000481DC[] = {
 	{ 0, 255 },
 	{ 510, 255 },
 	{ 0 },
@@ -26074,7 +26074,7 @@ NJS_TEX uv_000481DC[] = {
 	{ 510, 0 }
 };
 
-NJS_TEX uv_000481FC[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_000481FC[] = {
 	{ 0, 255 },
 	{ 510, 255 },
 	{ 0 },
@@ -26098,7 +26098,7 @@ NJS_TEX uv_000481FC[] = {
 	{ 510, 0 }
 };
 
-NJS_MESHSET_SADX meshlist_00048250[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00048250[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 9, poly_00046C30, NULL, NULL, NULL, uv_00047414, NULL },
 	{ NJD_MESHSET_TRIMESH | 1, 7, poly_00046D16, NULL, NULL, NULL, uv_000475BC, NULL },
 	{ NJD_MESHSET_TRIMESH | 2, 6, poly_00046DB6, NULL, NULL, NULL, uv_000476E0, NULL },
@@ -26115,7 +26115,7 @@ NJS_MESHSET_SADX meshlist_00048250[] = {
 	{ NJD_MESHSET_TRIMESH | 13, 5, poly_000473E0, NULL, NULL, NULL, uv_000481FC, NULL }
 };
 
-NJS_VECTOR vertex_000483A0[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_000483A0[] = {
 	{ -103.1849f, 49.92975f, -124.1824f },
 	{ -104.5438f, 49.92975f, -147.9912f },
 	{ -100.6576f, 49.92975f, -164.5621f },
@@ -26537,7 +26537,7 @@ NJS_VECTOR vertex_000483A0[] = {
 	{ -22.04114f, -111.0702f, 135.1717f }
 };
 
-NJS_VECTOR normal_00049744[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_00049744[] = {
 	{ -0.901669f, -0.316985f, 0.294132f },
 	{ -0.97127f, -0.227103f, -0.071126f },
 	{ -0.931533f, -0.228039f, -0.283274f },
@@ -26959,14 +26959,14 @@ NJS_VECTOR normal_00049744[] = {
 	{ -0.987514f, -0.009457f, 0.157248f }
 };
 
-NJS_MODEL_SADX attach_0004AAE8 = { vertex_000483A0, normal_00049744, LengthOfArray<Sint32>(vertex_000483A0), meshlist_00048250, matlist_00046B18, LengthOfArray<Uint16>(meshlist_00048250), LengthOfArray<Uint16>(matlist_00046B18), { 0, -0.5f, 0 }, 239.689f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_0004AAE8 = { vertex_000483A0, normal_00049744, LengthOfArray<Sint32>(vertex_000483A0), meshlist_00048250, matlist_00046B18, LengthOfArray<Uint16>(meshlist_00048250), LengthOfArray<Uint16>(matlist_00046B18), { 0, -0.5f, 0 }, 239.689f, NULL };
 
-NJS_OBJECT object_0004AB10 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0004AAE8, 1943.944f, 88.07023f, 825.5958f, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_0004AB44[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_0004AB10 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0004AAE8, 1943.944f, 88.07023f, 825.5958f, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_0004AB44[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 17, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_0004AB58[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0004AB58[] = {
 	0x8000u | 40, 19, 0, 20, 1, 21, 2, 22, 3, 23, 4, 24, 5, 25, 6, 26, 7, 27, 8, 28, 9, 29, 10, 30, 11, 31, 12, 32, 13, 33, 14, 34, 15, 35, 16, 36, 17, 37, 18, 38, 124,
 	0x8000u | 11, 124, 39, 38, 60, 59, 81, 80, 102, 101, 123, 122,
 	0x8000u | 40, 38, 59, 37, 58, 36, 57, 35, 56, 34, 55, 33, 54, 32, 53, 31, 52, 30, 51, 29, 50, 28, 49, 27, 48, 26, 47, 25, 46, 24, 45, 23, 44, 22, 43, 21, 42, 20, 41, 19, 40,
@@ -26975,7 +26975,7 @@ Sint16 poly_0004AB58[] = {
 	0x8000u | 40, 82, 61, 83, 62, 84, 63, 85, 64, 86, 65, 87, 66, 88, 67, 89, 68, 90, 69, 91, 70, 92, 71, 93, 72, 94, 73, 95, 74, 96, 75, 97, 76, 98, 77, 99, 78, 100, 79, 101, 80
 };
 
-NJS_TEX uv_0004AD0C[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0004AD0C[] = {
 	{ 1275, 186 },
 	{ 1275, 255 },
 	{ 1218, 185 },
@@ -27189,11 +27189,11 @@ NJS_TEX uv_0004AD0C[] = {
 	{ 0, 94 }
 };
 
-NJS_MESHSET_SADX meshlist_0004B058[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_0004B058[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 6, poly_0004AB58, NULL, NULL, NULL, uv_0004AD0C, NULL }
 };
 
-NJS_VECTOR vertex_0004B070[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_0004B070[] = {
 	{ 2095.695f, 88, 853.5891f },
 	{ 2109.673f, 88, 854.8458f },
 	{ 2127.832f, 88, 853.6056f },
@@ -27321,7 +27321,7 @@ NJS_VECTOR vertex_0004B070[] = {
 	{ 1946.236f, 88, 946.0013f }
 };
 
-NJS_VECTOR normal_0004B64C[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_0004B64C[] = {
 	{ 0.06907699f, 0.09920499f, -0.992667f },
 	{ 0.000518f, 0.09926099f, -0.995061f },
 	{ 0.051895f, 0.099896f, -0.993644f },
@@ -27449,10 +27449,10 @@ NJS_VECTOR normal_0004B64C[] = {
 	{ -0.07716899f, 0.009725f, 0.996971f }
 };
 
-NJS_MODEL_SADX attach_0004BC28 = { vertex_0004B070, normal_0004B64C, LengthOfArray<Sint32>(vertex_0004B070), meshlist_0004B058, matlist_0004AB44, LengthOfArray<Uint16>(meshlist_0004B058), LengthOfArray<Uint16>(matlist_0004AB44), { 2058.138f, 143, 905.2218f }, 132.3725f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_0004BC28 = { vertex_0004B070, normal_0004B64C, LengthOfArray<Sint32>(vertex_0004B070), meshlist_0004B058, matlist_0004AB44, LengthOfArray<Uint16>(meshlist_0004B058), LengthOfArray<Uint16>(matlist_0004AB44), { 2058.138f, 143, 905.2218f }, 132.3725f, NULL };
 
-NJS_OBJECT object_0004BC50 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0004BC28, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_0004BC84[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_0004BC50 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0004BC28, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_0004BC84[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 17, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 17, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 30, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
@@ -27464,7 +27464,7 @@ NJS_MATERIAL matlist_0004BC84[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 32, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_0004BD38[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0004BD38[] = {
 	16, 107, 0, 111, 6, 113, 13, 20, 21, 30, 31, 43, 44, 59, 60, 75, 76,
 	16, 0, 1, 6, 7, 13, 14, 21, 22, 31, 32, 44, 45, 60, 61, 76, 77,
 	16, 2, 109, 9, 117, 16, 119, 121, 25, 122, 39, 53, 54, 69, 70, 85, 86,
@@ -27473,7 +27473,7 @@ Sint16 poly_0004BD38[] = {
 	16, 87, 86, 71, 70, 55, 54, 40, 39, 26, 25, 17, 119, 10, 117, 3, 109
 };
 
-Sint16 poly_0004BDEC[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0004BDEC[] = {
 	0x8000u | 8, 108, 116, 8, 118, 15, 120, 23, 35,
 	0x8000u | 6, 3, 10, 4, 11, 110, 112,
 	0x8000u | 6, 114, 112, 18, 11, 17, 10,
@@ -27485,7 +27485,7 @@ Sint16 poly_0004BDEC[] = {
 	7, 79, 78, 63, 62, 47, 46, 33
 };
 
-Sint16 poly_0004BE9E[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0004BE9E[] = {
 	4, 96, 95, 80, 79,
 	4, 91, 106, 75, 90,
 	4, 95, 94, 79, 78,
@@ -27500,7 +27500,7 @@ Sint16 poly_0004BE9E[] = {
 	4, 98, 97, 82, 81
 };
 
-Sint16 poly_0004BF16[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0004BF16[] = {
 	10, 108, 2, 8, 9, 15, 16, 23, 24, 36, 37,
 	0x8000u | 7, 29, 113, 19, 111, 12, 107, 5,
 	3, 23, 36, 35,
@@ -27512,13 +27512,13 @@ Sint16 poly_0004BF16[] = {
 	13, 84, 83, 68, 67, 52, 51, 38, 50, 37, 49, 36, 48, 35
 };
 
-Sint16 poly_0004BFAA[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0004BFAA[] = {
 	4, 94, 93, 78, 77,
 	4, 102, 101, 86, 85,
 	4, 97, 96, 81, 80
 };
 
-Sint16 poly_0004BFC8[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0004BFC8[] = {
 	4, 94, 95, 132, 96,
 	3, 92, 126, 129,
 	0x8000u | 5, 101, 100, 125, 99, 98,
@@ -27530,20 +27530,20 @@ Sint16 poly_0004BFC8[] = {
 	0x8000u | 8, 124, 128, 130, 129, 133, 92, 106, 91
 };
 
-Sint16 poly_0004C032[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0004C032[] = {
 	4, 101, 102, 125, 124
 };
 
-Sint16 poly_0004C03C[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0004C03C[] = {
 	4, 105, 133, 104, 130,
 	4, 96, 127, 132, 131
 };
 
-Sint16 poly_0004C050[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0004C050[] = {
 	4, 126, 131, 129, 128
 };
 
-NJS_TEX uv_0004C05C[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0004C05C[] = {
 	{ 229, 255 },
 	{ 186, 255 },
 	{ 247, 206 },
@@ -27630,7 +27630,7 @@ NJS_TEX uv_0004C05C[] = {
 	{ 170, 255 }
 };
 
-NJS_TEX uv_0004C1AC[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0004C1AC[] = {
 	{ 338, 255 },
 	{ 298, 206 },
 	{ 382, 206 },
@@ -27713,7 +27713,7 @@ NJS_TEX uv_0004C1AC[] = {
 	{ 243, -37 }
 };
 
-NJS_TEX uv_0004C2EC[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0004C2EC[] = {
 	{ 765, 0 },
 	{ 0 },
 	{ 765, 255 },
@@ -27764,7 +27764,7 @@ NJS_TEX uv_0004C2EC[] = {
 	{ 0, 255 }
 };
 
-NJS_TEX uv_0004C3AC[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0004C3AC[] = {
 	{ 141, 254 },
 	{ 256, 254 },
 	{ 147, 206 },
@@ -27832,7 +27832,7 @@ NJS_TEX uv_0004C3AC[] = {
 	{ 63, -33 }
 };
 
-NJS_TEX uv_0004C4B0[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0004C4B0[] = {
 	{ 765, 0 },
 	{ 0 },
 	{ 765, 255 },
@@ -27847,7 +27847,7 @@ NJS_TEX uv_0004C4B0[] = {
 	{ 0, 255 }
 };
 
-NJS_TEX uv_0004C4E0[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0004C4E0[] = {
 	{ 2096, -871 },
 	{ 2294, -538 },
 	{ 2033, -561 },
@@ -27894,14 +27894,14 @@ NJS_TEX uv_0004C4E0[] = {
 	{ 1571, -1739 }
 };
 
-NJS_TEX uv_0004C590[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0004C590[] = {
 	{ 0, 255 },
 	{ 0, -255 },
 	{ 508, 255 },
 	{ 508, -255 }
 };
 
-NJS_TEX uv_0004C5A0[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0004C5A0[] = {
 	{ 255, 0 },
 	{ 255, 255 },
 	{ 0 },
@@ -27912,14 +27912,14 @@ NJS_TEX uv_0004C5A0[] = {
 	{ 255, 0 }
 };
 
-NJS_TEX uv_0004C5C0[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0004C5C0[] = {
 	{ 510, -255 },
 	{ 510, 255 },
 	{ 0, -254 },
 	{ 0, 255 }
 };
 
-NJS_MESHSET_SADX meshlist_0004C5D0[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_0004C5D0[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 6, poly_0004BD38, NULL, NULL, NULL, uv_0004C05C, NULL },
 	{ NJD_MESHSET_TRIMESH | 1, 9, poly_0004BDEC, NULL, NULL, NULL, uv_0004C1AC, NULL },
 	{ NJD_MESHSET_TRIMESH | 2, 12, poly_0004BE9E, NULL, NULL, NULL, uv_0004C2EC, NULL },
@@ -27931,7 +27931,7 @@ NJS_MESHSET_SADX meshlist_0004C5D0[] = {
 	{ NJD_MESHSET_TRIMESH | 8, 1, poly_0004C050, NULL, NULL, NULL, uv_0004C5C0, NULL }
 };
 
-NJS_VECTOR vertex_0004C6A8[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_0004C6A8[] = {
 	{ 6.960205f, -23, -13.12616f },
 	{ -0.849854f, -23, -18.16351f },
 	{ -15.98144f, -23, 7.900757f },
@@ -28068,7 +28068,7 @@ NJS_VECTOR vertex_0004C6A8[] = {
 	{ 44, 115, 18 }
 };
 
-NJS_VECTOR normal_0004CCF0[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_0004CCF0[] = {
 	{ 0.433279f, -0.297361f, -0.850791f },
 	{ 0.069028f, -0.355935f, -0.931958f },
 	{ -0.9252639f, -0.265145f, 0.271265f },
@@ -28205,10 +28205,10 @@ NJS_VECTOR normal_0004CCF0[] = {
 	{ 0, 1, 0 }
 };
 
-NJS_MODEL_SADX attach_0004D338 = { vertex_0004C6A8, normal_0004CCF0, LengthOfArray<Sint32>(vertex_0004C6A8), meshlist_0004C5D0, matlist_0004BC84, LengthOfArray<Uint16>(meshlist_0004C5D0), LengthOfArray<Uint16>(matlist_0004BC84), { 1.019876f, 46, 2.409241f }, 92.1179f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_0004D338 = { vertex_0004C6A8, normal_0004CCF0, LengthOfArray<Sint32>(vertex_0004C6A8), meshlist_0004C5D0, matlist_0004BC84, LengthOfArray<Uint16>(meshlist_0004C5D0), LengthOfArray<Uint16>(matlist_0004BC84), { 1.019876f, 46, 2.409241f }, 92.1179f, NULL };
 
-NJS_OBJECT object_0004D360 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0004D338, 1599, 0, 831, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_0004D394[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_0004D360 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0004D338, 1599, 0, 831, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_0004D394[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 52, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 47, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 35, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
@@ -28220,43 +28220,43 @@ NJS_MATERIAL matlist_0004D394[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 50, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_0004D448[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0004D448[] = {
 	0x8000u | 6, 10, 9, 7, 6, 2, 1,
 	0x8000u | 6, 9, 10, 0, 3, 1, 2
 };
 
-Sint16 poly_0004D464[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0004D464[] = {
 	4, 4, 5, 0, 1,
 	4, 5, 8, 1, 6,
 	4, 8, 11, 6, 9,
 	4, 11, 4, 9, 0
 };
 
-Sint16 poly_0004D48C[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0004D48C[] = {
 	8, 18, 21, 19, 22, 14, 15, 13, 12,
 	4, 29, 27, 16, 25,
 	4, 26, 28, 24, 23
 };
 
-Sint16 poly_0004D4B2[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0004D4B2[] = {
 	0x8000u | 5, 16, 12, 25, 13, 17,
 	0x8000u | 5, 21, 23, 18, 24, 20
 };
 
-Sint16 poly_0004D4CA[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0004D4CA[] = {
 	4, 19, 14, 18, 13,
 	4, 27, 26, 25, 24
 };
 
-Sint16 poly_0004D4DE[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0004D4DE[] = {
 	4, 17, 20, 13, 18
 };
 
-Sint16 poly_0004D4E8[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0004D4E8[] = {
 	4, 17, 25, 20, 24
 };
 
-Sint16 poly_0004D4F2[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0004D4F2[] = {
 	3, 28, 26, 31,
 	0x8000u | 5, 31, 33, 26, 34, 35,
 	0x8000u | 5, 29, 27, 32, 37, 36,
@@ -28264,11 +28264,11 @@ Sint16 poly_0004D4F2[] = {
 	4, 36, 34, 37, 35
 };
 
-Sint16 poly_0004D524[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0004D524[] = {
 	4, 37, 35, 27, 26
 };
 
-NJS_TEX uv_0004D530[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0004D530[] = {
 	{ 0, -510 },
 	{ 0, 254 },
 	{ 508, -510 },
@@ -28283,7 +28283,7 @@ NJS_TEX uv_0004D530[] = {
 	{ 508, -510 }
 };
 
-NJS_TEX uv_0004D560[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0004D560[] = {
 	{ 0, 255 },
 	{ 510, 255 },
 	{ 0 },
@@ -28302,7 +28302,7 @@ NJS_TEX uv_0004D560[] = {
 	{ 510, 0 }
 };
 
-NJS_TEX uv_0004D5A0[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0004D5A0[] = {
 	{ 892, -199 },
 	{ 0, -199 },
 	{ 255, -1275 },
@@ -28321,7 +28321,7 @@ NJS_TEX uv_0004D5A0[] = {
 	{ 0, -159 }
 };
 
-NJS_TEX uv_0004D5E0[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0004D5E0[] = {
 	{ 0, 254 },
 	{ 0 },
 	{ 3496, 254 },
@@ -28334,7 +28334,7 @@ NJS_TEX uv_0004D5E0[] = {
 	{ 4080, 254 }
 };
 
-NJS_TEX uv_0004D608[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0004D608[] = {
 	{ 254, -2295 },
 	{ 0, -2295 },
 	{ 254, -143 },
@@ -28345,21 +28345,21 @@ NJS_TEX uv_0004D608[] = {
 	{ 254, -63 }
 };
 
-NJS_TEX uv_0004D628[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0004D628[] = {
 	{ 0, 254 },
 	{ 254, 254 },
 	{ 0 },
 	{ 254, 0 }
 };
 
-NJS_TEX uv_0004D638[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0004D638[] = {
 	{ 0 },
 	{ 0, 255 },
 	{ 254, 0 },
 	{ 254, 255 }
 };
 
-NJS_TEX uv_0004D648[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0004D648[] = {
 	{ 0, -1274 },
 	{ 2294, -1274 },
 	{ 0, 254 },
@@ -28382,14 +28382,14 @@ NJS_TEX uv_0004D648[] = {
 	{ 508, -1274 }
 };
 
-NJS_TEX uv_0004D698[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0004D698[] = {
 	{ 0, -765 },
 	{ 254, -765 },
 	{ 0, 255 },
 	{ 254, 255 }
 };
 
-NJS_MESHSET_SADX meshlist_0004D6A8[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_0004D6A8[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 2, poly_0004D448, NULL, NULL, NULL, uv_0004D530, NULL },
 	{ NJD_MESHSET_TRIMESH | 1, 4, poly_0004D464, NULL, NULL, NULL, uv_0004D560, NULL },
 	{ NJD_MESHSET_TRIMESH | 2, 3, poly_0004D48C, NULL, NULL, NULL, uv_0004D5A0, NULL },
@@ -28401,7 +28401,7 @@ NJS_MESHSET_SADX meshlist_0004D6A8[] = {
 	{ NJD_MESHSET_TRIMESH | 8, 1, poly_0004D524, NULL, NULL, NULL, uv_0004D698, NULL }
 };
 
-NJS_VECTOR vertex_0004D780[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_0004D780[] = {
 	{ -8.499996f, 11, -66.99998f },
 	{ -8.499996f, 11, -60.99999f },
 	{ -8.499996f, 29, -60.99999f },
@@ -28442,7 +28442,7 @@ NJS_VECTOR vertex_0004D780[] = {
 	{ -9.999997f, 9, -39.99999f }
 };
 
-NJS_VECTOR normal_0004D948[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_0004D948[] = {
 	{ -0.7071069f, 0, -0.7071069f },
 	{ -0.7071069f, 0, 0.7071069f },
 	{ -0.7071069f, 0, 0.7071069f },
@@ -28483,10 +28483,10 @@ NJS_VECTOR normal_0004D948[] = {
 	{ -0.57735f, 0.57735f, 0.57735f }
 };
 
-NJS_MODEL_SADX attach_0004DB10 = { vertex_0004D780, normal_0004D948, LengthOfArray<Sint32>(vertex_0004D780), meshlist_0004D6A8, matlist_0004D394, LengthOfArray<Uint16>(meshlist_0004D6A8), LengthOfArray<Uint16>(matlist_0004D394), { -4.999996f, 73, -120 }, 121.8959f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_0004DB10 = { vertex_0004D780, normal_0004D948, LengthOfArray<Sint32>(vertex_0004D780), meshlist_0004D6A8, matlist_0004D394, LengthOfArray<Uint16>(meshlist_0004D6A8), LengthOfArray<Uint16>(matlist_0004D394), { -4.999996f, 73, -120 }, 121.8959f, NULL };
 
-NJS_OBJECT object_0004DB38 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0004DB10, 140.7695f, 0, -73.45818f, 0, 0x1111, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_0004DB6C[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_0004DB38 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0004DB10, 140.7695f, 0, -73.45818f, 0, 0x1111, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_0004DB6C[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 35, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 49, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 54, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
@@ -28503,7 +28503,7 @@ NJS_MATERIAL matlist_0004DB6C[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 52, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_0004DC84[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0004DC84[] = {
 	4, 0, 4, 1, 5,
 	4, 24, 1, 2, 5,
 	4, 25, 3, 0, 4,
@@ -28580,7 +28580,7 @@ Sint16 poly_0004DC84[] = {
 	3, 408, 429, 339
 };
 
-Sint16 poly_0004DFBC[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0004DFBC[] = {
 	4, 25, 0, 24, 1,
 	4, 27, 6, 26, 7,
 	4, 29, 10, 28, 11,
@@ -28590,7 +28590,7 @@ Sint16 poly_0004DFBC[] = {
 	4, 261, 262, 216, 249
 };
 
-Sint16 poly_0004E002[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0004E002[] = {
 	4, 34, 35, 33, 32,
 	4, 43, 41, 42, 40,
 	4, 46, 47, 45, 44,
@@ -28613,7 +28613,7 @@ Sint16 poly_0004E002[] = {
 	4, 149, 151, 148, 150
 };
 
-Sint16 poly_0004E0CA[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0004E0CA[] = {
 	0x8000u | 6, 39, 38, 37, 36, 34, 33,
 	4, 41, 39, 40, 38,
 	4, 51, 53, 50, 52,
@@ -28636,7 +28636,7 @@ Sint16 poly_0004E0CA[] = {
 	0x8000u | 6, 146, 147, 144, 145, 140, 143
 };
 
-Sint16 poly_0004E1BA[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0004E1BA[] = {
 	0x8000u | 10, 168, 167, 319, 318, 169, 166, 170, 165, 171, 164,
 	0x8000u | 10, 209, 199, 210, 198, 211, 197, 212, 196, 213, 195,
 	0x8000u | 10, 204, 203, 323, 322, 206, 202, 207, 201, 208, 200,
@@ -28649,12 +28649,12 @@ Sint16 poly_0004E1BA[] = {
 	0x8000u | 10, 289, 290, 288, 291, 287, 292, 286, 293, 285, 294
 };
 
-Sint16 poly_0004E296[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0004E296[] = {
 	10, 214, 213, 152, 212, 153, 211, 154, 210, 155, 209,
 	10, 156, 208, 157, 207, 158, 206, 317, 323, 205, 204
 };
 
-Sint16 poly_0004E2C2[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0004E2C2[] = {
 	4, 187, 376, 186, 401,
 	4, 175, 377, 176, 400,
 	4, 189, 380, 188, 378,
@@ -28677,12 +28677,12 @@ Sint16 poly_0004E2C2[] = {
 	4, 272, 417, 331, 425
 };
 
-Sint16 poly_0004E38A[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0004E38A[] = {
 	0x8000u | 20, 259, 239, 328, 325, 257, 235, 256, 232, 255, 229, 254, 226, 253, 223, 252, 220, 251, 217, 250, 248,
 	0x8000u | 20, 215, 247, 218, 246, 221, 245, 224, 244, 227, 243, 230, 242, 233, 241, 236, 240, 326, 327, 237, 238
 };
 
-Sint16 poly_0004E3DE[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0004E3DE[] = {
 	4, 430, 431, 414, 412,
 	4, 442, 443, 379, 377,
 	4, 436, 437, 413, 411,
@@ -28709,7 +28709,7 @@ Sint16 poly_0004E3DE[] = {
 	4, 331, 273, 330, 270
 };
 
-Sint16 poly_0004E4CE[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0004E4CE[] = {
 	4, 188, 378, 187, 376,
 	4, 174, 379, 175, 377,
 	4, 190, 382, 189, 380,
@@ -28732,7 +28732,7 @@ Sint16 poly_0004E4CE[] = {
 	4, 331, 425, 273, 416
 };
 
-Sint16 poly_0004E596[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0004E596[] = {
 	4, 279, 280, 264, 263,
 	4, 277, 278, 266, 265,
 	4, 272, 331, 271, 330,
@@ -28740,7 +28740,7 @@ Sint16 poly_0004E596[] = {
 	4, 273, 274, 270, 269
 };
 
-Sint16 poly_0004E5C8[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0004E5C8[] = {
 	4, 369, 368, 456, 457,
 	4, 371, 370, 458, 459,
 	4, 373, 372, 460, 461,
@@ -28763,17 +28763,17 @@ Sint16 poly_0004E5C8[] = {
 	4, 342, 343, 432, 433
 };
 
-Sint16 poly_0004E690[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0004E690[] = {
 	20, 249, 250, 216, 251, 219, 252, 222, 253, 225, 254, 228, 255, 231, 256, 234, 257, 324, 328, 258, 259,
 	20, 248, 247, 217, 246, 220, 245, 223, 244, 226, 243, 229, 242, 232, 241, 235, 240, 325, 327, 239, 238
 };
 
-Sint16 poly_0004E6E4[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0004E6E4[] = {
 	4, 271, 330, 260, 329,
 	4, 264, 263, 261, 262
 };
 
-NJS_TEX uv_0004E6F8[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0004E6F8[] = {
 	{ 1335, -1936 },
 	{ 1335, -2295 },
 	{ 1213, -1936 },
@@ -29114,7 +29114,7 @@ NJS_TEX uv_0004E6F8[] = {
 	{ 788, -103 }
 };
 
-NJS_TEX uv_0004EC40[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0004EC40[] = {
 	{ 0, 255 },
 	{ 0 },
 	{ 255, 255 },
@@ -29145,7 +29145,7 @@ NJS_TEX uv_0004EC40[] = {
 	{ 0, 255 }
 };
 
-NJS_TEX uv_0004ECB0[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0004ECB0[] = {
 	{ 0 },
 	{ 0, 255 },
 	{ 2550, 0 },
@@ -29228,7 +29228,7 @@ NJS_TEX uv_0004ECB0[] = {
 	{ 2550, 255 }
 };
 
-NJS_TEX uv_0004EDF0[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0004EDF0[] = {
 	{ 0, 255 },
 	{ 5100, 255 },
 	{ 0 },
@@ -29331,7 +29331,7 @@ NJS_TEX uv_0004EDF0[] = {
 	{ 5100, 255 }
 };
 
-NJS_TEX uv_0004EF80[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0004EF80[] = {
 	{ 5099, 0 },
 	{ 5099, 254 },
 	{ 4856, 0 },
@@ -29434,7 +29434,7 @@ NJS_TEX uv_0004EF80[] = {
 	{ 2427, 0 }
 };
 
-NJS_TEX uv_0004F110[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0004F110[] = {
 	{ 0, 255 },
 	{ 0 },
 	{ 121, 255 },
@@ -29457,7 +29457,7 @@ NJS_TEX uv_0004F110[] = {
 	{ 2550, 0 }
 };
 
-NJS_TEX uv_0004F160[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0004F160[] = {
 	{ 255, 255 },
 	{ 255, -255 },
 	{ 0, 255 },
@@ -29540,7 +29540,7 @@ NJS_TEX uv_0004F160[] = {
 	{ 0, -255 }
 };
 
-NJS_TEX uv_0004F2A0[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0004F2A0[] = {
 	{ 5099, 0 },
 	{ 5099, 255 },
 	{ 4856, 0 },
@@ -29583,7 +29583,7 @@ NJS_TEX uv_0004F2A0[] = {
 	{ 5099, 0 }
 };
 
-NJS_TEX uv_0004F340[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0004F340[] = {
 	{ 1020, 255 },
 	{ 0, 255 },
 	{ 1020, 0 },
@@ -29682,7 +29682,7 @@ NJS_TEX uv_0004F340[] = {
 	{ 4661, 254 }
 };
 
-NJS_TEX uv_0004F4C0[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0004F4C0[] = {
 	{ 765, 255 },
 	{ 765, -255 },
 	{ 0, 255 },
@@ -29765,7 +29765,7 @@ NJS_TEX uv_0004F4C0[] = {
 	{ 0, -255 }
 };
 
-NJS_TEX uv_0004F600[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0004F600[] = {
 	{ 255, 0 },
 	{ 0 },
 	{ 255, 255 },
@@ -29788,7 +29788,7 @@ NJS_TEX uv_0004F600[] = {
 	{ 0, 255 }
 };
 
-NJS_TEX uv_0004F650[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0004F650[] = {
 	{ 255, 0 },
 	{ 0 },
 	{ 255, 255 },
@@ -29871,7 +29871,7 @@ NJS_TEX uv_0004F650[] = {
 	{ 0, 255 }
 };
 
-NJS_TEX uv_0004F790[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0004F790[] = {
 	{ 5099, -255 },
 	{ 5099, 254 },
 	{ 4856, -255 },
@@ -29914,7 +29914,7 @@ NJS_TEX uv_0004F790[] = {
 	{ 0, 255 }
 };
 
-NJS_TEX uv_0004F830[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0004F830[] = {
 	{ 0, -255 },
 	{ 510, -255 },
 	{ 0, 255 },
@@ -29925,7 +29925,7 @@ NJS_TEX uv_0004F830[] = {
 	{ 0, 255 }
 };
 
-NJS_MESHSET_SADX meshlist_0004F850[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_0004F850[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 74, poly_0004DC84, NULL, NULL, NULL, uv_0004E6F8, NULL },
 	{ NJD_MESHSET_TRIMESH | 1, 7, poly_0004DFBC, NULL, NULL, NULL, uv_0004EC40, NULL },
 	{ NJD_MESHSET_TRIMESH | 2, 20, poly_0004E002, NULL, NULL, NULL, uv_0004ECB0, NULL },
@@ -29942,11 +29942,11 @@ NJS_MESHSET_SADX meshlist_0004F850[] = {
 	{ NJD_MESHSET_TRIMESH | 13, 2, poly_0004E6E4, NULL, NULL, NULL, uv_0004F830, NULL }
 };
 
-NJS_MESHSET_SADX meshlist_0004F850_2[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_0004F850_2[] = {
 	{ NJD_MESHSET_TRIMESH | 11, 20, poly_0004E5C8, NULL, NULL, NULL, uv_0004F650, NULL },
 };
 
-NJS_VECTOR vertex_0004F9A0[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_0004F9A0[] = {
 	{ -99.99976f, 150, -159.9998f },
 	{ -109.9998f, 150, -159.9998f },
 	{ -109.9998f, 142, -179.9998f },
@@ -30415,7 +30415,7 @@ NJS_VECTOR vertex_0004F9A0[] = {
 	{ -194.9998f, 142, -184.9998f }
 };
 
-NJS_VECTOR normal_00050F78[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_00050F78[] = {
 	{ 0.628159f, 0.30695f, 0.714981f },
 	{ -0.628159f, 0.30695f, 0.714981f },
 	{ -1, 0, 0 },
@@ -30884,21 +30884,21 @@ NJS_VECTOR normal_00050F78[] = {
 	{ 0.297109f, 0.630262f, 0.717284f }
 };
 
-NJS_MODEL_SADX attach_00052550 = { vertex_0004F9A0, normal_00050F78, LengthOfArray<Sint32>(vertex_0004F9A0), meshlist_0004F850, matlist_0004DB6C, LengthOfArray<Uint16>(meshlist_0004F850), LengthOfArray<Uint16>(matlist_0004DB6C), { -104.9998f, 84.5f, -119.9998f }, 172.9444f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00052550 = { vertex_0004F9A0, normal_00050F78, LengthOfArray<Sint32>(vertex_0004F9A0), meshlist_0004F850, matlist_0004DB6C, LengthOfArray<Uint16>(meshlist_0004F850), LengthOfArray<Uint16>(matlist_0004DB6C), { -104.9998f, 84.5f, -119.9998f }, 172.9444f, NULL };
 
-NJS_MODEL_SADX attach_00052550_2 = { vertex_0004F9A0, normal_00050F78, LengthOfArray<Sint32>(vertex_0004F9A0), meshlist_0004F850_2, matlist_0004DB6C, LengthOfArray<Uint16>(meshlist_0004F850_2), LengthOfArray<Uint16>(matlist_0004DB6C), { -104.9998f, 84.5f, -119.9998f }, 172.9444f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00052550_2 = { vertex_0004F9A0, normal_00050F78, LengthOfArray<Sint32>(vertex_0004F9A0), meshlist_0004F850_2, matlist_0004DB6C, LengthOfArray<Uint16>(meshlist_0004F850_2), LengthOfArray<Uint16>(matlist_0004DB6C), { -104.9998f, 84.5f, -119.9998f }, 172.9444f, NULL };
 
-NJS_OBJECT object_00052578 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00052550, 131.634f, 0, -69.39082f, 0, 0x1111, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_00052578 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00052550, 131.634f, 0, -69.39082f, 0, 0x1111, 0, 1, 1, 1, NULL, NULL };
 
-NJS_OBJECT object_00052578_2 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00052550_2, 131.634f, 0, -69.39082f, 0, 0x1111, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_000525AC[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_00052578_2 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00052550_2, 131.634f, 0, -69.39082f, 0, 0x1111, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_000525AC[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 59, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 59, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 42, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xE5FFFFFF }, { 0xFFFFFFFF }, 11, 60, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_FLAG_USE_ENV | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_000525FC[] = {
+extern "C" __declspec(dllexport) Sint16 poly_000525FC[] = {
 	4, 2, 3, 1, 0,
 	4, 16, 17, 15, 14,
 	4, 55, 19, 54, 18,
@@ -30913,7 +30913,7 @@ Sint16 poly_000525FC[] = {
 	4, 90, 91, 88, 89
 };
 
-Sint16 poly_00052674[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00052674[] = {
 	4, 4, 5, 0, 1,
 	4, 9, 8, 14, 15,
 	4, 19, 2, 18, 1,
@@ -30936,7 +30936,7 @@ Sint16 poly_00052674[] = {
 	4, 83, 44, 81, 42
 };
 
-Sint16 poly_0005273C[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0005273C[] = {
 	0x8000u | 5, 4, 22, 21, 25, 24,
 	0x8000u | 9, 56, 95, 20, 94, 5, 59, 4, 23, 22,
 	12, 27, 26, 29, 28, 31, 30, 33, 32, 35, 34, 37, 36,
@@ -30945,7 +30945,7 @@ Sint16 poly_0005273C[] = {
 	9, 52, 8, 7, 9, 6, 12, 11, 13, 10
 };
 
-Sint16 poly_000527B0[] = {
+extern "C" __declspec(dllexport) Sint16 poly_000527B0[] = {
 	4, 5, 20, 1, 18,
 	4, 12, 9, 57, 14,
 	4, 15, 8, 91, 52,
@@ -30956,7 +30956,7 @@ Sint16 poly_000527B0[] = {
 	4, 85, 46, 83, 44
 };
 
-NJS_TEX uv_00052800[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00052800[] = {
 	{ 255, 0 },
 	{ 255, 255 },
 	{ 0 },
@@ -31007,7 +31007,7 @@ NJS_TEX uv_00052800[] = {
 	{ 0 }
 };
 
-NJS_TEX uv_000528C0[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_000528C0[] = {
 	{ 0, -1785 },
 	{ 255, -1785 },
 	{ 0, 255 },
@@ -31090,7 +31090,7 @@ NJS_TEX uv_000528C0[] = {
 	{ 255, -1785 }
 };
 
-NJS_TEX uv_00052A00[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00052A00[] = {
 	{ 4549, 0 },
 	{ 4052, 255 },
 	{ 4052, 0 },
@@ -31145,7 +31145,7 @@ NJS_TEX uv_00052A00[] = {
 	{ 0, 255 }
 };
 
-NJS_TEX uv_00052AD0[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00052AD0[] = {
 	{ 255, 255 },
 	{ 0, 255 },
 	{ 255, 0 },
@@ -31180,14 +31180,14 @@ NJS_TEX uv_00052AD0[] = {
 	{ 255, 255 }
 };
 
-NJS_MESHSET_SADX meshlist_00052B50[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00052B50[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 12, poly_000525FC, NULL, NULL, NULL, uv_00052800, NULL },
 	{ NJD_MESHSET_TRIMESH | 1, 20, poly_00052674, NULL, NULL, NULL, uv_000528C0, NULL },
 	{ NJD_MESHSET_TRIMESH | 2, 6, poly_0005273C, NULL, NULL, NULL, uv_00052A00, NULL },
 	{ NJD_MESHSET_TRIMESH | 3, 8, poly_000527B0, NULL, NULL, NULL, uv_00052AD0, NULL }
 };
 
-NJS_VECTOR vertex_00052BB0[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_00052BB0[] = {
 	{ -30.49998f, 28, -81.99995f },
 	{ -29.49998f, 28, -81.99995f },
 	{ -29.49998f, 29, -81.99995f },
@@ -31286,7 +31286,7 @@ NJS_VECTOR vertex_00052BB0[] = {
 	{ -9.999976f, 9, -81.99995f }
 };
 
-NJS_VECTOR normal_00053030[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_00053030[] = {
 	{ 0, 0, 1 },
 	{ 0, 0, 1 },
 	{ 0, 0, 1 },
@@ -31385,10 +31385,10 @@ NJS_VECTOR normal_00053030[] = {
 	{ 0, 0, 1 }
 };
 
-NJS_MODEL_SADX attach_000534B0 = { vertex_00052BB0, normal_00053030, LengthOfArray<Sint32>(vertex_00052BB0), meshlist_00052B50, matlist_000525AC, LengthOfArray<Uint16>(meshlist_00052B50), LengthOfArray<Uint16>(matlist_000525AC), { -104.9999f, 19, -81.99997f }, 94.99996f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_000534B0 = { vertex_00052BB0, normal_00053030, LengthOfArray<Sint32>(vertex_00052BB0), meshlist_00052B50, matlist_000525AC, LengthOfArray<Uint16>(meshlist_00052B50), LengthOfArray<Uint16>(matlist_000525AC), { -104.9999f, 19, -81.99997f }, 94.99996f, NULL };
 
-NJS_OBJECT object_000534D8 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_000534B0, 131.634f, 0, -69.39082f, 0, 0x1111, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_0005350C[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_000534D8 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_000534B0, 131.634f, 0, -69.39082f, 0, 0x1111, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_0005350C[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 63, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 61, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 47, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
@@ -31398,7 +31398,7 @@ NJS_MATERIAL matlist_0005350C[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 62, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_00053598[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00053598[] = {
 	4, 70, 71, 64, 65,
 	4, 56, 57, 51, 50,
 	4, 68, 69, 53, 55,
@@ -31413,7 +31413,7 @@ Sint16 poly_00053598[] = {
 	4, 65, 71, 22, 29
 };
 
-Sint16 poly_00053610[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00053610[] = {
 	4, 22, 29, 7, 23,
 	4, 38, 46, 6, 19,
 	4, 39, 37, 18, 5,
@@ -31424,7 +31424,7 @@ Sint16 poly_00053610[] = {
 	4, 33, 36, 4, 17
 };
 
-Sint16 poly_00053660[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00053660[] = {
 	4, 29, 19, 23, 46,
 	4, 16, 28, 40, 20,
 	4, 27, 14, 21, 45,
@@ -31435,7 +31435,7 @@ Sint16 poly_00053660[] = {
 	4, 9, 32, 8, 35
 };
 
-Sint16 poly_000536B0[] = {
+extern "C" __declspec(dllexport) Sint16 poly_000536B0[] = {
 	4, 37, 38, 41, 40,
 	4, 28, 22, 20, 7,
 	4, 40, 38, 16, 6,
@@ -31449,13 +31449,13 @@ Sint16 poly_000536B0[] = {
 	4, 42, 33, 13, 4
 };
 
-Sint16 poly_0005371E[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0005371E[] = {
 	4, 35, 36, 34, 33,
 	4, 39, 46, 37, 38,
 	4, 47, 32, 30, 31
 };
 
-Sint16 poly_0005373C[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0005373C[] = {
 	4, 51, 50, 48, 49,
 	4, 60, 59, 61, 58,
 	4, 53, 55, 52, 54,
@@ -31470,7 +31470,7 @@ Sint16 poly_0005373C[] = {
 	4, 63, 65, 28, 22
 };
 
-Sint16 poly_000537B4[] = {
+extern "C" __declspec(dllexport) Sint16 poly_000537B4[] = {
 	4, 48, 49, 11, 12,
 	4, 52, 54, 13, 15,
 	4, 57, 56, 8, 9,
@@ -31481,7 +31481,7 @@ Sint16 poly_000537B4[] = {
 	4, 71, 70, 29, 19
 };
 
-NJS_TEX uv_00053804[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00053804[] = {
 	{ 255, 0 },
 	{ 0 },
 	{ 255, 255 },
@@ -31532,7 +31532,7 @@ NJS_TEX uv_00053804[] = {
 	{ 0 }
 };
 
-NJS_TEX uv_000538C4[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_000538C4[] = {
 	{ 0, 255 },
 	{ 0, -1275 },
 	{ 254, 255 },
@@ -31567,7 +31567,7 @@ NJS_TEX uv_000538C4[] = {
 	{ 0, -1275 }
 };
 
-NJS_TEX uv_00053944[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00053944[] = {
 	{ 2550, 255 },
 	{ 0, 255 },
 	{ 2550, 0 },
@@ -31602,7 +31602,7 @@ NJS_TEX uv_00053944[] = {
 	{ 2550, 0 }
 };
 
-NJS_TEX uv_000539C4[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_000539C4[] = {
 	{ 0 },
 	{ 255, 0 },
 	{ 0, 255 },
@@ -31649,7 +31649,7 @@ NJS_TEX uv_000539C4[] = {
 	{ 255, 0 }
 };
 
-NJS_TEX uv_00053A74[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00053A74[] = {
 	{ 510, -510 },
 	{ 0, -510 },
 	{ 510, 255 },
@@ -31664,7 +31664,7 @@ NJS_TEX uv_00053A74[] = {
 	{ 0, 255 }
 };
 
-NJS_TEX uv_00053AA4[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00053AA4[] = {
 	{ 765, 0 },
 	{ 0 },
 	{ 765, 255 },
@@ -31715,7 +31715,7 @@ NJS_TEX uv_00053AA4[] = {
 	{ 0 }
 };
 
-NJS_TEX uv_00053B64[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00053B64[] = {
 	{ 765, -255 },
 	{ 0, -255 },
 	{ 765, 255 },
@@ -31750,7 +31750,7 @@ NJS_TEX uv_00053B64[] = {
 	{ 0, 255 }
 };
 
-NJS_MESHSET_SADX meshlist_00053BE4[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00053BE4[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 12, poly_00053598, NULL, NULL, NULL, uv_00053804, NULL },
 	{ NJD_MESHSET_TRIMESH | 1, 8, poly_00053610, NULL, NULL, NULL, uv_000538C4, NULL },
 	{ NJD_MESHSET_TRIMESH | 2, 8, poly_00053660, NULL, NULL, NULL, uv_00053944, NULL },
@@ -31760,7 +31760,7 @@ NJS_MESHSET_SADX meshlist_00053BE4[] = {
 	{ NJD_MESHSET_TRIMESH | 6, 8, poly_000537B4, NULL, NULL, NULL, uv_00053B64, NULL }
 };
 
-NJS_VECTOR vertex_00053C8C[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_00053C8C[] = {
 	{ -9.999969f, 13, -79.99992f },
 	{ -49.99992f, 13, -81.99992f },
 	{ -59.99992f, 13, -81.99992f },
@@ -31835,7 +31835,7 @@ NJS_VECTOR vertex_00053C8C[] = {
 	{ -199.9998f, 29, -100 }
 };
 
-NJS_VECTOR normal_00053FEC[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_00053FEC[] = {
 	{ -1, 0, -0.00004f },
 	{ 1, 0, 0 },
 	{ -1, 0, 0 },
@@ -31910,10 +31910,10 @@ NJS_VECTOR normal_00053FEC[] = {
 	{ 0.57735f, -0.57735f, 0.57735f }
 };
 
-NJS_MODEL_SADX attach_0005434C = { vertex_00053C8C, normal_00053FEC, LengthOfArray<Sint32>(vertex_00053C8C), meshlist_00053BE4, matlist_0005350C, LengthOfArray<Uint16>(meshlist_00053BE4), LengthOfArray<Uint16>(matlist_0005350C), { -104.9999f, 19, -89.99996f }, 102.6497f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_0005434C = { vertex_00053C8C, normal_00053FEC, LengthOfArray<Sint32>(vertex_00053C8C), meshlist_00053BE4, matlist_0005350C, LengthOfArray<Uint16>(meshlist_00053BE4), LengthOfArray<Uint16>(matlist_0005350C), { -104.9999f, 19, -89.99996f }, 102.6497f, NULL };
 
-NJS_OBJECT object_00054374 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0005434C, 131.634f, 0, -69.39082f, 0, 0x1111, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_000543A8[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_00054374 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0005434C, 131.634f, 0, -69.39082f, 0, 0x1111, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_000543A8[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 52, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 47, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 49, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
@@ -31921,21 +31921,21 @@ NJS_MATERIAL matlist_000543A8[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 51, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_0005440C[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0005440C[] = {
 	4, 3, 2, 1, 0,
 	4, 7, 3, 5, 1,
 	4, 6, 7, 4, 5,
 	4, 2, 6, 0, 4
 };
 
-Sint16 poly_00054434[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00054434[] = {
 	4, 9, 11, 0, 1,
 	4, 11, 10, 1, 5,
 	4, 8, 9, 4, 0,
 	4, 10, 8, 5, 4
 };
 
-Sint16 poly_0005445C[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0005445C[] = {
 	0x8000u | 5, 21, 23, 18, 24, 20,
 	3, 29, 30, 32,
 	3, 28, 26, 31,
@@ -31943,7 +31943,7 @@ Sint16 poly_0005445C[] = {
 	0x8000u | 5, 16, 12, 25, 13, 17
 };
 
-Sint16 poly_00054496[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00054496[] = {
 	3, 26, 27, 35,
 	4, 26, 28, 24, 23,
 	0x8000u | 6, 24, 26, 25, 27, 16, 29,
@@ -31953,11 +31953,11 @@ Sint16 poly_00054496[] = {
 	4, 17, 25, 20, 24
 };
 
-Sint16 poly_000544E2[] = {
+extern "C" __declspec(dllexport) Sint16 poly_000544E2[] = {
 	4, 17, 20, 13, 18
 };
 
-NJS_TEX uv_000544EC[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_000544EC[] = {
 	{ 510, -510 },
 	{ 0, -510 },
 	{ 510, 255 },
@@ -31976,7 +31976,7 @@ NJS_TEX uv_000544EC[] = {
 	{ 0, 255 }
 };
 
-NJS_TEX uv_0005452C[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0005452C[] = {
 	{ 0, 255 },
 	{ 510, 255 },
 	{ 0 },
@@ -31995,7 +31995,7 @@ NJS_TEX uv_0005452C[] = {
 	{ 510, 0 }
 };
 
-NJS_TEX uv_0005456C[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0005456C[] = {
 	{ 0 },
 	{ 0, 254 },
 	{ 5004, 0 },
@@ -32022,7 +32022,7 @@ NJS_TEX uv_0005456C[] = {
 	{ 5099, 254 }
 };
 
-NJS_TEX uv_000545CC[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_000545CC[] = {
 	{ 510, 254 },
 	{ 0, 186 },
 	{ 510, -255 },
@@ -32056,14 +32056,14 @@ NJS_TEX uv_000545CC[] = {
 	{ 510, 254 }
 };
 
-NJS_TEX uv_00054648[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00054648[] = {
 	{ 0, 254 },
 	{ 254, 254 },
 	{ 0 },
 	{ 254, 0 }
 };
 
-NJS_MESHSET_SADX meshlist_00054658[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00054658[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 4, poly_0005440C, NULL, NULL, NULL, uv_000544EC, NULL },
 	{ NJD_MESHSET_TRIMESH | 1, 4, poly_00054434, NULL, NULL, NULL, uv_0005452C, NULL },
 	{ NJD_MESHSET_TRIMESH | 2, 5, poly_0005445C, NULL, NULL, NULL, uv_0005456C, NULL },
@@ -32071,7 +32071,7 @@ NJS_MESHSET_SADX meshlist_00054658[] = {
 	{ NJD_MESHSET_TRIMESH | 4, 1, poly_000544E2, NULL, NULL, NULL, uv_00054648, NULL }
 };
 
-NJS_VECTOR vertex_000546D0[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_000546D0[] = {
 	{ 29.6856f, -73.5f, 55.01618f },
 	{ 31.23852f, -73.5f, 60.81173f },
 	{ 29.6856f, -55.5f, 55.01618f },
@@ -32110,7 +32110,7 @@ NJS_VECTOR vertex_000546D0[] = {
 	{ 39.99992f, -75.5f, 79.99995f }
 };
 
-NJS_VECTOR normal_00054880[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_00054880[] = {
 	{ -0.866026f, 0, -0.499999f },
 	{ -0.5f, 0, 0.866026f },
 	{ -0.866026f, 0, -0.499999f },
@@ -32149,14 +32149,14 @@ NJS_VECTOR normal_00054880[] = {
 	{ 0.217604f, 0.5414079f, 0.812112f }
 };
 
-NJS_MODEL_SADX attach_00054A30 = { vertex_000546D0, normal_00054880, LengthOfArray<Sint32>(vertex_000546D0), meshlist_00054658, matlist_000543A8, LengthOfArray<Uint16>(meshlist_00054658), LengthOfArray<Uint16>(matlist_000543A8), { -0.00011f, 0, -0.00031f }, 111.7205f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00054A30 = { vertex_000546D0, normal_00054880, LengthOfArray<Sint32>(vertex_000546D0), meshlist_00054658, matlist_000543A8, LengthOfArray<Uint16>(meshlist_00054658), LengthOfArray<Uint16>(matlist_000543A8), { -0.00011f, 0, -0.00031f }, 111.7205f, NULL };
 
-NJS_OBJECT object_00054A58 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00054A30, -547.5208f, 84.5f, 101.632f, 0, 0x1111, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_00054A8C[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_00054A58 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00054A30, -547.5208f, 84.5f, 101.632f, 0, 0x1111, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_00054A8C[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 15, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_00054AA0[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00054AA0[] = {
 	0x8000u | 8, 13, 7, 10, 2, 9, 3, 24, 26,
 	0x8000u | 8, 24, 25, 9, 12, 10, 11, 13, 14,
 	0x8000u | 10, 27, 26, 0, 3, 1, 2, 6, 7, 36, 35,
@@ -32168,7 +32168,7 @@ Sint16 poly_00054AA0[] = {
 	0x8000u | 10, 37, 28, 22, 4, 21, 5, 23, 8, 29, 31
 };
 
-NJS_TEX uv_00054B58[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00054B58[] = {
 	{ 178, 189 },
 	{ 102, 185 },
 	{ 179, -3 },
@@ -32253,11 +32253,11 @@ NJS_TEX uv_00054B58[] = {
 	{ 255, 255 }
 };
 
-NJS_MESHSET_SADX meshlist_00054CA0[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00054CA0[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 9, poly_00054AA0, NULL, NULL, NULL, uv_00054B58, NULL }
 };
 
-NJS_VECTOR vertex_00054CB8[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_00054CB8[] = {
 	{ -6, 5.000001f, -94 },
 	{ -4.5f, -1.499999f, -94 },
 	{ -3.5f, -1.499999f, -90 },
@@ -32300,7 +32300,7 @@ NJS_VECTOR vertex_00054CB8[] = {
 	{ 6.5f, 7, -94 }
 };
 
-NJS_VECTOR normal_00054E98[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_00054E98[] = {
 	{ -0.9682119f, -0.25013f, 0.000771f },
 	{ -0.995797f, -0.091135f, -0.009099999f },
 	{ -0.539018f, -0.06929699f, 0.839439f },
@@ -32343,10 +32343,10 @@ NJS_VECTOR normal_00054E98[] = {
 	{ 0.961989f, -0.272687f, 0.01477f }
 };
 
-NJS_MODEL_SADX attach_00055078 = { vertex_00054CB8, normal_00054E98, LengthOfArray<Sint32>(vertex_00054CB8), meshlist_00054CA0, matlist_00054A8C, LengthOfArray<Uint16>(meshlist_00054CA0), LengthOfArray<Uint16>(matlist_00054A8C), { 0, -1.499999f, -94.5f }, 9.617692f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00055078 = { vertex_00054CB8, normal_00054E98, LengthOfArray<Sint32>(vertex_00054CB8), meshlist_00054CA0, matlist_00054A8C, LengthOfArray<Uint16>(meshlist_00054CA0), LengthOfArray<Uint16>(matlist_00054A8C), { 0, -1.499999f, -94.5f }, 9.617692f, NULL };
 
-NJS_OBJECT object_000550A0 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00055078, 2133, 61, 904.5f, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_000550D4[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_000550A0 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00055078, 2133, 61, 904.5f, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_000550D4[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 40, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 14, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 65, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
@@ -32358,7 +32358,7 @@ NJS_MATERIAL matlist_000550D4[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 41, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_00055188[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00055188[] = {
 	4, 3, 23, 2, 22,
 	4, 7, 3, 6, 2,
 	4, 11, 7, 10, 6,
@@ -32384,7 +32384,7 @@ Sint16 poly_00055188[] = {
 	4, 91, 87, 90, 86
 };
 
-Sint16 poly_00055272[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00055272[] = {
 	4, 5, 1, 4, 0,
 	4, 1, 21, 0, 20,
 	4, 9, 5, 8, 4,
@@ -32411,7 +32411,7 @@ Sint16 poly_00055272[] = {
 	4, 89, 85, 88, 84
 };
 
-Sint16 poly_00055362[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00055362[] = {
 	4, 6, 2, 5, 1,
 	4, 2, 22, 1, 21,
 	4, 10, 6, 9, 5,
@@ -32438,41 +32438,41 @@ Sint16 poly_00055362[] = {
 	4, 90, 86, 89, 85
 };
 
-Sint16 poly_00055452[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00055452[] = {
 	4, 99, 97, 107, 106,
 	4, 96, 98, 110, 109,
 	4, 101, 103, 108, 105,
 	4, 102, 100, 104, 111
 };
 
-Sint16 poly_0005547A[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0005547A[] = {
 	4, 98, 99, 109, 107,
 	4, 103, 102, 105, 104
 };
 
-Sint16 poly_0005548E[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0005548E[] = {
 	4, 97, 96, 106, 110,
 	4, 100, 101, 111, 108
 };
 
-Sint16 poly_000554A2[] = {
+extern "C" __declspec(dllexport) Sint16 poly_000554A2[] = {
 	4, 102, 103, 100, 101,
 	4, 109, 107, 110, 106,
 	4, 105, 104, 108, 111,
 	4, 99, 98, 97, 96
 };
 
-Sint16 poly_000554CA[] = {
+extern "C" __declspec(dllexport) Sint16 poly_000554CA[] = {
 	4, 113, 112, 115, 114,
 	4, 117, 116, 119, 118
 };
 
-Sint16 poly_000554DE[] = {
+extern "C" __declspec(dllexport) Sint16 poly_000554DE[] = {
 	4, 116, 113, 118, 115,
 	4, 112, 117, 114, 119
 };
 
-NJS_TEX uv_000554F4[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_000554F4[] = {
 	{ 510, -765 },
 	{ 255, -765 },
 	{ 510, 255 },
@@ -32569,7 +32569,7 @@ NJS_TEX uv_000554F4[] = {
 	{ 255, 255 }
 };
 
-NJS_TEX uv_0005566C[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0005566C[] = {
 	{ 255, -765 },
 	{ 0, -765 },
 	{ 255, 255 },
@@ -32668,7 +32668,7 @@ NJS_TEX uv_0005566C[] = {
 	{ 0, 255 }
 };
 
-NJS_TEX uv_000557EC[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_000557EC[] = {
 	{ 510, 255 },
 	{ 0, 255 },
 	{ 510, 0 },
@@ -32767,7 +32767,7 @@ NJS_TEX uv_000557EC[] = {
 	{ 0 }
 };
 
-NJS_TEX uv_0005596C[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0005596C[] = {
 	{ 0 },
 	{ 255, 0 },
 	{ 0, 255 },
@@ -32786,7 +32786,7 @@ NJS_TEX uv_0005596C[] = {
 	{ 255, 255 }
 };
 
-NJS_TEX uv_000559AC[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_000559AC[] = {
 	{ 0 },
 	{ 2040, 0 },
 	{ 0, 255 },
@@ -32797,7 +32797,7 @@ NJS_TEX uv_000559AC[] = {
 	{ 2040, 255 }
 };
 
-NJS_TEX uv_000559CC[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_000559CC[] = {
 	{ 4080, -513 },
 	{ 0, -513 },
 	{ 4080, 161 },
@@ -32808,7 +32808,7 @@ NJS_TEX uv_000559CC[] = {
 	{ 4080, 161 }
 };
 
-NJS_TEX uv_000559EC[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_000559EC[] = {
 	{ 4080, 255 },
 	{ 0, 255 },
 	{ 4080, 0 },
@@ -32827,7 +32827,7 @@ NJS_TEX uv_000559EC[] = {
 	{ 0 }
 };
 
-NJS_TEX uv_00055A2C[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00055A2C[] = {
 	{ 255, -765 },
 	{ 126, -765 },
 	{ 255, 255 },
@@ -32838,7 +32838,7 @@ NJS_TEX uv_00055A2C[] = {
 	{ 126, 255 }
 };
 
-NJS_TEX uv_00055A4C[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00055A4C[] = {
 	{ 1020, -765 },
 	{ 0, -765 },
 	{ 1020, 255 },
@@ -32849,7 +32849,7 @@ NJS_TEX uv_00055A4C[] = {
 	{ 1020, 255 }
 };
 
-NJS_MESHSET_SADX meshlist_00055A6C[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00055A6C[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 23, poly_00055188, NULL, NULL, NULL, uv_000554F4, NULL },
 	{ NJD_MESHSET_TRIMESH | 1, 24, poly_00055272, NULL, NULL, NULL, uv_0005566C, NULL },
 	{ NJD_MESHSET_TRIMESH | 2, 24, poly_00055362, NULL, NULL, NULL, uv_000557EC, NULL },
@@ -32861,7 +32861,7 @@ NJS_MESHSET_SADX meshlist_00055A6C[] = {
 	{ NJD_MESHSET_TRIMESH | 8, 2, poly_000554DE, NULL, NULL, NULL, uv_00055A4C, NULL }
 };
 
-NJS_VECTOR vertex_00055B44[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_00055B44[] = {
 	{ 36.70825f, -36, 30 },
 	{ 36.70825f, 3.5f, 30 },
 	{ 34.2807f, 3.5f, 30 },
@@ -32984,7 +32984,7 @@ NJS_VECTOR vertex_00055B44[] = {
 	{ -36, 33, -40 }
 };
 
-NJS_VECTOR normal_000560E4[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_000560E4[] = {
 	{ 1, 0, 0 },
 	{ 0.792406f, 0.609994f, 0 },
 	{ 0.537435f, 0.843305f, 0 },
@@ -33107,10 +33107,10 @@ NJS_VECTOR normal_000560E4[] = {
 	{ 0, 0.7071069f, -0.7071069f }
 };
 
-NJS_MODEL_SADX attach_00056684 = { vertex_00055B44, normal_000560E4, LengthOfArray<Sint32>(vertex_00055B44), meshlist_00055A6C, matlist_000550D4, LengthOfArray<Uint16>(meshlist_00055A6C), LengthOfArray<Uint16>(matlist_000550D4), { 0 }, 56.56854f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00056684 = { vertex_00055B44, normal_000560E4, LengthOfArray<Sint32>(vertex_00055B44), meshlist_00055A6C, matlist_000550D4, LengthOfArray<Uint16>(meshlist_00055A6C), LengthOfArray<Uint16>(matlist_000550D4), { 0 }, 56.56854f, NULL };
 
-NJS_OBJECT object_000566AC = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00056684, -640, 13, 900, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_000566E0[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_000566AC = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00056684, -640, 13, 900, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_000566E0[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 44, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 44, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 66, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
@@ -33122,35 +33122,35 @@ NJS_MATERIAL matlist_000566E0[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 41, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_00056794[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00056794[] = {
 	4, 4, 5, 14, 11,
 	4, 6, 4, 8, 14,
 	4, 114, 112, 116, 115
 };
 
-Sint16 poly_000567B2[] = {
+extern "C" __declspec(dllexport) Sint16 poly_000567B2[] = {
 	4, 2, 3, 12, 10,
 	4, 113, 114, 117, 116
 };
 
-Sint16 poly_000567C6[] = {
+extern "C" __declspec(dllexport) Sint16 poly_000567C6[] = {
 	3, 4, 6, 7,
 	3, 7, 5, 4
 };
 
-Sint16 poly_000567D6[] = {
+extern "C" __declspec(dllexport) Sint16 poly_000567D6[] = {
 	4, 12, 10, 13, 9,
 	4, 3, 2, 1, 0,
 	4, 117, 116, 118, 115,
 	4, 114, 113, 112, 111
 };
 
-Sint16 poly_000567FE[] = {
+extern "C" __declspec(dllexport) Sint16 poly_000567FE[] = {
 	4, 1, 0, 9, 13,
 	4, 112, 111, 115, 118
 };
 
-Sint16 poly_00056812[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00056812[] = {
 	0x8000u | 6, 22, 21, 18, 17, 38, 37,
 	0x8000u | 6, 21, 22, 25, 26, 29, 30,
 	0x8000u | 6, 38, 37, 34, 33, 30, 29,
@@ -33165,7 +33165,7 @@ Sint16 poly_00056812[] = {
 	0x8000u | 6, 110, 109, 106, 105, 102, 101
 };
 
-Sint16 poly_000568BA[] = {
+extern "C" __declspec(dllexport) Sint16 poly_000568BA[] = {
 	4, 20, 16, 19, 15,
 	4, 16, 36, 15, 35,
 	4, 24, 20, 23, 19,
@@ -33192,7 +33192,7 @@ Sint16 poly_000568BA[] = {
 	4, 104, 100, 103, 99
 };
 
-Sint16 poly_000569AA[] = {
+extern "C" __declspec(dllexport) Sint16 poly_000569AA[] = {
 	4, 21, 17, 20, 16,
 	4, 17, 37, 16, 36,
 	4, 25, 21, 24, 20,
@@ -33219,14 +33219,14 @@ Sint16 poly_000569AA[] = {
 	4, 105, 101, 104, 100
 };
 
-Sint16 poly_00056A9A[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00056A9A[] = {
 	3, 126, 121, 119,
 	3, 125, 123, 120,
 	3, 119, 124, 126,
 	3, 120, 122, 125
 };
 
-NJS_TEX uv_00056ABC[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00056ABC[] = {
 	{ 0 },
 	{ 255, 0 },
 	{ 0, 255 },
@@ -33241,7 +33241,7 @@ NJS_TEX uv_00056ABC[] = {
 	{ 255, 255 }
 };
 
-NJS_TEX uv_00056AEC[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00056AEC[] = {
 	{ 0 },
 	{ 2040, 0 },
 	{ 0, 255 },
@@ -33252,7 +33252,7 @@ NJS_TEX uv_00056AEC[] = {
 	{ 2040, 255 }
 };
 
-NJS_TEX uv_00056B0C[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00056B0C[] = {
 	{ 0 },
 	{ 255, 0 },
 	{ 255, 255 },
@@ -33261,7 +33261,7 @@ NJS_TEX uv_00056B0C[] = {
 	{ 255, 0 }
 };
 
-NJS_TEX uv_00056B24[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00056B24[] = {
 	{ 4080, 255 },
 	{ 0, 255 },
 	{ 4080, 0 },
@@ -33280,7 +33280,7 @@ NJS_TEX uv_00056B24[] = {
 	{ 0 }
 };
 
-NJS_TEX uv_00056B64[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00056B64[] = {
 	{ 0, -510 },
 	{ 4080, -510 },
 	{ 0, 159 },
@@ -33291,7 +33291,7 @@ NJS_TEX uv_00056B64[] = {
 	{ 0, 162 }
 };
 
-NJS_TEX uv_00056B84[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00056B84[] = {
 	{ 510, -1020 },
 	{ 510, 255 },
 	{ 251, -1020 },
@@ -33366,7 +33366,7 @@ NJS_TEX uv_00056B84[] = {
 	{ 0, 255 }
 };
 
-NJS_TEX uv_00056CA4[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00056CA4[] = {
 	{ 255, -765 },
 	{ 0, -765 },
 	{ 255, 255 },
@@ -33465,7 +33465,7 @@ NJS_TEX uv_00056CA4[] = {
 	{ 0, 255 }
 };
 
-NJS_TEX uv_00056E24[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00056E24[] = {
 	{ 0, 255 },
 	{ 508, 255 },
 	{ 0 },
@@ -33564,7 +33564,7 @@ NJS_TEX uv_00056E24[] = {
 	{ 510, 0 }
 };
 
-NJS_TEX uv_00056FA4[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00056FA4[] = {
 	{ 0, -765 },
 	{ 0, 255 },
 	{ 1020, 255 },
@@ -33579,7 +33579,7 @@ NJS_TEX uv_00056FA4[] = {
 	{ 0, -765 }
 };
 
-NJS_MESHSET_SADX meshlist_00056FD4[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00056FD4[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 3, poly_00056794, NULL, NULL, NULL, uv_00056ABC, NULL },
 	{ NJD_MESHSET_TRIMESH | 1, 2, poly_000567B2, NULL, NULL, NULL, uv_00056AEC, NULL },
 	{ NJD_MESHSET_TRIMESH | 2, 2, poly_000567C6, NULL, NULL, NULL, uv_00056B0C, NULL },
@@ -33591,7 +33591,7 @@ NJS_MESHSET_SADX meshlist_00056FD4[] = {
 	{ NJD_MESHSET_TRIMESH | 8, 4, poly_00056A9A, NULL, NULL, NULL, uv_00056FA4, NULL }
 };
 
-NJS_VECTOR vertex_000570AC[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_000570AC[] = {
 	{ 36, 36, 36 },
 	{ -40, 36, 36 },
 	{ 36, 36, 40 },
@@ -33721,7 +33721,7 @@ NJS_VECTOR vertex_000570AC[] = {
 	{ -40, 33, -40 }
 };
 
-NJS_VECTOR normal_000576A0[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_000576A0[] = {
 	{ 0, 0.7071069f, -0.7071069f },
 	{ 0, 0.7071069f, -0.7071069f },
 	{ 0, 0.7071069f, 0.7071069f },
@@ -33851,21 +33851,21 @@ NJS_VECTOR normal_000576A0[] = {
 	{ 0, 1, 0 }
 };
 
-NJS_MODEL_SADX attach_00057C94 = { vertex_000570AC, normal_000576A0, LengthOfArray<Sint32>(vertex_000570AC), meshlist_00056FD4, matlist_000566E0, LengthOfArray<Uint16>(meshlist_00056FD4), LengthOfArray<Uint16>(matlist_000566E0), { 0 }, 56.56854f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00057C94 = { vertex_000570AC, normal_000576A0, LengthOfArray<Sint32>(vertex_000570AC), meshlist_00056FD4, matlist_000566E0, LengthOfArray<Uint16>(meshlist_00056FD4), LengthOfArray<Uint16>(matlist_000566E0), { 0 }, 56.56854f, NULL };
 
-NJS_OBJECT object_00057CBC = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00057C94, -640, 13, 1550, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_00057CF0[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_00057CBC = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00057C94, -640, 13, 1550, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_00057CF0[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 46, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 45, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 45, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_00057D2C[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00057D2C[] = {
 	4, 9, 11, 8, 10,
 	4, 13, 14, 12, 15
 };
 
-Sint16 poly_00057D40[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00057D40[] = {
 	4, 14, 13, 0, 1,
 	4, 8, 10, 3, 2,
 	4, 10, 11, 2, 5,
@@ -33874,12 +33874,12 @@ Sint16 poly_00057D40[] = {
 	4, 12, 15, 6, 7
 };
 
-Sint16 poly_00057D7C[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00057D7C[] = {
 	4, 3, 2, 4, 5,
 	4, 0, 1, 7, 6
 };
 
-NJS_TEX uv_00057D90[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00057D90[] = {
 	{ 0 },
 	{ 7650, 0 },
 	{ 0, 255 },
@@ -33890,7 +33890,7 @@ NJS_TEX uv_00057D90[] = {
 	{ 7650, 255 }
 };
 
-NJS_TEX uv_00057DB0[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00057DB0[] = {
 	{ 0 },
 	{ 7650, 0 },
 	{ 0, 255 },
@@ -33917,13 +33917,13 @@ NJS_TEX uv_00057DB0[] = {
 	{ 7650, 255 }
 };
 
-NJS_MESHSET_SADX meshlist_00057E10[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00057E10[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 2, poly_00057D2C, NULL, NULL, NULL, uv_00057D90, NULL },
 	{ NJD_MESHSET_TRIMESH | 1, 6, poly_00057D40, NULL, NULL, NULL, uv_00057DB0, NULL },
 	{ NJD_MESHSET_TRIMESH | 2, 2, poly_00057D7C, NULL, NULL, NULL, NULL, NULL }
 };
 
-NJS_VECTOR vertex_00057E58[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_00057E58[] = {
 	{ 74.5f, 49, 40 },
 	{ -85.5f, 20, 40 },
 	{ -85.5f, 20, -36 },
@@ -33942,7 +33942,7 @@ NJS_VECTOR vertex_00057E58[] = {
 	{ 74.5f, 50.5f, 36 }
 };
 
-NJS_VECTOR normal_00057F18[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_00057F18[] = {
 	{ 0.119126f, -0.6572469f, 0.7442009f },
 	{ -0.5273049f, -0.63147f, 0.568503f },
 	{ -0.5273049f, -0.63147f, 0.568503f },
@@ -33961,29 +33961,29 @@ NJS_VECTOR normal_00057F18[] = {
 	{ -0.133497f, 0.736537f, -0.663093f }
 };
 
-NJS_MODEL_SADX attach_00057FD8 = { vertex_00057E58, normal_00057F18, LengthOfArray<Sint32>(vertex_00057E58), meshlist_00057E10, matlist_00057CF0, LengthOfArray<Uint16>(meshlist_00057E10), LengthOfArray<Uint16>(matlist_00057CF0), { -5.5f, 35.25f, 0 }, 89.44272f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00057FD8 = { vertex_00057E58, normal_00057F18, LengthOfArray<Sint32>(vertex_00057E58), meshlist_00057E10, matlist_00057CF0, LengthOfArray<Uint16>(meshlist_00057E10), LengthOfArray<Uint16>(matlist_00057CF0), { -5.5f, 35.25f, 0 }, 89.44272f, NULL };
 
-NJS_OBJECT object_00058000 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00057FD8, -754.5f, 72.5f, 1210, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_00058034[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_00058000 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00057FD8, -754.5f, 72.5f, 1210, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_00058034[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 46, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 45, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_0005805C[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0005805C[] = {
 	4, 2, 3, 1, 0,
 	4, 6, 7, 4, 5,
 	4, 9, 8, 11, 10,
 	4, 14, 15, 12, 13
 };
 
-Sint16 poly_00058084[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00058084[] = {
 	4, 7, 6, 14, 15,
 	4, 3, 2, 9, 8,
 	4, 13, 4, 12, 5,
 	4, 0, 11, 1, 10
 };
 
-NJS_TEX uv_000580AC[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_000580AC[] = {
 	{ 0 },
 	{ 5100, 0 },
 	{ 0, 255 },
@@ -34002,7 +34002,7 @@ NJS_TEX uv_000580AC[] = {
 	{ 5100, 255 }
 };
 
-NJS_TEX uv_000580EC[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_000580EC[] = {
 	{ 0 },
 	{ 5100, 0 },
 	{ 0, 255 },
@@ -34021,12 +34021,12 @@ NJS_TEX uv_000580EC[] = {
 	{ 0, 255 }
 };
 
-NJS_MESHSET_SADX meshlist_0005812C[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_0005812C[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 4, poly_0005805C, NULL, NULL, NULL, uv_000580AC, NULL },
 	{ NJD_MESHSET_TRIMESH | 1, 4, poly_00058084, NULL, NULL, NULL, uv_000580EC, NULL }
 };
 
-NJS_VECTOR vertex_0005815C[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_0005815C[] = {
 	{ 45, 45, 31 },
 	{ -45, 45, 31 },
 	{ -45, 45, 35 },
@@ -34045,7 +34045,7 @@ NJS_VECTOR vertex_0005815C[] = {
 	{ 45, 43.5f, -45 }
 };
 
-NJS_VECTOR normal_0005821C[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_0005821C[] = {
 	{ 0, 0.7071069f, -0.7071069f },
 	{ 0, 0.7071069f, -0.7071069f },
 	{ 0, 0.7071069f, 0.7071069f },
@@ -34064,22 +34064,22 @@ NJS_VECTOR normal_0005821C[] = {
 	{ 0, -0.7071069f, -0.7071069f }
 };
 
-NJS_MODEL_SADX attach_000582DC = { vertex_0005815C, normal_0005821C, LengthOfArray<Sint32>(vertex_0005815C), meshlist_0005812C, matlist_00058034, LengthOfArray<Uint16>(meshlist_0005812C), LengthOfArray<Uint16>(matlist_00058034), { 0, 44.25f, -5 }, 60.20797f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_000582DC = { vertex_0005815C, normal_0005821C, LengthOfArray<Sint32>(vertex_0005815C), meshlist_0005812C, matlist_00058034, LengthOfArray<Uint16>(meshlist_0005812C), LengthOfArray<Uint16>(matlist_00058034), { 0, 44.25f, -5 }, 60.20797f, NULL };
 
-NJS_OBJECT object_00058304 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_000582DC, -635, 78, 1215, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_00058338[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_00058304 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_000582DC, -635, 78, 1215, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_00058338[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 35, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 58, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 20, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 16, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_00058388[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00058388[] = {
 	0x8000u | 18, 1, 43, 0, 42, 3, 47, 4, 49, 6, 53, 7, 55, 5, 51, 2, 45, 1, 43,
 	0x8000u | 18, 1, 40, 2, 44, 5, 50, 7, 54, 6, 52, 4, 48, 3, 46, 0, 41, 1, 40
 };
 
-Sint16 poly_000583D4[] = {
+extern "C" __declspec(dllexport) Sint16 poly_000583D4[] = {
 	4, 32, 39, 25, 28,
 	4, 39, 38, 28, 29,
 	4, 38, 37, 29, 30,
@@ -34090,7 +34090,7 @@ Sint16 poly_000583D4[] = {
 	4, 33, 32, 24, 25
 };
 
-Sint16 poly_00058424[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00058424[] = {
 	4, 23, 18, 10, 9,
 	4, 22, 23, 11, 10,
 	4, 21, 22, 12, 11,
@@ -34101,12 +34101,12 @@ Sint16 poly_00058424[] = {
 	4, 17, 16, 8, 15
 };
 
-Sint16 poly_00058474[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00058474[] = {
 	18, 48, 28, 52, 29, 54, 30, 50, 31, 44, 26, 40, 27, 41, 24, 46, 25, 48, 28,
 	18, 53, 11, 49, 10, 47, 9, 42, 8, 43, 15, 45, 14, 51, 13, 55, 12, 53, 11
 };
 
-NJS_TEX uv_000584C0[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_000584C0[] = {
 	{ 1530, -2307 },
 	{ 1530, 55 },
 	{ 1333, -2307 },
@@ -34145,7 +34145,7 @@ NJS_TEX uv_000584C0[] = {
 	{ 1530, -4719 }
 };
 
-NJS_TEX uv_00058550[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00058550[] = {
 	{ 255, 0 },
 	{ 0 },
 	{ 255, 255 },
@@ -34180,7 +34180,7 @@ NJS_TEX uv_00058550[] = {
 	{ 0, 255 }
 };
 
-NJS_TEX uv_000585D0[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_000585D0[] = {
 	{ 0, 255 },
 	{ 255, 255 },
 	{ 0, -255 },
@@ -34215,7 +34215,7 @@ NJS_TEX uv_000585D0[] = {
 	{ 255, -255 }
 };
 
-NJS_TEX uv_00058650[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00058650[] = {
 	{ 47, 46 },
 	{ 0, 127 },
 	{ 14, 127 },
@@ -34254,14 +34254,14 @@ NJS_TEX uv_00058650[] = {
 	{ 37, 37 }
 };
 
-NJS_MESHSET_SADX meshlist_000586E0[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_000586E0[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 2, poly_00058388, NULL, NULL, NULL, uv_000584C0, NULL },
 	{ NJD_MESHSET_TRIMESH | 1, 8, poly_000583D4, NULL, NULL, NULL, uv_00058550, NULL },
 	{ NJD_MESHSET_TRIMESH | 2, 8, poly_00058424, NULL, NULL, NULL, uv_000585D0, NULL },
 	{ NJD_MESHSET_TRIMESH | 3, 2, poly_00058474, NULL, NULL, NULL, uv_00058650, NULL }
 };
 
-NJS_VECTOR vertex_00058740[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_00058740[] = {
 	{ 4.81046f, 7.5f, 5.216947f },
 	{ 6.802648f, 7.5f, -0.000534f },
 	{ 4.81046f, 7.5f, -5.218014f },
@@ -34320,7 +34320,7 @@ NJS_VECTOR vertex_00058740[] = {
 	{ -7.516884f, -182, -7.670553f }
 };
 
-NJS_VECTOR normal_000589E0[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_000589E0[] = {
 	{ 0.718076f, -0.000199f, 0.695965f },
 	{ 1, 0.000206f, 0 },
 	{ 0.718076f, 0.000598f, -0.695965f },
@@ -34379,25 +34379,25 @@ NJS_VECTOR normal_000589E0[] = {
 	{ -0.421814f, 0.809401f, -0.408587f }
 };
 
-NJS_MODEL_SADX attach_00058C80 = { vertex_00058740, normal_000589E0, LengthOfArray<Sint32>(vertex_00058740), meshlist_000586E0, matlist_00058338, LengthOfArray<Uint16>(meshlist_000586E0), LengthOfArray<Uint16>(matlist_00058338), { -0.0008699999f, 6.5f, -0.000534f }, 204.8414f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00058C80 = { vertex_00058740, normal_000589E0, LengthOfArray<Sint32>(vertex_00058740), meshlist_000586E0, matlist_00058338, LengthOfArray<Uint16>(meshlist_000586E0), LengthOfArray<Uint16>(matlist_00058338), { -0.0008699999f, 6.5f, -0.000534f }, 204.8414f, NULL };
 
-NJS_OBJECT object_00058CA8 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00058C80, 6201.597f, 188, 980.4159f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_00058CDC[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_00058CA8 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00058C80, 6201.597f, 188, 980.4159f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_00058CDC[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 46, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 64, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_00058D04[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00058D04[] = {
 	4, 1, 0, 5, 4,
 	4, 7, 6, 3, 2
 };
 
-Sint16 poly_00058D18[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00058D18[] = {
 	4, 7, 3, 5, 1,
 	4, 2, 6, 0, 4
 };
 
-NJS_TEX uv_00058D2C[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00058D2C[] = {
 	{ 0, 255 },
 	{ 0 },
 	{ 7650, 255 },
@@ -34408,7 +34408,7 @@ NJS_TEX uv_00058D2C[] = {
 	{ 7650, 0 }
 };
 
-NJS_TEX uv_00058D4C[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00058D4C[] = {
 	{ 0 },
 	{ 7650, 0 },
 	{ 0, 255 },
@@ -34419,12 +34419,12 @@ NJS_TEX uv_00058D4C[] = {
 	{ 7650, 255 }
 };
 
-NJS_MESHSET_SADX meshlist_00058D6C[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00058D6C[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 2, poly_00058D04, NULL, NULL, NULL, uv_00058D2C, NULL },
 	{ NJD_MESHSET_TRIMESH | 1, 2, poly_00058D18, NULL, NULL, NULL, uv_00058D4C, NULL }
 };
 
-NJS_VECTOR vertex_00058D9C[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_00058D9C[] = {
 	{ -75, 73, 71 },
 	{ -71, 73, 71 },
 	{ -75, 75, 71 },
@@ -34435,7 +34435,7 @@ NJS_VECTOR vertex_00058D9C[] = {
 	{ -71, 75, -71 }
 };
 
-NJS_VECTOR normal_00058DFC[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_00058DFC[] = {
 	{ -0.7071069f, -0.7071069f, 0 },
 	{ 0.7071069f, -0.7071069f, 0 },
 	{ -0.7071069f, 0.7071069f, 0 },
@@ -34446,31 +34446,31 @@ NJS_VECTOR normal_00058DFC[] = {
 	{ 0.7071069f, 0.7071069f, 0 }
 };
 
-NJS_MODEL_SADX attach_00058E5C = { vertex_00058D9C, normal_00058DFC, LengthOfArray<Sint32>(vertex_00058D9C), meshlist_00058D6C, matlist_00058CDC, LengthOfArray<Uint16>(meshlist_00058D6C), LengthOfArray<Uint16>(matlist_00058CDC), { -73, 74, 0 }, 71.02815f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00058E5C = { vertex_00058D9C, normal_00058DFC, LengthOfArray<Sint32>(vertex_00058D9C), meshlist_00058D6C, matlist_00058CDC, LengthOfArray<Uint16>(meshlist_00058D6C), LengthOfArray<Uint16>(matlist_00058CDC), { -73, 74, 0 }, 71.02815f, NULL };
 
-NJS_OBJECT object_00058E84 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00058E5C, 2645, -38, 365, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_00058EB8[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_00058E84 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00058E5C, 2645, -38, 365, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_00058EB8[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 64, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 64, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 46, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_00058EF4[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00058EF4[] = {
 	4, 3, 2, 1, 0,
 	4, 6, 7, 4, 5
 };
 
-Sint16 poly_00058F08[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00058F08[] = {
 	4, 7, 3, 5, 1,
 	4, 2, 6, 0, 4
 };
 
-Sint16 poly_00058F1C[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00058F1C[] = {
 	4, 1, 0, 5, 4,
 	4, 7, 6, 3, 2
 };
 
-NJS_TEX uv_00058F30[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00058F30[] = {
 	{ 0 },
 	{ 255, 0 },
 	{ 0, 255 },
@@ -34481,7 +34481,7 @@ NJS_TEX uv_00058F30[] = {
 	{ 255, 255 }
 };
 
-NJS_TEX uv_00058F50[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00058F50[] = {
 	{ 0 },
 	{ 5100, 0 },
 	{ 0, 255 },
@@ -34492,7 +34492,7 @@ NJS_TEX uv_00058F50[] = {
 	{ 5100, 255 }
 };
 
-NJS_TEX uv_00058F70[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00058F70[] = {
 	{ 7650, 0 },
 	{ 7650, 255 },
 	{ 0 },
@@ -34503,13 +34503,13 @@ NJS_TEX uv_00058F70[] = {
 	{ 0, 255 }
 };
 
-NJS_MESHSET_SADX meshlist_00058F90[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00058F90[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 2, poly_00058EF4, NULL, NULL, NULL, uv_00058F30, NULL },
 	{ NJD_MESHSET_TRIMESH | 1, 2, poly_00058F08, NULL, NULL, NULL, uv_00058F50, NULL },
 	{ NJD_MESHSET_TRIMESH | 2, 2, poly_00058F1C, NULL, NULL, NULL, uv_00058F70, NULL }
 };
 
-NJS_VECTOR vertex_00058FD8[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_00058FD8[] = {
 	{ -75, 73, -75 },
 	{ -75, 73, -71 },
 	{ -75, 75, -75 },
@@ -34520,7 +34520,7 @@ NJS_VECTOR vertex_00058FD8[] = {
 	{ 75, 75, -71 }
 };
 
-NJS_VECTOR normal_00059038[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_00059038[] = {
 	{ -0.57735f, -0.57735f, -0.57735f },
 	{ -0.57735f, -0.57735f, 0.57735f },
 	{ -0.57735f, 0.57735f, -0.57735f },
@@ -34531,26 +34531,26 @@ NJS_VECTOR normal_00059038[] = {
 	{ 0.57735f, 0.57735f, 0.57735f }
 };
 
-NJS_MODEL_SADX attach_00059098 = { vertex_00058FD8, normal_00059038, LengthOfArray<Sint32>(vertex_00058FD8), meshlist_00058F90, matlist_00058EB8, LengthOfArray<Uint16>(meshlist_00058F90), LengthOfArray<Uint16>(matlist_00058EB8), { 0, 74, -73 }, 75.02666f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00059098 = { vertex_00058FD8, normal_00059038, LengthOfArray<Sint32>(vertex_00058FD8), meshlist_00058F90, matlist_00058EB8, LengthOfArray<Uint16>(meshlist_00058F90), LengthOfArray<Uint16>(matlist_00058EB8), { 0, 74, -73 }, 75.02666f, NULL };
 
-NJS_OBJECT object_000590C0 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00059098, 2645, -38, 365, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_000590F4[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_000590C0 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00059098, 2645, -38, 365, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_000590F4[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 64, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 46, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_0005911C[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0005911C[] = {
 	4, 3, 2, 1, 0,
 	4, 7, 3, 5, 1,
 	4, 2, 6, 0, 4
 };
 
-Sint16 poly_0005913A[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0005913A[] = {
 	4, 7, 6, 3, 2,
 	4, 1, 0, 5, 4
 };
 
-NJS_TEX uv_00059150[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00059150[] = {
 	{ 0 },
 	{ 510, 0 },
 	{ 0, 255 },
@@ -34565,7 +34565,7 @@ NJS_TEX uv_00059150[] = {
 	{ 1275, 255 }
 };
 
-NJS_TEX uv_00059180[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00059180[] = {
 	{ 0, 255 },
 	{ 0 },
 	{ 1530, 255 },
@@ -34576,12 +34576,12 @@ NJS_TEX uv_00059180[] = {
 	{ 1530, 0 }
 };
 
-NJS_MESHSET_SADX meshlist_000591A0[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_000591A0[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 3, poly_0005911C, NULL, NULL, NULL, uv_00059150, NULL },
 	{ NJD_MESHSET_TRIMESH | 1, 2, poly_0005913A, NULL, NULL, NULL, uv_00059180, NULL }
 };
 
-NJS_VECTOR vertex_000591D0[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_000591D0[] = {
 	{ -75, 73, -49.99999f },
 	{ -71, 73, -49.99999f },
 	{ -75, 75, -49.99999f },
@@ -34592,7 +34592,7 @@ NJS_VECTOR vertex_000591D0[] = {
 	{ -71, 75, -71 }
 };
 
-NJS_VECTOR normal_00059230[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_00059230[] = {
 	{ -0.57735f, -0.57735f, 0.57735f },
 	{ 0.57735f, -0.57735f, 0.57735f },
 	{ -0.57735f, 0.57735f, 0.57735f },
@@ -34603,21 +34603,21 @@ NJS_VECTOR normal_00059230[] = {
 	{ 0.7071069f, 0.7071069f, 0 }
 };
 
-NJS_MODEL_SADX attach_00059290 = { vertex_000591D0, normal_00059230, LengthOfArray<Sint32>(vertex_000591D0), meshlist_000591A0, matlist_000590F4, LengthOfArray<Uint16>(meshlist_000591A0), LengthOfArray<Uint16>(matlist_000590F4), { -73, 74, -60.5f }, 10.68878f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00059290 = { vertex_000591D0, normal_00059230, LengthOfArray<Sint32>(vertex_000591D0), meshlist_000591A0, matlist_000590F4, LengthOfArray<Uint16>(meshlist_000591A0), LengthOfArray<Uint16>(matlist_000590F4), { -73, 74, -60.5f }, 10.68878f, NULL };
 
-NJS_OBJECT object_000592B8 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00059290, 2791, -38, 365, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_000592EC[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_000592B8 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00059290, 2791, -38, 365, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_000592EC[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 45, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 46, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 44, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_00059328[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00059328[] = {
 	0x8000u | 20, 5, 1, 12, 13, 35, 34, 28, 30, 38, 37, 16, 17, 23, 22, 24, 25, 8, 10, 4, 0,
 	0x8000u | 20, 2, 6, 15, 14, 32, 33, 31, 29, 39, 36, 19, 18, 21, 20, 26, 27, 11, 9, 3, 7
 };
 
-Sint16 poly_0005937C[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0005937C[] = {
 	4, 4, 8, 7, 9,
 	4, 6, 14, 5, 12,
 	4, 32, 15, 34, 13,
@@ -34633,7 +34633,7 @@ Sint16 poly_0005937C[] = {
 	4, 25, 10, 26, 11
 };
 
-Sint16 poly_000593FE[] = {
+extern "C" __declspec(dllexport) Sint16 poly_000593FE[] = {
 	4, 58, 57, 13, 1,
 	4, 56, 59, 2, 15,
 	4, 59, 58, 15, 13,
@@ -34654,7 +34654,7 @@ Sint16 poly_000593FE[] = {
 	4, 52, 54, 0, 10
 };
 
-NJS_TEX uv_000594B4[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_000594B4[] = {
 	{ 1353, 0 },
 	{ 1353, 255 },
 	{ 1586, 0 },
@@ -34697,7 +34697,7 @@ NJS_TEX uv_000594B4[] = {
 	{ 3927, 0 }
 };
 
-NJS_TEX uv_00059554[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00059554[] = {
 	{ 510, 0 },
 	{ 0 },
 	{ 510, 255 },
@@ -34752,7 +34752,7 @@ NJS_TEX uv_00059554[] = {
 	{ 0, 255 }
 };
 
-NJS_TEX uv_00059624[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00059624[] = {
 	{ 0, 255 },
 	{ 255, 255 },
 	{ 0 },
@@ -34827,13 +34827,13 @@ NJS_TEX uv_00059624[] = {
 	{ 255, 0 }
 };
 
-NJS_MESHSET_SADX meshlist_00059744[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00059744[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 2, poly_00059328, NULL, NULL, NULL, uv_000594B4, NULL },
 	{ NJD_MESHSET_TRIMESH | 1, 13, poly_0005937C, NULL, NULL, NULL, uv_00059554, NULL },
 	{ NJD_MESHSET_TRIMESH | 2, 18, poly_000593FE, NULL, NULL, NULL, uv_00059624, NULL }
 };
 
-NJS_VECTOR vertex_0005978C[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_0005978C[] = {
 	{ -30.99999f, 404, -53.69211f },
 	{ 0.000008f, 404, -61.99853f },
 	{ 0.000008999999f, 404, -64.99853f },
@@ -34896,7 +34896,7 @@ NJS_VECTOR vertex_0005978C[] = {
 	{ -2.031242f, 400, -64.45426f }
 };
 
-NJS_VECTOR normal_00059A5C[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_00059A5C[] = {
 	{ 0.25882f, 0, 0.965926f },
 	{ 0.258818f, 0, 0.965926f },
 	{ -0.25882f, 0, -0.965926f },
@@ -34959,10 +34959,10 @@ NJS_VECTOR normal_00059A5C[] = {
 	{ -0.802844f, 0, -0.596189f }
 };
 
-NJS_MODEL_SADX attach_00059D2C = { vertex_0005978C, normal_00059A5C, LengthOfArray<Sint32>(vertex_0005978C), meshlist_00059744, matlist_000592EC, LengthOfArray<Uint16>(meshlist_00059744), LengthOfArray<Uint16>(matlist_000592EC), { -16.24999f, 403, -59.34532f }, 17.56655f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00059D2C = { vertex_0005978C, normal_00059A5C, LengthOfArray<Sint32>(vertex_0005978C), meshlist_00059744, matlist_000592EC, LengthOfArray<Uint16>(meshlist_00059744), LengthOfArray<Uint16>(matlist_000592EC), { -16.24999f, 403, -59.34532f }, 17.56655f, NULL };
 
-NJS_OBJECT object_00059D54 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00059D2C, 5909.7f, 0, 775.2f, 0, 0x470A, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_00059D88[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_00059D54 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00059D2C, 5909.7f, 0, 775.2f, 0, 0x470A, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_00059D88[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 49, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 64, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 42, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
@@ -34975,12 +34975,12 @@ NJS_MATERIAL matlist_00059D88[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 35, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_00059E50[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00059E50[] = {
 	0x8000u | 5, 157, 160, 156, 159, 158,
 	3, 156, 157, 158
 };
 
-Sint16 poly_00059E64[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00059E64[] = {
 	4, 1, 0, 3, 2,
 	4, 0, 4, 2, 5,
 	4, 4, 6, 5, 7,
@@ -34995,7 +34995,7 @@ Sint16 poly_00059E64[] = {
 	4, 22, 1, 23, 3
 };
 
-Sint16 poly_00059EDC[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00059EDC[] = {
 	4, 155, 145, 160, 157,
 	3, 160, 154, 155,
 	3, 160, 153, 154,
@@ -35010,7 +35010,7 @@ Sint16 poly_00059EDC[] = {
 	3, 158, 147, 148
 };
 
-Sint16 poly_00059F44[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00059F44[] = {
 	4, 3, 2, 25, 24,
 	4, 2, 5, 24, 26,
 	4, 5, 7, 26, 27,
@@ -35025,7 +35025,7 @@ Sint16 poly_00059F44[] = {
 	4, 23, 3, 35, 25
 };
 
-Sint16 poly_00059FBC[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00059FBC[] = {
 	4, 25, 24, 37, 36,
 	4, 24, 26, 36, 38,
 	4, 26, 27, 38, 39,
@@ -35040,7 +35040,7 @@ Sint16 poly_00059FBC[] = {
 	4, 35, 25, 47, 37
 };
 
-Sint16 poly_0005A034[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0005A034[] = {
 	4, 37, 36, 49, 48,
 	4, 36, 38, 48, 50,
 	4, 38, 39, 50, 51,
@@ -35067,7 +35067,7 @@ Sint16 poly_0005A034[] = {
 	4, 71, 61, 83, 73
 };
 
-Sint16 poly_0005A124[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0005A124[] = {
 	4, 51, 52, 63, 64,
 	4, 52, 53, 64, 65,
 	4, 53, 54, 65, 66,
@@ -35082,7 +35082,7 @@ Sint16 poly_0005A124[] = {
 	4, 48, 50, 60, 62,
 };
 
-Sint16 poly_0005A19C[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0005A19C[] = {
 	4, 73, 72, 85, 84,
 	4, 72, 74, 84, 86,
 	4, 74, 75, 86, 87,
@@ -35097,7 +35097,7 @@ Sint16 poly_0005A19C[] = {
 	4, 83, 73, 95, 85
 };
 
-Sint16 poly_0005A214[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0005A214[] = {
 	4, 85, 84, 97, 96,
 	4, 84, 86, 96, 98,
 	4, 86, 87, 98, 99,
@@ -35112,14 +35112,14 @@ Sint16 poly_0005A214[] = {
 	4, 95, 85, 107, 97
 };
 
-Sint16 poly_0005A28C[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0005A28C[] = {
 	0x8000u | 26, 96, 108, 98, 110, 99, 111, 100, 112, 101, 113, 102, 114, 103, 115, 104, 116, 105, 117, 106, 118, 107, 119, 97, 109, 96, 108,
 	0x8000u | 26, 108, 120, 110, 122, 111, 123, 112, 124, 113, 125, 114, 126, 115, 127, 116, 128, 117, 129, 118, 130, 119, 131, 109, 121, 108, 120,
 	0x8000u | 26, 132, 120, 133, 121, 143, 131, 142, 130, 141, 129, 140, 128, 139, 127, 138, 126, 137, 125, 136, 124, 135, 123, 134, 122, 132, 120,
 	0x8000u | 26, 132, 144, 134, 146, 135, 147, 136, 148, 137, 149, 138, 150, 139, 151, 140, 152, 141, 153, 142, 154, 143, 155, 133, 145, 132, 144
 };
 
-NJS_TEX uv_0005A364[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0005A364[] = {
 	{ 552, 249 },
 	{ 426, 249 },
 	{ 510, 6 },
@@ -35130,7 +35130,7 @@ NJS_TEX uv_0005A364[] = {
 	{ 170, 249 }
 };
 
-NJS_TEX uv_0005A384[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0005A384[] = {
 	{ 1020, 255 },
 	{ 0, 255 },
 	{ 1020, 0 },
@@ -35181,7 +35181,7 @@ NJS_TEX uv_0005A384[] = {
 	{ 0 }
 };
 
-NJS_TEX uv_0005A444[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0005A444[] = {
 	{ 0, 255 },
 	{ 255, 255 },
 	{ 0 },
@@ -35224,7 +35224,7 @@ NJS_TEX uv_0005A444[] = {
 	{ 0, 255 }
 };
 
-NJS_TEX uv_0005A4E4[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0005A4E4[] = {
 	{ 0, 255 },
 	{ 255, 255 },
 	{ 0 },
@@ -35275,7 +35275,7 @@ NJS_TEX uv_0005A4E4[] = {
 	{ 255, 0 }
 };
 
-NJS_TEX uv_0005A5A4[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0005A5A4[] = {
 	{ 1020, 255 },
 	{ 0, 255 },
 	{ 1020, 0 },
@@ -35326,7 +35326,7 @@ NJS_TEX uv_0005A5A4[] = {
 	{ 0 }
 };
 
-NJS_TEX uv_0005A664[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0005A664[] = {
 	{ 255, 0 },
 	{ 0 },
 	{ 255, 255 },
@@ -35425,7 +35425,7 @@ NJS_TEX uv_0005A664[] = {
 	{ 255, 0 }
 };
 
-NJS_TEX uv_0005A7E4[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0005A7E4[] = {
 	{ 0, 255 },
 	{ 255, 255 },
 	{ 0 },
@@ -35476,7 +35476,7 @@ NJS_TEX uv_0005A7E4[] = {
 	{ 255, 0 }
 };
 
-NJS_TEX uv_0005A8A4[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0005A8A4[] = {
 	{ 0, 255 },
 	{ 255, 255 },
 	{ 0 },
@@ -35527,7 +35527,7 @@ NJS_TEX uv_0005A8A4[] = {
 	{ 255, 0 }
 };
 
-NJS_TEX uv_0005A964[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0005A964[] = {
 	{ 0, 255 },
 	{ 255, 255 },
 	{ 0 },
@@ -35578,7 +35578,7 @@ NJS_TEX uv_0005A964[] = {
 	{ 255, 0 }
 };
 
-NJS_TEX uv_0005AA24[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0005AA24[] = {
 	{ 170, 179 },
 	{ 170, 102 },
 	{ 340, 179 },
@@ -35685,7 +35685,7 @@ NJS_TEX uv_0005AA24[] = {
 	{ 2210, -22 }
 };
 
-NJS_MESHSET_SADX meshlist_0005ABC4[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_0005ABC4[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 2, poly_00059E50, NULL, NULL, NULL, uv_0005A364, NULL },
 	{ NJD_MESHSET_TRIMESH | 1, 12, poly_00059E64, NULL, NULL, NULL, uv_0005A384, NULL },
 	{ NJD_MESHSET_TRIMESH | 2, 12, poly_00059EDC, NULL, NULL, NULL, uv_0005A444, NULL },
@@ -35698,11 +35698,11 @@ NJS_MESHSET_SADX meshlist_0005ABC4[] = {
 	{ NJD_MESHSET_TRIMESH | 9, 4, poly_0005A28C, NULL, NULL, NULL, uv_0005AA24, NULL }
 };
 
-NJS_MESHSET_SADX meshlist_0005ABC4_2[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_0005ABC4_2[] = {
 	{ NJD_MESHSET_TRIMESH | 6, 12, poly_0005A124, NULL, NULL, NULL, uv_0005A7E4, NULL },
 };
 
-NJS_VECTOR vertex_0005ACB4[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_0005ACB4[] = {
 	{ 35.39844f, -80, -19.99003f },
 	{ 40.72263f, -80, 0.019287f },
 	{ 35.39844f, -77.58013f, -19.99003f },
@@ -35866,7 +35866,7 @@ NJS_VECTOR vertex_0005ACB4[] = {
 	{ 2.153654f, 19.71454f, 2.437498f }
 };
 
-NJS_VECTOR normal_0005B440[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_0005B440[] = {
 	{ 0.866896f, 0, -0.498489f },
 	{ 0.999999f, 0, 0.001737f },
 	{ 0.866896f, 0, -0.498489f },
@@ -36030,14 +36030,14 @@ NJS_VECTOR normal_0005B440[] = {
 	{ 0.416298f, 0.550074f, 0.7239569f }
 };
 
-NJS_MODEL_SADX attach_0005BBCC = { vertex_0005ACB4, normal_0005B440, LengthOfArray<Sint32>(vertex_0005ACB4), meshlist_0005ABC4, matlist_00059D88, LengthOfArray<Uint16>(meshlist_0005ABC4), LengthOfArray<Uint16>(matlist_00059D88), { 0.722519f, -15, -0.050537f }, 76.01118f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_0005BBCC = { vertex_0005ACB4, normal_0005B440, LengthOfArray<Sint32>(vertex_0005ACB4), meshlist_0005ABC4, matlist_00059D88, LengthOfArray<Uint16>(meshlist_0005ABC4), LengthOfArray<Uint16>(matlist_00059D88), { 0.722519f, -15, -0.050537f }, 76.01118f, NULL };
 
-NJS_OBJECT object_0005BBF4 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0005BBCC, 5909, 480, 775, 0, 0xFFFFF1C8, 0, 1, 1, 1, NULL, NULL };
-NJS_MODEL_SADX attach_0005BBCC_2 = { vertex_0005ACB4, normal_0005B440, LengthOfArray<Sint32>(vertex_0005ACB4), meshlist_0005ABC4_2, matlist_00059D88, LengthOfArray<Uint16>(meshlist_0005ABC4_2), LengthOfArray<Uint16>(matlist_00059D88), { 0.722519f, -15, -0.050537f }, 76.01118f, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0005BBF4 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0005BBCC, 5909, 480, 775, 0, 0xFFFFF1C8, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_0005BBCC_2 = { vertex_0005ACB4, normal_0005B440, LengthOfArray<Sint32>(vertex_0005ACB4), meshlist_0005ABC4_2, matlist_00059D88, LengthOfArray<Uint16>(meshlist_0005ABC4_2), LengthOfArray<Uint16>(matlist_00059D88), { 0.722519f, -15, -0.050537f }, 76.01118f, NULL };
 
-NJS_OBJECT object_0005BBF4_2 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0005BBCC_2, 5909, 480, 775, 0, 0xFFFFF1C8, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0005BBF4_2 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0005BBCC_2, 5909, 480, 775, 0, 0xFFFFF1C8, 0, 1, 1, 1, NULL, NULL };
 
-NJS_MATERIAL matlist_0005BC28[] = {
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_0005BC28[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 17, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 17, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 17, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
@@ -36056,7 +36056,7 @@ NJS_MATERIAL matlist_0005BC28[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 29, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_0005BD68[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0005BD68[] = {
 	5, 0, 67, 60, 59, 315,
 	14, 1, 0, 61, 60, 316, 315, 167, 170, 184, 169, 247, 251, 214, 213,
 	14, 66, 1, 56, 61, 317, 316, 165, 167, 203, 184, 245, 247, 215, 214,
@@ -36064,7 +36064,7 @@ Sint16 poly_0005BD68[] = {
 	14, 221, 279, 246, 248, 204, 205, 166, 168, 318, 302, 56, 57, 66, 24
 };
 
-Sint16 poly_0005BDE6[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0005BDE6[] = {
 	10, 13, 16, 9, 12, 5, 8, 2, 4, 66, 1,
 	3, 58, 59, 67,
 	10, 67, 0, 68, 3, 6, 7, 10, 11, 14, 15,
@@ -36084,14 +36084,14 @@ Sint16 poly_0005BDE6[] = {
 	10, 66, 24, 2, 69, 5, 70, 9, 62, 13, 64
 };
 
-Sint16 poly_0005BF20[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0005BF20[] = {
 	0x8000u | 12, 71, 36, 41, 35, 40, 34, 39, 33, 38, 32, 37, 31,
 	0x8000u | 12, 48, 71, 47, 41, 46, 40, 45, 39, 44, 38, 43, 37,
 	0x8000u | 12, 55, 48, 54, 47, 53, 46, 52, 45, 51, 44, 50, 43,
 	0x8000u | 12, 25, 31, 26, 32, 27, 33, 28, 34, 29, 35, 30, 36
 };
 
-Sint16 poly_0005BF88[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0005BF88[] = {
 	3, 6, 10, 63,
 	3, 37, 43, 42,
 	6, 58, 67, 30, 68, 36, 71,
@@ -36102,7 +36102,7 @@ Sint16 poly_0005BF88[] = {
 	0x8000u | 5, 48, 63, 71, 6, 68
 };
 
-Sint16 poly_0005BFE6[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0005BFE6[] = {
 	4, 304, 57, 303, 302,
 	0x8000u | 12, 24, 17, 57, 305, 304, 265, 264, 94, 263, 93, 262, 92,
 	8, 77, 76, 260, 259, 90, 89, 113, 112,
@@ -36116,7 +36116,7 @@ Sint16 poly_0005BFE6[] = {
 	3, 210, 301, 298
 };
 
-Sint16 poly_0005C0B8[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0005C0B8[] = {
 	12, 27, 26, 20, 19, 308, 307, 268, 267, 96, 95, 119, 118,
 	8, 224, 225, 228, 232, 234, 235, 240, 244,
 	8, 225, 226, 232, 231, 235, 236, 244, 243,
@@ -36142,23 +36142,23 @@ Sint16 poly_0005C0B8[] = {
 	0x8000u | 12, 30, 58, 23, 312, 311, 272, 271, 100, 99, 123, 122, 139
 };
 
-Sint16 poly_0005C286[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0005C286[] = {
 	8, 189, 176, 179, 161, 180, 177, 181, 182
 };
 
-Sint16 poly_0005C298[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0005C298[] = {
 	0x8000u | 5, 286, 222, 252, 221, 279,
 	3, 214, 213, 282,
 	10, 215, 214, 223, 282, 229, 284, 233, 290, 241, 291,
 	10, 221, 215, 222, 223, 286, 229, 287, 233, 293, 241
 };
 
-Sint16 poly_0005C2D8[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0005C2D8[] = {
 	12, 175, 143, 172, 142, 171, 141, 153, 140, 152, 160, 197, 151,
 	6, 171, 153, 158, 152, 185, 197
 };
 
-Sint16 poly_0005C300[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0005C300[] = {
 	0x8000u | 6, 94, 117, 93, 116, 92, 115,
 	4, 103, 102, 126, 125,
 	4, 105, 104, 128, 127,
@@ -36172,7 +36172,7 @@ Sint16 poly_0005C300[] = {
 	4, 296, 183, 112, 130
 };
 
-Sint16 poly_0005C372[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0005C372[] = {
 	4, 129, 175, 189, 176,
 	4, 104, 103, 127, 126,
 	4, 109, 108, 180, 179,
@@ -36186,7 +36186,7 @@ Sint16 poly_0005C372[] = {
 	4, 125, 198, 140, 160
 };
 
-Sint16 poly_0005C3E0[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0005C3E0[] = {
 	4, 116, 115, 134, 133,
 	4, 117, 116, 135, 134,
 	4, 126, 125, 141, 140,
@@ -36198,30 +36198,30 @@ Sint16 poly_0005C3E0[] = {
 	4, 135, 147, 194, 195
 };
 
-Sint16 poly_0005C43A[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0005C43A[] = {
 	3, 190, 202, 131,
 	5, 178, 130, 177, 183, 182,
 	0x8000u | 5, 130, 131, 178, 190, 173
 };
 
-Sint16 poly_0005C45A[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0005C45A[] = {
 	0x8000u | 10, 195, 194, 148, 136, 149, 137, 150, 138, 151, 139,
 	9, 151, 150, 197, 149, 157, 148, 156, 195, 196
 };
 
-Sint16 poly_0005C484[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0005C484[] = {
 	3, 185, 197, 157,
 	14, 157, 156, 185, 187, 158, 164, 171, 163, 172, 191, 175, 162, 176, 161,
 	14, 156, 196, 187, 186, 164, 159, 163, 174, 191, 173, 162, 178, 161, 177
 };
 
-Sint16 poly_0005C4C8[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0005C4C8[] = {
 	0x8000u | 8, 146, 155, 145, 154, 144, 174, 190, 173,
 	8, 147, 146, 196, 155, 186, 154, 159, 174,
 	3, 196, 195, 147
 };
 
-NJS_TEX uv_0005C4F4[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0005C4F4[] = {
 	{ 65, 194 },
 	{ 26, 255 },
 	{ 139, 191 },
@@ -36282,7 +36282,7 @@ NJS_TEX uv_0005C4F4[] = {
 	{ 0, 22 }
 };
 
-NJS_TEX uv_0005C5DC[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0005C5DC[] = {
 	{ 113, 254 },
 	{ 235, 254 },
 	{ 123, 207 },
@@ -36425,7 +36425,7 @@ NJS_TEX uv_0005C5DC[] = {
 	{ 39, 254 }
 };
 
-NJS_TEX uv_0005C80C[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0005C80C[] = {
 	{ 223, 145 },
 	{ 207, 82 },
 	{ 188, 145 },
@@ -36476,7 +36476,7 @@ NJS_TEX uv_0005C80C[] = {
 	{ 207, 82 }
 };
 
-NJS_TEX uv_0005C8CC[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0005C8CC[] = {
 	{ 178, 166 },
 	{ 173, 216 },
 	{ 139, 216 },
@@ -36518,7 +36518,7 @@ NJS_TEX uv_0005C8CC[] = {
 	{ 190, 116 }
 };
 
-NJS_TEX uv_0005C968[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0005C968[] = {
 	{ 118, 186 },
 	{ 117, 213 },
 	{ 162, 186 },
@@ -36615,7 +36615,7 @@ NJS_TEX uv_0005C968[] = {
 	{ 470, 227 }
 };
 
-NJS_TEX uv_0005CAE0[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0005CAE0[] = {
 	{ 88, 254 },
 	{ 47, 254 },
 	{ 90, 212 },
@@ -36826,7 +36826,7 @@ NJS_TEX uv_0005CAE0[] = {
 	{ 199, 0 }
 };
 
-NJS_TEX uv_0005CE20[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0005CE20[] = {
 	{ 764, 213 },
 	{ 657, 38 },
 	{ 510, 233 },
@@ -36837,7 +36837,7 @@ NJS_TEX uv_0005CE20[] = {
 	{ 0, 232 }
 };
 
-NJS_TEX uv_0005CE40[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0005CE40[] = {
 	{ 41, 145 },
 	{ 49, 82 },
 	{ 26, 82 },
@@ -36868,7 +36868,7 @@ NJS_TEX uv_0005CE40[] = {
 	{ 130, 255 }
 };
 
-NJS_TEX uv_0005CEB0[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0005CEB0[] = {
 	{ 1020, 134 },
 	{ 788, 181 },
 	{ 833, 65 },
@@ -36889,7 +36889,7 @@ NJS_TEX uv_0005CEB0[] = {
 	{ 60, -58 }
 };
 
-NJS_TEX uv_0005CEF8[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0005CEF8[] = {
 	{ 0, 255 },
 	{ 0, 3 },
 	{ 255, 255 },
@@ -36938,7 +36938,7 @@ NJS_TEX uv_0005CEF8[] = {
 	{ 255, 3 }
 };
 
-NJS_TEX uv_0005CFB0[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0005CFB0[] = {
 	{ 0, 255 },
 	{ 0, 3 },
 	{ 255, 255 },
@@ -36985,7 +36985,7 @@ NJS_TEX uv_0005CFB0[] = {
 	{ 0, 3 }
 };
 
-NJS_TEX uv_0005D060[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0005D060[] = {
 	{ 255, 247 },
 	{ 0, 247 },
 	{ 255, 3 },
@@ -37024,7 +37024,7 @@ NJS_TEX uv_0005D060[] = {
 	{ 255, 3 }
 };
 
-NJS_TEX uv_0005D0F0[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0005D0F0[] = {
 	{ 43, -70 },
 	{ 0, 133 },
 	{ 240, 127 },
@@ -37040,7 +37040,7 @@ NJS_TEX uv_0005D0F0[] = {
 	{ 88, -172 }
 };
 
-NJS_TEX uv_0005D124[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0005D124[] = {
 	{ 2, 18 },
 	{ 0, 241 },
 	{ 258, 18 },
@@ -37062,7 +37062,7 @@ NJS_TEX uv_0005D124[] = {
 	{ 5, -204 }
 };
 
-NJS_TEX uv_0005D170[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0005D170[] = {
 	{ 840, -207 },
 	{ 996, -255 },
 	{ 1020, -167 },
@@ -37096,7 +37096,7 @@ NJS_TEX uv_0005D170[] = {
 	{ 0, 146 }
 };
 
-NJS_TEX uv_0005D1EC[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0005D1EC[] = {
 	{ 252, 157 },
 	{ 300, -41 },
 	{ 418, 177 },
@@ -37118,7 +37118,7 @@ NJS_TEX uv_0005D1EC[] = {
 	{ 81, 146 }
 };
 
-NJS_MESHSET_SADX meshlist_0005D238[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_0005D238[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 5, poly_0005BD68, NULL, NULL, NULL, uv_0005C4F4, NULL },
 	{ NJD_MESHSET_TRIMESH | 1, 17, poly_0005BDE6, NULL, NULL, NULL, uv_0005C5DC, NULL },
 	{ NJD_MESHSET_TRIMESH | 2, 4, poly_0005BF20, NULL, NULL, NULL, uv_0005C80C, NULL },
@@ -37137,7 +37137,7 @@ NJS_MESHSET_SADX meshlist_0005D238[] = {
 	{ NJD_MESHSET_TRIMESH | 15, 3, poly_0005C4C8, NULL, NULL, NULL, uv_0005D1EC, NULL }
 };
 
-NJS_VECTOR vertex_0005D3B8[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_0005D3B8[] = {
 	{ 32.56445f, -69, -73.65755f },
 	{ -20.96411f, -69, -66.55495f },
 	{ -76.76001f, -109, -100.9962f },
@@ -37459,7 +37459,7 @@ NJS_VECTOR vertex_0005D3B8[] = {
 	{ -64.71631f, -26, 1.416595f }
 };
 
-NJS_VECTOR normal_0005E2AC[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_0005E2AC[] = {
 	{ 0.203079f, -0.623589f, 0.754915f },
 	{ -0.036335f, -0.647467f, 0.761227f },
 	{ -0.482313f, -0.243212f, 0.841559f },
@@ -37781,10 +37781,10 @@ NJS_VECTOR normal_0005E2AC[] = {
 	{ -0.125738f, -0.9908749f, 0.048549f }
 };
 
-NJS_MODEL_SADX attach_0005F1A0 = { vertex_0005D3B8, normal_0005E2AC, LengthOfArray<Sint32>(vertex_0005D3B8), meshlist_0005D238, matlist_0005BC28, LengthOfArray<Uint16>(meshlist_0005D238), LengthOfArray<Uint16>(matlist_0005BC28), { 0.422729f, 2.5f, 0.697617f }, 298.4414f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_0005F1A0 = { vertex_0005D3B8, normal_0005E2AC, LengthOfArray<Sint32>(vertex_0005D3B8), meshlist_0005D238, matlist_0005BC28, LengthOfArray<Uint16>(meshlist_0005D238), LengthOfArray<Uint16>(matlist_0005BC28), { 0.422729f, 2.5f, 0.697617f }, 298.4414f, NULL };
 
-NJS_OBJECT object_0005F1C8 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0005F1A0, 4113, 169, 315, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_0005F1FC[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_0005F1C8 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0005F1A0, 4113, 169, 315, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_0005F1FC[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 17, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 3, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 26, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
@@ -37793,7 +37793,7 @@ NJS_MATERIAL matlist_0005F1FC[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 15, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_0005F274[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0005F274[] = {
 	8, 10, 11, 7, 8, 4, 5, 1, 2,
 	8, 1, 0, 4, 3, 7, 6, 10, 9,
 	9, 12, 13, 14, 84, 83, 32, 34, 33, 31,
@@ -37815,7 +37815,7 @@ Sint16 poly_0005F274[] = {
 	0x8000u | 14, 98, 97, 96, 102, 106, 101, 100, 103, 107, 95, 93, 108, 72, 71
 };
 
-Sint16 poly_0005F3AA[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0005F3AA[] = {
 	3, 18, 19, 16,
 	3, 111, 21, 25,
 	4, 26, 27, 23, 24,
@@ -37849,25 +37849,25 @@ Sint16 poly_0005F3AA[] = {
 	4, 19, 18, 24, 23
 };
 
-Sint16 poly_0005F4D4[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0005F4D4[] = {
 	3, 111, 110, 20,
 	3, 16, 17, 18
 };
 
-Sint16 poly_0005F4E4[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0005F4E4[] = {
 	4, 18, 17, 111, 110
 };
 
-Sint16 poly_0005F4EE[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0005F4EE[] = {
 	0x8000u | 30, 71, 124, 73, 125, 68, 123, 64, 122, 60, 121, 56, 120, 52, 119, 48, 118, 44, 117, 40, 116, 36, 115, 29, 114, 26, 113, 23, 112, 18, 111
 };
 
-Sint16 poly_0005F52C[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0005F52C[] = {
 	0x8000u | 18, 33, 31, 39, 38, 43, 42, 47, 46, 51, 50, 55, 54, 59, 58, 63, 62, 67, 66,
 	0x8000u | 18, 67, 65, 63, 61, 59, 57, 55, 53, 51, 49, 47, 45, 43, 41, 39, 37, 33, 30
 };
 
-NJS_TEX uv_0005F578[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0005F578[] = {
 	{ 255, 25 },
 	{ 10, 26 },
 	{ 270, 121 },
@@ -38006,7 +38006,7 @@ NJS_TEX uv_0005F578[] = {
 	{ 23, -239 }
 };
 
-NJS_TEX uv_0005F798[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0005F798[] = {
 	{ 127, 254 },
 	{ 254, 0 },
 	{ 0 },
@@ -38127,7 +38127,7 @@ NJS_TEX uv_0005F798[] = {
 	{ 254, 0 }
 };
 
-NJS_TEX uv_0005F970[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0005F970[] = {
 	{ 255, 79 },
 	{ 0 },
 	{ 0, 255 },
@@ -38136,14 +38136,14 @@ NJS_TEX uv_0005F970[] = {
 	{ 255, 79 }
 };
 
-NJS_TEX uv_0005F988[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0005F988[] = {
 	{ 0 },
 	{ 0, 255 },
 	{ 1530, 0 },
 	{ 1530, 255 }
 };
 
-NJS_TEX uv_0005F998[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0005F998[] = {
 	{ 2039, 206 },
 	{ 2039, -725 },
 	{ 1894, 206 },
@@ -38176,7 +38176,7 @@ NJS_TEX uv_0005F998[] = {
 	{ 0, -765 }
 };
 
-NJS_TEX uv_0005FA10[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0005FA10[] = {
 	{ 130, 255 },
 	{ 255, 255 },
 	{ 130, 155 },
@@ -38215,7 +38215,7 @@ NJS_TEX uv_0005FA10[] = {
 	{ 0, 255 }
 };
 
-NJS_MESHSET_SADX meshlist_0005FAA0[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_0005FAA0[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 19, poly_0005F274, NULL, NULL, NULL, uv_0005F578, NULL },
 	{ NJD_MESHSET_TRIMESH | 1, 31, poly_0005F3AA, NULL, NULL, NULL, uv_0005F798, NULL },
 	{ NJD_MESHSET_TRIMESH | 2, 2, poly_0005F4D4, NULL, NULL, NULL, uv_0005F970, NULL },
@@ -38224,7 +38224,7 @@ NJS_MESHSET_SADX meshlist_0005FAA0[] = {
 	{ NJD_MESHSET_TRIMESH | 5, 2, poly_0005F52C, NULL, NULL, NULL, uv_0005FA10, NULL }
 };
 
-NJS_VECTOR vertex_0005FB30[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_0005FB30[] = {
 	{ 98.91552f, -69, 25.90076f },
 	{ 104.2871f, -69, 1.958557f },
 	{ 104.9294f, -69, -26.45813f },
@@ -38353,7 +38353,7 @@ NJS_VECTOR vertex_0005FB30[] = {
 	{ 59.46997f, 39.13332f, 24.44745f }
 };
 
-NJS_VECTOR normal_00060118[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_00060118[] = {
 	{ -0.9659359f, -0.141436f, -0.216713f },
 	{ -0.982534f, -0.142118f, -0.120119f },
 	{ -0.989695f, -0.141434f, -0.022372f },
@@ -38482,14 +38482,14 @@ NJS_VECTOR normal_00060118[] = {
 	{ -0.040959f, 0.637983f, 0.768961f }
 };
 
-NJS_MODEL_SADX attach_00060700 = { vertex_0005FB30, normal_00060118, LengthOfArray<Sint32>(vertex_0005FB30), meshlist_0005FAA0, matlist_0005F1FC, LengthOfArray<Uint16>(meshlist_0005FAA0), LengthOfArray<Uint16>(matlist_0005F1FC), { -0.00061f, 0, -0.00031f }, 109.4837f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00060700 = { vertex_0005FB30, normal_00060118, LengthOfArray<Sint32>(vertex_0005FB30), meshlist_0005FAA0, matlist_0005F1FC, LengthOfArray<Uint16>(meshlist_0005FAA0), LengthOfArray<Uint16>(matlist_0005F1FC), { -0.00061f, 0, -0.00031f }, 109.4837f, NULL };
 
-NJS_OBJECT object_00060728 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00060700, 1730.53f, 46, 836.5526f, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_0006075C[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_00060728 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00060700, 1730.53f, 46, 836.5526f, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_0006075C[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 31, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_00060770[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00060770[] = {
 	0x8000u | 11, 30, 8, 9, 7, 6, 4, 5, 0, 1, 3, 2,
 	8, 8, 29, 30, 27, 18, 16, 19, 20,
 	0x8000u | 7, 10, 11, 25, 12, 24, 13, 14,
@@ -38497,7 +38497,7 @@ Sint16 poly_00060770[] = {
 	0x8000u | 5, 27, 16, 28, 26, 17
 };
 
-NJS_TEX uv_000607C8[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_000607C8[] = {
 	{ 956, -1370 },
 	{ 714, -991 },
 	{ 1011, -1027 },
@@ -38539,11 +38539,11 @@ NJS_TEX uv_000607C8[] = {
 	{ 0, -1458 }
 };
 
-NJS_MESHSET_SADX meshlist_00060864[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00060864[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 5, poly_00060770, NULL, NULL, NULL, uv_000607C8, NULL }
 };
 
-NJS_VECTOR vertex_0006087C[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_0006087C[] = {
 	{ -6.818481f, -0.070099f, -148.2674f },
 	{ 23.18152f, -0.070099f, -148.2674f },
 	{ 23.18152f, -0.070099f, -175.2674f },
@@ -38577,7 +38577,7 @@ NJS_VECTOR vertex_0006087C[] = {
 	{ 23.18152f, -0.070099f, 11.73254f }
 };
 
-NJS_VECTOR normal_000609F0[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_000609F0[] = {
 	{ 0, 1, 0 },
 	{ 0, 1, 0 },
 	{ 0, 1, 0 },
@@ -38611,33 +38611,33 @@ NJS_VECTOR normal_000609F0[] = {
 	{ 0, 1, 0 }
 };
 
-NJS_MODEL_SADX attach_00060B64 = { vertex_0006087C, normal_000609F0, LengthOfArray<Sint32>(vertex_0006087C), meshlist_00060864, matlist_0006075C, LengthOfArray<Uint16>(meshlist_00060864), LengthOfArray<Uint16>(matlist_0006075C), { 0, 0, -0.00031f }, 188.89f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00060B64 = { vertex_0006087C, normal_000609F0, LengthOfArray<Sint32>(vertex_0006087C), meshlist_00060864, matlist_0006075C, LengthOfArray<Uint16>(meshlist_00060864), LengthOfArray<Uint16>(matlist_0006075C), { 0, 0, -0.00031f }, 188.89f, NULL };
 
-NJS_OBJECT object_00060B8C = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00060B64, 1865.818f, 198.0701f, 828.2675f, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_00060BC0[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_00060B8C = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00060B64, 1865.818f, 198.0701f, 828.2675f, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_00060BC0[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 3, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 15, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 1, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_00060BFC[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00060BFC[] = {
 	4, 1, 0, 2, 3,
 	4, 0, 1, 4, 5,
 	4, 30, 27, 31, 28,
 	4, 27, 30, 29, 32
 };
 
-Sint16 poly_00060C24[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00060C24[] = {
 	0x8000u | 18, 1, 5, 6, 8, 9, 11, 12, 14, 15, 17, 18, 20, 21, 23, 24, 26, 27, 29,
 	0x8000u | 18, 27, 28, 24, 25, 21, 22, 18, 19, 15, 16, 12, 13, 9, 10, 6, 7, 1, 2
 };
 
-Sint16 poly_00060C70[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00060C70[] = {
 	0x8000u | 8, 0, 3, 36, 37, 33, 34, 30, 31,
 	0x8000u | 8, 4, 0, 38, 36, 35, 33, 32, 30
 };
 
-NJS_TEX uv_00060C94[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00060C94[] = {
 	{ 0 },
 	{ 0, 255 },
 	{ 1530, 0 },
@@ -38656,7 +38656,7 @@ NJS_TEX uv_00060C94[] = {
 	{ 1530, 255 }
 };
 
-NJS_TEX uv_00060CD4[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00060CD4[] = {
 	{ 0, -255 },
 	{ 0, -765 },
 	{ 108, -255 },
@@ -38695,7 +38695,7 @@ NJS_TEX uv_00060CD4[] = {
 	{ 0, 255 }
 };
 
-NJS_TEX uv_00060D64[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00060D64[] = {
 	{ 765, -1785 },
 	{ 765, 255 },
 	{ 637, -1785 },
@@ -38714,13 +38714,13 @@ NJS_TEX uv_00060D64[] = {
 	{ 0, -1785 }
 };
 
-NJS_MESHSET_SADX meshlist_00060DA4[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00060DA4[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 4, poly_00060BFC, NULL, NULL, NULL, uv_00060C94, NULL },
 	{ NJD_MESHSET_TRIMESH | 1, 2, poly_00060C24, NULL, NULL, NULL, uv_00060CD4, NULL },
 	{ NJD_MESHSET_TRIMESH | 2, 2, poly_00060C70, NULL, NULL, NULL, uv_00060D64, NULL }
 };
 
-NJS_VECTOR vertex_00060DEC[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_00060DEC[] = {
 	{ -125, 26.9827f, -29.74019f },
 	{ -125, 29.75133f, -32.02196f },
 	{ 0, 12.75023f, -27.99937f },
@@ -38762,7 +38762,7 @@ NJS_VECTOR vertex_00060DEC[] = {
 	{ -250, 45.80635f, -25.6472f }
 };
 
-NJS_VECTOR normal_00060FC0[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_00060FC0[] = {
 	{ 0.115904f, 0.917136f, 0.381351f },
 	{ 0.011658f, 0.326756f, 0.9450369f },
 	{ 0.006043f, 0.309044f, 0.951028f },
@@ -38804,10 +38804,10 @@ NJS_VECTOR normal_00060FC0[] = {
 	{ 0.151673f, 0.977164f, -0.148812f }
 };
 
-NJS_MODEL_SADX attach_00061194 = { vertex_00060DEC, normal_00060FC0, LengthOfArray<Sint32>(vertex_00060DEC), meshlist_00060DA4, matlist_00060BC0, LengthOfArray<Uint16>(meshlist_00060DA4), LengthOfArray<Uint16>(matlist_00060BC0), { -125, 48.48364f, -6.553376f }, 127.7926f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00061194 = { vertex_00060DEC, normal_00060FC0, LengthOfArray<Sint32>(vertex_00060DEC), meshlist_00060DA4, matlist_00060BC0, LengthOfArray<Uint16>(meshlist_00060DA4), LengthOfArray<Uint16>(matlist_00060BC0), { -125, 48.48364f, -6.553376f }, 127.7926f, NULL };
 
-NJS_OBJECT object_000611BC = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00061194, 2050, 33, 837, 0x82D, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_000611F0[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_000611BC = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00061194, 2050, 33, 837, 0x82D, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_000611F0[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 30, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 17, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 17, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
@@ -38819,13 +38819,13 @@ NJS_MATERIAL matlist_000611F0[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 19, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_000612A4[] = {
+extern "C" __declspec(dllexport) Sint16 poly_000612A4[] = {
 	0x8000u | 5, 101, 0, 262, 50, 100,
 	3, 51, 50, 100,
 	3, 101, 0, 1
 };
 
-Sint16 poly_000612C0[] = {
+extern "C" __declspec(dllexport) Sint16 poly_000612C0[] = {
 	0x8000u | 10, 185, 211, 187, 209, 189, 207, 191, 205, 219, 230,
 	10, 208, 206, 186, 188, 180, 178, 146, 148, 136, 138,
 	10, 206, 204, 188, 190, 178, 176, 148, 150, 138, 140,
@@ -38836,7 +38836,7 @@ Sint16 poly_000612C0[] = {
 	0x8000u | 10, 183, 185, 181, 187, 179, 189, 177, 191, 221, 219
 };
 
-Sint16 poly_00061370[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00061370[] = {
 	7, 243, 245, 247, 253, 255, 258, 257,
 	0x8000u | 7, 230, 218, 219, 220, 221, 234, 280,
 	3, 134, 99, 98,
@@ -38855,7 +38855,7 @@ Sint16 poly_00061370[] = {
 	0x8000u | 13, 51, 272, 269, 275, 263, 277, 264, 164, 265, 225, 266, 217, 267
 };
 
-Sint16 poly_0006147E[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0006147E[] = {
 	0x8000u | 10, 213, 215, 193, 203, 195, 201, 197, 199, 225, 217,
 	0x8000u | 10, 214, 212, 202, 192, 200, 194, 198, 196, 216, 224,
 	5, 65, 125, 66, 122, 105,
@@ -38885,27 +38885,27 @@ Sint16 poly_0006147E[] = {
 	6, 17, 104, 16, 123, 124, 152
 };
 
-Sint16 poly_00061650[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00061650[] = {
 	10, 227, 120, 107, 118, 110, 116, 112, 115, 109, 228,
 	0x8000u | 11, 231, 229, 114, 108, 117, 113, 119, 111, 121, 106, 226,
 	11, 235, 226, 236, 121, 237, 119, 238, 117, 239, 114, 231,
 	12, 231, 228, 239, 115, 238, 116, 237, 118, 236, 120, 235, 227
 };
 
-Sint16 poly_000616B0[] = {
+extern "C" __declspec(dllexport) Sint16 poly_000616B0[] = {
 	0x8000u | 6, 74, 75, 113, 76, 111, 77,
 	0x8000u | 7, 77, 78, 111, 284, 106, 258, 226,
 	4, 113, 74, 108, 73
 };
 
-Sint16 poly_000616D8[] = {
+extern "C" __declspec(dllexport) Sint16 poly_000616D8[] = {
 	3, 24, 112, 109,
 	7, 24, 25, 112, 26, 110, 27, 28,
 	4, 28, 283, 110, 107,
 	0x8000u | 5, 24, 23, 109, 250, 228
 };
 
-Sint16 poly_00061706[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00061706[] = {
 	0x8000u | 5, 47, 136, 48, 135, 49,
 	0x8000u | 5, 98, 134, 97, 137, 96,
 	6, 96, 95, 137, 94, 139, 93,
@@ -38926,7 +38926,7 @@ Sint16 poly_00061706[] = {
 	3, 79, 78, 284
 };
 
-Sint16 poly_000617F0[] = {
+extern "C" __declspec(dllexport) Sint16 poly_000617F0[] = {
 	4, 235, 257, 226, 258,
 	4, 231, 251, 228, 250,
 	0x8000u | 5, 108, 229, 252, 231, 251,
@@ -38935,7 +38935,7 @@ Sint16 poly_000617F0[] = {
 	3, 252, 108, 73
 };
 
-NJS_TEX uv_0006182C[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0006182C[] = {
 	{ 765, 254 },
 	{ 765, 0 },
 	{ 382, 254 },
@@ -38949,7 +38949,7 @@ NJS_TEX uv_0006182C[] = {
 	{ 382, 254 }
 };
 
-NJS_TEX uv_00061858[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00061858[] = {
 	{ 0, 162 },
 	{ 0, 255 },
 	{ 74, 162 },
@@ -39032,7 +39032,7 @@ NJS_TEX uv_00061858[] = {
 	{ 233, 162 }
 };
 
-NJS_TEX uv_00061998[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00061998[] = {
 	{ 159, -62 },
 	{ 139, -139 },
 	{ 187, -139 },
@@ -39154,7 +39154,7 @@ NJS_TEX uv_00061998[] = {
 	{ 70, 255 }
 };
 
-NJS_TEX uv_00061B74[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00061B74[] = {
 	{ 113, 196 },
 	{ 116, 255 },
 	{ 184, 196 },
@@ -39363,7 +39363,7 @@ NJS_TEX uv_00061B74[] = {
 	{ 76, 65 }
 };
 
-NJS_TEX uv_00061EAC[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00061EAC[] = {
 	{ 1005, -109 },
 	{ 865, -190 },
 	{ 868, -254 },
@@ -39410,7 +39410,7 @@ NJS_TEX uv_00061EAC[] = {
 	{ 1005, -109 }
 };
 
-NJS_TEX uv_00061F5C[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00061F5C[] = {
 	{ 144, 215 },
 	{ 228, 193 },
 	{ 276, 11 },
@@ -39430,7 +39430,7 @@ NJS_TEX uv_00061F5C[] = {
 	{ 64, 254 }
 };
 
-NJS_TEX uv_00061FA0[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00061FA0[] = {
 	{ 410, 243 },
 	{ 514, 11 },
 	{ 238, 12 },
@@ -39452,7 +39452,7 @@ NJS_TEX uv_00061FA0[] = {
 	{ 1, 12 }
 };
 
-NJS_TEX uv_00061FEC[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00061FEC[] = {
 	{ 75, 203 },
 	{ 112, 217 },
 	{ 37, 206 },
@@ -39554,7 +39554,7 @@ NJS_TEX uv_00061FEC[] = {
 	{ 398, -233 }
 };
 
-NJS_TEX uv_00062178[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00062178[] = {
 	{ 255, 11 },
 	{ 255, 255 },
 	{ 0, 11 },
@@ -39581,7 +39581,7 @@ NJS_TEX uv_00062178[] = {
 	{ 0, 255 }
 };
 
-NJS_MESHSET_SADX meshlist_000621D8[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_000621D8[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 3, poly_000612A4, NULL, NULL, NULL, uv_0006182C, NULL },
 	{ NJD_MESHSET_TRIMESH | 1, 8, poly_000612C0, NULL, NULL, NULL, uv_00061858, NULL },
 	{ NJD_MESHSET_TRIMESH | 2, 16, poly_00061370, NULL, NULL, NULL, uv_00061998, NULL },
@@ -39593,7 +39593,7 @@ NJS_MESHSET_SADX meshlist_000621D8[] = {
 	{ NJD_MESHSET_TRIMESH | 8, 6, poly_000617F0, NULL, NULL, NULL, uv_00062178, NULL }
 };
 
-NJS_VECTOR vertex_000622B0[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_000622B0[] = {
 	{ 34, -54, 29.5f },
 	{ 31.69705f, -62.94646f, 29.5f },
 	{ 27.13101f, -70.90585f, 29.5f },
@@ -39881,7 +39881,7 @@ NJS_VECTOR vertex_000622B0[] = {
 	{ -10.96212f, 6.344388f, 35.16766f }
 };
 
-NJS_VECTOR normal_0006300C[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_0006300C[] = {
 	{ 0.6699229f, 0.448092f, 0.59196f },
 	{ 0.445164f, -0.10509f, 0.8892609f },
 	{ 0.270413f, -0.172184f, 0.947222f },
@@ -40169,10 +40169,10 @@ NJS_VECTOR normal_0006300C[] = {
 	{ 0.374128f, 0.131318f, -0.9180329f }
 };
 
-NJS_MODEL_SADX attach_00063D68 = { vertex_000622B0, normal_0006300C, LengthOfArray<Sint32>(vertex_000622B0), meshlist_000621D8, matlist_000611F0, LengthOfArray<Uint16>(meshlist_000621D8), LengthOfArray<Uint16>(matlist_000611F0), { -36.25f, -74, 45.14227f }, 122.9834f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00063D68 = { vertex_000622B0, normal_0006300C, LengthOfArray<Sint32>(vertex_000622B0), meshlist_000621D8, matlist_000611F0, LengthOfArray<Uint16>(meshlist_000621D8), LengthOfArray<Uint16>(matlist_000611F0), { -36.25f, -74, 45.14227f }, 122.9834f, NULL };
 
-NJS_OBJECT object_00063D90 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00063D68, -142, 155, 1125, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_00063DC4[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_00063D90 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00063D68, -142, 155, 1125, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_00063DC4[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 15, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 18, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 26, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
@@ -40180,7 +40180,7 @@ NJS_MATERIAL matlist_00063DC4[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 19, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_00063E28[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00063E28[] = {
 	0x8000u | 7, 335, 70, 143, 71, 212, 72, 73,
 	3, 185, 332, 333,
 	0x8000u | 8, 0, 334, 1, 142, 2, 188, 3, 4,
@@ -40279,7 +40279,7 @@ Sint16 poly_00063E28[] = {
 	3, 221, 330, 331
 };
 
-Sint16 poly_000643CC[] = {
+extern "C" __declspec(dllexport) Sint16 poly_000643CC[] = {
 	8, 307, 306, 305, 313, 312, 301, 302, 303,
 	3, 305, 304, 307,
 	3, 309, 308, 311,
@@ -40288,13 +40288,13 @@ Sint16 poly_000643CC[] = {
 	3, 299, 298, 297
 };
 
-Sint16 poly_00064410[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00064410[] = {
 	3, 322, 68, 69,
 	3, 321, 139, 138,
 	0x8000u | 5, 321, 139, 317, 69, 322
 };
 
-Sint16 poly_0006442C[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0006442C[] = {
 	3, 302, 303, 156,
 	3, 306, 307, 150,
 	3, 310, 311, 152,
@@ -40305,14 +40305,14 @@ Sint16 poly_0006442C[] = {
 	9, 152, 193, 310, 195, 315, 197, 299, 162, 298
 };
 
-Sint16 poly_0006449C[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0006449C[] = {
 	4, 297, 298, 163, 162,
 	4, 303, 300, 156, 157,
 	4, 307, 304, 150, 151,
 	4, 311, 308, 152, 153
 };
 
-NJS_TEX uv_000644C4[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_000644C4[] = {
 	{ 200, 21 },
 	{ 200, -21 },
 	{ 278, 21 },
@@ -40941,7 +40941,7 @@ NJS_TEX uv_000644C4[] = {
 	{ 209, 254 }
 };
 
-NJS_TEX uv_00064E8C[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00064E8C[] = {
 	{ 0, 101 },
 	{ 197, 0 },
 	{ 314, 254 },
@@ -40972,7 +40972,7 @@ NJS_TEX uv_00064E8C[] = {
 	{ 1275, 161 }
 };
 
-NJS_TEX uv_00064EFC[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00064EFC[] = {
 	{ 669, 254 },
 	{ 765, 255 },
 	{ 764, 0 },
@@ -40986,7 +40986,7 @@ NJS_TEX uv_00064EFC[] = {
 	{ 95, 254 }
 };
 
-NJS_TEX uv_00064F28[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00064F28[] = {
 	{ 665, 0 },
 	{ 983, 54 },
 	{ 1020, 254 },
@@ -41037,7 +41037,7 @@ NJS_TEX uv_00064F28[] = {
 	{ 979, 147 }
 };
 
-NJS_TEX uv_00064FE8[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00064FE8[] = {
 	{ 77, 114 },
 	{ 210, 114 },
 	{ 43, 254 },
@@ -41056,7 +41056,7 @@ NJS_TEX uv_00064FE8[] = {
 	{ 0, 254 }
 };
 
-NJS_MESHSET_SADX meshlist_00065028[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00065028[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 96, poly_00063E28, NULL, NULL, NULL, uv_000644C4, NULL },
 	{ NJD_MESHSET_TRIMESH | 1, 6, poly_000643CC, NULL, NULL, NULL, uv_00064E8C, NULL },
 	{ NJD_MESHSET_TRIMESH | 2, 3, poly_00064410, NULL, NULL, NULL, uv_00064EFC, NULL },
@@ -41064,7 +41064,7 @@ NJS_MESHSET_SADX meshlist_00065028[] = {
 	{ NJD_MESHSET_TRIMESH | 4, 4, poly_0006449C, NULL, NULL, NULL, uv_00064FE8, NULL }
 };
 
-NJS_VECTOR vertex_000650A0[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_000650A0[] = {
 	{ -80, 46.00118f, -44 },
 	{ -72.51859f, 46.41564f, -43.30176f },
 	{ -65.08714f, 47.25699f, -42.39791f },
@@ -41403,7 +41403,7 @@ NJS_VECTOR vertex_000650A0[] = {
 	{ -80, 41, -8.322021f }
 };
 
-NJS_VECTOR normal_00066060[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_00066060[] = {
 	{ 0.053258f, -0.683494f, -0.72801f },
 	{ 0.082031f, -0.638173f, -0.76551f },
 	{ 0.13621f, -0.546206f, -0.826502f },
@@ -41742,10 +41742,10 @@ NJS_VECTOR normal_00066060[] = {
 	{ -0.136753f, -0.433343f, 0.890793f }
 };
 
-NJS_MODEL_SADX attach_00067020 = { vertex_000650A0, normal_00066060, LengthOfArray<Sint32>(vertex_000650A0), meshlist_00065028, matlist_00063DC4, LengthOfArray<Uint16>(meshlist_00065028), LengthOfArray<Uint16>(matlist_00063DC4), { -42.12009f, 78.99998f, 31.5f }, 99.62554f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00067020 = { vertex_000650A0, normal_00066060, LengthOfArray<Sint32>(vertex_000650A0), meshlist_00065028, matlist_00063DC4, LengthOfArray<Uint16>(meshlist_00065028), LengthOfArray<Uint16>(matlist_00063DC4), { -42.12009f, 78.99998f, 31.5f }, 99.62554f, NULL };
 
-NJS_OBJECT object_00067048 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00067020, 2236, -37, 275, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_0006707C[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_00067048 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00067020, 2236, -37, 275, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_0006707C[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 40, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 14, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 65, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
@@ -41756,7 +41756,7 @@ NJS_MATERIAL matlist_0006707C[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 46, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_0006711C[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0006711C[] = {
 	0x8000u | 6, 7, 6, 3, 2, 23, 22,
 	0x8000u | 6, 6, 7, 10, 11, 14, 15,
 	0x8000u | 6, 23, 22, 19, 18, 15, 14,
@@ -41771,7 +41771,7 @@ Sint16 poly_0006711C[] = {
 	0x8000u | 6, 91, 90, 87, 86, 83, 82
 };
 
-Sint16 poly_000671C4[] = {
+extern "C" __declspec(dllexport) Sint16 poly_000671C4[] = {
 	4, 5, 1, 4, 0,
 	4, 1, 21, 0, 20,
 	4, 9, 5, 8, 4,
@@ -41798,7 +41798,7 @@ Sint16 poly_000671C4[] = {
 	4, 89, 85, 88, 84
 };
 
-Sint16 poly_000672B4[] = {
+extern "C" __declspec(dllexport) Sint16 poly_000672B4[] = {
 	4, 6, 2, 5, 1,
 	4, 2, 22, 1, 21,
 	4, 10, 6, 9, 5,
@@ -41825,40 +41825,40 @@ Sint16 poly_000672B4[] = {
 	4, 90, 86, 89, 85
 };
 
-Sint16 poly_000673A4[] = {
+extern "C" __declspec(dllexport) Sint16 poly_000673A4[] = {
 	6, 120, 107, 121, 101, 124, 111,
 	6, 114, 125, 96, 117, 105, 116,
 	6, 106, 120, 100, 121, 109, 124,
 	6, 104, 116, 97, 117, 113, 125
 };
 
-Sint16 poly_000673DC[] = {
+extern "C" __declspec(dllexport) Sint16 poly_000673DC[] = {
 	4, 109, 124, 108, 122,
 	4, 113, 125, 112, 118,
 	4, 110, 122, 111, 124,
 	4, 115, 118, 114, 125
 };
 
-Sint16 poly_00067404[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00067404[] = {
 	4, 99, 123, 103, 119,
 	4, 107, 120, 104, 116,
 	4, 105, 116, 106, 120,
 	4, 102, 119, 98, 123
 };
 
-Sint16 poly_0006742C[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0006742C[] = {
 	4, 108, 122, 99, 123,
 	4, 112, 118, 102, 119,
 	4, 98, 123, 110, 122,
 	4, 103, 119, 115, 118
 };
 
-Sint16 poly_00067454[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00067454[] = {
 	4, 110, 111, 98, 101,
 	4, 113, 112, 97, 102
 };
 
-NJS_TEX uv_00067468[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00067468[] = {
 	{ 510, -765 },
 	{ 510, 255 },
 	{ 251, -765 },
@@ -41933,7 +41933,7 @@ NJS_TEX uv_00067468[] = {
 	{ 0, 255 }
 };
 
-NJS_TEX uv_00067588[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00067588[] = {
 	{ 255, -765 },
 	{ 0, -765 },
 	{ 255, 255 },
@@ -42032,7 +42032,7 @@ NJS_TEX uv_00067588[] = {
 	{ 0, 255 }
 };
 
-NJS_TEX uv_00067708[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00067708[] = {
 	{ 510, 255 },
 	{ 0, 255 },
 	{ 510, 0 },
@@ -42131,7 +42131,7 @@ NJS_TEX uv_00067708[] = {
 	{ 0 }
 };
 
-NJS_TEX uv_00067888[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00067888[] = {
 	{ 0, 255 },
 	{ 2040, 255 },
 	{ 0, 95 },
@@ -42158,7 +42158,7 @@ NJS_TEX uv_00067888[] = {
 	{ 2040, 0 }
 };
 
-NJS_TEX uv_000678E8[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_000678E8[] = {
 	{ 0, 255 },
 	{ 5100, 255 },
 	{ 0 },
@@ -42177,7 +42177,7 @@ NJS_TEX uv_000678E8[] = {
 	{ 0, 255 }
 };
 
-NJS_TEX uv_00067928[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00067928[] = {
 	{ 0, 255 },
 	{ 1020, 255 },
 	{ 0, -765 },
@@ -42196,7 +42196,7 @@ NJS_TEX uv_00067928[] = {
 	{ 0, 255 }
 };
 
-NJS_TEX uv_00067968[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00067968[] = {
 	{ 4080, 0 },
 	{ 0 },
 	{ 4080, 255 },
@@ -42215,7 +42215,7 @@ NJS_TEX uv_00067968[] = {
 	{ 4080, 0 }
 };
 
-NJS_TEX uv_000679A8[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_000679A8[] = {
 	{ 255, 0 },
 	{ 255, 255 },
 	{ 0 },
@@ -42226,7 +42226,7 @@ NJS_TEX uv_000679A8[] = {
 	{ 255, 0 }
 };
 
-NJS_MESHSET_SADX meshlist_000679C8[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_000679C8[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 12, poly_0006711C, NULL, NULL, NULL, uv_00067468, NULL },
 	{ NJD_MESHSET_TRIMESH | 1, 24, poly_000671C4, NULL, NULL, NULL, uv_00067588, NULL },
 	{ NJD_MESHSET_TRIMESH | 2, 24, poly_000672B4, NULL, NULL, NULL, uv_00067708, NULL },
@@ -42237,7 +42237,7 @@ NJS_MESHSET_SADX meshlist_000679C8[] = {
 	{ NJD_MESHSET_TRIMESH | 7, 2, poly_00067454, NULL, NULL, NULL, uv_000679A8, NULL }
 };
 
-NJS_VECTOR vertex_00067A88[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_00067A88[] = {
 	{ 36.70825f, -36, 80 },
 	{ 36.70825f, 2, 80 },
 	{ 34.2807f, 2, 80 },
@@ -42366,7 +42366,7 @@ NJS_VECTOR vertex_00067A88[] = {
 	{ -40, 13, 0 }
 };
 
-NJS_VECTOR normal_00068070[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_00068070[] = {
 	{ 1, 0, 0 },
 	{ 0.792406f, 0.609994f, 0 },
 	{ 0.537435f, 0.843305f, 0 },
@@ -42495,10 +42495,10 @@ NJS_VECTOR normal_00068070[] = {
 	{ -0.7071069f, 0.685089f, -0.175078f }
 };
 
-NJS_MODEL_SADX attach_00068658 = { vertex_00067A88, normal_00068070, LengthOfArray<Sint32>(vertex_00067A88), meshlist_000679C8, matlist_0006707C, LengthOfArray<Uint16>(meshlist_000679C8), LengthOfArray<Uint16>(matlist_0006707C), { 0 }, 98.48858f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00068658 = { vertex_00067A88, normal_00068070, LengthOfArray<Sint32>(vertex_00067A88), meshlist_000679C8, matlist_0006707C, LengthOfArray<Uint16>(meshlist_000679C8), LengthOfArray<Uint16>(matlist_0006707C), { 0 }, 98.48858f, NULL };
 
-NJS_OBJECT object_00068680 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00068658, -640, 13, 770, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_000686B4[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_00068680 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00068658, -640, 13, 770, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_000686B4[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 41, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 41, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 46, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
@@ -42507,41 +42507,41 @@ NJS_MATERIAL matlist_000686B4[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 44, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_0006872C[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0006872C[] = {
 	4, 16, 21, 18, 23,
 	4, 20, 17, 22, 19
 };
 
-Sint16 poly_00068740[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00068740[] = {
 	4, 21, 20, 23, 22,
 	4, 17, 16, 19, 18
 };
 
-Sint16 poly_00068754[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00068754[] = {
 	4, 3, 2, 1, 0,
 	4, 9, 8, 12, 15,
 	4, 13, 11, 14, 10,
 	4, 6, 7, 4, 5
 };
 
-Sint16 poly_0006877C[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0006877C[] = {
 	4, 6, 4, 8, 15,
 	4, 5, 7, 12, 9,
 	4, 0, 2, 14, 13,
 	4, 3, 1, 11, 10
 };
 
-Sint16 poly_000687A4[] = {
+extern "C" __declspec(dllexport) Sint16 poly_000687A4[] = {
 	4, 4, 5, 15, 12,
 	4, 1, 0, 10, 14
 };
 
-Sint16 poly_000687B8[] = {
+extern "C" __declspec(dllexport) Sint16 poly_000687B8[] = {
 	4, 7, 6, 9, 8,
 	4, 2, 3, 13, 11
 };
 
-NJS_TEX uv_000687CC[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_000687CC[] = {
 	{ 2040, -765 },
 	{ 0, -765 },
 	{ 2040, 255 },
@@ -42552,7 +42552,7 @@ NJS_TEX uv_000687CC[] = {
 	{ 2040, -765 }
 };
 
-NJS_TEX uv_000687EC[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_000687EC[] = {
 	{ 255, 255 },
 	{ 0, 255 },
 	{ 255, -765 },
@@ -42563,7 +42563,7 @@ NJS_TEX uv_000687EC[] = {
 	{ 0, -765 }
 };
 
-NJS_TEX uv_0006880C[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0006880C[] = {
 	{ 0, 255 },
 	{ 4080, 255 },
 	{ 0 },
@@ -42582,7 +42582,7 @@ NJS_TEX uv_0006880C[] = {
 	{ 4080, 0 }
 };
 
-NJS_TEX uv_0006884C[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0006884C[] = {
 	{ 0 },
 	{ 255, 0 },
 	{ 0, 255 },
@@ -42601,7 +42601,7 @@ NJS_TEX uv_0006884C[] = {
 	{ 255, 255 }
 };
 
-NJS_TEX uv_0006888C[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0006888C[] = {
 	{ 0, -510 },
 	{ 5100, -510 },
 	{ 0, 255 },
@@ -42612,7 +42612,7 @@ NJS_TEX uv_0006888C[] = {
 	{ 5100, 255 }
 };
 
-NJS_TEX uv_000688AC[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_000688AC[] = {
 	{ 0 },
 	{ 2550, 0 },
 	{ 0, 255 },
@@ -42623,7 +42623,7 @@ NJS_TEX uv_000688AC[] = {
 	{ 2550, 255 }
 };
 
-NJS_MESHSET_SADX meshlist_000688CC[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_000688CC[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 2, poly_0006872C, NULL, NULL, NULL, uv_000687CC, NULL },
 	{ NJD_MESHSET_TRIMESH | 1, 2, poly_00068740, NULL, NULL, NULL, uv_000687EC, NULL },
 	{ NJD_MESHSET_TRIMESH | 2, 4, poly_00068754, NULL, NULL, NULL, uv_0006880C, NULL },
@@ -42632,7 +42632,7 @@ NJS_MESHSET_SADX meshlist_000688CC[] = {
 	{ NJD_MESHSET_TRIMESH | 5, 2, poly_000687B8, NULL, NULL, NULL, uv_000688AC, NULL }
 };
 
-NJS_VECTOR vertex_0006895C[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_0006895C[] = {
 	{ 36, 77, -140 },
 	{ 36, 36, 40 },
 	{ 40, 77, -140 },
@@ -42659,7 +42659,7 @@ NJS_VECTOR vertex_0006895C[] = {
 	{ -36, 74, -140 }
 };
 
-NJS_VECTOR normal_00068A7C[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_00068A7C[] = {
 	{ -0.566479f, 0.644175f, -0.513946f },
 	{ -0.59005f, 0.5035239f, 0.631113f },
 	{ 0.566479f, 0.644175f, -0.513946f },
@@ -42686,10 +42686,10 @@ NJS_VECTOR normal_00068A7C[] = {
 	{ 0, 0.781693f, -0.6236629f }
 };
 
-NJS_MODEL_SADX attach_00068B9C = { vertex_0006895C, normal_00068A7C, LengthOfArray<Sint32>(vertex_0006895C), meshlist_000688CC, matlist_000686B4, LengthOfArray<Uint16>(meshlist_000688CC), LengthOfArray<Uint16>(matlist_000686B4), { 0, 52.5f, -50 }, 98.48858f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00068B9C = { vertex_0006895C, normal_00068A7C, LengthOfArray<Sint32>(vertex_0006895C), meshlist_000688CC, matlist_000686B4, LengthOfArray<Uint16>(meshlist_000688CC), LengthOfArray<Uint16>(matlist_000686B4), { 0, 52.5f, -50 }, 98.48858f, NULL };
 
-NJS_OBJECT object_00068BC4 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00068B9C, -960, 13, 1390, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_00068BF8[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_00068BC4 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00068B9C, -960, 13, 1390, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_00068BF8[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 40, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 14, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 65, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
@@ -42697,7 +42697,7 @@ NJS_MATERIAL matlist_00068BF8[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 41, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_00068C5C[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00068C5C[] = {
 	4, 3, 23, 2, 22,
 	4, 7, 3, 6, 2,
 	4, 11, 7, 10, 6,
@@ -42748,7 +42748,7 @@ Sint16 poly_00068C5C[] = {
 	4, 187, 183, 186, 182
 };
 
-Sint16 poly_00068E3C[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00068E3C[] = {
 	4, 5, 1, 4, 0,
 	4, 1, 21, 0, 20,
 	4, 9, 5, 8, 4,
@@ -42799,7 +42799,7 @@ Sint16 poly_00068E3C[] = {
 	4, 185, 181, 184, 180
 };
 
-Sint16 poly_0006901C[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0006901C[] = {
 	4, 6, 2, 5, 1,
 	4, 2, 22, 1, 21,
 	4, 10, 6, 9, 5,
@@ -42850,17 +42850,17 @@ Sint16 poly_0006901C[] = {
 	4, 186, 182, 185, 181
 };
 
-Sint16 poly_000691FC[] = {
+extern "C" __declspec(dllexport) Sint16 poly_000691FC[] = {
 	4, 196, 197, 193, 192,
 	4, 198, 199, 195, 194
 };
 
-Sint16 poly_00069210[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00069210[] = {
 	4, 199, 198, 196, 197,
 	4, 195, 194, 192, 193
 };
 
-NJS_TEX uv_00069224[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00069224[] = {
 	{ 255, -1275 },
 	{ 0, -1275 },
 	{ 255, 255 },
@@ -43055,7 +43055,7 @@ NJS_TEX uv_00069224[] = {
 	{ 0, 255 }
 };
 
-NJS_TEX uv_00069524[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00069524[] = {
 	{ 255, -510 },
 	{ 0, -510 },
 	{ 255, 255 },
@@ -43250,7 +43250,7 @@ NJS_TEX uv_00069524[] = {
 	{ 0, 255 }
 };
 
-NJS_TEX uv_00069824[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00069824[] = {
 	{ 255, 255 },
 	{ 0, 255 },
 	{ 255, 0 },
@@ -43445,7 +43445,7 @@ NJS_TEX uv_00069824[] = {
 	{ 0 }
 };
 
-NJS_TEX uv_00069B24[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00069B24[] = {
 	{ 2550, 255 },
 	{ 0, 255 },
 	{ 2550, 0 },
@@ -43456,7 +43456,7 @@ NJS_TEX uv_00069B24[] = {
 	{ 2550, 255 }
 };
 
-NJS_TEX uv_00069B44[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00069B44[] = {
 	{ 2550, 255 },
 	{ 0, 255 },
 	{ 2550, -765 },
@@ -43467,7 +43467,7 @@ NJS_TEX uv_00069B44[] = {
 	{ 2550, -765 }
 };
 
-NJS_MESHSET_SADX meshlist_00069B64[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00069B64[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 48, poly_00068C5C, NULL, NULL, NULL, uv_00069224, NULL },
 	{ NJD_MESHSET_TRIMESH | 1, 48, poly_00068E3C, NULL, NULL, NULL, uv_00069524, NULL },
 	{ NJD_MESHSET_TRIMESH | 2, 48, poly_0006901C, NULL, NULL, NULL, uv_00069824, NULL },
@@ -43475,7 +43475,7 @@ NJS_MESHSET_SADX meshlist_00069B64[] = {
 	{ NJD_MESHSET_TRIMESH | 4, 2, poly_00069210, NULL, NULL, NULL, uv_00069B44, NULL }
 };
 
-NJS_VECTOR vertex_00069BDC[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_00069BDC[] = {
 	{ 64.5f, -50.5f, -36.70825f },
 	{ 64.5f, -9, -36.70825f },
 	{ 64.5f, -9, -34.28076f },
@@ -43678,7 +43678,7 @@ NJS_VECTOR vertex_00069BDC[] = {
 	{ 74.5f, 47.5f, -40 }
 };
 
-NJS_VECTOR normal_0006A53C[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_0006A53C[] = {
 	{ 0, 0, -1 },
 	{ 0, 0.609994f, -0.792406f },
 	{ 0, 0.843308f, -0.53743f },
@@ -43881,25 +43881,25 @@ NJS_VECTOR normal_0006A53C[] = {
 	{ -0.133497f, 0.736537f, -0.663093f }
 };
 
-NJS_MODEL_SADX attach_0006AE9C = { vertex_00069BDC, normal_0006A53C, LengthOfArray<Sint32>(vertex_00069BDC), meshlist_00069B64, matlist_00068BF8, LengthOfArray<Uint16>(meshlist_00069B64), LengthOfArray<Uint16>(matlist_00068BF8), { -5.5f, -1.5f, 0 }, 89.44272f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_0006AE9C = { vertex_00069BDC, normal_0006A53C, LengthOfArray<Sint32>(vertex_00069BDC), meshlist_00069B64, matlist_00068BF8, LengthOfArray<Uint16>(meshlist_00069B64), LengthOfArray<Uint16>(matlist_00068BF8), { -5.5f, -1.5f, 0 }, 89.44272f, NULL };
 
-NJS_OBJECT object_0006AEC4 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0006AE9C, -754.5f, 68.5f, 1210, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_0006AEF8[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_0006AEC4 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0006AE9C, -754.5f, 68.5f, 1210, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_0006AEF8[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 41, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 41, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_0006AF20[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0006AF20[] = {
 	4, 1, 0, 5, 4,
 	4, 7, 6, 3, 2
 };
 
-Sint16 poly_0006AF34[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0006AF34[] = {
 	4, 7, 3, 5, 1,
 	4, 2, 6, 0, 4
 };
 
-NJS_TEX uv_0006AF48[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0006AF48[] = {
 	{ 0, -765 },
 	{ 0, 255 },
 	{ 1020, -765 },
@@ -43910,7 +43910,7 @@ NJS_TEX uv_0006AF48[] = {
 	{ 0, 255 }
 };
 
-NJS_TEX uv_0006AF68[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0006AF68[] = {
 	{ 0 },
 	{ 1020, 0 },
 	{ 0, 255 },
@@ -43921,12 +43921,12 @@ NJS_TEX uv_0006AF68[] = {
 	{ 1020, 255 }
 };
 
-NJS_MESHSET_SADX meshlist_0006AF88[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_0006AF88[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 2, poly_0006AF20, NULL, NULL, NULL, uv_0006AF48, NULL },
 	{ NJD_MESHSET_TRIMESH | 1, 2, poly_0006AF34, NULL, NULL, NULL, uv_0006AF68, NULL }
 };
 
-NJS_VECTOR vertex_0006AFB8[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_0006AFB8[] = {
 	{ -45, 40, -45 },
 	{ -45, 40, 35 },
 	{ -45, 45, -45 },
@@ -43937,7 +43937,7 @@ NJS_VECTOR vertex_0006AFB8[] = {
 	{ 45, 45, 35 }
 };
 
-NJS_VECTOR normal_0006B018[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_0006B018[] = {
 	{ 0, -0.7071069f, -0.7071069f },
 	{ 0, -0.7071069f, 0.7071069f },
 	{ 0, 0.7071069f, -0.7071069f },
@@ -43948,14 +43948,14 @@ NJS_VECTOR normal_0006B018[] = {
 	{ 0, 0.7071069f, 0.7071069f }
 };
 
-NJS_MODEL_SADX attach_0006B078 = { vertex_0006AFB8, normal_0006B018, LengthOfArray<Sint32>(vertex_0006AFB8), meshlist_0006AF88, matlist_0006AEF8, LengthOfArray<Uint16>(meshlist_0006AF88), LengthOfArray<Uint16>(matlist_0006AEF8), { 0, 42.5f, -5 }, 60.20797f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_0006B078 = { vertex_0006AFB8, normal_0006B018, LengthOfArray<Sint32>(vertex_0006AFB8), meshlist_0006AF88, matlist_0006AEF8, LengthOfArray<Uint16>(meshlist_0006AF88), LengthOfArray<Uint16>(matlist_0006AEF8), { 0, 42.5f, -5 }, 60.20797f, NULL };
 
-NJS_OBJECT object_0006B0A0 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0006B078, -635, 71, 1215, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_0006B0D4[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_0006B0A0 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0006B078, -635, 71, 1215, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_0006B0D4[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 17, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_0006B0E8[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0006B0E8[] = {
 	0x8000u | 6, 11, 12, 10, 13, 9, 14,
 	8, 20, 3, 24, 2, 25, 1, 26, 0,
 	0x8000u | 8, 9, 14, 8, 15, 7, 16, 6, 17,
@@ -43963,7 +43963,7 @@ Sint16 poly_0006B0E8[] = {
 	7, 26, 23, 25, 22, 24, 21, 20
 };
 
-NJS_TEX uv_0006B13C[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0006B13C[] = {
 	{ 163, 255 },
 	{ 167, 173 },
 	{ 330, 255 },
@@ -44003,11 +44003,11 @@ NJS_TEX uv_0006B13C[] = {
 	{ 0, 97 }
 };
 
-NJS_MESHSET_SADX meshlist_0006B1D0[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_0006B1D0[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 5, poly_0006B0E8, NULL, NULL, NULL, uv_0006B13C, NULL }
 };
 
-NJS_VECTOR vertex_0006B1E8[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_0006B1E8[] = {
 	{ 1004.622f, -2, 974.2347f },
 	{ 976.3165f, -2, 1016.862f },
 	{ 928.3213f, -2, 1045.532f },
@@ -44037,7 +44037,7 @@ NJS_VECTOR vertex_0006B1E8[] = {
 	{ 1001.014f, 40.00058f, 971.0932f }
 };
 
-NJS_VECTOR normal_0006B32C[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_0006B32C[] = {
 	{ 0.818011f, 0.189253f, 0.5431769f },
 	{ 0.677007f, 0.232089f, 0.698424f },
 	{ 0.309178f, 0.313835f, 0.897729f },
@@ -44067,10 +44067,10 @@ NJS_VECTOR normal_0006B32C[] = {
 	{ 0.734073f, 0.319963f, 0.598967f }
 };
 
-NJS_MODEL_SADX attach_0006B470 = { vertex_0006B1E8, normal_0006B32C, LengthOfArray<Sint32>(vertex_0006B1E8), meshlist_0006B1D0, matlist_0006B0D4, LengthOfArray<Uint16>(meshlist_0006B1D0), LengthOfArray<Uint16>(matlist_0006B0D4), { 838.3235f, 29.9561f, 888.2026f }, 233.4326f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_0006B470 = { vertex_0006B1E8, normal_0006B32C, LengthOfArray<Sint32>(vertex_0006B1E8), meshlist_0006B1D0, matlist_0006B0D4, LengthOfArray<Uint16>(meshlist_0006B1D0), LengthOfArray<Uint16>(matlist_0006B0D4), { 838.3235f, 29.9561f, 888.2026f }, 233.4326f, NULL };
 
-NJS_OBJECT object_0006B498 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0006B470, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_0006B4CC[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_0006B498 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0006B470, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_0006B4CC[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 31, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 26, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 30, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
@@ -44082,7 +44082,7 @@ NJS_MATERIAL matlist_0006B4CC[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 32, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_0006B580[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0006B580[] = {
 	3, 0, 1, 2,
 	10, 32, 31, 151, 0, 3, 2, 57, 46, 55, 8,
 	3, 52, 53, 15,
@@ -44099,7 +44099,7 @@ Sint16 poly_0006B580[] = {
 	3, 11, 29, 150
 };
 
-Sint16 poly_0006B62E[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0006B62E[] = {
 	4, 6, 7, 5, 4,
 	4, 128, 13, 147, 12,
 	4, 132, 24, 23, 22,
@@ -44112,7 +44112,7 @@ Sint16 poly_0006B62E[] = {
 	4, 146, 52, 130, 15
 };
 
-Sint16 poly_0006B692[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0006B692[] = {
 	4, 5, 4, 9, 8,
 	4, 127, 11, 126, 10,
 	4, 130, 15, 129, 14,
@@ -44132,21 +44132,21 @@ Sint16 poly_0006B692[] = {
 	4, 133, 25, 138, 30
 };
 
-Sint16 poly_0006B73C[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0006B73C[] = {
 	0x8000u | 18, 132, 135, 23, 27, 34, 33, 37, 36, 40, 39, 6, 42, 5, 44, 9, 18, 19, 17,
 	0x8000u | 18, 135, 136, 27, 28, 33, 35, 36, 38, 39, 41, 42, 43, 44, 45, 18, 21, 17, 20
 };
 
-Sint16 poly_0006B788[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0006B788[] = {
 	4, 55, 8, 56, 4
 };
 
-Sint16 poly_0006B792[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0006B792[] = {
 	4, 53, 52, 59, 16,
 	4, 25, 153, 149, 154
 };
 
-Sint16 poly_0006B7A6[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0006B7A6[] = {
 	0x8000u | 7, 132, 121, 62, 120, 61, 119, 60,
 	0x8000u | 7, 139, 140, 118, 100, 99, 81, 80,
 	0x8000u | 38, 139, 118, 144, 117, 143, 116, 141, 115, 134, 114, 133, 113, 138, 112, 137, 111, 127, 110, 126, 109, 128, 108, 147, 107, 131, 106, 146, 105, 130, 104, 129, 103, 145, 102, 142, 101, 132, 121,
@@ -44154,18 +44154,18 @@ Sint16 poly_0006B7A6[] = {
 	0x8000u | 38, 118, 99, 117, 98, 116, 97, 115, 96, 114, 95, 113, 94, 112, 93, 111, 92, 110, 91, 109, 90, 108, 89, 107, 88, 106, 87, 105, 86, 104, 85, 103, 84, 102, 83, 101, 82, 121, 120
 };
 
-Sint16 poly_0006B8B0[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0006B8B0[] = {
 	3, 124, 132, 135,
 	0x8000u | 9, 132, 62, 124, 61, 123, 60, 122, 125, 136,
 	0x8000u | 5, 124, 123, 135, 122, 136
 };
 
-Sint16 poly_0006B8D8[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0006B8D8[] = {
 	4, 3, 152, 151, 32,
 	4, 30, 149, 29, 150
 };
 
-NJS_TEX uv_0006B8EC[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0006B8EC[] = {
 	{ 633, -4185 },
 	{ 799, -4335 },
 	{ 1106, -3997 },
@@ -44241,7 +44241,7 @@ NJS_TEX uv_0006B8EC[] = {
 	{ 308, -2568 }
 };
 
-NJS_TEX uv_0006BA10[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0006BA10[] = {
 	{ 1020, 255 },
 	{ 1020, 0 },
 	{ 0, 255 },
@@ -44284,7 +44284,7 @@ NJS_TEX uv_0006BA10[] = {
 	{ 0 }
 };
 
-NJS_TEX uv_0006BAB0[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0006BAB0[] = {
 	{ 765, 254 },
 	{ 765, 0 },
 	{ 0, 254 },
@@ -44355,7 +44355,7 @@ NJS_TEX uv_0006BAB0[] = {
 	{ 0 }
 };
 
-NJS_TEX uv_0006BBC0[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0006BBC0[] = {
 	{ 0 },
 	{ 0, 121 },
 	{ 165, 0 },
@@ -44394,14 +44394,14 @@ NJS_TEX uv_0006BBC0[] = {
 	{ 1275, 255 }
 };
 
-NJS_TEX uv_0006BC50[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0006BC50[] = {
 	{ 0, 255 },
 	{ 0, -255 },
 	{ 508, 255 },
 	{ 510, -254 }
 };
 
-NJS_TEX uv_0006BC60[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0006BC60[] = {
 	{ 0, 255 },
 	{ 510, 255 },
 	{ 0 },
@@ -44412,7 +44412,7 @@ NJS_TEX uv_0006BC60[] = {
 	{ 0 }
 };
 
-NJS_TEX uv_0006BC80[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0006BC80[] = {
 	{ 0, -119 },
 	{ 0, -22 },
 	{ 77, -23 },
@@ -44543,7 +44543,7 @@ NJS_TEX uv_0006BC80[] = {
 	{ 1530, 82 }
 };
 
-NJS_TEX uv_0006BE80[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0006BE80[] = {
 	{ 223, 70 },
 	{ 255, 0 },
 	{ 255, 119 },
@@ -44563,7 +44563,7 @@ NJS_TEX uv_0006BE80[] = {
 	{ 255, 255 }
 };
 
-NJS_TEX uv_0006BEC4[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0006BEC4[] = {
 	{ 0 },
 	{ 0, 255 },
 	{ 255, 0 },
@@ -44574,7 +44574,7 @@ NJS_TEX uv_0006BEC4[] = {
 	{ 255, 0 }
 };
 
-NJS_MESHSET_SADX meshlist_0006BEE4[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_0006BEE4[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 14, poly_0006B580, NULL, NULL, NULL, uv_0006B8EC, NULL },
 	{ NJD_MESHSET_TRIMESH | 1, 10, poly_0006B62E, NULL, NULL, NULL, uv_0006BA10, NULL },
 	{ NJD_MESHSET_TRIMESH | 2, 17, poly_0006B692, NULL, NULL, NULL, uv_0006BAB0, NULL },
@@ -44586,7 +44586,7 @@ NJS_MESHSET_SADX meshlist_0006BEE4[] = {
 	{ NJD_MESHSET_TRIMESH | 8, 2, poly_0006B8D8, NULL, NULL, NULL, uv_0006BEC4, NULL }
 };
 
-NJS_VECTOR vertex_0006BFBC[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_0006BFBC[] = {
 	{ 159.7438f, 39.69366f, 122.4323f },
 	{ 179.4059f, 37.71796f, 121.206f },
 	{ 174.1222f, 37.38367f, 80.83099f },
@@ -44744,7 +44744,7 @@ NJS_VECTOR vertex_0006BFBC[] = {
 	{ 63.2873f, 40.38379f, 60.34332f }
 };
 
-NJS_VECTOR normal_0006C700[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_0006C700[] = {
 	{ 0.075494f, 0.947084f, 0.31198f },
 	{ 0.12616f, 0.934151f, 0.333835f },
 	{ 0.049009f, 0.998507f, -0.024106f },
@@ -44902,10 +44902,10 @@ NJS_VECTOR normal_0006C700[] = {
 	{ 0.030982f, 0.999518f, -0.001853f }
 };
 
-NJS_MODEL_SADX attach_0006CE44 = { vertex_0006BFBC, normal_0006C700, LengthOfArray<Sint32>(vertex_0006BFBC), meshlist_0006BEE4, matlist_0006B4CC, LengthOfArray<Uint16>(meshlist_0006BEE4), LengthOfArray<Uint16>(matlist_0006B4CC), { 9.398955f, 0, -19.25136f }, 254.1693f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_0006CE44 = { vertex_0006BFBC, normal_0006C700, LengthOfArray<Sint32>(vertex_0006BFBC), meshlist_0006BEE4, matlist_0006B4CC, LengthOfArray<Uint16>(meshlist_0006BEE4), LengthOfArray<Uint16>(matlist_0006B4CC), { 9.398955f, 0, -19.25136f }, 254.1693f, NULL };
 
-NJS_OBJECT object_0006CE6C = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0006CE44, 829.9417f, 39.61621f, 696.1371f, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_0006CEA0[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_0006CE6C = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0006CE44, 829.9417f, 39.61621f, 696.1371f, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_0006CEA0[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 30, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 17, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 31, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
@@ -44913,7 +44913,7 @@ NJS_MATERIAL matlist_0006CEA0[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 11, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_0006CF04[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0006CF04[] = {
 	4, 2, 3, 1, 0,
 	4, 14, 33, 17, 32,
 	4, 7, 28, 11, 30,
@@ -44923,29 +44923,29 @@ Sint16 poly_0006CF04[] = {
 	4, 42, 41, 38, 36
 };
 
-Sint16 poly_0006CF48[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0006CF48[] = {
 	0x8000u | 16, 6, 5, 7, 4, 11, 10, 14, 13, 17, 16, 20, 19, 2, 22, 1, 24,
 	0x8000u | 16, 5, 9, 4, 8, 10, 12, 13, 15, 16, 18, 19, 21, 22, 23, 24, 25
 };
 
-Sint16 poly_0006CF8C[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0006CF8C[] = {
 	9, 26, 27, 28, 31, 30, 29, 33, 36, 41,
 	8, 41, 40, 32, 39, 34, 35, 3, 0,
 	3, 32, 33, 41
 };
 
-Sint16 poly_0006CFBA[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0006CFBA[] = {
 	4, 11, 30, 14, 33,
 	4, 20, 34, 2, 3,
 	4, 6, 26, 7, 28
 };
 
-Sint16 poly_0006CFD8[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0006CFD8[] = {
 	0x8000u | 5, 35, 43, 39, 44, 40,
 	4, 44, 40, 42, 41
 };
 
-NJS_TEX uv_0006CFF0[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0006CFF0[] = {
 	{ 765, 255 },
 	{ 765, 0 },
 	{ 0, 255 },
@@ -44975,7 +44975,7 @@ NJS_TEX uv_0006CFF0[] = {
 	{ 0 }
 };
 
-NJS_TEX uv_0006D05C[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0006D05C[] = {
 	{ 0 },
 	{ 0, 117 },
 	{ 160, 0 },
@@ -45010,7 +45010,7 @@ NJS_TEX uv_0006D05C[] = {
 	{ 1020, 255 }
 };
 
-NJS_TEX uv_0006D0DC[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0006D0DC[] = {
 	{ 0, 255 },
 	{ 136, -260 },
 	{ 390, -185 },
@@ -45033,7 +45033,7 @@ NJS_TEX uv_0006D0DC[] = {
 	{ 370, -1155 }
 };
 
-NJS_TEX uv_0006D12C[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0006D12C[] = {
 	{ 1019, 255 },
 	{ 1020, 0 },
 	{ 0, 255 },
@@ -45048,7 +45048,7 @@ NJS_TEX uv_0006D12C[] = {
 	{ 0 }
 };
 
-NJS_TEX uv_0006D15C[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0006D15C[] = {
 	{ 0, 255 },
 	{ 127, 255 },
 	{ 127, 0 },
@@ -45060,7 +45060,7 @@ NJS_TEX uv_0006D15C[] = {
 	{ 508, 0 }
 };
 
-NJS_MESHSET_SADX meshlist_0006D180[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_0006D180[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 7, poly_0006CF04, NULL, NULL, NULL, uv_0006CFF0, NULL },
 	{ NJD_MESHSET_TRIMESH | 1, 2, poly_0006CF48, NULL, NULL, NULL, uv_0006D05C, NULL },
 	{ NJD_MESHSET_TRIMESH | 2, 3, poly_0006CF8C, NULL, NULL, NULL, uv_0006D0DC, NULL },
@@ -45068,7 +45068,7 @@ NJS_MESHSET_SADX meshlist_0006D180[] = {
 	{ NJD_MESHSET_TRIMESH | 4, 2, poly_0006CFD8, NULL, NULL, NULL, uv_0006D15C, NULL }
 };
 
-NJS_VECTOR vertex_0006D1F8[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_0006D1F8[] = {
 	{ 997.0176f, 65.58988f, 956.5693f },
 	{ 1000.68f, 61.91219f, 959.9861f },
 	{ 1040, 67, 949 },
@@ -45116,7 +45116,7 @@ NJS_VECTOR vertex_0006D1F8[] = {
 	{ 1016.128f, 68.77628f, 875.2664f }
 };
 
-NJS_VECTOR normal_0006D414[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_0006D414[] = {
 	{ -0.010184f, 0.910035f, 0.414407f },
 	{ 0.14063f, 0.594947f, 0.791367f },
 	{ 0.371404f, 0.5874619f, 0.718991f },
@@ -45164,24 +45164,24 @@ NJS_VECTOR normal_0006D414[] = {
 	{ -0.208932f, 0.977149f, 0.039077f }
 };
 
-NJS_MODEL_SADX attach_0006D630 = { vertex_0006D1F8, normal_0006D414, LengthOfArray<Sint32>(vertex_0006D1F8), meshlist_0006D180, matlist_0006CEA0, LengthOfArray<Uint16>(meshlist_0006D180), LengthOfArray<Uint16>(matlist_0006CEA0), { 1047.805f, 33.3535f, 846.0921f }, 136.1052f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_0006D630 = { vertex_0006D1F8, normal_0006D414, LengthOfArray<Sint32>(vertex_0006D1F8), meshlist_0006D180, matlist_0006CEA0, LengthOfArray<Uint16>(meshlist_0006D180), LengthOfArray<Uint16>(matlist_0006CEA0), { 1047.805f, 33.3535f, 846.0921f }, 136.1052f, NULL };
 
-NJS_OBJECT object_0006D658 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0006D630, -3, 0, 2, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_0006D68C[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_0006D658 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0006D630, -3, 0, 2, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_0006D68C[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 25, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 16, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_0006D6B4[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0006D6B4[] = {
 	4, 1, 0, 51, 50,
 	4, 49, 48, 99, 98
 };
 
-Sint16 poly_0006D6C8[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0006D6C8[] = {
 	0x8000u | 96, 48, 98, 47, 97, 46, 96, 45, 95, 44, 94, 43, 93, 42, 92, 41, 91, 40, 90, 39, 89, 38, 88, 37, 87, 36, 86, 35, 85, 34, 84, 33, 83, 32, 82, 31, 81, 30, 80, 29, 79, 28, 78, 27, 77, 26, 76, 25, 75, 24, 74, 23, 73, 22, 72, 21, 71, 20, 70, 19, 69, 18, 68, 17, 67, 16, 66, 15, 65, 14, 64, 13, 63, 12, 62, 11, 61, 10, 60, 9, 59, 8, 58, 7, 57, 6, 56, 5, 55, 4, 54, 3, 53, 2, 52, 1, 51
 };
 
-NJS_TEX uv_0006D78C[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0006D78C[] = {
 	{ 1275, 0 },
 	{ 1275, 255 },
 	{ 0 },
@@ -45192,7 +45192,7 @@ NJS_TEX uv_0006D78C[] = {
 	{ 1275, 0 }
 };
 
-NJS_TEX uv_0006D7AC[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0006D7AC[] = {
 	{ 0, 192 },
 	{ 510, 192 },
 	{ 0, 129 },
@@ -45291,12 +45291,12 @@ NJS_TEX uv_0006D7AC[] = {
 	{ 510, -2741 }
 };
 
-NJS_MESHSET_SADX meshlist_0006D92C[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_0006D92C[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 2, poly_0006D6B4, NULL, NULL, NULL, uv_0006D78C, NULL },
 	{ NJD_MESHSET_TRIMESH | 1, 1, poly_0006D6C8, NULL, NULL, NULL, uv_0006D7AC, NULL }
 };
 
-NJS_VECTOR vertex_0006D95C[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_0006D95C[] = {
 	{ 83, -9, 29.5f },
 	{ 80.69704f, -17.94646f, 29.5f },
 	{ 76.13101f, -25.90586f, 29.5f },
@@ -45399,7 +45399,7 @@ NJS_VECTOR vertex_0006D95C[] = {
 	{ -59.9997f, -53.99999f, 60 }
 };
 
-NJS_VECTOR normal_0006DE0C[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_0006DE0C[] = {
 	{ -0.96843f, 0.249288f, 0 },
 	{ -0.926276f, 0.376845f, 0 },
 	{ -0.775594f, 0.631232f, 0 },
@@ -45502,20 +45502,20 @@ NJS_VECTOR normal_0006DE0C[] = {
 	{ -0.054753f, 0.9985f, 0 }
 };
 
-NJS_MODEL_SADX attach_0006E2BC = { vertex_0006D95C, normal_0006DE0C, LengthOfArray<Sint32>(vertex_0006D95C), meshlist_0006D92C, matlist_0006D68C, LengthOfArray<Uint16>(meshlist_0006D92C), LengthOfArray<Uint16>(matlist_0006D68C), { 11.50015f, -4.652315f, 44.75f }, 96.79768f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_0006E2BC = { vertex_0006D95C, normal_0006DE0C, LengthOfArray<Sint32>(vertex_0006D95C), meshlist_0006D92C, matlist_0006D68C, LengthOfArray<Uint16>(meshlist_0006D92C), LengthOfArray<Uint16>(matlist_0006D68C), { 11.50015f, -4.652315f, 44.75f }, 96.79768f, NULL };
 
-NJS_OBJECT object_0006E2E4 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0006E2BC, -191, 110, 1125, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_0006E318[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_0006E2E4 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0006E2BC, -191, 110, 1125, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_0006E318[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 22, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 16, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_0006E340[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0006E340[] = {
 	0x8000u | 6, 2, 72, 1, 71, 0, 70,
 	4, 69, 68, 139, 138
 };
 
-Sint16 poly_0006E358[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0006E358[] = {
 	4, 3, 2, 73, 72,
 	4, 4, 3, 74, 73,
 	4, 5, 4, 75, 74,
@@ -45584,7 +45584,7 @@ Sint16 poly_0006E358[] = {
 	4, 68, 67, 138, 137
 };
 
-NJS_TEX uv_0006E5EC[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0006E5EC[] = {
 	{ 0 },
 	{ 1530, 0 },
 	{ 0, 123 },
@@ -45597,7 +45597,7 @@ NJS_TEX uv_0006E5EC[] = {
 	{ 0 }
 };
 
-NJS_TEX uv_0006E614[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0006E614[] = {
 	{ 765, 255 },
 	{ 765, 0 },
 	{ 0, 255 },
@@ -45864,12 +45864,12 @@ NJS_TEX uv_0006E614[] = {
 	{ 0 }
 };
 
-NJS_MESHSET_SADX meshlist_0006EA34[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_0006EA34[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 2, poly_0006E340, NULL, NULL, NULL, uv_0006E5EC, NULL },
 	{ NJD_MESHSET_TRIMESH | 1, 66, poly_0006E358, NULL, NULL, NULL, uv_0006E614, NULL }
 };
 
-NJS_VECTOR vertex_0006EA64[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_0006EA64[] = {
 	{ -30, -45.49882f, -24 },
 	{ -22.5186f, -45.08437f, -23.30176f },
 	{ -15.08714f, -44.24301f, -22.39791f },
@@ -46012,7 +46012,7 @@ NJS_VECTOR vertex_0006EA64[] = {
 	{ 67.99982f, -22.00005f, 127 }
 };
 
-NJS_VECTOR normal_0006F0F4[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_0006F0F4[] = {
 	{ -0.055392f, 0.9984649f, 0 },
 	{ -0.08202299f, 0.99663f, 0 },
 	{ -0.135003f, 0.990845f, 0 },
@@ -46155,10 +46155,10 @@ NJS_VECTOR normal_0006F0F4[] = {
 	{ -0.294086f, 0.955779f, 0 }
 };
 
-NJS_MODEL_SADX attach_0006F784 = { vertex_0006EA64, normal_0006F0F4, LengthOfArray<Sint32>(vertex_0006EA64), meshlist_0006EA34, matlist_0006E318, LengthOfArray<Uint16>(meshlist_0006EA34), LengthOfArray<Uint16>(matlist_0006E318), { 16.98466f, -4.793619f, 51.5f }, 91.11966f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_0006F784 = { vertex_0006EA64, normal_0006F0F4, LengthOfArray<Sint32>(vertex_0006EA64), meshlist_0006EA34, matlist_0006E318, LengthOfArray<Uint16>(meshlist_0006EA34), LengthOfArray<Uint16>(matlist_0006E318), { 16.98466f, -4.793619f, 51.5f }, 91.11966f, NULL };
 
-NJS_OBJECT object_0006F7AC = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0006F784, 2186, 54.50001f, 255, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_0006F7E0[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_0006F7AC = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0006F784, 2186, 54.50001f, 255, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_0006F7E0[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 26, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 30, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 32, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
@@ -46168,7 +46168,7 @@ NJS_MATERIAL matlist_0006F7E0[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 31, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_0006F86C[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0006F86C[] = {
 	4, 103, 0, 102, 1,
 	4, 2, 0, 104, 103,
 	4, 11, 10, 113, 112,
@@ -46177,7 +46177,7 @@ Sint16 poly_0006F86C[] = {
 	4, 118, 119, 16, 17
 };
 
-Sint16 poly_0006F8A8[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0006F8A8[] = {
 	4, 3, 2, 105, 104,
 	4, 4, 3, 106, 105,
 	4, 5, 4, 107, 106,
@@ -46189,7 +46189,7 @@ Sint16 poly_0006F8A8[] = {
 	0x8000u | 6, 15, 117, 14, 116, 13, 115
 };
 
-Sint16 poly_0006F906[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0006F906[] = {
 	4, 109, 127, 110, 128,
 	4, 112, 136, 113, 135,
 	4, 106, 124, 107, 125,
@@ -46198,7 +46198,7 @@ Sint16 poly_0006F906[] = {
 	4, 116, 132, 117, 131
 };
 
-Sint16 poly_0006F942[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0006F942[] = {
 	4, 136, 112, 129, 111,
 	6, 127, 109, 126, 108, 125, 107,
 	4, 134, 114, 135, 113,
@@ -46207,7 +46207,7 @@ Sint16 poly_0006F942[] = {
 	18, 120, 137, 121, 130, 122, 131, 123, 132, 124, 133, 125, 134, 126, 135, 127, 136, 128, 129
 };
 
-Sint16 poly_0006F99E[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0006F99E[] = {
 	3, 1, 0, 19,
 	5, 21, 2, 22, 3, 4,
 	0x8000u | 16, 40, 41, 38, 39, 36, 37, 34, 35, 32, 33, 30, 31, 28, 29, 27, 100,
@@ -46224,21 +46224,21 @@ Sint16 poly_0006F99E[] = {
 	6, 17, 48, 16, 47, 15, 14
 };
 
-Sint16 poly_0006FAEA[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0006FAEA[] = {
 	0x8000u | 12, 100, 24, 25, 23, 87, 88, 68, 69, 49, 50, 17, 18,
 	0x8000u | 12, 24, 101, 23, 26, 88, 71, 69, 52, 50, 20, 18, 1,
 	0x8000u | 10, 17, 48, 49, 67, 68, 86, 87, 27, 25, 100,
 	0x8000u | 10, 1, 20, 19, 52, 51, 71, 70, 26, 89, 101
 };
 
-Sint16 poly_0006FB4A[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0006FB4A[] = {
 	4, 114, 134, 115, 133,
 	4, 115, 133, 116, 132,
 	4, 102, 120, 103, 121,
 	4, 103, 121, 104, 122
 };
 
-NJS_TEX uv_0006FB74[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0006FB74[] = {
 	{ 510, 0 },
 	{ 510, 255 },
 	{ 0 },
@@ -46265,7 +46265,7 @@ NJS_TEX uv_0006FB74[] = {
 	{ 0, 255 }
 };
 
-NJS_TEX uv_0006FBD4[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0006FBD4[] = {
 	{ 0, 255 },
 	{ 510, 255 },
 	{ 0 },
@@ -46306,7 +46306,7 @@ NJS_TEX uv_0006FBD4[] = {
 	{ 0 }
 };
 
-NJS_TEX uv_0006FC6C[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0006FC6C[] = {
 	{ 254, 255 },
 	{ 0, 255 },
 	{ 255, 0 },
@@ -46333,7 +46333,7 @@ NJS_TEX uv_0006FC6C[] = {
 	{ 0, 255 }
 };
 
-NJS_TEX uv_0006FCCC[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0006FCCC[] = {
 	{ 368, -1530 },
 	{ 150, -1530 },
 	{ 394, -1785 },
@@ -46376,7 +46376,7 @@ NJS_TEX uv_0006FCCC[] = {
 	{ 394, -1785 }
 };
 
-NJS_TEX uv_0006FD6C[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0006FD6C[] = {
 	{ 0, 3 },
 	{ 64, 7 },
 	{ 79, 44 },
@@ -46531,7 +46531,7 @@ NJS_TEX uv_0006FD6C[] = {
 	{ 190, 41 }
 };
 
-NJS_TEX uv_0006FFCC[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0006FFCC[] = {
 	{ 156, 255 },
 	{ 127, 251 },
 	{ 164, 194 },
@@ -46578,7 +46578,7 @@ NJS_TEX uv_0006FFCC[] = {
 	{ 86, 255 }
 };
 
-NJS_TEX uv_0007007C[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0007007C[] = {
 	{ 255, 255 },
 	{ 0, 255 },
 	{ 255, 0 },
@@ -46597,7 +46597,7 @@ NJS_TEX uv_0007007C[] = {
 	{ 0, 255 }
 };
 
-NJS_MESHSET_SADX meshlist_000700BC[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_000700BC[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 6, poly_0006F86C, NULL, NULL, NULL, uv_0006FB74, NULL },
 	{ NJD_MESHSET_TRIMESH | 1, 9, poly_0006F8A8, NULL, NULL, NULL, uv_0006FBD4, NULL },
 	{ NJD_MESHSET_TRIMESH | 2, 6, poly_0006F906, NULL, NULL, NULL, uv_0006FC6C, NULL },
@@ -46607,7 +46607,7 @@ NJS_MESHSET_SADX meshlist_000700BC[] = {
 	{ NJD_MESHSET_TRIMESH | 6, 4, poly_0006FB4A, NULL, NULL, NULL, uv_0007007C, NULL }
 };
 
-NJS_VECTOR vertex_00070164[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_00070164[] = {
 	{ -64.78262f, 48.49344f, -43.21643f },
 	{ -87.50018f, 50, -40.00024f },
 	{ -42.2987f, 42.73694f, -44.20093f },
@@ -46748,7 +46748,7 @@ NJS_VECTOR vertex_00070164[] = {
 	{ -87.50018f, 55, 19.99976f }
 };
 
-NJS_VECTOR normal_000707DC[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_000707DC[] = {
 	{ -0.082577f, -0.040916f, -0.995744f },
 	{ -0.460214f, -0.363255f, -0.810092f },
 	{ -0.016718f, -0.054924f, -0.998351f },
@@ -46889,36 +46889,36 @@ NJS_VECTOR normal_000707DC[] = {
 	{ 0.066172f, 0.997808f, 0 }
 };
 
-NJS_MODEL_SADX attach_00070E54 = { vertex_00070164, normal_000707DC, LengthOfArray<Sint32>(vertex_00070164), meshlist_000700BC, matlist_0006F7E0, LengthOfArray<Uint16>(meshlist_000700BC), LengthOfArray<Uint16>(matlist_0006F7E0), { -0.00015f, 0, 0 }, 102.5163f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00070E54 = { vertex_00070164, normal_000707DC, LengthOfArray<Sint32>(vertex_00070164), meshlist_000700BC, matlist_0006F7E0, LengthOfArray<Uint16>(meshlist_000700BC), LengthOfArray<Uint16>(matlist_0006F7E0), { -0.00015f, 0, 0 }, 102.5163f, NULL };
 
-NJS_OBJECT object_00070E7C = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00070E54, -342.4998f, 32, 1210, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_00070EB0[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_00070E7C = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00070E54, -342.4998f, 32, 1210, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_00070EB0[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 44, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 46, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 45, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 44, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_00070F00[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00070F00[] = {
 	3, 11, 0, 5
 };
 
-Sint16 poly_00070F08[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00070F08[] = {
 	3, 3, 2, 12,
 	4, 1, 6, 0, 5
 };
 
-Sint16 poly_00070F1A[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00070F1A[] = {
 	4, 11, 5, 7, 6,
 	4, 4, 3, 10, 12
 };
 
-Sint16 poly_00070F2E[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00070F2E[] = {
 	4, 9, 14, 7, 11,
 	4, 13, 8, 10, 4
 };
 
-NJS_TEX uv_00070F44[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00070F44[] = {
 	{ 3, 255 },
 	{ 0 },
 	{ 255, 100 },
@@ -46928,7 +46928,7 @@ NJS_TEX uv_00070F44[] = {
 	{ 254, 0 }
 };
 
-NJS_TEX uv_00070F60[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00070F60[] = {
 	{ 0, 255 },
 	{ 0 },
 	{ 255, 255 },
@@ -46939,7 +46939,7 @@ NJS_TEX uv_00070F60[] = {
 	{ 255, 0 }
 };
 
-NJS_TEX uv_00070F80[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00070F80[] = {
 	{ 255, 255 },
 	{ 0, 255 },
 	{ 255, 0 },
@@ -46950,14 +46950,14 @@ NJS_TEX uv_00070F80[] = {
 	{ 0 }
 };
 
-NJS_MESHSET_SADX meshlist_00070FA0[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00070FA0[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 1, poly_00070F00, NULL, NULL, NULL, NULL, NULL },
 	{ NJD_MESHSET_TRIMESH | 1, 2, poly_00070F08, NULL, NULL, NULL, uv_00070F44, NULL },
 	{ NJD_MESHSET_TRIMESH | 2, 2, poly_00070F1A, NULL, NULL, NULL, uv_00070F60, NULL },
 	{ NJD_MESHSET_TRIMESH | 3, 2, poly_00070F2E, NULL, NULL, NULL, uv_00070F80, NULL }
 };
 
-NJS_VECTOR vertex_00071000[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_00071000[] = {
 	{ 0.000735f, 406, -62 },
 	{ 0.000735f, 406, -65 },
 	{ -32.49926f, 406, -56.29165f },
@@ -46975,7 +46975,7 @@ NJS_VECTOR vertex_00071000[] = {
 	{ 0.000726f, 400, -62.00002f }
 };
 
-NJS_VECTOR normal_000710B4[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_000710B4[] = {
 	{ 0.447409f, 0.894329f, 0.000744f },
 	{ 0, 1, 0 },
 	{ 0, 1, 0 },
@@ -46993,10 +46993,10 @@ NJS_VECTOR normal_000710B4[] = {
 	{ -0.810744f, 0.000355f, 0.585401f }
 };
 
-NJS_MODEL_SADX attach_00071168 = { vertex_00071000, normal_000710B4, LengthOfArray<Sint32>(vertex_00071000), meshlist_00070FA0, matlist_00070EB0, LengthOfArray<Uint16>(meshlist_00070FA0), LengthOfArray<Uint16>(matlist_00070EB0), { -16.24926f, 403, -59.34674f }, 17.82522f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00071168 = { vertex_00071000, normal_000710B4, LengthOfArray<Sint32>(vertex_00071000), meshlist_00070FA0, matlist_00070EB0, LengthOfArray<Uint16>(meshlist_00070FA0), LengthOfArray<Uint16>(matlist_00070EB0), { -16.24926f, 403, -59.34674f }, 17.82522f, NULL };
 
-NJS_OBJECT object_00071190 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00071168, 5909.7f, 0, 775.2f, 0, 0x1C5F, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_000711C4[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_00071190 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00071168, 5909.7f, 0, 775.2f, 0, 0x1C5F, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_000711C4[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 15, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 18, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 15, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
@@ -47005,7 +47005,7 @@ NJS_MATERIAL matlist_000711C4[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 19, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_0007123C[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0007123C[] = {
 	10, 52, 34, 81, 35, 68, 31, 63, 21, 62, 70,
 	0x8000u | 8, 78, 16, 14, 29, 28, 41, 40, 50,
 	4, 70, 21, 9, 5,
@@ -47018,12 +47018,12 @@ Sint16 poly_0007123C[] = {
 	10, 53, 82, 36, 37, 32, 33, 18, 20, 4, 8
 };
 
-Sint16 poly_000712D4[] = {
+extern "C" __declspec(dllexport) Sint16 poly_000712D4[] = {
 	10, 77, 76, 56, 55, 57, 54, 58, 59, 78, 83,
 	10, 73, 72, 74, 75, 64, 67, 65, 66, 79, 80
 };
 
-Sint16 poly_00071300[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00071300[] = {
 	6, 48, 50, 38, 40, 26, 28,
 	6, 24, 22, 44, 42, 47, 46,
 	6, 32, 30, 36, 34, 53, 52,
@@ -47032,17 +47032,17 @@ Sint16 poly_00071300[] = {
 	6, 0, 1, 10, 11, 24, 22
 };
 
-Sint16 poly_00071354[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00071354[] = {
 	10, 47, 80, 44, 45, 24, 25, 10, 12, 0, 6,
 	9, 1, 7, 11, 13, 22, 23, 42, 43, 79,
 	3, 79, 46, 42
 };
 
-Sint16 poly_00071386[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00071386[] = {
 	10, 70, 71, 62, 61, 63, 60, 68, 69, 81, 82
 };
 
-Sint16 poly_0007139C[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0007139C[] = {
 	8, 78, 16, 58, 29, 57, 41, 56, 77,
 	9, 83, 59, 17, 54, 27, 55, 39, 76, 49,
 	9, 79, 43, 65, 23, 64, 13, 74, 7, 73,
@@ -47051,7 +47051,7 @@ Sint16 poly_0007139C[] = {
 	3, 75, 72, 6
 };
 
-NJS_TEX uv_000713F8[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_000713F8[] = {
 	{ 468, 255 },
 	{ 404, 50 },
 	{ 508, -127 },
@@ -47120,7 +47120,7 @@ NJS_TEX uv_000713F8[] = {
 	{ 66, -127 }
 };
 
-NJS_TEX uv_00071500[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00071500[] = {
 	{ 765, 1 },
 	{ 765, 254 },
 	{ 609, 44 },
@@ -47143,7 +47143,7 @@ NJS_TEX uv_00071500[] = {
 	{ 764, 0 }
 };
 
-NJS_TEX uv_00071550[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00071550[] = {
 	{ 0 },
 	{ 254, 0 },
 	{ 58, 138 },
@@ -47182,7 +47182,7 @@ NJS_TEX uv_00071550[] = {
 	{ 63, 0 }
 };
 
-NJS_TEX uv_000715E0[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_000715E0[] = {
 	{ 8, 224 },
 	{ 14, 32 },
 	{ 52, 147 },
@@ -47207,7 +47207,7 @@ NJS_TEX uv_000715E0[] = {
 	{ 52, 147 }
 };
 
-NJS_TEX uv_00071638[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00071638[] = {
 	{ 15, 254 },
 	{ 0, 17 },
 	{ 152, 216 },
@@ -47220,7 +47220,7 @@ NJS_TEX uv_00071638[] = {
 	{ 508, 0 }
 };
 
-NJS_TEX uv_00071660[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00071660[] = {
 	{ 764, 254 },
 	{ 617, 246 },
 	{ 617, 178 },
@@ -47263,7 +47263,7 @@ NJS_TEX uv_00071660[] = {
 	{ 41, 255 }
 };
 
-NJS_MESHSET_SADX meshlist_00071700[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00071700[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 10, poly_0007123C, NULL, NULL, NULL, uv_000713F8, NULL },
 	{ NJD_MESHSET_TRIMESH | 1, 2, poly_000712D4, NULL, NULL, NULL, uv_00071500, NULL },
 	{ NJD_MESHSET_TRIMESH | 2, 6, poly_00071300, NULL, NULL, NULL, uv_00071550, NULL },
@@ -47272,7 +47272,7 @@ NJS_MESHSET_SADX meshlist_00071700[] = {
 	{ NJD_MESHSET_TRIMESH | 5, 6, poly_0007139C, NULL, NULL, NULL, uv_00071660, NULL }
 };
 
-NJS_VECTOR vertex_00071790[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_00071790[] = {
 	{ -19.94653f, -0.5f, 95.92406f },
 	{ -10.00781f, -0.5f, 75.81195f },
 	{ -10.00781f, -0.5f, 37.16077f },
@@ -47359,7 +47359,7 @@ NJS_VECTOR vertex_00071790[] = {
 	{ -12.00781f, 29.5f, -2.839294f }
 };
 
-NJS_VECTOR normal_00071B80[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_00071B80[] = {
 	{ 0.562529f, -0.390899f, 0.728533f },
 	{ 0.862171f, -0.504931f, -0.04131f },
 	{ 0.957047f, -0.193907f, 0.215549f },
@@ -47446,24 +47446,24 @@ NJS_VECTOR normal_00071B80[] = {
 	{ 0.361675f, 0.458699f, -0.811657f }
 };
 
-NJS_MODEL_SADX attach_00071F70 = { vertex_00071790, normal_00071B80, LengthOfArray<Sint32>(vertex_00071790), meshlist_00071700, matlist_000711C4, LengthOfArray<Uint16>(meshlist_00071700), LengthOfArray<Uint16>(matlist_000711C4), { 3.822937f, 19.50003f, 6.462036f }, 93.79458f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00071F70 = { vertex_00071790, normal_00071B80, LengthOfArray<Sint32>(vertex_00071790), meshlist_00071700, matlist_000711C4, LengthOfArray<Uint16>(meshlist_00071700), LengthOfArray<Uint16>(matlist_000711C4), { 3.822937f, 19.50003f, 6.462036f }, 93.79458f, NULL };
 
-NJS_OBJECT object_00071F98 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00071F70, 1865, 218.5f, 763, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_00071FCC[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_00071F98 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00071F70, 1865, 218.5f, 763, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_00071FCC[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 35, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 16, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 20, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 58, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_0007201C[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0007201C[] = {
 	12, 6, 7, 5, 8, 4, 9, 3, 10, 2, 11, 1, 0,
 	0x8000u | 26, 41, 28, 40, 29, 44, 30, 46, 31, 48, 32, 50, 33, 52, 34, 54, 35, 56, 36, 58, 37, 60, 38, 62, 39, 41, 28,
 	0x8000u | 26, 41, 42, 62, 63, 60, 61, 58, 59, 56, 57, 54, 55, 52, 53, 50, 51, 48, 49, 46, 47, 44, 45, 40, 43, 41, 42,
 	0x8000u | 26, 42, 64, 63, 75, 61, 74, 59, 73, 57, 72, 55, 71, 53, 70, 51, 69, 49, 68, 47, 67, 45, 66, 43, 65, 42, 64
 };
 
-Sint16 poly_000720D8[] = {
+extern "C" __declspec(dllexport) Sint16 poly_000720D8[] = {
 	4, 14, 15, 13, 12,
 	4, 76, 14, 86, 13,
 	4, 77, 76, 87, 86,
@@ -47478,7 +47478,7 @@ Sint16 poly_000720D8[] = {
 	4, 15, 85, 12, 95
 };
 
-Sint16 poly_00072150[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00072150[] = {
 	4, 1, 0, 17, 16,
 	4, 2, 1, 18, 17,
 	4, 3, 2, 19, 18,
@@ -47493,7 +47493,7 @@ Sint16 poly_00072150[] = {
 	4, 0, 11, 16, 27
 };
 
-Sint16 poly_000721C8[] = {
+extern "C" __declspec(dllexport) Sint16 poly_000721C8[] = {
 	4, 17, 16, 29, 28,
 	4, 18, 17, 30, 29,
 	4, 19, 18, 31, 30,
@@ -47520,7 +47520,7 @@ Sint16 poly_000721C8[] = {
 	4, 64, 75, 14, 15
 };
 
-NJS_TEX uv_000722B8[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_000722B8[] = {
 	{ 768, 255 },
 	{ 2169, 254 },
 	{ 896, 255 },
@@ -47613,7 +47613,7 @@ NJS_TEX uv_000722B8[] = {
 	{ 1530, -2203 }
 };
 
-NJS_TEX uv_00072420[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00072420[] = {
 	{ 0, 255 },
 	{ 765, 255 },
 	{ 0, -255 },
@@ -47664,7 +47664,7 @@ NJS_TEX uv_00072420[] = {
 	{ 765, -255 }
 };
 
-NJS_TEX uv_000724E0[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_000724E0[] = {
 	{ 0, 255 },
 	{ 510, 255 },
 	{ 0, -255 },
@@ -47715,7 +47715,7 @@ NJS_TEX uv_000724E0[] = {
 	{ 510, -255 }
 };
 
-NJS_TEX uv_000725A0[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_000725A0[] = {
 	{ 0, 255 },
 	{ 510, 255 },
 	{ 0 },
@@ -47814,14 +47814,14 @@ NJS_TEX uv_000725A0[] = {
 	{ 510, 0 }
 };
 
-NJS_MESHSET_SADX meshlist_00072720[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00072720[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 4, poly_0007201C, NULL, NULL, NULL, uv_000722B8, NULL },
 	{ NJD_MESHSET_TRIMESH | 1, 12, poly_000720D8, NULL, NULL, NULL, uv_00072420, NULL },
 	{ NJD_MESHSET_TRIMESH | 2, 12, poly_00072150, NULL, NULL, NULL, uv_000724E0, NULL },
 	{ NJD_MESHSET_TRIMESH | 3, 24, poly_000721C8, NULL, NULL, NULL, uv_000725A0, NULL }
 };
 
-NJS_VECTOR vertex_00072780[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_00072780[] = {
 	{ 89.99992f, -23, 0.000607f },
 	{ 77.9422f, -23, 45.00061f },
 	{ 44.99992f, -23, 77.9429f },
@@ -47920,7 +47920,7 @@ NJS_VECTOR vertex_00072780[] = {
 	{ 19.99993f, 400, -34.6404f }
 };
 
-NJS_VECTOR normal_00072C00[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_00072C00[] = {
 	{ 0.757162f, -0.653227f, 0 },
 	{ 0.655722f, -0.653227f, 0.378581f },
 	{ 0.378581f, -0.653227f, 0.655722f },
@@ -48019,10 +48019,10 @@ NJS_VECTOR normal_00072C00[] = {
 	{ 0, 1, 0 }
 };
 
-NJS_MODEL_SADX attach_00073080 = { vertex_00072780, normal_00072C00, LengthOfArray<Sint32>(vertex_00072780), meshlist_00072720, matlist_00071FCC, LengthOfArray<Uint16>(meshlist_00072720), LengthOfArray<Uint16>(matlist_00071FCC), { -0.00076f, 188.5f, 0.00061f }, 229.3312f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00073080 = { vertex_00072780, normal_00072C00, LengthOfArray<Sint32>(vertex_00072780), meshlist_00072720, matlist_00071FCC, LengthOfArray<Uint16>(meshlist_00072720), LengthOfArray<Uint16>(matlist_00071FCC), { -0.00076f, 188.5f, 0.00061f }, 229.3312f, NULL };
 
-NJS_OBJECT object_000730A8 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00073080, 5909.7f, 0, 775.2f, 0, 0x70A, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_000730DC[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_000730A8 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00073080, 5909.7f, 0, 775.2f, 0, 0x70A, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_000730DC[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 65, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 14, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 40, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
@@ -48031,7 +48031,7 @@ NJS_MATERIAL matlist_000730DC[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 41, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_00073154[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00073154[] = {
 	4, 18, 14, 17, 13,
 	4, 14, 10, 13, 9,
 	4, 22, 18, 21, 17,
@@ -48082,7 +48082,7 @@ Sint16 poly_00073154[] = {
 	4, 162, 158, 161, 157
 };
 
-Sint16 poly_00073334[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00073334[] = {
 	4, 17, 13, 16, 12,
 	4, 21, 17, 20, 16,
 	4, 13, 9, 12, 8,
@@ -48133,7 +48133,7 @@ Sint16 poly_00073334[] = {
 	4, 161, 157, 160, 156
 };
 
-Sint16 poly_00073514[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00073514[] = {
 	4, 19, 15, 18, 14,
 	4, 15, 11, 14, 10,
 	4, 23, 19, 22, 18,
@@ -48184,28 +48184,28 @@ Sint16 poly_00073514[] = {
 	4, 163, 159, 162, 158
 };
 
-Sint16 poly_000736F4[] = {
+extern "C" __declspec(dllexport) Sint16 poly_000736F4[] = {
 	4, 195, 200, 193, 201,
 	4, 198, 203, 196, 202,
 	4, 197, 202, 199, 203,
 	4, 192, 201, 194, 200
 };
 
-Sint16 poly_0007371C[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0007371C[] = {
 	4, 199, 208, 197, 209,
 	4, 194, 207, 192, 206,
 	4, 193, 209, 195, 208,
 	4, 196, 206, 198, 207
 };
 
-Sint16 poly_00073744[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00073744[] = {
 	6, 209, 193, 205, 201, 206, 192,
 	6, 208, 199, 204, 203, 207, 198,
 	6, 207, 194, 204, 200, 208, 195,
 	6, 206, 196, 205, 202, 209, 197
 };
 
-NJS_TEX uv_0007377C[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0007377C[] = {
 	{ 255, 255 },
 	{ 0, 255 },
 	{ 255, 0 },
@@ -48400,7 +48400,7 @@ NJS_TEX uv_0007377C[] = {
 	{ 0 }
 };
 
-NJS_TEX uv_00073A7C[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00073A7C[] = {
 	{ 255, -255 },
 	{ 0, -255 },
 	{ 255, 255 },
@@ -48595,7 +48595,7 @@ NJS_TEX uv_00073A7C[] = {
 	{ 0, 255 }
 };
 
-NJS_TEX uv_00073D7C[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00073D7C[] = {
 	{ 0, -765 },
 	{ 255, -765 },
 	{ 0, 255 },
@@ -48790,7 +48790,7 @@ NJS_TEX uv_00073D7C[] = {
 	{ 255, 255 }
 };
 
-NJS_TEX uv_0007407C[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0007407C[] = {
 	{ 0, 255 },
 	{ 0, -765 },
 	{ 255, 255 },
@@ -48809,7 +48809,7 @@ NJS_TEX uv_0007407C[] = {
 	{ 0, 255 }
 };
 
-NJS_TEX uv_000740BC[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_000740BC[] = {
 	{ 1020, 255 },
 	{ 0, 255 },
 	{ 1020, 0 },
@@ -48828,7 +48828,7 @@ NJS_TEX uv_000740BC[] = {
 	{ 0 }
 };
 
-NJS_TEX uv_000740FC[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_000740FC[] = {
 	{ 1020, -1785 },
 	{ 0, -1785 },
 	{ 1020, -765 },
@@ -48855,7 +48855,7 @@ NJS_TEX uv_000740FC[] = {
 	{ 2040, -1785 }
 };
 
-NJS_MESHSET_SADX meshlist_0007415C[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_0007415C[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 48, poly_00073154, NULL, NULL, NULL, uv_0007377C, NULL },
 	{ NJD_MESHSET_TRIMESH | 1, 48, poly_00073334, NULL, NULL, NULL, uv_00073A7C, NULL },
 	{ NJD_MESHSET_TRIMESH | 2, 48, poly_00073514, NULL, NULL, NULL, uv_00073D7C, NULL },
@@ -48864,7 +48864,7 @@ NJS_MESHSET_SADX meshlist_0007415C[] = {
 	{ NJD_MESHSET_TRIMESH | 5, 4, poly_00073744, NULL, NULL, NULL, uv_000740FC, NULL }
 };
 
-NJS_VECTOR vertex_000741EC[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_000741EC[] = {
 	{ 6.708252f, -26.5f, 60 },
 	{ 6.708252f, -5, 60 },
 	{ 4.280762f, -5, 60 },
@@ -49077,7 +49077,7 @@ NJS_VECTOR vertex_000741EC[] = {
 	{ 0, 21.5f, 75 }
 };
 
-NJS_VECTOR normal_00074BC4[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_00074BC4[] = {
 	{ 1, 0, 0 },
 	{ 0.792408f, 0.609991f, 0 },
 	{ 0.53743f, 0.843308f, 0 },
@@ -49290,18 +49290,18 @@ NJS_VECTOR normal_00074BC4[] = {
 	{ 0, -0.7071069f, 0.7071069f }
 };
 
-NJS_MODEL_SADX attach_0007559C = { vertex_000741EC, normal_00074BC4, LengthOfArray<Sint32>(vertex_000741EC), meshlist_0007415C, matlist_000730DC, LengthOfArray<Uint16>(meshlist_0007415C), LengthOfArray<Uint16>(matlist_000730DC), { 0 }, 106.066f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_0007559C = { vertex_000741EC, normal_00074BC4, LengthOfArray<Sint32>(vertex_000741EC), meshlist_0007415C, matlist_000730DC, LengthOfArray<Uint16>(meshlist_0007415C), LengthOfArray<Uint16>(matlist_000730DC), { 0 }, 106.066f, NULL };
 
-NJS_OBJECT object_000755C4 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0007559C, 2645, 3.5f, 365, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_000755F8[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_000755C4 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0007559C, 2645, 3.5f, 365, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_000755F8[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 82, NJD_CUSTOMFLAG_TEXANIM1 | NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_0007560C[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0007560C[] = {
 	0x8000u | 28, 25, 12, 24, 11, 23, 10, 22, 9, 21, 8, 20, 7, 19, 6, 18, 5, 17, 4, 16, 3, 15, 2, 27, 26, 14, 1, 13, 0
 };
 
-NJS_TEX uv_00075648[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00075648[] = {
 	{ 5865, 0 },
 	{ 5865, 255 },
 	{ 5379, 0 },
@@ -49332,11 +49332,11 @@ NJS_TEX uv_00075648[] = {
 	{ 0, 255 }
 };
 
-NJS_MESHSET_SADX meshlist_000756B8[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_000756B8[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 1, poly_0007560C, NULL, NULL, NULL, uv_00075648, NULL }
 };
 
-NJS_VECTOR vertex_000756D0[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_000756D0[] = {
 	{ -246.7885f, -2, 254.4048f },
 	{ -213.5854f, -2, 257.8203f },
 	{ -141.226f, -2, 271.1184f },
@@ -49367,7 +49367,7 @@ NJS_VECTOR vertex_000756D0[] = {
 	{ -176.5778f, 0, 245.4823f }
 };
 
-NJS_VECTOR normal_00075820[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_00075820[] = {
 	{ -0.011353f, 0.994754f, 0.101668f },
 	{ -0.015838f, 0.994799f, 0.100618f },
 	{ -0.006607f, 0.995101f, 0.09863999f },
@@ -49398,18 +49398,18 @@ NJS_VECTOR normal_00075820[] = {
 	{ -0.017987f, 0.994944f, 0.098803f }
 };
 
-NJS_MODEL_SADX attach_00075970 = { vertex_000756D0, normal_00075820, LengthOfArray<Sint32>(vertex_000756D0), meshlist_000756B8, matlist_000755F8, LengthOfArray<Uint16>(meshlist_000756B8), LengthOfArray<Uint16>(matlist_000755F8), { -76.9835f, -1, 96.9703f }, 243.231f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00075970 = { vertex_000756D0, normal_00075820, LengthOfArray<Sint32>(vertex_000756D0), meshlist_000756B8, matlist_000755F8, LengthOfArray<Uint16>(meshlist_000756B8), LengthOfArray<Uint16>(matlist_000755F8), { -76.9835f, -1, 96.9703f }, 243.231f, NULL };
 
-NJS_OBJECT object_00075998 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00075970, 0, 0.3f, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_000759CC[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_00075998 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00075970, 0, 0.3f, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_000759CC[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 82, NJD_CUSTOMFLAG_TEXANIM1 | NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_000759E0[] = {
+extern "C" __declspec(dllexport) Sint16 poly_000759E0[] = {
 	0x8000u | 18, 17, 8, 16, 7, 15, 6, 14, 5, 13, 4, 12, 3, 11, 2, 10, 1, 9, 0
 };
 
-NJS_TEX uv_00075A08[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00075A08[] = {
 	{ 3825, 0 },
 	{ 3825, 255 },
 	{ 3383, 0 },
@@ -49430,11 +49430,11 @@ NJS_TEX uv_00075A08[] = {
 	{ 0, 255 }
 };
 
-NJS_MESHSET_SADX meshlist_00075A50[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00075A50[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 1, poly_000759E0, NULL, NULL, NULL, uv_00075A08, NULL }
 };
 
-NJS_VECTOR vertex_00075A68[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_00075A68[] = {
 	{ -489.922f, -2, 478.3594f },
 	{ -468.9703f, -2, 436.8192f },
 	{ -441.2484f, -2, 399.1457f },
@@ -49455,7 +49455,7 @@ NJS_VECTOR vertex_00075A68[] = {
 	{ -245.6493f, 0, 234.3788f }
 };
 
-NJS_VECTOR normal_00075B40[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_00075B40[] = {
 	{ 0.088838f, 0.99504f, 0.04476f },
 	{ 0.082987f, 0.995263f, 0.05064f },
 	{ 0.078252f, 0.995208f, 0.058628f },
@@ -49476,18 +49476,18 @@ NJS_VECTOR normal_00075B40[] = {
 	{ 0.000807f, 0.9950449f, 0.09942099f }
 };
 
-NJS_MODEL_SADX attach_00075C18 = { vertex_00075A68, normal_00075B40, LengthOfArray<Sint32>(vertex_00075A68), meshlist_00075A50, matlist_000759CC, LengthOfArray<Uint16>(meshlist_00075A50), LengthOfArray<Uint16>(matlist_000759CC), { -376.9865f, -1, 356.3691f }, 179.2514f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00075C18 = { vertex_00075A68, normal_00075B40, LengthOfArray<Sint32>(vertex_00075A68), meshlist_00075A50, matlist_000759CC, LengthOfArray<Uint16>(meshlist_00075A50), LengthOfArray<Uint16>(matlist_000759CC), { -376.9865f, -1, 356.3691f }, 179.2514f, NULL };
 
-NJS_OBJECT object_00075C40 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00075C18, 0, 0.3f, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_00075C74[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_00075C40 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00075C18, 0, 0.3f, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_00075C74[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 82, NJD_CUSTOMFLAG_TEXANIM1 | NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_00075C88[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00075C88[] = {
 	0x8000u | 18, 0, 9, 1, 10, 2, 11, 3, 12, 4, 13, 5, 14, 6, 15, 7, 16, 8, 17
 };
 
-NJS_TEX uv_00075CB0[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00075CB0[] = {
 	{ 0, 255 },
 	{ 0 },
 	{ 652, 255 },
@@ -49508,11 +49508,11 @@ NJS_TEX uv_00075CB0[] = {
 	{ 4335, 0 }
 };
 
-NJS_MESHSET_SADX meshlist_00075CF8[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00075CF8[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 1, poly_00075C88, NULL, NULL, NULL, uv_00075CB0, NULL }
 };
 
-NJS_VECTOR vertex_00075D10[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_00075D10[] = {
 	{ -662.5052f, -2, 806.1321f },
 	{ -600.1742f, -2, 804.6581f },
 	{ -559.3271f, -2, 759.6075f },
@@ -49533,7 +49533,7 @@ NJS_VECTOR vertex_00075D10[] = {
 	{ -508.3236f, 0, 470.5091f }
 };
 
-NJS_VECTOR normal_00075DE8[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_00075DE8[] = {
 	{ 0.002352f, 0.995037f, 0.099475f },
 	{ 0.038063f, 0.995804f, 0.08322f },
 	{ 0.084659f, 0.9952869f, 0.047299f },
@@ -49554,18 +49554,18 @@ NJS_VECTOR normal_00075DE8[] = {
 	{ 0.092474f, 0.995037f, 0.036738f }
 };
 
-NJS_MODEL_SADX attach_00075EC0 = { vertex_00075D10, normal_00075DE8, LengthOfArray<Sint32>(vertex_00075D10), meshlist_00075CF8, matlist_00075C74, LengthOfArray<Uint16>(meshlist_00075CF8), LengthOfArray<Uint16>(matlist_00075C74), { -576.2136f, -1, 638.3206f }, 188.6981f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00075EC0 = { vertex_00075D10, normal_00075DE8, LengthOfArray<Sint32>(vertex_00075D10), meshlist_00075CF8, matlist_00075C74, LengthOfArray<Uint16>(meshlist_00075CF8), LengthOfArray<Uint16>(matlist_00075C74), { -576.2136f, -1, 638.3206f }, 188.6981f, NULL };
 
-NJS_OBJECT object_00075EE8 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00075EC0, 0, 0.3f, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_00075F1C[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_00075EE8 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00075EC0, 0, 0.3f, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_00075F1C[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 82, NJD_CUSTOMFLAG_TEXANIM1 | NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_00075F30[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00075F30[] = {
 	0x8000u | 24, 0, 2, 1, 3, 22, 23, 4, 13, 5, 14, 6, 15, 7, 16, 8, 17, 9, 18, 10, 19, 11, 20, 12, 21
 };
 
-NJS_TEX uv_00075F64[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00075F64[] = {
 	{ 0, 255 },
 	{ 0 },
 	{ 548, 255 },
@@ -49592,11 +49592,11 @@ NJS_TEX uv_00075F64[] = {
 	{ 6375, 0 }
 };
 
-NJS_MESHSET_SADX meshlist_00075FC4[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00075FC4[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 1, poly_00075F30, NULL, NULL, NULL, uv_00075F64, NULL }
 };
 
-NJS_VECTOR vertex_00075FDC[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_00075FDC[] = {
 	{ 36.88751f, -1, -260.3749f },
 	{ 15.43964f, -1, -216.8894f },
 	{ 54.82458f, 1, -251.5282f },
@@ -49623,7 +49623,7 @@ NJS_VECTOR vertex_00075FDC[] = {
 	{ 13.45502f, 1, -164.4811f }
 };
 
-NJS_VECTOR normal_000760FC[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_000760FC[] = {
 	{ -0.08923899f, 0.995037f, -0.044015f },
 	{ -0.089861f, 0.995038f, -0.042707f },
 	{ -0.08923899f, 0.995037f, -0.044015f },
@@ -49650,23 +49650,23 @@ NJS_VECTOR normal_000760FC[] = {
 	{ -0.091561f, 0.995041f, -0.038858f }
 };
 
-NJS_MODEL_SADX attach_0007621C = { vertex_00075FDC, normal_000760FC, LengthOfArray<Sint32>(vertex_00075FDC), meshlist_00075FC4, matlist_00075F1C, LengthOfArray<Uint16>(meshlist_00075FC4), LengthOfArray<Uint16>(matlist_00075F1C), { 0, 0, -0.00015f }, 266.0843f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_0007621C = { vertex_00075FDC, normal_000760FC, LengthOfArray<Sint32>(vertex_00075FDC), meshlist_00075FC4, matlist_00075F1C, LengthOfArray<Uint16>(meshlist_00075FC4), LengthOfArray<Uint16>(matlist_00075F1C), { 0, 0, -0.00015f }, 266.0843f, NULL };
 
-NJS_OBJECT object_00076244 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0007621C, -685.5784f, -0.7f, 545.7573f, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_00076278[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_00076244 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0007621C, -685.5784f, -0.7f, 545.7573f, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_00076278[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 82, NJD_CUSTOMFLAG_TEXANIM1 | NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 82, NJD_CUSTOMFLAG_TEXANIM1 | NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_000762A0[] = {
+extern "C" __declspec(dllexport) Sint16 poly_000762A0[] = {
 	0x8000u | 26, 17, 5, 25, 24, 18, 6, 19, 7, 20, 8, 21, 9, 22, 10, 23, 11, 12, 0, 13, 1, 14, 2, 15, 3, 16, 4
 };
 
-Sint16 poly_000762D6[] = {
+extern "C" __declspec(dllexport) Sint16 poly_000762D6[] = {
 	4, 5, 4, 17, 16
 };
 
-NJS_TEX uv_000762E0[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_000762E0[] = {
 	{ 3825, 0 },
 	{ 3825, 255 },
 	{ 3574, 0 },
@@ -49695,19 +49695,19 @@ NJS_TEX uv_000762E0[] = {
 	{ 0, 255 }
 };
 
-NJS_TEX uv_00076348[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00076348[] = {
 	{ 0, 255 },
 	{ 254, 255 },
 	{ 0 },
 	{ 255, 0 }
 };
 
-NJS_MESHSET_SADX meshlist_00076358[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00076358[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 1, poly_000762A0, NULL, NULL, NULL, uv_000762E0, NULL },
 	{ NJD_MESHSET_TRIMESH | 1, 1, poly_000762D6, NULL, NULL, NULL, uv_00076348, NULL }
 };
 
-NJS_VECTOR vertex_00076388[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_00076388[] = {
 	{ -239.4306f, 21, 362.0846f },
 	{ -254.0609f, 21, 392.2827f },
 	{ -276.9564f, 21, 409.394f },
@@ -49736,7 +49736,7 @@ NJS_VECTOR vertex_00076388[] = {
 	{ -330.5138f, 24, 363.3602f }
 };
 
-NJS_VECTOR normal_000764C0[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_000764C0[] = {
 	{ 0.218713f, 0.9749089f, 0.041428f },
 	{ 0.170283f, 0.975099f, 0.142078f },
 	{ 0.069851f, 0.978402f, 0.19455f },
@@ -49765,18 +49765,18 @@ NJS_VECTOR normal_000764C0[] = {
 	{ -0.189724f, 0.9793569f, -0.069745f }
 };
 
-NJS_MODEL_SADX attach_000765F8 = { vertex_00076388, normal_000764C0, LengthOfArray<Sint32>(vertex_00076388), meshlist_00076358, matlist_00076278, LengthOfArray<Uint16>(meshlist_00076358), LengthOfArray<Uint16>(matlist_00076278), { -293.5498f, 22.5f, 362.5179f }, 72.98493f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_000765F8 = { vertex_00076388, normal_000764C0, LengthOfArray<Sint32>(vertex_00076388), meshlist_00076358, matlist_00076278, LengthOfArray<Uint16>(meshlist_00076358), LengthOfArray<Uint16>(matlist_00076278), { -293.5498f, 22.5f, 362.5179f }, 72.98493f, NULL };
 
-NJS_OBJECT object_00076620 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_000765F8, 18, -22.7f, -5, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_00076654[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_00076620 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_000765F8, 18, -22.7f, -5, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_00076654[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 82, NJD_CUSTOMFLAG_TEXANIM1 | NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_00076668[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00076668[] = {
 	0x8000u | 40, 39, 0, 38, 1, 37, 2, 36, 3, 35, 4, 34, 5, 33, 6, 32, 7, 31, 8, 30, 9, 29, 10, 28, 11, 27, 12, 26, 13, 25, 14, 24, 15, 23, 16, 22, 17, 21, 18, 20, 19
 };
 
-NJS_TEX uv_000766BC[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_000766BC[] = {
 	{ 8670, 255 },
 	{ 8670, 0 },
 	{ 8248, 255 },
@@ -49819,11 +49819,11 @@ NJS_TEX uv_000766BC[] = {
 	{ 0 }
 };
 
-NJS_MESHSET_SADX meshlist_0007675C[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_0007675C[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 1, poly_00076668, NULL, NULL, NULL, uv_000766BC, NULL }
 };
 
-NJS_VECTOR vertex_00076774[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_00076774[] = {
 	{ 158.9571f, 0.299999f, 826.5201f },
 	{ 125.7804f, 0.299999f, 860.9078f },
 	{ 93.23054f, 0.299999f, 895.8849f },
@@ -49866,7 +49866,7 @@ NJS_VECTOR vertex_00076774[] = {
 	{ 144.5071f, -1.700001f, 812.6925f }
 };
 
-NJS_VECTOR normal_00076954[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_00076954[] = {
 	{ -0.071609f, 0.995037f, -0.069088f },
 	{ -0.072226f, 0.995038f, -0.068437f },
 	{ -0.07498799f, 0.995043f, -0.06532399f },
@@ -49909,18 +49909,18 @@ NJS_VECTOR normal_00076954[] = {
 	{ -0.071609f, 0.995037f, -0.069088f }
 };
 
-NJS_MODEL_SADX attach_00076B34 = { vertex_00076774, normal_00076954, LengthOfArray<Sint32>(vertex_00076774), meshlist_0007675C, matlist_00076654, LengthOfArray<Uint16>(meshlist_0007675C), LengthOfArray<Uint16>(matlist_00076654), { 168.5676f, -0.7000009f, 1023.646f }, 271.4919f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00076B34 = { vertex_00076774, normal_00076954, LengthOfArray<Sint32>(vertex_00076774), meshlist_0007675C, matlist_00076654, LengthOfArray<Uint16>(meshlist_0007675C), LengthOfArray<Uint16>(matlist_00076654), { 168.5676f, -0.7000009f, 1023.646f }, 271.4919f, NULL };
 
-NJS_OBJECT object_00076B5C = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00076B34, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_00076B90[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_00076B5C = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00076B34, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_00076B90[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 82, NJD_CUSTOMFLAG_TEXANIM1 | NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_00076BA4[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00076BA4[] = {
 	0x8000u | 30, 0, 29, 1, 28, 2, 27, 3, 26, 4, 25, 5, 24, 6, 23, 7, 22, 8, 21, 9, 20, 10, 19, 11, 18, 12, 17, 13, 16, 14, 15
 };
 
-NJS_TEX uv_00076BE4[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00076BE4[] = {
 	{ 6120, 0 },
 	{ 6120, 255 },
 	{ 5680, 0 },
@@ -49953,11 +49953,11 @@ NJS_TEX uv_00076BE4[] = {
 	{ 0, 255 }
 };
 
-NJS_MESHSET_SADX meshlist_00076C5C[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00076C5C[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 1, poly_00076BA4, NULL, NULL, NULL, uv_00076BE4, NULL }
 };
 
-NJS_VECTOR vertex_00076C74[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_00076C74[] = {
 	{ 158.9571f, 0.299999f, 826.5201f },
 	{ 191.8512f, 0.299999f, 791.8627f },
 	{ 223.8032f, 0.299999f, 756.3366f },
@@ -49990,7 +49990,7 @@ NJS_VECTOR vertex_00076C74[] = {
 	{ 144.5071f, -1.700001f, 812.6925f }
 };
 
-NJS_VECTOR normal_00076DDC[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_00076DDC[] = {
 	{ -0.07217199f, 0.995037f, -0.0685f },
 	{ -0.07307699f, 0.995038f, -0.06751999f },
 	{ -0.074714f, 0.995038f, -0.06570899f },
@@ -50023,18 +50023,18 @@ NJS_VECTOR normal_00076DDC[] = {
 	{ -0.07217199f, 0.995037f, -0.0685f }
 };
 
-NJS_MODEL_SADX attach_00076F44 = { vertex_00076C74, normal_00076DDC, LengthOfArray<Sint32>(vertex_00076C74), meshlist_00076C5C, matlist_00076B90, LengthOfArray<Uint16>(meshlist_00076C5C), LengthOfArray<Uint16>(matlist_00076B90), { 424.9914f, 1.625f, 655.9452f }, 328.2792f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00076F44 = { vertex_00076C74, normal_00076DDC, LengthOfArray<Sint32>(vertex_00076C74), meshlist_00076C5C, matlist_00076B90, LengthOfArray<Uint16>(meshlist_00076C5C), LengthOfArray<Uint16>(matlist_00076B90), { 424.9914f, 1.625f, 655.9452f }, 328.2792f, NULL };
 
-NJS_OBJECT object_00076F6C = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00076F44, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_00076FA0[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_00076F6C = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00076F44, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_00076FA0[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 82, NJD_CUSTOMFLAG_TEXANIM1 | NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_00076FB4[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00076FB4[] = {
 	0x8000u | 28, 27, 0, 26, 1, 25, 2, 24, 3, 23, 4, 22, 5, 21, 6, 20, 7, 19, 8, 18, 9, 17, 10, 16, 11, 15, 12, 14, 13
 };
 
-NJS_TEX uv_00076FF0[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00076FF0[] = {
 	{ 0, 255 },
 	{ 0 },
 	{ 482, 255 },
@@ -50065,11 +50065,11 @@ NJS_TEX uv_00076FF0[] = {
 	{ 6375, 0 }
 };
 
-NJS_MESHSET_SADX meshlist_00077060[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00077060[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 1, poly_00076FB4, NULL, NULL, NULL, uv_00076FF0, NULL }
 };
 
-NJS_VECTOR vertex_00077078[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_00077078[] = {
 	{ 299.8992f, 0.299999f, 907.148f },
 	{ 295.2273f, 0.299999f, 859.7518f },
 	{ 303.32f, 0.299999f, 812.7953f },
@@ -50100,7 +50100,7 @@ NJS_VECTOR vertex_00077078[] = {
 	{ 319.6552f, -1.700001f, 903.69f }
 };
 
-NJS_VECTOR normal_000771C8[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_000771C8[] = {
 	{ 0.099024f, 0.995037f, -0.009760999f },
 	{ 0.09855f, 0.9951259f, 0.00357f },
 	{ 0.095295f, 0.995089f, 0.026758f },
@@ -50131,18 +50131,18 @@ NJS_VECTOR normal_000771C8[] = {
 	{ 0.099024f, 0.995037f, -0.009760999f }
 };
 
-NJS_MODEL_SADX attach_00077318 = { vertex_00077078, normal_000771C8, LengthOfArray<Sint32>(vertex_00077078), meshlist_00077060, matlist_00076FA0, LengthOfArray<Uint16>(meshlist_00077060), LengthOfArray<Uint16>(matlist_00076FA0), { 495.1582f, 1.15f, 760.3459f }, 248.0387f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00077318 = { vertex_00077078, normal_000771C8, LengthOfArray<Sint32>(vertex_00077078), meshlist_00077060, matlist_00076FA0, LengthOfArray<Uint16>(meshlist_00077060), LengthOfArray<Uint16>(matlist_00076FA0), { 495.1582f, 1.15f, 760.3459f }, 248.0387f, NULL };
 
-NJS_OBJECT object_00077340 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00077318, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_00077374[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_00077340 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00077318, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_00077374[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 82, NJD_CUSTOMFLAG_TEXANIM1 | NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_00077388[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00077388[] = {
 	0x8000u | 24, 0, 12, 1, 13, 2, 14, 3, 15, 4, 16, 5, 17, 6, 18, 7, 19, 8, 20, 9, 21, 10, 22, 11, 23
 };
 
-NJS_TEX uv_000773BC[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_000773BC[] = {
 	{ 4079, 0 },
 	{ 4080, 255 },
 	{ 3604, 0 },
@@ -50169,11 +50169,11 @@ NJS_TEX uv_000773BC[] = {
 	{ 0, 255 }
 };
 
-NJS_MESHSET_SADX meshlist_0007741C[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_0007741C[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 1, poly_00077388, NULL, NULL, NULL, uv_000773BC, NULL }
 };
 
-NJS_VECTOR vertex_00077434[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_00077434[] = {
 	{ 80.87359f, -4, -96.31567f },
 	{ 98.61004f, -4, -49.09863f },
 	{ 125.2365f, -4, 0.039673f },
@@ -50200,7 +50200,7 @@ NJS_VECTOR vertex_00077434[] = {
 	{ 219.1539f, -6, 224.1663f }
 };
 
-NJS_VECTOR normal_00077554[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_00077554[] = {
 	{ 0.093149f, 0.995037f, -0.03499f },
 	{ 0.09031899f, 0.99506f, -0.041199f },
 	{ 0.079763f, 0.995123f, -0.058034f },
@@ -50227,18 +50227,18 @@ NJS_VECTOR normal_00077554[] = {
 	{ -0.008439f, 0.995037f, 0.099145f }
 };
 
-NJS_MODEL_SADX attach_00077674 = { vertex_00077434, normal_00077554, LengthOfArray<Sint32>(vertex_00077434), meshlist_0007741C, matlist_00077374, LengthOfArray<Uint16>(meshlist_0007741C), LengthOfArray<Uint16>(matlist_00077374), { 194.7953f, -5, 61.97998f }, 200.8666f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00077674 = { vertex_00077434, normal_00077554, LengthOfArray<Sint32>(vertex_00077434), meshlist_0007741C, matlist_00077374, LengthOfArray<Uint16>(meshlist_0007741C), LengthOfArray<Uint16>(matlist_00077374), { 194.7953f, -5, 61.97998f }, 200.8666f, NULL };
 
-NJS_OBJECT object_0007769C = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00077674, -874, 4.3f, 1412, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_000776D0[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007769C = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00077674, -874, 4.3f, 1412, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_000776D0[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 82, NJD_CUSTOMFLAG_TEXANIM1 | NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_000776E4[] = {
+extern "C" __declspec(dllexport) Sint16 poly_000776E4[] = {
 	0x8000u | 24, 0, 12, 1, 13, 2, 14, 3, 15, 4, 16, 5, 17, 6, 18, 7, 19, 8, 20, 9, 21, 10, 22, 11, 23
 };
 
-NJS_TEX uv_00077718[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00077718[] = {
 	{ 4590, 0 },
 	{ 4590, 255 },
 	{ 4235, 0 },
@@ -50265,11 +50265,11 @@ NJS_TEX uv_00077718[] = {
 	{ 0, 255 }
 };
 
-NJS_MESHSET_SADX meshlist_00077778[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00077778[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 1, poly_000776E4, NULL, NULL, NULL, uv_00077718, NULL }
 };
 
-NJS_VECTOR vertex_00077790[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_00077790[] = {
 	{ 224.3707f, -4, 204.538f },
 	{ 191.2074f, -4, 189.142f },
 	{ 156.4936f, -4, 163.276f },
@@ -50296,7 +50296,7 @@ NJS_VECTOR vertex_00077790[] = {
 	{ -167.6665f, -6, 62.61181f }
 };
 
-NJS_VECTOR normal_000778B0[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_000778B0[] = {
 	{ -0.041899f, 0.995037f, 0.090252f },
 	{ -0.050679f, 0.995089f, 0.085025f },
 	{ -0.060402f, 0.995038f, 0.079065f },
@@ -50323,18 +50323,18 @@ NJS_VECTOR normal_000778B0[] = {
 	{ -0.099333f, 0.995037f, 0.005814f }
 };
 
-NJS_MODEL_SADX attach_000779D0 = { vertex_00077790, normal_000778B0, LengthOfArray<Sint32>(vertex_00077790), meshlist_00077778, matlist_000776D0, LengthOfArray<Uint16>(meshlist_00077778), LengthOfArray<Uint16>(matlist_000776D0), { 28.35211f, -5, 142.3736f }, 212.399f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_000779D0 = { vertex_00077790, normal_000778B0, LengthOfArray<Sint32>(vertex_00077790), meshlist_00077778, matlist_000776D0, LengthOfArray<Uint16>(meshlist_00077778), LengthOfArray<Uint16>(matlist_000776D0), { 28.35211f, -5, 142.3736f }, 212.399f, NULL };
 
-NJS_OBJECT object_000779F8 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_000779D0, -874, 4.3f, 1412, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_00077A2C[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_000779F8 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_000779D0, -874, 4.3f, 1412, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_00077A2C[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 82, NJD_CUSTOMFLAG_TEXANIM1 | NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_00077A40[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00077A40[] = {
 	0x8000u | 34, 22, 5, 21, 4, 20, 3, 19, 2, 18, 1, 17, 0, 33, 16, 32, 15, 31, 14, 30, 13, 29, 12, 28, 11, 27, 10, 26, 9, 25, 8, 24, 7, 23, 6
 };
 
-NJS_TEX uv_00077A88[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00077A88[] = {
 	{ 0, 255 },
 	{ 0 },
 	{ 336, 255 },
@@ -50371,11 +50371,11 @@ NJS_TEX uv_00077A88[] = {
 	{ 5100, 0 }
 };
 
-NJS_MESHSET_SADX meshlist_00077B10[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00077B10[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 1, poly_00077A40, NULL, NULL, NULL, uv_00077A88, NULL }
 };
 
-NJS_VECTOR vertex_00077B28[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_00077B28[] = {
 	{ -38.03577f, -4, -254.2908f },
 	{ -7.644531f, -4, -237.3712f },
 	{ 20.47064f, -4, -210.261f },
@@ -50412,7 +50412,7 @@ NJS_VECTOR vertex_00077B28[] = {
 	{ -71.90259f, -6, -278.7463f }
 };
 
-NJS_VECTOR normal_00077CC0[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_00077CC0[] = {
 	{ 0.030466f, 0.995215f, -0.092843f },
 	{ 0.058739f, 0.995119f, -0.07929f },
 	{ 0.074876f, 0.9950759f, -0.06493799f },
@@ -50449,18 +50449,18 @@ NJS_VECTOR normal_00077CC0[] = {
 	{ -0.003327f, 0.995162f, -0.098189f }
 };
 
-NJS_MODEL_SADX attach_00077E58 = { vertex_00077B28, normal_00077CC0, LengthOfArray<Sint32>(vertex_00077B28), meshlist_00077B10, matlist_00077A2C, LengthOfArray<Uint16>(meshlist_00077B10), LengthOfArray<Uint16>(matlist_00077A2C), { -66.50686f, -5, -108.0673f }, 238.1347f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00077E58 = { vertex_00077B28, normal_00077CC0, LengthOfArray<Sint32>(vertex_00077B28), meshlist_00077B10, matlist_00077A2C, LengthOfArray<Uint16>(meshlist_00077B10), LengthOfArray<Uint16>(matlist_00077A2C), { -66.50686f, -5, -108.0673f }, 238.1347f, NULL };
 
-NJS_OBJECT object_00077E80 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00077E58, -874, 4.3f, 1412, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_00077EB4[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_00077E80 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00077E58, -874, 4.3f, 1412, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_00077EB4[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 82, NJD_CUSTOMFLAG_TEXANIM1 | NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_00077EC8[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00077EC8[] = {
 	0x8000u | 16, 7, 15, 6, 14, 5, 13, 4, 12, 3, 11, 2, 10, 1, 9, 0, 8
 };
 
-NJS_TEX uv_00077EEC[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00077EEC[] = {
 	{ 0, 255 },
 	{ 0 },
 	{ 490, 255 },
@@ -50479,11 +50479,11 @@ NJS_TEX uv_00077EEC[] = {
 	{ 3570, 0 }
 };
 
-NJS_MESHSET_SADX meshlist_00077F2C[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00077F2C[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 1, poly_00077EC8, NULL, NULL, NULL, uv_00077EEC, NULL }
 };
 
-NJS_VECTOR vertex_00077F44[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_00077F44[] = {
 	{ 474.9355f, 7.5f, 28.7063f },
 	{ 466.563f, 7.5f, 81.91284f },
 	{ 444.9033f, 7.5f, 131.0867f },
@@ -50502,7 +50502,7 @@ NJS_VECTOR vertex_00077F44[] = {
 	{ 210.6089f, 9.5f, 194.3929f }
 };
 
-NJS_VECTOR normal_00078004[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_00078004[] = {
 	{ 0.098288f, 0.995038f, 0.015467f },
 	{ 0.09468f, 0.99512f, 0.027789f },
 	{ 0.08342899f, 0.995141f, 0.052295f },
@@ -50521,18 +50521,18 @@ NJS_VECTOR normal_00078004[] = {
 	{ -0.000677f, 0.995037f, 0.09949999f }
 };
 
-NJS_MODEL_SADX attach_000780C4 = { vertex_00077F44, normal_00078004, LengthOfArray<Sint32>(vertex_00077F44), meshlist_00077F2C, matlist_00077EB4, LengthOfArray<Uint16>(meshlist_00077F2C), LengthOfArray<Uint16>(matlist_00077EB4), { 341.8994f, 8.5f, 121.6719f }, 162.3518f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_000780C4 = { vertex_00077F44, normal_00078004, LengthOfArray<Sint32>(vertex_00077F44), meshlist_00077F2C, matlist_00077EB4, LengthOfArray<Uint16>(meshlist_00077F2C), LengthOfArray<Uint16>(matlist_00077EB4), { 341.8994f, 8.5f, 121.6719f }, 162.3518f, NULL };
 
-NJS_OBJECT object_000780EC = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_000780C4, 5938, -9.2f, 1098, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_00078120[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_000780EC = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_000780C4, 5938, -9.2f, 1098, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_00078120[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 82, NJD_CUSTOMFLAG_TEXANIM1 | NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_00078134[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00078134[] = {
 	0x8000u | 18, 9, 0, 10, 1, 11, 2, 12, 3, 13, 4, 14, 5, 15, 6, 16, 7, 17, 8
 };
 
-NJS_TEX uv_0007815C[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0007815C[] = {
 	{ 3825, 0 },
 	{ 3824, 255 },
 	{ 3344, 0 },
@@ -50553,11 +50553,11 @@ NJS_TEX uv_0007815C[] = {
 	{ 0, 255 }
 };
 
-NJS_MESHSET_SADX meshlist_000781A4[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_000781A4[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 1, poly_00078134, NULL, NULL, NULL, uv_0007815C, NULL }
 };
 
-NJS_VECTOR vertex_000781BC[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_000781BC[] = {
 	{ -106.0527f, 7.5f, 97.15173f },
 	{ -153.1416f, 7.5f, 91.58007f },
 	{ -200.9424f, 7.5f, 87.25732f },
@@ -50578,7 +50578,7 @@ NJS_VECTOR vertex_000781BC[] = {
 	{ -450.4688f, 9.5f, -21.95373f }
 };
 
-NJS_VECTOR normal_00078294[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_00078294[] = {
 	{ -0.011692f, 0.995037f, 0.09881499f },
 	{ -0.010327f, 0.995038f, 0.09895699f },
 	{ -0.008539f, 0.995037f, 0.09913599f },
@@ -50599,18 +50599,18 @@ NJS_VECTOR normal_00078294[] = {
 	{ -0.092818f, 0.995037f, 0.03587f }
 };
 
-NJS_MODEL_SADX attach_0007836C = { vertex_000781BC, normal_00078294, LengthOfArray<Sint32>(vertex_000781BC), meshlist_000781A4, matlist_00078120, LengthOfArray<Uint16>(meshlist_000781A4), LengthOfArray<Uint16>(matlist_00078120), { -287.4135f, 8.5f, 37.599f }, 193.7453f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_0007836C = { vertex_000781BC, normal_00078294, LengthOfArray<Sint32>(vertex_000781BC), meshlist_000781A4, matlist_00078120, LengthOfArray<Uint16>(meshlist_000781A4), LengthOfArray<Uint16>(matlist_00078120), { -287.4135f, 8.5f, 37.599f }, 193.7453f, NULL };
 
-NJS_OBJECT object_00078394 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0007836C, 5938, -9.2f, 1098, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_000783C8[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_00078394 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0007836C, 5938, -9.2f, 1098, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_000783C8[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 82, NJD_CUSTOMFLAG_TEXANIM1 | NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_000783DC[] = {
+extern "C" __declspec(dllexport) Sint16 poly_000783DC[] = {
 	0x8000u | 16, 8, 0, 9, 1, 10, 2, 11, 3, 12, 4, 13, 5, 14, 6, 15, 7
 };
 
-NJS_TEX uv_00078400[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00078400[] = {
 	{ 3570, 0 },
 	{ 3570, 255 },
 	{ 3060, 0 },
@@ -50629,11 +50629,11 @@ NJS_TEX uv_00078400[] = {
 	{ 0, 255 }
 };
 
-NJS_MESHSET_SADX meshlist_00078440[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00078440[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 1, poly_000783DC, NULL, NULL, NULL, uv_00078400, NULL }
 };
 
-NJS_VECTOR vertex_00078458[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_00078458[] = {
 	{ 208.8633f, 7.5f, 214.3817f },
 	{ 158.1768f, 7.5f, 205.8091f },
 	{ 109.4287f, 7.5f, 189.8183f },
@@ -50652,7 +50652,7 @@ NJS_VECTOR vertex_00078458[] = {
 	{ -103.0479f, 9.5f, 77.36792f }
 };
 
-NJS_VECTOR normal_00078518[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_00078518[] = {
 	{ -0.016593f, 0.995037f, 0.098111f },
 	{ -0.023804f, 0.995065f, 0.096332f },
 	{ -0.037852f, 0.995064f, 0.09173f },
@@ -50671,18 +50671,18 @@ NJS_VECTOR normal_00078518[] = {
 	{ -0.018188f, 0.995037f, 0.09782799f }
 };
 
-NJS_MODEL_SADX attach_000785D8 = { vertex_00078458, normal_00078518, LengthOfArray<Sint32>(vertex_00078458), meshlist_00078440, matlist_000783C8, LengthOfArray<Uint16>(meshlist_00078440), LengthOfArray<Uint16>(matlist_000783C8), { 52.27807f, 8.5f, 145.8748f }, 172.5162f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_000785D8 = { vertex_00078458, normal_00078518, LengthOfArray<Sint32>(vertex_00078458), meshlist_00078440, matlist_000783C8, LengthOfArray<Uint16>(meshlist_00078440), LengthOfArray<Uint16>(matlist_000783C8), { 52.27807f, 8.5f, 145.8748f }, 172.5162f, NULL };
 
-NJS_OBJECT object_00078600 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_000785D8, 5938, -9.2f, 1098, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_00078634[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_00078600 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_000785D8, 5938, -9.2f, 1098, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_00078634[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 82, NJD_CUSTOMFLAG_TEXANIM1 | NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_00078648[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00078648[] = {
 	0x8000u | 20, 9, 0, 10, 1, 11, 2, 12, 3, 13, 4, 14, 5, 15, 6, 16, 7, 17, 8, 19, 18
 };
 
-NJS_TEX uv_00078674[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00078674[] = {
 	{ 4590, 0 },
 	{ 4590, 255 },
 	{ 4090, 0 },
@@ -50705,11 +50705,11 @@ NJS_TEX uv_00078674[] = {
 	{ 0, 255 }
 };
 
-NJS_MESHSET_SADX meshlist_000786C4[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_000786C4[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 1, poly_00078648, NULL, NULL, NULL, uv_00078674, NULL }
 };
 
-NJS_VECTOR vertex_000786DC[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_000786DC[] = {
 	{ -471.7793f, 7.5f, -21.61743f },
 	{ -450.5591f, 7.5f, -82.13983f },
 	{ -389.3452f, 7.5f, -103.1219f },
@@ -50732,7 +50732,7 @@ NJS_VECTOR vertex_000786DC[] = {
 	{ -81.77294f, 9.5f, 10.0896f }
 };
 
-NJS_VECTOR normal_000787CC[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_000787CC[] = {
 	{ -0.099239f, 0.9944879f, -0.033849f },
 	{ -0.064679f, 0.995791f, -0.06493f },
 	{ 0.005072f, 0.9957269f, -0.09220099f },
@@ -50755,20 +50755,20 @@ NJS_VECTOR normal_000787CC[] = {
 	{ -0.011734f, 0.995037f, -0.09880999f }
 };
 
-NJS_MODEL_SADX attach_000788BC = { vertex_000786DC, normal_000787CC, LengthOfArray<Sint32>(vertex_000786DC), meshlist_000786C4, matlist_00078634, LengthOfArray<Uint16>(meshlist_000786C4), LengthOfArray<Uint16>(matlist_00078634), { -276.7761f, 8.5f, -43.49405f }, 203.916f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_000788BC = { vertex_000786DC, normal_000787CC, LengthOfArray<Sint32>(vertex_000786DC), meshlist_000786C4, matlist_00078634, LengthOfArray<Uint16>(meshlist_000786C4), LengthOfArray<Uint16>(matlist_00078634), { -276.7761f, 8.5f, -43.49405f }, 203.916f, NULL };
 
-NJS_OBJECT object_000788E4 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_000788BC, 5938, -9.2f, 1098, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_00078918[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_000788E4 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_000788BC, 5938, -9.2f, 1098, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_00078918[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 82, NJD_CUSTOMFLAG_TEXANIM1 | NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_0007892C[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0007892C[] = {
 	0x8000u | 11, 0, 9, 1, 10, 2, 11, 3, 12, 4, 14, 5,
 	0x8000u | 10, 17, 8, 18, 7, 16, 6, 15, 5, 13, 14,
 	3, 17, 19, 18
 };
 
-NJS_TEX uv_00078964[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00078964[] = {
 	{ 0, 255 },
 	{ 0 },
 	{ 334, 255 },
@@ -50795,11 +50795,11 @@ NJS_TEX uv_00078964[] = {
 	{ 3788, 0 }
 };
 
-NJS_MESHSET_SADX meshlist_000789C4[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_000789C4[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 3, poly_0007892C, NULL, NULL, NULL, uv_00078964, NULL }
 };
 
-NJS_VECTOR vertex_000789DC[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_000789DC[] = {
 	{ 92.76709f, 7.5f, -260.0425f },
 	{ 71.27339f, 7.5f, -240.8709f },
 	{ 69.31349f, 7.5f, -207.0048f },
@@ -50822,7 +50822,7 @@ NJS_VECTOR vertex_000789DC[] = {
 	{ -81.7729f, 9.5f, 10.0896f }
 };
 
-NJS_VECTOR normal_00078ACC[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_00078ACC[] = {
 	{ -0.112854f, 0.985148f, -0.12941f },
 	{ -0.144667f, 0.986812f, -0.072614f },
 	{ -0.154704f, 0.9876119f, 0.026238f },
@@ -50845,19 +50845,19 @@ NJS_VECTOR normal_00078ACC[] = {
 	{ -0.023219f, 0.995037f, -0.09675799f }
 };
 
-NJS_MODEL_SADX attach_00078BBC = { vertex_000789DC, normal_00078ACC, LengthOfArray<Sint32>(vertex_000789DC), meshlist_000789C4, matlist_00078918, LengthOfArray<Uint16>(meshlist_000789C4), LengthOfArray<Uint16>(matlist_00078918), { 12.35155f, 8.5f, -124.9765f }, 166.6675f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00078BBC = { vertex_000789DC, normal_00078ACC, LengthOfArray<Sint32>(vertex_000789DC), meshlist_000789C4, matlist_00078918, LengthOfArray<Uint16>(meshlist_000789C4), LengthOfArray<Uint16>(matlist_00078918), { 12.35155f, 8.5f, -124.9765f }, 166.6675f, NULL };
 
-NJS_OBJECT object_00078BE4 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00078BBC, 5938, -9.2f, 1098, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_00078C18[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_00078BE4 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00078BBC, 5938, -9.2f, 1098, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_00078C18[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 82, NJD_CUSTOMFLAG_TEXANIM1 | NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_00078C2C[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00078C2C[] = {
 	15, 22, 0, 7, 1, 8, 2, 9, 3, 10, 4, 11, 5, 12, 6, 13,
 	11, 7, 23, 22, 21, 17, 18, 14, 19, 15, 20, 16
 };
 
-NJS_TEX uv_00078C64[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00078C64[] = {
 	{ 2087, 254 },
 	{ 2572, 255 },
 	{ 2521, 0 },
@@ -50886,11 +50886,11 @@ NJS_TEX uv_00078C64[] = {
 	{ 0, 254 }
 };
 
-NJS_MESHSET_SADX meshlist_00078CCC[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00078CCC[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 2, poly_00078C2C, NULL, NULL, NULL, uv_00078C64, NULL }
 };
 
-NJS_VECTOR vertex_00078CE4[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_00078CE4[] = {
 	{ 324, 7.5f, -164 },
 	{ 278.3457f, 7.5f, -186.662f },
 	{ 233, 7.5f, -206 },
@@ -50917,7 +50917,7 @@ NJS_VECTOR vertex_00078CE4[] = {
 	{ 357, 9.5f, -124 }
 };
 
-NJS_VECTOR normal_00078E04[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_00078E04[] = {
 	{ 0.044138f, 0.995233f, -0.08696599f },
 	{ 0.046261f, 0.9942729f, -0.096337f },
 	{ 0.046052f, 0.993937f, -0.099837f },
@@ -50944,323 +50944,323 @@ NJS_VECTOR normal_00078E04[] = {
 	{ 0.048838f, 0.99533f, -0.083267f }
 };
 
-NJS_MODEL_SADX attach_00078F24 = { vertex_00078CE4, normal_00078E04, LengthOfArray<Sint32>(vertex_00078CE4), meshlist_00078CCC, matlist_00078C18, LengthOfArray<Uint16>(meshlist_00078CCC), LengthOfArray<Uint16>(matlist_00078C18), { 283.8513f, 8.5f, -117.8553f }, 240.8183f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00078F24 = { vertex_00078CE4, normal_00078E04, LengthOfArray<Sint32>(vertex_00078CE4), meshlist_00078CCC, matlist_00078C18, LengthOfArray<Uint16>(meshlist_00078CCC), LengthOfArray<Uint16>(matlist_00078C18), { 283.8513f, 8.5f, -117.8553f }, 240.8183f, NULL };
 
-NJS_OBJECT object_00078F4C = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00078F24, 5938, -9.2f, 1098, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_00078F80 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_000186CC, 0, 130, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_00078FB4 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0001940C, -270.326f, 0, 109.5733f, 0, 0x1111, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_00078FE8 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0001940C, -446.0793f, 0, 181.9576f, 0, 0x2666, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007901C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0001940C, -69.34599f, 0, 20.09125f, 0, 0x1111, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_00079050 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_000197DC, -60.2105f, 0, 16.0239f, 0, 0x1111, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_00079084 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_000197DC, -261.19f, 0, 105.5059f, 0, 0x1111, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_000790B8 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_000197DC, -569.5139f, 0, 351.8512f, 0, 0x2666, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_000790EC = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0001A1DC, -720, 13, 1550, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_00079120 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0001A1DC, -880, 13, 1550, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_00079154 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0001A1DC, -960, 13, 1470, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_00079188 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0001A90C, -960, 54, 1210, 0, 0xFFFF8000, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_000791BC = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0001A90C, -640, 13, 1550, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_000791F0 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0001AF2C, -754.5f, 72.5f, 1210, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_00079224 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0001B8DC, -640, 43, 1430, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_00079258 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0001B8DC, -840, 43, 1550, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007928C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0001BF2C, 6117.327f, 148, 921.1904f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_000792C0 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0001BF2C, 6024.876f, 146, 856.2148f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_000792F4 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0001C204, 2645, -38, 365, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_00079328 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0001C370, 2645, -38, 361, 0, 0xFFFFC001, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007935C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00029E5C, -880, 13, 1210, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_00079390 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00029E5C, -800, 13, 1210, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_000793C4 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00029E5C, -720, 13, 1210, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_000793F8 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00029E5C, -550, 13, 1210, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007942C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00029E5C, -470, 13, 1210, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_00079460 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0002D504, 0, -160, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_00079494 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0002D504, 0, 260, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_000794C8 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0003F64C, -720, 88, 1550, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_000794FC = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0003F64C, -800, 88, 1550, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_00079530 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0003F64C, -961, 88, 1471, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_00079564 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0003F64C, -961, 88, 1550, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_00079598 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0003F64C, -880, 88, 1550, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_000795CC = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6029.167f, 401, 839.6757f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_00079600 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6264.395f, 405, 1044.108f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_00079634 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6256.211f, 405, 1038.358f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_00079668 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6248.031f, 405, 1032.608f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007969C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6239.851f, 405, 1026.858f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_000796D0 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6217.342f, 405, 971.927f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_00079704 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6231.668f, 405, 1021.108f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_00079738 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6223.486f, 405, 1015.358f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007976C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6207.125f, 405, 1003.858f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_000797A0 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6215.306f, 405, 1009.608f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_000797D4 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6020.986f, 401, 833.9257f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_00079808 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6241.888f, 405, 989.1771f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007983C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6233.706f, 405, 983.4271f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_00079870 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6225.522f, 405, 977.677f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_000798A4 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6127.347f, 403, 908.6764f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_000798D8 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6290.977f, 405, 1023.677f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007990C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6274.613f, 405, 1012.177f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_00079940 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6209.162f, 405, 966.1769f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_00079974 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6200.979f, 405, 960.4269f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_000799A8 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6192.798f, 405, 954.6769f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_000799DC = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 5866.67f, 401, 725.4764f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_00079A10 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6012.805f, 401, 828.1757f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_00079A44 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6160.071f, 403, 931.6766f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_00079A78 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 5858.491f, 401, 719.7264f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_00079AAC = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6151.891f, 403, 925.9266f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_00079AE0 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 5850.309f, 401, 713.9764f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_00079B14 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6143.708f, 403, 920.1766f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_00079B48 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 5842.126f, 401, 708.2263f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_00079B7C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6135.526f, 403, 914.4265f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_00079BB0 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 5833.946f, 401, 702.476f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_00079BE4 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 5825.765f, 401, 696.726f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_00079C18 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6119.165f, 403, 902.9264f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_00079C4C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6004.624f, 401, 822.4255f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_00079C80 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6198.942f, 405, 998.1077f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_00079CB4 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6182.58f, 405, 986.6077f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_00079CE8 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6190.762f, 405, 992.3577f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_00079D1C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6174.397f, 405, 980.8576f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_00079D50 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 5848.271f, 401, 751.6573f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_00079D84 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6141.67f, 403, 957.8574f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_00079DB8 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6282.793f, 405, 1017.927f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_00079DEC = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6266.432f, 405, 1006.427f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_00079E20 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6133.491f, 403, 952.1074f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_00079E54 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6258.25f, 405, 1000.677f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_00079E88 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 5840.09f, 401, 745.9073f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_00079EBC = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 5831.91f, 401, 740.157f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_00079EF0 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6125.31f, 403, 946.3573f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_00079F24 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 5823.728f, 401, 734.4069f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_00079F58 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6117.126f, 403, 940.6073f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_00079F8C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 5815.545f, 401, 728.6569f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_00079FC0 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6108.944f, 403, 934.8572f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_00079FF4 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 5996.441f, 401, 816.6755f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007A028 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 5817.583f, 401, 690.976f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007A05C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6110.982f, 403, 897.1763f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007A090 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 5809.401f, 401, 685.226f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007A0C4 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6102.8f, 403, 891.4261f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007A0F8 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 5801.221f, 401, 679.476f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007A12C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6094.62f, 403, 885.676f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007A160 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6053.711f, 401, 856.9258f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007A194 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6045.529f, 401, 851.1758f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007A1C8 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6037.35f, 401, 845.4257f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007A1FC = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 5988.26f, 401, 810.9254f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007A230 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 5807.364f, 401, 722.907f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007A264 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6100.765f, 403, 929.1072f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007A298 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 5799.184f, 401, 717.1569f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007A2CC = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6092.583f, 403, 923.3571f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007A300 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 5782.819f, 401, 705.6567f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007A334 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6076.22f, 403, 911.857f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007A368 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6035.313f, 401, 883.1068f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007A39C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6027.13f, 401, 877.3568f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007A3D0 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6018.95f, 401, 871.6068f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007A404 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6010.768f, 401, 865.8566f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007A438 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 5980.079f, 401, 805.1754f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007A46C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6250.067f, 405, 994.9271f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007A4A0 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6002.585f, 401, 860.1064f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007A4D4 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 5791.001f, 401, 711.4066f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007A508 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6084.401f, 403, 917.607f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007A53C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6280.757f, 405, 1055.608f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007A570 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 5961.68f, 401, 831.3563f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007A5A4 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 5969.859f, 401, 837.1063f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007A5D8 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 5978.042f, 401, 842.8563f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007A60C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 5986.224f, 401, 848.6063f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007A640 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 5994.404f, 401, 854.3564f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007A674 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6272.577f, 405, 1049.858f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007A6A8 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -435.5f, 91.19998f, 1247, 0, 0xFFFF8000, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007A6DC = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -515.5f, 105.6f, 1247, 0, 0xFFFF8000, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007A710 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, 2573, 33.79999f, 339.5f, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007A744 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, 2573, 33.79999f, 329.5001f, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007A778 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, 2573, 33.79999f, 319.5001f, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007A7AC = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, 2573, 33.79999f, 309.5001f, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007A7E0 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, 2573, 33.79999f, 299.5001f, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007A814 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, 2719, 33.79999f, 419.5001f, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007A848 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, 2719, 33.79999f, 429.5001f, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007A87C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, 2719, 33.79999f, 309.5f, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007A8B0 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, 2719, 33.79999f, 299.5001f, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007A8E4 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, 2575.5f, 33.79999f, 439.0001f, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007A918 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -754.5f, 105.6f, 1173, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007A94C = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, 2595.5f, 33.79999f, 439.0002f, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007A980 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, 2585.5f, 33.79999f, 439.0001f, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007A9B4 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, 2605.5f, 33.79999f, 439.0001f, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007A9E8 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, 2615.5f, 33.79999f, 439.0001f, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007AA1C = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, 2625.5f, 33.79999f, 439.0001f, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007AA50 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, 2635.5f, 33.79999f, 439.0001f, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007AA84 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, 2645.5f, 33.79999f, 439.0001f, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007AAB8 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, 2655.5f, 33.79999f, 439.0001f, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007AAEC = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, 2665.5f, 33.79999f, 439.0001f, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007AB20 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, 2675.5f, 33.79999f, 439.0001f, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007AB54 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -764.5f, 103.8f, 1173, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007AB88 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, 2573, 33.79999f, 429.5001f, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007ABBC = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, 2685.5f, 33.79999f, 439.0001f, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007ABF0 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, 2695.5f, 33.79999f, 439.0001f, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007AC24 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, 2705.5f, 33.79999f, 439.0001f, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007AC58 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, 2715.5f, 33.79999f, 439.0001f, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007AC8C = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, 2715.5f, 33.79999f, 293, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007ACC0 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, 2705.5f, 33.79999f, 293.0002f, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007ACF4 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, 2695.5f, 33.79999f, 293, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007AD28 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, 2685.5f, 33.79999f, 293.0001f, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007AD5C = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, 2685.5f, 33.79999f, 439.0001f, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007AD90 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -505.5f, 103.8f, 1247, 0, 0xFFFF8000, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007ADC4 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, 2675.5f, 33.79999f, 293.0002f, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007ADF8 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -774.5f, 102, 1173, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007AE2C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -495.5f, 102, 1247, 0, 0xFFFF8000, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007AE60 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -784.5f, 100.2f, 1173, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007AE94 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -485.5f, 100.2f, 1247, 0, 0xFFFF8000, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007AEC8 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -475.5f, 98.39998f, 1247, 0, 0xFFFF8000, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007AEFC = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -794.5f, 98.39998f, 1173, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007AF30 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -625.4998f, 119.2f, 1173, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007AF64 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -834.5f, 91.19998f, 1249, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007AF98 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -435.5f, 91.19998f, 1171, 0, 0xFFFF8000, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007AFCC = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -684.5f, 118.2f, 1249, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007B000 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -585.5f, 118.2f, 1171, 0, 0xFFFF8000, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007B034 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -804.5f, 96.59999f, 1173, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007B068 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -465.5f, 96.59999f, 1247, 0, 0xFFFF8000, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007B09C = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -694.5f, 116.4f, 1249, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007B0D0 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -575.5f, 116.4f, 1171, 0, 0xFFFF8000, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007B104 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -565.5f, 114.6f, 1171, 0, 0xFFFF8000, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007B138 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -704.5f, 114.6f, 1249, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007B16C = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -635.5001f, 119.2f, 1173, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007B1A0 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -555.5f, 112.8f, 1171, 0, 0xFFFF8000, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007B1D4 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -714.5f, 112.8f, 1249, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007B208 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -724.5f, 111, 1249, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007B23C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -545.5f, 111, 1171, 0, 0xFFFF8000, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007B270 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -734.5f, 109.2f, 1249, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007B2A4 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -535.5f, 109.2f, 1171, 0, 0xFFFF8000, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007B2D8 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -525.5f, 107.4f, 1171, 0, 0xFFFF8000, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007B30C = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -744.5f, 107.4f, 1249, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007B340 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -754.5f, 105.6f, 1249, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007B374 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -515.5f, 105.6f, 1171, 0, 0xFFFF8000, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007B3A8 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -645.5001f, 119.2f, 1173, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007B3DC = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -764.5f, 103.8f, 1249, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007B410 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -505.5f, 103.8f, 1171, 0, 0xFFFF8000, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007B444 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -774.5f, 102, 1249, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007B478 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -495.5f, 102, 1171, 0, 0xFFFF8000, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007B4AC = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -784.5f, 100.2f, 1249, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007B4E0 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -485.5f, 100.2f, 1171, 0, 0xFFFF8000, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007B514 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -455.5f, 94.8f, 1247, 0, 0xFFFF8000, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007B548 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -814.5f, 94.8f, 1173, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007B57C = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -794.5f, 98.39998f, 1249, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007B5B0 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -475.5f, 98.39998f, 1171, 0, 0xFFFF8000, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007B5E4 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -655.4999f, 119.2f, 1173, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007B618 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -804.5f, 96.59999f, 1249, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007B64C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -465.5f, 96.59999f, 1171, 0, 0xFFFF8000, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007B680 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -814.5f, 94.8f, 1249, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007B6B4 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -455.5f, 94.8f, 1171, 0, 0xFFFF8000, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007B6E8 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -445.5f, 92.99998f, 1171, 0, 0xFFFF8000, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007B71C = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -824.5f, 92.99998f, 1249, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007B750 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -684.5f, 118.2f, 1173, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007B784 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -585.5f, 118.2f, 1247, 0, 0xFFFF8000, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007B7B8 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -694.5f, 116.4f, 1173, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007B7EC = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -575.5f, 116.4f, 1247, 0, 0xFFFF8000, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007B820 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -665.5f, 119.2f, 1173, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007B854 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -565.5f, 114.6f, 1247, 0, 0xFFFF8000, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007B888 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -704.5f, 114.6f, 1173, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007B8BC = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -555.5f, 112.8f, 1247, 0, 0xFFFF8000, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007B8F0 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -714.5f, 112.8f, 1173, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007B924 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -724.5f, 111, 1173, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007B958 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -545.5f, 111, 1247, 0, 0xFFFF8000, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007B98C = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -734.5f, 109.2f, 1173, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007B9C0 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -535.5f, 109.2f, 1247, 0, 0xFFFF8000, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007B9F4 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -824.5f, 92.99998f, 1173, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007BA28 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -445.5f, 92.99998f, 1247, 0, 0xFFFF8000, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007BA5C = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -675.5001f, 119.2f, 1173, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007BA90 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, 2665.5f, 33.79999f, 293, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007BAC4 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, 2655.5f, 33.79999f, 293.0001f, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007BAF8 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, 2645.5f, 33.79999f, 293, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007BB2C = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, 2635.5f, 33.79999f, 293.0001f, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007BB60 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, 2625.5f, 33.79999f, 293.0002f, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007BB94 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, 2615.5f, 33.79999f, 293.0001f, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007BBC8 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, 2605.5f, 33.79999f, 293.0001f, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007BBFC = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, 2595.5f, 33.79999f, 293, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007BC30 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, 2585.5f, 33.79999f, 293.0001f, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007BC64 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, 2575.5f, 33.79999f, 293, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007BC98 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -525.5001f, 107.4f, 1247, 0, 0xFFFF8000, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007BCCC = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -675.5f, 119.2f, 1249, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007BD00 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -665.5f, 119.2f, 1249, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007BD34 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -655.5f, 119.2f, 1249, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007BD68 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -645.5f, 119.2f, 1249, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007BD9C = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -635.5f, 119.2f, 1249, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007BDD0 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -625.5f, 119.2f, 1249, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007BE04 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -615.5f, 119.2f, 1249, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007BE38 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -605.5f, 119.2f, 1249, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007BE6C = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -595.5f, 119.2f, 1249, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007BEA0 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -595.5f, 119.2f, 1173, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007BED4 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -744.4999f, 107.4f, 1173, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007BF08 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -605.5f, 119.2f, 1173, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007BF3C = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -615.5f, 119.2f, 1173, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007BF70 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, 2573, 33.79999f, 419.5001f, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007BFA4 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, 2573, 33.79999f, 409.5001f, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007BFD8 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, 2573, 33.79999f, 399.5001f, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007C00C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, 2573, 33.79999f, 389.5001f, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007C040 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, 2573, 33.79999f, 379.5001f, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007C074 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, 2573, 33.79999f, 369.5001f, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007C0A8 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, 2573, 33.79999f, 359.5001f, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007C0DC = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, 2573, 33.79999f, 349.5001f, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007C110 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0004BC28, 0, 130, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007C144 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0004DB10, -60.21053f, 0, 16.02388f, 0, 0x1111, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007C178 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0004DB10, -569.5142f, 0, 351.8512f, 0, 0x2666, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007C1AC = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0004DB10, -261.1905f, 0, 105.5059f, 0, 0x1111, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007C1E0 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00052550, -270.326f, 0, 109.5733f, 0, 0x1111, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007C214 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00052550, -446.0793f, 0, 181.9576f, 0, 0x2666, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007C248 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00052550, -69.34599f, 0, 20.09125f, 0, 0x1111, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007C1E0_2 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00052550_2, -270.326f, 0, 109.5733f, 0, 0x1111, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007C214_2 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00052550_2, -446.0793f, 0, 181.9576f, 0, 0x2666, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007C248_2 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00052550_2, -69.34599f, 0, 20.09125f, 0, 0x1111, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007C27C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_000534B0, -270.326f, 0, 109.5733f, 0, 0x1111, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007C2B0 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_000534B0, -446.0793f, 0, 181.9576f, 0, 0x2666, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007C2E4 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_000534B0, -69.34599f, 0, 20.09125f, 0, 0x1111, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007C318 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0005434C, -270.326f, 0, 109.5733f, 0, 0x1111, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007C34C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0005434C, -446.0793f, 0, 181.9576f, 0, 0x2666, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007C380 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0005434C, -69.34599f, 0, 20.09125f, 0, 0x1111, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007C3B4 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00055078, 2133, 60.3f, 906.5f, 0, 0xFFFFF801, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007C3E8 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00055078, 2132, 37.3f, 905, 0, 0xFFFFB001, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007C41C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00055078, 2131.5f, 34.2f, 903.5f, 0, 0xFFFFA800, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007C450 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00055078, 2133, 30.80001f, 904.5f, 0, 0xFFFFA000, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007C484 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00055078, 2132.5f, 28, 903.5f, 0, 0xFFFF9800, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007C4B8 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00055078, 2132.5f, 25.1f, 904, 0, 0xFFFF9000, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007C4EC = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00055078, 2133, 23.6f, 903, 0, 0xFFFF8800, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007C520 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00055078, 2132, 22.4f, 904, 0, 0xFFFF8000, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007C554 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00055078, 2133, 59.29998f, 905.5f, 0, 0xFFFFF000, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007C588 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00055078, 2132, 57.39998f, 907, 0, 0xFFFFE800, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007C5BC = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00055078, 2132, 55.39998f, 905.5f, 0, 0xFFFFE000, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007C5F0 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00055078, 2131, 52.89998f, 907, 0, 0xFFFFD800, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007C624 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00055078, 2132, 50.29998f, 905.5f, 0, 0xFFFFD001, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007C658 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00055078, 2130.5f, 47.30001f, 905.5f, 0, 0xFFFFC800, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007C68C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00055078, 2131.5f, 44, 905, 0, 0xFFFFC001, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007C6C0 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00055078, 2130.5f, 40.9f, 904, 0, 0xFFFFB800, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007C6F4 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00056684, -640, 13, 980, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007C728 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00056684, -800, 13, 1550, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007C75C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00056684, -880, 13, 1550, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007C790 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00056684, -960, 13, 1470, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007C7C4 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00056684, -880, 54, 1210, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007C7F8 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00056684, -720, 13, 1550, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007C82C = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00056684, -640, 13, 1470, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007C860 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00056684, -640, 13, 1390, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007C894 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00057C94, -960, 13, 1550, 0, 0xFFFFC001, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007C8C8 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00057C94, -960, 54, 1210, 0, 0x8000, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007C8FC = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00057FD8, -515.5f, 72.5f, 1210, 0, 0xFFFF8000, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007C930 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00058C80, 6117.327f, 186, 921.1904f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007C964 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00058C80, 6024.876f, 184, 856.2148f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007C998 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00059098, 2645, -38, 511, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007C9CC = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00059290, 2645, -38, 365, 0, 0x8000, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007CA00 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00059D2C, 5909.7f, 0, 775.2f, 0, 0xF1B4, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007CA34 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00059D2C, 5909.7f, 0, 775.2f, 0, 0x1070A, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007CA68 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00059D2C, 5909.7f, 0, 775.2f, 0, 0x5C5F, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007CA9C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00059D2C, 5909.7f, 0, 775.2f, 0, 0x31B4, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007CAD0 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00059D2C, 5909.7f, 0, 775.2f, 0, 0x870A, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007CB04 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00059D2C, 5909.7f, 0, 775.2f, 0, 0x71B4, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007CB38 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00059D2C, 5909.7f, 0, 775.2f, 0, 0xB1B4, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007CB6C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00059D2C, 5909.7f, 0, 775.2f, 0, 0xC70A, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007CBA0 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00059D2C, 5909.7f, 0, 775.2f, 0, 0xDC5F, 0, 1, 1, 1, NULL, NULL };
-NJS_OBJECT object_0007CBD4 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0006AE9C, -515.5f, 68.5f, 1210, 0, 0x8000, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_0007CC08[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_00078F4C = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00078F24, 5938, -9.2f, 1098, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_00078F80 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_000186CC, 0, 130, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_00078FB4 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0001940C, -270.326f, 0, 109.5733f, 0, 0x1111, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_00078FE8 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0001940C, -446.0793f, 0, 181.9576f, 0, 0x2666, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007901C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0001940C, -69.34599f, 0, 20.09125f, 0, 0x1111, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_00079050 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_000197DC, -60.2105f, 0, 16.0239f, 0, 0x1111, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_00079084 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_000197DC, -261.19f, 0, 105.5059f, 0, 0x1111, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_000790B8 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_000197DC, -569.5139f, 0, 351.8512f, 0, 0x2666, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_000790EC = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0001A1DC, -720, 13, 1550, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_00079120 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0001A1DC, -880, 13, 1550, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_00079154 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0001A1DC, -960, 13, 1470, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_00079188 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0001A90C, -960, 54, 1210, 0, 0xFFFF8000, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_000791BC = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0001A90C, -640, 13, 1550, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_000791F0 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0001AF2C, -754.5f, 72.5f, 1210, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_00079224 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0001B8DC, -640, 43, 1430, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_00079258 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0001B8DC, -840, 43, 1550, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007928C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0001BF2C, 6117.327f, 148, 921.1904f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_000792C0 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0001BF2C, 6024.876f, 146, 856.2148f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_000792F4 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0001C204, 2645, -38, 365, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_00079328 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0001C370, 2645, -38, 361, 0, 0xFFFFC001, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007935C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00029E5C, -880, 13, 1210, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_00079390 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00029E5C, -800, 13, 1210, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_000793C4 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00029E5C, -720, 13, 1210, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_000793F8 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00029E5C, -550, 13, 1210, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007942C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00029E5C, -470, 13, 1210, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_00079460 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0002D504, 0, -160, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_00079494 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0002D504, 0, 260, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_000794C8 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0003F64C, -720, 88, 1550, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_000794FC = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0003F64C, -800, 88, 1550, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_00079530 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0003F64C, -961, 88, 1471, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_00079564 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0003F64C, -961, 88, 1550, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_00079598 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0003F64C, -880, 88, 1550, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_000795CC = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6029.167f, 401, 839.6757f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_00079600 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6264.395f, 405, 1044.108f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_00079634 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6256.211f, 405, 1038.358f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_00079668 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6248.031f, 405, 1032.608f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007969C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6239.851f, 405, 1026.858f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_000796D0 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6217.342f, 405, 971.927f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_00079704 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6231.668f, 405, 1021.108f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_00079738 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6223.486f, 405, 1015.358f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007976C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6207.125f, 405, 1003.858f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_000797A0 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6215.306f, 405, 1009.608f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_000797D4 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6020.986f, 401, 833.9257f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_00079808 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6241.888f, 405, 989.1771f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007983C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6233.706f, 405, 983.4271f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_00079870 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6225.522f, 405, 977.677f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_000798A4 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6127.347f, 403, 908.6764f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_000798D8 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6290.977f, 405, 1023.677f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007990C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6274.613f, 405, 1012.177f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_00079940 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6209.162f, 405, 966.1769f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_00079974 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6200.979f, 405, 960.4269f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_000799A8 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6192.798f, 405, 954.6769f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_000799DC = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 5866.67f, 401, 725.4764f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_00079A10 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6012.805f, 401, 828.1757f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_00079A44 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6160.071f, 403, 931.6766f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_00079A78 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 5858.491f, 401, 719.7264f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_00079AAC = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6151.891f, 403, 925.9266f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_00079AE0 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 5850.309f, 401, 713.9764f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_00079B14 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6143.708f, 403, 920.1766f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_00079B48 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 5842.126f, 401, 708.2263f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_00079B7C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6135.526f, 403, 914.4265f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_00079BB0 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 5833.946f, 401, 702.476f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_00079BE4 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 5825.765f, 401, 696.726f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_00079C18 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6119.165f, 403, 902.9264f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_00079C4C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6004.624f, 401, 822.4255f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_00079C80 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6198.942f, 405, 998.1077f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_00079CB4 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6182.58f, 405, 986.6077f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_00079CE8 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6190.762f, 405, 992.3577f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_00079D1C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6174.397f, 405, 980.8576f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_00079D50 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 5848.271f, 401, 751.6573f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_00079D84 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6141.67f, 403, 957.8574f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_00079DB8 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6282.793f, 405, 1017.927f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_00079DEC = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6266.432f, 405, 1006.427f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_00079E20 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6133.491f, 403, 952.1074f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_00079E54 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6258.25f, 405, 1000.677f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_00079E88 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 5840.09f, 401, 745.9073f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_00079EBC = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 5831.91f, 401, 740.157f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_00079EF0 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6125.31f, 403, 946.3573f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_00079F24 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 5823.728f, 401, 734.4069f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_00079F58 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6117.126f, 403, 940.6073f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_00079F8C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 5815.545f, 401, 728.6569f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_00079FC0 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6108.944f, 403, 934.8572f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_00079FF4 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 5996.441f, 401, 816.6755f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007A028 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 5817.583f, 401, 690.976f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007A05C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6110.982f, 403, 897.1763f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007A090 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 5809.401f, 401, 685.226f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007A0C4 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6102.8f, 403, 891.4261f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007A0F8 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 5801.221f, 401, 679.476f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007A12C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6094.62f, 403, 885.676f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007A160 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6053.711f, 401, 856.9258f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007A194 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6045.529f, 401, 851.1758f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007A1C8 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6037.35f, 401, 845.4257f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007A1FC = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 5988.26f, 401, 810.9254f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007A230 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 5807.364f, 401, 722.907f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007A264 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6100.765f, 403, 929.1072f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007A298 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 5799.184f, 401, 717.1569f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007A2CC = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6092.583f, 403, 923.3571f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007A300 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 5782.819f, 401, 705.6567f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007A334 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6076.22f, 403, 911.857f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007A368 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6035.313f, 401, 883.1068f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007A39C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6027.13f, 401, 877.3568f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007A3D0 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6018.95f, 401, 871.6068f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007A404 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6010.768f, 401, 865.8566f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007A438 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 5980.079f, 401, 805.1754f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007A46C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6250.067f, 405, 994.9271f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007A4A0 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6002.585f, 401, 860.1064f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007A4D4 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 5791.001f, 401, 711.4066f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007A508 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6084.401f, 403, 917.607f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007A53C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6280.757f, 405, 1055.608f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007A570 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 5961.68f, 401, 831.3563f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007A5A4 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 5969.859f, 401, 837.1063f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007A5D8 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 5978.042f, 401, 842.8563f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007A60C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 5986.224f, 401, 848.6063f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007A640 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 5994.404f, 401, 854.3564f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007A674 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044A38, 6272.577f, 405, 1049.858f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007A6A8 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -435.5f, 91.19998f, 1247, 0, 0xFFFF8000, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007A6DC = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -515.5f, 105.6f, 1247, 0, 0xFFFF8000, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007A710 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, 2573, 33.79999f, 339.5f, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007A744 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, 2573, 33.79999f, 329.5001f, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007A778 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, 2573, 33.79999f, 319.5001f, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007A7AC = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, 2573, 33.79999f, 309.5001f, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007A7E0 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, 2573, 33.79999f, 299.5001f, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007A814 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, 2719, 33.79999f, 419.5001f, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007A848 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, 2719, 33.79999f, 429.5001f, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007A87C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, 2719, 33.79999f, 309.5f, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007A8B0 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, 2719, 33.79999f, 299.5001f, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007A8E4 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, 2575.5f, 33.79999f, 439.0001f, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007A918 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -754.5f, 105.6f, 1173, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007A94C = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, 2595.5f, 33.79999f, 439.0002f, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007A980 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, 2585.5f, 33.79999f, 439.0001f, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007A9B4 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, 2605.5f, 33.79999f, 439.0001f, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007A9E8 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, 2615.5f, 33.79999f, 439.0001f, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007AA1C = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, 2625.5f, 33.79999f, 439.0001f, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007AA50 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, 2635.5f, 33.79999f, 439.0001f, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007AA84 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, 2645.5f, 33.79999f, 439.0001f, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007AAB8 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, 2655.5f, 33.79999f, 439.0001f, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007AAEC = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, 2665.5f, 33.79999f, 439.0001f, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007AB20 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, 2675.5f, 33.79999f, 439.0001f, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007AB54 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -764.5f, 103.8f, 1173, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007AB88 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, 2573, 33.79999f, 429.5001f, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007ABBC = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, 2685.5f, 33.79999f, 439.0001f, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007ABF0 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, 2695.5f, 33.79999f, 439.0001f, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007AC24 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, 2705.5f, 33.79999f, 439.0001f, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007AC58 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, 2715.5f, 33.79999f, 439.0001f, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007AC8C = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, 2715.5f, 33.79999f, 293, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007ACC0 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, 2705.5f, 33.79999f, 293.0002f, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007ACF4 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, 2695.5f, 33.79999f, 293, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007AD28 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, 2685.5f, 33.79999f, 293.0001f, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007AD5C = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, 2685.5f, 33.79999f, 439.0001f, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007AD90 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -505.5f, 103.8f, 1247, 0, 0xFFFF8000, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007ADC4 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, 2675.5f, 33.79999f, 293.0002f, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007ADF8 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -774.5f, 102, 1173, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007AE2C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -495.5f, 102, 1247, 0, 0xFFFF8000, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007AE60 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -784.5f, 100.2f, 1173, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007AE94 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -485.5f, 100.2f, 1247, 0, 0xFFFF8000, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007AEC8 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -475.5f, 98.39998f, 1247, 0, 0xFFFF8000, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007AEFC = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -794.5f, 98.39998f, 1173, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007AF30 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -625.4998f, 119.2f, 1173, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007AF64 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -834.5f, 91.19998f, 1249, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007AF98 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -435.5f, 91.19998f, 1171, 0, 0xFFFF8000, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007AFCC = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -684.5f, 118.2f, 1249, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007B000 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -585.5f, 118.2f, 1171, 0, 0xFFFF8000, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007B034 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -804.5f, 96.59999f, 1173, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007B068 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -465.5f, 96.59999f, 1247, 0, 0xFFFF8000, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007B09C = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -694.5f, 116.4f, 1249, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007B0D0 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -575.5f, 116.4f, 1171, 0, 0xFFFF8000, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007B104 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -565.5f, 114.6f, 1171, 0, 0xFFFF8000, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007B138 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -704.5f, 114.6f, 1249, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007B16C = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -635.5001f, 119.2f, 1173, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007B1A0 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -555.5f, 112.8f, 1171, 0, 0xFFFF8000, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007B1D4 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -714.5f, 112.8f, 1249, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007B208 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -724.5f, 111, 1249, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007B23C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -545.5f, 111, 1171, 0, 0xFFFF8000, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007B270 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -734.5f, 109.2f, 1249, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007B2A4 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -535.5f, 109.2f, 1171, 0, 0xFFFF8000, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007B2D8 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -525.5f, 107.4f, 1171, 0, 0xFFFF8000, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007B30C = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -744.5f, 107.4f, 1249, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007B340 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -754.5f, 105.6f, 1249, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007B374 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -515.5f, 105.6f, 1171, 0, 0xFFFF8000, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007B3A8 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -645.5001f, 119.2f, 1173, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007B3DC = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -764.5f, 103.8f, 1249, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007B410 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -505.5f, 103.8f, 1171, 0, 0xFFFF8000, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007B444 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -774.5f, 102, 1249, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007B478 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -495.5f, 102, 1171, 0, 0xFFFF8000, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007B4AC = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -784.5f, 100.2f, 1249, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007B4E0 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -485.5f, 100.2f, 1171, 0, 0xFFFF8000, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007B514 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -455.5f, 94.8f, 1247, 0, 0xFFFF8000, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007B548 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -814.5f, 94.8f, 1173, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007B57C = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -794.5f, 98.39998f, 1249, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007B5B0 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -475.5f, 98.39998f, 1171, 0, 0xFFFF8000, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007B5E4 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -655.4999f, 119.2f, 1173, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007B618 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -804.5f, 96.59999f, 1249, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007B64C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -465.5f, 96.59999f, 1171, 0, 0xFFFF8000, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007B680 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -814.5f, 94.8f, 1249, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007B6B4 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -455.5f, 94.8f, 1171, 0, 0xFFFF8000, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007B6E8 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -445.5f, 92.99998f, 1171, 0, 0xFFFF8000, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007B71C = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -824.5f, 92.99998f, 1249, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007B750 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -684.5f, 118.2f, 1173, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007B784 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -585.5f, 118.2f, 1247, 0, 0xFFFF8000, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007B7B8 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -694.5f, 116.4f, 1173, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007B7EC = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -575.5f, 116.4f, 1247, 0, 0xFFFF8000, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007B820 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -665.5f, 119.2f, 1173, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007B854 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -565.5f, 114.6f, 1247, 0, 0xFFFF8000, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007B888 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -704.5f, 114.6f, 1173, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007B8BC = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -555.5f, 112.8f, 1247, 0, 0xFFFF8000, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007B8F0 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -714.5f, 112.8f, 1173, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007B924 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -724.5f, 111, 1173, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007B958 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -545.5f, 111, 1247, 0, 0xFFFF8000, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007B98C = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -734.5f, 109.2f, 1173, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007B9C0 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -535.5f, 109.2f, 1247, 0, 0xFFFF8000, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007B9F4 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -824.5f, 92.99998f, 1173, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007BA28 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -445.5f, 92.99998f, 1247, 0, 0xFFFF8000, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007BA5C = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -675.5001f, 119.2f, 1173, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007BA90 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, 2665.5f, 33.79999f, 293, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007BAC4 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, 2655.5f, 33.79999f, 293.0001f, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007BAF8 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, 2645.5f, 33.79999f, 293, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007BB2C = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, 2635.5f, 33.79999f, 293.0001f, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007BB60 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, 2625.5f, 33.79999f, 293.0002f, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007BB94 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, 2615.5f, 33.79999f, 293.0001f, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007BBC8 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, 2605.5f, 33.79999f, 293.0001f, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007BBFC = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, 2595.5f, 33.79999f, 293, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007BC30 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, 2585.5f, 33.79999f, 293.0001f, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007BC64 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, 2575.5f, 33.79999f, 293, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007BC98 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -525.5001f, 107.4f, 1247, 0, 0xFFFF8000, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007BCCC = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -675.5f, 119.2f, 1249, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007BD00 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -665.5f, 119.2f, 1249, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007BD34 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -655.5f, 119.2f, 1249, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007BD68 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -645.5f, 119.2f, 1249, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007BD9C = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -635.5f, 119.2f, 1249, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007BDD0 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -625.5f, 119.2f, 1249, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007BE04 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -615.5f, 119.2f, 1249, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007BE38 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -605.5f, 119.2f, 1249, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007BE6C = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -595.5f, 119.2f, 1249, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007BEA0 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -595.5f, 119.2f, 1173, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007BED4 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -744.4999f, 107.4f, 1173, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007BF08 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -605.5f, 119.2f, 1173, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007BF3C = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, -615.5f, 119.2f, 1173, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007BF70 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, 2573, 33.79999f, 419.5001f, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007BFA4 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, 2573, 33.79999f, 409.5001f, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007BFD8 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, 2573, 33.79999f, 399.5001f, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007C00C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, 2573, 33.79999f, 389.5001f, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007C040 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, 2573, 33.79999f, 379.5001f, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007C074 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, 2573, 33.79999f, 369.5001f, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007C0A8 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, 2573, 33.79999f, 359.5001f, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007C0DC = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00044F68, 2573, 33.79999f, 349.5001f, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007C110 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0004BC28, 0, 130, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007C144 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0004DB10, -60.21053f, 0, 16.02388f, 0, 0x1111, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007C178 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0004DB10, -569.5142f, 0, 351.8512f, 0, 0x2666, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007C1AC = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0004DB10, -261.1905f, 0, 105.5059f, 0, 0x1111, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007C1E0 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00052550, -270.326f, 0, 109.5733f, 0, 0x1111, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007C214 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00052550, -446.0793f, 0, 181.9576f, 0, 0x2666, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007C248 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00052550, -69.34599f, 0, 20.09125f, 0, 0x1111, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007C1E0_2 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00052550_2, -270.326f, 0, 109.5733f, 0, 0x1111, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007C214_2 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00052550_2, -446.0793f, 0, 181.9576f, 0, 0x2666, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007C248_2 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00052550_2, -69.34599f, 0, 20.09125f, 0, 0x1111, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007C27C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_000534B0, -270.326f, 0, 109.5733f, 0, 0x1111, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007C2B0 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_000534B0, -446.0793f, 0, 181.9576f, 0, 0x2666, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007C2E4 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_000534B0, -69.34599f, 0, 20.09125f, 0, 0x1111, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007C318 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0005434C, -270.326f, 0, 109.5733f, 0, 0x1111, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007C34C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0005434C, -446.0793f, 0, 181.9576f, 0, 0x2666, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007C380 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0005434C, -69.34599f, 0, 20.09125f, 0, 0x1111, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007C3B4 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00055078, 2133, 60.3f, 906.5f, 0, 0xFFFFF801, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007C3E8 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00055078, 2132, 37.3f, 905, 0, 0xFFFFB001, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007C41C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00055078, 2131.5f, 34.2f, 903.5f, 0, 0xFFFFA800, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007C450 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00055078, 2133, 30.80001f, 904.5f, 0, 0xFFFFA000, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007C484 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00055078, 2132.5f, 28, 903.5f, 0, 0xFFFF9800, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007C4B8 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00055078, 2132.5f, 25.1f, 904, 0, 0xFFFF9000, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007C4EC = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00055078, 2133, 23.6f, 903, 0, 0xFFFF8800, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007C520 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00055078, 2132, 22.4f, 904, 0, 0xFFFF8000, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007C554 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00055078, 2133, 59.29998f, 905.5f, 0, 0xFFFFF000, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007C588 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00055078, 2132, 57.39998f, 907, 0, 0xFFFFE800, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007C5BC = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00055078, 2132, 55.39998f, 905.5f, 0, 0xFFFFE000, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007C5F0 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00055078, 2131, 52.89998f, 907, 0, 0xFFFFD800, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007C624 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00055078, 2132, 50.29998f, 905.5f, 0, 0xFFFFD001, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007C658 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00055078, 2130.5f, 47.30001f, 905.5f, 0, 0xFFFFC800, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007C68C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00055078, 2131.5f, 44, 905, 0, 0xFFFFC001, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007C6C0 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00055078, 2130.5f, 40.9f, 904, 0, 0xFFFFB800, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007C6F4 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00056684, -640, 13, 980, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007C728 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00056684, -800, 13, 1550, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007C75C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00056684, -880, 13, 1550, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007C790 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00056684, -960, 13, 1470, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007C7C4 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00056684, -880, 54, 1210, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007C7F8 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00056684, -720, 13, 1550, 0, 0x3FFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007C82C = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00056684, -640, 13, 1470, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007C860 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00056684, -640, 13, 1390, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007C894 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00057C94, -960, 13, 1550, 0, 0xFFFFC001, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007C8C8 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00057C94, -960, 54, 1210, 0, 0x8000, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007C8FC = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00057FD8, -515.5f, 72.5f, 1210, 0, 0xFFFF8000, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007C930 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00058C80, 6117.327f, 186, 921.1904f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007C964 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00058C80, 6024.876f, 184, 856.2148f, 0, 0xFFFFE70B, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007C998 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00059098, 2645, -38, 511, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007C9CC = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00059290, 2645, -38, 365, 0, 0x8000, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007CA00 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00059D2C, 5909.7f, 0, 775.2f, 0, 0xF1B4, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007CA34 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00059D2C, 5909.7f, 0, 775.2f, 0, 0x1070A, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007CA68 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00059D2C, 5909.7f, 0, 775.2f, 0, 0x5C5F, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007CA9C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00059D2C, 5909.7f, 0, 775.2f, 0, 0x31B4, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007CAD0 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00059D2C, 5909.7f, 0, 775.2f, 0, 0x870A, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007CB04 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00059D2C, 5909.7f, 0, 775.2f, 0, 0x71B4, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007CB38 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00059D2C, 5909.7f, 0, 775.2f, 0, 0xB1B4, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007CB6C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00059D2C, 5909.7f, 0, 775.2f, 0, 0xC70A, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007CBA0 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00059D2C, 5909.7f, 0, 775.2f, 0, 0xDC5F, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007CBD4 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0006AE9C, -515.5f, 68.5f, 1210, 0, 0x8000, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_0007CC08[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 6, 0, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_0007CC1C[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0007CC1C[] = {
 	0x8000u | 22, 10, 21, 9, 20, 8, 19, 7, 18, 6, 17, 5, 16, 4, 15, 3, 14, 2, 13, 1, 12, 0, 11
 };
 
-NJS_MESHSET_SADX meshlist_0007CC4C[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_0007CC4C[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 1, poly_0007CC1C, NULL, NULL, NULL, NULL, NULL }
 };
 
-NJS_VECTOR vertex_0007CC64[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_0007CC64[] = {
 	{ 1888.5f, 225, 653.0001f },
 	{ 1888.497f, 225, 624.5042f },
 	{ 1888.493f, 215, 595.4164f },
@@ -51285,7 +51285,7 @@ NJS_VECTOR vertex_0007CC64[] = {
 	{ 1906.763f, 162.9077f, 400.9686f }
 };
 
-NJS_VECTOR normal_0007CD6C[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_0007CD6C[] = {
 	{ -1, 0, 0.000103f },
 	{ -1, 0, 0.000138f },
 	{ -1, 0, 0.00024f },
@@ -51310,22 +51310,22 @@ NJS_VECTOR normal_0007CD6C[] = {
 	{ -0.985082f, 0, -0.172083f }
 };
 
-NJS_MODEL_SADX attach_0007CE74 = { vertex_0007CC64, normal_0007CD6C, LengthOfArray<Sint32>(vertex_0007CC64), meshlist_0007CC4C, matlist_0007CC08, LengthOfArray<Uint16>(meshlist_0007CC4C), LengthOfArray<Uint16>(matlist_0007CC08), { 1897.624f, 216.5f, 526.9844f }, 150.0741f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_0007CE74 = { vertex_0007CC64, normal_0007CD6C, LengthOfArray<Sint32>(vertex_0007CC64), meshlist_0007CC4C, matlist_0007CC08, LengthOfArray<Uint16>(meshlist_0007CC4C), LengthOfArray<Uint16>(matlist_0007CC08), { 1897.624f, 216.5f, 526.9844f }, 150.0741f, NULL };
 
-NJS_OBJECT object_0007CE9C = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0007CE74, 0, -86, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_0007CED0[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007CE9C = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0007CE74, 0, -86, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_0007CED0[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 6, 0, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_0007CEE4[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0007CEE4[] = {
 	0x8000u | 20, 19, 9, 18, 8, 17, 7, 16, 6, 15, 5, 14, 4, 13, 3, 12, 2, 11, 1, 10, 0
 };
 
-NJS_MESHSET_SADX meshlist_0007CF10[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_0007CF10[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 1, poly_0007CEE4, NULL, NULL, NULL, NULL, NULL }
 };
 
-NJS_VECTOR vertex_0007CF28[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_0007CF28[] = {
 	{ 1878.6f, 75, 394.3242f },
 	{ 1884.618f, 75, 367.5527f },
 	{ 1892.58f, 75, 340.2503f },
@@ -51348,7 +51348,7 @@ NJS_VECTOR vertex_0007CF28[] = {
 	{ 2068.134f, 100.4057f, 236.5502f }
 };
 
-NJS_VECTOR normal_0007D018[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_0007D018[] = {
 	{ 0.975651f, 0, 0.21933f },
 	{ 0.9683059f, 0, 0.249768f },
 	{ 0.943127f, 0, 0.332431f },
@@ -51371,22 +51371,22 @@ NJS_VECTOR normal_0007D018[] = {
 	{ 0.111037f, 0, 0.993816f }
 };
 
-NJS_MODEL_SADX attach_0007D108 = { vertex_0007CF28, normal_0007D018, LengthOfArray<Sint32>(vertex_0007CF28), meshlist_0007CF10, matlist_0007CED0, LengthOfArray<Uint16>(meshlist_0007CF10), LengthOfArray<Uint16>(matlist_0007CED0), { 1973.367f, 119.9333f, 315.4371f }, 123.3041f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_0007D108 = { vertex_0007CF28, normal_0007D018, LengthOfArray<Sint32>(vertex_0007CF28), meshlist_0007CF10, matlist_0007CED0, LengthOfArray<Uint16>(meshlist_0007CF10), LengthOfArray<Uint16>(matlist_0007CED0), { 1973.367f, 119.9333f, 315.4371f }, 123.3041f, NULL };
 
-NJS_OBJECT object_0007D130 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0007D108, 0, -86, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_0007D164[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007D130 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0007D108, 0, -86, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_0007D164[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 6, 0, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_0007D178[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0007D178[] = {
 	0x8000u | 22, 0, 11, 1, 12, 2, 13, 3, 14, 4, 15, 5, 16, 6, 17, 7, 18, 8, 19, 9, 20, 10, 21
 };
 
-NJS_MESHSET_SADX meshlist_0007D1A8[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_0007D1A8[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 1, poly_0007D178, NULL, NULL, NULL, NULL, NULL }
 };
 
-NJS_VECTOR vertex_0007D1C0[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_0007D1C0[] = {
 	{ 1859.5f, 225, 654.5f },
 	{ 1859.502f, 225, 624.4578f },
 	{ 1859.507f, 215, 595.1463f },
@@ -51411,7 +51411,7 @@ NJS_VECTOR vertex_0007D1C0[] = {
 	{ 1878.6f, 164.8666f, 394.3242f }
 };
 
-NJS_VECTOR normal_0007D2C8[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_0007D2C8[] = {
 	{ 1, 0, 0.000085f },
 	{ 1, 0, 0.00013f },
 	{ 1, 0, 0.000329f },
@@ -51436,22 +51436,22 @@ NJS_VECTOR normal_0007D2C8[] = {
 	{ 0.984704f, 0, 0.174235f }
 };
 
-NJS_MODEL_SADX attach_0007D3D0 = { vertex_0007D1C0, normal_0007D2C8, LengthOfArray<Sint32>(vertex_0007D1C0), meshlist_0007D1A8, matlist_0007D164, LengthOfArray<Uint16>(meshlist_0007D1A8), LengthOfArray<Uint16>(matlist_0007D164), { 1869.05f, 216.5f, 524.412f }, 153.5093f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_0007D3D0 = { vertex_0007D1C0, normal_0007D2C8, LengthOfArray<Sint32>(vertex_0007D1C0), meshlist_0007D1A8, matlist_0007D164, LengthOfArray<Uint16>(meshlist_0007D1A8), LengthOfArray<Uint16>(matlist_0007D164), { 1869.05f, 216.5f, 524.412f }, 153.5093f, NULL };
 
-NJS_OBJECT object_0007D3F8 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0007D3D0, 0, -86, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_0007D42C[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007D3F8 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0007D3D0, 0, -86, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_0007D42C[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 6, 0, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_0007D440[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0007D440[] = {
 	0x8000u | 20, 10, 0, 11, 1, 12, 2, 13, 3, 14, 4, 15, 5, 16, 6, 17, 7, 18, 8, 19, 9
 };
 
-NJS_MESHSET_SADX meshlist_0007D46C[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_0007D46C[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 1, poly_0007D440, NULL, NULL, NULL, NULL, NULL }
 };
 
-NJS_VECTOR vertex_0007D484[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_0007D484[] = {
 	{ 1906.763f, 75, 400.9686f },
 	{ 1912.393f, 75, 375.6434f },
 	{ 1919.632f, 75, 350.5279f },
@@ -51474,7 +51474,7 @@ NJS_VECTOR vertex_0007D484[] = {
 	{ 2069.749f, 100.6003f, 267.5053f }
 };
 
-NJS_VECTOR normal_0007D574[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_0007D574[] = {
 	{ -0.976175f, 0, -0.216983f },
 	{ -0.968994f, 0, -0.247085f },
 	{ -0.944446f, 0, -0.328667f },
@@ -51497,25 +51497,25 @@ NJS_VECTOR normal_0007D574[] = {
 	{ -0.043496f, 0, -0.999054f }
 };
 
-NJS_MODEL_SADX attach_0007D664 = { vertex_0007D484, normal_0007D574, LengthOfArray<Sint32>(vertex_0007D484), meshlist_0007D46C, matlist_0007D42C, LengthOfArray<Uint16>(meshlist_0007D46C), LengthOfArray<Uint16>(matlist_0007D42C), { 1988.256f, 118.9539f, 334.237f }, 105.3288f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_0007D664 = { vertex_0007D484, normal_0007D574, LengthOfArray<Sint32>(vertex_0007D484), meshlist_0007D46C, matlist_0007D42C, LengthOfArray<Uint16>(meshlist_0007D46C), LengthOfArray<Uint16>(matlist_0007D42C), { 1988.256f, 118.9539f, 334.237f }, 105.3288f, NULL };
 
-NJS_OBJECT object_0007D68C = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0007D664, 0, -86, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0007D68C = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0007D664, 0, -86, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
 //DX collision
 
-NJS_MATERIAL matlist_00B81B40[] = {
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_00B81B40[] = {
 	{ { 0xFFFFFFFF }, { 0x00000000 }, 0, 0, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_LIGHT | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_00B81B54[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00B81B54[] = {
 	0x8000u | 16, 1, 0, 3, 2, 5, 4, 7, 6, 9, 8, 11, 10, 13, 12, 15, 14
 };
 
-NJS_MESHSET_SADX meshlist_00B81B78[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00B81B78[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 1, poly_00B81B54, NULL, NULL, NULL, NULL, NULL }
 };
 
-NJS_VECTOR vertex_00B81B98[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_00B81B98[] = {
 	{ 294.9845f, -6.16785f, -48.26768f },
 	{ 294.9844f, 0, -48.26768f },
 	{ 253.8085f, -6.16785f, -86.20392f },
@@ -51534,7 +51534,7 @@ NJS_VECTOR vertex_00B81B98[] = {
 	{ -39.0662f, 0, -235.7443f }
 };
 
-NJS_VECTOR normal_00B81C58[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_00B81C58[] = {
 	{ -0.677582f, 0, 0.735447f },
 	{ -0.677582f, 0, 0.735447f },
 	{ -0.7103f, 0, 0.703899f },
@@ -51553,14 +51553,14 @@ NJS_VECTOR normal_00B81C58[] = {
 	{ -0.076839f, 0, 0.997043f }
 };
 
-NJS_MODEL_SADX attach_00B81D18 = { vertex_00B81B98, normal_00B81C58, LengthOfArray<Sint32>(vertex_00B81B98), meshlist_00B81B78, matlist_00B81B40, LengthOfArray<Uint16>(meshlist_00B81B78), LengthOfArray<Uint16>(matlist_00B81B40), { 127.9592f, -3.083925f, -142.006f }, 191.5316f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00B81D18 = { vertex_00B81B98, normal_00B81C58, LengthOfArray<Sint32>(vertex_00B81B98), meshlist_00B81B78, matlist_00B81B40, LengthOfArray<Uint16>(meshlist_00B81B78), LengthOfArray<Uint16>(matlist_00B81B40), { 127.9592f, -3.083925f, -142.006f }, 191.5316f, NULL };
 
-NJS_OBJECT objectDX_00B81D44 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00B81D18, 725.524f, 86.48002f, 769.5255f, 0, 0xFFFFF8AB, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_00B81D78[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT objectDX_00B81D44 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00B81D18, 725.524f, 86.48002f, 769.5255f, 0, 0xFFFFF8AB, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_00B81D78[] = {
 	{ { 0x00FFFFFF }, { 0x00FFFFFF }, 11, 0, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_USE_ALPHA | NJD_FLAG_IGNORE_LIGHT | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_00B81D90[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00B81D90[] = {
 	4, 50, 48, 23, 51,
 	4, 23, 51, 36, 52,
 	4, 24, 51, 11, 48,
@@ -51600,11 +51600,11 @@ Sint16 poly_00B81D90[] = {
 	0x8000u | 6, 9, 8, 54, 55, 20, 19
 };
 
-NJS_MESHSET_SADX meshlist_00B81F28[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00B81F28[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 37, poly_00B81D90, NULL, NULL, NULL, NULL, NULL }
 };
 
-NJS_VECTOR vertex_00B81F48[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_00B81F48[] = {
 	{ -106.9115f, -0.000191f, 413.5483f },
 	{ -33.77343f, -0.000191f, 416.396f },
 	{ 35.07379f, -0.000189f, 405.5372f },
@@ -51671,7 +51671,7 @@ NJS_VECTOR vertex_00B81F48[] = {
 	{ -129.975f, -0.00088f, 365.861f }
 };
 
-NJS_VECTOR normal_00B82248[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_00B82248[] = {
 	{ 0, 1, 0.000002f },
 	{ 0, 1, 0.000002f },
 	{ 0.000001f, 1, 0.000002f },
@@ -51738,14 +51738,14 @@ NJS_VECTOR normal_00B82248[] = {
 	{ 0, 1, 0.000001f }
 };
 
-NJS_MODEL_SADX attach_00B82548 = { vertex_00B81F48, normal_00B82248, LengthOfArray<Sint32>(vertex_00B81F48), meshlist_00B81F28, matlist_00B81D78, LengthOfArray<Uint16>(meshlist_00B81F28), LengthOfArray<Uint16>(matlist_00B81D78), { 0.34597f, -0.000101f, 141.8846f }, 371.775f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00B82548 = { vertex_00B81F48, normal_00B82248, LengthOfArray<Sint32>(vertex_00B81F48), meshlist_00B81F28, matlist_00B81D78, LengthOfArray<Uint16>(meshlist_00B81F28), LengthOfArray<Uint16>(matlist_00B81D78), { 0.34597f, -0.000101f, 141.8846f }, 371.775f, NULL };
 
-NJS_OBJECT objectDX_00B82574 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00B82548, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_00B825A8[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT objectDX_00B82574 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00B82548, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_00B825A8[] = {
 	{ { 0x00FFFFFF }, { 0x00FFFFFF }, 11, 0, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_USE_ALPHA | NJD_FLAG_IGNORE_LIGHT | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_00B825C0[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00B825C0[] = {
 	4, 21, 13, 22, 38,
 	4, 18, 17, 10, 9,
 	0x8000u | 6, 7, 8, 46, 47, 1, 2,
@@ -51772,11 +51772,11 @@ Sint16 poly_00B825C0[] = {
 	0x8000u | 6, 5, 4, 42, 43, 11, 10
 };
 
-NJS_MESHSET_SADX meshlist_00B826C0[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00B826C0[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 24, poly_00B825C0, NULL, NULL, NULL, NULL, NULL }
 };
 
-NJS_VECTOR vertex_00B826E0[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_00B826E0[] = {
 	{ -738.8126f, -19.07393f, 240.2866f },
 	{ -805.459f, -19.07393f, 269.6643f },
 	{ -843.674f, -19.07393f, 326.604f },
@@ -51827,7 +51827,7 @@ NJS_VECTOR vertex_00B826E0[] = {
 	{ -790.1298f, -8.779396f, 340.2615f }
 };
 
-NJS_VECTOR normal_00B82920[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_00B82920[] = {
 	{ -0.157166f, 0.920963f, -0.356549f },
 	{ -0.165272f, 0.967375f, -0.19202f },
 	{ -0.16742f, 0.979462f, -0.112364f },
@@ -51878,14 +51878,14 @@ NJS_VECTOR normal_00B82920[] = {
 	{ -0.104241f, 0.992174f, -0.068742f }
 };
 
-NJS_MODEL_SADX attach_00B82B60 = { vertex_00B826E0, normal_00B82920, LengthOfArray<Sint32>(vertex_00B826E0), meshlist_00B826C0, matlist_00B825A8, LengthOfArray<Uint16>(meshlist_00B826C0), LengthOfArray<Uint16>(matlist_00B825A8), { -544.8752f, -7.191359f, 408.7761f }, 343.0297f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00B82B60 = { vertex_00B826E0, normal_00B82920, LengthOfArray<Sint32>(vertex_00B826E0), meshlist_00B826C0, matlist_00B825A8, LengthOfArray<Uint16>(meshlist_00B826C0), LengthOfArray<Uint16>(matlist_00B825A8), { -544.8752f, -7.191359f, 408.7761f }, 343.0297f, NULL };
 
-NJS_OBJECT objectDX_00B82B8C = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_BREAK, &attach_00B82B60, 0, 0, 0, 0, 0, 0, 1, 0.00001f, 1, NULL, NULL };
-NJS_MATERIAL matlist_00B82BC0[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT objectDX_00B82B8C = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_BREAK, &attach_00B82B60, 0, 0, 0, 0, 0, 0, 1, 0.00001f, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_00B82BC0[] = {
 	{ { 0x00FFFFFF }, { 0x00FFFFFF }, 11, 0, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_USE_ALPHA | NJD_FLAG_IGNORE_LIGHT | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_00B82BD8[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00B82BD8[] = {
 	4, 55, 54, 37, 36,
 	4, 56, 55, 38, 37,
 	4, 57, 56, 39, 38,
@@ -51939,11 +51939,11 @@ Sint16 poly_00B82BD8[] = {
 	0x8000u | 6, 2, 1, 74, 73, 20, 19
 };
 
-NJS_MESHSET_SADX meshlist_00B82E1C[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00B82E1C[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 51, poly_00B82BD8, NULL, NULL, NULL, NULL, NULL }
 };
 
-NJS_VECTOR vertex_00B82E38[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_00B82E38[] = {
 	{ -843.674f, -19.07393f, 326.604f },
 	{ -864.1891f, -19.07393f, 378.9356f },
 	{ -881.2437f, -19.07393f, 434.976f },
@@ -52036,7 +52036,7 @@ NJS_VECTOR vertex_00B82E38[] = {
 	{ -404.7543f, -8.779396f, 537.6254f }
 };
 
-NJS_VECTOR normal_00B83270[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_00B83270[] = {
 	{ -0.171784f, 0.98283f, -0.067343f },
 	{ -0.173509f, 0.983016f, -0.059782f },
 	{ -0.176645f, 0.983275f, -0.044357f },
@@ -52129,14 +52129,14 @@ NJS_VECTOR normal_00B83270[] = {
 	{ 0.077226f, 0.996542f, 0.03068f }
 };
 
-NJS_MODEL_SADX attach_00B836A8 = { vertex_00B82E38, normal_00B83270, LengthOfArray<Sint32>(vertex_00B82E38), meshlist_00B82E1C, matlist_00B82BC0, LengthOfArray<Uint16>(meshlist_00B82E1C), LengthOfArray<Uint16>(matlist_00B82BC0), { -640.9039f, -9.536963f, 627.7316f }, 408.0135f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00B836A8 = { vertex_00B82E38, normal_00B83270, LengthOfArray<Sint32>(vertex_00B82E38), meshlist_00B82E1C, matlist_00B82BC0, LengthOfArray<Uint16>(meshlist_00B82E1C), LengthOfArray<Uint16>(matlist_00B82BC0), { -640.9039f, -9.536963f, 627.7316f }, 408.0135f, NULL };
 
-NJS_OBJECT objectDX_00B836D4 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_BREAK, &attach_00B836A8, 0, 0, 0, 0, 0, 0, 1, 0.00001f, 1, NULL, NULL };
-NJS_MATERIAL matlist_00B83708[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT objectDX_00B836D4 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_BREAK, &attach_00B836A8, 0, 0, 0, 0, 0, 0, 1, 0.00001f, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_00B83708[] = {
 	{ { 0x00FFFFFF }, { 0x00FFFFFF }, 11, 0, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_USE_ALPHA | NJD_FLAG_IGNORE_LIGHT | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_00B83720[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00B83720[] = {
 	4, 28, 45, 16, 44,
 	4, 42, 38, 17, 44,
 	0x8000u | 5, 35, 10, 53, 52, 4,
@@ -52173,11 +52173,11 @@ Sint16 poly_00B83720[] = {
 	0x8000u | 5, 6, 37, 47, 46, 0
 };
 
-NJS_MESHSET_SADX meshlist_00B8388C[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00B8388C[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 34, poly_00B83720, NULL, NULL, NULL, NULL, NULL }
 };
 
-NJS_VECTOR vertex_00B838A8[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_00B838A8[] = {
 	{ -124.9115f, 0.000039f, 418.5483f },
 	{ -158.1627f, 0.000039f, 491.4416f },
 	{ -232.8283f, 0.000039f, 526.2914f },
@@ -52235,7 +52235,7 @@ NJS_VECTOR vertex_00B838A8[] = {
 	{ -387.0505f, 0.000142f, 466.4615f }
 };
 
-NJS_VECTOR normal_00B83B40[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_00B83B40[] = {
 	{ 0.000002f, 1, 0.000001f },
 	{ 0.000001f, 1, 0.000001f },
 	{ 0.000001f, 1, 0.000002f },
@@ -52293,14 +52293,14 @@ NJS_VECTOR normal_00B83B40[] = {
 	{ 0.000001f, 1, 0.000001f }
 };
 
-NJS_MODEL_SADX attach_00B83DD4 = { vertex_00B838A8, normal_00B83B40, LengthOfArray<Sint32>(vertex_00B838A8), meshlist_00B8388C, matlist_00B83708, LengthOfArray<Uint16>(meshlist_00B8388C), LengthOfArray<Uint16>(matlist_00B83708), { -271.9921f, 0.000134f, 424.6964f }, 200.9303f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00B83DD4 = { vertex_00B838A8, normal_00B83B40, LengthOfArray<Sint32>(vertex_00B838A8), meshlist_00B8388C, matlist_00B83708, LengthOfArray<Uint16>(meshlist_00B8388C), LengthOfArray<Uint16>(matlist_00B83708), { -271.9921f, 0.000134f, 424.6964f }, 200.9303f, NULL };
 
-NJS_OBJECT objectDX_00B83E00 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00B83DD4, 18, 0, -5, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_00B83E34[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT objectDX_00B83E00 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00B83DD4, 18, 0, -5, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_00B83E34[] = {
 	{ { 0x00FFFFFF }, { 0x00FFFFFF }, 11, 0, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_USE_ALPHA | NJD_FLAG_IGNORE_LIGHT | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_00B83E48[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00B83E48[] = {
 	4, 36, 35, 19, 18,
 	4, 35, 34, 18, 17,
 	4, 17, 33, 0, 16,
@@ -52351,11 +52351,11 @@ Sint16 poly_00B83E48[] = {
 	0x8000u | 6, 41, 40, 83, 84, 58, 57
 };
 
-NJS_MESHSET_SADX meshlist_00B84068[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00B84068[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 48, poly_00B83E48, NULL, NULL, NULL, NULL, NULL }
 };
 
-NJS_VECTOR vertex_00B84088[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_00B84088[] = {
 	{ -38.03577f, -0.0004f, -254.2908f },
 	{ -7.644531f, -0.0004f, -237.3712f },
 	{ 20.47064f, -0.0004f, -210.261f },
@@ -52443,7 +52443,7 @@ NJS_VECTOR vertex_00B84088[] = {
 	{ -277.0907f, -0.000155f, 79.68646f }
 };
 
-NJS_VECTOR normal_00B84488[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_00B84488[] = {
 	{ 0, 1, -0.00001f },
 	{ 0.000001f, 1, -0.00001f },
 	{ 0.000001f, 1, -0.00001f },
@@ -52531,14 +52531,14 @@ NJS_VECTOR normal_00B84488[] = {
 	{ -0.00002f, 1, 0 }
 };
 
-NJS_MODEL_SADX attach_00B84884 = { vertex_00B84088, normal_00B84488, LengthOfArray<Sint32>(vertex_00B84088), meshlist_00B84068, matlist_00B83E34, LengthOfArray<Uint16>(meshlist_00B84068), LengthOfArray<Uint16>(matlist_00B83E34), { -88.63225f, -0.000215f, -193.5467f }, 437.5248f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00B84884 = { vertex_00B84088, normal_00B84488, LengthOfArray<Sint32>(vertex_00B84088), meshlist_00B84068, matlist_00B83E34, LengthOfArray<Uint16>(meshlist_00B84068), LengthOfArray<Uint16>(matlist_00B83E34), { -88.63225f, -0.000215f, -193.5467f }, 437.5248f, NULL };
 
-NJS_OBJECT objectDX_00B848B0 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00B84884, -874, 0, 1412, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_00B848E4[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT objectDX_00B848B0 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00B84884, -874, 0, 1412, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_00B848E4[] = {
 	{ { 0x00FFFFFF }, { 0x00FFFFFF }, 11, 0, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_USE_ALPHA | NJD_FLAG_IGNORE_LIGHT | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_00B848F8[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00B848F8[] = {
 	4, 62, 61, 39, 38,
 	4, 61, 60, 38, 37,
 	4, 60, 59, 37, 36,
@@ -52607,11 +52607,11 @@ Sint16 poly_00B848F8[] = {
 	0x8000u | 6, 47, 46, 113, 114, 70, 69
 };
 
-NJS_MESHSET_SADX meshlist_00B84BE4[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00B84BE4[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 66, poly_00B848F8, NULL, NULL, NULL, NULL, NULL }
 };
 
-NJS_VECTOR vertex_00B84C00[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_00B84C00[] = {
 	{ 80.8736f, -0.0004f, -96.31567f },
 	{ 98.61005f, -0.0004f, -49.09863f },
 	{ 125.2365f, -0.0004f, 0.039673f },
@@ -52729,7 +52729,7 @@ NJS_VECTOR vertex_00B84C00[] = {
 	{ 194.6993f, -0.000155f, -148.3255f }
 };
 
-NJS_VECTOR normal_00B85168[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_00B85168[] = {
 	{ 0.000001f, 1, 0 },
 	{ 0.000001f, 1, 0 },
 	{ 0.000001f, 1, -0.00001f },
@@ -52847,14 +52847,14 @@ NJS_VECTOR normal_00B85168[] = {
 	{ 0.000002f, 1, -0.00001f }
 };
 
-NJS_MODEL_SADX attach_00B856CC = { vertex_00B84C00, normal_00B85168, LengthOfArray<Sint32>(vertex_00B84C00), meshlist_00B84BE4, matlist_00B848E4, LengthOfArray<Uint16>(meshlist_00B84BE4), LengthOfArray<Uint16>(matlist_00B848E4), { 89.91211f, -0.000191f, 119.8972f }, 518.8322f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00B856CC = { vertex_00B84C00, normal_00B85168, LengthOfArray<Sint32>(vertex_00B84C00), meshlist_00B84BE4, matlist_00B848E4, LengthOfArray<Uint16>(meshlist_00B84BE4), LengthOfArray<Uint16>(matlist_00B848E4), { 89.91211f, -0.000191f, 119.8972f }, 518.8322f, NULL };
 
-NJS_OBJECT objectDX_00B856F8 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00B856CC, -874, 0, 1412, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_00B8572C[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT objectDX_00B856F8 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00B856CC, -874, 0, 1412, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_00B8572C[] = {
 	{ { 0x00FFFFFF }, { 0x00FFFFFF }, 11, 0, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_USE_ALPHA | NJD_FLAG_IGNORE_LIGHT | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_00B85740[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00B85740[] = {
 	4, 31, 30, 51, 50,
 	4, 32, 31, 52, 51,
 	4, 1, 0, 21, 20,
@@ -52914,11 +52914,11 @@ Sint16 poly_00B85740[] = {
 	4, 20, 39, 40, 59
 };
 
-NJS_MESHSET_SADX meshlist_00B8597C[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00B8597C[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 57, poly_00B85740, NULL, NULL, NULL, NULL, NULL }
 };
 
-NJS_VECTOR vertex_00B85998[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_00B85998[] = {
 	{ -10.75785f, 0.000011f, 1316.146f },
 	{ -67.72378f, 0.000011f, 1224.525f },
 	{ -96.77918f, 0.000011f, 1138.126f },
@@ -53001,7 +53001,7 @@ NJS_VECTOR vertex_00B85998[] = {
 	{ 112.0614f, 0.000221f, 1219.125f }
 };
 
-NJS_VECTOR normal_00B85D58[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_00B85D58[] = {
 	{ -0.00001f, 1, 0.000002f },
 	{ -0.00002f, 1, 0.000001f },
 	{ -0.00003f, 1, 0.000001f },
@@ -53084,14 +53084,14 @@ NJS_VECTOR normal_00B85D58[] = {
 	{ 0, 1, 0.000001f }
 };
 
-NJS_MODEL_SADX attach_00B86118 = { vertex_00B85998, normal_00B85D58, LengthOfArray<Sint32>(vertex_00B85998), meshlist_00B8597C, matlist_00B8572C, LengthOfArray<Uint16>(meshlist_00B8597C), LengthOfArray<Uint16>(matlist_00B8572C), { 175.4539f, 0.000116f, 1058.425f }, 427.8365f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00B86118 = { vertex_00B85998, normal_00B85D58, LengthOfArray<Sint32>(vertex_00B85998), meshlist_00B8597C, matlist_00B8572C, LengthOfArray<Uint16>(meshlist_00B8597C), LengthOfArray<Uint16>(matlist_00B8572C), { 175.4539f, 0.000116f, 1058.425f }, 427.8365f, NULL };
 
-NJS_OBJECT objectDX_00B86144 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00B86118, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_00B86178[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT objectDX_00B86144 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00B86118, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_00B86178[] = {
 	{ { 0x00FFFFFF }, { 0x00FFFFFF }, 11, 0, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_USE_ALPHA | NJD_FLAG_IGNORE_LIGHT | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_00B86190[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00B86190[] = {
 	6, 60, 39, 93, 38, 94, 37,
 	4, 40, 39, 61, 60,
 	4, 41, 40, 62, 61,
@@ -53157,11 +53157,11 @@ Sint16 poly_00B86190[] = {
 	6, 94, 92, 93, 81, 60, 82
 };
 
-NJS_MESHSET_SADX meshlist_00B86410[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00B86410[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 63, poly_00B86190, NULL, NULL, NULL, NULL, NULL }
 };
 
-NJS_VECTOR vertex_00B86430[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_00B86430[] = {
 	{ 72.25692f, 0.00008f, 743.5544f },
 	{ 103.7053f, 0.00008f, 710.4202f },
 	{ 133.6886f, 0.00008f, 677.0831f },
@@ -53259,7 +53259,7 @@ NJS_VECTOR vertex_00B86430[] = {
 	{ 577.6848f, 0.000213f, 647.7548f }
 };
 
-NJS_VECTOR normal_00B868A8[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_00B868A8[] = {
 	{ -0.00001f, 1, -0.00001f },
 	{ -0.00001f, 1, -0.00001f },
 	{ -0.00001f, 1, -0.00002f },
@@ -53357,14 +53357,14 @@ NJS_VECTOR normal_00B868A8[] = {
 	{ 0, 1, 0.000001f }
 };
 
-NJS_MODEL_SADX attach_00B86D1C = { vertex_00B86430, normal_00B868A8, LengthOfArray<Sint32>(vertex_00B86430), meshlist_00B86410, matlist_00B86178, LengthOfArray<Uint16>(meshlist_00B86410), LengthOfArray<Uint16>(matlist_00B86178), { 340.1082f, 0.000129f, 645.5497f }, 373.4987f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00B86D1C = { vertex_00B86430, normal_00B868A8, LengthOfArray<Sint32>(vertex_00B86430), meshlist_00B86410, matlist_00B86178, LengthOfArray<Uint16>(meshlist_00B86410), LengthOfArray<Uint16>(matlist_00B86178), { 340.1082f, 0.000129f, 645.5497f }, 373.4987f, NULL };
 
-NJS_OBJECT objectDX_00B86D48 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00B86D1C, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_00B86D7C[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT objectDX_00B86D48 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00B86D1C, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_00B86D7C[] = {
 	{ { 0x00FFFFFF }, { 0x00FFFFFF }, 11, 0, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_USE_ALPHA | NJD_FLAG_IGNORE_LIGHT | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_00B86D90[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00B86D90[] = {
 	4, 31, 30, 60, 88,
 	4, 59, 58, 89, 87,
 	4, 58, 57, 87, 86,
@@ -53425,11 +53425,11 @@ Sint16 poly_00B86D90[] = {
 	4, 34, 33, 63, 62
 };
 
-NJS_MESHSET_SADX meshlist_00B86FD4[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00B86FD4[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 58, poly_00B86D90, NULL, NULL, NULL, NULL, NULL }
 };
 
-NJS_VECTOR vertex_00B86FF0[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_00B86FF0[] = {
 	{ 607.9595f, 0.000017f, 385.248f },
 	{ 666.548f, 0.000017f, 388.7039f },
 	{ 723.3859f, 0.000017f, 396.7399f },
@@ -53522,7 +53522,7 @@ NJS_VECTOR vertex_00B86FF0[] = {
 	{ 584.2587f, 0.000235f, 633.249f }
 };
 
-NJS_VECTOR normal_00B87428[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_00B87428[] = {
 	{ 0, 1, -0.00003f },
 	{ 0, 1, -0.00003f },
 	{ 0, 1, -0.00003f },
@@ -53615,14 +53615,14 @@ NJS_VECTOR normal_00B87428[] = {
 	{ -0.00001f, 1, 0.000001f }
 };
 
-NJS_MODEL_SADX attach_00B87860 = { vertex_00B86FF0, normal_00B87428, LengthOfArray<Sint32>(vertex_00B86FF0), meshlist_00B86FD4, matlist_00B86D7C, LengthOfArray<Uint16>(meshlist_00B86FD4), LengthOfArray<Uint16>(matlist_00B86D7C), { 835.7756f, 0.000148f, 769.4451f }, 487.1068f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00B87860 = { vertex_00B86FF0, normal_00B87428, LengthOfArray<Sint32>(vertex_00B86FF0), meshlist_00B86FD4, matlist_00B86D7C, LengthOfArray<Uint16>(meshlist_00B86FD4), LengthOfArray<Uint16>(matlist_00B86D7C), { 835.7756f, 0.000148f, 769.4451f }, 487.1068f, NULL };
 
-NJS_OBJECT objectDX_00B8788C = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00B87860, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_00B878C0[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT objectDX_00B8788C = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00B87860, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_00B878C0[] = {
 	{ { 0x00FFFFFF }, { 0x00FFFFFF }, 11, 0, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_USE_ALPHA | NJD_FLAG_IGNORE_LIGHT | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_00B878D8[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00B878D8[] = {
 	3, 10, 17, 28,
 	3, 30, 31, 14,
 	3, 12, 11, 28,
@@ -53680,11 +53680,11 @@ Sint16 poly_00B878D8[] = {
 	4, 5, 4, 22, 23
 };
 
-NJS_MESHSET_SADX meshlist_00B87AF0[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00B87AF0[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 55, poly_00B878D8, NULL, NULL, NULL, NULL, NULL }
 };
 
-NJS_VECTOR vertex_00B87B10[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_00B87B10[] = {
 	{ -120.8772f, 0.000018f, 196.1985f },
 	{ -162.7028f, 0.000018f, 191.0398f },
 	{ -209.1544f, 0.000018f, 186.8388f },
@@ -53759,7 +53759,7 @@ NJS_VECTOR vertex_00B87B10[] = {
 	{ -83.53491f, 0.000085f, 0.228638f }
 };
 
-NJS_VECTOR normal_00B87E70[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_00B87E70[] = {
 	{ 0, 1, 0.000001f },
 	{ 0, 1, 0.000001f },
 	{ 0, 1, 0.000001f },
@@ -53834,14 +53834,14 @@ NJS_VECTOR normal_00B87E70[] = {
 	{ 0, 1, -0.00001f }
 };
 
-NJS_MODEL_SADX attach_00B881D0 = { vertex_00B87B10, normal_00B87E70, LengthOfArray<Sint32>(vertex_00B87B10), meshlist_00B87AF0, matlist_00B878C0, LengthOfArray<Uint16>(meshlist_00B87AF0), LengthOfArray<Uint16>(matlist_00B878C0), { -329.8852f, 0.000035f, -6.669235f }, 319.1296f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00B881D0 = { vertex_00B87B10, normal_00B87E70, LengthOfArray<Sint32>(vertex_00B87B10), meshlist_00B87AF0, matlist_00B878C0, LengthOfArray<Uint16>(meshlist_00B87AF0), LengthOfArray<Uint16>(matlist_00B878C0), { -329.8852f, 0.000035f, -6.669235f }, 319.1296f, NULL };
 
-NJS_OBJECT objectDX_00B881FC = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00B881D0, 5938, 0, 1098, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_00B88230[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT objectDX_00B881FC = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00B881D0, 5938, 0, 1098, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_00B88230[] = {
 	{ { 0x00FFFFFF }, { 0x00FFFFFF }, 11, 0, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_USE_ALPHA | NJD_FLAG_IGNORE_LIGHT | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_00B88248[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00B88248[] = {
 	30, 23, 45, 24, 46, 25, 47, 26, 48, 27, 49, 28, 50, 29, 51, 30, 52, 31, 53, 32, 54, 33, 55, 34, 56, 35, 57, 36, 58, 37, 59,
 	7, 11, 40, 12, 39, 13, 38, 14,
 	0x8000u | 10, 15, 8, 44, 9, 43, 10, 42, 11, 41, 40,
@@ -53850,11 +53850,11 @@ Sint16 poly_00B88248[] = {
 	30, 37, 38, 36, 39, 35, 40, 34, 41, 33, 42, 32, 43, 31, 44, 30, 15, 29, 16, 28, 17, 27, 18, 26, 19, 25, 20, 24, 21, 23, 22
 };
 
-NJS_MESHSET_SADX meshlist_00B88314[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00B88314[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 6, poly_00B88248, NULL, NULL, NULL, NULL, NULL }
 };
 
-NJS_VECTOR vertex_00B88330[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_00B88330[] = {
 	{ 575.6624f, 0.000018f, 29.04688f },
 	{ 562.2159f, 0.000018f, 110.3152f },
 	{ 530.4312f, 0.000018f, 185.5471f },
@@ -53917,7 +53917,7 @@ NJS_VECTOR vertex_00B88330[] = {
 	{ -104.5503f, 0.000085f, 87.25983f }
 };
 
-NJS_VECTOR normal_00B88600[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_00B88600[] = {
 	{ 0.000001f, 1, 0 },
 	{ 0, 1, 0 },
 	{ 0, 1, 0 },
@@ -53980,14 +53980,14 @@ NJS_VECTOR normal_00B88600[] = {
 	{ 0, 1, 0.000001f }
 };
 
-NJS_MODEL_SADX attach_00B888D0 = { vertex_00B88330, normal_00B88600, LengthOfArray<Sint32>(vertex_00B88330), meshlist_00B88314, matlist_00B88230, LengthOfArray<Uint16>(meshlist_00B88314), LengthOfArray<Uint16>(matlist_00B88230), { 227.3926f, 0.000051f, 171.6351f }, 376.4751f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00B888D0 = { vertex_00B88330, normal_00B88600, LengthOfArray<Sint32>(vertex_00B88330), meshlist_00B88314, matlist_00B88230, LengthOfArray<Uint16>(meshlist_00B88314), LengthOfArray<Uint16>(matlist_00B88230), { 227.3926f, 0.000051f, 171.6351f }, 376.4751f, NULL };
 
-NJS_OBJECT objectDX_00B888FC = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00B888D0, 5938, 0, 1098, 0, 0, 0, 1, 1, 1, NULL, NULL };
-NJS_MATERIAL matlist_00B88930[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT objectDX_00B888FC = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00B888D0, 5938, 0, 1098, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_00B88930[] = {
 	{ { 0x00FFFFFF }, { 0x00FFFFFF }, 11, 0, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_USE_ALPHA | NJD_FLAG_IGNORE_LIGHT | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-Sint16 poly_00B88948[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00B88948[] = {
 	3, 38, 33, 2,
 	3, 33, 0, 26,
 	3, 0, 48, 24,
@@ -54070,11 +54070,11 @@ Sint16 poly_00B88948[] = {
 	4, 15, 62, 14, 63
 };
 
-NJS_MESHSET_SADX meshlist_00B88C00[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00B88C00[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 80, poly_00B88948, NULL, NULL, NULL, NULL, NULL }
 };
 
-NJS_VECTOR vertex_00B88C20[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_00B88C20[] = {
 	{ 311.7174f, 0.000018f, -257.8804f },
 	{ -74.53079f, 0.000018f, -113.2668f },
 	{ 343.5765f, 0.00005f, -210.1787f },
@@ -54154,7 +54154,7 @@ NJS_VECTOR vertex_00B88C20[] = {
 	{ 464.8191f, 0.000133f, 28.66089f }
 };
 
-NJS_VECTOR normal_00B88FC0[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_00B88FC0[] = {
 	{ 0, 1, -0.00001f },
 	{ -0.00001f, 1, -0.00001f },
 	{ 0, 1, -0.00001f },
@@ -54234,12 +54234,12 @@ NJS_VECTOR normal_00B88FC0[] = {
 	{ 0.000006f, 1, -0.00001f }
 };
 
-NJS_MODEL_SADX attach_00B8935C = { vertex_00B88C20, normal_00B88FC0, LengthOfArray<Sint32>(vertex_00B88C20), meshlist_00B88C00, matlist_00B88930, LengthOfArray<Uint16>(meshlist_00B88C00), LengthOfArray<Uint16>(matlist_00B88930), { 236.2837f, -0.00053f, -142.0723f }, 380.0785f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00B8935C = { vertex_00B88C20, normal_00B88FC0, LengthOfArray<Sint32>(vertex_00B88C20), meshlist_00B88C00, matlist_00B88930, LengthOfArray<Uint16>(meshlist_00B88C00), LengthOfArray<Uint16>(matlist_00B88930), { 236.2837f, -0.00053f, -142.0723f }, 380.0785f, NULL };
 
-NJS_OBJECT objectDX_00B89388 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00B8935C, 5938, 0, 1098, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectDX_00B89388 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00B8935C, 5938, 0, 1098, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
 
-COL collist_0007D6C0[] = {
+extern "C" __declspec(dllexport) COL collist_0007D6C0[] = {
 	{ { 876.8391f, 83.3961f, 652.7223f }, 192.5564f, 0, 0, &objectDX_00B81D44, 0, 0x20200001 },
 	{ { 0.345971f, -0.000101f, 141.8846f }, 313.6421f, 0, 0, &objectDX_00B82574, 0, 2 },
 	{ { -544.8752f, -7.191359f, 408.7761f }, 343.4519f, 0, 0, &objectDX_00B82B8C, 0, 2 },
@@ -54705,6 +54705,6 @@ COL collist_0007D6C0[] = {
 	{ { 5909.696f, 465, 775.1996f }, 86.16847f, 0, 0, &object_0005BBF4_2, 0, 0x86040000 }, //Lighthouse thing transparent
 };
 
-LandTable landtable_00081554 = { LengthOfArray<int16_t>(collist_0007D6C0), 0, 0xC, 1800, collist_0007D6C0, NULL, "BEACH01", &texlist_ecoast1, 0, 0 };
+extern "C" __declspec(dllexport) LandTable landtable_00081554 = { LengthOfArray<int16_t>(collist_0007D6C0), 0, 0xC, 1800, collist_0007D6C0, NULL, "BEACH01", &texlist_ecoast1, 0, 0 };
 
 #pragma warning(pop)

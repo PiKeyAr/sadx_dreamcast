@@ -211,7 +211,7 @@ void __cdecl EmeraldCoast_OceanDraw_SADXStyle(OceanData *o)
 		njPopMatrix(1u);
 		njPushMatrix(0);
 		xb = _f * 0.5;
-		njTranslate(0, xb, -1.0, xb);
+		njTranslate(0, xb, 0.2f, xb);
 		njSetTextureNum(SADXWaveAnimation);
 		v7 = 0;
 		if (_o->PlaneCount)

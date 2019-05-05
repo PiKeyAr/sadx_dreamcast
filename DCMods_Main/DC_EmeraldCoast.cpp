@@ -13,8 +13,11 @@ NJS_TEXLIST texlist_ecoast3 = { arrayptrandlength(textures_ecoast3) };
 
 NJS_OBJECT* WaterObjects[] = { nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr };
 
+/*
 #include "EmeraldCoast1.h"
 #include "EmeraldCoast2.h"
+#include "EmeraldCoast3.h"
+*/
 
 static int anim1 = 82;
 static int anim2 = 67;
@@ -506,14 +509,14 @@ void ParseEmeraldCoastColFlagsAndMaterials(LandTable *landtable, int act)
 				if ((materialflags & NJD_CUSTOMFLAG_TEXANIM1) && !(materialflags & NJD_CUSTOMFLAG_TEXANIM2))
 				{
 					material = (NJS_MATERIAL*)&landtable->Col[j].Model->basicdxmodel->mats[k];
-					AddTextureAnimation(material, false, 4, 82, 96, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+					AddTextureAnimation(0, material, false, 4, 82, 96, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 					if (SADXWater_EmeraldCoast) landtable->Col[j].Flags = 0x80000402;
 				}
 				//Texanim 2
 				if ((materialflags & NJD_CUSTOMFLAG_TEXANIM2) && !(materialflags & NJD_CUSTOMFLAG_TEXANIM1))
 				{
 					material = (NJS_MATERIAL*)&landtable->Col[j].Model->basicdxmodel->mats[k];
-					AddTextureAnimation(material, false, 2, 67, 81, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+					AddTextureAnimation(0, material, false, 3, 67, 81, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 				}
 			}
 		}
@@ -535,20 +538,49 @@ void ParseEmeraldCoastColFlagsAndMaterials(LandTable *landtable, int act)
 				if ((materialflags & NJD_CUSTOMFLAG_TEXANIM1) && !(materialflags & NJD_CUSTOMFLAG_TEXANIM2))
 				{
 					material = (NJS_MATERIAL*)&landtable->Col[j].Model->basicdxmodel->mats[k];
-					AddTextureAnimation(material, false, 4, 71, 85, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+					AddTextureAnimation(1, material, false, 4, 71, 85, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 					if (SADXWater_EmeraldCoast) landtable->Col[j].Flags = 0x80000402;
 				}
 				//Texanim 2
 				if ((materialflags & NJD_CUSTOMFLAG_TEXANIM2) && !(materialflags & NJD_CUSTOMFLAG_TEXANIM1))
 				{
 					material = (NJS_MATERIAL*)&landtable->Col[j].Model->basicdxmodel->mats[k];
-					AddTextureAnimation(material, false, 2, 42, 56, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+					AddTextureAnimation(1, material, false, 3, 42, 56, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 				}
 				//Texanim 3
 				if ((materialflags & NJD_CUSTOMFLAG_TEXANIM2) && (materialflags & NJD_CUSTOMFLAG_TEXANIM1))
 				{
 					material = (NJS_MATERIAL*)&landtable->Col[j].Model->basicdxmodel->mats[k];
-					AddTextureAnimation(material, false, 4, 57, 70, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+					AddTextureAnimation(1, material, false, 4, 57, 70, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+				}
+			}
+		}
+	}
+	if (act == 2)
+	{
+		for (unsigned int j = 0; j < landtable->COLCount; j++)
+		{
+			for (int k = 0; k < landtable->Col[j].Model->basicdxmodel->nbMat; ++k)
+			{
+				materialflags = landtable->Col[j].Model->basicdxmodel->mats[k].attrflags;
+				//Texanim 1
+				if ((materialflags & NJD_CUSTOMFLAG_TEXANIM1) && !(materialflags & NJD_CUSTOMFLAG_TEXANIM2))
+				{
+					material = (NJS_MATERIAL*)&landtable->Col[j].Model->basicdxmodel->mats[k];
+					AddTextureAnimation(2, material, false, 3, 65, 79, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+				}
+				//Texanim 2
+				if ((materialflags & NJD_CUSTOMFLAG_TEXANIM2) && !(materialflags & NJD_CUSTOMFLAG_TEXANIM1))
+				{
+					material = (NJS_MATERIAL*)&landtable->Col[j].Model->basicdxmodel->mats[k];
+					AddTextureAnimation(2, material, false, 4, 50, 64, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+					if (SADXWater_EmeraldCoast) landtable->Col[j].Flags |= 0x00000400;
+				}
+				//Texanim 3
+				if ((materialflags & NJD_CUSTOMFLAG_TEXANIM2) && (materialflags & NJD_CUSTOMFLAG_TEXANIM1))
+				{
+					material = (NJS_MATERIAL*)&landtable->Col[j].Model->basicdxmodel->mats[k];
+					AddTextureAnimation(2, material, false, 4, 80, 93, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 				}
 			}
 		}
@@ -561,9 +593,9 @@ void LoadLevelFiles_STG01()
 	STG01_0_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG01\\0.sa1lvl"));
 	STG01_1_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG01\\1.sa1lvl"));
 	STG01_2_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG01\\2.sa1lvl"));
-	LandTable *STG01_0 = &landtable_00081554; // STG01_0_Info->getlandtable();
-	LandTable *STG01_1 = &landtable_000DEB60; // STG01_1_Info->getlandtable();
-	LandTable *STG01_2 = STG01_2_Info->getlandtable();
+	LandTable *STG01_0 = STG01_0_Info->getlandtable();// &landtable_00081554; // STG01_0_Info->getlandtable();
+	LandTable *STG01_1 = STG01_1_Info->getlandtable();// &landtable_000DEB60; // STG01_1_Info->getlandtable();
+	LandTable *STG01_2 = STG01_2_Info->getlandtable();// &landtable_0011DD58; // STG01_2_Info->getlandtable();
 	STG01_0->TexList = &texlist_ecoast1;
 	STG01_1->TexList = &texlist_ecoast2;
 	STG01_2->TexList = &texlist_ecoast3;
@@ -595,6 +627,19 @@ void LoadLevelFiles_STG01()
 		objectSTG01_00CC03FC.basicdxmodel->mats[0].diffuse.color = 0xFFFFFFFF;
 		WriteData<1>((void*)0x004F783A, 0x0F); //15 animation frames for water in Act 2
 		WriteData<1>((void*)0x004F790A, 0x0F); //15 animation frames for water in Act 3
+		AddTextureAnimation(0, matlistSTG01_00CBA58C, false, 4, 0, 14, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); //Dynamic ocean 1
+		AddTextureAnimation(0, (NJS_MATERIAL*)0x10BA58C, false, 4, 0, 14, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); //Dynamic ocean 2
+		AddTextureAnimation(0, (NJS_MATERIAL*)0x10C0510, false, 4, 0, 14, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); //Static ocean
+		AddTextureAnimation(1, (NJS_MATERIAL*)0x10C0510, false, 4, 0, 14, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); //Static ocean
+		AddTextureAnimation(2, (NJS_MATERIAL*)0x10C0510, false, 4, 0, 14, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); //Static ocean
+	}
+	else
+	{
+		AddTextureAnimation(0, matlistSTG01_00CBA58C, false, 4, 0, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); //Dynamic ocean 1
+		AddTextureAnimation(0, (NJS_MATERIAL*)0x10BA58C, false, 4, 0, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); //Dynamic ocean 2
+		AddTextureAnimation(0, (NJS_MATERIAL*)0x10C0510, false, 4, 0, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); //Static ocean
+		AddTextureAnimation(1, (NJS_MATERIAL*)0x10C0510, false, 4, 0, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); //Static ocean
+		AddTextureAnimation(2, (NJS_MATERIAL*)0x10C0510, false, 4, 0, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); //Static ocean
 	}
 }
 
@@ -716,7 +761,7 @@ void EmeraldCoast_OnFrame()
 	//Hide skybox bottom in Act 3
 	if (STG01_2_Info && !IamStupidAndIWantFuckedUpOcean)
 	{
-		if (CurrentLevel == 1 && CurrentAct == 2 && Camera_Data1 != nullptr)
+		if (CurrentAct == 2 && Camera_Data1 != nullptr)
 		{
 			if (Camera_Data1->Position.y < 50 && SkyboxHidden == 0)
 			{
@@ -730,67 +775,35 @@ void EmeraldCoast_OnFrame()
 			}
 		}
 	}
-	//Frame Counter and water animation
-	if (CurrentLevel == 1 && GameState != 16)
+	//Restore ocean UVs on level exit/restart
+	if (GameState == 3 || GameState == 4 || GameState == 7 || GameState == 21)
 	{
-		//Restore ocean UVs on level exit/restart
-		if (GameState == 3 || GameState == 4 || GameState == 7 || GameState == 21)
+		for (unsigned int r = 0; r < LengthOfArray(uvSTG01_00CC0530_d); r++)
 		{
-			for (unsigned int r = 0; r < LengthOfArray(uvSTG01_00CC0530_d); r++)
-			{
-				uvSTG01_00CC0530[r].u = uvSTG01_00CC0530_d[r].u;
-				uvSTG01_00CC0530[r].v = uvSTG01_00CC0530_d[r].v;
-			}
-			for (unsigned int r2 = 0; r2 < LengthOfArray(uvSTG01_00CBB000_d); r2++)
-			{
-				uvSTG01_00CBB000_data[r2].u = uvSTG01_00CBB000_d[r2].u;
-				uvSTG01_00CBB000_data[r2].v = uvSTG01_00CBB000_d[r2].v;
-				uvSTG01_00CBB000[r2].u = uvSTG01_00CBB000_d[r2].u;
-				uvSTG01_00CBB000[r2].v = uvSTG01_00CBB000_d[r2].v;
-			}
+			uvSTG01_00CC0530[r].u = uvSTG01_00CC0530_d[r].u;
+			uvSTG01_00CC0530[r].v = uvSTG01_00CC0530_d[r].v;
 		}
-		if (SADXWater_EmeraldCoast)
+		for (unsigned int r2 = 0; r2 < LengthOfArray(uvSTG01_00CBB000_d); r2++)
 		{
-			((NJS_OBJECT*)0x010C03FC)->basicdxmodel->mats[0].attr_texId = SADXWaveAnimation;
-			((NJS_OBJECT*)0x010C05E8)->basicdxmodel->mats[0].attr_texId = SADXWaveAnimation;
-			matlistSTG01_00CBA58C[0].attr_texId = SADXWaveAnimation;
-		}
-		else
-		{
-			((NJS_OBJECT*)0x010C03FC)->basicdxmodel->mats[0].attr_texId = beachsea_water;
-			((NJS_OBJECT*)0x010C05E8)->basicdxmodel->mats[0].attr_texId = beachsea_water;
-			matlistSTG01_00CBA58C[0].attr_texId = beachsea_water;
-		}
-		if (GameState != 16 && !SADXWater_EmeraldCoast)
-		{
-			if ((FramerateSetting < 2 && FrameCounter % 4 == 0) || (FramerateSetting == 2 && FrameCounter % 2 == 0) || FramerateSetting > 2)
-			{
-				beachsea_water++;
-				if (beachsea_water > 9) beachsea_water = 0;
-			}
+			uvSTG01_00CBB000_data[r2].u = uvSTG01_00CBB000_d[r2].u;
+			uvSTG01_00CBB000_data[r2].v = uvSTG01_00CBB000_d[r2].v;
+			uvSTG01_00CBB000[r2].u = uvSTG01_00CBB000_d[r2].u;
+			uvSTG01_00CBB000[r2].v = uvSTG01_00CBB000_d[r2].v;
 		}
 	}
-	if (STG01_2_Info && CurrentLevel == 1 && CurrentAct == 2 && GameState != 16)
+	//Fog stuff in Act 3
+	if (CurrentAct == 2 && !IsGamePaused())
 	{
-		if (GameState == 3 || GameState == 4)
+		if (GameState == 3 || GameState == 4 || GameState == 7 || GameState == 21)
 		{
 			inside_secret_area = 0;
 			CurrentFogToggle = 0;
-			if (SADXWater_EmeraldCoast == true)
-			{
-				WriteData<1>((void*)0x004F777E, 0xE8); //Restore the ocean
-				WriteData<1>((void*)0x004F777F, 0xBD); //Restore the ocean
-				WriteData<1>((void*)0x004F7780, 0xD0); //Restore the ocean
-				WriteData<1>((void*)0x004F7781, 0xF0); //Restore the ocean
-				WriteData<1>((void*)0x004F7782, 0xFF); //Restore the ocean
-			}
 		}
 		if (Camera_Data1 != nullptr && Camera_Data1->Position.z > 2000)
 		{
 			inside_secret_area = 1;
 			CurrentFogToggle = 1;
 			if (CurrentFogLayer < -21) CurrentFogLayer = CurrentFogLayer + 20;
-			if (SADXWater_EmeraldCoast == true) WriteData<5>((void*)0x004F777E, 0x90); //Kill the ocean temporarily
 		}
 		else
 		{
@@ -799,14 +812,6 @@ void EmeraldCoast_OnFrame()
 			{
 				inside_secret_area = 0;
 				CurrentFogToggle = 0;
-				if (SADXWater_EmeraldCoast == true)
-				{
-					WriteData<1>((void*)0x004F777E, 0xE8); //Restore the ocean
-					WriteData<1>((void*)0x004F777F, 0xBD); //Restore the ocean
-					WriteData<1>((void*)0x004F7780, 0xD0); //Restore the ocean
-					WriteData<1>((void*)0x004F7781, 0xF0); //Restore the ocean
-					WriteData<1>((void*)0x004F7782, 0xFF); //Restore the ocean
-				}
 			}
 		}
 	}
