@@ -3210,7 +3210,7 @@ Sint16 poly_00055A18[] = {
 	24, 53, 54, 49, 50, 47, 61, 56, 57, 52, 61, 51, 50, 55, 54, 60, 53, 48, 49, 60, 47, 55, 56, 51, 52
 };
 
-NJS_TEX uv_00055B14[] = {
+NJS_TEX uv_00055B14_C0[] = {
 	{ 52, 89 },
 	{ 44, 254 },
 	{ 61, 89 },
@@ -3328,7 +3328,7 @@ NJS_TEX uv_00055B14[] = {
 };
 
 NJS_MESHSET_SADX meshlist_00055CDC[] = {
-	{ NJD_MESHSET_TRIMESH | 0, 11, poly_00055A18, NULL, NULL, NULL, uv_00055B14, NULL }
+	{ NJD_MESHSET_TRIMESH | 0, 11, poly_00055A18, NULL, NULL, NULL, uv_00055B14_C0, NULL }
 };
 
 NJS_VECTOR vertex_00055CF4[] = {
