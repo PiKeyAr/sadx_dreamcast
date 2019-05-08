@@ -11,6 +11,10 @@ NJS_TEXLIST texlist_skydeck2 = { arrayptrandlength(textures_skydeck2) };
 NJS_TEXNAME textures_skydeck3[65];
 NJS_TEXLIST texlist_skydeck3 = { arrayptrandlength(textures_skydeck3) };
 
+#include "SkyDeck1.h"
+#include "SkyDeck2.h"
+#include "SkyDeck3.h"
+
 static int UVShift1 = 0;
 static int UVShift2 = 0;
 static int SkyboxAlpha = 255;
@@ -333,6 +337,17 @@ NJS_MATERIAL* ObjectSpecular_SkyDeck[] = {
 	((NJS_MATERIAL*)0x021F4F1C),
 };
 
+void DisableMetalStruts(LandTable* landtable)
+{
+	for (unsigned int j = 0; j < landtable->COLCount; j++)
+	{
+		for (int k = 0; k < landtable->Col[j].Model->basicdxmodel->nbMat; ++k)
+		{
+			if (landtable->Col[j].Model->basicdxmodel->mats[k].attr_texId == 62 && landtable->Col[j].Model->basicdxmodel->mats[k].attrflags & NJD_FLAG_USE_ALPHA) landtable->Col[j].Model->basicdxmodel->mats[k].attrflags &= ~NJD_FLAG_USE_ALPHA;
+		}
+	}
+}
+
 void __cdecl SkyDeck_QueueDrawQ(NJS_OBJECT *obj, NJS_TEX *uv, int uvSTG06_count, float depth)
 {
 	NJS_OBJECT *v3; // ebx
@@ -643,9 +658,10 @@ void LoadLevelFiles_STG06()
 	STG06_0_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG06\\0.sa1lvl"));
 	STG06_1_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG06\\1.sa1lvl"));
 	STG06_2_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG06\\2.sa1lvl"));
-	LandTable *STG06_0 = STG06_0_Info->getlandtable();
-	LandTable *STG06_1 = STG06_1_Info->getlandtable();
-	LandTable *STG06_2 = STG06_2_Info->getlandtable();
+	LandTable *STG06_0 = &landtable_0001F018;// STG06_0_Info->getlandtable();
+	LandTable *STG06_1 = &landtable_00021094;// STG06_1_Info->getlandtable();
+	LandTable *STG06_2 = &landtable_00023EB4;// STG06_2_Info->getlandtable();
+	DisableMetalStruts(STG06_2);
 	STG06_0->TexList = &texlist_skydeck1;
 	STG06_1->TexList = &texlist_skydeck2;
 	STG06_2->TexList = &texlist_skydeck3;
