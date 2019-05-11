@@ -4,6 +4,9 @@
 NJS_TEXNAME textures_chaorace[69];
 NJS_TEXLIST texlist_ChaoRace = { arrayptrandlength(textures_chaorace) };
 
+NJS_TEXNAME textures_chaoraceentry[23];
+NJS_TEXLIST texlist_ChaoRaceEntry = { arrayptrandlength(textures_chaoraceentry) };
+
 NJS_TEXNAME textures_chaoracebg[1];
 NJS_TEXLIST texlist_chaoracebg = { arrayptrandlength(textures_chaoracebg) };
 
@@ -58,6 +61,7 @@ FunctionPointer(void, sub_722500, (), 0x722500);
 FunctionPointer(int, sub_79E400, (int ID, int a2, NJS_VECTOR *a3), 0x79E400);
 FunctionPointer(void, sub_715700, (int a1), 0x715700);
 FunctionPointer(void, SetChaoLandTableX, (LandTable *geo), 0x43A4C0);
+FunctionPointer(void, sub_751D70, (int a1, NJS_VECTOR *a2), 0x751D70);
 
 static NJS_VECTOR racebutton{ 2020, 0, -0.68f };
 
@@ -3915,9 +3919,6 @@ void __cdecl ChaoStgEntrance_MainX(ObjectMaster *a1)
 	SetGlobalPoint2Col_Colors(0xFF000000, 0xFF000000, 0xFF000000);
 	sub_72A750();
 	sub_72A570();
-	sub_724E60();
-	sub_722500();
-	LoadChaoTexlist("AL_TEX_COMMON", &ChaoTexLists[1], 1u);
 	sub_72C2E0X();
 	InitializeSoundManager();
 	PlayMusic(MusicIDs_ChaoRaceEntrance_OLD);
@@ -3929,7 +3930,6 @@ void __cdecl LoadRaceEntryX()
 {
 	if (SkipSA1Entry)
 	{
-		LoadPVM("CHAO_ENTRANCE", (NJS_TEXLIST*)0x340E934);
 		SSGardenStartPoint.Position.x = BK_SSGardenStartPoint.Position.x;
 		SSGardenStartPoint.Position.y = BK_SSGardenStartPoint.Position.y;
 		SSGardenStartPoint.Position.z = BK_SSGardenStartPoint.Position.z;
@@ -3942,7 +3942,7 @@ void __cdecl LoadRaceEntryX()
 	}
 	else
 	{
-		LoadPVM("AL_RACE01", (NJS_TEXLIST*)0x340E934);
+		LoadPVM("AL_RACE01", &texlist_ChaoRaceEntry);
 		SSGardenStartPoint.Position.x = 2052;
 		SSGardenStartPoint.Position.y = 0;
 		SSGardenStartPoint.Position.z = 0;
@@ -3954,17 +3954,17 @@ void __cdecl LoadRaceEntryX()
 	}
 }
 
-void LoadSADXEntry()
+void LoadSADXEntry(int ID, int a2, NJS_VECTOR *a3)
 {
 	sub_79E400(2, 0, 0); //Play sound
 	SkipSA1Entry = true;
-	sub_715700(2);
+	sub_715700(2); //Go to Chao Race Entry (2)
 }
 
-void ExitRaceEntry()
+void ExitRaceEntry(int a1)
 {
 	SkipSA1Entry = false;
-	sub_715700(2);
+	sub_715700(2); //Exit to the SA1 lobby (2) instead of SS garden (4)
 }
 
 //Chao Race stuff
@@ -3995,8 +3995,6 @@ void LoadObjChaoRaceTexlist(const char *PVMName, NJS_TEXLIST *TexListPtr, unsign
 	else LoadChaoTexlist("OBJ_AL_RACE", &OBJ_AL_RACE_TEXLIST, 1u);
 }
 
-FunctionPointer(void, sub_751D70, (int a1, NJS_VECTOR *a2), 0x751D70);
-
 void LoadChaoRaceJewelAndText(int a1, NJS_VECTOR *a2)
 {
 	sub_751D70(a1, a2);
@@ -4018,7 +4016,7 @@ void LoadLevelFiles_AL_RACE()
 	AL_RACE_1_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\AL_RACE\\1.sa1lvl"));
 	LandTable *AL_RACE_0 = AL_RACE_0_Info->getlandtable();
 	LandTable *AL_RACE_1 = AL_RACE_1_Info->getlandtable();
-	AL_RACE_0->TexList = (NJS_TEXLIST*)0x340E934;
+	AL_RACE_0->TexList = &texlist_ChaoRaceEntry;
 	AL_RACE_1->TexList = &texlist_ChaoRace;
 }
 
@@ -4032,7 +4030,6 @@ void ChaoRace_Init(const IniFile *config, const HelperFunctions &helperFunctions
 		ReplacePVM("AL_RACE01");
 		WriteCall((void*)0x0071C0CF, BowChaoThing);
 		WriteJump((void*)0x007199B0, LoadRaceEntryX);
-		ResizeTextureList((NJS_TEXLIST *)0x340E934, 23); //Race Entry texlist
 		WriteCall((void*)0x0072C618, ExitRaceEntry);
 		WriteCall((void*)0x0071D17A, LoadSADXEntry);
 		WriteData<5>((void*)0x0071D158, 0x90); //Don't move Sanic
@@ -4150,7 +4147,7 @@ void ChaoRace_OnFrame()
 	if (CurrentChaoStage != 1)
 	{
 		ChaoRaceTimer = 0;
-		ChaoRaceEnded = false; 
+		ChaoRaceEnded = false;
 		MedalTextLoaded = false;
 		CrackersShouldFire = 0;
 	}
