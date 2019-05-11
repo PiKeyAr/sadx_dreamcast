@@ -4007,7 +4007,7 @@ extern "C" __declspec(dllexport) Sint16 poly_000403D8[] = {
 	4, 34, 35, 28, 33
 };
 
-extern "C" __declspec(dllexport) Sint16 poly_000403EC[] = {
+extern "C" __declspec(dllexport) Sint16 poly_000403EC_EV[] = {
 	4, 2, 5, 3, 8,
 	0x8000u | 6, 2, 6, 3, 4, 9, 7,
 	3, 21, 22, 31,
@@ -4147,7 +4147,7 @@ extern "C" __declspec(dllexport) NJS_TEX uv_0004061C[] = {
 
 extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_0004062C[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 2, poly_000403D8, NULL, NULL, NULL, uv_000404BC, NULL },
-	{ NJD_MESHSET_TRIMESH | 1, 6, poly_000403EC, NULL, NULL, NULL, uv_000404DC, NULL },
+	{ NJD_MESHSET_TRIMESH | 1, 6, poly_000403EC_EV, NULL, NULL, NULL, uv_000404DC, NULL },
 	{ NJD_MESHSET_TRIMESH | 2, 11, poly_0004042C, NULL, NULL, NULL, uv_00040544, NULL },
 	{ NJD_MESHSET_TRIMESH | 3, 1, poly_000404A6, NULL, NULL, NULL, uv_0004060C, NULL },
 	{ NJD_MESHSET_TRIMESH | 4, 1, poly_000404B0, NULL, NULL, NULL, uv_0004061C, NULL }

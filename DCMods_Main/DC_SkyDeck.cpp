@@ -11,9 +11,11 @@ NJS_TEXLIST texlist_skydeck2 = { arrayptrandlength(textures_skydeck2) };
 NJS_TEXNAME textures_skydeck3[65];
 NJS_TEXLIST texlist_skydeck3 = { arrayptrandlength(textures_skydeck3) };
 
+/*
 #include "SkyDeck1.h"
 #include "SkyDeck2.h"
 #include "SkyDeck3.h"
+*/
 
 static int UVShift1 = 0;
 static int UVShift2 = 0;
@@ -658,10 +660,10 @@ void LoadLevelFiles_STG06()
 	STG06_0_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG06\\0.sa1lvl"));
 	STG06_1_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG06\\1.sa1lvl"));
 	STG06_2_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG06\\2.sa1lvl"));
-	LandTable *STG06_0 = &landtable_0001F018;// STG06_0_Info->getlandtable();
-	LandTable *STG06_1 = &landtable_00021094;// STG06_1_Info->getlandtable();
-	LandTable *STG06_2 = &landtable_00023EB4;// STG06_2_Info->getlandtable();
-	DisableMetalStruts(STG06_2);
+	LandTable *STG06_0 = STG06_0_Info->getlandtable(); //&landtable_0001F018;// STG06_0_Info->getlandtable();
+	LandTable *STG06_1 = STG06_1_Info->getlandtable(); //&landtable_00021094;// STG06_1_Info->getlandtable();
+	LandTable *STG06_2 = STG06_2_Info->getlandtable(); //&landtable_00023EB4;// STG06_2_Info->getlandtable();
+	if (GetModuleHandle(L"sadx-d3d11") == nullptr) DisableMetalStruts(STG06_2);
 	STG06_0->TexList = &texlist_skydeck1;
 	STG06_1->TexList = &texlist_skydeck2;
 	STG06_2->TexList = &texlist_skydeck3;
