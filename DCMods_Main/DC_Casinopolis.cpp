@@ -1009,6 +1009,7 @@ void Casinopolis_Init()
 	memcpy((void*)0x1E471C8, uvSTG09_001C5054, sizeof(uvSTG09_001C5054)); //SDFUTIB
 	memcpy((void*)0x1E4BD38, uvSTG09_001C8C9C, sizeof(uvSTG09_001C8C9C)); //Wall marquee
 	memcpy((void*)0x1E4BD98, uvSTG09_001C8CFC, sizeof(uvSTG09_001C8CFC)); //Wall marquee
+	WriteData<1>((char*)0x005DF088, 0i8); //OTDenki transparency fix
 	memcpy((void*)0x1E3BAC8, uvSTG09_001B9FC4, sizeof(uvSTG09_001B9FC4)); //ORlti
 	memcpy((void*)0x1E3BBC8, uvSTG09_001BA0C4, sizeof(uvSTG09_001BA0C4)); //ORlti
 	memcpy((void*)0x1E3BC08, uvSTG09_001BA104, sizeof(uvSTG09_001BA104)); //ORlti
