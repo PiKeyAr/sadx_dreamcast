@@ -587,9 +587,6 @@
     <ClInclude Include="Data\ChaoFruits.h">
       <Filter>Header Files\Levels\Chao</Filter>
     </ClInclude>
-    <ClInclude Include="Data\Chaos2_Column.h">
-      <Filter>Header Files\Levels\Bosses</Filter>
-    </ClInclude>
     <ClInclude Include="StageLights.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -654,6 +651,9 @@
       <Filter>Header Files\Levels\Bosses</Filter>
     </ClInclude>
     <ClInclude Include="Data\Chaos0.h">
+      <Filter>Header Files\Levels\Bosses</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\Chaos2_Objects.h">
       <Filter>Header Files\Levels\Bosses</Filter>
     </ClInclude>
   </ItemGroup>

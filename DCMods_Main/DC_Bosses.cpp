@@ -2,7 +2,7 @@
 #include "EggHornet_Water.h"
 #include "EggViper_Head.h"
 #include "Chaos0_Objects.h"
-#include "Chaos2_Column.h"
+#include "Chaos2_Objects.h"
 #include "Chaos4_water.h"
 #include "Chaos6_Motion.h"
 #include "Chaos7_fixes.h"
@@ -1277,6 +1277,7 @@ void Chaos0_Init()
 
 void Chaos2_Init()
 {
+	*(NJS_OBJECT*)0x117E86C = object_00D7E86C;
 	ReplaceBIN_DC("SET1600S");
 	ReplacePVM("CHAOS2");
 	ReplacePVM("LM_CHAOS2");

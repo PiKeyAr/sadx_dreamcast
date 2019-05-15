@@ -125,7 +125,7 @@
     <ClInclude Include="Data\ChaoEggs.h" />
     <ClInclude Include="Data\ChaoFruits.h" />
     <ClInclude Include="Data\ChaoObjects_Race.h" />
-    <ClInclude Include="Data\Chaos2_Column.h" />
+    <ClInclude Include="Data\Chaos2_Objects.h" />
     <ClInclude Include="Data\ADV01C_00.h" />
     <ClInclude Include="Data\ADV01C_01.h" />
     <ClInclude Include="Data\ADV01C_02.h" />
