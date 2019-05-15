@@ -999,7 +999,7 @@ void Casinopolis_Init()
 	*(NJS_MODEL_SADX*)0x01D9C72C = attachSTG09_0011F050; //Bottom decoration in Act 3 (bright)
 	*(NJS_MODEL_SADX*)0x01D9CB7C = attachSTG09_0011F490; //Bottom decoration in Act 3 (dark)
 	*(NJS_MODEL_SADX*)0x01DDF318 = attachSTG09_00160DA4; //CardUV 1
-	*(NJS_MODEL_SADX*)0x01DDF180 = attachSTG09_00160C14_2; //CardUV 2
+	WriteData<1>((char*)0x008135F2, 0x0i8); //Reala thing UV fix
 	*(NJS_MODEL_SADX*)0x01E5DBC8 = attachSTG09_001DA2E0; //OKDAnm
 	*(NJS_MODEL_SADX*)0x01E0D048 = attach_0018C0D0; //Sonic token
 	//UV fixes
@@ -1352,13 +1352,5 @@ void Casinopolis_OnFrame()
 		((NJS_MATERIAL*)STG09_1_Info->getdata("matlistSTG09_000ACC44"))[0].attr_texId = anim2;
 		((NJS_MATERIAL*)STG09_1_Info->getdata("matlistSTG09_000ACB40"))[0].attr_texId = anim2;
 		if (FramerateSetting < 2 && FrameCounter % 3 == 0 || FramerateSetting == 2 && FrameCounter % 2 == 0 || FramerateSetting > 2) anim2_actual++;
-	}
-	if (CurrentLevel == 9 && CurrentAct == 3 && GameState != 16)
-	{
-		carduvSTG09_reala = (carduvSTG09_reala + 4) % 255;
-		for (unsigned int rl = 0; rl < LengthOfArray(uvSTG09_00160A9C); rl++)
-		{
-			uvSTG09_00160A9C[rl].v = uvSTG09_00160A9C_0[rl].v + carduvSTG09_reala;
-		}
 	}
 }
