@@ -140,6 +140,12 @@ extern set_blend_factor* set_blend_factor_ptr;
 extern set_diffuse_blend* set_diffuse_blend_ptr;
 extern set_specular_blend* set_specular_blend_ptr;
 
+struct __declspec(align(2)) ObjectThingC
+{
+	NJS_OBJECT *object;
+	void(__cdecl *function)(NJS_OBJECT *);
+};
+
 struct SubtitleThing
 {
 	char field_0;

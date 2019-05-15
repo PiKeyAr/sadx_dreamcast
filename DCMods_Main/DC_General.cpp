@@ -34,6 +34,8 @@ FunctionPointer(void, sub_4014B0, (), 0x4014B0);
 FunctionPointer(void, sub_409E70, (NJS_MODEL_SADX *a1, int a2, float a3), 0x409E70);
 FunctionPointer(void, Cutscene_MoveCharacterAtoB, (ObjectMaster *a1, float a2, float a3, float a4, float a5, float a6, float a7, signed int a8), 0x6EC2B0);
 FunctionPointer(void, Cutscene_WaitForInput, (int a1), 0x4314D0);
+FunctionPointer(void, sub_4094D0, (NJS_MODEL_SADX *model, QueuedModelFlagsB blend, float radius_scale), 0x4094D0);
+
 static Uint32 GlobalColor_one = 0;
 static Uint32 GlobalColor_two = 0;
 static Uint32 GlobalColor_threefour = 0;
@@ -888,6 +890,103 @@ void ECGammaCutsceneFix(ObjectMaster *a1, NJS_ACTION *a2, NJS_TEXLIST *a3, float
 	Cutscene_MoveCharacterAtoB(v112, 0.0f, 1560.0f, 3426.0f, 0.0f, 1535.0f, 3426.0f, 85);
 }
 
+void __cdecl ItemBoxAirDrawFunction(NJS_OBJECT *a1, ObjectThingC *a2)
+{
+	NJS_OBJECT *v2; // esi
+	NJS_OBJECT *v3; // ecx
+	int v4; // eax
+	Angle v5; // eax
+	Angle v6; // eax
+	Angle v7; // eax
+	float a3; // ST08_4
+	void(__cdecl *v9)(NJS_OBJECT *); // eax
+	Angle v10; // eax
+	Angle v11; // eax
+	Angle v12; // eax
+
+	v2 = a1;
+	do
+	{
+		njPushMatrix(0);
+		if (v2->model)
+		{
+			v3 = a2->object;
+			v4 = 0;
+			if (a2->object)
+			{
+				do
+				{
+					if (v3 == v2)
+					{
+						break;
+					}
+					v3 = a2[v4++ + 1].object;
+				} while (v3);
+			}
+			if (a2[v4].object)
+			{
+				v9 = a2[v4].function;
+				if (v9)
+				{
+					v9(v2);
+				}
+			}
+			else if (!MissedFrames)
+			{
+				njTranslateV(0, (const NJS_VECTOR *)v2->pos);
+				v5 = v2->ang[2];
+				if (v5)
+				{
+					njRotateZ(0, (unsigned __int16)v5);
+				}
+				v6 = v2->ang[0];
+				if (v6)
+				{
+					njRotateX(0, (unsigned __int16)v6);
+				}
+				v7 = v2->ang[1];
+				if (v7)
+				{
+					njRotateY(0, (unsigned __int16)v7);
+				}
+				njScaleV(0, (const NJS_VECTOR *)v2->scl);
+				a3 = VectorMaxAbs((NJS_VECTOR *)v2->scl);
+				DrawQueueDepthBias = 5000.0f;
+				sub_4094D0(v2->basicdxmodel, (QueuedModelFlagsB)0, a3);
+				DrawQueueDepthBias = 0.0f;
+			}
+		}
+		else
+		{
+			njTranslateV(0, (const NJS_VECTOR *)v2->pos);
+			v10 = v2->ang[2];
+			if (v10)
+			{
+				njRotateZ(0, (unsigned __int16)v10);
+			}
+			v11 = v2->ang[0];
+			if (v11)
+			{
+				njRotateX(0, (unsigned __int16)v11);
+			}
+			v12 = v2->ang[1];
+			if (v12)
+			{
+				njRotateY(0, (unsigned __int16)v12);
+			}
+			njScaleV(0, (const NJS_VECTOR *)v2->scl);
+		}
+		if (v2->child)
+		{
+			njPushMatrix(0);
+			ItemBoxAirDrawFunction(v2->child, a2);
+			njPopMatrix(1u);
+		}
+		njPopMatrix(1u);
+		v2 = v2->sibling;
+	} while (v2);
+}
+
 void General_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 {
 	ReplacePVR("AL_BARRIA");
@@ -1143,7 +1242,8 @@ void General_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 		ResizeTextureList(&OBJ_REGULAR_TEXLIST, 100); //Added DC ripple texture
 	}
 	//Item box fixes
-	WriteData<1>((char*)0x004BA7B6, 0x0i8); //Blending for item box (air) 1
+	WriteCall((void*)0x4BFEBF, ItemBoxAirDrawFunction);
+	WriteCall((void*)0x4BFEFE, ItemBoxAirDrawFunction);
 	WriteJump(ItemBox_Display_Destroyed, ItemBox_Display_Destroyed_Rotate);
 	WriteJump(ItemBox_Display_Unknown, ItemBox_Display_Unknown_Rotate);
 	WriteJump(ItemBox_Display, ItemBox_Display_Rotate);
