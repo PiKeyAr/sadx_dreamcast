@@ -44,6 +44,9 @@ FunctionPointer(int, sub_5D4600, (int a1, int a2, float a3, int a4), 0x5D4600);
 FunctionPointer(void, sub_405490, (NJS_ACTION *a1, float a2, int a3, int a4), 0x405490);
 FunctionPointer(void, sub_407A00, (NJS_MODEL_SADX *model, float a2), 0x407A00);
 FunctionPointer(void, sub_4053A0, (void *a1, int a2, float a3, int a4, int a5), 0x4053A0);
+FunctionPointer(void, sub_405370, (NJS_OBJECT *a1, NJS_MOTION *a2, float animframe, float scale), 0x405370);
+FunctionPointer(void, sub_408300, (NJS_OBJECT *a1, NJS_MOTION *a2, float animframe, float scale), 0x408300);
+FunctionPointer(void, sub_407BB0, (NJS_MODEL_SADX *a1, QueuedModelFlagsB queueFlags), 0x407BB0);
 NJS_VECTOR Cowgirl1{ 457.6972f, 45.06788f, 390 };
 NJS_VECTOR Cowgirl2{ 340.3949f, 51.20071f, 480 };
 DataArray(NJS_VECTOR, stru_1E79588, 0x1E79588, 66);
@@ -830,12 +833,6 @@ void __cdecl PinballJackpot_Sprite_MainX(ObjectMaster *a1)
 	}
 }
 
-void IdeyaCapFix(void *a1, int a2, float a3, int a4, int a5)
-{
-	DrawQueueDepthBias = 1000.0f;
-	sub_4053A0(a1, a2, a3, a4, a5);
-	DrawQueueDepthBias = 0;
-}
 
 void UnloadLevelFiles_STG09()
 {
@@ -868,6 +865,20 @@ void LoadLevelFiles_STG09()
 	WriteData((LandTable**)0x97DB2C, STG09_1);
 	WriteData((LandTable**)0x97DB30, STG09_2);
 	WriteData((LandTable**)0x97DB34, STG09_3);
+}
+
+void IdeyaCapFix(NJS_OBJECT *a1, NJS_MOTION *a2, float animframe, float scale)
+{
+	if (!(a1->child->sibling->evalflags & NJD_EVAL_HIDE)) a1->child->sibling->evalflags |= NJD_EVAL_HIDE;
+	if (!(a1->evalflags & NJD_EVAL_HIDE)) a1->evalflags |= NJD_EVAL_HIDE;
+	IdeyaCapTrans.basicdxmodel = (NJS_MODEL_SADX*)a1->basicdxmodel;
+	IdeyaCapTrans2.basicdxmodel = (NJS_MODEL_SADX*)a1->child->sibling->basicdxmodel;
+	//Process non-transparent parts
+	sub_405370(a1, a2, animframe, scale);
+	DrawQueueDepthBias = 2000.0f;
+	//Process transparent parts
+	sub_408300(&IdeyaCapTrans, a2, animframe, scale);
+	DrawQueueDepthBias = 0.0f;
 }
 
 void Casinopolis_Init()
