@@ -638,13 +638,13 @@ void __cdecl ItemBox_Display_Unknown_Rotate(ObjectMaster* _this)
 				material->attr_texId = texId;
 				DrawModel(model);
 				njPopMatrixEx();
-				DrawQueueDepthBias = 0xC68C4000;
+				//DrawQueueDepthBias = -17952.0f;
 
 				// This was originally DrawModelIGuess_N, but that's wrong.
 				DrawModel(&ItemBox_Base_MODEL);
-
-				DrawModel_Queue(&ItemBox_Capsule_MODEL, QueuedModelFlagsB_EnableZWrite);
-
+				DrawQueueDepthBias = 5000.0f;
+				DrawModel_Queue(&ItemBox_Capsule_MODEL, (QueuedModelFlagsB)0);
+				DrawQueueDepthBias = 0.0f;
 				// This was originally DrawModelIGuess_N, but that's wrong.
 				DrawModel(&ItemBox_Top_MODEL);
 
@@ -702,9 +702,10 @@ void __cdecl ItemBox_Display_Rotate(ObjectMaster* _this)
 
 				// This was originally DrawModelIGuess_N, but that's wrong.
 				DrawModel(&ItemBox_Base_MODEL);
-
-				DrawModel_Queue(&ItemBox_Capsule_MODEL, QueuedModelFlagsB_EnableZWrite);
-
+				//DrawQueueDepthBias = -17952.0f;
+				DrawQueueDepthBias = 5000.0f;
+				DrawModel_Queue(&ItemBox_Capsule_MODEL, (QueuedModelFlagsB)0);
+				DrawQueueDepthBias = 0.0f;
 				// This was originally DrawModelIGuess_N, but that's wrong.
 				DrawModel(&ItemBox_Top_MODEL);
 			}
@@ -1141,6 +1142,8 @@ void General_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 		ReplacePVM("OBJ_REGULAR");
 		ResizeTextureList(&OBJ_REGULAR_TEXLIST, 100); //Added DC ripple texture
 	}
+	//Item box fixes
+	WriteData<1>((char*)0x004BA7B6, 0x0i8); //Blending for item box (air) 1
 	WriteJump(ItemBox_Display_Destroyed, ItemBox_Display_Destroyed_Rotate);
 	WriteJump(ItemBox_Display_Unknown, ItemBox_Display_Unknown_Rotate);
 	WriteJump(ItemBox_Display, ItemBox_Display_Rotate);
