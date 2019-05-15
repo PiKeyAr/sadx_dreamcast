@@ -11,12 +11,6 @@ NJS_TEXLIST texlist_twinkle2 = { arrayptrandlength(textures_twinkle2) };
 NJS_TEXNAME textures_twinkle3[30];
 NJS_TEXLIST texlist_twinkle3 = { arrayptrandlength(textures_twinkle3) };
 
-struct __declspec(align(2)) ObjectThingC
-{
-	NJS_OBJECT *object;
-	void(__cdecl *function)(NJS_OBJECT *);
-};
-
 DataArray(FogData, TwinklePark1Fog, 0x026B339C, 3);
 DataArray(FogData, TwinklePark2Fog, 0x026B33CC, 3);
 DataArray(FogData, TwinklePark3Fog, 0x026B33FC, 3);
