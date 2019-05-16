@@ -155,7 +155,7 @@ Sint16 poly_00058408[] = {
 	4, 3, 2, 1, 0
 };
 
-NJS_TEX uv_00058414[] = {
+NJS_TEX uv_00058414_C0[] = {
 	{ 0, 255 },
 	{ 251, 255 },
 	{ 0, 3 },
@@ -163,7 +163,7 @@ NJS_TEX uv_00058414[] = {
 };
 
 NJS_MESHSET_SADX meshlist_00058424[] = {
-	{ NJD_MESHSET_TRIMESH | 0, 1, poly_00058408, NULL, NULL, NULL, uv_00058414, NULL }
+	{ NJD_MESHSET_TRIMESH | 0, 1, poly_00058408, NULL, NULL, NULL, uv_00058414_C0, NULL }
 };
 
 NJS_VECTOR vertex_0005843C[] = {
