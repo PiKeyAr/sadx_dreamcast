@@ -35,6 +35,7 @@ FunctionPointer(void, sub_409E70, (NJS_MODEL_SADX *a1, int a2, float a3), 0x409E
 FunctionPointer(void, Cutscene_MoveCharacterAtoB, (ObjectMaster *a1, float a2, float a3, float a4, float a5, float a6, float a7, signed int a8), 0x6EC2B0);
 FunctionPointer(void, Cutscene_WaitForInput, (int a1), 0x4314D0);
 FunctionPointer(void, sub_4094D0, (NJS_MODEL_SADX *model, QueuedModelFlagsB blend, float radius_scale), 0x4094D0);
+FunctionPointer(void, sub_4053A0, (NJS_OBJECT *a1, NJS_MOTION *a2, float frame, int flags, float scale), 0x4053A0);
 
 static Uint32 GlobalColor_one = 0;
 static Uint32 GlobalColor_two = 0;
@@ -987,6 +988,122 @@ void __cdecl ItemBoxAirDrawFunction(NJS_OBJECT *a1, ObjectThingC *a2)
 	} while (v2);
 }
 
+void DrawAfterImageFixed(int a1, CharObj2 *a2)
+{
+	int v2; // eax
+	NJS_OBJECT *v3; // eax
+	NJS_ACTION *v4; // ecx
+	int v5; // edi
+
+	v2 = a1;
+	if (MetalSonicFlag)
+	{
+		v5 = v2 * 16;
+		v4 = a2->AnimationThing.AnimData[v2].Animation;
+		v3 = v4->object;
+		if (v4->object == *SONIC_OBJECTS)
+		{
+			if (v4 == *SONIC_ACTIONS)
+			{
+				njSetTexture(&METALSONIC_TEXLIST);
+				if (CharObj2Ptrs[0]->UnderwaterTime) DrawQueueDepthBias = -35000.0f; else DrawQueueDepthBias = 5000.0f;
+				sub_4053A0(SONIC_OBJECTS[68], SONIC_MOTIONS[1], a2->AnimationThing.Frame, 0, 0);
+				DrawQueueDepthBias = 0;
+			}
+			else
+			{
+				njSetTexture(&METALSONIC_TEXLIST);
+				if (CharObj2Ptrs[0]->UnderwaterTime) DrawQueueDepthBias = -35000.0f; else DrawQueueDepthBias = 5000.0f;
+				sub_4053A0(SONIC_OBJECTS[68], (*(NJS_ACTION **)((char *)&a2->AnimationThing.AnimData->Animation + v5))->motion, a2->AnimationThing.Frame, 0, 0);
+				DrawQueueDepthBias = 0;
+			}
+		}
+		else if (v3 == SONIC_OBJECTS[66])
+		{
+			njSetTexture(&METALSONIC_TEXLIST);
+			if (CharObj2Ptrs[0]->UnderwaterTime) DrawQueueDepthBias = -35000.0f; else DrawQueueDepthBias = 5000.0f;
+			sub_4053A0(SONIC_OBJECTS[69], (*(NJS_ACTION **)((char *)&a2->AnimationThing.AnimData->Animation + v5))->motion,	a2->AnimationThing.Frame, 0, 0);
+			DrawQueueDepthBias = 0;
+		}
+		else if (v3 == SONIC_OBJECTS[67])
+		{
+			njSetTexture(&METALSONIC_TEXLIST);
+			if (CharObj2Ptrs[0]->UnderwaterTime) DrawQueueDepthBias = -35000.0f; else DrawQueueDepthBias = 5000.0f;
+			sub_4053A0(SONIC_OBJECTS[70], (*(NJS_ACTION **)((char *)&a2->AnimationThing.AnimData->Animation + v5))->motion,	a2->AnimationThing.Frame, 0, 0);
+			DrawQueueDepthBias = 0;
+		}
+		else
+		{
+			njAction(v4, a2->AnimationThing.Frame);
+		}
+	}
+}
+
+void __cdecl MetalSonic_AfterImage_Display_Fixed(ObjectMaster *a1)
+{
+	EntityData1 *v1; // edi
+	CharObj2 *v2; // esi
+	Angle v3; // eax
+	float r; // ST08_4
+	Angle v5; // eax
+	Angle v6; // eax
+
+	v1 = a1->Data1;
+	v2 = GetCharObj2(0);
+	if (v2)
+	{
+		if (IsVisible(&v1->Position, 15.0))
+		{
+			BackupConstantAttr();
+			AddConstantAttr(0, NJD_FLAG_USE_ALPHA);
+			njColorBlendingMode(0, NJD_COLOR_BLENDING_SRCALPHA);
+			njColorBlendingMode(NJD_DESTINATION_COLOR, NJD_COLOR_BLENDING_ONE);
+			r = *(float *)&v1->CharIndex - 1.0f;
+			SetMaterialAndSpriteColor_Float(r, 1.0f, 1.0f, 1.0f);
+			njPushMatrix(0);
+			njTranslateV(0, &v1->Position);
+			v3 = v1->Rotation.z;
+			if (v3)
+			{
+				njRotateZ(0, (unsigned __int16)v3);
+			}
+			v5 = v1->Rotation.x;
+			if (v5)
+			{
+				njRotateX(0, (unsigned __int16)v5);
+			}
+			v6 = v1->Rotation.y;
+			if (v6 != 0x8000)
+			{
+				njRotateY(0, (unsigned __int16)(-32768 - v6));
+			}
+			DrawAfterImageFixed((unsigned __int16)v2->AnimationThing.Index, v2);
+			njPopMatrix(1u);
+			njColorBlendingMode(0, NJD_COLOR_BLENDING_SRCALPHA);
+			njColorBlendingMode(NJD_DESTINATION_COLOR, NJD_COLOR_BLENDING_INVSRCALPHA);
+			ClampGlobalColorThing_Thing();
+			RestoreConstantAttr();
+		}
+	}
+}
+
+void CharacterShadowHook(NJS_OBJECT *a1, float a2)
+{
+	float v2; // st7
+	v2 = DrawQueueDepthBias;
+	if (EnableWindyValley && CurrentLevel == LevelIDs_WindyValley && CurrentAct == 2) DrawQueueDepthBias = 2600.0f;
+	else  DrawQueueDepthBias = -27952.0f;
+	if (MissedFrames || VerifyTexList(CurrentTexList))
+	{
+		DrawQueueDepthBias = v2;
+	}
+	else
+	{
+		ProcessModelNode(a1, (QueuedModelFlagsB)6, a2);
+		DrawQueueDepthBias = v2;
+	}
+}
+
 void General_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 {
 	ReplacePVR("AL_BARRIA");
@@ -1149,6 +1266,10 @@ void General_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 	ReplacePVM("WING_P");
 	ReplacePVM("WING_T");
 	ReplacePVM("ZOU");
+	//Metal Sonic afterimage fix
+	WriteJump(MetalSonic_AfterImage_Display, MetalSonic_AfterImage_Display_Fixed);
+	//Character shadow fix (lame)
+	WriteCall((void*)0x49F182, CharacterShadowHook);
 	//NPC shadow fix
 	WriteCall((void*)0x5252E8, DrawNPCShadowFix);
 	//Replace SADX DirLight data with SA1 DirLight data
