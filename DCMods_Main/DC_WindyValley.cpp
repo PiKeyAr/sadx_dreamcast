@@ -10,6 +10,16 @@ NJS_TEXLIST texlist_windy2 = { arrayptrandlength(textures_windy2) };
 NJS_TEXNAME textures_windy3[28];
 NJS_TEXLIST texlist_windy3 = { arrayptrandlength(textures_windy3) };
 
+int Windy3Cols[] = {
+	0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+};
+
+/*
+#include "Windy1.h"
+#include "Windy2.h"
+#include "Windy3.h"
+*/
+
 DataArray(SkyboxScale, SkyboxScale_Windy1, 0x00AFE924, 3);
 DataArray(FogData, FogData_Windy1, 0x00AFEA20, 3);
 DataArray(FogData, FogData_Windy2, 0x00AFEA50, 3);
@@ -26,6 +36,8 @@ DataPointer(NJS_BGRA, CurrentFogColorX, 0x03ABDC68);
 FunctionPointer(void, sub_409E70, (NJS_MODEL_SADX *a1, int a2, float a3), 0x409E70);
 FunctionPointer(void, sub_408530, (NJS_OBJECT *o), 0x408530);
 FunctionPointer(void, sub_408350, (NJS_ACTION *a1, float a2, int a3, float a4), 0x408350);
+FunctionPointer(void, sub_4CACF0, (NJS_VECTOR *a1, float a2), 0x4CACF0);
+FunctionPointer(void, sub_407FC0, (NJS_MODEL_SADX *a1, int blend), 0x407FC0);
 static int TornadoMode = 0;
 static float SkyTrans = 1.0f;
 
@@ -116,6 +128,7 @@ void FixBranch(NJS_ACTION *a1, float a2, int a3, float a4)
 	sub_408350(a1, a2, a3, a4);
 	DrawQueueDepthBias = 2200.0f;
 	sub_408350(&action_OTREEM_Action, a2, a3, a4);
+	DrawQueueDepthBias = 0;
 }
 
 void UnloadLevelFiles_STG02()
@@ -128,21 +141,69 @@ void UnloadLevelFiles_STG02()
 	STG02_2_Info = nullptr;
 }
 
+void OHasieFix(NJS_MODEL_SADX *model, float scale)
+{
+	sub_407FC0(model, (QueuedModelFlagsB)0);
+}
+
+void AddWindyTransparentThing(int colnumber)
+{
+	for (int i = 0; i < LengthOfArray(Windy3Cols); i++)
+	{
+		if (Windy3Cols[i] == colnumber) return;
+		else if (Windy3Cols[i] == 0)
+		{
+			Windy3Cols[i] = colnumber;
+			//PrintDebug("Added COl: %d\n", colnumber);
+			return;
+		}
+	}
+}
+
+void ParseWindyColFlags(LandTable *landtable)
+{
+	int colflags;
+	for (unsigned int j = 0; j < landtable->COLCount; j++)
+	{
+		colflags = landtable->Col[j].Flags;
+		if (colflags == 0x88000000)
+		{
+			if (landtable->Col[j].Flags & ColFlags_Visible) landtable->Col[j].Flags &= ~ColFlags_Visible;
+			AddWindyTransparentThing(j);
+		}
+	}
+}
+
 void LoadLevelFiles_STG02()
 {
 	CheckAndUnloadLevelFiles();
 	STG02_0_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG02\\0.sa1lvl"));
 	STG02_1_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG02\\1.sa1lvl"));
 	STG02_2_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG02\\2.sa1lvl"));
-	LandTable *STG02_0 = STG02_0_Info->getlandtable();
-	LandTable *STG02_1 = STG02_1_Info->getlandtable();
-	LandTable *STG02_2 = STG02_2_Info->getlandtable();
+	LandTable *STG02_0 = STG02_0_Info->getlandtable(); //&landtable_0000D7E0; //STG02_0_Info->getlandtable();
+	LandTable *STG02_1 = STG02_1_Info->getlandtable(); //&landtable_0000DB40; //STG02_1_Info->getlandtable();
+	LandTable *STG02_2 = STG02_2_Info->getlandtable(); //&landtable_0000F274; //STG02_2_Info->getlandtable();
 	STG02_0->TexList = &texlist_windy1;
 	STG02_1->TexList = &texlist_windy2;
 	STG02_2->TexList = &texlist_windy3;
 	WriteData((LandTable**)0x97DA48, STG02_0); //Act 1
 	WriteData((LandTable**)0x97DA4C, STG02_1); //Act 2
 	WriteData((LandTable**)0x97DA50, STG02_2); //Act 3
+	ParseWindyColFlags(STG02_2);
+}
+
+void DrawTransparentBrokenBlocks(NJS_MODEL_SADX *model, QueuedModelFlagsB blend)
+{
+		DrawQueueDepthBias = 5000.0f;
+		DrawModel_Queue(model, blend);
+		DrawQueueDepthBias = 0.0f;
+}
+
+void DrawTransparentBrokenBlocksExplosion(NJS_VECTOR *a1, float a2)
+{
+	ParticleDepthOverride = 22048.0f;
+	sub_4CACF0(a1, a2);
+	ParticleDepthOverride = 0.0f;
 }
 
 void WindyValley_Init()
@@ -205,6 +266,12 @@ void WindyValley_Init()
 	WriteCall((void*)0x004E1E9A, sub_409E70); //Wind gate rendering function
 	WriteCall((void*)0x004E1F08, sub_409E70); //Wind gate rendering function
 	WriteCall((void*)0x004E1F77, sub_409E70); //Wind gate rendering function
+	WriteCall((void**)0x4E126F, OHasieFix);
+	WriteCall((void**)0x4E12D2, OHasieFix);
+	WriteCall((void**)0x4E133E, OHasieFix);
+	WriteCall((void*)0x4E282D, DrawTransparentBrokenBlocksExplosion);
+	WriteCall((void*)0x4E2703, DrawTransparentBrokenBlocksExplosion);
+	WriteCall((void*)0x4E2262, DrawTransparentBrokenBlocks);
 	*(NJS_OBJECT*)0x00C32DB8 = objectSTG02_000D40D4; //Grassy rock
 	*(NJS_OBJECT*)0xC0B188 = objectSTG02_000B6C3C; //Skybox bottom in Act 3
 	*(NJS_OBJECT*)0xC2B860 = objectSTG02_0082B860; //broken fan piece
@@ -255,11 +322,39 @@ void WindyValley_Init()
 	ResizeTextureList((NJS_TEXLIST *)0xAFEC30, textures_windy3);
 };
 
+void RenderWindy3Cols()
+{
+	NJS_VECTOR sphere = { 0, 0, 0 };
+	float radius = 0.0f;
+	for (int i = 0; i < LengthOfArray(Windy3Cols); i++)
+	{
+		//PrintDebug("Trying COl: %d\n", Windy3Cols[i]);
+		radius = 2500.0f + GeoLists[18]->Col[Windy3Cols[i]].Radius;
+		//PrintDebug("Radius: %f", radius);
+		sphere.x = GeoLists[18]->Col[Windy3Cols[i]].Center.x;
+		sphere.y = GeoLists[18]->Col[Windy3Cols[i]].Center.y;
+		sphere.z = GeoLists[18]->Col[Windy3Cols[i]].Center.z;
+		if (radius != 0 && IsPlayerInsideSphere(&sphere, radius))
+		{
+			njSetTexture(&texlist_windy3);
+			njPushMatrix(0);
+			njTranslate(0, 0, 0, 0);
+			DrawQueueDepthBias = 2500.0f;
+			ProcessModelNode_D(GeoLists[18]->Col[Windy3Cols[i]].Model, 1, 1.0f);
+			njPopMatrix(1u);
+			DrawQueueDepthBias = 0;
+		}
+	}
+}
+
 void WindyValley_OnFrame()
 {
 	float TornadoDistance;
 	auto entity = EntityData1Ptrs[0];
-	if (CurrentLevel == 2 && CurrentAct == 0)
+	//Draw stuff in Act 3
+	if (CurrentAct == 2 && EntityData1Ptrs[0] != nullptr) RenderWindy3Cols();
+	//Tornado stuff
+	if (CurrentAct == 0)
 	{
 		if (GameState == 3 || GameState == 4 || GameState == 7 || GameState == 21 || CurrentCharacter == 6) TornadoMode = 0;
 		if (CurrentCharacter != 6 && entity != nullptr)
