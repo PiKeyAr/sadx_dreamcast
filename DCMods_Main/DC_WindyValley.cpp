@@ -10,9 +10,7 @@ NJS_TEXLIST texlist_windy2 = { arrayptrandlength(textures_windy2) };
 NJS_TEXNAME textures_windy3[28];
 NJS_TEXLIST texlist_windy3 = { arrayptrandlength(textures_windy3) };
 
-int Windy3Cols[] = {
-	0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-};
+int Windy3Cols[] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }; 
 
 /*
 #include "Windy1.h"
@@ -194,9 +192,9 @@ void LoadLevelFiles_STG02()
 
 void DrawTransparentBrokenBlocks(NJS_MODEL_SADX *model, QueuedModelFlagsB blend)
 {
-		DrawQueueDepthBias = 5000.0f;
-		DrawModel_Queue(model, blend);
-		DrawQueueDepthBias = 0.0f;
+	DrawQueueDepthBias = 5000.0f;
+	DrawModel_Queue(model, blend);
+	DrawQueueDepthBias = 0.0f;
 }
 
 void DrawTransparentBrokenBlocksExplosion(NJS_VECTOR *a1, float a2)
@@ -326,23 +324,26 @@ void RenderWindy3Cols()
 {
 	NJS_VECTOR sphere = { 0, 0, 0 };
 	float radius = 0.0f;
-	for (int i = 0; i < LengthOfArray(Windy3Cols); i++)
+	if (!MissedFrames)
 	{
-		//PrintDebug("Trying COl: %d\n", Windy3Cols[i]);
-		radius = 2500.0f + GeoLists[18]->Col[Windy3Cols[i]].Radius;
-		//PrintDebug("Radius: %f", radius);
-		sphere.x = GeoLists[18]->Col[Windy3Cols[i]].Center.x;
-		sphere.y = GeoLists[18]->Col[Windy3Cols[i]].Center.y;
-		sphere.z = GeoLists[18]->Col[Windy3Cols[i]].Center.z;
-		if (radius != 0 && IsPlayerInsideSphere(&sphere, radius))
+		for (int i = 0; i < LengthOfArray(Windy3Cols); i++)
 		{
-			njSetTexture(&texlist_windy3);
-			njPushMatrix(0);
-			njTranslate(0, 0, 0, 0);
-			DrawQueueDepthBias = 2500.0f;
-			ProcessModelNode_D(GeoLists[18]->Col[Windy3Cols[i]].Model, 1, 1.0f);
-			njPopMatrix(1u);
-			DrawQueueDepthBias = 0;
+			//PrintDebug("Trying COl: %d\n", Windy3Cols[i]);
+			radius = 2500.0f + GeoLists[18]->Col[Windy3Cols[i]].Radius;
+			//PrintDebug("Radius: %f", radius);
+			sphere.x = GeoLists[18]->Col[Windy3Cols[i]].Center.x;
+			sphere.y = GeoLists[18]->Col[Windy3Cols[i]].Center.y;
+			sphere.z = GeoLists[18]->Col[Windy3Cols[i]].Center.z;
+			if (radius != 0 && IsPlayerInsideSphere(&sphere, radius))
+			{
+				njSetTexture(&texlist_windy3);
+				njPushMatrix(0);
+				njTranslate(0, 0, 0, 0);
+				DrawQueueDepthBias = 2500.0f;
+				ProcessModelNode_D(GeoLists[18]->Col[Windy3Cols[i]].Model, 1, 1.0f);
+				njPopMatrix(1u);
+				DrawQueueDepthBias = 0;
+			}
 		}
 	}
 }
