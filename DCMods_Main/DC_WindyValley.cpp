@@ -205,6 +205,38 @@ void DrawTransparentBrokenBlocksExplosion(NJS_VECTOR *a1, float a2)
 	ParticleDepthOverride = 0.0f;
 }
 
+void __cdecl OTanpopo_Child_Display(ObjectMaster *a1)
+{
+	EntityData1 *v1; // esi
+	EntityData1 *v2; // edi
+	float ZDist; // ST08_4
+	float YDist; // ST04_4
+	float XDist; // ST00_4
+	Angle v6; // ecx
+
+	v1 = a1->Data1;
+	v2 = a1->Parent->Data1;
+	ZDist = v2->Scale.z + v1->Position.z;
+	YDist = v2->Scale.y + v1->Position.y;
+	XDist = v2->Scale.x + v1->Position.x;
+	if ((abs(v1->Position.x - v2->Position.x) > 0.5f || abs(v1->Position.y-v2->Position.y > 0.5f) || abs(v1->Position.z - v2->Position.z) > 0.5f))
+	{
+		if (!MissedFrames)
+		{
+			SetTextureToLevelObj();
+			njPushMatrix(0);
+			njTranslate(0, XDist, YDist, ZDist);
+			v6 = Camera_Data1->Rotation.y;
+			if (v6)
+			{
+				njRotateY(0, (unsigned __int16)v6);
+			}
+			ProcessModelNode_A_Wrapper((NJS_OBJECT*)0x00C1DBFC, QueuedModelFlagsB_SomeTextureThing, 1.0f);
+			njPopMatrix(1u);
+		}
+	}
+}
+
 void WindyValley_Init()
 {
 	ReplaceBIN_DC("SET0200S");
@@ -271,6 +303,9 @@ void WindyValley_Init()
 	WriteCall((void*)0x4E282D, DrawTransparentBrokenBlocksExplosion);
 	WriteCall((void*)0x4E2703, DrawTransparentBrokenBlocksExplosion);
 	WriteCall((void*)0x4E2262, DrawTransparentBrokenBlocks);
+	RemoveVertexColors_Object((NJS_OBJECT*)0xC1D1B0); //OTanpopo
+	RemoveVertexColors_Model((NJS_MODEL_SADX*)0xC1DAB4); //OTanpopo
+	WriteJump((void*)0x4DFA60, OTanpopo_Child_Display); //Fix hanging dandelion
 	*(NJS_MODEL_SADX*)0xC1D068 = attach_000C3FFC; //OPopo base
 	*(NJS_OBJECT*)0xC1C648 = object_000C3A70; //OPopo part 2
 	*(NJS_OBJECT*)0xC1C848 = object_000C38A8; //OPopo part 1 (I swapped these because SADX renders them in an incorrect order)

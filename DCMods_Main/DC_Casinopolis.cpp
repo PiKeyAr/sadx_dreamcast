@@ -987,7 +987,9 @@ void Casinopolis_Init()
 		WriteJump(ONeonk, Cowgirl_Load);
 	}
 	*(NJS_MODEL_SADX*)0x01DF7140 = attachSTG09_00177188; //Slot red
+	RemoveVertexColors_Object((NJS_OBJECT*)0x1DF716C); //Slot red
 	*(NJS_MODEL_SADX*)0x01DF5138 = attachSTG09_00175E44; //Slot blue
+	RemoveVertexColors_Object((NJS_OBJECT*)0x1DF5164); //Slot blue
 	*(NJS_MODEL_SADX*)0x01D8BC10 = attachSTG09_0010E984; //FlipperL
 	*(NJS_MODEL_SADX*)0x01D8BED8 = attachSTG09_0010EC3C; //FlipperR
 	*(NJS_MODEL_SADX*)0x01DDE898 = attachSTG09_00160358; //BanjuDoor
@@ -1013,9 +1015,11 @@ void Casinopolis_Init()
 	memcpy((void*)0x1E3BAC8, uvSTG09_001B9FC4, sizeof(uvSTG09_001B9FC4)); //ORlti
 	memcpy((void*)0x1E3BBC8, uvSTG09_001BA0C4, sizeof(uvSTG09_001BA0C4)); //ORlti
 	memcpy((void*)0x1E3BC08, uvSTG09_001BA104, sizeof(uvSTG09_001BA104)); //ORlti
-	*(NJS_MODEL_SADX*)0x01E49838 = attachSTG09_001C6E74; //Card pinball machine
-	*(NJS_MODEL_SADX*)0x01E4B17C = attachSTG09_001C8128; //Slot pinball machine
-	memcpy((void*)0x01E4D298, uvSTG09_001CA184, sizeof(uvSTG09_001CA184)); //Card pinball spinning ad
+	*(NJS_MODEL_SADX*)0x01E49838 = attachSTG09_001C6E74; //Card pinball entrance
+	*(NJS_MODEL_SADX*)0x01E4B17C = attachSTG09_001C8128; //Slot pinball entrance
+	RemoveVertexColors_Object((NJS_OBJECT*)0x1E49864); //Card pinball entrance
+	RemoveVertexColors_Object((NJS_OBJECT*)0x1E4B1A8); //Slot pinball entrance
+	memcpy((void*)0x1E4D298, uvSTG09_001CA184, sizeof(uvSTG09_001CA184)); //Card pinball spinning ad
 	memcpy((void*)0x1E4DFD8, uvSTG09_001CAE80, sizeof(uvSTG09_001CAE80)); //Slot pinball spinning ad
 	((NJS_ACTION*)0x01DE120C)->object = &objectSTG09_00155E04; //Pianpach
 	((NJS_ACTION*)0x01DE223C)->object = &objectSTG09_001594F4; //Pianwalk

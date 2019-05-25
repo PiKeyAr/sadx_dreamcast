@@ -462,3 +462,5 @@ void AnimateUVs(UVAnimation *animation);
 void ClearTextureAnimationData();
 void AddTextureAnimation(int act, NJS_MATERIAL* material, bool nonsequential, int speed, int frame1, int frame2, int frame3, int frame4, int frame5, int frame6, int frame7, int frame8, int frame9, int frame10, int frame11, int frame12, int frame13, int frame14, int frame15, int frame16);
 void AddUVAnimation(NJS_TEX* uv, int uv_count, int timer, int u_speed, int v_speed);
+void RemoveVertexColors_Object(NJS_OBJECT *obj);
+void RemoveVertexColors_Model(NJS_MODEL_SADX *model);

@@ -881,3 +881,27 @@ bool Chaos2Function(NJS_MATERIAL* material, uint32_t flags)
 	}
 	return true;
 }
+
+void RemoveVertexColors_Object(NJS_OBJECT *obj)
+{
+	for (int k = 0; k < obj->basicdxmodel->nbMeshset; ++k)
+	{
+		if (obj->basicdxmodel->meshsets[k].vertcolor != nullptr)
+		{
+			obj->basicdxmodel->meshsets[k].vertcolor = nullptr;
+		}
+		if (obj->child != nullptr) RemoveVertexColors_Object(obj->child);
+		if (obj->sibling != nullptr) RemoveVertexColors_Object(obj->sibling);
+	}
+}
+
+void RemoveVertexColors_Model(NJS_MODEL_SADX *model)
+{
+	for (int k = 0; k < model->nbMeshset; ++k)
+	{
+		if (model->meshsets[k].vertcolor != nullptr)
+		{
+			model->meshsets[k].vertcolor = nullptr;
+		}
+	}
+}
