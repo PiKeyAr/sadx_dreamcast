@@ -89,7 +89,8 @@ NJS_MATERIAL* LevelSpecular_Windy[] = {
 
 NJS_MATERIAL* ObjectSpecularWhiteDiffuse[] = {
 	//OPopo
-	((NJS_MATERIAL*)0x00C1C47C),
+	&matlist_000C38DC[1],
+	&matlist_000C3708[1],
 	//Leon eyes
 	((NJS_MATERIAL*)0x009544DC),
 	((NJS_MATERIAL*)0x009544F0),
@@ -270,7 +271,10 @@ void WindyValley_Init()
 	WriteCall((void*)0x4E282D, DrawTransparentBrokenBlocksExplosion);
 	WriteCall((void*)0x4E2703, DrawTransparentBrokenBlocksExplosion);
 	WriteCall((void*)0x4E2262, DrawTransparentBrokenBlocks);
-	*(NJS_OBJECT*)0x00C32DB8 = objectSTG02_000D40D4; //Grassy rock
+	*(NJS_MODEL_SADX*)0xC1D068 = attach_000C3FFC; //OPopo base
+	*(NJS_OBJECT*)0xC1C648 = object_000C3A70; //OPopo part 2
+	*(NJS_OBJECT*)0xC1C848 = object_000C38A8; //OPopo part 1 (I swapped these because SADX renders them in an incorrect order)
+	*(NJS_OBJECT*)0xC32DB8 = objectSTG02_000D40D4; //Grassy rock
 	*(NJS_OBJECT*)0xC0B188 = objectSTG02_000B6C3C; //Skybox bottom in Act 3
 	*(NJS_OBJECT*)0xC2B860 = objectSTG02_0082B860; //broken fan piece
 	*(NJS_OBJECT*)0xC2C160 = objectSTG02_0082C160; //broken fan piece 2
