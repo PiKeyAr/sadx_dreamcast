@@ -578,9 +578,6 @@
     <ClInclude Include="Data\ChaoObjects_Race.h">
       <Filter>Header Files\Levels\Chao</Filter>
     </ClInclude>
-    <ClInclude Include="Data\BigBeach.h">
-      <Filter>Header Files\Levels\EmeraldCoast</Filter>
-    </ClInclude>
     <ClInclude Include="Data\ChaoEggs.h">
       <Filter>Header Files\Levels\Chao</Filter>
     </ClInclude>

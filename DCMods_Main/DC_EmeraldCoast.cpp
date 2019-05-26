@@ -1,6 +1,5 @@
 #include "stdafx.h"
 #include "EmeraldCoast_Objects.h"
-#include "BigBeach.h"
 
 NJS_TEXNAME textures_ecoast1[97];
 NJS_TEXLIST texlist_ecoast1 = { arrayptrandlength(textures_ecoast1) };
@@ -12,6 +11,15 @@ NJS_TEXNAME textures_ecoast3[94];
 NJS_TEXLIST texlist_ecoast3 = { arrayptrandlength(textures_ecoast3) };
 
 NJS_OBJECT* WaterObjects[] = { nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr };
+NJS_OBJECT *BigDeco1 = nullptr;
+NJS_OBJECT *BigDeco2 = nullptr;
+NJS_OBJECT *BigDeco3 = nullptr;
+NJS_OBJECT *LowPolyOcean = nullptr;
+NJS_OBJECT *HighPolyOcean_Static = nullptr;
+NJS_OBJECT *HighPolyOcean_Dynamic = nullptr;
+NJS_TEX *HighPolyOceanUVs_Dynamic = nullptr;
+NJS_TEX *HighPolyOceanUVs_Static = nullptr;
+NJS_TEX *LowPolyOceanUVs = nullptr;
 
 /*
 #include "EmeraldCoast1.h"
@@ -35,9 +43,6 @@ static int inside_secret_area = 0;
 static int water_anim = 17;
 static bool lilocean = false;
 static NJS_VECTOR oldpos{ 0,0,0 };
-
-DataArray(NJS_TEX, uvSTG01_00CC0530, 0x10C0530, 4);
-DataArray(NJS_TEX, uvSTG01_00CBB000_data, 0x10BB000, LengthOfArray(uvSTG01_00CBB000));
 
 DataArray(FogData, EmeraldCoast1Fog, 0x00E99DDC, 3);
 DataArray(FogData, EmeraldCoast2Fog, 0x00E99E0C, 3);
@@ -80,7 +85,7 @@ void __cdecl Obj_EC23Water_DisplayX(ObjectMaster *a1)
 			uvSTG01_00CC0530[2].u = uvSTG01_00CC0530_d[2].u + OceanUVShift1 % 255;
 			uvSTG01_00CC0530[3].u = uvSTG01_00CC0530_d[3].u + OceanUVShift1 % 255;*/
 			DrawQueueDepthBias = -25952.0f;
-			ProcessModelNode_A_Wrapper((NJS_OBJECT*)0x10C05E8, QueuedModelFlagsB_SomeTextureThing, 1.0f);
+			ProcessModelNode_A_Wrapper(LowPolyOcean, QueuedModelFlagsB_SomeTextureThing, 1.0f);
 			DrawQueueDepthBias = 0;
 			njPopMatrix(1u);
 		}
@@ -102,14 +107,14 @@ void __cdecl Obj_EC23Water_DisplayX(ObjectMaster *a1)
 	else
 	{
 		//Draw decorations in Big's level
-		if (CurrentAct == 2)
+		if (CurrentAct == 2 && BigDeco1 && BigDeco2 && BigDeco3)
 		{
 			njSetTexture((NJS_TEXLIST*)&texlist_sadxwtr_beach);
 			njPushMatrix(0);
 			njTranslate(0, 0, 0, 0);
-			ProcessModelNode_AB_Wrapper(&object_00ACA3EC, 1.0f);
-			ProcessModelNode_AB_Wrapper(&object_00AC97B4, 1.0f);
-			ProcessModelNode_AB_Wrapper(&object_00ACA028, 1.0f);
+			ProcessModelNode_AB_Wrapper(BigDeco1, 1.0f);
+			ProcessModelNode_AB_Wrapper(BigDeco2, 1.0f);
+			ProcessModelNode_AB_Wrapper(BigDeco3, 1.0f);
 			njPopMatrix(1u);
 		}
 		//Draw main water
@@ -197,7 +202,7 @@ void __cdecl Obj_EC1Water_DisplayX(ObjectMaster *a1)
 				uvSTG01_00CC0530[3].u = uvSTG01_00CC0530_d[3].u + OceanUVShift1;
 				*/
 				DrawQueueDepthBias = -19952.0f;
-				ProcessModelNode_A_Wrapper((NJS_OBJECT*)0x10C05E8, QueuedModelFlagsB_SomeTextureThing, 1.0f);
+				ProcessModelNode_A_Wrapper(LowPolyOcean, QueuedModelFlagsB_SomeTextureThing, 1.0f);
 				njPopMatrix(1u);
 				DrawQueueDepthBias = 0;
 			}
@@ -233,10 +238,10 @@ void __cdecl Obj_EC1Water_DisplayX(ObjectMaster *a1)
 				if (SADXWater_EmeraldCoast == true) u2_add = roundfloat(1.5f * u2_add);
 				for (unsigned int u_step = 0; u_step < LengthOfArray(uvSTG01_00CBB000_d); u_step++)
 				{
-					uvSTG01_00CBB000_data[u_step].u = uvSTG01_00CBB000_data[u_step].u - u2_add;
-					u2_delta = uvSTG01_00CBB000_data[u_step].u - uvSTG01_00CBB000_d[u_step].u;
-					uvSTG01_00CBB000_data[u_step].u = uvSTG01_00CBB000_d[u_step].u + (u2_delta % 255);
-					uvSTG01_00CBB000[u_step].u = uvSTG01_00CBB000_data[u_step].u;
+					HighPolyOceanUVs_Dynamic[u_step].u = HighPolyOceanUVs_Dynamic[u_step].u - u2_add;
+					u2_delta = HighPolyOceanUVs_Dynamic[u_step].u - uvSTG01_00CBB000_d[u_step].u;
+					HighPolyOceanUVs_Dynamic[u_step].u = uvSTG01_00CBB000_d[u_step].u + (u2_delta % 255);
+					HighPolyOceanUVs_Static[u_step].u = HighPolyOceanUVs_Dynamic[u_step].u;
 				}
 			}
 			if (oldpos.z != v1->Position.z)
@@ -245,10 +250,10 @@ void __cdecl Obj_EC1Water_DisplayX(ObjectMaster *a1)
 				if (SADXWater_EmeraldCoast == true) v2_add = roundfloat(0.5f * v2_add);
 				for (unsigned int v_step = 0; v_step < LengthOfArray(uvSTG01_00CBB000_d); v_step++)
 				{
-					uvSTG01_00CBB000_data[v_step].v = uvSTG01_00CBB000_data[v_step].v - v2_add;
-					v2_delta = uvSTG01_00CBB000_data[v_step].v - uvSTG01_00CBB000_d[v_step].v;
-					uvSTG01_00CBB000_data[v_step].v = uvSTG01_00CBB000_d[v_step].v + (v2_delta % 255);
-					uvSTG01_00CBB000[v_step].v = uvSTG01_00CBB000_data[v_step].v;
+					HighPolyOceanUVs_Dynamic[v_step].v = HighPolyOceanUVs_Dynamic[v_step].v - v2_add;
+					v2_delta = HighPolyOceanUVs_Dynamic[v_step].v - uvSTG01_00CBB000_d[v_step].v;
+					HighPolyOceanUVs_Dynamic[v_step].v = uvSTG01_00CBB000_d[v_step].v + (v2_delta % 255);
+					HighPolyOceanUVs_Static[v_step].v = HighPolyOceanUVs_Dynamic[v_step].v;
 				}
 			}
 			oldpos.x = v1->Position.x;
@@ -263,102 +268,102 @@ void __cdecl Obj_EC1Water_DisplayX(ObjectMaster *a1)
 
 			njPushMatrix(0);
 			njTranslate(0, v1->Position.x - 2000, EC1OceanYShift, v1->Position.z);
-			ProcessModelNode_A_Wrapper(&objectSTG01_00CC03FC, QueuedModelFlagsB_3, 1.0f);
+			ProcessModelNode_A_Wrapper(HighPolyOcean_Static, QueuedModelFlagsB_3, 1.0f);
 			njPopMatrix(1u);
 
 			njPushMatrix(0);
 			njTranslate(0, v1->Position.x - 2000, EC1OceanYShift, v1->Position.z + 1000);
-			ProcessModelNode_A_Wrapper(&objectSTG01_00CC03FC, QueuedModelFlagsB_3, 1.0f);
+			ProcessModelNode_A_Wrapper(HighPolyOcean_Static, QueuedModelFlagsB_3, 1.0f);
 			njPopMatrix(1u);
 
 			njPushMatrix(0);
 			njTranslate(0, v1->Position.x - 2000, EC1OceanYShift, v1->Position.z - 1000);
-			ProcessModelNode_A_Wrapper(&objectSTG01_00CC03FC, QueuedModelFlagsB_3, 1.0f);
+			ProcessModelNode_A_Wrapper(HighPolyOcean_Static, QueuedModelFlagsB_3, 1.0f);
 			njPopMatrix(1u);
 
 			njPushMatrix(0);
 			njTranslate(0, v1->Position.x, EC1OceanYShift, v1->Position.z - 2000);
-			ProcessModelNode_A_Wrapper(&objectSTG01_00CC03FC, QueuedModelFlagsB_3, 1.0f);
+			ProcessModelNode_A_Wrapper(HighPolyOcean_Static, QueuedModelFlagsB_3, 1.0f);
 			njPopMatrix(1u);
 
 			njPushMatrix(0);
 			njTranslate(0, v1->Position.x - 1000, EC1OceanYShift, v1->Position.z - 2000);
-			ProcessModelNode_A_Wrapper(&objectSTG01_00CC03FC, QueuedModelFlagsB_3, 1.0f);
+			ProcessModelNode_A_Wrapper(HighPolyOcean_Static, QueuedModelFlagsB_3, 1.0f);
 			njPopMatrix(1u);
 
 			njPushMatrix(0);
 			njTranslate(0, v1->Position.x + 1000, EC1OceanYShift, v1->Position.z - 2000);
-			ProcessModelNode_A_Wrapper(&objectSTG01_00CC03FC, QueuedModelFlagsB_3, 1.0f);
+			ProcessModelNode_A_Wrapper(HighPolyOcean_Static, QueuedModelFlagsB_3, 1.0f);
 			njPopMatrix(1u);
 
 			njPushMatrix(0);
 			njTranslate(0, v1->Position.x + 1000, EC1OceanYShift, v1->Position.z);
-			ProcessModelNode_A_Wrapper(&objectSTG01_00CC03FC, QueuedModelFlagsB_3, 1.0f);
+			ProcessModelNode_A_Wrapper(HighPolyOcean_Static, QueuedModelFlagsB_3, 1.0f);
 			njPopMatrix(1u);
 
 			njPushMatrix(0);
 			njTranslate(0, v1->Position.x + 2000, EC1OceanYShift, v1->Position.z);
-			ProcessModelNode_A_Wrapper(&objectSTG01_00CC03FC, QueuedModelFlagsB_3, 1.0f);
+			ProcessModelNode_A_Wrapper(HighPolyOcean_Static, QueuedModelFlagsB_3, 1.0f);
 			njPopMatrix(1u);
 
 			njPushMatrix(0);
 			njTranslate(0, v1->Position.x + 2000, EC1OceanYShift, v1->Position.z + 1000);
-			ProcessModelNode_A_Wrapper(&objectSTG01_00CC03FC, QueuedModelFlagsB_3, 1.0f);
+			ProcessModelNode_A_Wrapper(HighPolyOcean_Static, QueuedModelFlagsB_3, 1.0f);
 			njPopMatrix(1u);
 
 			njPushMatrix(0);
 			njTranslate(0, v1->Position.x + 2000, EC1OceanYShift, v1->Position.z - 1000);
-			ProcessModelNode_A_Wrapper(&objectSTG01_00CC03FC, QueuedModelFlagsB_3, 1.0f);
+			ProcessModelNode_A_Wrapper(HighPolyOcean_Static, QueuedModelFlagsB_3, 1.0f);
 			njPopMatrix(1u);
 
 			njPushMatrix(0);
 			njTranslate(0, v1->Position.x, EC1OceanYShift, v1->Position.z + 2000);
-			ProcessModelNode_A_Wrapper(&objectSTG01_00CC03FC, QueuedModelFlagsB_3, 1.0f);
+			ProcessModelNode_A_Wrapper(HighPolyOcean_Static, QueuedModelFlagsB_3, 1.0f);
 			njPopMatrix(1u);
 
 			njPushMatrix(0);
 			njTranslate(0, v1->Position.x + 1000, EC1OceanYShift, v1->Position.z + 2000);
-			ProcessModelNode_A_Wrapper(&objectSTG01_00CC03FC, QueuedModelFlagsB_3, 1.0f);
+			ProcessModelNode_A_Wrapper(HighPolyOcean_Static, QueuedModelFlagsB_3, 1.0f);
 			njPopMatrix(1u);
 
 			njPushMatrix(0);
 			njTranslate(0, v1->Position.x - 1000, EC1OceanYShift, v1->Position.z + 2000);
-			ProcessModelNode_A_Wrapper(&objectSTG01_00CC03FC, QueuedModelFlagsB_3, 1.0f);
+			ProcessModelNode_A_Wrapper(HighPolyOcean_Static, QueuedModelFlagsB_3, 1.0f);
 			njPopMatrix(1u);
 
 			njPushMatrix(0);
 			njTranslate(0, v1->Position.x - 1000, EC1OceanYShift, v1->Position.z);
-			ProcessModelNode_A_Wrapper(&objectSTG01_00CC03FC, QueuedModelFlagsB_3, 1.0f);
+			ProcessModelNode_A_Wrapper(HighPolyOcean_Static, QueuedModelFlagsB_3, 1.0f);
 			njPopMatrix(1u);
 
 			njPushMatrix(0);
 			njTranslate(0, v1->Position.x, EC1OceanYShift, v1->Position.z + 1000);
-			ProcessModelNode_A_Wrapper(&objectSTG01_00CC03FC, QueuedModelFlagsB_3, 1.0f);
+			ProcessModelNode_A_Wrapper(HighPolyOcean_Static, QueuedModelFlagsB_3, 1.0f);
 			njPopMatrix(1u);
 
 			njPushMatrix(0);
 			njTranslate(0, v1->Position.x, EC1OceanYShift, v1->Position.z - 1000);
-			ProcessModelNode_A_Wrapper(&objectSTG01_00CC03FC, QueuedModelFlagsB_3, 1.0f);
+			ProcessModelNode_A_Wrapper(HighPolyOcean_Static, QueuedModelFlagsB_3, 1.0f);
 			njPopMatrix(1u);
 
 			njPushMatrix(0);
 			njTranslate(0, v1->Position.x + 1000, EC1OceanYShift, v1->Position.z + 1000);
-			ProcessModelNode_A_Wrapper(&objectSTG01_00CC03FC, QueuedModelFlagsB_3, 1.0f);
+			ProcessModelNode_A_Wrapper(HighPolyOcean_Static, QueuedModelFlagsB_3, 1.0f);
 			njPopMatrix(1u);
 
 			njPushMatrix(0);
 			njTranslate(0, v1->Position.x + 1000, EC1OceanYShift, v1->Position.z - 1000);
-			ProcessModelNode_A_Wrapper(&objectSTG01_00CC03FC, QueuedModelFlagsB_3, 1.0f);
+			ProcessModelNode_A_Wrapper(HighPolyOcean_Static, QueuedModelFlagsB_3, 1.0f);
 			njPopMatrix(1u);
 
 			njPushMatrix(0);
 			njTranslate(0, v1->Position.x - 1000, EC1OceanYShift, v1->Position.z + 1000);
-			ProcessModelNode_A_Wrapper(&objectSTG01_00CC03FC, QueuedModelFlagsB_3, 1.0f);
+			ProcessModelNode_A_Wrapper(HighPolyOcean_Static, QueuedModelFlagsB_3, 1.0f);
 			njPopMatrix(1u);
 
 			njPushMatrix(0);
 			njTranslate(0, v1->Position.x - 1000, EC1OceanYShift, v1->Position.z - 1000);
-			ProcessModelNode_A_Wrapper(&objectSTG01_00CC03FC, QueuedModelFlagsB_3, 1.0f);
+			ProcessModelNode_A_Wrapper(HighPolyOcean_Static, QueuedModelFlagsB_3, 1.0f);
 			njPopMatrix(1u);
 			DrawQueueDepthBias = 0;
 		}
@@ -370,7 +375,6 @@ NJS_MATERIAL* ObjectSpecular_STG01[] = {
 	((NJS_MATERIAL*)0x008BE2D0),
 	((NJS_MATERIAL*)0x008BE2E4),
 	((NJS_MATERIAL*)0x008BE1C8),
-	&matlistSTG01_00CBA58C[0],
 	((NJS_MATERIAL*)0x0109AF00),
 	((NJS_MATERIAL*)0x0109AF14),
 	((NJS_MATERIAL*)0x0109AF28),
@@ -379,11 +383,6 @@ NJS_MATERIAL* ObjectSpecular_STG01[] = {
 };
 
 NJS_MATERIAL* LevelSpecular_STG01[] = {
-	&matlistSTG01_0014B7BC[0],
-	&matlistSTG01_0014B7BC[1],
-	&matlistSTG01_0014B7BC[2],
-	&matlistSTG01_0014B7BC[3],
-	&matlistSTG01_0014B7BC[4],
 	((NJS_MATERIAL*)0x0109BB18),
 	((NJS_MATERIAL*)0x0109BB2C),
 	((NJS_MATERIAL*)0x0109BB40),
@@ -408,10 +407,6 @@ NJS_MATERIAL* LevelSpecular_STG01[] = {
 	((NJS_MATERIAL*)0x010A5DB0),
 	((NJS_MATERIAL*)0x010A5AD8),
 	((NJS_MATERIAL*)0x010A5AEC),
-	&matlistSTG01_0012C6E0[0],
-	&matlistSTG01_0012C6E0[1],
-	&matlistSTG01_0012C6E0[2],
-	&matlistSTG01_0012C6E0[3],
 	((NJS_MATERIAL*)0x038CA220),
 	((NJS_MATERIAL*)0x038CA234),
 	((NJS_MATERIAL*)0x038C9DF8),
@@ -590,6 +585,7 @@ void ParseEmeraldCoastColFlagsAndMaterials(LandTable *landtable, int act)
 void LoadLevelFiles_STG01()
 {
 	CheckAndUnloadLevelFiles();
+	//Landtables
 	STG01_0_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG01\\0.sa1lvl"));
 	STG01_1_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG01\\1.sa1lvl"));
 	STG01_2_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG01\\2.sa1lvl"));
@@ -599,13 +595,22 @@ void LoadLevelFiles_STG01()
 	STG01_0->TexList = &texlist_ecoast1;
 	STG01_1->TexList = &texlist_ecoast2;
 	STG01_2->TexList = &texlist_ecoast3;
-	//Landtables
 	WriteData((LandTable**)0x97DA28, STG01_0); //Act 1
 	WriteData((LandTable**)0x97DA2C, STG01_1); //Act 2
 	WriteData((LandTable**)0x97DA30, STG01_2); //Act 3
 	ParseEmeraldCoastColFlagsAndMaterials(STG01_0, 0);
 	ParseEmeraldCoastColFlagsAndMaterials(STG01_1, 1);
 	ParseEmeraldCoastColFlagsAndMaterials(STG01_2, 2);
+	//Ocean models
+	if (HighPolyOcean_Dynamic == nullptr) HighPolyOcean_Dynamic = LoadModel("system\\data\\STG01\\Models\\001A132C.sa1mdl");
+	if (HighPolyOcean_Static == nullptr) HighPolyOcean_Static = LoadModel("system\\data\\STG01\\Models\\001A132C.sa1mdl");
+	if (LowPolyOcean == nullptr) LowPolyOcean = LoadModel("system\\data\\STG01\\Models\\001A1430.sa1mdl");
+	LowPolyOceanUVs = LowPolyOcean->basicdxmodel->meshsets[0].vertuv;
+	*(NJS_OBJECT*)0x010C03FC = *HighPolyOcean_Dynamic;
+	HighPolyOcean_Dynamic->basicdxmodel->mats[0].diffuse.argb.a = 0x99; //Match dynamic ocean alpha with normal ocean
+	HighPolyOcean_Static->basicdxmodel->mats[0].diffuse.argb.a = 0x99; //Match dynamic ocean alpha with normal ocean
+	HighPolyOceanUVs_Dynamic = HighPolyOcean_Dynamic->basicdxmodel->meshsets[0].vertuv;
+	HighPolyOceanUVs_Static = HighPolyOcean_Static->basicdxmodel->meshsets[0].vertuv;
 	if (SADXWater_EmeraldCoast)
 	{
 		WriteData((float*)0x004F8D2F, -2153.0f); //Remove gap in Act 2 small pool
@@ -616,30 +621,30 @@ void LoadLevelFiles_STG01()
 			uvSTG01_00CBB000_d[rq].v = round(0.5 * uvSTG01_00CBB000_d[rq].v);
 		}
 		//Blending modes for ocean models
-		((NJS_OBJECT*)0x10C05E8)->basicdxmodel->mats[0].attrflags &= ~NJD_DA_INV_SRC;
-		((NJS_OBJECT*)0x10C05E8)->basicdxmodel->mats[0].attrflags |= NJD_DA_ONE;
-		((NJS_OBJECT*)0x10C05E8)->basicdxmodel->mats[0].diffuse.color = 0xFFFFFFFF;
-		((NJS_OBJECT*)0x010C03FC)->basicdxmodel->mats[0].attrflags &= ~NJD_DA_INV_SRC;
-		((NJS_OBJECT*)0x010C03FC)->basicdxmodel->mats[0].attrflags |= NJD_DA_ONE;
-		((NJS_OBJECT*)0x010C03FC)->basicdxmodel->mats[0].diffuse.color = 0xFFFFFFFF;
-		objectSTG01_00CC03FC.basicdxmodel->mats[0].attrflags &= ~NJD_DA_INV_SRC;
-		objectSTG01_00CC03FC.basicdxmodel->mats[0].attrflags |= NJD_DA_ONE;
-		objectSTG01_00CC03FC.basicdxmodel->mats[0].diffuse.color = 0xFFFFFFFF;
+		LowPolyOcean->basicdxmodel->mats[0].attrflags &= ~NJD_DA_INV_SRC;
+		LowPolyOcean->basicdxmodel->mats[0].attrflags |= NJD_DA_ONE;
+		LowPolyOcean->basicdxmodel->mats[0].diffuse.color = 0xFFFFFFFF;
+		HighPolyOcean_Dynamic->basicdxmodel->mats[0].attrflags &= ~NJD_DA_INV_SRC;
+		HighPolyOcean_Dynamic->basicdxmodel->mats[0].attrflags |= NJD_DA_ONE;
+		HighPolyOcean_Dynamic->basicdxmodel->mats[0].diffuse.color = 0xFFFFFFFF;
+		HighPolyOcean_Static->basicdxmodel->mats[0].attrflags &= ~NJD_DA_INV_SRC;
+		HighPolyOcean_Static->basicdxmodel->mats[0].attrflags |= NJD_DA_ONE;
+		HighPolyOcean_Static->basicdxmodel->mats[0].diffuse.color = 0xFFFFFFFF;
 		WriteData<1>((void*)0x004F783A, 0x0F); //15 animation frames for water in Act 2
 		WriteData<1>((void*)0x004F790A, 0x0F); //15 animation frames for water in Act 3
-		AddTextureAnimation(0, matlistSTG01_00CBA58C, false, 4, 0, 14, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); //Dynamic ocean 1
-		AddTextureAnimation(0, (NJS_MATERIAL*)0x10BA58C, false, 4, 0, 14, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); //Dynamic ocean 2
-		AddTextureAnimation(0, (NJS_MATERIAL*)0x10C0510, false, 4, 0, 14, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); //Static ocean
-		AddTextureAnimation(1, (NJS_MATERIAL*)0x10C0510, false, 4, 0, 14, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); //Static ocean
-		AddTextureAnimation(2, (NJS_MATERIAL*)0x10C0510, false, 4, 0, 14, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); //Static ocean
+		AddTextureAnimation(0, &HighPolyOcean_Static->basicdxmodel->mats[0], false, 4, 0, 14, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); //Static ocean
+		AddTextureAnimation(0, &HighPolyOcean_Dynamic->basicdxmodel->mats[0], false, 4, 0, 14, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); //Dynamic ocean
+		AddTextureAnimation(0, &LowPolyOcean->basicdxmodel->mats[0], false, 4, 0, 14, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); //Static ocean
+		AddTextureAnimation(1, &LowPolyOcean->basicdxmodel->mats[0], false, 4, 0, 14, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); //Static ocean
+		AddTextureAnimation(2, &LowPolyOcean->basicdxmodel->mats[0], false, 4, 0, 14, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); //Static ocean
 	}
 	else
 	{
-		AddTextureAnimation(0, matlistSTG01_00CBA58C, false, 4, 0, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); //Dynamic ocean 1
-		AddTextureAnimation(0, (NJS_MATERIAL*)0x10BA58C, false, 4, 0, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); //Dynamic ocean 2
-		AddTextureAnimation(0, (NJS_MATERIAL*)0x10C0510, false, 4, 0, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); //Static ocean
-		AddTextureAnimation(1, (NJS_MATERIAL*)0x10C0510, false, 4, 0, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); //Static ocean
-		AddTextureAnimation(2, (NJS_MATERIAL*)0x10C0510, false, 4, 0, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); //Static ocean
+		AddTextureAnimation(0, &HighPolyOcean_Static->basicdxmodel->mats[0], false, 4, 0, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); //Static ocean
+		AddTextureAnimation(0, &HighPolyOcean_Dynamic->basicdxmodel->mats[0], false, 4, 0, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); //Dynamic ocean
+		AddTextureAnimation(0, &LowPolyOcean->basicdxmodel->mats[0], false, 4, 0, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); //Static ocean
+		AddTextureAnimation(1, &LowPolyOcean->basicdxmodel->mats[0], false, 4, 0, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); //Static ocean
+		AddTextureAnimation(2, &LowPolyOcean->basicdxmodel->mats[0], false, 4, 0, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); //Static ocean
 	}
 }
 
@@ -706,6 +711,22 @@ void EmeraldCoast_Init()
 		ReplaceBIN("CAM0102S", "CAM0102S_R");
 		ReplaceBIN("CAM0102B", "CAM0102B_R");
 	}
+	//Models
+	*(NJS_OBJECT*)0x10A298C = *LoadModel("system\\data\\STG01\\Models\\00183CDC.sa1mdl"); //Jump panel (OJump) 
+	*(NJS_OBJECT*)0x10937B4 = *LoadModel("system\\data\\STG01\\Models\\00174F68.sa1mdl"); //Pier thing
+	*(NJS_OBJECT*)0x10939A4 = *LoadModel("system\\data\\STG01\\Models\\0017514C.sa1mdl"); //Log
+	*(NJS_OBJECT*)0x10945EC = *LoadModel("system\\data\\STG01\\Models\\0017514C.sa1mdl"); //Log2
+	*(NJS_OBJECT*)0x1097F8C = *LoadModel("system\\data\\STG01\\Models\\001795B4.sa1mdl"); //Pier edge
+	*(NJS_OBJECT*)0x1049A1C = *LoadModel("system\\data\\STG01\\Models\\0012BE80.sa1mdl"); //Pier small
+	*(NJS_OBJECT*)0x104C00C = *LoadModel("system\\data\\STG01\\Models\\0012E428.sa1mdl"); //Dolphin
+	*(NJS_OBJECT*)0x106BB4C = *LoadModel("system\\data\\STG01\\Models\\0014DF28.sa1mdl"); //Whale
+	*(NJS_MODEL_SADX*)0x010C06C8 = *LoadModel("system\\data\\STG01\\Models\\001A16B8.sa1mdl")->basicdxmodel; //Spike gate shadow
+	if (SADXWater_EmeraldCoast)
+	{
+		BigDeco1 = LoadModel("system\\data\\STG01\\Models\\DX\\00ACA3EC.sa1mdl");
+		BigDeco2 = LoadModel("system\\data\\STG01\\Models\\DX\\00AC97B4.sa1mdl");
+		BigDeco3 = LoadModel("system\\data\\STG01\\Models\\DX\\00ACA028.sa1mdl");
+	}
 	//Whale splash transparency fixes
 	WriteCall((void*)0x00502F8F, WhaleSplash);
 	WriteCall((void*)0x00502F9A, WhaleSplash);
@@ -717,20 +738,10 @@ void EmeraldCoast_Init()
 	WriteData<2>((void*)0x004F8A9A, 0x90); //Disable water animation in Act 1
 	WriteData<2>((char*)0x004F7816, 0xFF); //Disable water animation in Act 2
 	WriteData<2>((char*)0x004F78E6, 0xFF); //Disable water animation in Act 3
-	((NJS_OBJECT*)0x010C03FC)->basicdxmodel->mats[0].diffuse.argb.a = 0x99; //Match dynamic ocean alpha with normal ocean
 	ResizeTextureList((NJS_TEXLIST*)0x010C0508, 10); //BEACH_SEA
 	ResizeTextureList((NJS_TEXLIST*)0xF812AC, textures_ecoast1);
 	ResizeTextureList((NJS_TEXLIST*)0xEF553C, textures_ecoast2);
 	ResizeTextureList((NJS_TEXLIST*)0xE9A4CC, textures_ecoast3);
-	*(NJS_OBJECT*)0x10A298C = objectSTG01_00183CDC; //Jump panel (OJump) 
-	*(NJS_OBJECT*)0x10937B4 = objectSTG01_00174F68; //Pier thing
-	*(NJS_OBJECT*)0x10939A4 = objectSTG01_0017514C; //Log
-	*(NJS_OBJECT*)0x10945EC = objectSTG01_0017514C; //Log2
-	*(NJS_OBJECT*)0x1097F8C = objectSTG01_001795B4; //Pier edge
-	*(NJS_OBJECT*)0x1049A1C = objectSTG01_0012BE80; //Pier small
-	*(NJS_OBJECT*)0x104C00C = objectSTG01_0012E428; //Dolphin
-	*(NJS_OBJECT*)0x106BB4C = objectSTG01_0014DF28; //Whale
-	*(NJS_MODEL_SADX*)0x010C06C8 = attachSTG01_001A1690; //Spike gate shadow
 	//Write floats to fix buggy SADX water positioning code
 	//Act 2
 	WriteData((float**)0x004F7876, &float1);
@@ -776,19 +787,19 @@ void EmeraldCoast_OnFrame()
 		}
 	}
 	//Restore ocean UVs on level exit/restart
-	if (GameState == 3 || GameState == 4 || GameState == 7 || GameState == 21)
+	if ((HighPolyOcean_Dynamic) && (GameState == 3 || GameState == 4 || GameState == 7 || GameState == 21))
 	{
 		for (unsigned int r = 0; r < LengthOfArray(uvSTG01_00CC0530_d); r++)
 		{
-			uvSTG01_00CC0530[r].u = uvSTG01_00CC0530_d[r].u;
-			uvSTG01_00CC0530[r].v = uvSTG01_00CC0530_d[r].v;
+			LowPolyOceanUVs[r].u = uvSTG01_00CC0530_d[r].u;
+			LowPolyOceanUVs[r].v = uvSTG01_00CC0530_d[r].v;
 		}
 		for (unsigned int r2 = 0; r2 < LengthOfArray(uvSTG01_00CBB000_d); r2++)
 		{
-			uvSTG01_00CBB000_data[r2].u = uvSTG01_00CBB000_d[r2].u;
-			uvSTG01_00CBB000_data[r2].v = uvSTG01_00CBB000_d[r2].v;
-			uvSTG01_00CBB000[r2].u = uvSTG01_00CBB000_d[r2].u;
-			uvSTG01_00CBB000[r2].v = uvSTG01_00CBB000_d[r2].v;
+			HighPolyOceanUVs_Dynamic[r2].u = uvSTG01_00CBB000_d[r2].u;
+			HighPolyOceanUVs_Dynamic[r2].v = uvSTG01_00CBB000_d[r2].v;
+			HighPolyOceanUVs_Static[r2].u = uvSTG01_00CBB000_d[r2].u;
+			HighPolyOceanUVs_Static[r2].v = uvSTG01_00CBB000_d[r2].v;
 		}
 	}
 	//Fog stuff in Act 3

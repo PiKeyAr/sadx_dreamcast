@@ -121,7 +121,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Data\ADV01C_Objects.h" />
-    <ClInclude Include="Data\BigBeach.h" />
     <ClInclude Include="Data\ChaoEggs.h" />
     <ClInclude Include="Data\ChaoFruits.h" />
     <ClInclude Include="Data\ChaoObjects_Race.h" />
