@@ -377,101 +377,6 @@ void CheckAndUnloadLevelFiles()
 	}
 }
 
-bool ParseCustomMaterialFlags(NJS_MATERIAL* material, uint32_t flags)
-{
-	Uint32 mflags = material->attrflags;
-	//Night
-	if (mflags & NJD_CUSTOMFLAG_NIGHT)
-	{
-		//White diffuse at night
-		if (mflags & NJD_CUSTOMFLAG_WHITE)
-		{
-			if (GetTimeOfDay() == 2) set_diffuse_ptr(3, false); else set_diffuse_ptr(0, false);
-		}
-		//Just ignore light at night
-		else
-		{
-			//If it's night, set ignore light if it's not set yet
-			if (GetTimeOfDay() == 2)
-			{
-				if (material->attrflags & !NJD_FLAG_IGNORE_LIGHT) material->attrflags |= NJD_FLAG_IGNORE_LIGHT;
-			}
-			//If it's not night, remove ignore light if it's not removed yet
-			else
-			{
-				if (material->attrflags & NJD_FLAG_IGNORE_LIGHT) material->attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-			}
-		}
-	}
-	//Light type override: 0
-	if (mflags & NJD_CUSTOMFLAG_UVANIM1 && mflags & !NJD_CUSTOMFLAG_UVANIM2)
-	{
-		set_diffuse_ptr(0, false);
-		if (mflags & NJD_FLAG_IGNORE_SPECULAR) set_specular_ptr(0, false); else set_specular_ptr(1, false);
-	}
-	//Light type override: 2
-	if (mflags & NJD_CUSTOMFLAG_UVANIM2 && mflags & !NJD_CUSTOMFLAG_UVANIM1)
-	{
-		set_diffuse_ptr(2, false);
-		if (mflags & NJD_FLAG_IGNORE_SPECULAR) set_specular_ptr(2, false); else set_specular_ptr(3, false);
-	}
-	//Light type override: 4
-	if (mflags & NJD_CUSTOMFLAG_UVANIM1 && mflags & NJD_CUSTOMFLAG_UVANIM2)
-	{
-		set_diffuse_ptr(4, false);
-		set_specular_ptr(5, false);
-	}
-	//Alpha rejection
-	if (mflags & NJD_CUSTOMFLAG_NO_REJECT) set_alpha_reject_ptr(0.0f, false);
-	return true;
-}
-
-void CheckLandtableMaterials_register(LandTable *landtable)
-{
-	Uint32 materialflags;
-	for (int j = 0; j < landtable->COLCount; ++j) 
-	{
-		if (landtable->Col[j].Flags & ColFlags_Visible) 
-		{
-			for (int k = 0; k < landtable->Col[j].Model->basicdxmodel->nbMat; ++k) 
-			{
-				materialflags = landtable->Col[j].Model->basicdxmodel->mats[k].attrflags;
-				if (materialflags & NJD_CUSTOMFLAG_NO_REJECT || materialflags & NJD_CUSTOMFLAG_UVANIM1 || materialflags & NJD_CUSTOMFLAG_UVANIM2 || materialflags & NJD_CUSTOMFLAG_NIGHT || materialflags & NJD_CUSTOMFLAG_WHITE)
-				{
-					if (DLLLoaded_Lantern)
-					{
-						TemporaryMaterialArray[0] = &landtable->Col[j].Model->basicdxmodel->mats[k];
-						material_register_ptr(TemporaryMaterialArray, LengthOfArray(TemporaryMaterialArray), &ParseCustomMaterialFlags);
-					}
-				}
-			}
-		}
-	}
-}
-
-void CheckLandtableMaterials_unregister(LandTable *landtable)
-{
-	Uint32 materialflags;
-	for (int j = 0; j < landtable->COLCount; ++j)
-	{
-		if (landtable->Col[j].Flags & ColFlags_Visible)
-		{
-			for (int k = 0; k < landtable->Col[j].Model->basicdxmodel->nbMat; ++k)
-			{
-				materialflags = landtable->Col[j].Model->basicdxmodel->mats[k].attrflags;
-				if (materialflags & NJD_CUSTOMFLAG_NO_REJECT || materialflags & NJD_CUSTOMFLAG_UVANIM1 || materialflags & NJD_CUSTOMFLAG_UVANIM2 || materialflags && NJD_CUSTOMFLAG_NIGHT || materialflags && NJD_CUSTOMFLAG_WHITE)
-				{
-					if (DLLLoaded_Lantern)
-					{
-						TemporaryMaterialArray[0] = &landtable->Col[j].Model->basicdxmodel->mats[k];
-						material_unregister_ptr(TemporaryMaterialArray, LengthOfArray(TemporaryMaterialArray), &ParseCustomMaterialFlags);
-					}
-				}
-			}
-		}
-	}
-}
-
 void AnimateTexture(TextureAnimation *texanim)
 {
 	int framenumber;
@@ -758,21 +663,19 @@ void RemoveMaterialColors(NJS_MATERIAL* material)
 	material->diffuse.argb.b = 178;
 }
 
-bool ForceWhiteDiffuse1(NJS_MATERIAL* material, uint32_t flags)
+bool ForceWhiteDiffuse(NJS_MATERIAL* material, uint32_t flags)
 {
-	set_diffuse_ptr(1, false);
+	int diffuseindex = 3;
+	if (CurrentLevel == LevelIDs_SpeedHighway || CurrentLevel == LevelIDs_RedMountain || (CurrentLevel == LevelIDs_IceCap && CurrentAct < 1) || CurrentLevel == LevelIDs_Casinopolis || (CurrentLevel == LevelIDs_FinalEgg && CurrentAct == 2) || CurrentLevel == LevelIDs_HotShelter || CurrentLevel==LevelIDs_EggViper || (CurrentLevel == LevelIDs_EggCarrierInside && CurrentAct == 1)) diffuseindex = 1;
+	if ((CurrentLevel == LevelIDs_IceCap && CurrentAct >= 1) || (CurrentLevel == LevelIDs_FinalEgg && CurrentAct == 0)) diffuseindex = 5;
+	if (CurrentLevel == LevelIDs_FinalEgg && CurrentAct > 0) diffuseindex = 1;
+	set_diffuse_ptr(diffuseindex, false);
 	return true;
 }
 
 bool DisableAlphaRejection(NJS_MATERIAL* material, uint32_t flags)
 {
 	set_alpha_reject_ptr(0.0f, false);
-	return true;
-}
-
-bool ForceWhiteDiffuse3(NJS_MATERIAL* material, uint32_t flags)
-{
-	set_diffuse_ptr(3, false);
 	return true;
 }
 
@@ -886,6 +789,9 @@ void RemoveVertexColors_Object(NJS_OBJECT *obj)
 {
 	for (int k = 0; k < obj->basicdxmodel->nbMeshset; ++k)
 	{
+		obj->basicdxmodel->mats[obj->basicdxmodel->meshsets[k].type_matId & ~0xC000].diffuse.argb.r = 0xFF;
+		obj->basicdxmodel->mats[obj->basicdxmodel->meshsets[k].type_matId & ~0xC000].diffuse.argb.g = 0xFF;
+		obj->basicdxmodel->mats[obj->basicdxmodel->meshsets[k].type_matId & ~0xC000].diffuse.argb.b = 0xFF;
 		if (obj->basicdxmodel->meshsets[k].vertcolor != nullptr)
 		{
 			obj->basicdxmodel->meshsets[k].vertcolor = nullptr;
@@ -899,9 +805,54 @@ void RemoveVertexColors_Model(NJS_MODEL_SADX *model)
 {
 	for (int k = 0; k < model->nbMeshset; ++k)
 	{
+		model->mats[model->meshsets[k].type_matId & ~0xC000].diffuse.argb.r = 0xFF;
+		model->mats[model->meshsets[k].type_matId & ~0xC000].diffuse.argb.g = 0xFF;
+		model->mats[model->meshsets[k].type_matId & ~0xC000].diffuse.argb.b = 0xFF;
 		if (model->meshsets[k].vertcolor != nullptr)
 		{
 			model->meshsets[k].vertcolor = nullptr;
 		}
 	}
+}
+
+void ProcessMaterials_Object(NJS_OBJECT *obj)
+{
+	Uint32 materialflags;
+	for (int k = 0; k < obj->basicdxmodel->nbMeshset; ++k)
+	{
+		//Remove material colors
+		obj->basicdxmodel->mats[obj->basicdxmodel->meshsets[k].type_matId & ~0xC000].diffuse.argb.r = 0xFF;
+		obj->basicdxmodel->mats[obj->basicdxmodel->meshsets[k].type_matId & ~0xC000].diffuse.argb.g = 0xFF;
+		obj->basicdxmodel->mats[obj->basicdxmodel->meshsets[k].type_matId & ~0xC000].diffuse.argb.b = 0xFF;
+		//Parse material flags for white diffuse and alpha rejection
+		materialflags = obj->basicdxmodel->mats[obj->basicdxmodel->meshsets[k].type_matId & ~0xC000].attrflags;
+		if (materialflags & NJD_CUSTOMFLAG_NO_REJECT)
+		{
+			TemporaryMaterialArray[0] = (NJS_MATERIAL*)&obj->basicdxmodel->mats[obj->basicdxmodel->meshsets[k].type_matId & ~0xC000];
+			material_register_ptr(TemporaryMaterialArray, 1, DisableAlphaRejection);
+		}
+		else if (materialflags & NJD_CUSTOMFLAG_WHITE)
+		{
+			TemporaryMaterialArray[0] = (NJS_MATERIAL*)&obj->basicdxmodel->mats[obj->basicdxmodel->meshsets[k].type_matId & ~0xC000];
+			material_register_ptr(TemporaryMaterialArray, 1, ForceWhiteDiffuse);
+		}
+		//Remove vertex colors
+		if (obj->basicdxmodel->meshsets[k].vertcolor != nullptr)
+		{
+			obj->basicdxmodel->meshsets[k].vertcolor = nullptr;
+		}
+		//Process materials of child and sibling models as well
+		if (obj->child != nullptr) ProcessMaterials_Object(obj->child);
+		if (obj->sibling != nullptr) ProcessMaterials_Object(obj->sibling);
+	}
+}
+
+NJS_OBJECT* LoadModel(const char *ModelName)
+{
+	PrintDebug("Loading model: %s: ", HelperFunctionsGlobal.GetReplaceablePath(ModelName));
+	ModelInfo *info = new ModelInfo(HelperFunctionsGlobal.GetReplaceablePath(ModelName));
+	NJS_OBJECT *object = info->getmodel();
+	ProcessMaterials_Object(object);
+	PrintDebug("OK\n");
+	return object;
 }

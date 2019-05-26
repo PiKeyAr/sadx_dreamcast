@@ -12,7 +12,7 @@ class IniFile;
 #define NJD_CUSTOMFLAG_WHITE		(BIT_4)
 #define NJD_CUSTOMFLAG_NIGHT		(BIT_5)
 #define NJD_CUSTOMFLAG_RESERVED		(BIT_6)
-#define NJD_CUSTOMFLAG_NO_REJECT		(BIT_7)
+#define NJD_CUSTOMFLAG_NO_REJECT	(BIT_7)
 
 DataPointer(int, FramerateSetting_Config, 0x0089295C);
 DataPointer(int, FramerateSetting, 0x0389D7DC);
@@ -435,8 +435,7 @@ void __cdecl MysticRuins_OceanDraw_SADXStyle(OceanData *o);
 void __cdecl EggCarrier_OceanDraw_SADXStyle(OceanData *o);
 void __cdecl Past_OceanDraw_SADXStyle(OceanData *o);
 
-bool ForceWhiteDiffuse1(NJS_MATERIAL* material, uint32_t flags);
-bool ForceWhiteDiffuse3(NJS_MATERIAL* material, uint32_t flags);
+bool ForceWhiteDiffuse(NJS_MATERIAL* material, uint32_t flags);
 bool ForceWhiteDiffuse3_Night(NJS_MATERIAL* material, uint32_t flags);
 bool ForceWhiteDiffuse3Specular1(NJS_MATERIAL* material, uint32_t flags);
 bool ChaosPuddleFunc(NJS_MATERIAL* material, uint32_t flags);
@@ -464,3 +463,4 @@ void AddTextureAnimation(int act, NJS_MATERIAL* material, bool nonsequential, in
 void AddUVAnimation(NJS_TEX* uv, int uv_count, int timer, int u_speed, int v_speed);
 void RemoveVertexColors_Object(NJS_OBJECT *obj);
 void RemoveVertexColors_Model(NJS_MODEL_SADX *model);
+NJS_OBJECT* LoadModel(const char *ModelName);
