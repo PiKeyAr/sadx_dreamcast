@@ -787,18 +787,21 @@ bool Chaos2Function(NJS_MATERIAL* material, uint32_t flags)
 
 void RemoveVertexColors_Object(NJS_OBJECT *obj)
 {
-	for (int k = 0; k < obj->basicdxmodel->nbMeshset; ++k)
+	if (obj->basicdxmodel)
 	{
-		obj->basicdxmodel->mats[obj->basicdxmodel->meshsets[k].type_matId & ~0xC000].diffuse.argb.r = 0xFF;
-		obj->basicdxmodel->mats[obj->basicdxmodel->meshsets[k].type_matId & ~0xC000].diffuse.argb.g = 0xFF;
-		obj->basicdxmodel->mats[obj->basicdxmodel->meshsets[k].type_matId & ~0xC000].diffuse.argb.b = 0xFF;
-		if (obj->basicdxmodel->meshsets[k].vertcolor != nullptr)
+		for (int k = 0; k < obj->basicdxmodel->nbMeshset; ++k)
 		{
-			obj->basicdxmodel->meshsets[k].vertcolor = nullptr;
+			obj->basicdxmodel->mats[obj->basicdxmodel->meshsets[k].type_matId & ~0xC000].diffuse.argb.r = 0xFF;
+			obj->basicdxmodel->mats[obj->basicdxmodel->meshsets[k].type_matId & ~0xC000].diffuse.argb.g = 0xFF;
+			obj->basicdxmodel->mats[obj->basicdxmodel->meshsets[k].type_matId & ~0xC000].diffuse.argb.b = 0xFF;
+			if (obj->basicdxmodel->meshsets[k].vertcolor != nullptr)
+			{
+				obj->basicdxmodel->meshsets[k].vertcolor = nullptr;
+			}
 		}
-		if (obj->child != nullptr) RemoveVertexColors_Object(obj->child);
-		if (obj->sibling != nullptr) RemoveVertexColors_Object(obj->sibling);
 	}
+	if (obj->child != nullptr) RemoveVertexColors_Object(obj->child);
+	if (obj->sibling != nullptr) RemoveVertexColors_Object(obj->sibling);
 }
 
 void RemoveVertexColors_Model(NJS_MODEL_SADX *model)
