@@ -1298,6 +1298,19 @@ void General_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 		DirLights_SADX[i].AmbientG = DirLights_SA1[i].Ambient;
 		DirLights_SADX[i].AmbientB = DirLights_SA1[i].Ambient;
 	}
+	//Material/vertex color fixes
+	RemoveVertexColors_Object((NJS_OBJECT*)0x38CBC74); //Rhinotank
+	RemoveVertexColors_Object((NJS_OBJECT*)0x38D0CF0); //AMEMB
+	RemoveVertexColors_Object((NJS_OBJECT*)0x38E50C4); //Buyon A
+	RemoveVertexColors_Object((NJS_OBJECT*)0x38E3B2C); //Buyon B
+	RemoveVertexColors_Object((NJS_OBJECT*)0x38E3584); //Buyon C
+	RemoveVertexColors_Object((NJS_OBJECT*)0x09538EC); //Leon
+	RemoveVertexColors_Object((NJS_OBJECT*)0x0950940); //Boa 1
+	RemoveVertexColors_Object((NJS_OBJECT*)0x0950690); //Boa 2 
+	RemoveVertexColors_Object((NJS_OBJECT*)0x094FB38); //Boa 3
+	RemoveVertexColors_Object((NJS_OBJECT*)0x094EFD4); //Boa 4
+	RemoveVertexColors_Object((NJS_OBJECT*)0x097388C); //Cop speeder
+	RemoveVertexColors_Object((NJS_OBJECT*)0x0970D8C); //Spinner
 	//Replace hint monitor model
 	WriteCall((void*)0x7A9509, RenderHintMonitor_Main);
 	WriteCall((void*)0x7A957F, SetHintMonitorTransparency);
