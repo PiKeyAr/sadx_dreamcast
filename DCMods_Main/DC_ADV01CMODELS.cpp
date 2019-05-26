@@ -320,7 +320,7 @@ void ADV01C_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 		{
 			material_register_ptr(DisableAlphaRejection_EggCarrierInside, LengthOfArray(DisableAlphaRejection_EggCarrierInside), &DisableAlphaRejection);
 			material_register_ptr(HedgehogHammerDolls, LengthOfArray(HedgehogHammerDolls), &HedgehogHammerDollsFunction);
-			material_register_ptr(WhiteDiffuseADV01C, LengthOfArray(WhiteDiffuseADV01C), &ForceWhiteDiffuse1);
+			material_register_ptr(WhiteDiffuseADV01C, LengthOfArray(WhiteDiffuseADV01C), &ForceWhiteDiffuse);
 			ReplacePVM("OBJ_EC30");
 		}
 		else

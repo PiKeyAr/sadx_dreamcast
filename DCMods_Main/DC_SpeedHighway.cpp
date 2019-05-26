@@ -153,7 +153,7 @@ void UnloadLevelFiles_STG04()
 {
 	if (DLLLoaded_Lantern)
 	{
-		material_unregister_ptr(WhiteDiffuse_HighwayExternal, LengthOfArray(WhiteDiffuse_HighwayExternal), &ForceWhiteDiffuse1);
+		material_unregister_ptr(WhiteDiffuse_HighwayExternal, LengthOfArray(WhiteDiffuse_HighwayExternal), &ForceWhiteDiffuse);
 	}
 	delete STG04_0_Info;
 	delete STG04_1_Info;
@@ -190,7 +190,7 @@ void LoadLevelFiles_STG04()
 		WhiteDiffuse_HighwayExternal[7] = &((NJS_MATERIAL*)STG04_0_Info->getdata("matlistSTG04_000774B8"))[7];
 		WhiteDiffuse_HighwayExternal[8] = &((NJS_MATERIAL*)STG04_0_Info->getdata("matlistSTG04_000774B8"))[8];
 		WhiteDiffuse_HighwayExternal[9] = &((NJS_MATERIAL*)STG04_0_Info->getdata("matlistSTG04_000774B8"))[9];
-		material_register_ptr(WhiteDiffuse_HighwayExternal, LengthOfArray(WhiteDiffuse_HighwayExternal), &ForceWhiteDiffuse1);
+		material_register_ptr(WhiteDiffuse_HighwayExternal, LengthOfArray(WhiteDiffuse_HighwayExternal), &ForceWhiteDiffuse);
 	}
 }
 
@@ -265,7 +265,7 @@ void SpeedHighway_Init()
 	WriteCall((void*)0x00614122, RocketSprite);
 	if (DLLLoaded_Lantern)
 	{
-		material_register_ptr(WhiteDiffuse_Highway, LengthOfArray(WhiteDiffuse_Highway), &ForceWhiteDiffuse1);
+		material_register_ptr(WhiteDiffuse_Highway, LengthOfArray(WhiteDiffuse_Highway), &ForceWhiteDiffuse);
 		if (set_alpha_reject_ptr != nullptr) material_register_ptr(DisableAlphaRejection_SpeedHighway, LengthOfArray(DisableAlphaRejection_SpeedHighway), &DisableAlphaRejection);
 	}
 	//Helicopter light

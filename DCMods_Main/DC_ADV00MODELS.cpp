@@ -1144,7 +1144,7 @@ void UnloadLevelFiles_ADV00()
 	if (DLLLoaded_Lantern) 
 	{
 		material_unregister_ptr(WhiteDiffuseADV00_Night, LengthOfArray(WhiteDiffuseADV00_Night), &ForceWhiteDiffuse3_Night);
-		material_unregister_ptr(WhiteDiffuseADV00_External, LengthOfArray(WhiteDiffuseADV00_External), &ForceWhiteDiffuse1);
+		material_unregister_ptr(WhiteDiffuseADV00_External, LengthOfArray(WhiteDiffuseADV00_External), &ForceWhiteDiffuse);
 		for (int k = 0; k < LengthOfArray(WhiteDiffuseADV00_Night); ++k)
 		{
 			WhiteDiffuseADV00_Night[k] = nullptr;
@@ -1223,7 +1223,7 @@ void LoadLevelFiles_ADV00()
 	if (DLLLoaded_Lantern)
 	{
 		material_register_ptr(WhiteDiffuseADV00_Night, LengthOfArray(WhiteDiffuseADV00_Night), &ForceWhiteDiffuse3_Night);
-		material_register_ptr(WhiteDiffuseADV00_External, LengthOfArray(WhiteDiffuseADV00_External), &ForceWhiteDiffuse1);
+		material_register_ptr(WhiteDiffuseADV00_External, LengthOfArray(WhiteDiffuseADV00_External), &ForceWhiteDiffuse);
 	}
 }
 

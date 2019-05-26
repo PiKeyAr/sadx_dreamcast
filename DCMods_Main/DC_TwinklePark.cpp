@@ -544,7 +544,7 @@ void TwinklePark_Init()
 		if (set_alpha_reject_ptr != nullptr) material_register_ptr(DisableAlphaRejection_TwinklePark, LengthOfArray(DisableAlphaRejection_TwinklePark), &DisableAlphaRejection);
 		material_register_ptr(LevelSpecular_Twinkle, LengthOfArray(LevelSpecular_Twinkle), &ForceDiffuse0Specular0);
 		material_register_ptr(ObjectSpecular_Twinkle, LengthOfArray(ObjectSpecular_Twinkle), &ForceDiffuse0Specular1);
-		material_register_ptr(WhiteDiffuse_Twinkle, LengthOfArray(WhiteDiffuse_Twinkle), &ForceWhiteDiffuse3);
+		material_register_ptr(WhiteDiffuse_Twinkle, LengthOfArray(WhiteDiffuse_Twinkle), &ForceWhiteDiffuse);
 		material_register_ptr(ObjectSpecularWhiteDiffuse_Twinkle, LengthOfArray(ObjectSpecularWhiteDiffuse_Twinkle), &ForceWhiteDiffuse3Specular1);
 	}
 	*(NJS_OBJECT*)0x27AF5EC = objectSTG03_000ADBE0; //Double door

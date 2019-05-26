@@ -671,7 +671,7 @@ void UnloadLevelFiles_STG10()
 {
 	if (DLLLoaded_Lantern)
 	{
-		material_unregister_ptr(WhiteDiffuse_FinalEggExternal, LengthOfArray(WhiteDiffuse_FinalEggExternal), &ForceWhiteDiffuse1);
+		material_unregister_ptr(WhiteDiffuse_FinalEggExternal, LengthOfArray(WhiteDiffuse_FinalEggExternal), &ForceWhiteDiffuse);
 		if (set_alpha_reject_ptr != nullptr) material_unregister_ptr(DisableAlphaRejection_FinalEggExternal, LengthOfArray(DisableAlphaRejection_FinalEggExternal), &DisableAlphaRejection);
 	}
 	delete STG10_0_Info;
@@ -728,7 +728,7 @@ void LoadLevelFiles_STG10()
 		WhiteDiffuse_FinalEggExternal[23] = &((NJS_MATERIAL*)STG10_2_Info->getdata("matlistSTG10_00146E8C_2"))[0];
 		WhiteDiffuse_FinalEggExternal[24] = &((NJS_MATERIAL*)STG10_2_Info->getdata("matlistSTG10_00146E8C_2"))[0];
 		WhiteDiffuse_FinalEggExternal[25] = &((NJS_MATERIAL*)STG10_2_Info->getdata("matlistSTG10_001228E4"))[3];
-		material_register_ptr(WhiteDiffuse_FinalEggExternal, LengthOfArray(WhiteDiffuse_FinalEggExternal), &ForceWhiteDiffuse1);
+		material_register_ptr(WhiteDiffuse_FinalEggExternal, LengthOfArray(WhiteDiffuse_FinalEggExternal), &ForceWhiteDiffuse);
 		if (set_alpha_reject_ptr != nullptr)
 		{
 			DisableAlphaRejection_FinalEggExternal[0] = &((NJS_MATERIAL*)STG10_2_Info->getdata("matlistSTG10_00153094"))[0]; //Blue light in Act 3

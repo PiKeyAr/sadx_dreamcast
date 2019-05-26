@@ -932,7 +932,7 @@ void Casinopolis_Init()
 		if (set_alpha_reject_ptr != nullptr) material_register_ptr(DisableAlphaRejection_Casino, LengthOfArray(DisableAlphaRejection_Casino), &DisableAlphaRejection);
 		material_register_ptr(LevelSpecular_Casino, LengthOfArray(LevelSpecular_Casino), &ForceDiffuse0Specular0);
 		material_register_ptr(ObjectSpecular_Casino, LengthOfArray(ObjectSpecular_Casino), &ForceDiffuse0Specular1);
-		material_register_ptr(WhiteDiffuse_Casino, LengthOfArray(WhiteDiffuse_Casino), &ForceWhiteDiffuse1);
+		material_register_ptr(WhiteDiffuse_Casino, LengthOfArray(WhiteDiffuse_Casino), &ForceWhiteDiffuse);
 	}
 	//Ideya cap fix
 	WriteCall((void*)0x5D79A9, IdeyaCapFix);

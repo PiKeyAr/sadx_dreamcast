@@ -841,7 +841,7 @@ void Subgames_Init()
 	{
 		material_register_ptr(ObjectBaseAndSpecular_Subgames, LengthOfArray(ObjectBaseAndSpecular_Subgames), &ForceDiffuse0Specular1);
 		material_register_ptr(LevelSpecular_Subgames, LengthOfArray(LevelSpecular_Subgames), &ForceDiffuse0Specular0);
-		material_register_ptr(WhiteDiffuse_Subgames, LengthOfArray(WhiteDiffuse_Subgames), &ForceWhiteDiffuse3);
+		material_register_ptr(WhiteDiffuse_Subgames, LengthOfArray(WhiteDiffuse_Subgames), &ForceWhiteDiffuse);
 	}
 	//Fog and draw distance tweaks
 	for (unsigned int i = 0; i < 3; i++)

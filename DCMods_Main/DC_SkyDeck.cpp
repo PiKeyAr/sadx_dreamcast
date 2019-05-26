@@ -744,7 +744,7 @@ void SkyDeck_Init()
 	if (DLLLoaded_Lantern)
 	{
 		if (set_alpha_reject_ptr != nullptr) material_register_ptr(DisableAlphaRejection_SkyDeck, LengthOfArray(DisableAlphaRejection_SkyDeck), &DisableAlphaRejection);
-		material_register_ptr(WhiteDiffuse_SkyDeck, LengthOfArray(WhiteDiffuse_SkyDeck), &ForceWhiteDiffuse1);
+		material_register_ptr(WhiteDiffuse_SkyDeck, LengthOfArray(WhiteDiffuse_SkyDeck), &ForceWhiteDiffuse);
 		material_register_ptr(ObjectSpecular_SkyDeck, LengthOfArray(ObjectSpecular_SkyDeck), &ForceDiffuse0Specular1);
 	}
 	//Some material fixes

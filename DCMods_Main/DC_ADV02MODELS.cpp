@@ -498,7 +498,7 @@ void UnloadLevelFiles_ADV02()
 	//Clear Lantern materials and remove pointers
 	if (DLLLoaded_Lantern)
 	{
-		material_unregister_ptr(WhiteDiffuseADV02_External, LengthOfArray(WhiteDiffuseADV02_External), &ForceWhiteDiffuse1);
+		material_unregister_ptr(WhiteDiffuseADV02_External, LengthOfArray(WhiteDiffuseADV02_External), &ForceWhiteDiffuse);
 		for (int k = 0; k < LengthOfArray(WhiteDiffuseADV02_External); ++k)
 		{
 			WhiteDiffuseADV02_External[k] = nullptr;
@@ -540,7 +540,7 @@ void LoadLevelFiles_ADV02()
 	ParseMRColFlags();
 	ParseMRMaterials();
 	WriteCall((void*)0x52FDC3, MRWater_Display);
-	if (DLLLoaded_Lantern) material_register_ptr(WhiteDiffuseADV02_External, LengthOfArray(WhiteDiffuseADV02_External), &ForceWhiteDiffuse1);
+	if (DLLLoaded_Lantern) material_register_ptr(WhiteDiffuseADV02_External, LengthOfArray(WhiteDiffuseADV02_External), &ForceWhiteDiffuse);
 }
 
 void ADV02_Init()
@@ -649,7 +649,7 @@ void ADV02_Init()
 	{
 		material_register_ptr(ObjectSpecular, LengthOfArray(ObjectSpecular), &ForceDiffuse0Specular1);
 		material_register_ptr(LevelSpecular, LengthOfArray(LevelSpecular), &ForceDiffuse0Specular0);
-		material_register_ptr(WhiteDiffuse, LengthOfArray(WhiteDiffuse), &ForceWhiteDiffuse1);
+		material_register_ptr(WhiteDiffuse, LengthOfArray(WhiteDiffuse), &ForceWhiteDiffuse);
 	}
 	*(NJS_OBJECT*)0x1108A18 = object_00226468; //TANKEN
 	*(NJS_OBJECT*)0x110CF34 = object2_00229334; //TANKEN 2

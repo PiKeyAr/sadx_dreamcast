@@ -344,7 +344,7 @@ void UnloadLevelFiles_ADV01()
 	{
 		WhiteDiffuseADV01_External[k] = nullptr;
 	}
-	if (DLLLoaded_Lantern) material_unregister_ptr(WhiteDiffuseADV01_External, LengthOfArray(WhiteDiffuseADV01_External), &ForceWhiteDiffuse1);
+	if (DLLLoaded_Lantern) material_unregister_ptr(WhiteDiffuseADV01_External, LengthOfArray(WhiteDiffuseADV01_External), &ForceWhiteDiffuse);
 	delete ADV01_0_Info;
 	delete ADV01_1_Info;
 	delete ADV01_2_Info;
@@ -395,7 +395,7 @@ void LoadLevelFiles_ADV01()
 	ParseEC00Materials();
 	if (DLLLoaded_Lantern)
 	{
-		material_register_ptr(WhiteDiffuseADV01_External, LengthOfArray(WhiteDiffuseADV01_External), &ForceWhiteDiffuse1);
+		material_register_ptr(WhiteDiffuseADV01_External, LengthOfArray(WhiteDiffuseADV01_External), &ForceWhiteDiffuse);
 	}
 }
 
@@ -520,7 +520,7 @@ void ADV01_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 			ReplaceGeneric("OBJ_EC00.PVM", "OBJ_EC00_DC_OLD.PVM");
 		}
 		material_register_ptr(ObjectSpecularADV01, LengthOfArray(ObjectSpecularADV01), &ForceDiffuse0Specular1);
-		material_register_ptr(WhiteDiffuseADV01, LengthOfArray(WhiteDiffuseADV01), &ForceWhiteDiffuse1);
+		material_register_ptr(WhiteDiffuseADV01, LengthOfArray(WhiteDiffuseADV01), &ForceWhiteDiffuse);
 	}
 	else
 	{

@@ -269,7 +269,7 @@ void UnloadLevelFiles_STG12()
 {
 	if (DLLLoaded_Lantern)
 	{
-		material_unregister_ptr(WhiteDiffuse_HotShelterExternal, LengthOfArray(WhiteDiffuse_HotShelterExternal), &ForceWhiteDiffuse1);
+		material_unregister_ptr(WhiteDiffuse_HotShelterExternal, LengthOfArray(WhiteDiffuse_HotShelterExternal), &ForceWhiteDiffuse);
 		if (set_alpha_reject_ptr != nullptr) material_unregister_ptr(DisableAlphaRejection_HotShelterExternal, LengthOfArray(DisableAlphaRejection_HotShelterExternal), &DisableAlphaRejection);
 	}
 	delete STG12_0_Info;
@@ -320,7 +320,7 @@ void LoadLevelFiles_STG12()
 		WhiteDiffuse_HotShelterExternal[1] = &((NJS_MATERIAL*)STG12_0_Info->getdata("matlistSTG12_000D7878"))[2];
 		WhiteDiffuse_HotShelterExternal[2] = &((NJS_MATERIAL*)STG12_0_Info->getdata("matlistSTG12_000F3C6C"))[5];
 		WhiteDiffuse_HotShelterExternal[3] = &((NJS_MATERIAL*)STG12_0_Info->getdata("matlistSTG12_000F4D74"))[5];
-		material_register_ptr(WhiteDiffuse_HotShelterExternal, LengthOfArray(WhiteDiffuse_HotShelterExternal), &ForceWhiteDiffuse1);
+		material_register_ptr(WhiteDiffuse_HotShelterExternal, LengthOfArray(WhiteDiffuse_HotShelterExternal), &ForceWhiteDiffuse);
 	}
 }
 
@@ -384,7 +384,7 @@ void HotShelter_Init()
 	{
 		material_register_ptr(LevelSpecular_HotShelter, LengthOfArray(LevelSpecular_HotShelter), &ForceDiffuse0Specular0);
 		material_register_ptr(ObjectSpecular_HotShelter, LengthOfArray(ObjectSpecular_HotShelter), &ForceDiffuse0Specular1);
-		material_register_ptr(WhiteDiffuse_HotShelter, LengthOfArray(WhiteDiffuse_HotShelter), &ForceWhiteDiffuse1);
+		material_register_ptr(WhiteDiffuse_HotShelter, LengthOfArray(WhiteDiffuse_HotShelter), &ForceWhiteDiffuse);
 	}
 	//Material fixes
 	((NJS_MATERIAL*)0x01810150)->attrflags &= ~NJD_FLAG_IGNORE_LIGHT; //Water surface
