@@ -289,6 +289,9 @@ void LoadLevelFiles_STG12()
 	LandTable *STG12_0 = STG12_0_Info->getlandtable();
 	LandTable *STG12_1 = STG12_1_Info->getlandtable();
 	LandTable *STG12_2 = STG12_2_Info->getlandtable();
+	RemoveMaterialColors_Landtable(STG12_0);
+	RemoveMaterialColors_Landtable(STG12_1);
+	RemoveMaterialColors_Landtable(STG12_2);
 	STG12_0->TexList = &texlist_hotshelter1;
 	STG12_1->TexList = &texlist_hotshelter2;
 	STG12_2->TexList = &texlist_hotshelter3;

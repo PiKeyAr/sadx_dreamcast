@@ -1974,6 +1974,9 @@ void LoadLevelFiles_Chao()
 	LandTable *AL_GARDEN00 = AL_GARDEN00_Info->getlandtable();
 	LandTable *AL_GARDEN01 = AL_GARDEN01_Info->getlandtable();
 	LandTable *AL_GARDEN02 = AL_GARDEN02_Info->getlandtable();
+	RemoveMaterialColors_Landtable(AL_GARDEN00);
+	RemoveMaterialColors_Landtable(AL_GARDEN01);
+	RemoveMaterialColors_Landtable(AL_GARDEN02);
 	AL_GARDEN00->TexList = &texlist_ssgarden;
 	AL_GARDEN01->TexList = &texlist_ecgarden;
 	AL_GARDEN02->TexList = &texlist_mrgarden;

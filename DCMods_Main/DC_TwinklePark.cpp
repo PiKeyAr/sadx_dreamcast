@@ -439,6 +439,9 @@ void LoadLevelFiles_STG03()
 	LandTable *STG03_0 = STG03_0_Info->getlandtable();
 	LandTable *STG03_1 = STG03_1_Info->getlandtable();
 	LandTable *STG03_2 = STG03_2_Info->getlandtable();
+	RemoveMaterialColors_Landtable(STG03_0);
+	RemoveMaterialColors_Landtable(STG03_1);
+	RemoveMaterialColors_Landtable(STG03_2);
 	STG03_0->TexList = &texlist_twinkle1;
 	STG03_1->TexList = &texlist_twinkle2;
 	STG03_2->TexList = &texlist_twinkle3;

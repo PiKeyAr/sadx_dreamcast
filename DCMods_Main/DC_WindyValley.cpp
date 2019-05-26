@@ -182,6 +182,9 @@ void LoadLevelFiles_STG02()
 	LandTable *STG02_0 = STG02_0_Info->getlandtable(); //&landtable_0000D7E0; //STG02_0_Info->getlandtable();
 	LandTable *STG02_1 = STG02_1_Info->getlandtable(); //&landtable_0000DB40; //STG02_1_Info->getlandtable();
 	LandTable *STG02_2 = STG02_2_Info->getlandtable(); //&landtable_0000F274; //STG02_2_Info->getlandtable();
+	RemoveMaterialColors_Landtable(STG02_0);
+	RemoveMaterialColors_Landtable(STG02_1);
+	RemoveMaterialColors_Landtable(STG02_2);
 	STG02_0->TexList = &texlist_windy1;
 	STG02_1->TexList = &texlist_windy2;
 	STG02_2->TexList = &texlist_windy3;

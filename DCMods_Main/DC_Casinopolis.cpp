@@ -857,6 +857,10 @@ void LoadLevelFiles_STG09()
 	LandTable *STG09_1 = STG09_1_Info->getlandtable();
 	LandTable *STG09_2 = STG09_2_Info->getlandtable();
 	LandTable *STG09_3 = STG09_3_Info->getlandtable();
+	RemoveMaterialColors_Landtable(STG09_0);
+	RemoveMaterialColors_Landtable(STG09_1);
+	RemoveMaterialColors_Landtable(STG09_2);
+	RemoveMaterialColors_Landtable(STG09_3);
 	STG09_0->TexList = &texlist_casino1;
 	STG09_1->TexList = &texlist_casino2;
 	STG09_2->TexList = &texlist_casino3;

@@ -172,6 +172,9 @@ void LoadLevelFiles_STG04()
 	LandTable *STG04_0 = STG04_0_Info->getlandtable();
 	LandTable *STG04_1 = STG04_1_Info->getlandtable();
 	LandTable *STG04_2 = STG04_2_Info->getlandtable();
+	RemoveMaterialColors_Landtable(STG04_0);
+	RemoveMaterialColors_Landtable(STG04_1);
+	RemoveMaterialColors_Landtable(STG04_2);
 	STG04_0->TexList = &texlist_hw1;
 	STG04_1->TexList = &texlist_hw2;
 	STG04_2->TexList = &texlist_hw3;

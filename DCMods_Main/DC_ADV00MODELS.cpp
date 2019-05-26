@@ -1186,6 +1186,12 @@ void LoadLevelFiles_ADV00()
 	LandTable *ADV00_3 = ADV00_3_Info->getlandtable(); // &landtable_000DCEBC; // 
 	LandTable *ADV00_4 = ADV00_4_Info->getlandtable(); // &landtable_00135A90; // 
 	LandTable *ADV00_5 = ADV00_5_Info->getlandtable(); // &landtable_001573CC; // 
+	RemoveMaterialColors_Landtable(ADV00_0);
+	RemoveMaterialColors_Landtable(ADV00_1);
+	RemoveMaterialColors_Landtable(ADV00_2);
+	RemoveMaterialColors_Landtable(ADV00_3);
+	RemoveMaterialColors_Landtable(ADV00_4);
+	RemoveMaterialColors_Landtable(ADV00_5);
 	ADV00_0->TexList = &texlist_advss00;
 	ADV00_1->TexList = &texlist_advss01;
 	ADV00_2->TexList = &texlist_advss02;

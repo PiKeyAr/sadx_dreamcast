@@ -235,6 +235,10 @@ void LoadLevelFiles_STG08()
 	LandTable *STG08_1 = STG08_1_Info->getlandtable();
 	LandTable *STG08_2 = STG08_2_Info->getlandtable();
 	LandTable *STG08_3 = STG08_3_Info->getlandtable();
+	RemoveMaterialColors_Landtable(STG08_0);
+	RemoveMaterialColors_Landtable(STG08_1);
+	RemoveMaterialColors_Landtable(STG08_2);
+	RemoveMaterialColors_Landtable(STG08_3);
 	STG08_0->TexList = &texlist_icecap1;
 	STG08_1->TexList = &texlist_icecap2;
 	STG08_2->TexList = &texlist_icecap3;

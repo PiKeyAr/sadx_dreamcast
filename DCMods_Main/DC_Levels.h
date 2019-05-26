@@ -464,3 +464,4 @@ void AddUVAnimation(NJS_TEX* uv, int uv_count, int timer, int u_speed, int v_spe
 void RemoveVertexColors_Object(NJS_OBJECT *obj);
 void RemoveVertexColors_Model(NJS_MODEL_SADX *model);
 NJS_OBJECT* LoadModel(const char *ModelName);
+void RemoveMaterialColors_Landtable(LandTable *landtable);

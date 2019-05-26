@@ -595,6 +595,9 @@ void LoadLevelFiles_STG01()
 	STG01_0->TexList = &texlist_ecoast1;
 	STG01_1->TexList = &texlist_ecoast2;
 	STG01_2->TexList = &texlist_ecoast3;
+	RemoveMaterialColors_Landtable(STG01_0);
+	RemoveMaterialColors_Landtable(STG01_1);
+	RemoveMaterialColors_Landtable(STG01_2);
 	WriteData((LandTable**)0x97DA28, STG01_0); //Act 1
 	WriteData((LandTable**)0x97DA2C, STG01_1); //Act 2
 	WriteData((LandTable**)0x97DA30, STG01_2); //Act 3

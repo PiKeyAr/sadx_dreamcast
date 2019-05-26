@@ -1070,6 +1070,7 @@ void LoadLevelFiles_B_CHAOS0()
 	CheckAndUnloadLevelFiles();
 	B_CHAOS0_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\B_CHAOS0\\0.sa1lvl"));
 	LandTable *B_CHAOS0 = B_CHAOS0_Info->getlandtable();
+	RemoveMaterialColors_Landtable(B_CHAOS0);
 	B_CHAOS0->TexList = &texlist_chaos0;
 	LandTableArray[0] = B_CHAOS0;
 	___LANDTABLEBOSSCHAOS0[0] = B_CHAOS0;
@@ -1080,6 +1081,7 @@ void LoadLevelFiles_B_CHAOS2()
 	CheckAndUnloadLevelFiles();
 	B_CHAOS2_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\B_CHAOS2\\0.sa1lvl"));
 	LandTable *B_CHAOS2 = B_CHAOS2_Info->getlandtable();
+	RemoveMaterialColors_Landtable(B_CHAOS2);
 	B_CHAOS2->TexList = &texlist_chaos2;
 	LandTableArray[8]= B_CHAOS2; //Chaos 2
 }
@@ -1089,6 +1091,7 @@ void LoadLevelFiles_B_CHAOS4()
 	CheckAndUnloadLevelFiles();
 	B_CHAOS4_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\B_CHAOS4\\0.sa1lvl"));
 	LandTable *B_CHAOS4 = B_CHAOS4_Info->getlandtable();
+	RemoveMaterialColors_Landtable(B_CHAOS4);
 	B_CHAOS4->TexList = &texlist_chaos4;
 	LandTableArray[16] = B_CHAOS4; //Chaos 4
 	WhiteDiffuse_Chaos4External[0] = &((NJS_MATERIAL*)B_CHAOS4_Info->getdata("matlist_0004C318"))[0];
@@ -1105,6 +1108,8 @@ void LoadLevelFiles_B_CHAOS6()
 	B_CHAOS6_1_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\B_CHAOS6\\1.sa1lvl"));
 	LandTable *B_CHAOS6_0 = B_CHAOS6_0_Info->getlandtable();
 	LandTable *B_CHAOS6_1 = B_CHAOS6_1_Info->getlandtable();
+	RemoveMaterialColors_Landtable(B_CHAOS6_0);
+	RemoveMaterialColors_Landtable(B_CHAOS6_1);
 	B_CHAOS6_0->TexList = &texlist_chaos6;
 	B_CHAOS6_1->TexList = &texlist_chaos6_2;
 	LandTableArray[24] = B_CHAOS6_0; //Chaos 6S
@@ -1118,6 +1123,7 @@ void LoadLevelFiles_B_CHAOS7()
 	CheckAndUnloadLevelFiles();
 	B_CHAOS7_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\B_CHAOS7\\0.sa1lvl"));
 	LandTable *B_CHAOS7 = B_CHAOS7_Info->getlandtable();
+	RemoveMaterialColors_Landtable(B_CHAOS7);
 	B_CHAOS7->TexList = &texlist_chaos7;
 	LandTableArray[32] = B_CHAOS7;
 }
@@ -1127,6 +1133,7 @@ void LoadLevelFiles_B_EGM1()
 	CheckAndUnloadLevelFiles();
 	B_EGM1_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\B_EGM1\\0.sa1lvl"));
 	LandTable *B_EGM1 = B_EGM1_Info->getlandtable();
+	RemoveMaterialColors_Landtable(B_EGM1);
 	B_EGM1->TexList = &texlist_egm1land;
 	LandTableArray[40] = B_EGM1;
 	//SADX style water
@@ -1162,6 +1169,7 @@ void LoadLevelFiles_B_EGM2()
 	CheckAndUnloadLevelFiles();
 	B_EGM2_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\B_EGM2\\0.sa1lvl"));
 	LandTable *B_EGM2 = B_EGM2_Info->getlandtable();
+	RemoveMaterialColors_Landtable(B_EGM2);
 	B_EGM2->TexList = &texlist_eggwalker;
 	LandTableArray[48] = B_EGM2;
 }
@@ -1171,6 +1179,7 @@ void LoadLevelFiles_B_EGM3()
 	CheckAndUnloadLevelFiles();
 	B_EGM3_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\B_EGM3\\0.sa1lvl"));
 	LandTable *B_EGM3 = B_EGM3_Info->getlandtable();
+	RemoveMaterialColors_Landtable(B_EGM3);
 	B_EGM3->TexList = &texlist_eggviper;
 	LandTableArray[56] = B_EGM3;
 }
@@ -1180,6 +1189,7 @@ void LoadLevelFiles_B_ROBO()
 	CheckAndUnloadLevelFiles();
 	B_ROBO_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\B_ROBO\\0.sa1lvl"));
 	LandTable *B_ROBO = B_ROBO_Info->getlandtable();
+	RemoveMaterialColors_Landtable(B_ROBO);
 	B_ROBO->TexList = (NJS_TEXLIST*)0x16B460C;
 	LandTableArray[64] = B_ROBO;
 }
@@ -1189,6 +1199,7 @@ void LoadLevelFiles_B_E101_R()
 	CheckAndUnloadLevelFiles();
 	B_E101_R_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\B_E101_R\\0.sa1lvl"));
 	LandTable *B_E101_R = B_E101_R_Info->getlandtable();
+	RemoveMaterialColors_Landtable(B_E101_R);
 	B_E101_R->TexList = (NJS_TEXLIST*)0x16B460C;
 	LandTableArray[80] = B_E101_R;
 }
@@ -1198,6 +1209,7 @@ void LoadLevelFiles_B_E101()
 	CheckAndUnloadLevelFiles();
 	B_E101_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\B_E101\\0.sa1lvl"));
 	LandTable *B_E101 = B_E101_Info->getlandtable();
+	RemoveMaterialColors_Landtable(B_E101);
 	B_E101->TexList = &texlist_e101;
 	LandTableArray[72] = B_E101;
 }

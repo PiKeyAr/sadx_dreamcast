@@ -4016,6 +4016,8 @@ void LoadLevelFiles_AL_RACE()
 	AL_RACE_1_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\AL_RACE\\1.sa1lvl"));
 	LandTable *AL_RACE_0 = AL_RACE_0_Info->getlandtable();
 	LandTable *AL_RACE_1 = AL_RACE_1_Info->getlandtable();
+	RemoveMaterialColors_Landtable(AL_RACE_0);
+	RemoveMaterialColors_Landtable(AL_RACE_1);
 	AL_RACE_0->TexList = &texlist_ChaoRaceEntry;
 	AL_RACE_1->TexList = &texlist_ChaoRace;
 }

@@ -691,6 +691,9 @@ void LoadLevelFiles_STG10()
 	LandTable *STG10_0 = STG10_0_Info->getlandtable();
 	LandTable *STG10_1 = STG10_1_Info->getlandtable();
 	LandTable *STG10_2 = STG10_2_Info->getlandtable();
+	RemoveMaterialColors_Landtable(STG10_0);
+	RemoveMaterialColors_Landtable(STG10_1);
+	RemoveMaterialColors_Landtable(STG10_2);
 	STG10_0->TexList = &texlist_finalegg1;
 	STG10_1->TexList = &texlist_finalegg2;
 	STG10_2->TexList = &texlist_finalegg3;

@@ -663,6 +663,9 @@ void LoadLevelFiles_STG06()
 	LandTable *STG06_0 = STG06_0_Info->getlandtable(); //&landtable_0001F018;// STG06_0_Info->getlandtable();
 	LandTable *STG06_1 = STG06_1_Info->getlandtable(); //&landtable_00021094;// STG06_1_Info->getlandtable();
 	LandTable *STG06_2 = STG06_2_Info->getlandtable(); //&landtable_00023EB4;// STG06_2_Info->getlandtable();
+	RemoveMaterialColors_Landtable(STG06_0);
+	RemoveMaterialColors_Landtable(STG06_1);
+	RemoveMaterialColors_Landtable(STG06_2);
 	if (GetModuleHandle(L"sadx-d3d11") == nullptr) DisableMetalStruts(STG06_2);
 	STG06_0->TexList = &texlist_skydeck1;
 	STG06_1->TexList = &texlist_skydeck2;

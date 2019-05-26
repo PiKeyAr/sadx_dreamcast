@@ -89,6 +89,9 @@ void LoadLevelFiles_STG05()
 	LandTable *STG05_0 = STG05_0_Info->getlandtable();
 	LandTable *STG05_1 = STG05_1_Info->getlandtable();
 	LandTable *STG05_2 = STG05_2_Info->getlandtable();
+	RemoveMaterialColors_Landtable(STG05_0);
+	RemoveMaterialColors_Landtable(STG05_1);
+	RemoveMaterialColors_Landtable(STG05_2);
 	STG05_0->TexList = &texlist_mountain1;
 	STG05_1->TexList = &texlist_mountain2;
 	STG05_2->TexList = &texlist_mountain3;

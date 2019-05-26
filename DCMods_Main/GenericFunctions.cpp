@@ -815,6 +815,19 @@ void RemoveVertexColors_Model(NJS_MODEL_SADX *model)
 	}
 }
 
+void RemoveMaterialColors_Landtable(LandTable *landtable)
+{
+	for (unsigned int j = 0; j < landtable->COLCount; j++)
+	{
+		for (int k = 0; k < landtable->Col[j].Model->basicdxmodel->nbMat; ++k)
+		{
+			landtable->Col[j].Model->basicdxmodel->mats[k].diffuse.argb.r = 0xFF;
+			landtable->Col[j].Model->basicdxmodel->mats[k].diffuse.argb.g = 0xFF;
+			landtable->Col[j].Model->basicdxmodel->mats[k].diffuse.argb.b = 0xFF;
+		}
+	}
+}
+
 void ProcessMaterials_Object(NJS_OBJECT *obj)
 {
 	Uint32 materialflags;
