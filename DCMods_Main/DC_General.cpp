@@ -293,7 +293,7 @@ void RotateEmerald()
 void SonicDashTrailFix(NJS_OBJECT *a1, QueuedModelFlagsB a2)
 {
 	a1->basicdxmodel->mats->attr_texId = rand() % 2;
-	ProcessModelNode_A_WrapperB(a1, a2);
+	ProcessModelNode(a1, (QueuedModelFlagsB)0, 1.0f);
 	a1->basicdxmodel->mats->attr_texId = 0;
 }
 
@@ -393,6 +393,31 @@ void KnucklesPunch_Render(NJS_OBJECT *a1, QueuedModelFlagsB a2)
 	ProcessModelNode_A_WrapperB(a1, a2);
 }
 
+void MagneticBarrierLightning(NJS_POINT3COL *a1, int a2, NJD_DRAW attr, QueuedModelFlagsB a4)
+{
+	njColorBlendingMode(0, NJD_COLOR_BLENDING_SRCALPHA);
+	njColorBlendingMode(NJD_DESTINATION_COLOR, NJD_COLOR_BLENDING_ONE);
+	if ((unsigned __int16)(CurrentAct | (CurrentLevel << 8)) >> 8 == 3 && CurrentAct == 2) DrawQueueDepthBias = 10; else DrawQueueDepthBias = 22048.0f;
+	Draw3DLinesMaybe_Queue(a1, a2, attr, (QueuedModelFlagsB)0);
+	DrawQueueDepthBias = 0;
+	ClampGlobalColorThing_Thing();
+}
+
+void SetMagneticBarrierColor(float a, float r, float g, float b)
+{
+	njColorBlendingMode(0, NJD_COLOR_BLENDING_SRCALPHA);
+	njColorBlendingMode(NJD_DESTINATION_COLOR, NJD_COLOR_BLENDING_ONE);
+	SetMaterialAndSpriteColor_Float(r, r, g, b);
+}
+
+int __cdecl RenderBarrierModels(NJS_MODEL_SADX *a1)
+{
+	if ((unsigned __int16)(CurrentAct | (CurrentLevel << 8)) >> 8 == 3 && CurrentAct == 2) DrawQueueDepthBias = 0; else DrawQueueDepthBias = 20048.0f;
+	DrawVisibleModel_Queue(a1, (QueuedModelFlagsB)0);
+	DrawQueueDepthBias = 0;
+	return 0;
+}
+
 void __cdecl Sonic_DisplayLightDashModelX(EntityData1 *data1, CharObj2 **data2_pp, CharObj2 *data2)
 {
 	int v3; // eax
@@ -424,7 +449,7 @@ void __cdecl Sonic_DisplayLightDashModelX(EntityData1 *data1, CharObj2 **data2_p
 		//v5 = 0;
 		njPushMatrixEx();
 		njControl3D(NJD_CONTROL_3D_CONSTANT_MATERIAL | NJD_CONTROL_3D_ENABLE_ALPHA | NJD_CONTROL_3D_CONSTANT_ATTR);
-		njColorBlendingMode(0, NJD_COLOR_BLENDING_SRCALPHA);
+		njColorBlendingMode(0, NJD_COLOR_BLENDING_ONE);
 		njColorBlendingMode(NJD_DESTINATION_COLOR, NJD_COLOR_BLENDING_ONE);
 		//Main
 		SetMaterialAndSpriteColor_Float(1.0f, 0, 0.06f + (64 - v5) / 880.0f, 1.0f);
@@ -1480,13 +1505,25 @@ void General_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 	WriteCall((void*)0x0047FE13, GammaHook); //Gamma's chest transparency
 	//Character effects
 	WriteJump((void*)0x004A1630, Sonic_DisplayLightDashModelX);
-	WriteData((float**)0x47404B, &heat_float1);
-	WriteData((float**)0x474057, &heat_float2);
+	WriteData((float**)0x0047404B, &heat_float1);
+	WriteData((float**)0x00474057, &heat_float2);
 	WriteJump((void*)0x004C1330, Knuckles_MaximumHeat_DrawX);
 	WriteJump((void*)0x004C1410, Knuckles_MaximumHeatSprite_Draw);
 	WriteCall((void*)0x004C1258, KnucklesPunch_RetrieveAlpha);
 	WriteCall((void*)0x004C1305, KnucklesPunch_Render);
-	WriteCall((void*)0x4A0F56, SonicDashTrailFix);
+	//Dash trail fixes
+	WriteCall((void*)0x004A0F56, SonicDashTrailFix);
+	WriteData((float*)0x004A1216, 2500.0f); //Long dash trail depth bias
+	WriteData((float*)0x004A0F49, 2500.0f); //Main dash trail depth bias
+	WriteData<1>((char*)0x004A1220, 0i8); //Spindash trail queued flags
+	//Barrier fixes
+	WriteData<5>((char*)0x4B9E3A, 0x90u); //Disable ClampGlobalColorThing
+	WriteCall((void*)0x04B9F0F, MagneticBarrierLightning);
+	//WriteData<1>((char*)0x004B9F02, 0i8); //Magnetic barrier lightning blending mode
+	WriteCall((void*)0x4B9DDA, SetMagneticBarrierColor);
+	WriteJump((void*)0x4B9C90, RenderBarrierModels);
+	WriteJump(Barrier_Main, Barrier_MainX); //Barrier
+	WriteCall((void*)0x4BA0E4, RenderInvincibilityLines);
 	WriteData<10>((char*)0x0040889C, 0x90u); //Queued model lighting/specular fix
 	//Environment maps
 	EnvMap1 = 0.5f;
@@ -1541,10 +1578,6 @@ void General_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 	//Casino
 	WriteCall((void*)0x005DCFB0, RenderEmeraldWithGlow);
 	WriteCall((void*)0x005DCF7D, RotateEmerald);
-	//Shield
-	WriteJump(Barrier_Main, Barrier_MainX); //Barrier
-	WriteData<1>((char*)0x004B9DA9, 0x08); //Magnetic barrier blending mode
-	WriteCall((void*)0x4BA0E4, RenderInvincibilityLines);
 	//Material fixes
 	for (unsigned int i = 0; i < LengthOfArray(FirstCharacterSpecular_General); i++)
 	{
