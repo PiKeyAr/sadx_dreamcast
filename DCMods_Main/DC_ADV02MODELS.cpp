@@ -60,6 +60,7 @@ NJS_OBJECT* MRWaterObjects[] = { nullptr, nullptr, nullptr, nullptr, nullptr };
 NJS_OBJECT* MRJungleObjectAnimations_Propeller[] = { nullptr, nullptr, nullptr, nullptr, nullptr };
 NJS_OBJECT* MRJungleObjectAnimations_Lantern[] = { nullptr, nullptr, nullptr, nullptr, nullptr };
 NJS_OBJECT* MRJungleObjectsCallback[] = { nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr };
+NJS_VECTOR TempleVector = { -515.99f, 90.0f, -1137.45f };
 
 NJS_MATERIAL* WhiteDiffuseADV02_External[] = {
 	nullptr, nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,
@@ -802,7 +803,7 @@ void ADV02_OnFrame()
 	auto entity = EntityData1Ptrs[0];
 	if (!IsGamePaused() && ADV02_2_Info && CurrentAct == 2)
 	{
-		if (Camera_Data1 != nullptr && Camera_Data1->Position.z < -548 && Camera_Data1->Position.z > -1560 && Camera_Data1->Position.x < -80 && Camera_Data1->Position.x > -900)
+		if (IsPlayerInsideSphere( &TempleVector, 480.0f))
 		{
 			InsideTemple = 1;
 		}
