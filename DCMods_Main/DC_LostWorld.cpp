@@ -12,6 +12,7 @@ NJS_TEXLIST texlist_lw3 = { arrayptrandlength(textures_lw3) };
 
 DataPointer(float, CurrentDrawDist, 0x03ABDC74);
 DataPointer(NJS_MODEL_SADX, Hasira1Model, 0x2004E80);
+FunctionPointer(long double, sub_49CC70, (float a1, float a2, float a3), 0x49CC70);
 
 static int animw1 = 44;
 static int animw2 = 81;
@@ -67,6 +68,82 @@ void LoadLevelFiles_STG07()
 	WriteData((LandTable**)0x97DAE8, STG07_0);
 	WriteData((LandTable**)0x97DAEC, STG07_1);
 	WriteData((LandTable**)0x97DAF0, STG07_2);
+}
+
+void RLight_Display(ObjectMaster *a1)
+{
+	EntityData1 *v1; // esi
+	Angle v2; // eax
+	Angle v3; // eax
+	Angle v4; // eax
+	Float v5; // edi
+	float sy; // ST1C_4
+	float sx; // ST20_4
+	float a1a; // [esp+10h] [ebp+4h]
+	float a1b; // [esp+10h] [ebp+4h]
+
+	v1 = a1->Data1;
+	if (!ClipSetObject(a1) && !MissedFrames)
+	{
+		Direct3D_SetZFunc(3u);
+		if (!SetTextureToLevelObj())
+		{
+			njSetTexture((NJS_TEXLIST *)&v1->LoopData);
+		}
+		njPushMatrix(0);
+		njTranslateV(0, &v1->Position);
+		v2 = v1->Rotation.z;
+		if (v2)
+		{
+			njRotateZ(0, (unsigned __int16)v2);
+		}
+		v3 = v1->Rotation.x;
+		if (v3)
+		{
+			njRotateX(0, (unsigned __int16)v3);
+		}
+		v4 = v1->Rotation.y;
+		if (v4)
+		{
+			njRotateY(0, (unsigned __int16)v4);
+		}
+		a1a = v1->Scale.z + 1.0;
+		v5 = a1a;
+		sy = v1->Scale.y + 1.0;
+		sx = v1->Scale.x + 1.0;
+		a1b = sub_49CC70(sx, sy, a1a);
+		njScale(0, sx, sy, v5);
+		ProcessModelNode_D_WrapperB((NJS_OBJECT*)0x2031810, (QueuedModelFlagsB)0, a1b);
+		njPopMatrix(1u);
+		Direct3D_ResetZFunc();
+	}
+}
+
+signed int __cdecl RLight_Load(ObjectMaster *a1)
+{
+	EntityData1 *v1; // edi
+
+	v1 = a1->Data1;
+	if (ClipSetObject(a1))
+	{
+		return 1;
+	}
+	if (LevelObjTexlistLoaded())
+	{
+		v1->LoopData = 0;
+	}
+	else
+	{
+		njLoadTexture_Wrapper((NJS_TEXLIST *)&v1->LoopData);
+	}
+	if (LevelObjTexlistLoaded() && !ObjectSelectedDebug(a1))
+	{
+		a1->MainSub = RLight_Display;
+		a1->DisplaySub = RLight_Display;
+		a1->DeleteSub = RedMountainSetObj_Delete;
+	}
+	RedMountainSetObj_Display(a1);
+	return 0;
 }
 
 void LostWorld_Init()
@@ -140,7 +217,11 @@ void LostWorld_Init()
 	*(NJS_OBJECT*)0x202670C = objectSTG07_00149870; //Snake tail
 	*(NJS_OBJECT*)0x2024828 = objectSTG07_001487A0; //Snake tail tip
 	*(NJS_MODEL_SADX*)0x2026E38 = attachSTG07_00149E7C; //Fire obstacle
-	*(NJS_OBJECT*)0x2031810 = objectSTG07_01C31810; //Ceiling light imitation
+	((NJS_MATERIAL*)0x2031660)->attrflags &= ~NJD_SA_ONE; //Llight stuff
+	((NJS_MATERIAL*)0x2031660)->attrflags &= ~NJD_DA_ONE;
+	((NJS_MATERIAL*)0x2031660)->attrflags |= NJD_SA_SRC;
+	((NJS_MATERIAL*)0x2031660)->attrflags |= NJD_DA_DST;
+	WriteCall((void*)0x5E8976, RLight_Load);
 	((NJS_OBJECT*)0x01FE9D7C)->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT; //Water in snake room
 	((NJS_OBJECT*)0x01FE9D7C)->basicdxmodel->mats[0].diffuse.color = 0x99B2B2B2; //Water in snake room
 	((NJS_OBJECT*)0x01FE9D7C)->basicdxmodel->mats[0].attr_texId = 44; //Water in snake room
