@@ -287,12 +287,12 @@ void WindyValley_Init()
 	WriteCall((void*)0x4E282D, DrawTransparentBrokenBlocksExplosion);
 	WriteCall((void*)0x4E2703, DrawTransparentBrokenBlocksExplosion);
 	WriteCall((void*)0x4E2262, DrawTransparentBrokenBlocks);
-	RemoveVertexColors_Object((NJS_OBJECT*)0xC1D1B0); //OTanpopo
-	RemoveVertexColors_Model((NJS_MODEL_SADX*)0xC1DAB4); //OTanpopo
 	WriteJump((void*)0x4DFA60, OTanpopo_Child_Display); //Fix hanging dandelion
 	*(NJS_MODEL_SADX*)0xC1DDF8 = *LoadModel("system\\data\\STG02\\Models\\000C4A70.sa1mdl")->basicdxmodel; //Bridge piece
 	*(NJS_MODEL_SADX*)0xC1E168 = *LoadModel("system\\data\\STG02\\Models\\000C4D24.sa1mdl")->basicdxmodel; //Fixed bridge rope
 	*(NJS_MODEL_SADX*)0xC1D068 = *LoadModel("system\\data\\STG02\\Models\\000C4024.sa1mdl")->basicdxmodel; //OPopo base
+	*(NJS_OBJECT*)0xC1DAE0 = *LoadModel("system\\data\\STG02\\Models\\000C47B0.sa1mdl"); //OTanpopo
+	*(NJS_OBJECT*)0xC1DBFC = *LoadModel("system\\data\\STG02\\Models\\000C48B4.sa1mdl"); //OTanpopo fuzz
 	*(NJS_OBJECT*)0xC1C648 = *LoadModel("system\\data\\STG02\\Models\\000C3A70.sa1mdl"); //OPopo part 2
 	*(NJS_OBJECT*)0xC1C848 = *LoadModel("system\\data\\STG02\\Models\\000C38A8.sa1mdl"); //OPopo part 1 (I swapped these because SADX renders them in an incorrect order)
 	*(NJS_OBJECT*)0xC2663C = *LoadModel("system\\data\\STG02\\Models\\000CB98C.sa1mdl"); //OTreeM
