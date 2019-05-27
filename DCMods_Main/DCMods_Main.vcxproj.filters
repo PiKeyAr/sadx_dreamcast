@@ -653,5 +653,8 @@
     <ClInclude Include="Data\Chaos2_Objects.h">
       <Filter>Header Files\Levels\Bosses</Filter>
     </ClInclude>
+    <ClInclude Include="GenericData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

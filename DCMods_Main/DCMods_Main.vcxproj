@@ -277,6 +277,7 @@
     <ClInclude Include="Data\ZeroE101R_Water.h" />
     <ClInclude Include="DC_Levels.h" />
     <ClInclude Include="Frogs.h" />
+    <ClInclude Include="GenericData.h" />
     <ClInclude Include="Lantern\lanternapi.h" />
     <ClInclude Include="OStandLight.h" />
     <ClInclude Include="StageLights.h" />

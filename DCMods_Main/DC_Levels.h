@@ -465,3 +465,4 @@ void RemoveVertexColors_Object(NJS_OBJECT *obj);
 void RemoveVertexColors_Model(NJS_MODEL_SADX *model);
 NJS_OBJECT* LoadModel(const char *ModelName);
 void RemoveMaterialColors_Landtable(LandTable *landtable);
+void SortModel(NJS_OBJECT *model);
