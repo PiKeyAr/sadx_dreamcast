@@ -278,7 +278,6 @@ void WindyValley_Init()
 	ReplacePVM("WINDY_BACK");
 	ReplacePVM("WINDY_BACK2");
 	ReplacePVM("WINDY_BACK3");
-	*(NJS_MODEL_SADX*)0xC1E168 = attachSTG02_000C4CFC; //Fixed bridge rope
 	//Skybox stuff
 	WriteCall((void*)0x004DD794, RetrieveWindy1SkyTransparency);
 	WriteCall((void*)0x004DD7D1, RenderWindy1Sky);
@@ -309,29 +308,29 @@ void WindyValley_Init()
 	RemoveVertexColors_Object((NJS_OBJECT*)0xC1D1B0); //OTanpopo
 	RemoveVertexColors_Model((NJS_MODEL_SADX*)0xC1DAB4); //OTanpopo
 	WriteJump((void*)0x4DFA60, OTanpopo_Child_Display); //Fix hanging dandelion
-	*(NJS_MODEL_SADX*)0xC1D068 = attach_000C3FFC; //OPopo base
-	*(NJS_OBJECT*)0xC1C648 = object_000C3A70; //OPopo part 2
-	*(NJS_OBJECT*)0xC1C848 = object_000C38A8; //OPopo part 1 (I swapped these because SADX renders them in an incorrect order)
-	*(NJS_OBJECT*)0xC32DB8 = objectSTG02_000D40D4; //Grassy rock
-	*(NJS_OBJECT*)0xC0B188 = objectSTG02_000B6C3C; //Skybox bottom in Act 3
+	*(NJS_OBJECT*)0xC2663C = *LoadModel("system\\data\\STG02\\Models\\000CB98C.sa1mdl"); //OTreeM
+	*(NJS_MODEL_SADX*)0xC1E168 = *LoadModel("system\\data\\STG02\\Models\\000C4D24.sa1mdl")->basicdxmodel; //Fixed bridge rope
+	*(NJS_MODEL_SADX*)0xC1D068 = *LoadModel("system\\data\\STG02\\Models\\000C4024.sa1mdl")->basicdxmodel; //OPopo base
+	*(NJS_OBJECT*)0xC1C648 = *LoadModel("system\\data\\STG02\\Models\\000C3A70.sa1mdl"); //OPopo part 2
+	*(NJS_OBJECT*)0xC1C848 = *LoadModel("system\\data\\STG02\\Models\\000C38A8.sa1mdl"); //OPopo part 1 (I swapped these because SADX renders them in an incorrect order)
+	*(NJS_OBJECT*)0xC32DB8 = *LoadModel("system\\data\\STG02\\Models\\000D40D4.sa1mdl"); //Grassy rock
+	*(NJS_OBJECT*)0xC0B188 = *LoadModel("system\\data\\STG02\\Models\\000B6C3C.sa1mdl"); //Skybox bottom in Act 3
 	*(NJS_OBJECT*)0xC2B860 = objectSTG02_0082B860; //broken fan piece
 	*(NJS_OBJECT*)0xC2C160 = objectSTG02_0082C160; //broken fan piece 2
 	*(NJS_OBJECT*)0xC2C788 = objectSTG02_0082C788; //broken fan piece 3
-	*(NJS_OBJECT*)0xC21704 = objectSTG02_000C7F08; //Yure
-	*(NJS_OBJECT*)0xC29B94 = objectSTG02_000CE310; //HaneA
-	*(NJS_OBJECT*)0xC1560C = objectSTG02_000BEF7C; //BridgeC
-	*(NJS_OBJECT*)0xC142FC = objectSTG02_000BE2F0; //BridgeB
-	*(NJS_OBJECT*)0xC13274 = objectSTG02_000BD7C8; //BridgeA
-	*(NJS_OBJECT*)0xC2433C = objectSTG02_000C9DE8; //OSaku C
-	*(NJS_OBJECT*)0xC23384 = objectSTG02_000C9298; //OSaku B
-	*(NJS_OBJECT*)0xC22E74 = objectSTG02_000C8F20; //OSaku A
-	*(NJS_MODEL_SADX*)0xC1DDF8 = attachSTG02_000C4A48; //Bridge piece
-	*(NJS_OBJECT*)0xC315FC = objectSTG02_000D38A8; //Wind gate 1
+	*(NJS_OBJECT*)0xC21704 = *LoadModel("system\\data\\STG02\\Models\\000C7F08.sa1mdl"); //Yure
+	*(NJS_OBJECT*)0xC29B94 = *LoadModel("system\\data\\STG02\\Models\\000CE310.sa1mdl"); //HaneA
+	*(NJS_OBJECT*)0xC1560C = *LoadModel("system\\data\\STG02\\Models\\000BEF7C.sa1mdl"); //BridgeC
+	*(NJS_OBJECT*)0xC142FC = *LoadModel("system\\data\\STG02\\Models\\000BE2F0.sa1mdl"); //BridgeB
+	*(NJS_OBJECT*)0xC13274 = *LoadModel("system\\data\\STG02\\Models\\000BD7C8.sa1mdl"); //BridgeA
+	*(NJS_OBJECT*)0xC2433C = *LoadModel("system\\data\\STG02\\Models\\000C9DE8.sa1mdl"); //OSaku C
+	*(NJS_OBJECT*)0xC23384 = *LoadModel("system\\data\\STG02\\Models\\000C9298.sa1mdl"); //OSaku B
+	*(NJS_OBJECT*)0xC22E74 = *LoadModel("system\\data\\STG02\\Models\\000C8F20.sa1mdl"); //OSaku A
+	*(NJS_MODEL_SADX*)0xC1DDF8 = *LoadModel("system\\data\\STG02\\Models\\000C4A70.sa1mdl")->basicdxmodel; //Bridge piece
+	*(NJS_OBJECT*)0xC315FC = *LoadModel("system\\data\\STG02\\Models\\000D38A8.sa1mdl"); //Wind gate 1
 	*(NJS_OBJECT*)0xC30C44 = objectSTG02_00830C44; //Wind gate 2
 	*(NJS_OBJECT*)0xC305A4 = objectSTG02_008305A4; //Wind gate 3
 	*(NJS_OBJECT*)0xC2FF04 = objectSTG02_0082FF04; //Wind gate 4
-	//OTreeM fixes
-	*(NJS_OBJECT*)0xC2663C = object_000CB98C; //OTreeM DC model
 	WriteCall((void*)0x4E2BA1, FixBranch);
 	//Skybox/fog data stuff
 	for (unsigned int i = 0; i < 3; i++)
