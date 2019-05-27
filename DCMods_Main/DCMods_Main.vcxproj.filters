@@ -476,9 +476,6 @@
     <ClInclude Include="Data\MRGarden.h">
       <Filter>Header Files\Levels\Chao</Filter>
     </ClInclude>
-    <ClInclude Include="Data\Objects_Windy.h">
-      <Filter>Header Files\Levels\WindyValley</Filter>
-    </ClInclude>
     <ClInclude Include="Data\OFinalEgg.h">
       <Filter>Header Files\Levels\ADV02MODELS</Filter>
     </ClInclude>

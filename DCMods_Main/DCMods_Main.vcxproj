@@ -229,7 +229,6 @@
     <ClInclude Include="Data\MR_Palms.h" />
     <ClInclude Include="Data\MR_Rock.h" />
     <ClInclude Include="Data\MR_train.h" />
-    <ClInclude Include="Data\Objects_Windy.h" />
     <ClInclude Include="Data\OFinalEgg.h" />
     <ClInclude Include="Data\OLmpa.h" />
     <ClInclude Include="Data\Palm.h" />

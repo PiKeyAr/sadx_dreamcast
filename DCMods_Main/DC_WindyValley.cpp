@@ -1,5 +1,4 @@
 #include "stdafx.h"
-#include "Objects_Windy.h"
 
 NJS_TEXNAME textures_windy1[20];
 NJS_TEXLIST texlist_windy1 = { arrayptrandlength(textures_windy1) };
@@ -83,9 +82,6 @@ NJS_MATERIAL* LevelSpecular_Windy[] = {
 };
 
 NJS_MATERIAL* ObjectSpecularWhiteDiffuse[] = {
-	//OPopo
-	&matlist_000C38DC[1],
-	&matlist_000C3708[1],
 	//Leon eyes
 	((NJS_MATERIAL*)0x009544DC),
 	((NJS_MATERIAL*)0x009544F0),
@@ -113,15 +109,6 @@ void RenderWindy1Sky()
 	ProcessModelNode((NJS_OBJECT*)0xC06344, (QueuedModelFlagsB)0, 1.0f); //Cloud 1
 	DrawQueueDepthBias = -18000.0f;
 	ProcessModelNode((NJS_OBJECT*)0xC06A94, (QueuedModelFlagsB)0, 1.0f); //Cloud 2
-	DrawQueueDepthBias = 0;
-}
-
-void FixBranch(NJS_ACTION *a1, float a2, int a3, float a4)
-{
-	DrawQueueDepthBias = 2000.0f;
-	sub_408350(a1, a2, a3, a4);
-	DrawQueueDepthBias = 2200.0f;
-	sub_408350(&action_OTREEM_Action, a2, a3, a4);
 	DrawQueueDepthBias = 0;
 }
 
@@ -329,7 +316,6 @@ void WindyValley_Init()
 	*(NJS_OBJECT*)0xC30C44 = *LoadModel("system\\data\\STG02\\Models\\000D31C8.sa1mdl"); //Wind gate 2
 	*(NJS_OBJECT*)0xC305A4 = *LoadModel("system\\data\\STG02\\Models\\000D2C98.sa1mdl"); //Wind gate 3
 	*(NJS_OBJECT*)0xC2FF04 = *LoadModel("system\\data\\STG02\\Models\\000D2768.sa1mdl"); //Wind gate 4
-	WriteCall((void*)0x4E2BA1, FixBranch);
 	//Skybox/fog data stuff
 	for (unsigned int i = 0; i < 3; i++)
 	{
