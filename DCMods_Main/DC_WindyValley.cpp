@@ -297,6 +297,7 @@ void WindyValley_Init()
 	*(NJS_OBJECT*)0xC1C848 = *LoadModel("system\\data\\STG02\\Models\\000C38A8.sa1mdl"); //OPopo part 1 (I swapped these because SADX renders them in an incorrect order)
 	*(NJS_OBJECT*)0xC2663C = *LoadModel("system\\data\\STG02\\Models\\000CB98C.sa1mdl"); //OTreeM
 	*(NJS_OBJECT*)0xC32DB8 = *LoadModel("system\\data\\STG02\\Models\\000D40D4.sa1mdl"); //Grassy rock
+	SortModel((NJS_OBJECT*)0xC32DB8);
 	*(NJS_OBJECT*)0xC0B188 = *LoadModel("system\\data\\STG02\\Models\\000B6C3C.sa1mdl"); //Skybox bottom in Act 3
 	*(NJS_OBJECT*)0xC2B860 = *LoadModel("system\\data\\STG02\\Models\\000CF660.sa1mdl"); //broken fan piece
 	SortModel((NJS_OBJECT*)0xC2B860);
