@@ -497,33 +497,44 @@ void RemoveMaterialColors_Landtable(LandTable *landtable)
 void ProcessMaterials_Object(NJS_OBJECT *obj)
 {
 	Uint32 materialflags;
+	int ignorelightmaterialid = -1;
+	//Check meshsets and remove vertex colors, if any
 	for (int k = 0; k < obj->basicdxmodel->nbMeshset; ++k)
 	{
+		if (obj->basicdxmodel->meshsets[k].vertcolor != nullptr)
+		{
+			obj->basicdxmodel->meshsets[k].vertcolor = nullptr;
+		}
+	}
+	//Check materials
+	for (int k = 0; k < obj->basicdxmodel->nbMat; ++k)
+	{
 		//Remove material colors
-		obj->basicdxmodel->mats[obj->basicdxmodel->meshsets[k].type_matId & ~0xC000].diffuse.argb.r = 0xFF;
-		obj->basicdxmodel->mats[obj->basicdxmodel->meshsets[k].type_matId & ~0xC000].diffuse.argb.g = 0xFF;
-		obj->basicdxmodel->mats[obj->basicdxmodel->meshsets[k].type_matId & ~0xC000].diffuse.argb.b = 0xFF;
-		//Parse material flags for white diffuse and alpha rejection
-		materialflags = obj->basicdxmodel->mats[obj->basicdxmodel->meshsets[k].type_matId & ~0xC000].attrflags;
+		obj->basicdxmodel->mats[k].diffuse.argb.r = 0xFF;
+		obj->basicdxmodel->mats[k].diffuse.argb.g = 0xFF;
+		obj->basicdxmodel->mats[k].diffuse.argb.b = 0xFF;
+		//Check if any materials have "ignore light"
+		materialflags = obj->basicdxmodel->mats[k].attrflags;
+		if (k < obj->basicdxmodel->nbMat && (materialflags & NJD_FLAG_IGNORE_LIGHT) && ignorelightmaterialid == -1) ignorelightmaterialid = k;
+		//Check for alpha rejection flag
 		if (materialflags & NJD_CUSTOMFLAG_NO_REJECT)
 		{
 			TemporaryMaterialArray[0] = (NJS_MATERIAL*)&obj->basicdxmodel->mats[obj->basicdxmodel->meshsets[k].type_matId & ~0xC000];
 			material_register_ptr(TemporaryMaterialArray, 1, DisableAlphaRejection);
 		}
-		else if (materialflags & NJD_CUSTOMFLAG_WHITE)
+		//If a material has NJD_FLAG_IGNORE_LIGHT, add white diffuse to all other materials after it
+		if (ignorelightmaterialid != -1)
 		{
-			TemporaryMaterialArray[0] = (NJS_MATERIAL*)&obj->basicdxmodel->mats[obj->basicdxmodel->meshsets[k].type_matId & ~0xC000];
-			material_register_ptr(TemporaryMaterialArray, 1, ForceWhiteDiffuse);
+			for (int k = ignorelightmaterialid + 1; k < obj->basicdxmodel->nbMat; ++k)
+			{
+				TemporaryMaterialArray[0] = (NJS_MATERIAL*)&obj->basicdxmodel->mats[obj->basicdxmodel->meshsets[k].type_matId & ~0xC000];
+				material_register_ptr(TemporaryMaterialArray, 1, ForceWhiteDiffuse);
+			}
 		}
-		//Remove vertex colors
-		if (obj->basicdxmodel->meshsets[k].vertcolor != nullptr)
-		{
-			obj->basicdxmodel->meshsets[k].vertcolor = nullptr;
-		}
-		//Process materials of child and sibling models as well
-		if (obj->child != nullptr) ProcessMaterials_Object(obj->child);
-		if (obj->sibling != nullptr) ProcessMaterials_Object(obj->sibling);
 	}
+	//Process materials of child and sibling models as well
+	if (obj->child != nullptr) ProcessMaterials_Object(obj->child);
+	if (obj->sibling != nullptr) ProcessMaterials_Object(obj->sibling);
 }
 
 NJS_OBJECT* LoadModel(const char *ModelName)
