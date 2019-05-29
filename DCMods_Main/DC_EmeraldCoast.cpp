@@ -715,6 +715,7 @@ void EmeraldCoast_Init()
 		ReplaceBIN("CAM0102B", "CAM0102B_R");
 	}
 	//Models
+	RemoveVertexColors_Object((NJS_OBJECT*)0x10C782C); //Tails' crashed plane
 	*(NJS_OBJECT*)0x10A298C = *LoadModel("system\\data\\STG01\\Models\\00183CDC.sa1mdl"); //Jump panel (OJump) 
 	*(NJS_OBJECT*)0x10937B4 = *LoadModel("system\\data\\STG01\\Models\\00174F68.sa1mdl"); //Pier thing
 	*(NJS_OBJECT*)0x10939A4 = *LoadModel("system\\data\\STG01\\Models\\0017514C.sa1mdl"); //Log
