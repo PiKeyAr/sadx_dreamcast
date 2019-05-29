@@ -498,12 +498,27 @@ void ProcessMaterials_Object(NJS_OBJECT *obj)
 {
 	Uint32 materialflags;
 	int ignorelightmaterialid = -1;
+	bool ignorespecular = false;
 	//Check meshsets and remove vertex colors, if any
 	for (int k = 0; k < obj->basicdxmodel->nbMeshset; ++k)
 	{
 		if (obj->basicdxmodel->meshsets[k].vertcolor != nullptr)
 		{
 			obj->basicdxmodel->meshsets[k].vertcolor = nullptr;
+		}
+	}
+	//Check the first material for NJD_FLAG_IGNORE_SPECULAR and adjust the rest of the materials accordingly
+	if (obj->basicdxmodel->mats[0].attrflags & NJD_FLAG_IGNORE_SPECULAR) ignorespecular = true; else ignorespecular = false;
+	for (int k = 1; k < obj->basicdxmodel->nbMat; ++k)
+	{
+		materialflags = obj->basicdxmodel->mats[k].attrflags;
+		if (ignorespecular)
+		{
+			if (!(materialflags & NJD_FLAG_IGNORE_SPECULAR)) obj->basicdxmodel->mats[k].attrflags |= NJD_FLAG_IGNORE_SPECULAR;
+		}
+		else
+		{
+			if ((materialflags & NJD_FLAG_IGNORE_SPECULAR)) obj->basicdxmodel->mats[k].attrflags &= ~NJD_FLAG_IGNORE_SPECULAR;
 		}
 	}
 	//Check materials
