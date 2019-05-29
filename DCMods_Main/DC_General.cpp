@@ -63,6 +63,8 @@ static int CutsceneFadeMode = 0;
 static bool SkipPressed_Cutscene = false;
 
 NJS_MATERIAL* AlphaRejectMaterials[] = {
+	((NJS_MATERIAL*)0x8B2E6C), //Invincibility lines
+	((NJS_MATERIAL*)0x8B2F80), //Invincibility ball
 	((NJS_MATERIAL*)0x8B26E4), //Magnetic barrier
 	((NJS_MATERIAL*)0x8BF2C0), //Shadow blob
 	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x0007C334), //Emerald shards (cutscene)
@@ -889,7 +891,7 @@ void __cdecl RenderInvincibilityLines(NJS_MODEL_SADX *a1)
 		v1 = 0.0f;
 	}
 	DrawQueueDepthBias = v1;
-	DrawVisibleModel_Queue(a1, QueuedModelFlagsB_EnableZWrite);
+	DrawVisibleModel_Queue(a1, (QueuedModelFlagsB)0);
 	DrawQueueDepthBias = 0.0f;
 }
 
@@ -1129,6 +1131,43 @@ void CharacterShadowHook(NJS_OBJECT *a1, float a2)
 	}
 }
 
+void DrawScalableShadowHook(NJS_OBJECT *a1, float a2)
+{
+	double v2; // st7
+	float v3; // [esp+0h] [ebp-4h]
+	v2 = DrawQueueDepthBias;
+	if (CurrentLevel == LevelIDs_WindyValley && CurrentAct == 2)
+	{
+		DrawQueueDepthBias = 2600.0f;
+		ProcessModelNode(a1, (QueuedModelFlagsB)6, a2);
+	}
+	else
+	{
+		if (MissedFrames || VerifyTexList(CurrentTexList))
+		{
+			DrawQueueDepthBias = -27952.0f;
+		}
+		else
+		{
+			ProcessModelNode(a1, (QueuedModelFlagsB)6, a2);
+		}
+		ProcessModelNode_A_WrapperC(a1, a2);
+	}
+	DrawQueueDepthBias = v2;
+}
+
+void DrawRingShadowHook(NJS_MODEL_SADX *a1, float a2)
+{
+	float v2 = DrawQueueDepthBias;
+	if (CurrentLevel == LevelIDs_WindyValley && CurrentAct == 2)
+	{
+		DrawQueueDepthBias = 2600.0f;
+	}
+	else DrawQueueDepthBias = -27952.0f;
+	DrawModel_QueueVisible(a1, (QueuedModelFlagsB)6, a2);
+	DrawQueueDepthBias = v2;
+}
+
 void General_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 {
 	ReplacePVR("AL_BARRIA");
@@ -1336,6 +1375,9 @@ void General_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 	RemoveVertexColors_Object((NJS_OBJECT*)0x094EFD4); //Boa 4
 	RemoveVertexColors_Object((NJS_OBJECT*)0x097388C); //Cop speeder
 	RemoveVertexColors_Object((NJS_OBJECT*)0x0970D8C); //Spinner
+	//Stupid hacks for Windy Valley 3
+	WriteCall((void*)0x49EE10, DrawRingShadowHook);
+	WriteCall((void*)0x49EFAE, DrawScalableShadowHook);
 	//Replace hint monitor model
 	WriteCall((void*)0x7A9509, RenderHintMonitor_Main);
 	WriteCall((void*)0x7A957F, SetHintMonitorTransparency);
@@ -1416,7 +1458,7 @@ void General_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 	*(NJS_MODEL_SADX*)0x008C6624 = attach_001A7820; //Spring H
 	*(NJS_MODEL_SADX*)0x008BFEC8 = attach_001A127C; //Rocket platform
 	*(NJS_MODEL_SADX*)0x008BE168 = attach_0019F5CC; //Balloon
-	// Load configuration settings
+	//Load configuration settings
 	FPSLock = config->getBool("General", "FPSLock", false);
 	EnableDCRipple = config->getBool("General", "EnableDreamcastWaterRipple", true);
 	EnableCutsceneFix = config->getBool("General", "EnableCutsceneFix", true);
@@ -1442,7 +1484,7 @@ void General_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 		//Disabling this since it doesn't seem necessary and it breaks Egg Carrier captain's room
 		//WriteData((float**)0x00492CB0, &LSDFix); //16 is the minimum speed
 	}
-	// Disable font smoothing
+	//Disable font smoothing
 	if (DisableFontSmoothing)
 	{
 		//Probably better than making the whole texture ARGB1555
@@ -1450,12 +1492,12 @@ void General_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 		WriteData<1>((char*)0x0040DA0C, 0x00);
 		WriteData<1>((char*)0x0040DA12, 0x00);
 	}
-	// Enable Impress font
+	//Enable Impress font
 	if (EnableImpressFont == "Impress")
 	{
 		ReplaceBIN("FONTDATA1", "FONTDATA1_I");
 	}
-	// Enable Comic Sans font (experimental)
+	//Enable Comic Sans font (experimental)
 	else if (EnableImpressFont == "ComicSans")
 	{
 		ReplaceBIN("FONTDATA1", "FONTDATA1_C");
@@ -1517,9 +1559,8 @@ void General_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 	WriteData((float*)0x004A0F49, 2500.0f); //Main dash trail depth bias
 	WriteData<1>((char*)0x004A1220, 0i8); //Spindash trail queued flags
 	//Barrier fixes
-	WriteData<5>((char*)0x4B9E3A, 0x90u); //Disable ClampGlobalColorThing
+	WriteData<5>((char*)0x4B9E3A, 0x90u); //Disable ClampGlobalColorThing (it's called later in my replacement function)
 	WriteCall((void*)0x04B9F0F, MagneticBarrierLightning);
-	//WriteData<1>((char*)0x004B9F02, 0i8); //Magnetic barrier lightning blending mode
 	WriteCall((void*)0x4B9DDA, SetMagneticBarrierColor);
 	WriteJump((void*)0x4B9C90, RenderBarrierModels);
 	WriteJump(Barrier_Main, Barrier_MainX); //Barrier
