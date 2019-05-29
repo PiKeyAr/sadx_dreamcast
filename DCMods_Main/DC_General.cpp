@@ -1368,7 +1368,10 @@ void General_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 	RemoveVertexColors_Object((NJS_OBJECT*)0x38E50C4); //Buyon A
 	RemoveVertexColors_Object((NJS_OBJECT*)0x38E3B2C); //Buyon B
 	RemoveVertexColors_Object((NJS_OBJECT*)0x38E3584); //Buyon C
-	RemoveVertexColors_Object((NJS_OBJECT*)0x09538EC); //Leon
+	RemoveVertexColors_Object((NJS_OBJECT*)0x09538EC); //Leon body
+	*(NJS_OBJECT*)0x0954D28 = *LoadModel("system\\data\\1ST_READ\\Models\\005A2DDC.sa1mdl");
+	RemoveVertexColors_Object((NJS_OBJECT*)0x0954E94); //Leon tongue
+	RemoveVertexColors_Object((NJS_OBJECT*)0x095504C); //Leon tongue tip
 	RemoveVertexColors_Object((NJS_OBJECT*)0x0950940); //Boa 1
 	RemoveVertexColors_Object((NJS_OBJECT*)0x0950690); //Boa 2 
 	RemoveVertexColors_Object((NJS_OBJECT*)0x094FB38); //Boa 3
