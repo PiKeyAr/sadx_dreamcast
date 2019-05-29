@@ -545,13 +545,13 @@
     <ClInclude Include="Data\TwinklePark_objects.h">
       <Filter>Header Files\Levels\TwinklePark</Filter>
     </ClInclude>
-    <ClInclude Include="Data\windy1.h">
+    <ClInclude Include="Data\Windy1.h">
       <Filter>Header Files\Levels\WindyValley</Filter>
     </ClInclude>
-    <ClInclude Include="Data\windy2.h">
+    <ClInclude Include="Data\Windy2.h">
       <Filter>Header Files\Levels\WindyValley</Filter>
     </ClInclude>
-    <ClInclude Include="Data\windy3.h">
+    <ClInclude Include="Data\Windy3.h">
       <Filter>Header Files\Levels\WindyValley</Filter>
     </ClInclude>
     <ClInclude Include="Data\Zero.h">

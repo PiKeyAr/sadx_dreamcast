@@ -269,9 +269,9 @@
     <ClInclude Include="Data\Twinkle3_Trans.h" />
     <ClInclude Include="Data\TwinkleCircuit.h" />
     <ClInclude Include="Data\TwinklePark_objects.h" />
-    <ClInclude Include="Data\windy1.h" />
-    <ClInclude Include="Data\windy2.h" />
-    <ClInclude Include="Data\windy3.h" />
+    <ClInclude Include="Data\Windy1.h" />
+    <ClInclude Include="Data\Windy2.h" />
+    <ClInclude Include="Data\Windy3.h" />
     <ClInclude Include="Data\Zero.h" />
     <ClInclude Include="Data\ZeroE101R_Water.h" />
     <ClInclude Include="DC_Levels.h" />
