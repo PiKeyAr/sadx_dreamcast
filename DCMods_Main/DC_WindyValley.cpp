@@ -35,60 +35,6 @@ static float SkyTrans = 1.0f;
 
 NJS_VECTOR TornadoSpawnPosition = { 3254, -421, -1665 };
 
-NJS_MATERIAL* ObjectSpecular_Windy[] = {
-	//St_brd
-	((NJS_MATERIAL*)0x00C3BBB8),
-	((NJS_MATERIAL*)0x00C3BBCC),
-	((NJS_MATERIAL*)0x00C3BBE0),
-	((NJS_MATERIAL*)0x00C3BBF4),
-	//Rocket
-	((NJS_MATERIAL*)0x008C24D0),
-	((NJS_MATERIAL*)0x008C24E4),
-	((NJS_MATERIAL*)0x008C24F8),
-	((NJS_MATERIAL*)0x008C250C),
-	//O Toge
-	((NJS_MATERIAL*)0x008BAAC8),
-	((NJS_MATERIAL*)0x008BAADC),
-	((NJS_MATERIAL*)0x008BAAF0),
-	((NJS_MATERIAL*)0x008BAB04),
-	((NJS_MATERIAL*)0x008BAB18),
-	((NJS_MATERIAL*)0x008BA708),
-	//Boa-boa
-	((NJS_MATERIAL*)0x0094F34C),
-	((NJS_MATERIAL*)0x0094F360),
-	((NJS_MATERIAL*)0x0094F008),
-	((NJS_MATERIAL*)0x0094F01C),
-	((NJS_MATERIAL*)0x0094FEB4),
-	((NJS_MATERIAL*)0x0094FEC8),
-	((NJS_MATERIAL*)0x0094FB6C),
-	((NJS_MATERIAL*)0x0094FB80),
-};
-
-NJS_MATERIAL* LevelSpecular_Windy[] = {
-	//Boa-boa
-	((NJS_MATERIAL*)0x00950200),
-	((NJS_MATERIAL*)0x00950214),
-	((NJS_MATERIAL*)0x00950228),
-	((NJS_MATERIAL*)0x0095023C),
-	((NJS_MATERIAL*)0x00950250),
-	((NJS_MATERIAL*)0x00950264),
-	//Rocket
-	((NJS_MATERIAL*)0x008C2D38),
-	((NJS_MATERIAL*)0x008C2D4C),
-	((NJS_MATERIAL*)0x008C2D60),
-	((NJS_MATERIAL*)0x008C2D74),
-	((NJS_MATERIAL*)0x008C2D88),
-	((NJS_MATERIAL*)0x008C2D9C),
-};
-
-NJS_MATERIAL* ObjectSpecularWhiteDiffuse[] = {
-	//Leon eyes
-	((NJS_MATERIAL*)0x009544DC),
-	((NJS_MATERIAL*)0x009544F0),
-	((NJS_MATERIAL*)0x00953ABC),
-	((NJS_MATERIAL*)0x00953AD0),
-};
-
 void RetrieveWindy1SkyTransparency(float a, float r, float g, float b)
 {
 	SkyTrans = a;
@@ -270,12 +216,6 @@ void WindyValley_Init()
 	//Material fixes
 	((NJS_MATERIAL*)0x00C1C468)->attr_texId &= ~NJD_FLAG_IGNORE_SPECULAR;
 	((NJS_MATERIAL*)0x00C1C47C)->attr_texId &= ~NJD_FLAG_IGNORE_SPECULAR;
-	if (DLLLoaded_Lantern)
-	{
-		material_register_ptr(LevelSpecular_Windy, LengthOfArray(LevelSpecular_Windy), &ForceDiffuse0Specular0);
-		material_register_ptr(ObjectSpecular_Windy, LengthOfArray(ObjectSpecular_Windy), &ForceDiffuse0Specular1);
-		material_register_ptr(ObjectSpecularWhiteDiffuse, LengthOfArray(ObjectSpecularWhiteDiffuse), &ForceWhiteDiffuse3Specular1);
-	}
 	WriteData<1>((void*)0x4DD120, 0xC3); //Disable some fog thing
 	WriteCall((void*)0x004E1E35, sub_409E70); //Wind gate rendering function
 	WriteCall((void*)0x004E1E9A, sub_409E70); //Wind gate rendering function
@@ -287,29 +227,49 @@ void WindyValley_Init()
 	WriteCall((void*)0x4E282D, DrawTransparentBrokenBlocksExplosion);
 	WriteCall((void*)0x4E2703, DrawTransparentBrokenBlocksExplosion);
 	WriteCall((void*)0x4E2262, DrawTransparentBrokenBlocks);
-	WriteJump((void*)0x4DFA60, OTanpopo_Child_Display); //Fix hanging dandelion
+	WriteJump((void*)0x4DFA60, OTanpopo_Child_Display); //Fix hanging dandelion seed
 	*(NJS_MODEL_SADX*)0xC1DDF8 = *LoadModel("system\\data\\STG02\\Models\\000C4A70.sa1mdl")->basicdxmodel; //Bridge piece
 	*(NJS_MODEL_SADX*)0xC1E168 = *LoadModel("system\\data\\STG02\\Models\\000C4D24.sa1mdl")->basicdxmodel; //Fixed bridge rope
 	*(NJS_MODEL_SADX*)0xC1D068 = *LoadModel("system\\data\\STG02\\Models\\000C4024.sa1mdl")->basicdxmodel; //OPopo base
-	*(NJS_OBJECT*)0xC1DAE0 = *LoadModel("system\\data\\STG02\\Models\\000C47B0.sa1mdl"); //OTanpopo
-	*(NJS_OBJECT*)0xC1DBFC = *LoadModel("system\\data\\STG02\\Models\\000C48B4.sa1mdl"); //OTanpopo fuzz
 	*(NJS_OBJECT*)0xC1C648 = *LoadModel("system\\data\\STG02\\Models\\000C3A70.sa1mdl"); //OPopo part 2
 	*(NJS_OBJECT*)0xC1C848 = *LoadModel("system\\data\\STG02\\Models\\000C38A8.sa1mdl"); //OPopo part 1 (I swapped these because SADX renders them in an incorrect order)
+	*(NJS_MODEL_SADX*)0xC1DAB4 = *LoadModel("system\\data\\STG02\\Models\\000C47B0.sa1mdl")->basicdxmodel; //OTanpopo base
+	*(NJS_OBJECT*)0xC1D1B0 = *LoadModel("system\\data\\STG02\\Models\\000C4128.sa1mdl"); //OTanpopo fuzz
+	*(NJS_OBJECT*)0xC1DBFC = *LoadModel("system\\data\\STG02\\Models\\000C48B4.sa1mdl"); //OTanpopo seed
 	*(NJS_OBJECT*)0xC2663C = *LoadModel("system\\data\\STG02\\Models\\000CB98C.sa1mdl"); //OTreeM
 	*(NJS_OBJECT*)0xC32DB8 = *LoadModel("system\\data\\STG02\\Models\\000D40D4.sa1mdl"); //Grassy rock
 	SortModel((NJS_OBJECT*)0xC32DB8);
-	*(NJS_OBJECT*)0xC0B188 = *LoadModel("system\\data\\STG02\\Models\\000B6C3C.sa1mdl"); //Skybox bottom in Act 3
-	*(NJS_OBJECT*)0xC2B860 = *LoadModel("system\\data\\STG02\\Models\\000CF660.sa1mdl"); //broken fan piece
+	*(NJS_OBJECT*)0xC34384 = *LoadModel("system\\data\\STG02\\Models\\000D4D88.sa1mdl"); //OTatel (rock fencing)
+	*(NJS_OBJECT*)0xC18A7C = *LoadModel("system\\data\\STG02\\Models\\000C1494.sa1mdl"); //OCubeS
+	*(NJS_OBJECT*)0xC18ED4 = *LoadModel("system\\data\\STG02\\Models\\000C177C.sa1mdl"); //OCubeM
+	*(NJS_OBJECT*)0xC1935C = *LoadModel("system\\data\\STG02\\Models\\000C1A90.sa1mdl"); //OCubeL
+	*(NJS_OBJECT*)0xC2EF68 = *LoadModel("system\\data\\STG02\\Models\\000D1ADC.sa1mdl"); //OGrFlowerA / OHanaA
+	*(NJS_OBJECT*)0xC2F5A0 = *LoadModel("system\\data\\STG02\\Models\\000D1FF8.sa1mdl"); //OGrFlowerB / OHanaB
+	*(NJS_OBJECT*)0xC34BDC = *LoadModel("system\\data\\STG02\\Models\\000D5250.sa1mdl"); //OTateS
+	*(NJS_OBJECT*)0xC3D428 = *LoadModel("system\\data\\STG02\\Models\\000DB1B8.sa1mdl"); //OWasi
+	*(NJS_OBJECT*)0xC2AF48 = *LoadModel("system\\data\\STG02\\Models\\000CEF44.sa1mdl"); //OBroobj (breakable fan)
+	SortModel((NJS_OBJECT*)0xC2AF48);
+	*(NJS_OBJECT*)0xC2B08C = *LoadModel("system\\data\\STG02\\Models\\000CF048.sa1mdl"); //OBroobj broken 1
+	*(NJS_OBJECT*)0xC2B438 = *LoadModel("system\\data\\STG02\\Models\\000CF334.sa1mdl"); //OBroobj broken 2
+	SortModel((NJS_OBJECT*)0xC2B438);
+	*(NJS_OBJECT*)0xC2B57C = *LoadModel("system\\data\\STG02\\Models\\000CF438.sa1mdl"); //OBroobj broken 3
+	*(NJS_OBJECT*)0xC2B860 = *LoadModel("system\\data\\STG02\\Models\\000CF660.sa1mdl"); //OBroobj broken 4
 	SortModel((NJS_OBJECT*)0xC2B860);
-	*(NJS_OBJECT*)0xC2C160 = *LoadModel("system\\data\\STG02\\Models\\000CFC44.sa1mdl"); //broken fan piece 2
+	*(NJS_OBJECT*)0xC2C160 = *LoadModel("system\\data\\STG02\\Models\\000CFC44.sa1mdl"); //OBroobj broken 5
 	SortModel((NJS_OBJECT*)0xC2C160);
-	*(NJS_OBJECT*)0xC2C788 = *LoadModel("system\\data\\STG02\\Models\\000D0098.sa1mdl"); //broken fan piece 3
+	*(NJS_OBJECT*)0xC2C314 = *LoadModel("system\\data\\STG02\\Models\\000CFDA8.sa1mdl"); //OBroobj broken 6
+	*(NJS_OBJECT*)0xC2C788 = *LoadModel("system\\data\\STG02\\Models\\000D0098.sa1mdl"); //OBroobj broken 7
 	SortModel((NJS_OBJECT*)0xC2C788);
+	*(NJS_OBJECT*)0xC2CB24 = *LoadModel("system\\data\\STG02\\Models\\000D030C.sa1mdl"); //OBroobj broken 8
+	*(NJS_OBJECT*)0xC2CF4C = *LoadModel("system\\data\\STG02\\Models\\000D05C8.sa1mdl"); //OBroobj broken 9
+	*(NJS_OBJECT*)0xC0B188 = *LoadModel("system\\data\\STG02\\Models\\000B6C3C.sa1mdl"); //Skybox bottom in Act 3
 	*(NJS_OBJECT*)0xC21704 = *LoadModel("system\\data\\STG02\\Models\\000C7F08.sa1mdl"); //Yure
 	*(NJS_OBJECT*)0xC29B94 = *LoadModel("system\\data\\STG02\\Models\\000CE310.sa1mdl"); //HaneA
-	*(NJS_OBJECT*)0xC1560C = *LoadModel("system\\data\\STG02\\Models\\000BEF7C.sa1mdl"); //BridgeC
-	*(NJS_OBJECT*)0xC142FC = *LoadModel("system\\data\\STG02\\Models\\000BE2F0.sa1mdl"); //BridgeB
-	*(NJS_OBJECT*)0xC13274 = *LoadModel("system\\data\\STG02\\Models\\000BD7C8.sa1mdl"); //BridgeA
+	*(NJS_OBJECT*)0xC3C8D4 = *LoadModel("system\\data\\STG02\\Models\\000DA8FC.sa1mdl"); //OStBrid
+	*(NJS_OBJECT*)0xC157C4 = *LoadModel("system\\data\\STG02\\Models\\000BF0F8.sa1mdl"); //Bridge D
+	*(NJS_OBJECT*)0xC1560C = *LoadModel("system\\data\\STG02\\Models\\000BEF7C.sa1mdl"); //Bridge C
+	*(NJS_OBJECT*)0xC142FC = *LoadModel("system\\data\\STG02\\Models\\000BE2F0.sa1mdl"); //Bridge B
+	*(NJS_OBJECT*)0xC13274 = *LoadModel("system\\data\\STG02\\Models\\000BD7C8.sa1mdl"); //Bridge A
 	*(NJS_OBJECT*)0xC2433C = *LoadModel("system\\data\\STG02\\Models\\000C9DE8.sa1mdl"); //OSaku C
 	*(NJS_OBJECT*)0xC23384 = *LoadModel("system\\data\\STG02\\Models\\000C9298.sa1mdl"); //OSaku B
 	*(NJS_OBJECT*)0xC22E74 = *LoadModel("system\\data\\STG02\\Models\\000C8F20.sa1mdl"); //OSaku A
@@ -317,6 +277,80 @@ void WindyValley_Init()
 	*(NJS_OBJECT*)0xC30C44 = *LoadModel("system\\data\\STG02\\Models\\000D31C8.sa1mdl"); //Wind gate 2
 	*(NJS_OBJECT*)0xC305A4 = *LoadModel("system\\data\\STG02\\Models\\000D2C98.sa1mdl"); //Wind gate 3
 	*(NJS_OBJECT*)0xC2FF04 = *LoadModel("system\\data\\STG02\\Models\\000D2768.sa1mdl"); //Wind gate 4
+	*(NJS_OBJECT*)0xC359E0 = *LoadModel("system\\data\\STG02\\Models\\000D5CE4.sa1mdl"); //OHaneA
+	SortModel((NJS_OBJECT*)0xC359E0);
+	*(NJS_OBJECT*)0xC1A7E4 = *LoadModel("system\\data\\STG02\\Models\\000C2728.sa1mdl"); //OUkisim
+	*(NJS_OBJECT*)0xC280A4 = *LoadModel("system\\data\\STG02\\Models\\000CCDC8.sa1mdl"); //OHasiE 1
+	*(NJS_OBJECT*)0xC27200 = *LoadModel("system\\data\\STG02\\Models\\000CC348.sa1mdl"); //OHasiE 2
+	*(NJS_OBJECT*)0xC278F0 = *LoadModel("system\\data\\STG02\\Models\\000CC830.sa1mdl"); //OHasiE 3
+	*(NJS_OBJECT*)0xC15B2C = *LoadModel("system\\data\\STG02\\Models\\000BF404.sa1mdl"); //PuWind 1
+	*(NJS_OBJECT*)0xC159FC = *LoadModel("system\\data\\STG02\\Models\\000BF300.sa1mdl"); //PuWind 2
+	*(NJS_OBJECT*)0xC158E0 = *LoadModel("system\\data\\STG02\\Models\\000BF1FC.sa1mdl"); //PuWind 3
+	*(NJS_OBJECT*)0xC21B10 = *LoadModel("system\\data\\STG02\\Models\\000C81F4.sa1mdl"); //OPoline 1
+	*(NJS_OBJECT*)0xC21E88 = *LoadModel("system\\data\\STG02\\Models\\000C844C.sa1mdl"); //OPoline 2
+	*(NJS_OBJECT*)0xC22A94 = *LoadModel("system\\data\\STG02\\Models\\000C8C98.sa1mdl"); //OPoline 3
+	*(NJS_OBJECT*)0xC1C434 = *LoadModel("system\\data\\STG02\\Models\\000C36D4.sa1mdl"); //OBigfla
+	*(NJS_MODEL_SADX*)0xC185E0 = *LoadModel("system\\data\\STG02\\Models\\000C11D4.sa1mdl")->basicdxmodel; //OVcRock 1
+	*(NJS_MODEL_SADX*)0xC1673C = *LoadModel("system\\data\\STG02\\Models\\000BFCE8.sa1mdl")->basicdxmodel; //OVcRock 2
+	*(NJS_OBJECT*)0xC16C30 = *LoadModel("system\\data\\STG02\\Models\\000C003C.sa1mdl"); //OVcRock 3
+	*(NJS_OBJECT*)0xC17110 = *LoadModel("system\\data\\STG02\\Models\\000C0390.sa1mdl"); //OVcRock 4
+	*(NJS_OBJECT*)0xC174D8 = *LoadModel("system\\data\\STG02\\Models\\000C0664.sa1mdl"); //OVcRock 5
+	*(NJS_OBJECT*)0xC17860 = *LoadModel("system\\data\\STG02\\Models\\000C08D0.sa1mdl"); //OVcRock 6
+	*(NJS_OBJECT*)0xC17DAC = *LoadModel("system\\data\\STG02\\Models\\000C0CAC.sa1mdl"); //OVcRock 7
+	*(NJS_MODEL_SADX*)0xC1DFB0 = *LoadModel("system\\data\\STG02\\Models\\000C4BBC.sa1mdl")->basicdxmodel; //OTuriBr2 top rope
+	*(NJS_MODEL_SADX*)0xC2AF1C = *((NJS_OBJECT*)0xC2AF48)->basicdxmodel; //OSetiff 1
+	*(NJS_MODEL_SADX*)0xC2B060 = *((NJS_OBJECT*)0xC2B08C)->basicdxmodel; //OSetiff 2
+	*(NJS_MODEL_SADX*)0xC2B40C = *((NJS_OBJECT*)0xC2B438)->basicdxmodel; //OSetiff 3 
+	*(NJS_MODEL_SADX*)0xC2B550 = *((NJS_OBJECT*)0xC2B57C)->basicdxmodel; //OSetiff 4
+	*(NJS_MODEL_SADX*)0xC2B834 = *((NJS_OBJECT*)0xC2B860)->basicdxmodel; //OSetiff 5
+	*(NJS_MODEL_SADX*)0xC2C134 = *((NJS_OBJECT*)0xC2C160)->basicdxmodel; //OSetiff 6
+	*(NJS_MODEL_SADX*)0xC2C2E8 = *((NJS_OBJECT*)0xC2C314)->basicdxmodel; //OSetiff 7
+	*(NJS_MODEL_SADX*)0xC2C75C = *((NJS_OBJECT*)0xC2C788)->basicdxmodel; //OSetiff 8
+	*(NJS_MODEL_SADX*)0xC2CAF8 = *((NJS_OBJECT*)0xC2CB24)->basicdxmodel; //OSetiff 9
+	*(NJS_OBJECT*)0xC0EC58 = *LoadModel("system\\data\\STG02\\Models\\000BA270.sa1mdl"); //Broken bridge pieces 21
+	*(NJS_MODEL_SADX*)0xC0EC2C = *((NJS_OBJECT*)0xC0EC58)->basicdxmodel; //OSetiff 10
+	*(NJS_OBJECT*)0xC109A0 = *LoadModel("system\\data\\STG02\\Models\\000BB974.sa1mdl"); //Broken bridge pieces 1
+	*(NJS_OBJECT*)0xC10BAC = *LoadModel("system\\data\\STG02\\Models\\000BBB18.sa1mdl"); //Broken bridge pieces 2
+	*(NJS_OBJECT*)0xC10DEC = *LoadModel("system\\data\\STG02\\Models\\000BBCE0.sa1mdl"); //Broken bridge pieces 3
+	*(NJS_OBJECT*)0xC10FA0 = *LoadModel("system\\data\\STG02\\Models\\000BBE44.sa1mdl"); //Broken bridge pieces 4
+	*(NJS_OBJECT*)0xC111AC = *LoadModel("system\\data\\STG02\\Models\\000BBFDC.sa1mdl"); //Broken bridge pieces 5
+	*(NJS_OBJECT*)0xC11418 = *LoadModel("system\\data\\STG02\\Models\\000BC1BC.sa1mdl"); //Broken bridge pieces 6
+	*(NJS_OBJECT*)0xC119A8 = *LoadModel("system\\data\\STG02\\Models\\000BC56C.sa1mdl"); //Broken bridge pieces 7
+	*(NJS_OBJECT*)0xC11C40 = *LoadModel("system\\data\\STG02\\Models\\000BC74C.sa1mdl"); //Broken bridge pieces 8
+	*(NJS_OBJECT*)0xC11F04 = *LoadModel("system\\data\\STG02\\Models\\000BC96C.sa1mdl"); //Broken bridge pieces 9
+	*(NJS_OBJECT*)0xC12144 = *LoadModel("system\\data\\STG02\\Models\\000BCB34.sa1mdl"); //Broken bridge pieces 10
+	*(NJS_OBJECT*)0xC1233C = *LoadModel("system\\data\\STG02\\Models\\000BCCCC.sa1mdl"); //Broken bridge pieces 11
+	*(NJS_OBJECT*)0xC12548 = *LoadModel("system\\data\\STG02\\Models\\000BCE70.sa1mdl"); //Broken bridge pieces 12
+	*(NJS_OBJECT*)0xC12970 = *LoadModel("system\\data\\STG02\\Models\\000BD13C.sa1mdl"); //Broken bridge pieces 13
+	*(NJS_OBJECT*)0xC12B8C = *LoadModel("system\\data\\STG02\\Models\\000BD2B8.sa1mdl"); //Broken bridge pieces 14
+	*(NJS_OBJECT*)0xC0DCE8 = *LoadModel("system\\data\\STG02\\Models\\000B9694.sa1mdl"); //Broken bridge pieces 15
+	*(NJS_OBJECT*)0xC0DEF4 = *LoadModel("system\\data\\STG02\\Models\\000B9838.sa1mdl"); //Broken bridge pieces 16
+	*(NJS_OBJECT*)0xC0E134 = *LoadModel("system\\data\\STG02\\Models\\000B9A00.sa1mdl"); //Broken bridge pieces 17
+	*(NJS_OBJECT*)0xC0E40C = *LoadModel("system\\data\\STG02\\Models\\000B9C20.sa1mdl"); //Broken bridge pieces 18
+	*(NJS_OBJECT*)0xC0E690 = *LoadModel("system\\data\\STG02\\Models\\000B9E00.sa1mdl"); //Broken bridge pieces 19
+	*(NJS_OBJECT*)0xC0E93C = *LoadModel("system\\data\\STG02\\Models\\000BA020.sa1mdl"); //Broken bridge pieces 20
+	*(NJS_OBJECT*)0xC0EE0C = *LoadModel("system\\data\\STG02\\Models\\000BA3D4.sa1mdl"); //Broken bridge pieces 22
+	*(NJS_OBJECT*)0xC0F0CC = *LoadModel("system\\data\\STG02\\Models\\000BA5F4.sa1mdl"); //Broken bridge pieces 23
+	*(NJS_OBJECT*)0xC0F280 = *LoadModel("system\\data\\STG02\\Models\\000BA74C.sa1mdl"); //Broken bridge pieces 24
+	*(NJS_OBJECT*)0xC0F500 = *LoadModel("system\\data\\STG02\\Models\\000BA92C.sa1mdl"); //Broken bridge pieces 25
+	*(NJS_OBJECT*)0xC0F6B4 = *LoadModel("system\\data\\STG02\\Models\\000BAA90.sa1mdl"); //Broken bridge pieces 26
+	*(NJS_OBJECT*)0xC0F8F4 = *LoadModel("system\\data\\STG02\\Models\\000BAC58.sa1mdl"); //Broken bridge pieces 27
+	*(NJS_OBJECT*)0xC0FB00 = *LoadModel("system\\data\\STG02\\Models\\000BADFC.sa1mdl"); //Broken bridge pieces 28
+	*(NJS_OBJECT*)0xC0FE08 = *LoadModel("system\\data\\STG02\\Models\\000BB04C.sa1mdl"); //Broken bridge pieces 29
+	*(NJS_OBJECT*)0xC1009C = *LoadModel("system\\data\\STG02\\Models\\000BB25C.sa1mdl"); //Broken bridge pieces 30
+	*(NJS_OBJECT*)0xC10250 = *LoadModel("system\\data\\STG02\\Models\\000BB3B4.sa1mdl"); //Broken bridge pieces 31
+	*(NJS_OBJECT*)0xC10514 = *LoadModel("system\\data\\STG02\\Models\\000BB5D4.sa1mdl"); //Broken bridge pieces 32
+	*(NJS_OBJECT*)0xC10720 = *LoadModel("system\\data\\STG02\\Models\\000BB778.sa1mdl"); //Broken bridge pieces 33
+	*(NJS_MODEL_SADX*)0xC15B00 = *((NJS_OBJECT*)0xC15B2C)->basicdxmodel; //Tornado stuff 1
+	*(NJS_MODEL_SADX*)0xC158B4 = *((NJS_OBJECT*)0xC158E0)->basicdxmodel; //Tornado stuff 2
+	*(NJS_MODEL_SADX*)0xC159D0 = *((NJS_OBJECT*)0xC159FC)->basicdxmodel; //Tornado stuff 3
+	*(NJS_OBJECT*)0xC3BB80 = *LoadModel("system\\data\\STG02\\Models\\000DA0E8.sa1mdl"); //OBigflo
+	*(NJS_OBJECT*)0xC2D900 = *LoadModel("system\\data\\STG02\\Models\\000D0BB8.sa1mdl"); //OIshiA
+	*(NJS_OBJECT*)0xC2E944 = *LoadModel("system\\data\\STG02\\Models\\000D15C0.sa1mdl"); //OIshiB
+	*(NJS_OBJECT*)0xC36E44 = *LoadModel("system\\data\\STG02\\Models\\000D6BF8.sa1mdl"); //OKazami 1
+	*(NJS_OBJECT*)0xC365AC = *LoadModel("system\\data\\STG02\\Models\\000D6630.sa1mdl"); //OKazami 2
+	*(NJS_OBJECT*)0xC35F44 = *LoadModel("system\\data\\STG02\\Models\\000D6134.sa1mdl"); //OKazami 3
+	SortModel((NJS_OBJECT*)0xC3BB80);
 	//Skybox/fog data stuff
 	for (unsigned int i = 0; i < 3; i++)
 	{
