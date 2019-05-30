@@ -114,75 +114,6 @@ NJS_MATERIAL* WhiteDiffuse_Twinkle[] = {
 	&matlistSTG03_000F28A0[8],// O CartStopper
 };
 
-NJS_MATERIAL* CartMaterials[] =
-{
-	((NJS_MATERIAL*)0x038AAAF0),
-	((NJS_MATERIAL*)0x038AAB04),
-	((NJS_MATERIAL*)0x038AAB18),
-	((NJS_MATERIAL*)0x038AAB2C),
-	((NJS_MATERIAL*)0x038AAB40),
-	((NJS_MATERIAL*)0x038AA584),
-	((NJS_MATERIAL*)0x038AA338),
-	((NJS_MATERIAL*)0x038AA34C),
-	((NJS_MATERIAL*)0x038AA1AC),
-	((NJS_MATERIAL*)0x038AA1C0),
-	((NJS_MATERIAL*)0x038A9F60),
-	((NJS_MATERIAL*)0x038A9F74),
-	((NJS_MATERIAL*)0x038A9DF8),
-	((NJS_MATERIAL*)0x038A992C),
-	((NJS_MATERIAL*)0x038A9940),
-	((NJS_MATERIAL*)0x038A9954),
-	((NJS_MATERIAL*)0x038A97B0),
-	((NJS_MATERIAL*)0x038A92E4),
-	((NJS_MATERIAL*)0x038A92F8),
-	((NJS_MATERIAL*)0x038A930C),
-	((NJS_MATERIAL*)0x038A9164),
-	((NJS_MATERIAL*)0x038A89D0),
-	((NJS_MATERIAL*)0x038A89E4),
-	((NJS_MATERIAL*)0x038A89F8),
-	((NJS_MATERIAL*)0x038A8A0C),
-	((NJS_MATERIAL*)0x038A8A20),
-	((NJS_MATERIAL*)0x038A8464),
-	((NJS_MATERIAL*)0x038A8218),
-	((NJS_MATERIAL*)0x038A822C),
-	((NJS_MATERIAL*)0x038A808C),
-	((NJS_MATERIAL*)0x038A80A0),
-	((NJS_MATERIAL*)0x038A7E40),
-	((NJS_MATERIAL*)0x038A7E54),
-	((NJS_MATERIAL*)0x038A7CD8),
-	((NJS_MATERIAL*)0x038A780C),
-	((NJS_MATERIAL*)0x038A7820),
-	((NJS_MATERIAL*)0x038A7834),
-	((NJS_MATERIAL*)0x038A7690),
-	((NJS_MATERIAL*)0x038A71C4),
-	((NJS_MATERIAL*)0x038A71D8),
-	((NJS_MATERIAL*)0x038A71EC),
-	((NJS_MATERIAL*)0x038A7048),
-	//Type 3 (Sonic)
-	((NJS_MATERIAL*)0x038B9018),
-	((NJS_MATERIAL*)0x038B902C),
-	((NJS_MATERIAL*)0x038B9040),
-	((NJS_MATERIAL*)0x038B9054),
-	((NJS_MATERIAL*)0x038B9068),
-	((NJS_MATERIAL*)0x038B95B8),
-	((NJS_MATERIAL*)0x038B95CC),
-	((NJS_MATERIAL*)0x038B97D4),
-	((NJS_MATERIAL*)0x038B97E8),
-	((NJS_MATERIAL*)0x038B9928),
-	((NJS_MATERIAL*)0x038B993C),
-	((NJS_MATERIAL*)0x038B9B44),
-	((NJS_MATERIAL*)0x038B9B58),
-	((NJS_MATERIAL*)0x038B9C88),
-	((NJS_MATERIAL*)0x038BA0FC),
-	((NJS_MATERIAL*)0x038BA110),
-	((NJS_MATERIAL*)0x038BA124),
-	((NJS_MATERIAL*)0x038BA270),
-	((NJS_MATERIAL*)0x038BA71C),
-	((NJS_MATERIAL*)0x038BA730),
-	((NJS_MATERIAL*)0x038BA744),
-	((NJS_MATERIAL*)0x038BA890),
-};
-
 NJS_MATERIAL* LevelSpecular_TwinkleExternal[] = {
 	nullptr,
 	nullptr,
@@ -387,8 +318,8 @@ static void __cdecl SkyBox_TwinklePark_Load_r(ObjectMaster *a1)
 
 void CartFunction(NJS_OBJECT *a1, ObjectThingC *a2)
 {
-	sub_4BA5D0(a1, a2);
-	if (a1 == (NJS_OBJECT*)0x038BAAA4) sub_4BA5D0(&objectSTG03_034BAAA4, a2);
+//	sub_4BA5D0(a1, a2);
+	//if (a1 == (NJS_OBJECT*)0x038BAAA4) sub_4BA5D0(&objectSTG03_034BAAA4, a2);
 }
 
 void FixArchLight(NJS_MODEL_SADX *model)
@@ -498,12 +429,14 @@ void TwinklePark_Init()
 	switch (EnableSETFixes)
 	{
 	case SETFixes_Normal:
+		AddSETFix("SET0300S");
 		AddSETFix("SET0301A");
 		AddSETFix("SET0301B");
 		AddSETFix("SET0301S");
 		AddSETFix("SET0302A");
 		break;
 	case SETFixes_Extra:
+		AddSETFix_Extra("SET0300S");
 		AddSETFix_Extra("SET0301A");
 		AddSETFix_Extra("SET0301B");
 		AddSETFix_Extra("SET0301S");
@@ -521,6 +454,9 @@ void TwinklePark_Init()
 	//Arch light fixes
 	WriteCall((void*)0x0079C5FD, FixArchLight);
 	WriteCall((void*)0x0079C36A, FixArchLight_Pause);
+	//Models
+	RemoveVertexColors_Object((NJS_OBJECT*)0x038B8780); //Cart driver
+	*(NJS_OBJECT*)0x027C17CC = *LoadModel("system\\data\\STG03\\Models\\000BB2B4.sa1mdl"); //OShutter
 	WriteData((NJS_OBJECT**)0x0079C72E, &objectSTG03_034C02C4);
 	WriteData((NJS_OBJECT**)0x038C5BF8, &objectSTG03_034C02C4);
 	WriteData((NJS_OBJECT**)0x038C5C40, &objectSTG03_034C02C4);
@@ -530,13 +466,11 @@ void TwinklePark_Init()
 	WriteData((NJS_MODEL_SADX**)0x79C9A0, &attachSTG03_034C0298);
 	//Cart fixes
 	WriteCall((void*)0x00796F0C, CartFunction);
-	*(NJS_MODEL_SADX*)0x038B907C = attachSTG03_034B907C_2; //Cart (Sonic)
-	for (unsigned int c = 0; c < LengthOfArray(CartMaterials); c++)
-	{
-		CartMaterials[c]->diffuse.argb.r = 178;
-		CartMaterials[c]->diffuse.argb.g = 178;
-		CartMaterials[c]->diffuse.argb.b = 178;
-	}
+	((NJS_OBJECT*)0x038BAAA4)->child->evalflags |= NJD_EVAL_HIDE;
+	RemoveVertexColors_Object((NJS_OBJECT*)0x038BAAA4); //Cart 1 (Sonic)
+	RemoveVertexColors_Object((NJS_OBJECT*)0x038BAA70); //Cart 2
+	RemoveVertexColors_Object((NJS_OBJECT*)0x038AB250); //Cart 3
+	RemoveVertexColors_Object((NJS_OBJECT*)0x038A9130); //Cart 4
 	//Amy's barrel fix
 	NJS_OBJECT **___AMY_OBJECTS = (NJS_OBJECT **)GetProcAddress(GetModuleHandle(L"CHRMODELS_orig"), "___AMY_OBJECTS");
 	___AMY_OBJECTS[1]->child->child->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
@@ -574,8 +508,6 @@ void TwinklePark_Init()
 	ResizeTextureList((NJS_TEXLIST*)0x26FEA54, textures_twinkle3);
 	*(NJS_OBJECT*)0x0279D364 = objectSTG03_000A0E58; //Barrel
 	*(NJS_OBJECT *)0x027A247C = objectSTG03_023A247C; //Rollercoaster
-	((NJS_OBJECT *)0x38BAA3C)->basicdxmodel->mats[0].diffuse.color = 0xFFB2B2B2; //Cart
-	((NJS_OBJECT *)0x38BAA3C)->basicdxmodel->mats[1].diffuse.color = 0xFFB2B2B2; //Cart
 	((NJS_OBJECT *)0x027AC44C)->basicdxmodel->mats[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
 	((NJS_OBJECT *)0x027AC44C)->basicdxmodel->mats[2].attrflags |= NJD_FLAG_IGNORE_LIGHT;
 	((NJS_OBJECT *)0x027AC44C)->basicdxmodel->mats[4].attrflags |= NJD_FLAG_IGNORE_LIGHT;
