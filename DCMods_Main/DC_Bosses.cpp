@@ -1,6 +1,5 @@
 #include "stdafx.h"
 #include "EggHornet_Water.h"
-#include "EggViper_Head.h"
 #include "Chaos0_Objects.h"
 #include "Chaos2_Objects.h"
 #include "Chaos4_water.h"
@@ -445,13 +444,52 @@ void __cdecl Chaos7Damage_DisplayX(ObjectMaster *a1)
 	}
 }
 
+void DrawChaos0Spotlight(ObjectMaster *a1)
+{	
+	NJS_TEXANIM stru_11204D4 = { 0x40, 0x40, 0x20, 0x20, 0, 0, 0xFF, 0xFF, 0, 0 };
+	NJS_SPRITE stru_3C63D18;
+	stru_3C63D18.tlist = BOSSCHAOS0_TEXLISTS[1];
+	stru_3C63D18.tanim = (NJS_TEXANIM*)0x11204D4;
+	stru_3C63D18.sx = 0.75f;
+	stru_3C63D18.sy = 0.75f;
+	stru_3C63D18.p.x = 0.0;
+	stru_3C63D18.p.y = 1.0f;
+	stru_3C63D18.p.z = 50.0f;
+	EntityData1 *v1 = a1->Data1;
+	if (!MissedFrames)
+	{
+		SetMaterialAndSpriteColor_Float(1.0f, 1.0f, 1.0f, 1.0f);
+		njColorBlendingMode(0, NJD_COLOR_BLENDING_SRCALPHA);
+		njColorBlendingMode(NJD_DESTINATION_COLOR, NJD_COLOR_BLENDING_ONE);
+		SetTextureToLevelObj();
+		//Left
+		njPushMatrix(0);
+		njTranslate(0, v1->Position.x, v1->Position.y, v1->Position.z);
+		njRotateY(0, v1->Rotation.y);
+		ProcessModelNode(&spotlight, QueuedModelFlagsB_SomeTextureThing, 1.0f);
+		njPopMatrix(1u);
+		njColorBlendingMode(0, NJD_COLOR_BLENDING_SRCALPHA);
+		njColorBlendingMode(NJD_DESTINATION_COLOR, NJD_COLOR_BLENDING_INVSRCALPHA);
+		ClampGlobalColorThing_Thing();
+	}
+
+}
+
+static void OPato0_Display_r(ObjectMaster *a1);
+static Trampoline OPato0_Display_t(0x549600, 0x549605, OPato0_Display_r);
+static void __cdecl OPato0_Display_r(ObjectMaster *a1)
+{
+	auto original = reinterpret_cast<decltype(OPato0_Display_r)*>(OPato0_Display_t.Target());
+	original(a1);
+	//a1->Data1->Rotation.y += 0x100;
+	//DrawChaos0Spotlight(a1);
+}
+
 void FixChaos0Car(NJS_ACTION *a1, float frame, float scale)
 {
-	NJS_ACTION a4;
-	a4.motion = a1->motion;
-	a4.object = &object_000597B0_2;
 	DisplayAnimationFrame(a1, frame, (QueuedModelFlagsB)0, scale, (void(__cdecl *)(NJS_MODEL_SADX *, int, int))DrawModelThing);
-	DisplayAnimationFrame(&a4, frame, (QueuedModelFlagsB)1, scale, (void(__cdecl *)(NJS_MODEL_SADX *, int, int))DrawModel_Queue);
+	DrawModel_Queue(a1->object->child->sibling->sibling->sibling->sibling->sibling->sibling->sibling->sibling->basicdxmodel, (QueuedModelFlagsB)0); //Top lights
+	DrawModel_Queue(a1->object->child->sibling->sibling->sibling->sibling->sibling->sibling->basicdxmodel, QueuedModelFlagsB_EnableZWrite); //Front lights
 }
 
 void FixChaos2Columns(NJS_OBJECT *a1, QueuedModelFlagsB a2, float a3)
@@ -732,7 +770,6 @@ void Spotlight_Display(ObjectMaster *a1)
 		njSetTexture(PVMEntry_CHAOS0EFFECT.TexList);
 		njPushMatrix(0);
 		njTranslateV(0, &v1->Position);
-		njRotateXYZ(0, 0x4000, 0, 0);
 		DrawQueueDepthBias = -17000.0f;
 		ProcessModelNode(&spotlight, QueuedModelFlagsB_SomeTextureThing, 1.0f);
 		njPopMatrix(1u);
@@ -760,14 +797,14 @@ void Chaos0SpotlightHook()
 	EntityData1 *ent;
 	ObjectFunc(OF0, Spotlight_Load);
 	SETObjData setdata_sp = {};
-	setdata_sp.Distance = 612800.0f;
+	setdata_sp.Distance = 2682800.0f;
 	obj = LoadObject((LoadObj)2, 3, OF0);
 	obj->SETData.SETData = &setdata_sp;
 	if (obj)
 	{
 		ent = obj->Data1;
 		ent->Position.x = 291.83f;
-		ent->Position.y = 0.1f;
+		ent->Position.y = 0.15f;
 		ent->Position.z = 385.525f;
 	}
 	obj = LoadObject((LoadObj)2, 3, OF0);
@@ -776,7 +813,7 @@ void Chaos0SpotlightHook()
 	{
 		ent = obj->Data1;
 		ent->Position.x = 313.0f;
-		ent->Position.y = 0.11f;
+		ent->Position.y = 0.15f;
 		ent->Position.z = 389.525f;
 	}
 	obj = LoadObject((LoadObj)2, 3, OF0);
@@ -785,7 +822,7 @@ void Chaos0SpotlightHook()
 	{
 		ent = obj->Data1;
 		ent->Position.x = 368.06f;
-		ent->Position.y = 0.1f;
+		ent->Position.y = 0.15f;
 		ent->Position.z = 340.66f;
 	}
 	obj = LoadObject((LoadObj)2, 3, OF0);
@@ -794,7 +831,7 @@ void Chaos0SpotlightHook()
 	{
 		ent = obj->Data1;
 		ent->Position.x = 385.06f;
-		ent->Position.y = 0.11f;
+		ent->Position.y = 0.15f;
 		ent->Position.z = 330.66f;
 	}
 	obj = LoadObject((LoadObj)2, 3, OF0);
@@ -803,7 +840,7 @@ void Chaos0SpotlightHook()
 	{
 		ent = obj->Data1;
 		ent->Position.x = 160.685f;
-		ent->Position.y = 0.1f;
+		ent->Position.y = 0.15f;
 		ent->Position.z = 348.04f;
 	}
 	obj = LoadObject((LoadObj)2, 3, OF0);
@@ -812,7 +849,7 @@ void Chaos0SpotlightHook()
 	{
 		ent = obj->Data1;
 		ent->Position.x = 183.685f;
-		ent->Position.y = 0.11f;
+		ent->Position.y = 0.15f;
 		ent->Position.z = 360.04f;
 	}
 	obj = LoadObject((LoadObj)2, 3, OF0);
@@ -821,7 +858,7 @@ void Chaos0SpotlightHook()
 	{
 		ent = obj->Data1;
 		ent->Position.x = 258.325f;
-		ent->Position.y = 0.1f;
+		ent->Position.y = 0.15f;
 		ent->Position.z = 434.675f;
 	}
 	obj = LoadObject((LoadObj)2, 3, OF0);
@@ -830,7 +867,7 @@ void Chaos0SpotlightHook()
 	{
 		ent = obj->Data1;
 		ent->Position.x = 235.325f;
-		ent->Position.y = 0.1f;
+		ent->Position.y = 0.15f;
 		ent->Position.z = 440.675f;
 	}
 }
@@ -981,11 +1018,6 @@ void Bosses_Init()
 	for (unsigned int i = 0; i < LengthOfArray(ChaosMaterials); i++)
 	{
 		RemoveMaterialColors(ChaosMaterials[i]);
-	}
-	//Lighting stuff
-	if (DLLLoaded_Lantern)
-	{
-		material_register_ptr(WhiteDiffuse_Boss, LengthOfArray(WhiteDiffuse_Boss), &ForceWhiteDiffuse3Specular1);
 	}
 }
 
@@ -1255,9 +1287,11 @@ void Chaos0_Init()
 	___BOSSCHAOS0_OBJECTS[31]->basicdxmodel->mats[0].diffuse.color = 0x7FB2B2B2;
 	___BOSSCHAOS0_OBJECTS[31]->child->basicdxmodel->mats[0].diffuse.color = 0x7FB2B2B2;
 	___BOSSCHAOS0_OBJECTS[33]->child->child->sibling->basicdxmodel->mats[0].diffuse.color = 0x7FB2B2B2;
-	___BOSSCHAOS0_ACTIONS[17]->object = &object_0005825C;
-	___BOSSCHAOS0_ACTIONS[18]->object = &object_0005D234;
-	___BOSSCHAOS0_ACTIONS[18]->motion = &animation_0004CEA0;
+	___BOSSCHAOS0_ACTIONS[17]->object = LoadModel("system\\data\\B_CHAOS0\\Models\\0005825C.sa1mdl"); //Helicopter
+	___BOSSCHAOS0_ACTIONS[18]->object = LoadModel("system\\data\\B_CHAOS0\\Models\\0005D234.sa1mdl"); //Police car
+	//SortModel(___BOSSCHAOS0_ACTIONS[18]->object);
+	___BOSSCHAOS0_ACTIONS[18]->object->child->sibling->sibling->sibling->sibling->sibling->sibling->sibling->sibling->evalflags |= NJD_EVAL_HIDE;
+	___BOSSCHAOS0_ACTIONS[18]->object->child->sibling->sibling->sibling->sibling->sibling->sibling->evalflags |= NJD_EVAL_HIDE;
 	WriteCall((void*)0x0054968E, FixChaos0Car);
 	//Chaos 0
 	((NJS_OBJECT*)0x02C65CF8)->basicdxmodel->mats[0].diffuse.color = 0x7FB2B2B2;
@@ -1628,7 +1662,7 @@ void EggViper_Init()
 	ReplacePVM("EGM3SPR");
 	((NJS_MATERIAL*)0x016737F0)->attrflags |= NJD_FLAG_IGNORE_LIGHT; //Dust effect at the bottom of the room
 	ResizeTextureList((NJS_TEXLIST*)0x167E5CC, textures_eggviper);
-	*(NJS_OBJECT*)0x01669DA8 = object_000434A0; //part of Egg Viper model
+	*(NJS_OBJECT*)0x01669DA8 = *LoadModel("system\\data\\B_EGM3\\Models\\000434A0.sa1mdl"); //part of Egg Viper model
 	for (unsigned int i = 0; i < 3; i++)
 	{
 		EggViperFog[i].Toggle = 0;

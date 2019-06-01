@@ -739,12 +739,6 @@ NJS_MATERIAL* PerfectChaosCars[] = {
 	((NJS_MATERIAL*)0x0144D23C),
 };
 
-NJS_MATERIAL* WhiteDiffuse_Boss[] = {
-	//Chaos 0 helicopter
-	&matlist_0005528C[0],
-	&matlist_0005528C[1],
-};
-
 NJS_MATERIAL* WhiteDiffuse_EGM1External[] = { nullptr };
 
 NJS_MATERIAL* WhiteDiffuse_Chaos4External[] = { nullptr };
@@ -838,24 +832,6 @@ NJS_MATERIAL* Chaos6ObjectMaterials[] = {
 	((NJS_MATERIAL*)0x0117C9A4),
 	((NJS_MATERIAL*)0x0117C9B8),
 	((NJS_MATERIAL*)0x0117C9CC),
-	//Police car
-	&matlist_00059C1C[0],
-	&matlist_0005C1A4[0],
-	&matlist_0005C1A4[1],
-	&matlist_0005C1A4[2],
-	&matlist_000597E4[0],
-	&matlist_000597E4[1],
-	&matlist_000597E4[2],
-	&matlist_00058C88[0],
-	&matlist_00058C88[1],
-	&matlist_0005A21C[0],
-	&matlist_00059F30[0],
-	&matlist_0005BAA0[0],
-	&matlist_0005BAA0[1],
-	//Helicopter
-	&matlist_00056E10[0],
-	&matlist_00056E10[1],
-	&matlist_00056E10[2],
 };
 
 #pragma warning(pop)
