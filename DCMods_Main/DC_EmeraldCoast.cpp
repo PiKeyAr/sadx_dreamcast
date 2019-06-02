@@ -605,9 +605,9 @@ void LoadLevelFiles_STG01()
 	ParseEmeraldCoastColFlagsAndMaterials(STG01_1, 1);
 	ParseEmeraldCoastColFlagsAndMaterials(STG01_2, 2);
 	//Ocean models
-	if (HighPolyOcean_Dynamic == nullptr) HighPolyOcean_Dynamic = LoadModel("system\\data\\STG01\\Models\\001A132C.sa1mdl");
-	if (HighPolyOcean_Static == nullptr) HighPolyOcean_Static = LoadModel("system\\data\\STG01\\Models\\001A132C.sa1mdl");
-	if (LowPolyOcean == nullptr) LowPolyOcean = LoadModel("system\\data\\STG01\\Models\\001A1430.sa1mdl");
+	if (HighPolyOcean_Dynamic == nullptr) HighPolyOcean_Dynamic = LoadModel("system\\data\\STG01\\Models\\001A132C.sa1mdl", false);
+	if (HighPolyOcean_Static == nullptr) HighPolyOcean_Static = LoadModel("system\\data\\STG01\\Models\\001A132C.sa1mdl", false);
+	if (LowPolyOcean == nullptr) LowPolyOcean = LoadModel("system\\data\\STG01\\Models\\001A1430.sa1mdl", false);
 	LowPolyOceanUVs = LowPolyOcean->basicdxmodel->meshsets[0].vertuv;
 	*(NJS_OBJECT*)0x010C03FC = *HighPolyOcean_Dynamic;
 	HighPolyOcean_Dynamic->basicdxmodel->mats[0].diffuse.argb.a = 0x99; //Match dynamic ocean alpha with normal ocean
@@ -617,12 +617,6 @@ void LoadLevelFiles_STG01()
 	if (SADXWater_EmeraldCoast)
 	{
 		WriteData((float*)0x004F8D2F, -2153.0f); //Remove gap in Act 2 small pool
-		//Different UVs on the dynamic ocean model
-		for (unsigned int rq = 0; rq < LengthOfArray(uvSTG01_00CBB000_d); rq++)
-		{
-			uvSTG01_00CBB000_d[rq].u = round(0.5 * uvSTG01_00CBB000_d[rq].u);
-			uvSTG01_00CBB000_d[rq].v = round(0.5 * uvSTG01_00CBB000_d[rq].v);
-		}
 		//Blending modes for ocean models
 		LowPolyOcean->basicdxmodel->mats[0].attrflags &= ~NJD_DA_INV_SRC;
 		LowPolyOcean->basicdxmodel->mats[0].attrflags |= NJD_DA_ONE;
@@ -716,22 +710,26 @@ void EmeraldCoast_Init()
 	}
 	//Models
 	RemoveVertexColors_Object((NJS_OBJECT*)0x10C782C); //Tails' crashed plane
-	*(NJS_OBJECT*)0x10A298C = *LoadModel("system\\data\\STG01\\Models\\00183CDC.sa1mdl"); //Jump panel (OJump) 
-	*(NJS_OBJECT*)0x10937B4 = *LoadModel("system\\data\\STG01\\Models\\00174F68.sa1mdl"); //Pier thing
-	*(NJS_OBJECT*)0x10939A4 = *LoadModel("system\\data\\STG01\\Models\\0017514C.sa1mdl"); //Log
-	*(NJS_OBJECT*)0x10945EC = *LoadModel("system\\data\\STG01\\Models\\0017514C.sa1mdl"); //Log2
-	*(NJS_OBJECT*)0x1097F8C = *LoadModel("system\\data\\STG01\\Models\\001795B4.sa1mdl"); //Pier edge
-	*(NJS_OBJECT*)0x1049A1C = *LoadModel("system\\data\\STG01\\Models\\0012BE80.sa1mdl"); //Pier small
-	*(NJS_OBJECT*)0x104C00C = *LoadModel("system\\data\\STG01\\Models\\0012E428.sa1mdl"); //Dolphin
-	SortModel((NJS_OBJECT*)0x104C00C);
-	*(NJS_OBJECT*)0x106BB4C = *LoadModel("system\\data\\STG01\\Models\\0014DF28.sa1mdl"); //Whale
-	SortModel((NJS_OBJECT*)0x106BB4C);
-	*(NJS_MODEL_SADX*)0x010C06C8 = *LoadModel("system\\data\\STG01\\Models\\001A16B8.sa1mdl")->basicdxmodel; //Spike gate shadow
+	*(NJS_OBJECT*)0x10A298C = *LoadModel("system\\data\\STG01\\Models\\00183CDC.sa1mdl", false); //Jump panel (OJump) 
+	*(NJS_OBJECT*)0x10937B4 = *LoadModel("system\\data\\STG01\\Models\\00174F68.sa1mdl", false); //Pier thing
+	*(NJS_OBJECT*)0x10939A4 = *LoadModel("system\\data\\STG01\\Models\\0017514C.sa1mdl", false); //Log
+	*(NJS_OBJECT*)0x10945EC = *LoadModel("system\\data\\STG01\\Models\\0017514C.sa1mdl", false); //Log2
+	*(NJS_OBJECT*)0x1097F8C = *LoadModel("system\\data\\STG01\\Models\\001795B4.sa1mdl", false); //Pier edge
+	*(NJS_OBJECT*)0x1049A1C = *LoadModel("system\\data\\STG01\\Models\\0012BE80.sa1mdl", false); //Pier small
+	*(NJS_OBJECT*)0x104C00C = *LoadModel("system\\data\\STG01\\Models\\0012E428.sa1mdl", true); //Dolphin
+	*(NJS_OBJECT*)0x106BB4C = *LoadModel("system\\data\\STG01\\Models\\0014DF28.sa1mdl", true); //Whale
+	*(NJS_MODEL_SADX*)0x010C06C8 = *LoadModel("system\\data\\STG01\\Models\\001A16B8.sa1mdl", false)->basicdxmodel; //Spike gate shadow
 	if (SADXWater_EmeraldCoast)
 	{
-		BigDeco1 = LoadModel("system\\data\\STG01\\Models\\DX\\00ACA3EC.sa1mdl");
-		BigDeco2 = LoadModel("system\\data\\STG01\\Models\\DX\\00AC97B4.sa1mdl");
-		BigDeco3 = LoadModel("system\\data\\STG01\\Models\\DX\\00ACA028.sa1mdl");
+		//Different UVs on the dynamic ocean model for SADX water
+		for (unsigned int rq = 0; rq < LengthOfArray(uvSTG01_00CBB000_d); rq++)
+		{
+			uvSTG01_00CBB000_d[rq].u = round(0.5 * uvSTG01_00CBB000_d[rq].u);
+			uvSTG01_00CBB000_d[rq].v = round(0.5 * uvSTG01_00CBB000_d[rq].v);
+		}
+		BigDeco1 = LoadModel("system\\data\\STG01\\Models\\DX\\00ACA3EC.sa1mdl", false);
+		BigDeco2 = LoadModel("system\\data\\STG01\\Models\\DX\\00AC97B4.sa1mdl", false);
+		BigDeco3 = LoadModel("system\\data\\STG01\\Models\\DX\\00ACA028.sa1mdl", false);
 	}
 	//Whale splash transparency fixes
 	WriteCall((void*)0x00502F8F, WhaleSplash);
