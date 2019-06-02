@@ -287,9 +287,6 @@
     <ClInclude Include="Data\CharacterEffects.h">
       <Filter>Header Files\Levels\General</Filter>
     </ClInclude>
-    <ClInclude Include="Data\Buyon.h">
-      <Filter>Header Files\Levels\TwinklePark</Filter>
-    </ClInclude>
     <ClInclude Include="Data\Cowgirl.h">
       <Filter>Header Files\Levels\Casinopolis</Filter>
     </ClInclude>
@@ -537,9 +534,6 @@
       <Filter>Header Files\Levels\TwinklePark</Filter>
     </ClInclude>
     <ClInclude Include="Data\Twinkle3.h">
-      <Filter>Header Files\Levels\TwinklePark</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\Twinkle3_Trans.h">
       <Filter>Header Files\Levels\TwinklePark</Filter>
     </ClInclude>
     <ClInclude Include="Data\TwinklePark_objects.h">

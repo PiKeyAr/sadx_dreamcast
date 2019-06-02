@@ -142,7 +142,6 @@
     <ClInclude Include="Data\ADV03_02.h" />
     <ClInclude Include="Data\Animals.h" />
     <ClInclude Include="Data\button.h" />
-    <ClInclude Include="Data\Buyon.h" />
     <ClInclude Include="Data\Casino1.h" />
     <ClInclude Include="Data\Casino2.h" />
     <ClInclude Include="Data\Casino3.h" />
@@ -265,7 +264,6 @@
     <ClInclude Include="Data\Twinkle1.h" />
     <ClInclude Include="Data\Twinkle2.h" />
     <ClInclude Include="Data\Twinkle3.h" />
-    <ClInclude Include="Data\Twinkle3_Trans.h" />
     <ClInclude Include="Data\TwinkleCircuit.h" />
     <ClInclude Include="Data\TwinklePark_objects.h" />
     <ClInclude Include="Data\Windy1.h" />
