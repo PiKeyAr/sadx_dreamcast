@@ -469,3 +469,5 @@ void SortModel(NJS_OBJECT *model);
 void LoadModel_ReplaceMeshes(NJS_OBJECT *object, const char *ModelName);
 void AddAlphaRejectMaterial(NJS_MATERIAL *material);
 void AddWhiteDiffuseMaterial(NJS_MATERIAL *material);
+void RemoveAlphaRejectMaterial(NJS_MATERIAL *material);
+void RemoveWhiteDiffuseMaterial(NJS_MATERIAL *material);
