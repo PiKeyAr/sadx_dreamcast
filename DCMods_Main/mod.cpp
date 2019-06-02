@@ -556,7 +556,7 @@ extern "C"
 		Bosses_OnFrame();
 		if (EnableEmeraldCoast && CurrentLevel == LevelIDs_EmeraldCoast) EmeraldCoast_OnFrame();
 		if (EnableWindyValley && CurrentLevel == LevelIDs_WindyValley) WindyValley_OnFrame();
-		if (EnableTwinklePark && CurrentLevel == LevelIDs_TwinklePark) TwinklePark_OnFrame();
+		if (EnableTwinklePark) TwinklePark_OnFrame();
 		if (EnableSpeedHighway && CurrentLevel == LevelIDs_SpeedHighway) SpeedHighway_OnFrame();
 		if (EnableRedMountain && CurrentLevel == LevelIDs_RedMountain) RedMountain_OnFrame();
 		if (EnableSkyDeck && CurrentLevel == LevelIDs_SkyDeck) SkyDeck_OnFrame();
