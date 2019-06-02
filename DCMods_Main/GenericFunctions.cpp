@@ -648,6 +648,7 @@ void SortModel(NJS_OBJECT *object)
 				tempmeshsetarray_transparent[tempcounter_transparent].normals = object->basicdxmodel->meshsets[k].normals;
 				tempmeshsetarray_transparent[tempcounter_transparent].vertcolor = object->basicdxmodel->meshsets[k].vertcolor;
 				tempmeshsetarray_transparent[tempcounter_transparent].vertuv = object->basicdxmodel->meshsets[k].vertuv;
+				tempmeshsetarray_transparent[tempcounter_transparent].type_matId = object->basicdxmodel->meshsets[k].type_matId;
 				TransparentMeshes[tempcounter_transparent] = k;
 				tempcounter_transparent++;
 				if (DebugSorting) PrintDebug("Added transparent material: %d\n", k);
@@ -667,6 +668,7 @@ void SortModel(NJS_OBJECT *object)
 				tempmeshsetarray_opaque[tempcounter_opaque].normals = object->basicdxmodel->meshsets[k].normals;
 				tempmeshsetarray_opaque[tempcounter_opaque].vertcolor = object->basicdxmodel->meshsets[k].vertcolor;
 				tempmeshsetarray_opaque[tempcounter_opaque].vertuv = object->basicdxmodel->meshsets[k].vertuv;
+				tempmeshsetarray_opaque[tempcounter_opaque].type_matId = object->basicdxmodel->meshsets[k].type_matId;
 				OpaqueMeshes[tempcounter_opaque] = k;
 				tempcounter_opaque++;
 				if (DebugSorting) PrintDebug("Added opaque material: %d\n", k);
@@ -689,29 +691,59 @@ void SortModel(NJS_OBJECT *object)
 				object->basicdxmodel->meshsets[k].normals = tempmeshsetarray_opaque[k].normals;
 				object->basicdxmodel->meshsets[k].vertcolor = tempmeshsetarray_opaque[k].vertcolor;
 				object->basicdxmodel->meshsets[k].vertuv = tempmeshsetarray_opaque[k].vertuv;
-				object->basicdxmodel->meshsets[k].type_matId = k | 0xC000;
+				if (tempmeshsetarray_opaque[k].type_matId & 0xC000)
+				{
+					if (DebugSorting) PrintDebug("C000\n");
+					object->basicdxmodel->meshsets[k].type_matId = k | 0xC000;
+				}
+				else if (tempmeshsetarray_opaque[k].type_matId & 0x8000)
+				{
+					if (DebugSorting) PrintDebug("8000\n");
+					object->basicdxmodel->meshsets[k].type_matId = k | 0x8000;
+				}
+				else if (tempmeshsetarray_opaque[k].type_matId & 0x4000)
+				{
+					if (DebugSorting) PrintDebug("4000\n");
+					object->basicdxmodel->meshsets[k].type_matId = k | 0x4000;
+				}
+				else object->basicdxmodel->meshsets[k].type_matId = k;
 				if (DebugSorting) PrintDebug("Opaque meshset ID %d added\n", k);
 			}
 		}
 		//Continue sorting by adding transparent materials
-		for (int k = 0; k < tempcounter_transparent; ++k)
+		for (int q = 0; q < tempcounter_transparent; ++q)
 		{
-			if (TransparentMeshes[k] != -1)
+			if (TransparentMeshes[q] != -1)
 			{
-				object->basicdxmodel->mats[tempcounter_opaque + k].attrflags = tempmaterialarray_transparent[k].attrflags;
-				object->basicdxmodel->mats[tempcounter_opaque + k].attr_texId = tempmaterialarray_transparent[k].attr_texId;
-				object->basicdxmodel->mats[tempcounter_opaque + k].diffuse = tempmaterialarray_transparent[k].diffuse;
-				object->basicdxmodel->mats[tempcounter_opaque + k].specular = tempmaterialarray_transparent[k].specular;
-				object->basicdxmodel->mats[tempcounter_opaque + k].exponent = tempmaterialarray_transparent[k].exponent;
-				object->basicdxmodel->meshsets[tempcounter_opaque + k].attrs = tempmeshsetarray_transparent[k].attrs;
-				object->basicdxmodel->meshsets[tempcounter_opaque + k].buffer = tempmeshsetarray_transparent[k].buffer;
-				object->basicdxmodel->meshsets[tempcounter_opaque + k].meshes = tempmeshsetarray_transparent[k].meshes;
-				object->basicdxmodel->meshsets[tempcounter_opaque + k].nbMesh = tempmeshsetarray_transparent[k].nbMesh;
-				object->basicdxmodel->meshsets[tempcounter_opaque + k].normals = tempmeshsetarray_transparent[k].normals;
-				object->basicdxmodel->meshsets[tempcounter_opaque + k].vertcolor = tempmeshsetarray_transparent[k].vertcolor;
-				object->basicdxmodel->meshsets[tempcounter_opaque + k].vertuv = tempmeshsetarray_transparent[k].vertuv;
-				object->basicdxmodel->meshsets[tempcounter_opaque + k].type_matId = (tempcounter_opaque + k) | 0xC000;
-				if (DebugSorting) PrintDebug("Transparent meshset ID %d added\n", k);
+				object->basicdxmodel->mats[tempcounter_opaque + q].attrflags = tempmaterialarray_transparent[q].attrflags;
+				object->basicdxmodel->mats[tempcounter_opaque + q].attr_texId = tempmaterialarray_transparent[q].attr_texId;
+				object->basicdxmodel->mats[tempcounter_opaque + q].diffuse = tempmaterialarray_transparent[q].diffuse;
+				object->basicdxmodel->mats[tempcounter_opaque + q].specular = tempmaterialarray_transparent[q].specular;
+				object->basicdxmodel->mats[tempcounter_opaque + q].exponent = tempmaterialarray_transparent[q].exponent;
+				object->basicdxmodel->meshsets[tempcounter_opaque + q].attrs = tempmeshsetarray_transparent[q].attrs;
+				object->basicdxmodel->meshsets[tempcounter_opaque + q].buffer = tempmeshsetarray_transparent[q].buffer;
+				object->basicdxmodel->meshsets[tempcounter_opaque + q].meshes = tempmeshsetarray_transparent[q].meshes;
+				object->basicdxmodel->meshsets[tempcounter_opaque + q].nbMesh = tempmeshsetarray_transparent[q].nbMesh;
+				object->basicdxmodel->meshsets[tempcounter_opaque + q].normals = tempmeshsetarray_transparent[q].normals;
+				object->basicdxmodel->meshsets[tempcounter_opaque + q].vertcolor = tempmeshsetarray_transparent[q].vertcolor;
+				object->basicdxmodel->meshsets[tempcounter_opaque + q].vertuv = tempmeshsetarray_transparent[q].vertuv;
+				if (tempmeshsetarray_transparent[q].type_matId & 0xC000)
+				{
+					if (DebugSorting) PrintDebug("C000\n");
+					object->basicdxmodel->meshsets[tempcounter_opaque + q].type_matId = (tempcounter_opaque + q) | 0xC000;
+				}
+				else if (tempmeshsetarray_transparent[q].type_matId & 0x8000)
+				{
+					if (DebugSorting) PrintDebug("8000\n");
+					object->basicdxmodel->meshsets[tempcounter_opaque + q].type_matId = (tempcounter_opaque + q) | 0x8000;
+				}
+				else if (tempmeshsetarray_transparent[tempcounter_opaque + q].type_matId & 0x4000)
+				{
+					if (DebugSorting) PrintDebug("4000\n");
+					object->basicdxmodel->meshsets[tempcounter_opaque + q].type_matId = (tempcounter_opaque + q) | 0x4000;
+				}
+				else object->basicdxmodel->meshsets[tempcounter_opaque + q].type_matId = tempcounter_opaque + q;
+				if (DebugSorting) PrintDebug("Transparent meshset ID %d added\n", q);
 			}
 			if (DebugSorting)
 			{
@@ -721,7 +753,10 @@ void SortModel(NJS_OBJECT *object)
 				}
 				for (int k = 0; k < object->basicdxmodel->nbMeshset; ++k)
 				{
-					PrintDebug("Meshset %d: matid %d\n", k, object->basicdxmodel->meshsets[k].type_matId & ~0xC000);
+					if (object->basicdxmodel->meshsets[k].type_matId & 0xC000) PrintDebug("Meshset %d: matid %d\n", k, object->basicdxmodel->meshsets[k].type_matId & ~0xC000);
+					else if (object->basicdxmodel->meshsets[k].type_matId & 0x8000) PrintDebug("Meshset %d: matid %d\n", k, object->basicdxmodel->meshsets[k].type_matId & ~0x8000);
+					else if (object->basicdxmodel->meshsets[k].type_matId & 0x4000) PrintDebug("Meshset %d: matid %d\n", k, object->basicdxmodel->meshsets[k].type_matId & ~0x4000);
+					else PrintDebug("Meshset %d: matid %d\n", k, object->basicdxmodel->meshsets[k].type_matId);
 				}
 				PrintDebug("Total opaque materials: %d\n", tempcounter_opaque);
 				PrintDebug("Total transparent materials: %d\n", tempcounter_transparent);
