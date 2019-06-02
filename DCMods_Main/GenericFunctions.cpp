@@ -518,11 +518,27 @@ void RemoveWhiteDiffuseMaterial(NJS_MATERIAL *material)
 	material_unregister_ptr(TemporaryMaterialArray, 1, ForceWhiteDiffuse);
 }
 
+void CheckModelForWhiteDiffuse(NJS_MODEL_SADX *model, int ignorelightmaterial)
+{
+	Uint32 materialflags;
+	if (model->mats[model->meshsets[0].type_matId & ~0xC000].attrflags & NJD_FLAG_USE_ENV) return; //First mesh
+	if (model->mats[ignorelightmaterial + 1].attrflags & NJD_FLAG_USE_ENV) return; //Material after the white diffuse one
+	for (int q = ignorelightmaterial + 1; q < model->nbMat; ++q)
+	{
+		materialflags = model->mats[q].attrflags;
+		if (!(materialflags & NJD_FLAG_IGNORE_LIGHT) && !(materialflags & NJD_FLAG_USE_ALPHA))
+		{
+			AddWhiteDiffuseMaterial((NJS_MATERIAL*)&model->mats[q]);
+			PrintDebug("Added white diffuse material %d\n", q);
+		}
+	}
+}
+
 void ProcessMaterials_Object(NJS_OBJECT *obj)
 {
 	//PrintDebug("Processing materials...\n");
 	Uint32 materialflags;
-	int ignorelightmaterialid = -1;
+	bool ignorelight = false;
 	bool ignorespecular = false;
 	//Check meshsets and remove vertex colors, if any
 	if (obj->basicdxmodel)
@@ -532,6 +548,13 @@ void ProcessMaterials_Object(NJS_OBJECT *obj)
 			if (obj->basicdxmodel->meshsets[k].vertcolor != nullptr)
 			{
 				obj->basicdxmodel->meshsets[k].vertcolor = nullptr;
+			}
+			//If a mesh's material has NJD_FLAG_IGNORE_LIGHT, add white diffuse to all other mesh materials after it
+			if (obj->basicdxmodel->nbMeshset > k + 1) //Only check if the current mesh isn't the last one
+			{
+				materialflags = obj->basicdxmodel->mats[obj->basicdxmodel->meshsets[k].type_matId & ~0xC000].attrflags; //Current mesh
+				if (!ignorelight && materialflags & NJD_FLAG_IGNORE_LIGHT) CheckModelForWhiteDiffuse(obj->basicdxmodel, obj->basicdxmodel->meshsets[k].type_matId & ~0xC000);
+				ignorelight = true;
 			}
 		}
 		//Check the first material for NJD_FLAG_IGNORE_SPECULAR and adjust the rest of the materials accordingly
@@ -560,22 +583,6 @@ void ProcessMaterials_Object(NJS_OBJECT *obj)
 			if (materialflags & NJD_CUSTOMFLAG_NO_REJECT)
 			{
 				AddAlphaRejectMaterial((NJS_MATERIAL*)&obj->basicdxmodel->mats[obj->basicdxmodel->meshsets[k].type_matId & ~0xC000]);
-			}
-			//If a material has NJD_FLAG_IGNORE_LIGHT, add white diffuse to all other materials after it
-			materialflags = obj->basicdxmodel->mats[0].attrflags;
-			if (obj->basicdxmodel->nbMat > 1 && (materialflags & NJD_FLAG_IGNORE_LIGHT)) ignorelightmaterialid = 1;
-			if (obj->basicdxmodel->mats[1].attrflags & NJD_FLAG_USE_ENV) ignorelightmaterialid = -1;
-			if (ignorelightmaterialid == 1)
-			{
-				for (int k = 1; k < obj->basicdxmodel->nbMat; ++k)
-				{
-					materialflags = obj->basicdxmodel->mats[obj->basicdxmodel->meshsets[k].type_matId & ~0xC000].attrflags;
-					if (!(materialflags & NJD_FLAG_IGNORE_LIGHT) && !(materialflags & NJD_FLAG_USE_ALPHA))
-					{
-						AddWhiteDiffuseMaterial((NJS_MATERIAL*)&obj->basicdxmodel->mats[obj->basicdxmodel->meshsets[k].type_matId & ~0xC000]);
-					}
-				}
-				ignorelightmaterialid = -1;
 			}
 		}
 	}
@@ -606,16 +613,6 @@ void LoadModel_ReplaceMeshes(NJS_OBJECT *object, const char *ModelName)
 	if (object->child) SwapModel(object->child, object2->child);
 	if (object->sibling) SwapModel(object->sibling, object2->sibling);
 	PrintDebug("OK\n");
-}
-
-NJS_OBJECT* LoadModel(const char *ModelName)
-{
-	PrintDebug("Loading model: %s: ", HelperFunctionsGlobal.GetReplaceablePath(ModelName));
-	ModelInfo *info = new ModelInfo(HelperFunctionsGlobal.GetReplaceablePath(ModelName));
-	NJS_OBJECT *object = info->getmodel();
-	ProcessMaterials_Object(object);
-	PrintDebug("OK\n");
-	return object;
 }
 
 void SortModel(NJS_OBJECT *object)
@@ -734,4 +731,15 @@ void SortModel(NJS_OBJECT *object)
 	}
 	if (object->child != nullptr) SortModel(object->child);
 	if (object->sibling != nullptr) SortModel(object->sibling);
+}
+
+NJS_OBJECT* LoadModel(const char *ModelName, bool sort)
+{
+	PrintDebug("Loading model: %s: ", HelperFunctionsGlobal.GetReplaceablePath(ModelName));
+	ModelInfo *info = new ModelInfo(HelperFunctionsGlobal.GetReplaceablePath(ModelName));
+	NJS_OBJECT *object = info->getmodel();
+	if (sort) SortModel(object);
+	ProcessMaterials_Object(object);
+	PrintDebug("OK\n");
+	return object;
 }

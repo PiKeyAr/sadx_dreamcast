@@ -463,7 +463,7 @@ void AddTextureAnimation(int act, NJS_MATERIAL* material, bool nonsequential, in
 void AddUVAnimation(NJS_TEX* uv, int uv_count, int timer, int u_speed, int v_speed);
 void RemoveVertexColors_Object(NJS_OBJECT *obj);
 void RemoveVertexColors_Model(NJS_MODEL_SADX *model);
-NJS_OBJECT* LoadModel(const char *ModelName);
+NJS_OBJECT* LoadModel(const char *ModelName, bool sort);
 void RemoveMaterialColors_Landtable(LandTable *landtable);
 void SortModel(NJS_OBJECT *model);
 void LoadModel_ReplaceMeshes(NJS_OBJECT *object, const char *ModelName);
