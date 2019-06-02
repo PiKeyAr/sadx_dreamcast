@@ -9,7 +9,7 @@ NJS_TEXLIST texlist_windy2 = { arrayptrandlength(textures_windy2) };
 NJS_TEXNAME textures_windy3[28];
 NJS_TEXLIST texlist_windy3 = { arrayptrandlength(textures_windy3) };
 
-int Windy3Cols[] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }; 
+int Windy3Cols[] = { -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 }; 
 
 /*
 #include "Windy1.h"
@@ -32,7 +32,8 @@ FunctionPointer(void, sub_4CACF0, (NJS_VECTOR *a1, float a2), 0x4CACF0);
 FunctionPointer(void, sub_407FC0, (NJS_MODEL_SADX *a1, int blend), 0x407FC0);
 static int TornadoMode = 0;
 static float SkyTrans = 1.0f;
-
+static bool Windy3ColsLoaded = false;
+SETObjData setdata_wv = {};
 NJS_VECTOR TornadoSpawnPosition = { 3254, -421, -1665 };
 
 void RetrieveWindy1SkyTransparency(float a, float r, float g, float b)
@@ -60,6 +61,10 @@ void RenderWindy1Sky()
 
 void UnloadLevelFiles_STG02()
 {
+	for (int i = 0; i < LengthOfArray(Windy3Cols); i++)
+	{
+		Windy3Cols[i] = -1;
+	}
 	delete STG02_0_Info;
 	delete STG02_1_Info;
 	delete STG02_2_Info;
@@ -78,7 +83,7 @@ void AddWindyTransparentThing(int colnumber)
 	for (int i = 0; i < LengthOfArray(Windy3Cols); i++)
 	{
 		if (Windy3Cols[i] == colnumber) return;
-		else if (Windy3Cols[i] == 0)
+		else if (Windy3Cols[i] == -1)
 		{
 			Windy3Cols[i] = colnumber;
 			//PrintDebug("Added COl: %d\n", colnumber);
@@ -372,7 +377,7 @@ void WindyValley_Init()
 	ResizeTextureList((NJS_TEXLIST *)0xAFEC30, textures_windy3);
 };
 
-void RenderWindy3Cols()
+void Windy3Cols_Display(ObjectMaster *a1)
 {
 	NJS_VECTOR sphere = { 0, 0, 0 };
 	float radius = 0.0f;
@@ -400,12 +405,62 @@ void RenderWindy3Cols()
 	}
 }
 
+void Windy3Cols_Delete(ObjectMaster *a1)
+{
+	Windy3ColsLoaded = false;
+	CheckThingButThenDeleteObject(a1);
+}
+
+void Windy3Cols_Main(ObjectMaster *a1)
+{
+	if (CurrentLevel == LevelIDs_WindyValley)
+	{
+		if (CurrentAct == 2) Windy3Cols_Display(a1);
+	}
+	else Windy3Cols_Delete(a1);
+}
+
+void Windy3Cols_Load(ObjectMaster *a1)
+{
+	a1->MainSub = (void(__cdecl *)(ObjectMaster *))Windy3Cols_Main;
+	a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Windy3Cols_Display;
+	a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))Windy3Cols_Delete;
+}
+
+void LoadWindy3Cols()
+{
+	ObjectMaster *obj;
+	EntityData1 *ent;
+	ObjectFunc(OF0, Windy3Cols_Load);
+	setdata_wv.Distance = 612800.0f;
+	obj = LoadObject((LoadObj)2, 3, OF0);
+	obj->SETData.SETData = &setdata_wv;
+	if (obj)
+	{
+		ent = obj->Data1;
+		ent->Position.x = 0;
+		ent->Position.y = 0;
+		ent->Position.z = 0;
+		ent->Rotation.x = 0;
+		ent->Rotation.y = 0;
+		ent->Rotation.z = 0;
+	}
+	Windy3ColsLoaded = true;
+}
+
+static void SkyBox_Windy_Load_r(ObjectMaster *a1);
+static Trampoline SkyBox_Windy_Load_t(0x4DDBF0, 0x4DDBFB, SkyBox_Windy_Load_r);
+static void __cdecl SkyBox_Windy_Load_r(ObjectMaster *a1)
+{
+	auto original = reinterpret_cast<decltype(SkyBox_Windy_Load_r)*>(SkyBox_Windy_Load_t.Target());
+	original(a1);
+	if (EnableWindyValley && !Windy3ColsLoaded) LoadWindy3Cols();
+}
+
 void WindyValley_OnFrame()
 {
 	float TornadoDistance;
 	auto entity = EntityData1Ptrs[0];
-	//Draw stuff in Act 3
-	if (CurrentAct == 2 && EntityData1Ptrs[0] != nullptr) RenderWindy3Cols();
 	//Tornado stuff
 	if (CurrentAct == 0)
 	{
