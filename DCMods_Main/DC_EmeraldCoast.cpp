@@ -723,7 +723,9 @@ void EmeraldCoast_Init()
 	*(NJS_OBJECT*)0x1097F8C = *LoadModel("system\\data\\STG01\\Models\\001795B4.sa1mdl"); //Pier edge
 	*(NJS_OBJECT*)0x1049A1C = *LoadModel("system\\data\\STG01\\Models\\0012BE80.sa1mdl"); //Pier small
 	*(NJS_OBJECT*)0x104C00C = *LoadModel("system\\data\\STG01\\Models\\0012E428.sa1mdl"); //Dolphin
+	SortModel((NJS_OBJECT*)0x104C00C);
 	*(NJS_OBJECT*)0x106BB4C = *LoadModel("system\\data\\STG01\\Models\\0014DF28.sa1mdl"); //Whale
+	SortModel((NJS_OBJECT*)0x106BB4C);
 	*(NJS_MODEL_SADX*)0x010C06C8 = *LoadModel("system\\data\\STG01\\Models\\001A16B8.sa1mdl")->basicdxmodel; //Spike gate shadow
 	if (SADXWater_EmeraldCoast)
 	{
