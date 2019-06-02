@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "TwinklePark_objects.h"
 #include "Buyon.h"
-
+//TODO: OCartStopper
 NJS_TEXNAME textures_twinkle1[35];
 NJS_TEXLIST texlist_twinkle1 = { arrayptrandlength(textures_twinkle1) };
 
@@ -11,6 +11,10 @@ NJS_TEXLIST texlist_twinkle2 = { arrayptrandlength(textures_twinkle2) };
 NJS_TEXNAME textures_twinkle3[30];
 NJS_TEXLIST texlist_twinkle3 = { arrayptrandlength(textures_twinkle3) };
 
+#include "Twinkle1.h"
+#include "Twinkle2.h"
+#include "Twinkle3.h"
+
 DataArray(FogData, TwinklePark1Fog, 0x026B339C, 3);
 DataArray(FogData, TwinklePark2Fog, 0x026B33CC, 3);
 DataArray(FogData, TwinklePark3Fog, 0x026B33FC, 3);
@@ -18,100 +22,29 @@ DataArray(FogData, TwinklePark4Fog, 0x026B342C, 3);
 FunctionPointer(void, sub_61D4E0, (ObjectMaster *a1), 0x61D4E0);
 FunctionPointer(void, sub_61D1F0, (ObjectMaster *a1), 0x61D1F0);
 FunctionPointer(void, sub_4BA5D0, (NJS_OBJECT *a1, ObjectThingC *a2), 0x4BA5D0);
+FunctionPointer(void, sub_4BA710, (NJS_OBJECT *a1, ObjectThingC *a2), 0x4BA710);
 FunctionPointer(void, sub_408530, (NJS_OBJECT *a1), 0x408530);
 FunctionPointer(void, sub_405450, (NJS_ACTION *a1, float frame, float scale), 0x405450);
+FunctionPointer(void, sub_407FC0, (NJS_MODEL_SADX *a1, int blend), 0x407FC0);
+
+NJS_OBJECT *PirateShipStars = nullptr;
+NJS_OBJECT CartGlass = { NJD_EVAL_BREAK | NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL, NULL, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
+NJS_OBJECT *ArchLightLight = nullptr;
+NJS_OBJECT *OPanelPanel = nullptr;
+NJS_OBJECT *OPolePole = nullptr;
 
 SETObjData setdata_tp = {};
 static int anim = 74;
-static int animlight = 95;
-static int animtimer = 0;
+static int PoleUVIncrease = 0;
 static bool MirrorsLoaded = false;
-
-NJS_MATERIAL matlistSTG03_034C3AD0[] = {
-	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 5, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_FLAG_DOUBLE_SIDE | NJD_FLAG_IGNORE_LIGHT | NJD_DA_ONE | NJD_SA_SRC }
-};
 
 NJS_TEXNAME textures_tpobjects[97];
 
-NJS_MATERIAL* DisableAlphaRejection_TwinklePark[] = {
-	((NJS_MATERIAL*)0x027B3EF8), //OLamp
-	((NJS_MATERIAL*)0x027B3DEC), //OLamp
-	((NJS_MATERIAL*)0x027A0488), //OFlagWLamp
-};
-
-NJS_MATERIAL* ObjectSpecular_TwinkleExternal[] = {
-	//Last mirror 
-	nullptr, nullptr,
-};
-
-NJS_MATERIAL* ObjectSpecular_Twinkle[] = {
-	//OFence2
-	((NJS_MATERIAL*)0x027A24B0),
-	((NJS_MATERIAL*)0x027A24C4),
-	//((NJS_MATERIAL*)0x027A24D8),
-	((NJS_MATERIAL*)0x027A24EC),
-	((NJS_MATERIAL*)0x027A2500),
-	//Rollercoaster
-	&matlistSTG03_023A0598[0],
-	&matlistSTG03_023A0598[1],
-	&matlistSTG03_023A0598[2],
-	&matlistSTG03_023A0598[3],
-	&matlistSTG03_023A0598[4],
-	&matlistSTG03_023A0598[5],
-	&matlistSTG03_023A0598[6],
-	&matlistSTG03_023A0598[7],
-	&matlistSTG03_023A0598[8],
-	&matlistSTG03_023A0598[9],
-	&matlistSTG03_023A0598[10],
-	&matlistSTG03_023A0598[11],
-	//Amy's barrel
-	((NJS_MATERIAL*)((size_t)GetModuleHandle(L"CHRMODELS_orig") + 0x00016498)),
-	((NJS_MATERIAL*)((size_t)GetModuleHandle(L"CHRMODELS_orig") + 0x000164AC)),
-	((NJS_MATERIAL*)((size_t)GetModuleHandle(L"CHRMODELS_orig") + 0x000164C0)),
-	((NJS_MATERIAL*)((size_t)GetModuleHandle(L"CHRMODELS_orig") + 0x000164D4)),
-	((NJS_MATERIAL*)((size_t)GetModuleHandle(L"CHRMODELS_orig") + 0x000164E8)),
-	//O Arch 2
-	((NJS_MATERIAL*)0x038BEF00),
-	((NJS_MATERIAL*)0x038BEF14),
-	((NJS_MATERIAL*)0x038BEF28),
-	((NJS_MATERIAL*)0x038BEF3C),
-	((NJS_MATERIAL*)0x038BEF50),
-	((NJS_MATERIAL*)0x038BEF64),
-	((NJS_MATERIAL*)0x038BEF78),
-	((NJS_MATERIAL*)0x038BEF8C),
-	((NJS_MATERIAL*)0x038BEFA0),
-	((NJS_MATERIAL*)0x038BEFB4),
-	((NJS_MATERIAL*)0x038BEFC8),
-	((NJS_MATERIAL*)0x038BEFDC),
-};
-
-NJS_MATERIAL* ObjectSpecularWhiteDiffuse_Twinkle[] = {
-	((NJS_MATERIAL*)0x038C2D3C), //OLight
-	((NJS_MATERIAL*)0x038C2D50), //OLight
-};
-
 NJS_MATERIAL* WhiteDiffuse_Twinkle[] = {
-	//Fence2
-	((NJS_MATERIAL*)0x027A24D8),
-	//Barrel
-	&matlistSTG03_000A075C[0],
-	&matlistSTG03_000A075C[1],
-	&matlistSTG03_000A075C[2],
-	&matlistSTG03_000A075C[3],
-	((NJS_MATERIAL*)0x038C23BC), //Pole
-	((NJS_MATERIAL*)0x038C1700), //Panel
-	((NJS_MATERIAL*)0x038C1714), //Panel
+	((NJS_MATERIAL*)0x027A24D8), //Fence2
 	//Satellite
 	((NJS_MATERIAL*)0x038AE590),
 	((NJS_MATERIAL*)0x038AE5A4),
-	/*((NJS_MATERIAL*)0x038ADB18),
-	((NJS_MATERIAL*)0x038ADB2C),
-	((NJS_MATERIAL*)0x038ADB40),
-	((NJS_MATERIAL*)0x038ADB54),
-	(((NJS_MATERIAL*)0x038ADED4),
-	((NJS_MATERIAL*)0x038AE254),*/
-	&matlistSTG03_000F28A0[1],// O CartStopper
-	&matlistSTG03_000F28A0[8],// O CartStopper
 };
 
 NJS_MATERIAL* LevelSpecular_TwinkleExternal[] = {
@@ -316,43 +249,102 @@ static void __cdecl SkyBox_TwinklePark_Load_r(ObjectMaster *a1)
 	if (EnableTwinklePark && !MirrorsLoaded) LoadMirrors();
 }
 
+void __cdecl DrawPirateShipShit(ObjectMaster *a1)
+{
+	EntityData1 *v1; // esi
+	Angle v2; // edi
+	Angle v4; // eax
+	int v5; // ebp
+	int v6; // ebp
+	int v7; // ebp
+	EntityData1 *v8; // eax
+
+	v1 = a1->Data1;
+	v2 = v1->Rotation.z;
+	if (!MissedFrames)
+	{
+		if (v1->Index > 0x1Eu)
+		{
+			v1->Object->basicdxmodel->mats[4].attr_texId = 28;
+			v1->Object->child->basicdxmodel->mats[0].attr_texId = 28;
+			v1->Object->child->sibling->basicdxmodel->mats[0].attr_texId = 28;
+			v1->Object->child->child->basicdxmodel->mats[2].attr_texId = 28;
+			v1->Object->child->child->basicdxmodel->mats[3].attr_texId = 28;
+			v1->Object->child->child->basicdxmodel->mats[8].attr_texId = 28;
+			v1->Object->child->child->basicdxmodel->mats[12].attr_texId = 28;
+		}
+		SetTextureToLevelObj();
+		//1
+		njPushMatrix(0);
+		njTranslateV(0, &v1->Position);
+		v4 = v1->Rotation.y;
+		if (v4)
+		{
+			njRotateY(0, v4);
+		}
+		DrawModel(v1->Object->basicdxmodel);
+		//2
+		njPushMatrix(0);
+		njTranslate(0, v1->Object->child->pos[0], v1->Object->child->pos[1], v1->Object->child->pos[2]);
+		if (v2)
+		{
+			njRotateZ(0, -v2);
+		}
+		DrawModel(v1->Object->child->basicdxmodel);
+		//3 
+		njPushMatrix(0);
+		njTranslate(0, v1->Object->child->child->pos[0], v1->Object->child->child->pos[1], v1->Object->child->child->pos[2]);
+		if (v2)
+		{
+			njRotateZ(0, v2);
+		}
+		DrawModel(v1->Object->child->child->basicdxmodel);
+		njPopMatrix(1u);
+		njPopMatrix(1u);
+		//4
+		njPushMatrix(0);
+		njTranslate(0, v1->Object->child->sibling->pos[0], v1->Object->child->sibling->pos[1], v1->Object->child->sibling->pos[2]);
+		if (v2)
+		{
+			njRotateZ(0, -v2);
+		}
+		DrawModel(v1->Object->child->sibling->basicdxmodel);
+		njPopMatrix(1u);
+		njPopMatrix(1u);
+		if (v1->Index > 0x1Eu)
+		{
+			v1->Object->basicdxmodel->mats[4].attr_texId = 95;
+			v1->Object->child->basicdxmodel->mats[0].attr_texId = 95;
+			v1->Object->child->sibling->basicdxmodel->mats[0].attr_texId = 95;
+			v1->Object->child->child->basicdxmodel->mats[2].attr_texId = 95;
+			v1->Object->child->child->basicdxmodel->mats[3].attr_texId = 95;
+			v1->Object->child->child->basicdxmodel->mats[8].attr_texId = 95;
+			v1->Object->child->child->basicdxmodel->mats[12].attr_texId = 95;
+		}
+		njPushMatrix(0);
+		njTranslateV(0, &v1->Position);
+		njRotateXYZ(0, 0, v1->Rotation.y, 0);
+		ProcessModelNode(PirateShipStars, QueuedModelFlagsB_EnableZWrite, 1.0f);
+		njPopMatrix(1u);
+	}
+}
+
 void CartFunction(NJS_OBJECT *a1, ObjectThingC *a2)
 {
-//	sub_4BA5D0(a1, a2);
-	//if (a1 == (NJS_OBJECT*)0x038BAAA4) sub_4BA5D0(&objectSTG03_034BAAA4, a2);
-}
-
-void FixArchLight(NJS_MODEL_SADX *model)
-{
-	DrawModel(model);
-	if (model == &attachSTG03_034C0298) ProcessModelNode(&objectSTG03_034C02C4_2, QueuedModelFlagsB_SomeTextureThing, 1.0f);
-}
-
-void FixArchLight_Pause(NJS_OBJECT *object)
-{
-	sub_408530(object);
-	if (object == &objectSTG03_034C02C4)
-	{
-		ProcessModelNode(&objectSTG03_034C02C4_2, QueuedModelFlagsB_SomeTextureThing, 1.0f);
-		ProcessModelNode(&objectSTG03_034BFC74_2, QueuedModelFlagsB_SomeTextureThing, 1.0f);
-	}
+	sub_4BA5D0(a1, a2);
+	if (a1 == (NJS_OBJECT*)0x038BAAA4) ProcessModelNode(&CartGlass, (QueuedModelFlagsB)0, 1.0f);
 }
 
 void RenderCatapult(NJS_ACTION *a1, float frame, float scale)
 {
 	sub_405450(a1, frame, scale);
 	DrawQueueDepthBias = -17000.0f;
-	ProcessModelNode(&objectSTG03_000A3CCCX, QueuedModelFlagsB_EnableZWrite, 1.0f);
+	//ProcessModelNode(&objectSTG03_000A3CCCX, QueuedModelFlagsB_EnableZWrite, 1.0f);
 	DrawQueueDepthBias = 0.0f;
 }
 
 void UnloadLevelFiles_STG03()
 {
-	if (DLLLoaded_Lantern)
-	{
-		material_unregister_ptr(LevelSpecular_TwinkleExternal, LengthOfArray(LevelSpecular_TwinkleExternal), &ForceDiffuse0Specular0);
-		material_unregister_ptr(ObjectSpecular_TwinkleExternal, LengthOfArray(ObjectSpecular_TwinkleExternal), &ForceDiffuse0Specular1);
-	}
 	delete STG03_0_Info;
 	delete STG03_1_Info;
 	delete STG03_2_Info;
@@ -367,9 +359,9 @@ void LoadLevelFiles_STG03()
 	STG03_0_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG03\\0.sa1lvl"));
 	STG03_1_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG03\\1.sa1lvl"));
 	STG03_2_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG03\\2.sa1lvl"));
-	LandTable *STG03_0 = STG03_0_Info->getlandtable();
-	LandTable *STG03_1 = STG03_1_Info->getlandtable();
-	LandTable *STG03_2 = STG03_2_Info->getlandtable();
+	LandTable *STG03_0 = &landtable_0001788C; // STG03_0_Info->getlandtable();
+	LandTable *STG03_1 = &landtable_00019344; // STG03_1_Info->getlandtable();
+	LandTable *STG03_2 = &landtable_00019F5C; // STG03_2_Info->getlandtable();
 	RemoveMaterialColors_Landtable(STG03_0);
 	RemoveMaterialColors_Landtable(STG03_1);
 	RemoveMaterialColors_Landtable(STG03_2);
@@ -380,40 +372,85 @@ void LoadLevelFiles_STG03()
 	WriteData((LandTable**)0x97DA68, STG03_0);
 	WriteData((LandTable**)0x97DA6C, STG03_1);
 	WriteData((LandTable**)0x97DA70, STG03_2);
-	if (DLLLoaded_Lantern)
+}
+
+void __cdecl DrawObjectFromObjectMaster(ObjectMaster *a2)
+{
+	EntityData1 *v1; // esi
+	Angle v2; // eax
+
+	v1 = a2->Data1;
+	if (!MissedFrames)
 	{
-		LevelSpecular_TwinkleExternal[0] = &((NJS_MATERIAL*)STG03_1_Info->getdata("matlistSTG03_000263FC"))[0];
-		LevelSpecular_TwinkleExternal[1] = &((NJS_MATERIAL*)STG03_1_Info->getdata("matlistSTG03_00026884"))[0];
-		LevelSpecular_TwinkleExternal[2] = &((NJS_MATERIAL*)STG03_1_Info->getdata("matlistSTG03_00026884"))[1];
-		LevelSpecular_TwinkleExternal[3] = &((NJS_MATERIAL*)STG03_1_Info->getdata("matlistSTG03_00028260"))[0];
-		LevelSpecular_TwinkleExternal[4] = &((NJS_MATERIAL*)STG03_1_Info->getdata("matlistSTG03_00028260"))[1];
-		LevelSpecular_TwinkleExternal[5] = &((NJS_MATERIAL*)STG03_1_Info->getdata("matlistSTG03_0002B274"))[0];
-		LevelSpecular_TwinkleExternal[6] = &((NJS_MATERIAL*)STG03_1_Info->getdata("matlistSTG03_0002B274"))[1];
-		LevelSpecular_TwinkleExternal[7] = &((NJS_MATERIAL*)STG03_1_Info->getdata("matlistSTG03_0002E288"))[0];
-		LevelSpecular_TwinkleExternal[8] = &((NJS_MATERIAL*)STG03_1_Info->getdata("matlistSTG03_0002E288"))[1];
-		LevelSpecular_TwinkleExternal[9] = &((NJS_MATERIAL*)STG03_1_Info->getdata("matlistSTG03_000312B8"))[0];
-		LevelSpecular_TwinkleExternal[10] = &((NJS_MATERIAL*)STG03_1_Info->getdata("matlistSTG03_000312B8"))[1];
-		LevelSpecular_TwinkleExternal[11] = &((NJS_MATERIAL*)STG03_1_Info->getdata("matlistSTG03_000342E8"))[0];
-		LevelSpecular_TwinkleExternal[12] = &((NJS_MATERIAL*)STG03_1_Info->getdata("matlistSTG03_000342E8"))[1];
-		LevelSpecular_TwinkleExternal[13] = &((NJS_MATERIAL*)STG03_1_Info->getdata("matlistSTG03_00035CA8"))[0];
-		LevelSpecular_TwinkleExternal[14] = &((NJS_MATERIAL*)STG03_1_Info->getdata("matlistSTG03_00035CA8"))[1];
-		LevelSpecular_TwinkleExternal[15] = &((NJS_MATERIAL*)STG03_1_Info->getdata("matlistSTG03_0003763C"))[0];
-		LevelSpecular_TwinkleExternal[16] = &((NJS_MATERIAL*)STG03_1_Info->getdata("matlistSTG03_0003763C"))[1];
-		LevelSpecular_TwinkleExternal[17] = &((NJS_MATERIAL*)STG03_1_Info->getdata("matlistSTG03_00038FD0"))[0];
-		LevelSpecular_TwinkleExternal[18] = &((NJS_MATERIAL*)STG03_1_Info->getdata("matlistSTG03_00038FD0"))[1];
-		LevelSpecular_TwinkleExternal[19] = &((NJS_MATERIAL*)STG03_1_Info->getdata("matlistSTG03_0003A974"))[0];
-		LevelSpecular_TwinkleExternal[20] = &((NJS_MATERIAL*)STG03_1_Info->getdata("matlistSTG03_0003A974"))[1];
-		LevelSpecular_TwinkleExternal[21] = &((NJS_MATERIAL*)STG03_1_Info->getdata("matlistSTG03_0003C0C8"))[0];
-		LevelSpecular_TwinkleExternal[22] = &((NJS_MATERIAL*)STG03_1_Info->getdata("matlistSTG03_0003C0C8"))[1];
-		material_register_ptr(LevelSpecular_TwinkleExternal, LengthOfArray(LevelSpecular_TwinkleExternal), &ForceDiffuse0Specular0);
-		ObjectSpecular_TwinkleExternal[0] = &((NJS_MATERIAL*)STG03_2_Info->getdata("matlistSTG03_00091C40X"))[0];
-		ObjectSpecular_TwinkleExternal[1] = &((NJS_MATERIAL*)STG03_2_Info->getdata("matlistSTG03_00091F0CX"))[0];
-		material_register_ptr(ObjectSpecular_TwinkleExternal, LengthOfArray(ObjectSpecular_TwinkleExternal), &ForceDiffuse0Specular1);
+		njPushMatrix(0);
+		njTranslate(0, v1->Position.x, v1->Position.y-0.1f, v1->Position.z);
+		v2 = v1->Rotation.y;
+		if (v2)
+		{
+			njRotateY(0, v2);
+		}
+		SetTextureToLevelObj();
+		DrawQueueDepthBias = -47952.0f;
+		ProcessModelNode_AB_Wrapper(v1->Object, 1.0f);
+		DrawQueueDepthBias = 0.0f;
+		njPopMatrix(1u);
 	}
+}
+
+void __cdecl FlowerBedFix(NJS_OBJECT *a1, QueuedModelFlagsB a2, float a3)
+{
+	sub_407FC0(a1->basicdxmodel, (QueuedModelFlagsB)1);
+}
+
+void FixArchLight(NJS_MODEL_SADX *model)
+{
+	DrawModel(model);
+	DrawVisibleModel_Queue(ArchLightLight->basicdxmodel, QueuedModelFlagsB_SomeTextureThing);
+}
+
+void FixShittyLightObjects_Pause(NJS_OBJECT *object)
+{
+	//ArchLight
+	if (object == (NJS_OBJECT*)0x38C02C4)
+	{
+		DrawModel(object->basicdxmodel);
+		ProcessModelNode(ArchLightLight, QueuedModelFlagsB_SomeTextureThing, 1.0f);
+		ProcessModelNode(object->child, QueuedModelFlagsB_SomeTextureThing, 1.0f);
+	}
+	//Pole
+	if (object == (NJS_OBJECT*)0x38C28A8)
+	{
+		DrawModel(object->basicdxmodel);
+		ProcessModelNode(OPolePole, QueuedModelFlagsB_SomeTextureThing, 1.0f);
+		ProcessModelNode(object->child, QueuedModelFlagsB_SomeTextureThing, 1.0f);
+	}
+	else sub_408530(object);
+}
+
+void RenderOPanel_Main(NJS_OBJECT *a1, QueuedModelFlagsB a2)
+{
+	ProcessModelNode_AB_Wrapper(a1, 1.0f);
+}
+
+void RenderOPanel_Transparent(NJS_OBJECT *a1, QueuedModelFlagsB a2, float a3)
+{
+	ProcessModelNode(OPanelPanel, QueuedModelFlagsB_SomeTextureThing, 1.0f);
+}
+
+void ORocketFix1(NJS_MODEL_SADX *a1)
+{
+	DrawVisibleModel_Queue(a1, QueuedModelFlagsB_SomeTextureThing);
+}
+
+void OPoleFix(NJS_MODEL_SADX *a1)
+{
+	DrawModel(a1);
+	DrawVisibleModel_Queue(OPolePole->basicdxmodel, QueuedModelFlagsB_SomeTextureThing);
 }
 
 void TwinklePark_Init()
 {
+	WriteCall((void*)0x061F684, FlowerBedFix);
 	ReplaceBIN_DC("CAM0300S");
 	ReplaceBIN_DC("CAM0301A");
 	ReplaceBIN_DC("CAM0301B");
@@ -451,22 +488,29 @@ void TwinklePark_Init()
 	ReplacePVM("TWINKLE01");
 	ReplacePVM("TWINKLE02");
 	ReplacePVM("TWINKLE03");
-	//Arch light fixes
+	WriteCall((void*)0x621222, DrawObjectFromObjectMaster); //Fix merry-go-round floor shadow flickering
+	//ArchLight fixes
+	*(NJS_OBJECT*)0x38BFA74 = *LoadModel("system\\data\\STG03\\Models\\000ED90C.sa1mdl", false); //Arch
+	*(NJS_OBJECT*)0x38C02C4 = *LoadModel("system\\data\\STG03\\Models\\000EE138.sa1mdl", false); //Arch supporter
+	((NJS_OBJECT*)0x38C02C4)->basicdxmodel->meshsets[2].nbMesh = 0; //Disable transparent parts
+	ArchLightLight = LoadModel("system\\data\\STG03\\Models\\000EE138.sa1mdl", false); //Arch supporter (transparent)
+	ArchLightLight->evalflags |= NJD_EVAL_BREAK;
+	ArchLightLight->child = NULL;
+	ArchLightLight->basicdxmodel->meshsets[0].nbMesh = 0; //Disable opaque parts
+	ArchLightLight->basicdxmodel->meshsets[1].nbMesh = 0; //Disable opaque parts
+	ArchLightLight->basicdxmodel->meshsets[3].nbMesh = 0; //Disable opaque parts
 	WriteCall((void*)0x0079C5FD, FixArchLight);
-	WriteCall((void*)0x0079C36A, FixArchLight_Pause);
-	//Models
-	RemoveVertexColors_Object((NJS_OBJECT*)0x038B8780); //Cart driver
-	*(NJS_OBJECT*)0x027C17CC = *LoadModel("system\\data\\STG03\\Models\\000BB2B4.sa1mdl"); //OShutter
-	WriteData((NJS_OBJECT**)0x0079C72E, &objectSTG03_034C02C4);
-	WriteData((NJS_OBJECT**)0x038C5BF8, &objectSTG03_034C02C4);
-	WriteData((NJS_OBJECT**)0x038C5C40, &objectSTG03_034C02C4);
-	WriteData((NJS_OBJECT**)0x038C5C64, &objectSTG03_034C02C4);
-	WriteData((NJS_MODEL_SADX**)0x79C848, &attachSTG03_034C0298);
-	WriteData((NJS_MODEL_SADX**)0x79C8C5, &attachSTG03_034C0298);
-	WriteData((NJS_MODEL_SADX**)0x79C9A0, &attachSTG03_034C0298);
+	WriteCall((void*)0x0079C36A, FixShittyLightObjects_Pause);
 	//Cart fixes
+	RemoveVertexColors_Object((NJS_OBJECT*)0x038B8780); //Cart enemy
+	LoadModel_ReplaceMeshes((NJS_OBJECT*)0x038BAAA4, "system\\data\\STG03\\Models\\000EAB28.sa1mdl");
+	((NJS_OBJECT*)0x038BAAA4)->child->basicdxmodel->meshsets[1].nbMesh = 0;
+	CartGlass.basicdxmodel = LoadModel("system\\data\\STG03\\Models\\000EAB28.sa1mdl", false)->child->basicdxmodel;
+	CartGlass.basicdxmodel->meshsets[0].nbMesh = 0;
+	CartGlass.basicdxmodel->meshsets[2].nbMesh = 0;
+	CartGlass.basicdxmodel->meshsets[3].nbMesh = 0;
+	CartGlass.basicdxmodel->meshsets[4].nbMesh = 0;
 	WriteCall((void*)0x00796F0C, CartFunction);
-	((NJS_OBJECT*)0x038BAAA4)->child->evalflags |= NJD_EVAL_HIDE;
 	RemoveVertexColors_Object((NJS_OBJECT*)0x038BAAA4); //Cart 1 (Sonic)
 	RemoveVertexColors_Object((NJS_OBJECT*)0x038BAA70); //Cart 2
 	RemoveVertexColors_Object((NJS_OBJECT*)0x038AB250); //Cart 3
@@ -476,77 +520,116 @@ void TwinklePark_Init()
 	___AMY_OBJECTS[1]->child->child->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
 	___AMY_OBJECTS[1]->child->child->basicdxmodel->mats[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
 	((NJS_OBJECT*)0x008BF3A0)->basicdxmodel->mats[0].attrflags |= NJD_FLAG_IGNORE_LIGHT; //shadow blob
-	if (DLLLoaded_Lantern)
-	{
-		if (set_alpha_reject_ptr != nullptr) material_register_ptr(DisableAlphaRejection_TwinklePark, LengthOfArray(DisableAlphaRejection_TwinklePark), &DisableAlphaRejection);
-		material_register_ptr(LevelSpecular_Twinkle, LengthOfArray(LevelSpecular_Twinkle), &ForceDiffuse0Specular0);
-		material_register_ptr(ObjectSpecular_Twinkle, LengthOfArray(ObjectSpecular_Twinkle), &ForceDiffuse0Specular1);
-		material_register_ptr(WhiteDiffuse_Twinkle, LengthOfArray(WhiteDiffuse_Twinkle), &ForceWhiteDiffuse);
-		material_register_ptr(ObjectSpecularWhiteDiffuse_Twinkle, LengthOfArray(ObjectSpecularWhiteDiffuse_Twinkle), &ForceWhiteDiffuse3Specular1);
-	}
-	*(NJS_OBJECT*)0x27AF5EC = objectSTG03_000ADBE0; //Double door
-	*(NJS_OBJECT*)0x27A3F5C = objectSTG03_000A6CD8; //OFlyer
-	*(NJS_OBJECT*)0x27AFCF0 = objectSTG03_000AE2BC; //Crown
-	*(NJS_OBJECT*)0x38B119C = objectSTG03_000DF3F0; //Ship
-	*(NJS_OBJECT*)0x38BFA74 = objectSTG03_000ED90C; //Arch
-	*(NJS_OBJECT*)0x38C02C4 = objectSTG03_000EE138; //Arch supporter
-	*(NJS_OBJECT*)0x38BE5F4 = objectSTG03_000EC4E0; //Dash pad
-	*(NJS_OBJECT*)0x38C07CC = objectSTG03_000EE618; //Jump pad
-	*(NJS_OBJECT*)0x38C5B3C = objectSTG03_000F3170; //OCardStopper part
-	*(NJS_OBJECT*)0x38BE2B4 = objectSTG03_000EC1B4; //OPlanet with rings
-	((NJS_OBJECT*)0x38C3A68)->basicdxmodel->mats[0].diffuse.argb.a = 255; //The light! Finally
-	*(NJS_OBJECT*)0x27A67B4 = objectSTG03_000A8D60; //OBowWindow
-	*(NJS_OBJECT*)0x027B23E4 = objectSTG03_000B0818; //Trap door
-	*(NJS_OBJECT*)0x027A0454 = objectSTG03_000A3CCC; //Bowling catapult
-	WriteCall((void*)0x621FE5, RenderCatapult); //Catapult fix
-	*(NJS_OBJECT*)0x027B5884 = objectSTG03_000B2A40; //O Foothold
-	*(NJS_OBJECT*)0x038E50C4 = objectSTG03_034E50C4; //Buyon material fixes
-	*(NJS_OBJECT*)0x038E3584 = objectSTG03_034E3584; //Buyon material fixes
-	*(NJS_OBJECT*)0x038E3B2C = objectSTG03_034E3B2C; //Buyon material fixes
 	ResizeTextureList((NJS_TEXLIST*)0x26B9960, textures_twinkle1);
 	ResizeTextureList((NJS_TEXLIST*)0x2721A8C, textures_twinkle2);
 	ResizeTextureList((NJS_TEXLIST*)0x26FEA54, textures_twinkle3);
-	*(NJS_OBJECT*)0x0279D364 = objectSTG03_000A0E58; //Barrel
-	*(NJS_OBJECT *)0x027A247C = objectSTG03_023A247C; //Rollercoaster
-	((NJS_OBJECT *)0x027AC44C)->basicdxmodel->mats[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	((NJS_OBJECT *)0x027AC44C)->basicdxmodel->mats[2].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	((NJS_OBJECT *)0x027AC44C)->basicdxmodel->mats[4].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	((NJS_OBJECT *)0x027AC44C)->basicdxmodel->mats[5].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	((NJS_OBJECT *)0x027AC44C)->basicdxmodel->mats[8].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	WriteData<1>((char*)0x0079DB92, 0x01); //OPanel blending
-	*(NJS_OBJECT*)0x027AAFF4 = objectSTG03_000AA710; //Pirate ship
-	*(NJS_MODEL_SADX*)0x027AC420 = attachSTG03_000AB6B4;//Pirate ship blinking supporter
-	*(NJS_MODEL_SADX*)0x027AB6B4 = attachSTG03_000AACA0;//Pirate ship rotating thing right
-	*(NJS_MODEL_SADX*)0x027A6E74 = attachSTG03_000A92F0;//Pirate ship rotating thing left
-	*(NJS_OBJECT*)0x027BF9DC = objectSTG03_000B9E98; //Spinning roof
-	*(NJS_OBJECT*)0x027BCD7C = objectSTG03_000B812C; //Lilypad
-	*(NJS_OBJECT *)0x027C05FC = objectSTG03_000BA81C; //Monitor in Act 1
-	*(NJS_OBJECT *)0x027A62E4 = objectSTG03_000A89E4; //Flag with lamp
-	((NJS_ACTION*)0x027C295C)->object = &objectSTG03_000A7A7C; //Flag 1
-	((NJS_ACTION*)0x027C26B4)->object = &objectSTG03_000A7640; //Flag 2
-	((NJS_OBJECT *)0x027B0708)->evalflags |= NJD_EVAL_HIDE; //Merry-go-round floor
-	*(NJS_OBJECT *)0x027AE4F4 = objectSTG03_000AD08C; //Merry-go-round
-	*(NJS_OBJECT *)0x027BEA34 = objectSTG03_000B95A0; //Horsies
-	*(NJS_OBJECT *)0x027AD86C = objectSTG03_000AC45C; //Bowling door
-	((NJS_OBJECT *)0x027B3DB8)->basicdxmodel->mats[0].attrflags |= NJD_FLAG_IGNORE_LIGHT; //Bowling pin
-	((NJS_OBJECT *)0x027B3DB8)->basicdxmodel->mats[1].attrflags |= NJD_FLAG_IGNORE_LIGHT; //Bowling pin
-	((NJS_OBJECT *)0x027B3DB8)->basicdxmodel->mats[2].attrflags |= NJD_FLAG_IGNORE_LIGHT; //Bowling pin
-	((NJS_OBJECT *)0x027A4AD0)->basicdxmodel->mats[2].attrflags |= NJD_FLAG_IGNORE_LIGHT; //Flag1 1
-	((NJS_OBJECT *)0x027A466C)->basicdxmodel->mats[1].attrflags |= NJD_FLAG_IGNORE_LIGHT; //Flag1 2
-	((NJS_OBJECT *)0x027A466C)->basicdxmodel->mats[2].attrflags |= NJD_FLAG_IGNORE_LIGHT; //Flag1 3
-	((NJS_OBJECT *)0x027A5024)->basicdxmodel->mats[0].attrflags |= NJD_FLAG_IGNORE_LIGHT; //Flag2 1
-	((NJS_OBJECT *)0x027A5024)->basicdxmodel->mats[1].attrflags |= NJD_FLAG_IGNORE_LIGHT; //Flag2 2
-	((NJS_OBJECT *)0x027A5024)->basicdxmodel->mats[2].attrflags |= NJD_FLAG_IGNORE_LIGHT; //Flag2 3
-	((NJS_OBJECT *)0x027A5464)->basicdxmodel->mats[1].attrflags |= NJD_FLAG_IGNORE_LIGHT; //Flag with lamp 1
-	((NJS_OBJECT *)0x027A5464)->basicdxmodel->mats[2].attrflags |= NJD_FLAG_IGNORE_LIGHT; //Flag with lamp 2
-	((NJS_OBJECT *)0x027A58A4)->basicdxmodel->mats[1].attrflags |= NJD_FLAG_IGNORE_LIGHT; //Flag with lamp 3
-	((NJS_OBJECT *)0x027A58A4)->basicdxmodel->mats[2].attrflags |= NJD_FLAG_IGNORE_LIGHT; //Flag with lamp 4
-	*(NJS_OBJECT*)0x027B6170 = objectSTG03_000B34C8; //Yellow flower pot (wall)
-	*(NJS_OBJECT*)0x027B80C4 = objectSTG03_000B4F1C; //Yellow flower pot
-	*(NJS_OBJECT*)0x027B6A58 = objectSTG03_000B34C8_2; //Pink flower pot (wall)
-	*(NJS_OBJECT*)0x027B972C = objectSTG03_000B5EE8; //Pink flower pot
-	*(NJS_OBJECT*)0x027BAC54 = objectSTG03_000B6CF8; //Yellow flower bed
-	*(NJS_OBJECT*)0x027BC1C4 = objectSTG03_000B6CF8_2; //Pink flower bed
+	//OLight1 fixes
+	*(NJS_OBJECT*)0x38C3A9C = *LoadModel("system\\data\\STG03\\Models\\000F1228.sa1mdl", true); //OLight1
+	((NJS_OBJECT*)0x38C3A9C)->basicdxmodel->meshsets[7].nbMesh = 0; //Disable transparent part
+	((NJS_OBJECT*)0x38C3A9C)->basicdxmodel->mats[7].attrflags &= ~NJD_FLAG_USE_ALPHA; //Disable transparent part
+	((NJS_OBJECT*)0x38C3A9C)->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_IGNORE_SPECULAR;
+	((NJS_OBJECT*)0x38C3A9C)->basicdxmodel->mats[1].attrflags &= ~NJD_FLAG_IGNORE_SPECULAR;
+	AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x38C3A9C)->basicdxmodel->mats[0]);
+	AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x38C3A9C)->basicdxmodel->mats[1]);
+	*(NJS_OBJECT*)0x38C3A68 = *LoadModel("system\\data\\STG03\\Models\\000F1228.sa1mdl", false); //OLight1 (transparent)
+	((NJS_OBJECT*)0x38C3A68)->basicdxmodel->meshsets[1].nbMesh = 0; //Disable opaque part
+	((NJS_OBJECT*)0x38C3A68)->basicdxmodel->meshsets[2].nbMesh = 0; //Disable opaque part
+	((NJS_OBJECT*)0x38C3A68)->basicdxmodel->meshsets[3].nbMesh = 0; //Disable opaque part
+	((NJS_OBJECT*)0x38C3A68)->basicdxmodel->meshsets[4].nbMesh = 0; //Disable opaque part
+	((NJS_OBJECT*)0x38C3A68)->basicdxmodel->meshsets[5].nbMesh = 0; //Disable opaque part
+	((NJS_OBJECT*)0x38C3A68)->basicdxmodel->meshsets[6].nbMesh = 0; //Disable opaque part
+	((NJS_OBJECT*)0x38C3A68)->basicdxmodel->meshsets[7].nbMesh = 0; //Disable opaque part
+	((NJS_OBJECT*)0x38C3A9C)->sibling = (NJS_OBJECT*)0x38C3A68; //Make transparent part sibling
+	//ORocket fixes
+	WriteCall((void*)0x79BEBA, ORocketFix1);
+	WriteCall((void*)0x79BEF8, ORocketFix1);
+	WriteCall((void*)0x79BF5D, ORocketFix1);
+	WriteCall((void*)0x79BF97, ORocketFix1);
+	//Pirate ship fixes
+	*(NJS_OBJECT*)0x27AC44C = *LoadModel("system\\data\\STG03\\Models\\000AB6DC.sa1mdl", false); //Pirate ship
+	PirateShipStars = LoadModel("system\\data\\STG03\\Models\\000AB6DC.sa1mdl", false); //Pirate ship stars mesh
+	PirateShipStars->child = NULL;
+	PirateShipStars->evalflags |= NJD_EVAL_BREAK;
+	PirateShipStars->basicdxmodel->meshsets[0].nbMesh = 0;
+	PirateShipStars->basicdxmodel->meshsets[1].nbMesh = 0;
+	PirateShipStars->basicdxmodel->meshsets[2].nbMesh = 0;
+	PirateShipStars->basicdxmodel->meshsets[3].nbMesh = 0;
+	PirateShipStars->basicdxmodel->meshsets[4].nbMesh = 0;
+	PirateShipStars->basicdxmodel->meshsets[6].nbMesh = 0;
+	PirateShipStars->basicdxmodel->meshsets[7].nbMesh = 0;
+	((NJS_OBJECT*)0x27AC44C)->basicdxmodel->meshsets[5].nbMesh = 0;
+	WriteJump((void*)0x620BC0, DrawPirateShipShit);
+	//Models
+	*(NJS_OBJECT*)0x27B0708 = *LoadModel("system\\data\\STG03\\Models\\000AEC6C.sa1mdl", false); //Merry-go-round floor
+	*(NJS_OBJECT*)0x27AF5EC = *LoadModel("system\\data\\STG03\\Models\\000ADBE0.sa1mdl", false); //Double door
+	*(NJS_OBJECT*)0x27C17CC = *LoadModel("system\\data\\STG03\\Models\\000BB2B4.sa1mdl", false); //OShutter
+	*(NJS_OBJECT*)0x27A3F5C = *LoadModel("system\\data\\STG03\\Models\\000A6CD8.sa1mdl", false); //OFlyer
+	*(NJS_OBJECT*)0x27AFCF0 = *LoadModel("system\\data\\STG03\\Models\\000AE2BC.sa1mdl", false); //Crown
+	*(NJS_OBJECT*)0x38B119C = *LoadModel("system\\data\\STG03\\Models\\000DF3F0.sa1mdl", false); //Ship
+	*(NJS_OBJECT*)0x38BE5F4 = *LoadModel("system\\data\\STG03\\Models\\000EC4E0.sa1mdl", false); //Dash pad
+	*(NJS_OBJECT*)0x38C07CC = *LoadModel("system\\data\\STG03\\Models\\000EE618.sa1mdl", false); //Jump pad
+	*(NJS_OBJECT*)0x38C5B3C = *LoadModel("system\\data\\STG03\\Models\\000F3170.sa1mdl", false); //OCartStopper
+	*(NJS_OBJECT*)0x38BE2B4 = *LoadModel("system\\data\\STG03\\Models\\000EC1B4.sa1mdl", false); //OPlanet with rings
+	*(NJS_OBJECT*)0x27AE4F4 = *LoadModel("system\\data\\STG03\\Models\\000AD08C.sa1mdl", false); //Merry-go-round
+	*(NJS_OBJECT*)0x27BEA34 = *LoadModel("system\\data\\STG03\\Models\\000B95A0.sa1mdl", false); //Horsies
+	*(NJS_OBJECT*)0x27AD86C = *LoadModel("system\\data\\STG03\\Models\\000AC45C.sa1mdl", false); //Bowling door
+	*(NJS_OBJECT*)0x27A67B4 = *LoadModel("system\\data\\STG03\\Models\\000A8D60.sa1mdl", false); //OBowWindow
+	*(NJS_OBJECT*)0x27B23E4 = *LoadModel("system\\data\\STG03\\Models\\000B0818.sa1mdl", false); //Trap door
+	*(NJS_OBJECT*)0x27A0454 = *LoadModel("system\\data\\STG03\\Models\\000A3CCC.sa1mdl", false); //Bowling catapult
+	*(NJS_OBJECT*)0x27B5884 = *LoadModel("system\\data\\STG03\\Models\\000B2A40.sa1mdl", false); //O Foothold
+	*(NJS_OBJECT*)0x279D364 = *LoadModel("system\\data\\STG03\\Models\\000A0E58.sa1mdl", true); //Barrel
+	AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x279D364)->basicdxmodel->mats[1]);
+	AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x279D364)->basicdxmodel->mats[2]);
+	*(NJS_OBJECT*)0x27B6170 = *LoadModel("system\\data\\STG03\\Models\\000B34C8.sa1mdl", false); //Yellow flower pot (wall)
+	*(NJS_OBJECT*)0x27B80C4 = *LoadModel("system\\data\\STG03\\Models\\000B4F1C.sa1mdl", false); //Yellow flower pot
+	*(NJS_OBJECT*)0x27BAC54 = *LoadModel("system\\data\\STG03\\Models\\000B6CF8.sa1mdl", false); //Yellow flower bed
+	*(NJS_OBJECT*)0x27B6A58 = *LoadModel("system\\data\\STG03\\Models\\000B3F50.sa1mdl", false); //Pink flower pot (wall)
+	*(NJS_OBJECT*)0x27B972C = *LoadModel("system\\data\\STG03\\Models\\000B5EE8.sa1mdl", false); //Pink flower pot
+	*(NJS_OBJECT*)0x27BC1C4 = *LoadModel("system\\data\\STG03\\Models\\000B7B08.sa1mdl", false); //Pink flower bed
+	*(NJS_OBJECT*)0x27BF9DC = *LoadModel("system\\data\\STG03\\Models\\000B9E98.sa1mdl", false); //Spinning roof
+	*(NJS_OBJECT*)0x27BCD7C = *LoadModel("system\\data\\STG03\\Models\\000B812C.sa1mdl", false); //Lilypad
+	*(NJS_OBJECT*)0x27C05FC = *LoadModel("system\\data\\STG03\\Models\\000BA81C.sa1mdl", false); //Monitor in Act 1 (meshes 4 and 5 swapped for UV code compatibility)
+	*(NJS_OBJECT*)0x27B3DB8 = *LoadModel("system\\data\\STG03\\Models\\000B13A8.sa1mdl", false); //Bowling pin
+	*(NJS_OBJECT*)0x38E50C4 = *LoadModel("system\\data\\STG03\\Models\\000C6264.sa1mdl", false); //Buyon feet
+	*(NJS_OBJECT*)0x38E3584 = *LoadModel("system\\data\\STG03\\Models\\000C47C8.sa1mdl", false); //Buyon head
+	*(NJS_OBJECT*)0x38E3B2C = *LoadModel("system\\data\\STG03\\Models\\000C4D60.sa1mdl", false); //Buyon body
+	*(NJS_OBJECT*)0x27A247C = *LoadModel("system\\data\\STG03\\Models\\000A56D0.sa1mdl", false); //Rollercoaster
+	((NJS_ACTION*)0x27C295C)->object = LoadModel("system\\data\\STG03\\Models\\000A7A7C.sa1mdl", false); //Flag 1
+	((NJS_ACTION*)0x27C26B4)->object = LoadModel("system\\data\\STG03\\Models\\000A7640.sa1mdl", false); //Flag 2
+	((NJS_ACTION*)0x27C2EA4)->object = LoadModel("system\\data\\STG03\\Models\\000A89E4.sa1mdl", false); //OFlagWLamp
+	*(NJS_OBJECT*)0x27A0560 = *LoadModel("system\\data\\STG03\\Models\\000A3DD0.sa1mdl", false); //OFlagWLamp light
+	AddAlphaRejectMaterial(&((NJS_OBJECT*)0x27A0560)->basicdxmodel->mats[0]);
+	*(NJS_OBJECT*)0x27B49AC = *LoadModel("system\\data\\STG03\\Models\\000B1DEC.sa1mdl", false); //OLamp
+	AddAlphaRejectMaterial(&((NJS_OBJECT*)0x27B49AC)->child->basicdxmodel->mats[0]);
+	AddAlphaRejectMaterial(&((NJS_OBJECT*)0x27B49AC)->child->sibling->basicdxmodel->mats[0]);
+	//OPanel fix
+	*(NJS_OBJECT*)0x38C214C = *LoadModel("system\\data\\STG03\\Models\\000EFF38.sa1mdl", false); //OPanel (opaque)
+	((NJS_OBJECT*)0x38C214C)->basicdxmodel->meshsets[1].nbMesh = 0;
+	((NJS_OBJECT*)0x38C214C)->basicdxmodel->meshsets[4].nbMesh = 0;
+	((NJS_OBJECT*)0x38C214C)->basicdxmodel->meshsets[6].nbMesh = 0;
+	OPanelPanel = LoadModel("system\\data\\STG03\\Models\\000EFF38.sa1mdl", false); //OPanel (transparent)
+	OPanelPanel->basicdxmodel->meshsets[0].nbMesh = 0;
+	OPanelPanel->basicdxmodel->meshsets[2].nbMesh = 0;
+	OPanelPanel->basicdxmodel->meshsets[3].nbMesh = 0;
+	OPanelPanel->basicdxmodel->meshsets[5].nbMesh = 0;
+	AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x38C214C)->basicdxmodel->mats[2]);
+	AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x38C214C)->basicdxmodel->mats[3]);
+	WriteCall((void*)0x79DB94, RenderOPanel_Main);
+	WriteCall((void*)0x79DBA4, RenderOPanel_Transparent);
+	//OPole fix
+	*(NJS_OBJECT*)0x38C28A8 = *LoadModel("system\\data\\STG03\\Models\\000F066C.sa1mdl", false); //OPole model (opaque)
+	AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x38C28A8)->basicdxmodel->mats[3]);
+	((NJS_OBJECT*)0x38C28A8)->basicdxmodel->meshsets[1].nbMesh = 0;
+	((NJS_OBJECT*)0x38C28A8)->basicdxmodel->meshsets[2].nbMesh = 0;
+	((NJS_OBJECT*)0x38C28A8)->basicdxmodel->meshsets[4].nbMesh = 0;
+	OPolePole = LoadModel("system\\data\\STG03\\Models\\000F066C.sa1mdl", false); //OPole model (transparent)
+	OPolePole->basicdxmodel->meshsets[0].nbMesh = 0;
+	OPolePole->basicdxmodel->meshsets[3].nbMesh = 0;
+	OPolePole->evalflags |= NJD_EVAL_BREAK;
+	OPolePole->child = NULL;
+	WriteCall((void*)0x79CD61, OPoleFix);
+	WriteCall((void*)0x621FE5, RenderCatapult); //Catapult fix
+	//Fog and draw distance
 	for (unsigned int i = 0; i < 3; i++)
 	{
 		TwinklePark1Fog[i].Layer = 1500.0f;
@@ -561,42 +644,35 @@ void TwinklePark_Init()
 		TwinklePark4Fog[i].Distance = 1200.0f;
 		TwinklePark4Fog[i].Toggle = 1;
 	}
+	//Lantern stuff
+	if (DLLLoaded_Lantern)
+	{
+		material_register_ptr(WhiteDiffuse_Twinkle, LengthOfArray(WhiteDiffuse_Twinkle), &ForceWhiteDiffuse);
+	}
 }
 
 void TwinklePark_OnFrame()
 {
+	if (CurrentLevel == LevelIDs_TwinklePark || CurrentLevel == LevelIDs_TwinkleCircuit)
 	{
-		if (STG03_1_Info && CurrentLevel == 3 && CurrentAct == 1)
+		if (!IsGamePaused()) PoleUVIncrease += 16;
+		if (PoleUVIncrease >= 255) PoleUVIncrease -= 255;
+		for (unsigned int i = 0; i < 12; i++)
 		{
-			if (GameState != 16)
-			{
-				((NJS_OBJECT*)STG03_1_Info->getdata("objectSTG03_000AEC6C"))->ang[1] = ((NJS_OBJECT*)STG03_1_Info->getdata("objectSTG03_000AEC6C"))->ang[1] + 64;
-				if (anim > 87) anim = 74;
-				((NJS_MATERIAL*)STG03_1_Info->getdata("matlistSTG03_00065D8C"))[0].attr_texId = anim;
-				((NJS_MATERIAL*)STG03_1_Info->getdata("matlistSTG03_0001A3A8"))[0].attr_texId = anim;
-				((NJS_MATERIAL*)STG03_1_Info->getdata("matlistSTG03_000657A0"))[0].attr_texId = anim;
-				((NJS_MATERIAL*)STG03_1_Info->getdata("matlistSTG03_00065A3C"))[0].attr_texId = anim;
-				if (FramerateSetting < 2 && FrameCounter % 2 == 0 || FramerateSetting >= 2) anim++;
-				objectSTG03_000AA710.basicdxmodel->mats[14].attr_texId = animlight;
-				objectSTG03_000AA710.basicdxmodel->mats[3].attr_texId = animlight;
-				objectSTG03_000AA710.basicdxmodel->mats[8].attr_texId = animlight;
-				objectSTG03_000AA710.basicdxmodel->mats[12].attr_texId = animlight;
-				if (animtimer >= 30 && animlight == 95)
-				{
-					animlight = 28;
-					animtimer = 0;
-				}
-				if (animtimer >= 30 && animlight == 28)
-				{
-					animlight = 95;
-					animtimer = 0;
-				}
-				if (GameState != 16)
-				{
-					if (FramerateSetting < 2) animtimer++;
-					if (FramerateSetting >= 2) animtimer = animtimer + 2;
-				}
-			}
+			OPolePole->basicdxmodel->meshsets[1].vertuv[i].v = PoleUVs[i].v + PoleUVIncrease;
+		}
+	}
+	if (STG03_1_Info && CurrentLevel == 3 && CurrentAct == 1)
+	{
+		if (GameState != 16)
+		{
+			((NJS_OBJECT*)STG03_1_Info->getdata("objectSTG03_000AEC6C"))->ang[1] = ((NJS_OBJECT*)STG03_1_Info->getdata("objectSTG03_000AEC6C"))->ang[1] + 64;
+			if (anim > 87) anim = 74;
+			((NJS_MATERIAL*)STG03_1_Info->getdata("matlistSTG03_00065D8C"))[0].attr_texId = anim;
+			((NJS_MATERIAL*)STG03_1_Info->getdata("matlistSTG03_0001A3A8"))[0].attr_texId = anim;
+			((NJS_MATERIAL*)STG03_1_Info->getdata("matlistSTG03_000657A0"))[0].attr_texId = anim;
+			((NJS_MATERIAL*)STG03_1_Info->getdata("matlistSTG03_00065A3C"))[0].attr_texId = anim;
+			if (FramerateSetting < 2 && FrameCounter % 2 == 0 || FramerateSetting >= 2) anim++;
 		}
 	}
 }
