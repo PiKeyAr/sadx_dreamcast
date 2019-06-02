@@ -523,6 +523,7 @@ void CheckModelForWhiteDiffuse(NJS_MODEL_SADX *model, int ignorelightmaterial)
 	Uint32 materialflags;
 	if (model->mats[model->meshsets[0].type_matId & ~0xC000].attrflags & NJD_FLAG_USE_ENV) return; //First mesh
 	if (model->mats[ignorelightmaterial + 1].attrflags & NJD_FLAG_USE_ENV) return; //Material after the white diffuse one
+	if (model->mats[ignorelightmaterial + 1].attrflags & NJD_FLAG_IGNORE_SPECULAR) return; //Material after the white diffuse one
 	for (int q = ignorelightmaterial + 1; q < model->nbMat; ++q)
 	{
 		materialflags = model->mats[q].attrflags;
