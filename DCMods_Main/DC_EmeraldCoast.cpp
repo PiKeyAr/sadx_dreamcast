@@ -552,6 +552,11 @@ void LoadLevelFiles_STG01()
 		STG01_2->Col[STG01_2->COLCount - 4].Flags = 0x80000402;
 		STG01_2->Col[STG01_2->COLCount - 5].Flags = 0x80000402;
 		STG01_2->Col[STG01_2->COLCount - 6].Flags = 0x80000402;
+		for (unsigned int rq = 0; rq < LengthOfArray(uvSTG01_00CBB000_d); rq++)
+		{
+			uvSTG01_00CBB000_d[rq].u = round(0.5 * uvSTG01_00CBB000_d[rq].u);
+			uvSTG01_00CBB000_d[rq].v = round(0.5 * uvSTG01_00CBB000_d[rq].v);
+		}
 		((NJS_OBJECT*)0x10C05E8)->basicdxmodel->mats[0].attrflags &= ~NJD_DA_INV_SRC;
 		((NJS_OBJECT*)0x10C05E8)->basicdxmodel->mats[0].attrflags |= NJD_DA_ONE;
 		((NJS_OBJECT*)0x10C05E8)->basicdxmodel->mats[0].diffuse.color = 0xFFFFFFFF;
@@ -640,15 +645,6 @@ void EmeraldCoast_Init()
 	}
 	WriteCall((void*)0x00502F8F, WhaleSplash);
 	WriteCall((void*)0x00502F9A, WhaleSplash);
-	if (SADXWater_EmeraldCoast)
-	{
-		//Different UVs on the dynamic ocean model for SADX water
-		for (unsigned int rq = 0; rq < LengthOfArray(uvSTG01_00CBB000_d); rq++)
-		{
-			uvSTG01_00CBB000_d[rq].u = round(0.5 * uvSTG01_00CBB000_d[rq].u);
-			uvSTG01_00CBB000_d[rq].v = round(0.5 * uvSTG01_00CBB000_d[rq].v);
-		}
-	}
 	if (DLLLoaded_Lantern)
 	{
 		material_register_ptr(LevelSpecular_STG01, LengthOfArray(LevelSpecular_STG01), &ForceDiffuse0Specular0);
