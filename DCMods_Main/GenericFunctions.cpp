@@ -496,26 +496,38 @@ void RemoveMaterialColors_Landtable(LandTable *landtable)
 
 void AddAlphaRejectMaterial(NJS_MATERIAL *material)
 {
-	TemporaryMaterialArray[0] = material;
-	material_register_ptr(TemporaryMaterialArray, 1, DisableAlphaRejection);
+	if (DLLLoaded_Lantern)
+	{
+		TemporaryMaterialArray[0] = material;
+		material_register_ptr(TemporaryMaterialArray, 1, DisableAlphaRejection);
+	}
 }
 
 void AddWhiteDiffuseMaterial(NJS_MATERIAL *material)
 {
-	TemporaryMaterialArray[0] = material;
-	material_register_ptr(TemporaryMaterialArray, 1, ForceWhiteDiffuse);
+	if (DLLLoaded_Lantern)
+	{
+		TemporaryMaterialArray[0] = material;
+		material_register_ptr(TemporaryMaterialArray, 1, ForceWhiteDiffuse);
+	}
 }
 
 void RemoveAlphaRejectMaterial(NJS_MATERIAL *material)
 {
-	TemporaryMaterialArray[0] = material;
-	material_unregister_ptr(TemporaryMaterialArray, 1, DisableAlphaRejection);
+	if (DLLLoaded_Lantern)
+	{
+		TemporaryMaterialArray[0] = material;
+		material_unregister_ptr(TemporaryMaterialArray, 1, DisableAlphaRejection);
+	}
 }
 
 void RemoveWhiteDiffuseMaterial(NJS_MATERIAL *material)
 {
-	TemporaryMaterialArray[0] = material;
-	material_unregister_ptr(TemporaryMaterialArray, 1, ForceWhiteDiffuse);
+	if (DLLLoaded_Lantern)
+	{
+		TemporaryMaterialArray[0] = material;
+		material_unregister_ptr(TemporaryMaterialArray, 1, ForceWhiteDiffuse);
+	}
 }
 
 void CheckModelForWhiteDiffuse(NJS_MODEL_SADX *model, int ignorelightmaterial)
