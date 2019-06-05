@@ -19,6 +19,8 @@ NJS_TEXLIST texlist_hw2 = { arrayptrandlength(textures_highway2) };
 NJS_TEXNAME textures_highway3[107];
 NJS_TEXLIST texlist_hw3 = { arrayptrandlength(textures_highway3) };
 
+#include "Highway1.h"
+
 FunctionPointer(void, sub_409E70, (NJS_MODEL_SADX *a1, int a2, float a3), 0x409E70);
 FunctionPointer(long double, sub_49CC70, (float a1, float a2, float a3), 0x49CC70);
 FunctionPointer(void, sub_408530, (NJS_OBJECT *obj), 0x408530);
@@ -51,6 +53,7 @@ void FountainPart3(NJS_MODEL_SADX *a1, int a2, float a3)
 
 NJS_MATERIAL* DisableAlphaRejection_SpeedHighway[] = {
 	((NJS_MATERIAL*)0x02696920), //OLmpa
+	&matlist_00036094[4], //Heli platform (temporary)
 };
 
 NJS_MATERIAL* WhiteDiffuse_HighwayExternal[] = {
@@ -163,18 +166,33 @@ void UnloadLevelFiles_STG04()
 	STG04_2_Info = nullptr;
 }
 
+void ProcessMaterials_SpeedHighway(LandTable *landtable)
+{
+	Uint32 materialflags;
+	NJS_MATERIAL *material;
+	for (unsigned int j = 0; j < landtable->COLCount; j++)
+	{
+		for (int k = 0; k < landtable->Col[j].Model->basicdxmodel->nbMat; ++k)
+		{
+			material = &landtable->Col[j].Model->basicdxmodel->mats[k];
+			//if (material->attr_texId == 51) AddWhiteDiffuseMaterial(material);
+		}
+	}
+}
+
 void LoadLevelFiles_STG04()
 {
 	CheckAndUnloadLevelFiles();
 	STG04_0_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG04\\0.sa1lvl"));
 	STG04_1_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG04\\1.sa1lvl"));
 	STG04_2_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG04\\2.sa1lvl"));
-	LandTable *STG04_0 = STG04_0_Info->getlandtable();
+	LandTable *STG04_0 = &landtable_0001853C; //STG04_0_Info->getlandtable();
 	LandTable *STG04_1 = STG04_1_Info->getlandtable();
 	LandTable *STG04_2 = STG04_2_Info->getlandtable();
 	RemoveMaterialColors_Landtable(STG04_0);
 	RemoveMaterialColors_Landtable(STG04_1);
 	RemoveMaterialColors_Landtable(STG04_2);
+	ProcessMaterials_SpeedHighway(STG04_0);
 	STG04_0->TexList = &texlist_hw1;
 	STG04_1->TexList = &texlist_hw2;
 	STG04_2->TexList = &texlist_hw3;
@@ -195,6 +213,11 @@ void LoadLevelFiles_STG04()
 		WhiteDiffuse_HighwayExternal[9] = &((NJS_MATERIAL*)STG04_0_Info->getdata("matlistSTG04_000774B8"))[9];
 		material_register_ptr(WhiteDiffuse_HighwayExternal, LengthOfArray(WhiteDiffuse_HighwayExternal), &ForceWhiteDiffuse);
 	}
+}
+
+void OCraneFix(NJS_MODEL_SADX *a1, int a2, float a3)
+{
+	DrawModel(a1);
 }
 
 void SpeedHighway_Init()
@@ -271,6 +294,7 @@ void SpeedHighway_Init()
 		material_register_ptr(WhiteDiffuse_Highway, LengthOfArray(WhiteDiffuse_Highway), &ForceWhiteDiffuse);
 		if (set_alpha_reject_ptr != nullptr) material_register_ptr(DisableAlphaRejection_SpeedHighway, LengthOfArray(DisableAlphaRejection_SpeedHighway), &DisableAlphaRejection);
 	}
+	WriteCall((void*)0x61AF66, OCraneFix); //Was it really necessary to queue a non-transparent model??
 	//Helicopter light
 	((NJS_OBJECT*)0x268CF20)->child->sibling->evalflags |= NJD_EVAL_HIDE;
 	*(NJS_MODEL_SADX*)0x268CEF4 = attachSTG04_00159560;
@@ -390,6 +414,31 @@ void SpeedHighway_Init()
 		SpeedHighway2Fog[i].Distance = 4800.0f;
 		SpeedHighway2Fog[i].Color = 0xFF300020;
 	}
+	RemoveVertexColors_Object((NJS_OBJECT*)0x2697888); //Bell
+	RemoveVertexColors_Object((NJS_OBJECT*)0x2682CF4); //ONeon1
+	RemoveVertexColors_Object((NJS_OBJECT*)0x2683024); //ONeon2
+	RemoveVertexColors_Object((NJS_OBJECT*)0x2683434); //ONeon3
+	RemoveVertexColors_Object((NJS_OBJECT*)0x26838F4); //ONeon4
+	RemoveVertexColors_Object((NJS_OBJECT*)0x2683AD4); //OPoster0
+	RemoveVertexColors_Object((NJS_OBJECT*)0x2683E94); //OPoster1
+	RemoveVertexColors_Object((NJS_OBJECT*)0x2683CB4); //OPoster2
+	RemoveVertexColors_Object((NJS_OBJECT*)0x2674658); //OSignB light thing
+	RemoveVertexColors_Object((NJS_OBJECT*)0x26785FC); //OTankA variation 1
+	RemoveVertexColors_Object((NJS_OBJECT*)0x267890C); //OTankA variation 2
+	RemoveVertexColors_Object((NJS_OBJECT*)0x267943C); //OTankA variation 3
+	RemoveVertexColors_Object((NJS_OBJECT*)0x2679A94); //OTankA variation 4
+	RemoveVertexColors_Object((NJS_OBJECT*)0x2676A4C); //OTankA variation 5
+	RemoveVertexColors_Object((NJS_OBJECT*)0x2677010); //OTankA variation 6
+	RemoveVertexColors_Object((NJS_OBJECT*)0x2677FE4); //OTankA variation 7
+	RemoveVertexColors_Object((NJS_OBJECT*)0x26751EC); //OTankA variation 8
+	RemoveVertexColors_Object((NJS_OBJECT*)0x26755B0); //OTankA variation 9
+	RemoveVertexColors_Object((NJS_OBJECT*)0x2676514); //OTankA variation 10
+	RemoveVertexColors_Object((NJS_OBJECT*)0x2678AFC); //OTankA variation 11
+	RemoveVertexColors_Object((NJS_OBJECT*)0x26777D4); //container B top broken 1
+	RemoveVertexColors_Object((NJS_OBJECT*)0x2677288); //container B top broken 2
+	RemoveVertexColors_Object((NJS_OBJECT*)0x2675730); //container B top broken 3
+	RemoveVertexColors_Object((NJS_OBJECT*)0x2677A4C); //container B top broken 4
+	RemoveVertexColors_Object((NJS_OBJECT*)0x26774B8); //container B top broken 5
 }
 
 void SpeedHighway_OnFrame()
