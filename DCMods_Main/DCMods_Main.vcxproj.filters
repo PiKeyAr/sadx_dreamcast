@@ -362,9 +362,6 @@
     <ClInclude Include="Data\Highway1.h">
       <Filter>Header Files\Levels\SpeedHighway</Filter>
     </ClInclude>
-    <ClInclude Include="Data\Highway2 Fixes.h">
-      <Filter>Header Files\Levels\SpeedHighway</Filter>
-    </ClInclude>
     <ClInclude Include="Data\Highway2.h">
       <Filter>Header Files\Levels\SpeedHighway</Filter>
     </ClInclude>

@@ -190,7 +190,6 @@
     <ClInclude Include="Data\Fountain.h" />
     <ClInclude Include="Data\Grass.h" />
     <ClInclude Include="Data\Highway1.h" />
-    <ClInclude Include="Data\Highway2 Fixes.h" />
     <ClInclude Include="Data\Highway2.h" />
     <ClInclude Include="Data\Highway3.h" />
     <ClInclude Include="Data\Highway_objects.h" />
