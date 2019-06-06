@@ -870,11 +870,6 @@ void __cdecl Barrier_MainX(ObjectMaster *a1)
 	}
 }
 
-void EmeraldShardLighting(NJD_FLAG lol1, NJD_FLAG lol2)
-{
-	AddConstantAttr(0, NJD_FLAG_IGNORE_LIGHT);
-}
-
 void FixCutsceneTransition()
 {
 	if (CutsceneID == 134) sub_436550(); //Knuckles back in Station Square after meeting Pacman
@@ -1166,6 +1161,42 @@ void DrawRingShadowHook(NJS_MODEL_SADX *a1, float a2)
 	else DrawQueueDepthBias = -27952.0f;
 	DrawModel_QueueVisible(a1, (QueuedModelFlagsB)6, a2);
 	DrawQueueDepthBias = v2;
+}
+
+void RenderEmeraldShard_A(NJS_OBJECT *a1, QueuedModelFlagsB a2, float a3)
+{
+	Uint32 backupcolor = a1->basicdxmodel->mats[0].diffuse.color;
+	DrawQueueDepthBias = 3500.0f;
+	a1->basicdxmodel->mats[0].diffuse.color = 0xCCB2B2B2;
+	ProcessModelNode(a1, (QueuedModelFlagsB)1, a3);
+	//ProcessModelNode_AB_Wrapper(a1, 1.0f);
+	DrawQueueDepthBias = 0.0f;
+	a1->basicdxmodel->mats[0].diffuse.color = backupcolor;
+}
+
+void RenderEmeraldShard_B(NJS_OBJECT *a1, QueuedModelFlagsB a2)
+{
+	Uint32 backupcolor = a1->basicdxmodel->mats[0].diffuse.color;
+	DrawQueueDepthBias = 4000.0f;
+	a1->basicdxmodel->mats[0].diffuse.color = 0x00000000;
+	ProcessModelNode_D(a1, (QueuedModelFlagsB)0, 1.0f);
+	DrawQueueDepthBias = 0.0f;
+	a1->basicdxmodel->mats[0].diffuse.color = backupcolor;
+}
+
+void RenderEmeraldShard_C(NJS_OBJECT *a1)
+{
+	Uint32 backupcolor = a1->basicdxmodel->mats[0].diffuse.color;
+	DrawQueueDepthBias = 4000.0f;
+	a1->basicdxmodel->mats[0].diffuse.color = 0x00000000;
+	ProcessModelNode_D(a1, (QueuedModelFlagsB)0, 1.0f);
+	DrawQueueDepthBias = 0.0f;
+	a1->basicdxmodel->mats[0].diffuse.color = backupcolor;
+}
+
+void SetEmeraldShardColor(float a, float r, float g, float b)
+{
+	SetMaterialAndSpriteColor_Float(0.08f, 1.0f, 1.0f, 0.7f);
 }
 
 void General_Init(const IniFile *config, const HelperFunctions &helperFunctions)
@@ -1534,15 +1565,11 @@ void General_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 	}
 	//Water splash particle
 	WriteCall((void*)0x0049F1C0, FixWaterSplash);
-	//Emerald shard, hopefully someday
-	/*((NJS_MATERIAL*)0x8BA30C)->attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	((NJS_MATERIAL*)0x8BA30C)->diffuse.color = 0xCC000000;
-	WriteData((float*)0x004A2CFA, 0.1f);
-	WriteData((float*)0x004A2CFF, 0.1f);
-	WriteData((float*)0x004A2D04, 0.1f);
-	WriteData((float*)0x004A2D09, 0.25f);
-	WriteCall((void*)0x4A2CDE, EmeraldShardLighting);
-	WriteData<1>((char*)0x004A2D9A, 0x87); //IGNORE_LIGHT*/
+	//Some emerald shard "fixes"
+	WriteCall((void*)0x4A2CEF, RenderEmeraldShard_A);
+	WriteCall((void*)0x4A2DBD, RenderEmeraldShard_B);
+	WriteCall((void*)0x4A2E02, RenderEmeraldShard_C);
+	WriteCall((void*)0x4A2D0D, SetEmeraldShardColor);
 	//Underwater overlay
 	WriteCall((void*)0x43708D, DrawUnderwaterOverlay);
 	//Gamma's chest patch lol
