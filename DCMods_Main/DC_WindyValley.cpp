@@ -462,7 +462,7 @@ void WindyValley_OnFrame()
 	float TornadoDistance;
 	auto entity = EntityData1Ptrs[0];
 	//Tornado stuff
-	if (CurrentAct == 0)
+	if (CurrentLevel == LevelIDs_WindyValley && CurrentAct == 0)
 	{
 		if (GameState == 3 || GameState == 4 || GameState == 7 || GameState == 21 || CurrentCharacter == 6) TornadoMode = 0;
 		if (CurrentCharacter != 6 && entity != nullptr)
