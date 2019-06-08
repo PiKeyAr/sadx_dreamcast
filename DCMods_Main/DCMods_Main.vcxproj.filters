@@ -383,9 +383,6 @@
     <ClInclude Include="Data\HotShelter3.h">
       <Filter>Header Files\Levels\HotShelter</Filter>
     </ClInclude>
-    <ClInclude Include="Data\HW_Jammer.h">
-      <Filter>Header Files\Levels\SpeedHighway</Filter>
-    </ClInclude>
     <ClInclude Include="Data\IceCap1.h">
       <Filter>Header Files\Levels\IceCap</Filter>
     </ClInclude>
@@ -404,25 +401,7 @@
     <ClInclude Include="Data\LightingArrays.h">
       <Filter>Header Files\Levels\Bosses</Filter>
     </ClInclude>
-    <ClInclude Include="Data\SH_bluecar.h">
-      <Filter>Header Files\Levels\SpeedHighway</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\SH_bus.h">
-      <Filter>Header Files\Levels\SpeedHighway</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\SH_Glass.h">
-      <Filter>Header Files\Levels\SpeedHighway</Filter>
-    </ClInclude>
     <ClInclude Include="Data\SH_helicopter.h">
-      <Filter>Header Files\Levels\SpeedHighway</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\SH_redcar.h">
-      <Filter>Header Files\Levels\SpeedHighway</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\SH_turnasi.h">
-      <Filter>Header Files\Levels\SpeedHighway</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\SH_yellowcar.h">
       <Filter>Header Files\Levels\SpeedHighway</Filter>
     </ClInclude>
     <ClInclude Include="Data\MasterEmerald.h">
@@ -472,9 +451,6 @@
     </ClInclude>
     <ClInclude Include="Data\OFinalEgg.h">
       <Filter>Header Files\Levels\ADV02MODELS</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\OLmpa.h">
-      <Filter>Header Files\Levels\SpeedHighway</Filter>
     </ClInclude>
     <ClInclude Include="Data\Palm.h">
       <Filter>Header Files\Levels\ADV03MODELS</Filter>
