@@ -187,7 +187,7 @@ void __cdecl Cowgirl_Display(ObjectMaster *a1)
 		njPushMatrix(0);
 		njTranslate(0, 311.62f, 0, 338.93f);
 		njRotateXYZ(0, 0, 0x1E00, 0);
-		sub_405450(&action_cowgirl_anim, *(float*)&a1->Data1->CharIndex, 1.0f);
+		njAction_Queue_407FC0(&action_cowgirl_anim, *(float*)&a1->Data1->CharIndex, 0);
 		njPopMatrix(1u);
 	}
 }
