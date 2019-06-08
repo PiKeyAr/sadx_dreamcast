@@ -11,7 +11,7 @@
 
 NJS_TEXNAME textures_chaos0[34];
 NJS_TEXLIST texlist_chaos0 = { arrayptrandlength(textures_chaos0) };
-//#include "Chaos0.h"
+
 NJS_TEXNAME chaos0_obj_tex[33];
 NJS_TEXLIST chaos0_object = { arrayptrandlength(chaos0_obj_tex) };
 
@@ -41,6 +41,9 @@ NJS_TEXLIST texlist_eggviper = { arrayptrandlength(textures_eggviper) };
 
 NJS_TEXNAME textures_e101[77];
 NJS_TEXLIST texlist_e101 = { arrayptrandlength(textures_e101) };
+
+//#include "Chaos0.h"
+//#include "Chaos2.h"
 
 NJS_TEXANIM Chaos0SpotlightTexanim = { 128, 128, 64, 64, 0, 0, 255, 255, 1, 0 };
 NJS_SPRITE Chaos0SpotlightSprite1 = { -54.0f, 10.0f, 0, 0.25f, 0.42f, 17500, BOSSCHAOS0_TEXLISTS[1], &Chaos0SpotlightTexanim };
@@ -1216,55 +1219,77 @@ void Chaos0_Init()
 	((NJS_OBJECT*)0x02C5F618)->basicdxmodel->mats[0].diffuse.color = 0x7FB2B2B2;
 }
 
+void Chaos2Ball(NJS_OBJECT *object)
+{
+	ProcessModelNode_D_Wrapper(object, (QueuedModelFlagsB)0);
+}
+
+void Chaos2Ball_Transform(NJS_OBJECT *object)
+{
+	DrawQueueDepthBias = -17000.0f;
+	ProcessModelNode_D_Wrapper(object, (QueuedModelFlagsB)0);
+	DrawQueueDepthBias = 0;
+}
+
+void Chaos2Action(NJS_ACTION *a1, float frameNumber)
+{
+	njAction_Queue_407FC0(a1, frameNumber, (QueuedModelFlagsB)0);
+}
+
+void ChandelierFix(NJS_OBJECT *a1, QueuedModelFlagsB a2, float a3)
+{
+	ProcessModelNode_D_Wrapper(a1, (QueuedModelFlagsB)1);
+}
+
+void Chaos2TableTopFix(NJS_MODEL_SADX *model, float scale)
+{
+	DrawQueueDepthBias = -20000.0f;
+	DrawModel_Queue(model, QueuedModelFlagsB_EnableZWrite);
+	DrawQueueDepthBias = 0.0f;
+}
+
+void ChandLightFix(NJS_OBJECT *a1, QueuedModelFlagsB a2)
+{
+	SetMaterialAndSpriteColor_Float(0.65f, 0.6f, 0.6f, 0.6f);
+	DrawQueueDepthBias = -18000.0f;
+	ProcessModelNode(a1, QueuedModelFlagsB_SomeTextureThing, 1.0f);
+	DrawQueueDepthBias = 0.0f;
+}
+
 void Chaos2_Init()
 {
-	*(NJS_OBJECT*)0x117E86C = object_00D7E86C;
 	ReplaceBIN_DC("SET1600S");
 	ReplacePVM("CHAOS2");
 	ReplacePVM("LM_CHAOS2");
 	ReplacePVM("CHAOS2_BARRIER");
 	ReplacePVM("CHAOS2_EFFECT");
 	ReplacePVM("CHAOS2_OBJECT");
+	*(NJS_MODEL_SADX*)0x11863C0 = *LoadModel("system\\data\\B_CHAOS2\\Models\\0006CD68.sa1mdl", false)->basicdxmodel; //Column
+	*(NJS_OBJECT*)0x11835B4 = *LoadModel("system\\data\\B_CHAOS2\\Models\\0006812C.sa1mdl", false); //Table
+	((NJS_OBJECT*)0x11835B4)->basicdxmodel->mats[1].attrflags &= ~NJD_FLAG_USE_ALPHA; //This doesn't use alpha anyway
+	*(NJS_MODEL_SADX*)0x1183690 = *LoadModel("system\\data\\B_CHAOS2\\Models\\0006822C.sa1mdl", false)->basicdxmodel; //Transparent thing on table
+	WriteCall((void*)0x54E3FE, Chaos2TableTopFix);
+	*(NJS_OBJECT*)0x117E86C = *LoadModel("system\\data\\B_CHAOS2\\Models\\0006A160.sa1mdl", false); //Chandelier
+	WriteCall((void*)0x54E13C, ChandLightFix);
+	WriteCall((void*)0x54DFCC, ChandelierFix);
 	ResizeTextureList((NJS_TEXLIST*)0x117C76C, textures_chaos2);
-	((NJS_MATERIAL*)0x0117E8A0)->attrflags |= NJD_FLAG_IGNORE_LIGHT; //Top light in Chaos 2
+	*(NJS_OBJECT*)0x117EB1C = *LoadModel("system\\data\\B_CHAOS2\\Models\\0006A400.sa1mdl", false); //Chandelier floor light
+	((NJS_OBJECT*)0x117EB1C)->basicdxmodel->mats[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
 	WriteCall((void*)0x0054AC30, FixChaos2Columns);
-	*(NJS_MODEL_SADX*)0x11863C0 = attach_00D863C0; //Chaos 2 column model
-	//Chaos 2
-	((NJS_MATERIAL*)0x011835E8)->attrflags |= NJD_FLAG_IGNORE_LIGHT; //Chaos2 table
-	((NJS_OBJECT*)0x0114B918)->basicdxmodel->mats[0].diffuse.color = 0x65B2B2B2; //Chaos2
-	((NJS_OBJECT*)0x011339EC)->basicdxmodel->mats[0].diffuse.color = 0x7FB2B2B2; //Chaos2 small ball
-	((NJS_OBJECT*)0x01139274)->basicdxmodel->mats[0].diffuse.color = 0x7FB2B2B2; //Chaos2 ball
-	((NJS_OBJECT*)0x0113F81C)->basicdxmodel->mats[0].diffuse.color = 0x7FB2B2B2; //Chaos2 ball
-	((NJS_OBJECT*)0x0113328C)->basicdxmodel->mats[0].diffuse.color = 0x65B2B2B2; //Chaos2
-	((NJS_OBJECT*)0x01132A50)->basicdxmodel->mats[0].diffuse.color = 0x65B2B2B2; //Chaos2
-	((NJS_OBJECT*)0x011326E4)->basicdxmodel->mats[0].diffuse.color = 0x65B2B2B2; //Chaos2
-	((NJS_OBJECT*)0x011324A0)->basicdxmodel->mats[0].diffuse.color = 0x65B2B2B2; //Chaos2
-	((NJS_OBJECT*)0x01132074)->basicdxmodel->mats[0].diffuse.color = 0x65B2B2B2; //Chaos2
-	((NJS_OBJECT*)0x0113328C)->basicdxmodel->mats[0].diffuse.color = 0x65B2B2B2; //Chaos2
-	((NJS_OBJECT*)0x01131E78)->basicdxmodel->mats[0].diffuse.color = 0x65B2B2B2; //Chaos2
-	((NJS_OBJECT*)0x0113328C)->basicdxmodel->mats[0].diffuse.color = 0x65B2B2B2; //Chaos2
-	((NJS_OBJECT*)0x01131980)->basicdxmodel->mats[0].diffuse.color = 0x65B2B2B2; //Chaos2
-	((NJS_OBJECT*)0x0113328C)->basicdxmodel->mats[0].diffuse.color = 0x65B2B2B2; //Chaos2
-	((NJS_OBJECT*)0x01131614)->basicdxmodel->mats[0].diffuse.color = 0x65B2B2B2; //Chaos2
-	((NJS_OBJECT*)0x0113328C)->basicdxmodel->mats[0].diffuse.color = 0x65B2B2B2; //Chaos2
-	((NJS_OBJECT*)0x011313D0)->basicdxmodel->mats[0].diffuse.color = 0x65B2B2B2; //Chaos2
-	((NJS_OBJECT*)0x0113328C)->basicdxmodel->mats[0].diffuse.color = 0x65B2B2B2; //Chaos2
-	((NJS_OBJECT*)0x01130FA4)->basicdxmodel->mats[0].diffuse.color = 0x65B2B2B2; //Chaos2
-	((NJS_OBJECT*)0x0113091C)->basicdxmodel->mats[0].diffuse.color = 0x65B2B2B2; //Chaos2
-	((NJS_OBJECT*)0x01130DA8)->basicdxmodel->mats[0].diffuse.color = 0x65B2B2B2; //Chaos2
-	((NJS_OBJECT*)0x0112F1A8)->basicdxmodel->mats[0].diffuse.color = 0x65B2B2B2; //Chaos2
-	((NJS_OBJECT*)0x0112ECD4)->basicdxmodel->mats[0].diffuse.color = 0x65B2B2B2; //Chaos2
-	((NJS_OBJECT*)0x0112E09C)->basicdxmodel->mats[0].diffuse.color = 0x65B2B2B2; //Chaos2
-	((NJS_OBJECT*)0x0112B584)->basicdxmodel->mats[0].diffuse.color = 0x65B2B2B2; //Chaos2
-	((NJS_OBJECT*)0x0112ACC0)->basicdxmodel->mats[0].diffuse.color = 0x65B2B2B2; //Chaos2
-	((NJS_OBJECT*)0x0112A6E8)->basicdxmodel->mats[0].diffuse.color = 0x65B2B2B2; //Chaos2
-	((NJS_OBJECT*)0x0112A214)->basicdxmodel->mats[0].diffuse.color = 0x65B2B2B2; //Chaos2
-	((NJS_OBJECT*)0x011295DC)->basicdxmodel->mats[0].diffuse.color = 0x65B2B2B2; //Chaos2
-	((NJS_OBJECT*)0x01126AC4)->basicdxmodel->mats[0].diffuse.color = 0x65B2B2B2; //Chaos2
-	((NJS_OBJECT*)0x0112A6E8)->basicdxmodel->mats[0].diffuse.color = 0x65B2B2B2; //Chaos2
-	((NJS_OBJECT*)0x01126200)->basicdxmodel->mats[0].diffuse.color = 0x65B2B2B2; //Chaos2
-	((NJS_OBJECT*)0x01125C60)->basicdxmodel->mats[0].diffuse.color = 0x65B2B2B2; //Chaos2
-	((NJS_OBJECT*)0x01121EE4)->basicdxmodel->mats[0].diffuse.color = 0x65B2B2B2; //Chaos2
+	//WriteCall((void*)0x54858A, Chaos2Action); //Chaos 0
+	//WriteCall((void*)0x5528F5, Chaos2Action); //Chaos 4
+	//WriteCall((void*)0x558FFC, Chaos2Action); //Chaos 6
+	//WriteCall((void*)0x5622DE, Chaos2Action); //Perfect Chaos
+	WriteCall((void*)0x54D991, Chaos2Ball); //Ball bouncing
+	WriteCall((void*)0x54C5E7, Chaos2Ball_Transform); //Ball transforming
+	WriteCall((void*)0x54F496, Chaos2Ball); //Chaos transformation model
+	WriteCall((void*)0x54CFC9, Chaos2Ball); //Hand attack
+	WriteCall((void*)0x54DA8A, Chaos2Action); //Main model
+	RemoveVertexColors_Object((NJS_OBJECT*)0x01133328); //Chaos2 (main)
+	RemoveVertexColors_Object((NJS_OBJECT*)0x0114B918); //Chaos2 (alt)
+	RemoveVertexColors_Object((NJS_OBJECT*)0x011339EC); //Chaos2 small ball
+	RemoveVertexColors_Object((NJS_OBJECT*)0x01139274); //Chaos2 ball
+	RemoveVertexColors_Object((NJS_OBJECT*)0x0113F81C); //Chaos2 ball 2
 	for (unsigned int i = 0; i < 3; i++)
 	{
 		Chaos2Fog[i].Color = 0xFF000000;
