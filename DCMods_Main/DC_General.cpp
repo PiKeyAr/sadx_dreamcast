@@ -18,6 +18,9 @@ NJS_TEXANIM Heat2Texanim = { 56, 64, 28, 32, 0, 0, 0xFF, 0xFF, 2, 0 };
 NJS_SPRITE Heat1Sprite = { { 0, 0, 0 }, 1.0f, 1.0f, 0, (NJS_TEXLIST*)0x0091BD28, &Heat1Texanim };
 NJS_SPRITE Heat2Sprite = { { 0, 0, 0 }, 1.0f, 1.0f, 0, (NJS_TEXLIST*)0x0091BD28, &Heat2Texanim };
 
+NJS_OBJECT *EmeraldPieceModel = nullptr;
+NJS_OBJECT *EmeraldPieceOutline = nullptr;
+
 DataArray(DirLightData_SADX, DirLights_SADX, 0x900918, 29);
 DataPointer(DirLightData_SADX, DefaultDirLight_SADX, 0x9008E4);
 DataPointer(NJS_OBJECT, stru_8B22F4, 0x8B22F4);
@@ -36,6 +39,7 @@ FunctionPointer(void, Cutscene_MoveCharacterAtoB, (ObjectMaster *a1, float a2, f
 FunctionPointer(void, Cutscene_WaitForInput, (int a1), 0x4314D0);
 FunctionPointer(void, sub_4094D0, (NJS_MODEL_SADX *model, QueuedModelFlagsB blend, float radius_scale), 0x4094D0);
 FunctionPointer(void, sub_4053A0, (NJS_OBJECT *a1, NJS_MOTION *a2, float frame, int flags, float scale), 0x4053A0);
+FunctionPointer(void, sub_407CF0, (NJS_MODEL_SADX *a1, QueuedModelFlagsB a2), 0x407CF0);
 
 static Uint32 GlobalColor_one = 0;
 static Uint32 GlobalColor_two = 0;
@@ -61,6 +65,7 @@ static float LSDFix = 16.0f;
 static int CutsceneFadeValue = 0;
 static int CutsceneFadeMode = 0;
 static bool SkipPressed_Cutscene = false;
+static float EmeraldScale = 1.005f;
 
 NJS_MATERIAL* AlphaRejectMaterials[] = {
 	((NJS_MATERIAL*)0x8B2E6C), //Invincibility lines
@@ -1165,38 +1170,28 @@ void DrawRingShadowHook(NJS_MODEL_SADX *a1, float a2)
 
 void RenderEmeraldShard_A(NJS_OBJECT *a1, QueuedModelFlagsB a2, float a3)
 {
-	Uint32 backupcolor = a1->basicdxmodel->mats[0].diffuse.color;
-	DrawQueueDepthBias = 3500.0f;
-	a1->basicdxmodel->mats[0].diffuse.color = 0xCCB2B2B2;
-	ProcessModelNode(a1, (QueuedModelFlagsB)1, a3);
-	//ProcessModelNode_AB_Wrapper(a1, 1.0f);
+	DrawQueueDepthBias = 2000.0f;
+	ProcessModelNode_D(EmeraldPieceModel, (QueuedModelFlagsB)1, a3);
 	DrawQueueDepthBias = 0.0f;
-	a1->basicdxmodel->mats[0].diffuse.color = backupcolor;
 }
 
 void RenderEmeraldShard_B(NJS_OBJECT *a1, QueuedModelFlagsB a2)
 {
-	Uint32 backupcolor = a1->basicdxmodel->mats[0].diffuse.color;
-	DrawQueueDepthBias = 4000.0f;
-	a1->basicdxmodel->mats[0].diffuse.color = 0x00000000;
-	ProcessModelNode_D(a1, (QueuedModelFlagsB)0, 1.0f);
+	DrawQueueDepthBias = 1500.0f;
+	ProcessModelNode_D(EmeraldPieceOutline, (QueuedModelFlagsB)0, 1.0f);
 	DrawQueueDepthBias = 0.0f;
-	a1->basicdxmodel->mats[0].diffuse.color = backupcolor;
 }
 
 void RenderEmeraldShard_C(NJS_OBJECT *a1)
 {
-	Uint32 backupcolor = a1->basicdxmodel->mats[0].diffuse.color;
-	DrawQueueDepthBias = 4000.0f;
-	a1->basicdxmodel->mats[0].diffuse.color = 0x00000000;
-	ProcessModelNode_D(a1, (QueuedModelFlagsB)0, 1.0f);
+	DrawQueueDepthBias = 1500.0f;
+	ProcessModelNode_D(EmeraldPieceOutline, (QueuedModelFlagsB)0, 1.0f);
 	DrawQueueDepthBias = 0.0f;
-	a1->basicdxmodel->mats[0].diffuse.color = backupcolor;
 }
 
 void SetEmeraldShardColor(float a, float r, float g, float b)
 {
-	SetMaterialAndSpriteColor_Float(0.08f, 1.0f, 1.0f, 0.7f);
+	SetMaterialAndSpriteColor_Float(0.08f, 1.0f, 1.0f, 1.0f);
 }
 
 void General_Init(const IniFile *config, const HelperFunctions &helperFunctions)
@@ -1566,10 +1561,21 @@ void General_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 	//Water splash particle
 	WriteCall((void*)0x0049F1C0, FixWaterSplash);
 	//Some emerald shard "fixes"
+	EmeraldPieceModel = LoadModel("system\\data\\1st_read\\Models\\0019BC48.sa1mdl", false);
+	if (GetModuleHandle(L"sadx-d3d11") == nullptr)
+	{
+		EmeraldPieceModel->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_USE_ALPHA;
+		EmeraldPieceModel->basicdxmodel->mats[0].diffuse.color = 0xFFB2B2B2;
+	}
+	EmeraldPieceOutline = LoadModel("system\\data\\1st_read\\Models\\0019BC48.sa1mdl", false);
+	EmeraldPieceOutline->basicdxmodel->mats[0].attrflags &= ~NJD_DA_INV_SRC;
+	EmeraldPieceOutline->basicdxmodel->mats[0].attrflags |= NJD_DA_ONE;
+	EmeraldPieceOutline->basicdxmodel->mats[0].diffuse.color = 0x00000000;
 	WriteCall((void*)0x4A2CEF, RenderEmeraldShard_A);
 	WriteCall((void*)0x4A2DBD, RenderEmeraldShard_B);
 	WriteCall((void*)0x4A2E02, RenderEmeraldShard_C);
 	WriteCall((void*)0x4A2D0D, SetEmeraldShardColor);
+	WriteData((float**)0x004A2D39, &EmeraldScale); //Prevent minor Z Fighting with the main model
 	//Underwater overlay
 	WriteCall((void*)0x43708D, DrawUnderwaterOverlay);
 	//Gamma's chest patch lol

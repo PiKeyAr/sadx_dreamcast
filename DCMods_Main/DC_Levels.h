@@ -443,6 +443,7 @@ bool Chaos2Function(NJS_MATERIAL* material, uint32_t flags);
 bool Chaos4NPCFunction(NJS_MATERIAL* material, uint32_t flags);
 void RemoveMaterialColors(NJS_MATERIAL* material);
 bool DisableAlphaRejection(NJS_MATERIAL* material, uint32_t flags);
+bool EmeraldPieceFunction(NJS_MATERIAL* material, uint32_t flags);
 
 bool ForceDiffuse0Specular0(NJS_MATERIAL* material, uint32_t flags);
 bool ForceDiffuse0Specular1(NJS_MATERIAL* material, uint32_t flags);
