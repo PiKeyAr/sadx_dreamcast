@@ -33,6 +33,7 @@ NJS_OBJECT *SS04SeaModel = nullptr;
 */
 
 static Sint8 PreviousTimeOfDay = -1;
+static Sint8 DelayedTimeOfDay = -1;
 
 DataArray(FogData, StationSquare1Fog, 0x02AA3D10, 3);
 DataArray(FogData, StationSquare2Fog, 0x02AA3D40, 3);
@@ -1241,6 +1242,11 @@ void LSCutsceneRotationFix()
 	EntityData1Ptrs[0]->Rotation.y = 49072;
 }
 
+void DelaySettingTimeOfDay(Sint8 time)
+{
+	DelayedTimeOfDay = time;
+}
+
 void ADV00_Init()
 {
 	ReplaceBIN_DC("SETSS00A");
@@ -1404,6 +1410,7 @@ void ADV00_Init()
 	WriteData((float*)0x006532BB, 509.9f); //X2
 	WriteData((float*)0x006532B6, -89.4f); //Y2
 	WriteData((float*)0x006532B1, 812.3f); //Z2
+	WriteCall((void*)0x6304B6, DelaySettingTimeOfDay);
 	WriteCall((void*)0x652F4F, LSCutsceneRotationFix); //Fix Sonic's rotation after getting the Light Speed Shoes
 	//Fix NPC materials
 	for (unsigned int i = 0; i < LengthOfArray(NPCMaterials); i++)
@@ -1473,13 +1480,24 @@ void ADV00_Init()
 
 void ADV00_OnFrame()
 {
-	//Switch textures/lighting depending on time of day
-	if (ADV00_0_Info && ADV00_1_Info && ADV00_3_Info && ADV00_4_Info && PreviousTimeOfDay != GetTimeOfDay())
+	if (CurrentLevel == LevelIDs_StationSquare)
 	{
-		SwitchLighting_TimeOfDay(0);
-		SwitchLighting_TimeOfDay(1);
-		SwitchLighting_TimeOfDay(3);
-		SwitchLighting_TimeOfDay(4);
-		PreviousTimeOfDay = GetTimeOfDay();
+		//Switch textures/lighting depending on time of day
+		if (ADV00_0_Info && ADV00_1_Info && ADV00_3_Info && ADV00_4_Info && PreviousTimeOfDay != GetTimeOfDay())
+		{
+			SwitchLighting_TimeOfDay(0);
+			SwitchLighting_TimeOfDay(1);
+			SwitchLighting_TimeOfDay(3);
+			SwitchLighting_TimeOfDay(4);
+			PreviousTimeOfDay = GetTimeOfDay();
+		}
+		//Delayed time of day for Sonic's cutscene
+		{
+			if (CurrentAct != 2 && DelayedTimeOfDay != -1)
+			{
+				SetTimeOfDay(DelayedTimeOfDay);
+				DelayedTimeOfDay = -1;
+			}
+		}
 	}
 }
