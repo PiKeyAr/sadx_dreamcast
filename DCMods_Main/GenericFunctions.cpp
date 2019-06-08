@@ -418,12 +418,6 @@ bool Chaos4NPCFunction(NJS_MATERIAL* material, uint32_t flags)
 	return true;
 }
 
-bool EmeraldPieceFunction(NJS_MATERIAL* material, uint32_t flags)
-{
-	set_diffuse_ptr(4, false);
-	return true;
-}
-
 bool ChaosPuddleFunc(NJS_MATERIAL* material, uint32_t flags)
 {
 	if (CurrentLevel == 18 || CurrentLevel == 16 || CurrentLevel == 19)
