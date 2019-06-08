@@ -356,9 +356,6 @@
     <ClInclude Include="Data\Grass.h">
       <Filter>Header Files\Levels\ADV02MODELS</Filter>
     </ClInclude>
-    <ClInclude Include="Data\Highway_objects.h">
-      <Filter>Header Files\Levels\SpeedHighway</Filter>
-    </ClInclude>
     <ClInclude Include="Data\Highway1.h">
       <Filter>Header Files\Levels\SpeedHighway</Filter>
     </ClInclude>

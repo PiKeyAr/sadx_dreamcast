@@ -192,7 +192,6 @@
     <ClInclude Include="Data\Highway1.h" />
     <ClInclude Include="Data\Highway2.h" />
     <ClInclude Include="Data\Highway3.h" />
-    <ClInclude Include="Data\Highway_objects.h" />
     <ClInclude Include="Data\HintMessages.h" />
     <ClInclude Include="Data\HintMonitor.h" />
     <ClInclude Include="Data\HotShelter1.h" />

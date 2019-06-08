@@ -1,5 +1,4 @@
 #include "stdafx.h"
-#include "Highway_objects.h"
 
 NJS_TEXNAME textures_highway1[89];
 NJS_TEXLIST texlist_hw1 = { arrayptrandlength(textures_highway1) };
@@ -489,7 +488,7 @@ void SpeedHighway_Init()
 	}
 	WriteCall((void*)0x61AF66, OCraneFix); //Was it really necessary to queue a non-transparent model??
 	//Helicopter light
-	HelicopterLight1 = LoadModel("system\\data\\STG04\\Models\\00159588.sa1mdl", false); //Helicopter light
+	HelicopterLight1 = LoadModel("system\\data\\STG04\\Models\\00159588.sa1mdl", false); //Helicopter light (edited model)
 	HelicopterLight2 = HelicopterLight1->child;
 	HelicopterLight3 = HelicopterLight1->child->child;
 	HelicopterLight4 = HelicopterLight1->child->child->child;
@@ -556,7 +555,6 @@ void SpeedHighway_Init()
 	FlySt2->basicdxmodel->meshsets[4].nbMesh = 0;
 	FlySt2->basicdxmodel->meshsets[5].nbMesh = 0;
 	((NJS_ACTION*)0x02674424)->object = FlySt1;
-	((NJS_ACTION*)0x02674424)->motion = &Platform2_action; //Platform2
 	WriteCall((void*)0x617FCA, FlyStFix);
 	*(NJS_OBJECT*)0x02679ECC = *LoadModel("system\\data\\STG04\\Models\\00148880.sa1mdl", false); //Platform (Tails)
 	*(NJS_OBJECT*)0x026A0008 = *LoadModel("system\\data\\STG04\\Models\\0016B6FC.sa1mdl", false); //Missile (Tails)
