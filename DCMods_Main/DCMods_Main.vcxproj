@@ -150,7 +150,6 @@
     <ClInclude Include="Data\ChaoObjects.h" />
     <ClInclude Include="Data\ChaoRace.h" />
     <ClInclude Include="Data\ChaoRaceEntry.h" />
-    <ClInclude Include="Data\Chaos0_Objects.h" />
     <ClInclude Include="Data\Chaos0.h" />
     <ClInclude Include="Data\Chaos2.h" />
     <ClInclude Include="Data\Chaos2_PC.h" />

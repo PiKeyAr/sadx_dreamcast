@@ -602,9 +602,6 @@
     <ClInclude Include="Data\TornadoCrash.h">
       <Filter>Header Files\Levels\General</Filter>
     </ClInclude>
-    <ClInclude Include="Data\Chaos0_Objects.h">
-      <Filter>Header Files\Levels\Bosses</Filter>
-    </ClInclude>
     <ClInclude Include="Data\Chaos0.h">
       <Filter>Header Files\Levels\Bosses</Filter>
     </ClInclude>
