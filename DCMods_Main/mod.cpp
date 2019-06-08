@@ -545,26 +545,26 @@ extern "C"
 			}
 		}
 		if (EnableDCBranding) Branding_OnFrame();
-		if (EnableStationSquare && CurrentLevel == LevelIDs_StationSquare) ADV00_OnFrame();
+		if (EnableStationSquare) ADV00_OnFrame();
 		if (EnableEggCarrier)
 		{
-			if (CurrentLevel == LevelIDs_EggCarrierOutside) ADV01_OnFrame();
-			if (CurrentLevel == LevelIDs_EggCarrierInside) ADV01C_OnFrame();
+			ADV01_OnFrame();
+			ADV01C_OnFrame();
 		}
-		if (EnableMysticRuins && CurrentLevel == LevelIDs_MysticRuins) ADV02_OnFrame();
-		if (EnablePast && CurrentLevel == LevelIDs_Past) ADV03_OnFrame();
+		if (EnableMysticRuins) ADV02_OnFrame();
+		if (EnablePast) ADV03_OnFrame();
 		Bosses_OnFrame();
-		if (EnableEmeraldCoast && CurrentLevel == LevelIDs_EmeraldCoast) EmeraldCoast_OnFrame();
-		if (EnableWindyValley && CurrentLevel == LevelIDs_WindyValley) WindyValley_OnFrame();
+		if (EnableEmeraldCoast) EmeraldCoast_OnFrame();
+		if (EnableWindyValley) WindyValley_OnFrame();
 		if (EnableTwinklePark) TwinklePark_OnFrame();
-		if (EnableSpeedHighway && CurrentLevel == LevelIDs_SpeedHighway) SpeedHighway_OnFrame();
-		if (EnableRedMountain && CurrentLevel == LevelIDs_RedMountain) RedMountain_OnFrame();
-		if (EnableSkyDeck && CurrentLevel == LevelIDs_SkyDeck) SkyDeck_OnFrame();
-		if (EnableLostWorld && CurrentLevel == LevelIDs_LostWorld) LostWorld_OnFrame();
-		if (EnableIceCap && CurrentLevel == LevelIDs_IceCap) IceCap_OnFrame();
-		if (EnableCasinopolis && CurrentLevel == LevelIDs_Casinopolis) Casinopolis_OnFrame();
-		if (EnableFinalEgg && CurrentLevel == LevelIDs_FinalEgg) FinalEgg_OnFrame();
-		if (EnableHotShelter && CurrentLevel == LevelIDs_HotShelter) HotShelter_OnFrame();
+		if (EnableSpeedHighway) SpeedHighway_OnFrame();
+		if (EnableRedMountain) RedMountain_OnFrame();
+		if (EnableSkyDeck) SkyDeck_OnFrame();
+		if (EnableLostWorld) LostWorld_OnFrame();
+		if (EnableIceCap) IceCap_OnFrame();
+		if (EnableCasinopolis) Casinopolis_OnFrame();
+		if (EnableFinalEgg) FinalEgg_OnFrame();
+		if (EnableHotShelter) HotShelter_OnFrame();
 		//Subgames_OnFrame();
 		ChaoGardens_OnFrame();
 		ChaoRace_OnFrame();

@@ -753,93 +753,96 @@ void ADV02_Init()
 
 void ADV02_OnFrame()
 {
-	if (!IsGamePaused())
+	auto entity = EntityData1Ptrs[0];
+	if (CurrentLevel == LevelIDs_MysticRuins)
 	{
-		//Animate rotating stuff in MR Jungle
+		if (!IsGamePaused())
+		{
+			//Animate rotating stuff in MR Jungle
+			if (CurrentAct == 2)
+			{
+				MRGeoAnimFrame += 0.4f*FramerateSetting;
+				if (MRGeoAnimFrame >= 120.0f) MRGeoAnimFrame = 0;
+				for (int q = 0; q < LengthOfArray(MRJungleObjectAnimations_Propeller); ++q)
+				{
+					if (MRJungleObjectAnimations_Propeller[q])
+					{
+						MRJungleObjectAnimations_Propeller[q]->ang[0] = (MRJungleObjectAnimations_Propeller[q]->ang[0] + (1024 - 512 * (q % 2)) * FramerateSetting) % 65535;
+					}
+				}
+				for (int q = 0; q < LengthOfArray(MRJungleObjectAnimations_Lantern); ++q)
+				{
+					if (MRJungleObjectAnimations_Lantern[q])
+					{
+						MRJungleObjectAnimations_Lantern[q]->ang[1] = (MRJungleObjectAnimations_Lantern[q]->ang[1] + (256 * FramerateSetting)) % 65535;
+					}
+				}
+			}
+		}
+		//Prevent dynamic direction from being adjusted in Eggman's base
+		if (CurrentAct == 3)
+		{
+			CasinoLightRotation_Y = 0;
+			CasinoLightRotation_Z = 0;
+		}
+		//Evening and night materials Act 3
 		if (CurrentAct == 2)
 		{
-			MRGeoAnimFrame += 0.4f*FramerateSetting;
-			if (MRGeoAnimFrame >= 120.0f) MRGeoAnimFrame = 0;
-			for (int q = 0; q < LengthOfArray(MRJungleObjectAnimations_Propeller); ++q)
+			matlistADV02_00208504Z[9].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+			matlistADV02_00208504Z[10].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+			matlistADV02_00208504Z[11].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+			matlistADV02_00208504Z[12].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+			matlistADV02_00208504[9].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+			matlistADV02_00208504[10].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+			matlistADV02_00208504[11].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+			matlistADV02_00208504[12].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+			matlistADV02_0020632C[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+			matlistADV02_00208504Z[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+			matlistADV02_00208504Z[2].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+			matlistADV02_00208504[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+			matlistADV02_00208504[2].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+		}
+		//Dynamic fog in the jungle + cutscene exclusions
+		if (!IsGamePaused() && ADV02_2_Info && CurrentAct == 2)
+		{
+			if (IsPlayerInsideSphere(&TempleVector, 480.0f))
 			{
-				if (MRJungleObjectAnimations_Propeller[q])
+				InsideTemple = 1;
+			}
+			else InsideTemple = 0;
+			if (EV_MainThread_ptr != 0 && CurrentCharacter == 7 && CutsceneID == 208)  InsideTemple = 1;
+			if (EV_MainThread_ptr != 0 && CurrentCharacter == 7 && CutsceneID == 226)  InsideTemple = 1;
+			if (Camera_Data1 != nullptr && Camera_Data1->Position.y < 300.0f && InsideTemple == 0)
+			{
+				if (CurrentFogLayer < -65.0f) CurrentFogLayer = CurrentFogLayer + 64.0f;
+				if (CurrentFogLayer > -65.0f) CurrentFogLayer = -1.0f;
+				if (CurrentFogDist < -3200.0f) CurrentFogDist = CurrentFogDist + 128.0f;
+			}
+			if (Camera_Data1 != nullptr && Camera_Data1->Position.y > 300.0f)
+			{
+				if (GetTimeOfDay() != 0)
 				{
-					MRJungleObjectAnimations_Propeller[q]->ang[0] = (MRJungleObjectAnimations_Propeller[q]->ang[0] + (1024 - 512 * (q % 2)) * FramerateSetting) % 65535;
+					if (CurrentFogLayer > -1000.0f) CurrentFogLayer = CurrentFogLayer - 64.0f;
+					if (CurrentFogDist > -14000.0f) CurrentFogDist = CurrentFogDist - 128.0f;
+				}
+				if (GetTimeOfDay() == 0)
+				{
+					if (CurrentFogLayer > -4000.0f) CurrentFogLayer = CurrentFogLayer - 64.0f;
+					if (CurrentFogDist > -16000.0f) CurrentFogDist = CurrentFogDist - 128.0f;
 				}
 			}
-			for (int q = 0; q < LengthOfArray(MRJungleObjectAnimations_Lantern); ++q)
+			if (InsideTemple == 1)
 			{
-				if (MRJungleObjectAnimations_Lantern[q])
+				if (GetTimeOfDay() != 0)
 				{
-					MRJungleObjectAnimations_Lantern[q]->ang[1] = (MRJungleObjectAnimations_Lantern[q]->ang[1] + (256 * FramerateSetting)) % 65535;
+					if (CurrentFogLayer > -1000.0f) CurrentFogLayer = CurrentFogLayer - 64.0f;
+					if (CurrentFogDist > -14000.0f) CurrentFogDist = CurrentFogDist - 128.0f;
 				}
-			}
-		}
-	}
-	//Prevent dynamic direction from being adjusted in Eggman's base
-	if (CurrentAct == 3)
-	{
-		CasinoLightRotation_Y = 0;
-		CasinoLightRotation_Z = 0;
-	}
-	//Evening and night materials Act 3
-	if (CurrentAct == 2)
-	{
-		matlistADV02_00208504Z[9].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV02_00208504Z[10].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV02_00208504Z[11].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV02_00208504Z[12].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV02_00208504[9].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV02_00208504[10].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV02_00208504[11].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV02_00208504[12].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV02_0020632C[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV02_00208504Z[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV02_00208504Z[2].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV02_00208504[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		matlistADV02_00208504[2].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	}
-	//Dynamic fog in the jungle + cutscene exclusions
-	auto entity = EntityData1Ptrs[0];
-	if (!IsGamePaused() && ADV02_2_Info && CurrentAct == 2)
-	{
-		if (IsPlayerInsideSphere( &TempleVector, 480.0f))
-		{
-			InsideTemple = 1;
-		}
-		else InsideTemple = 0;
-		if (EV_MainThread_ptr != 0 && CurrentCharacter == 7 && CutsceneID == 208)  InsideTemple = 1;
-		if (EV_MainThread_ptr != 0 && CurrentCharacter == 7 && CutsceneID == 226)  InsideTemple = 1;
-		if (Camera_Data1 != nullptr && Camera_Data1->Position.y < 300.0f && InsideTemple == 0)
-		{
-			if (CurrentFogLayer < -65.0f) CurrentFogLayer = CurrentFogLayer + 64.0f;
-			if (CurrentFogLayer > -65.0f) CurrentFogLayer = -1.0f;
-			if (CurrentFogDist < -3200.0f) CurrentFogDist = CurrentFogDist + 128.0f;
-		}
-		if (Camera_Data1 != nullptr && Camera_Data1->Position.y > 300.0f)
-		{
-			if (GetTimeOfDay() != 0)
-			{
-				if (CurrentFogLayer > -1000.0f) CurrentFogLayer = CurrentFogLayer - 64.0f;
-				if (CurrentFogDist > -14000.0f) CurrentFogDist = CurrentFogDist - 128.0f;
-			}
-			if (GetTimeOfDay() == 0)
-			{
-				if (CurrentFogLayer > -4000.0f) CurrentFogLayer = CurrentFogLayer - 64.0f;
-				if (CurrentFogDist > -16000.0f) CurrentFogDist = CurrentFogDist - 128.0f;
-			}
-		}
-		if (InsideTemple == 1)
-		{
-			if (GetTimeOfDay() != 0)
-			{
-				if (CurrentFogLayer > -1000.0f) CurrentFogLayer = CurrentFogLayer - 64.0f;
-				if (CurrentFogDist > -14000.0f) CurrentFogDist = CurrentFogDist - 128.0f;
-			}
-			if (GetTimeOfDay() == 0)
-			{
-				if (CurrentFogLayer > -4000.0f) CurrentFogLayer = CurrentFogLayer - 64.0f;
-				if (CurrentFogDist > -16000.0f) CurrentFogDist = CurrentFogDist - 128.0f;
+				if (GetTimeOfDay() == 0)
+				{
+					if (CurrentFogLayer > -4000.0f) CurrentFogLayer = CurrentFogLayer - 64.0f;
+					if (CurrentFogDist > -16000.0f) CurrentFogDist = CurrentFogDist - 128.0f;
+				}
 			}
 		}
 	}
