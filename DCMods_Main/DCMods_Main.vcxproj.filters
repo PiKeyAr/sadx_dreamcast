@@ -90,9 +90,6 @@
     <ClCompile Include="DC_ADV03MODELS.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DC_Bosses.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="DC_Branding.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -178,6 +175,27 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Boss_Chaos7.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Boss_EGM1_EggHornet.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Boss_EGM2_EggWalker.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Boss_EGM3_EggViper.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Boss_ROBO_Zero.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Boss_E101.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Boss_E101R.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Bosses_Common.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

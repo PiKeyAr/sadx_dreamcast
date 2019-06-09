@@ -448,10 +448,6 @@ NJS_MATERIAL* ChaosMaterials[] = {
 		((NJS_MATERIAL*)0x013975D8),
 };
 
-NJS_MATERIAL* WhiteDiffuse_EGM1External[] = { nullptr };
-
-NJS_MATERIAL* WhiteDiffuse_Chaos4External[] = { nullptr };
-
 NJS_MATERIAL* Chaos6ObjectMaterials[] = {
 	//E101
 	((NJS_MATERIAL*)0x014DDB58),
