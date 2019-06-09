@@ -86,6 +86,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Boss_Chaos0.cpp" />
+    <ClCompile Include="Boss_Chaos2.cpp" />
+    <ClCompile Include="Boss_Chaos4.cpp" />
     <ClCompile Include="DC_ADV00MODELS.cpp" />
     <ClCompile Include="DC_ADV01CMODELS.cpp" />
     <ClCompile Include="DC_ADV01MODELS.cpp" />
@@ -152,9 +155,7 @@
     <ClInclude Include="Data\ChaoRaceEntry.h" />
     <ClInclude Include="Data\Chaos0.h" />
     <ClInclude Include="Data\Chaos2.h" />
-    <ClInclude Include="Data\Chaos2_PC.h" />
     <ClInclude Include="Data\Chaos4.h" />
-    <ClInclude Include="Data\Chaos4_water.h" />
     <ClInclude Include="Data\Chaos6_Act1.h" />
     <ClInclude Include="Data\Chaos6_Act2.h" />
     <ClInclude Include="Data\Chaos6_models.h" />

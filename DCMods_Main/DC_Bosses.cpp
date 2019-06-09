@@ -1,25 +1,11 @@
 #include "stdafx.h"
 #include "EggHornet_Water.h"
-#include "Chaos2_Objects.h"
-#include "Chaos4_water.h"
 #include "Chaos6_Motion.h"
 #include "Chaos7_fixes.h"
 #include "ZeroE101R_Water.h"
 #include "E101Kai_Model.h"
 #include "LightingArrays.h"
 #include "ERobo.h"
-
-NJS_TEXNAME textures_chaos0[34];
-NJS_TEXLIST texlist_chaos0 = { arrayptrandlength(textures_chaos0) };
-
-NJS_TEXNAME chaos0_obj_tex[33];
-NJS_TEXLIST chaos0_object = { arrayptrandlength(chaos0_obj_tex) };
-
-NJS_TEXNAME textures_chaos2[15];
-NJS_TEXLIST texlist_chaos2 = { arrayptrandlength(textures_chaos2) };
-
-NJS_TEXNAME textures_chaos4[13];
-NJS_TEXLIST texlist_chaos4 = { arrayptrandlength(textures_chaos4) };
 
 NJS_TEXNAME textures_chaos6[77];
 NJS_TEXLIST texlist_chaos6 = { arrayptrandlength(textures_chaos6) };
@@ -42,13 +28,6 @@ NJS_TEXLIST texlist_eggviper = { arrayptrandlength(textures_eggviper) };
 NJS_TEXNAME textures_e101[77];
 NJS_TEXLIST texlist_e101 = { arrayptrandlength(textures_e101) };
 
-//#include "Chaos0.h"
-//#include "Chaos2.h"
-
-NJS_TEXANIM Chaos0SpotlightTexanim = { 128, 128, 64, 64, 0, 0, 255, 255, 1, 0 };
-NJS_SPRITE Chaos0SpotlightSprite1 = { -54.0f, 10.0f, 0, 0.25f, 0.42f, 17500, BOSSCHAOS0_TEXLISTS[1], &Chaos0SpotlightTexanim };
-NJS_SPRITE Chaos0SpotlightSprite2 = { -54.0f, -10.0f, 0, 0.25f, 0.42f, 15000, BOSSCHAOS0_TEXLISTS[1], &Chaos0SpotlightTexanim };
-
 //Chaos 6 material arrays
 DataArray(NJS_MATERIAL, matlist_00F975B0, 0x013975B0, 3);
 DataArray(NJS_MATERIAL, matlist_00F98C98, 0x01398C98, 6);
@@ -57,10 +36,9 @@ DataArray(NJS_MATERIAL, matlist_0126C51C, 0x0126C51C, 2);
 DataArray(NJS_MATERIAL, matlist_01271BCC, 0x01271BCC, 2);
 
 DataArray(PVMEntry, EggHornetObjectTextures, 0x156F6B0, 15);
-DataArray(FogData, Chaos2Fog, 0x01120638, 3);
+
 DataArray(FogData, Chaos6SFog, 0x011EF0E8, 3);
 DataArray(FogData, Chaos6KFog, 0x011EF118, 3);
-DataArray(FogData, Chaos4Fog, 0x0118FA00, 3);
 DataArray(FogData, Chaos7Fog, 0x01420E30, 3);
 DataArray(FogData, EggHornetFog, 0x01556B34, 3);
 DataArray(FogData, EggWalkerFog, 0x015E87F4, 3);
@@ -76,8 +54,6 @@ DataArray(DrawDistance, DrawDist_EggHornet, 0x01556B1C, 3);
 DataArray(DrawDistance, DrawDist_E101R, 0x015225D8, 3);
 DataArray(DrawDistance, DrawDist_Zero, 0x016B4D98, 3);
 DataArray(PVMEntry, EGGVIPER_TEXLISTS, 0x165D498, 11);
-DataArray(PVMEntry, CHAOS4_OBJECT_TEXLISTS, 0x118FDB0, 18);
-DataPointer(PVMEntry, PVMEntry_CHAOS0EFFECT, 0x1120180);
 DataPointer(unsigned char, byte_3C5A7EF, 0x3C5A7EF);
 DataPointer(unsigned char, byte_3C5A7ED, 0x3C5A7ED);
 DataPointer(unsigned char, byte_03C5A7EF, 0x03C5A7EF);
@@ -93,15 +69,11 @@ DataPointer(NJS_SPRITE, stru_1494030, 0x1494030);
 DataPointer(NJS_SPRITE, stru_1494064, 0x1494064);
 DataPointer(NJS_ARGB, stru_1494114, 0x1494114);
 DataPointer(NJS_ARGB, stru_1494124, 0x1494124);
-DataPointer(ObjectMaster*, dword_3C84628, 0x3C84628);
-DataPointer(float, Chaos4NumaTransparency, 0x3C688D4);
 DataPointer(char, EggViperByteThing, 0x03C6E178);
 DataPointer(float, EggViperHitCount, 0x03C58158);
 FunctionPointer(void, sub_571AD0, (ObjectMaster *a1), 0x571AD0);
 FunctionPointer(void, sub_5632F0, (ObjectMaster *a1), 0x5632F0);
 FunctionPointer(void, sub_563370, (ObjectMaster *a1), 0x563370);
-FunctionPointer(void, sub_4B9540, (NJS_VECTOR *position, NJS_VECTOR *scale_v, float scale), 0x4B9540);
-FunctionPointer(void, sub_408530, (NJS_OBJECT *o), 0x408530);
 FunctionPointer(void, sub_570900, (int a1, int a2), 0x570900);
 FunctionPointer(void, sub_407BB0, (NJS_MODEL_SADX *a1, QueuedModelFlagsB queueFlags), 0x407BB0);
 FunctionPointer(void, sub_568EC0, (EntityData1 *a1), 0x568EC0);
@@ -109,7 +81,7 @@ FunctionPointer(void, sub_4CACF0, (NJS_VECTOR *a1, float a2), 0x4CACF0);
 FunctionPointer(void, sub_77E940, (FVFStruct_H_B *a1, signed int count, int a3), 0x77E940);
 FunctionPointer(void, sub_40A280, (NJS_OBJECT *a1), 0x40A280);
 FunctionPointer(void, sub_407A00, (NJS_MODEL_SADX *model, float a2), 0x407A00);
-FunctionPointer(void, sub_407CF0, (NJS_MODEL_SADX *a1, QueuedModelFlagsB a2), 0x407CF0);
+
 
 static float EggViper_blendfactor = 0.0f;
 static int EggViper_blenddirection = 1;
@@ -120,7 +92,6 @@ static float EggViper_blendfactor_min = 0.005f;
 static unsigned char EggHornetTrigger = 0;
 static float TornadoAlpha = 1.0f;
 static int TornadoTrigger = 0;
-static int Chaos4Water = 0;
 static float EggViperHitCount_Old = 0.0f;
 static int EggHornetOceanAnimationSA1 = 0;
 static int EggHornet_Rotation = 0;
@@ -129,8 +100,6 @@ static bool EggHornet_RotationEnabled = false;
 static int E101REffectMode = 1;
 static float e101rframe = 0;
 static int e101rsea_dc = 4;
-static int Chaos0PuddleTransparency = 255;
-static bool Chaos0TransUp = false;
 
 void __cdecl EggHornetWaterFunc()
 {
@@ -450,160 +419,6 @@ void __cdecl Chaos7Damage_DisplayX(ObjectMaster *a1)
 	}
 }
 
-void DrawChaos0Spotlight(ObjectMaster *a1)
-{	
-	EntityData1 *v1 = a1->Data1;
-	if (!MissedFrames)
-	{
-		SetMaterialAndSpriteColor_Float(0.5f, 1.0f, 1.0f, 1.0f);
-		njColorBlendingMode(0, NJD_COLOR_BLENDING_SRCALPHA);
-		njColorBlendingMode(NJD_DESTINATION_COLOR, NJD_COLOR_BLENDING_ONE);
-		njSetTexture(BOSSCHAOS0_TEXLISTS[1]);
-		DrawQueueDepthBias = -17000.0f;
-		//Left
-		njPushMatrix(0);
-		njTranslate(0, v1->Position.x, v1->Position.y+0.1f, v1->Position.z);
-		njRotateXYZ(0, 0xC000, v1->Rotation.y, 0);
-		njDrawSprite3D_Queue(&Chaos0SpotlightSprite1, 0, NJD_SPRITE_ALPHA | NJD_SPRITE_COLOR | NJD_SPRITE_ANGLE, QueuedModelFlagsB_SomeTextureThing);
-		njPopMatrix(1u);
-		//Right
-		njPushMatrix(0);
-		njTranslate(0, v1->Position.x, v1->Position.y + 0.1f, v1->Position.z);
-		njRotateXYZ(0, 0xC000, v1->Rotation.y, 0);
-		njDrawSprite3D_Queue(&Chaos0SpotlightSprite2, 0, NJD_SPRITE_ALPHA | NJD_SPRITE_COLOR | NJD_SPRITE_ANGLE, QueuedModelFlagsB_SomeTextureThing);
-		njPopMatrix(1u);
-		njColorBlendingMode(0, NJD_COLOR_BLENDING_SRCALPHA);
-		njColorBlendingMode(NJD_DESTINATION_COLOR, NJD_COLOR_BLENDING_INVSRCALPHA);
-		ClampGlobalColorThing_Thing();
-		DrawQueueDepthBias = 0.0f;
-	}
-}
-
-static void OPato0_Display_r(ObjectMaster *a1);
-static Trampoline OPato0_Display_t(0x549600, 0x549605, OPato0_Display_r);
-static void __cdecl OPato0_Display_r(ObjectMaster *a1)
-{
-	auto original = reinterpret_cast<decltype(OPato0_Display_r)*>(OPato0_Display_t.Target());
-	original(a1);
-	if (EnableChaos0)
-	{
-		if (LANDTABLEBOSSCHAOS0[0]->Col[4].Flags & ColFlags_Visible)
-		{
-			DrawChaos0Spotlight(a1);
-		}
-	}
-}
-
-void FixChaos0Car(NJS_ACTION *a1, float frame, float scale)
-{
-	DisplayAnimationFrame(a1, frame, (QueuedModelFlagsB)0, scale, (void(__cdecl *)(NJS_MODEL_SADX *, int, int))DrawModelThing);
-	DrawModel_Queue(a1->object->child->sibling->sibling->sibling->sibling->sibling->sibling->sibling->sibling->basicdxmodel, (QueuedModelFlagsB)0); //Top lights
-	DrawModel_Queue(a1->object->child->sibling->sibling->sibling->sibling->sibling->sibling->basicdxmodel, QueuedModelFlagsB_EnableZWrite); //Front lights
-}
-
-void FixChaos2Columns(NJS_OBJECT *a1, QueuedModelFlagsB a2, float a3)
-{
-	DrawQueueDepthBias = 8000.0f;
-	ProcessModelNode_A_Wrapper(a1, a2, a3);
-	DrawQueueDepthBias = 0;
-}
-
-void Chaos4Skybox(ObjectMaster *o1)
-{
-	float WaterTrans;
-	float xshift = -145.92953f;
-	float zshift = -27.3004f;
-	NJS_VECTOR a1;
-	NJS_VECTOR a2;
-	//Swamp animation
-	if (Chaos4Water > 13) Chaos4Water = 0;
-	matlist_000429E8[0].attr_texId = Chaos4Water;
-	if (FramerateSetting < 2 && FrameCounter % 2 == 0 || FramerateSetting >= 2) Chaos4Water++;
-	if (!MissedFrames)
-	{
-		//Skybox
-		njSetTexture(&CHAOS4_OBJECT_TEXLIST);
-		j_ClampGlobalColorThing_Thing();
-		njPushMatrix(0);
-		sub_408530((NJS_OBJECT*)0x11C2C20);
-		njPopMatrix(1u);
-		//Swamp water
-		njSetTexture(&CHAOS4_NUMA_TEXLIST);
-		WaterTrans = 153.0f*(1.0f + Chaos4NumaTransparency);
-		matlist_000429E8[0].diffuse.argb.a = (int)WaterTrans;
-		njPushMatrix(0);
-		DrawQueueDepthBias = 4000.0f;
-		if (Chaos4NumaTransparency > -1.0f) ProcessModelNode(&object_0004476C_C4, QueuedModelFlagsB_SomeTextureThing, 1.0f);
-		njPopMatrix(1u);
-		DrawQueueDepthBias = 0.0f;
-	}
-	if (GameState == 15)
-	{
-		int v40;
-		a2 = { 0, 0, 0 };
-		a1.y = 20.0f;
-		SetParticleDepthOverride(100.0f);
-		v40 = FrameCounter2;
-		if (!(FrameCounter2 & 3))
-		{
-			a1.x = 9.3f;
-			a1.z = -280.0f;
-			a1.x += xshift;
-			a1.z += zshift;
-			sub_4B9540(&a1, (NJS_VECTOR *)&a2, 1.5);
-			a1.x = 12.3f;
-			a1.z = -275.0f;
-			a1.x += xshift;
-			a1.z += zshift;
-			sub_4B9540(&a1, (NJS_VECTOR *)&a2, 1.5);
-			a1.x = 15.3f;
-			a1.z = -270.0f;
-			a1.x += xshift;
-			a1.z += zshift;
-			sub_4B9540(&a1, (NJS_VECTOR *)&a2, 1.5);
-			v40 = FrameCounter2;
-		}
-		if ((v40 & 3) == 1)
-		{
-			a1.x = 23.3f;
-			a1.z = -267.0f;
-			a1.x += xshift;
-			a1.z += zshift;
-			sub_4B9540(&a1, (NJS_VECTOR *)&a2, 1.5);
-			a1.x = 31.3f;
-			a1.z = -268.5f;
-			a1.x += xshift;
-			a1.z += zshift;
-			sub_4B9540(&a1, (NJS_VECTOR *)&a2, 1.5);
-			a1.x = 37.3f;
-			a1.z = -269.5f;
-			a1.x += xshift;
-			a1.z += zshift;
-			sub_4B9540(&a1, (NJS_VECTOR *)&a2, 1.5);
-			v40 = FrameCounter2;
-		}
-		if ((v40 & 3) == 2)
-		{
-			a1.x = 43.3f;
-			a1.z = -270.0f;
-			a1.x += xshift;
-			a1.z += zshift;
-			sub_4B9540(&a1, (NJS_VECTOR *)&a2, 1.5);
-			a1.x = 42.5f;
-			a1.z = -275.0f;
-			a1.x += xshift;
-			a1.z += zshift;
-			sub_4B9540(&a1, (NJS_VECTOR *)&a2, 1.5);
-			a1.x = 48.3f;
-			a1.z = -280.0f;
-			a1.x += xshift;
-			a1.z += zshift;
-			sub_4B9540(&a1, (NJS_VECTOR *)&a2, 1.5);
-		}
-		SetParticleDepthOverride(0.0f);
-	}
-}
-
 void __cdecl Chaos6SkyboxBottom(EntityData1 *a1)
 {
 	Sint16 v1; // cx
@@ -824,24 +639,6 @@ void E101R_ArmsHook(NJS_OBJECT *a1, QueuedModelFlagsB a2)
 	DrawQueueDepthBias = 0;
 }
 
-void __cdecl ComeOneYaBigDrip()
-{
-	EntityData1 *v0; // esi
-	v0 = dword_3C84628->Data1;
-	char Chaos0PuddleTransparency_object = *(char*)(*(Sint32*)&v0->LoopData + 28);
-	if (Chaos0PuddleTransparency >= 255 && Chaos0TransUp == true) Chaos0TransUp = false;
-	if (Chaos0PuddleTransparency <= 178 && !Chaos0TransUp) Chaos0TransUp = true;
-	if (Chaos0TransUp) Chaos0PuddleTransparency+=4; else Chaos0PuddleTransparency-=4;
-	if (Chaos0PuddleTransparency_object != -103) Chaos_Puddle_Model.basicdxmodel->mats->diffuse.argb.a = Chaos0PuddleTransparency_object;
-	else Chaos_Puddle_Model.basicdxmodel->mats->diffuse.argb.a = Chaos0PuddleTransparency;
-	njSetTexture(&CHAOS_SURFACE_TEXLIST);
-	njPushMatrix(0);
-	njTranslateV(0, &v0->Position);
-	njScaleV(0, &v0->Scale);
-	ProcessModelNode_A_WrapperB(&Chaos_Puddle_Model, QueuedModelFlagsB_EnableZWrite);
-	njPopMatrix(1u);
-}
-
 void ComeOnChaosTimeToEat(NJS_OBJECT *a1)
 {
 	//This isn't entirely accurate to SA1 but I don't have the patience to find values that would replicate it 100%. 
@@ -864,27 +661,6 @@ void ComeOnChaosTimeToEat(NJS_OBJECT *a1)
 	}
 }
 
-void __cdecl Chaos4Kama(ObjectMaster *a1)
-{
-	EntityData1 *v1; // esi
-
-	v1 = a1->Data1;
-	if (!MissedFrames)
-	{
-		njSetTexture(&CHAOS4_KAMA_TEXLIST);
-		njPushMatrix(0);
-		njTranslateV(0, &v1->Position);
-		DisplayAnimationFrame((NJS_ACTION*)0x11C117C, *(float *)&v1->LoopData, QueuedModelFlagsB_SomeTextureThing, 0.0f, (void(__cdecl *)(NJS_MODEL_SADX *, int, int))sub_407CF0);
-		DisplayAnimationFrame((NJS_ACTION*)0x11C13CC, *(float *)&v1->LoopData, QueuedModelFlagsB_SomeTextureThing, 0.0f, (void(__cdecl *)(NJS_MODEL_SADX *, int, int))sub_407CF0);
-		njPopMatrix(1u);
-	}
-}
-
-void SetMaterial_Chaos4Wave(float a, float r, float g, float b)
-{
-	if (r > 0) SetMaterialAndSpriteColor_Float(r, r, g, b);
-	else SetMaterialAndSpriteColor_Float(0, 0, 0, 0);
-}
 
 void Bosses_Init()
 {
@@ -892,7 +668,6 @@ void Bosses_Init()
 	ReplacePVM("CHAOS_BRAINFRAME");
 	ReplacePVM("CHAOS_EFFECT");
 	ReplacePVM("CHAOS_SURFACE");
-	ReplacePVM("EV_CHAOS0_MANJU");
 	ReplacePVM("EV_CHAOS1");
 	ReplacePVM("EV_E101KAI");
 	ReplacePVM("EV_E101_BODY");
@@ -907,7 +682,6 @@ void Bosses_Init()
 	ReplacePVM("ICM0001_5");
 	//Various Chaos puddle things
 	WriteCall((void*)0x6EE43F, ComeOnChaosTimeToEat); //Environment mapping effect on Chaos' puddle before Chaos 0 emerges
-	WriteJump((void*)0x6E9B00, ComeOneYaBigDrip); //Alterating transparency in the cutscene after Chaos 0
 	((NJS_MATERIAL*)0x02D64FD8)->exponent = 11; //Chaos 1/4 puddle
 	((NJS_MATERIAL*)0x038D936C)->attrflags &= ~NJD_FLAG_USE_ENV; //Chaos 0/2/6 puddle
 	((NJS_MATERIAL*)0x038D936C)->exponent = 11; //Chaos 0/2/6 puddle
@@ -917,28 +691,6 @@ void Bosses_Init()
 	{
 		RemoveMaterialColors(ChaosMaterials[i]);
 	}
-}
-
-void UnloadLevelFiles_B_CHAOS0()
-{
-	delete B_CHAOS0_Info;
-	B_CHAOS0_Info = nullptr;
-}
-
-void UnloadLevelFiles_B_CHAOS2()
-{
-	delete B_CHAOS2_Info;
-	B_CHAOS2_Info = nullptr;
-}
-
-void UnloadLevelFiles_B_CHAOS4()
-{
-	if (DLLLoaded_Lantern)
-	{
-		material_unregister_ptr(WhiteDiffuse_Chaos4External, LengthOfArray(WhiteDiffuse_Chaos4External), &ForceWhiteDiffuse3Specular1);
-	}
-	delete B_CHAOS4_Info;
-	B_CHAOS4_Info = nullptr;
 }
 
 void UnloadLevelFiles_B_CHAOS6()
@@ -993,42 +745,6 @@ void UnloadLevelFiles_B_E101_R()
 {
 	delete B_E101_R_Info;
 	B_E101_R_Info = nullptr;
-}
-
-void LoadLevelFiles_B_CHAOS0()
-{
-	CheckAndUnloadLevelFiles();
-	B_CHAOS0_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\B_CHAOS0\\0.sa1lvl"));
-	LandTable *B_CHAOS0 = B_CHAOS0_Info->getlandtable();
-	RemoveMaterialColors_Landtable(B_CHAOS0);
-	B_CHAOS0->TexList = &texlist_chaos0;
-	LandTableArray[0] = B_CHAOS0;
-	___LANDTABLEBOSSCHAOS0[0] = B_CHAOS0;
-}
-
-void LoadLevelFiles_B_CHAOS2()
-{
-	CheckAndUnloadLevelFiles();
-	B_CHAOS2_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\B_CHAOS2\\0.sa1lvl"));
-	LandTable *B_CHAOS2 = B_CHAOS2_Info->getlandtable();
-	RemoveMaterialColors_Landtable(B_CHAOS2);
-	B_CHAOS2->TexList = &texlist_chaos2;
-	LandTableArray[8]= B_CHAOS2; //Chaos 2
-}
-
-void LoadLevelFiles_B_CHAOS4()
-{
-	CheckAndUnloadLevelFiles();
-	B_CHAOS4_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\B_CHAOS4\\0.sa1lvl"));
-	LandTable *B_CHAOS4 = B_CHAOS4_Info->getlandtable();
-	RemoveMaterialColors_Landtable(B_CHAOS4);
-	B_CHAOS4->TexList = &texlist_chaos4;
-	LandTableArray[16] = B_CHAOS4; //Chaos 4
-	WhiteDiffuse_Chaos4External[0] = &((NJS_MATERIAL*)B_CHAOS4_Info->getdata("matlist_0004C318"))[0];
-	if (DLLLoaded_Lantern)
-	{
-		material_register_ptr(WhiteDiffuse_Chaos4External, LengthOfArray(WhiteDiffuse_Chaos4External), &ForceWhiteDiffuse3Specular1);
-	}
 }
 
 void LoadLevelFiles_B_CHAOS6()
@@ -1144,216 +860,6 @@ void LoadLevelFiles_B_E101()
 	LandTableArray[72] = B_E101;
 }
 
-void Chaos0_Init()
-{
-	ReplaceBIN("PL_G0B", "PL_G0X");
-	ReplaceBIN_DC("SET1500S");
-	ReplacePVM("LM_CHAOS0");
-	ReplacePVM("CHAOS0");
-	ReplacePVM("CHAOS0_EFFECT");
-	ReplacePVM("CHAOS0_OBJECT");
-	WriteData<1>((char*)0x54932B, 0x08); //Police car lights blending mode
-	WriteData<1>((char*)0x7AD16D, 0x08); //Chaos 0 puddle mark blending mode
-	___BOSSCHAOS0_TEXLISTS[2] = &texlist_chaos0;
-	___BOSSCHAOS0_TEXLISTS[3] = &chaos0_object;
-	___BOSSCHAOS0_OBJECTS[0]->child->child->child->child->sibling->basicdxmodel->mats[0].diffuse.color = 0x7FB2B2B2;
-	___BOSSCHAOS0_OBJECTS[0]->child->child->child->child->sibling->child->basicdxmodel->mats[0].diffuse.color = 0x7FB2B2B2;
-	___BOSSCHAOS0_OBJECTS[0]->child->child->child->child->sibling->child->sibling->basicdxmodel->mats[0].diffuse.color = 0x7FB2B2B2;
-	___BOSSCHAOS0_OBJECTS[0]->child->child->child->sibling->basicdxmodel->mats[0].diffuse.color = 0x7FB2B2B2;
-	___BOSSCHAOS0_OBJECTS[0]->child->child->sibling->basicdxmodel->mats[0].diffuse.color = 0x7FB2B2B2;
-	___BOSSCHAOS0_OBJECTS[5]->basicdxmodel->mats[0].diffuse.color = 0x7FB2B2B2;
-	___BOSSCHAOS0_OBJECTS[6]->basicdxmodel->mats[0].diffuse.color = 0x7FB2B2B2;
-	___BOSSCHAOS0_OBJECTS[7]->basicdxmodel->mats[0].diffuse.color = 0x7FB2B2B2;
-	___BOSSCHAOS0_OBJECTS[8]->basicdxmodel->mats[0].diffuse.color = 0x7FB2B2B2;
-	___BOSSCHAOS0_OBJECTS[9]->basicdxmodel->mats[0].diffuse.color = 0x7FB2B2B2;
-	___BOSSCHAOS0_OBJECTS[10]->basicdxmodel->mats[0].diffuse.color = 0x7FB2B2B2;
-	___BOSSCHAOS0_OBJECTS[10]->child->basicdxmodel->mats[0].diffuse.color = 0x7FB2B2B2;
-	___BOSSCHAOS0_OBJECTS[10]->child->sibling->basicdxmodel->mats[0].diffuse.color = 0x7FB2B2B2;
-	___BOSSCHAOS0_OBJECTS[15]->basicdxmodel->mats[0].diffuse.color = 0x7FB2B2B2;
-	___BOSSCHAOS0_OBJECTS[16]->basicdxmodel->mats[0].diffuse.color = 0x7FB2B2B2;
-	___BOSSCHAOS0_OBJECTS[17]->basicdxmodel->mats[0].diffuse.color = 0x7FB2B2B2;
-	___BOSSCHAOS0_OBJECTS[18]->basicdxmodel->mats[0].diffuse.color = 0x7FB2B2B2;
-	___BOSSCHAOS0_OBJECTS[18]->child->basicdxmodel->mats[0].diffuse.color = 0x7FB2B2B2;
-	___BOSSCHAOS0_OBJECTS[20]->basicdxmodel->mats[0].diffuse.color = 0x7FB2B2B2;
-	___BOSSCHAOS0_OBJECTS[21]->basicdxmodel->mats[0].diffuse.color = 0x7FB2B2B2;
-	___BOSSCHAOS0_OBJECTS[22]->basicdxmodel->mats[0].diffuse.color = 0x7FB2B2B2;
-	___BOSSCHAOS0_OBJECTS[22]->child->basicdxmodel->mats[0].diffuse.color = 0x7FB2B2B2;
-	___BOSSCHAOS0_OBJECTS[22]->child->sibling->basicdxmodel->mats[0].diffuse.color = 0x7FB2B2B2;
-	___BOSSCHAOS0_OBJECTS[28]->basicdxmodel->mats[0].diffuse.color = 0x7FB2B2B2;
-	___BOSSCHAOS0_OBJECTS[29]->basicdxmodel->mats[0].diffuse.color = 0x7FB2B2B2;
-	___BOSSCHAOS0_OBJECTS[30]->basicdxmodel->mats[0].diffuse.color = 0x7FB2B2B2;
-	___BOSSCHAOS0_OBJECTS[31]->basicdxmodel->mats[0].diffuse.color = 0x7FB2B2B2;
-	___BOSSCHAOS0_OBJECTS[31]->child->basicdxmodel->mats[0].diffuse.color = 0x7FB2B2B2;
-	___BOSSCHAOS0_OBJECTS[33]->child->child->sibling->basicdxmodel->mats[0].diffuse.color = 0x7FB2B2B2;
-	___BOSSCHAOS0_ACTIONS[17]->object = LoadModel("system\\data\\B_CHAOS0\\Models\\0005825C.sa1mdl", false); //Helicopter
-	___BOSSCHAOS0_ACTIONS[18]->object = LoadModel("system\\data\\B_CHAOS0\\Models\\0005D234.sa1mdl", false); //Police car
-	AddWhiteDiffuseMaterial(&___BOSSCHAOS0_ACTIONS[18]->object->child->sibling->sibling->sibling->sibling->sibling->sibling->sibling->sibling->basicdxmodel->mats[1]);
-	___BOSSCHAOS0_ACTIONS[18]->object->child->sibling->sibling->sibling->sibling->sibling->sibling->sibling->sibling->evalflags |= NJD_EVAL_HIDE;
-	___BOSSCHAOS0_ACTIONS[18]->object->child->sibling->sibling->sibling->sibling->sibling->sibling->evalflags |= NJD_EVAL_HIDE;
-	WriteCall((void*)0x0054968E, FixChaos0Car);
-	WriteData((float*)0x00549797, 0.12f); //Camera-based car light sprite scale
-	WriteData((float*)0x005497A1, 0.12f); //Camera-based car light sprite scale
-	//Chaos 0
-	((NJS_OBJECT*)0x02C65CF8)->basicdxmodel->mats[0].diffuse.color = 0x7FB2B2B2;
-	((NJS_OBJECT*)0x02C5DD18)->basicdxmodel->mats[0].diffuse.color = 0x7FB2B2B2;
-	((NJS_OBJECT*)0x02C5E100)->basicdxmodel->mats[0].diffuse.color = 0x7FB2B2B2;
-	((NJS_OBJECT*)0x02C5E36C)->basicdxmodel->mats[0].diffuse.color = 0x7FB2B2B2;
-	((NJS_OBJECT*)0x02C5F12C)->basicdxmodel->mats[0].diffuse.color = 0x7FB2B2B2;
-	((NJS_OBJECT*)0x02C5EEBC)->basicdxmodel->mats[0].diffuse.color = 0x7FB2B2B2;
-	((NJS_OBJECT*)0x02C5EB8C)->basicdxmodel->mats[0].diffuse.color = 0x7FB2B2B2;
-	((NJS_OBJECT*)0x02C66B10)->basicdxmodel->mats[0].diffuse.color = 0x7FB2B2B2;
-	((NJS_OBJECT*)0x02C5B614)->basicdxmodel->mats[0].diffuse.color = 0x7FB2B2B2;
-	((NJS_OBJECT*)0x02C5B884)->basicdxmodel->mats[0].diffuse.color = 0x7FB2B2B2;
-	((NJS_OBJECT*)0x02C5C798)->basicdxmodel->mats[0].diffuse.color = 0x7FB2B2B2;
-	((NJS_OBJECT*)0x02C5C1F4)->basicdxmodel->mats[0].diffuse.color = 0x7FB2B2B2;
-	((NJS_OBJECT*)0x02C5BF00)->basicdxmodel->mats[0].diffuse.color = 0x7FB2B2B2;
-	((NJS_OBJECT*)0x02C5A800)->basicdxmodel->mats[0].diffuse.color = 0x7FB2B2B2;
-	((NJS_OBJECT*)0x02C5AAF4)->basicdxmodel->mats[0].diffuse.color = 0x7FB2B2B2;
-	((NJS_OBJECT*)0x02C5B098)->basicdxmodel->mats[0].diffuse.color = 0x7FB2B2B2;
-	((NJS_OBJECT*)0x02C5A184)->basicdxmodel->mats[0].diffuse.color = 0x7FB2B2B2;
-	((NJS_OBJECT*)0x02C59F14)->basicdxmodel->mats[0].diffuse.color = 0x7FB2B2B2;
-	((NJS_OBJECT*)0x02C600A4)->basicdxmodel->mats[0].diffuse.color = 0x7FB2B2B2;
-	((NJS_OBJECT*)0x02C603D4)->basicdxmodel->mats[0].diffuse.color = 0x7FB2B2B2;
-	((NJS_OBJECT*)0x02C60644)->basicdxmodel->mats[0].diffuse.color = 0x7FB2B2B2;
-	((NJS_OBJECT*)0x02C5F884)->basicdxmodel->mats[0].diffuse.color = 0x7FB2B2B2;
-	((NJS_OBJECT*)0x02C5F618)->basicdxmodel->mats[0].diffuse.color = 0x7FB2B2B2;
-}
-
-void Chaos2Ball(NJS_OBJECT *object)
-{
-	ProcessModelNode_D_Wrapper(object, (QueuedModelFlagsB)0);
-}
-
-void Chaos2Ball_Transform(NJS_OBJECT *object)
-{
-	DrawQueueDepthBias = -17000.0f;
-	ProcessModelNode_D_Wrapper(object, (QueuedModelFlagsB)0);
-	DrawQueueDepthBias = 0;
-}
-
-void Chaos2Action(NJS_ACTION *a1, float frameNumber)
-{
-	njAction_Queue_407FC0(a1, frameNumber, (QueuedModelFlagsB)0);
-}
-
-void ChandelierFix(NJS_OBJECT *a1, QueuedModelFlagsB a2, float a3)
-{
-	ProcessModelNode_D_Wrapper(a1, (QueuedModelFlagsB)1);
-}
-
-void Chaos2TableTopFix(NJS_MODEL_SADX *model, float scale)
-{
-	DrawQueueDepthBias = -20000.0f;
-	DrawModel_Queue(model, QueuedModelFlagsB_EnableZWrite);
-	DrawQueueDepthBias = 0.0f;
-}
-
-void ChandLightFix(NJS_OBJECT *a1, QueuedModelFlagsB a2)
-{
-	SetMaterialAndSpriteColor_Float(0.65f, 0.6f, 0.6f, 0.6f);
-	DrawQueueDepthBias = -18000.0f;
-	ProcessModelNode(a1, QueuedModelFlagsB_SomeTextureThing, 1.0f);
-	DrawQueueDepthBias = 0.0f;
-}
-
-void Chaos2_Init()
-{
-	ReplaceBIN_DC("SET1600S");
-	ReplacePVM("CHAOS2");
-	ReplacePVM("LM_CHAOS2");
-	ReplacePVM("CHAOS2_BARRIER");
-	ReplacePVM("CHAOS2_EFFECT");
-	ReplacePVM("CHAOS2_OBJECT");
-	*(NJS_MODEL_SADX*)0x11863C0 = *LoadModel("system\\data\\B_CHAOS2\\Models\\0006CD68.sa1mdl", false)->basicdxmodel; //Column
-	*(NJS_OBJECT*)0x11835B4 = *LoadModel("system\\data\\B_CHAOS2\\Models\\0006812C.sa1mdl", false); //Table
-	((NJS_OBJECT*)0x11835B4)->basicdxmodel->mats[1].attrflags &= ~NJD_FLAG_USE_ALPHA; //This doesn't use alpha anyway
-	*(NJS_MODEL_SADX*)0x1183690 = *LoadModel("system\\data\\B_CHAOS2\\Models\\0006822C.sa1mdl", false)->basicdxmodel; //Transparent thing on table
-	WriteCall((void*)0x54E3FE, Chaos2TableTopFix);
-	*(NJS_OBJECT*)0x117E86C = *LoadModel("system\\data\\B_CHAOS2\\Models\\0006A160.sa1mdl", false); //Chandelier
-	WriteCall((void*)0x54E13C, ChandLightFix);
-	WriteCall((void*)0x54DFCC, ChandelierFix);
-	ResizeTextureList((NJS_TEXLIST*)0x117C76C, textures_chaos2);
-	*(NJS_OBJECT*)0x117EB1C = *LoadModel("system\\data\\B_CHAOS2\\Models\\0006A400.sa1mdl", false); //Chandelier floor light
-	((NJS_OBJECT*)0x117EB1C)->basicdxmodel->mats[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	WriteCall((void*)0x0054AC30, FixChaos2Columns);
-	//WriteCall((void*)0x54858A, Chaos2Action); //Chaos 0
-	//WriteCall((void*)0x5528F5, Chaos2Action); //Chaos 4
-	//WriteCall((void*)0x558FFC, Chaos2Action); //Chaos 6
-	//WriteCall((void*)0x5622DE, Chaos2Action); //Perfect Chaos
-	WriteCall((void*)0x54D991, Chaos2Ball); //Ball bouncing
-	WriteCall((void*)0x54C5E7, Chaos2Ball_Transform); //Ball transforming
-	WriteCall((void*)0x54F496, Chaos2Ball); //Chaos transformation model
-	WriteCall((void*)0x54CFC9, Chaos2Ball); //Hand attack
-	WriteCall((void*)0x54DA8A, Chaos2Action); //Main model
-	RemoveVertexColors_Object((NJS_OBJECT*)0x01133328); //Chaos2 (main)
-	RemoveVertexColors_Object((NJS_OBJECT*)0x0114B918); //Chaos2 (alt)
-	RemoveVertexColors_Object((NJS_OBJECT*)0x011339EC); //Chaos2 small ball
-	RemoveVertexColors_Object((NJS_OBJECT*)0x01139274); //Chaos2 ball
-	RemoveVertexColors_Object((NJS_OBJECT*)0x0113F81C); //Chaos2 ball 2
-	for (unsigned int i = 0; i < 3; i++)
-	{
-		Chaos2Fog[i].Color = 0xFF000000;
-		Chaos2Fog[i].Layer = 700.0f;
-		Chaos2Fog[i].Distance = 1700.0f;
-		Chaos2Fog[i].Toggle = 0;
-	}
-}
-
-void Chaos4_Init()
-{
-	ReplaceBIN_DC("SET1700S");
-	ReplacePVM("CHAOS4_COMMON");
-	ReplacePVM("CHAOS4_HASHIRA");
-	ReplacePVM("CHAOS4_KAMA");
-	ReplacePVM("CHAOS4_NUMA");
-	ReplacePVM("CHAOS4_OBJECT");
-	ReplacePVM("CHAOS4_SHIBUKI");
-	ReplacePVM("CHAOS4_TIKEI");
-	ReplacePVM("CHAOS4_WAVE");
-	ResizeTextureList(&CHAOS4_OBJECT_TEXLIST, 6);
-	*(NJS_OBJECT*)0x11C4B90 = object_000425F8; // Chaos4 swamp water
-	WriteData<1>((char*)0x00555B3F, 0x08); //Chaos 4 bubble blending mode SA_SRC instead of SA_ONE
-	ResizeTextureList((NJS_TEXLIST*)0x118FF08, textures_chaos4);
-	WriteJump((void*)0x550D10, Chaos4Skybox);
-	((NJS_MATERIAL*)0x011E2C00)->attrflags |= NJD_FLAG_IGNORE_SPECULAR; //Lilypad in Chaos 4
-	((NJS_MATERIAL*)0x011E2C14)->attrflags |= NJD_FLAG_IGNORE_SPECULAR; //Lilypad in Chaos 4
-	//Chaos 4
-	((NJS_OBJECT*)0x011A652C)->basicdxmodel->mats[0].diffuse.color = 0x65B2B2B2; //Chaos4 something?
-	((NJS_OBJECT*)0x011C1C24)->basicdxmodel->mats[0].diffuse.color = 0x7FB2B2B2; //Chaos4 ball
-	((NJS_OBJECT*)0x011EC85C)->basicdxmodel->mats[0].diffuse.color = 0x7FB2B2B2; //Chaos4 ball
-	((NJS_OBJECT*)0x0119E1A4)->basicdxmodel->mats[0].diffuse.color = 0x65B2B2B2; //Chaos4
-	((NJS_OBJECT*)0x0119CFF8)->basicdxmodel->mats[1].diffuse.color = 0x65B2B2B2; //Chaos4
-	((NJS_OBJECT*)0x01199FDC)->basicdxmodel->mats[0].diffuse.color = 0x65B2B2B2; //Chaos4
-	((NJS_OBJECT*)0x01198F18)->basicdxmodel->mats[0].diffuse.color = 0x65B2B2B2; //Chaos4
-	((NJS_OBJECT*)0x01198694)->basicdxmodel->mats[0].diffuse.color = 0x65B2B2B2; //Chaos4
-	((NJS_OBJECT*)0x01197FFC)->basicdxmodel->mats[0].diffuse.color = 0x65B2B2B2; //Chaos4
-	((NJS_OBJECT*)0x01196F44)->basicdxmodel->mats[0].diffuse.color = 0x65B2B2B2; //Chaos4
-	((NJS_OBJECT*)0x01194B34)->basicdxmodel->mats[0].diffuse.color = 0x65B2B2B2; //Chaos4
-	((NJS_OBJECT*)0x01194294)->basicdxmodel->mats[0].diffuse.color = 0x65B2B2B2; //Chaos4
-	((NJS_OBJECT*)0x01193EAC)->basicdxmodel->mats[0].diffuse.color = 0x65B2B2B2; //Chaos4
-	((NJS_OBJECT*)0x01193B18)->basicdxmodel->mats[0].diffuse.color = 0x65B2B2B2; //Chaos4
-	((NJS_OBJECT*)0x01192014)->basicdxmodel->mats[0].diffuse.color = 0x65B2B2B2; //Chaos4
-	((NJS_OBJECT*)0x01191764)->basicdxmodel->mats[0].diffuse.color = 0x65B2B2B2; //Chaos4
-	((NJS_OBJECT*)0x011913AC)->basicdxmodel->mats[0].diffuse.color = 0x65B2B2B2; //Chaos4
-	((NJS_OBJECT*)0x01191018)->basicdxmodel->mats[0].diffuse.color = 0x65B2B2B2; //Chaos4
-	WriteJump((void*)0x556420, Chaos4Kama); //Chaos 4 attack effect fix
-	WriteCall((void*)0x5539E6, SetMaterial_Chaos4Wave); //Make Chaos 4 wave visible
-	((NJS_MATERIAL*)0x11C7BEC)->attr_texId = 0; //Fix Chaos 4 wave texture ID
-	((NJS_MATERIAL*)0x11C0028)->diffuse.color = 0xFFFFFFFF; //Fix Chaos 4 attack material colors
-	((NJS_MATERIAL*)0x11C07B0)->diffuse.color = 0xFFFFFFFF; //Fix Chaos 4 attack material colors
-	((NJS_MATERIAL*)0x11BFC04)->diffuse.color = 0xFFFFFFFF; //Fix Chaos 4 attack material colors
-	if (DLLLoaded_Lantern)
-	{
-		material_register_ptr(Chaos4Materials, LengthOfArray(Chaos4Materials), &Chaos4NPCFunction);
-	}
-	for (unsigned int i = 0; i < 3; i++)
-	{
-		Chaos4Fog[i].Color = 0xFF000000;
-		Chaos4Fog[i].Layer = 1.0f;
-		Chaos4Fog[i].Distance = 2000.0f;
-		Chaos4Fog[i].Toggle = 0;
-	}
-}
 
 void Chaos6_Init()
 {
@@ -1473,14 +979,14 @@ void RotateEggHornet(ObjectMaster *a1)
 	njRotateY(0, EggHornet_Rotation);
 }
 
-static void EggHornetRotationObject_r(ObjectMaster *a1);
-static Trampoline EggHornetRotationObject_t(0x574CB0, 0x574CB6, EggHornetRotationObject_r);
-static void __cdecl EggHornetRotationObject_r(ObjectMaster *a1)
-{
-	auto original = reinterpret_cast<decltype(EggHornetRotationObject_r)*>(EggHornetRotationObject_t.Target());
-	original(a1);
-	if (EnableEggHornet) EggHornet_RotationEnabled = true;
-}
+	static void EggHornetRotationObject_r(ObjectMaster *a1);
+	static Trampoline EggHornetRotationObject_t(0x574CB0, 0x574CB6, EggHornetRotationObject_r);
+	static void __cdecl EggHornetRotationObject_r(ObjectMaster *a1)
+	{
+		auto original = reinterpret_cast<decltype(EggHornetRotationObject_r)*>(EggHornetRotationObject_t.Target());
+		original(a1);
+		if (EnableEggHornet) EggHornet_RotationEnabled = true;
+	}
 
 void EggHornet_RotationDisable(ObjectMaster *a1)
 {

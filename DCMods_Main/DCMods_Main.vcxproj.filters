@@ -165,6 +165,15 @@
     <ClCompile Include="DC_ADV01CMODELS.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Boss_Chaos0.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Boss_Chaos2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Boss_Chaos4.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Data\textures.h">
@@ -257,13 +266,7 @@
     <ClInclude Include="Data\Chaos2.h">
       <Filter>Header Files\Levels\Bosses</Filter>
     </ClInclude>
-    <ClInclude Include="Data\Chaos2_PC.h">
-      <Filter>Header Files\Levels\Bosses</Filter>
-    </ClInclude>
     <ClInclude Include="Data\Chaos4.h">
-      <Filter>Header Files\Levels\Bosses</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\Chaos4_water.h">
       <Filter>Header Files\Levels\Bosses</Filter>
     </ClInclude>
     <ClInclude Include="Data\Chaos6_Act1.h">

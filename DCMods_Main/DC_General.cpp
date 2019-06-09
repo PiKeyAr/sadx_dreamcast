@@ -1119,6 +1119,11 @@ void CharacterShadowHook(NJS_OBJECT *a1, float a2)
 	float v2; // st7
 	v2 = DrawQueueDepthBias;
 	if (EnableWindyValley && CurrentLevel == LevelIDs_WindyValley && CurrentAct == 2) DrawQueueDepthBias = 2600.0f;
+	else if (EnableChaos4 && CurrentLevel == LevelIDs_Chaos4)
+	{
+		if (EntityData1Ptrs[0]->Position.y >= 18) DrawQueueDepthBias = 4000.0f;
+		else DrawQueueDepthBias = -32952.0f;
+	}
 	else  DrawQueueDepthBias = -27952.0f;
 	if (MissedFrames || VerifyTexList(CurrentTexList))
 	{

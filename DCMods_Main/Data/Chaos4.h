@@ -1291,6 +1291,9 @@ extern "C" __declspec(dllexport) NJS_TEX uv_00049880[] = {
 
 extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00049B54[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 17, poly_0004969A, NULL, NULL, NULL, uv_00049880, NULL },
+};
+
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00049B54_2[] = {
 	{ NJD_MESHSET_TRIMESH | 1, 3, poly_00049668, NULL, NULL, NULL, uv_00049828, NULL }
 };
 
@@ -1536,6 +1539,10 @@ extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_0004A664 = { vertex_00049
 
 extern "C" __declspec(dllexport) NJS_OBJECT object_0004A68C = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0004A664, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_0004A664_2 = { vertex_00049B84, normal_0004A0F4, LengthOfArray(vertex_00049B84), meshlist_00049B54_2, matlist_00049640, LengthOfArray(meshlist_00049B54_2), LengthOfArray(matlist_00049640),{ -8.901688f, 20.08343f, 92.49528f }, 558.6164f, NULL };
+
+extern "C" __declspec(dllexport) NJS_OBJECT object_0004A68C_2 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0004A664_2, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
+
 extern "C" __declspec(dllexport) NJS_MATERIAL matlist_0004A6C0[] = {
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 10, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_USE_TEXTURE | NJD_FLAG_IGNORE_LIGHT | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 8, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
@@ -1656,6 +1663,9 @@ extern "C" __declspec(dllexport) NJS_TEX uv_0004A884[] = {
 
 extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_0004A934[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 3, poly_0004A6E8, NULL, NULL, NULL, uv_0004A7B4, NULL },
+};
+
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_0004A934_2[] = {
 	{ NJD_MESHSET_TRIMESH | 1, 2, poly_0004A756, NULL, NULL, NULL, uv_0004A884, NULL }
 };
 
@@ -1805,9 +1815,14 @@ extern "C" __declspec(dllexport) NJS_VECTOR normal_0004ACA0[] = {
 
 extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_0004AFDC = { vertex_0004A964, normal_0004ACA0, LengthOfArray(vertex_0004A964), meshlist_0004A934, matlist_0004A6C0, LengthOfArray(meshlist_0004A934), LengthOfArray(matlist_0004A6C0),{ -4.695969f, 52.12696f, 87.13354f }, 563.2463f, NULL };
 
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_0004AFDC_2 = { vertex_0004A964, normal_0004ACA0, LengthOfArray(vertex_0004A964), meshlist_0004A934_2, matlist_0004A6C0, LengthOfArray(meshlist_0004A934_2), LengthOfArray(matlist_0004A6C0),{ -4.695969f, 52.12696f, 87.13354f }, 563.2463f, NULL };
+
 extern "C" __declspec(dllexport) NJS_OBJECT object_0004B004 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0004AFDC, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
+extern "C" __declspec(dllexport) NJS_OBJECT object_0004B004_2 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0004AFDC_2, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
+
 extern "C" __declspec(dllexport) NJS_MATERIAL matlist_0004B038[] = {
+		{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 0, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 0, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 0, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
@@ -1884,8 +1899,8 @@ extern "C" __declspec(dllexport) NJS_TEX uv_0004B150[] = {
 };
 
 extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_0004B1B8[] = {
-	{ NJD_MESHSET_TRIMESH | 0, 2, poly_0004B060, NULL, NULL, NULL, uv_0004B0D8, NULL },
-	{ NJD_MESHSET_TRIMESH | 1, 1, poly_0004B0A0, NULL, NULL, NULL, uv_0004B150, NULL }
+	{ NJD_MESHSET_TRIMESH | 1, 2, poly_0004B060, NULL, NULL, NULL, uv_0004B0D8, NULL },
+	{ NJD_MESHSET_TRIMESH | 2, 1, poly_0004B0A0, NULL, NULL, NULL, uv_0004B150, NULL }
 };
 
 extern "C" __declspec(dllexport) NJS_VECTOR vertex_0004B1E8[] = {
@@ -2866,1034 +2881,1035 @@ extern "C" __declspec(dllexport) NJS_OBJECT object_0004DF18 = { NJD_EVAL_UNIT_SC
 
 extern "C" __declspec(dllexport) NJS_OBJECT object_0004DF4C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0004CEE4, 38.99323f, 37.8574f, -309.3824f, 0xFFFFEF4C, 0x6231, 0xFFFFFE5F, 1, 1, 1, NULL, NULL };
 
-extern "C" __declspec(dllexport) NJS_MATERIAL matlist_00006AB8[] = {
-	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 1, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_FLAG_DOUBLE_SIDE | NJD_FLAG_IGNORE_LIGHT | NJD_DA_ONE | NJD_SA_ONE }
+//GeoAnimData here
+
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_0004DF94[] = {
+	{ { 0xFFB2B2B2 }, { 0xFFFFFFFF }, 11, 1, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_FLAG_DOUBLE_SIDE | NJD_FLAG_IGNORE_LIGHT | NJD_DA_ONE | NJD_SA_ONE }
 };
 
-extern "C" __declspec(dllexport) Sint16 poly_00006ACC[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0004DFA8[] = {
 	4, 3, 2, 1, 0
 };
 
-extern "C" __declspec(dllexport) NJS_TEX uv_00006AD8[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0004DFB4[] = {
 	{ 0, 254 },
 	{ 254, 255 },
 	{ 0 },
 	{ 255, 0 }
 };
 
-extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00006AE8[] = {
-	{ NJD_MESHSET_TRIMESH | 0, 1, poly_00006ACC, NULL, NULL, NULL, uv_00006AD8, NULL }
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_0004DFC4[] = {
+	{ NJD_MESHSET_TRIMESH | 0, 1, poly_0004DFA8, NULL, NULL, NULL, uv_0004DFB4, NULL }
 };
 
-extern "C" __declspec(dllexport) NJS_VECTOR vertex_00006B00[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_0004DFDC[] = {
 	{ -13.5f, 0, -14.19999f },
 	{ -13.5f, 0, 14.19999f },
 	{ 13.5f, 0, -14.19999f },
 	{ 13.5f, 0, 14.19999f }
 };
 
-extern "C" __declspec(dllexport) NJS_VECTOR normal_00006B30[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_0004E00C[] = {
 	{ 0, 1, 0 },
 	{ 0, 1, 0 },
 	{ 0, 1, 0 },
 	{ 0, 1, 0 }
 };
 
-extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00006B60 = { vertex_00006B00, normal_00006B30, LengthOfArray(vertex_00006B00), meshlist_00006AE8, matlist_00006AB8, LengthOfArray(meshlist_00006AE8), LengthOfArray(matlist_00006AB8),{ 0 }, 29.64973f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_0004E03C = { vertex_0004DFDC, normal_0004E00C, LengthOfArray<Sint32>(vertex_0004DFDC), meshlist_0004DFC4, matlist_0004DF94, LengthOfArray<Uint16>(meshlist_0004DFC4), LengthOfArray<Uint16>(matlist_0004DF94), { 0 }, 29.64973f, NULL };
 
-extern "C" __declspec(dllexport) NJS_OBJECT object_00006B88 = { NJD_EVAL_BREAK, &attach_00006B60, -5.860285f, 54.35127f, 21.67281f, 0x495B, 0x178, 0xFFFFC072, 2.15975f, 0.095479f, 1.300673f, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0004E064 = { NJD_EVAL_BREAK, &attach_0004E03C, -5.860285f, 54.35127f, 21.67281f, 0x495B, 0x178, 0xFFFFC072, 2.15975f, 0.095479f, 1.300673f, NULL, NULL };
 
-extern "C" __declspec(dllexport) NJS_MATERIAL matlist_00006BBC[] = {
-	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 1, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_FLAG_DOUBLE_SIDE | NJD_FLAG_IGNORE_LIGHT | NJD_DA_ONE | NJD_SA_ONE }
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_0004E098[] = {
+	{ { 0xFFB2B2B2 }, { 0xFFFFFFFF }, 11, 1, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_FLAG_DOUBLE_SIDE | NJD_FLAG_IGNORE_LIGHT | NJD_DA_ONE | NJD_SA_ONE }
 };
 
-extern "C" __declspec(dllexport) Sint16 poly_00006BD0[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0004E0AC[] = {
 	4, 3, 2, 1, 0
 };
 
-extern "C" __declspec(dllexport) NJS_TEX uv_00006BDC[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0004E0B8[] = {
 	{ 0, 254 },
 	{ 254, 255 },
 	{ 0 },
 	{ 255, 0 }
 };
 
-extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00006BEC[] = {
-	{ NJD_MESHSET_TRIMESH | 0, 1, poly_00006BD0, NULL, NULL, NULL, uv_00006BDC, NULL }
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_0004E0C8[] = {
+	{ NJD_MESHSET_TRIMESH | 0, 1, poly_0004E0AC, NULL, NULL, NULL, uv_0004E0B8, NULL }
 };
 
-extern "C" __declspec(dllexport) NJS_VECTOR vertex_00006C04[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_0004E0E0[] = {
 	{ -13.5f, 0, -14.19999f },
 	{ -13.5f, 0, 14.19999f },
 	{ 13.5f, 0, -14.19999f },
 	{ 13.5f, 0, 14.19999f }
 };
 
-extern "C" __declspec(dllexport) NJS_VECTOR normal_00006C34[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_0004E110[] = {
 	{ 0, 1, 0 },
 	{ 0, 1, 0 },
 	{ 0, 1, 0 },
 	{ 0, 1, 0 }
 };
 
-extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00006C64 = { vertex_00006C04, normal_00006C34, LengthOfArray(vertex_00006C04), meshlist_00006BEC, matlist_00006BBC, LengthOfArray(meshlist_00006BEC), LengthOfArray(matlist_00006BBC),{ 0 }, 0.026405f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_0004E140 = { vertex_0004E0E0, normal_0004E110, LengthOfArray<Sint32>(vertex_0004E0E0), meshlist_0004E0C8, matlist_0004E098, LengthOfArray<Uint16>(meshlist_0004E0C8), LengthOfArray<Uint16>(matlist_0004E098), { 0 }, 0.026405f, NULL };
 
-extern "C" __declspec(dllexport) NJS_OBJECT object_00006C8C = { NJD_EVAL_BREAK, &attach_00006C64, 8.301572f, 36.81415f, -40.35556f, 0x7EED, 0xFFFFEC44, 0xFFFF8456, 0.0009999999f, 0.0009999999f, 0.0009999999f, NULL, &object_00006B88 };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0004E168 = { NJD_EVAL_BREAK, &attach_0004E140, 8.301572f, 36.81415f, -40.35556f, 0x7EED, 0xFFFFEC44, 0xFFFF8456, 0.0009999999f, 0.0009999999f, 0.0009999999f, NULL, &object_0004E064 };
 
-extern "C" __declspec(dllexport) NJS_MATERIAL matlist_00006CC0[] = {
-	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 1, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_FLAG_DOUBLE_SIDE | NJD_FLAG_IGNORE_LIGHT | NJD_DA_ONE | NJD_SA_ONE }
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_0004E19C[] = {
+	{ { 0xFFB2B2B2 }, { 0xFFFFFFFF }, 11, 1, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_FLAG_DOUBLE_SIDE | NJD_FLAG_IGNORE_LIGHT | NJD_DA_ONE | NJD_SA_ONE }
 };
 
-extern "C" __declspec(dllexport) Sint16 poly_00006CD4[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0004E1B0[] = {
 	4, 3, 2, 1, 0
 };
 
-extern "C" __declspec(dllexport) NJS_TEX uv_00006CE0[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0004E1BC[] = {
 	{ 0, 254 },
 	{ 254, 255 },
 	{ 0 },
 	{ 255, 0 }
 };
 
-extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00006CF0[] = {
-	{ NJD_MESHSET_TRIMESH | 0, 1, poly_00006CD4, NULL, NULL, NULL, uv_00006CE0, NULL }
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_0004E1CC[] = {
+	{ NJD_MESHSET_TRIMESH | 0, 1, poly_0004E1B0, NULL, NULL, NULL, uv_0004E1BC, NULL }
 };
 
-extern "C" __declspec(dllexport) NJS_VECTOR vertex_00006D08[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_0004E1E4[] = {
 	{ -13.5f, 0, -14.19999f },
 	{ -13.5f, 0, 14.19999f },
 	{ 13.5f, 0, -14.19999f },
 	{ 13.5f, 0, 14.19999f }
 };
 
-extern "C" __declspec(dllexport) NJS_VECTOR normal_00006D38[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_0004E214[] = {
 	{ 0, 1, 0 },
 	{ 0, 1, 0 },
 	{ 0, 1, 0 },
 	{ 0, 1, 0 }
 };
 
-extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00006D68 = { vertex_00006D08, normal_00006D38, LengthOfArray(vertex_00006D08), meshlist_00006CF0, matlist_00006CC0, LengthOfArray(meshlist_00006CF0), LengthOfArray(matlist_00006CC0),{ 0 }, 15.62949f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_0004E244 = { vertex_0004E1E4, normal_0004E214, LengthOfArray<Sint32>(vertex_0004E1E4), meshlist_0004E1CC, matlist_0004E19C, LengthOfArray<Uint16>(meshlist_0004E1CC), LengthOfArray<Uint16>(matlist_0004E19C), { 0 }, 15.62949f, NULL };
 
-extern "C" __declspec(dllexport) NJS_OBJECT object_00006D90 = { NJD_EVAL_BREAK, &attach_00006D68, -1.852557f, 244.6564f, -68.86031f, 0xACEF, 0xFFFFD446, 0xFFFF5139, 1.121151f, 0.924623f, 0.269113f, NULL, &object_00006C8C };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0004E26C = { NJD_EVAL_BREAK, &attach_0004E244, -1.852557f, 244.6564f, -68.86031f, 0xACEF, 0xFFFFD446, 0xFFFF5139, 1.121151f, 0.924623f, 0.269113f, NULL, &object_0004E168 };
 
-extern "C" __declspec(dllexport) NJS_MATERIAL matlist_00006DC4[] = {
-	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 1, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_FLAG_DOUBLE_SIDE | NJD_FLAG_IGNORE_LIGHT | NJD_DA_ONE | NJD_SA_ONE }
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_0004E2A0[] = {
+	{ { 0xFFB2B2B2 }, { 0xFFFFFFFF }, 11, 1, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_FLAG_DOUBLE_SIDE | NJD_FLAG_IGNORE_LIGHT | NJD_DA_ONE | NJD_SA_ONE }
 };
 
-extern "C" __declspec(dllexport) Sint16 poly_00006DD8[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0004E2B4[] = {
 	4, 3, 2, 1, 0
 };
 
-extern "C" __declspec(dllexport) NJS_TEX uv_00006DE4[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0004E2C0[] = {
 	{ 0, 254 },
 	{ 254, 255 },
 	{ 0 },
 	{ 255, 0 }
 };
 
-extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00006DF4[] = {
-	{ NJD_MESHSET_TRIMESH | 0, 1, poly_00006DD8, NULL, NULL, NULL, uv_00006DE4, NULL }
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_0004E2D0[] = {
+	{ NJD_MESHSET_TRIMESH | 0, 1, poly_0004E2B4, NULL, NULL, NULL, uv_0004E2C0, NULL }
 };
 
-extern "C" __declspec(dllexport) NJS_VECTOR vertex_00006E0C[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_0004E2E8[] = {
 	{ -13.5f, 0, -14.19999f },
 	{ -13.5f, 0, 14.19999f },
 	{ 13.5f, 0, -14.19999f },
 	{ 13.5f, 0, 14.19999f }
 };
 
-extern "C" __declspec(dllexport) NJS_VECTOR normal_00006E3C[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_0004E318[] = {
 	{ 0, 1, 0 },
 	{ 0, 1, 0 },
 	{ 0, 1, 0 },
 	{ 0, 1, 0 }
 };
 
-extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00006E6C = { vertex_00006E0C, normal_00006E3C, LengthOfArray(vertex_00006E0C), meshlist_00006DF4, matlist_00006DC4, LengthOfArray(meshlist_00006DF4), LengthOfArray(matlist_00006DC4),{ 0 }, 19.89983f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_0004E348 = { vertex_0004E2E8, normal_0004E318, LengthOfArray<Sint32>(vertex_0004E2E8), meshlist_0004E2D0, matlist_0004E2A0, LengthOfArray<Uint16>(meshlist_0004E2D0), LengthOfArray<Uint16>(matlist_0004E2A0), { 0 }, 19.89983f, NULL };
 
-extern "C" __declspec(dllexport) NJS_OBJECT object_00006E94 = { NJD_EVAL_BREAK, &attach_00006E6C, -1.747807f, 250.3829f, -53.21578f, 0x768F, 0xFFFFC824, 0xFFFF8983, 1.272589f, 0.830402f, 0.386336f, NULL, &object_00006D90 };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0004E370 = { NJD_EVAL_BREAK, &attach_0004E348, -1.747807f, 250.3829f, -53.21578f, 0x768F, 0xFFFFC824, 0xFFFF8983, 1.272589f, 0.830402f, 0.386336f, NULL, &object_0004E26C };
 
-extern "C" __declspec(dllexport) NJS_MATERIAL matlist_00006EC8[] = {
-	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 1, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_FLAG_DOUBLE_SIDE | NJD_FLAG_IGNORE_LIGHT | NJD_DA_ONE | NJD_SA_ONE }
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_0004E3A4[] = {
+	{ { 0xFFB2B2B2 }, { 0xFFFFFFFF }, 11, 1, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_FLAG_DOUBLE_SIDE | NJD_FLAG_IGNORE_LIGHT | NJD_DA_ONE | NJD_SA_ONE }
 };
 
-extern "C" __declspec(dllexport) Sint16 poly_00006EDC[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0004E3B8[] = {
 	4, 3, 2, 1, 0
 };
 
-extern "C" __declspec(dllexport) NJS_TEX uv_00006EE8[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0004E3C4[] = {
 	{ 0, 254 },
 	{ 254, 255 },
 	{ 0 },
 	{ 255, 0 }
 };
 
-extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00006EF8[] = {
-	{ NJD_MESHSET_TRIMESH | 0, 1, poly_00006EDC, NULL, NULL, NULL, uv_00006EE8, NULL }
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_0004E3D4[] = {
+	{ NJD_MESHSET_TRIMESH | 0, 1, poly_0004E3B8, NULL, NULL, NULL, uv_0004E3C4, NULL }
 };
 
-extern "C" __declspec(dllexport) NJS_VECTOR vertex_00006F10[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_0004E3EC[] = {
 	{ -13.5f, 0, -14.19999f },
 	{ -13.5f, 0, 14.19999f },
 	{ 13.5f, 0, -14.19999f },
 	{ 13.5f, 0, 14.19999f }
 };
 
-extern "C" __declspec(dllexport) NJS_VECTOR normal_00006F40[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_0004E41C[] = {
 	{ 0, 1, 0 },
 	{ 0, 1, 0 },
 	{ 0, 1, 0 },
 	{ 0, 1, 0 }
 };
 
-extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00006F70 = { vertex_00006F10, normal_00006F40, LengthOfArray(vertex_00006F10), meshlist_00006EF8, matlist_00006EC8, LengthOfArray(meshlist_00006EF8), LengthOfArray(matlist_00006EC8),{ 0 }, 20.65029f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_0004E44C = { vertex_0004E3EC, normal_0004E41C, LengthOfArray<Sint32>(vertex_0004E3EC), meshlist_0004E3D4, matlist_0004E3A4, LengthOfArray<Uint16>(meshlist_0004E3D4), LengthOfArray<Uint16>(matlist_0004E3A4), { 0 }, 20.65029f, NULL };
 
-extern "C" __declspec(dllexport) NJS_OBJECT object_00006F98 = { NJD_EVAL_BREAK, &attach_00006F70, -1.546245f, 251.8641f, -37.58501f, 0x51AA, 0xFFFFD685, 0xFFFFB09D, 1.402944f, 0.736181f, 0.503559f, NULL, &object_00006E94 };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0004E474 = { NJD_EVAL_BREAK, &attach_0004E44C, -1.546245f, 251.8641f, -37.58501f, 0x51AA, 0xFFFFD685, 0xFFFFB09D, 1.402944f, 0.736181f, 0.503559f, NULL, &object_0004E370 };
 
-extern "C" __declspec(dllexport) NJS_MATERIAL matlist_00006FCC[] = {
-	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 1, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_FLAG_DOUBLE_SIDE | NJD_FLAG_IGNORE_LIGHT | NJD_DA_ONE | NJD_SA_ONE }
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_0004E4A8[] = {
+	{ { 0xFFB2B2B2 }, { 0xFFFFFFFF }, 11, 1, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_FLAG_DOUBLE_SIDE | NJD_FLAG_IGNORE_LIGHT | NJD_DA_ONE | NJD_SA_ONE }
 };
 
-extern "C" __declspec(dllexport) Sint16 poly_00006FE0[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0004E4BC[] = {
 	4, 3, 2, 1, 0
 };
 
-extern "C" __declspec(dllexport) NJS_TEX uv_00006FEC[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0004E4C8[] = {
 	{ 0, 254 },
 	{ 254, 255 },
 	{ 0 },
 	{ 255, 0 }
 };
 
-extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00006FFC[] = {
-	{ NJD_MESHSET_TRIMESH | 0, 1, poly_00006FE0, NULL, NULL, NULL, uv_00006FEC, NULL }
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_0004E4D8[] = {
+	{ NJD_MESHSET_TRIMESH | 0, 1, poly_0004E4BC, NULL, NULL, NULL, uv_0004E4C8, NULL }
 };
 
-extern "C" __declspec(dllexport) NJS_VECTOR vertex_00007014[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_0004E4F0[] = {
 	{ -13.5f, 0, -14.19999f },
 	{ -13.5f, 0, 14.19999f },
 	{ 13.5f, 0, -14.19999f },
 	{ 13.5f, 0, 14.19999f }
 };
 
-extern "C" __declspec(dllexport) NJS_VECTOR normal_00007044[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_0004E520[] = {
 	{ 0, 1, 0 },
 	{ 0, 1, 0 },
 	{ 0, 1, 0 },
 	{ 0, 1, 0 }
 };
 
-extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00007074 = { vertex_00007014, normal_00007044, LengthOfArray(vertex_00007014), meshlist_00006FFC, matlist_00006FCC, LengthOfArray(meshlist_00006FFC), LengthOfArray(matlist_00006FCC),{ 0 }, 20.49123f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_0004E550 = { vertex_0004E4F0, normal_0004E520, LengthOfArray<Sint32>(vertex_0004E4F0), meshlist_0004E4D8, matlist_0004E4A8, LengthOfArray<Uint16>(meshlist_0004E4D8), LengthOfArray<Uint16>(matlist_0004E4A8), { 0 }, 20.49123f, NULL };
 
-extern "C" __declspec(dllexport) NJS_OBJECT object_0000709C = { NJD_EVAL_BREAK, &attach_00007074, -2.812473f, 244.4141f, -20.84321f, 0x4ABF, 0xFFFFEB5B, 0xFFFFBAB1, 1.448973f, 0.64196f, 0.6207809f, NULL, &object_00006F98 };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0004E578 = { NJD_EVAL_BREAK, &attach_0004E550, -2.812473f, 244.4141f, -20.84321f, 0x4ABF, 0xFFFFEB5B, 0xFFFFBAB1, 1.448973f, 0.64196f, 0.6207809f, NULL, &object_0004E474 };
 
-extern "C" __declspec(dllexport) NJS_MATERIAL matlist_000070D0[] = {
-	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 1, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_FLAG_DOUBLE_SIDE | NJD_FLAG_IGNORE_LIGHT | NJD_DA_ONE | NJD_SA_ONE }
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_0004E5AC[] = {
+	{ { 0xFFB2B2B2 }, { 0xFFFFFFFF }, 11, 1, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_FLAG_DOUBLE_SIDE | NJD_FLAG_IGNORE_LIGHT | NJD_DA_ONE | NJD_SA_ONE }
 };
 
-extern "C" __declspec(dllexport) Sint16 poly_000070E4[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0004E5C0[] = {
 	4, 3, 2, 1, 0
 };
 
-extern "C" __declspec(dllexport) NJS_TEX uv_000070F0[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0004E5CC[] = {
 	{ 0, 254 },
 	{ 254, 255 },
 	{ 0 },
 	{ 255, 0 }
 };
 
-extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00007100[] = {
-	{ NJD_MESHSET_TRIMESH | 0, 1, poly_000070E4, NULL, NULL, NULL, uv_000070F0, NULL }
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_0004E5DC[] = {
+	{ NJD_MESHSET_TRIMESH | 0, 1, poly_0004E5C0, NULL, NULL, NULL, uv_0004E5CC, NULL }
 };
 
-extern "C" __declspec(dllexport) NJS_VECTOR vertex_00007118[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_0004E5F4[] = {
 	{ -13.5f, 0, -14.19999f },
 	{ -13.5f, 0, 14.19999f },
 	{ 13.5f, 0, -14.19999f },
 	{ 13.5f, 0, 14.19999f }
 };
 
-extern "C" __declspec(dllexport) NJS_VECTOR normal_00007148[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_0004E624[] = {
 	{ 0, 1, 0 },
 	{ 0, 1, 0 },
 	{ 0, 1, 0 },
 	{ 0, 1, 0 }
 };
 
-extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00007178 = { vertex_00007118, normal_00007148, LengthOfArray(vertex_00007118), meshlist_00007100, matlist_000070D0, LengthOfArray(meshlist_00007100), LengthOfArray(matlist_000070D0),{ 0 }, 20.76288f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_0004E654 = { vertex_0004E5F4, normal_0004E624, LengthOfArray<Sint32>(vertex_0004E5F4), meshlist_0004E5DC, matlist_0004E5AC, LengthOfArray<Uint16>(meshlist_0004E5DC), LengthOfArray<Uint16>(matlist_0004E5AC), { 0 }, 20.76288f, NULL };
 
-extern "C" __declspec(dllexport) NJS_OBJECT object_000071A0 = { NJD_EVAL_BREAK, &attach_00007178, -4.293884f, 218.695f, -6.992195f, 0x4990, 0xFFFFF8A7, 0xFFFFBE1B, 1.495001f, 0.547739f, 0.738004f, NULL, &object_0000709C };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0004E67C = { NJD_EVAL_BREAK, &attach_0004E654, -4.293884f, 218.695f, -6.992195f, 0x4990, 0xFFFFF8A7, 0xFFFFBE1B, 1.495001f, 0.547739f, 0.738004f, NULL, &object_0004E578 };
 
-extern "C" __declspec(dllexport) NJS_MATERIAL matlist_000071D4[] = {
-	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 1, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_FLAG_DOUBLE_SIDE | NJD_FLAG_IGNORE_LIGHT | NJD_DA_ONE | NJD_SA_ONE }
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_0004E6B0[] = {
+	{ { 0xFFB2B2B2 }, { 0xFFFFFFFF }, 11, 1, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_FLAG_DOUBLE_SIDE | NJD_FLAG_IGNORE_LIGHT | NJD_DA_ONE | NJD_SA_ONE }
 };
 
-extern "C" __declspec(dllexport) Sint16 poly_000071E8[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0004E6C4[] = {
 	4, 3, 2, 1, 0
 };
 
-extern "C" __declspec(dllexport) NJS_TEX uv_000071F4[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0004E6D0[] = {
 	{ 0, 254 },
 	{ 254, 255 },
 	{ 0 },
 	{ 255, 0 }
 };
 
-extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00007204[] = {
-	{ NJD_MESHSET_TRIMESH | 0, 1, poly_000071E8, NULL, NULL, NULL, uv_000071F4, NULL }
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_0004E6E0[] = {
+	{ NJD_MESHSET_TRIMESH | 0, 1, poly_0004E6C4, NULL, NULL, NULL, uv_0004E6D0, NULL }
 };
 
-extern "C" __declspec(dllexport) NJS_VECTOR vertex_0000721C[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_0004E6F8[] = {
 	{ -13.5f, 0, -14.19999f },
 	{ -13.5f, 0, 14.19999f },
 	{ 13.5f, 0, -14.19999f },
 	{ 13.5f, 0, 14.19999f }
 };
 
-extern "C" __declspec(dllexport) NJS_VECTOR normal_0000724C[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_0004E728[] = {
 	{ 0, 1, 0 },
 	{ 0, 1, 0 },
 	{ 0, 1, 0 },
 	{ 0, 1, 0 }
 };
 
-extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_0000727C = { vertex_0000721C, normal_0000724C, LengthOfArray(vertex_0000721C), meshlist_00007204, matlist_000071D4, LengthOfArray(meshlist_00007204), LengthOfArray(matlist_000071D4),{ 0 }, 22.48233f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_0004E758 = { vertex_0004E6F8, normal_0004E728, LengthOfArray<Sint32>(vertex_0004E6F8), meshlist_0004E6E0, matlist_0004E6B0, LengthOfArray<Uint16>(meshlist_0004E6E0), LengthOfArray<Uint16>(matlist_0004E6B0), { 0 }, 22.48233f, NULL };
 
-extern "C" __declspec(dllexport) NJS_OBJECT object_000072A4 = { NJD_EVAL_BREAK, &attach_0000727C, -5.775288f, 190.0413f, 0.821121f, 0x496B, 0xFFFFFD82, 0xFFFFBF4B, 1.637714f, 0.453518f, 0.855227f, NULL, &object_000071A0 };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0004E780 = { NJD_EVAL_BREAK, &attach_0004E758, -5.775288f, 190.0413f, 0.821121f, 0x496B, 0xFFFFFD82, 0xFFFFBF4B, 1.637714f, 0.453518f, 0.855227f, NULL, &object_0004E67C };
 
-extern "C" __declspec(dllexport) NJS_MATERIAL matlist_000072D8[] = {
-	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 1, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_FLAG_DOUBLE_SIDE | NJD_FLAG_IGNORE_LIGHT | NJD_DA_ONE | NJD_SA_ONE }
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_0004E7B4[] = {
+	{ { 0xFFB2B2B2 }, { 0xFFFFFFFF }, 11, 1, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_FLAG_DOUBLE_SIDE | NJD_FLAG_IGNORE_LIGHT | NJD_DA_ONE | NJD_SA_ONE }
 };
 
-extern "C" __declspec(dllexport) Sint16 poly_000072EC[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0004E7C8[] = {
 	4, 3, 2, 1, 0
 };
 
-extern "C" __declspec(dllexport) NJS_TEX uv_000072F8[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0004E7D4[] = {
 	{ 0, 254 },
 	{ 254, 255 },
 	{ 0 },
 	{ 255, 0 }
 };
 
-extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00007308[] = {
-	{ NJD_MESHSET_TRIMESH | 0, 1, poly_000072EC, NULL, NULL, NULL, uv_000072F8, NULL }
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_0004E7E4[] = {
+	{ NJD_MESHSET_TRIMESH | 0, 1, poly_0004E7C8, NULL, NULL, NULL, uv_0004E7D4, NULL }
 };
 
-extern "C" __declspec(dllexport) NJS_VECTOR vertex_00007320[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_0004E7FC[] = {
 	{ -13.5f, 0, -14.19999f },
 	{ -13.5f, 0, 14.19999f },
 	{ 13.5f, 0, -14.19999f },
 	{ 13.5f, 0, 14.19999f }
 };
 
-extern "C" __declspec(dllexport) NJS_VECTOR normal_00007350[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_0004E82C[] = {
 	{ 0, 1, 0 },
 	{ 0, 1, 0 },
 	{ 0, 1, 0 },
 	{ 0, 1, 0 }
 };
 
-extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00007380 = { vertex_00007320, normal_00007350, LengthOfArray(vertex_00007320), meshlist_00007308, matlist_000072D8, LengthOfArray(meshlist_00007308), LengthOfArray(matlist_000072D8),{ 0 }, 29.49959f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_0004E85C = { vertex_0004E7FC, normal_0004E82C, LengthOfArray<Sint32>(vertex_0004E7FC), meshlist_0004E7E4, matlist_0004E7B4, LengthOfArray<Uint16>(meshlist_0004E7E4), LengthOfArray<Uint16>(matlist_0004E7B4), { 0 }, 29.49959f, NULL };
 
-extern "C" __declspec(dllexport) NJS_OBJECT object_000073A8 = { NJD_EVAL_BREAK, &attach_00007380, -6.067161f, 160.7731f, 6.55521f, 0x4968, 0xFFFFFF38, 0xFFFFBFDB, 2.167155f, 0.359297f, 0.9724489f, NULL, &object_000072A4 };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0004E884 = { NJD_EVAL_BREAK, &attach_0004E85C, -6.067161f, 160.7731f, 6.55521f, 0x4968, 0xFFFFFF38, 0xFFFFBFDB, 2.167155f, 0.359297f, 0.9724489f, NULL, &object_0004E780 };
 
-extern "C" __declspec(dllexport) NJS_MATERIAL matlist_000073DC[] = {
-	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 1, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_FLAG_DOUBLE_SIDE | NJD_FLAG_IGNORE_LIGHT | NJD_DA_ONE | NJD_SA_ONE }
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_0004E8B8[] = {
+	{ { 0xFFB2B2B2 }, { 0xFFFFFFFF }, 11, 1, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_FLAG_DOUBLE_SIDE | NJD_FLAG_IGNORE_LIGHT | NJD_DA_ONE | NJD_SA_ONE }
 };
 
-extern "C" __declspec(dllexport) Sint16 poly_000073F0[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0004E8CC[] = {
 	4, 3, 2, 1, 0
 };
 
-extern "C" __declspec(dllexport) NJS_TEX uv_000073FC[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0004E8D8[] = {
 	{ 0, 254 },
 	{ 254, 255 },
 	{ 0 },
 	{ 255, 0 }
 };
 
-extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_0000740C[] = {
-	{ NJD_MESHSET_TRIMESH | 0, 1, poly_000073F0, NULL, NULL, NULL, uv_000073FC, NULL }
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_0004E8E8[] = {
+	{ NJD_MESHSET_TRIMESH | 0, 1, poly_0004E8CC, NULL, NULL, NULL, uv_0004E8D8, NULL }
 };
 
-extern "C" __declspec(dllexport) NJS_VECTOR vertex_00007424[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_0004E900[] = {
 	{ -13.5f, 0, -14.19999f },
 	{ -13.5f, 0, 14.19999f },
 	{ 13.5f, 0, -14.19999f },
 	{ 13.5f, 0, 14.19999f }
 };
 
-extern "C" __declspec(dllexport) NJS_VECTOR normal_00007454[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_0004E930[] = {
 	{ 0, 1, 0 },
 	{ 0, 1, 0 },
 	{ 0, 1, 0 },
 	{ 0, 1, 0 }
 };
 
-extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00007484 = { vertex_00007424, normal_00007454, LengthOfArray(vertex_00007424), meshlist_0000740C, matlist_000073DC, LengthOfArray(meshlist_0000740C), LengthOfArray(matlist_000073DC),{ 0 }, 36.58939f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_0004E960 = { vertex_0004E900, normal_0004E930, LengthOfArray<Sint32>(vertex_0004E900), meshlist_0004E8E8, matlist_0004E8B8, LengthOfArray<Uint16>(meshlist_0004E8E8), LengthOfArray<Uint16>(matlist_0004E8B8), { 0 }, 36.58939f, NULL };
 
-extern "C" __declspec(dllexport) NJS_OBJECT object_000074AC = { NJD_EVAL_BREAK, &attach_00007484, -6.06165f, 131.2309f, 10.88262f, 0x4965, 0xFFFFFFED, 0xFFFFBFF7, 2.696597f, 0.265076f, 1.089672f, NULL, &object_000073A8 };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0004E988 = { NJD_EVAL_BREAK, &attach_0004E960, -6.06165f, 131.2309f, 10.88262f, 0x4965, 0xFFFFFFED, 0xFFFFBFF7, 2.696597f, 0.265076f, 1.089672f, NULL, &object_0004E884 };
 
-extern "C" __declspec(dllexport) NJS_MATERIAL matlist_000074E0[] = {
-	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 1, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_FLAG_DOUBLE_SIDE | NJD_FLAG_IGNORE_LIGHT | NJD_DA_ONE | NJD_SA_ONE }
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_0004E9BC[] = {
+	{ { 0xFFB2B2B2 }, { 0xFFFFFFFF }, 11, 1, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_FLAG_DOUBLE_SIDE | NJD_FLAG_IGNORE_LIGHT | NJD_DA_ONE | NJD_SA_ONE }
 };
 
-extern "C" __declspec(dllexport) Sint16 poly_000074F4[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0004E9D0[] = {
 	4, 3, 2, 1, 0
 };
 
-extern "C" __declspec(dllexport) NJS_TEX uv_00007500[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0004E9DC[] = {
 	{ 0, 254 },
 	{ 254, 255 },
 	{ 0 },
 	{ 255, 0 }
 };
 
-extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00007510[] = {
-	{ NJD_MESHSET_TRIMESH | 0, 1, poly_000074F4, NULL, NULL, NULL, uv_00007500, NULL }
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_0004E9EC[] = {
+	{ NJD_MESHSET_TRIMESH | 0, 1, poly_0004E9D0, NULL, NULL, NULL, uv_0004E9DC, NULL }
 };
 
-extern "C" __declspec(dllexport) NJS_VECTOR vertex_00007528[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_0004EA04[] = {
 	{ -13.5f, 0, -14.19999f },
 	{ -13.5f, 0, 14.19999f },
 	{ 13.5f, 0, -14.19999f },
 	{ 13.5f, 0, 14.19999f }
 };
 
-extern "C" __declspec(dllexport) NJS_VECTOR normal_00007558[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_0004EA34[] = {
 	{ 0, 1, 0 },
 	{ 0, 1, 0 },
 	{ 0, 1, 0 },
 	{ 0, 1, 0 }
 };
 
-extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00007588 = { vertex_00007528, normal_00007558, LengthOfArray(vertex_00007528), meshlist_00007510, matlist_000074E0, LengthOfArray(meshlist_00007510), LengthOfArray(matlist_000074E0),{ 0 }, 43.77045f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_0004EA64 = { vertex_0004EA04, normal_0004EA34, LengthOfArray<Sint32>(vertex_0004EA04), meshlist_0004E9EC, matlist_0004E9BC, LengthOfArray<Uint16>(meshlist_0004E9EC), LengthOfArray<Uint16>(matlist_0004E9BC), { 0 }, 43.77045f, NULL };
 
-extern "C" __declspec(dllexport) NJS_OBJECT object_000075B0 = { NJD_EVAL_BREAK, &attach_00007588, -6.056148f, 101.6886f, 15.21007f, 0x4961, 0x60, 0xFFFFC012, 3.22604f, 0.170855f, 1.206895f, NULL, &object_000074AC };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0004EA8C = { NJD_EVAL_BREAK, &attach_0004EA64, -6.056148f, 101.6886f, 15.21007f, 0x4961, 0x60, 0xFFFFC012, 3.22604f, 0.170855f, 1.206895f, NULL, &object_0004E988 };
 
-extern "C" __declspec(dllexport) NJS_MATERIAL matlist_000075E4[] = {
-	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 1, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_FLAG_DOUBLE_SIDE | NJD_FLAG_IGNORE_LIGHT | NJD_DA_ONE | NJD_SA_ONE }
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_0004EAC0[] = {
+	{ { 0xFFB2B2B2 }, { 0xFFFFFFFF }, 11, 1, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_FLAG_DOUBLE_SIDE | NJD_FLAG_IGNORE_LIGHT | NJD_DA_ONE | NJD_SA_ONE }
 };
 
-extern "C" __declspec(dllexport) Sint16 poly_000075F8[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0004EAD4[] = {
 	4, 3, 2, 1, 0
 };
 
-extern "C" __declspec(dllexport) NJS_TEX uv_00007604[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0004EAE0[] = {
 	{ 0, 254 },
 	{ 254, 255 },
 	{ 0 },
 	{ 255, 0 }
 };
 
-extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00007614[] = {
-	{ NJD_MESHSET_TRIMESH | 0, 1, poly_000075F8, NULL, NULL, NULL, uv_00007604, NULL }
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_0004EAF0[] = {
+	{ NJD_MESHSET_TRIMESH | 0, 1, poly_0004EAD4, NULL, NULL, NULL, uv_0004EAE0, NULL }
 };
 
-extern "C" __declspec(dllexport) NJS_VECTOR vertex_0000762C[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_0004EB08[] = {
 	{ -13.5f, 0, -14.19999f },
 	{ -13.5f, 0, 14.19999f },
 	{ 13.5f, 0, -14.19999f },
 	{ 13.5f, 0, 14.19999f }
 };
 
-extern "C" __declspec(dllexport) NJS_VECTOR normal_0000765C[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_0004EB38[] = {
 	{ 0, 1, 0 },
 	{ 0, 1, 0 },
 	{ 0, 1, 0 },
 	{ 0, 1, 0 }
 };
 
-extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_0000768C = { vertex_0000762C, normal_0000765C, LengthOfArray(vertex_0000762C), meshlist_00007614, matlist_000075E4, LengthOfArray(meshlist_00007614), LengthOfArray(matlist_000075E4),{ 0 }, 45.53495f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_0004EB68 = { vertex_0004EB08, normal_0004EB38, LengthOfArray<Sint32>(vertex_0004EB08), meshlist_0004EAF0, matlist_0004EAC0, LengthOfArray<Uint16>(meshlist_0004EAF0), LengthOfArray<Uint16>(matlist_0004EAC0), { 0 }, 45.53495f, NULL };
 
-extern "C" __declspec(dllexport) NJS_OBJECT object_000076B4 = { NJD_EVAL_BREAK, &attach_0000768C, -6.050643f, 72.14642f, 19.53748f, 0x495E, 0xD4, 0xFFFFC02D, 3.351622f, 0.095479f, 1.300673f, NULL, &object_000075B0 };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0004EB90 = { NJD_EVAL_BREAK, &attach_0004EB68, -6.050643f, 72.14642f, 19.53748f, 0x495E, 0xD4, 0xFFFFC02D, 3.351622f, 0.095479f, 1.300673f, NULL, &object_0004EA8C };
 
-extern "C" __declspec(dllexport) NJS_MATERIAL matlist_000076E8[] = {
-	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 1, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_FLAG_DOUBLE_SIDE | NJD_FLAG_IGNORE_LIGHT | NJD_DA_ONE | NJD_SA_ONE }
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_0004EBC4[] = {
+	{ { 0xFFB2B2B2 }, { 0xFFFFFFFF }, 11, 1, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_FLAG_DOUBLE_SIDE | NJD_FLAG_IGNORE_LIGHT | NJD_DA_ONE | NJD_SA_ONE }
 };
 
-extern "C" __declspec(dllexport) Sint16 poly_000076FC[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0004EBD8[] = {
 	4, 3, 2, 1, 0
 };
 
-extern "C" __declspec(dllexport) NJS_TEX uv_00007708[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0004EBE4[] = {
 	{ 0, 254 },
 	{ 254, 255 },
 	{ 0 },
 	{ 255, 0 }
 };
 
-extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00007718[] = {
-	{ NJD_MESHSET_TRIMESH | 0, 1, poly_000076FC, NULL, NULL, NULL, uv_00007708, NULL }
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_0004EBF4[] = {
+	{ NJD_MESHSET_TRIMESH | 0, 1, poly_0004EBD8, NULL, NULL, NULL, uv_0004EBE4, NULL }
 };
 
-extern "C" __declspec(dllexport) NJS_VECTOR vertex_00007730[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_0004EC0C[] = {
 	{ -13.5f, 0, -14.19999f },
 	{ -13.5f, 0, 14.19999f },
 	{ 13.5f, 0, -14.19999f },
 	{ 13.5f, 0, 14.19999f }
 };
 
-extern "C" __declspec(dllexport) NJS_VECTOR normal_00007760[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_0004EC3C[] = {
 	{ 0, 1, 0 },
 	{ 0, 1, 0 },
 	{ 0, 1, 0 },
 	{ 0, 1, 0 }
 };
 
-extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00007790 = { vertex_00007730, normal_00007760, LengthOfArray(vertex_00007730), meshlist_00007718, matlist_000076E8, LengthOfArray(meshlist_00007718), LengthOfArray(matlist_000076E8),{ 0 }, 25.72272f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_0004EC6C = { vertex_0004EC0C, normal_0004EC3C, LengthOfArray<Sint32>(vertex_0004EC0C), meshlist_0004EBF4, matlist_0004EBC4, LengthOfArray<Uint16>(meshlist_0004EBF4), LengthOfArray<Uint16>(matlist_0004EBC4), { 0 }, 25.72272f, NULL };
 
-extern "C" __declspec(dllexport) NJS_OBJECT object_000077B8 = { NJD_EVAL_BREAK, &attach_00007790, -5.812688f, 42.48964f, 23.10701f, 0x495E, 0x1A7, 0xFFFFC08F, 1.86178f, 0.095479f, 1.300673f, NULL, &object_000076B4 };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0004EC94 = { NJD_EVAL_BREAK, &attach_0004EC6C, -5.812688f, 42.48964f, 23.10701f, 0x495E, 0x1A7, 0xFFFFC08F, 1.86178f, 0.095479f, 1.300673f, NULL, &object_0004EB90 };
 
-extern "C" __declspec(dllexport) NJS_MATERIAL matlist_000077EC[] = {
-	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 1, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_FLAG_DOUBLE_SIDE | NJD_FLAG_IGNORE_LIGHT | NJD_DA_ONE | NJD_SA_ONE }
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_0004ECC8[] = {
+	{ { 0xFFB2B2B2 }, { 0xFFFFFFFF }, 11, 1, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_FLAG_DOUBLE_SIDE | NJD_FLAG_IGNORE_LIGHT | NJD_DA_ONE | NJD_SA_ONE }
 };
 
-extern "C" __declspec(dllexport) Sint16 poly_00007800[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0004ECDC[] = {
 	4, 3, 2, 1, 0
 };
 
-extern "C" __declspec(dllexport) NJS_TEX uv_0000780C[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0004ECE8[] = {
 	{ 0, 254 },
 	{ 254, 255 },
 	{ 0 },
 	{ 255, 0 }
 };
 
-extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_0000781C[] = {
-	{ NJD_MESHSET_TRIMESH | 0, 1, poly_00007800, NULL, NULL, NULL, uv_0000780C, NULL }
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_0004ECF8[] = {
+	{ NJD_MESHSET_TRIMESH | 0, 1, poly_0004ECDC, NULL, NULL, NULL, uv_0004ECE8, NULL }
 };
 
-extern "C" __declspec(dllexport) NJS_VECTOR vertex_00007834[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_0004ED10[] = {
 	{ -13.5f, 0, -14.19999f },
 	{ -13.5f, 0, 14.19999f },
 	{ 13.5f, 0, -14.19999f },
 	{ 13.5f, 0, 14.19999f }
 };
 
-extern "C" __declspec(dllexport) NJS_VECTOR normal_00007864[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_0004ED40[] = {
 	{ 0, 1, 0 },
 	{ 0, 1, 0 },
 	{ 0, 1, 0 },
 	{ 0, 1, 0 }
 };
 
-extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00007894 = { vertex_00007834, normal_00007864, LengthOfArray(vertex_00007834), meshlist_0000781C, matlist_000077EC, LengthOfArray(meshlist_0000781C), LengthOfArray(matlist_000077EC),{ 0 }, 13.72283f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_0004ED70 = { vertex_0004ED10, normal_0004ED40, LengthOfArray<Sint32>(vertex_0004ED10), meshlist_0004ECF8, matlist_0004ECC8, LengthOfArray<Uint16>(meshlist_0004ECF8), LengthOfArray<Uint16>(matlist_0004ECC8), { 0 }, 13.72283f, NULL };
 
-extern "C" __declspec(dllexport) NJS_OBJECT object_000078BC = { NJD_EVAL_BREAK, &attach_00007894, -1.820152f, 237.1555f, -79.874f, 0xB46D, 0xFFFFE7FD, 0xFFFF4782, 1, 1, 0.175335f, NULL, &object_000077B8 };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0004ED98 = { NJD_EVAL_BREAK, &attach_0004ED70, -1.820152f, 237.1555f, -79.874f, 0xB46D, 0xFFFFE7FD, 0xFFFF4782, 1, 1, 0.175335f, NULL, &object_0004EC94 };
 
-extern "C" __declspec(dllexport) NJS_MATERIAL matlist_000078F0[] = {
-	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 1, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_FLAG_DOUBLE_SIDE | NJD_FLAG_IGNORE_LIGHT | NJD_DA_ONE | NJD_SA_ONE }
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_0004EDCC[] = {
+	{ { 0xFFB2B2B2 }, { 0xFFFFFFFF }, 11, 1, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_FLAG_DOUBLE_SIDE | NJD_FLAG_IGNORE_LIGHT | NJD_DA_ONE | NJD_SA_ONE }
 };
 
-extern "C" __declspec(dllexport) Sint16 poly_00007904[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0004EDE0[] = {
 	4, 3, 2, 1, 0
 };
 
-extern "C" __declspec(dllexport) NJS_TEX uv_00007910[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0004EDEC[] = {
 	{ 0, 254 },
 	{ 254, 255 },
 	{ 0 },
 	{ 255, 0 }
 };
 
-extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00007920[] = {
-	{ NJD_MESHSET_TRIMESH | 0, 1, poly_00007904, NULL, NULL, NULL, uv_00007910, NULL }
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_0004EDFC[] = {
+	{ NJD_MESHSET_TRIMESH | 0, 1, poly_0004EDE0, NULL, NULL, NULL, uv_0004EDEC, NULL }
 };
 
-extern "C" __declspec(dllexport) NJS_VECTOR vertex_00007938[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_0004EE14[] = {
 	{ -13.5f, 0, -14.19999f },
 	{ -13.5f, 0, 14.19999f },
 	{ 13.5f, 0, -14.19999f },
 	{ 13.5f, 0, 14.19999f }
 };
 
-extern "C" __declspec(dllexport) NJS_VECTOR normal_00007968[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_0004EE44[] = {
 	{ 0, 1, 0 },
 	{ 0, 1, 0 },
 	{ 0, 1, 0 },
 	{ 0, 1, 0 }
 };
 
-extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00007998 = { vertex_00007938, normal_00007968, LengthOfArray(vertex_00007938), meshlist_00007920, matlist_000078F0, LengthOfArray(meshlist_00007920), LengthOfArray(matlist_000078F0),{ 0 }, 14.31614f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_0004EE74 = { vertex_0004EE14, normal_0004EE44, LengthOfArray<Sint32>(vertex_0004EE14), meshlist_0004EDFC, matlist_0004EDCC, LengthOfArray<Uint16>(meshlist_0004EDFC), LengthOfArray<Uint16>(matlist_0004EDCC), { 0 }, 14.31614f, NULL };
 
-extern "C" __declspec(dllexport) NJS_OBJECT object_000079C0 = { NJD_EVAL_BREAK, &attach_00007998, -1.4682f, 244.653f, -64.86758f, 0xFFFFD59F, 0xFFFFD14D, 0x2BFF, 1.030289f, 0.149442f, 0.195414f, NULL, &object_000078BC };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0004EE9C = { NJD_EVAL_BREAK, &attach_0004EE74, -1.4682f, 244.653f, -64.86758f, 0xFFFFD59F, 0xFFFFD14D, 0x2BFF, 1.030289f, 0.149442f, 0.195414f, NULL, &object_0004ED98 };
 
-extern "C" __declspec(dllexport) NJS_MATERIAL matlist_000079F4[] = {
-	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 1, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_FLAG_DOUBLE_SIDE | NJD_FLAG_IGNORE_LIGHT | NJD_DA_ONE | NJD_SA_ONE }
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_0004EED0[] = {
+	{ { 0xFFB2B2B2 }, { 0xFFFFFFFF }, 11, 1, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_FLAG_DOUBLE_SIDE | NJD_FLAG_IGNORE_LIGHT | NJD_DA_ONE | NJD_SA_ONE }
 };
 
-extern "C" __declspec(dllexport) Sint16 poly_00007A08[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0004EEE4[] = {
 	4, 3, 2, 1, 0
 };
 
-extern "C" __declspec(dllexport) NJS_TEX uv_00007A14[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0004EEF0[] = {
 	{ 0, 254 },
 	{ 254, 255 },
 	{ 0 },
 	{ 255, 0 }
 };
 
-extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00007A24[] = {
-	{ NJD_MESHSET_TRIMESH | 0, 1, poly_00007A08, NULL, NULL, NULL, uv_00007A14, NULL }
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_0004EF00[] = {
+	{ NJD_MESHSET_TRIMESH | 0, 1, poly_0004EEE4, NULL, NULL, NULL, uv_0004EEF0, NULL }
 };
 
-extern "C" __declspec(dllexport) NJS_VECTOR vertex_00007A3C[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_0004EF18[] = {
 	{ -13.5f, 0, -14.19999f },
 	{ -13.5f, 0, 14.19999f },
 	{ 13.5f, 0, -14.19999f },
 	{ 13.5f, 0, 14.19999f }
 };
 
-extern "C" __declspec(dllexport) NJS_VECTOR normal_00007A6C[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_0004EF48[] = {
 	{ 0, 1, 0 },
 	{ 0, 1, 0 },
 	{ 0, 1, 0 },
 	{ 0, 1, 0 }
 };
 
-extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00007A9C = { vertex_00007A3C, normal_00007A6C, LengthOfArray(vertex_00007A3C), meshlist_00007A24, matlist_000079F4, LengthOfArray(meshlist_00007A24), LengthOfArray(matlist_000079F4),{ 0 }, 18.70007f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_0004EF78 = { vertex_0004EF18, normal_0004EF48, LengthOfArray<Sint32>(vertex_0004EF18), meshlist_0004EF00, matlist_0004EED0, LengthOfArray<Uint16>(meshlist_0004EF00), LengthOfArray<Uint16>(matlist_0004EED0), { 0 }, 18.70007f, NULL };
 
-extern "C" __declspec(dllexport) NJS_OBJECT object_00007AC4 = { NJD_EVAL_BREAK, &attach_00007A9C, -0.564715f, 247.6282f, -31.51902f, 0x3213, 0xFFFFDB79, 0xFFFFCB4E, 1.333163f, 0.891637f, 0.396203f, NULL, &object_000079C0 };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0004EFA0 = { NJD_EVAL_BREAK, &attach_0004EF78, -0.564715f, 247.6282f, -31.51902f, 0x3213, 0xFFFFDB79, 0xFFFFCB4E, 1.333163f, 0.891637f, 0.396203f, NULL, &object_0004EE9C };
 
-extern "C" __declspec(dllexport) NJS_MATERIAL matlist_00007AF8[] = {
-	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 1, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_FLAG_DOUBLE_SIDE | NJD_FLAG_IGNORE_LIGHT | NJD_DA_ONE | NJD_SA_ONE }
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_0004EFD4[] = {
+	{ { 0xFFB2B2B2 }, { 0xFFFFFFFF }, 11, 1, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_FLAG_DOUBLE_SIDE | NJD_FLAG_IGNORE_LIGHT | NJD_DA_ONE | NJD_SA_ONE }
 };
 
-extern "C" __declspec(dllexport) Sint16 poly_00007B0C[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0004EFE8[] = {
 	4, 3, 2, 1, 0
 };
 
-extern "C" __declspec(dllexport) NJS_TEX uv_00007B18[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0004EFF4[] = {
 	{ 0, 254 },
 	{ 254, 255 },
 	{ 0 },
 	{ 255, 0 }
 };
 
-extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00007B28[] = {
-	{ NJD_MESHSET_TRIMESH | 0, 1, poly_00007B0C, NULL, NULL, NULL, uv_00007B18, NULL }
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_0004F004[] = {
+	{ NJD_MESHSET_TRIMESH | 0, 1, poly_0004EFE8, NULL, NULL, NULL, uv_0004EFF4, NULL }
 };
 
-extern "C" __declspec(dllexport) NJS_VECTOR vertex_00007B40[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_0004F01C[] = {
 	{ -13.5f, 0, -14.19999f },
 	{ -13.5f, 0, 14.19999f },
 	{ 13.5f, 0, -14.19999f },
 	{ 13.5f, 0, 14.19999f }
 };
 
-extern "C" __declspec(dllexport) NJS_VECTOR normal_00007B70[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_0004F04C[] = {
 	{ 0, 1, 0 },
 	{ 0, 1, 0 },
 	{ 0, 1, 0 },
 	{ 0, 1, 0 }
 };
 
-extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00007BA0 = { vertex_00007B40, normal_00007B70, LengthOfArray(vertex_00007B40), meshlist_00007B28, matlist_00007AF8, LengthOfArray(meshlist_00007B28), LengthOfArray(matlist_00007AF8),{ 0 }, 20.14051f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_0004F07C = { vertex_0004F01C, normal_0004F04C, LengthOfArray<Sint32>(vertex_0004F01C), meshlist_0004F004, matlist_0004EFD4, LengthOfArray<Uint16>(meshlist_0004F004), LengthOfArray<Uint16>(matlist_0004EFD4), { 0 }, 20.14051f, NULL };
 
-extern "C" __declspec(dllexport) NJS_OBJECT object_00007BC8 = { NJD_EVAL_BREAK, &attach_00007BA0, 1.449744f, 234.4844f, -15.22169f, 0x3672, 0xFFFFEEA6, 0xFFFFC3E3, 1.439767f, 0.761012f, 0.5598339f, NULL, &object_00007AC4 };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0004F0A4 = { NJD_EVAL_BREAK, &attach_0004F07C, 1.449744f, 234.4844f, -15.22169f, 0x3672, 0xFFFFEEA6, 0xFFFFC3E3, 1.439767f, 0.761012f, 0.5598339f, NULL, &object_0004EFA0 };
 
-extern "C" __declspec(dllexport) NJS_MATERIAL matlist_00007BFC[] = {
-	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 1, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_FLAG_DOUBLE_SIDE | NJD_FLAG_IGNORE_LIGHT | NJD_DA_ONE | NJD_SA_ONE }
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_0004F0D8[] = {
+	{ { 0xFFB2B2B2 }, { 0xFFFFFFFF }, 11, 1, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_FLAG_DOUBLE_SIDE | NJD_FLAG_IGNORE_LIGHT | NJD_DA_ONE | NJD_SA_ONE }
 };
 
-extern "C" __declspec(dllexport) Sint16 poly_00007C10[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0004F0EC[] = {
 	4, 3, 2, 1, 0
 };
 
-extern "C" __declspec(dllexport) NJS_TEX uv_00007C1C[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0004F0F8[] = {
 	{ 0, 254 },
 	{ 254, 255 },
 	{ 0 },
 	{ 255, 0 }
 };
 
-extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00007C2C[] = {
-	{ NJD_MESHSET_TRIMESH | 0, 1, poly_00007C10, NULL, NULL, NULL, uv_00007C1C, NULL }
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_0004F108[] = {
+	{ NJD_MESHSET_TRIMESH | 0, 1, poly_0004F0EC, NULL, NULL, NULL, uv_0004F0F8, NULL }
 };
 
-extern "C" __declspec(dllexport) NJS_VECTOR vertex_00007C44[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_0004F120[] = {
 	{ -13.5f, 0, -14.19999f },
 	{ -13.5f, 0, 14.19999f },
 	{ 13.5f, 0, -14.19999f },
 	{ 13.5f, 0, 14.19999f }
 };
 
-extern "C" __declspec(dllexport) NJS_VECTOR normal_00007C74[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_0004F150[] = {
 	{ 0, 1, 0 },
 	{ 0, 1, 0 },
 	{ 0, 1, 0 },
 	{ 0, 1, 0 }
 };
 
-extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00007CA4 = { vertex_00007C44, normal_00007C74, LengthOfArray(vertex_00007C44), meshlist_00007C2C, matlist_00007BFC, LengthOfArray(meshlist_00007C2C), LengthOfArray(matlist_00007BFC),{ 0 }, 20.45803f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_0004F180 = { vertex_0004F120, normal_0004F150, LengthOfArray<Sint32>(vertex_0004F120), meshlist_0004F108, matlist_0004F0D8, LengthOfArray<Uint16>(meshlist_0004F108), LengthOfArray<Uint16>(matlist_0004F0D8), { 0 }, 20.45803f, NULL };
 
-extern "C" __declspec(dllexport) NJS_OBJECT object_00007CCC = { NJD_EVAL_BREAK, &attach_00007CA4, 3.089811f, 208.95f, -1.623031f, 0x3747, 0xFFFFFA72, 0xFFFFC159, 1.485796f, 0.65009f, 0.683307f, NULL, &object_00007BC8 };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0004F1A8 = { NJD_EVAL_BREAK, &attach_0004F180, 3.089811f, 208.95f, -1.623031f, 0x3747, 0xFFFFFA72, 0xFFFFC159, 1.485796f, 0.65009f, 0.683307f, NULL, &object_0004F0A4 };
 
-extern "C" __declspec(dllexport) NJS_MATERIAL matlist_00007D00[] = {
-	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 1, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_FLAG_DOUBLE_SIDE | NJD_FLAG_IGNORE_LIGHT | NJD_DA_ONE | NJD_SA_ONE }
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_0004F1DC[] = {
+	{ { 0xFFB2B2B2 }, { 0xFFFFFFFF }, 11, 1, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_FLAG_DOUBLE_SIDE | NJD_FLAG_IGNORE_LIGHT | NJD_DA_ONE | NJD_SA_ONE }
 };
 
-extern "C" __declspec(dllexport) Sint16 poly_00007D14[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0004F1F0[] = {
 	4, 3, 2, 1, 0
 };
 
-extern "C" __declspec(dllexport) NJS_TEX uv_00007D20[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0004F1FC[] = {
 	{ 0, 254 },
 	{ 254, 255 },
 	{ 0 },
 	{ 255, 0 }
 };
 
-extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00007D30[] = {
-	{ NJD_MESHSET_TRIMESH | 0, 1, poly_00007D14, NULL, NULL, NULL, uv_00007D20, NULL }
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_0004F20C[] = {
+	{ NJD_MESHSET_TRIMESH | 0, 1, poly_0004F1F0, NULL, NULL, NULL, uv_0004F1FC, NULL }
 };
 
-extern "C" __declspec(dllexport) NJS_VECTOR vertex_00007D48[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_0004F224[] = {
 	{ -13.5f, 0, -14.19999f },
 	{ -13.5f, 0, 14.19999f },
 	{ 13.5f, 0, -14.19999f },
 	{ 13.5f, 0, 14.19999f }
 };
 
-extern "C" __declspec(dllexport) NJS_VECTOR normal_00007D78[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_0004F254[] = {
 	{ 0, 1, 0 },
 	{ 0, 1, 0 },
 	{ 0, 1, 0 },
 	{ 0, 1, 0 }
 };
 
-extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00007DA8 = { vertex_00007D48, normal_00007D78, LengthOfArray(vertex_00007D48), meshlist_00007D30, matlist_00007D00, LengthOfArray(meshlist_00007D30), LengthOfArray(matlist_00007D00),{ 0 }, 21.0115f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_0004F284 = { vertex_0004F224, normal_0004F254, LengthOfArray<Sint32>(vertex_0004F224), meshlist_0004F20C, matlist_0004F1DC, LengthOfArray<Uint16>(meshlist_0004F20C), LengthOfArray<Uint16>(matlist_0004F1DC), { 0 }, 21.0115f, NULL };
 
-extern "C" __declspec(dllexport) NJS_OBJECT object_00007DD0 = { NJD_EVAL_BREAK, &attach_00007DA8, 3.895475f, 181.6312f, 4.548828f, 0x375A, 0xFFFFFD01, 0xFFFFC093, 1.531824f, 0.5391679f, 0.80678f, NULL, &object_00007CCC };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0004F2AC = { NJD_EVAL_BREAK, &attach_0004F284, 3.895475f, 181.6312f, 4.548828f, 0x375A, 0xFFFFFD01, 0xFFFFC093, 1.531824f, 0.5391679f, 0.80678f, NULL, &object_0004F1A8 };
 
-extern "C" __declspec(dllexport) NJS_MATERIAL matlist_00007E04[] = {
-	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 1, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_FLAG_DOUBLE_SIDE | NJD_FLAG_IGNORE_LIGHT | NJD_DA_ONE | NJD_SA_ONE }
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_0004F2E0[] = {
+	{ { 0xFFB2B2B2 }, { 0xFFFFFFFF }, 11, 1, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_FLAG_DOUBLE_SIDE | NJD_FLAG_IGNORE_LIGHT | NJD_DA_ONE | NJD_SA_ONE }
 };
 
-extern "C" __declspec(dllexport) Sint16 poly_00007E18[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0004F2F4[] = {
 	4, 3, 2, 1, 0
 };
 
-extern "C" __declspec(dllexport) NJS_TEX uv_00007E24[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0004F300[] = {
 	{ 0, 254 },
 	{ 254, 255 },
 	{ 0 },
 	{ 255, 0 }
 };
 
-extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00007E34[] = {
-	{ NJD_MESHSET_TRIMESH | 0, 1, poly_00007E18, NULL, NULL, NULL, uv_00007E24, NULL }
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_0004F310[] = {
+	{ NJD_MESHSET_TRIMESH | 0, 1, poly_0004F2F4, NULL, NULL, NULL, uv_0004F300, NULL }
 };
 
-extern "C" __declspec(dllexport) NJS_VECTOR vertex_00007E4C[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_0004F328[] = {
 	{ -13.5f, 0, -14.19999f },
 	{ -13.5f, 0, 14.19999f },
 	{ 13.5f, 0, -14.19999f },
 	{ 13.5f, 0, 14.19999f }
 };
 
-extern "C" __declspec(dllexport) NJS_VECTOR normal_00007E7C[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_0004F358[] = {
 	{ 0, 1, 0 },
 	{ 0, 1, 0 },
 	{ 0, 1, 0 },
 	{ 0, 1, 0 }
 };
 
-extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00007EAC = { vertex_00007E4C, normal_00007E7C, LengthOfArray(vertex_00007E4C), meshlist_00007E34, matlist_00007E04, LengthOfArray(meshlist_00007E34), LengthOfArray(matlist_00007E04),{ 0 }, 27.99324f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_0004F388 = { vertex_0004F328, normal_0004F358, LengthOfArray<Sint32>(vertex_0004F328), meshlist_0004F310, matlist_0004F2E0, LengthOfArray<Uint16>(meshlist_0004F310), LengthOfArray<Uint16>(matlist_0004F2E0), { 0 }, 27.99324f, NULL };
 
-extern "C" __declspec(dllexport) NJS_OBJECT object_00007ED4 = { NJD_EVAL_BREAK, &attach_00007EAC, 4.144866f, 154.0818f, 10.28961f, 0x376D, 0xFFFFFF8F, 0xFFFFC019, 2.061268f, 0.428245f, 0.930254f, NULL, &object_00007DD0 };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0004F3B0 = { NJD_EVAL_BREAK, &attach_0004F388, 4.144866f, 154.0818f, 10.28961f, 0x376D, 0xFFFFFF8F, 0xFFFFC019, 2.061268f, 0.428245f, 0.930254f, NULL, &object_0004F2AC };
 
-extern "C" __declspec(dllexport) NJS_MATERIAL matlist_00007F08[] = {
-	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 1, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_FLAG_DOUBLE_SIDE | NJD_FLAG_IGNORE_LIGHT | NJD_DA_ONE | NJD_SA_ONE }
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_0004F3E4[] = {
+	{ { 0xFFB2B2B2 }, { 0xFFFFFFFF }, 11, 1, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_FLAG_DOUBLE_SIDE | NJD_FLAG_IGNORE_LIGHT | NJD_DA_ONE | NJD_SA_ONE }
 };
 
-extern "C" __declspec(dllexport) Sint16 poly_00007F1C[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0004F3F8[] = {
 	4, 3, 2, 1, 0
 };
 
-extern "C" __declspec(dllexport) NJS_TEX uv_00007F28[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0004F404[] = {
 	{ 0, 254 },
 	{ 254, 255 },
 	{ 0 },
 	{ 255, 0 }
 };
 
-extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00007F38[] = {
-	{ NJD_MESHSET_TRIMESH | 0, 1, poly_00007F1C, NULL, NULL, NULL, uv_00007F28, NULL }
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_0004F414[] = {
+	{ NJD_MESHSET_TRIMESH | 0, 1, poly_0004F3F8, NULL, NULL, NULL, uv_0004F404, NULL }
 };
 
-extern "C" __declspec(dllexport) NJS_VECTOR vertex_00007F50[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_0004F42C[] = {
 	{ -13.5f, 0, -14.19999f },
 	{ -13.5f, 0, 14.19999f },
 	{ 13.5f, 0, -14.19999f },
 	{ 13.5f, 0, 14.19999f }
 };
 
-extern "C" __declspec(dllexport) NJS_VECTOR normal_00007F80[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_0004F45C[] = {
 	{ 0, 1, 0 },
 	{ 0, 1, 0 },
 	{ 0, 1, 0 },
 	{ 0, 1, 0 }
 };
 
-extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00007FB0 = { vertex_00007F50, normal_00007F80, LengthOfArray(vertex_00007F50), meshlist_00007F38, matlist_00007F08, LengthOfArray(meshlist_00007F38), LengthOfArray(matlist_00007F08),{ 0 }, 35.10778f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_0004F48C = { vertex_0004F42C, normal_0004F45C, LengthOfArray<Sint32>(vertex_0004F42C), meshlist_0004F414, matlist_0004F3E4, LengthOfArray<Uint16>(meshlist_0004F414), LengthOfArray<Uint16>(matlist_0004F3E4), { 0 }, 35.10778f, NULL };
 
-extern "C" __declspec(dllexport) NJS_OBJECT object_00007FD8 = { NJD_EVAL_BREAK, &attach_00007FB0, 4.063106f, 126.257f, 14.20829f, 0x37B6, 3, 0xFFFFC001, 2.59071f, 0.317323f, 1.053727f, NULL, &object_00007ED4 };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0004F4B4 = { NJD_EVAL_BREAK, &attach_0004F48C, 4.063106f, 126.257f, 14.20829f, 0x37B6, 3, 0xFFFFC001, 2.59071f, 0.317323f, 1.053727f, NULL, &object_0004F3B0 };
 
-extern "C" __declspec(dllexport) NJS_MATERIAL matlist_0000800C[] = {
-	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 1, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_FLAG_DOUBLE_SIDE | NJD_FLAG_IGNORE_LIGHT | NJD_DA_ONE | NJD_SA_ONE }
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_0004F4E8[] = {
+	{ { 0xFFB2B2B2 }, { 0xFFFFFFFF }, 11, 1, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_FLAG_DOUBLE_SIDE | NJD_FLAG_IGNORE_LIGHT | NJD_DA_ONE | NJD_SA_ONE }
 };
 
-extern "C" __declspec(dllexport) Sint16 poly_00008020[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0004F4FC[] = {
 	4, 3, 2, 1, 0
 };
 
-extern "C" __declspec(dllexport) NJS_TEX uv_0000802C[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0004F508[] = {
 	{ 0, 254 },
 	{ 254, 255 },
 	{ 0 },
 	{ 255, 0 }
 };
 
-extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_0000803C[] = {
-	{ NJD_MESHSET_TRIMESH | 0, 1, poly_00008020, NULL, NULL, NULL, uv_0000802C, NULL }
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_0004F518[] = {
+	{ NJD_MESHSET_TRIMESH | 0, 1, poly_0004F4FC, NULL, NULL, NULL, uv_0004F508, NULL }
 };
 
-extern "C" __declspec(dllexport) NJS_VECTOR vertex_00008054[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_0004F530[] = {
 	{ -13.5f, 0, -14.19999f },
 	{ -13.5f, 0, 14.19999f },
 	{ 13.5f, 0, -14.19999f },
 	{ 13.5f, 0, 14.19999f }
 };
 
-extern "C" __declspec(dllexport) NJS_VECTOR normal_00008084[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_0004F560[] = {
 	{ 0, 1, 0 },
 	{ 0, 1, 0 },
 	{ 0, 1, 0 },
 	{ 0, 1, 0 }
 };
 
-extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_000080B4 = { vertex_00008054, normal_00008084, LengthOfArray(vertex_00008054), meshlist_0000803C, matlist_0000800C, LengthOfArray(meshlist_0000803C), LengthOfArray(matlist_0000800C),{ 0 }, 42.29876f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_0004F590 = { vertex_0004F530, normal_0004F560, LengthOfArray<Sint32>(vertex_0004F530), meshlist_0004F518, matlist_0004F4E8, LengthOfArray<Uint16>(meshlist_0004F518), LengthOfArray<Uint16>(matlist_0004F4E8), { 0 }, 42.29876f, NULL };
 
-extern "C" __declspec(dllexport) NJS_OBJECT object_000080DC = { NJD_EVAL_BREAK, &attach_000080B4, 3.898567f, 98.43319f, 18.12682f, 0x37B5, 0x77, 0xFFFFBFEA, 3.120152f, 0.206401f, 1.1772f, NULL, &object_00007FD8 };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0004F5B8 = { NJD_EVAL_BREAK, &attach_0004F590, 3.898567f, 98.43319f, 18.12682f, 0x37B5, 0x77, 0xFFFFBFEA, 3.120152f, 0.206401f, 1.1772f, NULL, &object_0004F4B4 };
 
-extern "C" __declspec(dllexport) NJS_MATERIAL matlist_00008110[] = {
-	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 1, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_FLAG_DOUBLE_SIDE | NJD_FLAG_IGNORE_LIGHT | NJD_DA_ONE | NJD_SA_ONE }
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_0004F5EC[] = {
+	{ { 0xFFB2B2B2 }, { 0xFFFFFFFF }, 11, 1, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_FLAG_DOUBLE_SIDE | NJD_FLAG_IGNORE_LIGHT | NJD_DA_ONE | NJD_SA_ONE }
 };
 
-extern "C" __declspec(dllexport) Sint16 poly_00008124[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0004F600[] = {
 	4, 3, 2, 1, 0
 };
 
-extern "C" __declspec(dllexport) NJS_TEX uv_00008130[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0004F60C[] = {
 	{ 0, 254 },
 	{ 254, 255 },
 	{ 0 },
 	{ 255, 0 }
 };
 
-extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00008140[] = {
-	{ NJD_MESHSET_TRIMESH | 0, 1, poly_00008124, NULL, NULL, NULL, uv_00008130, NULL }
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_0004F61C[] = {
+	{ NJD_MESHSET_TRIMESH | 0, 1, poly_0004F600, NULL, NULL, NULL, uv_0004F60C, NULL }
 };
 
-extern "C" __declspec(dllexport) NJS_VECTOR vertex_00008158[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_0004F634[] = {
 	{ -13.5f, 0, -14.19999f },
 	{ -13.5f, 0, 14.19999f },
 	{ 13.5f, 0, -14.19999f },
 	{ 13.5f, 0, 14.19999f }
 };
 
-extern "C" __declspec(dllexport) NJS_VECTOR normal_00008188[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_0004F664[] = {
 	{ 0, 1, 0 },
 	{ 0, 1, 0 },
 	{ 0, 1, 0 },
 	{ 0, 1, 0 }
 };
 
-extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_000081B8 = { vertex_00008158, normal_00008188, LengthOfArray(vertex_00008158), meshlist_00008140, matlist_00008110, LengthOfArray(meshlist_00008140), LengthOfArray(matlist_00008110),{ 0 }, 49.49861f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_0004F694 = { vertex_0004F634, normal_0004F664, LengthOfArray<Sint32>(vertex_0004F634), meshlist_0004F61C, matlist_0004F5EC, LengthOfArray<Uint16>(meshlist_0004F61C), LengthOfArray<Uint16>(matlist_0004F5EC), { 0 }, 49.49861f, NULL };
 
-extern "C" __declspec(dllexport) NJS_OBJECT object_000081E0 = { NJD_EVAL_BREAK, &attach_000081B8, 3.734029f, 70.59612f, 21.93295f, 0x37B5, 0xEC, 0xFFFFBFD2, 3.649592f, 0.095479f, 1.300673f, NULL, &object_000080DC };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0004F6BC = { NJD_EVAL_BREAK, &attach_0004F694, 3.734029f, 70.59612f, 21.93295f, 0x37B5, 0xEC, 0xFFFFBFD2, 3.649592f, 0.095479f, 1.300673f, NULL, &object_0004F5B8 };
 
-extern "C" __declspec(dllexport) NJS_MATERIAL matlist_00008214[] = {
-	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 1, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_FLAG_DOUBLE_SIDE | NJD_FLAG_IGNORE_LIGHT | NJD_DA_ONE | NJD_SA_ONE }
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_0004F6F0[] = {
+	{ { 0xFFB2B2B2 }, { 0xFFFFFFFF }, 11, 1, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_FLAG_DOUBLE_SIDE | NJD_FLAG_IGNORE_LIGHT | NJD_DA_ONE | NJD_SA_ONE }
 };
 
-extern "C" __declspec(dllexport) Sint16 poly_00008228[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0004F704[] = {
 	4, 3, 2, 1, 0
 };
 
-extern "C" __declspec(dllexport) NJS_TEX uv_00008234[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0004F710[] = {
 	{ 0, 254 },
 	{ 254, 255 },
 	{ 0 },
 	{ 255, 0 }
 };
 
-extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00008244[] = {
-	{ NJD_MESHSET_TRIMESH | 0, 1, poly_00008228, NULL, NULL, NULL, uv_00008234, NULL }
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_0004F720[] = {
+	{ NJD_MESHSET_TRIMESH | 0, 1, poly_0004F704, NULL, NULL, NULL, uv_0004F710, NULL }
 };
 
-extern "C" __declspec(dllexport) NJS_VECTOR vertex_0000825C[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_0004F738[] = {
 	{ -13.5f, 0, -14.19999f },
 	{ -13.5f, 0, 14.19999f },
 	{ 13.5f, 0, -14.19999f },
 	{ 13.5f, 0, 14.19999f }
 };
 
-extern "C" __declspec(dllexport) NJS_VECTOR normal_0000828C[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_0004F768[] = {
 	{ 0, 1, 0 },
 	{ 0, 1, 0 },
 	{ 0, 1, 0 },
 	{ 0, 1, 0 }
 };
 
-extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_000082BC = { vertex_0000825C, normal_0000828C, LengthOfArray(vertex_0000825C), meshlist_00008244, matlist_00008214, LengthOfArray(meshlist_00008244), LengthOfArray(matlist_00008214),{ 0 }, 29.63112f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_0004F798 = { vertex_0004F738, normal_0004F768, LengthOfArray<Sint32>(vertex_0004F738), meshlist_0004F720, matlist_0004F6F0, LengthOfArray<Uint16>(meshlist_0004F720), LengthOfArray<Uint16>(matlist_0004F6F0), { 0 }, 29.63112f, NULL };
 
-extern "C" __declspec(dllexport) NJS_OBJECT object_000082E4 = { NJD_EVAL_BREAK, &attach_000082BC, 3.569493f, 42.57348f, 24.51132f, 0x37AD, 0x282, 0xFFFFBF82, 2.159744f, 0.095479f, 1.300673f, NULL, &object_000081E0 };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0004F7C0 = { NJD_EVAL_BREAK, &attach_0004F798, 3.569493f, 42.57348f, 24.51132f, 0x37AD, 0x282, 0xFFFFBF82, 2.159744f, 0.095479f, 1.300673f, NULL, &object_0004F6BC };
 
-extern "C" __declspec(dllexport) NJS_MATERIAL matlist_00008318[] = {
-	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 1, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_FLAG_DOUBLE_SIDE | NJD_FLAG_IGNORE_LIGHT | NJD_DA_ONE | NJD_SA_ONE }
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_0004F7F4[] = {
+	{ { 0xFFB2B2B2 }, { 0xFFFFFFFF }, 11, 1, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_FLAG_DOUBLE_SIDE | NJD_FLAG_IGNORE_LIGHT | NJD_DA_ONE | NJD_SA_ONE }
 };
 
-extern "C" __declspec(dllexport) Sint16 poly_0000832C[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0004F808[] = {
 	4, 3, 2, 1, 0
 };
 
-extern "C" __declspec(dllexport) NJS_TEX uv_00008338[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0004F814[] = {
 	{ 0, 254 },
 	{ 254, 255 },
 	{ 0 },
 	{ 255, 0 }
 };
 
-extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00008348[] = {
-	{ NJD_MESHSET_TRIMESH | 0, 1, poly_0000832C, NULL, NULL, NULL, uv_00008338, NULL }
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_0004F824[] = {
+	{ NJD_MESHSET_TRIMESH | 0, 1, poly_0004F808, NULL, NULL, NULL, uv_0004F814, NULL }
 };
 
-extern "C" __declspec(dllexport) NJS_VECTOR vertex_00008360[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_0004F83C[] = {
 	{ -13.5f, 0, -14.19999f },
 	{ -13.5f, 0, 14.19999f },
 	{ 13.5f, 0, -14.19999f },
 	{ 13.5f, 0, 14.19999f }
 };
 
-extern "C" __declspec(dllexport) NJS_VECTOR normal_00008390[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_0004F86C[] = {
 	{ 0, 1, 0 },
 	{ 0, 1, 0 },
 	{ 0, 1, 0 },
 	{ 0, 1, 0 }
 };
 
-extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_000083C0 = { vertex_00008360, normal_00008390, LengthOfArray(vertex_00008360), meshlist_00008348, matlist_00008318, LengthOfArray(meshlist_00008348), LengthOfArray(matlist_00008318),{ 0 }, 0.019612f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_0004F89C = { vertex_0004F83C, normal_0004F86C, LengthOfArray<Sint32>(vertex_0004F83C), meshlist_0004F824, matlist_0004F7F4, LengthOfArray<Uint16>(meshlist_0004F824), LengthOfArray<Uint16>(matlist_0004F7F4), { 0 }, 0.019612f, NULL };
 
-extern "C" __declspec(dllexport) NJS_OBJECT object_000083E8 = { NJD_EVAL_BREAK, &attach_000083C0, -1.462434f, 239.0465f, -75.85982f, 0xFFFFCB47, 0xFFFFE35C, 0x3899, 0.0009999999f, 0.0009999999f, 0.0009999999f, NULL, &object_000082E4 };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0004F8C4 = { NJD_EVAL_BREAK, &attach_0004F89C, -1.462434f, 239.0465f, -75.85982f, 0xFFFFCB47, 0xFFFFE35C, 0x3899, 0.0009999999f, 0.0009999999f, 0.0009999999f, NULL, &object_0004F7C0 };
 
-extern "C" __declspec(dllexport) NJS_MATERIAL matlist_0000841C[] = {
-	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 1, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_FLAG_DOUBLE_SIDE | NJD_FLAG_IGNORE_LIGHT | NJD_DA_ONE | NJD_SA_ONE }
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_0004F8F8[] = {
+	{ { 0xFFB2B2B2 }, { 0xFFFFFFFF }, 11, 1, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_FLAG_DOUBLE_SIDE | NJD_FLAG_IGNORE_LIGHT | NJD_DA_ONE | NJD_SA_ONE }
 };
 
-extern "C" __declspec(dllexport) Sint16 poly_00008430[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0004F90C[] = {
 	4, 3, 2, 1, 0
 };
 
-extern "C" __declspec(dllexport) NJS_TEX uv_0000843C[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0004F918[] = {
 	{ 0, 254 },
 	{ 254, 255 },
 	{ 0 },
 	{ 255, 0 }
 };
 
-extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_0000844C[] = {
-	{ NJD_MESHSET_TRIMESH | 0, 1, poly_00008430, NULL, NULL, NULL, uv_0000843C, NULL }
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_0004F928[] = {
+	{ NJD_MESHSET_TRIMESH | 0, 1, poly_0004F90C, NULL, NULL, NULL, uv_0004F918, NULL }
 };
 
-extern "C" __declspec(dllexport) NJS_VECTOR vertex_00008464[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_0004F940[] = {
 	{ -13.5f, 0, -14.19999f },
 	{ -13.5f, 0, 14.19999f },
 	{ 13.5f, 0, -14.19999f },
 	{ 13.5f, 0, 14.19999f }
 };
 
-extern "C" __declspec(dllexport) NJS_VECTOR normal_00008494[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_0004F970[] = {
 	{ 0, 1, 0 },
 	{ 0, 1, 0 },
 	{ 0, 1, 0 },
 	{ 0, 1, 0 }
 };
 
-extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_000084C4 = { vertex_00008464, normal_00008494, LengthOfArray(vertex_00008464), meshlist_0000844C, matlist_0000841C, LengthOfArray(meshlist_0000844C), LengthOfArray(matlist_0000841C),{ 0 }, 16.46453f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_0004F9A0 = { vertex_0004F940, normal_0004F970, LengthOfArray<Sint32>(vertex_0004F940), meshlist_0004F928, matlist_0004F8F8, LengthOfArray<Uint16>(meshlist_0004F928), LengthOfArray<Uint16>(matlist_0004F8F8), { 0 }, 16.46453f, NULL };
 
-extern "C" __declspec(dllexport) NJS_OBJECT object_000084EC = { NJD_EVAL_BREAK, &attach_000084C4, -1.469656f, 245.7753f, -61.45391f, 0xFFFFDC71, 0xFFFFCDD8, 0x24AB, 1.12115f, 0.372099f, 0.25565f, NULL, &object_000083E8 };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0004F9C8 = { NJD_EVAL_BREAK, &attach_0004F9A0, -1.469656f, 245.7753f, -61.45391f, 0xFFFFDC71, 0xFFFFCDD8, 0x24AB, 1.12115f, 0.372099f, 0.25565f, NULL, &object_0004F8C4 };
 
-extern "C" __declspec(dllexport) NJS_MATERIAL matlist_00008520[] = {
-	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 1, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_FLAG_DOUBLE_SIDE | NJD_FLAG_IGNORE_LIGHT | NJD_DA_ONE | NJD_SA_ONE }
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_0004F9FC[] = {
+	{ { 0xFFB2B2B2 }, { 0xFFFFFFFF }, 11, 1, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_FLAG_DOUBLE_SIDE | NJD_FLAG_IGNORE_LIGHT | NJD_DA_ONE | NJD_SA_ONE }
 };
 
-extern "C" __declspec(dllexport) Sint16 poly_00008534[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0004FA10[] = {
 	4, 3, 2, 1, 0
 };
 
-extern "C" __declspec(dllexport) NJS_TEX uv_00008540[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_0004FA1C[] = {
 	{ 0, 254 },
 	{ 254, 255 },
 	{ 0 },
 	{ 255, 0 }
 };
 
-extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00008550[] = {
-	{ NJD_MESHSET_TRIMESH | 0, 1, poly_00008534, NULL, NULL, NULL, uv_00008540, NULL }
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_0004FA2C[] = {
+	{ NJD_MESHSET_TRIMESH | 0, 1, poly_0004FA10, NULL, NULL, NULL, uv_0004FA1C, NULL }
 };
 
-extern "C" __declspec(dllexport) NJS_VECTOR vertex_00008568[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_0004FA44[] = {
 	{ -13.5f, 0, -14.19999f },
 	{ -13.5f, 0, 14.19999f },
 	{ 13.5f, 0, -14.19999f },
 	{ 13.5f, 0, 14.19999f }
 };
 
-extern "C" __declspec(dllexport) NJS_VECTOR normal_00008598[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_0004FA74[] = {
 	{ 0, 1, 0 },
 	{ 0, 1, 0 },
 	{ 0, 1, 0 },
 	{ 0, 1, 0 }
 };
 
-extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_000085C8 = { vertex_00008568, normal_00008598, LengthOfArray(vertex_00008568), meshlist_00008550, matlist_00008520, LengthOfArray(meshlist_00008550), LengthOfArray(matlist_00008520),{ 0 }, 21.05506f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_0004FAA4 = { vertex_0004FA44, normal_0004FA74, LengthOfArray<Sint32>(vertex_0004FA44), meshlist_0004FA2C, matlist_0004F9FC, LengthOfArray<Uint16>(meshlist_0004FA2C), LengthOfArray<Uint16>(matlist_0004F9FC), { 0 }, 21.05506f, NULL };
 
-extern "C" __declspec(dllexport) NJS_OBJECT object_000085F0 = { NJD_EVAL_BREAK, &attach_000085C8, -1.476875f, 251.3866f, -44.38574f, 0x242B, 0xFFFFCDB8, 0xFFFFDAB0, 1.272588f, 0.743198f, 0.356045f, NULL, &object_000084EC };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0004FACC = { NJD_EVAL_BREAK, &attach_0004FAA4, -1.476875f, 251.3866f, -44.38574f, 0x242B, 0xFFFFCDB8, 0xFFFFDAB0, 1.272588f, 0.743198f, 0.356045f, NULL, &object_0004F9C8 };
 
-extern "C" __declspec(dllexport) NJS_MATERIAL matlist_00[] = {
-	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 7, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_FLAG_IGNORE_LIGHT | NJD_DA_INV_SRC | NJD_SA_SRC }
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_0004DF80[] = {
+	{ { 0xFFBFBFBF }, { 0xFFFFFFFF }, 6, 1, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-extern "C" __declspec(dllexport) Sint16 poly_00008624[] = {
+extern "C" __declspec(dllexport) Sint16 poly_0004FB00[] = {
 	3, 1, 0, 2
 };
 
-extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_0000862C[] = {
-	{ NJD_MESHSET_TRIMESH | 0, 1, poly_00008624, NULL, NULL, NULL, NULL, NULL }
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_0004FB08[] = {
+	{ NJD_MESHSET_TRIMESH | 0, 1, poly_0004FB00, NULL, NULL, NULL, NULL, NULL }
 };
 
-extern "C" __declspec(dllexport) NJS_VECTOR vertex_00008644[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_0004FB20[] = {
 	{ 0.5f, 0, 0.5f },
 	{ -0.5f, 0, 0.5f },
 	{ 0.5f, 0, -0.5f }
 };
 
-extern "C" __declspec(dllexport) NJS_VECTOR normal_00008668[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_0004FB44[] = {
 	{ 0, 1, 0 },
 	{ 0, 1, 0 },
 	{ 0, 1, 0 }
 };
 
-extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_0000868C = { vertex_00008644, normal_00008668, LengthOfArray(vertex_00008644), meshlist_0000862C, matlist_00, LengthOfArray(meshlist_0000862C), 0,{ 0 }, 0.786973f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_0004FB68 = { vertex_0004FB20, normal_0004FB44, LengthOfArray<Sint32>(vertex_0004FB20), meshlist_0004FB08, matlist_0004DF80, LengthOfArray<Uint16>(meshlist_0004FB08), LengthOfArray<Uint16>(matlist_0004DF80), { 0 }, 0.786973f, NULL };
 
-extern "C" __declspec(dllexport) NJS_OBJECT object_000086B4 = { NJD_EVAL_UNIT_SCL, &attach_0000868C, -121.3549f, 0, -324.5795f, 0, 0xC39, 0, 1, 1, 1, &object_000085F0, NULL };
-
-extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_1_pos[] = {
+extern "C" __declspec(dllexport) NJS_OBJECT object_0004FB90 = { NJD_EVAL_UNIT_SCL, &attach_0004FB68, -121.3549f, 0, -324.5795f, 0, 0xC39, 0, 1, 1, 1, &object_0004FACC, NULL };
+extern "C" __declspec(dllexport) NJS_MKEY_F animation_0001643C_1_pos[] = {
 	{ 0, -1.476875f, 251.3866f, -44.38574f },
 	{ 1, -1.248831f, 250.447f, -41.1691f },
 	{ 2, -1.020796f, 249.5074f, -37.95243f },
@@ -3956,7 +3972,7 @@ extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_1_pos[] = {
 	{ 59, -1.476875f, 251.3866f, -44.38574f }
 };
 
-extern "C" __declspec(dllexport) NJS_MKEY_A animation_00016428_1_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A animation_0001643C_1_rot[] = {
 	{ 0, 0x242B, 0xFFFFCDB8, 0xFFFFDAB0 },
 	{ 1, 0x28EA, 0xFFFFD128, 0xFFFFD485 },
 	{ 2, 0x2DA9, 0xFFFFD498, 0xFFFFD0EF },
@@ -4000,7 +4016,7 @@ extern "C" __declspec(dllexport) NJS_MKEY_A animation_00016428_1_rot[] = {
 	{ 59, 0xA42B, 0xFFFFB24A, 0xFFFF5AB0 }
 };
 
-extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_1_scl[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F animation_0001643C_1_scl[] = {
 	{ 0, 1.272588f, 0.743198f, 0.356045f },
 	{ 18, 1.637712f, 0.516983f, 0.831475f },
 	{ 19, 1.743601f, 0.494799f, 0.856169f },
@@ -4037,7 +4053,7 @@ extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_1_scl[] = {
 	{ 59, 1.272588f, 0.743198f, 0.356045f }
 };
 
-extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_2_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F animation_0001643C_2_pos[] = {
 	{ 0, -1.469656f, 245.7753f, -61.45391f },
 	{ 1, -1.471088f, 246.8975f, -58.04028f },
 	{ 2, -1.472535f, 248.0198f, -54.62665f },
@@ -4100,7 +4116,7 @@ extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_2_pos[] = {
 	{ 59, -1.469656f, 245.7753f, -61.45391f }
 };
 
-extern "C" __declspec(dllexport) NJS_MKEY_A animation_00016428_2_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A animation_0001643C_2_rot[] = {
 	{ 0, 0xFFFFDC71, 0xFFFFCDD9, 0x24AB },
 	{ 1, 0xFFFFE7A4, 0xFFFFCA64, 0x18FC },
 	{ 2, 0xFFFFF8C6, 0xFFFFC8B3, 0x764 },
@@ -4144,7 +4160,7 @@ extern "C" __declspec(dllexport) NJS_MKEY_A animation_00016428_2_rot[] = {
 	{ 59, 0x5C70, 0xFFFFB229, 0xFFFFA4AC }
 };
 
-extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_2_scl[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F animation_0001643C_2_scl[] = {
 	{ 0, 1.12115f, 0.372099f, 0.25565f },
 	{ 23, 1.637712f, 0.516983f, 0.831475f },
 	{ 24, 1.743601f, 0.494799f, 0.856169f },
@@ -4181,7 +4197,7 @@ extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_2_scl[] = {
 	{ 59, 1.12115f, 0.372099f, 0.25565f }
 };
 
-extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_3_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F animation_0001643C_3_pos[] = {
 	{ 0, -1.462434f, 239.0465f, -75.85982f },
 	{ 1, -1.46388f, 241.5041f, -73.66639f },
 	{ 2, -1.465324f, 242.5538f, -70.73343f },
@@ -4244,7 +4260,7 @@ extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_3_pos[] = {
 	{ 59, -1.462434f, 239.0465f, -75.85982f }
 };
 
-extern "C" __declspec(dllexport) NJS_MKEY_A animation_00016428_3_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A animation_0001643C_3_rot[] = {
 	{ 0, 0xFFFFCB48, 0xFFFFE35C, 0x3899 },
 	{ 1, 0xFFFFCC9C, 0xFFFFDED8, 0x36AB },
 	{ 2, 0xFFFFCEFA, 0xFFFFDA55, 0x33BC },
@@ -4288,7 +4304,7 @@ extern "C" __declspec(dllexport) NJS_MKEY_A animation_00016428_3_rot[] = {
 	{ 59, 0x4B46, 0xFFFF9CA6, 0xFFFFB89A }
 };
 
-extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_3_scl[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F animation_0001643C_3_scl[] = {
 	{ 0, 0.0009999999f, 0.0009999999f, 0.0009999999f },
 	{ 1, 1, 0.07522f, 0.175335f },
 	{ 28, 1.637712f, 0.516983f, 0.831475f },
@@ -4324,7 +4340,7 @@ extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_3_scl[] = {
 	{ 59, 0.0009999999f, 0.0009999999f, 0.0009999999f }
 };
 
-extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_4_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F animation_0001643C_4_pos[] = {
 	{ 0, 3.569493f, 42.57348f, 24.51132f },
 	{ 1, 3.536586f, 42.21392f, 24.71699f },
 	{ 2, 3.503676f, 42.38246f, 24.91506f },
@@ -4387,7 +4403,7 @@ extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_4_pos[] = {
 	{ 59, 3.569493f, 42.57348f, 24.51132f }
 };
 
-extern "C" __declspec(dllexport) NJS_MKEY_A animation_00016428_4_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A animation_0001643C_4_rot[] = {
 	{ 0, 0x37AD, 0x282, 0xFFFFBF82 },
 	{ 1, 0x37A9, 0x35A, 0xFFFFBF39 },
 	{ 2, 0x37A5, 0x4F8, 0xFFFFBEF0 },
@@ -4431,7 +4447,7 @@ extern "C" __declspec(dllexport) NJS_MKEY_A animation_00016428_4_rot[] = {
 	{ 59, 0xB7AC, 0xFFFF7D7F, 0xFFFF3F82 }
 };
 
-extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_4_scl[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F animation_0001643C_4_scl[] = {
 	{ 0, 2.159744f, 0.095479f, 1.300673f },
 	{ 1, 1.762453f, 0.095479f, 1.300673f },
 	{ 2, 1.365163f, 0.095479f, 1.300673f },
@@ -4468,7 +4484,7 @@ extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_4_scl[] = {
 	{ 59, 2.159744f, 0.095479f, 1.300673f }
 };
 
-extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_5_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F animation_0001643C_5_pos[] = {
 	{ 0, 3.734029f, 70.59612f, 21.93295f },
 	{ 1, 3.701126f, 65.01517f, 22.60465f },
 	{ 2, 3.668213f, 59.43423f, 23.27639f },
@@ -4531,7 +4547,7 @@ extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_5_pos[] = {
 	{ 59, 3.734029f, 70.59612f, 21.93295f }
 };
 
-extern "C" __declspec(dllexport) NJS_MKEY_A animation_00016428_5_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A animation_0001643C_5_rot[] = {
 	{ 0, 0x37B5, 0xEC, 0xFFFFBFD2 },
 	{ 5, 0x37AD, 0x282, 0xFFFFBF82 },
 	{ 6, 0x37A9, 0x35A, 0xFFFFBF39 },
@@ -4576,7 +4592,7 @@ extern "C" __declspec(dllexport) NJS_MKEY_A animation_00016428_5_rot[] = {
 	{ 59, 0xB7B4, 0xFFFF7F14, 0xFFFF3FD3 }
 };
 
-extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_5_scl[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F animation_0001643C_5_scl[] = {
 	{ 0, 3.649592f, 0.095479f, 1.300673f },
 	{ 1, 3.314377f, 0.095479f, 1.300673f },
 	{ 2, 2.979162f, 0.095479f, 1.300673f },
@@ -4612,7 +4628,7 @@ extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_5_scl[] = {
 	{ 59, 3.649592f, 0.095479f, 1.300673f }
 };
 
-extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_6_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F animation_0001643C_6_pos[] = {
 	{ 0, 3.898567f, 98.43319f, 18.12682f },
 	{ 1, 3.86566f, 92.86916f, 18.91043f },
 	{ 2, 3.832746f, 87.30512f, 19.69403f },
@@ -4675,7 +4691,7 @@ extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_6_pos[] = {
 	{ 59, 3.898567f, 98.43319f, 18.12682f }
 };
 
-extern "C" __declspec(dllexport) NJS_MKEY_A animation_00016428_6_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A animation_0001643C_6_rot[] = {
 	{ 0, 0x37B5, 0x77, 0xFFFFBFEA },
 	{ 10, 0x37AD, 0x282, 0xFFFFBF82 },
 	{ 11, 0x37A9, 0x35A, 0xFFFFBF39 },
@@ -4720,7 +4736,7 @@ extern "C" __declspec(dllexport) NJS_MKEY_A animation_00016428_6_rot[] = {
 	{ 59, 0xB7B5, 0xFFFF7F89, 0xFFFF3FEA }
 };
 
-extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_6_scl[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F animation_0001643C_6_scl[] = {
 	{ 0, 3.120152f, 0.206401f, 1.1772f },
 	{ 1, 3.22604f, 0.184216f, 1.201895f },
 	{ 2, 3.331929f, 0.162032f, 1.226589f },
@@ -4741,7 +4757,7 @@ extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_6_scl[] = {
 	{ 59, 3.120152f, 0.206401f, 1.1772f }
 };
 
-extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_7_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F animation_0001643C_7_pos[] = {
 	{ 0, 4.063106f, 126.257f, 14.20829f },
 	{ 1, 4.0302f, 120.6921f, 14.99202f },
 	{ 2, 3.997293f, 115.1271f, 15.77575f },
@@ -4804,7 +4820,7 @@ extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_7_pos[] = {
 	{ 59, 4.063106f, 126.257f, 14.20829f }
 };
 
-extern "C" __declspec(dllexport) NJS_MKEY_A animation_00016428_7_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A animation_0001643C_7_rot[] = {
 	{ 0, 0x37B6, 3, 0xFFFFC001 },
 	{ 15, 0x37AD, 0x282, 0xFFFFBF82 },
 	{ 16, 0x37A9, 0x35A, 0xFFFFBF39 },
@@ -4849,7 +4865,7 @@ extern "C" __declspec(dllexport) NJS_MKEY_A animation_00016428_7_rot[] = {
 	{ 59, 0xB7B5, 0xFFFF7FFE, 0xFFFF4002 }
 };
 
-extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_7_scl[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F animation_0001643C_7_scl[] = {
 	{ 0, 2.59071f, 0.317323f, 1.053727f },
 	{ 1, 2.696598f, 0.295138f, 1.078421f },
 	{ 2, 2.802487f, 0.272954f, 1.103116f },
@@ -4875,7 +4891,7 @@ extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_7_scl[] = {
 	{ 59, 2.59071f, 0.317323f, 1.053727f }
 };
 
-extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_8_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F animation_0001643C_8_pos[] = {
 	{ 0, 4.144866f, 154.0818f, 10.28961f },
 	{ 1, 4.194738f, 148.5169f, 11.07336f },
 	{ 2, 4.161825f, 142.9519f, 11.85709f },
@@ -4938,7 +4954,7 @@ extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_8_pos[] = {
 	{ 59, 4.144866f, 154.0818f, 10.28961f }
 };
 
-extern "C" __declspec(dllexport) NJS_MKEY_A animation_00016428_8_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A animation_0001643C_8_rot[] = {
 	{ 0, 0x376D, 0xFFFFFF8F, 0xFFFFC019 },
 	{ 20, 0x37AD, 0x282, 0xFFFFBF82 },
 	{ 21, 0x37A9, 0x35A, 0xFFFFBF39 },
@@ -4982,7 +4998,7 @@ extern "C" __declspec(dllexport) NJS_MKEY_A animation_00016428_8_rot[] = {
 	{ 59, 0xB76D, 0xFFFF8072, 0xFFFF4019 }
 };
 
-extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_8_scl[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F animation_0001643C_8_scl[] = {
 	{ 0, 2.061268f, 0.428245f, 0.930254f },
 	{ 1, 2.167157f, 0.406061f, 0.9549479f },
 	{ 2, 2.273045f, 0.383876f, 0.979643f },
@@ -5013,7 +5029,7 @@ extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_8_scl[] = {
 	{ 59, 2.061268f, 0.428245f, 0.930254f }
 };
 
-extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_9_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F animation_0001643C_9_pos[] = {
 	{ 0, 3.895475f, 181.6312f, 4.548828f },
 	{ 1, 3.94535f, 176.1351f, 5.788106f },
 	{ 2, 3.995227f, 170.639f, 7.027354f },
@@ -5076,7 +5092,7 @@ extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_9_pos[] = {
 	{ 59, 3.895475f, 181.6312f, 4.548828f }
 };
 
-extern "C" __declspec(dllexport) NJS_MKEY_A animation_00016428_9_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A animation_0001643C_9_rot[] = {
 	{ 0, 0x375A, 0xFFFFFD01, 0xFFFFC094 },
 	{ 1, 0x375E, 0xFFFFFD84, 0xFFFFC07B },
 	{ 2, 0x3762, 0xFFFFFE07, 0xFFFFC063 },
@@ -5120,7 +5136,7 @@ extern "C" __declspec(dllexport) NJS_MKEY_A animation_00016428_9_rot[] = {
 	{ 59, 0xB75A, 0xFFFF8301, 0xFFFF4094 }
 };
 
-extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_9_scl[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F animation_0001643C_9_scl[] = {
 	{ 0, 1.531824f, 0.5391679f, 0.80678f },
 	{ 1, 1.637712f, 0.516983f, 0.831475f },
 	{ 2, 1.743601f, 0.494799f, 0.85617f },
@@ -5156,7 +5172,7 @@ extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_9_scl[] = {
 	{ 59, 1.531824f, 0.5391679f, 0.80678f }
 };
 
-extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_10_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F animation_0001643C_10_pos[] = {
 	{ 0, 3.089811f, 208.95f, -1.623031f },
 	{ 1, 3.417829f, 203.6158f, -0.40824f },
 	{ 2, 3.745832f, 198.1196f, 0.831049f },
@@ -5219,7 +5235,7 @@ extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_10_pos[] = {
 	{ 59, 3.089811f, 208.95f, -1.623031f }
 };
 
-extern "C" __declspec(dllexport) NJS_MKEY_A animation_00016428_10_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A animation_0001643C_10_rot[] = {
 	{ 0, 0x3747, 0xFFFFFA73, 0xFFFFC15A },
 	{ 1, 0x374B, 0xFFFFFAF5, 0xFFFFC0F6 },
 	{ 2, 0x374F, 0xFFFFFB78, 0xFFFFC0DD },
@@ -5263,7 +5279,7 @@ extern "C" __declspec(dllexport) NJS_MKEY_A animation_00016428_10_rot[] = {
 	{ 59, 0xB746, 0xFFFF858F, 0xFFFF415A }
 };
 
-extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_10_scl[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F animation_0001643C_10_scl[] = {
 	{ 0, 1.485796f, 0.65009f, 0.683307f },
 	{ 6, 1.637715f, 0.516983f, 0.831475f },
 	{ 7, 1.743604f, 0.494798f, 0.85617f },
@@ -5299,7 +5315,7 @@ extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_10_scl[] = {
 	{ 59, 1.485796f, 0.65009f, 0.683307f }
 };
 
-extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_11_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F animation_0001643C_11_pos[] = {
 	{ 0, 1.449744f, 234.4844f, -15.22169f },
 	{ 1, 1.777756f, 229.3775f, -12.50194f },
 	{ 2, 2.105761f, 224.2706f, -9.78219f },
@@ -5362,7 +5378,7 @@ extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_11_pos[] = {
 	{ 59, 1.449744f, 234.4844f, -15.22169f }
 };
 
-extern "C" __declspec(dllexport) NJS_MKEY_A animation_00016428_11_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A animation_0001643C_11_rot[] = {
 	{ 0, 0x3671, 0xFFFFEEA6, 0xFFFFC3E3 },
 	{ 1, 0x36B6, 0xFFFFF20C, 0xFFFFC2E9 },
 	{ 2, 0x36FB, 0xFFFFF571, 0xFFFFC285 },
@@ -5406,7 +5422,7 @@ extern "C" __declspec(dllexport) NJS_MKEY_A animation_00016428_11_rot[] = {
 	{ 59, 0xB671, 0xFFFF915B, 0xFFFF43E3 }
 };
 
-extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_11_scl[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F animation_0001643C_11_scl[] = {
 	{ 0, 1.439767f, 0.761012f, 0.5598339f },
 	{ 11, 1.637715f, 0.516983f, 0.831475f },
 	{ 12, 1.743604f, 0.494798f, 0.85617f },
@@ -5442,7 +5458,7 @@ extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_11_scl[] = {
 	{ 59, 1.439767f, 0.761012f, 0.5598339f }
 };
 
-extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_12_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F animation_0001643C_12_pos[] = {
 	{ 0, -0.564715f, 247.6282f, -31.51902f },
 	{ 1, -0.33668f, 246.6886f, -28.30235f },
 	{ 2, -0.10864f, 243.6767f, -24.77259f },
@@ -5505,7 +5521,7 @@ extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_12_pos[] = {
 	{ 59, -0.564715f, 247.6282f, -31.51902f }
 };
 
-extern "C" __declspec(dllexport) NJS_MKEY_A animation_00016428_12_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A animation_0001643C_12_rot[] = {
 	{ 0, 0x3213, 0xFFFFDB79, 0xFFFFCB4E },
 	{ 1, 0x3346, 0xFFFFDEE9, 0xFFFFC943 },
 	{ 2, 0x3478, 0xFFFFE259, 0xFFFFC7E9 },
@@ -5549,7 +5565,7 @@ extern "C" __declspec(dllexport) NJS_MKEY_A animation_00016428_12_rot[] = {
 	{ 59, 0xB213, 0xFFFFA489, 0xFFFF4B4F }
 };
 
-extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_12_scl[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F animation_0001643C_12_scl[] = {
 	{ 0, 1.333163f, 0.891637f, 0.396203f },
 	{ 16, 1.637715f, 0.527679f, 0.809675f },
 	{ 17, 1.743604f, 0.504931f, 0.835517f },
@@ -5585,7 +5601,7 @@ extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_12_scl[] = {
 	{ 59, 1.333163f, 0.891637f, 0.396203f }
 };
 
-extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_13_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F animation_0001643C_13_pos[] = {
 	{ 0, -1.4682f, 244.653f, -64.86758f },
 	{ 1, -1.469656f, 245.7753f, -61.45391f },
 	{ 2, -1.471088f, 246.8976f, -58.04028f },
@@ -5648,7 +5664,7 @@ extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_13_pos[] = {
 	{ 59, -1.4682f, 244.653f, -64.86758f }
 };
 
-extern "C" __declspec(dllexport) NJS_MKEY_A animation_00016428_13_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A animation_0001643C_13_rot[] = {
 	{ 0, 0xFFFFD59F, 0xFFFFD14D, 0x2BFE },
 	{ 1, 0xFFFFDC71, 0xFFFFCDD9, 0x24AB },
 	{ 2, 0xFFFFE7A4, 0xFFFFCA64, 0x18FC },
@@ -5692,7 +5708,7 @@ extern "C" __declspec(dllexport) NJS_MKEY_A animation_00016428_13_rot[] = {
 	{ 59, 0x559E, 0xFFFFAEB4, 0xFFFFAC00 }
 };
 
-extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_13_scl[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F animation_0001643C_13_scl[] = {
 	{ 0, 1.030289f, 0.149442f, 0.195414f },
 	{ 26, 1.637714f, 0.516983f, 0.831475f },
 	{ 27, 1.743603f, 0.494799f, 0.85617f },
@@ -5728,7 +5744,7 @@ extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_13_scl[] = {
 	{ 59, 1.030289f, 0.149442f, 0.195414f }
 };
 
-extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_14_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F animation_0001643C_14_pos[] = {
 	{ 0, -1.820152f, 237.1555f, -79.874f },
 	{ 1, -1.828267f, 239.3887f, -77.97028f },
 	{ 2, -1.83637f, 241.7785f, -75.02946f },
@@ -5791,7 +5807,7 @@ extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_14_pos[] = {
 	{ 59, -1.820152f, 237.1555f, -79.874f }
 };
 
-extern "C" __declspec(dllexport) NJS_MKEY_A animation_00016428_14_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A animation_0001643C_14_rot[] = {
 	{ 0, 0xFFFFB46F, 0xFFFFE7FD, 0x4781 },
 	{ 1, 0xFFFFB36D, 0xFFFFE372, 0x4963 },
 	{ 2, 0xFFFFB1AF, 0xFFFFDEE7, 0x4B46 },
@@ -5828,7 +5844,7 @@ extern "C" __declspec(dllexport) NJS_MKEY_A animation_00016428_14_rot[] = {
 	{ 59, 0xFFFFB46F, 0xFFFFE7FD, 0x4781 }
 };
 
-extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_14_scl[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F animation_0001643C_14_scl[] = {
 	{ 0, 1, 1, 0.175335f },
 	{ 29, 1.637713f, 0.453518f, 0.855227f },
 	{ 30, 1.743601f, 0.434674f, 0.878671f },
@@ -5863,7 +5879,7 @@ extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_14_scl[] = {
 	{ 59, 1, 1, 0.175335f }
 };
 
-extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_15_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F animation_0001643C_15_pos[] = {
 	{ 0, -5.812688f, 42.48964f, 23.10701f },
 	{ 1, -5.765105f, 36.53228f, 23.64887f },
 	{ 2, -5.631563f, 30.58487f, 24.18925f },
@@ -5926,7 +5942,7 @@ extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_15_pos[] = {
 	{ 59, -5.812688f, 42.48964f, 23.10701f }
 };
 
-extern "C" __declspec(dllexport) NJS_MKEY_A animation_00016428_15_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A animation_0001643C_15_rot[] = {
 	{ 0, 0x495D, 0x1A7, 0xFFFFC08F },
 	{ 1, 0x4960, 0x27F, 0xFFFFC0AC },
 	{ 2, 0x4962, 0x356, 0xFFFFC0C9 },
@@ -5964,7 +5980,7 @@ extern "C" __declspec(dllexport) NJS_MKEY_A animation_00016428_15_rot[] = {
 	{ 59, 0x495D, 0x1A7, 0xFFFFC08F }
 };
 
-extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_15_scl[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F animation_0001643C_15_scl[] = {
 	{ 0, 1.86178f, 0.095479f, 1.300673f },
 	{ 1, 1.563811f, 0.095479f, 1.300673f },
 	{ 2, 1.265843f, 0.095479f, 1.300673f },
@@ -5999,7 +6015,7 @@ extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_15_scl[] = {
 	{ 59, 1.86178f, 0.095479f, 1.300673f }
 };
 
-extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_16_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F animation_0001643C_16_pos[] = {
 	{ 0, -6.050643f, 72.14642f, 19.53748f },
 	{ 1, -6.003057f, 66.23796f, 20.40297f },
 	{ 2, -5.95546f, 60.30763f, 21.12369f },
@@ -6062,7 +6078,7 @@ extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_16_pos[] = {
 	{ 59, -6.050643f, 72.14642f, 19.53748f }
 };
 
-extern "C" __declspec(dllexport) NJS_MKEY_A animation_00016428_16_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A animation_0001643C_16_rot[] = {
 	{ 0, 0x495E, 0xD4, 0xFFFFC02E },
 	{ 6, 0x4960, 0x27F, 0xFFFFC0AC },
 	{ 7, 0x4962, 0x356, 0xFFFFC0C9 },
@@ -6100,7 +6116,7 @@ extern "C" __declspec(dllexport) NJS_MKEY_A animation_00016428_16_rot[] = {
 	{ 59, 0x495E, 0xD4, 0xFFFFC02E }
 };
 
-extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_16_scl[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F animation_0001643C_16_scl[] = {
 	{ 0, 3.351622f, 0.095479f, 1.300673f },
 	{ 1, 3.053653f, 0.095479f, 1.300673f },
 	{ 2, 2.755685f, 0.095479f, 1.300673f },
@@ -6135,7 +6151,7 @@ extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_16_scl[] = {
 	{ 59, 3.351622f, 0.095479f, 1.300673f }
 };
 
-extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_17_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F animation_0001643C_17_pos[] = {
 	{ 0, -6.056148f, 101.6886f, 15.21007f },
 	{ 1, -6.055047f, 95.78019f, 16.07555f },
 	{ 2, -6.053946f, 89.87175f, 16.94104f },
@@ -6198,7 +6214,7 @@ extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_17_pos[] = {
 	{ 59, -6.056148f, 101.6886f, 15.21007f }
 };
 
-extern "C" __declspec(dllexport) NJS_MKEY_A animation_00016428_17_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A animation_0001643C_17_rot[] = {
 	{ 0, 0x4961, 0x60, 0xFFFFC012 },
 	{ 11, 0x4960, 0x27F, 0xFFFFC0AC },
 	{ 12, 0x4962, 0x356, 0xFFFFC0C9 },
@@ -6236,7 +6252,7 @@ extern "C" __declspec(dllexport) NJS_MKEY_A animation_00016428_17_rot[] = {
 	{ 59, 0x4961, 0x60, 0xFFFFC012 }
 };
 
-extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_17_scl[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F animation_0001643C_17_scl[] = {
 	{ 0, 3.22604f, 0.170855f, 1.206895f },
 	{ 1, 3.331928f, 0.152011f, 1.230339f },
 	{ 2, 3.437817f, 0.133167f, 1.253784f },
@@ -6271,7 +6287,7 @@ extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_17_scl[] = {
 	{ 59, 3.22604f, 0.170855f, 1.206895f }
 };
 
-extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_18_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F animation_0001643C_18_pos[] = {
 	{ 0, -6.06165f, 131.2309f, 10.88262f },
 	{ 1, -6.060549f, 125.3224f, 11.74811f },
 	{ 2, -6.059449f, 119.414f, 12.6136f },
@@ -6334,7 +6350,7 @@ extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_18_pos[] = {
 	{ 59, -6.06165f, 131.2309f, 10.88262f }
 };
 
-extern "C" __declspec(dllexport) NJS_MKEY_A animation_00016428_18_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A animation_0001643C_18_rot[] = {
 	{ 0, 0x4964, 0xFFFFFFED, 0xFFFFBFF7 },
 	{ 16, 0x4960, 0x27F, 0xFFFFC0AC },
 	{ 17, 0x4962, 0x356, 0xFFFFC0C9 },
@@ -6372,7 +6388,7 @@ extern "C" __declspec(dllexport) NJS_MKEY_A animation_00016428_18_rot[] = {
 	{ 59, 0x4964, 0xFFFFFFED, 0xFFFFBFF7 }
 };
 
-extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_18_scl[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F animation_0001643C_18_scl[] = {
 	{ 0, 2.696597f, 0.265076f, 1.089672f },
 	{ 1, 2.802486f, 0.246232f, 1.113117f },
 	{ 2, 2.908374f, 0.227388f, 1.136561f },
@@ -6407,7 +6423,7 @@ extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_18_scl[] = {
 	{ 59, 2.696597f, 0.265076f, 1.089672f }
 };
 
-extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_19_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F animation_0001643C_19_pos[] = {
 	{ 0, -6.067161f, 160.7731f, 6.55521f },
 	{ 1, -6.066061f, 154.8647f, 7.420699f },
 	{ 2, -6.06496f, 148.9562f, 8.286186f },
@@ -6470,7 +6486,7 @@ extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_19_pos[] = {
 	{ 59, -6.067161f, 160.7731f, 6.55521f }
 };
 
-extern "C" __declspec(dllexport) NJS_MKEY_A animation_00016428_19_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A animation_0001643C_19_rot[] = {
 	{ 0, 0x4968, 0xFFFFFF38, 0xFFFFBFDC },
 	{ 21, 0x4960, 0x27F, 0xFFFFC0AC },
 	{ 22, 0x4962, 0x356, 0xFFFFC0C9 },
@@ -6508,7 +6524,7 @@ extern "C" __declspec(dllexport) NJS_MKEY_A animation_00016428_19_rot[] = {
 	{ 59, 0x4968, 0xFFFFFF38, 0xFFFFBFDC }
 };
 
-extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_19_scl[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F animation_0001643C_19_scl[] = {
 	{ 0, 2.167155f, 0.359297f, 0.9724489f },
 	{ 1, 2.273044f, 0.340453f, 0.995894f },
 	{ 2, 2.378932f, 0.321609f, 1.019338f },
@@ -6543,7 +6559,7 @@ extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_19_scl[] = {
 	{ 59, 2.167155f, 0.359297f, 0.9724489f }
 };
 
-extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_20_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F animation_0001643C_20_pos[] = {
 	{ 0, -5.775288f, 190.0413f, 0.821121f },
 	{ 1, -6.071575f, 184.2699f, 2.389966f },
 	{ 2, -6.070462f, 178.4985f, 3.958745f },
@@ -6606,7 +6622,7 @@ extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_20_pos[] = {
 	{ 59, -5.775288f, 190.0413f, 0.821121f }
 };
 
-extern "C" __declspec(dllexport) NJS_MKEY_A animation_00016428_20_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A animation_0001643C_20_rot[] = {
 	{ 0, 0x496B, 0xFFFFFD82, 0xFFFFBF4B },
 	{ 26, 0x4960, 0x27F, 0xFFFFC0AC },
 	{ 27, 0x4962, 0x356, 0xFFFFC0C9 },
@@ -6644,7 +6660,7 @@ extern "C" __declspec(dllexport) NJS_MKEY_A animation_00016428_20_rot[] = {
 	{ 59, 0x496B, 0xFFFFFD82, 0xFFFFBF4B }
 };
 
-extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_20_scl[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F animation_0001643C_20_scl[] = {
 	{ 0, 1.637714f, 0.453518f, 0.855227f },
 	{ 1, 1.743603f, 0.434674f, 0.878671f },
 	{ 2, 1.849491f, 0.41583f, 0.9021159f },
@@ -6679,7 +6695,7 @@ extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_20_scl[] = {
 	{ 59, 1.637714f, 0.453518f, 0.855227f }
 };
 
-extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_21_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F animation_0001643C_21_pos[] = {
 	{ 0, -4.293884f, 218.695f, -6.992195f },
 	{ 1, -4.590163f, 213.1273f, -5.454173f },
 	{ 2, -4.886449f, 207.3557f, -3.885327f },
@@ -6742,7 +6758,7 @@ extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_21_pos[] = {
 	{ 59, -4.293884f, 218.695f, -6.992195f }
 };
 
-extern "C" __declspec(dllexport) NJS_MKEY_A animation_00016428_21_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A animation_0001643C_21_rot[] = {
 	{ 0, 0x498F, 0xFFFFF8A7, 0xFFFFBE1B },
 	{ 1, 0x497E, 0xFFFFF9C8, 0xFFFFBE88 },
 	{ 2, 0x496D, 0xFFFFFAE9, 0xFFFFBEF5 },
@@ -6779,7 +6795,7 @@ extern "C" __declspec(dllexport) NJS_MKEY_A animation_00016428_21_rot[] = {
 	{ 59, 0x498F, 0xFFFFF8A7, 0xFFFFBE1B }
 };
 
-extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_21_scl[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F animation_0001643C_21_scl[] = {
 	{ 0, 1.495001f, 0.547739f, 0.738004f },
 	{ 4, 1.531824f, 0.472362f, 0.831782f },
 	{ 5, 1.637714f, 0.453518f, 0.855227f },
@@ -6816,7 +6832,7 @@ extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_21_scl[] = {
 	{ 59, 1.495001f, 0.547739f, 0.738004f }
 };
 
-extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_22_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F animation_0001643C_22_pos[] = {
 	{ 0, -2.812473f, 244.4141f, -20.84321f },
 	{ 1, -3.108743f, 239.8517f, -17.83683f },
 	{ 2, -3.405029f, 234.9199f, -14.77459f },
@@ -6879,7 +6895,7 @@ extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_22_pos[] = {
 	{ 59, -2.812473f, 244.4141f, -20.84321f }
 };
 
-extern "C" __declspec(dllexport) NJS_MKEY_A animation_00016428_22_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A animation_0001643C_22_rot[] = {
 	{ 0, 0x4ABF, 0xFFFFEB5C, 0xFFFFBAB1 },
 	{ 1, 0x4A65, 0xFFFFEF23, 0xFFFFBBC3 },
 	{ 2, 0x4A0B, 0xFFFFF2EB, 0xFFFFBCD4 },
@@ -6916,7 +6932,7 @@ extern "C" __declspec(dllexport) NJS_MKEY_A animation_00016428_22_rot[] = {
 	{ 59, 0x4ABF, 0xFFFFEB5C, 0xFFFFBAB1 }
 };
 
-extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_22_scl[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F animation_0001643C_22_scl[] = {
 	{ 0, 1.448973f, 0.64196f, 0.6207809f },
 	{ 10, 1.637715f, 0.453518f, 0.855227f },
 	{ 11, 1.743603f, 0.434674f, 0.878671f },
@@ -6952,7 +6968,7 @@ extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_22_scl[] = {
 	{ 59, 1.448973f, 0.64196f, 0.6207809f }
 };
 
-extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_23_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F animation_0001643C_23_pos[] = {
 	{ 0, -1.546245f, 251.8641f, -37.58501f },
 	{ 1, -1.505925f, 250.5905f, -34.25435f },
 	{ 2, -1.465609f, 249.3168f, -30.92373f },
@@ -7015,7 +7031,7 @@ extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_23_pos[] = {
 	{ 59, -1.546245f, 251.8641f, -37.58501f }
 };
 
-extern "C" __declspec(dllexport) NJS_MKEY_A animation_00016428_23_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A animation_0001643C_23_rot[] = {
 	{ 0, 0x51AA, 0xFFFFD685, 0xFFFFB09D },
 	{ 1, 0x4FAF, 0xFFFFDB96, 0xFFFFB3F5 },
 	{ 2, 0x4DB4, 0xFFFFDF0C, 0xFFFFB5BC },
@@ -7052,7 +7068,7 @@ extern "C" __declspec(dllexport) NJS_MKEY_A animation_00016428_23_rot[] = {
 	{ 59, 0x51AA, 0xFFFFD685, 0xFFFFB09D }
 };
 
-extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_23_scl[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F animation_0001643C_23_scl[] = {
 	{ 0, 1.402944f, 0.736181f, 0.503559f },
 	{ 15, 1.637715f, 0.453518f, 0.855227f },
 	{ 16, 1.743603f, 0.434674f, 0.878671f },
@@ -7088,7 +7104,7 @@ extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_23_scl[] = {
 	{ 59, 1.402944f, 0.736181f, 0.503559f }
 };
 
-extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_24_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F animation_0001643C_24_pos[] = {
 	{ 0, -1.747807f, 250.3829f, -53.21578f },
 	{ 1, -1.707494f, 250.6985f, -49.96157f },
 	{ 2, -1.667182f, 250.9899f, -46.86737f },
@@ -7151,7 +7167,7 @@ extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_24_pos[] = {
 	{ 59, -1.747807f, 250.3829f, -53.21578f }
 };
 
-extern "C" __declspec(dllexport) NJS_MKEY_A animation_00016428_24_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A animation_0001643C_24_rot[] = {
 	{ 0, 0x768E, 0xFFFFC824, 0xFFFF8983 },
 	{ 1, 0x66A6, 0xFFFFC9F1, 0xFFFF99E9 },
 	{ 2, 0x5D7B, 0xFFFFCCA2, 0xFFFFA1EA },
@@ -7188,7 +7204,7 @@ extern "C" __declspec(dllexport) NJS_MKEY_A animation_00016428_24_rot[] = {
 	{ 59, 0x768E, 0xFFFFC824, 0xFFFF8983 }
 };
 
-extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_24_scl[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F animation_0001643C_24_scl[] = {
 	{ 0, 1.272589f, 0.830402f, 0.386336f },
 	{ 20, 1.637715f, 0.453518f, 0.855227f },
 	{ 21, 1.743603f, 0.434674f, 0.878671f },
@@ -7224,7 +7240,7 @@ extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_24_scl[] = {
 	{ 59, 1.272589f, 0.830402f, 0.386336f }
 };
 
-extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_25_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F animation_0001643C_25_pos[] = {
 	{ 0, -1.852557f, 244.6564f, -68.86031f },
 	{ 1, -1.86066f, 247.0462f, -65.91949f },
 	{ 2, -1.868763f, 249.436f, -62.97868f },
@@ -7287,7 +7303,7 @@ extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_25_pos[] = {
 	{ 59, -1.852557f, 244.6564f, -68.86031f }
 };
 
-extern "C" __declspec(dllexport) NJS_MKEY_A animation_00016428_25_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A animation_0001643C_25_rot[] = {
 	{ 0, 0xFFFFACF0, 0xFFFFD446, 0x5138 },
 	{ 1, 0xFFFFA871, 0xFFFFD054, 0x5590 },
 	{ 2, 0xFFFF9F69, 0xFFFFCC63, 0x5F22 },
@@ -7324,7 +7340,7 @@ extern "C" __declspec(dllexport) NJS_MKEY_A animation_00016428_25_rot[] = {
 	{ 59, 0xFFFFACF0, 0xFFFFD446, 0x5138 }
 };
 
-extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_25_scl[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F animation_0001643C_25_scl[] = {
 	{ 0, 1.121151f, 0.924623f, 0.269113f },
 	{ 25, 1.637715f, 0.453518f, 0.855227f },
 	{ 26, 1.743603f, 0.434674f, 0.878671f },
@@ -7360,7 +7376,7 @@ extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_25_scl[] = {
 	{ 59, 1.121151f, 0.924623f, 0.269113f }
 };
 
-extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_26_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F animation_0001643C_26_pos[] = {
 	{ 0, 8.301572f, 36.81415f, -40.35556f },
 	{ 1, -1.820154f, 30.47364f, -45.73961f },
 	{ 2, -1.828268f, 32.4352f, -43.79483f },
@@ -7423,7 +7439,7 @@ extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_26_pos[] = {
 	{ 59, 8.301572f, 36.81415f, -40.35556f }
 };
 
-extern "C" __declspec(dllexport) NJS_MKEY_A animation_00016428_26_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A animation_0001643C_26_rot[] = {
 	{ 0, 0x7EED, 0xFFFFEC44, 0xFFFF8456 },
 	{ 1, 0xB46C, 0xFFFFE7FD, 0xFFFF4783 },
 	{ 2, 0xB36B, 0xFFFFE372, 0xFFFF4965 },
@@ -7460,7 +7476,7 @@ extern "C" __declspec(dllexport) NJS_MKEY_A animation_00016428_26_rot[] = {
 	{ 59, 0x7EED, 0xFFFFEC44, 0xFFFF8456 }
 };
 
-extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_26_scl[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F animation_0001643C_26_scl[] = {
 	{ 0, 0.0009999999f, 0.0009999999f, 0.0009999999f },
 	{ 2, 0.0009999999f, 0.0009999999f, 0.0009999999f },
 	{ 3, 1.030288f, 0.981156f, 0.198779f },
@@ -7496,7 +7512,7 @@ extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_26_scl[] = {
 	{ 59, 0.0009999999f, 0.0009999999f, 0.0009999999f }
 };
 
-extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_27_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F animation_0001643C_27_pos[] = {
 	{ 0, -5.860285f, 54.35127f, 21.67281f },
 	{ 1, -5.812696f, 48.39391f, 22.21467f },
 	{ 2, -5.765105f, 42.43656f, 22.75654f },
@@ -7559,7 +7575,7 @@ extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_27_pos[] = {
 	{ 59, -5.860285f, 54.35127f, 21.67281f }
 };
 
-extern "C" __declspec(dllexport) NJS_MKEY_A animation_00016428_27_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A animation_0001643C_27_rot[] = {
 	{ 0, 0x495B, 0x178, 0xFFFFC073 },
 	{ 1, 0x495D, 0x1A7, 0xFFFFC08F },
 	{ 2, 0x4960, 0x27F, 0xFFFFC0AC },
@@ -7598,7 +7614,7 @@ extern "C" __declspec(dllexport) NJS_MKEY_A animation_00016428_27_rot[] = {
 	{ 59, 0x495B, 0x178, 0xFFFFC073 }
 };
 
-extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_27_scl[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F animation_0001643C_27_scl[] = {
 	{ 0, 2.15975f, 0.095479f, 1.300673f },
 	{ 1, 1.861781f, 0.095479f, 1.300673f },
 	{ 2, 1.563813f, 0.095479f, 1.300673f },
@@ -7634,74 +7650,61 @@ extern "C" __declspec(dllexport) NJS_MKEY_F animation_00016428_27_scl[] = {
 	{ 59, 2.15975f, 0.095479f, 1.300673f }
 };
 
-extern "C" __declspec(dllexport) NJS_MDATA3 animation_00016428_mdat[] = {
+extern "C" __declspec(dllexport) NJS_MDATA3 animation_0001643C_mdat[] = {
 	{ NULL, NULL, NULL, 0, 0, 0 },
-	{ animation_00016428_1_pos, animation_00016428_1_rot, animation_00016428_1_scl, LengthOfArray(animation_00016428_1_pos), LengthOfArray(animation_00016428_1_rot), LengthOfArray(animation_00016428_1_scl) },
-	{ animation_00016428_2_pos, animation_00016428_2_rot, animation_00016428_2_scl, LengthOfArray(animation_00016428_2_pos), LengthOfArray(animation_00016428_2_rot), LengthOfArray(animation_00016428_2_scl) },
-	{ animation_00016428_3_pos, animation_00016428_3_rot, animation_00016428_3_scl, LengthOfArray(animation_00016428_3_pos), LengthOfArray(animation_00016428_3_rot), LengthOfArray(animation_00016428_3_scl) },
-	{ animation_00016428_4_pos, animation_00016428_4_rot, animation_00016428_4_scl, LengthOfArray(animation_00016428_4_pos), LengthOfArray(animation_00016428_4_rot), LengthOfArray(animation_00016428_4_scl) },
-	{ animation_00016428_5_pos, animation_00016428_5_rot, animation_00016428_5_scl, LengthOfArray(animation_00016428_5_pos), LengthOfArray(animation_00016428_5_rot), LengthOfArray(animation_00016428_5_scl) },
-	{ animation_00016428_6_pos, animation_00016428_6_rot, animation_00016428_6_scl, LengthOfArray(animation_00016428_6_pos), LengthOfArray(animation_00016428_6_rot), LengthOfArray(animation_00016428_6_scl) },
-	{ animation_00016428_7_pos, animation_00016428_7_rot, animation_00016428_7_scl, LengthOfArray(animation_00016428_7_pos), LengthOfArray(animation_00016428_7_rot), LengthOfArray(animation_00016428_7_scl) },
-	{ animation_00016428_8_pos, animation_00016428_8_rot, animation_00016428_8_scl, LengthOfArray(animation_00016428_8_pos), LengthOfArray(animation_00016428_8_rot), LengthOfArray(animation_00016428_8_scl) },
-	{ animation_00016428_9_pos, animation_00016428_9_rot, animation_00016428_9_scl, LengthOfArray(animation_00016428_9_pos), LengthOfArray(animation_00016428_9_rot), LengthOfArray(animation_00016428_9_scl) },
-	{ animation_00016428_10_pos, animation_00016428_10_rot, animation_00016428_10_scl, LengthOfArray(animation_00016428_10_pos), LengthOfArray(animation_00016428_10_rot), LengthOfArray(animation_00016428_10_scl) },
-	{ animation_00016428_11_pos, animation_00016428_11_rot, animation_00016428_11_scl, LengthOfArray(animation_00016428_11_pos), LengthOfArray(animation_00016428_11_rot), LengthOfArray(animation_00016428_11_scl) },
-	{ animation_00016428_12_pos, animation_00016428_12_rot, animation_00016428_12_scl, LengthOfArray(animation_00016428_12_pos), LengthOfArray(animation_00016428_12_rot), LengthOfArray(animation_00016428_12_scl) },
-	{ animation_00016428_13_pos, animation_00016428_13_rot, animation_00016428_13_scl, LengthOfArray(animation_00016428_13_pos), LengthOfArray(animation_00016428_13_rot), LengthOfArray(animation_00016428_13_scl) },
-	{ animation_00016428_14_pos, animation_00016428_14_rot, animation_00016428_14_scl, LengthOfArray(animation_00016428_14_pos), LengthOfArray(animation_00016428_14_rot), LengthOfArray(animation_00016428_14_scl) },
-	{ animation_00016428_15_pos, animation_00016428_15_rot, animation_00016428_15_scl, LengthOfArray(animation_00016428_15_pos), LengthOfArray(animation_00016428_15_rot), LengthOfArray(animation_00016428_15_scl) },
-	{ animation_00016428_16_pos, animation_00016428_16_rot, animation_00016428_16_scl, LengthOfArray(animation_00016428_16_pos), LengthOfArray(animation_00016428_16_rot), LengthOfArray(animation_00016428_16_scl) },
-	{ animation_00016428_17_pos, animation_00016428_17_rot, animation_00016428_17_scl, LengthOfArray(animation_00016428_17_pos), LengthOfArray(animation_00016428_17_rot), LengthOfArray(animation_00016428_17_scl) },
-	{ animation_00016428_18_pos, animation_00016428_18_rot, animation_00016428_18_scl, LengthOfArray(animation_00016428_18_pos), LengthOfArray(animation_00016428_18_rot), LengthOfArray(animation_00016428_18_scl) },
-	{ animation_00016428_19_pos, animation_00016428_19_rot, animation_00016428_19_scl, LengthOfArray(animation_00016428_19_pos), LengthOfArray(animation_00016428_19_rot), LengthOfArray(animation_00016428_19_scl) },
-	{ animation_00016428_20_pos, animation_00016428_20_rot, animation_00016428_20_scl, LengthOfArray(animation_00016428_20_pos), LengthOfArray(animation_00016428_20_rot), LengthOfArray(animation_00016428_20_scl) },
-	{ animation_00016428_21_pos, animation_00016428_21_rot, animation_00016428_21_scl, LengthOfArray(animation_00016428_21_pos), LengthOfArray(animation_00016428_21_rot), LengthOfArray(animation_00016428_21_scl) },
-	{ animation_00016428_22_pos, animation_00016428_22_rot, animation_00016428_22_scl, LengthOfArray(animation_00016428_22_pos), LengthOfArray(animation_00016428_22_rot), LengthOfArray(animation_00016428_22_scl) },
-	{ animation_00016428_23_pos, animation_00016428_23_rot, animation_00016428_23_scl, LengthOfArray(animation_00016428_23_pos), LengthOfArray(animation_00016428_23_rot), LengthOfArray(animation_00016428_23_scl) },
-	{ animation_00016428_24_pos, animation_00016428_24_rot, animation_00016428_24_scl, LengthOfArray(animation_00016428_24_pos), LengthOfArray(animation_00016428_24_rot), LengthOfArray(animation_00016428_24_scl) },
-	{ animation_00016428_25_pos, animation_00016428_25_rot, animation_00016428_25_scl, LengthOfArray(animation_00016428_25_pos), LengthOfArray(animation_00016428_25_rot), LengthOfArray(animation_00016428_25_scl) },
-	{ animation_00016428_26_pos, animation_00016428_26_rot, animation_00016428_26_scl, LengthOfArray(animation_00016428_26_pos), LengthOfArray(animation_00016428_26_rot), LengthOfArray(animation_00016428_26_scl) },
-	{ animation_00016428_27_pos, animation_00016428_27_rot, animation_00016428_27_scl, LengthOfArray(animation_00016428_27_pos), LengthOfArray(animation_00016428_27_rot), LengthOfArray(animation_00016428_27_scl) }
+	{ animation_0001643C_1_pos, animation_0001643C_1_rot, animation_0001643C_1_scl, LengthOfArray<Uint32>(animation_0001643C_1_pos), LengthOfArray<Uint32>(animation_0001643C_1_rot), LengthOfArray<Uint32>(animation_0001643C_1_scl) },
+	{ animation_0001643C_2_pos, animation_0001643C_2_rot, animation_0001643C_2_scl, LengthOfArray<Uint32>(animation_0001643C_2_pos), LengthOfArray<Uint32>(animation_0001643C_2_rot), LengthOfArray<Uint32>(animation_0001643C_2_scl) },
+	{ animation_0001643C_3_pos, animation_0001643C_3_rot, animation_0001643C_3_scl, LengthOfArray<Uint32>(animation_0001643C_3_pos), LengthOfArray<Uint32>(animation_0001643C_3_rot), LengthOfArray<Uint32>(animation_0001643C_3_scl) },
+	{ animation_0001643C_4_pos, animation_0001643C_4_rot, animation_0001643C_4_scl, LengthOfArray<Uint32>(animation_0001643C_4_pos), LengthOfArray<Uint32>(animation_0001643C_4_rot), LengthOfArray<Uint32>(animation_0001643C_4_scl) },
+	{ animation_0001643C_5_pos, animation_0001643C_5_rot, animation_0001643C_5_scl, LengthOfArray<Uint32>(animation_0001643C_5_pos), LengthOfArray<Uint32>(animation_0001643C_5_rot), LengthOfArray<Uint32>(animation_0001643C_5_scl) },
+	{ animation_0001643C_6_pos, animation_0001643C_6_rot, animation_0001643C_6_scl, LengthOfArray<Uint32>(animation_0001643C_6_pos), LengthOfArray<Uint32>(animation_0001643C_6_rot), LengthOfArray<Uint32>(animation_0001643C_6_scl) },
+	{ animation_0001643C_7_pos, animation_0001643C_7_rot, animation_0001643C_7_scl, LengthOfArray<Uint32>(animation_0001643C_7_pos), LengthOfArray<Uint32>(animation_0001643C_7_rot), LengthOfArray<Uint32>(animation_0001643C_7_scl) },
+	{ animation_0001643C_8_pos, animation_0001643C_8_rot, animation_0001643C_8_scl, LengthOfArray<Uint32>(animation_0001643C_8_pos), LengthOfArray<Uint32>(animation_0001643C_8_rot), LengthOfArray<Uint32>(animation_0001643C_8_scl) },
+	{ animation_0001643C_9_pos, animation_0001643C_9_rot, animation_0001643C_9_scl, LengthOfArray<Uint32>(animation_0001643C_9_pos), LengthOfArray<Uint32>(animation_0001643C_9_rot), LengthOfArray<Uint32>(animation_0001643C_9_scl) },
+	{ animation_0001643C_10_pos, animation_0001643C_10_rot, animation_0001643C_10_scl, LengthOfArray<Uint32>(animation_0001643C_10_pos), LengthOfArray<Uint32>(animation_0001643C_10_rot), LengthOfArray<Uint32>(animation_0001643C_10_scl) },
+	{ animation_0001643C_11_pos, animation_0001643C_11_rot, animation_0001643C_11_scl, LengthOfArray<Uint32>(animation_0001643C_11_pos), LengthOfArray<Uint32>(animation_0001643C_11_rot), LengthOfArray<Uint32>(animation_0001643C_11_scl) },
+	{ animation_0001643C_12_pos, animation_0001643C_12_rot, animation_0001643C_12_scl, LengthOfArray<Uint32>(animation_0001643C_12_pos), LengthOfArray<Uint32>(animation_0001643C_12_rot), LengthOfArray<Uint32>(animation_0001643C_12_scl) },
+	{ animation_0001643C_13_pos, animation_0001643C_13_rot, animation_0001643C_13_scl, LengthOfArray<Uint32>(animation_0001643C_13_pos), LengthOfArray<Uint32>(animation_0001643C_13_rot), LengthOfArray<Uint32>(animation_0001643C_13_scl) },
+	{ animation_0001643C_14_pos, animation_0001643C_14_rot, animation_0001643C_14_scl, LengthOfArray<Uint32>(animation_0001643C_14_pos), LengthOfArray<Uint32>(animation_0001643C_14_rot), LengthOfArray<Uint32>(animation_0001643C_14_scl) },
+	{ animation_0001643C_15_pos, animation_0001643C_15_rot, animation_0001643C_15_scl, LengthOfArray<Uint32>(animation_0001643C_15_pos), LengthOfArray<Uint32>(animation_0001643C_15_rot), LengthOfArray<Uint32>(animation_0001643C_15_scl) },
+	{ animation_0001643C_16_pos, animation_0001643C_16_rot, animation_0001643C_16_scl, LengthOfArray<Uint32>(animation_0001643C_16_pos), LengthOfArray<Uint32>(animation_0001643C_16_rot), LengthOfArray<Uint32>(animation_0001643C_16_scl) },
+	{ animation_0001643C_17_pos, animation_0001643C_17_rot, animation_0001643C_17_scl, LengthOfArray<Uint32>(animation_0001643C_17_pos), LengthOfArray<Uint32>(animation_0001643C_17_rot), LengthOfArray<Uint32>(animation_0001643C_17_scl) },
+	{ animation_0001643C_18_pos, animation_0001643C_18_rot, animation_0001643C_18_scl, LengthOfArray<Uint32>(animation_0001643C_18_pos), LengthOfArray<Uint32>(animation_0001643C_18_rot), LengthOfArray<Uint32>(animation_0001643C_18_scl) },
+	{ animation_0001643C_19_pos, animation_0001643C_19_rot, animation_0001643C_19_scl, LengthOfArray<Uint32>(animation_0001643C_19_pos), LengthOfArray<Uint32>(animation_0001643C_19_rot), LengthOfArray<Uint32>(animation_0001643C_19_scl) },
+	{ animation_0001643C_20_pos, animation_0001643C_20_rot, animation_0001643C_20_scl, LengthOfArray<Uint32>(animation_0001643C_20_pos), LengthOfArray<Uint32>(animation_0001643C_20_rot), LengthOfArray<Uint32>(animation_0001643C_20_scl) },
+	{ animation_0001643C_21_pos, animation_0001643C_21_rot, animation_0001643C_21_scl, LengthOfArray<Uint32>(animation_0001643C_21_pos), LengthOfArray<Uint32>(animation_0001643C_21_rot), LengthOfArray<Uint32>(animation_0001643C_21_scl) },
+	{ animation_0001643C_22_pos, animation_0001643C_22_rot, animation_0001643C_22_scl, LengthOfArray<Uint32>(animation_0001643C_22_pos), LengthOfArray<Uint32>(animation_0001643C_22_rot), LengthOfArray<Uint32>(animation_0001643C_22_scl) },
+	{ animation_0001643C_23_pos, animation_0001643C_23_rot, animation_0001643C_23_scl, LengthOfArray<Uint32>(animation_0001643C_23_pos), LengthOfArray<Uint32>(animation_0001643C_23_rot), LengthOfArray<Uint32>(animation_0001643C_23_scl) },
+	{ animation_0001643C_24_pos, animation_0001643C_24_rot, animation_0001643C_24_scl, LengthOfArray<Uint32>(animation_0001643C_24_pos), LengthOfArray<Uint32>(animation_0001643C_24_rot), LengthOfArray<Uint32>(animation_0001643C_24_scl) },
+	{ animation_0001643C_25_pos, animation_0001643C_25_rot, animation_0001643C_25_scl, LengthOfArray<Uint32>(animation_0001643C_25_pos), LengthOfArray<Uint32>(animation_0001643C_25_rot), LengthOfArray<Uint32>(animation_0001643C_25_scl) },
+	{ animation_0001643C_26_pos, animation_0001643C_26_rot, animation_0001643C_26_scl, LengthOfArray<Uint32>(animation_0001643C_26_pos), LengthOfArray<Uint32>(animation_0001643C_26_rot), LengthOfArray<Uint32>(animation_0001643C_26_scl) },
+	{ animation_0001643C_27_pos, animation_0001643C_27_rot, animation_0001643C_27_scl, LengthOfArray<Uint32>(animation_0001643C_27_pos), LengthOfArray<Uint32>(animation_0001643C_27_rot), LengthOfArray<Uint32>(animation_0001643C_27_scl) }
 };
 
-extern "C" __declspec(dllexport) NJS_MOTION animation_00016428 = { animation_00016428_mdat, 60, NJD_MTYPE_POS_0 | NJD_MTYPE_ANG_1 | NJD_MTYPE_SCL_2, 3 };
-
-extern "C" __declspec(dllexport) NJS_ACTION action_animation_00016428 = { &object_000086B4, &animation_00016428 };
+extern "C" __declspec(dllexport) NJS_MOTION animation_0001643C = { animation_0001643C_mdat, 60, NJD_MTYPE_POS_0 | NJD_MTYPE_ANG_1 | NJD_MTYPE_SCL_2, NJD_MTYPE_LINER | 3 };
+NJS_ACTION action_animation_0001643C = { &object_0004FB90, &animation_0001643C };
 
 extern "C" __declspec(dllexport) COL collist_00045098[] = {
-	{ { -7.3974f, -18.81778f, 77.26566f }, 532.6468f, 0, 0, &object_00046DB0, 0, 0x80000000 },
+	{ { -7.3974f, -18.81778f, 77.26566f }, 532.6468f, 0, 0, &object_00046DB0, 0, 0x80000000 }, //sea bottom
 	{ { 0.9509585f, -10.18485f, -39.65893f }, 372.5231f, 0, 0, &object_000474B4, 0, 0x20010001 },
 	{ { -86.50601f, 195.6381f, 42.71461f }, 786.3737f, 0, 0, &object_0004960C, 0, 0x80000000 },
 	{ { -4.695968f, 52.12697f, 87.13354f }, 564.6829f, 0, 0, &object_0004B004, 0, 0x80000000 }, //forest
-	{ { 1.033577f, -5.143047f, -37.50925f }, 375.097f, 0, 0, &object_0004B6F0, 0, 0x80040000 }, //bottom
-	{ { -8.901687f, 20.08343f, 92.49529f }, 560.811f, 0, 0, &object_0004A68C, 0, 0x80000000 }, //foliage
-	{ { 10.83572f, 37.90828f, -290.86f }, 58.92595f, 0, 0, &object_0004CF40, 0, 0x80000000 },
-	{ { 127.7964f, 34.74735f, -220.467f }, 58.92594f, 0, 0, &object_0004CF74, 0, 0x80000000 },
-	{ { 252.5965f, 39.32698f, 46.61761f }, 58.92595f, 0, 0, &object_0004CFDC, 0, 0x80000000 },
-	{ { 115.2207f, 39.27995f, 187.4511f }, 58.92595f, 0, 0, &object_0004D010, 0, 0x80000000 },
-	{ { 16.31835f, 41.00667f, 406.1505f }, 60.73714f, 0, 0, &object_0004D218, 0, 0x80000000 },
-	{ { -14.96402f, 39.72876f, 286.2658f }, 60.73714f, 0, 0, &object_0004D280, 0, 0x80000000 },
-	{ { -202.8673f, 39.14454f, 130.7583f }, 58.92595f, 0, 0, &object_0004D044, 0, 0x80000000 },
-	{ { -249.6862f, 44.168f, 11.51305f }, 60.73714f, 0, 0, &object_0004D1E4, 0, 0x80000000 },
-	{ { 183.1156f, 42.08847f, -174.2001f }, 60.73714f, 0, 0, &object_0004D420, 0, 0x80000000 },
-	{ { 212.0872f, 42.08909f, 109.2295f }, 60.73714f, 0, 0, &object_0004D3B8, 0, 0x80000000 },
-	{ { 235.5332f, 42.08908f, -118.2535f }, 60.73714f, 0, 0, &object_0004D350, 0, 0x80000000 },
-	{ { 39.04487f, 38.6605f, 274.7553f }, 60.73714f, 0, 0, &object_0004D2E8, 0, 0x80000000 },
-	{ { 185.5014f, 42.08909f, 169.4492f }, 60.73714f, 0, 0, &object_0004D31C, 0, 0x80000000 },
-	{ { 234.3488f, 42.08853f, -21.1775f }, 60.73714f, 0, 0, &object_0004D3EC, 0, 0x80000000 },
-	{ { -158.7242f, 39.72076f, -288.165f }, 58.92595f, 0, 0, &object_0004D0E0, 0, 0x80000000 },
-	{ { -255.4506f, 41.45505f, 73.4463f }, 60.73714f, 0, 0, &object_00047EAC, 0, 0x80000000 },
-	{ { -217.3666f, 40.4762f, -173.5004f }, 60.73714f, 0, 0, &object_0004D17C, 0, 0x80000000 },
-	{ { -224.6346f, 40.47695f, -53.01955f }, 60.73714f, 0, 0, &object_0004D1B0, 0, 0x80000000 },
-	{ { -61.97297f, 37.72159f, 254.4687f }, 60.73714f, 0, 0, &object_0004D2B4, 0, 0x80000000 },
-	{ { -183.7821f, 40.4762f, -217.8437f }, 60.73714f, 0, 0, &object_0004D148, 0, 0x80000000 },
-	{ { 82.10699f, 41.86624f, -289.3417f }, 58.92595f, 0, 0, &object_0004D0AC, 0, 0x80000000 },
-	{ { -54.37292f, 37.88428f, -311.648f }, 58.92595f, 0, 0, &object_00047C9C, 0, 0x80000000 },
-	{ { -145.0594f, 42.45364f, 199.2172f }, 60.73714f, 0, 0, &object_0004D114, 0, 0x80000000 },
-	{ { -178.2646f, 57.25595f, -235.2272f }, 75.75117f, 0, 0, &object_0004BE8C, 0, 0x80000000 },
-	{ { -182.4894f, 113.1164f, -226.495f }, 66.38384f, 0, 0, &object_0004C2E4, 0, 0x80000000 },
-	{ { 279.4443f, 155.8853f, 152.5236f }, 151.9134f, 0, 0, &object_0004CF0C, 0, 0x80000000 },
+	{ { -8.901687f, 20.08343f, 92.49529f }, 560.811f, 0, 0, &object_0004A68C, 0, 0x80000000 }, //foliage (bottom)
+	{ { -4.695968f, 52.12697f, 87.13354f }, 564.6829f, 0, 0, &object_0004B004_2, 0, 0x80000000 }, //forest (transparent bit)
+		{ { 1.033577f, -5.143047f, -37.50925f }, 375.097f, 0, 0, &object_0004B6F0, 0, 0x80000000 }, //shore
+	{ { -8.901687f, 20.08343f, 92.49529f }, 560.811f, 0, 0, &object_0004A68C_2, 0, 0x80000000 }, //shore part 2
+		{ { 279.4443f, 155.8853f, 152.5236f }, 151.9134f, 0, 0, &object_0004CF0C, 0, 0x80000000 }, //palms
+	{ { 85.50972f, 163.6453f, 329.5077f }, 151.9134f, 0, 0, &object_0004DEE4, 0, 0x80000000 },
+	{ { -300.962f, 146.7567f, 58.61369f }, 151.9134f, 0, 0, &object_0004DF18, 0, 0x80000000 },
+	{ { 14.91382f, 138.3999f, -264.9746f }, 151.9134f, 0, 0, &object_0004DF4C, 0, 0x80000000 },
+		{ { -182.4894f, 113.1164f, -226.495f }, 66.38384f, 0, 0, &object_0004C2E4, 0, 0x80000000 }, //trees
+	{ { 179.0074f, 108.7276f, -240.3219f }, 66.38384f, 0, 0, &object_0004DCA8, 0, 0x80000000 },
+	{ { 83.29916f, 128.2026f, 316.5628f }, 66.38384f, 0, 0, &object_0004DD10, 0, 0x80000000 },
+	{ { -289.8271f, 131.2199f, -101.2677f }, 66.38384f, 0, 0, &object_0004DD44, 0, 0x80000000 },
+	{ { -136.4875f, 117.7794f, 293.5618f }, 66.38384f, 0, 0, &object_0004DDE0, 0, 0x80000000 },
+	{ { -179.9338f, 130.3086f, 325.5275f }, 66.38384f, 0, 0, &object_0004DE48, 0, 0x80000000 },
+	{ { 306.7904f, 122.1681f, 99.5808f }, 66.38384f, 0, 0, &object_0004DEB0, 0, 0x80000000 },
+	{ { -178.2646f, 57.25595f, -235.2272f }, 75.75117f, 0, 0, &object_0004BE8C, 0, 0x80000000 }, //trees 2
 	{ { -199.1816f, 69.96482f, -174.9713f }, 75.75117f, 0, 0, &object_0004D454, 0, 0x80000000 },
 	{ { 224.7708f, 62.74092f, 141.7132f }, 75.75117f, 0, 0, &object_0004D488, 0, 0x80000000 },
 	{ { -50.14349f, 62.2525f, -305.7805f }, 75.75117f, 0, 0, &object_0004D4BC, 0, 0x80000000 },
@@ -7733,23 +7736,35 @@ extern "C" __declspec(dllexport) COL collist_00045098[] = {
 	{ { 88.20263f, 50.33651f, -262.4159f }, 75.75117f, 0, 0, &object_0004DC0C, 0, 0x80000000 },
 	{ { -256.7562f, 73.54018f, -101.9495f }, 75.75117f, 0, 0, &object_0004DC40, 0, 0x80000000 },
 	{ { -217.6151f, 50.78181f, -150.7279f }, 75.75117f, 0, 0, &object_0004DC74, 0, 0x80000000 },
-	{ { 179.0074f, 108.7276f, -240.3219f }, 66.38384f, 0, 0, &object_0004DCA8, 0, 0x80000000 },
-	{ { 83.29916f, 128.2026f, 316.5628f }, 66.38384f, 0, 0, &object_0004DD10, 0, 0x80000000 },
-	{ { -289.8271f, 131.2199f, -101.2677f }, 66.38384f, 0, 0, &object_0004DD44, 0, 0x80000000 },
-	{ { -136.4875f, 117.7794f, 293.5618f }, 66.38384f, 0, 0, &object_0004DDE0, 0, 0x80000000 },
-	{ { -179.9338f, 130.3086f, 325.5275f }, 66.38384f, 0, 0, &object_0004DE48, 0, 0x80000000 },
-	{ { 306.7904f, 122.1681f, 99.5808f }, 66.38384f, 0, 0, &object_0004DEB0, 0, 0x80000000 },
-	{ { 85.50972f, 163.6453f, 329.5077f }, 151.9134f, 0, 0, &object_0004DEE4, 0, 0x80000000 },
-	{ { -300.962f, 146.7567f, 58.61369f }, 151.9134f, 0, 0, &object_0004DF18, 0, 0x80000000 },
-	{ { 14.91382f, 138.3999f, -264.9746f }, 151.9134f, 0, 0, &object_0004DF4C, 0, 0x80000000 },
+	{ { 16.31835f, 41.00667f, 406.1505f }, 60.73714f, 0, 0, &object_0004D218, 0, 0x86040000 }, //foliage (front)
+	{ { -14.96402f, 39.72876f, 286.2658f }, 60.73714f, 0, 0, &object_0004D280, 0, 0x86040000 },
+	{ { -249.6862f, 44.168f, 11.51305f }, 60.73714f, 0, 0, &object_0004D1E4, 0, 0x86040000 },
+	{ { 183.1156f, 42.08847f, -174.2001f }, 60.73714f, 0, 0, &object_0004D420, 0, 0x86040000 },
+	{ { 212.0872f, 42.08909f, 109.2295f }, 60.73714f, 0, 0, &object_0004D3B8, 0, 0x86040000 },
+	{ { 235.5332f, 42.08908f, -118.2535f }, 60.73714f, 0, 0, &object_0004D350, 0, 0x86040000 },
+	{ { 39.04487f, 38.6605f, 274.7553f }, 60.73714f, 0, 0, &object_0004D2E8, 0, 0x86040000 },
+	{ { 185.5014f, 42.08909f, 169.4492f }, 60.73714f, 0, 0, &object_0004D31C, 0, 0x86040000 },
+	{ { 234.3488f, 42.08853f, -21.1775f }, 60.73714f, 0, 0, &object_0004D3EC, 0, 0x86040000 },
+	{ { -255.4506f, 41.45505f, 73.4463f }, 60.73714f, 0, 0, &object_00047EAC, 0, 0x86040000 },
+	{ { -217.3666f, 40.4762f, -173.5004f }, 60.73714f, 0, 0, &object_0004D17C, 0, 0x86040000 },
+	{ { -224.6346f, 40.47695f, -53.01955f }, 60.73714f, 0, 0, &object_0004D1B0, 0, 0x86040000 },
+	{ { -61.97297f, 37.72159f, 254.4687f }, 60.73714f, 0, 0, &object_0004D2B4, 0, 0x86040000 },
+	{ { -183.7821f, 40.4762f, -217.8437f }, 60.73714f, 0, 0, &object_0004D148, 0, 0x86040000 },
+	{ { -145.0594f, 42.45364f, 199.2172f }, 60.73714f, 0, 0, &object_0004D114, 0, 0x86040000 },
+	{ { 10.83572f, 37.90828f, -290.86f }, 58.92595f, 0, 0, &object_0004CF40, 0, 0x86040000 }, //foliage type 2
+	{ { 127.7964f, 34.74735f, -220.467f }, 58.92594f, 0, 0, &object_0004CF74, 0, 0x86040000 },
+	{ { 252.5965f, 39.32698f, 46.61761f }, 58.92595f, 0, 0, &object_0004CFDC, 0, 0x86040000 },
+	{ { 115.2207f, 39.27995f, 187.4511f }, 58.92595f, 0, 0, &object_0004D010, 0, 0x86040000 },
+	{ { -202.8673f, 39.14454f, 130.7583f }, 58.92595f, 0, 0, &object_0004D044, 0, 0x86040000 },
+	{ { -158.7242f, 39.72076f, -288.165f }, 58.92595f, 0, 0, &object_0004D0E0, 0, 0x86040000 },
+	{ { 82.10699f, 41.86624f, -289.3417f }, 58.92595f, 0, 0, &object_0004D0AC, 0, 0x86040000 },
+	{ { -54.37292f, 37.88428f, -311.648f }, 58.92595f, 0, 0, &object_00047C9C, 0, 0x86040000 },
 };
 
-extern "C" __declspec(dllexport) GeoAnimData animlist_00045AB8[] = {
-	{ 0, 0.5f, 60, &object_000086B4, &action_animation_00016428, (NJS_TEXLIST *)0 }
+GeoAnimData animlist_00045AB8[] = {
+	{ 0, 0.5f, 60, &object_0004FB90, &action_animation_0001643C, (NJS_TEXLIST *)0 }
 };
 
-extern "C" __declspec(dllexport) LandTable landtable_00000238 = { LengthOfArray(collist_00045098), LengthOfArray(animlist_00045AB8), 0xD, 20000, collist_00045098, animlist_00045AB8, "CHAOS4_TIKEI", (NJS_TEXLIST *)&texlist_chaos4dc, 0, 0 };
-//LandTable landtable_00000238 = { LengthOfArray(collist_00045098), NULL, 0xC, 20000, collist_00045098, NULL, "CHAOS4_TIKEI", (NJS_TEXLIST *)&texlist_chaos4dc, 0, 0 };
-//LandTable landtable_00000238 = { LengthOfArray(collist_00045098), LengthOfArray(animlist_00045AB8), 0xD, 20000, collist_00045098, animlist_00045AB8, "CHAOS4_TIKEI", (NJS_TEXLIST *)0xC945090, 0, 0 };
+extern "C" __declspec(dllexport) LandTable landtable_00000238 = { LengthOfArray(collist_00045098), LengthOfArray(animlist_00045AB8), 0xD, 20000, collist_00045098, animlist_00045AB8, "CHAOS4_TIKEI", &texlist_chaos4, 0, 0 };
 
 #pragma warning(pop)
