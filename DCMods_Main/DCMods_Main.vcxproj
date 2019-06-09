@@ -89,6 +89,8 @@
     <ClCompile Include="Boss_Chaos0.cpp" />
     <ClCompile Include="Boss_Chaos2.cpp" />
     <ClCompile Include="Boss_Chaos4.cpp" />
+    <ClCompile Include="Boss_Chaos6.cpp" />
+    <ClCompile Include="Boss_Chaos7.cpp" />
     <ClCompile Include="DC_ADV00MODELS.cpp" />
     <ClCompile Include="DC_ADV01CMODELS.cpp" />
     <ClCompile Include="DC_ADV01MODELS.cpp" />

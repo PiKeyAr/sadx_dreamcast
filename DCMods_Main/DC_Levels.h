@@ -378,6 +378,7 @@ void ADV03_Init();
 void ADV03_OnFrame();
 void Bosses_Init();
 void Bosses_OnFrame();
+void PerfectChaos_OnFrame();
 void Chaos0_Init();
 void Chaos2_Init();
 void Chaos4_Init();

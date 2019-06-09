@@ -1,20 +1,10 @@
 #include "stdafx.h"
 #include "EggHornet_Water.h"
-#include "Chaos6_Motion.h"
-#include "Chaos7_fixes.h"
 #include "ZeroE101R_Water.h"
 #include "E101Kai_Model.h"
 #include "LightingArrays.h"
 #include "ERobo.h"
 
-NJS_TEXNAME textures_chaos6[77];
-NJS_TEXLIST texlist_chaos6 = { arrayptrandlength(textures_chaos6) };
-
-NJS_TEXNAME textures_chaos6_2[79];
-NJS_TEXLIST texlist_chaos6_2 = { arrayptrandlength(textures_chaos6_2) };
-
-NJS_TEXNAME textures_chaos7[168];
-NJS_TEXLIST texlist_chaos7 = { arrayptrandlength(textures_chaos7) };
 
 NJS_TEXNAME textures_egm1land[118];
 NJS_TEXLIST texlist_egm1land = { arrayptrandlength(textures_egm1land) };
@@ -28,47 +18,25 @@ NJS_TEXLIST texlist_eggviper = { arrayptrandlength(textures_eggviper) };
 NJS_TEXNAME textures_e101[77];
 NJS_TEXLIST texlist_e101 = { arrayptrandlength(textures_e101) };
 
-//Chaos 6 material arrays
-DataArray(NJS_MATERIAL, matlist_00F975B0, 0x013975B0, 3);
-DataArray(NJS_MATERIAL, matlist_00F98C98, 0x01398C98, 6);
-DataArray(NJS_MATERIAL, matlist_01270910, 0x01270910, 4);
-DataArray(NJS_MATERIAL, matlist_0126C51C, 0x0126C51C, 2);
-DataArray(NJS_MATERIAL, matlist_01271BCC, 0x01271BCC, 2);
 
 DataArray(PVMEntry, EggHornetObjectTextures, 0x156F6B0, 15);
-
-DataArray(FogData, Chaos6SFog, 0x011EF0E8, 3);
-DataArray(FogData, Chaos6KFog, 0x011EF118, 3);
-DataArray(FogData, Chaos7Fog, 0x01420E30, 3);
 DataArray(FogData, EggHornetFog, 0x01556B34, 3);
 DataArray(FogData, EggWalkerFog, 0x015E87F4, 3);
 DataArray(FogData, EggViperFog, 0x0165D334, 3);
 DataArray(FogData, Fog_E101R, 0x015225F0, 3);
 DataArray(FogData, Fog_Zero, 0x016B4DB0, 3);
-DataArray(NJS_VECTOR, SkyBoxScale_Chaos6S, 0x011EF040, 3);
-DataArray(NJS_VECTOR, SkyBoxScale_Chaos6K, 0x011EF064, 3);
-DataArray(DrawDistance, DrawDist_Chaos7, 0x01420E00, 3);
-DataArray(DrawDistance, DrawDist_Chaso6S, 0x011EF0B8, 3);
-DataArray(DrawDistance, DrawDist_Chaso6K, 0x011EF0D0, 3);
 DataArray(DrawDistance, DrawDist_EggHornet, 0x01556B1C, 3);
 DataArray(DrawDistance, DrawDist_E101R, 0x015225D8, 3);
 DataArray(DrawDistance, DrawDist_Zero, 0x016B4D98, 3);
 DataArray(PVMEntry, EGGVIPER_TEXLISTS, 0x165D498, 11);
-DataPointer(unsigned char, byte_3C5A7EF, 0x3C5A7EF);
-DataPointer(unsigned char, byte_3C5A7ED, 0x3C5A7ED);
+
 DataPointer(unsigned char, byte_03C5A7EF, 0x03C5A7EF);
 DataPointer(float, dword_3C6A998, 0x3C6A998);
-DataPointer(NJS_OBJECT, stru_13A6E8C, 0x13A6E8C);
-DataPointer(NJS_ARGB, nj_constant_material_temp, 0x03B18220);
+
+
 DataPointer(int, EVEffect, 0x3C6E1EC);
-DataPointer(NJS_OBJECT, stru_11EDF38, 0x11EDF38);
-DataPointer(NJS_OBJECT, stru_11EEED8, 0x11EEED8);
-DataPointer(NJS_TEXANIM, stru_149401C, 0x149401C);
-DataPointer(NJS_TEXANIM, stru_1494050, 0x1494050);
-DataPointer(NJS_SPRITE, stru_1494030, 0x1494030);
-DataPointer(NJS_SPRITE, stru_1494064, 0x1494064);
-DataPointer(NJS_ARGB, stru_1494114, 0x1494114);
-DataPointer(NJS_ARGB, stru_1494124, 0x1494124);
+
+
 DataPointer(char, EggViperByteThing, 0x03C6E178);
 DataPointer(float, EggViperHitCount, 0x03C58158);
 FunctionPointer(void, sub_571AD0, (ObjectMaster *a1), 0x571AD0);
@@ -82,7 +50,6 @@ FunctionPointer(void, sub_77E940, (FVFStruct_H_B *a1, signed int count, int a3),
 FunctionPointer(void, sub_40A280, (NJS_OBJECT *a1), 0x40A280);
 FunctionPointer(void, sub_407A00, (NJS_MODEL_SADX *model, float a2), 0x407A00);
 
-
 static float EggViper_blendfactor = 0.0f;
 static int EggViper_blenddirection = 1;
 static int EggViper_EffectMode = 0;
@@ -90,8 +57,7 @@ static int EggViper_Timer = 0;
 static float EggViper_blendfactor_max = 0.005f;
 static float EggViper_blendfactor_min = 0.005f;
 static unsigned char EggHornetTrigger = 0;
-static float TornadoAlpha = 1.0f;
-static int TornadoTrigger = 0;
+
 static float EggViperHitCount_Old = 0.0f;
 static int EggHornetOceanAnimationSA1 = 0;
 static int EggHornet_Rotation = 0;
@@ -141,337 +107,6 @@ void __cdecl EggHornetWaterFunc()
 		njPopMatrix(1u);
 		DrawQueueDepthBias = 0;
 	}
-}
-
-void __cdecl SetClip_Chaos6KX(signed int a1)
-{
-	NJS_MODEL_SADX *v1; // ecx@3
-	signed int v2; // edx@3
-	char *v3; // eax@4
-	NJS_MODEL_SADX *v4; // edx@6
-	signed int v5; // ecx@6
-	char *v6; // eax@7
-	NJS_MODEL_SADX *v7; // edx@9
-	signed int v8; // ecx@9
-	char *v9; // eax@10
-	NJS_MODEL_SADX *v10; // edx@12
-	signed int v11; // ecx@12
-	char *v12; // eax@13
-	if (B_CHAOS6_1_Info)
-	{
-		if (a1 >= 2)
-		{
-			v1 = (NJS_MODEL_SADX*)B_CHAOS6_1_Info->getdata("attach_00190A04");
-			v2 = 0;
-			if (v1->nbMat)
-			{
-				v3 = (char *)&v1->mats->attrflags;
-				do
-				{
-					*(_DWORD *)v3 &= ~NJD_FLAG_USE_ALPHA;
-					++v2;
-					v3 += 20;
-				} while (v2 < v1->nbMat);
-			}
-			v4 = (NJS_MODEL_SADX*)B_CHAOS6_1_Info->getdata("attach_00190B94");
-			v5 = 0;
-			if (v4->nbMat)
-			{
-				v6 = (char *)&v4->mats->attrflags;
-				do
-				{
-					*(_DWORD *)v6 &= ~NJD_FLAG_USE_ALPHA;
-					++v5;
-					v6 += 20;
-				} while (v5 < v4->nbMat);
-			}
-			v7 = (NJS_MODEL_SADX*)B_CHAOS6_1_Info->getdata("attach_001911C4");
-			v8 = 0;
-			if (v7->nbMat)
-			{
-				v9 = (char *)&v7->mats->attrflags;
-				do
-				{
-					*(_DWORD *)v9 &= ~NJD_FLAG_USE_ALPHA;
-					++v8;
-					v9 += 20;
-				} while (v8 < v7->nbMat);
-			}
-			v10 = (NJS_MODEL_SADX*)B_CHAOS6_1_Info->getdata("attach_00191354");
-			v11 = 0;
-			if (v10->nbMat)
-			{
-				v12 = (char *)&v10->mats->attrflags;
-				do
-				{
-					*(_DWORD *)v12 &= ~NJD_FLAG_USE_ALPHA;
-					++v11;
-					v12 += 20;
-				} while (v11 < v10->nbMat);
-			}
-			B_CHAOS6_1_Info->getlandtable()->COLCount -= 4;
-		}
-		else
-		{
-			B_CHAOS6_1_Info->getlandtable()->Col = &((COL*)B_CHAOS6_1_Info->getdata("collist_0016F6D8"))[4];
-			B_CHAOS6_1_Info->getlandtable()->COLCount -= 4;
-		}
-	}
-}
-
-void __cdecl SetClip_Chaos6SX(signed int a1)
-{
-	NJS_MODEL_SADX *v1; // ecx@3
-	signed int v2; // edx@3
-	char *v3; // eax@4
-	NJS_MODEL_SADX *v4; // edx@6
-	signed int v5; // ecx@6
-	char *v6; // eax@7
-	NJS_MODEL_SADX *v7; // edx@9
-	signed int v8; // ecx@9
-	char *v9; // eax@10
-	NJS_MODEL_SADX *v10; // edx@12
-	signed int v11; // ecx@12
-	char *v12; // eax@13
-	if (B_CHAOS6_0_Info)
-	{
-		if (a1 >= 2)
-		{
-			v1 = (NJS_MODEL_SADX*)B_CHAOS6_0_Info->getdata("attach_0015D964");
-			v2 = 0;
-			if (v1->nbMat)
-			{
-				v3 = (char *)&v1->mats->attrflags;
-				do
-				{
-					*(_DWORD *)v3 &= ~NJD_FLAG_USE_ALPHA;
-					++v2;
-					v3 += 20;
-				} while (v2 < v1->nbMat);
-			}
-			v4 = (NJS_MODEL_SADX*)B_CHAOS6_0_Info->getdata("attach_0015DC90");
-			v5 = 0;
-			if (v4->nbMat)
-			{
-				v6 = (char *)&v4->mats->attrflags;
-				do
-				{
-					*(_DWORD *)v6 &= ~NJD_FLAG_USE_ALPHA;
-					++v5;
-					v6 += 20;
-				} while (v5 < v4->nbMat);
-			}
-			v7 = (NJS_MODEL_SADX*)B_CHAOS6_0_Info->getdata("attach_0015E2C0");
-			v8 = 0;
-			if (v7->nbMat)
-			{
-				v9 = (char *)&v7->mats->attrflags;
-				do
-				{
-					*(_DWORD *)v9 &= ~NJD_FLAG_USE_ALPHA;
-					++v8;
-					v9 += 20;
-				} while (v8 < v7->nbMat);
-			}
-			v10 = (NJS_MODEL_SADX*)B_CHAOS6_0_Info->getdata("attach_0015E5EC");
-			v11 = 0;
-			if (v10->nbMat)
-			{
-				v12 = (char *)&v10->mats->attrflags;
-				do
-				{
-					*(_DWORD *)v12 &= ~NJD_FLAG_USE_ALPHA;
-					++v11;
-					v12 += 20;
-				} while (v11 < v10->nbMat);
-			}
-			B_CHAOS6_0_Info->getlandtable()->COLCount -= 4;
-		}
-		else
-		{
-			B_CHAOS6_0_Info->getlandtable()->Col = &((COL*)B_CHAOS6_0_Info->getdata("collist_0014AFB4"))[4];
-			B_CHAOS6_0_Info->getlandtable()->COLCount -= 4;
-		}
-	}
-}
-
-NJS_TEXANIM texanim_array[] =
-{
-	{ 0x190, 0x190, 0xC8, 0xC8, 0, 0, 0xFF, 0xFF, 0, 0 },
-	{ 0x190, 0x190, 0xC8, 0xC8, 0, 0, 0xFF, 0xFF, 1, 0 },
-	{ 0x190, 0x190, 0xC8, 0xC8, 0, 0, 0xFF, 0xFF, 2, 0 },
-	{ 0x190, 0x190, 0xC8, 0xC8, 0, 0, 0xFF, 0xFF, 3, 0 },
-	{ 0x190, 0x190, 0xC8, 0xC8, 0, 0, 0xFF, 0xFF, 4, 0 },
-	{ 0x190, 0x190, 0xC8, 0xC8, 0, 0, 0xFF, 0xFF, 5, 0 },
-	{ 0x190, 0x190, 0xC8, 0xC8, 0, 0, 0xFF, 0xFF, 6, 0 },
-	{ 0x190, 0x190, 0xC8, 0xC8, 0, 0, 0xFF, 0xFF, 7, 0 },
-	{ 0x190, 0x190, 0xC8, 0xC8, 0, 0, 0xFF, 0xFF, 8, 0 },
-	{ 0x190, 0x190, 0xC8, 0xC8, 0, 0, 0xFF, 0xFF, 9, 0 },
-	{ 0x190, 0x190, 0xC8, 0xC8, 0, 0, 0xFF, 0xFF, 10, 0 },
-	{ 0x190, 0x190, 0xC8, 0xC8, 0, 0, 0xFF, 0xFF, 11, 0 },
-	{ 0x190, 0x190, 0xC8, 0xC8, 0, 0, 0xFF, 0xFF, 12, 0 },
-	{ 0x190, 0x190, 0xC8, 0xC8, 0, 0, 0xFF, 0xFF, 13, 0 },
-	{ 0x190, 0x190, 0xC8, 0xC8, 0, 0, 0xFF, 0xFF, 14, 0 },
-	{ 0x190, 0x190, 0xC8, 0xC8, 0, 0, 0xFF, 0xFF, 15, 0 },
-	{ 0x28, 0x28, 0x14, 0x14, 0, 0, 0xFF, 0xFF, 16, 0 },
-	{ 0x28, 0x28, 0x14, 0x14, 0, 0, 0xFF, 0xFF, 17, 0 },
-	{ 0x28, 0x28, 0x14, 0x14, 0, 0, 0xFF, 0xFF, 18, 0 },
-	{ 0x28, 0x28, 0x14, 0x14, 0, 0, 0xFF, 0xFF, 19, 0 },
-	{ 0x28, 0x28, 0x14, 0x14, 0, 0, 0xFF, 0xFF, 20, 0 },
-	{ 0x28, 0x28, 0x14, 0x14, 0, 0, 0xFF, 0xFF, 21, 0 },
-	{ 0x28, 0x28, 0x14, 0x14, 0, 0, 0xFF, 0xFF, 22, 0 },
-	{ 0x28, 0x28, 0x14, 0x14, 0, 0, 0xFF, 0xFF, 23, 0 },
-	{ 0x28, 0x28, 0x14, 0x14, 0, 0, 0xFF, 0xFF, 24, 0 },
-	{ 0x28, 0x28, 0x14, 0x14, 0, 0, 0xFF, 0xFF, 25, 0 },
-	{ 0x28, 0x28, 0x14, 0x14, 0, 0, 0xFF, 0xFF, 26, 0 },
-	{ 0x28, 0x28, 0x14, 0x14, 0, 0, 0xFF, 0xFF, 27, 0 },
-	{ 0x28, 0x28, 0x14, 0x14, 0, 0, 0xFF, 0xFF, 28, 0 },
-	{ 0x28, 0x28, 0x14, 0x14, 0, 0, 0xFF, 0xFF, 29, 0 },
-	{ 0x28, 0x28, 0x14, 0x14, 0, 0, 0xFF, 0xFF, 30, 0 },
-	{ 0x28, 0x28, 0x14, 0x14, 0, 0, 0xFF, 0xFF, 31, 0 },
-};
-
-void __cdecl PerfectChaosUVs()
-{
-	if (EV_MainThread_ptr == nullptr)
-	{
-		object_000E483C.ang[1] += 1638;
-		object_000E3B98.ang[1] += 1638;
-		object_000E2BF4_3.ang[1] -= 819;
-		object_000E2BF4_2.ang[1] += 819;
-		object_000E2BF4_1.ang[1] += 3276;
-		object_000E22A8.ang[1] -= 3276;
-	}
-	else
-	{
-		object_000E483C.ang[1] += 1638 * 2;
-		object_000E3B98.ang[1] += 1638 * 2;
-		object_000E2BF4_3.ang[1] -= 819 * 2;
-		object_000E2BF4_2.ang[1] += 819 * 2;
-		object_000E2BF4_1.ang[1] += 3276 * 2;
-		object_000E22A8.ang[1] -= 3276 * 2;
-	}
-	if (object_000E483C.ang[1] > 65535) object_000E483C.ang[1] -= 65535;
-	if (object_000E3B98.ang[1] > 65535) object_000E3B98.ang[1] -= 65535;
-	if (object_000E2BF4_3.ang[1] < -65535) object_000E2BF4_3.ang[1] += 65535;
-	if (object_000E2BF4_2.ang[1] > 65535) object_000E2BF4_2.ang[1] -= 65535;
-	if (object_000E2BF4_1.ang[1] > 65535) object_000E2BF4_1.ang[1] -= 65535;
-	if (object_000E22A8.ang[1] < -65535) object_000E22A8.ang[1] += 65535;
-}
-
-void __cdecl TornadoFunc()
-{
-	nj_constant_material_temp.a = TornadoAlpha;
-	nj_constant_material_temp.r = 1.0f;
-	nj_constant_material_temp.g = 1.0f;
-	nj_constant_material_temp.b = 1.0f;
-	SetMaterialAndSpriteColor(&nj_constant_material_temp);
-	if (!(stru_13A6E8C.evalflags &= NJD_EVAL_HIDE))	ProcessModelNode_D_WrapperB(&object_000E483C, 0, 1.0f);
-}
-
-//Perfect Chaos damage functions
-
-//Main explosion sprite
-void __cdecl Chaos7Explosion_DisplayX(ObjectMaster *a1)
-{
-	EntityData1 *v1; // esi@1
-	unsigned __int64 v2;
-	v1 = a1->Data1;
-	v2 = (unsigned __int64)*(float *)&v1->CharIndex;
-	if (!DroppedFrames)
-	{
-		DisableFog();
-		SetMaterialAndSpriteColor(&stru_1494114);
-		njColorBlendingMode(0, NJD_COLOR_BLENDING_ONE);
-		njColorBlendingMode(NJD_DESTINATION_COLOR, NJD_COLOR_BLENDING_ONE);
-		njPushMatrix(0);
-		njTranslateV(0, &v1->Position);
-		stru_1494030.tanim = &texanim_array[v2];
-		njDrawSprite3D_Queue(&stru_1494030, 0, NJD_SPRITE_ALPHA | NJD_SPRITE_SCALE, QueuedModelFlagsB_SomeTextureThing);
-		njPopMatrix(1u);
-		ToggleStageFog();
-	}
-}
-
-//DamageSlave sprite
-void __cdecl Chaos7Damage_DisplayX(ObjectMaster *a1)
-{
-	EntityData1 *v1; // esi@1
-	double v2; // st7@2
-	short v3;
-	v1 = a1->Data1;
-	if (!DroppedFrames)
-	{
-		DisableFog();
-		SetMaterialAndSpriteColor(&stru_1494124);
-		njColorBlendingMode(0, NJD_COLOR_BLENDING_ONE);
-		njColorBlendingMode(NJD_DESTINATION_COLOR, NJD_COLOR_BLENDING_ONE);
-		njPushMatrix(0);
-		njTranslateV(0, &v1->Position);
-		v3 = ((signed short*)&v1->Object)[1];
-		stru_1494064.tanim = &texanim_array[v3 + 16];
-		v2 = v1->Scale.x;
-		stru_1494064.sy = v1->Scale.x;
-		stru_1494064.sx = v2;
-		njDrawSprite3D_Queue(&stru_1494064, 0, NJD_SPRITE_ALPHA | NJD_SPRITE_SCALE, QueuedModelFlagsB_SomeTextureThing);
-		njPopMatrix(1u);
-		ToggleStageFog();
-	}
-}
-
-void __cdecl Chaos6SkyboxBottom(EntityData1 *a1)
-{
-	Sint16 v1; // cx
-	NJS_TEX *v2; // eax
-
-	if (!MissedFrames)
-	{
-		v1 = *(Sint16*)&a1->LoopData;
-		v2 = stru_11EDF38.basicdxmodel->meshsets->vertuv;
-		v2->v = v1 + 2040;
-		v2[2].v = v1 + 2040;
-		v2[1].v = v1;
-		v2[3].v = v1;
-		DisableFog();
-		njSetTexture(&CHAOS6_BG_TEXLIST);
-		njPushMatrix(0);
-		njColorBlendingMode(0, NJD_COLOR_BLENDING_SRCALPHA);
-		njColorBlendingMode(NJD_DESTINATION_COLOR, NJD_COLOR_BLENDING_ONE);
-		SetMaterialAndSpriteColor_Float(0.5, 0.0, 0.0, 0.0);
-		njTranslate(0, Camera_Data1->Position.x, 0, Camera_Data1->Position.z);
-		njScale(0, 3.0, 1.0, 3.0);
-		DrawQueueDepthBias = -32000.0f;
-		ProcessModelNode(&stru_11EDF38, QueuedModelFlagsB_SomeTextureThing, 3.0f);
-		DrawQueueDepthBias = 0;
-		njColorBlendingMode(0, NJD_COLOR_BLENDING_SRCALPHA);
-		njColorBlendingMode(NJD_DESTINATION_COLOR, NJD_COLOR_BLENDING_INVSRCALPHA);
-		njPopMatrix(1u);
-		ToggleStageFog();
-	}
-}
-
-void __cdecl Chaos6SkyboxMain()
-{
-	if (!MissedFrames)
-	{
-		DisableFog();
-		njSetTexture(&CHAOS6_BG_TEXLIST);
-		njPushMatrix(0);
-		njTranslate(0, Camera_Data1->Position.x, 0.0, Camera_Data1->Position.z);
-		njRotateY(0, 57344);
-		njScaleV(0, &Skybox_Scale);
-		DrawQueueDepthBias = -30000.0f;
-		ProcessModelNode(&stru_11EEED8, QueuedModelFlagsB_SomeTextureThing, 3.0f);
-		DrawQueueDepthBias = 0;
-		njPopMatrix(1u);
-		ToggleStageFog();
-	}
-}
-
-void PerfectChaosWaterfallHook(NJS_OBJECT *a1, QueuedModelFlagsB a2, float a3)
-{
-	if (EV_MainThread_ptr != nullptr && CutsceneID == 254) ProcessModelNode(a1, QueuedModelFlagsB_EnableZWrite, a3);
-	else ProcessModelNode_A_Wrapper(a1, a2, a3);
 }
 
 void E101RRenderAfterEffect(float a, float r, float g, float b)
@@ -661,7 +296,6 @@ void ComeOnChaosTimeToEat(NJS_OBJECT *a1)
 	}
 }
 
-
 void Bosses_Init()
 {
 	ReplacePVM("CHAOS1");
@@ -691,20 +325,6 @@ void Bosses_Init()
 	{
 		RemoveMaterialColors(ChaosMaterials[i]);
 	}
-}
-
-void UnloadLevelFiles_B_CHAOS6()
-{
-	delete B_CHAOS6_0_Info;
-	delete B_CHAOS6_1_Info;
-	B_CHAOS6_0_Info = nullptr;
-	B_CHAOS6_1_Info = nullptr;
-}
-
-void UnloadLevelFiles_B_CHAOS7()
-{
-	delete B_CHAOS7_Info;
-	B_CHAOS7_Info = nullptr;
 }
 
 void UnloadLevelFiles_B_EGM1()
@@ -745,33 +365,6 @@ void UnloadLevelFiles_B_E101_R()
 {
 	delete B_E101_R_Info;
 	B_E101_R_Info = nullptr;
-}
-
-void LoadLevelFiles_B_CHAOS6()
-{
-	CheckAndUnloadLevelFiles();
-	B_CHAOS6_0_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\B_CHAOS6\\0.sa1lvl"));
-	B_CHAOS6_1_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\B_CHAOS6\\1.sa1lvl"));
-	LandTable *B_CHAOS6_0 = B_CHAOS6_0_Info->getlandtable();
-	LandTable *B_CHAOS6_1 = B_CHAOS6_1_Info->getlandtable();
-	RemoveMaterialColors_Landtable(B_CHAOS6_0);
-	RemoveMaterialColors_Landtable(B_CHAOS6_1);
-	B_CHAOS6_0->TexList = &texlist_chaos6;
-	B_CHAOS6_1->TexList = &texlist_chaos6_2;
-	LandTableArray[24] = B_CHAOS6_0; //Chaos 6S
-	LandTableArray[25] = B_CHAOS6_1; //Chaos 6K
-	SetClip_Chaos6SX(ClipLevel);
-	SetClip_Chaos6KX(ClipLevel);
-}
-
-void LoadLevelFiles_B_CHAOS7()
-{
-	CheckAndUnloadLevelFiles();
-	B_CHAOS7_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\B_CHAOS7\\0.sa1lvl"));
-	LandTable *B_CHAOS7 = B_CHAOS7_Info->getlandtable();
-	RemoveMaterialColors_Landtable(B_CHAOS7);
-	B_CHAOS7->TexList = &texlist_chaos7;
-	LandTableArray[32] = B_CHAOS7;
 }
 
 void LoadLevelFiles_B_EGM1()
@@ -858,119 +451,6 @@ void LoadLevelFiles_B_E101()
 	RemoveMaterialColors_Landtable(B_E101);
 	B_E101->TexList = &texlist_e101;
 	LandTableArray[72] = B_E101;
-}
-
-
-void Chaos6_Init()
-{
-	ReplaceBIN_DC("SET1800B");
-	ReplaceBIN_DC("SET1800S");
-	ReplaceBIN_DC("SET1801K");
-	ReplacePVM("LM_CHAOS6");
-	ReplacePVM("LM_CHAOS6_2");
-	ReplacePVM("CHAOS6");
-	ReplacePVM("CHAOS6_BG");
-	ReplacePVM("CHAOS6_EFFECT");
-	ReplacePVM("CHAOS6_EGGMAN");
-	ReplacePVM("CHAOS6_EISEI");
-	ReplacePVM("CHAOS6_OBJECT");
-	ResizeTextureList((NJS_TEXLIST*)0x121FF28, textures_chaos6);
-	ResizeTextureList((NJS_TEXLIST*)0x11F04A0, textures_chaos6_2);
-	WriteJump((void*)0x556FD0, Chaos6SkyboxBottom);
-	WriteJump((void*)0x556F20, Chaos6SkyboxMain);
-	((NJS_ACTION*)0x134C56C)->motion = &Chaos6Animation3; //Fix flickering stuff in Chaos 6' walking animation
-	if (DLLLoaded_Lantern)
-	{
-		material_register_ptr(Chaos6ObjectMaterials, LengthOfArray(Chaos6ObjectMaterials), &ForceDiffuse0Specular0or1);
-	}
-	//Chaos 6 emeralds
-	/*((NJS_MATERIAL*)0x01264A58)->diffuse.color = 0xFFB2B2B2;
-	((NJS_MATERIAL*)0x01266968)->diffuse.color = 0xFFB2B2B2;
-	((NJS_MATERIAL*)0x0126F6F4)->diffuse.color = 0xFFB2B2B2;
-	((NJS_MATERIAL*)0x0126F970)->diffuse.color = 0xFFB2B2B2;
-	((NJS_MATERIAL*)0x0126FBE8)->diffuse.color = 0xFFB2B2B2;
-	((NJS_MATERIAL*)0x0126FE60)->diffuse.color = 0xFFB2B2B2;
-	((NJS_MATERIAL*)0x01264A58)->attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	((NJS_MATERIAL*)0x01266968)->attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	((NJS_MATERIAL*)0x0126F6F4)->attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	((NJS_MATERIAL*)0x0126F970)->attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	((NJS_MATERIAL*)0x0126FBE8)->attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	((NJS_MATERIAL*)0x0126FE60)->attrflags |= NJD_FLAG_IGNORE_LIGHT;*/
-	for (unsigned int i = 0; i < 3; i++)
-	{
-		Chaos6SFog[i].Distance = 12000.0f;
-		Chaos6KFog[i].Distance = 12000.0f;
-		SkyBoxScale_Chaos6S[i].x = 1.0f;
-		SkyBoxScale_Chaos6S[i].y = 1.0f;
-		SkyBoxScale_Chaos6S[i].z = 1.0f;
-		SkyBoxScale_Chaos6K[i].x = 1.0f;
-		SkyBoxScale_Chaos6K[i].y = 1.0f;
-		SkyBoxScale_Chaos6K[i].z = 1.0f;
-		DrawDist_Chaso6S[i].Maximum = -18000.0f;
-		DrawDist_Chaso6K[i].Maximum = -18000.0f;
-	}
-}
-
-void PerfectChaos_Init()
-{
-	ReplaceBIN_DC("SET1900S");
-	ReplaceBIN_DC("CAM1900S");
-	ReplacePVM("CHAOS7_0");
-	ReplacePVM("CHAOS7_0BREATH");
-	ReplacePVM("CHAOS7_0BREATH2ND");
-	ReplacePVM("CHAOS7_0DAMAGE");
-	ReplacePVM("CHAOS7_0DEAD_PTCHG");
-	ReplacePVM("CHAOS7_0SURFACE");
-	ReplacePVM("CHAOS7_0WATEREXP");
-	ReplacePVM("CHAOS7_0WEXP_PTCHG");
-	ReplacePVM("LM_CHAOS7_0");
-	ReplacePVM("OBJ_CHAOS7");
-	ResizeTextureList((NJS_TEXLIST*)0x1494FBC, textures_chaos7);
-	WriteCall((void*)0x56463B, PerfectChaosWaterfallHook);
-	//Perfect Chaos tornado UVs
-	WriteCall((void*)0x562D6D, PerfectChaosUVs);
-	WriteCall((void*)0x00562303, TornadoFunc); //Perfect Chaos tornado fade-in
-	//Perfect Chaos breath fix
-	WriteData((float*)0x00566A03, 1.0f);
-	//Egg Carrier 2 crash in Perfect Chaos cutscene
-	WriteData((float*)0x0065D8D1, 837.418f); //X1
-	WriteData((float*)0x0065D8CC, 412.38f); //Y1
-	WriteData((float*)0x0065D8C7, -406.796f); //Z1
-	WriteData((int*)0x0065D8E3, 65238); //XA1
-	WriteData((int*)0x0065D8DE, 29421); //YA1
-	WriteData((float*)0x0065D8FC, 1148.37f); //X2
-	WriteData((float*)0x0065D8F7, 423.5f); //Y2
-	WriteData((float*)0x0065D8F2, -325.65f); //Z2
-	WriteData((int*)0x0065D912, 64083); //XA2
-	WriteData((int*)0x0065D90D, 28705); //YA2
-	//Perfect Chaos damage functions
-	WriteJump((void*)0x5632F0, Chaos7Explosion_DisplayX);
-	WriteJump((void*)0x005633C0, Chaos7Damage_DisplayX);
-	//Perfect Chaos misc
-	((NJS_OBJECT*)0x0248B1B4)->basicdxmodel->mats[2].attrflags &= ~NJD_FLAG_IGNORE_SPECULAR; //Egg Carrier 2
-	matlist_00F975B0[0].diffuse.color = 0xFFB2B2B2;
-	matlist_00F975B0[1].diffuse.color = 0xFFB2B2B2;
-	matlist_00F975B0[2].diffuse.color = 0xFFB2B2B2;
-	matlist_00F98C98[0].diffuse.color = 0xFFB2B2B2;
-	matlist_00F98C98[1].diffuse.color = 0xFFB2B2B2;
-	matlist_00F98C98[2].diffuse.color = 0xFFB2B2B2;
-	matlist_00F98C98[3].diffuse.color = 0xFFB2B2B2;
-	matlist_00F98C98[4].diffuse.color = 0xFFB2B2B2;
-	matlist_00F98C98[5].diffuse.color = 0xFFB2B2B2;
-	for (unsigned int p = 0; p < LengthOfArray(PerfectChaosCars); p++)
-	{
-		PerfectChaosCars[p]->diffuse.argb.r = 0xB2;
-		PerfectChaosCars[p]->diffuse.argb.g = 0xB2;
-		PerfectChaosCars[p]->diffuse.argb.b = 0xB2;
-	}
-	for (unsigned int i = 0; i < 3; i++)
-	{
-		Chaos7Fog[i].Layer = -6000.0f;
-		Chaos7Fog[i].Distance = -15000.0f;
-		Chaos7Fog[i].Toggle = 1;
-		Chaos7Fog[i].Color = 0xFF19CED3;
-		DrawDist_Chaos7[i].Maximum = -6500.0;
-	}
 }
 
 void RotateEggHornet(ObjectMaster *a1)
@@ -1331,32 +811,7 @@ void Bosses_OnFrame()
 			}
 		}
 	}
-	//Super stupid hax to make Perfect Chaos' tornadoes fade in
-	if (EnablePerfectChaos)
-	{
-		if (byte_3C5A7ED != 11)
-		{
-			if (byte_3C5A7EF == 0) TornadoTrigger = 0;
-			if (byte_3C5A7EF == 3)
-			{
-				TornadoTrigger = 1;
-				TornadoAlpha = 0;
-			}
-			if (TornadoTrigger == 1 && byte_3C5A7EF != 3) TornadoTrigger = 2;
-			if (TornadoTrigger == 2) TornadoAlpha = TornadoAlpha + 0.04f;
-			if (TornadoAlpha >= 1.0f) TornadoTrigger = 0;
-		}
-		else
-		{
-			if (TornadoAlpha > 0.0f) TornadoTrigger = 3;
-			if (TornadoTrigger == 3) TornadoAlpha = TornadoAlpha - 0.01f * FramerateSetting;
-			if (TornadoTrigger == 3 && TornadoAlpha <= 0.01f)
-			{
-				TornadoTrigger = 4;
-				TornadoAlpha = 0.0f;
-			}
-		}
-	}
+	
 	//Egg Hornet rotation
 	if (EnableEggHornet && CurrentLevel == LevelIDs_EggHornet && !IsGamePaused())
 	{

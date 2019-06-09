@@ -554,6 +554,7 @@ extern "C"
 		if (EnableMysticRuins) ADV02_OnFrame();
 		if (EnablePast) ADV03_OnFrame();
 		Bosses_OnFrame();
+		if (EnablePerfectChaos) PerfectChaos_OnFrame();
 		if (EnableEmeraldCoast) EmeraldCoast_OnFrame();
 		if (EnableWindyValley) WindyValley_OnFrame();
 		if (EnableTwinklePark) TwinklePark_OnFrame();
