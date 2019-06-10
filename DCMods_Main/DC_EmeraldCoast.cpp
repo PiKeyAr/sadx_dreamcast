@@ -674,6 +674,7 @@ void EmeraldCoast_Init()
 	ReplacePVM("BG_BEACH");
 	ReplacePVM("OBJ_BEACH");
 	ReplacePVM("BEACH_SEA");
+	WriteData<1>((char*)0x4F68E0, 0xC3u); //Disable SetClip_ECoast1
 	if (!IamStupidAndIWantFuckedUpOcean)
 	{
 		for (unsigned int i = 0; i < 3; i++)

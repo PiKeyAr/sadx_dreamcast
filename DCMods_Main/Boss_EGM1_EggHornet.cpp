@@ -130,6 +130,8 @@ void EggHornet_Init()
 	ReplacePVM("EGM1SORA");
 	ReplacePVM("EGM1TSUCHI");
 	ResizeTextureList((NJS_TEXLIST*)0x1557064, 118); //Egg Hornet level texlist
+	RemoveVertexColors_Object((NJS_OBJECT*)0x1561A70); //Egg Hornet eggmobile part
+	RemoveVertexColors_Object((NJS_OBJECT*)0x3306270); //Egg Hornet cutscene model
 	//Egg Hornet model stuff
 	((NJS_OBJECT*)0x0155AA54)->basicdxmodel->mats[0].attrflags |= NJD_FLAG_IGNORE_SPECULAR;
 	((NJS_OBJECT*)0x0155AA54)->basicdxmodel->mats[1].attrflags |= NJD_FLAG_IGNORE_SPECULAR;

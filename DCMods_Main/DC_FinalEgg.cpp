@@ -805,7 +805,7 @@ void FinalEgg_Init()
 	else ReplaceGeneric("OBJ_FINALEGG.PVM", "OBJ_FINALEGG_DC_OLD.PVM");
 	TexLists_Obj[10] = FinalEggObjectTextures;
 	WriteCall((void*)0x005AEF29, GachaponExplosionFix);
-	WriteData<1>((void*)0x005ADC40, 0xC3u); //Kill the SetClip function
+	WriteData<1>((char*)0x5ADC40, 0xC3u); //Disable SetClip_FEgg2
 	for (unsigned int i = 0; i < LengthOfArray(NeutralMaterials); i++)
 	{
 		RemoveMaterialColors(NeutralMaterials[i]);

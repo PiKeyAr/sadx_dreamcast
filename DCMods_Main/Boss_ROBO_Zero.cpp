@@ -36,6 +36,7 @@ void Zero_Init()
 	ReplaceBIN_DC("SETZEROS");
 	ReplacePVM("EROBO");
 	ReplaceGeneric("EROBO_GC.NB", "EROBO_DC.NB");
+	WriteData<1>((char*)0x5850F0, 0xC3u); //Disable SetClip_ZERO
 	WriteCall((void*)0x0058BC56, Zero_FVFShit);
 	WriteData((float*)0x58752C, 0.8f); //Zero constant material alpha
 	*(NJS_OBJECT*)0x00991268 = object_00591268; //Zero main and cutscene model

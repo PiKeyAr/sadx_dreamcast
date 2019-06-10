@@ -1,7 +1,6 @@
 #include "stdafx.h"
 
 #include "ZeroE101R_Water.h"
-#include "LightingArrays.h"
 
 FunctionPointer(void, sub_40A280, (NJS_OBJECT *a1), 0x40A280);
 FunctionPointer(void, sub_407A00, (NJS_MODEL_SADX *model, float a2), 0x407A00);
@@ -89,14 +88,12 @@ void Bosses_Init()
 	ReplacePVM("ICM0001_3");
 	ReplacePVM("ICM0001_5");
 	//Various Chaos puddle things
+	RemoveVertexColors_Object((NJS_OBJECT*)0x2C66BAC); //Chaos 0 in cutscenes
+	RemoveVertexColors_Object((NJS_OBJECT*)0x2D6962C); //Chaos puddle in cutscenes
+	RemoveVertexColors_Object((NJS_OBJECT*)0x38DD9BC); //Chaos puddle in cutscenes + Chaos 0
 	WriteCall((void*)0x6EE43F, ComeOnChaosTimeToEat); //Environment mapping effect on Chaos' puddle before Chaos 0 emerges
 	((NJS_MATERIAL*)0x02D64FD8)->exponent = 11; //Chaos 1/4 puddle
 	((NJS_MATERIAL*)0x038D936C)->attrflags &= ~NJD_FLAG_USE_ENV; //Chaos 0/2/6 puddle
 	((NJS_MATERIAL*)0x038D936C)->exponent = 11; //Chaos 0/2/6 puddle
 	ICM0001_3_TEXLISTS[0].Name = "ICM0001_5"; //Higher quality background in Sonic story
-	//Generic fixes for Chaos materials
-	for (unsigned int i = 0; i < LengthOfArray(ChaosMaterials); i++)
-	{
-		RemoveMaterialColors(ChaosMaterials[i]);
-	}
 }

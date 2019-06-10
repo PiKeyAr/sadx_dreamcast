@@ -17,7 +17,6 @@ DataPointer(ObjectMaster*, Chaos0ObjectMaster, 0x3C84628);
 static int Chaos0PuddleTransparency = 255;
 static bool Chaos0TransUp = false;
 
-
 void DrawChaos0Spotlight(ObjectMaster *a1)
 {
 	EntityData1 *v1 = a1->Data1;

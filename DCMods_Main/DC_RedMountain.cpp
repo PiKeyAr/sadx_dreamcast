@@ -137,6 +137,7 @@ void RedMountain_Init()
 	ReplacePVM("OBJ_MOUNTAIN");
 	ReplacePVM("YOUGAN_ANIM");
 	ReplaceBIN("PL_51B", "PL_51X");
+	WriteData<1>((char*)0x600700, 0xC3u); //Disable SetClip_RedMountain
 	WriteData((double**)0x600C8F, &cloudcoloroffset);
 	WriteCall((void*)0x006011D8, RenderRMSky1);
 	WriteCall((void*)0x0060121C, RenderRMSky2);

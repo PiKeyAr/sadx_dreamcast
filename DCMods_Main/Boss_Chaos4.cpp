@@ -10,6 +10,7 @@ DataPointer(NJS_VECTOR, ChaosPosition, 0x3C5A358);
 DataPointer(float, Chaos4NumaTransparency, 0x3C688D4);
 DataArray(FogData, Chaos4Fog, 0x0118FA00, 3);
 DataArray(PVMEntry, CHAOS4_OBJECT_TEXLISTS, 0x118FDB0, 18);
+
 FunctionPointer(void, sub_408530, (NJS_OBJECT *o), 0x408530);
 FunctionPointer(void, sub_40A1E0, (NJS_OBJECT *a1, int a2, float a3), 0x40A1E0);
 FunctionPointer(void, sub_4B9540, (NJS_VECTOR *position, NJS_VECTOR *scale_v, float scale), 0x4B9540);
@@ -403,6 +404,7 @@ void Chaos4_Init()
 	*(NJS_OBJECT*)0x11E3240 = *LoadModel("SYSTEM\\data\\B_CHAOS4\\Models\\0003E6CC.sa1mdl", false); //Lilypad
 	//Chaos 4
 	RemoveVertexColors_Object((NJS_OBJECT*)0x119E240); //Chaos4 main model
+	RemoveVertexColors_Object((NJS_OBJECT*)0x302FD70); //Chaos4 cutscene model
 	RemoveVertexColors_Object((NJS_OBJECT*)0x11A652C); //Chaos4 alt model
 	RemoveVertexColors_Object((NJS_OBJECT*)0x11A11C8); //Chaos4 hand attack
 	RemoveVertexColors_Object((NJS_OBJECT*)0x11C1C24); //Chaos4 broken into balls

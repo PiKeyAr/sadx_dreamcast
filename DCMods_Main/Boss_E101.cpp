@@ -25,6 +25,8 @@ void E101_Init()
 	ReplacePVM("E101");
 	ReplacePVM("E101_TIKEI");
 	ResizeTextureList((NJS_TEXLIST*)0x14FBFB4, 77);
+	RemoveVertexColors_Object((NJS_OBJECT*)0x14DE020); //E101 boss model
+	ForceObjectSpecular_Object((NJS_OBJECT*)0x14D76B4); //Belt on E101 boss model
 	//E101 rocket
 	((NJS_MATERIAL*)0x014DE5D0)->attrflags |= NJD_FLAG_IGNORE_LIGHT;
 	((NJS_MATERIAL*)0x014DE5E4)->attrflags |= NJD_FLAG_IGNORE_LIGHT;

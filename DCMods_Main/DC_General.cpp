@@ -260,21 +260,6 @@ NJS_MATERIAL* ObjectSpecular_General[] = {
 	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01MODELS") + 0x001F26DC),
 };
 
-bool E101Function(NJS_MATERIAL* material, Uint32 flags)
-{
-	if (CurrentLevel == 33 || CurrentLevel == 32)
-	{
-		set_diffuse_ptr(2, false);
-		set_specular_ptr(3, false);
-	}
-	else
-	{
-		set_diffuse_ptr(0, false);
-		set_specular_ptr(1, false);
-	}
-	return true;
-}
-
 void RenderEmeraldWithGlow(NJS_OBJECT *a1, int scale)
 {
 	ProcessModelNode_D_Wrapper(a1, scale);
@@ -1633,18 +1618,6 @@ void General_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 	((NJS_OBJECT*)0x02EE3E98)->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_USE_ALPHA;
 	((NJS_OBJECT*)0x01257754)->basicdxmodel->mats[15].diffuse.color = 0xFFFFFFFF; //Chaos6 Eggmobile
 	*(NJS_TEXLIST**)0x02BD5FE4 = (NJS_TEXLIST*)0x02EE0AA4; //Eggman Super Sonic cutscene texlist fix
-	//E101 Beta lighting fixes
-	((NJS_OBJECT*)0x014D76B4)->basicdxmodel->mats[0].attrflags |= NJD_FLAG_IGNORE_SPECULAR;
-	((NJS_OBJECT*)0x014D76B4)->basicdxmodel->mats[1].attrflags |= NJD_FLAG_IGNORE_SPECULAR;
-	((NJS_OBJECT*)0x014D76B4)->basicdxmodel->mats[2].attrflags |= NJD_FLAG_IGNORE_SPECULAR;
-	((NJS_OBJECT*)0x014D76B4)->basicdxmodel->mats[3].attrflags |= NJD_FLAG_IGNORE_SPECULAR;
-	((NJS_OBJECT*)0x014D76B4)->basicdxmodel->mats[4].attrflags |= NJD_FLAG_IGNORE_SPECULAR;
-	((NJS_OBJECT*)0x014D857C)->basicdxmodel->mats[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	((NJS_OBJECT*)0x014D857C)->basicdxmodel->mats[2].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	((NJS_OBJECT*)0x014D887C)->basicdxmodel->mats[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	((NJS_OBJECT*)0x014D943C)->basicdxmodel->mats[7].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	((NJS_OBJECT*)0x014DC25C)->basicdxmodel->mats[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	((NJS_OBJECT*)0x014DD4A4)->basicdxmodel->mats[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
 	//Emblem field model
 	((NJS_MATERIAL*)0x009740FC)->attrflags &= ~NJD_FLAG_IGNORE_SPECULAR;
 	((NJS_MATERIAL*)0x00974110)->attrflags &= ~NJD_FLAG_IGNORE_SPECULAR;
@@ -1708,6 +1681,7 @@ void General_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 
 void General_OnFrame()
 {
+
 	//Global colors screen fade fix
 	if (GlobalColor_wait)
 	{

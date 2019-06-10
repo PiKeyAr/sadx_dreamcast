@@ -422,9 +422,6 @@
     <ClInclude Include="Data\Icicle.h">
       <Filter>Header Files\Levels\IceCap</Filter>
     </ClInclude>
-    <ClInclude Include="Data\LightingArrays.h">
-      <Filter>Header Files\Levels\Bosses</Filter>
-    </ClInclude>
     <ClInclude Include="Data\SH_helicopter.h">
       <Filter>Header Files\Levels\SpeedHighway</Filter>
     </ClInclude>

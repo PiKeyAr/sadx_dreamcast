@@ -150,6 +150,7 @@ void E101R_Init()
 	ReplacePVM("E101R");
 	ReplacePVM("E101R_BG");
 	ReplacePVM("E101R_TIKEI");
+	WriteData<1>((char*)0x568D20, 0xC3u); //Disable SetClip_E101R
 	*(NJS_OBJECT *)0x02DA8664 = object_029A8664; //E101R model in cutscenes
 	//E-101R fixes
 	ShadowBlob_Model.basicdxmodel->mats[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
