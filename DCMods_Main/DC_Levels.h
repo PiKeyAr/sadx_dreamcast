@@ -478,5 +478,7 @@ void AddAlphaRejectMaterial(NJS_MATERIAL *material);
 void AddWhiteDiffuseMaterial(NJS_MATERIAL *material);
 void RemoveAlphaRejectMaterial(NJS_MATERIAL *material);
 void RemoveWhiteDiffuseMaterial(NJS_MATERIAL *material);
+void AddBossMaterial(NJS_MATERIAL *material);
 void ForceLevelSpecular_Object(NJS_OBJECT *obj);
 void ForceObjectSpecular_Object(NJS_OBJECT *obj);
+void AddBossMaterials_Object(NJS_OBJECT *obj);

@@ -512,6 +512,28 @@ void AddWhiteDiffuseMaterial(NJS_MATERIAL *material)
 	}
 }
 
+void AddBossMaterial(NJS_MATERIAL *material)
+{
+	if (DLLLoaded_Lantern)
+	{
+		TemporaryMaterialArray[0] = material;
+		material_register_ptr(TemporaryMaterialArray, 1, ForceDiffuse4Specular5);
+	}
+}
+
+void AddBossMaterials_Object(NJS_OBJECT *obj)
+{
+	if (obj->basicdxmodel)
+	{
+		for (int q = 0; q < obj->basicdxmodel->nbMat; ++q)
+		{
+			AddBossMaterial((NJS_MATERIAL*)&obj->basicdxmodel->mats[q]);
+		}
+	}
+	if (obj->child) AddBossMaterials_Object(obj->child);
+	if (obj->sibling) AddBossMaterials_Object(obj->sibling);
+}
+
 void RemoveAlphaRejectMaterial(NJS_MATERIAL *material)
 {
 	if (DLLLoaded_Lantern)
