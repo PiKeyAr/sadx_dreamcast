@@ -1184,6 +1184,11 @@ void SetEmeraldShardColor(float a, float r, float g, float b)
 	SetMaterialAndSpriteColor_Float(0.08f, 1.0f, 1.0f, 1.0f);
 }
 
+void SonicFrozenCubeFix(NJS_OBJECT *a1)
+{
+	ProcessModelNode_D(a1, 0, 1.0f);
+}
+
 void General_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 {
 	ReplacePVR("AL_BARRIA");
@@ -1378,7 +1383,10 @@ void General_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 		DirLights_SADX[i].AmbientG = DirLights_SA1[i].Ambient;
 		DirLights_SADX[i].AmbientB = DirLights_SA1[i].Ambient;
 	}
+	WriteCall((void*)0x4A22A6, SonicFrozenCubeFix);
 	//Material/vertex color fixes
+	RemoveVertexColors_Object(SONIC_OBJECTS[72]); //Ice cube for frozen Sonic
+	RemoveVertexColors_Object(SONIC_OBJECTS[73]); //Ice cube fragments for frozen Sonic
 	RemoveVertexColors_Object((NJS_OBJECT*)0x38CBC74); //Rhinotank
 	RemoveVertexColors_Object((NJS_OBJECT*)0x38D0CF0); //AMEMB
 	RemoveVertexColors_Object((NJS_OBJECT*)0x38E50C4); //Buyon A
