@@ -761,3 +761,29 @@ NJS_OBJECT* LoadModel(const char *ModelName, bool sort)
 	PrintDebug("OK\n");
 	return object;
 }
+
+void ForceLevelSpecular_Object(NJS_OBJECT *obj)
+{
+	if (obj->basicdxmodel)
+	{
+		for (int k = 0; k < obj->basicdxmodel->nbMat; ++k)
+		{
+			if (!(obj->basicdxmodel->mats[k].attrflags & NJD_FLAG_IGNORE_SPECULAR)) obj->basicdxmodel->mats[k].attrflags |= NJD_FLAG_IGNORE_SPECULAR;
+		}
+	}
+}
+
+void ForceObjectSpecular_Object(NJS_OBJECT *obj)
+{
+	if (obj->basicdxmodel)
+	{
+		for (int k = 0; k < obj->basicdxmodel->nbMat; ++k)
+		{
+			obj->basicdxmodel->mats[k].specular.color = 0xFFFFFFFF;
+			if (obj->basicdxmodel->mats[k].attrflags & NJD_FLAG_IGNORE_SPECULAR)
+			{
+				obj->basicdxmodel->mats[k].attrflags &= ~NJD_FLAG_IGNORE_SPECULAR;
+			}
+		}
+	}
+}
