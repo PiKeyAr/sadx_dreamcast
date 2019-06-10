@@ -88,6 +88,8 @@ void Bosses_Init()
 	ReplacePVM("ICM0001_3");
 	ReplacePVM("ICM0001_5");
 	//Various Chaos puddle things
+	RemoveVertexColors_Object((NJS_OBJECT*)0x269D214); //Eggmobile 2P
+	RemoveVertexColors_Object((NJS_OBJECT*)0x269EE24); //Eggman 2P
 	RemoveVertexColors_Object((NJS_OBJECT*)0x2C66BAC); //Chaos 0 in cutscenes
 	RemoveVertexColors_Object((NJS_OBJECT*)0x2D6962C); //Chaos puddle in cutscenes
 	RemoveVertexColors_Object((NJS_OBJECT*)0x38DD9BC); //Chaos puddle in cutscenes + Chaos 0
