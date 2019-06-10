@@ -293,15 +293,6 @@
     <ClInclude Include="Data\Chaos4.h">
       <Filter>Header Files\Levels\Bosses</Filter>
     </ClInclude>
-    <ClInclude Include="Data\Chaos6_Act1.h">
-      <Filter>Header Files\Levels\Bosses</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\Chaos6_Act2.h">
-      <Filter>Header Files\Levels\Bosses</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\Chaos6_models.h">
-      <Filter>Header Files\Levels\Bosses</Filter>
-    </ClInclude>
     <ClInclude Include="Data\Chaos7.h">
       <Filter>Header Files\Levels\Bosses</Filter>
     </ClInclude>
@@ -634,6 +625,12 @@
     </ClInclude>
     <ClInclude Include="GenericData.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\Chaos6_Sonic.h">
+      <Filter>Header Files\Levels\Bosses</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\Chaos6_Knuckles.h">
+      <Filter>Header Files\Levels\Bosses</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

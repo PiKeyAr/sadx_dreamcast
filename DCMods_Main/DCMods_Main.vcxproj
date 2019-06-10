@@ -164,9 +164,8 @@
     <ClInclude Include="Data\Chaos0.h" />
     <ClInclude Include="Data\Chaos2.h" />
     <ClInclude Include="Data\Chaos4.h" />
-    <ClInclude Include="Data\Chaos6_Act1.h" />
-    <ClInclude Include="Data\Chaos6_Act2.h" />
-    <ClInclude Include="Data\Chaos6_models.h" />
+    <ClInclude Include="Data\Chaos6_Sonic.h" />
+    <ClInclude Include="Data\Chaos6_Knuckles.h" />
     <ClInclude Include="Data\Chaos6_Motion.h" />
     <ClInclude Include="Data\Chaos7.h" />
     <ClInclude Include="Data\Chaos7_fixes.h" />
