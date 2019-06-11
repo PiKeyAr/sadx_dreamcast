@@ -201,8 +201,19 @@ void PerfectChaos_Init()
 	WriteJump((void*)0x005633C0, Chaos7Damage_DisplayX);
 	//Perfect Chaos misc
 	((NJS_OBJECT*)0x0248B1B4)->basicdxmodel->mats[2].attrflags &= ~NJD_FLAG_IGNORE_SPECULAR; //Egg Carrier 2
+	//Objects
+	*(NJS_OBJECT*)0x142C740 = *LoadModel("system\\data\\B_CHAOS7\\Models\\0006B410.sa1mdl", false); //ORoad0
+	*(NJS_OBJECT*)0x1455C0C = *LoadModel("system\\data\\B_CHAOS7\\Models\\000938C4.sa1mdl", false); //ORoad1
+	*(NJS_OBJECT*)0x1458A58 = *LoadModel("system\\data\\B_CHAOS7\\Models\\00095598.sa1mdl", false); //ORoad2
+	*(NJS_OBJECT*)0x145B4AC = *LoadModel("system\\data\\B_CHAOS7\\Models\\00096FC8.sa1mdl", false); //ORoad3
+	*(NJS_OBJECT*)0x145D000 = *LoadModel("system\\data\\B_CHAOS7\\Models\\000981B8.sa1mdl", false); //ORoad4
 	//Remove material colors in cars and other objects
 	RemoveVertexColors_Object((NJS_OBJECT*)0x142F08C);
+	RemoveVertexColors_Object((NJS_OBJECT*)0x14319AC);
+	RemoveVertexColors_Object((NJS_OBJECT*)0x14342F4);
+	RemoveVertexColors_Object((NJS_OBJECT*)0x1447898);
+	RemoveVertexColors_Object((NJS_OBJECT*)0x144A28C);
+	RemoveVertexColors_Object((NJS_OBJECT*)0x144DEF0);
 	RemoveVertexColors_Object((NJS_OBJECT*)0x143A4FC);
 	RemoveVertexColors_Object((NJS_OBJECT*)0x143463C);
 	RemoveVertexColors_Object((NJS_OBJECT*)0x1434A3C);
