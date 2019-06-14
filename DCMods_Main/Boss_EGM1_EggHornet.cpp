@@ -114,7 +114,7 @@ void LoadLevelFiles_B_EGM1()
 		//Check COL flags
 		if (B_EGM1->Col[j].Flags & 0x8000000)
 		{
-			//if (B_EGM1->Col[j].Flags & ColFlags_Visible) B_EGM1->Col[j].Flags &= ~ColFlags_Visible;
+			if (B_EGM1->Col[j].Flags & ColFlags_Visible) B_EGM1->Col[j].Flags &= ~ColFlags_Visible;
 			if (B_EGM1->Col[j].Flags & 0x2)
 			{
 				EHOcean = B_EGM1->Col[j].Model;

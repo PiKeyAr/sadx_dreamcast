@@ -36611,7 +36611,7 @@ extern "C" __declspec(dllexport) COL collist_0001E294[] = {
 	{ { 1436.808f, 251.172f, 782.993f }, 117.353f, 0, 0, &object_00020CBC, 0, 0x80000000 }, //Tails' house
 	{ { 1454.316f, 295.609f, 758.5759f }, 117.0787f, 0, 0, &object_000413E0, 0, 0x82000000 }, //Rails on top of Tails' house
 	{ { 1420.612f, 211.859f, 862.9596f }, 20.19383f, 0, 0, &object_000607B8, 0, 0xC0000041 },
-	{ { 711.6917f, -420.8741f, 3703.044f }, 7883.168f, 0, 0, &object_00057FD4, 0, 0x08000002 }, //Ocean
+	{ { 711.6917f, -420.8741f, 3703.044f }, 7883.168f, 0, 0, &object_00057FD4, 0, 0x88000002 }, //Ocean
 };
 
 extern "C" __declspec(dllexport) GeoAnimData animlist_0001F524[] = {
