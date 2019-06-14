@@ -41,6 +41,10 @@ struct __declspec(align(8)) SomeSpriteThing
 DataPointer(NJS_POINT3COL, stru_9894C0, 0x9894C0);
 DataPointer(NJS_VECTOR, FuseLine1, 0x3C5C484);
 DataPointer(NJS_VECTOR, FuseLine2, 0x3C5C490);
+DataPointer(int, PerfectChaosTornadoSpeed1, 0x1426CA0);
+DataPointer(int, PerfectChaosTornadoSpeed2, 0x1426CA4);
+DataPointer(int, PerfectChaosTornadoSpeed3, 0x1426CA8);
+DataPointer(int, PerfectChaosTornadoSpeed4, 0x1426CAC);
 FunctionPointer(void, OHae_Display, (ObjectMaster *a1), 0x5C8A20);
 FunctionPointer(void, Fishies_Display, (ObjectMaster *a1), 0x4FC770);
 FunctionPointer(void, CreateFireParticle, (NJS_VECTOR *a1, NJS_VECTOR *a2, float a3), 0x4CB060);
@@ -772,6 +776,11 @@ void SpeedFixes_OnFrame()
 			LostWorldDoorFix1 = 3;
 			//Final Egg
 			OFunAnimationSpeedOverride = 1.0f;
+			//Perfect Chaos
+			PerfectChaosTornadoSpeed1 = 3276;
+			PerfectChaosTornadoSpeed2 = 0;
+			PerfectChaosTornadoSpeed3 = 1638;
+			PerfectChaosTornadoSpeed4 = 1638;
 			}
 		//60 FPS values
 		else
@@ -840,6 +849,11 @@ void SpeedFixes_OnFrame()
 			LostWorldDoorFix1 = 6;
 			//Final Egg
 			OFunAnimationSpeedOverride = 0.25f;
+			//Perfect Chaos
+			PerfectChaosTornadoSpeed1 = 6552;
+			PerfectChaosTornadoSpeed2 = 0;
+			PerfectChaosTornadoSpeed3 = 3276;
+			PerfectChaosTornadoSpeed4 = 3276;
 			}
 		SpeedFixes_Init();
 		FramerateSettingOld = FramerateSetting;
