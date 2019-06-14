@@ -326,9 +326,6 @@
     <ClInclude Include="Data\EggHornet.h">
       <Filter>Header Files\Levels\Bosses</Filter>
     </ClInclude>
-    <ClInclude Include="Data\EggHornet_Model.h">
-      <Filter>Header Files\Levels\Bosses</Filter>
-    </ClInclude>
     <ClInclude Include="Data\EggViper.h">
       <Filter>Header Files\Levels\Bosses</Filter>
     </ClInclude>
@@ -565,9 +562,6 @@
     </ClInclude>
     <ClInclude Include="Data\SandHill_objects.h">
       <Filter>Header Files\Levels\Subgames</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\EggHornet_Water.h">
-      <Filter>Header Files\Levels\Bosses</Filter>
     </ClInclude>
     <ClInclude Include="Data\ZeroE101R_Water.h">
       <Filter>Header Files\Levels\Bosses</Filter>

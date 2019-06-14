@@ -179,8 +179,6 @@
     <ClInclude Include="Data\EC_Transform.h" />
     <ClInclude Include="Data\EggCarrier_Objects.h" />
     <ClInclude Include="Data\EggHornet.h" />
-    <ClInclude Include="Data\EggHornet_Model.h" />
-    <ClInclude Include="Data\EggHornet_Water.h" />
     <ClInclude Include="Data\EggViper.h" />
     <ClInclude Include="Data\EggWalker.h" />
     <ClInclude Include="Data\EmeraldCoast1.h" />
