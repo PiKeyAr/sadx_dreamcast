@@ -168,7 +168,6 @@
     <ClInclude Include="Data\Chaos6_Knuckles.h" />
     <ClInclude Include="Data\Chaos6_Motion.h" />
     <ClInclude Include="Data\Chaos7.h" />
-    <ClInclude Include="Data\Chaos7_fixes.h" />
     <ClInclude Include="Data\CharacterEffects.h" />
     <ClInclude Include="Data\CommonObjects.h" />
     <ClInclude Include="Data\Cowgirl.h" />

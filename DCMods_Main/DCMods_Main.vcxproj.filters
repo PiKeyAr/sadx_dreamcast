@@ -296,9 +296,6 @@
     <ClInclude Include="Data\Chaos7.h">
       <Filter>Header Files\Levels\Bosses</Filter>
     </ClInclude>
-    <ClInclude Include="Data\Chaos7_fixes.h">
-      <Filter>Header Files\Levels\Bosses</Filter>
-    </ClInclude>
     <ClInclude Include="Data\CommonObjects.h">
       <Filter>Header Files\Levels\General</Filter>
     </ClInclude>
