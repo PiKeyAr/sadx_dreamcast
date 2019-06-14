@@ -90,8 +90,6 @@ void Chaos2_Init()
 	ResizeTextureList((NJS_TEXLIST*)0x117C76C, textures_chaos2);
 	((NJS_OBJECT*)0x117EB1C)->basicdxmodel->mats[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
 	WriteCall((void*)0x0054AC30, FixChaos2Columns);
-	//WriteCall((void*)0x54858A, Chaos2Action); //Chaos 0
-	//WriteCall((void*)0x5622DE, Chaos2Action); //Perfect Chaos
 	WriteCall((void*)0x54D991, Chaos2Ball); //Ball bouncing
 	WriteCall((void*)0x54C5E7, Chaos2_Transform); //Ball transforming
 	WriteCall((void*)0x54F496, Chaos2Ball); //Chaos transformation model
