@@ -86,7 +86,7 @@ NJS_MATERIAL* WhiteDiffuse[] = {
 	&matlistADV02_0003CD28[2],
 };
 
-void AddMRWater_DisplayObject(NJS_OBJECT *object)
+void AddMRWaterObject(NJS_OBJECT *object)
 {
 	for (int q = 0; q < LengthOfArray(MRWaterObjects); ++q)
 	{
@@ -149,7 +149,7 @@ void ParseMRColFlags()
 	for (unsigned int j = 0; j < landtable->COLCount; j++)
 	{
 		colflags = landtable->Col[j].Flags;
-		if (colflags == 0x08000000) AddMRWater_DisplayObject(landtable->Col[j].Model);
+		if (colflags == 0x08000000) AddMRWaterObject(landtable->Col[j].Model);
 		else if (colflags == 0x08000002) MROcean = landtable->Col[j].Model;
 	}
 	//Jungle area
