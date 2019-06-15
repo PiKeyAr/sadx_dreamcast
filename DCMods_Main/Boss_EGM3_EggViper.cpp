@@ -3,8 +3,9 @@
 NJS_TEXNAME textures_eggviper[45];
 NJS_TEXLIST texlist_eggviper = { arrayptrandlength(textures_eggviper) };
 
+//#include "EggViper.h"
+
 DataArray(FogData, EggViperFog, 0x0165D334, 3);
-DataArray(PVMEntry, EGGVIPER_TEXLISTS, 0x165D498, 11);
 DataPointer(int, EVEffect, 0x3C6E1EC);
 DataPointer(char, EggViperByteThing, 0x03C6E178);
 DataPointer(float, EggViperHitCount, 0x03C58158);
@@ -37,18 +38,43 @@ void EggViperCutsceneFix2(int time)
 
 void UnloadLevelFiles_B_EGM3()
 {
+	NJS_MATERIAL *material;
+	LandTable *B_EGM3 = B_EGM3_Info->getlandtable();
+	for (unsigned int j = 0; j < B_EGM3->COLCount; j++)
+	{
+		for (int k = 0; k < B_EGM3->Col[j].Model->basicdxmodel->nbMat; ++k)
+		{
+			material = (NJS_MATERIAL*)&B_EGM3->Col[j].Model->basicdxmodel->mats[k];
+			if (material->attr_texId == 32)
+			{
+				AddAlphaRejectMaterial(material);
+			}
+		}
+	}
 	delete B_EGM3_Info;
 	B_EGM3_Info = nullptr;
 }
 
 void LoadLevelFiles_B_EGM3()
 {
+	NJS_MATERIAL *material;
 	CheckAndUnloadLevelFiles();
 	B_EGM3_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\B_EGM3\\0.sa1lvl"));
-	LandTable *B_EGM3 = B_EGM3_Info->getlandtable();
-	RemoveMaterialColors_Landtable(B_EGM3);
+	LandTable *B_EGM3 = B_EGM3_Info->getlandtable(); //&landtable_000580F4;
 	B_EGM3->TexList = &texlist_eggviper;
 	LandTableArray[56] = B_EGM3;
+	RemoveMaterialColors_Landtable(B_EGM3);
+	for (unsigned int j = 0; j < B_EGM3->COLCount; j++)
+	{
+		for (int k = 0; k < B_EGM3->Col[j].Model->basicdxmodel->nbMat; ++k)
+		{
+			material = (NJS_MATERIAL*)&B_EGM3->Col[j].Model->basicdxmodel->mats[k];
+			if (material->attr_texId == 32)
+			{
+				AddAlphaRejectMaterial(material);
+			}
+		}
+	}
 }
 
 void EggViper_Init()
@@ -58,10 +84,16 @@ void EggViper_Init()
 	ReplacePVM("EGM3CHIKEI");
 	ReplacePVM("EGM3MDL");
 	ReplacePVM("EGM3SPR");
+	//Replace function calls for better cockpit transparency sorting
+	WriteCall((void*)0x57E297, (void*)0x408300);
+	WriteCall((void*)0x57E35B, (void*)0x408300);
+	WriteCall((void*)0x7B596C, (void*)0x408300);
+	WriteCall((void*)0x7B596C, (void*)0x408300);
 	((NJS_MATERIAL*)0x016737F0)->attrflags |= NJD_FLAG_IGNORE_LIGHT; //Dust effect at the bottom of the room
 	ResizeTextureList((NJS_TEXLIST*)0x167E5CC, textures_eggviper);
-	*(NJS_OBJECT*)0x01669DA8 = *LoadModel("system\\data\\B_EGM3\\Models\\000434A0.sa1mdl", false); //part of Egg Viper model
+	*(NJS_OBJECT*)0x01669DA8 = *LoadModel("system\\data\\B_EGM3\\Models\\000434A0.sa1mdl", false); //part of Egg Viper model with different UVs
 	RemoveVertexColors_Object((NJS_OBJECT*)0x166C54C); //Egg Viper cockpit with Eggman
+	ForceObjectSpecular_Object((NJS_OBJECT*)0x166C54C);
 	WriteCall((void*)0x6D04E3, EggViperCutsceneFix1); //supercoolsonic's position fix
 	WriteCall((void*)0x6D04EA, EggViperCutsceneFix2); //Cutscene pose fix
 	for (unsigned int i = 0; i < 3; i++)
