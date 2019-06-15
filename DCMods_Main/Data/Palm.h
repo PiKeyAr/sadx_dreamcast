@@ -1436,7 +1436,7 @@ NJS_VECTOR vertex_00012C18[] = {
 	{ -2.312767f, 37.94292f, -0.7506559f }
 };
 
-NJS_VECTOR normal_00012CCC[] = {
+NJS_VECTOR normal_00012CCCP[] = {
 	{ 0.996574f, 0.068234f, -0.046737f },
 	{ -0.492452f, 0.124699f, 0.86136f },
 	{ -0.493067f, 0.005612f, 0.8699729f },
@@ -1454,7 +1454,7 @@ NJS_VECTOR normal_00012CCC[] = {
 	{ -0.533991f, 0.072582f, -0.842369f }
 };
 
-NJS_MODEL_SADX attach_00012D80 = { vertex_00012C18, normal_00012CCC, LengthOfArray<Sint32>(vertex_00012C18), meshlist_00012BD0, matlist_00012AB0, LengthOfArray<Uint16>(meshlist_00012BD0), LengthOfArray<Uint16>(matlist_00012AB0), { 1.03479f, -3.528534f, -0.015752f }, 41.70995f, NULL };
+NJS_MODEL_SADX attach_00012D80 = { vertex_00012C18, normal_00012CCCP, LengthOfArray<Sint32>(vertex_00012C18), meshlist_00012BD0, matlist_00012AB0, LengthOfArray<Uint16>(meshlist_00012BD0), LengthOfArray<Uint16>(matlist_00012AB0), { 1.03479f, -3.528534f, -0.015752f }, 41.70995f, NULL };
 
 NJS_OBJECT object_00012DA8 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL, &attach_00012D80, 0, 0, 0, 0, 0, 0, 1, 1, 1, &object_00012A7C, NULL };
 
@@ -1469,7 +1469,7 @@ NJS_MESHSET_SADX meshlist_00012BD0_2[] = {
 	{ NJD_MESHSET_TRIMESH | 1, 2, poly_00012AEC, NULL, NULL, NULL, uv_00012B40, NULL },
 };
 
-NJS_MODEL_SADX attach_00012D80_2 = { vertex_00012C18, normal_00012CCC, LengthOfArray<Sint32>(vertex_00012C18), meshlist_00012BD0_2, matlist_00012AB0_2, LengthOfArray<Uint16>(meshlist_00012BD0_2), LengthOfArray<Uint16>(matlist_00012AB0_2), { 1.03479f, -3.528534f, -0.015752f }, 41.70995f, NULL };
+NJS_MODEL_SADX attach_00012D80_2 = { vertex_00012C18, normal_00012CCCP, LengthOfArray<Sint32>(vertex_00012C18), meshlist_00012BD0_2, matlist_00012AB0_2, LengthOfArray<Uint16>(meshlist_00012BD0_2), LengthOfArray<Uint16>(matlist_00012AB0_2), { 1.03479f, -3.528534f, -0.015752f }, 41.70995f, NULL };
 
 NJS_OBJECT object_palm1bottom = { NJD_EVAL_BREAK | NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL, &attach_00012D80_2, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
