@@ -584,13 +584,6 @@ void ProcessMaterials_Object(NJS_OBJECT *obj)
 			{
 				obj->basicdxmodel->meshsets[k].vertcolor = nullptr;
 			}
-			//If a mesh's material has NJD_FLAG_IGNORE_LIGHT, add white diffuse to all other mesh materials after it
-			if (obj->basicdxmodel->nbMeshset > k + 1) //Only check if the current mesh isn't the last one
-			{
-				materialflags = obj->basicdxmodel->mats[obj->basicdxmodel->meshsets[k].type_matId & ~0xC000].attrflags; //Current mesh
-				if (!ignorelight && materialflags & NJD_FLAG_IGNORE_LIGHT) CheckModelForWhiteDiffuse(obj->basicdxmodel, obj->basicdxmodel->meshsets[k].type_matId & ~0xC000);
-				ignorelight = true;
-			}
 		}
 		//Check the first material for NJD_FLAG_IGNORE_SPECULAR and adjust the rest of the materials accordingly
 		if (obj->basicdxmodel->mats[0].attrflags & NJD_FLAG_IGNORE_SPECULAR) ignorespecular = true; else ignorespecular = false;
