@@ -4,12 +4,13 @@ NJS_TEXNAME textures_eggviper[45];
 NJS_TEXLIST texlist_eggviper = { arrayptrandlength(textures_eggviper) };
 
 DataArray(FogData, EggViperFog, 0x0165D334, 3);
-
 DataArray(PVMEntry, EGGVIPER_TEXLISTS, 0x165D498, 11);
-
 DataPointer(int, EVEffect, 0x3C6E1EC);
 DataPointer(char, EggViperByteThing, 0x03C6E178);
 DataPointer(float, EggViperHitCount, 0x03C58158);
+
+FunctionPointer(void, Cutscene_WaitForInput, (int a1), 0x4314D0);
+FunctionPointer(void, Cutscene_FreeMemory2, (ObjectMaster *a1), 0x42FE40);
 
 static float EggViper_blendfactor = 0.0f;
 static int EggViper_blenddirection = 1;
@@ -18,6 +19,21 @@ static int EggViper_Timer = 0;
 static float EggViper_blendfactor_max = 0.005f;
 static float EggViper_blendfactor_min = 0.005f;
 static float EggViperHitCount_Old = 0.0f;
+
+void __cdecl EggViperCutsceneFix1(ObjectMaster *a1, NJS_ACTION *a2, NJS_TEXLIST *a3, float a4, char a5, char a6)
+{
+	EntityData1Ptrs[0]->Position.x += 16;
+	EntityData1Ptrs[0]->Position.z += 4;
+}
+
+void EggViperCutsceneFix2(int time)
+{
+	ObjectMaster *a1 = j_GetCharacterObject(0);
+	Cutscene_WaitForInput(18);
+	InitCutsceneObjectAction(a1, (NJS_ACTION*)0x3C84898, &SONIC_TEXLIST, 1.0f, 1, 8);
+	Cutscene_WaitForInput(62);
+	Cutscene_FreeMemory2(a1);
+}
 
 void UnloadLevelFiles_B_EGM3()
 {
@@ -45,9 +61,13 @@ void EggViper_Init()
 	((NJS_MATERIAL*)0x016737F0)->attrflags |= NJD_FLAG_IGNORE_LIGHT; //Dust effect at the bottom of the room
 	ResizeTextureList((NJS_TEXLIST*)0x167E5CC, textures_eggviper);
 	*(NJS_OBJECT*)0x01669DA8 = *LoadModel("system\\data\\B_EGM3\\Models\\000434A0.sa1mdl", false); //part of Egg Viper model
+	RemoveVertexColors_Object((NJS_OBJECT*)0x166C54C); //Egg Viper cockpit with Eggman
+	WriteCall((void*)0x6D04E3, EggViperCutsceneFix1); //supercoolsonic's position fix
+	WriteCall((void*)0x6D04EA, EggViperCutsceneFix2); //Cutscene pose fix
 	for (unsigned int i = 0; i < 3; i++)
 	{
-		EggViperFog[i].Toggle = 0;
+		EggViperFog[i].Distance = -10000.0f;
+		EggViperFog[i].Layer = -10000.0f;
 	}
 }
 
@@ -56,9 +76,8 @@ void EggViper_OnFrame()
 	//Egg Viper effect
 	if (DLLLoaded_Lantern)
 	{
-
 		//Hopefully disable all this before it gets ugly
-		if (EggViper_blendfactor != 0 && CurrentLevel != 22)
+		if (EggViper_blendfactor != 0 && CurrentLevel != LevelIDs_EggViper)
 		{
 			EggViper_blendfactor = 0;
 			EggViper_EffectMode = 0;
@@ -75,7 +94,7 @@ void EggViper_OnFrame()
 			set_shader_flags_ptr(ShaderFlags_Blend, false);
 			EggViperByteThing = 0;
 		}
-		if (CurrentLevel == 22)
+		if (CurrentLevel == LevelIDs_EggViper)
 		{
 			if (GameState == 3 || GameState == 4 || GameState == 7 || GameState == 21 || CurrentLevel != 22)
 			{
@@ -220,5 +239,4 @@ void EggViper_OnFrame()
 			}
 		}
 	}
-
 }
