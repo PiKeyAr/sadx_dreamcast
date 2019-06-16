@@ -1421,19 +1421,17 @@ void General_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 	//Robot chest stuff
 	WriteData<1>((char*)0x004CFC05, 0x08); //Zero constant material thing
 	WriteData<1>((char*)0x004CFC99, 0x08); //Zero constant material thing
-	WriteData((float*)0x00567D08, 0.85f); //E101 alpha (boss model)
-	WriteData((float*)0x006F4718, 0.85f); //E101 alpha (boss model)
-	((NJS_OBJECT*)0x014D943C)->basicdxmodel->mats[3].attrflags &= ~NJD_FLAG_USE_ALPHA; //E101 unnecessary alpha (boss model)
 	((NJS_OBJECT*)0x0312F714)->basicdxmodel->mats[3].attrflags &= ~NJD_FLAG_USE_ALPHA; //E101 unnecessary alpha (cutscene model)
 	((NJS_OBJECT*)0x030AB08C)->basicdxmodel->mats[3].attrflags &= ~NJD_FLAG_USE_ALPHA; //E103 unnecessary alpha (cutscene model)
 	((NJS_OBJECT*)0x030A290C)->basicdxmodel->mats[3].attrflags &= ~NJD_FLAG_USE_ALPHA; //E104 unnecessary alpha (cutscene model)
 	((NJS_OBJECT*)0x0309A21C)->basicdxmodel->mats[3].attrflags &= ~NJD_FLAG_USE_ALPHA; //E105 unnecessary alpha (cutscene model)
-	WriteData((float*)0x004E7BFD, 0.85f); //E103 alpha (reused Gamma model)
-	WriteData((float*)0x004E7C40, 0.85f); //E103 alpha (reused Gamma model)
-	WriteData((float*)0x00605813, 0.85f); //E104 alpha (reused Gamma model)
-	WriteData((float*)0x006F3F94, 0.85f); //E103 alpha (cutscene model)
-	WriteData((float*)0x006F3D54, 0.85f); //E104 alpha (cutscene model)
-	WriteData((float*)0x006F3B24, 0.85f); //E105 alpha (cutscene model)
+	WriteData((float*)0x006F4718, 0.85f); //Some cutscene model idk
+	WriteData((float*)0x004E7BFD, 0.85f); //E103 (reused Gamma model)
+	WriteData((float*)0x004E7C40, 0.85f); //E103 (reused Gamma model)
+	WriteData((float*)0x00605813, 0.85f); //E104 (reused Gamma model)
+	WriteData((float*)0x006F3F94, 0.85f); //E103 (cutscene model)
+	WriteData((float*)0x006F3D54, 0.85f); //E104 (cutscene model)
+	WriteData((float*)0x006F3B24, 0.85f); //E105 (cutscene model)
 	//Gamma's projectile fix. I have no idea why this works, but ok I guess
 	E102_OBJECTS[5]->basicdxmodel->mats[0].attr_texId = 10;
 	E102_OBJECTS[5]->basicdxmodel->mats[0].attrflags |= NJD_FLAG_USE_TEXTURE;
