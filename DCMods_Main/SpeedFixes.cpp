@@ -700,6 +700,9 @@ void SpeedFixes_Init()
 	WriteData((char*)0x005E7841, LostWorldDoorFix1);
 	//Final Egg
 	WriteData((float**)0x005B7530, &OFunAnimationSpeedOverride); //Floating Fan Animation Speed Tweaks
+	//Zero FVF shit (barriers)
+	WriteData((int**)0x0058F448, &MissedFrames_Half);
+	WriteData((int**)0x0058F413, &MissedFrames_Half);
 }
 
 void SpeedFixes_OnFrame()
