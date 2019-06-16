@@ -13,8 +13,6 @@ static bool ZeroBarriers_FadeOut = false;
 static bool ZeroBarriers_FadeIn = false;
 static int zerosea_dc = 4;
 static NJS_COLOR BarrierColor = { 0x00000000 };
-ObjectMaster *ZeroFVFShitObjectMaster = nullptr;
-ObjectMaster *ZeroBarriersObjectMaster = nullptr;
 NJS_OBJECT *ZeroBossOcean = nullptr;
 
 void RenderZeroBarrierModel(NJS_OBJECT *obj, float scale)
@@ -64,8 +62,6 @@ void Zero_FVFShit(FVFStruct_H_B *a1, signed int count, int a3)
 
 void UnloadLevelFiles_B_ROBO()
 {
-	ZeroFVFShitObjectMaster = nullptr;
-	ZeroBarriersObjectMaster = nullptr;
 	delete B_ROBO_Info;
 	B_ROBO_Info = nullptr;
 }
@@ -138,7 +134,7 @@ void Zero_OnFrame()
 	//Ocean animation
 	if (!IsGamePaused() && CurrentLevel == LevelIDs_Zero)
 	{
-		if (FramerateSetting < 2 && FrameCounter % 4 == 0 || FramerateSetting == 2 && FrameCounter % 2 == 0 || FramerateSetting > 2) zerosea_dc++;
+		if (FramerateSetting < 2 && FrameCounter % 2 == 0 || FramerateSetting >= 2) zerosea_dc++;
 		if (zerosea_dc > 13) zerosea_dc = 4;
 		if (ZeroBossOcean != nullptr) ZeroBossOcean->basicdxmodel->mats[0].attr_texId = zerosea_dc;
 	}
