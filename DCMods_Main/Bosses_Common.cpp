@@ -1,30 +1,7 @@
 #include "stdafx.h"
 
-#include "ZeroE101R_Water.h"
-
 FunctionPointer(void, sub_40A280, (NJS_OBJECT *a1), 0x40A280);
 FunctionPointer(void, sub_407A00, (NJS_MODEL_SADX *model, float a2), 0x407A00);
-
-static int e101rsea_dc = 4;
-
-void RenderBossECOcean()
-{
-	if (e101rsea_dc > 13) e101rsea_dc = 4;
-	matlist_00007B80[0].attr_texId = e101rsea_dc;
-	if (!DroppedFrames)
-	{
-		DisableFog();
-		njSetTexture(&EC_SEA_TEXLIST);
-		njPushMatrix(0);
-		njTranslate(0, Camera_Data1->Position.x, 0, Camera_Data1->Position.z);
-		ProcessModelNode(&object_00007C50, QueuedModelFlagsB_SomeTextureThing, 1.0f);
-		njPopMatrix(1u);
-	}
-	if (GameState != 16)
-	{
-		if (FramerateSetting < 2 && FrameCounter % 4 == 0 || FramerateSetting == 2 && FrameCounter % 2 == 0 || FramerateSetting > 2) e101rsea_dc++;
-	}
-}
 
 void LoadBossECOceanPVM(const char *filename, NJS_TEXLIST *texlist)
 {
@@ -58,15 +35,6 @@ void ComeOnChaosTimeToEat(NJS_OBJECT *a1)
 	{
 		sub_40A280(a1);
 	}
-}
-
-void __cdecl ZeroE101R_OceanDraw_r(OceanData *a1)
-{
-	if (!SADXWater_EggCarrier)
-	{
-		RenderBossECOcean();
-	}
-	else EggCarrier_OceanDraw_SADXStyle(a1);
 }
 
 void Bosses_Init()

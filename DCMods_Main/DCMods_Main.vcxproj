@@ -172,7 +172,6 @@
     <ClInclude Include="Data\CommonObjects.h" />
     <ClInclude Include="Data\Cowgirl.h" />
     <ClInclude Include="Data\E101.h" />
-    <ClInclude Include="Data\E101Kai_Model.h" />
     <ClInclude Include="Data\E101R.h" />
     <ClInclude Include="Data\ECGarden.h" />
     <ClInclude Include="Data\EC_Tornado.h" />
@@ -262,7 +261,6 @@
     <ClInclude Include="Data\Windy2.h" />
     <ClInclude Include="Data\Windy3.h" />
     <ClInclude Include="Data\Zero.h" />
-    <ClInclude Include="Data\ZeroE101R_Water.h" />
     <ClInclude Include="DC_Levels.h" />
     <ClInclude Include="Frogs.h" />
     <ClInclude Include="GenericData.h" />
