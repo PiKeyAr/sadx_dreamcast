@@ -5,14 +5,10 @@ DataArray(DrawDistance, DrawDist_Zero, 0x016B4D98, 3);
 
 //#include "Zero.h"
 
-FunctionPointer(void, DrawZeroFVFShit1, (ObjectMaster *a1), 0x58F470); //Bariers_Display
-FunctionPointer(void, DrawZeroFVFShit2, (ObjectMaster *a1), 0x58C500); //FVFShit_Display
-FunctionPointer(void, ZeroFVFShit_Display, (ObjectMaster *a1), 0x58C500);
-FunctionPointer(void, ZeroBarriers_Display, (ObjectMaster *a1), 0x58F470);
+FunctionPointer(void, ZeroBarriers_Display, (void *a1), 0x58F470); //Bariers_Display
+FunctionPointer(void, ZeroAttack_Display, (void *a1), 0x58C500); //FVFShit_Display
 FunctionPointer(void, CreateFireParticle, (NJS_VECTOR *a1, float a2), 0x4CACF0);
 
-static bool DrawZeroFVFShit = false;
-static bool DrawZeroBarriers = false;
 static bool ZeroBarriers_FadeOut = false;
 static bool ZeroBarriers_FadeIn = false;
 static int zerosea_dc = 4;
@@ -30,14 +26,12 @@ void RenderZeroBarrierModel(NJS_OBJECT *obj, float scale)
 
 void ZeroFVF_Show(ObjectMaster *a1)
 {
-	ZeroFVFShitObjectMaster = a1;
-	DrawZeroFVFShit = true;
+	DrawModelCallback_Queue(ZeroAttack_Display, a1, 22048.0f, QueuedModelFlagsB_SomeTextureThing);
 }
 
 void ZeroBarriers_Show(ObjectMaster *a1)
 {
-	ZeroBarriersObjectMaster = a1;
-	DrawZeroBarriers = true;
+	DrawModelCallback_Queue(ZeroBarriers_Display, a1, 22048.0f, QueuedModelFlagsB_SomeTextureThing);
 }
 
 void ZeroBarrier_SetOnFireHook(NJS_VECTOR *a1, float a2)
@@ -72,8 +66,6 @@ void UnloadLevelFiles_B_ROBO()
 {
 	ZeroFVFShitObjectMaster = nullptr;
 	ZeroBarriersObjectMaster = nullptr;
-	DrawZeroBarriers = false;
-	DrawZeroFVFShit = false;
 	delete B_ROBO_Info;
 	B_ROBO_Info = nullptr;
 }
@@ -104,15 +96,6 @@ void __cdecl ZeroOceanHook(OceanData *a1)
 		}
 	}
 	else EggCarrier_OceanDraw_SADXStyle(a1);
-	//This is embarrassing but I can't find another way to do it, also fuck this game
-	if (DrawZeroFVFShit && ZeroFVFShitObjectMaster != nullptr)
-	{
-		DrawZeroFVFShit2(ZeroFVFShitObjectMaster);
-	}
-	if (DrawZeroBarriers && ZeroBarriersObjectMaster != nullptr)
-	{
-		DrawZeroFVFShit1(ZeroBarriersObjectMaster);
-	}
 }
 
 void Zero_Init()
@@ -133,9 +116,7 @@ void Zero_Init()
 	WriteCall((void*)0x58BC56, Zero_FVFShit);
 	WriteJump((void*)0x58C721, ZeroFVF_Show);
 	WriteJump((void*)0x58F798, ZeroBarriers_Show);
-	WriteJump(Zero_OceanDraw, ZeroOceanHook); //Ocean callback replacement + delayed rendering of FVF shit
-	WriteData((float*)0x00585485, -2000.0f); //Depth for ocean callback
-	WriteData<1>((char*)0x00585483, 0x04u); //Queue flags for ocean callback
+	WriteJump(Zero_OceanDraw, ZeroOceanHook); //Ocean callback replacement
 	//Ocean model
 	if (!SADXWater_EggCarrier)
 	{
@@ -199,8 +180,6 @@ void Zero_OnFrame()
 	}
 	if (GameState == 3 || GameState == 4 || GameState == 7 || GameState == 21 || GameMode == GameModes_Menu || GameMode == GameModes_CharSel)
 	{
-		DrawZeroBarriers = false;
-		DrawZeroFVFShit = false;
 		ZeroBarriers_FadeIn = false;
 		ZeroBarriers_FadeOut = false;
 		BarrierColor.color = 0x00000000;
