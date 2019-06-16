@@ -53,6 +53,7 @@ FunctionPointer(void, DrawSparkSprite, (ObjectMaster *a1), 0x4BAE50);
 FunctionPointer(void, Chaos0_Raindrop_Display, (ObjectMaster *a1), 0x546090);
 FunctionPointer(void, sub_4083F0, (NJS_ACTION *a1, float a2, int a3, float a4), 0x4083F0);
 FunctionPointer(void, DrawHudCharacter, (SomeSpriteThing *a1), 0x427BB0);
+FunctionPointer(void, ZeroSparks_Display, (ObjectMaster *a1), 0x58B5B0);
 
 //Main
 static int FramerateSettingOld = 0;
@@ -557,6 +558,28 @@ static void __cdecl OLamp_Display_r(ObjectMaster *a1)
 	else original(a1);
 }
 
+static void ZeroSparksMain_r(ObjectMaster *a1);
+static Trampoline ZeroSparksMain_t(0x58B640, 0x58B645, ZeroSparksMain_r);
+static void __cdecl ZeroSparksMain_r(ObjectMaster *a1)
+{
+	auto original = reinterpret_cast<decltype(ZeroSparksMain_r)*>(ZeroSparksMain_t.Target());
+	if (EnableSpeedFixes)
+	{
+		if (FramerateSetting > 2 || (FramerateSetting < 2 && FrameCounter % 2 == 0)) original(a1);
+		else ZeroSparks_Display(a1);
+	}
+	else ZeroSparks_Display(a1);
+}
+
+static void ZeroFVFShit_Main_r(ObjectMaster *a1);
+static Trampoline ZeroFVFShit_Main_t(0x58C590, 0x58C597, ZeroFVFShit_Main_r);
+static void __cdecl ZeroFVFShit_Main_r(ObjectMaster *a1)
+{
+	auto original = reinterpret_cast<decltype(ZeroFVFShit_Main_r)*>(ZeroFVFShit_Main_t.Target());
+	if (EnableSpeedFixes && (FramerateSetting > 2 || (FramerateSetting < 2 && FrameCounter % 2 == 0))) a1->Data1->InvulnerableTime++;
+	original(a1);
+}
+
 void SpeedFixes_Init()
 {
 	//Big ring flashing HUD
@@ -709,7 +732,7 @@ void SpeedFixes_OnFrame()
 {
 	//Half frame counter
 	if (FrameCounter % 2 == 0) FrameCounter_Half++;
-	if (!MissedFrames && ((FramerateSetting < 2 && FrameCounter % 2 == 0 || FramerateSetting >= 2))) MissedFrames_Half = 0; else MissedFrames_Half = 1;
+	if (!MissedFrames && (FramerateSetting > 2 || (FramerateSetting < 2 && FrameCounter % 2 == 0))) MissedFrames_Half = 0; else MissedFrames_Half = 1;
 	if (FramerateSettingOld != FramerateSetting)
 	{
 		//Original values for 30 FPS
