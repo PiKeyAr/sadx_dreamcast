@@ -380,6 +380,7 @@ void Bosses_Init();
 void EggViper_OnFrame();
 void PerfectChaos_OnFrame();
 void EggHornet_OnFrame();
+void Zero_OnFrame();
 void Chaos0_Init();
 void Chaos2_Init();
 void Chaos4_Init();

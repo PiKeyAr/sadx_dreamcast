@@ -555,6 +555,7 @@ extern "C"
 		if (EnablePast) ADV03_OnFrame();
 		if (EnableEggHornet) EggHornet_OnFrame();
 		if (EnableEggViper) EggViper_OnFrame();
+		if (EnableZeroE101R) Zero_OnFrame();
 		if (EnablePerfectChaos) PerfectChaos_OnFrame();
 		if (EnableEmeraldCoast) EmeraldCoast_OnFrame();
 		if (EnableWindyValley) WindyValley_OnFrame();

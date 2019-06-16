@@ -359,9 +359,6 @@
     <ClInclude Include="Data\FinalEgg3.h">
       <Filter>Header Files\Levels\FinalEgg</Filter>
     </ClInclude>
-    <ClInclude Include="Data\ERobo.h">
-      <Filter>Header Files\Levels\Bosses</Filter>
-    </ClInclude>
     <ClInclude Include="Data\Fountain.h">
       <Filter>Header Files\Levels\Chao</Filter>
     </ClInclude>
