@@ -398,10 +398,8 @@ void Windy3Cols_Display(ObjectMaster *a1)
 					njSetTexture(&texlist_windy3);
 					njPushMatrix(0);
 					njTranslate(0, 0, 0, 0);
-					DrawQueueDepthBias = 2500.0f;
 					ProcessModelNode_D(GeoLists[18]->Col[Windy3Cols[i]].Model, 1, 1.0f);
 					njPopMatrix(1u);
-					DrawQueueDepthBias = 0;
 				}
 			}
 		}
