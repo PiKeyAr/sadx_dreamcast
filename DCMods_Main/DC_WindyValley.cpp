@@ -385,21 +385,24 @@ void Windy3Cols_Display(ObjectMaster *a1)
 	{
 		for (int i = 0; i < LengthOfArray(Windy3Cols); i++)
 		{
-			//PrintDebug("Trying COl: %d\n", Windy3Cols[i]);
-			radius = 2500.0f + GeoLists[18]->Col[Windy3Cols[i]].Radius;
-			//PrintDebug("Radius: %f", radius);
-			sphere.x = GeoLists[18]->Col[Windy3Cols[i]].Center.x;
-			sphere.y = GeoLists[18]->Col[Windy3Cols[i]].Center.y;
-			sphere.z = GeoLists[18]->Col[Windy3Cols[i]].Center.z;
-			if (radius != 0 && IsPlayerInsideSphere(&sphere, radius))
+			if (Windy3Cols[i] != -1)
 			{
-				njSetTexture(&texlist_windy3);
-				njPushMatrix(0);
-				njTranslate(0, 0, 0, 0);
-				DrawQueueDepthBias = 2500.0f;
-				ProcessModelNode_D(GeoLists[18]->Col[Windy3Cols[i]].Model, 1, 1.0f);
-				njPopMatrix(1u);
-				DrawQueueDepthBias = 0;
+				//PrintDebug("Trying COl: %d\n", Windy3Cols[i]);
+				radius = 2500.0f + GeoLists[18]->Col[Windy3Cols[i]].Radius;
+				//PrintDebug("Radius: %f", radius);
+				sphere.x = GeoLists[18]->Col[Windy3Cols[i]].Center.x;
+				sphere.y = GeoLists[18]->Col[Windy3Cols[i]].Center.y;
+				sphere.z = GeoLists[18]->Col[Windy3Cols[i]].Center.z;
+				if (radius != 0 && IsPlayerInsideSphere(&sphere, radius))
+				{
+					njSetTexture(&texlist_windy3);
+					njPushMatrix(0);
+					njTranslate(0, 0, 0, 0);
+					DrawQueueDepthBias = 2500.0f;
+					ProcessModelNode_D(GeoLists[18]->Col[Windy3Cols[i]].Model, 1, 1.0f);
+					njPopMatrix(1u);
+					DrawQueueDepthBias = 0;
+				}
 			}
 		}
 	}

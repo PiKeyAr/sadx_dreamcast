@@ -211,22 +211,25 @@ void Highway3Cols_Display(ObjectMaster *a1)
 	{
 		for (int i = 0; i < LengthOfArray(Highway3Cols); i++)
 		{
-			//PrintDebug("Trying COl: %d\n", Highway3Cols[i]);
-			radius = 2500.0f + GeoLists[34]->Col[Highway3Cols[i]].Radius;
-			//PrintDebug("Radius: %f", radius);
-			sphere.x = GeoLists[34]->Col[Highway3Cols[i]].Center.x;
-			sphere.y = GeoLists[34]->Col[Highway3Cols[i]].Center.y;
-			sphere.z = GeoLists[34]->Col[Highway3Cols[i]].Center.z;
-			if (radius != 0 && IsPlayerInsideSphere(&sphere, radius))
+			if (Highway3Cols[i] != -1)
 			{
-				njSetTexture(&texlist_hw3);
-				njPushMatrix(0);
-				njTranslate(0, 0, 0, 0);
-				if (GeoLists[34]->Col[Highway3Cols[i]].Flags & 0x01000000) DrawQueueDepthBias = 3000.0f;
-				else DrawQueueDepthBias = 1000.0f;
-				ProcessModelNode_D(GeoLists[34]->Col[Highway3Cols[i]].Model, 1, 1.0f);
-				njPopMatrix(1u);
-				DrawQueueDepthBias = 0;
+				//PrintDebug("Trying COl: %d\n", Highway3Cols[i]);
+				radius = 2500.0f + GeoLists[34]->Col[Highway3Cols[i]].Radius;
+				//PrintDebug("Radius: %f", radius);
+				sphere.x = GeoLists[34]->Col[Highway3Cols[i]].Center.x;
+				sphere.y = GeoLists[34]->Col[Highway3Cols[i]].Center.y;
+				sphere.z = GeoLists[34]->Col[Highway3Cols[i]].Center.z;
+				if (radius != 0 && IsPlayerInsideSphere(&sphere, radius))
+				{
+					njSetTexture(&texlist_hw3);
+					njPushMatrix(0);
+					njTranslate(0, 0, 0, 0);
+					if (GeoLists[34]->Col[Highway3Cols[i]].Flags & 0x01000000) DrawQueueDepthBias = 3000.0f;
+					else DrawQueueDepthBias = 1000.0f;
+					ProcessModelNode_D(GeoLists[34]->Col[Highway3Cols[i]].Model, 1, 1.0f);
+					njPopMatrix(1u);
+					DrawQueueDepthBias = 0;
+				}
 			}
 		}
 	}
