@@ -377,30 +377,27 @@ void WindyValley_Init()
 	ResizeTextureList((NJS_TEXLIST *)0xAFEC30, textures_windy3);
 };
 
-void Windy3Cols_Display(ObjectMaster *a1)
+FunctionPointer(void, DrawModel_TryReallyHard, (NJS_MODEL_SADX *model), 0x409EF0);
+
+
+void __cdecl Windy3Cols_Display(void *a1)
 {
-	NJS_VECTOR sphere = { 0, 0, 0 };
-	float radius = 0.0f;
-	if (!MissedFrames)
+	NJS_MATRIX a2;
+	NJS_VECTOR pos = { 0, 0, 0 };
+	if (CurrentAct == 2 && !MissedFrames)
 	{
 		for (int i = 0; i < LengthOfArray(Windy3Cols); i++)
 		{
 			if (Windy3Cols[i] != -1)
 			{
-				//PrintDebug("Trying COl: %d\n", Windy3Cols[i]);
-				radius = 2500.0f + GeoLists[18]->Col[Windy3Cols[i]].Radius;
-				//PrintDebug("Radius: %f", radius);
-				sphere.x = GeoLists[18]->Col[Windy3Cols[i]].Center.x;
-				sphere.y = GeoLists[18]->Col[Windy3Cols[i]].Center.y;
-				sphere.z = GeoLists[18]->Col[Windy3Cols[i]].Center.z;
-				if (radius != 0 && IsPlayerInsideSphere(&sphere, radius))
-				{
+					njGetMatrix(a2);
 					njSetTexture(&texlist_windy3);
-					njPushMatrix(0);
-					njTranslate(0, 0, 0, 0);
-					ProcessModelNode_D(GeoLists[18]->Col[Windy3Cols[i]].Model, 1, 1.0f);
-					njPopMatrix(1u);
-				}
+					pos.x = GeoLists[18]->Col[Windy3Cols[i]].Model->pos[0];
+					pos.y = GeoLists[18]->Col[Windy3Cols[i]].Model->pos[1];
+					pos.z = GeoLists[18]->Col[Windy3Cols[i]].Model->pos[2];
+					njTranslateEx(&pos);
+					ProcessModelNode_TryReallyHard(GeoLists[18]->Col[Windy3Cols[i]].Model->basicdxmodel);
+					njSetMatrix(0, a2);
 			}
 		}
 	}
@@ -416,7 +413,7 @@ void Windy3Cols_Main(ObjectMaster *a1)
 {
 	if (CurrentLevel == LevelIDs_WindyValley)
 	{
-		if (CurrentAct == 2) Windy3Cols_Display(a1);
+		if (CurrentAct == 2) DrawModelCallback_Queue((void(__cdecl *)(void *))Windy3Cols_Display, a1, -27000.0f, QueuedModelFlagsB_EnableZWrite);
 	}
 	else Windy3Cols_Delete(a1);
 }
