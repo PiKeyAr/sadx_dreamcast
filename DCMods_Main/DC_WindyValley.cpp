@@ -29,7 +29,8 @@ FunctionPointer(void, sub_409E70, (NJS_MODEL_SADX *a1, int a2, float a3), 0x409E
 FunctionPointer(void, sub_408530, (NJS_OBJECT *o), 0x408530);
 FunctionPointer(void, sub_408350, (NJS_ACTION *a1, float a2, int a3, float a4), 0x408350);
 FunctionPointer(void, sub_4CACF0, (NJS_VECTOR *a1, float a2), 0x4CACF0);
-FunctionPointer(void, sub_407FC0, (NJS_MODEL_SADX *a1, int blend), 0x407FC0);
+FunctionPointer(void, DrawModel_407FC0, (NJS_MODEL_SADX *a1, int blend), 0x407FC0);
+FunctionPointer(void, DrawModel_TryReallyHard, (NJS_MODEL_SADX *model), 0x409EF0);
 static int TornadoMode = 0;
 static float SkyTrans = 1.0f;
 static bool Windy3ColsLoaded = false;
@@ -75,7 +76,7 @@ void UnloadLevelFiles_STG02()
 
 void OHasieFix(NJS_MODEL_SADX *model, float scale)
 {
-	sub_407FC0(model, (QueuedModelFlagsB)0);
+	DrawModel_407FC0(model, (QueuedModelFlagsB)0);
 }
 
 void AddWindyTransparentThing(int colnumber)
@@ -377,10 +378,7 @@ void WindyValley_Init()
 	ResizeTextureList((NJS_TEXLIST *)0xAFEC30, textures_windy3);
 };
 
-FunctionPointer(void, DrawModel_TryReallyHard, (NJS_MODEL_SADX *model), 0x409EF0);
-
-
-void __cdecl Windy3Cols_Display(void *a1)
+void __cdecl Windy3Cols_Display(ObjectMaster *a1)
 {
 	NJS_MATRIX a2;
 	NJS_VECTOR pos = { 0, 0, 0 };
@@ -390,14 +388,11 @@ void __cdecl Windy3Cols_Display(void *a1)
 		{
 			if (Windy3Cols[i] != -1)
 			{
-					njGetMatrix(a2);
-					njSetTexture(&texlist_windy3);
-					pos.x = GeoLists[18]->Col[Windy3Cols[i]].Model->pos[0];
-					pos.y = GeoLists[18]->Col[Windy3Cols[i]].Model->pos[1];
-					pos.z = GeoLists[18]->Col[Windy3Cols[i]].Model->pos[2];
-					njTranslateEx(&pos);
-					ProcessModelNode_TryReallyHard(GeoLists[18]->Col[Windy3Cols[i]].Model->basicdxmodel);
-					njSetMatrix(0, a2);
+				njSetTexture(&texlist_windy3);
+				njPushMatrix(0);
+				njTranslate(0,0,0,0);
+				ProcessModelNode_D_WrapperB(GeoLists[18]->Col[Windy3Cols[i]].Model, QueuedModelFlagsB_EnableZWrite,1.0f);
+				njPopMatrix(1u);
 			}
 		}
 	}
@@ -413,7 +408,7 @@ void Windy3Cols_Main(ObjectMaster *a1)
 {
 	if (CurrentLevel == LevelIDs_WindyValley)
 	{
-		if (CurrentAct == 2) DrawModelCallback_Queue((void(__cdecl *)(void *))Windy3Cols_Display, a1, -27000.0f, QueuedModelFlagsB_EnableZWrite);
+		if (CurrentAct == 2) Windy3Cols_Display(a1);
 	}
 	else Windy3Cols_Delete(a1);
 }
