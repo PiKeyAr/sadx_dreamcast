@@ -774,60 +774,63 @@ void EmeraldCoast_Init()
 
 void EmeraldCoast_OnFrame()
 {
-	//Hide skybox bottom in Act 3
-	if (STG01_2_Info && !IamStupidAndIWantFuckedUpOcean)
+	if (CurrentLevel == LevelIDs_EmeraldCoast)
 	{
-		if (CurrentAct == 2 && Camera_Data1 != nullptr)
+		//Hide skybox bottom in Act 3
+		if (STG01_2_Info && !IamStupidAndIWantFuckedUpOcean)
 		{
-			if (Camera_Data1->Position.y < 50 && SkyboxHidden == 0)
+			if (CurrentAct == 2 && Camera_Data1 != nullptr)
 			{
-				((NJS_OBJECT *)0x103B37C)->evalflags |= NJD_EVAL_HIDE;
-				SkyboxHidden = 1;
+				if (Camera_Data1->Position.y < 50 && SkyboxHidden == 0)
+				{
+					((NJS_OBJECT *)0x103B37C)->evalflags |= NJD_EVAL_HIDE;
+					SkyboxHidden = 1;
+				}
+				if (Camera_Data1->Position.y >= 50 && SkyboxHidden == 1)
+				{
+					((NJS_OBJECT *)0x103B37C)->evalflags &= ~NJD_EVAL_HIDE;
+					SkyboxHidden = 0;
+				}
 			}
-			if (Camera_Data1->Position.y >= 50 && SkyboxHidden == 1)
+		}
+		//Restore ocean UVs on level exit/restart
+		if ((HighPolyOcean_Dynamic) && (GameState == 3 || GameState == 4 || GameState == 7 || GameState == 21))
+		{
+			for (unsigned int r = 0; r < LengthOfArray(uvSTG01_00CC0530_d); r++)
 			{
-				((NJS_OBJECT *)0x103B37C)->evalflags &= ~NJD_EVAL_HIDE;
-				SkyboxHidden = 0;
+				LowPolyOceanUVs[r].u = uvSTG01_00CC0530_d[r].u;
+				LowPolyOceanUVs[r].v = uvSTG01_00CC0530_d[r].v;
+			}
+			for (unsigned int r2 = 0; r2 < LengthOfArray(uvSTG01_00CBB000_d); r2++)
+			{
+				HighPolyOceanUVs_Dynamic[r2].u = uvSTG01_00CBB000_d[r2].u;
+				HighPolyOceanUVs_Dynamic[r2].v = uvSTG01_00CBB000_d[r2].v;
+				HighPolyOceanUVs_Static[r2].u = uvSTG01_00CBB000_d[r2].u;
+				HighPolyOceanUVs_Static[r2].v = uvSTG01_00CBB000_d[r2].v;
 			}
 		}
-	}
-	//Restore ocean UVs on level exit/restart
-	if ((HighPolyOcean_Dynamic) && (GameState == 3 || GameState == 4 || GameState == 7 || GameState == 21))
-	{
-		for (unsigned int r = 0; r < LengthOfArray(uvSTG01_00CC0530_d); r++)
+		//Fog stuff in Act 3
+		if (CurrentAct == 2 && !IsGamePaused())
 		{
-			LowPolyOceanUVs[r].u = uvSTG01_00CC0530_d[r].u;
-			LowPolyOceanUVs[r].v = uvSTG01_00CC0530_d[r].v;
-		}
-		for (unsigned int r2 = 0; r2 < LengthOfArray(uvSTG01_00CBB000_d); r2++)
-		{
-			HighPolyOceanUVs_Dynamic[r2].u = uvSTG01_00CBB000_d[r2].u;
-			HighPolyOceanUVs_Dynamic[r2].v = uvSTG01_00CBB000_d[r2].v;
-			HighPolyOceanUVs_Static[r2].u = uvSTG01_00CBB000_d[r2].u;
-			HighPolyOceanUVs_Static[r2].v = uvSTG01_00CBB000_d[r2].v;
-		}
-	}
-	//Fog stuff in Act 3
-	if (CurrentAct == 2 && !IsGamePaused())
-	{
-		if (GameState == 3 || GameState == 4 || GameState == 7 || GameState == 21)
-		{
-			inside_secret_area = 0;
-			CurrentFogToggle = 0;
-		}
-		if (Camera_Data1 != nullptr && Camera_Data1->Position.z > 2000)
-		{
-			inside_secret_area = 1;
-			CurrentFogToggle = 1;
-			if (CurrentFogLayer < -21) CurrentFogLayer = CurrentFogLayer + 20;
-		}
-		else
-		{
-			if (CurrentFogLayer > -1200) CurrentFogLayer = CurrentFogLayer - 20;
-			if (CurrentFogLayer <= -1200 && CurrentFogToggle == 1)
+			if (GameState == 3 || GameState == 4 || GameState == 7 || GameState == 21)
 			{
 				inside_secret_area = 0;
 				CurrentFogToggle = 0;
+			}
+			if (Camera_Data1 != nullptr && Camera_Data1->Position.z > 2000)
+			{
+				inside_secret_area = 1;
+				CurrentFogToggle = 1;
+				if (CurrentFogLayer < -21) CurrentFogLayer = CurrentFogLayer + 20;
+			}
+			else
+			{
+				if (CurrentFogLayer > -1200) CurrentFogLayer = CurrentFogLayer - 20;
+				if (CurrentFogLayer <= -1200 && CurrentFogToggle == 1)
+				{
+					inside_secret_area = 0;
+					CurrentFogToggle = 0;
+				}
 			}
 		}
 	}
