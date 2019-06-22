@@ -1109,6 +1109,7 @@ void CharacterShadowHook(NJS_OBJECT *a1, float a2)
 		if (EntityData1Ptrs[0]->Position.y >= 18) DrawQueueDepthBias = 4000.0f;
 		else DrawQueueDepthBias = -32952.0f;
 	}
+	else if (EnableRedMountain && CurrentLevel == LevelIDs_RedMountain && CurrentAct != 1) DrawQueueDepthBias = 1000.0f;
 	else  DrawQueueDepthBias = -27952.0f;
 	if (MissedFrames || VerifyTexList(CurrentTexList))
 	{
@@ -1393,7 +1394,11 @@ void General_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 	RemoveVertexColors_Object((NJS_OBJECT*)0x38E3B2C); //Buyon B
 	RemoveVertexColors_Object((NJS_OBJECT*)0x38E3584); //Buyon C
 	RemoveVertexColors_Object((NJS_OBJECT*)0x09538EC); //Leon body
-	*(NJS_OBJECT*)0x0954D28 = *LoadModel("system\\data\\1ST_READ\\Models\\005A2DDC.sa1mdl", false);
+	RemoveVertexColors_Model((NJS_MODEL_SADX*)0x08B966C); //Capsule
+	RemoveVertexColors_Model((NJS_MODEL_SADX*)0x08BA2AC); //Capsule
+	*(NJS_OBJECT*)0x096F3F0 = *LoadModel("system\\data\\1ST_READ\\Models\\005B8C04.sa1mdl", false); //Unidus spinning part
+	((NJS_OBJECT*)0x096F3F0)->basicdxmodel->mats[1].diffuse.color = 0x00000000;
+	*(NJS_OBJECT*)0x0954D28 = *LoadModel("system\\data\\1ST_READ\\Models\\005A2DDC.sa1mdl", false); //Leon eyes
 	RemoveVertexColors_Object((NJS_OBJECT*)0x0954E94); //Leon tongue
 	RemoveVertexColors_Object((NJS_OBJECT*)0x095504C); //Leon tongue tip
 	RemoveVertexColors_Object((NJS_OBJECT*)0x0950940); //Boa 1
