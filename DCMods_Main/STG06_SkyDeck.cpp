@@ -1,6 +1,5 @@
 #include "stdafx.h"
 #include "SkyDeck_objects.h"
-#include "SkyDeck3_Fixes.h"
 
 NJS_TEXNAME textures_skydeck1[76];
 NJS_TEXLIST texlist_skydeck1 = { arrayptrandlength(textures_skydeck1) };
@@ -17,6 +16,11 @@ NJS_TEXLIST texlist_skydeck3 = { arrayptrandlength(textures_skydeck3) };
 #include "SkyDeck3.h"
 */
 
+NJS_OBJECT* SkyNormal1 = nullptr;
+NJS_OBJECT* SkyNormal2 = nullptr;
+NJS_OBJECT* SkyDark2 = nullptr;
+NJS_OBJECT* SkyDark1 = nullptr;
+
 static int UVShift1 = 0;
 static int UVShift2 = 0;
 static int SkyboxAlpha = 255;
@@ -30,12 +34,9 @@ DataPointer(float, CurrentFogDistance, 0x03ABDC64);
 DataPointer(int, dword_3C7F030, 0x3C7F030);
 DataPointer(float, flt_3C8046C, 0x3C8046C);
 DataPointer(NJS_BGRA, CurrentFogColorX, 0x03ABDC68);
-DataPointer(NJS_OBJECT, stru_214E2A0, 0x214E2A0);
-DataPointer(NJS_OBJECT, stru_214C9E4, 0x214C9E4);
-DataPointer(NJS_OBJECT, stru_214E3AC, 0x214E3AC);
-DataPointer(NJS_OBJECT, stru_214BF20, 0x214BF20);
-DataArray(NJS_OBJECT*, Connect0DebrisArray, 0x223AE90, 9);
-DataArray(NJS_OBJECT*, Talap0DebrisArray, 0x0223AF78, 34);
+DataPointer(NJS_OBJECT, SkyDeckSmallCloud, 0x0214D300);
+DataPointer(NJS_OBJECT, SkyDeckSkyboxModel_Normal, 0x214E2A0);
+DataPointer(NJS_OBJECT, SkyDeckSkyboxModel_Dark, 0x214C9E4);
 DataArray(char, byte_223AEB4, 0x223AEB4, 100);
 DataArray(char, byte_223B000, 0x223B000, 4);
 DataArray(FogData, SkyDeck1Fog, 0x0203A094, 3);
@@ -48,296 +49,7 @@ DataArray(DrawDistance, SkyDeck3DrawDist, 0x0203A07C, 3);
 FunctionPointer(void, sub_408530, (NJS_OBJECT *a1), 0x408530);
 FunctionPointer(void, sub_407A00, (NJS_MODEL_SADX *model, float scale), 0x407A00);
 FunctionPointer(void, sub_5ED790, (ObjectMaster *a1, NJS_OBJECT *a2), 0x5ED790);
-
-NJS_MATERIAL* DisableAlphaRejection_SkyDeck[] = {
-	//Decals
-	&matlistSTG06_00197C5C[0],
-	&matlistSTG06_00198788[0],
-	&matlistSTG06_00198990[0],
-	&matlistSTG06_0019888C[0],
-	&matlistSTG06_00198A94[0],
-	&matlistSTG06_00198B98[0],
-	&matlistSTG06_00198C9C[0],
-};
-
-NJS_MATERIAL* WhiteDiffuse_SkyDeck[] = {
-	//Aircraft stuff
-	&matlistSTG06_001E11BC[4],
-	&matlistSTG06_001E11BC[5],
-	&matlistSTG06_001E11BC[6],
-	&matlistSTG06_001E11BC[7],
-	&matlistSTG06_001E11BC[8],
-	//OUeKi
-	((NJS_MATERIAL*)0x021FB38C),
-	((NJS_MATERIAL*)0x021FB3A0),
-	((NJS_MATERIAL*)0x021FB3B4),
-	//Hangar 2
-	&matlistSTG06_001599A0[0],
-	&matlistSTG06_001599A0[1],
-	&matlistSTG06_001599A0[2],
-	&matlistSTG06_001599A0[3],
-	&matlistSTG06_001599A0[4],
-};
-
-NJS_MATERIAL* ObjectSpecular_SkyDeck[] = {
-	((NJS_MATERIAL*)0x02151EF0),
-	((NJS_MATERIAL*)0x02151F04),
-	((NJS_MATERIAL*)0x021512F8),
-	((NJS_MATERIAL*)0x0215130C),
-	((NJS_MATERIAL*)0x02151320),
-	((NJS_MATERIAL*)0x02151334),
-	((NJS_MATERIAL*)0x021508C4),
-	((NJS_MATERIAL*)0x021508D8),
-	((NJS_MATERIAL*)0x021508EC),
-	((NJS_MATERIAL*)0x02150234),
-	((NJS_MATERIAL*)0x02150248),
-	((NJS_MATERIAL*)0x0214FBA8),
-	((NJS_MATERIAL*)0x0214FBBC),
-	((NJS_MATERIAL*)0x0214F388),
-	((NJS_MATERIAL*)0x0214F39C),
-	((NJS_MATERIAL*)0x0214F3B0),
-	((NJS_MATERIAL*)0x0214F3C4),
-	((NJS_MATERIAL*)0x0214F3D8),
-	((NJS_MATERIAL*)0x0214F3EC),
-	((NJS_MATERIAL*)0x0214EDC0),
-	((NJS_MATERIAL*)0x0214EDD4),
-	((NJS_MATERIAL*)0x0214EDE8),
-	((NJS_MATERIAL*)0x0214EB58),
-	((NJS_MATERIAL*)0x0214EB6C),
-	((NJS_MATERIAL*)0x0214EB80),
-	((NJS_MATERIAL*)0x0214E4EC),
-	((NJS_MATERIAL*)0x0214E500),
-	//OConnect pieces
-	((NJS_MATERIAL*)0x021E06F0),
-	((NJS_MATERIAL*)0x021E0704),
-	((NJS_MATERIAL*)0x021E0718),
-	((NJS_MATERIAL*)0x021E072C),
-	((NJS_MATERIAL*)0x021E0740),
-	((NJS_MATERIAL*)0x021E0754),
-	((NJS_MATERIAL*)0x021E0768),
-	((NJS_MATERIAL*)0x021E077C),
-	((NJS_MATERIAL*)0x021E0E08),
-	((NJS_MATERIAL*)0x021E0E1C),
-	((NJS_MATERIAL*)0x021E0E30),
-	((NJS_MATERIAL*)0x021E0E44),
-	((NJS_MATERIAL*)0x021E0E58),
-	((NJS_MATERIAL*)0x021E0E6C),
-	((NJS_MATERIAL*)0x021E0E80),
-	((NJS_MATERIAL*)0x021E0E94),
-	((NJS_MATERIAL*)0x021E1520),
-	((NJS_MATERIAL*)0x021E1534),
-	((NJS_MATERIAL*)0x021E1548),
-	((NJS_MATERIAL*)0x021E155C),
-	((NJS_MATERIAL*)0x021E1570),
-	((NJS_MATERIAL*)0x021E1584),
-	((NJS_MATERIAL*)0x021E1598),
-	((NJS_MATERIAL*)0x021E15AC),
-	((NJS_MATERIAL*)0x021E1C38),
-	((NJS_MATERIAL*)0x021E1C4C),
-	((NJS_MATERIAL*)0x021E1C60),
-	((NJS_MATERIAL*)0x021E1C74),
-	((NJS_MATERIAL*)0x021E1C88),
-	((NJS_MATERIAL*)0x021E1C9C),
-	((NJS_MATERIAL*)0x021E1CB0),
-	((NJS_MATERIAL*)0x021E1CC4),
-	((NJS_MATERIAL*)0x021E2350),
-	((NJS_MATERIAL*)0x021E2364),
-	((NJS_MATERIAL*)0x021E2378),
-	((NJS_MATERIAL*)0x021E2834),
-	((NJS_MATERIAL*)0x021E2848),
-	((NJS_MATERIAL*)0x021E29E8),
-	((NJS_MATERIAL*)0x021E29FC),
-	((NJS_MATERIAL*)0x021E2E0C),
-	((NJS_MATERIAL*)0x021E2E20),
-	((NJS_MATERIAL*)0x021E3048),
-	((NJS_MATERIAL*)0x021E305C),
-	((NJS_MATERIAL*)0x021E3070),
-	//Cyl_S
-	((NJS_MATERIAL*)0x021774D8),
-	((NJS_MATERIAL*)0x021774EC),
-	((NJS_MATERIAL*)0x02177500),
-	((NJS_MATERIAL*)0x02176EBC),
-	((NJS_MATERIAL*)0x02176ED0),
-	((NJS_MATERIAL*)0x02176EE4),
-	//Other stuff
-	((NJS_MATERIAL*)0x021768B0),
-	((NJS_MATERIAL*)0x021768C4),
-	((NJS_MATERIAL*)0x021768D8),
-	((NJS_MATERIAL*)0x02175E68),
-	((NJS_MATERIAL*)0x02175E7C),
-	((NJS_MATERIAL*)0x02175E90),
-	((NJS_MATERIAL*)0x02175984),
-	((NJS_MATERIAL*)0x02175998),
-	//Other stuff 2
-	((NJS_MATERIAL*)0x02175378),
-	((NJS_MATERIAL*)0x0217538C),
-	((NJS_MATERIAL*)0x021753A0),
-	((NJS_MATERIAL*)0x02174930),
-	((NJS_MATERIAL*)0x02174944),
-	((NJS_MATERIAL*)0x02174958),
-	((NJS_MATERIAL*)0x02174450),
-	((NJS_MATERIAL*)0x02174464),
-	//Big cylinder near the end of Act 1
-	((NJS_MATERIAL*)0x02173CA4),
-	((NJS_MATERIAL*)0x02173CB8),
-	((NJS_MATERIAL*)0x02173CCC),
-	((NJS_MATERIAL*)0x021730F0),
-	((NJS_MATERIAL*)0x02173104),
-	((NJS_MATERIAL*)0x02173118),
-	((NJS_MATERIAL*)0x0217312C),
-	//Another big cylinder
-	((NJS_MATERIAL*)0x021728F4),
-	((NJS_MATERIAL*)0x02172908),
-	((NJS_MATERIAL*)0x0217291C),
-	((NJS_MATERIAL*)0x02171D40),
-	((NJS_MATERIAL*)0x02171D54),
-	((NJS_MATERIAL*)0x02171D68),
-	((NJS_MATERIAL*)0x02171D7C),
-	//One more cylinder
-	((NJS_MATERIAL*)0x0216F6B0),
-	((NJS_MATERIAL*)0x0216F6C4),
-	((NJS_MATERIAL*)0x0216F6D8),
-	((NJS_MATERIAL*)0x0216F6EC),
-	//Bottom of big cylinder
-	((NJS_MATERIAL*)0x02177B28),
-	((NJS_MATERIAL*)0x02177B3C),
-	((NJS_MATERIAL*)0x02177B50),
-	//OTalap_0 pieces
-	((NJS_MATERIAL*)0x021E3310),
-	((NJS_MATERIAL*)0x021E342C),
-	((NJS_MATERIAL*)0x021E3440),
-	((NJS_MATERIAL*)0x021E3454),
-	((NJS_MATERIAL*)0x021E37E8),
-	((NJS_MATERIAL*)0x021E38E0),
-	((NJS_MATERIAL*)0x021E39FC),
-	((NJS_MATERIAL*)0x021E3A10),
-	((NJS_MATERIAL*)0x021E3A24),
-	((NJS_MATERIAL*)0x021E3C90),
-	((NJS_MATERIAL*)0x021E3CA4),
-	((NJS_MATERIAL*)0x021E3CB8),
-	((NJS_MATERIAL*)0x021E3F20),
-	((NJS_MATERIAL*)0x021E3F34),
-	((NJS_MATERIAL*)0x021E3F48),
-	((NJS_MATERIAL*)0x021E41D8),
-	((NJS_MATERIAL*)0x021E42F8),
-	((NJS_MATERIAL*)0x021E430C),
-	((NJS_MATERIAL*)0x021E4320),
-	((NJS_MATERIAL*)0x021E4334),
-	((NJS_MATERIAL*)0x021E46C8),
-	((NJS_MATERIAL*)0x021E46DC),
-	((NJS_MATERIAL*)0x021E46F0),
-	((NJS_MATERIAL*)0x021E4704),
-	((NJS_MATERIAL*)0x021E4A98),
-	((NJS_MATERIAL*)0x021E4AAC),
-	((NJS_MATERIAL*)0x021E4AC0),
-	((NJS_MATERIAL*)0x021E4E58),
-	((NJS_MATERIAL*)0x021E4E6C),
-	((NJS_MATERIAL*)0x021E4E80),
-	((NJS_MATERIAL*)0x021E50E8),
-	((NJS_MATERIAL*)0x021E5204),
-	((NJS_MATERIAL*)0x021E52FC),
-	((NJS_MATERIAL*)0x021E53F4),
-	((NJS_MATERIAL*)0x021E5510),
-	((NJS_MATERIAL*)0x021E562C),
-	((NJS_MATERIAL*)0x021E5640),
-	((NJS_MATERIAL*)0x021E58E0),
-	((NJS_MATERIAL*)0x021E58F4),
-	((NJS_MATERIAL*)0x021E5D00),
-	((NJS_MATERIAL*)0x021E5D14),
-	((NJS_MATERIAL*)0x021E5F10),
-	((NJS_MATERIAL*)0x021E5F24),
-	((NJS_MATERIAL*)0x021E6150),
-	((NJS_MATERIAL*)0x021E6164),
-	((NJS_MATERIAL*)0x021E662C),
-	((NJS_MATERIAL*)0x021E6640),
-	((NJS_MATERIAL*)0x021E6800),
-	((NJS_MATERIAL*)0x021E6814),
-	((NJS_MATERIAL*)0x021E6828),
-	((NJS_MATERIAL*)0x021E6D7C),
-	((NJS_MATERIAL*)0x021E6D90),
-	((NJS_MATERIAL*)0x021E6DA4),
-	((NJS_MATERIAL*)0x021E7084),
-	((NJS_MATERIAL*)0x021E7098),
-	((NJS_MATERIAL*)0x021E70AC),
-	((NJS_MATERIAL*)0x021E7560),
-	((NJS_MATERIAL*)0x021E7574),
-	((NJS_MATERIAL*)0x021E7738),
-	((NJS_MATERIAL*)0x021E774C),
-	((NJS_MATERIAL*)0x021E7760),
-	((NJS_MATERIAL*)0x021E7CB4),
-	((NJS_MATERIAL*)0x021E7CC8),
-	((NJS_MATERIAL*)0x021E7CDC),
-	((NJS_MATERIAL*)0x021E7FBC),
-	((NJS_MATERIAL*)0x021E7FD0),
-	((NJS_MATERIAL*)0x021E81A0),
-	((NJS_MATERIAL*)0x021E81B4),
-	((NJS_MATERIAL*)0x021E83E0),
-	((NJS_MATERIAL*)0x021E83F4),
-	((NJS_MATERIAL*)0x021E85B8),
-	((NJS_MATERIAL*)0x021E85CC),
-	((NJS_MATERIAL*)0x021E8790),
-	((NJS_MATERIAL*)0x021E87A4),
-	//DUCT_0
-	((NJS_MATERIAL*)0x0219E9E8),
-	((NJS_MATERIAL*)0x0219E9FC),
-	((NJS_MATERIAL*)0x0219EA10),
-	((NJS_MATERIAL*)0x0219EA24),
-	((NJS_MATERIAL*)0x0219EA38),
-	((NJS_MATERIAL*)0x0219EA4C),
-	((NJS_MATERIAL*)0x0219EA60),
-	((NJS_MATERIAL*)0x0219EA74),
-	//Cannon thing
-	((NJS_MATERIAL*)0x02196AF4),
-	((NJS_MATERIAL*)0x02196B08),
-	((NJS_MATERIAL*)0x02196010),
-	((NJS_MATERIAL*)0x02196024),
-	((NJS_MATERIAL*)0x02196038),
-	((NJS_MATERIAL*)0x0219604C),
-	((NJS_MATERIAL*)0x02195B10),
-	((NJS_MATERIAL*)0x02195B24),
-	((NJS_MATERIAL*)0x02195B38),
-	//Another cannon thing
-	((NJS_MATERIAL*)0x02198068),
-	((NJS_MATERIAL*)0x0219807C),
-	((NJS_MATERIAL*)0x02198090),
-	((NJS_MATERIAL*)0x021980A4),
-	((NJS_MATERIAL*)0x021980B8),
-	((NJS_MATERIAL*)0x021980CC),
-	((NJS_MATERIAL*)0x021977D0),
-	((NJS_MATERIAL*)0x021977E4),
-	((NJS_MATERIAL*)0x021972D0),
-	((NJS_MATERIAL*)0x021972E4),
-	((NJS_MATERIAL*)0x021972F8),
-	((NJS_MATERIAL*)0x02196EC4),
-	//Yet another cannon thing
-	((NJS_MATERIAL*)0x0219A938),
-	((NJS_MATERIAL*)0x0219A94C),
-	((NJS_MATERIAL*)0x0219A960),
-	((NJS_MATERIAL*)0x0219A974),
-	((NJS_MATERIAL*)0x0219A1F4),
-	((NJS_MATERIAL*)0x0219A208),
-	((NJS_MATERIAL*)0x0219A21C),
-	((NJS_MATERIAL*)0x02199DCC),
-	((NJS_MATERIAL*)0x02199DE0),
-	((NJS_MATERIAL*)0x02199DF4),
-	((NJS_MATERIAL*)0x021990F8),
-	((NJS_MATERIAL*)0x0219910C),
-	((NJS_MATERIAL*)0x02199120),
-	((NJS_MATERIAL*)0x02199134),
-	((NJS_MATERIAL*)0x02198BC4),
-	((NJS_MATERIAL*)0x02198BD8),
-	((NJS_MATERIAL*)0x02198BEC),
-	((NJS_MATERIAL*)0x02198694),
-	((NJS_MATERIAL*)0x021986A8),
-	((NJS_MATERIAL*)0x021986BC),
-	//OSkyEv
-	((NJS_MATERIAL*)0x021F5420),
-	((NJS_MATERIAL*)0x021F5434),
-	((NJS_MATERIAL*)0x021F5448),
-	((NJS_MATERIAL*)0x021F4EF4),
-	((NJS_MATERIAL*)0x021F4F08),
-	((NJS_MATERIAL*)0x021F4F1C),
-};
+FunctionPointer(void, sub_408300, (NJS_OBJECT *a1, NJS_MOTION *a2, float a3, QueuedModelFlagsB a4, float a5), 0x408300);
 
 void DisableMetalStruts(LandTable* landtable)
 {
@@ -421,10 +133,10 @@ void SkyDeckSky_new(ObjectMaster *_this)
 			v1 | (((unsigned int)v1 | (((unsigned __int8)v1 | 0xFFFFFF00) << 8)) << 8));
 		if (!MissedFrames)
 		{
-			v2 = &stru_214E2A0;
+			v2 = &SkyDeckSkyboxModel_Normal;
 			if (SkyDeck_SkyPosition.y - 1350.0f - 50.0f <= Camera_Data1->Position.y)
 			{
-				v2 = &stru_214C9E4;
+				v2 = &SkyDeckSkyboxModel_Dark;
 			}
 			njSetTexture(&OBJ_SKYDECK_TEXLIST);
 			njScaleEx(&Skybox_Scale);
@@ -448,12 +160,12 @@ void SkyDeckSky_new(ObjectMaster *_this)
 			a1.r = v4;
 			a1.a = v4;
 			SetMaterialAndSpriteColor(&a1);
-			v5 = &objectSTG06_01D4E3AC;
-			depthsucks = -20000.0f;
+			v5 = SkyDark1;
+			depthsucks = -42000.0f;
 			if (SkyDeck_SkyPosition.y - 1350.0f - 100.0f <= Camera_Data1->Position.y)
 			{
-				depthsucks = -12000.0f;
-				v5 = &objectSTG06_01D4BF20;
+				depthsucks = -36000.0f;
+				v5 = SkyNormal1;
 			}
 			SkyDeck_QueueDrawQ(v5, SkyDeck_SkyUVsB, 32, depthsucks);
 			v6 = 1.0f - fabs(Camera_Data1->Position.y - (SkyDeck_SkyPosition.y - 1350.0f - 100.0f)) * 0.025f;
@@ -475,12 +187,12 @@ void SkyDeckSky_new(ObjectMaster *_this)
 			a1.a = v7;
 			SetMaterialAndSpriteColor(&a1);
 			njTranslate(0, 0.0f, -100.0f, 0.0f);
-			v8 = &objectSTG06_01D4E3AC_2;
+			v8 = SkyDark2;
 			if (SkyDeck_SkyPosition.y - 1350.0f - 100.0f <= Camera_Data1->Position.y)
 			{
-				v8 = &objectSTG06_01D4BF20_2;
+				v8 = SkyNormal2;
 			}
-			SkyDeck_QueueDrawQ(v8, SkyDeck_SkyUVsA, 32, -16000.0f);
+			SkyDeck_QueueDrawQ(v8, SkyDeck_SkyUVsA, 32, -38000.0f);
 			if (SkyDeck_SkyPosition.y - 1350.0f - 100.0f > Camera_Data1->Position.y)
 			{
 				a1.a = a1.a - 0.25f;
@@ -488,10 +200,10 @@ void SkyDeckSky_new(ObjectMaster *_this)
 				njTranslate(0, 0.0f, -600.0f, 0.0f);
 				njScaleEx(&Skybox_Scale);
 				VectorMaxAbs(&Skybox_Scale);
-				SkyDeck_QueueDrawQ(&objectSTG06_01D4E3AC, SkyDeck_SkyUVsA, 32, -16000.0f);
+				SkyDeck_QueueDrawQ(SkyDark1, SkyDeck_SkyUVsA, 32, -38000.0f);
 				njScale(0, 1.0f, 1.0f, 1.0f);
 				njTranslate(0, 0.0f, -100.0f, 0.0f);
-				SkyDeck_QueueDrawQ(&objectSTG06_01D4E3AC_2, SkyDeck_SkyUVsB, 32, -12000.0f);
+				SkyDeck_QueueDrawQ(SkyDark2, SkyDeck_SkyUVsB, 32, -36000.0f);
 			}
 			ClampGlobalColorThing_Thing();
 		}
@@ -509,139 +221,50 @@ void RenderSmallCloud(NJS_OBJECT *a1, QueuedModelFlagsB a2, float a3)
 	DrawQueueDepthBias = 0.0f;
 }
 
-void __cdecl Connect0Display_FixedRotation(ObjectMaster *a1)
+static void TheyForgotToClampAgain_r(ObjectMaster *a1);
+static Trampoline TheyForgotToClampAgain_t(0x4AA540, 0x4AA547, TheyForgotToClampAgain_r);
+static void __cdecl TheyForgotToClampAgain_r(ObjectMaster *a1)
 {
-	ObjectMaster *v1; // esi
-	EntityData1 *v2; // ebp
-	Angle v3; // eax
-	int v4; // ebx
-	NJS_OBJECT **v5; // edi
-	void *v6; // esi
-	Sint32 v7; // eax
-	int v8; // esi
-	Angle v9; // eax
-	Angle v10; // eax
+	auto original = reinterpret_cast<decltype(TheyForgotToClampAgain_r)*>(TheyForgotToClampAgain_t.Target());
+	original(a1);
+	if (EnableSkyDeck) ClampGlobalColorThing_Thing();
+}
 
-	v1 = a1;
+void __cdecl TankH_Display(ObjectMaster *a1)
+{
+	EntityData1 *v2; // esi
+	double v3; // st7
 	v2 = a1->Data1;
-	if (!ClipObject(a1, 4410100.0f) && v2->Action != 1 && !MissedFrames)
+	if (EnableSpeedFixes)
 	{
-		njPushMatrix(0);
-		njTranslateV(0, &v2->Position);
-		v3 = v2->Rotation.y;
-		if (v3 && !*(Sint32*)&v2->LoopData)
+		if (FramerateSetting >= 2 || FrameCounter % 2 == 0)
 		{
-			njRotateY(0, (unsigned __int16)v3);
+			v3 = v2->Scale.z + 1.0f;
+			v2->Scale.z = v3;
 		}
-		if (*(Sint32*)&v2->LoopData)
-		{
-			njSetTexture(&OBJ_SKYDECK_TEXLIST);
-			v4 = 0;
-			v5 = Connect0DebrisArray;
-			do
-			{
-				v6 = (void *)v2->LoopData;
-				v7 = *(_DWORD *)(*(Sint32*)&v6 + v4);
-				v8 = v4 + *(Sint32*)&v6;
-				if (!v7)
-				{
-					njPushMatrix(0);
-					njTranslateV(0, (NJS_VECTOR *)(v8 + 16));
-					v9 = *(_DWORD *)(v8 + 40);
-					if (v9)
-					{
-						njRotateZ(0, v9);
-					}
-					v10 = *(_DWORD *)(v8 + 36);
-					if (v10)
-					{
-						njRotateX(0, v10);
-					}
-					sub_407A00((*v5)->basicdxmodel, 1.0f);
-					njPopMatrix(1u);
-				}
-				++v5;
-				v4 += 44;
-			} while ((signed int)v5 < (signed int)byte_223AEB4);
-			v1 = a1;
-		}
-		else
-		{
-			njSetTexture(&OBJ_SKYDECK_TEXLIST);
-			ProcessModelNode_AB_Wrapper((NJS_OBJECT*)0x216B984, 1.0);
-		}
-		njPopMatrix(1u);
-		if (!*(Sint32*)&v2->LoopData)
-		{
-			sub_5ED790(v1, (NJS_OBJECT*)0x21D6D44);
-		}
+	}
+	else
+	{
+		v3 = v2->Scale.z + 1.0f;
+		v2->Scale.z = v3;
+	}
+	if (v3 >= 10.0f)
+	{
+		v2->Scale.z = 0.0f;
+	}
+	if (!MissedFrames)
+	{
+		njSetTexture(&OBJ_SKYDECK_TEXLIST);
+		njPushMatrixEx();
+		njTranslateEx(&v2->Position);
+		sub_408300((NJS_OBJECT*)0x219CA64, (NJS_MOTION*)0x221F0D8, v2->Scale.z, QueuedModelFlagsB_EnableZWrite, 1.0f);
+		njPopMatrixEx();
 	}
 }
 
-void __cdecl Talap0Display_FixedRotation(ObjectMaster *a2)
+void FixHangA(NJS_OBJECT *obj, float scale)
 {
-	EntityData1 *v1; // ebp
-	Angle v2; // eax
-	Angle v22; // eax
-	int v3; // ebx
-	NJS_OBJECT** v4; // edi
-	void *v5; // esi
-	int v6; // eax
-	int v7; // esi
-	Angle v8; // eax
-	Angle v9; // eax
-
-	v1 = a2->Data1;
-	if (!ClipObject(a2, 4410100.0) && v1->Action != 1 && !MissedFrames)
-	{
-		njPushMatrix(0);
-		njTranslateV(0, &v1->Position);
-		v2 = v1->Rotation.y;
-		v22 = v1->Rotation.y + 0xC000;
-		if (v2 && !*(Sint32 *)&v1->LoopData)
-		{
-			njRotateY(0, v2);
-		}
-		if (*(Sint32 *)&v1->LoopData)
-		{
-			njRotateY(0, v22);
-			njSetTexture(&OBJ_SKYDECK_TEXLIST);
-			v3 = 0;
-			v4 = Talap0DebrisArray;
-			do
-			{
-				v5 = (void *)v1->LoopData;
-				v6 = *(_DWORD *)(*(Sint32 *)&v5 + v3);
-				v7 = v3 + *(Sint32*)&v5;
-				if (!v6)
-				{
-					njPushMatrix(0);
-					njTranslateV(0, (NJS_VECTOR *)(v7 + 16));
-					v8 = *(_DWORD *)(v7 + 40);
-					if (v8)
-					{
-						njRotateZ(0, v8);
-					}
-					v9 = *(_DWORD *)(v7 + 36);
-					if (v9)
-					{
-						njRotateX(0, v9);
-					}
-					sub_407A00(*((NJS_MODEL_SADX **)*v4 + 1), 1.0);
-					njPopMatrix(1u);
-				}
-				++v4;
-				v3 += 44;
-			} while ((signed int)v4 < (signed int)byte_223B000);
-			njPopMatrix(1u);
-		}
-		else
-		{
-			njSetTexture(&OBJ_SKYDECK_TEXLIST);
-			ProcessModelNode_AB_Wrapper((NJS_OBJECT*)0x21642D4, 1.0);
-			njPopMatrix(1u);
-		}
-	}
+	ProcessModelNode(obj, QueuedModelFlagsB_EnableZWrite, scale);
 }
 
 void UnloadLevelFiles_STG06()
@@ -660,9 +283,9 @@ void LoadLevelFiles_STG06()
 	STG06_0_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG06\\0.sa1lvl"));
 	STG06_1_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG06\\1.sa1lvl"));
 	STG06_2_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG06\\2.sa1lvl"));
-	LandTable *STG06_0 = STG06_0_Info->getlandtable(); //&landtable_0001F018;// STG06_0_Info->getlandtable();
-	LandTable *STG06_1 = STG06_1_Info->getlandtable(); //&landtable_00021094;// STG06_1_Info->getlandtable();
-	LandTable *STG06_2 = STG06_2_Info->getlandtable(); //&landtable_00023EB4;// STG06_2_Info->getlandtable();
+	LandTable *STG06_0 = STG06_0_Info->getlandtable(); //&landtable_0001F018;
+	LandTable *STG06_1 = STG06_1_Info->getlandtable(); //&landtable_00021094;
+	LandTable *STG06_2 = STG06_2_Info->getlandtable(); //&landtable_00023EB4;
 	RemoveMaterialColors_Landtable(STG06_0);
 	RemoveMaterialColors_Landtable(STG06_1);
 	RemoveMaterialColors_Landtable(STG06_2);
@@ -716,40 +339,30 @@ void SkyDeck_Init()
 	ReplacePVM("SKYDECK02");
 	ReplacePVM("SKYDECK03");
 	//Skybox transparency
-	((NJS_OBJECT*)0x214E2A0)->basicdxmodel->nbMeshset = 2; //Disable the annoying sky mesh
-	stru_214E2A0.basicdxmodel->mats[0].diffuse.color = 0x11FFFFFF;
-	stru_214E2A0.basicdxmodel->mats[1].diffuse.color = 0x11FFFFFF;
-	stru_214E2A0.basicdxmodel->mats[2].diffuse.color = 0x11FFFFFF;
-	stru_214C9E4.basicdxmodel->mats[0].diffuse.color = 0x11FFFFFF;
-	stru_214C9E4.basicdxmodel->mats[1].diffuse.color = 0x11FFFFFF;
-	stru_214C9E4.basicdxmodel->mats[2].diffuse.color = 0x11FFFFFF;
-	stru_214C9E4.basicdxmodel->mats[3].diffuse.color = 0x11FFFFFF;
-	((NJS_OBJECT*)0x214E2A0)->basicdxmodel->mats[0].attrflags &= ~(NJD_SA_MASK | NJD_DA_MASK);
-	((NJS_OBJECT*)0x214E2A0)->basicdxmodel->mats[1].attrflags &= ~(NJD_SA_MASK | NJD_DA_MASK);
-	((NJS_OBJECT*)0x214E2A0)->basicdxmodel->mats[2].attrflags &= ~(NJD_SA_MASK | NJD_DA_MASK);
-	((NJS_OBJECT*)0x214E2A0)->basicdxmodel->mats[0].attrflags |= NJD_DA_ONE | NJD_SA_ONE;
-	((NJS_OBJECT*)0x214E2A0)->basicdxmodel->mats[1].attrflags |= NJD_DA_ONE | NJD_SA_ONE;
-	((NJS_OBJECT*)0x214E2A0)->basicdxmodel->mats[2].attrflags |= NJD_DA_ONE | NJD_SA_ONE;
-	((NJS_OBJECT*)0x214C9E4)->basicdxmodel->mats[0].attrflags &= ~(NJD_SA_MASK | NJD_DA_MASK);
-	((NJS_OBJECT*)0x214C9E4)->basicdxmodel->mats[1].attrflags &= ~(NJD_SA_MASK | NJD_DA_MASK);
-	((NJS_OBJECT*)0x214C9E4)->basicdxmodel->mats[2].attrflags &= ~(NJD_SA_MASK | NJD_DA_MASK);
-	((NJS_OBJECT*)0x214C9E4)->basicdxmodel->mats[3].attrflags &= ~(NJD_SA_MASK | NJD_DA_MASK);
-	((NJS_OBJECT*)0x214C9E4)->basicdxmodel->mats[0].attrflags |= NJD_DA_ONE | NJD_SA_ONE;
-	((NJS_OBJECT*)0x214C9E4)->basicdxmodel->mats[1].attrflags |= NJD_DA_ONE | NJD_SA_ONE;
-	((NJS_OBJECT*)0x214C9E4)->basicdxmodel->mats[2].attrflags |= NJD_DA_ONE | NJD_SA_ONE;
-	((NJS_OBJECT*)0x214C9E4)->basicdxmodel->mats[3].attrflags |= NJD_DA_ONE | NJD_SA_ONE;
+	SkyDeckSkyboxModel_Normal.basicdxmodel->nbMeshset = 2; //Disable the annoying sky mesh
+	SkyDeckSkyboxModel_Normal.basicdxmodel->mats[0].diffuse.color = 0x11FFFFFF;
+	SkyDeckSkyboxModel_Normal.basicdxmodel->mats[1].diffuse.color = 0x11FFFFFF;
+	SkyDeckSkyboxModel_Normal.basicdxmodel->mats[2].diffuse.color = 0x11FFFFFF;
+	SkyDeckSkyboxModel_Dark.basicdxmodel->mats[0].diffuse.color = 0x11FFFFFF;
+	SkyDeckSkyboxModel_Dark.basicdxmodel->mats[1].diffuse.color = 0x11FFFFFF;
+	SkyDeckSkyboxModel_Dark.basicdxmodel->mats[2].diffuse.color = 0x11FFFFFF;
+	SkyDeckSkyboxModel_Dark.basicdxmodel->mats[3].diffuse.color = 0x11FFFFFF;
+	SkyDeckSkyboxModel_Normal.basicdxmodel->mats[0].attrflags &= ~(NJD_SA_MASK | NJD_DA_MASK);
+	SkyDeckSkyboxModel_Normal.basicdxmodel->mats[1].attrflags &= ~(NJD_SA_MASK | NJD_DA_MASK);
+	SkyDeckSkyboxModel_Normal.basicdxmodel->mats[2].attrflags &= ~(NJD_SA_MASK | NJD_DA_MASK);
+	SkyDeckSkyboxModel_Normal.basicdxmodel->mats[0].attrflags |= NJD_DA_ONE | NJD_SA_ONE;
+	SkyDeckSkyboxModel_Normal.basicdxmodel->mats[1].attrflags |= NJD_DA_ONE | NJD_SA_ONE;
+	SkyDeckSkyboxModel_Normal.basicdxmodel->mats[2].attrflags |= NJD_DA_ONE | NJD_SA_ONE;
+	SkyDeckSkyboxModel_Dark.basicdxmodel->mats[0].attrflags &= ~(NJD_SA_MASK | NJD_DA_MASK);
+	SkyDeckSkyboxModel_Dark.basicdxmodel->mats[1].attrflags &= ~(NJD_SA_MASK | NJD_DA_MASK);
+	SkyDeckSkyboxModel_Dark.basicdxmodel->mats[2].attrflags &= ~(NJD_SA_MASK | NJD_DA_MASK);
+	SkyDeckSkyboxModel_Dark.basicdxmodel->mats[3].attrflags &= ~(NJD_SA_MASK | NJD_DA_MASK);
+	SkyDeckSkyboxModel_Dark.basicdxmodel->mats[0].attrflags |= NJD_DA_ONE | NJD_SA_ONE;
+	SkyDeckSkyboxModel_Dark.basicdxmodel->mats[1].attrflags |= NJD_DA_ONE | NJD_SA_ONE;
+	SkyDeckSkyboxModel_Dark.basicdxmodel->mats[2].attrflags |= NJD_DA_ONE | NJD_SA_ONE;
+	SkyDeckSkyboxModel_Dark.basicdxmodel->mats[3].attrflags |= NJD_DA_ONE | NJD_SA_ONE;
 	WriteCall((void*)0x005ED72F, RenderSmallCloud);
 	WriteJump((void*)0x005ED1E0, SkyDeckSky_new);
-	//Platform rotation fixes
-	WriteJump((void*)0x5FAD60, Connect0Display_FixedRotation);
-	WriteJump((void*)0x5FB4C0, Talap0Display_FixedRotation);
-	//Lantern stuff
-	if (DLLLoaded_Lantern)
-	{
-		if (set_alpha_reject_ptr != nullptr) material_register_ptr(DisableAlphaRejection_SkyDeck, LengthOfArray(DisableAlphaRejection_SkyDeck), &DisableAlphaRejection);
-		material_register_ptr(WhiteDiffuse_SkyDeck, LengthOfArray(WhiteDiffuse_SkyDeck), &ForceWhiteDiffuse);
-		material_register_ptr(ObjectSpecular_SkyDeck, LengthOfArray(ObjectSpecular_SkyDeck), &ForceDiffuse0Specular1);
-	}
 	//Some material fixes
 	((NJS_OBJECT*)0x95A334)->basicdxmodel->mats[4].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
 	((NJS_OBJECT*)0x95A334)->basicdxmodel->mats[4].diffuse.color = 0xFF000000;
@@ -762,69 +375,163 @@ void SkyDeck_Init()
 	WriteData((float*)0x005F4D28, 1.0f);
 	WriteData((float*)0x005F4D30, 1.0f);
 	WriteData((float*)0x005F4D38, 1.0f);
-	((NJS_OBJECT *)0x214BF20)->basicdxmodel->meshsets->vertuv = uvSTG06_01D4E2F4_2;
-	((NJS_OBJECT *)0x214E3AC)->basicdxmodel->meshsets->vertuv = uvSTG06_01D4E2F4_3;
-	*(NJS_MODEL_SADX *)0x961300 = attachSTG06_001E10F8; //Aircraft pad
-	*(NJS_MODEL_SADX *)0x961EF8 = attachSTG06_001E1CBC; //Aircraft pad something
-	*(NJS_OBJECT*)0x21A2804 = objectSTG06_001434E8; //Stop
-	*(NJS_OBJECT *)0x21FDE74 = objectSTG06_00197D2C; //Decal 1
-	*(NJS_OBJECT *)0x21FE9F8 = objectSTG06_00198858; //Decal 2
-	*(NJS_OBJECT *)0x21FEB04 = objectSTG06_0019895C; //Decal 3
-	*(NJS_OBJECT *)0x21FEC10 = objectSTG06_00198A60; //Decal 4
-	*(NJS_OBJECT *)0x21FED1C = objectSTG06_00198B64; //Decal 5 not sure
-	*(NJS_OBJECT *)0x21FEE28 = objectSTG06_00198C68; //Decal 6 not sure
-	*(NJS_OBJECT *)0x21FEF34 = objectSTG06_00198D6C; //Warning sign
-	*(NJS_OBJECT *)0x214FB74 = objectSTG06_000FF4A4; //Cannon in Act 1
-	*(NJS_OBJECT *)0x2161F68 = objectSTG06_0010EB4C; //Cannon in Act 2
-	*(NJS_OBJECT *)0x21802BC = objectSTG06_00126000; //Rail platform 1
-	*(NJS_OBJECT *)0x218346C = objectSTG06_00128644; //Rail platform 2
-	*(NJS_OBJECT *)0x2186254 = objectSTG06_0012A9C8; //Rail platform 3
-	*(NJS_OBJECT *)0x216F67C = objectSTG06_00118920; //Rail platform 4
-	*(NJS_OBJECT *)0x2162D5C = objectSTG06_0010FAFC; //Rail platform 5
-	*(NJS_OBJECT *)0x2171694 = objectSTG06_0011A3D8; //Rail platform 6
-	*(NJS_OBJECT *)0x2171834 = objectSTG06_0011A564; //Some ladder
-	*(NJS_OBJECT *)0x216B984 = objectSTG06_00115F88; //OConnect_0
-	*(NJS_OBJECT *)0x21660AC = objectSTG06_001118F8; //Curved platform
-	*(NJS_OBJECT *)0x216E770 = objectSTG06_00117D5C; //WTF is this thing?
-	*(NJS_OBJECT *)0x2171D0C = objectSTG06_0011AA1C; //Platform with ladder
-	*(NJS_OBJECT *)0x21936AC = objectSTG06_00135E10; //Small round thing
-	*(NJS_OBJECT *)0x216889C = objectSTG06_001138B4; //Stairs 1
-	*(NJS_OBJECT *)0x216A4AC = objectSTG06_00114F2C; //Stairs 2
-	*(NJS_OBJECT *)0x21C4FD8 = objectSTG06_00162F84; //Crane
-	*(NJS_OBJECT *)0x21642D4 = objectSTG06_00110634; //Talap 0
-	*(NJS_OBJECT *)0x21AD794 = objectSTG06_0014D990; //Trolley thing or whatever that is
-	*(NJS_OBJECT *)0x21F7F8C = objectSTG06_00192044; //ORoboA
-	*(NJS_OBJECT *)0x21B29B4 = objectSTG06_00152A40; //Another cleaning robot
-	*(NJS_OBJECT *)0x21FA6F4 = objectSTG06_001946BC; //ORoboB
-	*(NJS_ACTION*)0x02223EF4 = action_Robo2_action; //ORoboB action
-	*(NJS_OBJECT *)0x21B995C = objectSTG06_001592E0; //Platform2
-	*(NJS_OBJECT *)0x21CAE18 = objectSTG06_00168CFC; //Another big object
-	*(NJS_OBJECT *)0x2194F44 = objectSTG06_001370C4; //OAnaA
-	*(NJS_OBJECT *)0x218C52C = objectSTG06_00130724; //ORaneA
-	*(NJS_MODEL_SADX *)0x2177AC8 = attachSTG06_0011E83C; //Cyl_S
-	*(NJS_OBJECT *)0x218E0BC = objectSTG06_00131D70; //ORaneC
-	*(NJS_OBJECT *)0x218F7CC = objectSTG06_00132DE4; //ORaneD
-	*(NJS_OBJECT *)0x2190D94 = objectSTG06_00133CD0; //ORaneE
-	*(NJS_OBJECT *)0x2192798 = objectSTG06_00134F30; //ORaneF
-	*(NJS_OBJECT *)0x21BA014 = objectSTG06_0015996C; //Hangar 1
-	*(NJS_OBJECT *)0x21BA484 = objectSTG06_00159DBC; //Hangar 2
-	*(NJS_OBJECT *)0x21BCA10 = objectSTG06_0015C2D0; //Radar-like thing
-	*(NJS_OBJECT *)0x21BDD24 = objectSTG06_0015D5B8; //Huge thing 2
-	*(NJS_OBJECT *)0x21BF034 = objectSTG06_0015E8A0; //Huge thing 3
-	*(NJS_OBJECT *)0x214E4B8 = objectSTG06_000FE140; //Target
-	*(NJS_OBJECT *)0x21A34C8 = objectSTG06_00144178; //Top red orb
-	*(NJS_OBJECT *)0x21A4C38 = objectSTG06_0014589C; //Light-like thing
-	*(NJS_OBJECT *)0x21D1CC0 = objectSTG06_0016FA10; //Huge Egg Carrier decoration
-	*(NJS_OBJECT *)0x21D41A0 = objectSTG06_00171E3C; //Another decoration
-	*(NJS_OBJECT *)0x21F4EC0 = objectSTG06_0018F244; //Elevator
-	*(NJS_OBJECT *)0x21FBF84 = objectSTG06_00195B24; //Escalator
-	*(NJS_OBJECT *)0x217CFE4 = objectSTG06_001238FC; //Untei
-	*(NJS_OBJECT *)0x960DFC = objectSTG06_001E0C04; //Aircraft lift piece
-	((NJS_OBJECT *)0x21B0254)->model = &attachSTG06_00150394; //OLever
-	WriteData((NJS_OBJECT**)0x005ED3AC, (NJS_OBJECT*)&objectSTG06_01D4BF20); //sky normal
-	WriteData((NJS_OBJECT**)0x005ED3A5, (NJS_OBJECT*)&objectSTG06_01D4E3AC_2); //sky dark top 2 
-	WriteData((NJS_OBJECT**)0x005ED46D, (NJS_OBJECT*)&objectSTG06_01D4E3AC); //sky dark top 1
-	WriteData((NJS_OBJECT**)0x005ED4FC, (NJS_OBJECT*)&objectSTG06_01D4E3AC); //sky dark bottom 1 
+	//Objects
+	WriteJump((void*)0x5EE230, TankH_Display);
+	AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x21FB818)->basicdxmodel->mats[1]); //OUeKi
+	AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x21FB818)->basicdxmodel->mats[2]); //OUeKi
+	AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x21FB818)->basicdxmodel->mats[3]); //OUeKi
+	RemoveVertexColors_Object((NJS_OBJECT*)0x960AE4); //Enemy aircraft
+	RemoveVertexColors_Object((NJS_OBJECT*)0x95A334); //Enemy aircraft rocket
+	RemoveVertexColors_Object((NJS_OBJECT*)0x21B6DF4); //Objects that fall down from Chambr
+	RemoveVertexColors_Object((NJS_OBJECT*)0x21B5844); //Objects that fall down from Chambr
+	RemoveVertexColors_Object((NJS_OBJECT*)0x21B3988); //Objects that fall down from Chambr
+	RemoveVertexColors_Object((NJS_OBJECT*)0x21B29B4); //Objects that fall down from Chambr
+	RemoveVertexColors_Object((NJS_OBJECT*)0x21F2CA4); //Objects that fall down from Chambr
+	RemoveVertexColors_Object((NJS_OBJECT*)0x21F223C); //Objects that fall down from Chambr
+	RemoveVertexColors_Object((NJS_OBJECT*)0x21F370C); //Objects that fall down from Chambr
+	RemoveVertexColors_Object((NJS_OBJECT*)0x21B8A7C); //Objects that fall down from Chambr
+	RemoveVertexColors_Object((NJS_OBJECT*)0x21B4D8C); //Objects that fall down from Chambr
+	*(NJS_OBJECT*)0x21F4EC0 = *LoadModel("system\\data\\STG06\\Models\\0018F244.sa1mdl", false); //OSkyEv 1
+	*(NJS_OBJECT*)0x21F53EC = *LoadModel("system\\data\\STG06\\Models\\0018F744.sa1mdl", false); //OSkyEv 2
+	*(NJS_OBJECT*)0x21F5AB4 = *LoadModel("system\\data\\STG06\\Models\\0018FC54.sa1mdl", false); //OSkyEv 3
+	*(NJS_OBJECT*)0x21A7604 = *LoadModel("system\\data\\STG06\\Models\\00148250.sa1mdl", false); //Fence_L
+	*(NJS_OBJECT*)0x21A95B4 = *LoadModel("system\\data\\STG06\\Models\\0014A1E0.sa1mdl", false); //Fence_M
+	*(NJS_OBJECT*)0x21AA97C = *LoadModel("system\\data\\STG06\\Models\\0014B58C.sa1mdl", false); //Fence_S
+	*(NJS_OBJECT*)0x21523C4 = *LoadModel("system\\data\\STG06\\Models\\001011C4.sa1mdl", false); //CannonB
+	*(NJS_OBJECT*)0x21E0DD4 = *LoadModel("system\\data\\STG06\\Models\\0017E160.sa1mdl", false); //OConnect0 debris
+	*(NJS_OBJECT*)0x21E14EC = *LoadModel("system\\data\\STG06\\Models\\0017E640.sa1mdl", false); //OConnect0 debris
+	*(NJS_OBJECT*)0x21E1C04 = *LoadModel("system\\data\\STG06\\Models\\0017EB3C.sa1mdl", false); //OConnect0 debris
+	*(NJS_OBJECT*)0x21E231C = *LoadModel("system\\data\\STG06\\Models\\0017F038.sa1mdl", false); //OConnect0 debris
+	*(NJS_OBJECT*)0x21E2800 = *LoadModel("system\\data\\STG06\\Models\\0017F420.sa1mdl", false); //OConnect0 debris
+	*(NJS_OBJECT*)0x21E29B4 = *LoadModel("system\\data\\STG06\\Models\\0017F588.sa1mdl", false); //OConnect0 debris
+	*(NJS_OBJECT*)0x21E2DD8 = *LoadModel("system\\data\\STG06\\Models\\0017F8FC.sa1mdl", false); //OConnect0 debris
+	*(NJS_OBJECT*)0x21E3014 = *LoadModel("system\\data\\STG06\\Models\\0017FAAC.sa1mdl", false); //OConnect0 debris
+	*(NJS_OBJECT*)0x21E32DC = *LoadModel("system\\data\\STG06\\Models\\0017FD04.sa1mdl", false); //OConnect0 debris
+	*(NJS_OBJECT*)0x21E37B4 = *LoadModel("system\\data\\STG06\\Models\\0018010C.sa1mdl", false); //OTalap0 debris
+	*(NJS_OBJECT*)0x21E38AC = *LoadModel("system\\data\\STG06\\Models\\001801F0.sa1mdl", false); //OTalap0 debris
+	*(NJS_OBJECT*)0x21E39C8 = *LoadModel("system\\data\\STG06\\Models\\001802F4.sa1mdl", false); //OTalap0 debris
+	*(NJS_OBJECT*)0x21E3C5C = *LoadModel("system\\data\\STG06\\Models\\00180504.sa1mdl", false); //OTalap0 debris
+	*(NJS_OBJECT*)0x21E3EEC = *LoadModel("system\\data\\STG06\\Models\\00180714.sa1mdl", false); //OTalap0 debris
+	*(NJS_OBJECT*)0x21E41A4 = *LoadModel("system\\data\\STG06\\Models\\00180950.sa1mdl", false); //OTalap0 debris
+	*(NJS_OBJECT*)0x21E42C0 = *LoadModel("system\\data\\STG06\\Models\\00180A54.sa1mdl", false); //OTalap0 debris
+	*(NJS_OBJECT*)0x21E4694 = *LoadModel("system\\data\\STG06\\Models\\00180D58.sa1mdl", false); //OTalap0 debris
+	*(NJS_OBJECT*)0x21E4A64 = *LoadModel("system\\data\\STG06\\Models\\00181078.sa1mdl", false); //OTalap0 debris
+	*(NJS_OBJECT*)0x21E4E24 = *LoadModel("system\\data\\STG06\\Models\\0018137C.sa1mdl", false); //OTalap0 debris
+	*(NJS_OBJECT*)0x21E50B4 = *LoadModel("system\\data\\STG06\\Models\\0018158C.sa1mdl", false); //OTalap0 debris
+	*(NJS_OBJECT*)0x21E51D0 = *LoadModel("system\\data\\STG06\\Models\\00181690.sa1mdl", false); //OTalap0 debris
+	*(NJS_OBJECT*)0x21E52C8 = *LoadModel("system\\data\\STG06\\Models\\00181774.sa1mdl", false); //OTalap0 debris
+	*(NJS_OBJECT*)0x21E53C0 = *LoadModel("system\\data\\STG06\\Models\\00181858.sa1mdl", false); //OTalap0 debris
+	*(NJS_OBJECT*)0x21E54DC = *LoadModel("system\\data\\STG06\\Models\\0018195C.sa1mdl", false); //OTalap0 debris
+	*(NJS_OBJECT*)0x21E55F8 = *LoadModel("system\\data\\STG06\\Models\\00181A60.sa1mdl", false); //OTalap0 debris
+	*(NJS_OBJECT*)0x21E58AC = *LoadModel("system\\data\\STG06\\Models\\00181CB8.sa1mdl", false); //OTalap0 debris
+	*(NJS_OBJECT*)0x21E5CCC = *LoadModel("system\\data\\STG06\\Models\\00182038.sa1mdl", false); //OTalap0 debris
+	*(NJS_OBJECT*)0x21E5EDC = *LoadModel("system\\data\\STG06\\Models\\001821E8.sa1mdl", false); //OTalap0 debris
+	*(NJS_OBJECT*)0x21E611C = *LoadModel("system\\data\\STG06\\Models\\00182398.sa1mdl", false); //OTalap0 debris
+	*(NJS_OBJECT*)0x21E65F8 = *LoadModel("system\\data\\STG06\\Models\\00182778.sa1mdl", false); //OTalap0 debris
+	*(NJS_OBJECT*)0x21E67CC = *LoadModel("system\\data\\STG06\\Models\\001828F4.sa1mdl", false); //OTalap0 debris
+	*(NJS_OBJECT*)0x21E6D48 = *LoadModel("system\\data\\STG06\\Models\\00182D34.sa1mdl", false); //OTalap0 debris
+	*(NJS_OBJECT*)0x21E7050 = *LoadModel("system\\data\\STG06\\Models\\00182F78.sa1mdl", false); //OTalap0 debris
+	*(NJS_OBJECT*)0x21E752C = *LoadModel("system\\data\\STG06\\Models\\00183330.sa1mdl", false); //OTalap0 debris
+	*(NJS_OBJECT*)0x21E7704 = *LoadModel("system\\data\\STG06\\Models\\001834CC.sa1mdl", false); //OTalap0 debris
+	*(NJS_OBJECT*)0x21E7C80 = *LoadModel("system\\data\\STG06\\Models\\0018390C.sa1mdl", false); //OTalap0 debris
+	*(NJS_OBJECT*)0x21E7F88 = *LoadModel("system\\data\\STG06\\Models\\00183B50.sa1mdl", false); //OTalap0 debris
+	*(NJS_OBJECT*)0x21E816C = *LoadModel("system\\data\\STG06\\Models\\00183CEC.sa1mdl", false); //OTalap0 debris
+	*(NJS_OBJECT*)0x21E83AC = *LoadModel("system\\data\\STG06\\Models\\00183E9C.sa1mdl", false); //OTalap0 debris
+	*(NJS_OBJECT*)0x21E8584 = *LoadModel("system\\data\\STG06\\Models\\00184038.sa1mdl", false); //OTalap0 debris
+	*(NJS_OBJECT*)0x21E875C = *LoadModel("system\\data\\STG06\\Models\\001841D4.sa1mdl", false); //OTalap0 debris
+	*(NJS_OBJECT*)0x21E8944 = *LoadModel("system\\data\\STG06\\Models\\00184370.sa1mdl", false); //OTalap0 debris
+	*(NJS_OBJECT*)0x21A2804 = *LoadModel("system\\data\\STG06\\Models\\001434E8.sa1mdl", false); //Stop
+	*(NJS_OBJECT *)0x21FDE74 = *LoadModel("system\\data\\STG06\\Models\\00197D2C.sa1mdl", false); //Decal 1
+	AddAlphaRejectMaterial(&((NJS_OBJECT *)0x21FDE74)->basicdxmodel->mats[0]);
+	*(NJS_OBJECT *)0x21FE9F8 = *LoadModel("system\\data\\STG06\\Models\\00198858.sa1mdl", false); //Decal 2
+	AddAlphaRejectMaterial(&((NJS_OBJECT *)0x21FE9F8)->basicdxmodel->mats[0]);
+	*(NJS_OBJECT *)0x21FEB04 = *LoadModel("system\\data\\STG06\\Models\\0019895C.sa1mdl", false); //Decal 3
+	AddAlphaRejectMaterial(&((NJS_OBJECT *)0x21FEB04)->basicdxmodel->mats[0]);
+	*(NJS_OBJECT *)0x21FEC10 = *LoadModel("system\\data\\STG06\\Models\\00198A60.sa1mdl", false); //Decal 4
+	AddAlphaRejectMaterial(&((NJS_OBJECT *)0x21FEC10)->basicdxmodel->mats[0]);
+	*(NJS_OBJECT *)0x21FED1C = *LoadModel("system\\data\\STG06\\Models\\00198B64.sa1mdl", false); //Decal 5 not sure
+	AddAlphaRejectMaterial(&((NJS_OBJECT *)0x21FED1C)->basicdxmodel->mats[0]);
+	*(NJS_OBJECT *)0x21FEE28 = *LoadModel("system\\data\\STG06\\Models\\00198C68.sa1mdl", false); //Decal 6 not sure
+	AddAlphaRejectMaterial(&((NJS_OBJECT *)0x21FEE28)->basicdxmodel->mats[0]);
+	*(NJS_OBJECT *)0x21FEF34 = *LoadModel("system\\data\\STG06\\Models\\00198D6C.sa1mdl", false); //Warning sign
+	*(NJS_OBJECT *)0x214FB74 = *LoadModel("system\\data\\STG06\\Models\\000FF4A4.sa1mdl", false); //Cannon in Act 1
+	*(NJS_OBJECT *)0x2161F68 = *LoadModel("system\\data\\STG06\\Models\\0010EB4C.sa1mdl", false); //Cannon in Act 2
+	*(NJS_OBJECT *)0x21802BC = *LoadModel("system\\data\\STG06\\Models\\00126000.sa1mdl", false); //Rail platform 1
+	*(NJS_OBJECT *)0x218346C = *LoadModel("system\\data\\STG06\\Models\\00128644.sa1mdl", false); //Rail platform 2
+	*(NJS_OBJECT *)0x2186254 = *LoadModel("system\\data\\STG06\\Models\\0012A9C8.sa1mdl", false); //Rail platform 3
+	*(NJS_OBJECT *)0x216F67C = *LoadModel("system\\data\\STG06\\Models\\00118920.sa1mdl", false); //Rail platform 4
+	*(NJS_OBJECT *)0x2162D5C = *LoadModel("system\\data\\STG06\\Models\\0010FAFC.sa1mdl", false); //Rail platform 5
+	*(NJS_OBJECT *)0x2171694 = *LoadModel("system\\data\\STG06\\Models\\0011A3D8.sa1mdl", false); //Rail platform 6
+	*(NJS_OBJECT *)0x2171834 = *LoadModel("system\\data\\STG06\\Models\\0011A564.sa1mdl", false); //Some ladder
+	*(NJS_OBJECT *)0x216B984 = *LoadModel("system\\data\\STG06\\Models\\00115F88.sa1mdl", false); //OConnect_0
+	*(NJS_OBJECT *)0x21660AC = *LoadModel("system\\data\\STG06\\Models\\001118F8.sa1mdl", false); //Curved platform
+	*(NJS_OBJECT *)0x216E770 = *LoadModel("system\\data\\STG06\\Models\\00117D5C.sa1mdl", false); //Top0
+	*(NJS_OBJECT *)0x2171D0C = *LoadModel("system\\data\\STG06\\Models\\0011AA1C.sa1mdl", false); //Platform with ladder
+	*(NJS_OBJECT *)0x21936AC = *LoadModel("system\\data\\STG06\\Models\\00135E10.sa1mdl", false); //Small round thing
+	*(NJS_OBJECT *)0x216889C = *LoadModel("system\\data\\STG06\\Models\\001138B4.sa1mdl", false); //Stairs 1
+	*(NJS_OBJECT *)0x216A4AC = *LoadModel("system\\data\\STG06\\Models\\00114F2C.sa1mdl", false); //Stairs 2
+	*(NJS_OBJECT *)0x21C4FD8 = *LoadModel("system\\data\\STG06\\Models\\00162F84.sa1mdl", false); //Crane
+	*(NJS_OBJECT *)0x21642D4 = *LoadModel("system\\data\\STG06\\Models\\00110634.sa1mdl", false); //Talap 0
+	*(NJS_OBJECT *)0x21AD794 = *LoadModel("system\\data\\STG06\\Models\\0014D990.sa1mdl", false); //Trolley thing or whatever that is
+	((NJS_ACTION*)0x2223C0C)->object = LoadModel("system\\data\\STG06\\Models\\00192044.sa1mdl", false); //ORoboA
+	((NJS_ACTION*)0x2223EF4)->object = LoadModel("system\\data\\STG06\\Models\\001946BC.sa1mdl", false); //ORoboB
+	*(NJS_OBJECT *)0x21B29B4 = *LoadModel("system\\data\\STG06\\Models\\00152A40.sa1mdl", false); //Another cleaning robot
+	*(NJS_OBJECT *)0x21B995C = *LoadModel("system\\data\\STG06\\Models\\001592E0.sa1mdl", false); //Platform2
+	*(NJS_OBJECT *)0x21CAE18 = *LoadModel("system\\data\\STG06\\Models\\00168CFC.sa1mdl", false); //Another big object
+	*(NJS_OBJECT *)0x2194F44 = *LoadModel("system\\data\\STG06\\Models\\001370C4.sa1mdl", false); //OAnaA
+	*(NJS_OBJECT *)0x218C52C = *LoadModel("system\\data\\STG06\\Models\\00130724.sa1mdl", false); //ORaneA
+	*(NJS_OBJECT *)0x2176E88 = *LoadModel("system\\data\\STG06\\Models\\0011E1D4.sa1mdl", false); //Pole_L
+	*(NJS_OBJECT *)0x2175950 = *LoadModel("system\\data\\STG06\\Models\\0011D1E0.sa1mdl", false); //Pole_S
+	*(NJS_OBJECT *)0x2177AF4 = *LoadModel("system\\data\\STG06\\Models\\0011E864.sa1mdl", false); //Cyl_S
+	*(NJS_OBJECT *)0x2170324 = *LoadModel("system\\data\\STG06\\Models\\00119084.sa1mdl", false); //Cyl_0
+	*(NJS_OBJECT *)0x21730BC = *LoadModel("system\\data\\STG06\\Models\\0011B614.sa1mdl", false); //Cyl_1
+	*(NJS_OBJECT *)0x217441C = *LoadModel("system\\data\\STG06\\Models\\0011C1EC.sa1mdl", false); //Cyl_2
+	*(NJS_OBJECT *)0x217843C = *LoadModel("system\\data\\STG06\\Models\\0011EDC0.sa1mdl", false); //BaseL
+	*(NJS_OBJECT *)0x21A0084 = *LoadModel("system\\data\\STG06\\Models\\00140DFC.sa1mdl", false); //Duct_0
+	*(NJS_OBJECT *)0x219B084 = *LoadModel("system\\data\\STG06\\Models\\0013C4B0.sa1mdl", false); //Cannon_M
+	*(NJS_MODEL_SADX*)0x21B0228 = *LoadModel("system\\data\\STG06\\Models\\001503BC.sa1mdl", false)->basicdxmodel; //OLever
+	((NJS_MODEL_SADX*)0x21B0228)->mats[8].attrflags |= NJD_FLAG_USE_TEXTURE;
+	((NJS_MODEL_SADX*)0x21B0228)->mats[8].attr_texId = 6;
+	*(NJS_MODEL_SADX*)0x0961300 = *LoadModel("system\\data\\STG06\\Models\\001E1120.sa1mdl", false)->basicdxmodel; //Aircraft pad
+	*(NJS_MODEL_SADX*)0x0961EF8 = *LoadModel("system\\data\\STG06\\Models\\001E1CE4.sa1mdl", false)->basicdxmodel; //Aircraft pad something
+	AddWhiteDiffuseMaterial(&((NJS_MODEL_SADX*)0x0961EF8)->mats[4]);
+	AddWhiteDiffuseMaterial(&((NJS_MODEL_SADX*)0x0961EF8)->mats[5]);
+	AddWhiteDiffuseMaterial(&((NJS_MODEL_SADX*)0x0961EF8)->mats[6]);
+	AddWhiteDiffuseMaterial(&((NJS_MODEL_SADX*)0x0961EF8)->mats[7]);
+	AddWhiteDiffuseMaterial(&((NJS_MODEL_SADX*)0x0961EF8)->mats[8]);
+	*(NJS_OBJECT *)0x218E0BC = *LoadModel("system\\data\\STG06\\Models\\00131D70.sa1mdl", false); //ORaneC
+	*(NJS_OBJECT *)0x218F7CC = *LoadModel("system\\data\\STG06\\Models\\00132DE4.sa1mdl", false); //ORaneD
+	*(NJS_OBJECT *)0x2190D94 = *LoadModel("system\\data\\STG06\\Models\\00133CD0.sa1mdl", false); //ORaneE
+	*(NJS_OBJECT *)0x2192798 = *LoadModel("system\\data\\STG06\\Models\\00134F30.sa1mdl", false); //ORaneF
+	*(NJS_OBJECT *)0x21BA014 = *LoadModel("system\\data\\STG06\\Models\\0015996C.sa1mdl", false); //Hangar 1
+	*(NJS_OBJECT *)0x21BA484 = *LoadModel("system\\data\\STG06\\Models\\00159DBC.sa1mdl", false); //Hangar 2
+	*(NJS_OBJECT *)0x21BCA10 = *LoadModel("system\\data\\STG06\\Models\\0015C2D0.sa1mdl", false); //Radar-like thing
+	*(NJS_OBJECT *)0x21BDD24 = *LoadModel("system\\data\\STG06\\Models\\0015D5B8.sa1mdl", false); //Huge thing 2
+	*(NJS_OBJECT *)0x21BF034 = *LoadModel("system\\data\\STG06\\Models\\0015E8A0.sa1mdl", false); //Huge thing 3
+	*(NJS_OBJECT *)0x214E4B8 = *LoadModel("system\\data\\STG06\\Models\\000FE140.sa1mdl", false); //Target
+	*(NJS_OBJECT *)0x21A34C8 = *LoadModel("system\\data\\STG06\\Models\\00144178.sa1mdl", false); //Top red orb
+	*(NJS_OBJECT *)0x21A4C38 = *LoadModel("system\\data\\STG06\\Models\\0014589C.sa1mdl", false); //Light-like thing
+	*(NJS_OBJECT *)0x21D1CC0 = *LoadModel("system\\data\\STG06\\Models\\0016FA10.sa1mdl", false); //Huge Egg Carrier decoration
+	*(NJS_OBJECT *)0x21D41A0 = *LoadModel("system\\data\\STG06\\Models\\00171E3C.sa1mdl", false); //Another decoration
+	*(NJS_OBJECT *)0x21FBF84 = *LoadModel("system\\data\\STG06\\Models\\00195B24.sa1mdl", false); //Escalator
+	*(NJS_OBJECT *)0x217CFE4 = *LoadModel("system\\data\\STG06\\Models\\001238FC.sa1mdl", false); //Untei
+	*(NJS_OBJECT *)0x218A66C = *LoadModel("system\\data\\STG06\\Models\\0012EDA8.sa1mdl", false); //Untei climbing part
+	*(NJS_OBJECT *)0x21A4074 = *LoadModel("system\\data\\STG06\\Models\\00144D04.sa1mdl", false); //Lb
+	*(NJS_OBJECT *)0x0960DFC = *LoadModel("system\\data\\STG06\\Models\\001E0C04.sa1mdl", false); //Aircraft lift piece
+	*(NJS_OBJECT *)0x217C724 = *LoadModel("system\\data\\STG06\\Models\\00123054.sa1mdl", false); //HangA 1
+	*(NJS_OBJECT *)0x217AB2C = *LoadModel("system\\data\\STG06\\Models\\00121478.sa1mdl", false); //HangA 2
+	*(NJS_OBJECT *)0x2179C0C = *LoadModel("system\\data\\STG06\\Models\\00120574.sa1mdl", false); //HangA 3
+	WriteCall((void*)0x5EE8C0, FixHangA);
+	WriteCall((void*)0x5EE8EC, FixHangA);
+	WriteCall((void*)0x5EE919, FixHangA);
+	SkyNormal1 = LoadModel("system\\data\\STG06\\Models\\000FBC08.sa1mdl", false); //Clouds normal
+	SkyNormal2 = LoadModel("system\\data\\STG06\\Models\\000FBC08.sa1mdl", false); //Clouds normal
+	SkyDark2 = LoadModel("system\\data\\STG06\\Models\\000FE03C.sa1mdl", false); //Clouds dark top 2 
+	SkyDark1 = LoadModel("system\\data\\STG06\\Models\\000FE03C.sa1mdl", false); //Clouds dark top 1 
+	WriteData((NJS_OBJECT**)0x005ED3AC, SkyNormal1);
+	WriteData((NJS_OBJECT**)0x005ED3A5, SkyDark2);
+	WriteData((NJS_OBJECT**)0x005ED46D, SkyDark1); //Clouds dark top
+	WriteData((NJS_OBJECT**)0x005ED4FC, SkyDark1); //Clouds dark bottom
 	ResizeTextureList((NJS_TEXLIST*)0x20E0BB0, textures_skydeck1);
 	ResizeTextureList((NJS_TEXLIST*)0x20AA63C, textures_skydeck2);
 	ResizeTextureList((NJS_TEXLIST*)0x203ACE0, textures_skydeck3);
@@ -856,28 +563,27 @@ void SkyDeck_Init()
 
 void SkyDeck_OnFrame()
 {
-	if (CurrentLevel == 6)
+	if (CurrentLevel == LevelIDs_SkyDeck)
 	{
-		{
-			if (STG06_1_Info && (GameState == 3 || GameState == 4 || GameState == 7 || GameState == 21))
-				for (int i = 0; i < STG06_1_Info->getlandtable()->COLCount; i++)
-				{
-					if (STG06_1_Info->getlandtable()->Col[i].anonymous_6 & 4)
-						STG06_1_Info->getlandtable()->Col[i].Flags |= ColFlags_Solid;
-				}
-		}
+		//Reset COL flags in Act 2 after the wing breaks off
+		if (GameState == 3 || GameState == 4 || GameState == 7 || GameState == 21)
+			for (int i = 0; i < GeoLists[49]->COLCount; i++)
+			{
+				if (GeoLists[49]->Col[i].anonymous_6 & 4)
+					GeoLists[49]->Col[i].Flags |= ColFlags_Solid;
+			}
 	}
-	if (CurrentLevel == 6 && GameState != 16)
+	//Cloud UVs and stuff
+	if (!IsGamePaused())
 	{
 		UVShift1 = (UVShift1 - 4 * FramerateSetting) % 255;
 		UVShift2 = (UVShift2 - 2 * FramerateSetting) % 255;
-		for (unsigned int q = 0; q < LengthOfArray(uvSTG06_01D4BE68); q++)
+		for (unsigned int q = 0; q < LengthOfArray(uvSTG06_01D4BE68_0); q++)
 		{
-			uvSTG06_01D4BE68[q].u = uvSTG06_01D4BE68_0[q].u + UVShift2;
-			uvSTG06_01D4E2F4[q].u = uvSTG06_01D4E2F4_0[q].u + UVShift2;
-			uvSTG06_01D4E2F4_2[q].u = uvSTG06_01D4E2F4_0[q].u + UVShift1;
-			uvSTG06_01D4BE68_2[q].u = uvSTG06_01D4BE68_0[q].u + UVShift1;
-			uvSTG06_01D4E2F4_3[q].u = uvSTG06_01D4E2F4_0[q].u + UVShift1;
+			SkyNormal1->basicdxmodel->meshsets[0].vertuv[q].u = uvSTG06_01D4BE68_0[q].u + UVShift2;
+			SkyNormal2->basicdxmodel->meshsets[0].vertuv[q].u = uvSTG06_01D4BE68_0[q].u + UVShift1;
+			SkyDark1->basicdxmodel->meshsets[0].vertuv[q].u = uvSTG06_01D4BE68_0[q].u + UVShift2;
+			SkyDark2->basicdxmodel->meshsets[0].vertuv[q].u = uvSTG06_01D4BE68_0[q].u + UVShift1;
 		}
 		CurrentFogLayer = 4000.0f - flt_3C8046C * 3000;
 		CurrentFogDistance = 12000.0f - flt_3C8046C * 9000;
@@ -889,32 +595,32 @@ void SkyDeck_OnFrame()
 		}
 		if (SkyDeckAltitude >= 300.0f)
 		{
-			if (((NJS_OBJECT *)0x0214D300)->basicdxmodel->mats[0].diffuse.argb.r > 8)
+			if (SkyDeckSmallCloud.basicdxmodel->mats[0].diffuse.argb.r > 8)
 			{
-				((NJS_OBJECT *)0x0214D300)->basicdxmodel->mats[0].diffuse.argb.r -= 8;
-				((NJS_OBJECT *)0x0214D300)->basicdxmodel->mats[0].diffuse.argb.g -= 8;
-				((NJS_OBJECT *)0x0214D300)->basicdxmodel->mats[0].diffuse.argb.b -= 8;
+				SkyDeckSmallCloud.basicdxmodel->mats[0].diffuse.argb.r -= 8;
+				SkyDeckSmallCloud.basicdxmodel->mats[0].diffuse.argb.g -= 8;
+				SkyDeckSmallCloud.basicdxmodel->mats[0].diffuse.argb.b -= 8;
 			}
 			else
 			{
-				((NJS_OBJECT *)0x0214D300)->basicdxmodel->mats[0].diffuse.argb.r = 0;
-				((NJS_OBJECT *)0x0214D300)->basicdxmodel->mats[0].diffuse.argb.g = 0;
-				((NJS_OBJECT *)0x0214D300)->basicdxmodel->mats[0].diffuse.argb.b = 0;
+				SkyDeckSmallCloud.basicdxmodel->mats[0].diffuse.argb.r = 0;
+				SkyDeckSmallCloud.basicdxmodel->mats[0].diffuse.argb.g = 0;
+				SkyDeckSmallCloud.basicdxmodel->mats[0].diffuse.argb.b = 0;
 			}
 		}
 		else
 		{
-			if (((NJS_OBJECT *)0x0214D300)->basicdxmodel->mats[0].diffuse.argb.r < 170)
+			if (SkyDeckSmallCloud.basicdxmodel->mats[0].diffuse.argb.r < 247)
 			{
-				((NJS_OBJECT *)0x0214D300)->basicdxmodel->mats[0].diffuse.argb.r += 8;
-				((NJS_OBJECT *)0x0214D300)->basicdxmodel->mats[0].diffuse.argb.g += 8;
-				((NJS_OBJECT *)0x0214D300)->basicdxmodel->mats[0].diffuse.argb.b += 8;
+				SkyDeckSmallCloud.basicdxmodel->mats[0].diffuse.argb.r += 8;
+				SkyDeckSmallCloud.basicdxmodel->mats[0].diffuse.argb.g += 8;
+				SkyDeckSmallCloud.basicdxmodel->mats[0].diffuse.argb.b += 8;
 			}
 			else
 			{
-				((NJS_OBJECT *)0x0214D300)->basicdxmodel->mats[0].diffuse.argb.r = 178;
-				((NJS_OBJECT *)0x0214D300)->basicdxmodel->mats[0].diffuse.argb.g = 178;
-				((NJS_OBJECT *)0x0214D300)->basicdxmodel->mats[0].diffuse.argb.b = 178;
+				SkyDeckSmallCloud.basicdxmodel->mats[0].diffuse.argb.r = 255;
+				SkyDeckSmallCloud.basicdxmodel->mats[0].diffuse.argb.g = 255;
+				SkyDeckSmallCloud.basicdxmodel->mats[0].diffuse.argb.b = 255;
 			}
 		}
 		if (flt_3C8046C > 0)
@@ -928,25 +634,24 @@ void SkyDeck_OnFrame()
 			if (flt_3C8046C > 0 && SkyDeckTransitionEnable == false)
 			{
 				SkyDeckTransitionEnable = true;
-				((NJS_OBJECT*)0x214E2A0)->basicdxmodel->mats[0].attrflags |= NJD_FLAG_USE_ALPHA;
-				((NJS_OBJECT*)0x214E2A0)->basicdxmodel->mats[1].attrflags |= NJD_FLAG_USE_ALPHA;
-				((NJS_OBJECT*)0x214E2A0)->basicdxmodel->mats[2].attrflags |= NJD_FLAG_USE_ALPHA;
-				((NJS_OBJECT*)0x214C9E4)->basicdxmodel->mats[0].attrflags |= NJD_FLAG_USE_ALPHA;
-				((NJS_OBJECT*)0x214C9E4)->basicdxmodel->mats[1].attrflags |= NJD_FLAG_USE_ALPHA;
-				((NJS_OBJECT*)0x214C9E4)->basicdxmodel->mats[2].attrflags |= NJD_FLAG_USE_ALPHA;
-				((NJS_OBJECT*)0x214C9E4)->basicdxmodel->mats[3].attrflags |= NJD_FLAG_USE_ALPHA;
+				SkyDeckSkyboxModel_Normal.basicdxmodel->mats[0].attrflags |= NJD_FLAG_USE_ALPHA;
+				SkyDeckSkyboxModel_Normal.basicdxmodel->mats[1].attrflags |= NJD_FLAG_USE_ALPHA;
+				SkyDeckSkyboxModel_Normal.basicdxmodel->mats[2].attrflags |= NJD_FLAG_USE_ALPHA;
+				SkyDeckSkyboxModel_Dark.basicdxmodel->mats[0].attrflags |= NJD_FLAG_USE_ALPHA;
+				SkyDeckSkyboxModel_Dark.basicdxmodel->mats[1].attrflags |= NJD_FLAG_USE_ALPHA;
+				SkyDeckSkyboxModel_Dark.basicdxmodel->mats[2].attrflags |= NJD_FLAG_USE_ALPHA;
+				SkyDeckSkyboxModel_Dark.basicdxmodel->mats[3].attrflags |= NJD_FLAG_USE_ALPHA;
 			}
 			if (flt_3C8046C <= 0 && SkyDeckTransitionEnable == true)
 			{
 				SkyDeckTransitionEnable = false;
-				((NJS_OBJECT*)0x214E2A0)->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_USE_ALPHA;
-				((NJS_OBJECT*)0x214E2A0)->basicdxmodel->mats[1].attrflags &= ~NJD_FLAG_USE_ALPHA;
-				((NJS_OBJECT*)0x214E2A0)->basicdxmodel->mats[2].attrflags &= ~NJD_FLAG_USE_ALPHA;
-				((NJS_OBJECT*)0x214C9E4)->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_USE_ALPHA;
-				((NJS_OBJECT*)0x214C9E4)->basicdxmodel->mats[1].attrflags &= ~NJD_FLAG_USE_ALPHA;
-				((NJS_OBJECT*)0x214C9E4)->basicdxmodel->mats[2].attrflags &= ~NJD_FLAG_USE_ALPHA;
-				((NJS_OBJECT*)0x214C9E4)->basicdxmodel->mats[3].attrflags &= ~NJD_FLAG_USE_ALPHA;
-
+				SkyDeckSkyboxModel_Normal.basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_USE_ALPHA;
+				SkyDeckSkyboxModel_Normal.basicdxmodel->mats[1].attrflags &= ~NJD_FLAG_USE_ALPHA;
+				SkyDeckSkyboxModel_Normal.basicdxmodel->mats[2].attrflags &= ~NJD_FLAG_USE_ALPHA;
+				SkyDeckSkyboxModel_Dark.basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_USE_ALPHA;
+				SkyDeckSkyboxModel_Dark.basicdxmodel->mats[1].attrflags &= ~NJD_FLAG_USE_ALPHA;
+				SkyDeckSkyboxModel_Dark.basicdxmodel->mats[2].attrflags &= ~NJD_FLAG_USE_ALPHA;
+				SkyDeckSkyboxModel_Dark.basicdxmodel->mats[3].attrflags &= ~NJD_FLAG_USE_ALPHA;
 			}
 		}
 	}
