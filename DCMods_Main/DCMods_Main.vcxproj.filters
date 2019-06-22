@@ -78,64 +78,13 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="DC_ADV00MODELS.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="DC_ADV01MODELS.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="DC_ADV02MODELS.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="DC_ADV03MODELS.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="DC_Branding.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="DC_Casinopolis.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="DC_ChaoGardens.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="DC_ChaoRace.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="DC_EmeraldCoast.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="DC_FinalEgg.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="DC_General.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DC_HotShelter.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="DC_IceCap.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="DC_LostWorld.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="DC_RedMountain.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="DC_SkyDeck.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="DC_SpeedHighway.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="DC_Subgames.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="DC_TwinklePark.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="DC_WindyValley.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="mod.cpp">
@@ -150,16 +99,10 @@
     <ClCompile Include="Videos.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SpeedFixes.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="SADXStyleWater.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="GenericFunctions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="DC_ADV01CMODELS.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Boss_Chaos0.cpp">
@@ -196,6 +139,63 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Bosses_Common.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="STG01_EmeraldCoast.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="STG10_FinalEgg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="STG12_HotShelter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="STG08_IceCap.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="STG07_LostWorld.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="STG05_RedMountain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="STG06_SkyDeck.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="STG04_SpeedHighway.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="STG03_TwinklePark.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="STG02_WindyValley.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="STG09_Casinopolis.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AL_ChaoGardens.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ADV00_StationSquare.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ADV01C_EggCarrierInside.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ADV01_EggCarrierOutside.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ADV03_Past.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ADV02_MysticRuins.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FramerateFixes.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AL_ChaoRace.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

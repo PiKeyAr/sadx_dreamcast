@@ -97,28 +97,28 @@
     <ClCompile Include="Boss_EGM2_EggWalker.cpp" />
     <ClCompile Include="Boss_EGM3_EggViper.cpp" />
     <ClCompile Include="Boss_ROBO_Zero.cpp" />
-    <ClCompile Include="DC_ADV00MODELS.cpp" />
-    <ClCompile Include="DC_ADV01CMODELS.cpp" />
-    <ClCompile Include="DC_ADV01MODELS.cpp" />
-    <ClCompile Include="DC_ADV02MODELS.cpp" />
-    <ClCompile Include="DC_ADV03MODELS.cpp" />
+    <ClCompile Include="ADV00_StationSquare.cpp" />
+    <ClCompile Include="ADV01C_EggCarrierInside.cpp" />
+    <ClCompile Include="ADV01_EggCarrierOutside.cpp" />
+    <ClCompile Include="ADV02_MysticRuins.cpp" />
+    <ClCompile Include="ADV03_Past.cpp" />
     <ClCompile Include="Bosses_Common.cpp" />
     <ClCompile Include="DC_Branding.cpp" />
-    <ClCompile Include="DC_Casinopolis.cpp" />
-    <ClCompile Include="DC_ChaoGardens.cpp" />
-    <ClCompile Include="DC_ChaoRace.cpp" />
-    <ClCompile Include="DC_EmeraldCoast.cpp" />
-    <ClCompile Include="DC_FinalEgg.cpp" />
+    <ClCompile Include="STG09_Casinopolis.cpp" />
+    <ClCompile Include="AL_ChaoGardens.cpp" />
+    <ClCompile Include="AL_ChaoRace.cpp" />
+    <ClCompile Include="STG01_EmeraldCoast.cpp" />
+    <ClCompile Include="STG10_FinalEgg.cpp" />
     <ClCompile Include="DC_General.cpp" />
-    <ClCompile Include="DC_HotShelter.cpp" />
-    <ClCompile Include="DC_IceCap.cpp" />
-    <ClCompile Include="DC_LostWorld.cpp" />
-    <ClCompile Include="DC_RedMountain.cpp" />
-    <ClCompile Include="DC_SkyDeck.cpp" />
-    <ClCompile Include="DC_SpeedHighway.cpp" />
+    <ClCompile Include="STG12_HotShelter.cpp" />
+    <ClCompile Include="STG08_IceCap.cpp" />
+    <ClCompile Include="STG07_LostWorld.cpp" />
+    <ClCompile Include="STG05_RedMountain.cpp" />
+    <ClCompile Include="STG06_SkyDeck.cpp" />
+    <ClCompile Include="STG04_SpeedHighway.cpp" />
     <ClCompile Include="DC_Subgames.cpp" />
-    <ClCompile Include="DC_TwinklePark.cpp" />
-    <ClCompile Include="DC_WindyValley.cpp" />
+    <ClCompile Include="STG03_TwinklePark.cpp" />
+    <ClCompile Include="STG02_WindyValley.cpp" />
     <ClCompile Include="GenericFunctions.cpp" />
     <ClCompile Include="mod.cpp" />
     <ClCompile Include="SADXStyleWater.cpp" />
@@ -128,7 +128,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Videos.cpp" />
-    <ClCompile Include="SpeedFixes.cpp" />
+    <ClCompile Include="FramerateFixes.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Data\ADV01C_Objects.h" />
