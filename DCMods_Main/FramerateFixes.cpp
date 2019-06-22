@@ -105,7 +105,6 @@ float OGLSpeedOverride = 0.25f;
 
 //Sky Deck
 float OMekaSpeedOverride = 0.5f;
-float TankhSpeedOverride = 0.25f;
 
 //Casinopolis
 double OKaizAnimationSpeedOverride = 0.001388885f;
@@ -707,7 +706,6 @@ void SpeedFixes_Init()
 	WriteData((float**)0x0060B361, &OGLSpeedOverride); //O Gear Speed Tweak
 	//Sky Deck
 	WriteData((float**)0x005F4146, &OMekaSpeedOverride); //OMeka OTutu	
-	WriteData((float**)0x005EE248, &TankhSpeedOverride); //Tank h	
 	//Casinopolis
 	WriteData((double**)0x5C802C, &OKaizAnimationSpeedOverride); //OKaiza Animation Speed Tweak
 	WriteData((double**)0x5C747C, &OKaizAnimationSpeedOverride); //OKaizb Animation Speed Tweak
@@ -789,7 +787,6 @@ void SpeedFixes_OnFrame()
 			Flag1AnimationSpeedOverride = 0.4f;
 			//Sky Deck
 			OMekaSpeedOverride = 1.0f;
-			TankhSpeedOverride = 1.0f;
 			//Red Mountain
 			OGLSpeedOverride = 0.5f;
 			//Casinopolis
@@ -864,7 +861,6 @@ void SpeedFixes_OnFrame()
 			OGLSpeedOverride = 0.25f;
 			//Sky Deck
 			OMekaSpeedOverride = 0.5f;
-			TankhSpeedOverride = 0.25f;
 			//Casinopolis
 			OKaizAnimationSpeedOverride = 0.001388885f;
 			OCrystalAnimationSpeedOverride = 168;
