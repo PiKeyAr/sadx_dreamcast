@@ -238,7 +238,9 @@ void WindyValley_Init()
 	*(NJS_MODEL_SADX*)0xC1E168 = *LoadModel("system\\data\\STG02\\Models\\000C4D24.sa1mdl", false)->basicdxmodel; //Fixed bridge rope
 	*(NJS_MODEL_SADX*)0xC1D068 = *LoadModel("system\\data\\STG02\\Models\\000C4024.sa1mdl", false)->basicdxmodel; //OPopo base
 	*(NJS_OBJECT*)0xC1C648 = *LoadModel("system\\data\\STG02\\Models\\000C3A70.sa1mdl", false); //OPopo part 2
+	AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0xC1C648)->basicdxmodel->mats[1]);
 	*(NJS_OBJECT*)0xC1C848 = *LoadModel("system\\data\\STG02\\Models\\000C38A8.sa1mdl", false); //OPopo part 1 (I swapped these because SADX renders them in an incorrect order)
+	AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0xC1C848)->basicdxmodel->mats[1]);
 	*(NJS_MODEL_SADX*)0xC1DAB4 = *LoadModel("system\\data\\STG02\\Models\\000C47B0.sa1mdl", false)->basicdxmodel; //OTanpopo base
 	*(NJS_OBJECT*)0xC1D1B0 = *LoadModel("system\\data\\STG02\\Models\\000C4128.sa1mdl", false); //OTanpopo fuzz
 	*(NJS_OBJECT*)0xC1DBFC = *LoadModel("system\\data\\STG02\\Models\\000C48B4.sa1mdl", false); //OTanpopo seed
