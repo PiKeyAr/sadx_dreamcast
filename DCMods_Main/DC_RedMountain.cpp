@@ -10,64 +10,85 @@ NJS_TEXLIST texlist_mountain2 = { arrayptrandlength(textures_mountain2) };
 NJS_TEXNAME textures_mountain3[27];
 NJS_TEXLIST texlist_mountain3 = { arrayptrandlength(textures_mountain3) };
 
+/*
+#include "Mountain1.h"
+#include "Mountain2.h"
+#include "Mountain3.h"
+*/
+
+NJS_OBJECT *RMCloudTop = nullptr;
+NJS_OBJECT *RMCloudBottom = nullptr;
+NJS_MODEL_SADX *PropellerGlass = nullptr;
+
 DataPointer(float, CurrentDrawDistance, 0x03ABDC74);
+DataPointer(float, RMCloudSonic_TopY, 0x006011B2);
+DataPointer(float, RMCloudSonic_BottomY, 0x006011F6);
+DataPointer(float, RMCloudKnuckles_TopY, 0x006011A9);
+DataPointer(float, RMCloudKnuckles_BottomY, 0x006011ED);
+DataArray(NJS_VECTOR, SkyboxScale_RedMountain2, 0x02240628, 3);
+DataArray(FogData, RedMountain1Fog, 0x02240700, 3);
+DataArray(FogData, RedMountain2Fog, 0x02240730, 3);
+DataArray(FogData, RedMountain3Fog, 0x02240760, 3);
 FunctionPointer(void, sub_600BF0, (ObjectMaster *a1, NJS_OBJECT *a2), 0x600BF0);
+FunctionPointer(void, ProcessModel_NoSorting, (NJS_MODEL_SADX *model, float scale), 0x407A00);
+
 static int UVShift1 = 0;
 static int UVShift2 = 0;
-static double cloudcoloroffset = 0.0f;
 
-NJS_MATERIAL* LevelSpecular_Mountain[] = {
-	//OSaku2
-	((NJS_MATERIAL*)0x0243C108),
-	((NJS_MATERIAL*)0x0243C11C),
-	((NJS_MATERIAL*)0x0243C130),
-	((NJS_MATERIAL*)0x0243BB08),
-	((NJS_MATERIAL*)0x0243BB1C),
-};
-
-NJS_MATERIAL* ObjectSpecular_Mountain[] = {
-	//Platform Asiba01
-	((NJS_MATERIAL*)0x0246AB58),
-	((NJS_MATERIAL*)0x0246AB6C),
-	((NJS_MATERIAL*)0x0246AB80),
-	//Propeller box
-	((NJS_MATERIAL*)0x02438C64),
-	((NJS_MATERIAL*)0x02438C78),
-};
-
-NJS_MATERIAL* WhiteDiffuse_Mountain[] = {
-	//Stand light
-	((NJS_MATERIAL*)0x02439998),
-	((NJS_MATERIAL*)0x024399AC),
-	((NJS_MATERIAL*)0x024399C0),
-	((NJS_MATERIAL*)0x024399D4),
-	//Lamp1
-	&matlistSTG05_02081D98[0],
-	&matlistSTG05_02081D98[1],
-	//Lamp2
-	&matlistSTG05_020829F0[0],
-	&matlistSTG05_020829F0[1],
-};
-
-void RenderRMSky1(ObjectMaster *a1, NJS_OBJECT *a2)
+void RenderRMClouds_Top(ObjectMaster *a1, NJS_OBJECT *a2)
 {
-	if (EV_MainThread_ptr != nullptr) DrawQueueDepthBias = 400;
-	else DrawQueueDepthBias = 8000.0f;
-	sub_600BF0(a1, &objectSTG05_0206CAA8);
+	float TopY = 0.0f;
+	float BottomY = 0.0f;
+	if (CurrentCharacter == Characters_Knuckles)
+	{
+		TopY = RMCloudKnuckles_TopY;
+		BottomY = RMCloudKnuckles_BottomY;
+	}
+	else
+	{
+		TopY = RMCloudSonic_TopY;
+		BottomY = RMCloudSonic_BottomY;
+	}
+	if (Camera_Data1->Position.y <= BottomY)
+	{
+		//PrintDebug("Top: Render behind\n");
+		DrawQueueDepthBias = -8000.0f;
+	}
+	else
+	{
+		//PrintDebug("Top: Render above\n");
+		DrawQueueDepthBias = -6000.0f;
+	}
+	sub_600BF0(a1, RMCloudTop);
 	DrawQueueDepthBias = 0.0f;
 }
 
-void RenderRMSky2(ObjectMaster *a1, NJS_OBJECT *a2)
+void RenderRMClouds_Bottom(ObjectMaster *a1, NJS_OBJECT *a2)
 {
-	if (EV_MainThread_ptr != nullptr) DrawQueueDepthBias = 200;
-	else DrawQueueDepthBias = 6000.0f;
-	sub_600BF0(a1, &objectSTG05_0206CAA8_2);
+	float TopY = 0.0f;
+	float BottomY = 0.0f;
+	if (CurrentCharacter == Characters_Knuckles)
+	{
+		TopY = RMCloudKnuckles_TopY;
+		BottomY = RMCloudKnuckles_BottomY;
+	}
+	else
+	{
+		TopY = RMCloudSonic_TopY;
+		BottomY = RMCloudSonic_BottomY;
+	}
+	if (Camera_Data1->Position.y <= BottomY)
+	{
+		//PrintDebug("Bottom: Render above\n");
+		DrawQueueDepthBias = -6000.0f;
+	}
+	else
+	{
+		//PrintDebug("Bottom: Render behind\n");
+		DrawQueueDepthBias = -8000.0f;
+	}
+	sub_600BF0(a1, RMCloudBottom);
 	DrawQueueDepthBias = 0.0f;
-}
-
-void SetCloudColor(NJS_ARGB *a)
-{
-	SetMaterialAndSpriteColor_Float(0.2f + a->a, 0.2f + a->r, 0.2f + a->g, 0.2f + a->b);
 }
 
 void UnloadLevelFiles_STG05()
@@ -86,9 +107,9 @@ void LoadLevelFiles_STG05()
 	STG05_0_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG05\\0.sa1lvl"));
 	STG05_1_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG05\\1.sa1lvl"));
 	STG05_2_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG05\\2.sa1lvl"));
-	LandTable *STG05_0 = STG05_0_Info->getlandtable();
-	LandTable *STG05_1 = STG05_1_Info->getlandtable();
-	LandTable *STG05_2 = STG05_2_Info->getlandtable();
+	LandTable *STG05_0 = STG05_0_Info->getlandtable(); //&landtable_00018CB8;
+	LandTable *STG05_1 = STG05_1_Info->getlandtable(); //&landtable_0001A8FC;
+	LandTable *STG05_2 = STG05_2_Info->getlandtable(); //&landtable_0001E358;
 	RemoveMaterialColors_Landtable(STG05_0);
 	RemoveMaterialColors_Landtable(STG05_1);
 	RemoveMaterialColors_Landtable(STG05_2);
@@ -98,6 +119,21 @@ void LoadLevelFiles_STG05()
 	WriteData((LandTable**)0x97DAA8, STG05_0);
 	WriteData((LandTable**)0x97DAAC, STG05_1);
 	WriteData((LandTable**)0x97DAB0, STG05_2);
+}
+
+void SetCloudColor(NJS_ARGB *a1)
+{
+	SetMaterialAndSpriteColor_Float(a1->a, 1.0f, 1.0f, 1.0f);
+}
+
+FunctionPointer(void, sub_407CF0, (NJS_MODEL_SADX *a1, QueuedModelFlagsB a2), 0x407CF0);
+
+void FixPropellerThing(NJS_MODEL_SADX *model, QueuedModelFlagsB blend, float scale)
+{
+	ProcessModel_NoSorting(model, scale);
+	DrawQueueDepthBias = 2000.0f;
+	sub_407CF0(PropellerGlass, QueuedModelFlagsB_EnableZWrite); //Should have been 0, but that doesn't look good
+	DrawQueueDepthBias = 0.0f;
 }
 
 void RedMountain_Init()
@@ -138,77 +174,90 @@ void RedMountain_Init()
 	ReplacePVM("YOUGAN_ANIM");
 	ReplaceBIN("PL_51B", "PL_51X");
 	WriteData<1>((char*)0x600700, 0xC3u); //Disable SetClip_RedMountain
-	WriteData((double**)0x600C8F, &cloudcoloroffset);
-	WriteCall((void*)0x006011D8, RenderRMSky1);
-	WriteCall((void*)0x0060121C, RenderRMSky2);
-	if (DLLLoaded_Lantern)
-	{
-		material_register_ptr(LevelSpecular_Mountain, LengthOfArray(LevelSpecular_Mountain), &ForceDiffuse0Specular0);
-		material_register_ptr(ObjectSpecular_Mountain, LengthOfArray(ObjectSpecular_Mountain), &ForceDiffuse0Specular1);
-		material_register_ptr(WhiteDiffuse_Mountain, LengthOfArray(WhiteDiffuse_Mountain), &ForceWhiteDiffuse);
-	}
-	*(NJS_OBJECT*)0x248213C = objectSTG05_0208213C; //Lamp1
-	*(NJS_OBJECT*)0x2482D94 = objectSTG05_02082D94; //Lamp2
-	//Standing light specular
-	((NJS_MATERIAL*)0x02439998)->attrflags &= ~NJD_FLAG_IGNORE_SPECULAR;
-	((NJS_MATERIAL*)0x024399AC)->attrflags &= ~NJD_FLAG_IGNORE_SPECULAR;
-	((NJS_MATERIAL*)0x024399C0)->attrflags &= ~NJD_FLAG_IGNORE_SPECULAR;
-	((NJS_MATERIAL*)0x024399D4)->attrflags &= ~NJD_FLAG_IGNORE_SPECULAR;
-	*(NJS_OBJECT*)0x246A624 = objectSTG05_00181CE0; //O Bpole
-	*(NJS_OBJECT*)0x246AB24 = objectSTG05_001821C0; //O Bpole 2
-	*(NJS_MODEL_SADX*)0x2466818 = attachSTG05_0017DF2C; //Bridge piece
-	*(NJS_MODEL_SADX*)0x2466568 = attachSTG05_0017DC94; //Bridge piece 2
-	WriteData((float*)0x006011ED, 30.0f); //Cloud height (Knuckles)
-	WriteData((float*)0x006011A9, 60.0f); //Cloud height (Knuckles)
-	*(NJS_MODEL_SADX*)0x24390BC = attachSTG05_00151A8C; //Light thing
-	*(NJS_MODEL_SADX*)0x24394CC = attachSTG05_001515D8; //Light thing propeller 1
-	*(NJS_MODEL_SADX*)0x24392C4 = attachSTG05_001513C8; //Light thing propeller 2
-	*(NJS_OBJECT*)0x2439964 = objectSTG05_001511FC; //Standing light thing (object)
-	WriteData<1>((void*)0x0060C981, 0x03); //Light thing blending mode
+	//Cloud fixes
+	RMCloudTop = LoadModel("system\\data\\STG05\\Models\\00183AF8.sa1mdl", false);
+	RMCloudBottom = LoadModel("system\\data\\STG05\\Models\\00183AF8.sa1mdl", false);
+	WriteCall((void*)0x600CA3, SetCloudColor); //Set alpha, but keep colors at 1.0
+	WriteCall((void*)0x006011D8, RenderRMClouds_Top);
+	WriteCall((void*)0x0060121C, RenderRMClouds_Bottom);
+	WriteData((float*)0x006011ED, -20.0f); //Cloud height (Knuckles) - this is inaccurate but I dunno how to fix it
+	WriteData((float*)0x006011A9, 30.0f); //Cloud height (Knuckles) - this is inaccurate but I dunno how to fix it
+	//Objects
+	RemoveVertexColors_Object((NJS_OBJECT*)0x02459814); //MtnSpiderA
+	RemoveVertexColors_Object((NJS_OBJECT*)0x0247E4D4); //OBat
+	RemoveVertexColors_Object((NJS_OBJECT*)0x024633B8); //Syuujin
+	*(NJS_OBJECT*)0x2439964 = *LoadModel("system\\data\\STG05\\Models\\001511FC.sa1mdl", false); //OLight
+	*(NJS_OBJECT*)0x243A220 = *LoadModel("system\\data\\STG05\\Models\\00152358.sa1mdl", false); //OLightB
+	AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x243A220)->basicdxmodel->mats[1]);
+	AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x243A220)->basicdxmodel->mats[2]);
+	AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x243A220)->basicdxmodel->mats[3]);
+	*(NJS_OBJECT*)0x248213C = *LoadModel("system\\data\\STG05\\Models\\00197E70.sa1mdl", false); //Lamp1
+	ForceObjectSpecular_Object((NJS_OBJECT*)0x248213C);
+	AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x248213C)->basicdxmodel->mats[1]);
+	*(NJS_OBJECT*)0x2482D94 = *LoadModel("system\\data\\STG05\\Models\\00198A88.sa1mdl", false); //Lamp2
+	ForceObjectSpecular_Object((NJS_OBJECT*)0x2482D94);
+	AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x2482D94)->basicdxmodel->mats[1]);
+	*(NJS_OBJECT*)0x243D1B4 = *LoadModel("system\\data\\STG05\\Models\\00155284.sa1mdl", false); //OSaku2
+	ForceLevelSpecular_Object((NJS_OBJECT*)0x243D1B4);
+	AddAlphaRejectMaterial(&((NJS_OBJECT*)0x243D1B4)->child->basicdxmodel->mats[0]);
+	AddAlphaRejectMaterial(&((NJS_OBJECT*)0x243D1B4)->child->basicdxmodel->mats[1]);
+	*(NJS_OBJECT*)0x2447920 = *LoadModel("system\\data\\STG05\\Models\\0015F77C.sa1mdl", false); //OErupt small piece //SL OBJECT
+	((NJS_OBJECT*)0x2447920)->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_USE_ALPHA;
+	*(NJS_OBJECT*)0x244FD8C = *LoadModel("system\\data\\STG05\\Models\\00167A5C.sa1mdl", false); //OErupt big piece
+	*(NJS_OBJECT*)0x248042C = *LoadModel("system\\data\\STG05\\Models\\001961C4.sa1mdl", false); //OTree1
+	*(NJS_OBJECT*)0x246B81C = *LoadModel("system\\data\\STG05\\Models\\00182900.sa1mdl", false); //OAshiba1
+	*(NJS_OBJECT*)0x242FA04 = *LoadModel("system\\data\\STG05\\Models\\00147EE8.sa1mdl", false); //OUntei6 stuff
+	*(NJS_OBJECT*)0x2432404 = *LoadModel("system\\data\\STG05\\Models\\0014A8C4.sa1mdl", false); //OUntei6 stuff
+	*(NJS_OBJECT*)0x242B5FC = *LoadModel("system\\data\\STG05\\Models\\00143F94.sa1mdl", false); //Some mechanism part
+	*(NJS_OBJECT*)0x242D004 = *LoadModel("system\\data\\STG05\\Models\\0014550C.sa1mdl", false); //Some other mechanism part
+	*(NJS_OBJECT*)0x246A624 = *LoadModel("system\\data\\STG05\\Models\\00181CE0.sa1mdl", false); //O Bpole
+	*(NJS_OBJECT*)0x246AB24 = *LoadModel("system\\data\\STG05\\Models\\001821C0.sa1mdl", false); //O Bpole 2
+	*(NJS_MODEL_SADX*)0x243762C = *LoadModel("system\\data\\STG05\\Models\\0014F970.sa1mdl", false)->basicdxmodel; //OMAshiba
+	*(NJS_MODEL_SADX*)0x2466818 = *LoadModel("system\\data\\STG05\\Models\\0017DF54.sa1mdl", false)->basicdxmodel; //Bridge piece
+	*(NJS_MODEL_SADX*)0x2466568 = *LoadModel("system\\data\\STG05\\Models\\0017DCBC.sa1mdl", false)->basicdxmodel; //Bridge piece 2
+	*(NJS_MODEL_SADX*)0x24390BC = *LoadModel("system\\data\\STG05\\Models\\00151AB4.sa1mdl", false)->basicdxmodel; //Light thing
+	((NJS_MODEL_SADX*)0x24390BC)->meshsets[0].nbMesh = 0;
+	PropellerGlass = LoadModel("system\\data\\STG05\\Models\\00151AB4.sa1mdl", false)->basicdxmodel;
+	PropellerGlass->meshsets[1].nbMesh = 0;
+	*(NJS_MODEL_SADX*)0x24394CC = *LoadModel("system\\data\\STG05\\Models\\00151600.sa1mdl", false)->basicdxmodel; //Light thing propeller 1
+	*(NJS_MODEL_SADX*)0x24392C4 = *LoadModel("system\\data\\STG05\\Models\\001513F0.sa1mdl", false)->basicdxmodel; //Light thing propeller 2
+	WriteCall((void*)0x60C987, FixPropellerThing);
 	ResizeTextureList((NJS_TEXLIST*)0x230FDF4, textures_mountain1);
 	ResizeTextureList((NJS_TEXLIST*)0x229B8CC, textures_mountain2);
 	ResizeTextureList((NJS_TEXLIST*)0x224096C, textures_mountain3);
-	DataArray(NJS_VECTOR, SkyboxScale_RedMountain2, 0x02240628, 3);
-	DataArray(FogData, RedMountain1Fog, 0x02240700, 3);
-	DataArray(FogData, RedMountain2Fog, 0x02240730, 3);
-	DataArray(FogData, RedMountain3Fog, 0x02240760, 3);
-	DataArray(DrawDistance, DrawDist_RedMountain1, 0x022406B8, 3);
-	DataArray(DrawDistance, DrawDist_RedMountain2, 0x022406D0, 3);
-	DataArray(DrawDistance, DrawDist_RedMountain3, 0x022406E8, 3);
 	for (unsigned int i = 0; i < 3; i++)
 	{
 		RedMountain1Fog[i].Color = 0xFFFFFFFF;
 		RedMountain1Fog[i].Layer = 2000.0f;
 		RedMountain1Fog[i].Distance = 16000.0f;
 		RedMountain1Fog[i].Toggle = 1;
-		RedMountain2Fog[i].Layer = 1000.0f;
+		RedMountain2Fog[i].Layer = 1650.0f;
 		RedMountain2Fog[i].Color = 0xFF000000;
-		RedMountain2Fog[i].Distance = 2400.0f;
+		RedMountain2Fog[i].Distance = 4000.0f;
 		RedMountain2Fog[i].Toggle = 1;
 		RedMountain3Fog[i].Color = 0xFFFFFFFF;
-		RedMountain3Fog[i].Layer = 2000.0f;
-		RedMountain3Fog[i].Distance = 16000.0f;
+		RedMountain3Fog[i].Layer = 1000.0f;
+		RedMountain3Fog[i].Distance = 12000.0f;
 		RedMountain3Fog[i].Toggle = 1;
-		DrawDist_RedMountain1[i].Maximum = -16000.0;
-		DrawDist_RedMountain3[i].Maximum = -16000.0;
+		DrawDist_RedMountain1[i].Maximum = -16000.0f;
+		DrawDist_RedMountain3[i].Maximum = -16000.0f;
 		SkyboxScale_RedMountain2[i].x = 1.0f;
 		SkyboxScale_RedMountain2[i].y = 1.0f;
 		SkyboxScale_RedMountain2[i].z = 1.0f;
 	}
 }
-
 void RedMountain_OnFrame()
 {
-	if (CurrentLevel == 5 && GameState != 16)
+	if (CurrentLevel == LevelIDs_RedMountain && !IsGamePaused())
 	{
 		UVShift1 = (UVShift1 - 1 * FramerateSetting) % 255;
 		UVShift2 = (UVShift2 - 2 * FramerateSetting) % 255;
-		for (unsigned int q = 0; q < LengthOfArray(uvSTG05_0206C9F0); q++)
+		for (unsigned int q = 0; q < 4; q++)
 		{
-			uvSTG05_0206C9F0[q].u = uvSTG05_0206C9F0_0[q].u + UVShift1;
-			uvSTG05_0206C9F0_2[q].u = uvSTG05_0206C9F0_0[q].u + UVShift2;
+			RMCloudTop->basicdxmodel->meshsets[0].vertuv[q].u = uv_00183A48[q].u + UVShift1;
+			RMCloudBottom->basicdxmodel->meshsets[0].vertuv[q].u = uv_00183A48[q].u + UVShift2;
 		}
-		if (STG05_1_Info && CurrentAct == 1 && Camera_Data1 != nullptr)
+		if (CurrentAct == 1 && Camera_Data1 != nullptr)
 		{
 			if (Camera_Data1->Position.y > 900) CurrentDrawDistance = -9000.0f;
 		}
