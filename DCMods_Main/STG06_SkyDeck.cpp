@@ -471,6 +471,10 @@ void SkyDeck_Init()
 	*(NJS_OBJECT *)0x216889C = *LoadModel("system\\data\\STG06\\Models\\001138B4.sa1mdl", false); //Stairs 1
 	*(NJS_OBJECT *)0x216A4AC = *LoadModel("system\\data\\STG06\\Models\\00114F2C.sa1mdl", false); //Stairs 2
 	*(NJS_OBJECT *)0x21C4FD8 = *LoadModel("system\\data\\STG06\\Models\\00162F84.sa1mdl", false); //Crane
+	((NJS_OBJECT *)0x21C4FD8)->child->basicdxmodel->mats[1].attrflags |= NJD_FLAG_USE_TEXTURE;
+	((NJS_OBJECT *)0x21C4FD8)->child->basicdxmodel->mats[1].attr_texId = 6;
+	((NJS_OBJECT *)0x21C4FD8)->child->sibling->basicdxmodel->mats[1].attrflags |= NJD_FLAG_USE_TEXTURE;
+	((NJS_OBJECT *)0x21C4FD8)->child->sibling->basicdxmodel->mats[1].attr_texId = 6;
 	*(NJS_OBJECT *)0x21642D4 = *LoadModel("system\\data\\STG06\\Models\\00110634.sa1mdl", false); //Talap 0
 	*(NJS_OBJECT *)0x21AD794 = *LoadModel("system\\data\\STG06\\Models\\0014D990.sa1mdl", false); //Trolley thing or whatever that is
 	((NJS_ACTION*)0x2223C0C)->object = LoadModel("system\\data\\STG06\\Models\\00192044.sa1mdl", false); //ORoboA
