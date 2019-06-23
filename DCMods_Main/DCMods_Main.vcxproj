@@ -208,8 +208,6 @@
     <ClInclude Include="Data\LostWorld1.h" />
     <ClInclude Include="Data\LostWorld2.h" />
     <ClInclude Include="Data\LostWorld3.h" />
-    <ClInclude Include="Data\LostWorld3_PC.h" />
-    <ClInclude Include="Data\LostWorld_objects.h" />
     <ClInclude Include="Data\MasterEmerald.h" />
     <ClInclude Include="Data\Mountain1.h" />
     <ClInclude Include="Data\Mountain2.h" />

@@ -407,9 +407,6 @@
     <ClInclude Include="Data\MasterEmerald.h">
       <Filter>Header Files\Levels\ADV02MODELS</Filter>
     </ClInclude>
-    <ClInclude Include="Data\LostWorld_objects.h">
-      <Filter>Header Files\Levels\LostWorld</Filter>
-    </ClInclude>
     <ClInclude Include="Data\LostWorld1.h">
       <Filter>Header Files\Levels\LostWorld</Filter>
     </ClInclude>
@@ -417,9 +414,6 @@
       <Filter>Header Files\Levels\LostWorld</Filter>
     </ClInclude>
     <ClInclude Include="Data\LostWorld3.h">
-      <Filter>Header Files\Levels\LostWorld</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\LostWorld3_PC.h">
       <Filter>Header Files\Levels\LostWorld</Filter>
     </ClInclude>
     <ClInclude Include="Data\Mountain1.h">
