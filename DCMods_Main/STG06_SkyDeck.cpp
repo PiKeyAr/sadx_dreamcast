@@ -576,86 +576,86 @@ void SkyDeck_OnFrame()
 				if (GeoLists[49]->Col[i].anonymous_6 & 4)
 					GeoLists[49]->Col[i].Flags |= ColFlags_Solid;
 			}
-	}
-	//Cloud UVs and stuff
-	if (!IsGamePaused())
-	{
-		UVShift1 = (UVShift1 - 4 * FramerateSetting) % 255;
-		UVShift2 = (UVShift2 - 2 * FramerateSetting) % 255;
-		for (unsigned int q = 0; q < LengthOfArray(uvSTG06_01D4BE68_0); q++)
+		//Cloud UVs and stuff
+		if (!IsGamePaused())
 		{
-			SkyNormal1->basicdxmodel->meshsets[0].vertuv[q].u = uvSTG06_01D4BE68_0[q].u + UVShift2;
-			SkyNormal2->basicdxmodel->meshsets[0].vertuv[q].u = uvSTG06_01D4BE68_0[q].u + UVShift1;
-			SkyDark1->basicdxmodel->meshsets[0].vertuv[q].u = uvSTG06_01D4BE68_0[q].u + UVShift2;
-			SkyDark2->basicdxmodel->meshsets[0].vertuv[q].u = uvSTG06_01D4BE68_0[q].u + UVShift1;
-		}
-		CurrentFogLayer = 4000.0f - flt_3C8046C * 3000;
-		CurrentFogDistance = 12000.0f - flt_3C8046C * 9000;
-		if (flt_3C8046C <= 0)
-		{
-			if (CurrentFogColorX.r > 4) CurrentFogColorX.r = CurrentFogColorX.r - 4;
-			if (CurrentFogColorX.g > 4) CurrentFogColorX.g = CurrentFogColorX.r - 4;
-			if (CurrentFogColorX.b > 4) CurrentFogColorX.b = CurrentFogColorX.r - 4;
-		}
-		if (SkyDeckAltitude >= 300.0f)
-		{
-			if (SkyDeckSmallCloud.basicdxmodel->mats[0].diffuse.argb.r > 8)
+			UVShift1 = (UVShift1 - 4 * FramerateSetting) % 255;
+			UVShift2 = (UVShift2 - 2 * FramerateSetting) % 255;
+			for (unsigned int q = 0; q < LengthOfArray(uvSTG06_01D4BE68_0); q++)
 			{
-				SkyDeckSmallCloud.basicdxmodel->mats[0].diffuse.argb.r -= 8;
-				SkyDeckSmallCloud.basicdxmodel->mats[0].diffuse.argb.g -= 8;
-				SkyDeckSmallCloud.basicdxmodel->mats[0].diffuse.argb.b -= 8;
+				SkyNormal1->basicdxmodel->meshsets[0].vertuv[q].u = uvSTG06_01D4BE68_0[q].u + UVShift2;
+				SkyNormal2->basicdxmodel->meshsets[0].vertuv[q].u = uvSTG06_01D4BE68_0[q].u + UVShift1;
+				SkyDark1->basicdxmodel->meshsets[0].vertuv[q].u = uvSTG06_01D4BE68_0[q].u + UVShift2;
+				SkyDark2->basicdxmodel->meshsets[0].vertuv[q].u = uvSTG06_01D4BE68_0[q].u + UVShift1;
+			}
+			CurrentFogLayer = 4000.0f - flt_3C8046C * 3000;
+			CurrentFogDistance = 12000.0f - flt_3C8046C * 9000;
+			if (flt_3C8046C <= 0)
+			{
+				if (CurrentFogColorX.r > 4) CurrentFogColorX.r = CurrentFogColorX.r - 4;
+				if (CurrentFogColorX.g > 4) CurrentFogColorX.g = CurrentFogColorX.r - 4;
+				if (CurrentFogColorX.b > 4) CurrentFogColorX.b = CurrentFogColorX.r - 4;
+			}
+			if (SkyDeckAltitude >= 300.0f)
+			{
+				if (SkyDeckSmallCloud.basicdxmodel->mats[0].diffuse.argb.r > 8)
+				{
+					SkyDeckSmallCloud.basicdxmodel->mats[0].diffuse.argb.r -= 8;
+					SkyDeckSmallCloud.basicdxmodel->mats[0].diffuse.argb.g -= 8;
+					SkyDeckSmallCloud.basicdxmodel->mats[0].diffuse.argb.b -= 8;
+				}
+				else
+				{
+					SkyDeckSmallCloud.basicdxmodel->mats[0].diffuse.argb.r = 0;
+					SkyDeckSmallCloud.basicdxmodel->mats[0].diffuse.argb.g = 0;
+					SkyDeckSmallCloud.basicdxmodel->mats[0].diffuse.argb.b = 0;
+				}
 			}
 			else
 			{
-				SkyDeckSmallCloud.basicdxmodel->mats[0].diffuse.argb.r = 0;
-				SkyDeckSmallCloud.basicdxmodel->mats[0].diffuse.argb.g = 0;
-				SkyDeckSmallCloud.basicdxmodel->mats[0].diffuse.argb.b = 0;
+				if (SkyDeckSmallCloud.basicdxmodel->mats[0].diffuse.argb.r < 247)
+				{
+					SkyDeckSmallCloud.basicdxmodel->mats[0].diffuse.argb.r += 8;
+					SkyDeckSmallCloud.basicdxmodel->mats[0].diffuse.argb.g += 8;
+					SkyDeckSmallCloud.basicdxmodel->mats[0].diffuse.argb.b += 8;
+				}
+				else
+				{
+					SkyDeckSmallCloud.basicdxmodel->mats[0].diffuse.argb.r = 255;
+					SkyDeckSmallCloud.basicdxmodel->mats[0].diffuse.argb.g = 255;
+					SkyDeckSmallCloud.basicdxmodel->mats[0].diffuse.argb.b = 255;
+				}
 			}
-		}
-		else
-		{
-			if (SkyDeckSmallCloud.basicdxmodel->mats[0].diffuse.argb.r < 247)
+			if (flt_3C8046C > 0)
 			{
-				SkyDeckSmallCloud.basicdxmodel->mats[0].diffuse.argb.r += 8;
-				SkyDeckSmallCloud.basicdxmodel->mats[0].diffuse.argb.g += 8;
-				SkyDeckSmallCloud.basicdxmodel->mats[0].diffuse.argb.b += 8;
+				if (CurrentFogColorX.r < 178) CurrentFogColorX.r = CurrentFogColorX.r + 4;
+				if (CurrentFogColorX.g < 178) CurrentFogColorX.g = CurrentFogColorX.g + 4;
+				if (CurrentFogColorX.b < 178) CurrentFogColorX.b = CurrentFogColorX.b + 4;
 			}
-			else
+			if (CurrentAct == 0 || CurrentAct == 1)
 			{
-				SkyDeckSmallCloud.basicdxmodel->mats[0].diffuse.argb.r = 255;
-				SkyDeckSmallCloud.basicdxmodel->mats[0].diffuse.argb.g = 255;
-				SkyDeckSmallCloud.basicdxmodel->mats[0].diffuse.argb.b = 255;
-			}
-		}
-		if (flt_3C8046C > 0)
-		{
-			if (CurrentFogColorX.r < 178) CurrentFogColorX.r = CurrentFogColorX.r + 4;
-			if (CurrentFogColorX.g < 178) CurrentFogColorX.g = CurrentFogColorX.g + 4;
-			if (CurrentFogColorX.b < 178) CurrentFogColorX.b = CurrentFogColorX.b + 4;
-		}
-		if (CurrentAct == 0 || CurrentAct == 1)
-		{
-			if (flt_3C8046C > 0 && SkyDeckTransitionEnable == false)
-			{
-				SkyDeckTransitionEnable = true;
-				SkyDeckSkyboxModel_Normal.basicdxmodel->mats[0].attrflags |= NJD_FLAG_USE_ALPHA;
-				SkyDeckSkyboxModel_Normal.basicdxmodel->mats[1].attrflags |= NJD_FLAG_USE_ALPHA;
-				SkyDeckSkyboxModel_Normal.basicdxmodel->mats[2].attrflags |= NJD_FLAG_USE_ALPHA;
-				SkyDeckSkyboxModel_Dark.basicdxmodel->mats[0].attrflags |= NJD_FLAG_USE_ALPHA;
-				SkyDeckSkyboxModel_Dark.basicdxmodel->mats[1].attrflags |= NJD_FLAG_USE_ALPHA;
-				SkyDeckSkyboxModel_Dark.basicdxmodel->mats[2].attrflags |= NJD_FLAG_USE_ALPHA;
-				SkyDeckSkyboxModel_Dark.basicdxmodel->mats[3].attrflags |= NJD_FLAG_USE_ALPHA;
-			}
-			if (flt_3C8046C <= 0 && SkyDeckTransitionEnable == true)
-			{
-				SkyDeckTransitionEnable = false;
-				SkyDeckSkyboxModel_Normal.basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_USE_ALPHA;
-				SkyDeckSkyboxModel_Normal.basicdxmodel->mats[1].attrflags &= ~NJD_FLAG_USE_ALPHA;
-				SkyDeckSkyboxModel_Normal.basicdxmodel->mats[2].attrflags &= ~NJD_FLAG_USE_ALPHA;
-				SkyDeckSkyboxModel_Dark.basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_USE_ALPHA;
-				SkyDeckSkyboxModel_Dark.basicdxmodel->mats[1].attrflags &= ~NJD_FLAG_USE_ALPHA;
-				SkyDeckSkyboxModel_Dark.basicdxmodel->mats[2].attrflags &= ~NJD_FLAG_USE_ALPHA;
-				SkyDeckSkyboxModel_Dark.basicdxmodel->mats[3].attrflags &= ~NJD_FLAG_USE_ALPHA;
+				if (flt_3C8046C > 0 && SkyDeckTransitionEnable == false)
+				{
+					SkyDeckTransitionEnable = true;
+					SkyDeckSkyboxModel_Normal.basicdxmodel->mats[0].attrflags |= NJD_FLAG_USE_ALPHA;
+					SkyDeckSkyboxModel_Normal.basicdxmodel->mats[1].attrflags |= NJD_FLAG_USE_ALPHA;
+					SkyDeckSkyboxModel_Normal.basicdxmodel->mats[2].attrflags |= NJD_FLAG_USE_ALPHA;
+					SkyDeckSkyboxModel_Dark.basicdxmodel->mats[0].attrflags |= NJD_FLAG_USE_ALPHA;
+					SkyDeckSkyboxModel_Dark.basicdxmodel->mats[1].attrflags |= NJD_FLAG_USE_ALPHA;
+					SkyDeckSkyboxModel_Dark.basicdxmodel->mats[2].attrflags |= NJD_FLAG_USE_ALPHA;
+					SkyDeckSkyboxModel_Dark.basicdxmodel->mats[3].attrflags |= NJD_FLAG_USE_ALPHA;
+				}
+				if (flt_3C8046C <= 0 && SkyDeckTransitionEnable == true)
+				{
+					SkyDeckTransitionEnable = false;
+					SkyDeckSkyboxModel_Normal.basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_USE_ALPHA;
+					SkyDeckSkyboxModel_Normal.basicdxmodel->mats[1].attrflags &= ~NJD_FLAG_USE_ALPHA;
+					SkyDeckSkyboxModel_Normal.basicdxmodel->mats[2].attrflags &= ~NJD_FLAG_USE_ALPHA;
+					SkyDeckSkyboxModel_Dark.basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_USE_ALPHA;
+					SkyDeckSkyboxModel_Dark.basicdxmodel->mats[1].attrflags &= ~NJD_FLAG_USE_ALPHA;
+					SkyDeckSkyboxModel_Dark.basicdxmodel->mats[2].attrflags &= ~NJD_FLAG_USE_ALPHA;
+					SkyDeckSkyboxModel_Dark.basicdxmodel->mats[3].attrflags &= ~NJD_FLAG_USE_ALPHA;
+				}
 			}
 		}
 	}
