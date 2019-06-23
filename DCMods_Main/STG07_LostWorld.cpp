@@ -278,7 +278,6 @@ void LostWorld_Init()
 	WriteCall((void*)0x5E927F, RenderLWPlatformLight);
 	//Water fixes
 	WriteData<1>((void*)0x005E2090, 0xC3u); //Kill water animation in Act 1
-	AddTextureAnimation(0, &((NJS_OBJECT*)0x01FE9D7C)->basicdxmodel->mats[1], false, 4, 44, 57, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); //OSuimen
 	//Fog and other stuff
 	WriteData<1>((char*)0x005E315D, 0i8); //Prevent the mirror room from disabling character lighting
 	WriteData((float*)0x814CB4, -25.0f); //LW2 fog stuff
@@ -305,10 +304,20 @@ void LostWorld_Init()
 
 void LostWorld_OnFrame()
 {
-	//Draw distance hack for Act 2 boulder corridor
-	if (CurrentLevel == LevelIDs_LostWorld && CurrentAct == 1 && !IsGamePaused())
+	if (CurrentLevel == LevelIDs_LostWorld && !IsGamePaused())
 	{
-		auto entity = EntityData1Ptrs[0];
-		if (entity != nullptr && entity->Position.x < 7000 && entity->Position.x > 1800) CurrentDrawDist = -6000.0f; else CurrentDrawDist = -2700.0f;
+		//OSuimen animation
+		if (CurrentAct == 0)
+		{
+			int texid = ((NJS_OBJECT*)0x1FE9D7C)->basicdxmodel->mats[0].attr_texId;
+			if (texid < 57) texid++; else texid = 44;
+			((NJS_OBJECT*)0x1FE9D7C)->basicdxmodel->mats[0].attr_texId = texid;
+		}
+		//Draw distance hack for Act 2 boulder corridor
+		if (CurrentAct == 1)
+		{
+			auto entity = EntityData1Ptrs[0];
+			if (entity != nullptr && entity->Position.x < 7000 && entity->Position.x > 1800) CurrentDrawDist = -6000.0f; else CurrentDrawDist = -2700.0f;
+		}
 	}
 }
