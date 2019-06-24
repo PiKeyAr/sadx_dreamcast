@@ -15,11 +15,60 @@ NJS_TEXLIST texlist_lw3 = { arrayptrandlength(textures_lw3) };
 #include "LostWorld3.h"
 */
 
+NJS_OBJECT* AokiSwitchModel = nullptr;
+
 DataPointer(float, CurrentDrawDist, 0x03ABDC74);
 DataArray(FogData, LostWorld1Fog, 0x01E79AAC, 3);
 DataArray(FogData, LostWorld2Fog, 0x01E79ADC, 3);
 DataArray(FogData, LostWorld3Fog, 0x01E79B0C, 3);
+DataArray(char, AokiSwitchByteArray, 0x3C7ED8C, 32);
 FunctionPointer(long double, sub_49CC70, (float a1, float a2, float a3), 0x49CC70);
+FunctionPointer(void, sub_407A00, (NJS_MODEL_SADX *model, float scale), 0x407A00);
+
+void __cdecl AokiSwitch_Display(ObjectMaster *a1)
+{
+	EntityData1 *v1; // esi
+	Angle v2; // eax
+	Uint8 v3; // al
+
+	v1 = a1->Data1;
+	if (IsPlayerInsideSphere(&v1->Position, 410.0f))
+	{
+		if (!MissedFrames)
+		{
+			SetTextureToLevelObj();
+			njPushMatrix(0);
+			njTranslateV(0, &v1->Position);
+			v2 = v1->Rotation.y;
+			if (v2)
+			{
+				njRotateY(0, v2);
+			}
+			sub_407A00(AokiSwitchModel->basicdxmodel, 1.0f);
+			if (AokiSwitchByteArray[((signed __int16 *)&a1->Data1->Object)[1]] & 1)
+			{
+				njTranslate(0, 0.0f, 0.0f, 0.0f);
+			}
+			else
+			{
+				njTranslate(0, 0.0f, 0.6f, 0.0f);
+			}
+			v3 = ((Uint8 *)&v1->CharIndex)[1];
+			AokiSwitchModel->child->basicdxmodel->mats[3].attrflags |= 0x21800000;
+			AokiSwitchModel->child->basicdxmodel->mats[4].diffuse.argb.r = v3;
+			AokiSwitchModel->child->basicdxmodel->mats[4].diffuse.argb.g = v3;
+			AokiSwitchModel->child->basicdxmodel->mats[4].diffuse.argb.b = v3;
+			AokiSwitchModel->child->basicdxmodel->mats[4].diffuse.argb.a = 200;
+			AokiSwitchModel->child->basicdxmodel->mats[4].attrflags |= 0x21800000;
+			AokiSwitchModel->child->basicdxmodel->mats[3].diffuse.argb.r = v3;
+			AokiSwitchModel->child->basicdxmodel->mats[3].diffuse.argb.g = v3;
+			AokiSwitchModel->child->basicdxmodel->mats[3].diffuse.argb.b = v3;
+			AokiSwitchModel->child->basicdxmodel->mats[3].diffuse.argb.a = 200;
+			DrawModel_Queue(AokiSwitchModel->child->basicdxmodel, QueuedModelFlagsB_EnableZWrite);
+			njPopMatrix(1u);
+		}
+	}
+}
 
 void RenderLWPlatformTriangle(NJS_MODEL_SADX *model, QueuedModelFlagsB blend, float scale)
 {
@@ -33,73 +82,6 @@ void RenderLWPlatformLight(NJS_MODEL_SADX *model, QueuedModelFlagsB blend, float
 	DrawQueueDepthBias = -1000.0f;
 	DrawModel_QueueVisible(model, blend, scale);
 	DrawQueueDepthBias = 0.0f;
-}
-
-void UnloadLevelFiles_STG07()
-{
-	delete STG07_0_Info;
-	delete STG07_1_Info;
-	delete STG07_2_Info;
-	STG07_0_Info = nullptr;
-	STG07_1_Info = nullptr;
-	STG07_2_Info = nullptr;
-}
-
-void ParseLWMaterials(LandTable *landtable, int act)
-{
-	Uint32 materialflags;
-	NJS_MATERIAL *material;
-	if (act == 0)
-	{
-		for (unsigned int j = 0; j < landtable->COLCount; j++)
-		{
-			for (int k = 0; k < landtable->Col[j].Model->basicdxmodel->nbMat; ++k)
-			{
-				material = (NJS_MATERIAL*)&landtable->Col[j].Model->basicdxmodel->mats[k];
-				if (material->attr_texId >=44 && material->attr_texId <=57)
-				{
-					AddTextureAnimation(0, material, false, 1, 44, 57, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-				}
-			}
-		}
-	}
-	if (act == 1)
-	{
-		for (unsigned int j = 0; j < landtable->COLCount; j++)
-		{
-			for (int k = 0; k < landtable->Col[j].Model->basicdxmodel->nbMat; ++k)
-			{
-				material = (NJS_MATERIAL*)&landtable->Col[j].Model->basicdxmodel->mats[k];
-				if (material->attr_texId >= 81 && material->attr_texId <= 94)
-				{
-					AddTextureAnimation(1, material, false, 1, 81, 94, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-				}
-				else if (landtable->Col[j].Flags & ColFlags_Water && material->attr_texId == 44) AddTextureAnimation(1, material, false, 1, 81, 94, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-			}
-		}
-	}
-}
-
-void LoadLevelFiles_STG07()
-{
-	CheckAndUnloadLevelFiles();
-	STG07_0_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG07\\0.sa1lvl"));
-	STG07_1_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG07\\1.sa1lvl"));
-	STG07_2_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG07\\2.sa1lvl"));
-	LandTable *STG07_0 = STG07_0_Info->getlandtable();
-	LandTable *STG07_1 = STG07_1_Info->getlandtable();
-	LandTable *STG07_2 = STG07_2_Info->getlandtable();
-	RemoveMaterialColors_Landtable(STG07_0);
-	RemoveMaterialColors_Landtable(STG07_1);
-	RemoveMaterialColors_Landtable(STG07_2);
-	ParseLWMaterials(STG07_0, 0);
-	ParseLWMaterials(STG07_1, 1);
-	STG07_0->TexList = &texlist_lw1;
-	STG07_1->TexList = &texlist_lw2;
-	STG07_2->TexList = &texlist_lw3;
-	WriteData((LandTable**)0x97DAE8, STG07_0);
-	WriteData((LandTable**)0x97DAEC, STG07_1);
-	WriteData((LandTable**)0x97DAF0, STG07_2);
 }
 
 void RLight_Display(ObjectMaster *a1)
@@ -178,6 +160,73 @@ signed int __cdecl RLight_Load(ObjectMaster *a1)
 	return 0;
 }
 
+void UnloadLevelFiles_STG07()
+{
+	delete STG07_0_Info;
+	delete STG07_1_Info;
+	delete STG07_2_Info;
+	STG07_0_Info = nullptr;
+	STG07_1_Info = nullptr;
+	STG07_2_Info = nullptr;
+}
+
+void ParseLWMaterials(LandTable *landtable, int act)
+{
+	Uint32 materialflags;
+	NJS_MATERIAL *material;
+	if (act == 0)
+	{
+		for (unsigned int j = 0; j < landtable->COLCount; j++)
+		{
+			for (int k = 0; k < landtable->Col[j].Model->basicdxmodel->nbMat; ++k)
+			{
+				material = (NJS_MATERIAL*)&landtable->Col[j].Model->basicdxmodel->mats[k];
+				if (material->attr_texId >=44 && material->attr_texId <=57)
+				{
+					AddTextureAnimation(0, material, false, 1, 44, 57, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+				}
+			}
+		}
+	}
+	if (act == 1)
+	{
+		for (unsigned int j = 0; j < landtable->COLCount; j++)
+		{
+			for (int k = 0; k < landtable->Col[j].Model->basicdxmodel->nbMat; ++k)
+			{
+				material = (NJS_MATERIAL*)&landtable->Col[j].Model->basicdxmodel->mats[k];
+				if (material->attr_texId >= 81 && material->attr_texId <= 94)
+				{
+					AddTextureAnimation(1, material, false, 1, 81, 94, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+				}
+				else if (landtable->Col[j].Flags & ColFlags_Water && material->attr_texId == 44) AddTextureAnimation(1, material, false, 1, 81, 94, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+			}
+		}
+	}
+}
+
+void LoadLevelFiles_STG07()
+{
+	CheckAndUnloadLevelFiles();
+	STG07_0_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG07\\0.sa1lvl"));
+	STG07_1_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG07\\1.sa1lvl"));
+	STG07_2_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG07\\2.sa1lvl"));
+	LandTable *STG07_0 = STG07_0_Info->getlandtable();
+	LandTable *STG07_1 = STG07_1_Info->getlandtable();
+	LandTable *STG07_2 = STG07_2_Info->getlandtable();
+	RemoveMaterialColors_Landtable(STG07_0);
+	RemoveMaterialColors_Landtable(STG07_1);
+	RemoveMaterialColors_Landtable(STG07_2);
+	ParseLWMaterials(STG07_0, 0);
+	ParseLWMaterials(STG07_1, 1);
+	STG07_0->TexList = &texlist_lw1;
+	STG07_1->TexList = &texlist_lw2;
+	STG07_2->TexList = &texlist_lw3;
+	WriteData((LandTable**)0x97DAE8, STG07_0);
+	WriteData((LandTable**)0x97DAEC, STG07_1);
+	WriteData((LandTable**)0x97DAF0, STG07_2);
+}
+
 void LostWorld_Init()
 {
 	ReplaceBIN_DC("CAM0700S");
@@ -211,6 +260,9 @@ void LostWorld_Init()
 	ReplacePVM("RUIN03");
 	ReplacePVM("OBJ_RUIN");
 	ReplacePVM("OBJ_RUIN2");
+	//AokiSwitch
+	WriteJump((void*)0x5E66D0, AokiSwitch_Display);
+	AokiSwitchModel = LoadModel("system\\data\\STG07\\Models\\00152214.sa1mdl", true);
 	//Models
 	RemoveVertexColors_Object((NJS_OBJECT*)0x10AD204); //OTaki
 	*(NJS_MODEL_SADX*)0x2027290 = *LoadModel("system\\data\\STG07\\Models\\0014A190.sa1mdl", false)->basicdxmodel; //RndBox
@@ -233,7 +285,6 @@ void LostWorld_Init()
 	*(NJS_MODEL_SADX*)0x202AE00 = *LoadModel("system\\data\\STG07\\Models\\0014D47C.sa1mdl", false)->basicdxmodel; //OTap (water)
 	WriteData((NJS_MESHSET_SADX***)0x005E8818, &((NJS_OBJECT*)0x202AE2C)->basicdxmodel->meshsets); //UV animation for OTap
 	WriteData((NJS_MESHSET_SADX***)0x005E884C, &((NJS_OBJECT*)0x202AE2C)->basicdxmodel->meshsets); //UV animation for OTap
-	//*(NJS_MODEL_SADX*)0x0202FF74 = attachSTG07_00151E30; //Aokiswitch
 	((NJS_OBJECT*)0x201AF8C)->basicdxmodel = (NJS_MODEL_SADX*)0x201AF60; //Box part 1 object
 	((NJS_OBJECT*)0x201B1C4)->basicdxmodel = (NJS_MODEL_SADX*)0x201B198; //Box part 2 object
 	((NJS_OBJECT*)0x201B40C)->basicdxmodel = (NJS_MODEL_SADX*)0x201B3E0; //Box part 3 object
