@@ -15,7 +15,10 @@ NJS_TEXLIST texlist_lw3 = { arrayptrandlength(textures_lw3) };
 #include "LostWorld3.h"
 */
 
-NJS_OBJECT* AokiSwitchModel = nullptr;
+NJS_OBJECT* AokiSwitchModel_Base = nullptr;
+NJS_OBJECT* AokiSwitchModel_Child1 = nullptr;
+NJS_OBJECT* AokiSwitchModel_Child2 = nullptr;
+NJS_OBJECT* AokiSwitchModel_Child3 = nullptr;
 
 DataPointer(float, CurrentDrawDist, 0x03ABDC74);
 DataArray(FogData, LostWorld1Fog, 0x01E79AAC, 3);
@@ -36,6 +39,8 @@ void __cdecl AokiSwitch_Display(ObjectMaster *a1)
 	{
 		if (!MissedFrames)
 		{
+			njControl3D_Backup();
+			njControl3D_Remove(NJD_CONTROL_3D_CONSTANT_TEXTURE_MATERIAL);
 			SetTextureToLevelObj();
 			njPushMatrix(0);
 			njTranslateV(0, &v1->Position);
@@ -44,7 +49,7 @@ void __cdecl AokiSwitch_Display(ObjectMaster *a1)
 			{
 				njRotateY(0, v2);
 			}
-			sub_407A00(AokiSwitchModel->basicdxmodel, 1.0f);
+			sub_407A00(AokiSwitchModel_Base->basicdxmodel, 1.0f);
 			if (AokiSwitchByteArray[((signed __int16 *)&a1->Data1->Object)[1]] & 1)
 			{
 				njTranslate(0, 0.0f, 0.0f, 0.0f);
@@ -53,19 +58,17 @@ void __cdecl AokiSwitch_Display(ObjectMaster *a1)
 			{
 				njTranslate(0, 0.0f, 0.6f, 0.0f);
 			}
+			sub_407A00(AokiSwitchModel_Child1->basicdxmodel, 1.0f);
 			v3 = ((Uint8 *)&v1->CharIndex)[1];
-			AokiSwitchModel->child->basicdxmodel->mats[3].attrflags |= 0x21800000;
-			AokiSwitchModel->child->basicdxmodel->mats[3].diffuse.argb.r = v3;
-			AokiSwitchModel->child->basicdxmodel->mats[3].diffuse.argb.g = v3;
-			AokiSwitchModel->child->basicdxmodel->mats[3].diffuse.argb.b = v3;
-			AokiSwitchModel->child->basicdxmodel->mats[3].diffuse.argb.a = 200;
-			AokiSwitchModel->child->basicdxmodel->mats[4].attrflags |= 0x21800000;
-			AokiSwitchModel->child->basicdxmodel->mats[4].diffuse.argb.r = v3;
-			AokiSwitchModel->child->basicdxmodel->mats[4].diffuse.argb.g = v3;
-			AokiSwitchModel->child->basicdxmodel->mats[4].diffuse.argb.b = v3;
-			AokiSwitchModel->child->basicdxmodel->mats[4].diffuse.argb.a = 200;
-			DrawModel_Queue(AokiSwitchModel->child->basicdxmodel, QueuedModelFlagsB_EnableZWrite);
+			float alpha = v3 * 0.00392f;
+			njControl3D(NJD_CONTROL_3D_CONSTANT_MATERIAL);
+			SetMaterialAndSpriteColor_Float(alpha, alpha, alpha, alpha);
+			sub_407A00(AokiSwitchModel_Child2->basicdxmodel, 1.0f);
+			DrawModel_Queue(AokiSwitchModel_Child3->basicdxmodel, QueuedModelFlagsB_EnableZWrite);
+			ClampGlobalColorThing_Thing();
+			njControl3D_Remove(NJD_CONTROL_3D_CONSTANT_MATERIAL);
 			njPopMatrix(1u);
+			njControl3D_Restore();
 		}
 	}
 }
@@ -262,7 +265,20 @@ void LostWorld_Init()
 	ReplacePVM("OBJ_RUIN2");
 	//AokiSwitch
 	WriteJump((void*)0x5E66D0, AokiSwitch_Display);
-	AokiSwitchModel = LoadModel("system\\data\\STG07\\Models\\00152214.sa1mdl", true);
+	AokiSwitchModel_Base = LoadModel("system\\data\\STG07\\Models\\00152214.sa1mdl", false);
+	AokiSwitchModel_Child1 = LoadModel("system\\data\\STG07\\Models\\00151E58.sa1mdl", false);
+	AokiSwitchModel_Child2 = LoadModel("system\\data\\STG07\\Models\\00151E58.sa1mdl", false);
+	AokiSwitchModel_Child3 = LoadModel("system\\data\\STG07\\Models\\00151E58.sa1mdl", false);
+	AokiSwitchModel_Child1->basicdxmodel->meshsets[3].nbMesh = 0;
+	AokiSwitchModel_Child1->basicdxmodel->meshsets[4].nbMesh = 0;
+	AokiSwitchModel_Child2->basicdxmodel->meshsets[0].nbMesh = 0;
+	AokiSwitchModel_Child2->basicdxmodel->meshsets[1].nbMesh = 0;
+	AokiSwitchModel_Child2->basicdxmodel->meshsets[2].nbMesh = 0;
+	AokiSwitchModel_Child2->basicdxmodel->meshsets[3].nbMesh = 0;
+	AokiSwitchModel_Child3->basicdxmodel->meshsets[0].nbMesh = 0;
+	AokiSwitchModel_Child3->basicdxmodel->meshsets[1].nbMesh = 0;
+	AokiSwitchModel_Child3->basicdxmodel->meshsets[2].nbMesh = 0;
+	AokiSwitchModel_Child3->basicdxmodel->meshsets[4].nbMesh = 0;
 	//Models
 	RemoveVertexColors_Object((NJS_OBJECT*)0x10AD204); //OTaki
 	*(NJS_MODEL_SADX*)0x2027290 = *LoadModel("system\\data\\STG07\\Models\\0014A190.sa1mdl", false)->basicdxmodel; //RndBox
