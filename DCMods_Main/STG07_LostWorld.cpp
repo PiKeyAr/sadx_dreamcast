@@ -55,15 +55,15 @@ void __cdecl AokiSwitch_Display(ObjectMaster *a1)
 			}
 			v3 = ((Uint8 *)&v1->CharIndex)[1];
 			AokiSwitchModel->child->basicdxmodel->mats[3].attrflags |= 0x21800000;
-			AokiSwitchModel->child->basicdxmodel->mats[4].diffuse.argb.r = v3;
-			AokiSwitchModel->child->basicdxmodel->mats[4].diffuse.argb.g = v3;
-			AokiSwitchModel->child->basicdxmodel->mats[4].diffuse.argb.b = v3;
-			AokiSwitchModel->child->basicdxmodel->mats[4].diffuse.argb.a = 200;
-			AokiSwitchModel->child->basicdxmodel->mats[4].attrflags |= 0x21800000;
 			AokiSwitchModel->child->basicdxmodel->mats[3].diffuse.argb.r = v3;
 			AokiSwitchModel->child->basicdxmodel->mats[3].diffuse.argb.g = v3;
 			AokiSwitchModel->child->basicdxmodel->mats[3].diffuse.argb.b = v3;
 			AokiSwitchModel->child->basicdxmodel->mats[3].diffuse.argb.a = 200;
+			AokiSwitchModel->child->basicdxmodel->mats[4].attrflags |= 0x21800000;
+			AokiSwitchModel->child->basicdxmodel->mats[4].diffuse.argb.r = v3;
+			AokiSwitchModel->child->basicdxmodel->mats[4].diffuse.argb.g = v3;
+			AokiSwitchModel->child->basicdxmodel->mats[4].diffuse.argb.b = v3;
+			AokiSwitchModel->child->basicdxmodel->mats[4].diffuse.argb.a = 200;
 			DrawModel_Queue(AokiSwitchModel->child->basicdxmodel, QueuedModelFlagsB_EnableZWrite);
 			njPopMatrix(1u);
 		}
