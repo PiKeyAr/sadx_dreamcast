@@ -643,6 +643,38 @@ void LoadModel_ReplaceMeshes(NJS_OBJECT *object, const char *ModelName)
 	PrintDebug("OK\n");
 }
 
+void SwapMeshsets(NJS_OBJECT* object, int mesh1, int mesh2)
+{
+	NJS_MESHSET_SADX TempMeshset = { NJD_MESHSET_TRIMESH | 0, 0, NULL, NULL, NULL, NULL, NULL, NULL };
+	//Save mesh 1 data to a temporary meshset
+	TempMeshset.attrs = object->basicdxmodel->meshsets[mesh1].attrs;
+	TempMeshset.buffer = object->basicdxmodel->meshsets[mesh1].buffer;
+	TempMeshset.meshes = object->basicdxmodel->meshsets[mesh1].meshes;
+	TempMeshset.nbMesh = object->basicdxmodel->meshsets[mesh1].nbMesh;
+	TempMeshset.normals = object->basicdxmodel->meshsets[mesh1].normals;
+	TempMeshset.type_matId = object->basicdxmodel->meshsets[mesh1].type_matId;
+	TempMeshset.vertcolor = object->basicdxmodel->meshsets[mesh1].vertcolor;
+	TempMeshset.vertuv = object->basicdxmodel->meshsets[mesh1].vertuv;
+	//Replace mesh 1 data with mesh 2 data
+	object->basicdxmodel->meshsets[mesh1].attrs = object->basicdxmodel->meshsets[mesh2].attrs;
+	object->basicdxmodel->meshsets[mesh1].buffer = object->basicdxmodel->meshsets[mesh2].buffer;
+	object->basicdxmodel->meshsets[mesh1].meshes = object->basicdxmodel->meshsets[mesh2].meshes;
+	object->basicdxmodel->meshsets[mesh1].nbMesh = object->basicdxmodel->meshsets[mesh2].nbMesh;
+	object->basicdxmodel->meshsets[mesh1].normals = object->basicdxmodel->meshsets[mesh2].normals;
+	object->basicdxmodel->meshsets[mesh1].type_matId = object->basicdxmodel->meshsets[mesh2].type_matId;
+	object->basicdxmodel->meshsets[mesh1].vertcolor = object->basicdxmodel->meshsets[mesh2].vertcolor;
+	object->basicdxmodel->meshsets[mesh1].vertuv = object->basicdxmodel->meshsets[mesh2].vertuv;
+	//Replace mesh 2 data with saved mesh 1 data
+	object->basicdxmodel->meshsets[mesh2].attrs = TempMeshset.attrs;
+	object->basicdxmodel->meshsets[mesh2].buffer = TempMeshset.buffer;
+	object->basicdxmodel->meshsets[mesh2].meshes = TempMeshset.meshes;
+	object->basicdxmodel->meshsets[mesh2].nbMesh = TempMeshset.nbMesh;
+	object->basicdxmodel->meshsets[mesh2].normals = TempMeshset.normals;
+	object->basicdxmodel->meshsets[mesh2].type_matId = TempMeshset.type_matId;
+	object->basicdxmodel->meshsets[mesh2].vertcolor = TempMeshset.vertcolor;
+	object->basicdxmodel->meshsets[mesh2].vertuv = TempMeshset.vertuv;
+}
+
 void SortModel(NJS_OBJECT *object)
 {
 	bool DebugSorting = false;
