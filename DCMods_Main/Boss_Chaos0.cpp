@@ -82,7 +82,7 @@ void __cdecl ComeOneYaBigDrip()
 	njPushMatrix(0);
 	njTranslateV(0, &v0->Position);
 	njScaleV(0, &v0->Scale);
-	ProcessModelNode_A_WrapperB(&Chaos_Puddle_Model, QueuedModelFlagsB_EnableZWrite);
+	ProcessModelNode_D(&Chaos_Puddle_Model, (QueuedModelFlagsB)0, 1.0f);
 	njPopMatrix(1u);
 }
 
@@ -103,6 +103,11 @@ void LoadLevelFiles_B_CHAOS0()
 	___LANDTABLEBOSSCHAOS0[0] = B_CHAOS0;
 }
 
+void Chaos0PuddleFix(NJS_OBJECT* a1)
+{
+	ProcessModelNode_D(a1, (QueuedModelFlagsB)0, 1.0f);
+}
+
 void Chaos0_Init()
 {
 	ReplaceBIN_DC("SET1500S");
@@ -113,6 +118,8 @@ void Chaos0_Init()
 	ReplacePVM("EV_CHAOS0_MANJU");
 	WriteData<1>((char*)0x54932B, 0x08); //Police car lights blending mode
 	WriteData<1>((char*)0x7AD16D, 0x08); //Chaos 0 puddle mark blending mode
+	WriteData<1>((char*)0x548470, 0i8); //Chaos 0 puddle queued flags I guess
+	WriteCall((void*)0x54847B, Chaos0PuddleFix);
 	WriteJump((void*)0x6E9B00, ComeOneYaBigDrip); //Alterating transparency in the cutscene after Chaos 0
 	___BOSSCHAOS0_TEXLISTS[2] = &texlist_chaos0;
 	___BOSSCHAOS0_TEXLISTS[3] = &chaos0_object;
