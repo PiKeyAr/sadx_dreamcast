@@ -1,6 +1,5 @@
 #include "stdafx.h"
 #include "textures.h"
-#include "Icicle.h"
 
 NJS_TEXNAME textures_icecap1[34];
 NJS_TEXLIST texlist_icecap1 = { arrayptrandlength(textures_icecap1) };
@@ -10,6 +9,13 @@ NJS_TEXLIST texlist_icecap2 = { arrayptrandlength(textures_icecap2) };
 
 NJS_TEXNAME textures_icecap3[40];
 NJS_TEXLIST texlist_icecap3 = { arrayptrandlength(textures_icecap3) };
+
+/*
+#include "IceCap1.h"
+#include "IceCap2.h"
+#include "IceCap3.h"
+#include "IceCap4.h"
+*/
 
 DataPointer(float, CurrentFogDist, 0x03ABDC64);
 DataPointer(float, CurrentFogLayer, 0x03ABDC60);
@@ -26,7 +32,12 @@ DataArray(DrawDistance, DrawDist_IceCap2, 0x00C67E58, 3);
 DataArray(DrawDistance, DrawDist_IceCap3, 0x00C67E70, 3);
 FunctionPointer(void, sub_405450, (NJS_ACTION *a1, float frame, float scale), 0x405450);
 
-static int animframe = 41;
+NJS_OBJECT* Crystal1_1 = nullptr;
+NJS_OBJECT* Crystal1_2 = nullptr;
+NJS_OBJECT* Crystal1_3 = nullptr;
+NJS_OBJECT* Crystal2_1 = nullptr;
+NJS_OBJECT* Crystal2_2 = nullptr;
+NJS_OBJECT* Crystal2_3 = nullptr;
 
 void RenderSnowboardEffect(ObjectMaster *a1)
 {
@@ -77,7 +88,7 @@ void RenderIcicleSpriteThing(NJS_OBJECT *a1, QueuedModelFlagsB blend_mode, float
 	DrawQueueDepthBias = 0;
 }
 
-void __cdecl sub_4EF5A0X(ObjectMaster *a1)
+void DrawCrystal0(ObjectMaster *a1)
 {
 	EntityData1 *v1; // esi
 	Angle v2; // eax
@@ -87,8 +98,6 @@ void __cdecl sub_4EF5A0X(ObjectMaster *a1)
 	v1 = a1->Data1;
 	if (!MissedFrames)
 	{
-		BackupConstantAttr();
-		RemoveConstantAttr(0, NJD_FLAG_IGNORE_SPECULAR);
 		SetTextureToLevelObj();
 		njPushMatrix(0);
 		njTranslateV(0, &v1->Position);
@@ -107,32 +116,228 @@ void __cdecl sub_4EF5A0X(ObjectMaster *a1)
 		{
 			njRotateY(0, (unsigned __int16)v4);
 		}
-		DrawQueueDepthBias = -2000.0f;
+		DisplayAnimationFrame(&stru_E758E4, *(float *)&v1->LoopData, (QueuedModelFlagsB)0, 0, (void (__cdecl *)(NJS_MODEL_SADX *, int, int))DrawModelThing);
+		njPopMatrix(1u);
+	}
+}
+
+void DrawCrystal1(ObjectMaster *a1)
+{
+	EntityData1 *v1; // esi
+	Angle v2; // eax
+	Angle v3; // eax
+	Angle v4; // eax
+
+	v1 = a1->Data1;
+	if (!MissedFrames)
+	{
+		SetTextureToLevelObj();
+		njPushMatrix(0);
+		njTranslateV(0, &v1->Position);
+		v2 = v1->Rotation.z;
+		if (v2)
+		{
+			njRotateZ(0, (unsigned __int16)v2);
+		}
+		v3 = v1->Rotation.x;
+		if (v3)
+		{
+			njRotateX(0, (unsigned __int16)v3);
+		}
+		v4 = v1->Rotation.y;
+		if (v4)
+		{
+			njRotateY(0, (unsigned __int16)v4);
+		}
+		//1
+		DrawQueueDepthBias = 1000.0f;
+		ProcessModelNode_D(Crystal1_2, (QueuedModelFlagsB)1, 1.0f);
+		njPopMatrix(1u);
+		//2
+		njPushMatrix(0);
+		njTranslateV(0, &v1->Position);
+		v2 = v1->Rotation.z;
+		if (v2)
+		{
+			njRotateZ(0, (unsigned __int16)v2);
+		}
+		v3 = v1->Rotation.x;
+		if (v3)
+		{
+			njRotateX(0, (unsigned __int16)v3);
+		}
+		v4 = v1->Rotation.y;
+		if (v4)
+		{
+			njRotateY(0, (unsigned __int16)v4);
+		}
+		ProcessModelNode_D(Crystal1_1, QueuedModelFlagsB_EnableZWrite, 1.0f);
+		njPopMatrix(1u);
+		//3
+		njPushMatrix(0);
+		njTranslateV(0, &v1->Position);
+		v2 = v1->Rotation.z;
+		if (v2)
+		{
+			njRotateZ(0, (unsigned __int16)v2);
+		}
+		v3 = v1->Rotation.x;
+		if (v3)
+		{
+			njRotateX(0, (unsigned __int16)v3);
+		}
+		v4 = v1->Rotation.y;
+		if (v4)
+		{
+			njRotateY(0, (unsigned __int16)v4);
+		}
+		DrawQueueDepthBias = 2000.0f;
+		ProcessModelNode_D(Crystal1_3, QueuedModelFlagsB_EnableZWrite, 1.0f);
+		njPopMatrix(1u);
+		DrawQueueDepthBias = 0;
+	}
+}
+
+void DrawCrystal2(ObjectMaster *a1)
+{
+	EntityData1 *v1; // esi
+	Angle v2; // eax
+	Angle v3; // eax
+	Angle v4; // eax
+
+	v1 = a1->Data1;
+	if (!MissedFrames)
+	{
+		SetTextureToLevelObj();
+		njPushMatrix(0);
+		njTranslateV(0, &v1->Position);
+		v2 = v1->Rotation.z;
+		if (v2)
+		{
+			njRotateZ(0, (unsigned __int16)v2);
+		}
+		v3 = v1->Rotation.x;
+		if (v3)
+		{
+			njRotateX(0, (unsigned __int16)v3);
+		}
+		v4 = v1->Rotation.y;
+		if (v4)
+		{
+			njRotateY(0, (unsigned __int16)v4);
+		}
+		//1
+		DrawQueueDepthBias = 1000.0f;
+		ProcessModelNode_D(Crystal2_2, QueuedModelFlagsB_EnableZWrite, 1.0f);
+		njPopMatrix(1u);
+		//2
+		njPushMatrix(0);
+		njTranslateV(0, &v1->Position);
+		v2 = v1->Rotation.z;
+		if (v2)
+		{
+			njRotateZ(0, (unsigned __int16)v2);
+		}
+		v3 = v1->Rotation.x;
+		if (v3)
+		{
+			njRotateX(0, (unsigned __int16)v3);
+		}
+		v4 = v1->Rotation.y;
+		if (v4)
+		{
+			njRotateY(0, (unsigned __int16)v4);
+		}
+		DrawQueueDepthBias = 2000.0f;
+		ProcessModelNode_D(Crystal2_1, QueuedModelFlagsB_EnableZWrite, 1.0f);
+		njPopMatrix(1u);
+		//3
+		njPushMatrix(0);
+		njTranslateV(0, &v1->Position);
+		v2 = v1->Rotation.z;
+		if (v2)
+		{
+			njRotateZ(0, (unsigned __int16)v2);
+		}
+		v3 = v1->Rotation.x;
+		if (v3)
+		{
+			njRotateX(0, (unsigned __int16)v3);
+		}
+		v4 = v1->Rotation.y;
+		if (v4)
+		{
+			njRotateY(0, (unsigned __int16)v4);
+		}
+		DrawQueueDepthBias = 3000.0f;
+		ProcessModelNode_D(Crystal2_3, QueuedModelFlagsB_EnableZWrite, 1.0f);
+		njPopMatrix(1u);
+		DrawQueueDepthBias = 0;
+	}
+}
+
+void DrawCrystal3(ObjectMaster *a1)
+{
+	EntityData1 *v1; // esi
+	Angle v2; // eax
+	Angle v3; // eax
+	Angle v4; // eax
+
+	v1 = a1->Data1;
+	if (!MissedFrames)
+	{
+		SetTextureToLevelObj();
+		njPushMatrix(0);
+		njTranslateV(0, &v1->Position);
+		v2 = v1->Rotation.z;
+		if (v2)
+		{
+			njRotateZ(0, v2);
+		}
+		v3 = v1->Rotation.x;
+		if (v3)
+		{
+			njRotateX(0, v3);
+		}
+		v4 = v1->Rotation.y;
+		if (v4)
+		{
+			njRotateY(0, v4);
+		}
+		ProcessModelNode_D(&stru_E773D8, (QueuedModelFlagsB)1, 1.0f);
+		njPopMatrix(1u);
+	}
+}
+
+void __cdecl Crystal_Display(ObjectMaster *a1)
+{
+	
+	EntityData1 *v1; // esi
+	Angle v2; // eax
+	Angle v3; // eax
+	Angle v4; // eax
+
+	v1 = a1->Data1;
+	if (!MissedFrames)
+	{
+		SetTextureToLevelObj();
 		switch (v1->Action)
 		{
 		case 0:
-			sub_405450(&stru_E758E4, *(float *)&v1->LoopData, 1.0f);
-			njPopMatrix(1u);
-			RestoreConstantAttr();
+			DrawCrystal0(a1);
 			return;
 		case 1:
-			DrawQueueDepthBias = -2000.0f;
-			ProcessModelNode(&objectSTG08_00A76598, QueuedModelFlagsB_EnableZWrite, 1.0f); //Start of Ice Cap 1
-			DrawQueueDepthBias = -1000.0f;
-			ProcessModelNode(&objectSTG08_00A76598_2, QueuedModelFlagsB_EnableZWrite, 1.0f); //Start of Ice Cap 1
+			DrawCrystal1(a1);
 			break;
 		case 2:
-			ProcessModelNode_AB_Wrapper(&stru_E76E78, 1.0f);
+			DrawCrystal2(a1);
 			break;
 		case 4:
-			ProcessModelNode_AB_Wrapper(&stru_E773D8, 1.0f);
+			DrawCrystal3(a1);
 			break;
 		default:
 			break;
 		}
-		njPopMatrix(1u);
-		DrawQueueDepthBias = 0;
-		RestoreConstantAttr();
 	}
 }
 
@@ -224,6 +429,35 @@ static void __declspec(naked) Obj_Icecap_DoColFlagThings_a()
 	}
 }
 
+void ParseICMaterials(LandTable* landtable)
+{
+	Uint32 materialflags;
+	NJS_MATERIAL* material;
+	for (unsigned int j = 0; j < landtable->COLCount; j++)
+	{
+		for (int k = 0; k < landtable->Col[j].Model->basicdxmodel->nbMat; ++k)
+		{
+			material = (NJS_MATERIAL*)& landtable->Col[j].Model->basicdxmodel->mats[k];
+			if (material->attr_texId == 16 || (material->attr_texId >= 41 && material->attr_texId <= 54))
+			{
+				AddTextureAnimation(3, material, true, 4, 16, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, -1);
+			}
+		}
+	}
+}
+
+void UnloadLevelFiles_STG08()
+{
+	delete STG08_0_Info;
+	delete STG08_1_Info;
+	delete STG08_2_Info;
+	delete STG08_3_Info;
+	STG08_0_Info = nullptr;
+	STG08_1_Info = nullptr;
+	STG08_2_Info = nullptr;
+	STG08_3_Info = nullptr;
+}
+
 void LoadLevelFiles_STG08()
 {
 	CheckAndUnloadLevelFiles();
@@ -239,6 +473,7 @@ void LoadLevelFiles_STG08()
 	RemoveMaterialColors_Landtable(STG08_1);
 	RemoveMaterialColors_Landtable(STG08_2);
 	RemoveMaterialColors_Landtable(STG08_3);
+	ParseICMaterials(STG08_3);
 	STG08_0->TexList = &texlist_icecap1;
 	STG08_1->TexList = &texlist_icecap2;
 	STG08_2->TexList = &texlist_icecap3;
@@ -249,16 +484,11 @@ void LoadLevelFiles_STG08()
 	WriteData((LandTable**)0x97DB14, STG08_3);
 }
 
-void UnloadLevelFiles_STG08()
+void RenderBigIcicleWithDepth(NJS_OBJECT* a1, int blend_mode, float scale)
 {
-	delete STG08_0_Info;
-	delete STG08_1_Info;
-	delete STG08_2_Info;
-	delete STG08_3_Info;
-	STG08_0_Info = nullptr;
-	STG08_1_Info = nullptr;
-	STG08_2_Info = nullptr;
-	STG08_3_Info = nullptr;
+	DrawQueueDepthBias = 3000.0f;
+	ProcessModelNode_D_WrapperB(a1, blend_mode, scale);
+	DrawQueueDepthBias = 0.0f;
 }
 
 void IceCap_Init()
@@ -301,47 +531,68 @@ void IceCap_Init()
 	ReplacePVR("MTX_BOARD0");
 	ReplacePVR("SB_BOARD1");
 	WriteJump((void*)0x4E91C0, Obj_Icecap_DoColFlagThings_a); //Weird COL flag function
-	/*Crystal fixes, hopefully someday
-	//stru_E76598.basicdxmodel->mats[0].attrflags |= NJD_FLAG_USE_ALPHA;
-	//stru_E76598.basicdxmodel->mats[1].attrflags |= NJD_FLAG_USE_ALPHA;
-	//stru_E76598.basicdxmodel->mats[2].attrflags |= NJD_FLAG_USE_ALPHA;
-	//WriteJump((void*)0x4EF5A0, sub_4EF5A0X);*/
-	WriteCall((void*)0x004EFEF7, RenderIcicleSpriteThing);
-	WriteCall((void*)0x004EFE10, RenderSmallIcicles);
+	//Objects
+	*(NJS_OBJECT*)0xE60F54 = *LoadModel("system\\data\\STG08\\Models\\001702F4.sa1mdl", false); //OSaku01
+	*(NJS_OBJECT*)0xE61BBC = *LoadModel("system\\data\\STG08\\Models\\001713F0.sa1mdl", false); //OSaku01b
+	*(NJS_OBJECT*)0xE6261C = *LoadModel("system\\data\\STG08\\Models\\00170B20.sa1mdl", false); //OSaku02
+	*(NJS_OBJECT*)0xE63444 = *LoadModel("system\\data\\STG08\\Models\\0016F968.sa1mdl", false); //OSaku02b
+	*(NJS_OBJECT*)0xE7B20C = *LoadModel("system\\data\\STG08\\Models\\00188C0C.sa1mdl", false); //OFutaL
+	*(NJS_OBJECT*)0xE7E11C = *LoadModel("system\\data\\STG08\\Models\\0018B1E4.sa1mdl", false); //OFutaL broken
+	*(NJS_OBJECT*)0xE537D8 = *LoadModel("system\\data\\STG08\\Models\\00162694.sa1mdl", false); //Icicle inner part
+	*(NJS_OBJECT*)0xE6E0E0 = *LoadModel("system\\data\\STG08\\Models\\0017BD64.sa1mdl", false); //MizuIwa B
+	*(NJS_OBJECT*)0xE6E694 = *LoadModel("system\\data\\STG08\\Models\\0017C308.sa1mdl", false); //MizuIwa C
+	*(NJS_OBJECT*)0xE52FCC = *LoadModel("system\\data\\STG08\\Models\\00161838.sa1mdl", false); //OIceJmp
+	*(NJS_OBJECT*)0xE6FECC = *LoadModel("system\\data\\STG08\\Models\\0017DAD8.sa1mdl", false); //Giant icicle
+	SwapMeshsets((NJS_OBJECT*)0xE6FECC, 0, 1); //For better looks of the meshes
+	WriteCall((void*)0x4EFE72, RenderBigIcicleWithDepth);
+	*(NJS_OBJECT*)0x986F80 = *LoadModel("system\\data\\STG08\\Models\\001BEF20.sa1mdl", false); //ESMan
+	((NJS_OBJECT*)0x986F80)->basicdxmodel->mats[7].attrflags &= ~NJD_FLAG_USE_ALPHA; //Unnecessary alpha causing errors
+	RemoveVertexColors_Object((NJS_OBJECT*)0x9889E4); //ESMan vehicle
+	//Crystal fixes
+	stru_E773D8.basicdxmodel->mats[0].attrflags |= NJD_FLAG_USE_ALPHA;
+	stru_E773D8.basicdxmodel->mats[1].attrflags |= NJD_FLAG_USE_ALPHA;
+	//Crystal 1
+	Crystal1_1 = LoadModel("system\\data\\STG08\\Models\\00184058.sa1mdl", false);
+	Crystal1_1->basicdxmodel->meshsets[1].nbMesh = 0;
+	Crystal1_1->basicdxmodel->meshsets[2].nbMesh = 0;
+	Crystal1_2 = LoadModel("system\\data\\STG08\\Models\\00184058.sa1mdl", false);
+	Crystal1_2->basicdxmodel->meshsets[0].nbMesh = 0;
+	Crystal1_2->basicdxmodel->meshsets[2].nbMesh = 0;
+	Crystal1_3 = LoadModel("system\\data\\STG08\\Models\\00184058.sa1mdl", false);
+	Crystal1_3->basicdxmodel->meshsets[0].nbMesh = 0;
+	Crystal1_3->basicdxmodel->meshsets[1].nbMesh = 0;
+	//Crystal 2
+	Crystal2_1 = LoadModel("system\\data\\STG08\\Models\\00184918.sa1mdl", false);
+	Crystal2_1->basicdxmodel->meshsets[1].nbMesh = 0;
+	Crystal2_1->basicdxmodel->meshsets[2].nbMesh = 0;
+	Crystal2_2 = LoadModel("system\\data\\STG08\\Models\\00184918.sa1mdl", false);
+	Crystal2_2->basicdxmodel->meshsets[0].nbMesh = 0;
+	Crystal2_2->basicdxmodel->meshsets[2].nbMesh = 0;
+	Crystal2_3 = LoadModel("system\\data\\STG08\\Models\\00184918.sa1mdl", false);
+	Crystal2_3->basicdxmodel->meshsets[0].nbMesh = 0;
+	Crystal2_3->basicdxmodel->meshsets[1].nbMesh = 0;
+	WriteJump((void*)0x4EF5A0, Crystal_Display);
+	WriteCall((void*)0x4EFE10, RenderSmallIcicles);
+	//Snowboard "fixes"
+	RemoveVertexColors_Object(SONIC_OBJECTS[71]);
+	RemoveVertexColors_Object(MILES_OBJECTS[71]);
+	SONIC_OBJECTS[71]->basicdxmodel->mats[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+	SONIC_OBJECTS[71]->basicdxmodel->mats[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+	MILES_OBJECTS[71]->basicdxmodel->mats[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+	MILES_OBJECTS[71]->basicdxmodel->mats[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+	//Various effect fixes
+	WriteCall((void*)0x4EFEF7, RenderIcicleSpriteThing);
 	WriteJump((void*)0x4EB770, FixedAvalanche);
 	WriteJump((void*)0x4EA3E0, RenderSnowboardEffect);
+	WriteCall((void*)0x4F5B6F, FixSnowflake); //Snowflake brightness
+	WriteCall((void*)0x4EB948, FixSnowflake); //Snowflake brightness 2
 	((NJS_OBJECT*)0xE43544)->basicdxmodel->mats[0].attr_texId = 58; //Snowboard effect
-	*(NJS_OBJECT*)0x00E6FECC = objectSTG08_00A6FECC; // Giant icicle
-	//Snowboard fix
-	HMODULE CHRMODELS = GetModuleHandle(L"CHRMODELS_orig");
-	if (CHRMODELS != nullptr)
-	{
-		NJS_OBJECT **___SONIC_OBJECTS = (NJS_OBJECT **)GetProcAddress(CHRMODELS, "___SONIC_OBJECTS");
-		NJS_OBJECT **___MILES_OBJECTS = (NJS_OBJECT **)GetProcAddress(CHRMODELS, "___MILES_OBJECTS");
-		___SONIC_OBJECTS[71]->basicdxmodel->mats[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		___SONIC_OBJECTS[71]->basicdxmodel->mats[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		___SONIC_OBJECTS[71]->basicdxmodel->mats[0].diffuse.color = 0xFFB2B2B2;
-		___SONIC_OBJECTS[71]->basicdxmodel->mats[1].diffuse.color = 0xFFB2B2B2;
-		___MILES_OBJECTS[71]->basicdxmodel->mats[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		___MILES_OBJECTS[71]->basicdxmodel->mats[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		___MILES_OBJECTS[71]->basicdxmodel->mats[0].diffuse.color = 0xFFB2B2B2;
-		___MILES_OBJECTS[71]->basicdxmodel->mats[1].diffuse.color = 0xFFB2B2B2;
-	}
+	((NJS_SPRITE*)0xE956E4)->tlist = &OBJ_ICECAP_TEXLIST; //Snow effect texlist
+	((NJS_TEXANIM*)0xE956D0)->texid = 96; //Snow effect texture ID
 	ResizeTextureList((NJS_TEXLIST*)0xDE3A74, textures_icecap1);
 	ResizeTextureList((NJS_TEXLIST*)0xD39744, textures_icecap2);
 	ResizeTextureList((NJS_TEXLIST*)0xC68408, textures_icecap3);
-	WriteCall((void*)0x4F5B6F, FixSnowflake); //Snowflake brightness
-	WriteCall((void*)0x4EB948, FixSnowflake); //Snowflake brightness 2
-	((NJS_SPRITE*)0xE956E4)->tlist = &OBJ_ICECAP_TEXLIST; //Snow effect texlist
-	((NJS_TEXANIM*)0xE956D0)->texid = 96; //Snow effect texture ID
 	ResizeTextureList(&OBJ_ICECAP_TEXLIST, 100);
-	((NJS_MESHSET_SADX*)0xE7B164)->vertcolor = NULL; //Remove vertex colors in OFutaL (breakable ice)
-	((NJS_MESHSET_SADX*)0xE7DD28)->vertcolor = NULL; //Remove vertex colors in OFutaL (breakable ice)
-	((NJS_MESHSET_SADX*)0xE7DD44)->vertcolor = NULL; //Remove vertex colors in OFutaL (breakable ice)
-	*(NJS_OBJECT*)0xE537D8 = objectSTG08_00162694; //Icicle inner part
-	*(NJS_OBJECT*)0xE6E0E0 = objectSTG08_0017BD64; //MizuIwa B
-	*(NJS_OBJECT*)0xE6E694 = objectSTG08_0017C308; //MizuIwa C
-	*(NJS_OBJECT*)0xE52FCC = objectSTG08_00161838; //OIceJmp
 	for (unsigned int i = 0; i < 3; i++)
 	{
 		IceCap1Fog[i].Color = 0xFFFFFFFF;
@@ -366,10 +617,10 @@ void IceCap_Init()
 
 void IceCap_OnFrame()
 {
-	auto entity = EntityData1Ptrs[0];
-	if (CurrentLevel == 8 && CurrentAct == 2 && GameState != 16)
+	if (CurrentLevel == LevelIDs_IceCap)
 	{
-		if (entity != nullptr)
+		auto entity = EntityData1Ptrs[0];
+		if (CurrentAct == 2 && entity != nullptr && !IsGamePaused())
 		{
 			if (entity->Position.x <= -8000)
 			{
@@ -382,38 +633,5 @@ void IceCap_OnFrame()
 				if (CurrentFogDist < IceCap3Fog[0].Distance) CurrentFogDist = CurrentFogDist + 16; else CurrentFogDist = IceCap3Fog[0].Distance;
 			}
 		}
-	}
-	if (STG08_3_Info && CurrentLevel == 8 && CurrentAct == 3 && GameState != 16)
-	{
-		if (animframe > 54) animframe = 16;
-		if (animframe > 16 && animframe < 41) animframe = 41;
-		((NJS_MATERIAL*)STG08_3_Info->getdata("matlistSTG08_Q00076DC8"))[0].attr_texId = animframe;
-		((NJS_MATERIAL*)STG08_3_Info->getdata("matlistSTG08_Q00077244"))[0].attr_texId = animframe;
-		((NJS_MATERIAL*)STG08_3_Info->getdata("matlistSTG08_Q000820E4"))[0].attr_texId = animframe;
-		((NJS_MATERIAL*)STG08_3_Info->getdata("matlistSTG08_Q000820E4"))[1].attr_texId = animframe;
-		((NJS_MATERIAL*)STG08_3_Info->getdata("matlistSTG08_Q0008E8E0"))[0].attr_texId = animframe;
-		((NJS_MATERIAL*)STG08_3_Info->getdata("matlistSTG08_Q0008E9E4"))[0].attr_texId = animframe;
-		((NJS_MATERIAL*)STG08_3_Info->getdata("matlistSTG08_Q000A4F08"))[0].attr_texId = animframe;
-		((NJS_MATERIAL*)STG08_3_Info->getdata("matlistSTG08_Q000A773C"))[0].attr_texId = animframe;
-		((NJS_MATERIAL*)STG08_3_Info->getdata("matlistSTG08_Q000A773C"))[1].attr_texId = animframe;
-		((NJS_MATERIAL*)STG08_3_Info->getdata("matlistSTG08_Q000A9AD8"))[0].attr_texId = animframe;
-		((NJS_MATERIAL*)STG08_3_Info->getdata("matlistSTG08_Q000A9AD8"))[1].attr_texId = animframe;
-		((NJS_MATERIAL*)STG08_3_Info->getdata("matlistSTG08_Q000A9AD8"))[2].attr_texId = animframe;
-		((NJS_MATERIAL*)STG08_3_Info->getdata("matlistSTG08_Q000AB4B4"))[0].attr_texId = animframe;
-		((NJS_MATERIAL*)STG08_3_Info->getdata("matlistSTG08_Q000AC6B4"))[0].attr_texId = animframe;
-		((NJS_MATERIAL*)STG08_3_Info->getdata("matlistSTG08_Q0005BB68"))[0].attr_texId = animframe;
-		((NJS_MATERIAL*)STG08_3_Info->getdata("matlistSTG08_Q000B624C"))[0].attr_texId = animframe;
-		((NJS_MATERIAL*)STG08_3_Info->getdata("matlistSTG08_Q000B624C"))[1].attr_texId = animframe;
-		((NJS_MATERIAL*)STG08_3_Info->getdata("matlistSTG08_Q000B84C8"))[0].attr_texId = animframe;
-		((NJS_MATERIAL*)STG08_3_Info->getdata("matlistSTG08_Q000BCA5C"))[0].attr_texId = animframe;
-		((NJS_MATERIAL*)STG08_3_Info->getdata("matlistSTG08_Q000BCA5C"))[1].attr_texId = animframe;
-		((NJS_MATERIAL*)STG08_3_Info->getdata("matlistSTG08_Q000BD328"))[0].attr_texId = animframe;
-		((NJS_MATERIAL*)STG08_3_Info->getdata("matlistSTG08_Q000BD328"))[1].attr_texId = animframe;
-		((NJS_MATERIAL*)STG08_3_Info->getdata("matlistSTG08_Q000C4800"))[0].attr_texId = animframe;
-		((NJS_MATERIAL*)STG08_3_Info->getdata("matlistSTG08_Q000C4940"))[0].attr_texId = animframe;
-		((NJS_MATERIAL*)STG08_3_Info->getdata("matlistSTG08_Q000C4A44"))[0].attr_texId = animframe;
-		((NJS_MATERIAL*)STG08_3_Info->getdata("matlistSTG08_Q000C4B84"))[0].attr_texId = animframe;
-		((NJS_MATERIAL*)STG08_3_Info->getdata("matlistSTG08_Q000C4C88"))[0].attr_texId = animframe;
-		if (FramerateSetting < 2 && FrameCounter % 4 == 0 || FramerateSetting == 2 && FrameCounter % 2 == 0 || FramerateSetting > 2) animframe++;
 	}
 }

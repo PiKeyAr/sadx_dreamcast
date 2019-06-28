@@ -204,7 +204,6 @@
     <ClInclude Include="Data\IceCap2.h" />
     <ClInclude Include="Data\IceCap3.h" />
     <ClInclude Include="Data\IceCap4.h" />
-    <ClInclude Include="Data\Icicle.h" />
     <ClInclude Include="Data\LostWorld1.h" />
     <ClInclude Include="Data\LostWorld2.h" />
     <ClInclude Include="Data\LostWorld3.h" />
