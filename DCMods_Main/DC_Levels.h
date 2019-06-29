@@ -23,6 +23,11 @@ DataPointer(float, EnvMap2, 0x038A5DE4);
 DataPointer(float, EnvMap3, 0x038A5E00);
 DataPointer(float, EnvMap4, 0x038A5E04);
 DataArray(LandTable*, LandTableArray, 0x97DBE8, 193);
+FunctionPointer(void, DrawModelCallback_QueueModel, (void(__cdecl* function)(NJS_MODEL_SADX*), NJS_MODEL_SADX* data, float depth, QueuedModelFlagsB queueflags), 0x404840);
+FunctionPointer(void, DrawModelCallback_QueueObject, (void(__cdecl* function)(NJS_OBJECT*), NJS_OBJECT* data, float depth, QueuedModelFlagsB queueflags), 0x404840);
+FunctionPointer(void, DrawModelCallback_QueueObjectMaster, (void(__cdecl* function)(ObjectMaster*), ObjectMaster* data, float depth, QueuedModelFlagsB queueflags), 0x404840);
+FunctionPointer(void, ProcessModelNode_TryReallyHard_2, (NJS_OBJECT* a1), 0x40A280);
+FunctionPointer(void, DrawModel_Queue_407CF0, (NJS_MODEL_SADX* a1, int blend), 0x407FC0);
 
 typedef enum
 {
@@ -198,6 +203,8 @@ struct TextureAnimation
 
 struct UVAnimation
 {
+	int level;
+	int act;
 	NJS_TEX* uv_pointer;
 	int uv_count;
 	int timer;
@@ -293,6 +300,7 @@ extern TextureAnimation TextureAnimationData_Act2[];
 extern TextureAnimation TextureAnimationData_Act3[];
 extern TextureAnimation TextureAnimationData_Act4[];
 extern UVAnimation UVAnimationData[];
+extern UVAnimation UVAnimationData_Permanent[];
 
 //Level load functions
 void LoadLevelFiles_STG01();
@@ -469,7 +477,8 @@ void AnimateTexture(TextureAnimation *texanim);
 void AnimateUVs(UVAnimation *animation);
 void ClearTextureAnimationData();
 void AddTextureAnimation(int act, NJS_MATERIAL* material, bool nonsequential, int speed, int frame1, int frame2, int frame3, int frame4, int frame5, int frame6, int frame7, int frame8, int frame9, int frame10, int frame11, int frame12, int frame13, int frame14, int frame15, int frame16);
-void AddUVAnimation(NJS_TEX* uv, int uv_count, int timer, int u_speed, int v_speed);
+void AddUVAnimation(int level, int act, NJS_TEX* uv, int uv_count, int timer, int u_speed, int v_speed);
+void AddUVAnimation_Permanent(int level, int act, NJS_TEX* uv, int uv_count, int timer, int u_speed, int v_speed);
 void RemoveVertexColors_Object(NJS_OBJECT *obj);
 void RemoveVertexColors_Model(NJS_MODEL_SADX *model);
 NJS_OBJECT* LoadModel(const char *ModelName, bool sort);

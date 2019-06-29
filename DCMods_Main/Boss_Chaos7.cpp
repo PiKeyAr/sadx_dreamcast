@@ -25,7 +25,6 @@ DataPointer(unsigned char, byte_3C5A7ED, 0x3C5A7ED);
 FunctionPointer(void, sub_408530, (NJS_OBJECT *a1), 0x408530);
 FunctionPointer(void, njAction_TryReallyHard, (NJS_ACTION *a1, float frameNumber), 0x409FB0);
 FunctionPointer(void, sub_407CF0, (NJS_MODEL_SADX *a1, QueuedModelFlagsB a2), 0x407CF0);
-FunctionPointer(void, ProcessModelNode_TryReallyHard_2, (NJS_OBJECT *a1), 0x40A280);
 
 NJS_OBJECT* Chaos7UnderwaterPieces[] = { nullptr, nullptr, nullptr };
 
