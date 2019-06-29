@@ -1,8 +1,5 @@
 #include "stdafx.h"
 
-FunctionPointer(void, sub_40A280, (NJS_OBJECT *a1), 0x40A280);
-FunctionPointer(void, sub_407A00, (NJS_MODEL_SADX *model, float a2), 0x407A00);
-
 void LoadBossECOceanPVM(const char *filename, NJS_TEXLIST *texlist)
 {
 	LoadPVM(filename, texlist);
@@ -15,26 +12,24 @@ void LoadBossECOceanTexlist()
 	njSetTexture(&EC_SEA_TEXLIST);
 }
 
+void ChaosTimeToEat_DrawModel(NJS_OBJECT* a1)
+{
+	EnvMap1 = 2.0f;
+	EnvMap2 = 1;
+	EnvMap3 = 0.5f;
+	EnvMap4 = 1.0f;
+	Direct3D_EnableZWrite(0);
+	DrawModel(a1->basicdxmodel);
+	Direct3D_EnableZWrite(1);
+	EnvMap1 = 0.5f;
+	EnvMap2 = 0.5f;
+	EnvMap3 = 0.5f;
+	EnvMap4 = 0.5f;
+}
+
 void ComeOnChaosTimeToEat(NJS_OBJECT *a1)
 {
-	//This isn't entirely accurate to SA1 but I don't have the patience to find values that would replicate it 100%. 
-	//Also this ugly camera workaround is necessary because SADX would be struggling with transparency otherwise.
-	if ((Camera_Data1->Position.y > 155 && Camera_Data1->Position.y < 158) || (Camera_Data1->Position.y > 127 && Camera_Data1->Position.y < 130 && Camera_Data1->Position.x > 970 && Camera_Data1->Position.x < 972))
-	{
-		EnvMap1 = 2.0f;
-		EnvMap2 = 1;
-		EnvMap3 = 0.5f;
-		EnvMap4 = 1.0f;
-		sub_407A00((NJS_MODEL_SADX*)0x2D69600, 1.0f);
-		EnvMap1 = 0.5f;
-		EnvMap2 = 0.5f;
-		EnvMap3 = 0.5f;
-		EnvMap4 = 0.5f;
-	}
-	else
-	{
-		sub_40A280(a1);
-	}
+	DrawModelCallback_QueueObject(ChaosTimeToEat_DrawModel, a1, 2000.0f, (QueuedModelFlagsB)0);
 }
 
 void Bosses_Init()
