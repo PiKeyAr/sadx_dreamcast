@@ -540,6 +540,7 @@ extern "C"
 		{
 			for (int i = 0; i < 64; ++i)
 			{
+				if (UVAnimationData_Permanent[i].uv_pointer) AnimateUVs(&UVAnimationData_Permanent[i]);
 				if (UVAnimationData[i].uv_pointer) AnimateUVs(&UVAnimationData[i]);
 				if (TextureAnimationData[i].material) AnimateTexture(&TextureAnimationData[i]);
 			}

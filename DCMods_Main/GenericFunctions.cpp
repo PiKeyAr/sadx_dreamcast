@@ -164,58 +164,62 @@ void AnimateTexture(TextureAnimation *texanim)
 
 void AnimateUVs(UVAnimation *animation)
 {
-	int actualtimer = 1;
-	//Calculate animation speed if in 30 or 15 FPS mode
-	if (FramerateSetting > 1 && animation->timer > 1) actualtimer = animation->timer / 2; else actualtimer = animation->timer;
-	if (actualtimer == 0) actualtimer = 1;
-	if (animation->uv_pointer && animation->uv_count && FrameCounter % actualtimer == 0)
+	if (CurrentLevel == animation->level && CurrentAct == animation->act)
 	{
-		animation->v_shift += animation->v_speed;
-		animation->u_shift += animation->u_speed;
-		//Limit V +
-		if (animation->v_shift > 255)
+		int actualtimer = 1;
+		//Calculate animation speed if in 30 or 15 FPS mode
+		if (FramerateSetting > 1 && animation->timer > 1) actualtimer = animation->timer / 2; else actualtimer = animation->timer;
+		if (actualtimer == 0) actualtimer = 1;
+		if (animation->uv_pointer && animation->uv_count && FrameCounter % actualtimer == 0)
 		{
-			animation->v_shift -= 255;
+			animation->v_shift += animation->v_speed;
+			animation->u_shift += animation->u_speed;
+			//Limit V +
+			if (animation->v_shift > 510)
+			{
+				animation->v_shift -= 510;
+				for (int i = 0; i < animation->uv_count; i++)
+				{
+					animation->uv_pointer[i].v -= 510;
+				}
+			}
+			//Limit V -
+			if (animation->v_shift < -510)
+			{
+				animation->v_shift += 510;
+				for (int i = 0; i < animation->uv_count; i++)
+				{
+					animation->uv_pointer[i].v += 510;
+				}
+			}
+			//Limit U +
+			if (animation->u_shift > 510)
+			{
+				animation->u_shift -= 510;
+				for (int i = 0; i < animation->uv_count; i++)
+				{
+					animation->uv_pointer[i].u -= 510;
+				}
+			}
+			//Limit U -
+			if (animation->u_shift < -510)
+			{
+				animation->u_shift += 510;
+				for (int i = 0; i < animation->uv_count; i++)
+				{
+					animation->uv_pointer[i].u += 510;
+				}
+			}
+			//Add U and V
 			for (int i = 0; i < animation->uv_count; i++)
 			{
-				animation->uv_pointer[i].v -= 255;
+				animation->uv_pointer[i].v += animation->v_speed;
+				animation->uv_pointer[i].u += animation->u_speed;
 			}
+			//PrintDebug("UV Animation count %d, timer %d, add %d, current %d \n", animation->uv_count, animation->timer, animation->v_shift, animation->uv_pointer[0].v);
 		}
-		//Limit V -
-		if (animation->v_shift < -255)
-		{
-			animation->v_shift += 255;
-			for (int i = 0; i < animation->uv_count; i++)
-			{
-				animation->uv_pointer[i].v += 255;
-			}
-		}
-		//Limit U +
-		if (animation->u_shift > 255)
-		{
-			animation->u_shift -= 255;
-			for (int i = 0; i < animation->uv_count; i++)
-			{
-				animation->uv_pointer[i].u -= 255;
-			}
-		}
-		//Limit U -
-		if (animation->u_shift < -255)
-		{
-			animation->u_shift += 255;
-			for (int i = 0; i < animation->uv_count; i++)
-			{
-				animation->uv_pointer[i].u += 255;
-			}
-		}
-		//Add U and V
-		for (int i = 0; i < animation->uv_count; i++)
-		{
-			animation->uv_pointer[i].v += animation->v_speed;
-			animation->uv_pointer[i].u += animation->u_speed;
-		}
-		//PrintDebug("UV Animation count %d, timer %d, add %d, current %d \n", animation->uv_count, animation->timer, animation->v_shift, animation->uv_pointer[0].v);
 	}
+	else return;
 }
 
 void ClearTextureAnimationData()
@@ -298,7 +302,7 @@ void AddTextureAnimation(int act, NJS_MATERIAL* material, bool nonsequential, in
 	}
 }
 
-void AddUVAnimation(NJS_TEX* uv, int uv_count, int timer, int u_speed, int v_speed)
+void AddUVAnimation(int level, int act, NJS_TEX* uv, int uv_count, int timer, int u_speed, int v_speed)
 {
 	for (int i = 0; i < LengthOfArray(UVAnimationData); i++)
 	{
@@ -309,11 +313,36 @@ void AddUVAnimation(NJS_TEX* uv, int uv_count, int timer, int u_speed, int v_spe
 		}
 		if (!UVAnimationData[i].uv_pointer)
 		{
+			UVAnimationData[i].act = act;
+			UVAnimationData[i].level = level;
 			UVAnimationData[i].uv_pointer = uv;
 			UVAnimationData[i].uv_count = uv_count;
 			UVAnimationData[i].u_speed = u_speed;
 			UVAnimationData[i].v_speed = v_speed;
 			UVAnimationData[i].timer = timer;
+			return;
+		}
+	}
+}
+
+void AddUVAnimation_Permanent(int level, int act, NJS_TEX* uv, int uv_count, int timer, int u_speed, int v_speed)
+{
+	for (int i = 0; i < LengthOfArray(UVAnimationData_Permanent); i++)
+	{
+		if (UVAnimationData_Permanent[i].uv_pointer == uv)
+		{
+			//PrintDebug("Duplicate UVs found\n");
+			return;
+		}
+		if (!UVAnimationData_Permanent[i].uv_pointer)
+		{
+			UVAnimationData_Permanent[i].act = act;
+			UVAnimationData_Permanent[i].level = level;
+			UVAnimationData_Permanent[i].uv_pointer = uv;
+			UVAnimationData_Permanent[i].uv_count = uv_count;
+			UVAnimationData_Permanent[i].u_speed = u_speed;
+			UVAnimationData_Permanent[i].v_speed = v_speed;
+			UVAnimationData_Permanent[i].timer = timer;
 			return;
 		}
 	}

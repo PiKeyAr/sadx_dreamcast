@@ -357,7 +357,7 @@ void ParsePastMaterials()
 			{
 				if (!(landtable->Col[j].Flags & ColFlags_UvManipulation)) landtable->Col[j].Flags |= ColFlags_UvManipulation;
 				uv = landtable->Col[j].Model->basicdxmodel->meshsets[k].vertuv;
-				AddUVAnimation(uv, 96, 1, 0, -4);
+				AddUVAnimation(34, 1, uv, 96, 1, 0, -4);
 			}
 		}
 	}
@@ -390,7 +390,7 @@ void ParsePastMaterials()
 			{
 				if (!(landtable->Col[j].Flags & ColFlags_UvManipulation)) landtable->Col[j].Flags |= ColFlags_UvManipulation;
 				uv = landtable->Col[j].Model->basicdxmodel->meshsets[k].vertuv;
-				AddUVAnimation(uv, 96, 1, 0, -4);
+				AddUVAnimation(34, 2, uv, 96, 1, 0, -4);
 			}
 		}
 	}
