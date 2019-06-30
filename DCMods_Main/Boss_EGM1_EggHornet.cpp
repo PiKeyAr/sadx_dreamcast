@@ -103,7 +103,7 @@ void LoadLevelFiles_B_EGM1()
 			if (material->attr_texId == 55)
 			{
 				material->attr_texId = 0;
-				AddTextureAnimation(0, material, false, 5, 0, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+				AddTextureAnimation(20, 0, material, false, 5, 0, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 			}
 			//White diffuse
 			if (material->attrflags & NJD_CUSTOMFLAG_WHITE)

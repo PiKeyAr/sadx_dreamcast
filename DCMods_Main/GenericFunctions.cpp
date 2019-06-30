@@ -224,38 +224,34 @@ void AnimateUVs(UVAnimation *animation)
 
 void ClearTextureAnimationData()
 {
-	TextureAnimation* TextureAnimationData = TextureAnimationData_Act1;
-	for (int u = 0; u < 4; u++)
+	for (int i = 0; i < LengthOfArray(TextureAnimationData); i++)
 	{
-		if (u == 0) TextureAnimationData = TextureAnimationData_Act1;
-		else if (u == 1) TextureAnimationData = TextureAnimationData_Act2;
-		else if (u == 2) TextureAnimationData = TextureAnimationData_Act3;
-		else TextureAnimationData = TextureAnimationData_Act4;
-		for (int i = 0; i < 64; i++)
-		{
-			TextureAnimationData[i].material = nullptr;
-			TextureAnimationData[i].NonSequential = false;
-			TextureAnimationData[i].Speed = 0;
-			TextureAnimationData[i].Frame1 = 0;
-			TextureAnimationData[i].Frame2 = 0;
-			TextureAnimationData[i].Frame3 = 0;
-			TextureAnimationData[i].Frame4 = 0;
-			TextureAnimationData[i].Frame5 = 0;
-			TextureAnimationData[i].Frame6 = 0;
-			TextureAnimationData[i].Frame7 = 0;
-			TextureAnimationData[i].Frame8 = 0;
-			TextureAnimationData[i].Frame9 = 0;
-			TextureAnimationData[i].Frame10 = 0;
-			TextureAnimationData[i].Frame11 = 0;
-			TextureAnimationData[i].Frame12 = 0;
-			TextureAnimationData[i].Frame13 = 0;
-			TextureAnimationData[i].Frame14 = 0;
-			TextureAnimationData[i].Frame15 = 0;
-			TextureAnimationData[i].Frame16 = 0;
-		}
+		TextureAnimationData[i].act = -1;
+		TextureAnimationData[i].level = -1;
+		TextureAnimationData[i].material = nullptr;
+		TextureAnimationData[i].NonSequential = false;
+		TextureAnimationData[i].Speed = 0;
+		TextureAnimationData[i].Frame1 = 0;
+		TextureAnimationData[i].Frame2 = 0;
+		TextureAnimationData[i].Frame3 = 0;
+		TextureAnimationData[i].Frame4 = 0;
+		TextureAnimationData[i].Frame5 = 0;
+		TextureAnimationData[i].Frame6 = 0;
+		TextureAnimationData[i].Frame7 = 0;
+		TextureAnimationData[i].Frame8 = 0;
+		TextureAnimationData[i].Frame9 = 0;
+		TextureAnimationData[i].Frame10 = 0;
+		TextureAnimationData[i].Frame11 = 0;
+		TextureAnimationData[i].Frame12 = 0;
+		TextureAnimationData[i].Frame13 = 0;
+		TextureAnimationData[i].Frame14 = 0;
+		TextureAnimationData[i].Frame15 = 0;
+		TextureAnimationData[i].Frame16 = 0;
 	}
 	for (int i = 0; i < LengthOfArray(UVAnimationData); i++)
 	{
+		UVAnimationData[i].level = -1;
+		UVAnimationData[i].act = -1;
 		UVAnimationData[i].uv_pointer = nullptr;
 		UVAnimationData[i].uv_count = 0;
 		UVAnimationData[i].u_speed = 0;
@@ -266,18 +262,15 @@ void ClearTextureAnimationData()
 	}
 }
 
-void AddTextureAnimation(int act, NJS_MATERIAL* material, bool nonsequential, int speed, int frame1, int frame2, int frame3, int frame4, int frame5, int frame6, int frame7, int frame8, int frame9, int frame10, int frame11, int frame12, int frame13, int frame14, int frame15, int frame16)
+void AddTextureAnimation(int level, int act, NJS_MATERIAL* material, bool nonsequential, int speed, int frame1, int frame2, int frame3, int frame4, int frame5, int frame6, int frame7, int frame8, int frame9, int frame10, int frame11, int frame12, int frame13, int frame14, int frame15, int frame16)
 {
-	TextureAnimation* TextureAnimationData = TextureAnimationData_Act1;
-	if (act == 0) TextureAnimationData = TextureAnimationData_Act1;
-	else if (act == 1) TextureAnimationData = TextureAnimationData_Act2;
-	else if (act == 2) TextureAnimationData = TextureAnimationData_Act3;
-	else TextureAnimationData = TextureAnimationData_Act4;
-	for (int i = 0; i < 64; i++)
+	for (int i = 0; i < LengthOfArray(TextureAnimationData); i++)
 	{
 		if (TextureAnimationData[i].material == material) return;
 		if (!TextureAnimationData[i].material)
 		{
+			TextureAnimationData[i].level = level;
+			TextureAnimationData[i].act = act;
 			TextureAnimationData[i].material = material;
 			TextureAnimationData[i].NonSequential = nonsequential;
 			TextureAnimationData[i].Speed = speed;
@@ -302,6 +295,39 @@ void AddTextureAnimation(int act, NJS_MATERIAL* material, bool nonsequential, in
 	}
 }
 
+void AddTextureAnimation_Permanent(int level, int act, NJS_MATERIAL* material, bool nonsequential, int speed, int frame1, int frame2, int frame3, int frame4, int frame5, int frame6, int frame7, int frame8, int frame9, int frame10, int frame11, int frame12, int frame13, int frame14, int frame15, int frame16)
+{
+	for (int i = 0; i < LengthOfArray(TextureAnimationData_Permanent); i++)
+	{
+		if (TextureAnimationData_Permanent[i].material == material) return;
+		if (!TextureAnimationData_Permanent[i].material)
+		{
+			TextureAnimationData_Permanent[i].level = level;
+			TextureAnimationData_Permanent[i].act = act;
+			TextureAnimationData_Permanent[i].material = material;
+			TextureAnimationData_Permanent[i].NonSequential = nonsequential;
+			TextureAnimationData_Permanent[i].Speed = speed;
+			TextureAnimationData_Permanent[i].Frame1 = frame1;
+			TextureAnimationData_Permanent[i].Frame2 = frame2;
+			TextureAnimationData_Permanent[i].Frame3 = frame3;
+			TextureAnimationData_Permanent[i].Frame4 = frame4;
+			TextureAnimationData_Permanent[i].Frame5 = frame5;
+			TextureAnimationData_Permanent[i].Frame6 = frame6;
+			TextureAnimationData_Permanent[i].Frame7 = frame7;
+			TextureAnimationData_Permanent[i].Frame8 = frame8;
+			TextureAnimationData_Permanent[i].Frame9 = frame9;
+			TextureAnimationData_Permanent[i].Frame10 = frame10;
+			TextureAnimationData_Permanent[i].Frame11 = frame11;
+			TextureAnimationData_Permanent[i].Frame12 = frame12;
+			TextureAnimationData_Permanent[i].Frame13 = frame13;
+			TextureAnimationData_Permanent[i].Frame14 = frame14;
+			TextureAnimationData_Permanent[i].Frame15 = frame15;
+			TextureAnimationData_Permanent[i].Frame16 = frame16;
+			return;
+		}
+	}
+}
+
 void AddUVAnimation(int level, int act, NJS_TEX* uv, int uv_count, int timer, int u_speed, int v_speed)
 {
 	for (int i = 0; i < LengthOfArray(UVAnimationData); i++)
@@ -313,8 +339,8 @@ void AddUVAnimation(int level, int act, NJS_TEX* uv, int uv_count, int timer, in
 		}
 		if (!UVAnimationData[i].uv_pointer)
 		{
-			UVAnimationData[i].act = act;
 			UVAnimationData[i].level = level;
+			UVAnimationData[i].act = act;
 			UVAnimationData[i].uv_pointer = uv;
 			UVAnimationData[i].uv_count = uv_count;
 			UVAnimationData[i].u_speed = u_speed;
@@ -336,8 +362,8 @@ void AddUVAnimation_Permanent(int level, int act, NJS_TEX* uv, int uv_count, int
 		}
 		if (!UVAnimationData_Permanent[i].uv_pointer)
 		{
-			UVAnimationData_Permanent[i].act = act;
 			UVAnimationData_Permanent[i].level = level;
+			UVAnimationData_Permanent[i].act = act;
 			UVAnimationData_Permanent[i].uv_pointer = uv;
 			UVAnimationData_Permanent[i].uv_count = uv_count;
 			UVAnimationData_Permanent[i].u_speed = u_speed;

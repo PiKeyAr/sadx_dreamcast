@@ -440,7 +440,7 @@ void ParseICMaterials(LandTable* landtable)
 			material = (NJS_MATERIAL*)& landtable->Col[j].Model->basicdxmodel->mats[k];
 			if (material->attr_texId == 16 || (material->attr_texId >= 41 && material->attr_texId <= 54))
 			{
-				AddTextureAnimation(3, material, true, 4, 16, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, -1);
+				AddTextureAnimation(8, 3, material, true, 4, 16, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, -1);
 			}
 		}
 	}

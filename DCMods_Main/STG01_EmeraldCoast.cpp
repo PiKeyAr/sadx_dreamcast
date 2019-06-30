@@ -504,14 +504,14 @@ void ParseEmeraldCoastColFlagsAndMaterials(LandTable *landtable, int act)
 				if ((materialflags & NJD_CUSTOMFLAG_TEXANIM1) && !(materialflags & NJD_CUSTOMFLAG_TEXANIM2))
 				{
 					material = (NJS_MATERIAL*)&landtable->Col[j].Model->basicdxmodel->mats[k];
-					AddTextureAnimation(0, material, false, 4, 82, 96, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+					AddTextureAnimation(1, 0, material, false, 4, 82, 96, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 					if (SADXWater_EmeraldCoast) landtable->Col[j].Flags = 0x80000402;
 				}
 				//Texanim 2
 				if ((materialflags & NJD_CUSTOMFLAG_TEXANIM2) && !(materialflags & NJD_CUSTOMFLAG_TEXANIM1))
 				{
 					material = (NJS_MATERIAL*)&landtable->Col[j].Model->basicdxmodel->mats[k];
-					AddTextureAnimation(0, material, false, 3, 67, 81, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+					AddTextureAnimation(1, 0, material, false, 3, 67, 81, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 				}
 			}
 		}
@@ -533,20 +533,20 @@ void ParseEmeraldCoastColFlagsAndMaterials(LandTable *landtable, int act)
 				if ((materialflags & NJD_CUSTOMFLAG_TEXANIM1) && !(materialflags & NJD_CUSTOMFLAG_TEXANIM2))
 				{
 					material = (NJS_MATERIAL*)&landtable->Col[j].Model->basicdxmodel->mats[k];
-					AddTextureAnimation(1, material, false, 4, 71, 85, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+					AddTextureAnimation(1, 1, material, false, 4, 71, 85, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 					if (SADXWater_EmeraldCoast) landtable->Col[j].Flags = 0x80000402;
 				}
 				//Texanim 2
 				if ((materialflags & NJD_CUSTOMFLAG_TEXANIM2) && !(materialflags & NJD_CUSTOMFLAG_TEXANIM1))
 				{
 					material = (NJS_MATERIAL*)&landtable->Col[j].Model->basicdxmodel->mats[k];
-					AddTextureAnimation(1, material, false, 3, 42, 56, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+					AddTextureAnimation(1, 1, material, false, 3, 42, 56, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 				}
 				//Texanim 3
 				if ((materialflags & NJD_CUSTOMFLAG_TEXANIM2) && (materialflags & NJD_CUSTOMFLAG_TEXANIM1))
 				{
 					material = (NJS_MATERIAL*)&landtable->Col[j].Model->basicdxmodel->mats[k];
-					AddTextureAnimation(1, material, false, 4, 57, 70, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+					AddTextureAnimation(1, 1, material, false, 4, 57, 70, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 				}
 			}
 		}
@@ -562,20 +562,20 @@ void ParseEmeraldCoastColFlagsAndMaterials(LandTable *landtable, int act)
 				if ((materialflags & NJD_CUSTOMFLAG_TEXANIM1) && !(materialflags & NJD_CUSTOMFLAG_TEXANIM2))
 				{
 					material = (NJS_MATERIAL*)&landtable->Col[j].Model->basicdxmodel->mats[k];
-					AddTextureAnimation(2, material, false, 3, 65, 79, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+					AddTextureAnimation(1, 2, material, false, 3, 65, 79, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 				}
 				//Texanim 2
 				if ((materialflags & NJD_CUSTOMFLAG_TEXANIM2) && !(materialflags & NJD_CUSTOMFLAG_TEXANIM1))
 				{
 					material = (NJS_MATERIAL*)&landtable->Col[j].Model->basicdxmodel->mats[k];
-					AddTextureAnimation(2, material, false, 4, 50, 64, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+					AddTextureAnimation(1, 2, material, false, 4, 50, 64, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 					if (SADXWater_EmeraldCoast) landtable->Col[j].Flags |= 0x00000400;
 				}
 				//Texanim 3
 				if ((materialflags & NJD_CUSTOMFLAG_TEXANIM2) && (materialflags & NJD_CUSTOMFLAG_TEXANIM1))
 				{
 					material = (NJS_MATERIAL*)&landtable->Col[j].Model->basicdxmodel->mats[k];
-					AddTextureAnimation(2, material, false, 4, 80, 93, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+					AddTextureAnimation(1, 2, material, false, 4, 80, 93, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 				}
 			}
 		}
@@ -629,19 +629,19 @@ void LoadLevelFiles_STG01()
 		HighPolyOcean_Static->basicdxmodel->mats[0].diffuse.color = 0xFFFFFFFF;
 		WriteData<1>((void*)0x004F783A, 0x0F); //15 animation frames for water in Act 2
 		WriteData<1>((void*)0x004F790A, 0x0F); //15 animation frames for water in Act 3
-		AddTextureAnimation(0, &HighPolyOcean_Static->basicdxmodel->mats[0], false, 4, 0, 14, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); //Static ocean
-		AddTextureAnimation(0, &HighPolyOcean_Dynamic->basicdxmodel->mats[0], false, 4, 0, 14, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); //Dynamic ocean
-		AddTextureAnimation(0, &LowPolyOcean->basicdxmodel->mats[0], false, 4, 0, 14, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); //Static ocean
-		AddTextureAnimation(1, &LowPolyOcean->basicdxmodel->mats[0], false, 4, 0, 14, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); //Static ocean
-		AddTextureAnimation(2, &LowPolyOcean->basicdxmodel->mats[0], false, 4, 0, 14, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); //Static ocean
+		AddTextureAnimation(1, 0, &HighPolyOcean_Static->basicdxmodel->mats[0], false, 4, 0, 14, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); //Static ocean
+		AddTextureAnimation(1, 0, &HighPolyOcean_Dynamic->basicdxmodel->mats[0], false, 4, 0, 14, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); //Dynamic ocean
+		AddTextureAnimation(1, 0, &LowPolyOcean->basicdxmodel->mats[0], false, 4, 0, 14, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); //Static ocean
+		AddTextureAnimation(1, 1, &LowPolyOcean->basicdxmodel->mats[0], false, 4, 0, 14, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); //Static ocean
+		AddTextureAnimation(1, 2, &LowPolyOcean->basicdxmodel->mats[0], false, 4, 0, 14, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); //Static ocean
 	}
 	else
 	{
-		AddTextureAnimation(0, &HighPolyOcean_Static->basicdxmodel->mats[0], false, 4, 0, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); //Static ocean
-		AddTextureAnimation(0, &HighPolyOcean_Dynamic->basicdxmodel->mats[0], false, 4, 0, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); //Dynamic ocean
-		AddTextureAnimation(0, &LowPolyOcean->basicdxmodel->mats[0], false, 4, 0, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); //Static ocean
-		AddTextureAnimation(1, &LowPolyOcean->basicdxmodel->mats[0], false, 4, 0, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); //Static ocean
-		AddTextureAnimation(2, &LowPolyOcean->basicdxmodel->mats[0], false, 4, 0, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); //Static ocean
+		AddTextureAnimation(1, 0, &HighPolyOcean_Static->basicdxmodel->mats[0], false, 4, 0, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); //Static ocean
+		AddTextureAnimation(1, 0, &HighPolyOcean_Dynamic->basicdxmodel->mats[0], false, 4, 0, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); //Dynamic ocean
+		AddTextureAnimation(1, 0, &LowPolyOcean->basicdxmodel->mats[0], false, 4, 0, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); //Static ocean
+		AddTextureAnimation(1, 1, &LowPolyOcean->basicdxmodel->mats[0], false, 4, 0, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); //Static ocean
+		AddTextureAnimation(1, 2, &LowPolyOcean->basicdxmodel->mats[0], false, 4, 0, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); //Static ocean
 	}
 }
 

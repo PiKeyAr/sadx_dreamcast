@@ -186,7 +186,7 @@ void ParseLWMaterials(LandTable *landtable, int act)
 				material = (NJS_MATERIAL*)&landtable->Col[j].Model->basicdxmodel->mats[k];
 				if (material->attr_texId >=44 && material->attr_texId <=57)
 				{
-					AddTextureAnimation(0, material, false, 1, 44, 57, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+					AddTextureAnimation(7, 0, material, false, 1, 44, 57, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 				}
 			}
 		}
@@ -200,9 +200,9 @@ void ParseLWMaterials(LandTable *landtable, int act)
 				material = (NJS_MATERIAL*)&landtable->Col[j].Model->basicdxmodel->mats[k];
 				if (material->attr_texId >= 81 && material->attr_texId <= 94)
 				{
-					AddTextureAnimation(1, material, false, 1, 81, 94, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+					AddTextureAnimation(7, 1, material, false, 1, 81, 94, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 				}
-				else if (landtable->Col[j].Flags & ColFlags_Water && material->attr_texId == 44) AddTextureAnimation(1, material, false, 1, 81, 94, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+				else if (landtable->Col[j].Flags & ColFlags_Water && material->attr_texId == 44) AddTextureAnimation(7, 1, material, false, 1, 81, 94, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 			}
 		}
 	}
@@ -333,6 +333,7 @@ void LostWorld_Init()
 	*(NJS_OBJECT*)0x202670C = *LoadModel("system\\data\\STG07\\Models\\00149870.sa1mdl", false); //Snake tail
 	*(NJS_OBJECT*)0x2024828 = *LoadModel("system\\data\\STG07\\Models\\001487A0.sa1mdl", false); //Snake tail tip
 	*(NJS_OBJECT*)0x1FE9D7C = *LoadModel("system\\data\\STG07\\Models\\00057E5C.sa1mdl", false); //OSuimen
+	AddTextureAnimation_Permanent(7, 0, &((NJS_OBJECT*)0x1FE9D7C)->basicdxmodel->mats[0], false, 1, 44, 57, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1);
 	*(NJS_OBJECT*)0x202E404 = *LoadModel("system\\data\\STG07\\Models\\001506DC.sa1mdl", false); //Some other water (loaded with the skybox)
 	//Rlight stuff
 	((NJS_MATERIAL*)0x2031660)->attrflags &= ~NJD_SA_ONE; 
@@ -373,13 +374,6 @@ void LostWorld_OnFrame()
 {
 	if (CurrentLevel == LevelIDs_LostWorld && !IsGamePaused())
 	{
-		//OSuimen animation
-		if (CurrentAct == 0)
-		{
-			int texid = ((NJS_OBJECT*)0x1FE9D7C)->basicdxmodel->mats[0].attr_texId;
-			if (texid < 57) texid++; else texid = 44;
-			((NJS_OBJECT*)0x1FE9D7C)->basicdxmodel->mats[0].attr_texId = texid;
-		}
 		//Draw distance hack for Act 2 boulder corridor
 		if (CurrentAct == 1)
 		{

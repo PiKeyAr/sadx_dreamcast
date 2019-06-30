@@ -370,7 +370,7 @@ void ParseTwinkleParkMaterials(LandTable *landtable)
 			//Texanim 1
 			if (texid >= 74 && texid <= 87)
 			{
-				AddTextureAnimation(1, (NJS_MATERIAL*)&landtable->Col[j].Model->basicdxmodel->mats[k], false, 2, 74, 87, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+				AddTextureAnimation(3, 1, (NJS_MATERIAL*)&landtable->Col[j].Model->basicdxmodel->mats[k], false, 2, 74, 87, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 			}
 		}
 	}

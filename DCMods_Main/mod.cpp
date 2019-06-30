@@ -530,19 +530,15 @@ extern "C"
 		
 	__declspec(dllexport) void __cdecl OnFrame()
 	{
-		TextureAnimation* TextureAnimationData = TextureAnimationData_Act1;
-		if (CurrentAct == 0) TextureAnimationData = TextureAnimationData_Act1;
-		else if (CurrentAct == 1) TextureAnimationData = TextureAnimationData_Act2;
-		else if (CurrentAct == 2) TextureAnimationData = TextureAnimationData_Act3;
-		else TextureAnimationData = TextureAnimationData_Act4;
 		//Animate materials and UVs
 		if (!IsGamePaused())
 		{
-			for (int i = 0; i < 64; ++i)
+			for (int i = 0; i < 128; ++i)
 			{
-				if (UVAnimationData_Permanent[i].uv_pointer) AnimateUVs(&UVAnimationData_Permanent[i]);
-				if (UVAnimationData[i].uv_pointer) AnimateUVs(&UVAnimationData[i]);
-				if (TextureAnimationData[i].material) AnimateTexture(&TextureAnimationData[i]);
+				if (UVAnimationData_Permanent[i].level == CurrentLevel && UVAnimationData_Permanent[i].act == CurrentAct) AnimateUVs(&UVAnimationData_Permanent[i]);
+				if (UVAnimationData[i].level == CurrentLevel && UVAnimationData[i].act == CurrentAct) AnimateUVs(&UVAnimationData[i]);
+				if (TextureAnimationData[i].level == CurrentLevel && TextureAnimationData[i].act == CurrentAct) AnimateTexture(&TextureAnimationData[i]);
+				if (TextureAnimationData_Permanent[i].level == CurrentLevel && TextureAnimationData_Permanent[i].act == CurrentAct) AnimateTexture(&TextureAnimationData_Permanent[i]);
 			}
 		}
 		if (EnableDCBranding) Branding_OnFrame();

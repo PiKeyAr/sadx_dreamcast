@@ -180,6 +180,8 @@ struct SubtitleThing
 
 struct TextureAnimation
 {
+	int level;
+	int act;
 	NJS_MATERIAL* material;
 	char Speed;
 	bool NonSequential;
@@ -295,10 +297,8 @@ extern LandTableInfo *AL_GARDEN01_Info;
 extern LandTableInfo *AL_GARDEN02_Info;
 extern LandTableInfo *AL_RACE_0_Info;
 extern LandTableInfo *AL_RACE_1_Info;
-extern TextureAnimation TextureAnimationData_Act1[];
-extern TextureAnimation TextureAnimationData_Act2[];
-extern TextureAnimation TextureAnimationData_Act3[];
-extern TextureAnimation TextureAnimationData_Act4[];
+extern TextureAnimation TextureAnimationData[];
+extern TextureAnimation TextureAnimationData_Permanent[];
 extern UVAnimation UVAnimationData[];
 extern UVAnimation UVAnimationData_Permanent[];
 
@@ -446,10 +446,8 @@ void __cdecl EmeraldCoast_OceanDraw_SADXStyle(OceanData *o);
 void __cdecl MysticRuins_OceanDraw_SADXStyle(OceanData *o);
 void __cdecl EggCarrier_OceanDraw_SADXStyle(OceanData *o);
 void __cdecl Past_OceanDraw_SADXStyle(OceanData *o);
-void __cdecl ZeroE101R_OceanDraw_r(OceanData *a1);
 void LoadBossECOceanPVM(const char *filename, NJS_TEXLIST *texlist);
 void LoadBossECOceanTexlist();
-void RenderBossECOcean();
 
 bool ForceWhiteDiffuse(NJS_MATERIAL* material, uint32_t flags);
 bool ForceWhiteDiffuse3_Night(NJS_MATERIAL* material, uint32_t flags);
@@ -459,7 +457,6 @@ bool Chaos2Function(NJS_MATERIAL* material, uint32_t flags);
 bool Chaos4NPCFunction(NJS_MATERIAL* material, uint32_t flags);
 void RemoveMaterialColors(NJS_MATERIAL* material);
 bool DisableAlphaRejection(NJS_MATERIAL* material, uint32_t flags);
-bool EmeraldPieceFunction(NJS_MATERIAL* material, uint32_t flags);
 
 bool ForceDiffuse0Specular0(NJS_MATERIAL* material, uint32_t flags);
 bool ForceDiffuse0Specular1(NJS_MATERIAL* material, uint32_t flags);
@@ -470,13 +467,11 @@ bool ForceDiffuse4Specular5(NJS_MATERIAL* material, uint32_t flags);
 
 void DisplayVideoFadeout(int fadeout, int mode);
 
-bool ParseCustomMaterialFlags(NJS_MATERIAL* material, uint32_t flags);
-void CheckLandtableMaterials_register(LandTable *landtable);
-void CheckLandtableMaterials_unregister(LandTable *landtable);
 void AnimateTexture(TextureAnimation *texanim);
 void AnimateUVs(UVAnimation *animation);
 void ClearTextureAnimationData();
-void AddTextureAnimation(int act, NJS_MATERIAL* material, bool nonsequential, int speed, int frame1, int frame2, int frame3, int frame4, int frame5, int frame6, int frame7, int frame8, int frame9, int frame10, int frame11, int frame12, int frame13, int frame14, int frame15, int frame16);
+void AddTextureAnimation(int level, int act, NJS_MATERIAL* material, bool nonsequential, int speed, int frame1, int frame2, int frame3, int frame4, int frame5, int frame6, int frame7, int frame8, int frame9, int frame10, int frame11, int frame12, int frame13, int frame14, int frame15, int frame16);
+void AddTextureAnimation_Permanent(int level, int act, NJS_MATERIAL* material, bool nonsequential, int speed, int frame1, int frame2, int frame3, int frame4, int frame5, int frame6, int frame7, int frame8, int frame9, int frame10, int frame11, int frame12, int frame13, int frame14, int frame15, int frame16);
 void AddUVAnimation(int level, int act, NJS_TEX* uv, int uv_count, int timer, int u_speed, int v_speed);
 void AddUVAnimation_Permanent(int level, int act, NJS_TEX* uv, int uv_count, int timer, int u_speed, int v_speed);
 void RemoveVertexColors_Object(NJS_OBJECT *obj);
