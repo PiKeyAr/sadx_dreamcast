@@ -183,7 +183,7 @@ struct TextureAnimation
 	int level;
 	int act;
 	NJS_MATERIAL* material;
-	char Speed;
+	int Speed;
 	bool NonSequential;
 	int Frame1;
 	int Frame2;
