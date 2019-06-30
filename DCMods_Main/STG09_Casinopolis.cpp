@@ -1,6 +1,9 @@
 #include "stdafx.h"
-#include "Casino_objects.h"
-#include "Cowgirl.h"
+#include "Casino_UVs.h"
+#include "Cowgirl_Animation.h"
+//#include "Cowgirl_Model.h"
+
+//TODO: Replace whole models instead of just the UVs in "UV fixes", Cowgirl dynamic collision
 
 NJS_TEXNAME textures_casino1[131];
 NJS_TEXLIST texlist_casino1 = { arrayptrandlength(textures_casino1) };
@@ -14,81 +17,101 @@ NJS_TEXLIST texlist_casino3 = { arrayptrandlength(textures_casino3) };
 NJS_TEXNAME textures_casino4[71];
 NJS_TEXLIST texlist_casino4 = { arrayptrandlength(textures_casino4) };
 
-static short CurrentPlayer = -1;
-static float distance_float;
-static int anim1 = 75;
-static int anim2 = 7;
-static int anim1_actual = 0;
-static int monitorimage = 0;
-static float gearframe1 = 0;
-static float SonicWhiteness = 0.0f;
-static int anim2_actual = 0;
+#include "Casino1.h"
+#include "Casino2.h"
+#include "Casino3.h"
+#include "Casino4.h"
+
+NJS_OBJECT* CowgirlObject = nullptr;
+NJS_OBJECT* OSlX_Base = nullptr;
+NJS_OBJECT* OLhtr_Bright = nullptr;
+NJS_OBJECT* OLhtr_Dark = nullptr;
+NJS_OBJECT* OLhtg_Bright = nullptr;
+NJS_OBJECT* OLhtg_Dark = nullptr;
+NJS_OBJECT* NeonK_Text = nullptr;
+NJS_OBJECT* ODento_1 = nullptr;
+NJS_OBJECT* ODento_2 = nullptr;
+NJS_OBJECT* ODento_3 = nullptr;
+NJS_OBJECT* TikeiAnim_WaterAroundShip = nullptr;
+
+static float GearFrame = 0;
+static float SonicWhiteBlendFactor = 0.0f;
 static int LoopDelay = 0;
 static int CowgirlDelay = 0;
 static int RotationAngle1 = 0;
 static int RotationAngle2 = 0;
 static int SoundPlayed = 0;
-static int shift1 = 65;
-static int shift2 = -10;
-static int shift3 = 0;
-static int carduvSTG09_reala = 1;
-static int cowgirl_shift1 = 65;
-static int cowgirl_shift2 = 0;
 static bool WhiteSonic = false;
+
+static int anim1 = 75;
+static int anim2 = 7;
+static int anim1_actual = 0;
+static int anim2_actual = 0;
+
 FunctionPointer(void, sub_5DD900, (int a1, int a2), 0x5DD900);
-FunctionPointer(void, sub_5DD920, (int a1, int a2), 0x5DD920);
+FunctionPointer(void, sub_5DD920, (ObjectMaster *a1, int a2), 0x5DD920);
 FunctionPointer(void, sub_5D04C0, (ObjectMaster *a1), 0x5D04C0);
 FunctionPointer(Sint32, sub_5C09D0, (int a1), 0x5C09D0);
 FunctionPointer(void, sub_405450, (NJS_ACTION *a1, float frame, float scale), 0x405450);
-FunctionPointer(int, sub_5D4600, (int a1, int a2, float a3, int a4), 0x5D4600);
-FunctionPointer(void, sub_405490, (NJS_ACTION *a1, float a2, int a3, int a4), 0x405490);
 FunctionPointer(void, sub_407A00, (NJS_MODEL_SADX *model, float a2), 0x407A00);
-FunctionPointer(void, sub_4053A0, (void *a1, int a2, float a3, int a4, int a5), 0x4053A0);
 FunctionPointer(void, sub_405370, (NJS_OBJECT *a1, NJS_MOTION *a2, float animframe, float scale), 0x405370);
 FunctionPointer(void, sub_408300, (NJS_OBJECT *a1, NJS_MOTION *a2, float animframe, float scale), 0x408300);
-FunctionPointer(void, sub_407BB0, (NJS_MODEL_SADX *a1, QueuedModelFlagsB queueFlags), 0x407BB0);
+
 NJS_VECTOR Cowgirl1{ 457.6972f, 45.06788f, 390 };
 NJS_VECTOR Cowgirl2{ 340.3949f, 51.20071f, 480 };
 DataArray(NJS_VECTOR, stru_1E79588, 0x1E79588, 66);
 DataArray(NJS_SPRITE*, SonicJackpotSpritesX, 0x1E79570, 6);
-DataArray(CollisionData, stru_1E763B8, 0x1E763B8, 3);
-DataArray(NJS_TEX, uvSTG09_01A4BD38, 0x01E4BD38, LengthOfArray(uvSTG09_001C8C9C));
-DataArray(NJS_TEX, uvSTG09_01A4BD98, 0x01E4BD98, LengthOfArray(uvSTG09_001C8CFC));
+DataArray(CollisionData, CollisionData_NeonK, 0x1E763B8, 3);
 DataArray(NJS_TEX, yajitex, 0x01DDB544, 4);
-DataArray(NJS_TEX, bumpertex, 0x01D98418, LengthOfArray(uvSTG09_01998418));
-DataArray(NJS_TEX, bumpertex2, 0x01D98EC0, LengthOfArray(uvSTG09_0011B8B4));
-DataArray(NJS_TEX, bill1, 0x01E6D7C8, LengthOfArray(uvSTG09_001E9ABC));
-DataArray(NJS_TEX, bill2, 0x01E6D900, LengthOfArray(uvSTG09_001E9BF4));
-DataArray(NJS_MESHSET_SADX, lionmesh, 0x1DFF0F8, 13);
 DataArray(FogData, Casino1Fog, 0x01C46990, 3);
 DataArray(FogData, Casino2Fog, 0x01C469C0, 3);
 DataArray(DrawDistance, DrawDist_Casino2, 0x01C46948, 3);
-DataPointer(NJS_MODEL_SADX, stru_1DF3160, 0x1DF3160);
-DataPointer(NJS_OBJECT, stru_1DF2EF8, 0x1DF2EF8);
-DataPointer(NJS_MODEL_SADX, stru_1DF2B60, 0x1DF2B60);
-DataPointer(NJS_OBJECT, stru_1DF2908, 0x1DF2908);
-DataPointer(NJS_MODEL_SADX, stru_1DF2570, 0x01DF2570);
-DataPointer(NJS_OBJECT, stru_1DF230C, 0x1DF230C);
-DataPointer(NJS_ACTION, off_1E06634, 0x1E06634);
-DataPointer(NJS_OBJECT*, stru_1E03AB8, 0x01E03AB8);
-DataPointer(CollisionData, stru_1E77574, 0x1E77574);
-DataPointer(NJS_OBJECT*, unk_1E050FC, 0x1E050FC);
-DataPointer(CollisionData, stru_1E775D4, 0x1E775D4);
-DataPointer(NJS_TEXLIST, stru_1D8B384, 0x1D8B384);
-DataPointer(NJS_SPRITE, stru_3C75098, 0x3C75098);
-DataPointer(ObjectMaster*, off_1E75DC8, 0x01E75DC8);
-DataPointer(ObjectMaster*, off_1E75DE0, 0x01E75DE0);
-DataPointer(NJS_OBJECT*, unk_1E06274, 0x1E06274);
-DataPointer(CollisionData, stru_1E77638, 0x1E77638);
-DataPointer(NJS_OBJECT, stru_1E5EC4C, 0x01E5EC4C);
-DataPointer(NJS_OBJECT, stru_1E5E7BC, 0x01E5E7BC);
-DataPointer(NJS_OBJECT*, unk_1E04CDC, 0x1E04CDC);
-DataPointer(CollisionData, stru_1E775A4, 0x1E775A4);
 DataPointer(int, dword_1E77568, 0x1E77568);
 DataPointer(int, InsideMachine, 0x3C7507C);
+DataPointer(NJS_OBJECT*, unk_1E050FC, 0x1E050FC);
+DataPointer(NJS_OBJECT*, unk_1E06274, 0x1E06274);
+DataPointer(NJS_OBJECT*, unk_1E04CDC, 0x1E04CDC);
 DataPointer(NJS_OBJECT*, unk_1E05954, 0x1E05954);
-DataPointer(CollisionData, stru_1E77604, 0x1E77604);
-DataPointer(NJS_OBJECT, stru_1DF198C, 0x1DF198C);
+DataPointer(NJS_OBJECT*, unk_1E03AB8, 0x1E03AB8);
+
+void RenderCasinoBackgroundWater(ObjectMaster* a1)
+{
+	if (CurrentAct == 0 && !MissedFrames)
+	{
+		DisableFog();
+		njSetTexture(&texlist_casino1);
+		njPushMatrix(0);
+		njTranslate(0, 0, 0, 0);
+		DrawQueueDepthBias = -17000.0f;
+		ProcessModelNode(TikeiAnim_WaterAroundShip, QueuedModelFlagsB_SomeTextureThing, 1.0f);
+		DrawQueueDepthBias = 0.0f;
+		njPopMatrix(1u);
+	}
+}
+
+static void OTikeiAnim_Load_r(ObjectMaster* a1);
+static Trampoline OTikeiAnim_Load_t(0x5CB160, 0x5CB165, OTikeiAnim_Load_r);
+static void __cdecl OTikeiAnim_Load_r(ObjectMaster* a1)
+{
+	EntityData1* v1; // edi
+	v1 = a1->Data1;
+	auto original = reinterpret_cast<decltype(OTikeiAnim_Load_r)*>(OTikeiAnim_Load_t.Target());
+	original(a1);
+	if (EnableCasinopolis) a1->DisplaySub = RenderCasinoBackgroundWater;
+
+}
+
+static void OTikeiAnim_Main_r(ObjectMaster* a1);
+static Trampoline OTikeiAnim_Main_t(0x5CB0A0, 0x5CB0A6, OTikeiAnim_Main_r);
+static void __cdecl OTikeiAnim_Main_r(ObjectMaster* a1)
+{
+	auto original = reinterpret_cast<decltype(OTikeiAnim_Main_r)*>(OTikeiAnim_Main_t.Target());
+	original(a1);
+	if (EnableCasinopolis && CurrentAct == 0)
+	{
+		RenderCasinoBackgroundWater(a1);
+	}
+}
 
 void __cdecl Loop_DisplayF(ObjectMaster *a1)
 {
@@ -104,7 +127,7 @@ void __cdecl Loop_DisplayF(ObjectMaster *a1)
 	{
 		njColorBlendingMode(0, NJD_COLOR_BLENDING_SRCALPHA);
 		njColorBlendingMode(NJD_DESTINATION_COLOR, NJD_COLOR_BLENDING_INVSRCALPHA);
-		njSetTexture(&stru_1D8B384 + 1);
+		njSetTexture((NJS_TEXLIST*)0x1D8B384 + 1);
 		njPushMatrix(0);
 		njTranslateV(0, &v1->Position);
 		v2 = v1->Rotation.z;
@@ -135,10 +158,10 @@ void __cdecl Loop_DisplayF(ObjectMaster *a1)
 		{
 			v7 = njSin(v5) * *(float *)&v1->CharIndex;
 			v6 = njCos(v5) * *(float *)&v1->CharIndex;
-			stru_3C75098.p.x = v7;
-			stru_3C75098.p.z = 0;
-			stru_3C75098.p.y = v6;
-			njDrawSprite3D(&stru_3C75098, v1->Action, NJD_SPRITE_ALPHA | NJD_SPRITE_SCALE);
+			((NJS_SPRITE*)0x3C75098)->p.x = v7;
+			((NJS_SPRITE*)0x3C75098)->p.z = 0;
+			((NJS_SPRITE*)0x3C75098)->p.y = v6;
+			njDrawSprite3D((NJS_SPRITE*)0x3C75098, v1->Action, NJD_SPRITE_ALPHA | NJD_SPRITE_SCALE);
 			v5 += 4096;
 		} while (v5 < 0x10000);
 		njPopMatrix(1u);
@@ -196,7 +219,7 @@ void Cowgirl_Main(ObjectMaster *a1)
 {
 	EntityData1 *v1 = a1->Data1;
 	float CowgirlFrame;
-	CowgirlFrame = *(float*)&a1->Data1->CharIndex + 0.08f;
+	CowgirlFrame = *(float*)&a1->Data1->CharIndex + 0.1f;
 	if (CowgirlFrame > 30) CowgirlFrame = 0;
 	//a1->Data1->Object->ang[0] = a1->Data1->Rotation.x + 0x8 + cowgirl_anim_5_rot[(int)CowgirlFrame].key[0] + cowgirl_anim_6_rot[(int)CowgirlFrame].key[0];
 	//a1->Data1->Object->ang[1] = a1->Data1->Rotation.y + 0xFFFFEAB0 + cowgirl_anim_5_rot[(int)CowgirlFrame].key[1] + cowgirl_anim_6_rot[(int)CowgirlFrame].key[1];
@@ -220,7 +243,7 @@ void Cowgirl_Load(ObjectMaster *a1)
 {
 	if (!ClipObject(a1, 640010.0f))
 	{
-		Collision_Init(a1, stru_1E763B8, 3, 4u);
+		Collision_Init(a1, CollisionData_NeonK, 3, 4u);
 		//a1->Data1->Object = &objectSTG09_001D1C80;
 		//AddDynamicCollision(a1);
 		//a1->Data1->Object->pos[0] = a1->Data1->Position.x + 54.19999f - 36.88602;
@@ -352,7 +375,7 @@ void __cdecl OKazeX(ObjectMaster *a1)
 	{
 		if (!ObjectSelectedDebug(a1))
 		{
-			Collision_Init(a1, &stru_1E77604, 1, 4u);
+			Collision_Init(a1, (CollisionData*)0x1E77604, 1, 4u);
 		}
 		a1->DisplaySub = sub_5D04C0;
 		a1->MainSub = sub_5D0560;
@@ -373,7 +396,7 @@ void __cdecl OKazcX(ObjectMaster *a1)
 	{
 		if (!ObjectSelectedDebug(a1))
 		{
-			Collision_Init(a1, &stru_1E775A4, 1, 4u);
+			Collision_Init(a1, (CollisionData*)0x1E775A4, 1, 4u);
 		}
 		a1->DisplaySub = sub_5D04C0;
 		a1->MainSub = sub_5D0560;
@@ -394,7 +417,7 @@ void __cdecl OKazdX(ObjectMaster *a1)
 	{
 		if (!ObjectSelectedDebug(a1))
 		{
-			Collision_Init(a1, &stru_1E775D4, 1, 4u);
+			Collision_Init(a1, (CollisionData*)0x1E775D4, 1, 4u);
 		}
 		a1->DisplaySub = sub_5D04C0;
 		a1->MainSub = sub_5D0560;
@@ -416,11 +439,11 @@ void __cdecl OKazbX(ObjectMaster *a1)
 	{
 		if (!ObjectSelectedDebug(a1))
 		{
-			Collision_Init(a1, &stru_1E77574, 1, 4u);
+			Collision_Init(a1, (CollisionData*)0x1E77574, 1, 4u);
 		}
 		a1->DisplaySub = sub_5D04C0;
 		a1->MainSub = sub_5D0560_KazB;
-		v4->Object = stru_1E03AB8;
+		v4->Object = unk_1E03AB8;
 		v4->NextAction = 0;
 		v4->CharIndex = 0;
 		v4->InvulnerableTime = 0;
@@ -437,7 +460,7 @@ void __cdecl OKazfX(ObjectMaster *a1)
 	{
 		if (!ObjectSelectedDebug(a1))
 		{
-			Collision_Init(a1, &stru_1E77638, 1, 4u);
+			Collision_Init(a1, (CollisionData*)0x1E77638, 1, 4u);
 		}
 		a1->DisplaySub = sub_5D04C0;
 		a1->MainSub = sub_5D0560;
@@ -450,7 +473,7 @@ void __cdecl OKazfX(ObjectMaster *a1)
 
 void FixedGear1()
 {
-	njAction(&off_1E06634, gearframe1);
+	njAction((NJS_ACTION*)0x1E06634, GearFrame);
 }
 
 void __cdecl TutuA_Display(ObjectMaster *a2) //OTutuA
@@ -469,13 +492,13 @@ void __cdecl TutuA_Display(ObjectMaster *a2) //OTutuA
 		{
 			njRotateY(0, v2);
 		}
-		sub_407A00(&stru_1DF2570, 1.0f);
+		sub_407A00((NJS_MODEL_SADX*)0x1DF2570, 1.0f);
 		v3 = ((unsigned short *)&v1->LoopData)[0];
 		if (v1->Rotation.y != v3)
 		{
 			njRotateY(0, (unsigned __int16)(v1->Rotation.y - v3));
 		}
-		ProcessModelNode_AB_Wrapper(&stru_1DF230C, 1.0f);
+		ProcessModelNode_AB_Wrapper((NJS_OBJECT*)0x1DF230C, 1.0f);
 		njPopMatrix(1u);
 	}
 }
@@ -496,13 +519,13 @@ void __cdecl TutuB_Display(ObjectMaster *a2) //TutuB
 		{
 			njRotateY(0, v2);
 		}
-		sub_407A00(&stru_1DF2B60, 1.0f);
+		sub_407A00((NJS_MODEL_SADX*)0x1DF2B60, 1.0f);
 		v3 = ((unsigned short *)&v1->LoopData)[0];
 		if (v1->Rotation.y != v3)
 		{
 			njRotateY(0, (unsigned __int16)(v1->Rotation.y - v3));
 		}
-		ProcessModelNode_AB_Wrapper(&stru_1DF2908, 1.0f);
+		ProcessModelNode_AB_Wrapper((NJS_OBJECT*)0x1DF2908, 1.0f);
 		njPopMatrix(1u);
 	}
 }
@@ -523,13 +546,13 @@ void __cdecl TutuC_Display(ObjectMaster *a2) //TutuC
 		{
 			njRotateY(0, v2);
 		}
-		sub_407A00(&stru_1DF3160, 1.0f);
+		sub_407A00((NJS_MODEL_SADX*)0x1DF3160, 1.0f);
 		v3 = ((unsigned short *)&v1->LoopData)[0];
 		if (v1->Rotation.y != v3)
 		{
 			njRotateY(0, (unsigned __int16)(v1->Rotation.y - v3));
 		}
-		ProcessModelNode_AB_Wrapper(&stru_1DF2EF8, 1.0f);
+		ProcessModelNode_AB_Wrapper((NJS_OBJECT*)0x1DF2EF8, 1.0f);
 		njPopMatrix(1u);
 	}
 }
@@ -549,7 +572,7 @@ void __cdecl FixedGear2(int a2)
 		njTranslateV(0, &v1->Position);
 		njRotateY(0, v2);
 		sub_5C09D0(12);
-		ProcessModelNode_AB_Wrapper(&stru_1DF198C, 1.0);
+		ProcessModelNode_AB_Wrapper((NJS_OBJECT*)0x1DF198C, 1.0);
 		v3 = v1->Rotation.y;
 		v1->Rotation.y = (v3 + GearRotationDirection*-128) % 65535;
 		njPopMatrix(1u);
@@ -585,11 +608,11 @@ void __cdecl OLhtr_Display(ObjectMaster *a1)
 		{
 			njRotateY(0, (unsigned __int16)v4);
 		}
-		ProcessModelNode_AB_Wrapper(&objectSTG09_01A5E7BC, 1.0f);
-		if (v1->Action == 0) ProcessModelNode_A_Wrapper(&objectSTG09_01A5E7BC_dark, QueuedModelFlagsB_SomeTextureThing, 1.0f);
-		else ProcessModelNode_A_Wrapper(&objectSTG09_01A5E7BC_light, QueuedModelFlagsB_SomeTextureThing, 1.0f);
+		ProcessModelNode_AB_Wrapper((NJS_OBJECT*)0x01E5E7BC, 1.0f);
+		if (v1->Action == 0) ProcessModelNode_A_Wrapper(OLhtr_Dark, QueuedModelFlagsB_SomeTextureThing, 1.0f);
+		else ProcessModelNode_A_Wrapper(OLhtr_Bright, QueuedModelFlagsB_SomeTextureThing, 1.0f);
 		njPopMatrix(1u);
-		sub_5DD920((int)&off_1E75DE0, 2);
+		sub_5DD920((ObjectMaster*)0x1E75DE0, 2);
 	}
 }
 
@@ -622,131 +645,48 @@ void __cdecl OLhtg_Display(ObjectMaster *a1)
 		{
 			njRotateY(0, (unsigned __int16)v4);
 		}
-		ProcessModelNode_AB_Wrapper(&objectSTG09_01A5EC4C_main, 1.0f);
-		if (v1->Action == 1) ProcessModelNode_A_Wrapper(&objectSTG09_01A5EC4C_light, QueuedModelFlagsB_SomeTextureThing, 1.0f);
-		else ProcessModelNode_A_Wrapper(&objectSTG09_01A5EC4C_dark, QueuedModelFlagsB_SomeTextureThing, 1.0f);
+		ProcessModelNode_AB_Wrapper((NJS_OBJECT*)0x1E5EC4C, 1.0f);
+		if (v1->Action == 1) ProcessModelNode_A_Wrapper(OLhtg_Bright, QueuedModelFlagsB_SomeTextureThing, 1.0f);
+		else ProcessModelNode_A_Wrapper(OLhtg_Dark, QueuedModelFlagsB_SomeTextureThing, 1.0f);
 		njPopMatrix(1u);
-		sub_5DD920((int)&off_1E75DC8, 2);
+		sub_5DD920((ObjectMaster*)0x1E75DC8, 2);
 	}
 }
 
-NJS_MATERIAL* DisableAlphaRejection_Casino[] = {
-	&matlistSTG09_01A3D5B0[0], //OKBC text
-	&matlistSTG09_01A3D5B0[1], //OKBC text
-	&matlistSTG09_01A709C0Z[0], //OKBS text
-	&matlistSTG09_01A709C0Z[0], //NeonK text
-	((NJS_MATERIAL*)0x01E3C7C8), //OKBR
-	((NJS_MATERIAL*)0x01E3C328), //OKBB
-	//((NJS_MATERIAL*)0x01E435A8), //OTDenki - welp
-	//((NJS_MATERIAL*)0x01E435BC), //OTDenki - welp
-};
-
-NJS_MATERIAL* WhiteDiffuse_Casino[] = {
-	//OSlotkan
-	((NJS_MATERIAL*)0x01E4D6B4),
-	//OCardkan
-	((NJS_MATERIAL*)0x01E4D144),
-	((NJS_MATERIAL*)0x01E4D16C),
-	((NJS_MATERIAL*)0x01E4D194),
-};
-
-NJS_MATERIAL* ObjectSpecular_Casino[] = {
-	//OFanfan
-	((NJS_MATERIAL*)0x01E4FDC8),
-	((NJS_MATERIAL*)0x01E4FDDC),
-	((NJS_MATERIAL*)0x01E4FDF0),
-	((NJS_MATERIAL*)0x01E4FE04),
-	((NJS_MATERIAL*)0x01E4FE18),
-	//Slot machine red
-	((NJS_MATERIAL*)0x01DF5198),
-	((NJS_MATERIAL*)0x01DF51C0),
-	//Slot machine blue
-	((NJS_MATERIAL*)0x01DF31C0),
-	((NJS_MATERIAL*)0x01DF31E8),
-	//Rotating medal
-	((NJS_MATERIAL*)0x01E0CA7C),
-	((NJS_MATERIAL*)0x01E0CA90),
-	//Slot machine
-	((NJS_MATERIAL*)0x01E49898),
-	((NJS_MATERIAL*)0x01E498AC),
-	((NJS_MATERIAL*)0x01E498C0),
-	((NJS_MATERIAL*)0x01E498D4),
-	((NJS_MATERIAL*)0x01E498E8),
-	//Card machine
-	((NJS_MATERIAL*)0x01E47CD8),
-	((NJS_MATERIAL*)0x01E47CEC),
-	((NJS_MATERIAL*)0x01E47D00),
-	((NJS_MATERIAL*)0x01E47D14),
-	((NJS_MATERIAL*)0x01E47D28),
-	//OLion
-	((NJS_MATERIAL*)0x01E01270),
-	((NJS_MATERIAL*)0x01E01284),
-	((NJS_MATERIAL*)0x01E01298),
-	((NJS_MATERIAL*)0x01E012AC),
-	((NJS_MATERIAL*)0x01E00364),
-	((NJS_MATERIAL*)0x01E00378),
-	((NJS_MATERIAL*)0x01E0038C),
-	((NJS_MATERIAL*)0x01DFCF7C),
-	((NJS_MATERIAL*)0x01DFCF90),
-	((NJS_MATERIAL*)0x01DFCFA4),
-	((NJS_MATERIAL*)0x01DF9718),
-	((NJS_MATERIAL*)0x01DF972C),
-	((NJS_MATERIAL*)0x01DF9740),
-	((NJS_MATERIAL*)0x01DF9754),
-	((NJS_MATERIAL*)0x01DF9768),
-	((NJS_MATERIAL*)0x01DF977C),
-};
-
-NJS_MATERIAL* LevelSpecular_Casino[] = {
-	//OLion
-	((NJS_MATERIAL*)0x01DFDE88),
-	((NJS_MATERIAL*)0x01DFDE9C),
-	((NJS_MATERIAL*)0x01DFDEB0),
-	((NJS_MATERIAL*)0x01DFDEC4),
-	((NJS_MATERIAL*)0x01DFDED8),
-	((NJS_MATERIAL*)0x01DFDEEC),
-	((NJS_MATERIAL*)0x01DFDF00),
-	((NJS_MATERIAL*)0x01DFDF14),
-	((NJS_MATERIAL*)0x01DFDF28),
-	((NJS_MATERIAL*)0x01DFDF3C),
-	((NJS_MATERIAL*)0x01DFDF50),
-	((NJS_MATERIAL*)0x01DFDF64),
-	((NJS_MATERIAL*)0x01DFDF78),
-};
-
 void OSlxDisplayNew(NJS_ACTION *a1, float a2, int a3, int a4)
 {
-	NJS_ACTION OSlX_MainAction;
-	OSlX_MainAction.motion = (NJS_MOTION*)0x1E42078;
-	OSlX_MainAction.object = &OSlX_MainObject;
+	NJS_ACTION OSlX_BaseAction;
+	OSlX_BaseAction.motion = a1->motion;
+	OSlX_BaseAction.object = OSlX_Base;
 	//Render main animation
-	sub_405450(&OSlX_MainAction, a2, a4);
+	sub_405450(&OSlX_BaseAction, a2, a4);
 	//Render light
 	DrawQueueDepthBias = 8000.0f;
-	sub_405490(a1, a2, a3, a4);
+	njAction_Queue_407FC0(a1, a2, (QueuedModelFlagsB)0);
 	DrawQueueDepthBias = 0;
 }
 
 void RenderLightA(NJS_OBJECT *a1, QueuedModelFlagsB a2, float a3)
 {
-	DrawQueueDepthBias = 9000.0f;
+	DrawQueueDepthBias = 8000.0f;
 	ProcessModelNode(a1, (QueuedModelFlagsB)4, a3);
 	DrawQueueDepthBias = 0;
 }
 
 void RenderOKBSText(NJS_OBJECT *obj, float scale)
 {
-	ProcessModelNode_AB_Wrapper(obj, scale);
+	DrawModel(obj->basicdxmodel);
 	DrawQueueDepthBias = 1000.0f;
-	ProcessModelNode(&objectSTG09_01A3FD04, QueuedModelFlagsB_SomeTextureThing, 1.0f);
+	ProcessModelNode(obj->child, QueuedModelFlagsB_SomeTextureThing, 1.0f);
 	DrawQueueDepthBias = 0;
 }
 
 void RenderOKBCText(NJS_ACTION *a1, float frame, float scale)
 {
-	sub_405450(a1, frame, scale);
 	DrawQueueDepthBias = 1000.0f;
-	ProcessModelNode(&objectSTG09_01A3D734, QueuedModelFlagsB_SomeTextureThing, 1.0f);
+	njAction_Queue_407FC0(a1, frame, scale);
+	DrawQueueDepthBias = 2000.0f;
+	ProcessModelNode_D(a1->object->child->sibling->sibling->sibling->sibling, QueuedModelFlagsB_SomeTextureThing, 1.0f);
 	DrawQueueDepthBias = 0;
 }
 
@@ -754,7 +694,9 @@ void RenderNeonK(NJS_MODEL_SADX *model, float scale)
 {
 	sub_407A00(model, scale);
 	DrawQueueDepthBias = 1000.0f;
-	ProcessModelNode(&objectSTG09_01A74A94Z, QueuedModelFlagsB_SomeTextureThing, 1.0f);
+	DrawModel_Queue(NeonK_Text->child->basicdxmodel, (QueuedModelFlagsB)0);
+	DrawQueueDepthBias = 1500.0f;
+	DrawModel_Queue(NeonK_Text->basicdxmodel, (QueuedModelFlagsB)0);
 	DrawQueueDepthBias = 0;
 }
 
@@ -833,7 +775,6 @@ void __cdecl PinballJackpot_Sprite_MainX(ObjectMaster *a1)
 	}
 }
 
-
 void UnloadLevelFiles_STG09()
 {
 	delete STG09_0_Info;
@@ -846,14 +787,36 @@ void UnloadLevelFiles_STG09()
 	STG09_3_Info = nullptr;
 }
 
+void ParseCasMaterials(LandTable* landtable, int act)
+{
+	Uint32 materialflags;
+	NJS_MATERIAL* material;
+	for (unsigned int j = 0; j < landtable->COLCount; j++)
+	{
+		for (int k = 0; k < landtable->Col[j].Model->basicdxmodel->nbMat; ++k)
+		{
+			material = (NJS_MATERIAL*)& landtable->Col[j].Model->basicdxmodel->mats[k];
+			if (act == 0 && (material->attr_texId >= 67 && material->attr_texId <= 80))
+			{
+				AddTextureAnimation(9, 0, material, true, 2, 75, 68, 69, 70, 71, 72, 73, 74, 67, 76, 77, 78, 79, 80, -1, -1);
+			}
+			if (act == 1 && (material->attr_texId == 7 || (material->attr_texId >= 9 && material->attr_texId <= 21)))
+			{
+				AddTextureAnimation(9, 1, material, true, 4, 7, 10, 11, 12, 13, 14, 9, 15, 16, 17, 18, 19, 20, 21, -1, -1);
+			}
+		}
+	}
+}
+
 void LoadLevelFiles_STG09()
 {
+	NJS_MATERIAL* material;
 	CheckAndUnloadLevelFiles();
 	STG09_0_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG09\\0.sa1lvl"));
 	STG09_1_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG09\\1.sa1lvl"));
 	STG09_2_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG09\\2.sa1lvl"));
 	STG09_3_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG09\\3.sa1lvl"));
-	LandTable *STG09_0 = STG09_0_Info->getlandtable();
+	LandTable* STG09_0 = STG09_0_Info->getlandtable(); //&landtable_00025EAC;
 	LandTable *STG09_1 = STG09_1_Info->getlandtable();
 	LandTable *STG09_2 = STG09_2_Info->getlandtable();
 	LandTable *STG09_3 = STG09_3_Info->getlandtable();
@@ -869,20 +832,55 @@ void LoadLevelFiles_STG09()
 	WriteData((LandTable**)0x97DB2C, STG09_1);
 	WriteData((LandTable**)0x97DB30, STG09_2);
 	WriteData((LandTable**)0x97DB34, STG09_3);
+	ParseCasMaterials(STG09_0, 0);
+	ParseCasMaterials(STG09_1, 1);
 }
 
 void IdeyaCapFix(NJS_OBJECT *a1, NJS_MOTION *a2, float animframe, float scale)
 {
+	NJS_OBJECT IdeyaCapTrans = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL, NULL, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
 	if (!(a1->child->sibling->evalflags & NJD_EVAL_HIDE)) a1->child->sibling->evalflags |= NJD_EVAL_HIDE;
 	if (!(a1->evalflags & NJD_EVAL_HIDE)) a1->evalflags |= NJD_EVAL_HIDE;
 	IdeyaCapTrans.basicdxmodel = (NJS_MODEL_SADX*)a1->basicdxmodel;
-	IdeyaCapTrans2.basicdxmodel = (NJS_MODEL_SADX*)a1->child->sibling->basicdxmodel;
 	//Process non-transparent parts
 	sub_405370(a1, a2, animframe, scale);
 	DrawQueueDepthBias = 2000.0f;
 	//Process transparent parts
 	sub_408300(&IdeyaCapTrans, a2, animframe, scale);
 	DrawQueueDepthBias = 0.0f;
+}
+
+void TDenkiFix(NJS_OBJECT* a1, QueuedModelFlagsB a2, float a3)
+{
+	ProcessModelNode_A_Wrapper(a1, (QueuedModelFlagsB)0, 1.0f);
+}
+
+void MizuAFix(void(__cdecl* function)(ObjectMaster*), ObjectMaster* data, float depth, QueuedModelFlagsB queueflags)
+{
+	//float finaldepth = depth;
+	//PrintDebug("Depth: %f\n", finaldepth);
+	DrawModelCallback_QueueObjectMaster(function, data, 2000.0f, QueuedModelFlagsB_EnableZWrite);
+}
+
+void TDenkiFix2(void(__cdecl* function)(ObjectMaster*), ObjectMaster* data, float depth, QueuedModelFlagsB queueflags)
+{
+	//float finaldepth = depth;
+	//PrintDebug("Depth: %f\n", finaldepth);
+	DrawModelCallback_QueueObjectMaster(function, data, 4000.0f, (QueuedModelFlagsB)0);
+}
+
+void ODentoFix(NJS_OBJECT* obj, float scale)
+{
+	if (obj == (NJS_OBJECT*)0x1E5E1E0)
+	{
+		ProcessModelNode_AB_Wrapper(ODento_1, scale);
+		DrawQueueDepthBias = 4000.0f;
+		ProcessModelNode_A_Wrapper(ODento_2, QueuedModelFlagsB_EnableZWrite, scale);
+		DrawQueueDepthBias = 6000.0f;
+		ProcessModelNode_A_Wrapper(ODento_3, QueuedModelFlagsB_SomeTextureThing, scale);
+		DrawQueueDepthBias = 0.0f;
+	}
+	else ProcessModelNode_AB_Wrapper(obj, scale);
 }
 
 void Casinopolis_Init()
@@ -929,165 +927,247 @@ void Casinopolis_Init()
 	ReplacePVM("OBJ_CASINO8");
 	ReplacePVM("OBJ_CASINO9");
 	ReplacePVM("OBJ_CASINO_E");
-	//Lantern stuff
 	ReplaceBIN("PL_90B", "PL_90X");
-	if (DLLLoaded_Lantern)
-	{
-		if (set_alpha_reject_ptr != nullptr) material_register_ptr(DisableAlphaRejection_Casino, LengthOfArray(DisableAlphaRejection_Casino), &DisableAlphaRejection);
-		material_register_ptr(LevelSpecular_Casino, LengthOfArray(LevelSpecular_Casino), &ForceDiffuse0Specular0);
-		material_register_ptr(ObjectSpecular_Casino, LengthOfArray(ObjectSpecular_Casino), &ForceDiffuse0Specular1);
-		material_register_ptr(WhiteDiffuse_Casino, LengthOfArray(WhiteDiffuse_Casino), &ForceWhiteDiffuse);
-	}
-	//Ideya cap fix
-	WriteCall((void*)0x5D79A9, IdeyaCapFix);
-	//Jackpot fixes
+	ResizeTextureList((NJS_TEXLIST*)0x1D1B050, textures_casino1);
+	ResizeTextureList((NJS_TEXLIST*)0x1CBD1C4, textures_casino2);
+	ResizeTextureList((NJS_TEXLIST*)0x1C8AF04, textures_casino3);
+	ResizeTextureList((NJS_TEXLIST*)0x1C47004, textures_casino4);
+	ResizeTextureList(&OBJ_CASINO9_TEXLIST, 203);
+	//Code fixes
+	TikeiAnim_WaterAroundShip = LoadModel("system\\data\\STG09\\Models\\00066F28.sa1mdl", false);
+	AddTextureAnimation_Permanent(9, 0, &TikeiAnim_WaterAroundShip->basicdxmodel->mats[0], true, 2, 75, 68, 69, 70, 71, 72, 73, 74, 67, 76, 77, 78, 79, 80, -1, -1);
+	WriteData((NJS_OBJECT **)0x005CB1B7, TikeiAnim_WaterAroundShip);
+	//OKBS
+	WriteCall((void*)0x5CE84B, RenderOKBSText);
+	AddAlphaRejectMaterial(&((NJS_OBJECT*)0x1E40344)->child->basicdxmodel->mats[0]);
+	AddAlphaRejectMaterial(&((NJS_OBJECT*)0x1E40344)->child->basicdxmodel->mats[1]);
+	//OKBC
+	WriteCall((void*)0x5CEA2A, RenderOKBCText);
+	AddAlphaRejectMaterial(&((NJS_OBJECT*)0x1E3EE0C)->child->sibling->sibling->sibling->sibling->basicdxmodel->mats[0]);
+	AddAlphaRejectMaterial(&((NJS_OBJECT*)0x1E3EE0C)->child->sibling->sibling->sibling->sibling->basicdxmodel->mats[1]);
+	//TDenki
+	WriteCall((void*)0x5DF170, TDenkiFix2);
+	WriteCall((void*)0x5DF08A, TDenkiFix); //TDenki blending
+	WriteData<5>((void*)0x5DF073, 0x90u); //Disable ZFunc set in TDenki
+	WriteData<5>((void*)0x5DF092, 0x90u); //Disable ZFunc set in TDeinki
+	WriteCall((void*)0x5DE7A0, MizuAFix); //To make TDenki fix work
+	WriteData<1>((char*)0x8135F2, 0x0i8); //Reala thing UV fix
+	WriteCall((void*)0x5D79A9, IdeyaCapFix); //Ideya cap transparency
+	//Jackpot sprite fixes
 	WriteCall((void*)0x05E1144, JackPotFix1);
 	WriteCall((void*)0x05E1187, JackPotFix2);
 	WriteJump(PinballJackpot_Sprite_Main, PinballJackpot_Sprite_MainX);
-	//MizuA
-	((NJS_OBJECT*)0x01E47B1C)->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	((NJS_OBJECT*)0x01E47B1C)->basicdxmodel->mats[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	((NJS_OBJECT*)0x01E47B1C)->basicdxmodel->mats[0].diffuse.color = 0x7FB2B2B2;
-	((NJS_OBJECT*)0x01E47B1C)->basicdxmodel->mats[1].diffuse.color = 0x7FB2B2B2;
-	//MizuB
-	((NJS_OBJECT*)0x01E47CA4)->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	((NJS_OBJECT*)0x01E47CA4)->basicdxmodel->mats[0].diffuse.color = 0x99B2B2B2;
 	//Act 2 lights
 	WriteJump((void*)0x5C9980, OLhtg_Display);
 	WriteJump((void*)0x5C9BA0, OLhtr_Display);
 	//OLightA stuff
-	((NJS_OBJECT*)0x01E5E39C)->basicdxmodel->mats[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	WriteCall((void*)0x005DDBE4, RenderLightA); //OLightA
-	//OSlX lights
-	WriteCall((void*)0x005CE630, OSlxDisplayNew);
-	*(NJS_OBJECT*)0x01E40FB8 = OSlX_Green; //OSlG light
-	*(NJS_OBJECT*)0x01E40980 = OSlX_Blue; //OSlB light
-	*(NJS_OBJECT*)0x01E415F0 = OSlX_Red; //OSlR light
-	*(NJS_OBJECT*)0x01E41C28 = OSlX_Yellow; //OSlY light
-	WriteJump((void*)0x5D5E50, Loop_DisplayF); //Add sound
+	*(NJS_OBJECT*)0x01E5E39C = *LoadModel("system\\data\\STG09\\Models\\001DAA78.sa1mdl", false);
+	AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x01E5E39C)->basicdxmodel->mats[1]);
+	WriteCall((void*)0x5DDBE4, RenderLightA); //OLightA
+	WriteCall((void*)0x5CE630, OSlxDisplayNew); //OSlX lights
+	WriteJump((void*)0x5D5E50, Loop_DisplayF); //Add sound to rings
 	//Fixed gears
-	WriteCall((void*)0x005D09C7, FixedGear1);
+	WriteCall((void*)0x5D09C7, FixedGear1);
 	WriteJump((void*)0x5D3A90, FixedGear2); //Gears main
-	WriteJump((void*)0x005D0C60, OKazeX);
-	WriteJump((void*)0x005D0C20, OKazcX);
-	WriteJump((void*)0x005D0C40, OKazdX);
-	WriteJump((void*)0x005D0C00, OKazbX);
-	WriteJump((void*)0x005D0C80, OKazfX);
+	WriteJump((void*)0x5D0C60, OKazeX);
+	WriteJump((void*)0x5D0C20, OKazcX);
+	WriteJump((void*)0x5D0C40, OKazdX);
+	WriteJump((void*)0x5D0C00, OKazbX);
+	WriteJump((void*)0x5D0C80, OKazfX);
 	WriteJump((void*)0x5D43F0, TutuA_Display); //OTutuA display
 	WriteJump((void*)0x5D44A0, TutuB_Display); //OTutuB display
 	WriteJump((void*)0x5D4550, TutuC_Display); //OTutuC display
 	WriteData((int*)0x1E77E58, 128); //Gear rotation speed
 	if (CowgirlOn)
 	{
-		stru_1E763B8[0].scale.y = stru_1E763B8[0].scale.y * 4;
-		stru_1E763B8[1].scale.y = stru_1E763B8[1].scale.y * 4;
-		stru_1E763B8[2].scale.y = stru_1E763B8[2].scale.y * 4;
-		stru_1E763B8[0].origin.y = stru_1E763B8[0].origin.y + 20;
-		stru_1E763B8[1].origin.y = stru_1E763B8[1].origin.y + 20;
-		stru_1E763B8[2].origin.y = stru_1E763B8[2].origin.y + 20;
-		stru_1E763B8[0].origin.z = stru_1E763B8[0].origin.z - 14;
-		stru_1E763B8[1].origin.z = stru_1E763B8[1].origin.z - 14;
-		stru_1E763B8[2].origin.z = stru_1E763B8[2].origin.z - 14;
+		CowgirlObject = LoadModel("system\\data\\STG09\\Models\\001D98C8.sa1mdl", false);
+		action_cowgirl_anim.object = CowgirlObject;
+		AddUVAnimation_Permanent(9, 0, CowgirlObject->basicdxmodel->meshsets[1].vertuv, 92, 16, 100, 0);
+		AddUVAnimation_Permanent(9, 0, CowgirlObject->basicdxmodel->meshsets[2].vertuv, 130, 16, 100, 0);
+		AddUVAnimation_Permanent(9, 0, CowgirlObject->basicdxmodel->meshsets[3].vertuv, 32, 16, 100, 0);
+		AddUVAnimation_Permanent(9, 0, CowgirlObject->basicdxmodel->meshsets[4].vertuv, 92, 16, 100, 0);
+		AddUVAnimation_Permanent(9, 0, CowgirlObject->child->basicdxmodel->meshsets[0].vertuv, 24, 16, 100, 0);
+		AddUVAnimation_Permanent(9, 0, CowgirlObject->child->sibling->basicdxmodel->meshsets[1].vertuv, 10, 16, 100, 0);
+		AddUVAnimation_Permanent(9, 0, CowgirlObject->child->sibling->sibling->basicdxmodel->meshsets[0].vertuv, 14, 16, 100, 0);
+		AddUVAnimation_Permanent(9, 0, CowgirlObject->child->sibling->sibling->basicdxmodel->meshsets[2].vertuv, 10, 16, 100, 0);
+		AddUVAnimation_Permanent(9, 0, CowgirlObject->child->sibling->sibling->basicdxmodel->meshsets[5].vertuv, 20, 16, 100, 0);
+		AddUVAnimation_Permanent(9, 0, CowgirlObject->child->sibling->sibling->sibling->basicdxmodel->meshsets[1].vertuv, 6, 16, 100, 0);
+		AddUVAnimation_Permanent(9, 0, CowgirlObject->child->sibling->sibling->sibling->basicdxmodel->meshsets[2].vertuv, 21, 16, 100, 0);
+		AddUVAnimation_Permanent(9, 0, CowgirlObject->child->sibling->sibling->sibling->sibling->basicdxmodel->meshsets[0].vertuv, 7, 16, 100, 0);
+		AddUVAnimation_Permanent(9, 0, CowgirlObject->child->sibling->sibling->sibling->sibling->child->basicdxmodel->meshsets[5].vertuv, 30, 16, 100, 0);
+		AddUVAnimation_Permanent(9, 0, CowgirlObject->child->sibling->sibling->sibling->sibling->sibling->basicdxmodel->meshsets[0].vertuv, 10, 16, 65, 0);
+		CollisionData_NeonK[0].scale.y = CollisionData_NeonK[0].scale.y * 4;
+		CollisionData_NeonK[1].scale.y = CollisionData_NeonK[1].scale.y * 4;
+		CollisionData_NeonK[2].scale.y = CollisionData_NeonK[2].scale.y * 4;
+		CollisionData_NeonK[0].origin.y = CollisionData_NeonK[0].origin.y + 20;
+		CollisionData_NeonK[1].origin.y = CollisionData_NeonK[1].origin.y + 20;
+		CollisionData_NeonK[2].origin.y = CollisionData_NeonK[2].origin.y + 20;
+		CollisionData_NeonK[0].origin.z = CollisionData_NeonK[0].origin.z - 14;
+		CollisionData_NeonK[1].origin.z = CollisionData_NeonK[1].origin.z - 14;
+		CollisionData_NeonK[2].origin.z = CollisionData_NeonK[2].origin.z - 14;
 		WriteJump(ONeonk, Cowgirl_Load);
 	}
-	*(NJS_MODEL_SADX*)0x01DF7140 = attachSTG09_00177188; //Slot red
-	RemoveVertexColors_Object((NJS_OBJECT*)0x1DF716C); //Slot red
-	*(NJS_MODEL_SADX*)0x01DF5138 = attachSTG09_00175E44; //Slot blue
-	RemoveVertexColors_Object((NJS_OBJECT*)0x1DF5164); //Slot blue
-	*(NJS_MODEL_SADX*)0x01D8BC10 = attachSTG09_0010E984; //FlipperL
-	*(NJS_MODEL_SADX*)0x01D8BED8 = attachSTG09_0010EC3C; //FlipperR
-	*(NJS_MODEL_SADX*)0x01DDE898 = attachSTG09_00160358; //BanjuDoor
-	*(NJS_MODEL_SADX*)0x01D8E1B8 = attachSTG09_00110E9C; //Dtarget
-	*(NJS_MODEL_SADX*)0x01DCF690 = attachSTG09_00151610; //Kazariyaji
-	*(NJS_MODEL_SADX*)0x01DCF970 = attachSTG09_001518D4; //Kazariyaji2
-	*(NJS_MODEL_SADX*)0x01DCFC50 = attachSTG09_00151B98; //Kazariyaji green 2
-	*(NJS_MODEL_SADX*)0x01DCFF30 = attachSTG09_00151E5C; //Kazariyaji pink 2
-	*(NJS_MODEL_SADX*)0x01D9C72C = attachSTG09_0011F050; //Bottom decoration in Act 3 (bright)
-	*(NJS_MODEL_SADX*)0x01D9CB7C = attachSTG09_0011F490; //Bottom decoration in Act 3 (dark)
-	*(NJS_MODEL_SADX*)0x01DDF318 = attachSTG09_00160DA4; //CardUV 1
-	WriteData<1>((char*)0x008135F2, 0x0i8); //Reala thing UV fix
-	*(NJS_MODEL_SADX*)0x01E5DBC8 = attachSTG09_001DA2E0; //OKDAnm
-	*(NJS_MODEL_SADX*)0x01E0D048 = attach_0018C0D0; //Sonic token
+	else
+	{
+		*(NJS_OBJECT*)0x1E74A94 = *LoadModel("system\\data\\STG09\\Models\\001F0CCC.sa1mdl", false); //NeonK
+		AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E74A94)->child->basicdxmodel->meshsets[0].vertuv, 28, 16, 100, 0);
+		AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E74A94)->child->basicdxmodel->meshsets[2].vertuv, 200, 16, -100, 0);
+		AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E74A94)->child->basicdxmodel->meshsets[3].vertuv, 28, 16, 100, 0);
+		AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E74A94)->child->basicdxmodel->meshsets[4].vertuv, 144, 16, 100, 0);
+		AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E74A94)->child->basicdxmodel->meshsets[5].vertuv, 188, 16, -100, 0);
+		AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E74A94)->child->basicdxmodel->meshsets[7].vertuv, 44, 16, -100, 0);
+		AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E74A94)->child->basicdxmodel->meshsets[9].vertuv, 12, 16, 100, 0);
+		AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E74A94)->child->basicdxmodel->meshsets[10].vertuv, 18, 16, -100, 0);
+		AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E74A94)->child->sibling->basicdxmodel->meshsets[1].vertuv, 20, 32, 100, 0);
+		AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E74A94)->child->sibling->sibling->basicdxmodel->meshsets[0].vertuv, 20, 32, 100, 0);
+		((NJS_OBJECT*)0x1E74A94)->basicdxmodel->meshsets[16].nbMesh = 0; //Hide NeonK text
+		((NJS_OBJECT*)0x1E74A94)->child->basicdxmodel->meshsets[6].nbMesh = 0; //Hide NeonK decoration
+		NeonK_Text = LoadModel("system\\data\\STG09\\Models\\001F0CCC.sa1mdl", false);
+		AddUVAnimation_Permanent(9, 0, NeonK_Text->child->basicdxmodel->meshsets[6].vertuv, 78, 16, 0, 100);
+		AddAlphaRejectMaterial(&NeonK_Text->basicdxmodel->mats[16]);
+		WriteCall((void*)0x5CAB34, RenderNeonK);
+		for (int i = 0; i < NeonK_Text->basicdxmodel->nbMeshset; i++)
+		{
+			if (i != 16) NeonK_Text->basicdxmodel->meshsets[i].nbMesh = 0;
+		}
+		for (int i = 0; i < NeonK_Text->child->basicdxmodel->nbMeshset; i++)
+		{
+			if (i != 6) NeonK_Text->child->basicdxmodel->meshsets[i].nbMesh = 0;
+		}
+	}
+	//Models
+	AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x01E4B760)->basicdxmodel->mats[2]); //OShwrl
+	//ODento
+	ODento_1 = LoadModel("system\\data\\STG09\\Models\\001DA8C8.sa1mdl", false);
+	ODento_1->basicdxmodel->meshsets[1].nbMesh = 0;
+	ODento_1->basicdxmodel->meshsets[2].nbMesh = 0;
+	ODento_1->basicdxmodel->meshsets[4].nbMesh = 0;
+	ODento_2 = LoadModel("system\\data\\STG09\\Models\\001DA8C8.sa1mdl", false);
+	ODento_2->basicdxmodel->meshsets[0].nbMesh = 0;
+	ODento_2->basicdxmodel->meshsets[3].nbMesh = 0;
+	ODento_2->basicdxmodel->meshsets[4].nbMesh = 0;
+	ODento_3 = LoadModel("system\\data\\STG09\\Models\\001DA8C8.sa1mdl", false);
+	ODento_3->basicdxmodel->meshsets[0].nbMesh = 0;
+	ODento_3->basicdxmodel->meshsets[1].nbMesh = 0;
+	ODento_3->basicdxmodel->meshsets[2].nbMesh = 0;
+	ODento_3->basicdxmodel->meshsets[3].nbMesh = 0;
+	AddAlphaRejectMaterial(&ODento_3->basicdxmodel->mats[4]);
+	WriteCall((void*)0x5DDADF, ODentoFix);
+	*(NJS_OBJECT*)0x1E4D66C = *LoadModel("system\\data\\STG09\\Models\\001CA53C.sa1mdl", true); //OCardKan
+	AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E4D66C)->basicdxmodel->meshsets[1].vertuv, 4, 8, 65, 0); //Meshset order changed after sorting
+	AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E4D66C)->child->basicdxmodel->meshsets[0].vertuv, 16, 8, 65, 0);
+	AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E4D66C)->child->sibling->basicdxmodel->meshsets[0].vertuv, 16, 8, 65, 0);
+	ForceLevelSpecular_Object((NJS_OBJECT*)0x1E4D66C);
+	AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x1E4D66C)->basicdxmodel->mats[0]); //Material order changed after sorting
+	AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x1E4D66C)->basicdxmodel->mats[2]); //Material order changed after sorting
+	AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x1E4D66C)->basicdxmodel->mats[3]); //Material order changed after sorting
+	*(NJS_OBJECT*)0x1E4E3F0 = *LoadModel("system\\data\\STG09\\Models\\001CB278.sa1mdl", true); //OSlotKan
+	AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E4E3F0)->basicdxmodel->meshsets[2].vertuv, 6, 8, 65, 0);
+	AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E4E3F0)->child->basicdxmodel->meshsets[1].vertuv, 28, 8, 65, 0);
+	AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E4E3F0)->child->sibling->basicdxmodel->meshsets[2].vertuv, 8, 8, 65, 0); //Meshset order changed after sorting
+	AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x1E4E3F0)->basicdxmodel->mats[3]); //Material order changed after sorting
+	AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x1E4E3F0)->child->sibling->basicdxmodel->mats[0]); //Material order changed after sorting
+	*(NJS_MODEL_SADX*)0x1D8BC10 = *LoadModel("system\\data\\STG09\\Models\\0010E9AC.sa1mdl", false)->basicdxmodel; //FlipperL
+	*(NJS_MODEL_SADX*)0x1D8BED8 = *LoadModel("system\\data\\STG09\\Models\\0010EC64.sa1mdl", false)->basicdxmodel; //FlipperR
+	*(NJS_MODEL_SADX*)0x1DDE898 = *LoadModel("system\\data\\STG09\\Models\\00160380.sa1mdl", false)->basicdxmodel; //BanjuDoor
+	*(NJS_MODEL_SADX*)0x1D8E1B8 = *LoadModel("system\\data\\STG09\\Models\\00110EC4.sa1mdl", false)->basicdxmodel; //Dtarget
+	*(NJS_MODEL_SADX*)0x1DCF690 = *LoadModel("system\\data\\STG09\\Models\\00151638.sa1mdl", false)->basicdxmodel; //Kazariyaji
+	*(NJS_MODEL_SADX*)0x1DCF970 = *LoadModel("system\\data\\STG09\\Models\\001518FC.sa1mdl", false)->basicdxmodel; //Kazariyaji2
+	*(NJS_MODEL_SADX*)0x1DCFC50 = *LoadModel("system\\data\\STG09\\Models\\00151BC0.sa1mdl", false)->basicdxmodel; //Kazariyaji green 2
+	*(NJS_MODEL_SADX*)0x1DCFF30 = *LoadModel("system\\data\\STG09\\Models\\00151E84.sa1mdl", false)->basicdxmodel; //Kazariyaji pink 2
+	*(NJS_MODEL_SADX*)0x1D9C72C = *LoadModel("system\\data\\STG09\\Models\\0011F078.sa1mdl", false)->basicdxmodel; //Bottom decoration in Act 3 (bright)
+	*(NJS_MODEL_SADX*)0x1D9CB7C = *LoadModel("system\\data\\STG09\\Models\\0011F4B8.sa1mdl", false)->basicdxmodel; //Bottom decoration in Act 3 (dark)
+	*(NJS_MODEL_SADX*)0x1DDF318 = *LoadModel("system\\data\\STG09\\Models\\00160DCC.sa1mdl", false)->basicdxmodel; //CardUV 1
+	*(NJS_MODEL_SADX*)0x1E5DBC8 = *LoadModel("system\\data\\STG09\\Models\\001DA308.sa1mdl", false)->basicdxmodel; //OKDAnm
+	*(NJS_MODEL_SADX*)0x1E0D048 = *LoadModel("system\\data\\STG09\\Models\\0018C0F8.sa1mdl", false)->basicdxmodel; //Sonic token
+	*(NJS_MODEL_SADX*)0x1E5D8D8 = *LoadModel("system\\data\\STG09\\Models\\001DA034.sa1mdl", false)->basicdxmodel; //That brick thing in Act 1
+	*(NJS_MODEL_SADX*)0x1E46F30 = *LoadModel("system\\data\\STG09\\Models\\001C4DF4.sa1mdl", false)->basicdxmodel; //OCfO rotating thing
+	AddTextureAnimation_Permanent(9, 0, &((NJS_MODEL_SADX*)0x1E46F30)->mats[3], false, 120, 140, 147, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1);
+	*(NJS_OBJECT*)0x1E510A8 = *LoadModel("system\\data\\STG09\\Models\\001CD9D0.sa1mdl", false); //OFanFan
+	*(NJS_OBJECT*)0x1DF716C = *LoadModel("system\\data\\STG09\\Models\\001771B0.sa1mdl", false); //Slot red
+	AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1DF716C)->basicdxmodel->meshsets[8].vertuv, 14, 16, 65, 0);
+	*(NJS_OBJECT*)0x1DF5164 = *LoadModel("system\\data\\STG09\\Models\\00175E6C.sa1mdl", false); //Slot blue
+	AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1DF5164)->basicdxmodel->meshsets[8].vertuv, 14, 16, 65, 0);
+	*(NJS_OBJECT*)0x1E49864 = *LoadModel("system\\data\\STG09\\Models\\001C6E9C.sa1mdl", false); //Card pinball entrance
+	AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E49864)->basicdxmodel->meshsets[0].vertuv, 67, 12, 65, 0);
+	AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E49864)->basicdxmodel->meshsets[5].vertuv, 8, 12, 65, 0);
+	*(NJS_OBJECT*)0x1E4B1A8 = *LoadModel("system\\data\\STG09\\Models\\001C8150.sa1mdl", false); //Slot pinball entrance
+	AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E4B1A8)->basicdxmodel->meshsets[0].vertuv, 28, 12, 65, 0);
+	AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E4B1A8)->basicdxmodel->meshsets[11].vertuv, 24, 12, 65, 0);
+	*(NJS_OBJECT*)0x1DC2B74 = *LoadModel("system\\data\\STG09\\Models\\00144F38.sa1mdl", false); //Reala thing 1
+	*(NJS_OBJECT*)0x1DC4644 = *LoadModel("system\\data\\STG09\\Models\\00146978.sa1mdl", false); //Reala thing 2
+	*(NJS_OBJECT*)0x1DC6114 = *LoadModel("system\\data\\STG09\\Models\\001483B8.sa1mdl", false); //Reala thing 3
+	*(NJS_OBJECT*)0x1DC7BE4 = *LoadModel("system\\data\\STG09\\Models\\00149DF8.sa1mdl", false); //Reala thing 4
+	OSlX_Base = LoadModel("system\\data\\STG09\\Models\\001BF300.sa1mdl", false); //OSl Base
+	OSlX_Base->child->basicdxmodel->meshsets[0].nbMesh = 0; //Hide light start
+	OSlX_Base->child->basicdxmodel->meshsets[2].nbMesh = 0; //Hide light
+	((NJS_OBJECT*)0x01E5E7BC)->basicdxmodel->meshsets[2].nbMesh = 0; //OLhtr base
+	OLhtr_Bright = LoadModel("system\\data\\STG09\\Models\\001DAE74.sa1mdl", false); //OLhtr bright
+	OLhtr_Bright->basicdxmodel->meshsets[0].nbMesh = 0;
+	OLhtr_Bright->basicdxmodel->meshsets[1].nbMesh = 0;
+	OLhtr_Dark = LoadModel("system\\data\\STG09\\Models\\001DAE74.sa1mdl", false); //OLhtr dark
+	OLhtr_Dark->basicdxmodel->meshsets[0].nbMesh = 0;
+	OLhtr_Dark->basicdxmodel->meshsets[1].nbMesh = 0;
+	OLhtr_Dark->basicdxmodel->mats[2].diffuse.color = 0xFF4F4F4F;
+	((NJS_OBJECT*)0x1E5EC4C)->basicdxmodel->meshsets[3].nbMesh = 0; //OLhtg base
+	OLhtg_Bright = LoadModel("system\\data\\STG09\\Models\\001DB2E4.sa1mdl", false); //OLhtg bright
+	OLhtg_Bright->basicdxmodel->meshsets[0].nbMesh = 0;
+	OLhtg_Bright->basicdxmodel->meshsets[1].nbMesh = 0;
+	OLhtg_Bright->basicdxmodel->meshsets[2].nbMesh = 0;
+	OLhtg_Dark = LoadModel("system\\data\\STG09\\Models\\001DB2E4.sa1mdl", false); //OLhtg dark
+	OLhtg_Dark->basicdxmodel->meshsets[0].nbMesh = 0;
+	OLhtg_Dark->basicdxmodel->meshsets[1].nbMesh = 0;
+	OLhtg_Dark->basicdxmodel->meshsets[2].nbMesh = 0;
+	OLhtg_Dark->basicdxmodel->mats[4].diffuse.color = 0xFF4F4F4F;
+	*(NJS_OBJECT*)0x1E40FB8 = *LoadModel("system\\data\\STG09\\Models\\001BF300.sa1mdl", false); //OSl G
+	((NJS_OBJECT*)0x1E40FB8)->evalflags |= NJD_EVAL_HIDE;
+	((NJS_OBJECT*)0x1E40FB8)->child->basicdxmodel->meshsets[1].nbMesh = 0;
+	*(NJS_OBJECT*)0x1E40980 = *LoadModel("system\\data\\STG09\\Models\\001BECF4.sa1mdl", false); //OSl B
+	((NJS_OBJECT*)0x1E40980)->evalflags |= NJD_EVAL_HIDE;
+	((NJS_OBJECT*)0x1E40980)->child->basicdxmodel->meshsets[1].nbMesh = 0;
+	*(NJS_OBJECT*)0x1E415F0 = *LoadModel("system\\data\\STG09\\Models\\001BF90C.sa1mdl", false); //OSl R
+	((NJS_OBJECT*)0x1E415F0)->evalflags |= NJD_EVAL_HIDE;
+	((NJS_OBJECT*)0x1E415F0)->child->basicdxmodel->meshsets[1].nbMesh = 0;
+	*(NJS_OBJECT*)0x1E41C28 = *LoadModel("system\\data\\STG09\\Models\\001BFF18.sa1mdl", false); //OSl Y
+	((NJS_OBJECT*)0x1E41C28)->evalflags |= NJD_EVAL_HIDE;
+	((NJS_OBJECT*)0x1E41C28)->child->basicdxmodel->meshsets[1].nbMesh = 0;
+	*(NJS_OBJECT*)0x1E47B1C = *LoadModel("system\\data\\STG09\\Models\\001C5990.sa1mdl", false); //MizuA (fountain)
+	AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E47B1C)->basicdxmodel->meshsets[0].vertuv, 36, 0, 0, -16);
+	AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E47B1C)->basicdxmodel->meshsets[1].vertuv, 80, 0, 0, -16);
+	*(NJS_OBJECT*)0x1E47CA4 = *LoadModel("system\\data\\STG09\\Models\\001C5B0C.sa1mdl", false); //MizuB (waterfall)
+	AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E47CA4)->basicdxmodel->meshsets[0].vertuv, 8, 0, 0, -16);
+	*(NJS_OBJECT*)0x1E01EB4 = *LoadModel("system\\data\\STG09\\Models\\0018141C.sa1mdl", false); //Lion
+	AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E01EB4)->child->sibling->sibling->basicdxmodel->meshsets[5].vertuv, 36, 8, -127, 0);
+	AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E01EB4)->child->sibling->sibling->basicdxmodel->meshsets[10].vertuv, 20, 8, -127, 0);
+	((NJS_ACTION*)0x1DE120C)->object = LoadModel("system\\data\\STG09\\Models\\00155E04.sa1mdl", false); //Pianpach
+	((NJS_ACTION*)0x1DE223C)->object = LoadModel("system\\data\\STG09\\Models\\001594F4.sa1mdl", false); //Pianwalk
+	((NJS_ACTION*)0x1DE23C4)->object = LoadModel("system\\data\\STG09\\Models\\0015B34C.sa1mdl", false); //Pianfish
+	((NJS_ACTION*)0x1DE2A5C)->object = LoadModel("system\\data\\STG09\\Models\\0015CEC4.sa1mdl", false); //Pianwhatever
+	((NJS_ACTION*)0x1DE084C)->object = LoadModel("system\\data\\STG09\\Models\\00153688.sa1mdl", false); //Flying clock
 	//UV fixes
 	memcpy((void*)0x1E3C3C8, uvSTG09_001BA8B0, sizeof(uvSTG09_001BA8B0)); //O KBB
-	memcpy((void*)0x1E3C868, uvSTG09_001BAD3C, sizeof(uvSTG09_001BAD3C)); //O KBR
+	memcpy((void*)0x1E3C868, uvSTG09_001BA8B0, sizeof(uvSTG09_001BA8B0)); //O KBR
 	memcpy((void*)0x1E46FF8, uvSTG09_001C4E90, sizeof(uvSTG09_001C4E90)); //SDFUTIR
-	memcpy((void*)0x1E471C8, uvSTG09_001C5054, sizeof(uvSTG09_001C5054)); //SDFUTIB
+	memcpy((void*)0x1E471C8, uvSTG09_001C4E90, sizeof(uvSTG09_001C4E90)); //SDFUTIB
 	memcpy((void*)0x1E4BD38, uvSTG09_001C8C9C, sizeof(uvSTG09_001C8C9C)); //Wall marquee
 	memcpy((void*)0x1E4BD98, uvSTG09_001C8CFC, sizeof(uvSTG09_001C8CFC)); //Wall marquee
-	WriteData<1>((char*)0x005DF088, 0i8); //OTDenki transparency fix
 	memcpy((void*)0x1E3BAC8, uvSTG09_001B9FC4, sizeof(uvSTG09_001B9FC4)); //ORlti
 	memcpy((void*)0x1E3BBC8, uvSTG09_001BA0C4, sizeof(uvSTG09_001BA0C4)); //ORlti
 	memcpy((void*)0x1E3BC08, uvSTG09_001BA104, sizeof(uvSTG09_001BA104)); //ORlti
-	*(NJS_MODEL_SADX*)0x01E49838 = attachSTG09_001C6E74; //Card pinball entrance
-	*(NJS_MODEL_SADX*)0x01E4B17C = attachSTG09_001C8128; //Slot pinball entrance
-	RemoveVertexColors_Object((NJS_OBJECT*)0x1E49864); //Card pinball entrance
-	RemoveVertexColors_Object((NJS_OBJECT*)0x1E4B1A8); //Slot pinball entrance
-	memcpy((void*)0x1E4D298, uvSTG09_001CA184, sizeof(uvSTG09_001CA184)); //Card pinball spinning ad
-	memcpy((void*)0x1E4DFD8, uvSTG09_001CAE80, sizeof(uvSTG09_001CAE80)); //Slot pinball spinning ad
-	((NJS_ACTION*)0x01DE120C)->object = &objectSTG09_00155E04; //Pianpach
-	((NJS_ACTION*)0x01DE223C)->object = &objectSTG09_001594F4; //Pianwalk
-	((NJS_ACTION*)0x01DE23C4)->object = &objectSTG09_0015B34C; //Pianfish
-	((NJS_ACTION*)0x01DE2A5C)->object = &objectSTG09_0015CEC4; //Pianwhatever
-	((NJS_ACTION*)0x01DE084C)->object = &objectSTG09_00153688; //Flying clock
-	*(NJS_MODEL_SADX*)0x1E5D8D8 = attachSTG09_001DA00C; //Wht
-	*(NJS_OBJECT*)0x1DC2B74 = objectSTG09_00144F38; //Reala thing 1
-	*(NJS_OBJECT*)0x1DC4644 = objectSTG09_00146978; //Reala thing 2
-	*(NJS_OBJECT*)0x1DC6114 = objectSTG09_001483B8; //Reala thing 3
-	*(NJS_OBJECT*)0x1DC7BE4 = objectSTG09_00149DF8; //Reala thing 4
-	//Yaji (arrow object) fixes
+	//Yaji (arrow object) UV fixes
 	yajitex[0].u = 509;
 	yajitex[1].u = 510;
 	((NJS_MODEL_SADX*)0x01DDB5D0)->mats[0].attrflags |= NJD_FLAG_FLIP_U;
 	//Bumper1 fixes
 	((NJS_MODEL_SADX*)0x01D98CE8)->mats[0].attrflags |= NJD_FLAG_FLIP_U;
 	((NJS_MODEL_SADX*)0x01D99790)->mats[0].attrflags |= NJD_FLAG_FLIP_U;
-	for (unsigned int uvSTG09_bill1 = 0; uvSTG09_bill1 < LengthOfArray(uvSTG09_001E9ABC); uvSTG09_bill1++)
-	{
-		bill1[uvSTG09_bill1].u = uvSTG09_001E9ABC[uvSTG09_bill1].u;
-		bill1[uvSTG09_bill1].v = uvSTG09_001E9ABC[uvSTG09_bill1].v;
-	}
-	for (unsigned int uvSTG09_bill2 = 0; uvSTG09_bill2 < LengthOfArray(uvSTG09_001E9BF4); uvSTG09_bill2++)
-	{
-		bill2[uvSTG09_bill2].u = uvSTG09_001E9BF4[uvSTG09_bill2].u;
-		bill2[uvSTG09_bill2].v = uvSTG09_001E9BF4[uvSTG09_bill2].v;
-	}
-	for (unsigned int uvSTG09_bump = 0; uvSTG09_bump < LengthOfArray(uvSTG09_01998418); uvSTG09_bump++)
-	{
-		bumpertex[uvSTG09_bump].u = uvSTG09_01998418[uvSTG09_bump].u;
-		bumpertex[uvSTG09_bump].v = uvSTG09_01998418[uvSTG09_bump].v;
-	}
-	for (unsigned int uvSTG09_bump = 0; uvSTG09_bump < LengthOfArray(uvSTG09_01998418); uvSTG09_bump++)
-	{
-		bumpertex[uvSTG09_bump].u = uvSTG09_01998418[uvSTG09_bump].u;
-		bumpertex[uvSTG09_bump].v = uvSTG09_01998418[uvSTG09_bump].v;
-	}
-	for (unsigned int uvSTG09_bump2 = 0; uvSTG09_bump2 < LengthOfArray(uvSTG09_0011B8B4); uvSTG09_bump2++)
-	{
-		bumpertex2[uvSTG09_bump2].u = uvSTG09_01998418[uvSTG09_bump2].u;
-		bumpertex2[uvSTG09_bump2].v = uvSTG09_01998418[uvSTG09_bump2].v;
-	}
-	//Lion top animation
-	lionmesh[0].vertuv = uv_lion;
-	((NJS_OBJECT*)0x01E3FD04)->evalflags |= NJD_EVAL_HIDE; //Hide OKbS
-	((NJS_OBJECT*)0x01E3D734)->evalflags |= NJD_EVAL_HIDE; //Hide OKbC
-	WriteCall((void*)0x5CE84B, RenderOKBSText);
-	WriteCall((void*)0x5CEA2A, RenderOKBCText);
-	ResizeTextureList((NJS_TEXLIST*)0x1D1B050, textures_casino1);
-	ResizeTextureList((NJS_TEXLIST*)0x1CBD1C4, textures_casino2);
-	ResizeTextureList((NJS_TEXLIST*)0x1C8AF04, textures_casino3);
-	ResizeTextureList((NJS_TEXLIST*)0x1C47004, textures_casino4);
-	ResizeTextureList(&OBJ_CASINO9_TEXLIST, 203);
-	*(NJS_MODEL_SADX*)0x01E74A68 = attachSTG09_01A74A68; //NeonK
-	WriteCall((void*)0x5CAB34, RenderNeonK);
-	*(NJS_MODEL_SADX*)0x01E46F30 = attachSTG09_001C4DCC; //OCfa rotating thing
 	//Fog and draw distance stuff
 	for (unsigned int i = 0; i < 3; i++)
 	{
 		Casino1Fog[i].Color = 0xFF000000;
-		Casino1Fog[i].Layer = 600.0f;
+		Casino1Fog[i].Layer = 800.0f;
 		Casino1Fog[i].Toggle = 1;
-		Casino1Fog[i].Distance = 1700.0f;
+		Casino1Fog[i].Distance = 2000.0f;
 		Casino2Fog[i].Color = 0xFF707000;
 		Casino2Fog[i].Layer = 1.0f;
 		Casino2Fog[i].Distance = 4000.0f;
@@ -1099,19 +1179,20 @@ void Casinopolis_Init()
 void Casinopolis_OnFrame()
 {
 	auto entity = EntityData1Ptrs[0];
+	//Palette effect
 	if (DLLLoaded_Lantern)
 	{
 		//Failsafe stuff for palette blending
-		if (WhiteSonic && (InsideMachine == 0 || CurrentLevel != 9 || CurrentAct != 0 || GameMode == GameModes_Menu || GameState == 3 || GameState == 4 || GameState == 7 || GameState == 21))
+		if (WhiteSonic && (InsideMachine == 0 || CurrentLevel != LevelIDs_Casinopolis || CurrentAct != 0 || GameMode == GameModes_Menu || GameState == 3 || GameState == 4 || GameState == 7 || GameState == 21))
 		{
 			WhiteSonic = false;
 			set_blend_factor_ptr(0.0f);
 			set_specular_blend_ptr(2, -1);
 			set_specular_blend_ptr(3, -1);
 			set_shader_flags_ptr(ShaderFlags_Blend, false);
-			SonicWhiteness = 0;
+			SonicWhiteBlendFactor = 0;
 		}
-		if (CurrentLevel == 9 && CurrentAct == 0 && GameState != 16)
+		if (CurrentLevel == LevelIDs_Casinopolis && CurrentAct == 0 && !IsGamePaused())
 		{
 			//Make Sonic white
 			if (!WhiteSonic && InsideMachine != 0)
@@ -1122,107 +1203,47 @@ void Casinopolis_OnFrame()
 				set_specular_blend_ptr(3, 4);
 			}
 			//Make Sonic normal
-			if (WhiteSonic && SonicWhiteness <= 0.75f)
+			if (WhiteSonic && SonicWhiteBlendFactor <= 0.75f)
 			{
-				set_blend_factor_ptr(SonicWhiteness);
-				SonicWhiteness += (0.01f * FramerateSetting);
+				set_blend_factor_ptr(SonicWhiteBlendFactor);
+				SonicWhiteBlendFactor += (0.01f * FramerateSetting);
 			}
 		}
 	}
-	//Loop sound
-	if (CurrentLevel == 9 && CurrentAct == 3 && GameState != 16)
+	//Other things
+	if (CurrentLevel == LevelIDs_Casinopolis && !IsGamePaused())
 	{
-		if (LoopDelay > 0) LoopDelay = LoopDelay - FramerateSetting;
-	}
-	//Gears
-	if (CurrentLevel == 9 && CurrentCharacter == 3 && GameState != 16)
-	{
-		gearframe1 = gearframe1 + 0.1f;
-		if (gearframe1 > 15) gearframe1 = 0;
-		RotationAngle1 = (RotationAngle1 + 128) % 65536;
-		RotationAngle2 = (RotationAngle2 - 128) % 65536;
-	}
-	//Cowgirl
-	if (CurrentLevel == 9 && CurrentCharacter == 3 && CowgirlOn && GameState != 16)
-	{
-		//Cowgirl UVs
-		if (FrameCounter % 16 == 0)
+		//Loop sound
+		if (CurrentAct == 3)
 		{
-			cowgirl_shift1 = (cowgirl_shift1 + 65) % 255;
-			cowgirl_shift2 = (cowgirl_shift2 + 100) % 510;
-
-			for (unsigned int slot_cow1 = 0; slot_cow1 < LengthOfArray(uvSTG09_001CF84C); slot_cow1++)
-			{
-				uvSTG09_001CF84C[slot_cow1].u = uvSTG09_001CF84C_0[slot_cow1].u + cowgirl_shift1;
-			}
-			for (unsigned int slot_cow2 = 0; slot_cow2 < LengthOfArray(uvSTG09_001D6728); slot_cow2++)
-			{
-				uvSTG09_001D6728[slot_cow2].u = uvSTG09_001D6728_0[slot_cow2].u + cowgirl_shift2;
-			}
-			for (unsigned int slot_cow3 = 0; slot_cow3 < LengthOfArray(uvSTG09_001D6040); slot_cow3++)
-			{
-				uvSTG09_001D6040[slot_cow3].u = uvSTG09_001D6040_0[slot_cow3].u + cowgirl_shift2;
-			}
-			for (unsigned int slot_cow4 = 0; slot_cow4 < LengthOfArray(uvSTG09_001D6794); slot_cow4++)
-			{
-				uvSTG09_001D6794[slot_cow4].u = uvSTG09_001D6794_0[slot_cow4].u + cowgirl_shift2;
-			}
-			for (unsigned int slot_cow5 = 0; slot_cow5 < LengthOfArray(uvSTG09_001D67BC); slot_cow5++)
-			{
-				uvSTG09_001D67BC[slot_cow5].u = uvSTG09_001D67BC_0[slot_cow5].u + cowgirl_shift2;
-			}
-			for (unsigned int slot_cow6 = 0; slot_cow6 < LengthOfArray(uvSTG09_001D2F74); slot_cow6++)
-			{
-				uvSTG09_001D2F74[slot_cow6].u = uvSTG09_001D2F74_0[slot_cow6].u + cowgirl_shift2;
-			}
-			for (unsigned int slot_cow7 = 0; slot_cow7 < LengthOfArray(uvSTG09_001D308C); slot_cow7++)
-			{
-				uvSTG09_001D308C[slot_cow7].u = uvSTG09_001D308C_0[slot_cow7].u + cowgirl_shift2;
-			}
-			for (unsigned int slot_cow8 = 0; slot_cow8 < LengthOfArray(uvSTG09_001D333C); slot_cow8++)
-			{
-				uvSTG09_001D333C[slot_cow8].u = uvSTG09_001D333C_0[slot_cow8].u + cowgirl_shift2;
-			}
-			for (unsigned int slot_cow9 = 0; slot_cow9 < LengthOfArray(uvSTG09_001D4868); slot_cow9++)
-			{
-				uvSTG09_001D4868[slot_cow9].u = uvSTG09_001D4868_0[slot_cow9].u + cowgirl_shift2;
-			}
-			for (unsigned int slot_cow10 = 0; slot_cow10 < LengthOfArray(uvSTG09_001D16E4); slot_cow10++)
-			{
-				uvSTG09_001D16E4[slot_cow10].u = uvSTG09_001D16E4_0[slot_cow10].u + cowgirl_shift2;
-			}
-			for (unsigned int slot_cow11 = 0; slot_cow11 < LengthOfArray(uvSTG09_001D02D0); slot_cow11++)
-			{
-				uvSTG09_001D02D0[slot_cow11].u = uvSTG09_001D02D0_0[slot_cow11].u + cowgirl_shift2;
-			}
-			for (unsigned int slot_cow12 = 0; slot_cow12 < LengthOfArray(uvSTG09_001D043C); slot_cow12++)
-			{
-				uvSTG09_001D043C[slot_cow12].u = uvSTG09_001D043C_0[slot_cow12].u + cowgirl_shift2;
-			}
-			for (unsigned int slot_cow13 = 0; slot_cow13 < LengthOfArray(uvSTG09_001D1F60); slot_cow13++)
-			{
-				uvSTG09_001D1F60[slot_cow13].u = uvSTG09_001D1F60_0[slot_cow13].u + cowgirl_shift2;
-			}
-			for (unsigned int slot_cow14 = 0; slot_cow14 < LengthOfArray(uvSTG09_001D1F78); slot_cow14++)
-			{
-				uvSTG09_001D1F78[slot_cow14].u = uvSTG09_001D1F78_0[slot_cow14].u + cowgirl_shift2;
-			}
+			if (LoopDelay > 0) LoopDelay = LoopDelay - FramerateSetting;
 		}
-		//Cowgirl action
-		if (CowgirlDelay < 100) CowgirlDelay++;
-		if (CowgirlDelay >= 100 && entity != nullptr && entity->Status & Status_Attack)
+		//Knuckles stuff
+		if (CurrentAct == 0 && CurrentCharacter == 3)
 		{
-			if (IsPlayerInsideSphere(&Cowgirl1, 180.0f) || IsPlayerInsideSphere(&Cowgirl2, 180.0f))
+			//Gears
+			GearFrame += 0.1f;
+			if (GearFrame > 15) GearFrame = 0;
+			RotationAngle1 = (RotationAngle1 + 128) % 65536;
+			RotationAngle2 = (RotationAngle2 - 128) % 65536;
+			//Cowgirl
+			if (CowgirlOn)
 			{
-				PlaySound(278, 0, 0, 0);
-				CowgirlDelay = 0;
+				//Cowgirl action
+				if (CowgirlDelay < 100) CowgirlDelay++;
+				if (CowgirlDelay >= 100 && entity != nullptr && entity->Status & Status_Attack)
+				{
+					if (IsPlayerInsideSphere(&Cowgirl1, 180.0f) || IsPlayerInsideSphere(&Cowgirl2, 180.0f))
+					{
+						PlaySound(278, 0, 0, 0);
+						CowgirlDelay = 0;
+					}
+				}
 			}
 		}
-	}
-	if (CurrentLevel == 9 && GameState != 16)
-	{
+		//Tails' sound thing
 		if (CurrentAct != 1) SoundPlayed = 0;
-		if (CurrentAct == 1)
+		else
 		{
 			if (SoundPlayed == 0 && entity != nullptr && entity->Position.y > -1698)
 			{
@@ -1231,135 +1252,21 @@ void Casinopolis_OnFrame()
 			}
 		}
 	}
-	if (STG09_0_Info && CurrentLevel == 9 && CurrentAct == 0 && GameState != 16)
+	/*if (STG09_0_Info && CurrentLevel == LevelIDs_Casinopolis && CurrentAct == 0 && !IsGamePaused())
 	{
-		//This game's collision is fucking awful
-		if (entity != nullptr)
-		{
-			if (CurrentCharacter == 3)
-			{
-				if (entity->Position.y > -30.0f) STG09_0_Info->getlandtable()->Col[STG09_0_Info->getlandtable()->COLCount - 2].Flags = 0xA0040002;
-				else STG09_0_Info->getlandtable()->Col[STG09_0_Info->getlandtable()->COLCount - 2].Flags = 0xA0040000;
-			}
-			else STG09_0_Info->getlandtable()->Col[STG09_0_Info->getlandtable()->COLCount - 2].Flags = 0xA0040000;
-		}
-		//Rotating thing
-		matlistSTG09_001C448C[3].attr_texId = monitorimage + 140;
-		if (FrameCounter % (240 / FramerateSetting) == 0)
-		{
-			monitorimage++;
-			if (monitorimage > 7) monitorimage = 0;
-		}
 		//Water
-		if (anim1_actual == 0) anim1 = 75;
-		if (anim1_actual == 1) anim1 = 68;
-		if (anim1_actual == 2) anim1 = 69;
-		if (anim1_actual == 3) anim1 = 70;
-		if (anim1_actual == 4) anim1 = 71;
-		if (anim1_actual == 5) anim1 = 72;
-		if (anim1_actual == 6) anim1 = 73;
-		if (anim1_actual == 7) anim1 = 74;
-		if (anim1_actual == 8) anim1 = 67;
-		if (anim1_actual == 9) anim1 = 76;
-		if (anim1_actual == 10) anim1 = 77;
-		if (anim1_actual == 11) anim1 = 78;
-		if (anim1_actual == 12) anim1 = 79;
-		if (anim1_actual == 13) anim1 = 80;
+		
 		if (anim1_actual > 13) anim1_actual = 0;
-		((NJS_MATERIAL*)STG09_0_Info->getdata("matlistSTG09_00066F5C"))[1].attr_texId = anim1;
-		((NJS_MATERIAL*)STG09_0_Info->getdata("matlistSTG09_01979784"))[0].attr_texId = anim1;
+		//((NJS_MATERIAL*)STG09_0_Info->getdata("matlistSTG09_00066F5C"))[1].attr_texId = anim1;
+		//((NJS_MATERIAL*)STG09_0_Info->getdata("matlistSTG09_01979784"))[0].attr_texId = anim1;
 		if (FramerateSetting < 2 && FrameCounter % 3 == 0 || FramerateSetting == 2 && FrameCounter % 2 == 0 || FramerateSetting > 2) anim1_actual++;
-		//Card machine and lion top animation
-		if (FrameCounter % 8 == 0)
-		{
-			shift3 = (shift3 + 127) % 255;
-		}
-		for (unsigned int xz2 = 0; xz2 < LengthOfArray(uv_lion); xz2++)
-		{
-			uv_lion[xz2].u = (uv_lion_0[xz2].u - shift3);
-		}
-		if (FrameCounter % 12 == 0)
-		{
-			shift1 = (shift1 + 65) % 255;
-			for (unsigned int slot_uv1 = 0; slot_uv1 < LengthOfArray(uvSTG09_001C7570); slot_uv1++)
-			{
-				uvSTG09_001C7570[slot_uv1].u = uvSTG09_001C7570_0[slot_uv1].u + shift1;
-			}
-			for (unsigned int slot_uv2 = 0; slot_uv2 < LengthOfArray(uvSTG09_001C75E0); slot_uv2++)
-			{
-				uvSTG09_001C75E0[slot_uv2].u = uvSTG09_001C75E0_0[slot_uv2].u + shift1;
-			}
-			for (unsigned int slot_uv3 = 0; slot_uv3 < LengthOfArray(uvSTG09_001C7748); slot_uv3++)
-			{
-				uvSTG09_001C7748[slot_uv3].u = uvSTG09_001C7748_0[slot_uv3].u + shift1;
-			}
-			for (unsigned int slotmachine1 = 0; slotmachine1 < LengthOfArray(uvSTG09_001767D8); slotmachine1++)
-			{
-				uvSTG09_001767D8[slotmachine1].u = uvSTG09_001767D8_0[slotmachine1].u + shift1;
-			}
-			for (unsigned int slotmachine2 = 0; slotmachine2 < LengthOfArray(uvSTG09_00175494); slotmachine2++)
-			{
-				uvSTG09_00175494[slotmachine2].u = uvSTG09_00175494_0[slotmachine2].u + shift1;
-			}
-
-			for (unsigned int card_uv1 = 0; card_uv1 < LengthOfArray(uvSTG09_001C6200); card_uv1++)
-			{
-				uvSTG09_001C6200[card_uv1].u = uvSTG09_001C6200_0[card_uv1].u + shift1;
-			}
-			for (unsigned int card_uv1 = 0; card_uv1 < LengthOfArray(uvSTG09_001C6200); card_uv1++)
-			{
-				uvSTG09_001C6200[card_uv1].u = uvSTG09_001C6200_0[card_uv1].u + shift1;
-			}
-			for (unsigned int card_uv2 = 0; card_uv2 < LengthOfArray(uvSTG09_001C63EC); card_uv2++)
-			{
-				uvSTG09_001C63EC[card_uv2].u = uvSTG09_001C63EC_0[card_uv2].u + shift1;
-			}
-			for (unsigned int card_uv3 = 0; card_uv3 < LengthOfArray(uvSTG09_001C646C); card_uv3++)
-			{
-				uvSTG09_001C646C[card_uv3].u = uvSTG09_001C646C_0[card_uv3].u + shift1;
-			}
-			for (unsigned int xz = 0; xz < LengthOfArray(uvSTG09_01A48AD8); xz++)
-			{
-				uvSTG09_01A48AD8[xz].u = (uvSTG09_01A48AD8_0[xz].u + shift1);
-			}
-		}
-		//Waterfalls
-		shift2 = (shift2 - 10) % 255;
-		for (unsigned int q = 0; q < LengthOfArray(uvSTG09_01A47B78); q++)
-		{
-			uvSTG09_01A47B78[q].v = uvSTG09_01A47B78_0[q].v + shift2;
-		}
-
-		for (unsigned int q2 = 0; q2 < LengthOfArray(uvSTG09_01A47468); q2++)
-		{
-			uvSTG09_01A47468[q2].v = uvSTG09_01A47468_0[q2].v + shift2;
-		}
-
-		for (unsigned int q3 = 0; q3 < LengthOfArray(uvSTG09_01A474F8); q3++)
-		{
-			uvSTG09_01A474F8[q3].v = uvSTG09_01A474F8_0[q3].v + shift2;
-		}
-
 	}
-	if (STG09_1_Info && CurrentLevel == 9 && CurrentAct == 1 && GameState != 16)
+	
+	if (STG09_1_Info && CurrentLevel == LevelIDs_Casinopolis && CurrentAct == 1 && !IsGamePaused())
 	{
-		if (anim2_actual == 0) anim2 = 7;
-		if (anim2_actual == 1) anim2 = 10;
-		if (anim2_actual == 2) anim2 = 11;
-		if (anim2_actual == 3) anim2 = 12;
-		if (anim2_actual == 4) anim2 = 13;
-		if (anim2_actual == 5) anim2 = 14;
-		if (anim2_actual == 6) anim2 = 9;
-		if (anim2_actual == 7) anim2 = 15;
-		if (anim2_actual == 8) anim2 = 16;
-		if (anim2_actual == 9) anim2 = 17;
-		if (anim2_actual == 10) anim2 = 18;
-		if (anim2_actual == 11) anim2 = 19;
-		if (anim2_actual == 12) anim2 = 20;
-		if (anim2_actual == 13) anim2 = 21;
-		if (anim2_actual > 13) anim2_actual = 0;
-		((NJS_MATERIAL*)STG09_1_Info->getdata("matlistSTG09_000ACC44"))[0].attr_texId = anim2;
-		((NJS_MATERIAL*)STG09_1_Info->getdata("matlistSTG09_000ACB40"))[0].attr_texId = anim2;
+	
+		//((NJS_MATERIAL*)STG09_1_Info->getdata("matlistSTG09_000ACC44"))[0].attr_texId = anim2;
+		//((NJS_MATERIAL*)STG09_1_Info->getdata("matlistSTG09_000ACB40"))[0].attr_texId = anim2;
 		if (FramerateSetting < 2 && FrameCounter % 3 == 0 || FramerateSetting == 2 && FrameCounter % 2 == 0 || FramerateSetting > 2) anim2_actual++;
-	}
+	}*/
 }

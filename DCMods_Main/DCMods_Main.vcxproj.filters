@@ -263,9 +263,6 @@
     <ClInclude Include="Data\button.h">
       <Filter>Header Files\Levels\ADV02MODELS</Filter>
     </ClInclude>
-    <ClInclude Include="Data\Casino_objects.h">
-      <Filter>Header Files\Levels\Casinopolis</Filter>
-    </ClInclude>
     <ClInclude Include="Data\Casino1.h">
       <Filter>Header Files\Levels\Casinopolis</Filter>
     </ClInclude>
@@ -599,10 +596,13 @@
     <ClInclude Include="Data\Chaos6_Knuckles.h">
       <Filter>Header Files\Levels\Bosses</Filter>
     </ClInclude>
-    <ClInclude Include="Data\CowgirlAnimation.h">
+    <ClInclude Include="Data\Casino_UVs.h">
       <Filter>Header Files\Levels\Casinopolis</Filter>
     </ClInclude>
-    <ClInclude Include="Data\CowgirlModel.h">
+    <ClInclude Include="Data\Cowgirl_Animation.h">
+      <Filter>Header Files\Levels\Casinopolis</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\Cowgirl_Model.h">
       <Filter>Header Files\Levels\Casinopolis</Filter>
     </ClInclude>
   </ItemGroup>

@@ -157,7 +157,7 @@
     <ClInclude Include="Data\Casino2.h" />
     <ClInclude Include="Data\Casino3.h" />
     <ClInclude Include="Data\Casino4.h" />
-    <ClInclude Include="Data\Casino_objects.h" />
+    <ClInclude Include="Data\Casino_UVs.h" />
     <ClInclude Include="Data\ChaoObjects.h" />
     <ClInclude Include="Data\ChaoRace.h" />
     <ClInclude Include="Data\ChaoRaceEntry.h" />
@@ -170,8 +170,8 @@
     <ClInclude Include="Data\Chaos7.h" />
     <ClInclude Include="Data\CharacterEffects.h" />
     <ClInclude Include="Data\CommonObjects.h" />
-    <ClInclude Include="Data\CowgirlModel.h" />
-    <ClInclude Include="Data\CowgirlAnimation.h" />
+    <ClInclude Include="Data\Cowgirl_Model.h" />
+    <ClInclude Include="Data\Cowgirl_Animation.h" />
     <ClInclude Include="Data\E101.h" />
     <ClInclude Include="Data\E101R.h" />
     <ClInclude Include="Data\ECGarden.h" />
