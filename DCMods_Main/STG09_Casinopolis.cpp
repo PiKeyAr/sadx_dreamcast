@@ -1216,6 +1216,7 @@ void Casinopolis_Init()
 	((NJS_ACTION*)0x1DE223C)->object = LoadModel("system\\data\\STG09\\Models\\001594F4.sa1mdl", false); //Pianwalk
 	((NJS_ACTION*)0x1DE23C4)->object = LoadModel("system\\data\\STG09\\Models\\0015B34C.sa1mdl", false); //Pianfish
 	((NJS_ACTION*)0x1DE2A5C)->object = LoadModel("system\\data\\STG09\\Models\\0015CEC4.sa1mdl", false); //Pianslee
+	((NJS_ACTION*)0x1DE18A4)->object = LoadModel("system\\data\\STG09\\Models\\0015797C.sa1mdl", false); //Piantama
 	((NJS_ACTION*)0x1DE084C)->object = LoadModel("system\\data\\STG09\\Models\\00153688.sa1mdl", false); //Flying clock
 	//UV fixes
 	((NJS_TEX*)0x01DDB544)->u = 509; //Yaji
