@@ -1322,21 +1322,4 @@ void Casinopolis_OnFrame()
 			}
 		}
 	}
-	/*if (STG09_0_Info && CurrentLevel == LevelIDs_Casinopolis && CurrentAct == 0 && !IsGamePaused())
-	{
-		//Water
-		
-		if (anim1_actual > 13) anim1_actual = 0;
-		//((NJS_MATERIAL*)STG09_0_Info->getdata("matlistSTG09_00066F5C"))[1].attr_texId = anim1;
-		//((NJS_MATERIAL*)STG09_0_Info->getdata("matlistSTG09_01979784"))[0].attr_texId = anim1;
-		if (FramerateSetting < 2 && FrameCounter % 3 == 0 || FramerateSetting == 2 && FrameCounter % 2 == 0 || FramerateSetting > 2) anim1_actual++;
-	}
-	
-	if (STG09_1_Info && CurrentLevel == LevelIDs_Casinopolis && CurrentAct == 1 && !IsGamePaused())
-	{
-	
-		//((NJS_MATERIAL*)STG09_1_Info->getdata("matlistSTG09_000ACC44"))[0].attr_texId = anim2;
-		//((NJS_MATERIAL*)STG09_1_Info->getdata("matlistSTG09_000ACB40"))[0].attr_texId = anim2;
-		if (FramerateSetting < 2 && FrameCounter % 3 == 0 || FramerateSetting == 2 && FrameCounter % 2 == 0 || FramerateSetting > 2) anim2_actual++;
-	}*/
 }
