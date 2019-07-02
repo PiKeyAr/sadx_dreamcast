@@ -203,7 +203,7 @@ void __cdecl Cowgirl_Display(ObjectMaster *a1)
 
 void Cowgirl_Main(ObjectMaster* a1)
 {
-	EntityData1* v1 = a1->Data1;
+	EntityData1 *v1 = a1->Data1;
 	float CowgirlFrame;
 	float FrameCeil;
 	float FrameFloor;
