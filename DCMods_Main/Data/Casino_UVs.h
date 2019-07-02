@@ -1,6 +1,11 @@
+#pragma once
+
+#pragma warning(push)
+#pragma warning(disable: 4267 4838)
+
 //O KBB
 
-NJS_TEX uvSTG09_001BA8B0[] = {
+NJS_TEX uv_001BA8B0[] = {
 	{ 2008, -255 },
 	{ 3060, -255 },
 	{ 3060, 255 },
@@ -28,7 +33,7 @@ NJS_TEX uvSTG09_001BA8B0[] = {
 };
 
 //O KBR
-NJS_TEX uvSTG09_001BAD3C[] = {
+NJS_TEX uv_001BAD3C[] = {
 	{ 2008, -255 },
 	{ 3060, -255 },
 	{ 3060, 255 },
@@ -56,7 +61,7 @@ NJS_TEX uvSTG09_001BAD3C[] = {
 };
 
 //SDFUTIR
-NJS_TEX uvSTG09_001C4E90[] = {
+NJS_TEX uv_001C4E90[] = {
 	{ 0, 255 },
 	{ 0, -255 },
 	{ 3060, 255 },
@@ -65,7 +70,7 @@ NJS_TEX uvSTG09_001C4E90[] = {
 
 //Wall marquee UVs
 
-NJS_TEX uvSTG09_001C8C9C[] = {
+NJS_TEX uv_001C8C9C[] = {
 	{ 0, -255 },
 	{ 0, 255 },
 	{ 7650, -255 },
@@ -92,7 +97,7 @@ NJS_TEX uvSTG09_001C8C9C[] = {
 	{ 15300, 255 }
 };
 
-NJS_TEX uvSTG09_001C8CFC[] = {
+NJS_TEX uv_001C8CFC[] = {
 	{ 15300, 255 },
 	{ 15300, -255 },
 	{ 7649, 255 },
@@ -116,7 +121,7 @@ NJS_TEX uvSTG09_001C8CFC[] = {
 //ORLTI UVs
 
 
-NJS_TEX uvSTG09_001B9FC4[] = {
+NJS_TEX uv_001B9FC4[] = {
 	{ 0, 255 },
 	{ 10200, 255 },
 	{ 0, -255 },
@@ -183,7 +188,7 @@ NJS_TEX uvSTG09_001B9FC4[] = {
 	{ 10200, -255 }
 };
 
-NJS_TEX uvSTG09_001BA0C4[] = {
+NJS_TEX uv_001BA0C4[] = {
 	{ 0, 255 },
 	{ 3060, 255 },
 	{ 0, -255 },
@@ -202,7 +207,7 @@ NJS_TEX uvSTG09_001BA0C4[] = {
 	{ 3060, -255 }
 };
 
-NJS_TEX uvSTG09_001BA104[] = {
+NJS_TEX uv_001BA104[] = {
 	{ 0, 255 },
 	{ 3060, 255 },
 	{ 0, -254 },
@@ -220,3 +225,5 @@ NJS_TEX uvSTG09_001BA104[] = {
 	{ 0, -254 },
 	{ 3059, -255 }
 };
+
+#pragma warning(pop)
