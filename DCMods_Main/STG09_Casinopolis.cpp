@@ -176,26 +176,6 @@ void __cdecl Loop_DisplayF(ObjectMaster *a1)
 	}
 }
 
-void AddDynamicCollision(ObjectMaster *a1) 
-{
-	EntityData1 *original = a1->Data1;
-	NJS_OBJECT *colobject;
-
-	colobject = ObjectArray_GetFreeObject();
-	colobject->scl[0] = 1.0f;
-	colobject->scl[1] = 1.0f;
-	colobject->scl[2] = 1.0f;
-	colobject->ang[0] = original->Rotation.x;
-	colobject->ang[1] = original->Rotation.y;
-	colobject->ang[2] = original->Rotation.z;
-	colobject->pos[0] = original->Position.x;
-	colobject->pos[1] = original->Position.y;
-	colobject->pos[2] = original->Position.z;
-	colobject->basicdxmodel = a1->Data1->Object->basicdxmodel;
-	colobject->evalflags = NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK | NJD_EVAL_SKIP | NJD_EVAL_HIDE;
-	a1->Data1->Object = colobject;
-	DynamicCOL_Add((ColFlags)0x8000000, a1, colobject);
-}
 
 void __cdecl Cowgirl_Display(ObjectMaster *a1)
 {
@@ -214,23 +194,46 @@ void __cdecl Cowgirl_Display(ObjectMaster *a1)
 	{
 		njSetTexture((NJS_TEXLIST*)0x01DF0920); //OBJ_CASINO9
 		njPushMatrix(0);
-		njTranslate(0, 311.62f, 0, 338.93f);
-		njRotateXYZ(0, 0, 0x1E00, 0);
+		njTranslateV(0, &v1->Position);
+		njRotateXYZ(0, v1->Rotation.x, v1->Rotation.y, v1->Rotation.z);
 		njAction_Queue_407FC0(&action_cowgirl_anim, *(float*)&a1->Data1->CharIndex, 0);
 		njPopMatrix(1u);
 	}
 }
 
-void Cowgirl_Main(ObjectMaster *a1)
+void Cowgirl_Main(ObjectMaster* a1)
 {
-	EntityData1 *v1 = a1->Data1;
+	EntityData1* v1 = a1->Data1;
 	float CowgirlFrame;
+	float FrameCeil;
+	float FrameFloor;
+	int Rotation_PrevX;
+	int Rotation_PrevY;
+	int Rotation_PrevZ;
+	int Rotation_NextX;
+	int Rotation_NextY;
+	int Rotation_NextZ;
+	int RotationFinal_X;
+	int RotationFinal_Y;
+	int RotationFinal_Z;
+
 	CowgirlFrame = *(float*)&a1->Data1->CharIndex + 0.1f;
 	if (CowgirlFrame > 30) CowgirlFrame = 0;
-	//a1->Data1->Object->ang[0] = a1->Data1->Rotation.x + 0x8 + cowgirl_anim_5_rot[(int)CowgirlFrame].key[0] + cowgirl_anim_6_rot[(int)CowgirlFrame].key[0];
-	//a1->Data1->Object->ang[1] = a1->Data1->Rotation.y + 0xFFFFEAB0 + cowgirl_anim_5_rot[(int)CowgirlFrame].key[1] + cowgirl_anim_6_rot[(int)CowgirlFrame].key[1];
-	//a1->Data1->Object->ang[2] = a1->Data1->Rotation.z + 0 + cowgirl_anim_5_rot[(int)CowgirlFrame].key[2] + cowgirl_anim_6_rot[(int)CowgirlFrame].key[2];
 	*(float*)&a1->Data1->CharIndex = CowgirlFrame;
+	/*FrameCeil = ceil(CowgirlFrame);
+	FrameFloor = floor(CowgirlFrame);
+	Rotation_PrevX = cowgirl_anim_5_rot[(int)FrameFloor].key[0] + cowgirl_anim_6_rot[(int)FrameFloor].key[0];
+	Rotation_PrevY = cowgirl_anim_5_rot[(int)FrameFloor].key[1] + cowgirl_anim_6_rot[(int)FrameFloor].key[1];
+	Rotation_PrevZ = cowgirl_anim_5_rot[(int)FrameFloor].key[2] + cowgirl_anim_6_rot[(int)FrameFloor].key[2];
+	Rotation_NextX = cowgirl_anim_5_rot[(int)FrameCeil].key[0] + cowgirl_anim_6_rot[(int)FrameCeil].key[0];
+	Rotation_NextY = cowgirl_anim_5_rot[(int)FrameCeil].key[1] + cowgirl_anim_6_rot[(int)FrameCeil].key[1];
+	Rotation_NextZ = cowgirl_anim_5_rot[(int)FrameCeil].key[2] + cowgirl_anim_6_rot[(int)FrameCeil].key[2];
+	RotationFinal_X = Rotation_PrevX + (Rotation_NextX - Rotation_PrevX) * (CowgirlFrame - FrameFloor);
+	RotationFinal_Y = Rotation_PrevY + (Rotation_NextY - Rotation_PrevY) * (CowgirlFrame - FrameFloor);
+	RotationFinal_Z = Rotation_PrevZ + (Rotation_NextZ - Rotation_PrevZ) * (CowgirlFrame - FrameFloor);
+	a1->Data1->Object->ang[0] = a1->Data1->Rotation.x + 0x8 + RotationFinal_X;
+	a1->Data1->Object->ang[1] = a1->Data1->Rotation.y + 0xFFFFEAB0 + RotationFinal_Y;
+	a1->Data1->Object->ang[2] = a1->Data1->Rotation.z + 0 + RotationFinal_Z;*/
 	Cowgirl_Display(a1);
 	AddToCollisionList(v1);
 }
@@ -245,16 +248,27 @@ void Cowgirl_Delete(ObjectMaster *a1)
 	CheckThingButThenDeleteObject(a1);
 }
 
+
 void Cowgirl_Load(ObjectMaster *a1)
 {
+	NJS_OBJECT* colobject;
 	if (!ClipObject(a1, 640010.0f))
 	{
 		Collision_Init(a1, CollisionData_NeonK, 3, 4u);
-		//a1->Data1->Object = &objectSTG09_001D1C80;
-		//AddDynamicCollision(a1);
-		//a1->Data1->Object->pos[0] = a1->Data1->Position.x + 54.19999f - 36.88602;
-		//a1->Data1->Object->pos[1] = a1->Data1->Position.y + 101 + 60.00005;
-		//a1->Data1->Object->pos[2] = a1->Data1->Position.z -28 + 0.511601;
+		/*colobject = ObjectArray_GetFreeObject();
+		colobject->scl[0] = 1.0f;
+		colobject->scl[1] = 1.0f;
+		colobject->scl[2] = 1.0f;
+		colobject->pos[0] = a1->Data1->Position.x + 54.19999f - 36.8860168f;
+		colobject->pos[1] = a1->Data1->Position.y + 101 + 60.0000458f;
+		colobject->pos[2] = a1->Data1->Position.z - 28 + 0.511601f;
+		colobject->ang[0] = a1->Data1->Rotation.x + 0x8;
+		colobject->ang[1] = a1->Data1->Rotation.y + 0xFFFFEAB0;
+		colobject->ang[2] = a1->Data1->Rotation.z;
+		colobject->basicdxmodel = CowgirlObject->child->sibling->sibling->sibling->sibling->child->basicdxmodel;
+		colobject->evalflags = NJD_EVAL_HIDE | NJD_EVAL_SKIP | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK;
+		a1->Data1->Object = colobject;
+		DynamicCOL_Add((ColFlags)0x8000000, a1, colobject);*/
 		a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Cowgirl_Display;
 		a1->MainSub = (void(__cdecl *)(ObjectMaster *))Cowgirl_Main;
 		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))Cowgirl_Delete;

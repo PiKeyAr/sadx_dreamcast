@@ -196,13 +196,13 @@ NJS_MKEY_A cowgirl_anim_6_rot[] = {
 };
 
 NJS_MDATA2 cowgirl_anim_mdat[] = {
-	{ NULL, NULL, 0, 0 },
-	{ cowgirl_anim_1_pos, NULL, LengthOfArray(cowgirl_anim_1_pos), 0 },
-	{ NULL, cowgirl_anim_2_rot, 0, LengthOfArray(cowgirl_anim_2_rot) },
-	{ NULL, cowgirl_anim_3_rot, 0, LengthOfArray(cowgirl_anim_3_rot) },
-	{ NULL, cowgirl_anim_4_rot, 0, LengthOfArray(cowgirl_anim_4_rot) },
-	{ NULL, cowgirl_anim_5_rot, 0, LengthOfArray(cowgirl_anim_5_rot) },
-	{ NULL, cowgirl_anim_6_rot, 0, LengthOfArray(cowgirl_anim_6_rot) },
+	{ NULL, NULL, 0, 0 }, //Main body
+	{ cowgirl_anim_1_pos, NULL, LengthOfArray(cowgirl_anim_1_pos), 0 }, //Screw
+	{ NULL, cowgirl_anim_2_rot, 0, LengthOfArray(cowgirl_anim_2_rot) }, //Ascot
+	{ NULL, cowgirl_anim_3_rot, 0, LengthOfArray(cowgirl_anim_3_rot) }, //Head
+	{ NULL, cowgirl_anim_4_rot, 0, LengthOfArray(cowgirl_anim_4_rot) }, //Leg
+	{ NULL, cowgirl_anim_5_rot, 0, LengthOfArray(cowgirl_anim_5_rot) }, //Arm
+	{ NULL, cowgirl_anim_6_rot, 0, LengthOfArray(cowgirl_anim_6_rot) }, //Hand w/glass
 	{ NULL, NULL, 0, 0 }
 };
 
