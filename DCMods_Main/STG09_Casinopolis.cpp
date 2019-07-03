@@ -15,12 +15,13 @@ NJS_TEXLIST texlist_casino3 = { arrayptrandlength(textures_casino3) };
 NJS_TEXNAME textures_casino4[71];
 NJS_TEXLIST texlist_casino4 = { arrayptrandlength(textures_casino4) };
 
+/*
 #include "Casino1.h"
 #include "Casino2.h"
 #include "Casino3.h"
 #include "Casino4.h"
+*/
 
-NJS_OBJECT* CowgirlObject = nullptr;
 NJS_OBJECT* OSlX_Base = nullptr;
 NJS_OBJECT* OLhtr_Bright = nullptr;
 NJS_OBJECT* OLhtr_Dark = nullptr;
@@ -1028,22 +1029,21 @@ void Casinopolis_Init()
 	if (CowgirlOn)
 	{
 		*(NJS_OBJECT*)0x1E5B870 = *LoadModel("system\\data\\STG09\\Models\\001D7FE0.sa1mdl", false);
-		CowgirlObject = (NJS_OBJECT*)0x1E5B870;
-		AddUVAnimation_Permanent(9, 0, CowgirlObject->basicdxmodel->meshsets[1].vertuv, 92, 16, 100, 0);
-		AddUVAnimation_Permanent(9, 0, CowgirlObject->basicdxmodel->meshsets[7].vertuv, 130, 16, 100, 0);
-		AddUVAnimation_Permanent(9, 0, CowgirlObject->basicdxmodel->meshsets[8].vertuv, 32, 16, 100, 0);
-		AddUVAnimation_Permanent(9, 0, CowgirlObject->basicdxmodel->meshsets[9].vertuv, 92, 16, 100, 0);
-		AddUVAnimation_Permanent(9, 0, CowgirlObject->child->basicdxmodel->meshsets[0].vertuv, 24, 16, 100, 0);
-		AddUVAnimation_Permanent(9, 0, CowgirlObject->child->sibling->basicdxmodel->meshsets[2].vertuv, 10, 16, 100, 0);
-		AddUVAnimation_Permanent(9, 0, CowgirlObject->child->sibling->sibling->basicdxmodel->meshsets[0].vertuv, 14, 16, 100, 0);
-		AddUVAnimation_Permanent(9, 0, CowgirlObject->child->sibling->sibling->basicdxmodel->meshsets[2].vertuv, 10, 16, 100, 0);
-		AddUVAnimation_Permanent(9, 0, CowgirlObject->child->sibling->sibling->basicdxmodel->meshsets[9].vertuv, 20, 16, 100, 0);
-		AddUVAnimation_Permanent(9, 0, CowgirlObject->child->sibling->sibling->sibling->basicdxmodel->meshsets[1].vertuv, 6, 16, 100, 0);
-		AddUVAnimation_Permanent(9, 0, CowgirlObject->child->sibling->sibling->sibling->basicdxmodel->meshsets[2].vertuv, 21, 16, 100, 0);
-		AddUVAnimation_Permanent(9, 0, CowgirlObject->child->sibling->sibling->sibling->sibling->basicdxmodel->meshsets[0].vertuv, 7, 16, 100, 0);
-		AddUVAnimation_Permanent(9, 0, CowgirlObject->child->sibling->sibling->sibling->sibling->child->basicdxmodel->meshsets[7].vertuv, 4, 16, 100, 0);
-		AddUVAnimation_Permanent(9, 0, CowgirlObject->child->sibling->sibling->sibling->sibling->child->basicdxmodel->meshsets[11].vertuv, 30, 16, 100, 0);
-		AddUVAnimation_Permanent(9, 0, CowgirlObject->child->sibling->sibling->sibling->sibling->sibling->basicdxmodel->meshsets[0].vertuv, 10, 16, 65, 0);
+		AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E5B870)->basicdxmodel->meshsets[1].vertuv, 92, 16, 100, 0);
+		AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E5B870)->basicdxmodel->meshsets[7].vertuv, 130, 16, 100, 0);
+		AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E5B870)->basicdxmodel->meshsets[8].vertuv, 32, 16, 100, 0);
+		AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E5B870)->basicdxmodel->meshsets[9].vertuv, 92, 16, 100, 0);
+		AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E5B870)->child->basicdxmodel->meshsets[0].vertuv, 24, 16, 100, 0);
+		AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E5B870)->child->sibling->basicdxmodel->meshsets[2].vertuv, 10, 16, 100, 0);
+		AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E5B870)->child->sibling->sibling->basicdxmodel->meshsets[0].vertuv, 14, 16, 100, 0);
+		AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E5B870)->child->sibling->sibling->basicdxmodel->meshsets[2].vertuv, 10, 16, 100, 0);
+		AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E5B870)->child->sibling->sibling->basicdxmodel->meshsets[9].vertuv, 20, 16, 100, 0);
+		AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E5B870)->child->sibling->sibling->sibling->basicdxmodel->meshsets[1].vertuv, 6, 16, 100, 0);
+		AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E5B870)->child->sibling->sibling->sibling->basicdxmodel->meshsets[2].vertuv, 21, 16, 100, 0);
+		AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E5B870)->child->sibling->sibling->sibling->sibling->basicdxmodel->meshsets[0].vertuv, 7, 16, 100, 0);
+		AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E5B870)->child->sibling->sibling->sibling->sibling->child->basicdxmodel->meshsets[7].vertuv, 4, 16, 100, 0);
+		AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E5B870)->child->sibling->sibling->sibling->sibling->child->basicdxmodel->meshsets[11].vertuv, 30, 16, 100, 0);
+		AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E5B870)->child->sibling->sibling->sibling->sibling->sibling->basicdxmodel->meshsets[0].vertuv, 10, 16, 65, 0);
 		CollisionData_NeonK[0].scale.y = CollisionData_NeonK[0].scale.y * 6;
 		CollisionData_NeonK[1].scale.y = CollisionData_NeonK[1].scale.y * 6;
 		CollisionData_NeonK[2].scale.y = CollisionData_NeonK[2].scale.y * 6;
