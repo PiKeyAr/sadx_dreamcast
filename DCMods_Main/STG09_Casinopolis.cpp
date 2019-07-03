@@ -1,7 +1,5 @@
 #include "stdafx.h"
 #include "Casino_UVs.h"
-#include "Cowgirl_Animation.h"
-//#include "Cowgirl_Model.h"
 
 //TODO: Replace whole models instead of just the UVs in "UV fixes", Cowgirl dynamic collision
 
@@ -176,7 +174,6 @@ void __cdecl Loop_DisplayF(ObjectMaster *a1)
 	}
 }
 
-
 void __cdecl Cowgirl_Display(ObjectMaster *a1)
 {
 	EntityData1 *v1; // esi@1
@@ -192,11 +189,13 @@ void __cdecl Cowgirl_Display(ObjectMaster *a1)
 	v1 = a1->Data1;
 	if (!ClipObject(a1, 640010.0) && IsVisible(&v1->Position, 280.0))
 	{
-		njSetTexture((NJS_TEXLIST*)0x01DF0920); //OBJ_CASINO9
+		njSetTexture(&OBJ_CASINO9_TEXLIST);
 		njPushMatrix(0);
 		njTranslateV(0, &v1->Position);
 		njRotateXYZ(0, v1->Rotation.x, v1->Rotation.y, v1->Rotation.z);
-		njAction_Queue_407FC0(&action_cowgirl_anim, *(float*)&a1->Data1->CharIndex, 0);
+		DrawQueueDepthBias = 4000.0f;
+		njAction_ReallyHard((NJS_ACTION*)0x1E5C414, *(float*)&a1->Data1->CharIndex);
+		DrawQueueDepthBias = 0;
 		njPopMatrix(1u);
 	}
 }
@@ -204,75 +203,27 @@ void __cdecl Cowgirl_Display(ObjectMaster *a1)
 void Cowgirl_Main(ObjectMaster* a1)
 {
 	EntityData1 *v1 = a1->Data1;
-	float CowgirlFrame;
-	float FrameCeil;
-	float FrameFloor;
-	int Rotation_PrevX;
-	int Rotation_PrevY;
-	int Rotation_PrevZ;
-	int Rotation_NextX;
-	int Rotation_NextY;
-	int Rotation_NextZ;
-	int RotationFinal_X;
-	int RotationFinal_Y;
-	int RotationFinal_Z;
-
-	CowgirlFrame = *(float*)&a1->Data1->CharIndex + 0.1f;
-	if (CowgirlFrame > 30) CowgirlFrame = 0;
+	float CowgirlFrame = *(float*)&v1->CharIndex + 0.1f;
+	if (CowgirlFrame > 29) CowgirlFrame = 0;
 	*(float*)&a1->Data1->CharIndex = CowgirlFrame;
-	/*FrameCeil = ceil(CowgirlFrame);
-	FrameFloor = floor(CowgirlFrame);
-	Rotation_PrevX = cowgirl_anim_5_rot[(int)FrameFloor].key[0] + cowgirl_anim_6_rot[(int)FrameFloor].key[0];
-	Rotation_PrevY = cowgirl_anim_5_rot[(int)FrameFloor].key[1] + cowgirl_anim_6_rot[(int)FrameFloor].key[1];
-	Rotation_PrevZ = cowgirl_anim_5_rot[(int)FrameFloor].key[2] + cowgirl_anim_6_rot[(int)FrameFloor].key[2];
-	Rotation_NextX = cowgirl_anim_5_rot[(int)FrameCeil].key[0] + cowgirl_anim_6_rot[(int)FrameCeil].key[0];
-	Rotation_NextY = cowgirl_anim_5_rot[(int)FrameCeil].key[1] + cowgirl_anim_6_rot[(int)FrameCeil].key[1];
-	Rotation_NextZ = cowgirl_anim_5_rot[(int)FrameCeil].key[2] + cowgirl_anim_6_rot[(int)FrameCeil].key[2];
-	RotationFinal_X = Rotation_PrevX + (Rotation_NextX - Rotation_PrevX) * (CowgirlFrame - FrameFloor);
-	RotationFinal_Y = Rotation_PrevY + (Rotation_NextY - Rotation_PrevY) * (CowgirlFrame - FrameFloor);
-	RotationFinal_Z = Rotation_PrevZ + (Rotation_NextZ - Rotation_PrevZ) * (CowgirlFrame - FrameFloor);
-	a1->Data1->Object->ang[0] = a1->Data1->Rotation.x + 0x8 + RotationFinal_X;
-	a1->Data1->Object->ang[1] = a1->Data1->Rotation.y + 0xFFFFEAB0 + RotationFinal_Y;
-	a1->Data1->Object->ang[2] = a1->Data1->Rotation.z + 0 + RotationFinal_Z;*/
 	Cowgirl_Display(a1);
 	AddToCollisionList(v1);
 }
 
 void Cowgirl_Delete(ObjectMaster *a1)
 {
-	if (a1->Data1->Object)
-	{
-		DynamicCOL_Remove(a1, a1->Data1->Object);
-		ObjectArray_Remove(a1->Data1->Object);
-	}
 	CheckThingButThenDeleteObject(a1);
 }
 
-
-void Cowgirl_Load(ObjectMaster *a1)
+void Cowgirl_Load(ObjectMaster* a1)
 {
-	NJS_OBJECT* colobject;
-	if (!ClipObject(a1, 640010.0f))
-	{
-		Collision_Init(a1, CollisionData_NeonK, 3, 4u);
-		/*colobject = ObjectArray_GetFreeObject();
-		colobject->scl[0] = 1.0f;
-		colobject->scl[1] = 1.0f;
-		colobject->scl[2] = 1.0f;
-		colobject->pos[0] = a1->Data1->Position.x + 54.19999f - 36.8860168f;
-		colobject->pos[1] = a1->Data1->Position.y + 101 + 60.0000458f;
-		colobject->pos[2] = a1->Data1->Position.z - 28 + 0.511601f;
-		colobject->ang[0] = a1->Data1->Rotation.x + 0x8;
-		colobject->ang[1] = a1->Data1->Rotation.y + 0xFFFFEAB0;
-		colobject->ang[2] = a1->Data1->Rotation.z;
-		colobject->basicdxmodel = CowgirlObject->child->sibling->sibling->sibling->sibling->child->basicdxmodel;
-		colobject->evalflags = NJD_EVAL_HIDE | NJD_EVAL_SKIP | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK;
-		a1->Data1->Object = colobject;
-		DynamicCOL_Add((ColFlags)0x8000000, a1, colobject);*/
-		a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Cowgirl_Display;
-		a1->MainSub = (void(__cdecl *)(ObjectMaster *))Cowgirl_Main;
-		a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))Cowgirl_Delete;
-	}
+	//Hardcoded position and rotation to match SA1 JP
+	a1->Data1->Position = { 311.62f, 0.0f, 338.93f };
+	a1->Data1->Rotation = { 0, 0x1E00, 0 };
+	Collision_Init(a1, CollisionData_NeonK, 3, 4u);
+	a1->DisplaySub = (void(__cdecl*)(ObjectMaster*))Cowgirl_Display;
+	a1->MainSub = (void(__cdecl*)(ObjectMaster*))Cowgirl_Main;
+	a1->DeleteSub = (void(__cdecl*)(ObjectMaster*))Cowgirl_Delete;
 }
 
 void __cdecl sub_5D0560(ObjectMaster *obj)
@@ -1066,21 +1017,22 @@ void Casinopolis_Init()
 	WriteData((int*)0x1E77E58, 128); //Gear rotation speed
 	if (CowgirlOn)
 	{
-		CowgirlObject = LoadModel("system\\data\\STG09\\Models\\001D98C8.sa1mdl", false);
-		action_cowgirl_anim.object = CowgirlObject;
+		*(NJS_OBJECT*)0x1E5B870 = *LoadModel("system\\data\\STG09\\Models\\001D7FE0.sa1mdl", false);
+		CowgirlObject = (NJS_OBJECT*)0x1E5B870;
 		AddUVAnimation_Permanent(9, 0, CowgirlObject->basicdxmodel->meshsets[1].vertuv, 92, 16, 100, 0);
-		AddUVAnimation_Permanent(9, 0, CowgirlObject->basicdxmodel->meshsets[2].vertuv, 130, 16, 100, 0);
-		AddUVAnimation_Permanent(9, 0, CowgirlObject->basicdxmodel->meshsets[3].vertuv, 32, 16, 100, 0);
-		AddUVAnimation_Permanent(9, 0, CowgirlObject->basicdxmodel->meshsets[4].vertuv, 92, 16, 100, 0);
+		AddUVAnimation_Permanent(9, 0, CowgirlObject->basicdxmodel->meshsets[7].vertuv, 130, 16, 100, 0);
+		AddUVAnimation_Permanent(9, 0, CowgirlObject->basicdxmodel->meshsets[8].vertuv, 32, 16, 100, 0);
+		AddUVAnimation_Permanent(9, 0, CowgirlObject->basicdxmodel->meshsets[9].vertuv, 92, 16, 100, 0);
 		AddUVAnimation_Permanent(9, 0, CowgirlObject->child->basicdxmodel->meshsets[0].vertuv, 24, 16, 100, 0);
-		AddUVAnimation_Permanent(9, 0, CowgirlObject->child->sibling->basicdxmodel->meshsets[1].vertuv, 10, 16, 100, 0);
+		AddUVAnimation_Permanent(9, 0, CowgirlObject->child->sibling->basicdxmodel->meshsets[2].vertuv, 10, 16, 100, 0);
 		AddUVAnimation_Permanent(9, 0, CowgirlObject->child->sibling->sibling->basicdxmodel->meshsets[0].vertuv, 14, 16, 100, 0);
 		AddUVAnimation_Permanent(9, 0, CowgirlObject->child->sibling->sibling->basicdxmodel->meshsets[2].vertuv, 10, 16, 100, 0);
-		AddUVAnimation_Permanent(9, 0, CowgirlObject->child->sibling->sibling->basicdxmodel->meshsets[5].vertuv, 20, 16, 100, 0);
+		AddUVAnimation_Permanent(9, 0, CowgirlObject->child->sibling->sibling->basicdxmodel->meshsets[9].vertuv, 20, 16, 100, 0);
 		AddUVAnimation_Permanent(9, 0, CowgirlObject->child->sibling->sibling->sibling->basicdxmodel->meshsets[1].vertuv, 6, 16, 100, 0);
 		AddUVAnimation_Permanent(9, 0, CowgirlObject->child->sibling->sibling->sibling->basicdxmodel->meshsets[2].vertuv, 21, 16, 100, 0);
 		AddUVAnimation_Permanent(9, 0, CowgirlObject->child->sibling->sibling->sibling->sibling->basicdxmodel->meshsets[0].vertuv, 7, 16, 100, 0);
-		AddUVAnimation_Permanent(9, 0, CowgirlObject->child->sibling->sibling->sibling->sibling->child->basicdxmodel->meshsets[5].vertuv, 30, 16, 100, 0);
+		AddUVAnimation_Permanent(9, 0, CowgirlObject->child->sibling->sibling->sibling->sibling->child->basicdxmodel->meshsets[7].vertuv, 4, 16, 100, 0);
+		AddUVAnimation_Permanent(9, 0, CowgirlObject->child->sibling->sibling->sibling->sibling->child->basicdxmodel->meshsets[11].vertuv, 30, 16, 100, 0);
 		AddUVAnimation_Permanent(9, 0, CowgirlObject->child->sibling->sibling->sibling->sibling->sibling->basicdxmodel->meshsets[0].vertuv, 10, 16, 65, 0);
 		CollisionData_NeonK[0].scale.y = CollisionData_NeonK[0].scale.y * 4;
 		CollisionData_NeonK[1].scale.y = CollisionData_NeonK[1].scale.y * 4;
