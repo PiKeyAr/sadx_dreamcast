@@ -599,11 +599,5 @@
     <ClInclude Include="Data\Casino_UVs.h">
       <Filter>Header Files\Levels\Casinopolis</Filter>
     </ClInclude>
-    <ClInclude Include="Data\Cowgirl_Animation.h">
-      <Filter>Header Files\Levels\Casinopolis</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\Cowgirl_Model.h">
-      <Filter>Header Files\Levels\Casinopolis</Filter>
-    </ClInclude>
   </ItemGroup>
 </Project>
