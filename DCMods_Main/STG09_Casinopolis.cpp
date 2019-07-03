@@ -62,8 +62,8 @@ FunctionPointer(void, sub_407A00, (NJS_MODEL_SADX *model, float a2), 0x407A00);
 FunctionPointer(void, sub_405370, (NJS_OBJECT *a1, NJS_MOTION *a2, float animframe, float scale), 0x405370);
 FunctionPointer(void, sub_408300, (NJS_OBJECT *a1, NJS_MOTION *a2, float animframe, float scale), 0x408300);
 
-NJS_VECTOR Cowgirl1{ 457.6972f, 45.06788f, 390 };
-NJS_VECTOR Cowgirl2{ 340.3949f, 51.20071f, 480 };
+NJS_VECTOR Cowgirl1 = { 457.6972f, 45.06788f, 390 };
+NJS_VECTOR Cowgirl2 = { 340.3949f, 51.20071f, 480 };
 DataArray(NJS_VECTOR, stru_1E79588, 0x1E79588, 66);
 DataArray(NJS_SPRITE*, SonicJackpotSpritesX, 0x1E79570, 6);
 DataArray(CollisionData, CollisionData_NeonK, 0x1E763B8, 3);
@@ -208,6 +208,16 @@ void Cowgirl_Main(ObjectMaster* a1)
 	*(float*)&a1->Data1->CharIndex = CowgirlFrame;
 	Cowgirl_Display(a1);
 	AddToCollisionList(v1);
+	//Cowgirl action
+	if (CowgirlDelay < 100) CowgirlDelay++;
+	if (CowgirlDelay >= 100 && EntityData1Ptrs[0] != nullptr && EntityData1Ptrs[0]->Status & Status_Attack)
+	{
+		if (IsPlayerInsideSphere(&Cowgirl1, 180.0f) || IsPlayerInsideSphere(&Cowgirl2, 180.0f))
+		{
+			PlaySound(278, 0, 0, 0);
+			CowgirlDelay = 0;
+		}
+	}
 }
 
 void Cowgirl_Delete(ObjectMaster *a1)
@@ -1034,9 +1044,9 @@ void Casinopolis_Init()
 		AddUVAnimation_Permanent(9, 0, CowgirlObject->child->sibling->sibling->sibling->sibling->child->basicdxmodel->meshsets[7].vertuv, 4, 16, 100, 0);
 		AddUVAnimation_Permanent(9, 0, CowgirlObject->child->sibling->sibling->sibling->sibling->child->basicdxmodel->meshsets[11].vertuv, 30, 16, 100, 0);
 		AddUVAnimation_Permanent(9, 0, CowgirlObject->child->sibling->sibling->sibling->sibling->sibling->basicdxmodel->meshsets[0].vertuv, 10, 16, 65, 0);
-		CollisionData_NeonK[0].scale.y = CollisionData_NeonK[0].scale.y * 4;
-		CollisionData_NeonK[1].scale.y = CollisionData_NeonK[1].scale.y * 4;
-		CollisionData_NeonK[2].scale.y = CollisionData_NeonK[2].scale.y * 4;
+		CollisionData_NeonK[0].scale.y = CollisionData_NeonK[0].scale.y * 6;
+		CollisionData_NeonK[1].scale.y = CollisionData_NeonK[1].scale.y * 6;
+		CollisionData_NeonK[2].scale.y = CollisionData_NeonK[2].scale.y * 6;
 		CollisionData_NeonK[0].origin.y = CollisionData_NeonK[0].origin.y + 20;
 		CollisionData_NeonK[1].origin.y = CollisionData_NeonK[1].origin.y + 20;
 		CollisionData_NeonK[2].origin.y = CollisionData_NeonK[2].origin.y + 20;
@@ -1262,20 +1272,6 @@ void Casinopolis_OnFrame()
 			if (GearFrame > 15) GearFrame = 0;
 			RotationAngle1 = (RotationAngle1 + 128) % 65536;
 			RotationAngle2 = (RotationAngle2 - 128) % 65536;
-			//Cowgirl
-			if (CowgirlOn)
-			{
-				//Cowgirl action
-				if (CowgirlDelay < 100) CowgirlDelay++;
-				if (CowgirlDelay >= 100 && entity != nullptr && entity->Status & Status_Attack)
-				{
-					if (IsPlayerInsideSphere(&Cowgirl1, 180.0f) || IsPlayerInsideSphere(&Cowgirl2, 180.0f))
-					{
-						PlaySound(278, 0, 0, 0);
-						CowgirlDelay = 0;
-					}
-				}
-			}
 		}
 		//Tails' sound thing
 		if (CurrentAct != 1) SoundPlayed = 0;
