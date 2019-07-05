@@ -386,7 +386,7 @@ bool ForceWhiteDiffuse(NJS_MATERIAL* material, uint32_t flags)
 	int diffuseindex = 3;
 	if (CurrentLevel == LevelIDs_SpeedHighway || CurrentLevel == LevelIDs_RedMountain || (CurrentLevel == LevelIDs_IceCap && CurrentAct < 1) || CurrentLevel == LevelIDs_Casinopolis || (CurrentLevel == LevelIDs_FinalEgg && CurrentAct == 2) || CurrentLevel == LevelIDs_HotShelter || CurrentLevel==LevelIDs_EggViper || (CurrentLevel == LevelIDs_EggCarrierInside && CurrentAct == 1)) diffuseindex = 1;
 	if ((CurrentLevel == LevelIDs_IceCap && CurrentAct >= 1) || (CurrentLevel == LevelIDs_FinalEgg && CurrentAct == 0)) diffuseindex = 5;
-	if (CurrentLevel == LevelIDs_FinalEgg && CurrentAct > 0) diffuseindex = 1;
+	if (CurrentLevel == LevelIDs_FinalEgg && CurrentAct == 1) diffuseindex = 1;
 	set_diffuse_ptr(diffuseindex, false);
 	return true;
 }

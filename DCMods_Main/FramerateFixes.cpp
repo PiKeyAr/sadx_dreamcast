@@ -119,9 +119,6 @@ char OTPanelTimer = 120;
 char LostWorldDoorFix = 34;
 char LostWorldDoorFix1 = 6;
 
-//Final Egg
-float OFunAnimationSpeedOverride = 0.25f; //Floating Fan Animation Speed Tweak
-
 //Animals
 float BubbleMovementSpeed = 0.0049999999f; //0.0099999998 at 60
 float BubbleMovementSpeed2 = 0.0249999985f; //0.049999997 at 60
@@ -719,8 +716,6 @@ void SpeedFixes_Init()
 	WriteData((char*)0x005E78E1, LostWorldDoorFix);
 	WriteData((char*)0x005E7C63, LostWorldDoorFix1);
 	WriteData((char*)0x005E7841, LostWorldDoorFix1);
-	//Final Egg
-	WriteData((float**)0x005B7530, &OFunAnimationSpeedOverride); //Floating Fan Animation Speed Tweaks
 	//Zero FVF shit (barriers)
 	WriteData((int**)0x0058F448, &MissedFrames_Half);
 	WriteData((int**)0x0058F413, &MissedFrames_Half);
@@ -797,8 +792,6 @@ void SpeedFixes_OnFrame()
 			OTPanelTimer = 60;
 			LostWorldDoorFix = 17;
 			LostWorldDoorFix1 = 3;
-			//Final Egg
-			OFunAnimationSpeedOverride = 1.0f;
 			//Perfect Chaos
 			PerfectChaosTornadoSpeed1 = 3276;
 			PerfectChaosTornadoSpeed2 = 0;
@@ -869,8 +862,6 @@ void SpeedFixes_OnFrame()
 			OTPanelTimer = 120;
 			LostWorldDoorFix = 34;
 			LostWorldDoorFix1 = 6;
-			//Final Egg
-			OFunAnimationSpeedOverride = 0.25f;
 			//Perfect Chaos
 			PerfectChaosTornadoSpeed1 = 6552;
 			PerfectChaosTornadoSpeed2 = 0;
