@@ -345,7 +345,7 @@ void AddMirror(NJS_OBJECT *object)
 void LoadTwinkleParkMirrors(LandTable *landtable)
 {
 	int colflags;
-	for (unsigned int j = 0; j < landtable->COLCount; j++)
+	for (int j = 0; j < landtable->COLCount; j++)
 	{
 		for (int k = 0; k < landtable->COLCount; ++k)
 		{
@@ -362,7 +362,7 @@ void LoadTwinkleParkMirrors(LandTable *landtable)
 void ParseTwinkleParkMaterials(LandTable *landtable)
 {
 	int texid;
-	for (unsigned int j = 0; j < landtable->COLCount; j++)
+	for (int j = 0; j < landtable->COLCount; j++)
 	{
 		for (int k = 0; k < landtable->Col[j].Model->basicdxmodel->nbMat; ++k)
 		{

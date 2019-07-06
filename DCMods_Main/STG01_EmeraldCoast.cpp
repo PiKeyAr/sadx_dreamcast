@@ -495,7 +495,7 @@ void ParseEmeraldCoastColFlagsAndMaterials(LandTable *landtable, int act)
 	int texid;
 	if (act == 0)
 	{
-		for (unsigned int j = 0; j < landtable->COLCount; j++)
+		for (int j = 0; j < landtable->COLCount; j++)
 		{
 			for (int k = 0; k < landtable->Col[j].Model->basicdxmodel->nbMat; ++k)
 			{
@@ -518,7 +518,7 @@ void ParseEmeraldCoastColFlagsAndMaterials(LandTable *landtable, int act)
 	}
 	if (act == 1)
 	{
-		for (unsigned int j = 0; j < landtable->COLCount; j++)
+		for (int j = 0; j < landtable->COLCount; j++)
 		{
 			colflags = landtable->Col[j].Flags;
 			if (colflags == 0x28000002)
@@ -553,7 +553,7 @@ void ParseEmeraldCoastColFlagsAndMaterials(LandTable *landtable, int act)
 	}
 	if (act == 2)
 	{
-		for (unsigned int j = 0; j < landtable->COLCount; j++)
+		for (int j = 0; j < landtable->COLCount; j++)
 		{
 			for (int k = 0; k < landtable->Col[j].Model->basicdxmodel->nbMat; ++k)
 			{

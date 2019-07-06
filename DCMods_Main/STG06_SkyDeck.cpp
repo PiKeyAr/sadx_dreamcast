@@ -53,7 +53,7 @@ FunctionPointer(void, sub_408300, (NJS_OBJECT *a1, NJS_MOTION *a2, float a3, Que
 
 void DisableMetalStruts(LandTable* landtable)
 {
-	for (unsigned int j = 0; j < landtable->COLCount; j++)
+	for (int j = 0; j < landtable->COLCount; j++)
 	{
 		for (int k = 0; k < landtable->Col[j].Model->basicdxmodel->nbMat; ++k)
 		{

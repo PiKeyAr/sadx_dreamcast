@@ -187,7 +187,7 @@
     <ClInclude Include="Data\FinalEgg1.h" />
     <ClInclude Include="Data\FinalEgg2.h" />
     <ClInclude Include="Data\FinalEgg3.h" />
-    <ClInclude Include="Data\FinalEgg_objects.h" />
+    <ClInclude Include="Data\FinalEgg_UVs.h" />
     <ClInclude Include="Data\Fountain.h" />
     <ClInclude Include="Data\Grass.h" />
     <ClInclude Include="Data\Highway1.h" />
@@ -260,7 +260,6 @@
     <ClInclude Include="Frogs.h" />
     <ClInclude Include="GenericData.h" />
     <ClInclude Include="Lantern\lanternapi.h" />
-    <ClInclude Include="OStandLight.h" />
     <ClInclude Include="StageLights.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />

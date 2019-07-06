@@ -96,7 +96,7 @@ void AddWindyTransparentThing(int colnumber)
 void ParseWindyColFlags(LandTable *landtable)
 {
 	int colflags;
-	for (unsigned int j = 0; j < landtable->COLCount; j++)
+	for (int j = 0; j < landtable->COLCount; j++)
 	{
 		colflags = landtable->Col[j].Flags;
 		if (colflags == 0x88000000)

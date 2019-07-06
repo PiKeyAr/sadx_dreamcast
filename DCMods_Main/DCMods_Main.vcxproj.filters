@@ -338,9 +338,6 @@
     <ClInclude Include="Data\EmeraldGlow.h">
       <Filter>Header Files\Levels\General</Filter>
     </ClInclude>
-    <ClInclude Include="Data\FinalEgg_objects.h">
-      <Filter>Header Files\Levels\FinalEgg</Filter>
-    </ClInclude>
     <ClInclude Include="Data\FinalEgg1.h">
       <Filter>Header Files\Levels\FinalEgg</Filter>
     </ClInclude>
@@ -506,9 +503,6 @@
     <ClInclude Include="Data\Zero.h">
       <Filter>Header Files\Levels\Bosses</Filter>
     </ClInclude>
-    <ClInclude Include="OStandLight.h">
-      <Filter>Header Files\Levels\FinalEgg</Filter>
-    </ClInclude>
     <ClInclude Include="Data\ECGarden.h">
       <Filter>Header Files\Levels\Chao</Filter>
     </ClInclude>
@@ -598,6 +592,9 @@
     </ClInclude>
     <ClInclude Include="Data\Casino_UVs.h">
       <Filter>Header Files\Levels\Casinopolis</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\FinalEgg_UVs.h">
+      <Filter>Header Files\Levels\FinalEgg</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

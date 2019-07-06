@@ -179,7 +179,7 @@ void ParseLWMaterials(LandTable *landtable, int act)
 	NJS_MATERIAL *material;
 	if (act == 0)
 	{
-		for (unsigned int j = 0; j < landtable->COLCount; j++)
+		for (int j = 0; j < landtable->COLCount; j++)
 		{
 			for (int k = 0; k < landtable->Col[j].Model->basicdxmodel->nbMat; ++k)
 			{
@@ -193,7 +193,7 @@ void ParseLWMaterials(LandTable *landtable, int act)
 	}
 	if (act == 1)
 	{
-		for (unsigned int j = 0; j < landtable->COLCount; j++)
+		for (int j = 0; j < landtable->COLCount; j++)
 		{
 			for (int k = 0; k < landtable->Col[j].Model->basicdxmodel->nbMat; ++k)
 			{
