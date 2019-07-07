@@ -65,7 +65,7 @@ static bool FixesApplied = false;
 float BigHudFix_float = 2.0f; //For both 30 and 60 FPS because it's broken in SADX
 short RingCountFlashSpeed = 512;
 float InvincibilitySpeed = 0.84f;
-float DashPanelAnimationSpeedOverride = 0.25f;
+float DashPanelAnimationFrame = 0;
 short SpinnerYAnimationSpeedOverride = 384;
 short SpinnerXAnimationSpeedOverride = 288;
 short SpinnerZAnimationSpeedOverride = 416;
@@ -118,6 +118,9 @@ float OTPanel1SpeedOverride = 0.0084745765f;
 char OTPanelTimer = 120;
 char LostWorldDoorFix = 34;
 char LostWorldDoorFix1 = 6;
+
+//Final Egg
+float OFunFrame = 0.0f; //Floating Fan Animation Speed Tweak
 
 //Animals
 float BubbleMovementSpeed = 0.0049999999f; //0.0099999998 at 60
@@ -576,6 +579,23 @@ static void __cdecl ZeroFVFShit_Main_r(ObjectMaster *a1)
 	original(a1);
 }
 
+void OFunAnimationOverride(NJS_ACTION* a1, float frame, float scale)
+{
+	DisplayAnimationFrame(a1, OFunFrame, (QueuedModelFlagsB)0, scale, (void(__cdecl*)(NJS_MODEL_SADX*, int, int))DrawModelThing);
+}
+
+FunctionPointer(void, sub_408300, (NJS_OBJECT* a1, NJS_MOTION* a2, float a3, int a4, float a5), 0x408300);
+
+void OTankHAnimationOverride(NJS_OBJECT* a1, NJS_MOTION* a2, float a3, int a4, float a5)
+{
+	sub_408300(a1, a2, OFunFrame, a4, a5);
+}
+
+void DashPanelFix(NJS_ACTION* action, Float frame)
+{
+	njAction(action, DashPanelAnimationFrame);
+}
+
 void SpeedFixes_Init()
 {
 	//Big ring flashing HUD
@@ -646,7 +666,7 @@ void SpeedFixes_Init()
 	WriteData((float**)0x004D7F0E, &AnimalMultiplier2);
 	//General
 	WriteCall((void*)0x4ADEF9, UnidusFix);
-	WriteData((float**)0x007A441B, &DashPanelAnimationSpeedOverride);
+	WriteCall((void*)0x7A43EB, DashPanelFix);
 	WriteData((short*)0x4AFB90, SpinnerYAnimationSpeedOverride);
 	WriteData((short*)0x4AFB8A, SpinnerXAnimationSpeedOverride);
 	WriteData((short*)0x4AFB85, SpinnerZAnimationSpeedOverride);
@@ -702,6 +722,7 @@ void SpeedFixes_Init()
 	WriteData((float**)0x0060C885, &OGLSpeedOverride); //OGL Speed Tweak
 	WriteData((float**)0x0060B361, &OGLSpeedOverride); //O Gear Speed Tweak
 	//Sky Deck
+	WriteCall((void*)0x5EE29D, OTankHAnimationOverride); //OTankH
 	WriteData((float**)0x005F4146, &OMekaSpeedOverride); //OMeka OTutu	
 	//Casinopolis
 	WriteData((double**)0x5C802C, &OKaizAnimationSpeedOverride); //OKaiza Animation Speed Tweak
@@ -716,6 +737,8 @@ void SpeedFixes_Init()
 	WriteData((char*)0x005E78E1, LostWorldDoorFix);
 	WriteData((char*)0x005E7C63, LostWorldDoorFix1);
 	WriteData((char*)0x005E7841, LostWorldDoorFix1);
+	//Final Egg
+	WriteCall((void*)0x5B75B6, OFunAnimationOverride);
 	//Zero FVF shit (barriers)
 	WriteData((int**)0x0058F448, &MissedFrames_Half);
 	WriteData((int**)0x0058F413, &MissedFrames_Half);
@@ -723,6 +746,22 @@ void SpeedFixes_Init()
 
 void SpeedFixes_OnFrame()
 {
+	//60 FPS
+	if (FramerateSetting < 2)
+	{
+		OFunFrame -= 0.25f;
+		if (OFunFrame < 0) OFunFrame = 19;
+		DashPanelAnimationFrame -= 0.25f;
+		if (DashPanelAnimationFrame < 0) DashPanelAnimationFrame = 7;
+	}
+	//30 FPS
+	else
+	{
+		OFunFrame += 1.0f;
+		if (OFunFrame > 19) OFunFrame = 0;
+		DashPanelAnimationFrame += 1.0f;
+		if (DashPanelAnimationFrame > 7) DashPanelAnimationFrame = 0;
+	}
 	//Half frame counter
 	if (FrameCounter % 2 == 0) FrameCounter_Half++;
 	if (!MissedFrames && (FramerateSetting > 2 || (FramerateSetting < 2 && FrameCounter % 2 == 0))) MissedFrames_Half = 0; else MissedFrames_Half = 1;
@@ -750,7 +789,6 @@ void SpeedFixes_OnFrame()
 			DistanceMultiplier_4 = 2.0f;
 			DistanceMultiplier_8 = 4.0f;
 			//General
-			DashPanelAnimationSpeedOverride = 1.0f;
 			SpinnerYAnimationSpeedOverride = 768;
 			SpinnerXAnimationSpeedOverride = 576;
 			SpinnerZAnimationSpeedOverride = 832;
@@ -820,7 +858,6 @@ void SpeedFixes_OnFrame()
 			DistanceMultiplier_4 = 4.0f;
 			DistanceMultiplier_8 = 8.0f;
 			//General
-			DashPanelAnimationSpeedOverride = 0.25f;
 			SpinnerYAnimationSpeedOverride = 384;
 			SpinnerXAnimationSpeedOverride = 288;
 			SpinnerZAnimationSpeedOverride = 416;

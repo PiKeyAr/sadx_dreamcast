@@ -230,41 +230,14 @@ static void __cdecl TheyForgotToClampAgain_r(ObjectMaster *a1)
 	if (EnableSkyDeck) ClampGlobalColorThing_Thing();
 }
 
-void __cdecl TankH_Display(ObjectMaster *a1)
-{
-	EntityData1 *v2; // esi
-	double v3; // st7
-	v2 = a1->Data1;
-	if (EnableSpeedFixes)
-	{
-		if (FramerateSetting >= 2 || FrameCounter % 2 == 0)
-		{
-			v3 = v2->Scale.z + 1.0f;
-			v2->Scale.z = v3;
-		}
-	}
-	else
-	{
-		v3 = v2->Scale.z + 1.0f;
-		v2->Scale.z = v3;
-	}
-	if (v3 >= 10.0f)
-	{
-		v2->Scale.z = 0.0f;
-	}
-	if (!MissedFrames)
-	{
-		njSetTexture(&OBJ_SKYDECK_TEXLIST);
-		njPushMatrixEx();
-		njTranslateEx(&v2->Position);
-		sub_408300((NJS_OBJECT*)0x219CA64, (NJS_MOTION*)0x221F0D8, v2->Scale.z, QueuedModelFlagsB_EnableZWrite, 1.0f);
-		njPopMatrixEx();
-	}
-}
-
 void FixHangA(NJS_OBJECT *obj, float scale)
 {
 	ProcessModelNode(obj, QueuedModelFlagsB_EnableZWrite, scale);
+}
+
+void RenderCrane(NJS_OBJECT* obj, float scale)
+{
+	ProcessModelNode_D(obj, QueuedModelFlagsB_EnableZWrite, scale);
 }
 
 void UnloadLevelFiles_STG06()
@@ -376,7 +349,6 @@ void SkyDeck_Init()
 	WriteData((float*)0x005F4D30, 1.0f);
 	WriteData((float*)0x005F4D38, 1.0f);
 	//Objects
-	WriteJump((void*)0x5EE230, TankH_Display);
 	AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x21FB818)->basicdxmodel->mats[1]); //OUeKi
 	AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x21FB818)->basicdxmodel->mats[2]); //OUeKi
 	AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x21FB818)->basicdxmodel->mats[3]); //OUeKi
@@ -471,6 +443,7 @@ void SkyDeck_Init()
 	*(NJS_OBJECT *)0x216889C = *LoadModel("system\\data\\STG06\\Models\\001138B4.sa1mdl", false); //Stairs 1
 	*(NJS_OBJECT *)0x216A4AC = *LoadModel("system\\data\\STG06\\Models\\00114F2C.sa1mdl", false); //Stairs 2
 	*(NJS_OBJECT *)0x21C4FD8 = *LoadModel("system\\data\\STG06\\Models\\00162F84.sa1mdl", false); //Crane
+	WriteCall((void*)0x5F2DD6, RenderCrane);
 	((NJS_OBJECT *)0x21C4FD8)->child->basicdxmodel->mats[1].attrflags |= NJD_FLAG_USE_TEXTURE;
 	((NJS_OBJECT *)0x21C4FD8)->child->basicdxmodel->mats[1].attr_texId = 6;
 	((NJS_OBJECT *)0x21C4FD8)->child->sibling->basicdxmodel->mats[1].attrflags |= NJD_FLAG_USE_TEXTURE;
