@@ -342,32 +342,6 @@ void FinalEgg2Cols_Display(ObjectMaster* a1)
 	}
 }
 
-void AssFinalEgg2Cols_Display(ObjectMaster *a1)
-{
-	EntityData1 *v1;
-	v1 = a1->Data1;
-	if (CurrentAct == 1 && !DroppedFrames)
-	{
-		njSetTexture(&texlist_finalegg2);
-		njPushMatrix(0);
-		njTranslateV(0, &v1->Position);
-		njScale(0, 1.0f, 1.0f, 1.0f);
-		njRotateXYZ(0, 0, 0, 0);
-		DrawQueueDepthBias = -15000.0f;  
-		ProcessModelNode((NJS_OBJECT*)STG10_1_Info->getdata("object_000C1350"), (QueuedModelFlagsB)0, 1.0f); //tube 1
-		ProcessModelNode((NJS_OBJECT*)STG10_1_Info->getdata("object_000C0E68"), (QueuedModelFlagsB)0, 1.0f); //tube 2 
-		ProcessModelNode((NJS_OBJECT*)STG10_1_Info->getdata("object_000C1A48"), (QueuedModelFlagsB)0, 1.0f); //tube 3 
-		ProcessModelNode((NJS_OBJECT*)STG10_1_Info->getdata("object_00089114_2"), (QueuedModelFlagsB)0, 1.0f); //big glass inner layer 
-		DrawQueueDepthBias = -12000.0f;
-		ProcessModelNode((NJS_OBJECT*)STG10_1_Info->getdata("object_00087F80_2"), (QueuedModelFlagsB)0, 1.0f); //big glass outer layer 1
-		ProcessModelNode((NJS_OBJECT*)STG10_1_Info->getdata("object_00085D08_2"), (QueuedModelFlagsB)0, 1.0f); //big glass outer layer 2
-		DrawQueueDepthBias = 4500.0f;
-		ProcessModelNode((NJS_OBJECT*)STG10_1_Info->getdata("object_000B9E54_2"), (QueuedModelFlagsB)0, 1.0f); //elevator glass 
-		njPopMatrix(1u);
-		DrawQueueDepthBias = 0;
-	}
-}
-
 void Glass_Main(ObjectMaster *a1)
 {
 	if (CurrentLevel == LevelIDs_FinalEgg)
@@ -606,10 +580,9 @@ void FinalEgg_Init()
 	RemoveVertexColors_Object((NJS_OBJECT*)0x1C27FE4); //OEggKanban
 	AddWhiteDiffuseMaterial((NJS_MATERIAL*)0x1C26FD0); //OEggKanban
 	AddWhiteDiffuseMaterial((NJS_MATERIAL*)0x1C26FE4); //OEggKanban
-	//OTatekan white diffuse
+	//OTatekan
 	*(NJS_OBJECT*)0x1A4425C = *LoadModel("system\\data\\STG10\\Models\\001ECA50.sa1mdl", false); //OTatekan pivot
 	*(NJS_OBJECT*)0x1A4583C = *LoadModel("system\\data\\STG10\\Models\\001EDFBC.sa1mdl", false); //OTatekan glass
-	//AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x1A4583C)->basicdxmodel->mats[0]); //Glass
 	//OLight1
 	AddWhiteDiffuseMaterial((NJS_MATERIAL*)0x01A46C10);
 	AddWhiteDiffuseMaterial((NJS_MATERIAL*)0x01A46C24);
