@@ -30,6 +30,8 @@ FunctionPointer(void, ProcessModelNode_TryReallyHard_2, (NJS_OBJECT* a1), 0x40A2
 FunctionPointer(void, ProcessModelNode_Try, (NJS_OBJECT* a1, int a2, float a3), 0x40A1E0);
 FunctionPointer(void, njAction_ReallyHard, (NJS_ACTION* a1, float frameNumber), 0x409FB0);
 FunctionPointer(void, DrawModel_Queue_407CF0, (NJS_MODEL_SADX* a1, int blend), 0x407FC0);
+FunctionPointer(void, njAction_Queue_DrawModelQueue, (NJS_ACTION* a1, float a2, int a3, float a4), 0x405490);
+FunctionPointer(void, DrawModel_TryReallyHard, (NJS_MODEL_SADX* a1), 0x409EF0);
 
 typedef enum
 {
@@ -41,6 +43,7 @@ typedef enum
 extern SETFixes_e EnableSETFixes;
 extern HelperFunctions HelperFunctionsGlobal;
 
+extern bool IsCameraUnderwater;
 extern int SADXWaveAnimation;
 extern int CutsceneSkipMode;
 extern bool EnableSpeedFixes;
