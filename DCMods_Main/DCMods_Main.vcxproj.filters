@@ -365,9 +365,6 @@
     <ClInclude Include="Data\HintMessages.h">
       <Filter>Header Files\Levels\Chao</Filter>
     </ClInclude>
-    <ClInclude Include="Data\HotShelter_Objects.h">
-      <Filter>Header Files\Levels\HotShelter</Filter>
-    </ClInclude>
     <ClInclude Include="Data\HotShelter1.h">
       <Filter>Header Files\Levels\HotShelter</Filter>
     </ClInclude>

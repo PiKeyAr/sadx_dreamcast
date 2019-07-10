@@ -198,7 +198,6 @@
     <ClInclude Include="Data\HotShelter1.h" />
     <ClInclude Include="Data\HotShelter2.h" />
     <ClInclude Include="Data\HotShelter3.h" />
-    <ClInclude Include="Data\HotShelter_Objects.h" />
     <ClInclude Include="Data\IceCap1.h" />
     <ClInclude Include="Data\IceCap2.h" />
     <ClInclude Include="Data\IceCap3.h" />
