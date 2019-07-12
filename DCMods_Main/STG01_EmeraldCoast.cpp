@@ -499,18 +499,18 @@ void ParseEmeraldCoastColFlagsAndMaterials(LandTable *landtable, int act)
 		{
 			for (int k = 0; k < landtable->Col[j].Model->basicdxmodel->nbMat; ++k)
 			{
-				materialflags = landtable->Col[j].Model->basicdxmodel->mats[k].attrflags;
+				material = (NJS_MATERIAL*)&landtable->Col[j].Model->basicdxmodel->mats[k];
+				materialflags = material->attrflags;
 				//Texanim 1
-				if ((materialflags & NJD_CUSTOMFLAG_TEXANIM1) && !(materialflags & NJD_CUSTOMFLAG_TEXANIM2))
+				if (material->attr_texId >= 82 && material->attr_texId <= 96)
 				{
-					material = (NJS_MATERIAL*)&landtable->Col[j].Model->basicdxmodel->mats[k];
+					
 					AddTextureAnimation(1, 0, material, false, 4, 82, 96, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 					if (SADXWater_EmeraldCoast) landtable->Col[j].Flags = 0x80000402;
 				}
 				//Texanim 2
-				if ((materialflags & NJD_CUSTOMFLAG_TEXANIM2) && !(materialflags & NJD_CUSTOMFLAG_TEXANIM1))
+				if (material->attr_texId >= 67 && material->attr_texId <= 81)
 				{
-					material = (NJS_MATERIAL*)&landtable->Col[j].Model->basicdxmodel->mats[k];
 					AddTextureAnimation(1, 0, material, false, 3, 67, 81, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 				}
 			}
@@ -528,24 +528,22 @@ void ParseEmeraldCoastColFlagsAndMaterials(LandTable *landtable, int act)
 			if (colflags == 0xA8000002 && SADXWater_EmeraldCoast) landtable->Col[j].Flags = 0x20000002;
 			for (int k = 0; k < landtable->Col[j].Model->basicdxmodel->nbMat; ++k)
 			{
-				materialflags = landtable->Col[j].Model->basicdxmodel->mats[k].attrflags;
+				material = (NJS_MATERIAL*)&landtable->Col[j].Model->basicdxmodel->mats[k];
+				materialflags = material->attrflags;
 				//Texanim 1
-				if ((materialflags & NJD_CUSTOMFLAG_TEXANIM1) && !(materialflags & NJD_CUSTOMFLAG_TEXANIM2))
+				if (material->attr_texId >= 71 && material->attr_texId <= 85)
 				{
-					material = (NJS_MATERIAL*)&landtable->Col[j].Model->basicdxmodel->mats[k];
 					AddTextureAnimation(1, 1, material, false, 4, 71, 85, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 					if (SADXWater_EmeraldCoast) landtable->Col[j].Flags = 0x80000402;
 				}
 				//Texanim 2
-				if ((materialflags & NJD_CUSTOMFLAG_TEXANIM2) && !(materialflags & NJD_CUSTOMFLAG_TEXANIM1))
+				if (material->attr_texId >= 42 && material->attr_texId <= 56)
 				{
-					material = (NJS_MATERIAL*)&landtable->Col[j].Model->basicdxmodel->mats[k];
 					AddTextureAnimation(1, 1, material, false, 3, 42, 56, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 				}
 				//Texanim 3
-				if ((materialflags & NJD_CUSTOMFLAG_TEXANIM2) && (materialflags & NJD_CUSTOMFLAG_TEXANIM1))
+				if (material->attr_texId >= 57 && material->attr_texId <= 70)
 				{
-					material = (NJS_MATERIAL*)&landtable->Col[j].Model->basicdxmodel->mats[k];
 					AddTextureAnimation(1, 1, material, false, 4, 57, 70, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 				}
 			}
@@ -557,24 +555,22 @@ void ParseEmeraldCoastColFlagsAndMaterials(LandTable *landtable, int act)
 		{
 			for (int k = 0; k < landtable->Col[j].Model->basicdxmodel->nbMat; ++k)
 			{
-				materialflags = landtable->Col[j].Model->basicdxmodel->mats[k].attrflags;
+				material = (NJS_MATERIAL*)&landtable->Col[j].Model->basicdxmodel->mats[k];
+				materialflags = material->attrflags;
 				//Texanim 1
-				if ((materialflags & NJD_CUSTOMFLAG_TEXANIM1) && !(materialflags & NJD_CUSTOMFLAG_TEXANIM2))
+				if (material->attr_texId >= 65 && material->attr_texId <= 79)
 				{
-					material = (NJS_MATERIAL*)&landtable->Col[j].Model->basicdxmodel->mats[k];
 					AddTextureAnimation(1, 2, material, false, 3, 65, 79, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 				}
 				//Texanim 2
-				if ((materialflags & NJD_CUSTOMFLAG_TEXANIM2) && !(materialflags & NJD_CUSTOMFLAG_TEXANIM1))
+				if (material->attr_texId >= 50 && material->attr_texId <= 64)
 				{
-					material = (NJS_MATERIAL*)&landtable->Col[j].Model->basicdxmodel->mats[k];
 					AddTextureAnimation(1, 2, material, false, 4, 50, 64, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 					if (SADXWater_EmeraldCoast) landtable->Col[j].Flags |= 0x00000400;
 				}
 				//Texanim 3
-				if ((materialflags & NJD_CUSTOMFLAG_TEXANIM2) && (materialflags & NJD_CUSTOMFLAG_TEXANIM1))
+				if (material->attr_texId >= 80 && material->attr_texId <= 93)
 				{
-					material = (NJS_MATERIAL*)&landtable->Col[j].Model->basicdxmodel->mats[k];
 					AddTextureAnimation(1, 2, material, false, 4, 80, 93, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 				}
 			}
