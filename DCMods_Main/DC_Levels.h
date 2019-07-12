@@ -5,8 +5,8 @@
 #include <string>
 
 class IniFile;
-#define NJD_CUSTOMFLAG_TEXANIM1		(BIT_0)
-#define NJD_CUSTOMFLAG_TEXANIM2		(BIT_1)
+#define NJD_CUSTOMFLAG_UVANIM3		(BIT_0)
+#define NJD_CUSTOMFLAG_UVANIM4		(BIT_1)
 #define NJD_CUSTOMFLAG_UVANIM1		(BIT_2)
 #define NJD_CUSTOMFLAG_UVANIM2		(BIT_3)
 #define NJD_CUSTOMFLAG_WHITE		(BIT_4)
@@ -487,8 +487,10 @@ void SortModel(NJS_OBJECT *model);
 void LoadModel_ReplaceMeshes(NJS_OBJECT *object, const char *ModelName);
 void AddAlphaRejectMaterial(NJS_MATERIAL *material);
 void AddWhiteDiffuseMaterial(NJS_MATERIAL *material);
+void AddWhiteDiffuseNightMaterial(NJS_MATERIAL* material);
 void RemoveAlphaRejectMaterial(NJS_MATERIAL *material);
 void RemoveWhiteDiffuseMaterial(NJS_MATERIAL *material);
+void RemoveWhiteDiffuseNightMaterial(NJS_MATERIAL* material);
 void AddBossMaterial(NJS_MATERIAL *material);
 void ForceLevelSpecular_Object(NJS_OBJECT *obj);
 void ForceObjectSpecular_Object(NJS_OBJECT *obj);

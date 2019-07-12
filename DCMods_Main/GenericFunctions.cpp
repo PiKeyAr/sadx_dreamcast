@@ -570,6 +570,24 @@ void AddWhiteDiffuseMaterial(NJS_MATERIAL *material)
 	}
 }
 
+void AddWhiteDiffuseNightMaterial(NJS_MATERIAL* material)
+{
+	if (DLLLoaded_Lantern)
+	{
+		TemporaryMaterialArray[0] = material;
+		material_register_ptr(TemporaryMaterialArray, 1, ForceWhiteDiffuse3_Night);
+	}
+}
+
+void RemoveWhiteDiffuseNightMaterial(NJS_MATERIAL* material)
+{
+	if (DLLLoaded_Lantern)
+	{
+		TemporaryMaterialArray[0] = material;
+		material_unregister_ptr(TemporaryMaterialArray, 1, ForceWhiteDiffuse3_Night);
+	}
+}
+
 void AddBossMaterial(NJS_MATERIAL *material)
 {
 	if (DLLLoaded_Lantern)
