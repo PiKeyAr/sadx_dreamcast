@@ -42,6 +42,7 @@ void CheckAndUnloadLevelFiles()
 
 void AnimateTexture(TextureAnimation *texanim)
 {
+	//PrintDebug("Animation: level %d, act %d, original %d, final %d\n", texanim->level, texanim->act, texanim->Frame1, texanim->Frame2);
 	int framenumber;
 	int actualspeed = 1;
 	//Calculate animation speed if in 30 or 15 FPS mode
@@ -266,7 +267,7 @@ void AddTextureAnimation(int level, int act, NJS_MATERIAL* material, bool nonseq
 {
 	for (int i = 0; i < LengthOfArray(TextureAnimationData); i++)
 	{
-		if (TextureAnimationData[i].material == material) return;
+		if (TextureAnimationData[i].material == material && TextureAnimationData[i].act == act) return;
 		if (!TextureAnimationData[i].material)
 		{
 			TextureAnimationData[i].level = level;
@@ -290,16 +291,18 @@ void AddTextureAnimation(int level, int act, NJS_MATERIAL* material, bool nonseq
 			TextureAnimationData[i].Frame14 = frame14;
 			TextureAnimationData[i].Frame15 = frame15;
 			TextureAnimationData[i].Frame16 = frame16;
+			PrintDebug("Added texture animation: level %d, act %d, frame1: %d, frame2: %d, ID %d\n", level, act, frame1, frame2, i);
 			return;
 		}
 	}
+	PrintDebug("Unable to add animation: level %d, act %d, frame1 %d, frame2 %d\n", level, act, frame1, frame2);
 }
 
 void AddTextureAnimation_Permanent(int level, int act, NJS_MATERIAL* material, bool nonsequential, int speed, int frame1, int frame2, int frame3, int frame4, int frame5, int frame6, int frame7, int frame8, int frame9, int frame10, int frame11, int frame12, int frame13, int frame14, int frame15, int frame16)
 {
 	for (int i = 0; i < LengthOfArray(TextureAnimationData_Permanent); i++)
 	{
-		if (TextureAnimationData_Permanent[i].material == material) return;
+		if (TextureAnimationData_Permanent[i].material == material && TextureAnimationData_Permanent[i].act == act) return;
 		if (!TextureAnimationData_Permanent[i].material)
 		{
 			TextureAnimationData_Permanent[i].level = level;
