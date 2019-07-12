@@ -53,19 +53,6 @@ PVMEntry FinalEggObjectTextures[] = {
 	{ 0 }
 };
 
-NJS_MATERIAL* DisableAlphaRejection_FinalEggExternal[] = {
-	nullptr,
-	nullptr,
-	nullptr,
-	nullptr,
-	nullptr,
-	nullptr,
-	nullptr,
-	nullptr,
-	nullptr,
-	nullptr,
-};
-
 void DrawOSpinTubeModels(NJS_MODEL_SADX* model, float scale)
 {
 	DrawQueueDepthBias = 2000.0f;
