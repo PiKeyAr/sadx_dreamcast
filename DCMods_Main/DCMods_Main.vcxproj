@@ -132,6 +132,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Data\ADV01C_Objects.h" />
+    <ClInclude Include="Data\Animals.h" />
+    <ClInclude Include="Data\Animals_motions.h" />
     <ClInclude Include="Data\ChaoEggs.h" />
     <ClInclude Include="Data\ChaoFruits.h" />
     <ClInclude Include="Data\ChaoObjects_Race.h" />
@@ -151,7 +153,6 @@
     <ClInclude Include="Data\ADV03_00.h" />
     <ClInclude Include="Data\ADV03_01.h" />
     <ClInclude Include="Data\ADV03_02.h" />
-    <ClInclude Include="Data\Animals.h" />
     <ClInclude Include="Data\button.h" />
     <ClInclude Include="Data\Casino1.h" />
     <ClInclude Include="Data\Casino2.h" />
@@ -168,7 +169,6 @@
     <ClInclude Include="Data\Chaos6_Knuckles.h" />
     <ClInclude Include="Data\Chaos6_Motion.h" />
     <ClInclude Include="Data\Chaos7.h" />
-    <ClInclude Include="Data\CharacterEffects.h" />
     <ClInclude Include="Data\CommonObjects.h" />
     <ClInclude Include="Data\E101.h" />
     <ClInclude Include="Data\E101R.h" />
@@ -183,18 +183,17 @@
     <ClInclude Include="Data\EmeraldCoast2.h" />
     <ClInclude Include="Data\EmeraldCoast3.h" />
     <ClInclude Include="Data\EmeraldCoast_Objects.h" />
-    <ClInclude Include="Data\EmeraldGlow.h" />
     <ClInclude Include="Data\FinalEgg1.h" />
     <ClInclude Include="Data\FinalEgg2.h" />
     <ClInclude Include="Data\FinalEgg3.h" />
     <ClInclude Include="Data\FinalEgg_UVs.h" />
     <ClInclude Include="Data\Fountain.h" />
+    <ClInclude Include="Data\Frogs.h" />
     <ClInclude Include="Data\Grass.h" />
     <ClInclude Include="Data\Highway1.h" />
     <ClInclude Include="Data\Highway2.h" />
     <ClInclude Include="Data\Highway3.h" />
     <ClInclude Include="Data\HintMessages.h" />
-    <ClInclude Include="Data\HintMonitor.h" />
     <ClInclude Include="Data\HotShelter1.h" />
     <ClInclude Include="Data\HotShelter2.h" />
     <ClInclude Include="Data\HotShelter3.h" />
@@ -223,7 +222,6 @@
     <ClInclude Include="Data\OFinalEgg.h" />
     <ClInclude Include="Data\Palm.h" />
     <ClInclude Include="Data\Past_objects.h" />
-    <ClInclude Include="Data\Ripple.h" />
     <ClInclude Include="Data\RM_Objects.h" />
     <ClInclude Include="Data\SandHill.h" />
     <ClInclude Include="Data\SandHill_objects.h" />
@@ -245,7 +243,6 @@
     <ClInclude Include="Data\Tanken2.h" />
     <ClInclude Include="Data\Tanken3.h" />
     <ClInclude Include="Data\textures.h" />
-    <ClInclude Include="Data\TornadoCrash.h" />
     <ClInclude Include="Data\Twinkle1.h" />
     <ClInclude Include="Data\Twinkle2.h" />
     <ClInclude Include="Data\Twinkle3.h" />
@@ -256,7 +253,6 @@
     <ClInclude Include="Data\Windy3.h" />
     <ClInclude Include="Data\Zero.h" />
     <ClInclude Include="DC_Levels.h" />
-    <ClInclude Include="Frogs.h" />
     <ClInclude Include="GenericData.h" />
     <ClInclude Include="Lantern\lanternapi.h" />
     <ClInclude Include="StageLights.h" />

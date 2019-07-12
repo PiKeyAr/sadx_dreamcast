@@ -257,9 +257,6 @@
     <ClInclude Include="Data\ADV03_02.h">
       <Filter>Header Files\Levels\ADV03MODELS</Filter>
     </ClInclude>
-    <ClInclude Include="Data\Animals.h">
-      <Filter>Header Files\Levels\General</Filter>
-    </ClInclude>
     <ClInclude Include="Data\button.h">
       <Filter>Header Files\Levels\ADV02MODELS</Filter>
     </ClInclude>
@@ -294,9 +291,6 @@
       <Filter>Header Files\Levels\Bosses</Filter>
     </ClInclude>
     <ClInclude Include="Data\CommonObjects.h">
-      <Filter>Header Files\Levels\General</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\CharacterEffects.h">
       <Filter>Header Files\Levels\General</Filter>
     </ClInclude>
     <ClInclude Include="Data\E101.h">
@@ -334,9 +328,6 @@
     </ClInclude>
     <ClInclude Include="Data\EmeraldCoast3.h">
       <Filter>Header Files\Levels\EmeraldCoast</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\EmeraldGlow.h">
-      <Filter>Header Files\Levels\General</Filter>
     </ClInclude>
     <ClInclude Include="Data\FinalEgg1.h">
       <Filter>Header Files\Levels\FinalEgg</Filter>
@@ -437,9 +428,6 @@
     <ClInclude Include="Data\Past_objects.h">
       <Filter>Header Files\Levels\ADV03MODELS</Filter>
     </ClInclude>
-    <ClInclude Include="Data\Ripple.h">
-      <Filter>Header Files\Levels\General</Filter>
-    </ClInclude>
     <ClInclude Include="Data\RM_Objects.h">
       <Filter>Header Files\Levels\RedMountain</Filter>
     </ClInclude>
@@ -503,14 +491,8 @@
     <ClInclude Include="Data\ECGarden.h">
       <Filter>Header Files\Levels\Chao</Filter>
     </ClInclude>
-    <ClInclude Include="Frogs.h">
-      <Filter>Header Files\Levels\General</Filter>
-    </ClInclude>
     <ClInclude Include="Lantern\lanternapi.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\HintMonitor.h">
-      <Filter>Header Files\Levels\General</Filter>
     </ClInclude>
     <ClInclude Include="Data\ChaoObjects_Race.h">
       <Filter>Header Files\Levels\Chao</Filter>
@@ -569,9 +551,6 @@
     <ClInclude Include="Data\ADV01C_Objects.h">
       <Filter>Header Files\Levels\ADV01CMODELS</Filter>
     </ClInclude>
-    <ClInclude Include="Data\TornadoCrash.h">
-      <Filter>Header Files\Levels\General</Filter>
-    </ClInclude>
     <ClInclude Include="Data\Chaos0.h">
       <Filter>Header Files\Levels\Bosses</Filter>
     </ClInclude>
@@ -592,6 +571,15 @@
     </ClInclude>
     <ClInclude Include="Data\FinalEgg_UVs.h">
       <Filter>Header Files\Levels\FinalEgg</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\Animals.h">
+      <Filter>Header Files\Levels\General</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\Animals_motions.h">
+      <Filter>Header Files\Levels\General</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\Frogs.h">
+      <Filter>Header Files\Levels\General</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
