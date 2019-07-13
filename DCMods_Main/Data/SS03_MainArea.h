@@ -48837,7 +48837,7 @@ extern "C" __declspec(dllexport) COL collist_000DA99C[] = {
 	{ { 400.1259f, 66, 1547 }, 38.39181f, 0, 0, &object_001266EC_2, 0, 0x80040000 }, //Glass 1
 	{ { 400.0001f, 66, 1606.5f }, 42.19535f, 0, 0, &object_00101948_2, 0, 0x80040000 }, //Glass 2
 	{ { 483.9287f, 66, 1709.625f }, 124.5781f, 0, 0, &object_00128350_2, 0, 0x80040000 }, //Glass 3
-	{ { 256.7499f, 35, 1046.5f }, 86.19102f, 0, 0, &object_000E3C90_2, 0, 0xC0001001 }, //Roof tops transparent
+	{ { 256.7499f, 35, 1046.5f }, 86.19102f, 0, 0, &object_000E3C90_2, 0, 0xC2001001 }, //Roof tops transparent
 	{ { 220, -17.29691f, 4420 }, 3947.758f, 0, 0, &SADXWaterCollision, 0, 2 }, //SADX water (the invisible part)
 	{ { 220, -50.71019f, 4420 }, 3947.758f, 0, 0, &SADXSeaBottom, 0, 0x00000000 }, //SADX water (sea bottom)
 };

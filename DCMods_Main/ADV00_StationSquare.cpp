@@ -336,6 +336,7 @@ void ParseSSMaterials(bool remove)
 			}
 		}
 	}
+	//Main area
 	landtable = ___LANDTABLESS[3];
 	for (unsigned int j = 0; j < landtable->COLCount; j++)
 	{
@@ -752,24 +753,24 @@ void ADV00_Init()
 	WriteJump((void*)0x63C770, OS1Dnto_Display_Night);
 	WriteJump((void*)0x63A930, OGaitou_Display_Night);
 	WriteCall((void*)0x63EECF, SouvenirShopDoor_Depth);
-	WriteCall((void*)0x00636DE9, RenderOfficeDoor);
-	WriteCall((void*)0x00636E99, RenderOfficeDoor);
-	WriteCall((void*)0x00636F0B, RenderOfficeDoor);
-	WriteCall((void*)0x00636E1A, RenderOfficeDoor_Child);
-	WriteCall((void*)0x00636E52, RenderOfficeDoor_Child);
-	WriteCall((void*)0x00636EC0, RenderOfficeDoor_Child);
-	WriteCall((void*)0x00636F32, RenderOfficeDoor_Child);
-	WriteCall((void*)0x00638B2E, RenderPoliceCarBarricade);
-	WriteCall((void*)0x00638B50, RenderPoliceCarBarricade);
-	WriteCall((void*)0x00632773, FixPoliceCar);
+	WriteCall((void*)0x636DE9, RenderOfficeDoor);
+	WriteCall((void*)0x636E99, RenderOfficeDoor);
+	WriteCall((void*)0x636F0B, RenderOfficeDoor);
+	WriteCall((void*)0x636E1A, RenderOfficeDoor_Child);
+	WriteCall((void*)0x636E52, RenderOfficeDoor_Child);
+	WriteCall((void*)0x636EC0, RenderOfficeDoor_Child);
+	WriteCall((void*)0x636F32, RenderOfficeDoor_Child);
+	WriteCall((void*)0x638B2E, RenderPoliceCarBarricade);
+	WriteCall((void*)0x638B50, RenderPoliceCarBarricade);
+	WriteCall((void*)0x632773, FixPoliceCar);
 	WriteCall((void*)0x63A908, OGaitou_Day_Fix); //Don't queue a non-transparent model
-	WriteData((float*)0x00634EB9, 0.601f); //Prevent Z fighting with SS NPC shadow when overlapping transparent stuff
+	WriteData((float*)0x634EB9, 0.601f); //Prevent Z fighting with SS NPC shadow when overlapping transparent stuff
 	//Fix camera in Light Speed Shoes cutscene
-	WriteData((float*)0x00652F74, 800.0f); //X1
-	WriteData((float*)0x00652F79, -92.6f); //Y1
-	WriteData((float*)0x006532BB, 509.9f); //X2
-	WriteData((float*)0x006532B6, -89.4f); //Y2
-	WriteData((float*)0x006532B1, 812.3f); //Z2
+	WriteData((float*)0x652F74, 800.0f); //X1
+	WriteData((float*)0x652F79, -92.6f); //Y1
+	WriteData((float*)0x6532BB, 509.9f); //X2
+	WriteData((float*)0x6532B6, -89.4f); //Y2
+	WriteData((float*)0x6532B1, 812.3f); //Z2
 	WriteCall((void*)0x6304B6, DelaySettingTimeOfDay); //Prevent sudden lighting change in Sonic's story
 	WriteCall((void*)0x652F4F, LSCutsceneRotationFix); //Fix Sonic's rotation after getting the Light Speed Shoes
 	//Fix materials
@@ -782,18 +783,19 @@ void ADV00_Init()
 	RemoveVertexColors_Object((NJS_OBJECT*)0x2AD702C); //OKeyBlock 1
 	RemoveVertexColors_Object((NJS_OBJECT*)0x2AD746C); //OKeyBlock 2
 	RemoveVertexColors_Object((NJS_OBJECT*)0x2AD7674); //OKeyBlock 3
-	AddWhiteDiffuseMaterial((NJS_MATERIAL*)0x02DBE574); //Police car in first cutscene
-	AddWhiteDiffuseMaterial((NJS_MATERIAL*)0x02DBE588); //Police car in first cutscene
-	AddWhiteDiffuseMaterial((NJS_MATERIAL*)0x02DBE59C); //Police car in first cutscene
+	AddWhiteDiffuseMaterial((NJS_MATERIAL*)0x2DBE574); //Police car in first cutscene
+	AddWhiteDiffuseMaterial((NJS_MATERIAL*)0x2DBE588); //Police car in first cutscene
+	AddWhiteDiffuseMaterial((NJS_MATERIAL*)0x2DBE59C); //Police car in first cutscene
 	WriteData<5>((void*)0x630ADA, 0x90); //Hotel door fix 1
 	WriteData<5>((void*)0x630AE6, 0x90); //Hotel door fix 2
 	WriteData<5>((void*)0x630B03, 0x90); //Hotel door fix 3
-	WriteJump((void*)0x0062EA30, CheckIfCameraIsInHotel_Lol); //Disable hotel lighting check
+	WriteJump((void*)0x62EA30, CheckIfCameraIsInHotel_Lol); //Disable hotel lighting check
 	//Material stuff
-	((NJS_OBJECT*)0x02AB757C)->basicdxmodel->mats[2].attrflags &= ~NJD_FLAG_USE_ALPHA; //Speed Highway elevator door
-	((NJS_OBJECT*)0x02AB6E4C)->basicdxmodel->mats[2].attrflags &= ~NJD_FLAG_USE_ALPHA; //Speed Highway elevator door
+	((NJS_OBJECT*)0x2AB757C)->basicdxmodel->mats[2].attrflags &= ~NJD_FLAG_USE_ALPHA; //Speed Highway elevator door
+	((NJS_OBJECT*)0x2AB6E4C)->basicdxmodel->mats[2].attrflags &= ~NJD_FLAG_USE_ALPHA; //Speed Highway elevator door
 	//Objects
 	*(NJS_MODEL_SADX*)0x2ACBB80 = *LoadModel("system\\data\\ADV00\\Models\\0017F588.sa1mdl", false)->basicdxmodel; //OPoolChair
+	*(NJS_MODEL_SADX*)0x2AC95BC = *LoadModel("system\\data\\ADV00\\Models\\0017D568.sa1mdl", false)->basicdxmodel; //Fire hydrant
 	*(NJS_OBJECT*)0x2AC9F10 = *LoadModel("system\\data\\ADV00\\Models\\0017DDE8.sa1mdl", false); //OGaitou (street light)
 	StreetLight_Night = LoadModel("system\\data\\ADV00\\Models\\0017DDE8.sa1mdl", false); //OGaitou (street light);
 	StreetLight_Night->basicdxmodel->mats[0].attrflags |= NJD_FLAG_USE_ALPHA;
@@ -909,7 +911,7 @@ void ADV00_Init()
 	Parasol_4->basicdxmodel->meshsets[14].nbMesh = 0;
 	SwapMeshsets(Parasol_4, 8, 6); //Move heart after glass
 	SwapMeshsets(Parasol_4, 7, 8); //Move lemon after glass
-	WriteCall((void*)0x0063A6A4, RenderParasol); //Parasol
+	WriteCall((void*)0x63A6A4, RenderParasol); //Parasol
 	//Fog data
 	for (unsigned int i = 0; i < 3; i++)
 	{
