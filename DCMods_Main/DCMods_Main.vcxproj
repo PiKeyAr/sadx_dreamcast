@@ -238,7 +238,6 @@
     <ClInclude Include="Data\SS04_Hotel.h" />
     <ClInclude Include="Data\SS05_Twinkle.h" />
     <ClInclude Include="Data\SSGarden.h" />
-    <ClInclude Include="Data\SS_Objects.h" />
     <ClInclude Include="Data\Tanken.h" />
     <ClInclude Include="Data\Tanken2.h" />
     <ClInclude Include="Data\Tanken3.h" />

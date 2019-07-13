@@ -449,9 +449,6 @@
     <ClInclude Include="Data\SkyDeck3.h">
       <Filter>Header Files\Levels\SkyDeck</Filter>
     </ClInclude>
-    <ClInclude Include="Data\SS_Objects.h">
-      <Filter>Header Files\Levels\ADV00MODELS</Filter>
-    </ClInclude>
     <ClInclude Include="Data\SSGarden.h">
       <Filter>Header Files\Levels\Chao</Filter>
     </ClInclude>

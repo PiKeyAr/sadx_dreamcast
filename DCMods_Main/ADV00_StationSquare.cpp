@@ -1,7 +1,5 @@
 #include "stdafx.h"
-#include "textures.h"
-#include "SS_Objects.h"
-
+//TODO: Burger Shop man lighting should use type 0, but its materials are hardcoded in Lantern Engine
 NJS_TEXNAME textures_advss00[220];
 NJS_TEXLIST texlist_advss00 = { arrayptrandlength(textures_advss00) };
 
@@ -23,6 +21,15 @@ NJS_TEXLIST texlist_advss05 = { arrayptrandlength(textures_advss05) };
 NJS_OBJECT *SS03SeaModel = nullptr;
 NJS_OBJECT *SS04SeaModel = nullptr;
 
+NJS_OBJECT* StreetLight_Night = nullptr;
+NJS_OBJECT* OS1Dnto_Night = nullptr;
+NJS_OBJECT* PoliceCarModel_LightsOnly = nullptr;
+NJS_OBJECT* StationDoor = nullptr;
+NJS_OBJECT* Parasol_1 = nullptr;
+NJS_OBJECT* Parasol_2 = nullptr;
+NJS_OBJECT* Parasol_3 = nullptr;
+NJS_OBJECT* Parasol_4 = nullptr;
+
 /*
 #include "SS00_CityHall.h"
 #include "SS01_Casino.h"
@@ -32,9 +39,7 @@ NJS_OBJECT *SS04SeaModel = nullptr;
 #include "SS05_Twinkle.h"
 */
 
-static Sint8 PreviousTimeOfDay = -1;
-static Sint8 DelayedTimeOfDay = -1;
-
+DataArray(int, StationSquareCarTextureIDs, 0x2BBE9D8, 6);
 DataArray(FogData, StationSquare1Fog, 0x02AA3D10, 3);
 DataArray(FogData, StationSquare2Fog, 0x02AA3D40, 3);
 DataArray(FogData, StationSquare3Fog, 0x02AA3D70, 3);
@@ -42,10 +47,15 @@ DataArray(FogData, StationSquare4Fog, 0x02AA3DA0, 3);
 DataArray(FogData, StationSquare5Fog, 0x02AA3DD0, 3);
 DataArray(FogData, StationSquare6Fog, 0x02AA3E00, 3);
 DataArray(DrawDistance, StationSquare6DrawDist, 0x02AA3CF8, 3);
-FunctionPointer(void, sub_405470, (NJS_ACTION *a1, float a2, int a3), 0x405470);
+DataPointer(float, OS1Dnto_LightY, 0x2BC08A4);
+DataPointer(float, OS1Dnto_LightZ, 0x2BC08A8);
 FunctionPointer(void, sub_405450, (NJS_ACTION *a1, float frame, float scale), 0x405450);
-FunctionPointer(void, sub_409E70, (NJS_MODEL_SADX *model, int blend, float scale), 0x409E70);
-static NJS_ACTION PoliceCarAction_Rot = { &objectADV00_0019F390_2, (NJS_MOTION*)0x2AFC5F8 };
+FunctionPointer(void, ProcessModel_NoSorting, (NJS_MODEL_SADX* model, float scale), 0x407A00);
+FunctionPointer(long double, sub_49CC70, (float a1, float a2, float a3), 0x49CC70);
+FunctionPointer(void, njAction_Queue_407BB0_2, (NJS_ACTION* a1, float a2, int a3, float a4), 0x408350);
+
+static Sint8 PreviousTimeOfDay = -1;
+static Sint8 DelayedTimeOfDay = -1;
 
 int __cdecl CheckIfCameraIsInHotel_Lol()
 {
@@ -78,735 +88,23 @@ void __cdecl RenderStationSquareOcean(OceanData *x)
 	}
 }
 
-NJS_MATERIAL* NPCMaterials[] = {
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0021251C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00212158),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0021216C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00211EB0),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00211A74),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x002116B0),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x002116C4),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00211408),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00210988),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00210310),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00210128),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0020F95C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0020F970),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0020F984),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0020F6FC),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0020F710),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0020F724),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0020F20C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0020EE24),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0020EE38),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0020EBD8),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0020E784),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0020E39C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0020E3B0),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0020E150),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0020DF44),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00215000),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00215014),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00214F8C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00214B94),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00214BA8),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00214B20),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x002140D0),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x002140E4),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x002140F8),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x002138A4),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x002138B8),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x002138CC),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00213674),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00213688),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x002133F8),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x002131AC),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x002131C0),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00213138),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00212F58),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00212D0C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00212D20),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00212C98),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00212A90),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00217738),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0021774C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x002176C4),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x002172CC),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x002172E0),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00217258),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x002167C0),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x002167D4),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x002167E8),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x002167FC),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00215F94),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00215FA8),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00215FBC),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00215D64),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00215D78),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00215A74),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00215A88),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00215A00),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x002157AC),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x002157C0),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00215738),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0021552C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0021A764),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0021A778),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0021A5B4),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0021A1BC),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0021A1D0),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0021A008),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00219498),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x002194AC),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x002194C0),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x002194D4),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x002194E8),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x002194FC),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00218C6C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00218C80),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00218C94),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00218A3C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00218A50),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x002187C0),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00218574),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00218588),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00218408),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00218228),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00217FDC),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00217FF0),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00217E70),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00217C64),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00203658),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0020366C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00202D14),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00202D28),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00202B48),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0020270C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00202348),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0020235C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x002020A0),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00201C64),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x002018A0),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x002018B4),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x002015FC),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00200F18),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00200F2C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00200F40),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00200F54),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x002009A8),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x002009BC),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00200534),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00200548),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0020055C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x002002E8),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001FFE18),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001FFE2C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001FF9A4),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001FF9B8),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001FF9CC),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001FF75C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001FF3C0),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0020726C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00207280),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x002069E4),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x002069F8),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00206A0C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00206434),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00206448),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00206284),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00205E8C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00205EA0),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00205CD8),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00205638),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0020564C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00205660),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00205204),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00205218),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00204F14),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00204F28),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00204F3C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00204944),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00204958),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00204654),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00204668),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0020467C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00204080),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0020A0D0),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0020A0E4),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00209ACC),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00209AE0),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00209AF4),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00209674),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00209688),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x002094C4),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x002090CC),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x002090E0),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00208F1C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00208B54),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00208B68),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00208B7C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x002088C4),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x002088D8),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x002085D8),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x002085EC),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00208600),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00208384),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00208398),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00208094),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x002080A8),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x002080BC),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00207C98),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0020D938),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0020D94C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0020CFFC),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0020D010),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0020CA4C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0020CA60),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0020C89C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0020C4A4),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0020C4B8),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0020C2F0),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0020BEF8),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0020BF0C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0020BF20),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0020BF34),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0020B984),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0020B998),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0020B694),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0020B6A8),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0020B6BC),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0020AF8C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0020AFA0),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0020AC9C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0020ACB0),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0020ACC4),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0020A6C8),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001F43B4),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001F4168),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001F3EC0),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001F3A84),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001F3838),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001F3594),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001F2D50),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001F2D64),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001F24CC),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001F2300),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001F1C50),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001F1C64),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001F172C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001F118C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001F11A0),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001F11B4),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001F0F40),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001F0AEC),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001F054C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001F0560),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001F0574),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001F0304),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001EFD00),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001EFD14),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001F7A34),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001F7880),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001F754C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001F739C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001F6B54),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001F6B68),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001F5EBC),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001F5ED0),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001F5EE4),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001F5DD4),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001F5DE8),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001F5948),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001F595C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001F56CC),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001F52AC),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001F52C0),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001F506C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001F4C48),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001F4C5C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001F4928),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001F493C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001FB67C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001FB514),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001FB364),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001FB184),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001FB01C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001FAE68),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001FA664),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001FA678),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001F9ABC),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001F9AD0),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001F9A48),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001F99C0),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001F99D4),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001F955C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001F9570),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001F8FBC),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001F8B9C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001F8BB0),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001F8B28),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001F85F4),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001F8608),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001F81D4),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001F81E8),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001F8160),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001F7EA0),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001F7EB4),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001FF094),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001FEF2C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001FED7C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001FEB9C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001FEA34),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001FE880),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001FDEBC),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001FD464),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001FD478),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001FD48C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001FD3F0),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001FCD40),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001FCD54),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001FC9D8),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001FC9EC),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001FC75C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001FC338),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001FC34C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001FC2C4),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001FC0E4),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001FBCC4),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001FBCD8),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001FBC50),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001FB994),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001FB9A8),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001ED5D8),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001ED5EC),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001ED600),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001ECF28),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001ECF3C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001E81CC),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001ECCD4),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001ECCE8),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001ECC60),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001E76FC),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001ECA0C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001ECA20),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001EC998),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001EC8E8),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001EC8FC),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001EC910),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001EC924),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001EC874),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001E6574),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001E6054),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001E6068),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001EC524),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001EC538),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001EC49C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001EC4B0),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001E551C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001E5530),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001EC234),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001EC248),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001EC25C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001EC1C0),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001EC14C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001E8B70),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001E8B84),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001E8634),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001E7E08),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001E7E1C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001E7B64),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001E7338),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001E734C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001E7094),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001E6850),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001E6864),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001E6878),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001E688C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001E66C8),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001E5C68),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001E5C7C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001E59A0),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001E59B4),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001E50F8),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001E510C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001E5120),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001E4E60),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001E4CAC),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001DDC64),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001E0250),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001E01DC),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001DD334),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001DFE48),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001DFDD4),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001DC3E8),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001DF150),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001DF164),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001DF178),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001DB8C0),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001DE850),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001DE864),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001DAE58),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001DAE6C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001DA924),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001DA938),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001DE500),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001DE514),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001DA0B8),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001DA0CC),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001D9B84),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001D9B98),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001DE24C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001DE260),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001DE1D8),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001EADA0),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001EADB4),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001EADC8),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001EA80C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001EA820),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001EA798),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001EA204),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001EA218),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001EA190),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001EA0E0),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001EA0F4),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001EA108),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001EA11C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001E9D2C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001E9D40),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001E9CA4),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001E9CB8),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001E9A3C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001E9A50),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001E9A64),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001E99C8),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001E9954),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001EF308),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001EF31C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001EF330),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001EED74),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001EED88),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001EED00),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001EE76C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001EE780),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001EE6F8),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001EE648),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001EE65C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001EE670),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001EE684),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001EE5D4),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001EE284),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001EE298),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001EE1FC),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001EE210),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001EDF94),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001EDFA8),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001EDFBC),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001EDF20),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001EDEAC),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001DDA18),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001DD770),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001DD0E8),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001DCE44),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001DBAA8),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001DBABC),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001DB364),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001DA528),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001DA53C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001D9788),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001D979C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001D9504),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001E2A7C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001E2A08),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001E2994),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001E2664),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001E25F0),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001E257C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001E1B20),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001E10D0),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001E10E4),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001E10F8),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001E0EE4),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001E0EF8),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001E0E70),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001E0DFC),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001E09A0),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001E09B4),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001E0918),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001E092C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001E06C4),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001E06D8),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001E063C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001E0650),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001E05C8),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001E4920),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001E48AC),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001E451C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001E44A8),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001E3C64),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001E340C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001E3420),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001E3434),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001E30BC),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001E30D0),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001E2E08),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001E2E1C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x001E2D94),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00221DC0),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00221DD4),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00221624),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00221638),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0021D8E8),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0021D53C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0021D358),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0021D128),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0021CD7C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0021CB98),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0021C984),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00220D5C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00220D70),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0021BF80),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0021BC88),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0021B9D0),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0021B618),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0021B320),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0021B080),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00220720),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00220734),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0021FEA8),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0021FEBC),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0021F9C4),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0021F9D8),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0021F9EC),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0021F13C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0021F150),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0021EB00),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0021EB14),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0021E288),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0021E29C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0021DAA4),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0021DAB8),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0021C3D4),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0021C3E8),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0021ACA8),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0021ACBC),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0022696C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00226980),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00225E60),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00225E74),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00225E88),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00225E9C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00225600),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00225614),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00225628),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x002253F0),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00224D80),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00224D94),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00224DA8),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00224B6C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00224008),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0022401C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00224030),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00224044),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00224058),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00223B20),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00223B34),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0022379C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x002237B0),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x002237C4),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00223180),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00223194),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00222DFC),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00222E10),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00222E24),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00222638),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0022264C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00222660),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0022B17C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0022AE68),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0022AE7C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0022AC38),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0022A88C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0022A578),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0022A58C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0022A358),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00229B14),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00229028),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0022903C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00229050),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00229064),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00229078),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0022908C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00228E98),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00228854),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00228868),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0022887C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x002285FC),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00228610),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00228624),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x002281AC),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00227E74),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00227E88),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00227C90),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x002278CC),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x00227594),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x002275A8),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x002273B0),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x002271F4),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0022E43C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0022E0E4),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0022E0F8),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0022E10C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0022DFC4),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0022DDE4),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0022DA8C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0022DAA0),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0022DAB4),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0022D970),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0022D11C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0022C9B0),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0022C9C4),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0022C9D8),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0022C93C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0022BEA0),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0022BEB4),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0022BEC8),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0022BEDC),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0022BD28),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0022BAAC),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0022BA24),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0022BA38),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0022B9B0),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0022B7D0),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0022B748),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0022B75C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0022B6D4),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV00MODELS") + 0x0022B660),
-};
-
-NJS_MATERIAL* CharacterStuff[] = {
-	&matlistADV00_0000DE08[0], //Event helicopter
-};
-
-NJS_MATERIAL* WhiteDiffuseADV00_External[] = {
-	nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,
-};
-
-NJS_MATERIAL* WhiteDiffuseADV00[] = {
-	//Helicopter
-	&matlistADV00_0000E238[0],
-	&matlistADV00_0000E238[1],
-	//Police car in cutscene
-	((NJS_MATERIAL*)0x02DBE574),
-	((NJS_MATERIAL*)0x02DBE588),
-	((NJS_MATERIAL*)0x02DBE59C),
-	&matlistADV00_00190C2C[8], //Train
-};
-
-NJS_MATERIAL* WhiteDiffuseADV00_Night[] = {
-	nullptr, nullptr, nullptr,
-};
-
-NJS_MATERIAL* ObjectSpecularADV00[] = {
-	//OTWADoor
-	((NJS_MATERIAL*)0x02AB5180),
-	((NJS_MATERIAL*)0x02AB5194),
-	((NJS_MATERIAL*)0x02AB51A8),
-	((NJS_MATERIAL*)0x02AB4F08),
-	((NJS_MATERIAL*)0x02AB4F1C),
-	((NJS_MATERIAL*)0x02AB4F30),
-	((NJS_MATERIAL*)0x02AB4C8C),
-	((NJS_MATERIAL*)0x02AB4CA0),
-	((NJS_MATERIAL*)0x02AB4CB4),
-	//OPoolChair
-	((NJS_MATERIAL*)0x02ACAF88),
-	((NJS_MATERIAL*)0x02ACAF9C),
-	((NJS_MATERIAL*)0x02ACAFB0),
-	((NJS_MATERIAL*)0x02ACAFC4),
-	((NJS_MATERIAL*)0x02ACAFD8),
-	((NJS_MATERIAL*)0x02ACAFEC),
-	//Station door
-	((NJS_MATERIAL*)0x02AC60D0),
-	((NJS_MATERIAL*)0x02AC60E4),
-	((NJS_MATERIAL*)0x02AC60F8),
-	((NJS_MATERIAL*)0x02AC610C),
-	((NJS_MATERIAL*)0x02AC6120),
-	((NJS_MATERIAL*)0x02AC6134),
-	((NJS_MATERIAL*)0x02AC6AD8),
-	((NJS_MATERIAL*)0x02AC6AEC),
-	((NJS_MATERIAL*)0x02AC6B00),
-	((NJS_MATERIAL*)0x02AC6B14),
-	((NJS_MATERIAL*)0x02AC6B28),
-	((NJS_MATERIAL*)0x02AC6B3C),
-	//Burger shop door
-	((NJS_MATERIAL*)0x02AB0310),
-	((NJS_MATERIAL*)0x02AB0324),
-	((NJS_MATERIAL*)0x02AB0338),
-	((NJS_MATERIAL*)0x02AB034C),
-	((NJS_MATERIAL*)0x02AAF590),
-	((NJS_MATERIAL*)0x02AAF5A4),
-	((NJS_MATERIAL*)0x02AAF5B8),
-	((NJS_MATERIAL*)0x02AAF5CC),
-};
-
-NJS_MATERIAL* LevelSpecularADV00[] = {
-	//Burger shop door
-	((NJS_MATERIAL*)0x02AB1068),
-	((NJS_MATERIAL*)0x02AB107C),
-	//Casino stuff
-	((NJS_MATERIAL*)0x02B02B18),
-	((NJS_MATERIAL*)0x02B02B2C),
-	((NJS_MATERIAL*)0x02B02B40),
-	((NJS_MATERIAL*)0x02B03358),
-	((NJS_MATERIAL*)0x02B0336C),
-	((NJS_MATERIAL*)0x02B03380),
-	((NJS_MATERIAL*)0x02B03394),
-	((NJS_MATERIAL*)0x02B033A8),
-	((NJS_MATERIAL*)0x02B00C48),
-	((NJS_MATERIAL*)0x02B009B8),
-	((NJS_MATERIAL*)0x02B009CC),
-	((NJS_MATERIAL*)0x02B009E0),
-	((NJS_MATERIAL*)0x02B00728),
-	((NJS_MATERIAL*)0x02B0073C),
-	((NJS_MATERIAL*)0x02B00750),
-	((NJS_MATERIAL*)0x02B00498),
-	((NJS_MATERIAL*)0x02B004AC),
-	((NJS_MATERIAL*)0x02B004C0),
-	((NJS_MATERIAL*)0x02B00208),
-	((NJS_MATERIAL*)0x02B0021C),
-	((NJS_MATERIAL*)0x02B00230),
-	((NJS_MATERIAL*)0x02AFFF78),
-	((NJS_MATERIAL*)0x02AFFF8C),
-	((NJS_MATERIAL*)0x02AFFFA0),
-	((NJS_MATERIAL*)0x02AFFCE8),
-	((NJS_MATERIAL*)0x02AFFCFC),
-	((NJS_MATERIAL*)0x02AFFD10),
-	((NJS_MATERIAL*)0x02AFFA58),
-	((NJS_MATERIAL*)0x02AFFA6C),
-	((NJS_MATERIAL*)0x02AFFA80),
-	((NJS_MATERIAL*)0x02AFF7C8),
-	((NJS_MATERIAL*)0x02AFF7DC),
-	((NJS_MATERIAL*)0x02AFF7F0),
-	((NJS_MATERIAL*)0x02AFF538),
-	((NJS_MATERIAL*)0x02AFF54C),
-	((NJS_MATERIAL*)0x02AFF560),
-	((NJS_MATERIAL*)0x02AFF2A8),
-	((NJS_MATERIAL*)0x02AFF2BC),
-	((NJS_MATERIAL*)0x02AFF2D0),
-};
-
 void FixPoliceCar(NJS_ACTION *a1, float a2, int a3)
 {
 	sub_405450(a1, a2, a3);
 	if (a1->object == ((NJS_OBJECT*)0x2AF4FC0))
 	{
-		sub_405450(&PoliceCarAction_Rot, a2, a3);
+		DrawQueueDepthBias = 1000.0f;
+		ProcessModelNode(PoliceCarModel_LightsOnly, (QueuedModelFlagsB)0, 1.0f);
+		DrawQueueDepthBias = 0.0f;
 	}
 }
 
 void RenderPoliceCarBarricade(NJS_OBJECT *obj, float scale)
 {
 	ProcessModelNode_AB_Wrapper(obj, scale);
-	ProcessModelNode(&objectADV00_0019F390_2, (QueuedModelFlagsB)1, scale);
+	DrawQueueDepthBias = 1000.0f;
+	ProcessModelNode(PoliceCarModel_LightsOnly, (QueuedModelFlagsB)0, scale);
+	DrawQueueDepthBias = 0.0f;
 }
 
 void RenderOfficeDoor(NJS_MODEL_SADX *a1, float scale)
@@ -821,15 +119,131 @@ void RenderOfficeDoor_Child(NJS_MODEL_SADX *a1, float scale)
 	DrawModel_Queue(a1, QueuedModelFlagsB_EnableZWrite);
 }
 
-void RenderPoolChair(NJS_MODEL_SADX *a1, int a2, float a3)
+void RenderParasol(NJS_MODEL_SADX *a1, int a2, float a3)
 {
-	sub_409E70(&attach_00182AB0, a2, a3);
+	ProcessModelNode(Parasol_1, QueuedModelFlagsB_EnableZWrite, 1.0f); //Main model
 	DrawQueueDepthBias = 1000.0f;
-	ProcessModelNode(&object_00182AD8_2, QueuedModelFlagsB_EnableZWrite, 1.0f);
+	ProcessModelNode(Parasol_2, QueuedModelFlagsB_EnableZWrite, 1.0f); //Chair transparency
 	DrawQueueDepthBias = 1100.0f;
-	ProcessModelNode(&object_00182AD8_3, QueuedModelFlagsB_EnableZWrite, 1.0f);
+	ProcessModelNode(Parasol_4, QueuedModelFlagsB_EnableZWrite, 1.0f); //Glass
 	DrawQueueDepthBias = 1200.0f;
-	ProcessModelNode(&object_00182AD8_4, QueuedModelFlagsB_EnableZWrite, 1.0f);
+	ProcessModelNode(Parasol_3, QueuedModelFlagsB_EnableZWrite, 1.0f); //Umbrella
+	DrawQueueDepthBias = 0.0f;
+}
+
+void LSCutsceneRotationFix()
+{
+	DisableControl();
+	EntityData1Ptrs[0]->Rotation.x = 0;
+	EntityData1Ptrs[0]->Rotation.z = 0;
+	EntityData1Ptrs[0]->Rotation.y = 49072;
+}
+
+void DelaySettingTimeOfDay(Sint8 time)
+{
+	DelayedTimeOfDay = time;
+}
+
+void __cdecl OS1Dnto_Display_Night(ObjectMaster* a1)
+{
+	EntityData1* v1; // esi
+	Angle v2; // eax
+
+	v1 = a1->Data1;
+	if (!MissedFrames)
+	{
+		//Draw model
+		njPushMatrix(0);
+		njTranslateV(0, &v1->Position);
+		v2 = v1->Rotation.y;
+		if (v2)
+		{
+			njRotateY(0, (unsigned __int16)v2);
+		}
+		njSetTexture((NJS_TEXLIST*)0x2AEAA50);
+		DrawQueueDepthBias = 100.0f;
+		DrawModel_Queue_407CF0(OS1Dnto_Night->basicdxmodel, (QueuedModelFlagsB)0);
+		njPopMatrix(1u);
+		//Draw light
+		njColorBlendingMode(0, NJD_COLOR_BLENDING_SRCALPHA);
+		njColorBlendingMode(NJD_DESTINATION_COLOR, NJD_COLOR_BLENDING_ONE);
+		SetMaterialAndSpriteColor_Float(0.7f, 0.8f, 0.65f, 0.3f);
+		((NJS_SPRITE*)0x2BC08A0)->p.x = v1->Position.x + 0.1f; //I moved it out a little bit but it's still not as good as on DC
+		OS1Dnto_LightY = v1->Position.y - 2.2f;
+		OS1Dnto_LightZ = v1->Position.z;
+		Set3DSpriteDepth(3.0f);
+		njDrawSprite3D_NoSkippedFrames((NJS_SPRITE*)0x2BC08A0, 0, NJD_SPRITE_ALPHA | NJD_SPRITE_SCALE | NJD_SPRITE_COLOR);
+		ClampGlobalColorThing_Thing();
+		DrawQueueDepthBias = 0.0f;
+	}
+}
+
+void __cdecl OGaitou_Display_Night(ObjectMaster* a1)
+{
+	float* z1; // esi
+	z1 = (float*)& a1->Data1->Action;
+	EntityData1* v1; // edi
+	Angle v2; // eax
+	NJS_OBJECT* v3; // esi
+	NJS_OBJECT* v5; // esi
+	Angle v4; // eax
+	float ZDist; // ST08_4
+	Float ZScale; // [esp+14h] [ebp-Ch]
+	Float sy; // [esp+18h] [ebp-8h]
+	Float sx; // [esp+1Ch] [ebp-4h]
+
+	v1 = a1->Data1;
+	SetTextureToLevelObj();
+	njPushMatrix(0);
+	njTranslateV(0, &v1->Position);
+	njTranslateV(0, (NJS_VECTOR*) & ((NJS_OBJECT*)0x2AC9F10)->pos);
+	njPushMatrix(0);
+	v2 = v1->Rotation.y;
+	if (v2)
+	{
+		njRotateY(0, (unsigned __int16)v2);
+	}
+	DrawQueueDepthBias = 200.0f;
+	DrawModel_Queue_407CF0(StreetLight_Night->basicdxmodel, (QueuedModelFlagsB)0);
+	njPopMatrix(1u);
+	v3 = StreetLight_Night->child->sibling;
+	sx = v3->scl[0];
+	sy = v3->scl[1];
+	ZScale = v3->scl[2];
+	njTranslate(0, v3->pos[0], v3->pos[1], v3->pos[2]);
+	v4 = v1->Rotation.y;
+	if (v4)
+	{
+		njRotateY(0, (unsigned __int16)v4);
+	}
+	njScale(0, sx, sy, ZScale);
+	ZDist = sub_49CC70(sx, sy, ZScale);
+	if (!(v3->basicdxmodel->mats[0].attrflags & NJD_FLAG_USE_ALPHA)) v3->basicdxmodel->mats[0].attrflags |= NJD_FLAG_USE_ALPHA;
+	DrawModel_Queue_407CF0(v3->basicdxmodel, (QueuedModelFlagsB)0);
+	njPopMatrix(1u);
+	njColorBlendingMode(0, NJD_COLOR_BLENDING_SRCALPHA);
+	njColorBlendingMode(NJD_DESTINATION_COLOR, NJD_COLOR_BLENDING_ONE);
+	SetMaterialAndSpriteColor_Float(0.7f, 0.8f, 0.8f, 0.8f);
+	((NJS_SPRITE*)0x2BC0334)->p.x = z1[8];
+	((NJS_SPRITE*)0x2BC0334)->p.y = z1[9] + 39.0f;
+	((NJS_SPRITE*)0x2BC0334)->p.z = z1[10];
+	Set3DSpriteDepth(3.0f);
+	njDrawSprite3D_NoSkippedFrames((NJS_SPRITE*)0x2BC0334, 0, NJD_SPRITE_ALPHA | NJD_SPRITE_SCALE | NJD_SPRITE_COLOR);
+	ClampGlobalColorThing_Thing();
+	njColorBlendingMode(0, NJD_COLOR_BLENDING_SRCALPHA);
+	njColorBlendingMode(NJD_DESTINATION_COLOR, NJD_COLOR_BLENDING_INVSRCALPHA);
+	DrawQueueDepthBias = 0.0f;
+}
+
+void OGaitou_Day_Fix(NJS_MODEL_SADX* model, QueuedModelFlagsB blend, float scale)
+{
+	ProcessModel_NoSorting(model, scale);
+}
+
+void SouvenirShopDoor_Depth(NJS_ACTION* a1, float a2, int a3, float a4)
+{
+	DrawQueueDepthBias = 3000.0f;
+	njAction_Queue_407BB0_2(a1, a2, a3, a4);
 	DrawQueueDepthBias = 0.0f;
 }
 
@@ -880,33 +294,7 @@ void ParseSSColFlags()
 	}
 }
 
-void AddWhiteDiffuseMaterial_SS_Night(NJS_MATERIAL *material)
-{
-	for (int q = 0; q < LengthOfArray(WhiteDiffuseADV00_Night); ++q)
-	{
-		if (WhiteDiffuseADV00_Night[q] == material) return;
-		else if (WhiteDiffuseADV00_Night[q] == nullptr)
-		{
-			WhiteDiffuseADV00_Night[q] = material;
-			return;
-		}
-	}
-}
-
-void AddWhiteDiffuseMaterial_SS(NJS_MATERIAL *material)
-{
-	for (int q = 0; q < LengthOfArray(WhiteDiffuseADV00_External); ++q)
-	{
-		if (WhiteDiffuseADV00_External[q] == material) return;
-		else if (WhiteDiffuseADV00_External[q] == nullptr)
-		{
-			WhiteDiffuseADV00_External[q] = material;
-			return;
-		}
-	}
-}
-
-void ParseSSMaterials()
+void ParseSSMaterials(bool remove)
 {
 	Uint32 materialflags;
 	NJS_MATERIAL *material;
@@ -917,12 +305,13 @@ void ParseSSMaterials()
 	{
 		for (int k = 0; k < landtable->Col[j].Model->basicdxmodel->nbMat; ++k)
 		{
-			//White diffuse night
+			material = (NJS_MATERIAL*)&landtable->Col[j].Model->basicdxmodel->mats[k];
 			materialflags = landtable->Col[j].Model->basicdxmodel->mats[k].attrflags;
+			//White diffuse
 			if (materialflags & NJD_CUSTOMFLAG_WHITE)
 			{
-				material = (NJS_MATERIAL*)&landtable->Col[j].Model->basicdxmodel->mats[k];
-				AddWhiteDiffuseMaterial_SS(material);
+				if (remove) RemoveWhiteDiffuseMaterial(material);
+				else AddWhiteDiffuseMaterial(material);
 			}
 		}
 	}
@@ -932,17 +321,17 @@ void ParseSSMaterials()
 	{
 		for (int k = 0; k < landtable->Col[j].Model->basicdxmodel->nbMat; ++k)
 		{
+			material = (NJS_MATERIAL*)&landtable->Col[j].Model->basicdxmodel->mats[k];
+			materialflags = material->attrflags;
 			//White diffuse night
-			materialflags = landtable->Col[j].Model->basicdxmodel->mats[k].attrflags;
 			if (materialflags & NJD_CUSTOMFLAG_WHITE)
 			{
-				material = (NJS_MATERIAL*)&landtable->Col[j].Model->basicdxmodel->mats[k];
-				AddWhiteDiffuseMaterial_SS(material);
+				if (remove) RemoveWhiteDiffuseMaterial(material);
+				else AddWhiteDiffuseMaterial(material);
 			}
 			//Texanim 1
-			if (materialflags & NJD_CUSTOMFLAG_TEXANIM1)
+			if (material->attr_texId >= 46 && material->attr_texId <= 55)
 			{
-				material = (NJS_MATERIAL*)&landtable->Col[j].Model->basicdxmodel->mats[k];
 				AddTextureAnimation(26, 2, material, false, 4, 46, 55, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1);
 			}
 		}
@@ -952,27 +341,26 @@ void ParseSSMaterials()
 	{
 		for (int k = 0; k < landtable->Col[j].Model->basicdxmodel->nbMat; ++k)
 		{
+			material = (NJS_MATERIAL*)&landtable->Col[j].Model->basicdxmodel->mats[k];
+			materialflags = material->attrflags;
 			//White diffuse night
-			materialflags = landtable->Col[j].Model->basicdxmodel->mats[k].attrflags;
 			if ((materialflags & NJD_CUSTOMFLAG_NIGHT) && (materialflags & NJD_CUSTOMFLAG_WHITE))
 			{
-				material = (NJS_MATERIAL*)&landtable->Col[j].Model->basicdxmodel->mats[k];
-				AddWhiteDiffuseMaterial_SS_Night(material);
+				if (remove) RemoveWhiteDiffuseNightMaterial(material);
+				else AddWhiteDiffuseNightMaterial(material);
 			}
 			//Texanim 1
-			if ((materialflags & NJD_CUSTOMFLAG_TEXANIM1) && !(materialflags & NJD_CUSTOMFLAG_TEXANIM2))
+			if (material->attr_texId == 183)
 			{
-				material = (NJS_MATERIAL*)&landtable->Col[j].Model->basicdxmodel->mats[k];
 				AddTextureAnimation(26, 3, material, true, 4, 183, 242, 243, 244, 245, 246, 247, 248, 249, 250, 251, 252, 253, 254, 255, -1);
 			}
 			//Texanim 2
-			if ((materialflags & NJD_CUSTOMFLAG_TEXANIM2) && !(materialflags & NJD_CUSTOMFLAG_TEXANIM1))
+			if (material->attr_texId == 29)
 			{
-				material = (NJS_MATERIAL*)&landtable->Col[j].Model->basicdxmodel->mats[k];
 				AddTextureAnimation(26, 3, material, true, 4, 29, 228, 229, 230, 231, 232, 233, 234, 235, 236, 237, 238, 239, 240, 241, -1);
 			}
 			//Texanim 3
-			if ((materialflags & NJD_CUSTOMFLAG_TEXANIM1) && (materialflags & NJD_CUSTOMFLAG_TEXANIM2))
+			if (material->attr_texId == 142)
 			{
 				material = (NJS_MATERIAL*)&landtable->Col[j].Model->basicdxmodel->mats[k];
 				AddTextureAnimation(26, 3, material, true, 4, 142, 219, 220, 221, 222, 223, 224, 225, 226, 227, -1, -1, -1, -1, -1, -1);
@@ -984,27 +372,26 @@ void ParseSSMaterials()
 	{
 		for (int k = 0; k < landtable->Col[j].Model->basicdxmodel->nbMat; ++k)
 		{
-			//White diffuse night
+			material = (NJS_MATERIAL*)&landtable->Col[j].Model->basicdxmodel->mats[k];
 			materialflags = landtable->Col[j].Model->basicdxmodel->mats[k].attrflags;
+			//White diffuse night
 			if ((materialflags & NJD_CUSTOMFLAG_NIGHT) && (materialflags & NJD_CUSTOMFLAG_WHITE))
 			{
-				material = (NJS_MATERIAL*)&landtable->Col[j].Model->basicdxmodel->mats[k];
-				AddWhiteDiffuseMaterial_SS_Night(material);
+				if (remove) RemoveWhiteDiffuseNightMaterial(material);
+				else AddWhiteDiffuseNightMaterial(material);
 			}
 			//Texanim 1
-			if ((materialflags & NJD_CUSTOMFLAG_TEXANIM1) && !(materialflags & NJD_CUSTOMFLAG_TEXANIM2))
+			if (material->attr_texId >= 101 && material->attr_texId <= 114)
 			{
-				material = (NJS_MATERIAL*)&landtable->Col[j].Model->basicdxmodel->mats[k];
 				AddTextureAnimation(26, 4, material, false, 4, 101, 114, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 			}
 			//Texanim 2
-			if ((materialflags & NJD_CUSTOMFLAG_TEXANIM2) && !(materialflags & NJD_CUSTOMFLAG_TEXANIM1))
+			if (material->attr_texId >= 87 && material->attr_texId <= 100)
 			{
-				material = (NJS_MATERIAL*)&landtable->Col[j].Model->basicdxmodel->mats[k];
 				AddTextureAnimation(26, 4, material, false, 4, 87, 100, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 			}
 			//Texanim 3
-			if ((materialflags & NJD_CUSTOMFLAG_TEXANIM1) && (materialflags & NJD_CUSTOMFLAG_TEXANIM2))
+			if (material->attr_texId == 65)
 			{
 				material = (NJS_MATERIAL*)&landtable->Col[j].Model->basicdxmodel->mats[k];
 				AddTextureAnimation(26, 4, material, true, 4, 65, 78, 79, 80, 81, 82, 83, 84, 85, 86, -1, 0, 0, 0, 0, 0);
@@ -1142,19 +529,7 @@ void SwitchLighting_TimeOfDay(int act)
 
 void UnloadLevelFiles_ADV00()
 {
-	if (DLLLoaded_Lantern) 
-	{
-		material_unregister_ptr(WhiteDiffuseADV00_Night, LengthOfArray(WhiteDiffuseADV00_Night), &ForceWhiteDiffuse3_Night);
-		material_unregister_ptr(WhiteDiffuseADV00_External, LengthOfArray(WhiteDiffuseADV00_External), &ForceWhiteDiffuse);
-		for (int k = 0; k < LengthOfArray(WhiteDiffuseADV00_Night); ++k)
-		{
-			WhiteDiffuseADV00_Night[k] = nullptr;
-		}
-		for (int l = 0; l < LengthOfArray(WhiteDiffuseADV00_External); ++l)
-		{
-			WhiteDiffuseADV00_External[l] = nullptr;
-		}
-	}
+	ParseSSMaterials(true);
 	SS03SeaModel = nullptr;
 	SS04SeaModel = nullptr;
 	delete ADV00_0_Info;
@@ -1224,27 +599,9 @@ void LoadLevelFiles_ADV00()
 	___LANDTABLESS[4] = ADV00_4;
 	___LANDTABLESS[5] = ADV00_5;
 	ParseSSColFlags();
-	ParseSSMaterials();
+	ParseSSMaterials(false);
 	PreviousTimeOfDay = -1;
 	if (!SADXWater_StationSquare) WriteJump((void*)0x631140, RenderStationSquareOcean); //Render SS ocean separately
-	if (DLLLoaded_Lantern)
-	{
-		material_register_ptr(WhiteDiffuseADV00_Night, LengthOfArray(WhiteDiffuseADV00_Night), &ForceWhiteDiffuse3_Night);
-		material_register_ptr(WhiteDiffuseADV00_External, LengthOfArray(WhiteDiffuseADV00_External), &ForceWhiteDiffuse);
-	}
-}
-
-void LSCutsceneRotationFix()
-{
-	DisableControl();
-	EntityData1Ptrs[0]->Rotation.x = 0;
-	EntityData1Ptrs[0]->Rotation.z = 0;
-	EntityData1Ptrs[0]->Rotation.y = 49072;
-}
-
-void DelaySettingTimeOfDay(Sint8 time)
-{
-	DelayedTimeOfDay = time;
 }
 
 void ADV00_Init()
@@ -1391,7 +748,10 @@ void ADV00_Init()
 	ResizeTextureList((NJS_TEXLIST*)0x2AEE920, 22); //SSCAR 
 	ResizeTextureList((NJS_TEXLIST*)0x2AD9F58, 31); //SS_TRAIN
 	ResizeTextureList(&OBJ_SS_TEXLIST, 177);
-	WriteData<1>((char*)0x02BBE9EC, 0x0B); //Texture ID for extra car type
+	StationSquareCarTextureIDs[5] = 7; //Not an actual car surface texture but it's like that in SA1 too
+	WriteJump((void*)0x63C770, OS1Dnto_Display_Night);
+	WriteJump((void*)0x63A930, OGaitou_Display_Night);
+	WriteCall((void*)0x63EECF, SouvenirShopDoor_Depth);
 	WriteCall((void*)0x00636DE9, RenderOfficeDoor);
 	WriteCall((void*)0x00636E99, RenderOfficeDoor);
 	WriteCall((void*)0x00636F0B, RenderOfficeDoor);
@@ -1402,7 +762,7 @@ void ADV00_Init()
 	WriteCall((void*)0x00638B2E, RenderPoliceCarBarricade);
 	WriteCall((void*)0x00638B50, RenderPoliceCarBarricade);
 	WriteCall((void*)0x00632773, FixPoliceCar);
-	WriteData<1>((char*)0x0063A906, 0x01u); //Street light blending
+	WriteCall((void*)0x63A908, OGaitou_Day_Fix); //Don't queue a non-transparent model
 	WriteData((float*)0x00634EB9, 0.601f); //Prevent Z fighting with SS NPC shadow when overlapping transparent stuff
 	//Fix camera in Light Speed Shoes cutscene
 	WriteData((float*)0x00652F74, 800.0f); //X1
@@ -1410,13 +770,21 @@ void ADV00_Init()
 	WriteData((float*)0x006532BB, 509.9f); //X2
 	WriteData((float*)0x006532B6, -89.4f); //Y2
 	WriteData((float*)0x006532B1, 812.3f); //Z2
-	WriteCall((void*)0x6304B6, DelaySettingTimeOfDay);
+	WriteCall((void*)0x6304B6, DelaySettingTimeOfDay); //Prevent sudden lighting change in Sonic's story
 	WriteCall((void*)0x652F4F, LSCutsceneRotationFix); //Fix Sonic's rotation after getting the Light Speed Shoes
-	//Fix NPC materials
-	for (unsigned int i = 0; i < LengthOfArray(NPCMaterials); i++)
+	//Fix materials
+	for (unsigned int i = 0; i < 26; i++)
 	{
-		RemoveMaterialColors(NPCMaterials[i]);
+		RemoveVertexColors_Object(MODEL_SS_PEOPLE_OBJECTS[i]);
 	}
+	RemoveVertexColors_Object((NJS_OBJECT*)0x2ABF65C); //OS1Solt
+	RemoveVertexColors_Object((NJS_OBJECT*)0x2AB89D4); //OKomonoExit
+	RemoveVertexColors_Object((NJS_OBJECT*)0x2AD702C); //OKeyBlock 1
+	RemoveVertexColors_Object((NJS_OBJECT*)0x2AD746C); //OKeyBlock 2
+	RemoveVertexColors_Object((NJS_OBJECT*)0x2AD7674); //OKeyBlock 3
+	AddWhiteDiffuseMaterial((NJS_MATERIAL*)0x02DBE574); //Police car in first cutscene
+	AddWhiteDiffuseMaterial((NJS_MATERIAL*)0x02DBE588); //Police car in first cutscene
+	AddWhiteDiffuseMaterial((NJS_MATERIAL*)0x02DBE59C); //Police car in first cutscene
 	WriteData<5>((void*)0x630ADA, 0x90); //Hotel door fix 1
 	WriteData<5>((void*)0x630AE6, 0x90); //Hotel door fix 2
 	WriteData<5>((void*)0x630B03, 0x90); //Hotel door fix 3
@@ -1425,34 +793,123 @@ void ADV00_Init()
 	((NJS_OBJECT*)0x02AB757C)->basicdxmodel->mats[2].attrflags &= ~NJD_FLAG_USE_ALPHA; //Speed Highway elevator door
 	((NJS_OBJECT*)0x02AB6E4C)->basicdxmodel->mats[2].attrflags &= ~NJD_FLAG_USE_ALPHA; //Speed Highway elevator door
 	//Objects
-	*(NJS_OBJECT*)0x2AB2CCC = objectADV00_001689C4; //Shop 2 door
-	((NJS_ACTION*)0x2AB2D9C)->object = &objectADV00_001689C4; //Shop 2 door
-	WriteCall((void*)0x0063A6A4, RenderPoolChair); //Pool chair
-	*(NJS_OBJECT*)0x02DBD6D0 = objectADV00_00011208; //Event helicopter
-	*(NJS_OBJECT*)0x02AD4EA4 = objectADV00_00186E88; //Hidden door 1
-	*(NJS_OBJECT*)0x02AD4CD4 = objectADV00_00186CC4; //Hidden door 2
-	*(NJS_OBJECT*)0x02AEE7B0 = objectADV00_0019AF04; //Boat
-	*(NJS_OBJECT*)0x02AAB0E4 = object_026AB0E4; //Hotel door 1
-	*(NJS_OBJECT*)0x02AAE0BC = object_026AB0E4; //Hotel door 2
-	*(NJS_MODEL_SADX*)0x02AC9EE4 = attachADV00_0017DDC0; //Lamp pole
-	*(NJS_MODEL_SADX*)0x02AC9840 = attachADV00_0017D7A8; //Lamp pole
-	*(NJS_OBJECT*)0x02ABDF0C = objectADV00_00172BD4; //Box in the sewers
-	*(NJS_OBJECT*)0x02AE8674 = objectADV00_00195DC0; //SS train
-	*(NJS_OBJECT*)0x02AF4FC0 = objectADV00_0019F390; //SS Police
-	*(NJS_OBJECT*)0x02AF1974 = objectADV00_0019CBD8; //SS Red Car
-	*(NJS_OBJECT*)0x02AF8400 = objectADV00_001A17C4; //SS Blue Car
-	*(NJS_OBJECT*)0x02AFBA64 = objectADV00_001A4268; //SS Taxi
-	*(NJS_OBJECT*)0x02AD362C = objectADV00_00185A20; //SS Twinkle Park Ball
-	*(NJS_OBJECT*)0x02AB6900 = objectADV00_0016C3FC; //SS Twinkle Park Elevator
-	*(NJS_OBJECT*)0x02AD14C8 = objectADV00_00183B8C; //Gamma's target (O M Saku)
-	*(NJS_MODEL_SADX*)0x02AC95BC = attachADV00_0017D540; //Fire hydrant
-	*(NJS_OBJECT*)0x02AD484C = objectADV00_0018684C; //Ice Key 1
-	if (DLLLoaded_Lantern)
-	{
-		material_register_ptr(CharacterStuff, LengthOfArray(CharacterStuff), &ForceDiffuse2Specular2);
-		material_register_ptr(LevelSpecularADV00, LengthOfArray(LevelSpecularADV00), &ForceDiffuse0Specular0);
-		material_register_ptr(ObjectSpecularADV00, LengthOfArray(ObjectSpecularADV00), &ForceDiffuse0Specular1);
-	}
+	*(NJS_MODEL_SADX*)0x2ACBB80 = *LoadModel("system\\data\\ADV00\\Models\\0017F588.sa1mdl", false)->basicdxmodel; //OPoolChair
+	*(NJS_OBJECT*)0x2AC9F10 = *LoadModel("system\\data\\ADV00\\Models\\0017DDE8.sa1mdl", false); //OGaitou (street light)
+	StreetLight_Night = LoadModel("system\\data\\ADV00\\Models\\0017DDE8.sa1mdl", false); //OGaitou (street light);
+	StreetLight_Night->basicdxmodel->mats[0].attrflags |= NJD_FLAG_USE_ALPHA;
+	StreetLight_Night->basicdxmodel->mats[1].attrflags |= NJD_FLAG_USE_ALPHA;
+	StreetLight_Night->basicdxmodel->mats[2].attrflags |= NJD_FLAG_USE_ALPHA;
+	StreetLight_Night->child->sibling->basicdxmodel->mats[0].attrflags |= NJD_FLAG_USE_ALPHA;
+	*(NJS_OBJECT*)0x2AEA9F8 = *LoadModel("system\\data\\ADV00\\Models\\00197228.sa1mdl", false); //OS1Dnto
+	OS1Dnto_Night = LoadModel("system\\data\\ADV00\\Models\\00197228.sa1mdl", false); //OS1Dnto
+	OS1Dnto_Night->basicdxmodel->mats[0].attrflags |= NJD_FLAG_USE_ALPHA;
+	OS1Dnto_Night->basicdxmodel->mats[1].attrflags |= NJD_FLAG_USE_ALPHA;
+	OS1Dnto_Night->basicdxmodel->mats[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	OS1Dnto_Night->basicdxmodel->mats[1].attr_texId = 2; //Evening/night texture
+	*(NJS_OBJECT*)0x2AB2CCC = *LoadModel("system\\data\\ADV00\\Models\\001689C4.sa1mdl", true); //Souvenir shop door
+	*(NJS_OBJECT*)0x2AB57E4 = *LoadModel("system\\data\\ADV00\\Models\\0016B404.sa1mdl", false); //OTwaDoor
+	*(NJS_OBJECT*)0x2AFE668 = *LoadModel("system\\data\\ADV00\\Models\\001A6DEC.sa1mdl", false); //Casino decoration 1
+	*(NJS_OBJECT*)0x2B027D8 = *LoadModel("system\\data\\ADV00\\Models\\001AADA4.sa1mdl", false); //Casino decoration 2
+	*(NJS_OBJECT*)0x2B04CF8 = *LoadModel("system\\data\\ADV00\\Models\\001AD220.sa1mdl", false); //Casino decoration 3
+	*(NJS_OBJECT*)0x2AC8AEC = *LoadModel("system\\data\\ADV00\\Models\\0017CD14.sa1mdl", false); //OStDoor
+	*(NJS_OBJECT*)0x2AB146C = *LoadModel("system\\data\\ADV00\\Models\\001671B8.sa1mdl", false); //Burger shop door
+	*(NJS_OBJECT*)0x2AD4EA4 = *LoadModel("system\\data\\ADV00\\Models\\00186E88.sa1mdl", false); //Hidden door 1
+	*(NJS_OBJECT*)0x2AD4CD4 = *LoadModel("system\\data\\ADV00\\Models\\00186CC4.sa1mdl", false); //Hidden door 2
+	*(NJS_OBJECT*)0x2AEE7B0 = *LoadModel("system\\data\\ADV00\\Models\\0019AF04.sa1mdl", false); //Boat
+	*(NJS_OBJECT*)0x2AAB0E4 = *LoadModel("system\\data\\ADV00\\Models\\00164444.sa1mdl", false); //OHotelFront 1
+	*(NJS_OBJECT*)0x2AAE0BC = *LoadModel("system\\data\\ADV00\\Models\\00164444.sa1mdl", false); //OHotelFront 2 (duplicate?)
+	*(NJS_OBJECT*)0x2ABDF0C = *LoadModel("system\\data\\ADV00\\Models\\00172BD4.sa1mdl", false); //Box in the sewers
+	*(NJS_OBJECT*)0x2AF1974 = *LoadModel("system\\data\\ADV00\\Models\\0019CBD8.sa1mdl", false); //Red Car
+	*(NJS_OBJECT*)0x2AF8400 = *LoadModel("system\\data\\ADV00\\Models\\001A17C4.sa1mdl", false); //Blue Car
+	*(NJS_OBJECT*)0x2AFBA64 = *LoadModel("system\\data\\ADV00\\Models\\001A4268.sa1mdl", false); //Taxi
+	*(NJS_OBJECT*)0x2AD362C = *LoadModel("system\\data\\ADV00\\Models\\00185A20.sa1mdl", false); //OWakusei
+	*(NJS_OBJECT*)0x2AB6900 = *LoadModel("system\\data\\ADV00\\Models\\0016C3FC.sa1mdl", false); //Twinkle Park elevator
+	*(NJS_OBJECT*)0x2AD14C8 = *LoadModel("system\\data\\ADV00\\Models\\00183B8C.sa1mdl", false); //OMSaku (Gamma's target)
+	*(NJS_OBJECT*)0x2AD484C = *LoadModel("system\\data\\ADV00\\Models\\0018684C.sa1mdl", false); //Ice Key
+	*(NJS_OBJECT*)0x2DBD6D0 = *LoadModel("system\\data\\Other\\00011208.sa1mdl", false); //Event helicopter
+	AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x2DBD6D0)->child->sibling->sibling->sibling->sibling->child->basicdxmodel->mats[1]);
+	AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x2DBD6D0)->child->sibling->sibling->sibling->sibling->child->basicdxmodel->mats[2]);
+	*(NJS_OBJECT*)0x2AE8674 = *LoadModel("system\\data\\ADV00\\Models\\00195DC0.sa1mdl", false); //Train
+	SwapMeshsets(((NJS_OBJECT*)0x2AE8674)->child->sibling->sibling->sibling, 8, 9); //Alpha thing just in case
+	AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x2AE8674)->child->sibling->sibling->sibling->basicdxmodel->mats[9]);
+	//Police car stuff
+	*(NJS_OBJECT*)0x2AF4FC0 = *LoadModel("system\\data\\ADV00\\Models\\0019F390.sa1mdl", false); //Police
+	((NJS_OBJECT*)0x2AF4FC0)->basicdxmodel->meshsets[9].nbMesh = 0; //Hide lights
+	((NJS_OBJECT*)0x2AF4FC0)->basicdxmodel->meshsets[10].nbMesh = 0; //Hide lights
+	PoliceCarModel_LightsOnly = LoadModel("system\\data\\ADV00\\Models\\0019F390.sa1mdl", false); //Police
+	PoliceCarModel_LightsOnly->basicdxmodel->meshsets[0].nbMesh = 0;
+	PoliceCarModel_LightsOnly->basicdxmodel->meshsets[1].nbMesh = 0;
+	PoliceCarModel_LightsOnly->basicdxmodel->meshsets[2].nbMesh = 0;
+	PoliceCarModel_LightsOnly->basicdxmodel->meshsets[3].nbMesh = 0;
+	PoliceCarModel_LightsOnly->basicdxmodel->meshsets[4].nbMesh = 0;
+	PoliceCarModel_LightsOnly->basicdxmodel->meshsets[5].nbMesh = 0;
+	PoliceCarModel_LightsOnly->basicdxmodel->meshsets[6].nbMesh = 0;
+	PoliceCarModel_LightsOnly->basicdxmodel->meshsets[7].nbMesh = 0;
+	PoliceCarModel_LightsOnly->basicdxmodel->meshsets[8].nbMesh = 0;
+	PoliceCarModel_LightsOnly->basicdxmodel->meshsets[11].nbMesh = 0;
+	PoliceCarModel_LightsOnly->basicdxmodel->meshsets[12].nbMesh = 0;
+	PoliceCarModel_LightsOnly->basicdxmodel->meshsets[13].nbMesh = 0;
+	PoliceCarModel_LightsOnly->child->evalflags |= NJD_EVAL_HIDE;
+	PoliceCarModel_LightsOnly->child->sibling->evalflags |= NJD_EVAL_HIDE;
+	PoliceCarModel_LightsOnly->child->sibling->sibling->evalflags |= NJD_EVAL_HIDE;
+	PoliceCarModel_LightsOnly->child->sibling->sibling->sibling->evalflags |= NJD_EVAL_HIDE;
+	//Parasol stuff
+	//Main model
+	Parasol_1 = LoadModel("system\\data\\ADV00\\Models\\00182AD8.sa1mdl", false);
+	Parasol_1->basicdxmodel->meshsets[1].nbMesh = 0;
+	Parasol_1->basicdxmodel->meshsets[2].nbMesh = 0;
+	Parasol_1->basicdxmodel->meshsets[5].nbMesh = 0;
+	Parasol_1->basicdxmodel->meshsets[6].nbMesh = 0;
+	Parasol_1->basicdxmodel->meshsets[7].nbMesh = 0;
+	Parasol_1->basicdxmodel->meshsets[8].nbMesh = 0;
+	Parasol_1->basicdxmodel->meshsets[11].nbMesh = 0;
+	//Chair transparency
+	Parasol_2 = LoadModel("system\\data\\ADV00\\Models\\00182AD8.sa1mdl", false);
+	Parasol_2->basicdxmodel->meshsets[0].nbMesh = 0;
+	Parasol_2->basicdxmodel->meshsets[3].nbMesh = 0;
+	Parasol_2->basicdxmodel->meshsets[4].nbMesh = 0;
+	Parasol_2->basicdxmodel->meshsets[5].nbMesh = 0;
+	Parasol_2->basicdxmodel->meshsets[6].nbMesh = 0;
+	Parasol_2->basicdxmodel->meshsets[7].nbMesh = 0;
+	Parasol_2->basicdxmodel->meshsets[8].nbMesh = 0;
+	Parasol_2->basicdxmodel->meshsets[9].nbMesh = 0;
+	Parasol_2->basicdxmodel->meshsets[10].nbMesh = 0;
+	Parasol_2->basicdxmodel->meshsets[11].nbMesh = 0;
+	Parasol_2->basicdxmodel->meshsets[12].nbMesh = 0;
+	Parasol_2->basicdxmodel->meshsets[13].nbMesh = 0;
+	Parasol_2->basicdxmodel->meshsets[14].nbMesh = 0;
+	//Umbrella
+	Parasol_3 = LoadModel("system\\data\\ADV00\\Models\\00182AD8.sa1mdl", false);
+	Parasol_3->basicdxmodel->meshsets[0].nbMesh = 0;
+	Parasol_3->basicdxmodel->meshsets[1].nbMesh = 0;
+	Parasol_3->basicdxmodel->meshsets[2].nbMesh = 0;
+	Parasol_3->basicdxmodel->meshsets[3].nbMesh = 0;
+	Parasol_3->basicdxmodel->meshsets[4].nbMesh = 0;
+	Parasol_3->basicdxmodel->meshsets[5].nbMesh = 0;
+	Parasol_3->basicdxmodel->meshsets[6].nbMesh = 0;
+	Parasol_3->basicdxmodel->meshsets[7].nbMesh = 0;
+	Parasol_3->basicdxmodel->meshsets[8].nbMesh = 0;
+	Parasol_3->basicdxmodel->meshsets[9].nbMesh = 0;
+	Parasol_3->basicdxmodel->meshsets[10].nbMesh = 0;
+	Parasol_3->basicdxmodel->meshsets[12].nbMesh = 0;
+	Parasol_3->basicdxmodel->meshsets[13].nbMesh = 0;
+	Parasol_3->basicdxmodel->meshsets[14].nbMesh = 0;
+	//Glass
+	Parasol_4 = LoadModel("system\\data\\ADV00\\Models\\00182AD8.sa1mdl", false);
+	Parasol_4->basicdxmodel->meshsets[0].nbMesh = 0;
+	Parasol_4->basicdxmodel->meshsets[1].nbMesh = 0;
+	Parasol_4->basicdxmodel->meshsets[2].nbMesh = 0;
+	Parasol_4->basicdxmodel->meshsets[3].nbMesh = 0;
+	Parasol_4->basicdxmodel->meshsets[4].nbMesh = 0;
+	Parasol_4->basicdxmodel->meshsets[9].nbMesh = 0;
+	Parasol_4->basicdxmodel->meshsets[10].nbMesh = 0;
+	Parasol_4->basicdxmodel->meshsets[11].nbMesh = 0;
+	Parasol_4->basicdxmodel->meshsets[12].nbMesh = 0;
+	Parasol_4->basicdxmodel->meshsets[13].nbMesh = 0;
+	Parasol_4->basicdxmodel->meshsets[14].nbMesh = 0;
+	SwapMeshsets(Parasol_4, 8, 6); //Move heart after glass
+	SwapMeshsets(Parasol_4, 7, 8); //Move lemon after glass
+	WriteCall((void*)0x0063A6A4, RenderParasol); //Parasol
 	//Fog data
 	for (unsigned int i = 0; i < 3; i++)
 	{

@@ -253,7 +253,7 @@ extern "C" __declspec(dllexport) NJS_VECTOR normal_00157E70[] = {
 
 extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00157ED0 = { vertex_00157E10, normal_00157E70, LengthOfArray<Sint32>(vertex_00157E10), meshlist_00157DF8, matlist_00157DC4, LengthOfArray<Uint16>(meshlist_00157DF8), LengthOfArray<Uint16>(matlist_00157DC4), { 0.000002f, 14.5f, -58 }, 59.60757f, NULL };
 
-extern "C" __declspec(dllexport) NJS_OBJECT object_00157EF8 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00157ED0, 806.75f, 50, 1771.5f, 0, 0xFFFFFFFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_00157EF8 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00157ED0, 806.75f, 50, 1771.5f, 0, 0xFFFFC001, 0, 1, 1, 1, NULL, NULL };
 extern "C" __declspec(dllexport) NJS_MATERIAL matlist_00157F2C[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 20, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_FLIP_V | NJD_FLAG_FLIP_U | NJD_FLAG_USE_TEXTURE | NJD_FLAG_USE_FLAT | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 0, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_U | NJD_FLAG_USE_TEXTURE | NJD_FLAG_USE_FLAT | NJD_DA_INV_SRC | NJD_SA_SRC }
@@ -2664,7 +2664,7 @@ extern "C" __declspec(dllexport) NJS_VECTOR normal_0015C6F4[] = {
 
 extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_0015C754 = { vertex_0015C694, normal_0015C6F4, LengthOfArray<Sint32>(vertex_0015C694), meshlist_0015C664, matlist_0015C5EC, LengthOfArray<Uint16>(meshlist_0015C664), LengthOfArray<Uint16>(matlist_0015C5EC), { 0, 14.125f, -120 }, 18.3733f, NULL };
 
-extern "C" __declspec(dllexport) NJS_OBJECT object_0015C77C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0015C754, 806.75f, 50, 1771.5f, 0, 0xFFFFFFFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0015C77C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0015C754, 806.75f, 50, 1771.5f, 0, 0xFFFFC001, 0, 1, 1, 1, NULL, NULL };
 extern "C" __declspec(dllexport) NJS_MATERIAL matlist_0015C7B0[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 22, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_USE_TEXTURE | NJD_FLAG_USE_FLAT | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
@@ -2758,7 +2758,7 @@ extern "C" __declspec(dllexport) NJS_VECTOR normal_0015C974[] = {
 
 extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_0015CA4C = { vertex_0015C89C, normal_0015C974, LengthOfArray<Sint32>(vertex_0015C89C), meshlist_0015C884, matlist_0015C7B0, LengthOfArray<Uint16>(meshlist_0015C884), LengthOfArray<Uint16>(matlist_0015C7B0), { 0, 15.5f, -119.5f }, 20.71986f, NULL };
 
-extern "C" __declspec(dllexport) NJS_OBJECT object_0015CA74 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0015CA4C, 806.75f, 50, 1771.5f, 0, 0xFFFFFFFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0015CA74 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0015CA4C, 806.75f, 50, 1771.5f, 0, 0xFFFFC001, 0, 1, 1, 1, NULL, NULL };
 extern "C" __declspec(dllexport) NJS_MATERIAL matlist_0015CAA8[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 22, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_FLAG_USE_FLAT | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
@@ -3187,7 +3187,7 @@ extern "C" __declspec(dllexport) NJS_VECTOR normal_0015D4B4[] = {
 extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_0015D814 = { vertex_0015D154, normal_0015D4B4, LengthOfArray<Sint32>(vertex_0015D154), meshlist_0015D0F4, matlist_0015CD74, LengthOfArray<Uint16>(meshlist_0015D0F4), LengthOfArray<Uint16>(matlist_0015CD74), { -17.25f, 23.75f, 0.7519529f }, 54.15025f, NULL };
 
 extern "C" __declspec(dllexport) NJS_OBJECT object_0015D83C = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0015D814, 757, 47, 1770.748f, 0, 0, 0, 1, 1, 1, NULL, NULL };
-extern "C" __declspec(dllexport) NJS_OBJECT object_0015D870 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00158F54, 814.75f, 50, 1771.5f, 0, 0xFFFFFFFF, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0015D870 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00158F54, 814.75f, 50, 1771.5f, 0, 0xFFFFC000, 0, 1, 1, 1, NULL, NULL };
 extern "C" __declspec(dllexport) COL collist_001570D8[] = {
 	{ { 739.75f, 47, 1771.5f }, 77.27386f, 0, 0, &object_00157654, 0, 0x80000000 },
 	{ { 739.75f, 72.83333f, 1771.5f }, 81.2426f, 0, 0, &object_00157ABC, 0, 0x20000001 },
