@@ -1,5 +1,4 @@
 #include "stdafx.h"
-#include "textures.h"
 
 NJS_TEXNAME textures_icecap1[34];
 NJS_TEXLIST texlist_icecap1 = { arrayptrandlength(textures_icecap1) };
