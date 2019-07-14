@@ -110,7 +110,14 @@ void Chaos0PuddleFix(NJS_OBJECT* a1)
 
 void Chaos0_Init()
 {
-	ReplaceBIN_DC("SET1500S");
+	if (!Use1999SetFiles)
+	{
+		ReplaceBIN_DC("SET1500S");
+	}
+	else
+	{
+		ReplaceBIN_1999("SET1500S");
+	}
 	ReplacePVM("LM_CHAOS0");
 	ReplacePVM("CHAOS0");
 	ReplacePVM("CHAOS0_EFFECT");

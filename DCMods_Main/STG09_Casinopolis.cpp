@@ -922,34 +922,25 @@ void Casinopolis_Init()
 	ReplaceBIN_DC("CAM0901S");
 	ReplaceBIN_DC("CAM0902S");
 	ReplaceBIN_DC("CAM0903S");
-	ReplaceBIN_DC("SET0900K");
-	ReplaceBIN_DC("SET0900S");
-	ReplaceBIN_DC("SET0901M");
-	ReplaceBIN_DC("SET0901S");
-	ReplaceBIN_DC("SET0902S");
-	ReplaceBIN_DC("SET0903S");
-	ReplaceBIN_DC("SETMI0900K");
-	switch (EnableSETFixes)
+	if (!Use1999SetFiles)
 	{
-	case SETFixes_Normal:
-		AddSETFix("SET0900K");
-		AddSETFix("SET0900S");
-		AddSETFix("SET0901M");
-		AddSETFix("SET0901S");
-		AddSETFix("SET0902S");
-		AddSETFix("SET0903S");
-		break;
-	case SETFixes_Extra:
-		AddSETFix_Extra("SET0900K");
-		AddSETFix_Extra("SET0900S");
-		AddSETFix_Extra("SET0901M");
-		AddSETFix_Extra("SET0901S");
-		AddSETFix_Extra("SET0902S");
-		AddSETFix_Extra("SET0903S");
-		break;
-	default:
-		break;
+		ReplaceBIN_DC("SET0900K");
+		ReplaceBIN_DC("SET0900S");
+		ReplaceBIN_DC("SET0901M");
+		ReplaceBIN_DC("SET0901S");
+		ReplaceBIN_DC("SET0902S");
+		ReplaceBIN_DC("SET0903S");
 	}
+	else
+	{
+		ReplaceBIN_1999("SET0900K");
+		ReplaceBIN_1999("SET0900S");
+		ReplaceBIN_1999("SET0901M");
+		ReplaceBIN_1999("SET0901S");
+		ReplaceBIN_1999("SET0902S");
+		ReplaceBIN_1999("SET0903S");
+	}
+	ReplaceBIN_DC("SETMI0900K"); //I forgot what this is for
 	ReplacePVM("CASINO01");
 	ReplacePVM("CASINO02");
 	ReplacePVM("CASINO03");

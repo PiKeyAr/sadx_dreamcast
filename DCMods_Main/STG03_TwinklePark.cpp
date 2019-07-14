@@ -482,30 +482,23 @@ void TwinklePark_Init()
 	ReplaceBIN_DC("CAM0301S");
 	ReplaceBIN_DC("CAM0302A");
 	ReplaceBIN_DC("CAM0302S");
-	ReplaceBIN_DC("SET0300S");
-	ReplaceBIN_DC("SET0301A");
-	ReplaceBIN_DC("SET0301B");
-	ReplaceBIN_DC("SET0301S");
-	ReplaceBIN_DC("SET0302A");
-	ReplaceBIN_DC("SET0302S");
-	switch (EnableSETFixes)
+	if (!Use1999SetFiles)
 	{
-	case SETFixes_Normal:
-		AddSETFix("SET0300S");
-		AddSETFix("SET0301A");
-		AddSETFix("SET0301B");
-		AddSETFix("SET0301S");
-		AddSETFix("SET0302A");
-		break;
-	case SETFixes_Extra:
-		AddSETFix_Extra("SET0300S");
-		AddSETFix_Extra("SET0301A");
-		AddSETFix_Extra("SET0301B");
-		AddSETFix_Extra("SET0301S");
-		AddSETFix_Extra("SET0302A");
-		break;
-	default:
-		break;
+		ReplaceBIN_DC("SET0300S");
+		ReplaceBIN_DC("SET0301A");
+		ReplaceBIN_DC("SET0301B");
+		ReplaceBIN_DC("SET0301S");
+		ReplaceBIN_DC("SET0302A");
+		ReplaceBIN_DC("SET0302S");
+	}
+	else
+	{
+		ReplaceBIN_1999("SET0300S");
+		ReplaceBIN_1999("SET0301A");
+		ReplaceBIN_1999("SET0301B");
+		ReplaceBIN_1999("SET0301S");
+		ReplaceBIN_1999("SET0302A");
+		ReplaceBIN_1999("SET0302S");
 	}
 	ReplacePVM("BG_SHAREOBJ");
 	ReplacePVM("OBJ_SHAREOBJ");

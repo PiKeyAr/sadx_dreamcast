@@ -1,5 +1,5 @@
 #include "stdafx.h"
-
+//TODO: E103
 NJS_TEXNAME textures_windy1[20];
 NJS_TEXLIST texlist_windy1 = { arrayptrandlength(textures_windy1) };
 
@@ -30,7 +30,6 @@ FunctionPointer(void, sub_408530, (NJS_OBJECT *o), 0x408530);
 FunctionPointer(void, sub_408350, (NJS_ACTION *a1, float a2, int a3, float a4), 0x408350);
 FunctionPointer(void, sub_4CACF0, (NJS_VECTOR *a1, float a2), 0x4CACF0);
 FunctionPointer(void, DrawModel_407FC0, (NJS_MODEL_SADX *a1, int blend), 0x407FC0);
-FunctionPointer(void, DrawModel_TryReallyHard, (NJS_MODEL_SADX *model), 0x409EF0);
 static int TornadoMode = 0;
 static float SkyTrans = 1.0f;
 static bool Windy3ColsLoaded = false;
@@ -176,35 +175,27 @@ void __cdecl OTanpopo_Child_Display(ObjectMaster *a1)
 
 void WindyValley_Init()
 {
-	ReplaceBIN_DC("SET0200S");
-	ReplaceBIN_DC("SET0200E");
-	ReplaceBIN_DC("SET0201S");
-	ReplaceBIN_DC("SET0202M");
-	ReplaceBIN_DC("SET0202S");
+	if (!Use1999SetFiles)
+	{
+		ReplaceBIN_DC("SET0200S");
+		ReplaceBIN_DC("SET0200E");
+		ReplaceBIN_DC("SET0201S");
+		ReplaceBIN_DC("SET0202M");
+		ReplaceBIN_DC("SET0202S");
+	}
+	else
+	{
+		ReplaceBIN_1999("SET0200S");
+		ReplaceBIN_1999("SET0200E");
+		ReplaceBIN_1999("SET0201S");
+		ReplaceBIN_1999("SET0202M");
+		ReplaceBIN_1999("SET0202S");
+	}
 	ReplaceBIN_DC("CAM0200E");
 	ReplaceBIN_DC("CAM0200S");
 	ReplaceBIN_DC("CAM0201S");
 	ReplaceBIN_DC("CAM0202M");
 	ReplaceBIN_DC("CAM0202S");
-	switch (EnableSETFixes)
-	{
-	case SETFixes_Normal:
-		AddSETFix("SET0200E");
-		AddSETFix("SET0200S");
-		AddSETFix("SET0201S");
-		AddSETFix("SET0202M");
-		AddSETFix("SET0202S");
-		break;
-	case SETFixes_Extra:
-		AddSETFix_Extra("SET0200E");
-		AddSETFix_Extra("SET0200S");
-		AddSETFix_Extra("SET0201S");
-		AddSETFix_Extra("SET0202M");
-		AddSETFix_Extra("SET0202S");
-		break;
-	default:
-		break;
-	}
 	ReplacePVM("OBJ_WINDY");
 	ReplacePVM("WINDY01");
 	ReplacePVM("WINDY02");

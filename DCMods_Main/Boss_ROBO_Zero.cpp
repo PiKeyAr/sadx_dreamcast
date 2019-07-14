@@ -96,8 +96,16 @@ void __cdecl ZeroOceanHook(OceanData *a1)
 
 void Zero_Init()
 {
-	ReplaceBIN_DC("SETZEROA");
-	ReplaceBIN_DC("SETZEROS");
+	if (!Use1999SetFiles)
+	{
+		ReplaceBIN_DC("SETZEROA");
+		ReplaceBIN_DC("SETZEROS");
+	}
+	else
+	{
+		ReplaceBIN_1999("SETZEROA");
+		ReplaceBIN_1999("SETZEROS");
+	}
 	ReplacePVM("EROBO");
 	ReplaceGeneric("EROBO_GC.NB", "EROBO_DC.NB");
 	ResizeTextureList((NJS_TEXLIST*)0x16B460C, 76); //Zero/E101R texlist

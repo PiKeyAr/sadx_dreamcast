@@ -80,7 +80,14 @@ void LoadLevelFiles_B_EGM3()
 void EggViper_Init()
 {
 	ReplaceBIN("PL_M0B", "PL_M0X");
-	ReplaceBIN_DC("SETEGM3S");
+	if (!Use1999SetFiles)
+	{
+		ReplaceBIN_DC("SETEGM3S");
+	}
+	else
+	{
+		ReplaceBIN_1999("SETEGM3S");
+	}
 	ReplacePVM("EGM3CHIKEI");
 	ReplacePVM("EGM3MDL");
 	ReplacePVM("EGM3SPR");

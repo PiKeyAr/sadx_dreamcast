@@ -33,19 +33,12 @@ FunctionPointer(void, DrawModel_Queue_407CF0, (NJS_MODEL_SADX* a1, int blend), 0
 FunctionPointer(void, njAction_Queue_DrawModelQueue, (NJS_ACTION* a1, float a2, int a3, float a4), 0x405490);
 FunctionPointer(void, DrawModel_TryReallyHard, (NJS_MODEL_SADX* a1), 0x409EF0);
 
-typedef enum
-{
-	SETFixes_Off	= 0,
-	SETFixes_Normal	= 1,
-	SETFixes_Extra	= 2,
-} SETFixes_e;
-
-extern SETFixes_e EnableSETFixes;
 extern HelperFunctions HelperFunctionsGlobal;
 
 extern bool IsCameraUnderwater;
 extern int SADXWaveAnimation;
 extern int CutsceneSkipMode;
+extern bool Use1999SetFiles;
 extern bool EnableSpeedFixes;
 extern bool DLLLoaded_DLCs;
 extern bool DLLLoaded_SA1Chars;
@@ -136,9 +129,7 @@ extern NJS_OBJECT **___ADV03_OBJECTS;
 #define ReplaceGeneric(a,b) HelperFunctionsGlobal.ReplaceFile("system\\" a, "system\\" b)
 #define ReplaceBIN(a,b) HelperFunctionsGlobal.ReplaceFile("system\\" a ".BIN", "system\\" b ".BIN")
 #define ReplaceBIN_DC(a) HelperFunctionsGlobal.ReplaceFile("system\\" a ".BIN", "system\\" a "_DC.BIN")
-#define AddSETFix(a) HelperFunctionsGlobal.ReplaceFile("system\\" a ".BIN", "system\\" a "_S.BIN")
-#define AddSETFix_Extra(a) HelperFunctionsGlobal.ReplaceFile("system\\" a ".BIN", "system\\" a "_E.BIN")
-#define ReplacePVMX_SADXStyleWater(a) HelperFunctionsGlobal.ReplaceFile("system\\" a ".PVM", "system\\" a "W.PVM")
+#define ReplaceBIN_1999(a) HelperFunctionsGlobal.ReplaceFile("system\\" a ".BIN", "system\\set_original\\" a "_DC.BIN")
 
 extern set_shader_flags* set_shader_flags_ptr;
 extern material_register* material_register_ptr;

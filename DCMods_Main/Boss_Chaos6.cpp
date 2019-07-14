@@ -143,9 +143,18 @@ void HideOpaqueParts(NJS_OBJECT *obj)
 
 void Chaos6_Init()
 {
-	ReplaceBIN_DC("SET1800B");
-	ReplaceBIN_DC("SET1800S");
-	ReplaceBIN_DC("SET1801K");
+	if (!Use1999SetFiles)
+	{
+		ReplaceBIN_DC("SET1800B");
+		ReplaceBIN_DC("SET1800S");
+		ReplaceBIN_DC("SET1801K");
+	}
+	else
+	{
+		ReplaceBIN_1999("SET1800B");
+		ReplaceBIN_1999("SET1800S");
+		ReplaceBIN_1999("SET1801K");
+	}
 	ReplacePVM("LM_CHAOS6");
 	ReplacePVM("LM_CHAOS6_2");
 	ReplacePVM("CHAOS6");

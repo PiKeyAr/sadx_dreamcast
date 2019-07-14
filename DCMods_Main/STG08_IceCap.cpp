@@ -497,29 +497,21 @@ void IceCap_Init()
 	ReplaceBIN_DC("CAM0801S");
 	ReplaceBIN_DC("CAM0802S");
 	ReplaceBIN_DC("CAM0803B");
-	ReplaceBIN_DC("SET0800S");
-	ReplaceBIN_DC("SET0801S");
-	ReplaceBIN_DC("SET0802M");
-	ReplaceBIN_DC("SET0802S");
-	ReplaceBIN_DC("SET0803B");
-	switch (EnableSETFixes)
+	if (!Use1999SetFiles)
 	{
-	case SETFixes_Normal:
-		AddSETFix("SET0800S");
-		AddSETFix("SET0801S");
-		AddSETFix("SET0802M");
-		AddSETFix("SET0802S");
-		AddSETFix("SET0803B");
-		break;
-	case SETFixes_Extra:
-		AddSETFix_Extra("SET0800S");
-		AddSETFix_Extra("SET0801S");
-		AddSETFix_Extra("SET0802M");
-		AddSETFix_Extra("SET0802S");
-		AddSETFix_Extra("SET0803B");
-		break;
-	default:
-		break;
+		ReplaceBIN_DC("SET0800S");
+		ReplaceBIN_DC("SET0801S");
+		ReplaceBIN_DC("SET0802M");
+		ReplaceBIN_DC("SET0802S");
+		ReplaceBIN_DC("SET0803B");
+	}
+	else
+	{
+		ReplaceBIN_1999("SET0800S");
+		ReplaceBIN_1999("SET0801S");
+		ReplaceBIN_1999("SET0802M");
+		ReplaceBIN_1999("SET0802S");
+		ReplaceBIN_1999("SET0803B");
 	}
 	ReplacePVM("BG_ICECAP");
 	ReplacePVM("ICECAP01");

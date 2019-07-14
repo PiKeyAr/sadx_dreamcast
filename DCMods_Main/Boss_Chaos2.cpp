@@ -71,7 +71,14 @@ void ChandLightFix(NJS_OBJECT *a1, QueuedModelFlagsB a2)
 
 void Chaos2_Init()
 {
-	ReplaceBIN_DC("SET1600S");
+	if (!Use1999SetFiles)
+	{
+		ReplaceBIN_DC("SET1600S");
+	}
+	else
+	{
+		ReplaceBIN_1999("SET1600S");
+	}
 	ReplacePVM("CHAOS2");
 	ReplacePVM("LM_CHAOS2");
 	ReplacePVM("CHAOS2_BARRIER");

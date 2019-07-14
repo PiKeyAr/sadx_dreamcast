@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "RM_Objects.h"
-
+//TODO: E104
 NJS_TEXNAME textures_mountain1[45];
 NJS_TEXLIST texlist_mountain1 = { arrayptrandlength(textures_mountain1) };
 
@@ -142,26 +142,19 @@ void RedMountain_Init()
 	ReplaceBIN_DC("CAM0501E");
 	ReplaceBIN_DC("CAM0501S");
 	ReplaceBIN_DC("CAM0502K");
-	ReplaceBIN_DC("SET0500S");
-	ReplaceBIN_DC("SET0501E");
-	ReplaceBIN_DC("SET0501S");
-	ReplaceBIN_DC("SET0502K");
-	switch (EnableSETFixes)
+	if (!Use1999SetFiles)
 	{
-	case SETFixes_Normal:
-		AddSETFix("SET0500S");
-		AddSETFix("SET0501E");
-		AddSETFix("SET0501S");
-		AddSETFix("SET0502K");
-		break;
-	case SETFixes_Extra:
-		AddSETFix_Extra("SET0500S");
-		AddSETFix_Extra("SET0501E");
-		AddSETFix_Extra("SET0501S");
-		AddSETFix_Extra("SET0502K");
-		break;
-	default:
-		break;
+		ReplaceBIN_DC("SET0500S");
+		ReplaceBIN_DC("SET0501E");
+		ReplaceBIN_DC("SET0501S");
+		ReplaceBIN_DC("SET0502K");
+	}
+	else
+	{
+		ReplaceBIN_1999("SET0500S");
+		ReplaceBIN_1999("SET0501E");
+		ReplaceBIN_1999("SET0501S");
+		ReplaceBIN_1999("SET0502K");
 	}
 	ReplacePVM("MOUNTAIN01");
 	ReplacePVM("MOUNTAIN02");

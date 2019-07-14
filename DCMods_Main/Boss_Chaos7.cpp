@@ -200,8 +200,16 @@ void PerfectChaosBreathFix2(NJS_OBJECT *a1, float scale)
 
 void PerfectChaos_Init()
 {
-	ReplaceBIN_DC("SET1900S");
-	ReplaceBIN_DC("CAM1900S");
+	if (!Use1999SetFiles)
+	{
+		ReplaceBIN_DC("SET1900S");
+		ReplaceBIN_DC("CAM1900S");
+	}
+	else
+	{
+		ReplaceBIN_1999("SET1900S");
+		ReplaceBIN_1999("CAM1900S");
+	}
 	ReplacePVM("CHAOS7_0");
 	ReplacePVM("CHAOS7_0BREATH");
 	ReplacePVM("CHAOS7_0BREATH2ND");

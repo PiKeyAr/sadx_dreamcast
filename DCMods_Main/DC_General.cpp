@@ -579,7 +579,7 @@ void __cdecl ItemBox_Display_Destroyed_Rotate(ObjectMaster* _this)
 	njTranslateV(nullptr, &v1->Position);
 
 	// Rotate
-	if (EnableSETFixes != SETFixes_Off)
+	if (!Use1999SetFiles)
 	{
 		njRotateEx((Angle*)&v1->Rotation, 0);
 	}
@@ -606,7 +606,7 @@ void __cdecl ItemBox_Display_Unknown_Rotate(ObjectMaster* _this)
 				njTranslateEx(&v1->Position);
 
 				// Rotate
-				if (EnableSETFixes != SETFixes_Off)
+				if (!Use1999SetFiles)
 				{
 					njRotateEx((Angle*)&v1->Rotation, 0);
 				}
@@ -660,7 +660,7 @@ void __cdecl ItemBox_Display_Rotate(ObjectMaster* _this)
 			njTranslateV(nullptr, &v1->Position);
 
 			// Rotate
-			if (EnableSETFixes != SETFixes_Off)
+			if (!Use1999SetFiles)
 			{
 				njRotateEx((Angle*)&v1->Rotation, 0);
 			}

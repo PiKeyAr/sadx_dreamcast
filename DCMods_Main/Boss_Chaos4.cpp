@@ -377,7 +377,14 @@ void Chaos4_Transform(NJS_OBJECT *object)
 void Chaos4_Init()
 {
 	WriteData<1>((char*)0x00555A42, NJD_COLOR_BLENDING_INVSRCALPHA);
-	ReplaceBIN_DC("SET1700S");
+	if (!Use1999SetFiles)
+	{
+		ReplaceBIN_DC("SET1700S");
+	}
+	else
+	{
+		ReplaceBIN_1999("SET1700S");
+	}
 	ReplacePVM("CHAOS4_COMMON");
 	ReplacePVM("CHAOS4_HASHIRA");
 	ReplacePVM("CHAOS4_KAMA");

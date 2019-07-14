@@ -159,7 +159,14 @@ void LoadLevelFiles_B_E101_R()
 
 void E101R_Init()
 {
-	ReplaceBIN_DC("SETE101RE");
+	if (!Use1999SetFiles)
+	{
+		ReplaceBIN_DC("SETE101RE");
+	}
+	else
+	{
+		ReplaceBIN_1999("SETE101RE");
+	}
 	ReplacePVM("E101R");
 	ReplacePVM("E101R_BG");
 	ReplacePVM("E101R_TIKEI");

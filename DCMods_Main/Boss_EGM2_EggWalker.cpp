@@ -32,7 +32,14 @@ void SetEggWalkerFireColor(NJS_ARGB *a1a)
 
 void EggWalker_Init()
 {
-	ReplaceBIN_DC("SETEGM2S");
+	if (!Use1999SetFiles)
+	{
+		ReplaceBIN_DC("SETEGM2S");
+	}
+	else
+	{
+		ReplaceBIN_1999("SETEGM2S");
+	}
 	ReplacePVM("EGM2");
 	ReplacePVM("EGM2_BAKU");
 	ReplacePVM("EGM2_CAR");

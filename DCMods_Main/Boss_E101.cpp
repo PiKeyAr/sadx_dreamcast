@@ -23,7 +23,14 @@ void LoadLevelFiles_B_E101()
 
 void E101_Init()
 {
-	ReplaceBIN_DC("SETE101E");
+	if (!Use1999SetFiles)
+	{
+		ReplaceBIN_DC("SETE101E");
+	}
+	else
+	{
+		ReplaceBIN_1999("SETE101E");
+	}
 	ReplacePVM("E101");
 	ReplacePVM("E101_TIKEI");
 	ResizeTextureList((NJS_TEXLIST*)0x14FBFB4, 77);

@@ -150,7 +150,14 @@ void EggHornet_RotationDisable(ObjectMaster *a1)
 
 void EggHornet_Init()
 {
-	ReplaceBIN_DC("SETEGM1S");
+	if (!Use1999SetFiles)
+	{
+		ReplaceBIN_DC("SETEGM1S");
+	}
+	else
+	{
+		ReplaceBIN_1999("SETEGM1S");
+	}
 	ReplacePVM("EGM1");
 	ReplacePVM("EGM1LAND");
 	ReplacePVM("EGM1BARRIER");

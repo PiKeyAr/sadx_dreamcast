@@ -405,29 +405,21 @@ void SpeedHighway_Init()
 	ReplaceBIN_DC("CAM0401S");
 	ReplaceBIN_DC("CAM0402K");
 	ReplaceBIN_DC("CAM0402S");
-	ReplaceBIN_DC("SET0400M");
-	ReplaceBIN_DC("SET0400S");
-	ReplaceBIN_DC("SET0401S");
-	ReplaceBIN_DC("SET0402K");
-	ReplaceBIN_DC("SET0402S");
-	switch (EnableSETFixes)
+	if (!Use1999SetFiles)
 	{
-	case SETFixes_Normal:
-		AddSETFix("SET0400M");
-		AddSETFix("SET0400S");
-		AddSETFix("SET0401S");
-		AddSETFix("SET0402K");
-		AddSETFix("SET0402S");
-		break;
-	case SETFixes_Extra:
-		AddSETFix_Extra("SET0400M");
-		AddSETFix_Extra("SET0400S");
-		AddSETFix_Extra("SET0401S");
-		AddSETFix_Extra("SET0402K");
-		AddSETFix_Extra("SET0402S");
-		break;
-	default:
-		break;
+		ReplaceBIN_DC("SET0400M");
+		ReplaceBIN_DC("SET0400S");
+		ReplaceBIN_DC("SET0401S");
+		ReplaceBIN_DC("SET0402K");
+		ReplaceBIN_DC("SET0402S");
+	}
+	else
+	{
+		ReplaceBIN_1999("SET0400M");
+		ReplaceBIN_1999("SET0400S");
+		ReplaceBIN_1999("SET0401S");
+		ReplaceBIN_1999("SET0402K");
+		ReplaceBIN_1999("SET0402S");
 	}
 	ReplacePVM("BG_HIGHWAY");
 	ReplacePVM("BG_HIGHWAY01");

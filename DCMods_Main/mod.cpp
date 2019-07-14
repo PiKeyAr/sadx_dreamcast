@@ -123,6 +123,7 @@ NJS_OBJECT **___ADV03PAST02_OBJECTS = nullptr;
 NJS_OBJECT **___ADV03_OBJECTS = nullptr;
 
 HelperFunctions HelperFunctionsGlobal;
+bool Use1999SetFiles = false;
 bool EnableWindowTitle = true;
 bool EnableDCBranding = true;
 bool EnableEmeraldCoast = true;
@@ -172,13 +173,12 @@ bool SADXWater_MysticRuins = false;
 bool SADXWater_EggCarrier = false;
 bool SADXWater_Past = false;
 
-SETFixes_e EnableSETFixes = SETFixes_Normal;
-
 bool DLLLoaded_SA1Chars = false;
 bool DLLLoaded_Lantern = false;
 bool DLLLoaded_HDGUI = false;
 bool DLLLoaded_DLCs = false;
 bool DLLLoaded_SADXFE = false;
+bool DLLLoaded_DX11 = false;
 bool EnableSpeedFixes = true;
 
 std::string ModPath = "";
@@ -262,6 +262,7 @@ extern "C"
 		set_diffuse_blend_ptr = (void(*)(int32_t, int32_t))GetProcAddress(LanternDLL, "set_diffuse_blend");
 		set_specular_blend_ptr = (void(*)(int32_t, int32_t))GetProcAddress(LanternDLL, "set_specular_blend");
 		//Check which DLLs are loaded
+		DLLLoaded_DX11 = (GetModuleHandle(L"sadx-d3d11") != nullptr);
 		DLLLoaded_HDGUI = (GetModuleHandle(L"HD_GUI") != nullptr);
 		DLLLoaded_SA1Chars = (GetModuleHandle(L"SA1_Chars") != nullptr);
 		DLLLoaded_Lantern = (GetModuleHandle(L"sadx-dc-lighting") != nullptr);
@@ -342,6 +343,7 @@ extern "C"
 		EnableTwinkleCircuit = config->getBool("Miscellaneous", "EnableTwinkleCircuit", true);
 		EnableSandHill = config->getBool("Miscellaneous", "EnableSandHill", true);
 		CowgirlOn = config->getBool("Miscellaneous", "EnableCasinopolisCowgirl", true);
+		Use1999SetFiles = config->getBool("Miscellaneous", "Use1999SetFiles", false);
 		IamStupidAndIWantFuckedUpOcean = config->getBool("Miscellaneous", "RevertEmeraldCoastDrawDistance", false);
 		EnableSkyChaseEnemyModels = config->getBool("Miscellaneous", "EnableSkyChaseEnemyModels", true);
 		EnableSSGarden = config->getBool("Chao Gardens", "EnableStationSquareGarden", true);
@@ -353,13 +355,6 @@ extern "C"
 		if (GetModuleHandle(L"AutoDemo_WindyValley") != nullptr) EnableWindyValley = false;
 		if (GetModuleHandle(L"AutoDemo_SpeedHighway") != nullptr) EnableSpeedHighway = false;
 		if (GetModuleHandle(L"AutoDemo_RedMountain") != nullptr) EnableRedMountain = false;
-		const std::string EnableSETFixes_String = config->getString("Miscellaneous", "EnableSETFixes", "Normal");
-		if (EnableSETFixes_String == "Off")
-			EnableSETFixes = SETFixes_Off;
-		else if (EnableSETFixes_String == "Normal")
-			EnableSETFixes = SETFixes_Normal;
-		else if (EnableSETFixes_String == "Extra")
-			EnableSETFixes = SETFixes_Extra;
 		//Set window title
 		if (EnableWindowTitle) helperFunctions.SetWindowTitle("Sonic Adventure");
 		//Another error message

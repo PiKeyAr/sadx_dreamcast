@@ -480,32 +480,23 @@ void FinalEgg_Init()
 	ReplaceBIN_DC("CAM1002E");
 	ReplaceBIN_DC("CAM1002S");
 	ReplaceBIN_DC("CAM1003S");
-	ReplaceBIN_DC("SET1000A");
-	ReplaceBIN_DC("SET1000S");
-	ReplaceBIN_DC("SET1001S");
-	ReplaceBIN_DC("SET1002E");
-	ReplaceBIN_DC("SET1002S");
-	ReplaceBIN_DC("SET1003S");
-	switch (EnableSETFixes)
+	if (!Use1999SetFiles)
 	{
-	case SETFixes_Normal:
-		AddSETFix("SET1000A");
-		AddSETFix("SET1000S");
-		AddSETFix("SET1001S");
-		AddSETFix("SET1002E");
-		AddSETFix("SET1002S");
-		AddSETFix("SET1003S");
-		break;
-	case SETFixes_Extra:
-		AddSETFix_Extra("SET1000A");
-		AddSETFix_Extra("SET1000S");
-		AddSETFix_Extra("SET1001S");
-		AddSETFix_Extra("SET1002E");
-		AddSETFix_Extra("SET1002S");
-		AddSETFix_Extra("SET1003S");
-		break;
-	default:
-		break;
+		ReplaceBIN_DC("SET1000A");
+		ReplaceBIN_DC("SET1000S");
+		ReplaceBIN_DC("SET1001S");
+		ReplaceBIN_DC("SET1002E");
+		ReplaceBIN_DC("SET1002S");
+		ReplaceBIN_DC("SET1003S");
+	}
+	else
+	{
+		ReplaceBIN_1999("SET1000A");
+		ReplaceBIN_1999("SET1000S");
+		ReplaceBIN_1999("SET1001S");
+		ReplaceBIN_1999("SET1002E");
+		ReplaceBIN_1999("SET1002S");
+		ReplaceBIN_1999("SET1003S");
 	}
 	ReplacePVM("EFF_FINALEGG_POM");
 	ReplacePVM("FINALEGG1");

@@ -274,7 +274,6 @@ void ParseSSColFlags()
 		{
 			if (colflags == 0) landtable->Col[j].Flags = 0x80000000; //Show SADX sea bottom
 			if ((colflags & ColFlags_Visible) && (colflags & ColFlags_Water)) landtable->Col[j].Flags = 0x00000002; //Hide sewers water
-
 		}
 	}
 	//Hotel area
@@ -368,6 +367,7 @@ void ParseSSMaterials(bool remove)
 			}
 		}
 	}
+	//Hotel and pool
 	landtable = ___LANDTABLESS[4];
 	for (unsigned int j = 0; j < landtable->COLCount; j++)
 	{
@@ -607,105 +607,73 @@ void LoadLevelFiles_ADV00()
 
 void ADV00_Init()
 {
-	ReplaceBIN_DC("SETSS00A");
-	ReplaceBIN_DC("SETSS00B");
-	ReplaceBIN_DC("SETSS00E");
-	ReplaceBIN_DC("SETSS00K");
-	ReplaceBIN_DC("SETSS00L");
-	ReplaceBIN_DC("SETSS00M");
-	ReplaceBIN_DC("SETSS00S");
-	ReplaceBIN_DC("SETSS01A");
-	ReplaceBIN_DC("SETSS01B");
-	ReplaceBIN_DC("SETSS01E");
-	ReplaceBIN_DC("SETSS01K");
-	ReplaceBIN_DC("SETSS01L");
-	ReplaceBIN_DC("SETSS01M");
-	ReplaceBIN_DC("SETSS01S");
-	ReplaceBIN_DC("SETSS02S");
-	ReplaceBIN_DC("SETSS02B");
-	ReplaceBIN_DC("SETSS03A");
-	ReplaceBIN_DC("SETSS03B");
-	ReplaceBIN_DC("SETSS03E");
-	ReplaceBIN_DC("SETSS03K");
-	ReplaceBIN_DC("SETSS03L");
-	ReplaceBIN_DC("SETSS03M");
-	ReplaceBIN_DC("SETSS03S");
-	ReplaceBIN_DC("SETSS04A");
-	ReplaceBIN_DC("SETSS04B");
-	ReplaceBIN_DC("SETSS04E");
-	ReplaceBIN_DC("SETSS04K");
-	ReplaceBIN_DC("SETSS04L");
-	ReplaceBIN_DC("SETSS04M");
-	ReplaceBIN_DC("SETSS04S");
-	ReplaceBIN_DC("SETSS05S");
-	switch (EnableSETFixes)
+	if (!Use1999SetFiles)
 	{
-		case SETFixes_Normal:
-			AddSETFix("SETSS00A");
-			AddSETFix("SETSS00B");
-			AddSETFix("SETSS00E");
-			AddSETFix("SETSS00K");
-			AddSETFix("SETSS00L");
-			AddSETFix("SETSS00M");
-			AddSETFix("SETSS00S");
-			AddSETFix("SETSS01A");
-			AddSETFix("SETSS01B");
-			AddSETFix("SETSS01E");
-			AddSETFix("SETSS01K");
-			AddSETFix("SETSS01L");
-			AddSETFix("SETSS01M");
-			AddSETFix("SETSS01S");
-			AddSETFix("SETSS02S");
-			AddSETFix("SETSS03A");
-			AddSETFix("SETSS03B");
-			AddSETFix("SETSS03E");
-			AddSETFix("SETSS03K");
-			AddSETFix("SETSS03L");
-			AddSETFix("SETSS03M");
-			AddSETFix("SETSS03S");
-			AddSETFix("SETSS04A");
-			AddSETFix("SETSS04B");
-			AddSETFix("SETSS04E");
-			AddSETFix("SETSS04K");
-			AddSETFix("SETSS04L");
-			AddSETFix("SETSS04M");
-			AddSETFix("SETSS04S");
-			AddSETFix("SETSS05S");
-			break;
-		case SETFixes_Extra:
-			AddSETFix_Extra("SETSS00A");
-			AddSETFix_Extra("SETSS00B");
-			AddSETFix_Extra("SETSS00E");
-			AddSETFix_Extra("SETSS00K");
-			AddSETFix_Extra("SETSS00L");
-			AddSETFix_Extra("SETSS00M");
-			AddSETFix_Extra("SETSS00S");
-			AddSETFix_Extra("SETSS01A");
-			AddSETFix_Extra("SETSS01B");
-			AddSETFix_Extra("SETSS01E");
-			AddSETFix_Extra("SETSS01K");
-			AddSETFix_Extra("SETSS01L");
-			AddSETFix_Extra("SETSS01M");
-			AddSETFix_Extra("SETSS01S");
-			AddSETFix_Extra("SETSS02S");
-			AddSETFix_Extra("SETSS03A");
-			AddSETFix_Extra("SETSS03B");
-			AddSETFix_Extra("SETSS03E");
-			AddSETFix_Extra("SETSS03K");
-			AddSETFix_Extra("SETSS03L");
-			AddSETFix_Extra("SETSS03M");
-			AddSETFix_Extra("SETSS03S");
-			AddSETFix_Extra("SETSS04A");
-			AddSETFix_Extra("SETSS04B");
-			AddSETFix_Extra("SETSS04E");
-			AddSETFix_Extra("SETSS04K");
-			AddSETFix_Extra("SETSS04L");
-			AddSETFix_Extra("SETSS04M");
-			AddSETFix_Extra("SETSS04S");
-			AddSETFix_Extra("SETSS05S");
-			break;
-		default:
-			break;
+		ReplaceBIN_DC("SETSS00A");
+		ReplaceBIN_DC("SETSS00B");
+		ReplaceBIN_DC("SETSS00E");
+		ReplaceBIN_DC("SETSS00K");
+		ReplaceBIN_DC("SETSS00L");
+		ReplaceBIN_DC("SETSS00M");
+		ReplaceBIN_DC("SETSS00S");
+		ReplaceBIN_DC("SETSS01A");
+		ReplaceBIN_DC("SETSS01B");
+		ReplaceBIN_DC("SETSS01E");
+		ReplaceBIN_DC("SETSS01K");
+		ReplaceBIN_DC("SETSS01L");
+		ReplaceBIN_DC("SETSS01M");
+		ReplaceBIN_DC("SETSS01S");
+		ReplaceBIN_DC("SETSS02S");
+		ReplaceBIN_DC("SETSS02B");
+		ReplaceBIN_DC("SETSS03A");
+		ReplaceBIN_DC("SETSS03B");
+		ReplaceBIN_DC("SETSS03E");
+		ReplaceBIN_DC("SETSS03K");
+		ReplaceBIN_DC("SETSS03L");
+		ReplaceBIN_DC("SETSS03M");
+		ReplaceBIN_DC("SETSS03S");
+		ReplaceBIN_DC("SETSS04A");
+		ReplaceBIN_DC("SETSS04B");
+		ReplaceBIN_DC("SETSS04E");
+		ReplaceBIN_DC("SETSS04K");
+		ReplaceBIN_DC("SETSS04L");
+		ReplaceBIN_DC("SETSS04M");
+		ReplaceBIN_DC("SETSS04S");
+		ReplaceBIN_DC("SETSS05S");
+	}
+	else
+	{
+		ReplaceBIN_1999("SETSS00A");
+		ReplaceBIN_1999("SETSS00B");
+		ReplaceBIN_1999("SETSS00E");
+		ReplaceBIN_1999("SETSS00K");
+		ReplaceBIN_1999("SETSS00L");
+		ReplaceBIN_1999("SETSS00M");
+		ReplaceBIN_1999("SETSS00S");
+		ReplaceBIN_1999("SETSS01A");
+		ReplaceBIN_1999("SETSS01B");
+		ReplaceBIN_1999("SETSS01E");
+		ReplaceBIN_1999("SETSS01K");
+		ReplaceBIN_1999("SETSS01L");
+		ReplaceBIN_1999("SETSS01M");
+		ReplaceBIN_1999("SETSS01S");
+		ReplaceBIN_1999("SETSS02S");
+		ReplaceBIN_1999("SETSS02B");
+		ReplaceBIN_1999("SETSS03A");
+		ReplaceBIN_1999("SETSS03B");
+		ReplaceBIN_1999("SETSS03E");
+		ReplaceBIN_1999("SETSS03K");
+		ReplaceBIN_1999("SETSS03L");
+		ReplaceBIN_1999("SETSS03M");
+		ReplaceBIN_1999("SETSS03S");
+		ReplaceBIN_1999("SETSS04A");
+		ReplaceBIN_1999("SETSS04B");
+		ReplaceBIN_1999("SETSS04E");
+		ReplaceBIN_1999("SETSS04K");
+		ReplaceBIN_1999("SETSS04L");
+		ReplaceBIN_1999("SETSS04M");
+		ReplaceBIN_1999("SETSS04S");
+		ReplaceBIN_1999("SETSS05S");
 	}
 	if (!DLLLoaded_DLCs)
 	{

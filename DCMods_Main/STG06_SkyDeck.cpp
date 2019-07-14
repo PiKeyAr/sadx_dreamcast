@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "SkyDeck_objects.h"
-
+//TODO: Control tower animation fix
 NJS_TEXNAME textures_skydeck1[76];
 NJS_TEXLIST texlist_skydeck1 = { arrayptrandlength(textures_skydeck1) };
 
@@ -275,37 +275,31 @@ void LoadLevelFiles_STG06()
 
 void SkyDeck_Init()
 {
-	ReplaceBIN_DC("SET0600M");
-	ReplaceBIN_DC("SET0600S");
-	ReplaceBIN_DC("SET0601M");
-	ReplaceBIN_DC("SET0601S");
-	ReplaceBIN_DC("SET0602K");
-	ReplaceBIN_DC("SET0602M");
-	ReplaceBIN_DC("SET0602S");
+	if (!Use1999SetFiles)
+	{
+		ReplaceBIN_DC("SET0600M");
+		ReplaceBIN_DC("SET0600S");
+		ReplaceBIN_DC("SET0601M");
+		ReplaceBIN_DC("SET0601S");
+		ReplaceBIN_DC("SET0602K");
+		ReplaceBIN_DC("SET0602M");
+		ReplaceBIN_DC("SET0602S");
+	}
+	else
+	{
+		ReplaceBIN_1999("SET0600M");
+		ReplaceBIN_1999("SET0600S");
+		ReplaceBIN_1999("SET0601M");
+		ReplaceBIN_1999("SET0601S");
+		ReplaceBIN_1999("SET0602K");
+		ReplaceBIN_1999("SET0602M");
+		ReplaceBIN_1999("SET0602S");
+	}
 	ReplaceBIN_DC("CAM0600M");
 	ReplaceBIN_DC("CAM0600S");
 	ReplaceBIN_DC("CAM0601S");
 	ReplaceBIN_DC("CAM0602K");
 	ReplaceBIN_DC("CAM0602S");
-	switch (EnableSETFixes)
-	{
-	case SETFixes_Normal:
-		AddSETFix("SET0600M");
-		AddSETFix("SET0600S");
-		AddSETFix("SET0601S");
-		AddSETFix("SET0602K");
-		AddSETFix("SET0602S");
-		break;
-	case SETFixes_Extra:
-		AddSETFix_Extra("SET0600M");
-		AddSETFix_Extra("SET0600S");
-		AddSETFix_Extra("SET0601S");
-		AddSETFix_Extra("SET0602K");
-		AddSETFix_Extra("SET0602S");
-		break;
-	default:
-		break;
-	}
 	ReplacePVM("E_AIRCRAFT");
 	ReplacePVM("OBJ_SKYDECK");
 	ReplacePVM("SKYDECK01");

@@ -572,14 +572,28 @@ void LoadLevelFiles_STG12()
 
 void HotShelter_Init()
 {
-	ReplaceBIN_DC("SET1200A");
-	ReplaceBIN_DC("SET1200B");
-	ReplaceBIN_DC("SET1200S");
-	ReplaceBIN_DC("SET1201A");
-	ReplaceBIN_DC("SET1201S");
-	ReplaceBIN_DC("SET1202E");
-	ReplaceBIN_DC("SET1202S");
-	ReplaceBIN_DC("SET1203S");
+	if (!Use1999SetFiles)
+	{
+		ReplaceBIN_DC("SET1200A");
+		ReplaceBIN_DC("SET1200B");
+		ReplaceBIN_DC("SET1200S");
+		ReplaceBIN_DC("SET1201A");
+		ReplaceBIN_DC("SET1201S");
+		ReplaceBIN_DC("SET1202E");
+		ReplaceBIN_DC("SET1202S");
+		ReplaceBIN_DC("SET1203S");
+	}
+	else
+	{
+		ReplaceBIN_1999("SET1200A");
+		ReplaceBIN_1999("SET1200B");
+		ReplaceBIN_1999("SET1200S");
+		ReplaceBIN_1999("SET1201A");
+		ReplaceBIN_1999("SET1201S");
+		ReplaceBIN_1999("SET1202E");
+		ReplaceBIN_1999("SET1202S");
+		ReplaceBIN_1999("SET1203S");
+	}
 	ReplaceBIN_DC("CAM1200A");
 	ReplaceBIN_DC("CAM1200B");
 	ReplaceBIN_DC("CAM1200S");
@@ -588,23 +602,6 @@ void HotShelter_Init()
 	ReplaceBIN_DC("CAM1202E");
 	ReplaceBIN_DC("CAM1202S");
 	ReplaceBIN_DC("CAM1203S");
-	switch (EnableSETFixes)
-	{
-	case SETFixes_Normal:
-		AddSETFix("SET1200A");
-		AddSETFix("SET1200B");
-		AddSETFix("SET1201A");
-		AddSETFix("SET1202E");
-		break;
-	case SETFixes_Extra:
-		AddSETFix_Extra("SET1200A");
-		AddSETFix_Extra("SET1200B");
-		AddSETFix_Extra("SET1201A");
-		AddSETFix_Extra("SET1202E");
-		break;
-	default:
-		break;
-	}
 	ReplacePVM("HOTSHELTER0");
 	ReplacePVM("HOTSHELTER1");
 	ReplacePVM("HOTSHELTER2");

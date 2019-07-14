@@ -643,26 +643,23 @@ void LoadLevelFiles_STG01()
 
 void EmeraldCoast_Init()
 {
-	ReplaceBIN_DC("SET0100E");
-	ReplaceBIN_DC("SET0100S");
-	ReplaceBIN_DC("SET0101M");
-	ReplaceBIN_DC("SET0101S");
-	ReplaceBIN_DC("SET0102B");
-	ReplaceBIN_DC("SET0102S");
-	switch (EnableSETFixes)
+	if (!Use1999SetFiles)
 	{
-	case SETFixes_Normal:
-		AddSETFix("SET0100S");
-		AddSETFix("SET0100E");
-		AddSETFix("SET0101S");
-		break;
-	case SETFixes_Extra:
-		AddSETFix_Extra("SET0100S");
-		AddSETFix_Extra("SET0100E");
-		AddSETFix_Extra("SET0101S");
-		break;
-	default:
-		break;
+		ReplaceBIN_DC("SET0100E");
+		ReplaceBIN_DC("SET0100S");
+		ReplaceBIN_DC("SET0101M");
+		ReplaceBIN_DC("SET0101S");
+		ReplaceBIN_DC("SET0102B");
+		ReplaceBIN_DC("SET0102S");
+	}
+	else
+	{
+		ReplaceBIN_1999("SET0100E");
+		ReplaceBIN_1999("SET0100S");
+		ReplaceBIN_1999("SET0101M");
+		ReplaceBIN_1999("SET0101S");
+		ReplaceBIN_1999("SET0102B");
+		ReplaceBIN_1999("SET0102S");
 	}
 	ReplacePVM("BEACH01");
 	ReplacePVM("BEACH02");

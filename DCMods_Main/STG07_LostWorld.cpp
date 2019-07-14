@@ -236,26 +236,19 @@ void LostWorld_Init()
 	ReplaceBIN_DC("CAM0701K");
 	ReplaceBIN_DC("CAM0701S");
 	ReplaceBIN_DC("CAM0702S");
-	ReplaceBIN_DC("SET0700S");
-	ReplaceBIN_DC("SET0701K");
-	ReplaceBIN_DC("SET0701S");
-	ReplaceBIN_DC("SET0702S");
-	switch (EnableSETFixes)
+	if (!Use1999SetFiles)
 	{
-	case SETFixes_Normal:
-		AddSETFix("SET0700S");
-		AddSETFix("SET0701K");
-		AddSETFix("SET0701S");
-		AddSETFix("SET0702S");
-		break;
-	case SETFixes_Extra:
-		AddSETFix_Extra("SET0700S");
-		AddSETFix_Extra("SET0701K");
-		AddSETFix_Extra("SET0701S");
-		AddSETFix_Extra("SET0702S");
-		break;
-	default:
-		break;
+		ReplaceBIN_DC("SET0700S");
+		ReplaceBIN_DC("SET0701K");
+		ReplaceBIN_DC("SET0701S");
+		ReplaceBIN_DC("SET0702S");
+	}
+	else
+	{
+		ReplaceBIN_1999("SET0700S");
+		ReplaceBIN_1999("SET0701K");
+		ReplaceBIN_1999("SET0701S");
+		ReplaceBIN_1999("SET0702S");
 	}
 	ReplacePVM("BG_RUIN");
 	ReplacePVM("RUIN01");
