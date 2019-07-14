@@ -16,21 +16,6 @@
     <Filter Include="Header Files\Levels">
       <UniqueIdentifier>{eace49c7-4b6e-42f5-ad4d-6770239b893a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Levels\ADV00MODELS">
-      <UniqueIdentifier>{003e8907-eaaa-448f-a7bf-239c9fa20625}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Levels\ADV02MODELS">
-      <UniqueIdentifier>{54a3fd4a-d12f-493b-ba36-413e5e3d2768}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Levels\ADV01MODELS">
-      <UniqueIdentifier>{90648a9e-8410-4076-81a2-538840d2ba0c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Levels\ADV01CMODELS">
-      <UniqueIdentifier>{0d42c006-da31-4aa8-b04f-bc11db563ed0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Levels\ADV03MODELS">
-      <UniqueIdentifier>{70b0dfe4-c69e-4f7c-8207-83fdddea9dbe}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Levels\General">
       <UniqueIdentifier>{34190024-f44d-4af5-88be-ca1860caa879}</UniqueIdentifier>
     </Filter>
@@ -75,6 +60,21 @@
     </Filter>
     <Filter Include="Header Files\Levels\SkyDeck">
       <UniqueIdentifier>{ce194479-c793-42b0-93c8-81cacb51d160}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Levels\EggCarrierOutside">
+      <UniqueIdentifier>{90648a9e-8410-4076-81a2-538840d2ba0c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Levels\EggCarrierInside">
+      <UniqueIdentifier>{0d42c006-da31-4aa8-b04f-bc11db563ed0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Levels\StationSquare">
+      <UniqueIdentifier>{003e8907-eaaa-448f-a7bf-239c9fa20625}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Levels\MysticRuins">
+      <UniqueIdentifier>{54a3fd4a-d12f-493b-ba36-413e5e3d2768}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Levels\Past">
+      <UniqueIdentifier>{70b0dfe4-c69e-4f7c-8207-83fdddea9dbe}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -180,12 +180,6 @@
     <ClCompile Include="ADV00_StationSquare.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ADV01C_EggCarrierInside.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ADV01_EggCarrierOutside.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ADV03_Past.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -198,11 +192,14 @@
     <ClCompile Include="AL_ChaoRace.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ADV0100_EggCarrierOutside.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ADV0130_EggCarrierInside.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Data\textures.h">
-      <Filter>Header Files\Levels</Filter>
-    </ClInclude>
     <ClInclude Include="DC_Levels.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -212,53 +209,35 @@
     <ClInclude Include="targetver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Data\ADV01_0.h">
-      <Filter>Header Files\Levels\ADV01MODELS</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\ADV01_1.h">
-      <Filter>Header Files\Levels\ADV01MODELS</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\ADV01_2.h">
-      <Filter>Header Files\Levels\ADV01MODELS</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\ADV01_3.h">
-      <Filter>Header Files\Levels\ADV01MODELS</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\ADV01_4.h">
-      <Filter>Header Files\Levels\ADV01MODELS</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\ADV01_5.h">
-      <Filter>Header Files\Levels\ADV01MODELS</Filter>
-    </ClInclude>
     <ClInclude Include="Data\ADV01C_00.h">
-      <Filter>Header Files\Levels\ADV01CMODELS</Filter>
+      <Filter>Header Files\Levels\EggCarrierInside</Filter>
     </ClInclude>
     <ClInclude Include="Data\ADV01C_01.h">
-      <Filter>Header Files\Levels\ADV01CMODELS</Filter>
+      <Filter>Header Files\Levels\EggCarrierInside</Filter>
     </ClInclude>
     <ClInclude Include="Data\ADV01C_02.h">
-      <Filter>Header Files\Levels\ADV01CMODELS</Filter>
+      <Filter>Header Files\Levels\EggCarrierInside</Filter>
     </ClInclude>
     <ClInclude Include="Data\ADV01C_03.h">
-      <Filter>Header Files\Levels\ADV01CMODELS</Filter>
+      <Filter>Header Files\Levels\EggCarrierInside</Filter>
     </ClInclude>
     <ClInclude Include="Data\ADV01C_04.h">
-      <Filter>Header Files\Levels\ADV01CMODELS</Filter>
+      <Filter>Header Files\Levels\EggCarrierInside</Filter>
     </ClInclude>
     <ClInclude Include="Data\ADV01C_05.h">
-      <Filter>Header Files\Levels\ADV01CMODELS</Filter>
+      <Filter>Header Files\Levels\EggCarrierInside</Filter>
     </ClInclude>
     <ClInclude Include="Data\ADV03_00.h">
-      <Filter>Header Files\Levels\ADV03MODELS</Filter>
+      <Filter>Header Files\Levels\Past</Filter>
     </ClInclude>
     <ClInclude Include="Data\ADV03_01.h">
-      <Filter>Header Files\Levels\ADV03MODELS</Filter>
+      <Filter>Header Files\Levels\Past</Filter>
     </ClInclude>
     <ClInclude Include="Data\ADV03_02.h">
-      <Filter>Header Files\Levels\ADV03MODELS</Filter>
+      <Filter>Header Files\Levels\Past</Filter>
     </ClInclude>
     <ClInclude Include="Data\button.h">
-      <Filter>Header Files\Levels\ADV02MODELS</Filter>
+      <Filter>Header Files\Levels\MysticRuins</Filter>
     </ClInclude>
     <ClInclude Include="Data\Casino1.h">
       <Filter>Header Files\Levels\Casinopolis</Filter>
@@ -299,15 +278,6 @@
     <ClInclude Include="Data\E101R.h">
       <Filter>Header Files\Levels\Bosses</Filter>
     </ClInclude>
-    <ClInclude Include="Data\EC_Tornado.h">
-      <Filter>Header Files\Levels\ADV01MODELS</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\EC_Transform.h">
-      <Filter>Header Files\Levels\ADV01MODELS</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\EggCarrier_Objects.h">
-      <Filter>Header Files\Levels\ADV01MODELS</Filter>
-    </ClInclude>
     <ClInclude Include="Data\EggHornet.h">
       <Filter>Header Files\Levels\Bosses</Filter>
     </ClInclude>
@@ -342,7 +312,7 @@
       <Filter>Header Files\Levels\Chao</Filter>
     </ClInclude>
     <ClInclude Include="Data\Grass.h">
-      <Filter>Header Files\Levels\ADV02MODELS</Filter>
+      <Filter>Header Files\Levels\MysticRuins</Filter>
     </ClInclude>
     <ClInclude Include="Data\Highway1.h">
       <Filter>Header Files\Levels\SpeedHighway</Filter>
@@ -381,7 +351,7 @@
       <Filter>Header Files\Levels\SpeedHighway</Filter>
     </ClInclude>
     <ClInclude Include="Data\MasterEmerald.h">
-      <Filter>Header Files\Levels\ADV02MODELS</Filter>
+      <Filter>Header Files\Levels\MysticRuins</Filter>
     </ClInclude>
     <ClInclude Include="Data\LostWorld1.h">
       <Filter>Header Files\Levels\LostWorld</Filter>
@@ -402,31 +372,31 @@
       <Filter>Header Files\Levels\RedMountain</Filter>
     </ClInclude>
     <ClInclude Include="Data\MR_IceCapDoor.h">
-      <Filter>Header Files\Levels\ADV02MODELS</Filter>
+      <Filter>Header Files\Levels\MysticRuins</Filter>
     </ClInclude>
     <ClInclude Include="Data\MR_Objects.h">
-      <Filter>Header Files\Levels\ADV02MODELS</Filter>
+      <Filter>Header Files\Levels\MysticRuins</Filter>
     </ClInclude>
     <ClInclude Include="Data\MR_Palms.h">
-      <Filter>Header Files\Levels\ADV02MODELS</Filter>
+      <Filter>Header Files\Levels\MysticRuins</Filter>
     </ClInclude>
     <ClInclude Include="Data\MR_Rock.h">
-      <Filter>Header Files\Levels\ADV02MODELS</Filter>
+      <Filter>Header Files\Levels\MysticRuins</Filter>
     </ClInclude>
     <ClInclude Include="Data\MR_train.h">
-      <Filter>Header Files\Levels\ADV02MODELS</Filter>
+      <Filter>Header Files\Levels\MysticRuins</Filter>
     </ClInclude>
     <ClInclude Include="Data\MRGarden.h">
       <Filter>Header Files\Levels\Chao</Filter>
     </ClInclude>
     <ClInclude Include="Data\OFinalEgg.h">
-      <Filter>Header Files\Levels\ADV02MODELS</Filter>
+      <Filter>Header Files\Levels\MysticRuins</Filter>
     </ClInclude>
     <ClInclude Include="Data\Palm.h">
-      <Filter>Header Files\Levels\ADV03MODELS</Filter>
+      <Filter>Header Files\Levels\Past</Filter>
     </ClInclude>
     <ClInclude Include="Data\Past_objects.h">
-      <Filter>Header Files\Levels\ADV03MODELS</Filter>
+      <Filter>Header Files\Levels\Past</Filter>
     </ClInclude>
     <ClInclude Include="Data\RM_Objects.h">
       <Filter>Header Files\Levels\RedMountain</Filter>
@@ -453,13 +423,13 @@
       <Filter>Header Files\Levels\Chao</Filter>
     </ClInclude>
     <ClInclude Include="Data\Tanken.h">
-      <Filter>Header Files\Levels\ADV02MODELS</Filter>
+      <Filter>Header Files\Levels\MysticRuins</Filter>
     </ClInclude>
     <ClInclude Include="Data\Tanken2.h">
-      <Filter>Header Files\Levels\ADV02MODELS</Filter>
+      <Filter>Header Files\Levels\MysticRuins</Filter>
     </ClInclude>
     <ClInclude Include="Data\Tanken3.h">
-      <Filter>Header Files\Levels\ADV02MODELS</Filter>
+      <Filter>Header Files\Levels\MysticRuins</Filter>
     </ClInclude>
     <ClInclude Include="Data\Twinkle1.h">
       <Filter>Header Files\Levels\TwinklePark</Filter>
@@ -513,40 +483,40 @@
       <Filter>Header Files\Levels\Bosses</Filter>
     </ClInclude>
     <ClInclude Include="Data\SS00_CityHall.h">
-      <Filter>Header Files\Levels\ADV00MODELS</Filter>
+      <Filter>Header Files\Levels\StationSquare</Filter>
     </ClInclude>
     <ClInclude Include="Data\SS01_Casino.h">
-      <Filter>Header Files\Levels\ADV00MODELS</Filter>
+      <Filter>Header Files\Levels\StationSquare</Filter>
     </ClInclude>
     <ClInclude Include="Data\SS02_Sewers.h">
-      <Filter>Header Files\Levels\ADV00MODELS</Filter>
+      <Filter>Header Files\Levels\StationSquare</Filter>
     </ClInclude>
     <ClInclude Include="Data\SS03_MainArea.h">
-      <Filter>Header Files\Levels\ADV00MODELS</Filter>
+      <Filter>Header Files\Levels\StationSquare</Filter>
     </ClInclude>
     <ClInclude Include="Data\SS04_Hotel.h">
-      <Filter>Header Files\Levels\ADV00MODELS</Filter>
+      <Filter>Header Files\Levels\StationSquare</Filter>
     </ClInclude>
     <ClInclude Include="Data\SS05_Twinkle.h">
-      <Filter>Header Files\Levels\ADV00MODELS</Filter>
+      <Filter>Header Files\Levels\StationSquare</Filter>
     </ClInclude>
     <ClInclude Include="Data\MR00_Station.h">
-      <Filter>Header Files\Levels\ADV02MODELS</Filter>
+      <Filter>Header Files\Levels\MysticRuins</Filter>
     </ClInclude>
     <ClInclude Include="Data\MR01_Island.h">
-      <Filter>Header Files\Levels\ADV02MODELS</Filter>
+      <Filter>Header Files\Levels\MysticRuins</Filter>
     </ClInclude>
     <ClInclude Include="Data\MR02_Jungle.h">
-      <Filter>Header Files\Levels\ADV02MODELS</Filter>
+      <Filter>Header Files\Levels\MysticRuins</Filter>
     </ClInclude>
     <ClInclude Include="Data\MR03_FinalEgg.h">
-      <Filter>Header Files\Levels\ADV02MODELS</Filter>
+      <Filter>Header Files\Levels\MysticRuins</Filter>
     </ClInclude>
     <ClInclude Include="Data\MR_JungleGeoAnim.h">
-      <Filter>Header Files\Levels\ADV02MODELS</Filter>
+      <Filter>Header Files\Levels\MysticRuins</Filter>
     </ClInclude>
     <ClInclude Include="Data\ADV01C_Objects.h">
-      <Filter>Header Files\Levels\ADV01CMODELS</Filter>
+      <Filter>Header Files\Levels\EggCarrierInside</Filter>
     </ClInclude>
     <ClInclude Include="Data\Chaos0.h">
       <Filter>Header Files\Levels\Bosses</Filter>
@@ -577,6 +547,27 @@
     </ClInclude>
     <ClInclude Include="Data\Frogs.h">
       <Filter>Header Files\Levels\General</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\EggCarrier_Motions.h">
+      <Filter>Header Files\Levels\EggCarrierOutside</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\ADV0100_0.h">
+      <Filter>Header Files\Levels\EggCarrierOutside</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\ADV0100_1.h">
+      <Filter>Header Files\Levels\EggCarrierOutside</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\ADV0100_2.h">
+      <Filter>Header Files\Levels\EggCarrierOutside</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\ADV0100_3.h">
+      <Filter>Header Files\Levels\EggCarrierOutside</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\ADV0100_4.h">
+      <Filter>Header Files\Levels\EggCarrierOutside</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\ADV0100_5.h">
+      <Filter>Header Files\Levels\EggCarrierOutside</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
