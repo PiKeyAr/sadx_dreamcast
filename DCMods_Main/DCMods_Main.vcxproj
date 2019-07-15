@@ -131,7 +131,6 @@
     <ClCompile Include="FramerateFixes.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Data\ADV01C_Objects.h" />
     <ClInclude Include="Data\Animals.h" />
     <ClInclude Include="Data\Animals_motions.h" />
     <ClInclude Include="Data\ChaoEggs.h" />

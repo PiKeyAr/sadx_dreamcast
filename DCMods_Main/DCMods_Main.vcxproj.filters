@@ -515,9 +515,6 @@
     <ClInclude Include="Data\MR_JungleGeoAnim.h">
       <Filter>Header Files\Levels\MysticRuins</Filter>
     </ClInclude>
-    <ClInclude Include="Data\ADV01C_Objects.h">
-      <Filter>Header Files\Levels\EggCarrierInside</Filter>
-    </ClInclude>
     <ClInclude Include="Data\Chaos0.h">
       <Filter>Header Files\Levels\Bosses</Filter>
     </ClInclude>

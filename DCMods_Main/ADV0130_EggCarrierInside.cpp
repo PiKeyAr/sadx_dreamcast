@@ -1,5 +1,4 @@
 #include "stdafx.h"
-#include "ADV01C_Objects.h"
 
 NJS_TEXNAME textures_ec30[44];
 NJS_TEXLIST texlist_ec30 = { arrayptrandlength(textures_ec30) };
@@ -28,10 +27,12 @@ NJS_TEXLIST texlist_ec35 = { arrayptrandlength(textures_ec35) };
 #include "ADV01C_05.h"
 */
 
-FunctionPointer(void, sub_409FB0, (NJS_ACTION *a1, float frameNumber), 0x409FB0);
-FunctionPointer(void, sub_6F4570, (ObjectMaster *a1), 0x6F4570);
-FunctionPointer(void, sub_407A00, (NJS_MODEL_SADX *model, float scale), 0x407A00);
+NJS_OBJECT* TaraiButton_Transparent = nullptr;
+NJS_OBJECT* TaraiButton_OpaqueOnly = nullptr;
+
 DataPointer(ObjectMaster*, dword_3C85138, 0x3C85138);
+DataArray(int, TaraiButtons, 0x1102B28, 5);
+DataArray(char, byte_3C6293C, 0x3C6293C, 5);
 DataArray(PVMEntry, stru_10F34A8, 0x10F34A8, 6);
 DataArray(PVMEntry, stru_1101360, 0x1101360, 2);
 DataArray(FogData, EggCarrierInside1Fog, 0x01100C18, 3);
@@ -40,59 +41,10 @@ DataArray(FogData, EggCarrierInside3Fog, 0x01100C78, 3);
 DataArray(FogData, EggCarrierInside4Fog, 0x01100CA8, 3);
 DataArray(FogData, EggCarrierInside5Fog, 0x01100CD8, 3);
 DataArray(FogData, EggCarrierInside6Fog, 0x01100D08, 3);
-
-NJS_MATERIAL* DisableAlphaRejection_EggCarrierInside[] = {
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01CMODELS") + 0x000ED480), //Monorail sign (inside)
-};
-
-NJS_MATERIAL* WhiteDiffuseADV01C[] = {
-	//OHammerSW
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01CMODELS") + 0x00110B04),
-	//Tarai button (doesn't work because the game does some copy shit)
-	//&matlistADV01_0011154C[0],
-	//&matlistADV01_0011154C[1],
-	//&matlistADV01_0011154C[2],
-};
-
-NJS_MATERIAL* HedgehogHammerDolls[] = {
-	//Hedgehog Hammer targets (I don't really need this now but if the SL system is ever implemented...)
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01CMODELS") + 0x0011C478),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01CMODELS") + 0x0011BF60),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01CMODELS") + 0x0011BF74),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01CMODELS") + 0x0011BBC8),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01CMODELS") + 0x0011B364),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01CMODELS") + 0x0011A9E8),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01CMODELS") + 0x0011A504),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01CMODELS") + 0x0011A1CC),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01CMODELS") + 0x0011A07C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01CMODELS") + 0x0011A090),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01CMODELS") + 0x00119F2C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01CMODELS") + 0x00119F40),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01CMODELS") + 0x001247C8),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01CMODELS") + 0x001242B0),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01CMODELS") + 0x001242C4),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01CMODELS") + 0x00123F18),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01CMODELS") + 0x001236B4),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01CMODELS") + 0x00122D38),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01CMODELS") + 0x00122854),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01CMODELS") + 0x0012251C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01CMODELS") + 0x001223CC), //Super Sonic ears
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01CMODELS") + 0x001223E0), //Super Sonic ears
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01CMODELS") + 0x0012227C), //Super Sonic ears
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01CMODELS") + 0x00122290), //Super Sonic ears
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01CMODELS") + 0x00115630),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01CMODELS") + 0x00114C38),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01CMODELS") + 0x00114C4C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01CMODELS") + 0x00114C60),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01CMODELS") + 0x00114C74),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01CMODELS") + 0x00114568),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01CMODELS") + 0x0011457C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01CMODELS") + 0x001142D4),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01CMODELS") + 0x001140CC),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01CMODELS") + 0x00113EB4),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01CMODELS") + 0x00113B4C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01CMODELS") + 0x001137E4),
-};
+FunctionPointer(void, sub_409FB0, (NJS_ACTION* a1, float frameNumber), 0x409FB0);
+FunctionPointer(void, sub_6F4570, (ObjectMaster* a1), 0x6F4570);
+FunctionPointer(void, sub_407A00, (NJS_MODEL_SADX* model, float scale), 0x407A00);
+FunctionPointer(void, sub_409450, (NJS_MODEL_SADX* a1, int a2), 0x409450);
 
 void __cdecl ECDoorBarrier1X(ObjectMaster *a1)
 {
@@ -177,12 +129,64 @@ void TurnLightsOn()
 	set_shader_flags_ptr(ShaderFlags_Blend, false);
 }
 
-bool HedgehogHammerDollsFunction(NJS_MATERIAL* material, uint32_t flags)
+void RenderTaraiButtonLetter(int a1)
 {
-	set_diffuse_ptr(2, false);
-	set_specular_ptr(2, false);
-	set_alpha_reject_ptr(0.0f, false);
-	return true;
+	njPushMatrix(0);
+	njTranslate(0, 0.0, 2.0282631f, 0.0f);
+	ADV01C_OBJECTS[7]->child->basicdxmodel->mats->attr_texId = a1;
+	DrawModel(ADV01C_MODELS[27]);
+	njPopMatrix(1u);
+}
+
+void OTarai_Child_Display(ObjectMaster* a1)
+{
+	EntityData1* v1; // ebp
+	Angle v2; // eax
+	NJS_MODEL_SADX* v3; // ebx
+	NJS_MATERIAL* v4; // eax
+	NJS_MODEL_SADX* v7; // ebx
+	NJS_MATERIAL* v8; // eax
+	int v5; // ecx
+
+	v1 = a1->Data1;
+	if (!MissedFrames)
+	{
+		njSetTexture(&EC_TARAI_TEXLIST);
+		njPushMatrix(0);
+		njTranslateV(0, &v1->Position);
+		v2 = v1->Rotation.y;
+		if (v2)
+		{
+			njRotateY(0, v2);
+		}
+		//Draw the letter
+		DrawModelCallback_QueueObjectInt(RenderTaraiButtonLetter, TaraiButtons[byte_3C6293C[v1->Index]], -27000.0f, QueuedModelFlagsB_SomeTextureThing);
+		//Render the opaque part of the button
+		DrawModel(TaraiButton_OpaqueOnly->basicdxmodel);
+		//Create and the button (transparent)
+		v3 = (NJS_MODEL_SADX*)late_alloca(44);
+		v4 = (NJS_MATERIAL*)late_alloca(60);
+		if (v3)
+		{
+			if (v4)
+			{
+				memcpy(v3, ADV01C_MODELS[28], 0x2Cu);
+				memcpy(v4, ADV01C_MODELS[28]->mats, 0x3Cu);
+				v3->mats = v4;
+				v5 = v1->Action;
+				if (v1->Action == 13 || v5 == 12)
+				{
+					v4->attr_texId = 13;
+				}
+				else
+				{
+					v4->attr_texId = 2;
+				}
+				sub_409450(v3, 4);
+			}
+		}
+		njPopMatrix(1u);
+	}
 }
 
 void UnloadLevelFiles_ADV01C()
@@ -204,12 +208,12 @@ void UnloadLevelFiles_ADV01C()
 void LoadLevelFiles_ADV01C()
 {
 	CheckAndUnloadLevelFiles();
-	ADV01C_0_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV01C\\0.sa1lvl"));
-	ADV01C_1_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV01C\\1.sa1lvl"));
-	ADV01C_2_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV01C\\2.sa1lvl"));
-	ADV01C_3_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV01C\\3.sa1lvl"));
-	ADV01C_4_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV01C\\4.sa1lvl"));
-	ADV01C_5_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV01C\\5.sa1lvl"));
+	ADV01C_0_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("system\\data\\ADV0130\\0.sa1lvl"));
+	ADV01C_1_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("system\\data\\ADV0130\\1.sa1lvl"));
+	ADV01C_2_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("system\\data\\ADV0130\\2.sa1lvl"));
+	ADV01C_3_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("system\\data\\ADV0130\\3.sa1lvl"));
+	ADV01C_4_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("system\\data\\ADV0130\\4.sa1lvl"));
+	ADV01C_5_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("system\\data\\ADV0130\\5.sa1lvl"));
 	LandTable *ADV01C_0 = ADV01C_0_Info->getlandtable(); //&landtable_0000C64C; // ADV01C_0_Info->getlandtable();
 	LandTable *ADV01C_1 = ADV01C_1_Info->getlandtable(); //&landtable_0000D7B0; // ADV01C_1_Info->getlandtable();
 	LandTable *ADV01C_2 = ADV01C_2_Info->getlandtable(); //&landtable_0000E1D0; // ADV01C_2_Info->getlandtable();
@@ -244,42 +248,32 @@ void LoadLevelFiles_ADV01C()
 
 void ADV01C_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 {
-	ReplaceBIN_DC("SETEC30S");
-	ReplaceBIN_DC("SETEC31S");
-	ReplaceBIN_DC("SETEC31B");
-	ReplaceBIN_DC("SETEC32S");
-	ReplaceBIN_DC("SETEC33S");
-	ReplaceBIN_DC("SETEC34S");
-	ReplaceBIN_DC("SETEC35S");
+	if (!Use1999SetFiles)
+	{
+		ReplaceBIN_DC("SETEC30S");
+		ReplaceBIN_DC("SETEC31S");
+		ReplaceBIN_DC("SETEC31B");
+		ReplaceBIN_DC("SETEC32S");
+		ReplaceBIN_DC("SETEC33S");
+		ReplaceBIN_DC("SETEC34S");
+		ReplaceBIN_DC("SETEC35S");
+	}
+	else
+	{
+		ReplaceBIN_1999("SETEC30S");
+		ReplaceBIN_1999("SETEC31S");
+		ReplaceBIN_1999("SETEC31B");
+		ReplaceBIN_1999("SETEC32S");
+		ReplaceBIN_1999("SETEC33S");
+		ReplaceBIN_1999("SETEC34S");
+		ReplaceBIN_1999("SETEC35S");
+	}
 	ReplaceBIN_DC("CAMEC30S");
 	ReplaceBIN_DC("CAMEC31S");
 	ReplaceBIN_DC("CAMEC32S");
 	ReplaceBIN_DC("CAMEC33S");
 	ReplaceBIN_DC("CAMEC34S");
 	ReplaceBIN_DC("CAMEC35S");
-	switch (EnableSETFixes)
-	{
-	case SETFixes_Normal:
-		AddSETFix("SETEC30S");
-		AddSETFix("SETEC31S");
-		AddSETFix("SETEC31B");
-		AddSETFix("SETEC32S");
-		AddSETFix("SETEC33S");
-		AddSETFix("SETEC34S");
-		AddSETFix("SETEC35S");
-		break;
-	case SETFixes_Extra:
-		AddSETFix_Extra("SETEC30S");
-		AddSETFix_Extra("SETEC31S");
-		AddSETFix_Extra("SETEC31B");
-		AddSETFix_Extra("SETEC32S");
-		AddSETFix_Extra("SETEC33S");
-		AddSETFix_Extra("SETEC34S");
-		AddSETFix_Extra("SETEC35S");
-		break;
-	default:
-		break;
-	}
 	ReplacePVM("ADV_EC30");
 	ReplacePVM("ADV_EC31");
 	ReplacePVM("ADV_EC32");
@@ -287,11 +281,13 @@ void ADV01C_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 	ReplacePVM("ADV_EC34");
 	ReplacePVM("ADV_EC35");
 	ReplacePVM("ADV_EC36");
+	ReplacePVM("OBJ_EC30");
 	ReplacePVM("EC_ACTDOOR");
 	ReplacePVM("EC_ALIFE");
 	ReplacePVM("EC_EGGLIFT");
 	ReplacePVM("EC_TARAI");
 	ReplacePVM("PVME101FACTORY");
+	ReplaceBIN("PL_W1B", "PL_W1X");
 	___ADV01C_TEXLISTS[15] = &texlist_ec30;
 	___ADV01C_TEXLISTS[16] = &texlist_ec31;
 	___ADV01C_TEXLISTS[17] = &texlist_ec32;
@@ -315,46 +311,50 @@ void ADV01C_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 	WriteData((float*)0x00678CCB, -143.85f); //X2
 	WriteData((float*)0x00678CC6, 15.93f); //Y2
 	WriteData((float*)0x00678CC1, 80.25f); //Z2
-	ReplaceBIN("PL_W1B", "PL_W1X");
-	for (unsigned int i = 0; i < LengthOfArray(HedgehogHammerDolls); i++)
-	{
-		RemoveMaterialColors(HedgehogHammerDolls[i]);
-	}
+	//Material fixes
+	AddAlphaRejectMaterial((NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01CMODELS") + 0x000ED480)); //Monorail sign (inside)
+	AddWhiteDiffuseMaterial((NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01CMODELS") + 0x00110B04)); //OHammerSW
 	if (DLLLoaded_Lantern)
 	{
-		if (set_alpha_reject_ptr != nullptr)
-		{
-			material_register_ptr(DisableAlphaRejection_EggCarrierInside, LengthOfArray(DisableAlphaRejection_EggCarrierInside), &DisableAlphaRejection);
-			material_register_ptr(HedgehogHammerDolls, LengthOfArray(HedgehogHammerDolls), &HedgehogHammerDollsFunction);
-			material_register_ptr(WhiteDiffuseADV01C, LengthOfArray(WhiteDiffuseADV01C), &ForceWhiteDiffuse);
-			ReplacePVM("OBJ_EC30");
-		}
-		else
-		{
-			ReplaceGeneric("OBJ_EC30.PVM", "OBJ_EC30_DC_OLD.PVM");
-		}
 		WriteCall((void*)0x006F4577, TurnLightsOff); //Turn the lights off in Gamma's Froggy Hunt cutscene
 		WriteCall((void*)0x006F4620, TurnLightsOn); //Turn the lights on in Gamma's Froggy Hunt cutscene
 	}
-	else
-	{
-		ReplaceGeneric("OBJ_EC30.PVM", "OBJ_EC30_DC_OLD.PVM");
-	}
-	((NJS_OBJECT*)0x03104130)->basicdxmodel->mats[0].diffuse.color = 0xFFFFFFFF;
-	___ADV01C_MODELS[28] = &attachADV01_00111938;
-	___ADV01C_MODELS[27] = &attachADV01_001114EC;
-	___ADV01C_OBJECTS[7] = &objectADV01_00111964; //Tarai button
-	___ADV01C_OBJECTS[7]->child = &objectADV01_00111518;
-	___ADV01C_OBJECTS[8] = &objectADV01_000D243C; //Tarai
-	___ADV01C_OBJECTS[43]->child->child->model = &attachADV01_000AEDD0; //Monorail 1 door
-	___ADV01C_OBJECTS[43]->child->model = &attachADV01_000AF564; //Monorail 1 door thing
-	___ADV01C_OBJECTS[44]->child->child->model = &attachADV01_000B2D3C; //Monorail 2 door 
-	___ADV01C_OBJECTS[44]->child->model = &attachADV01_000B3518; //Monorail 2 door thing
-	___ADV01C_OBJECTS[29] = &objectADV01_000ADCD8; //Monorail station
-	___ADV01C_ACTIONS[7]->object = &objectADV01_000B8CD4; //Egglift
-	___ADV01C_OBJECTS[23] = &objectADV01_000B8CD4; //Egglift
-	___ADV01C_ACTIONS[6]->object = &objectADV01_000BAF48; //Door
-	___ADV01C_MODELS[27]->mats[0].diffuse.color = 0xFFFFFFFF;
+	RemoveVertexColors_Object(ADV01C_OBJECTS[0]); //Hedhehog Hammer targets
+	RemoveVertexColors_Object(ADV01C_OBJECTS[1]); //Hedhehog Hammer targets
+	RemoveVertexColors_Object(ADV01C_OBJECTS[2]); //Hedhehog Hammer targets
+	RemoveVertexColors_Object((NJS_OBJECT*)0x31045B8); //Projectors in Gamma's cutscene
+	//Tarai fix
+	TaraiButton_Transparent = LoadModel("system\\data\\ADV0130\\Models\\000D16F4.sa1mdl", false);
+	TaraiButton_OpaqueOnly = LoadModel("system\\data\\ADV0130\\Models\\000D16F4.sa1mdl", false);
+	TaraiButton_OpaqueOnly->basicdxmodel->meshsets[0].nbMesh = 0;
+	AddWhiteDiffuseMaterial(&TaraiButton_OpaqueOnly->basicdxmodel->mats[1]);
+	AddWhiteDiffuseMaterial(&TaraiButton_OpaqueOnly->basicdxmodel->mats[2]);
+	TaraiButton_Transparent->basicdxmodel->meshsets[1].nbMesh = 0;
+	TaraiButton_Transparent->basicdxmodel->meshsets[2].nbMesh = 0;
+	WriteJump((void*)0x52BA70, OTarai_Child_Display);
+	___ADV01C_OBJECTS[7] = TaraiButton_Transparent; //Tarai button
+	___ADV01C_MODELS[28] = TaraiButton_Transparent->basicdxmodel;
+	___ADV01C_OBJECTS[7]->child = TaraiButton_Transparent->child;
+	___ADV01C_MODELS[27] = TaraiButton_Transparent->child->basicdxmodel;
+	___ADV01C_OBJECTS[8] = LoadModel("system\\data\\ADV0130\\Models\\000D243C.sa1mdl", false); //Tarai
+	//Monorail front
+	NJS_OBJECT* MonorailFirstCar = LoadModel("system\\data\\ADV0130\\Models\\000B24D8.sa1mdl", false);
+	___ADV01C_OBJECTS[43]->basicdxmodel = MonorailFirstCar->basicdxmodel;
+	___ADV01C_OBJECTS[43]->child->basicdxmodel = MonorailFirstCar->child->basicdxmodel;
+	___ADV01C_OBJECTS[43]->child->child->basicdxmodel = MonorailFirstCar->child->child->basicdxmodel;
+	___ADV01C_OBJECTS[43]->child->sibling->basicdxmodel = MonorailFirstCar->child->sibling->basicdxmodel;
+	AddAlphaRejectMaterial(&___ADV01C_OBJECTS[43]->child->sibling->basicdxmodel->mats[0]);
+	//Monorail back
+	NJS_OBJECT* MonorailOtherCars = LoadModel("system\\data\\ADV0130\\Models\\000B64DC.sa1mdl", false);
+	___ADV01C_OBJECTS[44]->basicdxmodel = MonorailOtherCars->basicdxmodel;
+	___ADV01C_OBJECTS[44]->child->basicdxmodel = MonorailOtherCars->child->basicdxmodel;
+	___ADV01C_OBJECTS[44]->child->child->basicdxmodel = MonorailOtherCars->child->child->basicdxmodel;
+	//Other objects
+	___ADV01C_OBJECTS[29] = LoadModel("system\\data\\ADV0130\\Models\\000ADCD8.sa1mdl", false); //Monorail station
+	___ADV01C_ACTIONS[6]->object = LoadModel("system\\data\\ADV0130\\Models\\000BAF48.sa1mdl", false); //Door
+	NJS_OBJECT* EggLift = LoadModel("system\\data\\ADV0130\\Models\\000B8CD4.sa1mdl", false); //OEggLift
+	___ADV01C_OBJECTS[23] = EggLift;
+	___ADV01C_ACTIONS[7]->object = EggLift;
 	for (unsigned int i = 0; i < 3; i++)
 	{
 		EggCarrierInside1Fog[i].Distance = -12000;
