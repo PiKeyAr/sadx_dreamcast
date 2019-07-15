@@ -545,11 +545,15 @@ void ADV01_Init(const IniFile* config, const HelperFunctions& helperFunctions)
 	___ADV01_OBJECTS[51]->basicdxmodel->mats[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT; //Pool water
 	___ADV01_OBJECTS[51]->basicdxmodel->mats[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT; //Pool water
 	NJS_OBJECT* MonorailFront = LoadModel("system\\data\\ADV0100\\Models\\00170498.sa1mdl", false);
-	___ADV01_OBJECTS[69]->child->basicdxmodel = MonorailFront->child->basicdxmodel; //Monorail front
-	___ADV01_OBJECTS[69]->child->child->basicdxmodel = MonorailFront->child->child->basicdxmodel; //Monorail front
+	___ADV01_OBJECTS[69]->basicdxmodel = MonorailFront->basicdxmodel;
+	___ADV01_OBJECTS[69]->child->basicdxmodel = MonorailFront->child->basicdxmodel;
+	___ADV01_OBJECTS[69]->child->child->basicdxmodel = MonorailFront->child->child->basicdxmodel;
+	___ADV01_OBJECTS[69]->child->sibling->basicdxmodel = MonorailFront->child->sibling->basicdxmodel;
+	AddAlphaRejectMaterial(&___ADV01_OBJECTS[69]->child->sibling->basicdxmodel->mats[0]);
 	NJS_OBJECT* MonorailBack = LoadModel("system\\data\\ADV0100\\Models\\00170498.sa1mdl", false);
-	___ADV01_OBJECTS[70]->child->basicdxmodel = MonorailBack->child->basicdxmodel; //Monorail back
-	___ADV01_OBJECTS[70]->child->child->basicdxmodel = MonorailBack->child->child->basicdxmodel; //Monorail back
+	___ADV01_OBJECTS[70]->basicdxmodel = MonorailBack->basicdxmodel;
+	___ADV01_OBJECTS[70]->child->basicdxmodel = MonorailBack->child->basicdxmodel;
+	___ADV01_OBJECTS[70]->child->child->basicdxmodel = MonorailBack->child->child->basicdxmodel;
 	for (unsigned int i = 0; i < 3; i++)
 	{
 		SkyboxScale_EggCarrier4[i].x = 1.0f;
