@@ -503,19 +503,8 @@ void FinalEgg_Init()
 	ReplacePVM("FINALEGG2");
 	ReplacePVM("FINALEGG3");
 	ReplacePVM("FINALEGG4");
+	ReplacePVM("OBJ_FINALEGG");
 	ReplaceBIN("PL_A2B", "PL_A2X");
-	if (DLLLoaded_Lantern)
-	{
-		if (set_alpha_reject_ptr != nullptr)
-		{
-			ReplacePVM("OBJ_FINALEGG");
-		}
-		else
-		{
-			ReplaceGeneric("OBJ_FINALEGG.PVM", "OBJ_FINALEGG_DC_OLD.PVM");
-		}
-	}
-	else ReplaceGeneric("OBJ_FINALEGG.PVM", "OBJ_FINALEGG_DC_OLD.PVM");
 	TexLists_Obj[10] = FinalEggObjectTextures;
 	WriteCall((void*)0x005AEF29, GachaponExplosionFix);
 	WriteData<1>((char*)0x5ADC40, 0xC3u); //Disable SetClip_FEgg2
