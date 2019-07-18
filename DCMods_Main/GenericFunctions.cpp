@@ -291,7 +291,7 @@ void AddTextureAnimation(int level, int act, NJS_MATERIAL* material, bool nonseq
 			TextureAnimationData[i].Frame14 = frame14;
 			TextureAnimationData[i].Frame15 = frame15;
 			TextureAnimationData[i].Frame16 = frame16;
-			PrintDebug("Added texture animation: level %d, act %d, frame1: %d, frame2: %d, ID %d\n", level, act, frame1, frame2, i);
+			//PrintDebug("Added texture animation: level %d, act %d, frame1: %d, frame2: %d, ID %d\n", level, act, frame1, frame2, i);
 			return;
 		}
 	}
@@ -451,6 +451,13 @@ bool ForceDiffuse0Specular0or1(NJS_MATERIAL* material, uint32_t flags)
 {
 	set_diffuse_ptr(0, false);
 	if (material->attrflags & NJD_FLAG_IGNORE_SPECULAR) set_specular_ptr(0, false); else set_specular_ptr(1, false);
+	return true;
+}
+
+bool ForceDiffuse4Specular4(NJS_MATERIAL* material, uint32_t flags)
+{
+	set_diffuse_ptr(4, false);
+	set_specular_ptr(4, false);
 	return true;
 }
 
@@ -640,7 +647,7 @@ void CheckModelForWhiteDiffuse(NJS_MODEL_SADX *model, int ignorelightmaterial)
 		if (!(materialflags & NJD_FLAG_IGNORE_LIGHT) && !(materialflags & NJD_FLAG_USE_ALPHA))
 		{
 			AddWhiteDiffuseMaterial((NJS_MATERIAL*)&model->mats[q]);
-			PrintDebug("Added white diffuse material %d\n", q);
+			//PrintDebug("Added white diffuse material %d\n", q);
 		}
 	}
 }
@@ -909,4 +916,69 @@ void ForceObjectSpecular_Object(NJS_OBJECT *obj)
 			}
 		}
 	}
+}
+
+void RegisterLanternMaterial(NJS_MATERIAL* material, int diffuse, int specular, bool unregister)
+{
+	TemporaryMaterialArray[0] = material;
+	if (!DLLLoaded_Lantern) return;
+	if (diffuse == 0 && specular == 0)
+	{
+		if (!unregister) material_register_ptr(TemporaryMaterialArray, 1, ForceDiffuse0Specular0);
+		else material_unregister_ptr(TemporaryMaterialArray, 1, ForceDiffuse0Specular0);
+		return;
+	}
+	if (diffuse == 0 && specular == 1)
+	{
+		if (!unregister) material_register_ptr(TemporaryMaterialArray, 1, ForceDiffuse0Specular1);
+		else material_unregister_ptr(TemporaryMaterialArray, 1, ForceDiffuse0Specular1);
+		return;
+	}
+	if (diffuse == 2 && specular == 2)
+	{
+		if (!unregister) material_register_ptr(TemporaryMaterialArray, 1, ForceDiffuse2Specular2);
+		else material_unregister_ptr(TemporaryMaterialArray, 1, ForceDiffuse2Specular2);
+		return;
+	}
+	if (diffuse == 2 && specular == 3)
+	{
+		if (!unregister) material_register_ptr(TemporaryMaterialArray, 1, ForceDiffuse2Specular3);
+		else material_unregister_ptr(TemporaryMaterialArray, 1, ForceDiffuse2Specular3);
+		return;
+	}
+	if (diffuse == 4 && specular == 4)
+	{
+		if (!unregister) material_register_ptr(TemporaryMaterialArray, 1, ForceDiffuse4Specular4);
+		else material_unregister_ptr(TemporaryMaterialArray, 1, ForceDiffuse4Specular4);
+		return;
+	}
+	if (diffuse == 4 && specular == 5)
+	{
+		if (!unregister) material_register_ptr(TemporaryMaterialArray, 1, ForceDiffuse4Specular5);
+		else material_unregister_ptr(TemporaryMaterialArray, 1, ForceDiffuse4Specular5);
+		return;
+	}
+}
+
+void ForceLightType_Object(NJS_OBJECT* obj, int light_type, bool unregister)
+{
+	NJS_MATERIAL* material;
+	if (!DLLLoaded_Lantern) return;
+	if (obj->basicdxmodel)
+	{
+		for (int k = 0; k < obj->basicdxmodel->nbMat; ++k)
+		{
+			material = &obj->basicdxmodel->mats[k];
+			if (obj->basicdxmodel->mats[0].attrflags & NJD_FLAG_IGNORE_SPECULAR)
+			{
+				if (!(material->attrflags & NJD_FLAG_IGNORE_LIGHT)) RegisterLanternMaterial(material, light_type, light_type, unregister);
+			}
+			else
+			{
+				if (!(material->attrflags & NJD_FLAG_IGNORE_LIGHT)) RegisterLanternMaterial(material, light_type, light_type + 1, unregister);
+			}
+		}
+	}
+	if (obj->child) ForceLightType_Object(obj->child, light_type, unregister);
+	if (obj->sibling) ForceLightType_Object(obj->sibling, light_type, unregister);
 }
