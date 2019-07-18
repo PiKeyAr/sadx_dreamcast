@@ -1568,6 +1568,7 @@ void General_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 	if (EnableDCRipple)
 	{
 		*(NJS_OBJECT*)0x8B22F4 = *LoadModel("system\\data\\1st_read\\Models\\00193A44.sa1mdl", false);
+		((NJS_OBJECT*)0x8B22F4)->basicdxmodel->mats[0].attr_texId = 99;
 		WriteJump((void*)0x4B9290, FixedRipple_Normal);
 		WriteJump((void*)0x7A81A0, FixedRipple_Bubble);
 		WriteJump((void*)0x4407C0, SpawnRipplesX);
