@@ -1,6 +1,4 @@
 #include "stdafx.h"
-#include "Palm.h"
-#include "Past_objects.h"
 
 NJS_TEXNAME textures_past0[60];
 NJS_TEXLIST texlist_past00 = { arrayptrandlength(textures_past0) };
@@ -27,6 +25,8 @@ NJS_OBJECT *PastChaoModel_7 = nullptr;
 NJS_OBJECT *PastChaoModel_8 = nullptr;
 NJS_OBJECT *PastChaoModel_9 = nullptr;
 NJS_OBJECT *PastChaoModel_10 = nullptr;
+NJS_OBJECT* PalmBottom = nullptr;
+NJS_OBJECT* PalmBottom2 = nullptr;
 
 FunctionPointer(void, AllocateEventObject, (ObjectMaster *a1, NJS_ACTION *a2, NJS_TEXLIST *a3, float a4, char a5, char a6), 0x42FE00);
 FunctionPointer(void, sub_408350, (NJS_ACTION *a1, float a2, int a3, float a4), 0x408350);
@@ -44,225 +44,157 @@ static int ocean_act2 = 59;
 static int water_act1 = 59;
 static int water_act2 = 59;
 static float PastStairsDistanceFix = 2000.0f;
+static bool PastColsLoaded = false;
+SETObjData setdata_past = {};
 
-NJS_MATERIAL* PatyaMaterials[] = {
-	//Pachacamac
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x0014714C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x00146D38),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x00146A0C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x00146670),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x00146370),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x00143998),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x001439AC),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x001439C0),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x001439D4),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x001439E8),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x001439FC),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x00143A10),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x00143A24),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x00143374),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x001431DC),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x00143040),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x00142884),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x00142898),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x0014207C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x00141DFC),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x00141BA8),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x00141834),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x00141848),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x00141720),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x0014160C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x001413B8),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x0014112C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x00141018),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x00140F04),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x001406FC),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x00140478),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x001401F8),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x0013FFCC),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x0013FE54),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x0013FD40),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x0013FC2C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x0013FB18),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x0013FA04),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x0013F7B0),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x0013F43C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x0013F450),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x0013F328),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x0013F214),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x0013EFC0),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x0013ED30),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x0013EC1C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x0013EB08),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x0013E680),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x0013E694),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x0013E6A8),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x0013E334),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x0013E348),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x0013E134),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x0013DF00),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x0013DA78),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x0013DA8C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x0013DAA0),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x0013D72C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x0013D740),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x0013D52C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x0013D2F8),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x0013CF6C),
-	//Tikal too
-	((NJS_MATERIAL*)0x008D4228),
-	((NJS_MATERIAL*)0x008D423C),
-	((NJS_MATERIAL*)0x008D4250),
-	((NJS_MATERIAL*)0x008D4264),
-	((NJS_MATERIAL*)0x008D4048),
-	((NJS_MATERIAL*)0x008D405C),
-	((NJS_MATERIAL*)0x008D3E7C),
-	((NJS_MATERIAL*)0x008D39B0),
-	((NJS_MATERIAL*)0x008D3700),
-	((NJS_MATERIAL*)0x008D3540),
-	((NJS_MATERIAL*)0x008D3310),
-	((NJS_MATERIAL*)0x008D3168),
-	((NJS_MATERIAL*)0x008D2D38),
-	((NJS_MATERIAL*)0x008D2A88),
-	((NJS_MATERIAL*)0x008D28E0),
-	((NJS_MATERIAL*)0x008D26A0),
-	((NJS_MATERIAL*)0x008D24F8),
-	((NJS_MATERIAL*)0x008D2044),
-	((NJS_MATERIAL*)0x008D2058),
-	((NJS_MATERIAL*)0x008D206C),
-	((NJS_MATERIAL*)0x008D1D08),
-	((NJS_MATERIAL*)0x008D1A68),
-	((NJS_MATERIAL*)0x008CFB18),
-	((NJS_MATERIAL*)0x008CFB2C),
-	((NJS_MATERIAL*)0x008CFB40),
-	((NJS_MATERIAL*)0x008CFB54),
-	((NJS_MATERIAL*)0x008CFB68),
-	((NJS_MATERIAL*)0x008CF3B0),
-	((NJS_MATERIAL*)0x008CF178),
-	((NJS_MATERIAL*)0x008CEF40),
-	((NJS_MATERIAL*)0x008CECCC),
-	((NJS_MATERIAL*)0x008CE08C),
-	((NJS_MATERIAL*)0x008CDE48),
-	((NJS_MATERIAL*)0x008CDB48),
-	((NJS_MATERIAL*)0x008CD6E8),
-	((NJS_MATERIAL*)0x008CD6FC),
-	((NJS_MATERIAL*)0x008CD4F4),
-	((NJS_MATERIAL*)0x008CD508),
-	((NJS_MATERIAL*)0x008CD2E4),
-	((NJS_MATERIAL*)0x008CC68C),
-	((NJS_MATERIAL*)0x008CC448),
-	((NJS_MATERIAL*)0x008CC158),
-	((NJS_MATERIAL*)0x008CBD08),
-	((NJS_MATERIAL*)0x008CBD1C),
-	((NJS_MATERIAL*)0x008CBB14),
-	((NJS_MATERIAL*)0x008CBB28),
-	((NJS_MATERIAL*)0x008CB918),
-	((NJS_MATERIAL*)0x008CB6E8),
-	//Tikal in ADV03_ACTIONS
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x001602E0),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x001602F4),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x00160308),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x0016031C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x001604B8),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x001604CC),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x00160668),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x0016088C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x00160BD4),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x00160E2C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x0016108C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x0016126C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x001614C4),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x0016180C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x00161A54),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x00161CC4),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x00161EA4),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x001623FC),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x00162410),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x00162424),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x0016268C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x001628F4),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x00164858),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x0016486C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x00164880),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x00164894),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x001648A8),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x00164FD4),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x001651DC),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x001653E4),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x0016568C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x00166268),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x00166548),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x0016680C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x00166C58),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x00166C6C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x00166EB4),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x00166EC8),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x00167104),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x00167C28),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x00167F08),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x001681BC),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x001685F8),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x0016860C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x00168854),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x00168868),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x00168A94),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x00168C8C),
-	//Event Chao
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x0013CA54),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x0013C668),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x0013C190),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x0013BCB8),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x0013BB7C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x0013BA40),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x0013B6F0),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x0013B184),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x0013ADEC),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x0013AA54),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x0013A94C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x0013A4DC),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x0013A068),
-};
+int PastAct2Cols[] = { -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 };
+int PastAct3Cols[] = { -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 };
 
-NJS_MATERIAL* SecondCharacterSpecular[] = {
-	//Chao
-	nullptr,nullptr,nullptr,nullptr,nullptr,
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x0013CA54),
-};
+void AddPastTransparentThing(int colnumber, int act)
+{
+	if (act == 1)
+	{
+		for (int i = 0; i < LengthOfArray(PastAct2Cols); i++)
+		{
+			if (PastAct2Cols[i] == colnumber) return;
+			else if (PastAct2Cols[i] == -1)
+			{
+				PastAct2Cols[i] = colnumber;
+				//PrintDebug("Added COl: %d\n", colnumber);
+				return;
+			}
+		}
+	}
+	else if (act == 2)
+	{
+		for (int i = 0; i < LengthOfArray(PastAct3Cols); i++)
+		{
+			if (PastAct3Cols[i] == colnumber) return;
+			else if (PastAct3Cols[i] == -1)
+			{
+				PastAct3Cols[i] = colnumber;
+				//PrintDebug("Added COl: %d\n", colnumber);
+				return;
+			}
+		}
+	}
+}
 
-NJS_MATERIAL* Past_ObjectSpecular[] = {
-	//Tree
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x0011F030),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x0011F044),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x0011E100),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x0011E114),
-};
+void PastCols_Display(ObjectMaster* a1)
+{
+	NJS_VECTOR sphere = { 0, 0, 0 };
+	float radius = 0.0f;
+	if (!MissedFrames && CurrentAct == 1)
+	{
+		for (int i = 0; i < LengthOfArray(PastAct2Cols); i++)
+		{
+			if (PastAct2Cols[i] != -1)
+			{
+				//PrintDebug("Trying COl: %d\n", PastAct3Cols[i]);
+				radius = 2500.0f + LANDTABLEPAST[1]->Col[PastAct2Cols[i]].Radius;
+				//PrintDebug("Radius: %f", radius);
+				sphere.x = LANDTABLEPAST[1]->Col[PastAct2Cols[i]].Center.x;
+				sphere.y = LANDTABLEPAST[1]->Col[PastAct2Cols[i]].Center.y;
+				sphere.z = LANDTABLEPAST[1]->Col[PastAct2Cols[i]].Center.z;
+				if (radius != 0 && IsPlayerInsideSphere(&sphere, radius))
+				{
+					njSetTexture(&texlist_past01);
+					njPushMatrix(0);
+					njTranslate(0, 0, 0, 0);
+					if (LANDTABLEPAST[1]->Col[PastAct2Cols[i]].Flags & 0x01000000) DrawQueueDepthBias = 3000.0f;
+					else DrawQueueDepthBias = -49000.0f;
+					ProcessModelNode_D(LANDTABLEPAST[1]->Col[PastAct2Cols[i]].Model, 4, 1.0f);
+					njPopMatrix(1u);
+					DrawQueueDepthBias = 0;
+				}
+			}
+		}
+	}
+	if (!MissedFrames && CurrentAct == 2)
+	{
+		for (int i = 0; i < LengthOfArray(PastAct3Cols); i++)
+		{
+			if (PastAct3Cols[i] != -1)
+			{
+				//PrintDebug("Trying COl: %d\n", PastAct3Cols[i]);
+				radius = 2500.0f + LANDTABLEPAST[2]->Col[PastAct3Cols[i]].Radius;
+				//PrintDebug("Radius: %f", radius);
+				sphere.x = LANDTABLEPAST[2]->Col[PastAct3Cols[i]].Center.x;
+				sphere.y = LANDTABLEPAST[2]->Col[PastAct3Cols[i]].Center.y;
+				sphere.z = LANDTABLEPAST[2]->Col[PastAct3Cols[i]].Center.z;
+				if (radius != 0 && IsPlayerInsideSphere(&sphere, radius))
+				{
+					njSetTexture(&texlist_past02);
+					njPushMatrix(0);
+					njTranslate(0, 0, 0, 0);
+					if (LANDTABLEPAST[2]->Col[PastAct3Cols[i]].Flags & 0x01000000) DrawQueueDepthBias = 3000.0f;
+					else DrawQueueDepthBias = -49000.0f;
+					ProcessModelNode_D(LANDTABLEPAST[2]->Col[PastAct3Cols[i]].Model, 4, 1.0f);
+					njPopMatrix(1u);
+					DrawQueueDepthBias = 0;
+				}
+			}
+		}
+	}
+}
 
-NJS_MATERIAL* FirstCharacterSpecular[] = {
-	nullptr, nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,
-	nullptr, nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,
-	nullptr, nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,
-	nullptr, nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,
-	nullptr, nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,
-	//Chao
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x0013C668),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x0013C190),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x0013BCB8),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x0013BB7C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x0013BA40),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x0013B6F0),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x0013B184),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x0013ADEC),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x0013AA54),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x0013A94C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x0013A4DC),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x0013A068),
-};
+void PastCols_Delete(ObjectMaster* a1)
+{
+	PastColsLoaded = false;
+	CheckThingButThenDeleteObject(a1);
+}
+
+void PastCols_Main(ObjectMaster* a1)
+{
+	if (CurrentLevel == LevelIDs_Past)
+	{
+		if (CurrentAct > 0) PastCols_Display(a1);
+	}
+	else PastCols_Delete(a1);
+}
+
+void PastCols_Load(ObjectMaster* a1)
+{
+	a1->MainSub = (void(__cdecl*)(ObjectMaster*))PastCols_Main;
+	a1->DisplaySub = (void(__cdecl*)(ObjectMaster*))PastCols_Display;
+	a1->DeleteSub = (void(__cdecl*)(ObjectMaster*))PastCols_Delete;
+}
+
+void LoadPastCols()
+{
+	ObjectMaster* obj;
+	EntityData1* ent;
+	ObjectFunc(OF0, PastCols_Load);
+	setdata_past.Distance = 612800.0f;
+	obj = LoadObject((LoadObj)2, 3, OF0);
+	obj->SETData.SETData = &setdata_past;
+	if (obj)
+	{
+		ent = obj->Data1;
+		ent->Position.x = 0;
+		ent->Position.y = 0;
+		ent->Position.z = 0;
+		ent->Rotation.x = 0;
+		ent->Rotation.y = 0;
+		ent->Rotation.z = 0;
+	}
+	PastColsLoaded = true;
+}
+
+static void SkyBox_Past_Load_r(ObjectMaster* a1);
+static Trampoline SkyBox_Past_Load_t(0x542030, 0x542036, SkyBox_Past_Load_r);
+static void __cdecl SkyBox_Past_Load_r(ObjectMaster* a1)
+{
+	auto original = reinterpret_cast<decltype(SkyBox_Past_Load_r)*>(SkyBox_Past_Load_t.Target());
+	original(a1);
+	if (EnablePast && !PastColsLoaded) LoadPastCols();
+}
 
 void RenderPalm2(NJS_ACTION *a1, float a2, int a3, float a4)
 {
 	sub_408350(a1, a2, a3, a4);
 	DrawQueueDepthBias = -49000.0f;
-	ProcessModelNode(&object_palm1bottom, QueuedModelFlagsB_SomeTextureThing, 1.0f);
+	ProcessModelNode_D(PalmBottom, (QueuedModelFlagsB)0, 1.0f);
 	DrawQueueDepthBias = 0.0f;
 }
 
@@ -270,7 +202,7 @@ void RenderPalm1(NJS_OBJECT *a1, QueuedModelFlagsB a2, float a3)
 {
 	ProcessModelNode_C_VerifyTexList(a1, a2, a3);
 	DrawQueueDepthBias = -49000.0f;
-	ProcessModelNode(&object_palm1bottom, QueuedModelFlagsB_SomeTextureThing, 1.0f);
+	ProcessModelNode_D(PalmBottom2, (QueuedModelFlagsB)0, 1.0f);
 	DrawQueueDepthBias = 0.0f;
 }
 
@@ -331,25 +263,30 @@ void ParsePastMaterials()
 	landtable = ___LANDTABLEPAST[1];
 	for (unsigned int j = 0; j < landtable->COLCount; j++)
 	{
+		//Reflections
+		if (landtable->Col[j].Flags & 0x8000000)
+		{
+			if (landtable->Col[j].Flags & ColFlags_Visible) landtable->Col[j].Flags &= ~ColFlags_Visible;
+			AddPastTransparentThing(j, 1);
+		}
 		for (int k = 0; k < landtable->Col[j].Model->basicdxmodel->nbMat; ++k)
 		{
+			material = (NJS_MATERIAL*)&landtable->Col[j].Model->basicdxmodel->mats[k];
+			materialflags = material->attrflags;
 			//SADX water
 			if (SADXWater_Past)
 			{
 				colflags = landtable->Col[j].Flags;
 				if (colflags == 0x88000020) landtable->Col[j].Flags = 0;
 			}
-			materialflags = landtable->Col[j].Model->basicdxmodel->mats[k].attrflags;
 			//Texanim 1
-			if ((materialflags & NJD_CUSTOMFLAG_TEXANIM1) && !(materialflags & NJD_CUSTOMFLAG_TEXANIM2))
+			if (material->attr_texId == 6 || (material->attr_texId >= 73 && material->attr_texId <= 82))
 			{
-				material = (NJS_MATERIAL*)&landtable->Col[j].Model->basicdxmodel->mats[k];
 				AddTextureAnimation(34, 1, material, false, 4, 73, 82, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 			}
 			//Texanim 2
-			if ((materialflags & NJD_CUSTOMFLAG_TEXANIM2) && !(materialflags & NJD_CUSTOMFLAG_TEXANIM1))
+			if (material->attr_texId == 57 || (material->attr_texId >= 59 && material->attr_texId <= 72))
 			{
-				material = (NJS_MATERIAL*)&landtable->Col[j].Model->basicdxmodel->mats[k];
 				AddTextureAnimation(34, 1, material, false, 4, 59, 72, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 			}
 			//UVAnim 1
@@ -364,6 +301,12 @@ void ParsePastMaterials()
 	landtable = ___LANDTABLEPAST[2];
 	for (unsigned int j = 0; j < landtable->COLCount; j++)
 	{
+		//Reflections
+		if (landtable->Col[j].Flags & 0x8000000)
+		{
+			if (landtable->Col[j].Flags & ColFlags_Visible) landtable->Col[j].Flags &= ~ColFlags_Visible;
+			AddPastTransparentThing(j, 2);
+		}
 		//SADX water
 		if (SADXWater_Past)
 		{
@@ -372,17 +315,16 @@ void ParsePastMaterials()
 		}
 		for (int k = 0; k < landtable->Col[j].Model->basicdxmodel->nbMat; ++k)
 		{
+			material = (NJS_MATERIAL*)&landtable->Col[j].Model->basicdxmodel->mats[k];
 			materialflags = landtable->Col[j].Model->basicdxmodel->mats[k].attrflags;
 			//Texanim 1
-			if ((materialflags & NJD_CUSTOMFLAG_TEXANIM1) && !(materialflags & NJD_CUSTOMFLAG_TEXANIM2))
+			if (material->attr_texId == 0 || (material->attr_texId >= 75 && material->attr_texId <= 84))
 			{
-				material = (NJS_MATERIAL*)&landtable->Col[j].Model->basicdxmodel->mats[k];
 				AddTextureAnimation(34, 2, material, false, 4, 75, 84, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 			}
 			//Texanim 2
-			if ((materialflags & NJD_CUSTOMFLAG_TEXANIM2) && !(materialflags & NJD_CUSTOMFLAG_TEXANIM1))
+			if (material->attr_texId == 1 || (material->attr_texId >= 61 && material->attr_texId <= 74))
 			{
-				material = (NJS_MATERIAL*)&landtable->Col[j].Model->basicdxmodel->mats[k];
 				AddTextureAnimation(34, 2, material, false, 4, 61, 74, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 			}
 			//UVAnim 1
@@ -399,11 +341,11 @@ void ParsePastMaterials()
 void LoadLevelFiles_ADV03()
 {
 	CheckAndUnloadLevelFiles();
-	PastChaoModel_2_Info = new ModelInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV03\\Models\\Chao.sa1mdl"));
-	PastChaoModel_7_Info = new ModelInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV03\\Models\\Chao.sa1mdl"));
-	PastChaoModel_8_Info = new ModelInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV03\\Models\\Chao.sa1mdl"));
-	PastChaoModel_9_Info = new ModelInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV03\\Models\\Chao.sa1mdl"));
-	PastChaoModel_10_Info = new ModelInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV03\\Models\\Chao.sa1mdl"));
+	PastChaoModel_2_Info = new ModelInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV03\\Models\\000DD8A8.sa1mdl"));
+	PastChaoModel_7_Info = new ModelInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV03\\Models\\000DD8A8.sa1mdl"));
+	PastChaoModel_8_Info = new ModelInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV03\\Models\\000DD8A8.sa1mdl"));
+	PastChaoModel_9_Info = new ModelInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV03\\Models\\000DD8A8.sa1mdl"));
+	PastChaoModel_10_Info = new ModelInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV03\\Models\\000DD8A8.sa1mdl"));
 	PastChaoModel_2 = (NJS_OBJECT*)PastChaoModel_2_Info->getmodel();
 	PastChaoModel_7 = (NJS_OBJECT*)PastChaoModel_7_Info->getmodel();
 	PastChaoModel_8 = (NJS_OBJECT*)PastChaoModel_8_Info->getmodel();
@@ -436,87 +378,28 @@ void LoadLevelFiles_ADV03()
 	___LANDTABLEPAST[1] = ADV03_1;
 	___LANDTABLEPAST[2] = ADV03_2;
 	ParsePastMaterials();
-	if (DLLLoaded_Lantern)
-	{
-		SecondCharacterSpecular[0] = &((NJS_MATERIAL*)PastChaoModel_2_Info->getdata("matlist_000DD7A8"))[0];
-		SecondCharacterSpecular[1] = &((NJS_MATERIAL*)PastChaoModel_7_Info->getdata("matlist_000DD7A8"))[0];
-		SecondCharacterSpecular[2] = &((NJS_MATERIAL*)PastChaoModel_8_Info->getdata("matlist_000DD7A8"))[0];
-		SecondCharacterSpecular[3] = &((NJS_MATERIAL*)PastChaoModel_9_Info->getdata("matlist_000DD7A8"))[0];
-		SecondCharacterSpecular[4] = &((NJS_MATERIAL*)PastChaoModel_10_Info->getdata("matlist_000DD7A8"))[0];
-		for (unsigned int i = 0; i < LengthOfArray(SecondCharacterSpecular); i++)
-		{
-			RemoveMaterialColors(SecondCharacterSpecular[i]);
-		}
-		material_register_ptr(SecondCharacterSpecular, LengthOfArray(SecondCharacterSpecular), &ForceDiffuse2Specular3);
-		FirstCharacterSpecular[0] = &((NJS_MATERIAL*)PastChaoModel_7_Info->getdata("matlist_000DB2C4"))[0];
-		FirstCharacterSpecular[1] = &((NJS_MATERIAL*)PastChaoModel_7_Info->getdata("matlist_000DB720"))[0];
-		FirstCharacterSpecular[2] = &((NJS_MATERIAL*)PastChaoModel_7_Info->getdata("matlist_000DB820"))[0];
-		FirstCharacterSpecular[3] = &((NJS_MATERIAL*)PastChaoModel_7_Info->getdata("matlist_000DBBA8"))[0];
-		FirstCharacterSpecular[4] = &((NJS_MATERIAL*)PastChaoModel_7_Info->getdata("matlist_000DBF30"))[0];
-		FirstCharacterSpecular[5] = &((NJS_MATERIAL*)PastChaoModel_7_Info->getdata("matlist_000DC48C"))[0];
-		FirstCharacterSpecular[6] = &((NJS_MATERIAL*)PastChaoModel_7_Info->getdata("matlist_000DC7CC"))[0];
-		FirstCharacterSpecular[7] = &((NJS_MATERIAL*)PastChaoModel_7_Info->getdata("matlist_000DC900"))[0];
-		FirstCharacterSpecular[8] = &((NJS_MATERIAL*)PastChaoModel_7_Info->getdata("matlist_000DCA34"))[0];
-		FirstCharacterSpecular[9] = &((NJS_MATERIAL*)PastChaoModel_7_Info->getdata("matlist_000DCF00"))[0];
-		FirstCharacterSpecular[10] = &((NJS_MATERIAL*)PastChaoModel_7_Info->getdata("matlist_000DD3CC"))[0];
-		FirstCharacterSpecular[11] = &((NJS_MATERIAL*)PastChaoModel_7_Info->getdata("matlist_000DD7A8"))[0];
-		FirstCharacterSpecular[12] = &((NJS_MATERIAL*)PastChaoModel_10_Info->getdata("matlist_000DB2C4"))[0];
-		FirstCharacterSpecular[13] = &((NJS_MATERIAL*)PastChaoModel_10_Info->getdata("matlist_000DB720"))[0];
-		FirstCharacterSpecular[14] = &((NJS_MATERIAL*)PastChaoModel_10_Info->getdata("matlist_000DB820"))[0];
-		FirstCharacterSpecular[15] = &((NJS_MATERIAL*)PastChaoModel_10_Info->getdata("matlist_000DBBA8"))[0];
-		FirstCharacterSpecular[16] = &((NJS_MATERIAL*)PastChaoModel_10_Info->getdata("matlist_000DBF30"))[0];
-		FirstCharacterSpecular[17] = &((NJS_MATERIAL*)PastChaoModel_10_Info->getdata("matlist_000DC48C"))[0];
-		FirstCharacterSpecular[18] = &((NJS_MATERIAL*)PastChaoModel_10_Info->getdata("matlist_000DC7CC"))[0];
-		FirstCharacterSpecular[19] = &((NJS_MATERIAL*)PastChaoModel_10_Info->getdata("matlist_000DC900"))[0];
-		FirstCharacterSpecular[20] = &((NJS_MATERIAL*)PastChaoModel_10_Info->getdata("matlist_000DCA34"))[0];
-		FirstCharacterSpecular[21] = &((NJS_MATERIAL*)PastChaoModel_10_Info->getdata("matlist_000DCF00"))[0];
-		FirstCharacterSpecular[22] = &((NJS_MATERIAL*)PastChaoModel_10_Info->getdata("matlist_000DD3CC"))[0];
-		FirstCharacterSpecular[23] = &((NJS_MATERIAL*)PastChaoModel_10_Info->getdata("matlist_000DD7A8"))[0];
-		FirstCharacterSpecular[24] = &((NJS_MATERIAL*)PastChaoModel_9_Info->getdata("matlist_000DB2C4"))[0];
-		FirstCharacterSpecular[25] = &((NJS_MATERIAL*)PastChaoModel_9_Info->getdata("matlist_000DB720"))[0];
-		FirstCharacterSpecular[26] = &((NJS_MATERIAL*)PastChaoModel_9_Info->getdata("matlist_000DB820"))[0];
-		FirstCharacterSpecular[27] = &((NJS_MATERIAL*)PastChaoModel_9_Info->getdata("matlist_000DBBA8"))[0];
-		FirstCharacterSpecular[28] = &((NJS_MATERIAL*)PastChaoModel_9_Info->getdata("matlist_000DBF30"))[0];
-		FirstCharacterSpecular[29] = &((NJS_MATERIAL*)PastChaoModel_9_Info->getdata("matlist_000DC48C"))[0];
-		FirstCharacterSpecular[30] = &((NJS_MATERIAL*)PastChaoModel_9_Info->getdata("matlist_000DC7CC"))[0];
-		FirstCharacterSpecular[31] = &((NJS_MATERIAL*)PastChaoModel_9_Info->getdata("matlist_000DC900"))[0];
-		FirstCharacterSpecular[32] = &((NJS_MATERIAL*)PastChaoModel_9_Info->getdata("matlist_000DCA34"))[0];
-		FirstCharacterSpecular[33] = &((NJS_MATERIAL*)PastChaoModel_9_Info->getdata("matlist_000DCF00"))[0];
-		FirstCharacterSpecular[34] = &((NJS_MATERIAL*)PastChaoModel_9_Info->getdata("matlist_000DD3CC"))[0];
-		FirstCharacterSpecular[35] = &((NJS_MATERIAL*)PastChaoModel_9_Info->getdata("matlist_000DD7A8"))[0];
-		FirstCharacterSpecular[36] = &((NJS_MATERIAL*)PastChaoModel_8_Info->getdata("matlist_000DB2C4"))[0];
-		FirstCharacterSpecular[37] = &((NJS_MATERIAL*)PastChaoModel_8_Info->getdata("matlist_000DB720"))[0];
-		FirstCharacterSpecular[38] = &((NJS_MATERIAL*)PastChaoModel_8_Info->getdata("matlist_000DB820"))[0];
-		FirstCharacterSpecular[39] = &((NJS_MATERIAL*)PastChaoModel_8_Info->getdata("matlist_000DBBA8"))[0];
-		FirstCharacterSpecular[40] = &((NJS_MATERIAL*)PastChaoModel_8_Info->getdata("matlist_000DBF30"))[0];
-		FirstCharacterSpecular[41] = &((NJS_MATERIAL*)PastChaoModel_8_Info->getdata("matlist_000DC48C"))[0];
-		FirstCharacterSpecular[42] = &((NJS_MATERIAL*)PastChaoModel_8_Info->getdata("matlist_000DC7CC"))[0];
-		FirstCharacterSpecular[43] = &((NJS_MATERIAL*)PastChaoModel_8_Info->getdata("matlist_000DC900"))[0];
-		FirstCharacterSpecular[44] = &((NJS_MATERIAL*)PastChaoModel_8_Info->getdata("matlist_000DCA34"))[0];
-		FirstCharacterSpecular[45] = &((NJS_MATERIAL*)PastChaoModel_8_Info->getdata("matlist_000DCF00"))[0];
-		FirstCharacterSpecular[46] = &((NJS_MATERIAL*)PastChaoModel_8_Info->getdata("matlist_000DD3CC"))[0];
-		FirstCharacterSpecular[47] = &((NJS_MATERIAL*)PastChaoModel_8_Info->getdata("matlist_000DD7A8"))[0];
-		for (unsigned int i = 0; i < LengthOfArray(FirstCharacterSpecular); i++)
-		{
-			RemoveMaterialColors(FirstCharacterSpecular[i]);
-		}
-		material_register_ptr(FirstCharacterSpecular, LengthOfArray(FirstCharacterSpecular), &ForceDiffuse2Specular2);
-	}
+	ForceLightType_Object(PastChaoModel_2, 2, false);
+	ForceLightType_Object(PastChaoModel_7, 2, false);
+	ForceLightType_Object(PastChaoModel_8, 2, false);
+	ForceLightType_Object(PastChaoModel_9, 2, false);
+	ForceLightType_Object(PastChaoModel_10, 2, false);
 }
 
 void UnloadLevelFiles_ADV03()
 {
-	if (DLLLoaded_Lantern)
+	for (int i = 0; i < LengthOfArray(PastAct2Cols); i++)
 	{
-		material_unregister_ptr(FirstCharacterSpecular, LengthOfArray(FirstCharacterSpecular), &ForceDiffuse2Specular2);
-		material_unregister_ptr(SecondCharacterSpecular, LengthOfArray(SecondCharacterSpecular), &ForceDiffuse2Specular3);
+		PastAct2Cols[i] = -1;
 	}
-	delete ADV03_0_Info;
-	delete ADV03_1_Info;
-	delete ADV03_2_Info;
-	ADV03_0_Info = nullptr;
-	ADV03_1_Info = nullptr;
-	ADV03_2_Info = nullptr;
+	for (int i = 0; i < LengthOfArray(PastAct3Cols); i++)
+	{
+		PastAct3Cols[i] = -1;
+	}
+	ForceLightType_Object(PastChaoModel_2, 2, true);
+	ForceLightType_Object(PastChaoModel_7, 2, true);
+	ForceLightType_Object(PastChaoModel_8, 2, true);
+	ForceLightType_Object(PastChaoModel_9, 2, true);
+	ForceLightType_Object(PastChaoModel_10, 2, true);
 	delete PastChaoModel_2_Info;
 	delete PastChaoModel_7_Info;
 	delete PastChaoModel_8_Info;
@@ -527,6 +410,17 @@ void UnloadLevelFiles_ADV03()
 	PastChaoModel_8_Info = nullptr;
 	PastChaoModel_9_Info = nullptr;
 	PastChaoModel_10_Info = nullptr;
+	PastChaoModel_2 = nullptr;
+	PastChaoModel_7 = nullptr;
+	PastChaoModel_8 = nullptr;
+	PastChaoModel_9 = nullptr;
+	PastChaoModel_10 = nullptr;
+	delete ADV03_0_Info;
+	delete ADV03_1_Info;
+	delete ADV03_2_Info;
+	ADV03_0_Info = nullptr;
+	ADV03_1_Info = nullptr;
+	ADV03_2_Info = nullptr;
 }
 
 void ADV03_Init()
@@ -534,9 +428,18 @@ void ADV03_Init()
 	ReplaceBIN_DC("CAMPAST00S");
 	ReplaceBIN_DC("CAMPAST01S");
 	ReplaceBIN_DC("CAMPAST02S");
-	ReplaceBIN_DC("SETPAST00S");
-	ReplaceBIN_DC("SETPAST01S");
-	ReplaceBIN_DC("SETPAST02S");
+	if (!Use1999SetFiles)
+	{
+		ReplaceBIN_DC("SETPAST00S");
+		ReplaceBIN_DC("SETPAST01S");
+		ReplaceBIN_DC("SETPAST02S");
+	}
+	else
+	{
+		ReplaceBIN_1999("SETPAST00S");
+		ReplaceBIN_1999("SETPAST01S");
+		ReplaceBIN_1999("SETPAST02S");
+	}
 	ReplacePVM("EFF_PAST");
 	ReplacePVM("EV_ALIFE");
 	ReplacePVM("K_PATYA");
@@ -557,11 +460,20 @@ void ADV03_Init()
 	//Make stairs objects in Past Act 1 appear sooner
 	WriteData((float**)0x00545349, &PastStairsDistanceFix);
 	WriteData((float**)0x00545409, &PastStairsDistanceFix);
-	//Material fixes for Pacman
-	for (unsigned int i = 0; i < LengthOfArray(PatyaMaterials); i++)
-	{
-		RemoveMaterialColors(PatyaMaterials[i]);
-	}
+	//Material fixes
+	ForceLightType_Object(ADV03_OBJECTS[1], 2, false); //Chao
+	RemoveVertexColors_Object(ADV03_OBJECTS[0]); //Master Emerald
+	RemoveVertexColors_Object(ADV03_OBJECTS[1]); //Chao
+	RemoveVertexColors_Object(ADV03_OBJECTS[7]); //Pacman
+	RemoveVertexColors_Object(ADV03_OBJECTS[23]); //Emeralds
+	RemoveVertexColors_Object(ADV03_OBJECTS[24]); //Emeralds
+	RemoveVertexColors_Object(ADV03_OBJECTS[25]); //Emeralds
+	RemoveVertexColors_Object(ADV03_OBJECTS[26]); //Emeralds
+	RemoveVertexColors_Object(ADV03_OBJECTS[27]); //Emeralds
+	RemoveVertexColors_Object(ADV03_OBJECTS[28]); //Emeralds
+	RemoveVertexColors_Object(ADV03_OBJECTS[29]); //Emeralds
+	RemoveVertexColors_Object(ADV03_ACTIONS[3]->object); //Tikal 1
+	RemoveVertexColors_Object((NJS_OBJECT*)0x8D4880); //Tikal 2
 	//Event Chao eye fixes
 	WriteCall((void*)0x653C40, AllocateEventChao_9);
 	WriteCall((void*)0x653C67, AllocateEventChao_9);
@@ -601,10 +513,25 @@ void ADV03_Init()
 	WriteCall((void*)0x6A1DFA, AllocateEventChao_2);
 	WriteCall((void*)0x6A2A09, AllocateEventChao_2);
 	//Palm fixes
-	ADV03_ACTIONS[10]->object = &object_00012DA8; //ADV03_ACTIONS[10] is palm in Act 3
-	ADV03_OBJECTS[9] = &object_0001503C; //ADV03_OBJECTS[9] is palm in Act 2
+	ADV03_ACTIONS[10]->object = LoadModel("system\\data\\ADV03\\Models\\00012DA8.sa1mdl", false); //Palm in Act 3
+	ADV03_ACTIONS[10]->object->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_USE_ALPHA; //Hide DA_ONE stuff
+	ADV03_ACTIONS[10]->object->basicdxmodel->meshsets[0].nbMesh = 0; //Hide DA_ONE stuff
+	PalmBottom = LoadModel("system\\data\\ADV03\\Models\\00012DA8.sa1mdl", false);
+	PalmBottom->basicdxmodel->meshsets[1].nbMesh = 0;
+	PalmBottom->basicdxmodel->meshsets[2].nbMesh = 0;
+	PalmBottom->evalflags |= NJD_EVAL_BREAK;
+	PalmBottom->child = NULL;
+	ADV03_OBJECTS[9] = LoadModel("system\\data\\ADV03\\Models\\0001503C.sa1mdl", false); //Palm in Act 2
+	ADV03_OBJECTS[9]->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_USE_ALPHA; //Hide DA_ONE stuff
+	ADV03_OBJECTS[9]->basicdxmodel->meshsets[0].nbMesh = 0; //Hide DA_ONE stuff
+	PalmBottom2 = LoadModel("system\\data\\ADV03\\Models\\0001503C.sa1mdl", false);
+	PalmBottom2->basicdxmodel->meshsets[1].nbMesh = 0;
+	PalmBottom2->basicdxmodel->meshsets[2].nbMesh = 0;
+	PalmBottom2->basicdxmodel->meshsets[3].nbMesh = 0;
+	PalmBottom2->basicdxmodel->meshsets[4].nbMesh = 0;
 	WriteCall((void*)0x545C1A, RenderPalm1);
 	WriteCall((void*)0x545BFD, RenderPalm2);
+	AddWhiteDiffuseMaterial(&ADV03_OBJECTS[12]->basicdxmodel->mats[1]); //OTree 0 second model
 	//Tikal cutscene water ripple thing
 	WriteData((float*)0x0068BA27, -40.7f); //Ripple 1 X
 	WriteData((float*)0x0068BA22, 86.0f); //Ripple 1 Y
@@ -615,10 +542,17 @@ void ADV03_Init()
 	WriteData((float*)0x0068BA94, -52.01f); //Ripple 3 X
 	WriteData((float*)0x0068BA8F, 86.0f); //Ripple 3 Y
 	WriteData((float*)0x0068BA8A, 52.42f); //Ripple 3 Z
-	if (GetModuleHandle(L"ADV03MODELS") != nullptr && DLLLoaded_Lantern)
-	{
-		material_register_ptr(Past_ObjectSpecular, LengthOfArray(Past_ObjectSpecular), &ForceDiffuse0Specular1);
-	}
+	//Other objects
+	ADV03_ACTIONS[9]->object = LoadModel("system\\data\\ADV03\\Models\\0000F864.sa1mdl", false); //OTree 0
+	___ADV03_OBJECTS[16] = LoadModel("system\\data\\ADV03\\Models\\0001EDDC.sa1mdl", false); //Tree 16
+	___ADV03_OBJECTS[17] = LoadModel("system\\data\\ADV03\\Models\\0001EDDC.sa1mdl", false); //Tree 17 (identical?)
+	___ADV03_OBJECTS[15] = LoadModel("system\\data\\ADV03\\Models\\00027158.sa1mdl", false); //Small tree shadow
+	___ADV03_OBJECTS[13] = LoadModel("system\\data\\ADV03\\Models\\00016CA0.sa1mdl", false); //OWell
+	___ADV03_OBJECTS[18] = LoadModel("system\\data\\ADV03\\Models\\00027054.sa1mdl", false); //Well shadow
+	___ADV03_OBJECTS[21] = LoadModel("system\\data\\ADV03\\Models\\0001D774.sa1mdl", false); //OPyStairs
+	___ADV03_OBJECTS[20] = LoadModel("system\\data\\ADV03\\Models\\0001E498.sa1mdl", false); //OBigStairs
+	___ADV03_OBJECTS[19] = LoadModel("system\\data\\ADV03\\Models\\0001E59C.sa1mdl", false); //OBigStairs low LOD
+	___ADV03_OBJECTS[22] = LoadModel("system\\data\\ADV03\\Models\\0001D878.sa1mdl", false); //OPyStairs low LOD
 	//Fog data
 	for (unsigned int i = 0; i < 3; i++)
 	{
@@ -632,11 +566,6 @@ void ADV03_Init()
 		DrawDist_Past2[i].Maximum = -16000.0f;
 		DrawDist_Past3[i].Maximum = -16000.0f;
 	}
-	___ADV03_OBJECTS[16] = &objectADV03_0001EDDC; //tree 16
-	___ADV03_OBJECTS[17] = &objectADV03_0001EDDC; //tree 17
-	___ADV03_OBJECTS[15] = &objectADV03_00027158; //small tree shadow
-	___ADV03_OBJECTS[13] = &objectADV03_00016CA0; //OWell
-	___ADV03_OBJECTS[18] = &objectADV03_00027054; //well shadow
 }
 
 void ADV03_OnFrame()
@@ -645,10 +574,10 @@ void ADV03_OnFrame()
 	if (CurrentLevel == LevelIDs_Past && CurrentAct > 0 && EV_MainThread_ptr != nullptr)
 	{
 		((NJS_OBJECT*)((size_t)GetModuleHandle(L"ADV03MODELS") + 0x0013CB28))->ang[1] = Camera_Data1->Rotation.y;
-		if (PastChaoModel_2_Info) ((NJS_OBJECT*)PastChaoModel_2_Info->getmodel()->child)->ang[1] = Camera_Data1->Rotation.y;
-		if (PastChaoModel_7_Info) ((NJS_OBJECT*)PastChaoModel_7_Info->getmodel()->child)->ang[1] = Camera_Data1->Rotation.y;
-		if (PastChaoModel_8_Info) ((NJS_OBJECT*)PastChaoModel_8_Info->getmodel()->child)->ang[1] = Camera_Data1->Rotation.y;
-		if (PastChaoModel_9_Info) ((NJS_OBJECT*)PastChaoModel_9_Info->getmodel()->child)->ang[1] = Camera_Data1->Rotation.y;
-		if (PastChaoModel_10_Info) ((NJS_OBJECT*)PastChaoModel_10_Info->getmodel()->child)->ang[1] = Camera_Data1->Rotation.y;
+		if (PastChaoModel_2_Info) PastChaoModel_2->child->ang[1] = Camera_Data1->Rotation.y;
+		if (PastChaoModel_7_Info) PastChaoModel_7->child->ang[1] = Camera_Data1->Rotation.y;
+		if (PastChaoModel_8_Info) PastChaoModel_8->child->ang[1] = Camera_Data1->Rotation.y;
+		if (PastChaoModel_9_Info) PastChaoModel_9->child->ang[1] = Camera_Data1->Rotation.y;
+		if (PastChaoModel_10_Info) PastChaoModel_10->child->ang[1] = Camera_Data1->Rotation.y;
 	}
 }

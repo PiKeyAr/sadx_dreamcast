@@ -1828,7 +1828,7 @@ extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_0006DB74 = { vertex_0006D
 
 extern "C" __declspec(dllexport) NJS_OBJECT object_0006DB9C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0006DB74, -122, 420, 1349, 0, 0xFFFFFE5F, 0, 1, 1, 1, NULL, NULL };
 extern "C" __declspec(dllexport) NJS_MATERIAL matlist_0006DBD0[] = {
-	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 6, NJD_CUSTOMFLAG_TEXANIM1 | NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
+	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 6, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
 extern "C" __declspec(dllexport) Sint16 poly_0006DBE4[] = {
@@ -21989,7 +21989,7 @@ extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00095068 = { vertex_00094
 
 extern "C" __declspec(dllexport) NJS_OBJECT object_00095090 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00095068, 193.9288f, 148.7144f, -602.5449f, 0, 0, 0, 1, 1, 1, NULL, NULL };
 extern "C" __declspec(dllexport) NJS_MATERIAL matlist_000950C4[] = {
-	{ { 0xBFFFFFFF }, { 0xFFFFFFFF }, 11, 57, NJD_CUSTOMFLAG_TEXANIM2 | NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
+	{ { 0xBFFFFFFF }, { 0xFFFFFFFF }, 11, 57, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
 extern "C" __declspec(dllexport) Sint16 poly_000950D8[] = {
@@ -22087,7 +22087,7 @@ extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_000953D0 = { vertex_00095
 
 extern "C" __declspec(dllexport) NJS_OBJECT object_000953F8 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_000953D0, 0, 4.5f, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
 extern "C" __declspec(dllexport) NJS_MATERIAL matlist_0009542C[] = {
-	{ { 0xBFFFFFFF }, { 0xFFFFFFFF }, 11, 57, NJD_CUSTOMFLAG_TEXANIM2 | NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
+	{ { 0xBFFFFFFF }, { 0xFFFFFFFF }, 11, 57, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
 extern "C" __declspec(dllexport) Sint16 poly_00095440[] = {
@@ -22379,7 +22379,7 @@ extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00095C9C = { vertex_00095
 
 extern "C" __declspec(dllexport) NJS_OBJECT object_00095CC4 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00095C9C, 0, 0, 0, 0, 0xAAA, 0, 1, 1, 1, NULL, NULL };
 extern "C" __declspec(dllexport) NJS_MATERIAL matlist_00095CF8[] = {
-	{ { 0xBFFFFFFF }, { 0xFFFFFFFF }, 11, 57, NJD_CUSTOMFLAG_TEXANIM2 | NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
+	{ { 0xBFFFFFFF }, { 0xFFFFFFFF }, 11, 57, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
 extern "C" __declspec(dllexport) Sint16 poly_00095D0C[] = {
@@ -22807,20 +22807,20 @@ extern "C" __declspec(dllexport) COL collist_0006735C[] = {
 	{ { 519.2986f, 144.5998f, -269.7307f }, 734.4481f, 0, 0, &object_00073C2C, 0, 0x80000020 }, //Bottom grass 2
 	{ { 112.7029f, -49.79767f, 1701.08f }, 478.5961f, 0, 0, &object_0006C15C, 0, 0x80000020 }, //Bottom grass 3
 	{ { 0, -106.5f, 0 }, 436.7061f, 0, 0, &object_00091F0C, 0, 0x80000000 }, //Green thing
-	{ { -152.5f, -35.5f, -152.5f }, 37.08352f, 0, 0, &object_0009741C, 0, 0x80000000 }, //Pillar reflections bottom
-	{ { -215, -35.5f, -0.00019f }, 37.08352f, 0, 0, &object_00097450, 0, 0x80000000 }, //Pillar reflections bottom
-	{ { -152.5f, -35.5f, 152.5f }, 37.08352f, 0, 0, &object_00097484, 0, 0x80000000 }, //Pillar reflections bottom
-	{ { 152.5f, -35.5f, 152.5f }, 37.08352f, 0, 0, &object_000974B8, 0, 0x80000000 }, //Pillar reflections bottom
-	{ { 215, -35.5f, -0.00019f }, 37.08352f, 0, 0, &object_000974EC, 0, 0x80000000 }, //Pillar reflections bottom
-	{ { 152.5f, -35.5f, -152.5f }, 37.08352f, 0, 0, &object_00097520, 0, 0x80000000 }, //Pillar reflections bottom
-	{ { -0.00019f, -35.5f, -215 }, 37.08352f, 0, 0, &object_00090520, 0, 0x80000000 }, //Pillar reflections bottom
-	{ { -86.25f, 61.5f, 0.00008578999f }, 26.04443f, 0, 0, &object_000975F0, 0, 0x80000000 }, //Pillar reflections top
-	{ { 86.25f, 61.5f, -0.000015f }, 26.04443f, 0, 0, &object_00097554, 0, 0x80000000 }, //Pillar reflections top
-	{ { 43.12494f, 61.5f, -74.69472f }, 26.04443f, 0, 0, &object_00097588, 0, 0x80000000 }, //Pillar reflections top
-	{ { -43.125f, 61.5f, -74.69469f }, 26.04443f, 0, 0, &object_000975BC, 0, 0x80000000 }, //Pillar reflections top
-	{ { -43.12495f, 61.5f, 74.69471f }, 26.04443f, 0, 0, &object_00097624, 0, 0x80000000 }, //Pillar reflections top
-	{ { 43.125f, 61.5f, 74.69469f }, 26.04443f, 0, 0, &object_0009210C, 0, 0x80000000 }, //Pillar reflections top
-	{ { 0, -25.5f, 0.0000075f }, 240.111f, 0, 0, &object_0008FFE8, 0, 0x80000000 }, //WTF is this thing?
+	{ { -152.5f, -35.5f, -152.5f }, 37.08352f, 0, 0, &object_0009741C, 0, 0x88000000 }, //Pillar reflections bottom
+	{ { -215, -35.5f, -0.00019f }, 37.08352f, 0, 0, &object_00097450, 0, 0x88000000 }, //Pillar reflections bottom
+	{ { -152.5f, -35.5f, 152.5f }, 37.08352f, 0, 0, &object_00097484, 0, 0x88000000 }, //Pillar reflections bottom
+	{ { 152.5f, -35.5f, 152.5f }, 37.08352f, 0, 0, &object_000974B8, 0, 0x88000000 }, //Pillar reflections bottom
+	{ { 215, -35.5f, -0.00019f }, 37.08352f, 0, 0, &object_000974EC, 0, 0x88000000 }, //Pillar reflections bottom
+	{ { 152.5f, -35.5f, -152.5f }, 37.08352f, 0, 0, &object_00097520, 0, 0x88000000 }, //Pillar reflections bottom
+	{ { -0.00019f, -35.5f, -215 }, 37.08352f, 0, 0, &object_00090520, 0, 0x88000000 }, //Pillar reflections bottom
+	{ { -86.25f, 61.5f, 0.00008578999f }, 26.04443f, 0, 0, &object_000975F0, 0, 0x88000000 }, //Pillar reflections top
+	{ { 86.25f, 61.5f, -0.000015f }, 26.04443f, 0, 0, &object_00097554, 0, 0x88000000 }, //Pillar reflections top
+	{ { 43.12494f, 61.5f, -74.69472f }, 26.04443f, 0, 0, &object_00097588, 0, 0x88000000 }, //Pillar reflections top
+	{ { -43.125f, 61.5f, -74.69469f }, 26.04443f, 0, 0, &object_000975BC, 0, 0x88000000 }, //Pillar reflections top
+	{ { -43.12495f, 61.5f, 74.69471f }, 26.04443f, 0, 0, &object_00097624, 0, 0x88000000 }, //Pillar reflections top
+	{ { 43.125f, 61.5f, 74.69469f }, 26.04443f, 0, 0, &object_0009210C, 0, 0x88000000 }, //Pillar reflections top
+	{ { 0, -25.5f, 0.0000075f }, 240.111f, 0, 0, &object_0008FFE8, 0, 0x88000000 }, //WTF is this thing?
 	{ { 0, 1, 0 }, 395.6269f, 0, 0, &object_0008B2E0_2, 0, 0xA0040001 }, //Floor transparent
 	{ { 0, 65.25f, 0 }, 171.0811f, 0, 0, &object_0007F7DC_2, 0, 0xC0000001 }, //Middle thing floor transparent
 	{ { 0, -0.25f, 0 }, 381.8376f, 0, 0, &object_0009609C, 0, 0xA0000002 }, //Water bottom

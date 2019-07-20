@@ -217,8 +217,6 @@
     <ClInclude Include="Data\MR_Rock.h" />
     <ClInclude Include="Data\MR_train.h" />
     <ClInclude Include="Data\OFinalEgg.h" />
-    <ClInclude Include="Data\Palm.h" />
-    <ClInclude Include="Data\Past_objects.h" />
     <ClInclude Include="Data\RM_Objects.h" />
     <ClInclude Include="Data\SandHill.h" />
     <ClInclude Include="Data\SandHill_objects.h" />

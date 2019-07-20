@@ -392,12 +392,6 @@
     <ClInclude Include="Data\OFinalEgg.h">
       <Filter>Header Files\Levels\MysticRuins</Filter>
     </ClInclude>
-    <ClInclude Include="Data\Palm.h">
-      <Filter>Header Files\Levels\Past</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\Past_objects.h">
-      <Filter>Header Files\Levels\Past</Filter>
-    </ClInclude>
     <ClInclude Include="Data\RM_Objects.h">
       <Filter>Header Files\Levels\RedMountain</Filter>
     </ClInclude>
