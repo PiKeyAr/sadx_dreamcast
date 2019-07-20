@@ -385,7 +385,6 @@ extern "C"
 			ADV01_Init(config, helperFunctions);
 			ADV01C_Init(config, helperFunctions);
 		}
-		FixMRBase_Apply(config, helperFunctions);
 		if (EnableMysticRuins)
 		{
 			WriteCall((void*)0x4234AD, LoadLevelFiles_ADV02);

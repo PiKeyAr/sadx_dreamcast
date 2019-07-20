@@ -60323,6 +60323,27 @@ extern "C" __declspec(dllexport) NJS_MKEY_A animation_000818F4_14_rot[] = {
 	{ 119, 0xD88, 0x149F, 0 }
 };
 
+NJS_MDATA2 animation_000818F4_mdat[] = {
+	{ NULL, NULL, 0, 0 },
+	{ NULL, NULL, 0, 0 },
+	{ NULL, NULL, 0, 0 },
+	{ NULL, NULL, 0, 0 },
+	{ NULL, NULL, 0, 0 },
+	{ animation_000818F4_5_rot, NULL, LengthOfArray<Uint32>(animation_000818F4_5_rot), 0 },
+	{ animation_000818F4_6_rot, NULL, LengthOfArray<Uint32>(animation_000818F4_6_rot), 0 },
+	{ animation_000818F4_7_rot, NULL, LengthOfArray<Uint32>(animation_000818F4_7_rot), 0 },
+	{ animation_000818F4_8_rot, NULL, LengthOfArray<Uint32>(animation_000818F4_8_rot), 0 },
+	{ animation_000818F4_9_rot, NULL, LengthOfArray<Uint32>(animation_000818F4_9_rot), 0 },
+	{ animation_000818F4_10_rot, NULL, LengthOfArray<Uint32>(animation_000818F4_10_rot), 0 },
+	{ animation_000818F4_11_rot, NULL, LengthOfArray<Uint32>(animation_000818F4_11_rot), 0 },
+	{ animation_000818F4_12_rot, NULL, LengthOfArray<Uint32>(animation_000818F4_12_rot), 0 },
+	{ animation_000818F4_13_rot, NULL, LengthOfArray<Uint32>(animation_000818F4_13_rot), 0 },
+	{ animation_000818F4_14_rot, NULL, LengthOfArray<Uint32>(animation_000818F4_14_rot), 0 }
+};
+
+NJS_MOTION animation_000818F4 = { animation_000818F4_mdat, 120, NJD_MTYPE_ANG_1 | NJD_MTYPE_SCL_2, NJD_MTYPE_LINER | 2 };
+NJS_ACTION action_animation_000818F4 = { &object_001659E0, &animation_000818F4 };
+
 extern "C" __declspec(dllexport) COL collist_000E8F98[] = {
 	{ { -1329.853f, 301.4605f, -961.7795f }, 633.2382f, 0, 0, &object_0014F478, 0, 0xA0000021 }, //Rocks 1
 	{ { -1045.633f, 300.2393f, 71.03561f }, 737.7177f, 0, 0, &object_00150AD8, 0, 0xA0000021 }, //Rocks 2
@@ -60485,6 +60506,10 @@ extern "C" __declspec(dllexport) COL collist_000E8F98[] = {
 	{ { 1305.4f, 165.5f, -707.2001f }, 9.975132f, 0, 0, &object_00164FD4_2, 0, 0x88000400 },  //Lantern light
 };
 
-extern "C" __declspec(dllexport) LandTable landtable_00000178 = { LengthOfArray<int16_t>(collist_000E8F98), 0, 0xC, 900, collist_000E8F98, NULL, "ADV_MR02", &texlist_mr02, 0, 0 };
+GeoAnimData animlist_000EA420[] = {
+	{ 0, 0.4f, 120, &object_001659E0, &action_animation_000818F4, (NJS_TEXLIST*)0 }
+};
+
+extern "C" __declspec(dllexport) LandTable landtable_00000178 = { LengthOfArray<int16_t>(collist_000E8F98), LengthOfArray<int16_t>(animlist_000EA420), 0xD, 900, collist_000E8F98, animlist_000EA420, "ADV_MR02", &texlist_mr02, 0, 0 };
 
 #pragma warning(pop)

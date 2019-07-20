@@ -236,9 +236,6 @@
     <ClInclude Include="Data\ADV03_02.h">
       <Filter>Header Files\Levels\Past</Filter>
     </ClInclude>
-    <ClInclude Include="Data\button.h">
-      <Filter>Header Files\Levels\MysticRuins</Filter>
-    </ClInclude>
     <ClInclude Include="Data\Casino1.h">
       <Filter>Header Files\Levels\Casinopolis</Filter>
     </ClInclude>
@@ -311,9 +308,6 @@
     <ClInclude Include="Data\Fountain.h">
       <Filter>Header Files\Levels\Chao</Filter>
     </ClInclude>
-    <ClInclude Include="Data\Grass.h">
-      <Filter>Header Files\Levels\MysticRuins</Filter>
-    </ClInclude>
     <ClInclude Include="Data\Highway1.h">
       <Filter>Header Files\Levels\SpeedHighway</Filter>
     </ClInclude>
@@ -350,9 +344,6 @@
     <ClInclude Include="Data\SH_helicopter.h">
       <Filter>Header Files\Levels\SpeedHighway</Filter>
     </ClInclude>
-    <ClInclude Include="Data\MasterEmerald.h">
-      <Filter>Header Files\Levels\MysticRuins</Filter>
-    </ClInclude>
     <ClInclude Include="Data\LostWorld1.h">
       <Filter>Header Files\Levels\LostWorld</Filter>
     </ClInclude>
@@ -371,26 +362,8 @@
     <ClInclude Include="Data\Mountain3.h">
       <Filter>Header Files\Levels\RedMountain</Filter>
     </ClInclude>
-    <ClInclude Include="Data\MR_IceCapDoor.h">
-      <Filter>Header Files\Levels\MysticRuins</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\MR_Objects.h">
-      <Filter>Header Files\Levels\MysticRuins</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\MR_Palms.h">
-      <Filter>Header Files\Levels\MysticRuins</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\MR_Rock.h">
-      <Filter>Header Files\Levels\MysticRuins</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\MR_train.h">
-      <Filter>Header Files\Levels\MysticRuins</Filter>
-    </ClInclude>
     <ClInclude Include="Data\MRGarden.h">
       <Filter>Header Files\Levels\Chao</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\OFinalEgg.h">
-      <Filter>Header Files\Levels\MysticRuins</Filter>
     </ClInclude>
     <ClInclude Include="Data\RM_Objects.h">
       <Filter>Header Files\Levels\RedMountain</Filter>
@@ -415,15 +388,6 @@
     </ClInclude>
     <ClInclude Include="Data\SSGarden.h">
       <Filter>Header Files\Levels\Chao</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\Tanken.h">
-      <Filter>Header Files\Levels\MysticRuins</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\Tanken2.h">
-      <Filter>Header Files\Levels\MysticRuins</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\Tanken3.h">
-      <Filter>Header Files\Levels\MysticRuins</Filter>
     </ClInclude>
     <ClInclude Include="Data\Twinkle1.h">
       <Filter>Header Files\Levels\TwinklePark</Filter>
@@ -504,9 +468,6 @@
       <Filter>Header Files\Levels\MysticRuins</Filter>
     </ClInclude>
     <ClInclude Include="Data\MR03_FinalEgg.h">
-      <Filter>Header Files\Levels\MysticRuins</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\MR_JungleGeoAnim.h">
       <Filter>Header Files\Levels\MysticRuins</Filter>
     </ClInclude>
     <ClInclude Include="Data\Chaos0.h">

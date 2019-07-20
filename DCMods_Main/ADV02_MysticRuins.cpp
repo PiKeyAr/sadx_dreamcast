@@ -1,17 +1,4 @@
 #include "stdafx.h"
-#include "button.h"
-#include "MasterEmerald.h"
-#include "OFinalEgg.h"
-#include "MR_train.h"
-#include "MR_Rock.h"
-#include "MR_IceCapDoor.h"
-#include "Tanken.h"
-#include "Tanken2.h"
-#include "Tanken3.h"
-#include "Grass.h"
-#include "MR_Objects.h"
-#include "MR_Palms.h"
-#include "MR_JungleGeoAnim.h"
 
 NJS_TEXNAME textures_mr00[153];
 NJS_TEXLIST texlist_mr00 = { arrayptrandlength(textures_mr00) };
@@ -53,38 +40,17 @@ DataArray(DrawDistance, MR2DrawDist, 0x01103400, 3);
 DataArray(DrawDistance, MR3DrawDist, 0x01103418, 3);
 DataArray(DrawDistance, MR4DrawDist, 0x01103430, 3);
 FunctionPointer(void, sub_405450, (NJS_ACTION *a1, float frame, float scale), 0x405450);
+FunctionPointer(void, sub_408350, (NJS_ACTION* a1, float a2, int a3, float a4), 0x408350);
 static bool InsideTemple = 0;
-static float MRGeoAnimFrame = 0;
+
 NJS_OBJECT* MROcean = nullptr;
 NJS_OBJECT* MRWaterObjects[] = { nullptr, nullptr, nullptr, nullptr, nullptr };
+NJS_OBJECT* OFinalEggModel_Opaque = nullptr;
+NJS_OBJECT* OFinalEggModel_Transparent = nullptr;
 NJS_OBJECT* MRJungleObjectAnimations_Propeller[] = { nullptr, nullptr, nullptr, nullptr, nullptr };
 NJS_OBJECT* MRJungleObjectAnimations_Lantern[] = { nullptr, nullptr, nullptr, nullptr, nullptr };
 NJS_OBJECT* MRJungleObjectsCallback[] = { nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr };
 NJS_VECTOR TempleVector = { -515.99f, 90.0f, -1137.45f };
-
-NJS_MATERIAL* WhiteDiffuseADV02_External[] = {
-	nullptr, nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,
-};
-
-NJS_MATERIAL* WhiteDiffuse[] = {
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x0003CD50), //Button on HiddenGate
-	&matlistADV02_001FCA84[8], //MR train
-	//Palm trees
-	&matlistADV02_001D76E0[1],
-	&matlistADV02_001D85A8[1],
-	&matlistADV02_001D9470[1],
-	&matlistADV02_001DA32C[1],
-	&matlistADV02_001DB210[1],
-	&matlistADV02_001DC0BC[1],
-	//Final Egg stuff
-	&matlistADV02_002069C8[5],
-	&matlistADV02_002069C8[6],
-	&matlistADV02_002069C8[7],
-	&matlistADV02_00208504Z[13],
-	&matlistADV02_00208504[13],
-	//OHiddenGate buttons
-	&matlistADV02_0003CD28[2],
-};
 
 void AddMRWaterObject(NJS_OBJECT *object)
 {
@@ -150,7 +116,6 @@ void ParseMRColFlags()
 	{
 		colflags = landtable->Col[j].Flags;
 		if (colflags == 0x08000000) AddMRWaterObject(landtable->Col[j].Model);
-		else if (colflags == 0x08000002) MROcean = landtable->Col[j].Model;
 	}
 	//Jungle area
 	landtable = ___LANDTABLEMR[2];
@@ -171,15 +136,22 @@ void ParseMRColFlags()
 	___ADV02MR02_OBJECTS[139] = MRJungleObjectsCallback[6];
 }
 
-void AddWhiteDiffuseMaterial_MR(NJS_MATERIAL *material)
+void RemoveMRMaterials(int act)
 {
-	for (int q = 0; q < LengthOfArray(WhiteDiffuseADV02_External); ++q)
+	LandTable* landtable;
+	Uint32 materialflags;
+	NJS_MATERIAL* material;
+	landtable = ___LANDTABLEMR[act];
+	for (unsigned int j = 0; j < landtable->COLCount; j++)
 	{
-		if (WhiteDiffuseADV02_External[q] == material) return;
-		else if (WhiteDiffuseADV02_External[q] == nullptr)
+		for (int k = 0; k < landtable->Col[j].Model->basicdxmodel->nbMat; ++k)
 		{
-			WhiteDiffuseADV02_External[q] = material;
-			return;
+			material = (NJS_MATERIAL*)& landtable->Col[j].Model->basicdxmodel->mats[k];
+			materialflags = landtable->Col[j].Model->basicdxmodel->mats[k].attrflags;
+			if (materialflags & NJD_CUSTOMFLAG_WHITE)
+			{
+				RemoveWhiteDiffuseMaterial(material);
+			}
 		}
 	}
 }
@@ -197,17 +169,16 @@ void ParseMRMaterials()
 	{
 		for (int k = 0; k < landtable->Col[j].Model->basicdxmodel->nbMat; ++k)
 		{
+			material = (NJS_MATERIAL*)&landtable->Col[j].Model->basicdxmodel->mats[k];
 			materialflags = landtable->Col[j].Model->basicdxmodel->mats[k].attrflags;
 			//Texanim 1
-			if ((materialflags & NJD_CUSTOMFLAG_TEXANIM1) && !(materialflags & NJD_CUSTOMFLAG_TEXANIM2))
+			if (material->attr_texId == 128 || (material->attr_texId >= 130 && material->attr_texId <= 139))
 			{
-				material = (NJS_MATERIAL*)&landtable->Col[j].Model->basicdxmodel->mats[k];
 				AddTextureAnimation(33, 0, material, false, 5, 130, 139, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 			}
 			//Texanim 2
-			if ((materialflags & NJD_CUSTOMFLAG_TEXANIM2) && !(materialflags & NJD_CUSTOMFLAG_TEXANIM1))
+			if (material->attr_texId == 129 || (material->attr_texId >= 140 && material->attr_texId <= 154))
 			{
-				material = (NJS_MATERIAL*)&landtable->Col[j].Model->basicdxmodel->mats[k];
 				AddTextureAnimation(33, 0, material, false, 4, 140, 154, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 			}
 			//UVAnim 1
@@ -232,11 +203,11 @@ void ParseMRMaterials()
 	{
 		for (int k = 0; k < landtable->Col[j].Model->basicdxmodel->nbMat; ++k)
 		{
+			material = (NJS_MATERIAL*)&landtable->Col[j].Model->basicdxmodel->mats[k];
 			materialflags = landtable->Col[j].Model->basicdxmodel->mats[k].attrflags;
 			//Texanim 1
-			if ((materialflags & NJD_CUSTOMFLAG_TEXANIM1) && !(materialflags & NJD_CUSTOMFLAG_TEXANIM2))
+			if (material->attr_texId >= 76 && material->attr_texId <= 89)
 			{
-				material = (NJS_MATERIAL*)&landtable->Col[j].Model->basicdxmodel->mats[k];
 				AddTextureAnimation(33, 1, material, false, 2, 76, 89, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 			}
 		}
@@ -247,13 +218,13 @@ void ParseMRMaterials()
 	{
 		for (int k = 0; k < landtable->Col[j].Model->basicdxmodel->nbMat; ++k)
 		{
+			material = (NJS_MATERIAL*)& landtable->Col[j].Model->basicdxmodel->mats[k];
 			texid = landtable->Col[j].Model->basicdxmodel->mats[k].attr_texId;
 			materialflags = landtable->Col[j].Model->basicdxmodel->mats[k].attrflags;
 			//White diffuse
 			if (materialflags & NJD_CUSTOMFLAG_WHITE)
 			{
-				material = (NJS_MATERIAL*)&landtable->Col[j].Model->basicdxmodel->mats[k];
-				AddWhiteDiffuseMaterial_MR(material);
+				AddWhiteDiffuseMaterial(material);
 			}
 			//UVAnim 1
 			if ((materialflags & NJD_CUSTOMFLAG_UVANIM1) && !(materialflags & NJD_CUSTOMFLAG_UVANIM2))
@@ -303,31 +274,15 @@ void ParseMRMaterials()
 	{
 		for (int k = 0; k < landtable->Col[j].Model->basicdxmodel->nbMat; ++k)
 		{
-			materialflags = landtable->Col[j].Model->basicdxmodel->mats[k].attrflags;
+			material = (NJS_MATERIAL*)&landtable->Col[j].Model->basicdxmodel->mats[k];
+			materialflags = material->attrflags;
 			//White diffuse
 			if (materialflags & NJD_CUSTOMFLAG_WHITE)
 			{
-				material = (NJS_MATERIAL*)&landtable->Col[j].Model->basicdxmodel->mats[k];
-				AddWhiteDiffuseMaterial_MR(material);
+				AddWhiteDiffuseMaterial(material);
 			}
 		}
 	}
-}
-
-static void MRJungleCallback_r(void *a1);
-static Trampoline MRJungleCallback_t(0x52F800, 0x52F806, MRJungleCallback_r);
-static void __cdecl MRJungleCallback_r(void *a1)
-{
-	NJS_MATRIX a2;
-	if (EnableMysticRuins)
-	{
-		njSetTexture(ADV02_TEXLISTS[40]);
-		njGetMatrix(a2);
-		njAction(&action_animationADV02_000818F4_real, MRGeoAnimFrame);
-		njSetMatrix(0, a2);
-	}
-	auto original = reinterpret_cast<decltype(MRJungleCallback_r)*>(MRJungleCallback_t.Target());
-	original(a1);
 }
 
 void __cdecl MRWater_Display(void(__cdecl *function)(void *), void *data, float depth, QueuedModelFlagsB queueflags)
@@ -363,55 +318,6 @@ void __cdecl MRWater_Display(void(__cdecl *function)(void *), void *data, float 
 	}
 }
 
-NJS_MATERIAL* LevelSpecular[] = {
-	//ODigPlace1
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x000168E8),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x000168FC),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x00017B40),
-	//Echidna statue
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x0002C8F8),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x0002C90C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x0002C920),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x0002C934),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x0002C948),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x0002C95C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x0002C970),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x0002C984),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x0002C998),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x0002BC60),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x0002BC74),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x0002BC88),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x0002BC9C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x0002BCB0),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x0002BCC4),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x0002BCD8),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x0002BCEC),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x0002BD00),
-	//Other stuff
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x0002AD38),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x0002AD4C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x0002AD60),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x0002AD74),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x0002AC2C),
-};
-
-NJS_MATERIAL* ObjectSpecular[] = {
-	//Shovel Claws
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x000964F8),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x0009650C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x00095E48),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x00095E5C),
-	//ODigPlace1
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x00017150),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x00017164),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x00017178),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x0001718C),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x000171A0),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x000171B4),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x00016698),
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x00016448),
-};
-
 void SetColor(float a, float r, float g, float b)
 {
 	SetMaterialAndSpriteColor_Float(a, 0, g, 0);
@@ -419,6 +325,8 @@ void SetColor(float a, float r, float g, float b)
 
 void FixMRBase(ObjectMaster *a1)
 {
+	NJS_ACTION OpaqueAction = { nullptr, nullptr };
+	NJS_ACTION TransAction = { nullptr, nullptr };
 	Angle v1; // eax
 	EntityData1 *v2; // esi
 	v2 = a1->Data1;
@@ -432,39 +340,21 @@ void FixMRBase(ObjectMaster *a1)
 	{
 		njRotateY(0, (unsigned __int16)v1);
 	}
+	OpaqueAction.object = OFinalEggModel_Opaque;
+	OpaqueAction.motion = ___ADV02_ACTIONS[0]->motion;
+	TransAction.object = OFinalEggModel_Transparent;
+	TransAction.motion = ___ADV02_ACTIONS[0]->motion;
 	//Render the FinalWay
-	sub_405450(___ADV02_ACTIONS[30], v2->Scale.y, 1.0);
+	njAction_Queue_407FC0(___ADV02_ACTIONS[30], v2->Scale.y, 1);
 	//Render the animation without the lights
-	sub_405450(*___ADV02_ACTIONS, v2->Scale.x, 1.0f);
+	njAction_Queue_407FC0(&OpaqueAction, v2->Scale.x, 1);
 	//Render the lights
-	DisplayAnimationFrame(&MRBase_LightsOnly, v2->Scale.x, (QueuedModelFlagsB)4, 1.0f, (void(__cdecl *)(NJS_MODEL_SADX *, int, int))DrawModel_Queue);
+	njAction_Queue_407FC0(&TransAction, v2->Scale.x, 0);
 	//Render the EfHikari thing
-	ProcessModelNode(&object2_002062F3, QueuedModelFlagsB_3, 1.0f);
+	DrawModel_Queue(OFinalEggModel_Opaque->child->sibling->sibling->basicdxmodel, QueuedModelFlagsB_3);
 	njPopMatrix(1u);
 	ToggleStageFog();
 	Direct3D_SetNearFarPlanes(LevelDrawDistance.Minimum, LevelDrawDistance.Maximum);
-}
-
-void FixMRBase_Apply(const IniFile *config, const HelperFunctions &helperFunctions)
-{
-	ReplacePVM("MR_FINALEGG");
-	//MR Base stuff
-	objectADV02_0020454C.evalflags |= NJD_EVAL_HIDE;
-	objectADV02_002046C8.evalflags |= NJD_EVAL_HIDE;
-	objectADV02_00204BC4.evalflags |= NJD_EVAL_HIDE;
-	objectADV02_00204D40.evalflags |= NJD_EVAL_HIDE;
-	objectADV02_0020523C.evalflags |= NJD_EVAL_HIDE;
-	objectADV02_002053B8.evalflags |= NJD_EVAL_HIDE;
-	objectADV02_002058B4.evalflags |= NJD_EVAL_HIDE;
-	objectADV02_00205A30.evalflags |= NJD_EVAL_HIDE;
-	WriteJump((void*)0x538430, FixMRBase);
-	___ADV02_ACTIONS[0]->object = &objectADV02_0020C3B0; //OFinalEgg
-	___ADV02_ACTIONS[0]->motion = &animation_000862E8; //OFinalEgg animation
-	___ADV02_ACTIONS[30]->object = &objectADV02_0020DC78; //OFinalWay
-	for (unsigned int i = 0; i < 3; i++)
-	{
-		MR3DrawDist[i].Maximum = -32000.0f;
-	}
 }
 
 void SetBlockEntryMaterialColor(float a, float r, float g, float b)
@@ -479,7 +369,6 @@ void SetBlockEntryMaterialColor(float a, float r, float g, float b)
 void UnloadLevelFiles_ADV02()
 {
 	//Clear all pointers and arrays
-	MROcean = nullptr;
 	for (int k = 0; k < LengthOfArray(MRWaterObjects); ++k)
 	{
 		MRWaterObjects[k] = nullptr;
@@ -496,15 +385,12 @@ void UnloadLevelFiles_ADV02()
 	{
 		MRJungleObjectsCallback[k] = nullptr;
 	}
-	//Clear Lantern materials and remove pointers
-	if (DLLLoaded_Lantern)
-	{
-		material_unregister_ptr(WhiteDiffuseADV02_External, LengthOfArray(WhiteDiffuseADV02_External), &ForceWhiteDiffuse);
-		for (int k = 0; k < LengthOfArray(WhiteDiffuseADV02_External); ++k)
-		{
-			WhiteDiffuseADV02_External[k] = nullptr;
-		}
-	}
+	//Unregister white diffuse
+	RemoveMRMaterials(0);
+	RemoveMRMaterials(1);
+	RemoveMRMaterials(2);
+	RemoveMRMaterials(3);
+	//Finish
 	delete ADV02_0_Info;
 	delete ADV02_1_Info;
 	delete ADV02_2_Info;
@@ -545,72 +431,63 @@ void LoadLevelFiles_ADV02()
 	ParseMRColFlags();
 	ParseMRMaterials();
 	WriteCall((void*)0x52FDC3, MRWater_Display);
-	if (DLLLoaded_Lantern) material_register_ptr(WhiteDiffuseADV02_External, LengthOfArray(WhiteDiffuseADV02_External), &ForceWhiteDiffuse);
+}
+
+void GeoAnimFix(NJS_ACTION* a1, float a2, int a3, float a4)
+{
+	if (CurrentLevel == LevelIDs_MysticRuins && CurrentAct == 2)
+	{
+		DrawQueueDepthBias = -20952.0f;
+		njAction_Queue_407FC0(a1, a2, 1);
+		DrawQueueDepthBias = 0.0f;
+	}
+	else sub_408350(a1, a2, a3, a4);
 }
 
 void ADV02_Init()
 {
-	ReplaceBIN_DC("SETMR00A");
-	ReplaceBIN_DC("SETMR00B");
-	ReplaceBIN_DC("SETMR00E");
-	ReplaceBIN_DC("SETMR00K");
-	ReplaceBIN_DC("SETMR00L");
-	ReplaceBIN_DC("SETMR00M");
-	ReplaceBIN_DC("SETMR00S");
-	ReplaceBIN_DC("SETMR01A");
-	ReplaceBIN_DC("SETMR01B");
-	ReplaceBIN_DC("SETMR01E");
-	ReplaceBIN_DC("SETMR01K");
-	ReplaceBIN_DC("SETMR01L");
-	ReplaceBIN_DC("SETMR01M");
-	ReplaceBIN_DC("SETMR01S");
-	ReplaceBIN_DC("SETMR02S");
-	ReplaceBIN_DC("SETMR03S");
+	if (!Use1999SetFiles)
+	{
+		ReplaceBIN_DC("SETMR00A");
+		ReplaceBIN_DC("SETMR00B");
+		ReplaceBIN_DC("SETMR00E");
+		ReplaceBIN_DC("SETMR00K");
+		ReplaceBIN_DC("SETMR00L");
+		ReplaceBIN_DC("SETMR00M");
+		ReplaceBIN_DC("SETMR00S");
+		ReplaceBIN_DC("SETMR01A");
+		ReplaceBIN_DC("SETMR01B");
+		ReplaceBIN_DC("SETMR01E");
+		ReplaceBIN_DC("SETMR01K");
+		ReplaceBIN_DC("SETMR01L");
+		ReplaceBIN_DC("SETMR01M");
+		ReplaceBIN_DC("SETMR01S");
+		ReplaceBIN_DC("SETMR02S");
+		ReplaceBIN_DC("SETMR03S");
+	}
+	else
+	{
+		ReplaceBIN_1999("SETMR00A");
+		ReplaceBIN_1999("SETMR00B");
+		ReplaceBIN_1999("SETMR00E");
+		ReplaceBIN_1999("SETMR00K");
+		ReplaceBIN_1999("SETMR00L");
+		ReplaceBIN_1999("SETMR00M");
+		ReplaceBIN_1999("SETMR00S");
+		ReplaceBIN_1999("SETMR01A");
+		ReplaceBIN_1999("SETMR01B");
+		ReplaceBIN_1999("SETMR01E");
+		ReplaceBIN_1999("SETMR01K");
+		ReplaceBIN_1999("SETMR01L");
+		ReplaceBIN_1999("SETMR01M");
+		ReplaceBIN_1999("SETMR01S");
+		ReplaceBIN_1999("SETMR02S");
+		ReplaceBIN_1999("SETMR03S");
+	}
 	ReplaceBIN_DC("CAMMR00S");
 	ReplaceBIN_DC("CAMMR01S");
 	ReplaceBIN_DC("CAMMR02S");
 	ReplaceBIN_DC("CAMMR03S");
-	switch (EnableSETFixes)
-	{
-		case SETFixes_Normal:
-			AddSETFix("SETMR00A");
-			AddSETFix("SETMR00B");
-			AddSETFix("SETMR00E");
-			AddSETFix("SETMR00K");
-			AddSETFix("SETMR00L");
-			AddSETFix("SETMR00M");
-			AddSETFix("SETMR00S");
-			AddSETFix("SETMR01A");
-			AddSETFix("SETMR01B");
-			AddSETFix("SETMR01E");
-			AddSETFix("SETMR01K");
-			AddSETFix("SETMR01L");
-			AddSETFix("SETMR01M");
-			AddSETFix("SETMR01S");
-			AddSETFix("SETMR02S");
-			AddSETFix("SETMR03S");
-			break;
-		case SETFixes_Extra:
-			AddSETFix_Extra("SETMR00A");
-			AddSETFix_Extra("SETMR00B");
-			AddSETFix_Extra("SETMR00E");
-			AddSETFix_Extra("SETMR00K");
-			AddSETFix_Extra("SETMR00L");
-			AddSETFix_Extra("SETMR00M");
-			AddSETFix_Extra("SETMR00S");
-			AddSETFix_Extra("SETMR01A");
-			AddSETFix_Extra("SETMR01B");
-			AddSETFix_Extra("SETMR01E");
-			AddSETFix_Extra("SETMR01K");
-			AddSETFix_Extra("SETMR01L");
-			AddSETFix_Extra("SETMR01M");
-			AddSETFix_Extra("SETMR01S");
-			AddSETFix_Extra("SETMR02S");
-			AddSETFix_Extra("SETMR03S");
-			break;
-		default:
-			break;
-	}
 	ReplacePVM("ADV_MR00");
 	ReplacePVM("ADV_MR01");
 	ReplacePVM("ADV_MR02");
@@ -627,6 +504,31 @@ void ADV02_Init()
 	ReplacePVM("MR_EGG");
 	ReplacePVM("MR_PYRAMID");
 	ReplacePVM("MR_TORNADO2");
+	ReplacePVM("MR_FINALEGG");
+	WriteCall((void*)0x43A85F, GeoAnimFix); //Landtable animation hook
+	//MR base stuff
+	WriteJump((void*)0x538430, FixMRBase);
+	___ADV02_ACTIONS[30]->object = LoadModel("system\\data\\ADV02\\Models\\0020DC78.sa1mdl", false); //OFinalWay
+	OFinalEggModel_Opaque = LoadModel("system\\data\\ADV02\\Models\\0020C3B0.sa1mdl", false); //Base opaque
+	OFinalEggModel_Opaque->child->sibling->sibling->evalflags |= NJD_EVAL_HIDE;
+	OFinalEggModel_Opaque->child->sibling->sibling->sibling->child->evalflags |= NJD_EVAL_HIDE;
+	OFinalEggModel_Opaque->child->sibling->sibling->sibling->child->sibling->evalflags |= NJD_EVAL_HIDE;
+	OFinalEggModel_Opaque->child->sibling->sibling->sibling->sibling->child->evalflags |= NJD_EVAL_HIDE;
+	OFinalEggModel_Opaque->child->sibling->sibling->sibling->sibling->child->sibling->evalflags |= NJD_EVAL_HIDE;
+	OFinalEggModel_Opaque->child->sibling->sibling->sibling->sibling->sibling->child->evalflags |= NJD_EVAL_HIDE;
+	OFinalEggModel_Opaque->child->sibling->sibling->sibling->sibling->sibling->child->sibling->evalflags |= NJD_EVAL_HIDE;
+	OFinalEggModel_Opaque->child->sibling->sibling->sibling->sibling->sibling->sibling->child->evalflags |= NJD_EVAL_HIDE;
+	OFinalEggModel_Opaque->child->sibling->sibling->sibling->sibling->sibling->sibling->child->sibling->evalflags |= NJD_EVAL_HIDE;
+	OFinalEggModel_Transparent = LoadModel("system\\data\\ADV02\\Models\\0020C3B0.sa1mdl", false); //Base transparent
+	OFinalEggModel_Transparent->evalflags |= NJD_EVAL_HIDE;
+	OFinalEggModel_Transparent->child->evalflags |= NJD_EVAL_HIDE;
+	OFinalEggModel_Transparent->child->sibling->evalflags |= NJD_EVAL_HIDE;
+	OFinalEggModel_Transparent->child->sibling->sibling->evalflags |= NJD_EVAL_HIDE;
+	OFinalEggModel_Transparent->child->sibling->sibling->sibling->evalflags |= NJD_EVAL_HIDE;
+	OFinalEggModel_Transparent->child->sibling->sibling->sibling->sibling->evalflags |= NJD_EVAL_HIDE;
+	OFinalEggModel_Transparent->child->sibling->sibling->sibling->sibling->sibling->evalflags |= NJD_EVAL_HIDE;
+	OFinalEggModel_Transparent->child->sibling->sibling->sibling->sibling->sibling->sibling->evalflags |= NJD_EVAL_HIDE;
+	//Code fixes
 	WriteData((float*)0x005343BE, 239.0f); //Windows in Tails' workshop
 	WriteData((float*)0x005343EF, 239.0f); //Windows in Tails' workshop 
 	WriteData<1>((char*)0x005370E0, 0x01); //Fix blending mode on floating bricks in WV entrance
@@ -637,7 +539,7 @@ void ADV02_Init()
 	WriteData<1>((char*)0x006F4BF1, 0x04); //Emerald shard (cutscene) glow blending mode	
 	//OBlockEntry brightness
 	WriteCall((void*)0x53B5E8, SetBlockEntryMaterialColor);
-	ADV02_OBJECTS[50]->basicdxmodel->mats[0].diffuse.color = 0xFFFFFFFF;
+	RemoveVertexColors_Object(ADV02_OBJECTS[50]);
 	//Cutscene after Lost World
 	WriteData((float*)0x006D2537, 16.0f); //Y1
 	WriteData((float*)0x006D2507, 16.0f); //Y2
@@ -650,15 +552,6 @@ void ADV02_Init()
 	//Enable MR light direction adjustment code
 	WriteData<6>((char*)0x00412536, 0x90u);
 	WriteData<6>((char*)0x00412544, 0x90u);
-	if (GetModuleHandle(L"ADV02MODELS") != nullptr && DLLLoaded_Lantern)
-	{
-		material_register_ptr(ObjectSpecular, LengthOfArray(ObjectSpecular), &ForceDiffuse0Specular1);
-		material_register_ptr(LevelSpecular, LengthOfArray(LevelSpecular), &ForceDiffuse0Specular0);
-		material_register_ptr(WhiteDiffuse, LengthOfArray(WhiteDiffuse), &ForceWhiteDiffuse);
-	}
-	*(NJS_OBJECT*)0x1108A18 = object_00226468; //TANKEN
-	*(NJS_OBJECT*)0x110CF34 = object2_00229334; //TANKEN 2
-	*(NJS_OBJECT*)0x11112CC = object_0022DDA4; //TANKEN 3
 	WriteCall((void*)0x0053CD37, SetColor); //Master Emerald glow
 	for (int i = 0; i < 3; i++)
 	{
@@ -685,6 +578,7 @@ void ADV02_Init()
 		MR3FogNight[i].Layer = -5000;
 		MR1DrawDist[i].Maximum = -10000.0f;
 		MR2DrawDist[i].Maximum = -10000.0f;
+		MR3DrawDist[i].Maximum = -10000.0f;
 		MR4DrawDist[i].Maximum = -4000.0f;
 	}
 	___ADV02_TEXLISTS[38] = &texlist_mr00;
@@ -694,61 +588,72 @@ void ADV02_Init()
 	MROBJ_TEXLISTS[0].TexList = &texlist_mrobj; //MROBJ
 	___ADV02_TEXLISTS[21] = &texlist_mrobj; //MROBJ
 	___ADV02_TEXLISTS[4] = &texlist_mrtrain;
+	*(NJS_OBJECT*)0x1108A18 = *LoadModel("system\\data\\ADV02\\Models\\00226468.sa1mdl", false); //TANKEN
+	*(NJS_OBJECT*)0x110CF34 = *LoadModel("system\\data\\ADV02\\Models\\00229334.sa1mdl", false); //TANKEN 2
+	*(NJS_OBJECT*)0x11112CC = *LoadModel("system\\data\\ADV02\\Models\\0022DDA4.sa1mdl", false); //TANKEN 3
 	//Palm trees near Tails' house
-	___ADV02_OBJECTS[67]->child->model = &attachADV02_001DCF1C;
-	___ADV02_OBJECTS[67]->child->child->model = &attachADV02_001DCC88;
-	___ADV02_OBJECTS[67]->child->sibling->model = &attachADV02_001DC060;
-	___ADV02_OBJECTS[67]->child->sibling->child->model = &attachADV02_001DBDDC;
-	___ADV02_OBJECTS[67]->child->sibling->sibling->model = &attachADV02_001DB1B4;
-	___ADV02_OBJECTS[67]->child->sibling->sibling->child->model = &attachADV02_001DAF20;
-	___ADV02_OBJECTS[67]->child->sibling->sibling->sibling->model = &attachADV02_001DA2D0;
-	___ADV02_OBJECTS[67]->child->sibling->sibling->sibling->child->model = &attachADV02_001DA03C;
-	___ADV02_OBJECTS[67]->child->sibling->sibling->sibling->sibling->model = &attachADV02_001D9414;
-	___ADV02_OBJECTS[67]->child->sibling->sibling->sibling->sibling->child->model = &attachADV02_001D9174;
-	___ADV02_OBJECTS[67]->child->sibling->sibling->sibling->sibling->sibling->model = &attachADV02_001D854C;
-	___ADV02_OBJECTS[67]->child->sibling->sibling->sibling->sibling->sibling->child->model = &attachADV02_001D82AC;
-	___ADV02_OBJECTS[84] = &objectADV02_000690B8; //Windows and the light above the door of Tails' house
-	___ADV02_OBJECTS[85] = &object_00069D28; //Same as above but lit up
+	LoadModel_ReplaceMeshes(___ADV02_OBJECTS[67], "system\\data\\ADV02\\Models\\001DCF78.sa1mdl");
+	RemoveVertexColors_Object(___ADV02_OBJECTS[67]);
+	AddWhiteDiffuseMaterial(&___ADV02_OBJECTS[67]->child->child->basicdxmodel->mats[1]);
+	AddWhiteDiffuseMaterial(&___ADV02_OBJECTS[67]->child->sibling->child->basicdxmodel->mats[1]);
+	AddWhiteDiffuseMaterial(&___ADV02_OBJECTS[67]->child->sibling->sibling->child->basicdxmodel->mats[1]);
+	AddWhiteDiffuseMaterial(&___ADV02_OBJECTS[67]->child->sibling->sibling->sibling->child->basicdxmodel->mats[1]);
+	AddWhiteDiffuseMaterial(&___ADV02_OBJECTS[67]->child->sibling->sibling->sibling->sibling->child->basicdxmodel->mats[1]);
+	AddWhiteDiffuseMaterial(&___ADV02_OBJECTS[67]->child->sibling->sibling->sibling->sibling->sibling->child->basicdxmodel->mats[1]);
+	___ADV02_OBJECTS[84] = LoadModel("system\\data\\ADV02\\Models\\001F6A04.sa1mdl", true); //Windows and the light above the door of Tails' house
+	ForceLevelSpecular_Object(___ADV02_OBJECTS[84]);
+	___ADV02_OBJECTS[85] = LoadModel("system\\data\\ADV02\\Models\\001F764C.sa1mdl", true); //Same as above but lit up
+	ForceLevelSpecular_Object(___ADV02_OBJECTS[85]);
 	//Material fixes
+	RemoveVertexColors_Object(___ADV02_OBJECTS[53]); //Diggable place
 	___ADV02_OBJECTS[90]->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_IGNORE_SPECULAR;
 	___ADV02_OBJECTS[91]->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_IGNORE_SPECULAR;
 	//Other objects
-	___ADV02_OBJECTS[25] = &objectADV02_001B9854; //Ice Cap door 1 
-	___ADV02_OBJECTS[26] = &objectADV02_001B9D9C; //Ice Cap door 2
-	___ADV02_OBJECTS[86] = &objectADV02_001BF00C; //Ice Cap lock
-	___ADV02_OBJECTS[88] = &objectADV02_001BBA04; //Ice Stone
-	___ADV02_OBJECTS[64] = &objectADV02_001E87F0; //Angel Island rock
-	___ADV02_OBJECTS[68] = &objectADV02_002145D4; //That thing that pushes the Chao Egg out
-	___ADV02_OBJECTS[100] = &objectADV02_001F41C0; //Grass
-	___ADV02_OBJECTS[20] = &objectADV02_001B5F40; //Torokko 
-	___ADV02_OBJECTS[61] = &objectADV02_001B1A98; //OIslandDoor
-	___ADV02_OBJECTS[60] = &objectADV02_001B0FE0; //OIslandDoor right
-	___ADV02_OBJECTS[59] = &objectADV02_001B1648; //OIslandDoor left
-	___ADV02_OBJECTS[39] = &objectADV02_001AF63C; //Monkey cage (full)
-	___ADV02_OBJECTS[38] = &objectADV02_001AF0B0; //Monkey cage (bottom)
-	___ADV02_OBJECTS[42] = &objectADV02_001AE9B0; //Monkey cage (bottom)
-	___ADV02_OBJECTS[43] = &objectADV02_001AE70C; //Monkey cage (bottom)
-	___ADV02_OBJECTS[10] = &objectADV02_001A79D0; //Item stand
-	___ADV02_OBJECTS[12] = &objectADV02_001A7370; //Item stand
-	___ADV02_OBJECTS[13] = &objectADV02_001A6B1C; //Item stand
-	___ADV02_OBJECTS[53]->basicdxmodel->mats[0].diffuse.color = 0xFFB2B2B2; //Diggable place
-	___ADV02_OBJECTS[103] = &objectADV02_001C76EC; //Master Emerald (complete)
-	___ADV02_OBJECTS[71]->model = &attachADV02_001D6AA0; //The gate for Tails' Tornado
-	___ADV02_OBJECTS[71]->child->sibling->sibling->basicdxmodel->mats[2].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	___ADV02_OBJECTS[71]->child->basicdxmodel->mats[0].diffuse.color = 0xFFB2B2B2;
-	___ADV02_OBJECTS[71]->child->sibling->basicdxmodel->mats[0].diffuse.color = 0xFFB2B2B2;
-	___ADV02_OBJECTS[70]->basicdxmodel->mats[0].diffuse.color = 0xFFB2B2B2;
-	___ADV02_OBJECTS[69]->basicdxmodel->mats[0].diffuse.color = 0xFFB2B2B2;
-	___ADV02_MODELS[15] = &attachADV02_0007C3B8; //Master Emerald glow
-	___ADV02_ACTIONS[11]->object = &objectADV02_001B5F40; //Torokko
-	___ADV02_ACTIONS[29]->object = &objectADV02_001BBA04; //Ice Stone
-	___ADV02_ACTIONS[32]->object = &objectADV02_001F41C0; //Rustling grass
-	___ADV02_ACTIONS[10]->object = &objectADV02_00201C18; //Train
-	___ADV02_ACTIONS[21]->object = &objectADV02_001DDBFC; //Plane platform
-	___ADV02_ACTIONS[9]->object = &objectADV02_001B2D5C; //Final Egg base door
-	___ADV02_ACTIONS[17]->object = &objectADV02_001CCFBC; //OHiddenGate
-	___ADV02_MODELS[9] = &attachADV02_0003D34C; //OHiddenGate button
-	___ADV02_MODELS[12] = &attachADV02_001B412C; //OSandSwitch
+	MROcean = LoadModel("system\\data\\ADV02\\Models\\0005FEE0.sa1mdl", false);
+	AddTextureAnimation_Permanent(33, 0, &MROcean->basicdxmodel->mats[0], false, 5, 130, 139, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1);
+	___ADV02_OBJECTS[23] = LoadModel("system\\data\\ADV02\\Models\\001BACAC.sa1mdl", false); //Ice Cap door full
+	___ADV02_OBJECTS[25] = LoadModel("system\\data\\ADV02\\Models\\001B9854.sa1mdl", false); //Ice Cap door 1 
+	___ADV02_OBJECTS[26] = LoadModel("system\\data\\ADV02\\Models\\001B9D9C.sa1mdl", false); //Ice Cap door 2
+	___ADV02_OBJECTS[86] = LoadModel("system\\data\\ADV02\\Models\\001BF00C.sa1mdl", false); //Ice Cap lock
+	___ADV02_OBJECTS[88] = LoadModel("system\\data\\ADV02\\Models\\001BBA04.sa1mdl", false); //Ice Stone
+	___ADV02_OBJECTS[76] = LoadModel("system\\data\\ADV02\\Models\\001BCA10.sa1mdl", false); //Wind Stone
+	___ADV02_ACTIONS[29]->object = ___ADV02_OBJECTS[88]; //Ice Stone
+	___ADV02_OBJECTS[64] = LoadModel("system\\data\\ADV02\\Models\\001E87F0.sa1mdl", false); //Angel Island rock
+	___ADV02_OBJECTS[68] = LoadModel("system\\data\\ADV02\\Models\\002145D4.sa1mdl", false); //That thing that pushes the Chao Egg out
+	___ADV02_OBJECTS[100] = LoadModel("system\\data\\ADV02\\Models\\001F41C0.sa1mdl", false); //Grass
+	___ADV02_ACTIONS[32]->object = ___ADV02_OBJECTS[100]; //Rustling grass
+	___ADV02_OBJECTS[20] = LoadModel("system\\data\\ADV02\\Models\\001B5F40.sa1mdl", false); //Torokko 
+	___ADV02_ACTIONS[11]->object = ___ADV02_OBJECTS[20]; //Torokko
+	___ADV02_ACTIONS[18]->object = LoadModel("system\\data\\ADV02\\Models\\001D76AC.sa1mdl", false); //Wall in Tails' house
+	___ADV02_OBJECTS[61] = LoadModel("system\\data\\ADV02\\Models\\001B1A98.sa1mdl", false); //OIslandDoor
+	___ADV02_OBJECTS[60] = LoadModel("system\\data\\ADV02\\Models\\001B0FE0.sa1mdl", false); //OIslandDoor right
+	___ADV02_OBJECTS[59] = LoadModel("system\\data\\ADV02\\Models\\001B1648.sa1mdl", false); //OIslandDoor left
+	___ADV02_OBJECTS[39] = LoadModel("system\\data\\ADV02\\Models\\001AF63C.sa1mdl", false); //Monkey cage (full)
+	___ADV02_OBJECTS[38] = LoadModel("system\\data\\ADV02\\Models\\001AF0B0.sa1mdl", false); //Monkey cage (bottom)
+	___ADV02_OBJECTS[42] = LoadModel("system\\data\\ADV02\\Models\\001AE9B0.sa1mdl", false); //Monkey cage (bottom)
+	___ADV02_OBJECTS[43] = LoadModel("system\\data\\ADV02\\Models\\001AE70C.sa1mdl", false); //Monkey cage (bottom)
+	___ADV02_OBJECTS[10] = LoadModel("system\\data\\ADV02\\Models\\001A79D0.sa1mdl", false); //Item stand
+	___ADV02_OBJECTS[12] = LoadModel("system\\data\\ADV02\\Models\\001A7370.sa1mdl", false); //Item stand
+	___ADV02_OBJECTS[13] = LoadModel("system\\data\\ADV02\\Models\\001A6B1C.sa1mdl", false); //Item stand
+	___ADV02_OBJECTS[96] = LoadModel("system\\data\\ADV02\\Models\\001BD918.sa1mdl", false); //OHandKey gold
+	___ADV02_OBJECTS[97] = LoadModel("system\\data\\ADV02\\Models\\001BE56C.sa1mdl", false); //OHandKey silver
+	___ADV02_OBJECTS[55] = LoadModel("system\\data\\ADV02\\Models\\001A9178.sa1mdl", false); //ODigPlace1
+	ADV02_ACTIONS[16]->object = ___ADV02_OBJECTS[55];
+	___ADV02_OBJECTS[103] = LoadModel("system\\data\\ADV02\\Models\\001C76EC.sa1mdl", false); //Master Emerald (complete)
+	___ADV02_OBJECTS[71] = LoadModel("system\\data\\ADV02\\Models\\001D6AC8.sa1mdl", false); //The gate for Tails' Tornado
+	___ADV02_OBJECTS[69] = ___ADV02_OBJECTS[71]->child;
+	___ADV02_OBJECTS[70] = ___ADV02_OBJECTS[71]->child->sibling;
+	___ADV02_MODELS[15] = LoadModel("system\\data\\ADV02\\Models\\002043D0.sa1mdl", false)->basicdxmodel; //Master Emerald glow
+	___ADV02_ACTIONS[10]->object = LoadModel("system\\data\\ADV02\\Models\\00201C18.sa1mdl", false); //Train
+	AddWhiteDiffuseMaterial(&___ADV02_ACTIONS[10]->object->child->sibling->sibling->sibling->basicdxmodel->mats[9]);
+	___ADV02_ACTIONS[21]->object = LoadModel("system\\data\\ADV02\\Models\\001DDBFC.sa1mdl", false); //Plane platform
+	___ADV02_ACTIONS[9]->object = LoadModel("system\\data\\ADV02\\Models\\001B2D5C.sa1mdl", false); //Final Egg base door
+	___ADV02_ACTIONS[17]->object = LoadModel("system\\data\\ADV02\\Models\\001CCFBC.sa1mdl", false); //OHiddenGate
+	___ADV02_MODELS[9] = LoadModel("system\\data\\ADV02\\Models\\001CDEF0.sa1mdl", false)->basicdxmodel; //OHiddenGate button
+	AddWhiteDiffuseMaterial(&___ADV02_MODELS[9]->mats[2]);
+	NJS_OBJECT* SandSwitch = LoadModel("system\\data\\ADV02\\Models\\001B42DC.sa1mdl", false);
+	___ADV02_MODELS[12] = SandSwitch->basicdxmodel; //OSandSwitch
+	___ADV02_MODELS[13] = SandSwitch->child->basicdxmodel; //OSandSwitch
 }
 
 void ADV02_OnFrame()
@@ -761,8 +666,6 @@ void ADV02_OnFrame()
 			//Animate rotating stuff in MR Jungle
 			if (CurrentAct == 2)
 			{
-				MRGeoAnimFrame += 0.4f*FramerateSetting;
-				if (MRGeoAnimFrame >= 120.0f) MRGeoAnimFrame = 0;
 				for (int q = 0; q < LengthOfArray(MRJungleObjectAnimations_Propeller); ++q)
 				{
 					if (MRJungleObjectAnimations_Propeller[q])
@@ -784,23 +687,6 @@ void ADV02_OnFrame()
 		{
 			CasinoLightRotation_Y = 0;
 			CasinoLightRotation_Z = 0;
-		}
-		//Evening and night materials Act 3
-		if (CurrentAct == 2)
-		{
-			matlistADV02_00208504Z[9].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-			matlistADV02_00208504Z[10].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-			matlistADV02_00208504Z[11].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-			matlistADV02_00208504Z[12].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-			matlistADV02_00208504[9].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-			matlistADV02_00208504[10].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-			matlistADV02_00208504[11].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-			matlistADV02_00208504[12].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-			matlistADV02_0020632C[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-			matlistADV02_00208504Z[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-			matlistADV02_00208504Z[2].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-			matlistADV02_00208504[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-			matlistADV02_00208504[2].attrflags |= NJD_FLAG_IGNORE_LIGHT;
 		}
 		//Dynamic fog in the jungle + cutscene exclusions
 		if (!IsGamePaused() && ADV02_2_Info && CurrentAct == 2)

@@ -368,7 +368,6 @@ void UnloadLevelFiles_SBOARD();
 void UnloadLevelFiles_Chao();
 void UnloadLevelFiles_AL_RACE();
 
-void FixMRBase_Apply(const IniFile *config, const HelperFunctions &helperFunctions);
 void Branding_Init(const IniFile *config, const HelperFunctions &helperFunctions);
 void Branding_OnFrame();
 void ADV00_Init();
