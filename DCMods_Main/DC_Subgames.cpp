@@ -540,6 +540,19 @@ void Subgames_Init()
 		ReplacePVM("OBJ_SANDBOARD");
 		ReplacePVM("SANDBOARD");
 		*(NJS_OBJECT *)0x017424DC = *LoadModel("system\\data\\SBOARD\\Models\\0006EA40.sa1mdl", false); //Sand Hill ramp
+		//Clear material colors
+		RemoveVertexColors_Object((NJS_OBJECT*)0x1741A9C); //RockyHead
+		RemoveVertexColors_Object((NJS_OBJECT*)0x174DED0); //Rock
+		RemoveVertexColors_Object((NJS_OBJECT*)0x174D76C); //SnakeStatue
+		RemoveVertexColors_Object((NJS_OBJECT*)0x174E974); //PillarS
+		RemoveVertexColors_Object((NJS_OBJECT*)0x174C148); //PillarM
+		RemoveVertexColors_Object((NJS_OBJECT*)0x174AF94); //PillarL
+		RemoveVertexColors_Object((NJS_OBJECT*)0x174EAC8); //BigCactusA
+		RemoveVertexColors_Object((NJS_OBJECT*)0x1744D24); //BigCactusB
+		RemoveVertexColors_Object((NJS_OBJECT*)0x1745A38); //BigCactusC
+		RemoveVertexColors_Object((NJS_OBJECT*)0x1749E44); //Sand worm tail
+		RemoveVertexColors_Object((NJS_OBJECT*)0x17499DC); //Sand worm body
+		RemoveVertexColors_Object((NJS_OBJECT*)0x17495AC); //Sand worm head
 	}
 	if (EnableTwinkleCircuit)
 	{
