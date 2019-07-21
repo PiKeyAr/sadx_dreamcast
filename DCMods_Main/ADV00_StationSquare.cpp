@@ -119,6 +119,17 @@ void RenderOfficeDoor_Child(NJS_MODEL_SADX *a1, float scale)
 	DrawModel_Queue(a1, QueuedModelFlagsB_EnableZWrite);
 }
 
+static void SSCar_Display_r(ObjectMaster* a1);
+static Trampoline SSCar_Display_t(0x6325D0, 0x6325D5, SSCar_Display_r);
+static void __cdecl SSCar_Display_r(ObjectMaster* a1)
+{
+	auto original = reinterpret_cast<decltype(SSCar_Display_r)*>(SSCar_Display_t.Target());
+	EntityData2* Data2 = (EntityData2*)a1->Data2;
+	//Animation frame fix
+	if (EnableStationSquare && Data2->field_38 > 7) Data2->field_38 = 0;
+	original(a1);
+}
+
 void RenderParasol(NJS_MODEL_SADX *a1, int a2, float a3)
 {
 	ProcessModelNode(Parasol_1, QueuedModelFlagsB_EnableZWrite, 1.0f); //Main model
