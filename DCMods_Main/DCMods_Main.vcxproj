@@ -209,9 +209,7 @@
     <ClInclude Include="Data\MRGarden.h" />
     <ClInclude Include="Data\RM_Objects.h" />
     <ClInclude Include="Data\SandHill.h" />
-    <ClInclude Include="Data\SandHill_objects.h" />
     <ClInclude Include="Data\SH_helicopter.h" />
-    <ClInclude Include="Data\SkyChaseModels.h" />
     <ClInclude Include="Data\SkyDeck1.h" />
     <ClInclude Include="Data\SkyDeck2.h" />
     <ClInclude Include="Data\SkyDeck3.h" />

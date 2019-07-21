@@ -371,9 +371,6 @@
     <ClInclude Include="Data\SandHill.h">
       <Filter>Header Files\Levels\Subgames</Filter>
     </ClInclude>
-    <ClInclude Include="Data\SkyChaseModels.h">
-      <Filter>Header Files\Levels\Subgames</Filter>
-    </ClInclude>
     <ClInclude Include="Data\SkyDeck_objects.h">
       <Filter>Header Files\Levels\SkyDeck</Filter>
     </ClInclude>
@@ -432,9 +429,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Data\TwinkleCircuit.h">
-      <Filter>Header Files\Levels\Subgames</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\SandHill_objects.h">
       <Filter>Header Files\Levels\Subgames</Filter>
     </ClInclude>
     <ClInclude Include="Data\Chaos6_Motion.h">

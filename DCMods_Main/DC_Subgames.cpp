@@ -1,6 +1,4 @@
 #include "stdafx.h"
-#include "SandHill_Objects.h"
-#include "SkyChaseModels.h"
 
 NJS_TEXNAME textures_sandhill[50];
 NJS_TEXLIST texlist_sandhill = { arrayptrandlength(textures_sandhill) };
@@ -93,244 +91,6 @@ NJS_MATERIAL* WhiteDiffuse_Subgames[] = {
 	((NJS_MATERIAL*)0x009CC074),
 	((NJS_MATERIAL*)0x009CC088),
 	((NJS_MATERIAL*)0x009CC09C),
-	&matlistSHOOTING_000293DC[33],
-	&matlistSHOOTING_000293DC[34],
-	&matlistSHOOTING_000293DC[35],
-	&matlistSHOOTING_000293DC[36],
-	&matlistSHOOTING_000293DC[37],
-	&matlistSHOOTING_000293DC[38],
-	&matlistSHOOTING_000293DC[39],
-	&matlistSHOOTING_000293DC[40],
-	&matlistSHOOTING_000293DC[41],
-	&matlistSHOOTING_000293DC[42],
-	&matlistSHOOTING_000293DC[43],
-	&matlistSHOOTING_000293DC[44],
-	&matlistSHOOTING_000293DC[45],
-	&matlistSHOOTING_000293DC[46],
-	&matlistSHOOTING_000293DC[47],
-	&matlistSHOOTING_000293DC[48],
-	&matlistSHOOTING_000293DC[49],
-	&matlistSHOOTING_000293DC[50],
-	&matlistSHOOTING_000293DC[51],
-	&matlistSHOOTING_000293DC[52],
-	&matlistSHOOTING_000293DC[53],
-	&matlistSHOOTING_000293DC[54],
-	&matlistSHOOTING_000293DC[55],
-	&matlistSHOOTING_000293DC[56],
-	&matlistSHOOTING_000293DC[57],
-	&matlistSHOOTING_000293DC[58],
-	&matlistSHOOTING_000293DC[59],
-	&matlistSHOOTING_000293DC[60],
-	&matlistSHOOTING_000293DC[61],
-	&matlistSHOOTING_000293DC[62],
-	&matlistSHOOTING_000293DC[63],
-	&matlistSHOOTING_000293DC[64],
-	&matlistSHOOTING_000293DC[65],
-	&matlistSHOOTING_000293DC[66],
-	&matlistSHOOTING_000293DC[67],
-	&matlistSHOOTING_000293DC[68],
-	&matlistSHOOTING_000293DC[69],
-	&matlistSHOOTING_000293DC[70],
-	&matlistSHOOTING_000293DC[71],
-	&matlistSHOOTING_000293DC[72],
-	&matlistSHOOTING_000293DC[73],
-	&matlistSHOOTING_000293DC[74],
-	&matlistSHOOTING_000293DC[75],
-	&matlistSHOOTING_000293DC[76],
-	&matlistSHOOTING_000293DC[77],
-	&matlistSHOOTING_000293DC[78],
-	&matlistSHOOTING_000293DC[79],
-	&matlistSHOOTING_000293DC[80],
-	&matlistSHOOTING_000293DC[81],
-	&matlistSHOOTING_000293DC[82],
-	&matlistSHOOTING_000293DC[83],
-	&matlistSHOOTING_000293DC[84],
-	&matlistSHOOTING_000293DC[85],
-	&matlistSHOOTING_000293DC[86],
-	&matlistSHOOTING_000293DC[87],
-	&matlistSHOOTING_000293DC[88],
-	&matlistSHOOTING_000293DC[89],
-	&matlistSHOOTING_000293DC[90],
-	&matlistSHOOTING_000293DC[91],
-	&matlistSHOOTING_000293DC[92],
-	&matlistSHOOTING_000293DC[93],
-	&matlistSHOOTING_000293DC[94],
-	&matlistSHOOTING_000293DC[95],
-	&matlistSHOOTING_000293DC[96],
-	&matlistSHOOTING_000293DC[97],
-	&matlistSHOOTING_000293DC[98],
-	&matlistSHOOTING_000293DC[99],
-	&matlistSHOOTING_000293DC[100],
-	&matlistSHOOTING_000293DC[101],
-	&matlistSHOOTING_000293DC[102],
-	/*
-	&matlistSHOOTING_000337B4[0],
-	&matlistSHOOTING_000337B4[1],
-	&matlistSHOOTING_000337B4[2],
-	&matlistSHOOTING_000337B4[3],
-	&matlistSHOOTING_000337B4[4],
-	&matlistSHOOTING_000337B4[5],
-	&matlistSHOOTING_000337B4[6],
-	&matlistSHOOTING_000337B4[7],
-	&matlistSHOOTING_000337B4[8],
-	&matlistSHOOTING_000337B4[9],
-	&matlistSHOOTING_000337B4[10],
-	&matlistSHOOTING_000337B4[11],
-	&matlistSHOOTING_000337B4[12],
-	&matlistSHOOTING_000337B4[13],
-	&matlistSHOOTING_000337B4[14],
-	&matlistSHOOTING_000337B4[15],
-	&matlistSHOOTING_000337B4[16],
-	&matlistSHOOTING_000337B4[17],
-	&matlistSHOOTING_000337B4[18],*/
-	&matlistSHOOTING_000337B4[19],
-	&matlistSHOOTING_000337B4[20],
-	&matlistSHOOTING_000337B4[21],
-	&matlistSHOOTING_000337B4[22],
-	&matlistSHOOTING_000337B4[23],
-	&matlistSHOOTING_000337B4[24],
-	&matlistSHOOTING_000337B4[25],
-	&matlistSHOOTING_000337B4[26],
-	&matlistSHOOTING_000337B4[27],
-	&matlistSHOOTING_000337B4[28],
-	&matlistSHOOTING_000337B4[29],
-	&matlistSHOOTING_000337B4[30],
-	&matlistSHOOTING_000337B4[31],
-	&matlistSHOOTING_000337B4[32],
-	&matlistSHOOTING_000337B4[33],
-	&matlistSHOOTING_000337B4[34],
-	&matlistSHOOTING_000337B4[35],
-	&matlistSHOOTING_000337B4[36],
-	&matlistSHOOTING_000337B4[37],
-	&matlistSHOOTING_000337B4[38],
-	&matlistSHOOTING_000337B4[39],
-	&matlistSHOOTING_000337B4[40],
-	&matlistSHOOTING_000337B4[41],
-	&matlistSHOOTING_000337B4[42],
-	&matlistSHOOTING_000337B4[43],
-	&matlistSHOOTING_000337B4[44],
-	&matlistSHOOTING_000337B4[45],
-	&matlistSHOOTING_000337B4[46],
-	&matlistSHOOTING_000337B4[47],
-	&matlistSHOOTING_000337B4[48],
-	&matlistSHOOTING_000337B4[49],
-	&matlistSHOOTING_000337B4[50],
-	&matlistSHOOTING_000337B4[51],
-	&matlistSHOOTING_000337B4[52],
-	&matlistSHOOTING_000337B4[53],
-	&matlistSHOOTING_000337B4[54],
-	&matlistSHOOTING_000337B4[55],
-	&matlistSHOOTING_000337B4[56],
-	&matlistSHOOTING_000337B4[57],
-	&matlistSHOOTING_000337B4[58],
-	&matlistSHOOTING_000337B4[59],
-	&matlistSHOOTING_000337B4[60],
-	&matlistSHOOTING_000337B4[61],
-	&matlistSHOOTING_000337B4[62],
-	&matlistSHOOTING_000337B4[63],
-	&matlistSHOOTING_000337B4[64],
-	&matlistSHOOTING_000337B4[65],
-	&matlistSHOOTING_000337B4[66],
-	&matlistSHOOTING_000337B4[67],
-	&matlistSHOOTING_000337B4[68],
-	&matlistSHOOTING_000337B4[69],
-	&matlistSHOOTING_000337B4[70],
-	&matlistSHOOTING_000337B4[71],
-	&matlistSHOOTING_000337B4[72],
-	&matlistSHOOTING_000337B4[73],
-	&matlistSHOOTING_000337B4[74],
-	&matlistSHOOTING_000337B4[75],
-	&matlistSHOOTING_000337B4[76],
-	&matlistSHOOTING_000337B4[77],
-	&matlistSHOOTING_000337B4[78],
-	&matlistSHOOTING_000337B4[79],
-	&matlistSHOOTING_000337B4[80],
-	&matlistSHOOTING_000337B4[81],
-	&matlistSHOOTING_000337B4[82],
-	&matlistSHOOTING_000337B4[83],
-	&matlistSHOOTING_000337B4[84],
-	&matlistSHOOTING_000337B4[85],
-	&matlistSHOOTING_000337B4[86],
-	&matlistSHOOTING_000337B4[87],
-	&matlistSHOOTING_000337B4[88],
-	&matlistSHOOTING_000337B4[89],
-	&matlistSHOOTING_000337B4[90],
-	&matlistSHOOTING_000337B4[91],
-	&matlistSHOOTING_000337B4[92],
-	&matlistSHOOTING_000337B4[93],
-	&matlistSHOOTING_000337B4[94],
-	&matlistSHOOTING_000337B4[95],
-	&matlistSHOOTING_000337B4[96],
-	//Part 3
-	&matlistSHOOTING_0002EB04[37],
-	&matlistSHOOTING_0002EB04[38],
-	&matlistSHOOTING_0002EB04[39],
-	&matlistSHOOTING_0002EB04[40],
-	&matlistSHOOTING_0002EB04[41],
-	&matlistSHOOTING_0002EB04[42],
-	&matlistSHOOTING_0002EB04[43],
-	&matlistSHOOTING_0002EB04[44],
-	&matlistSHOOTING_0002EB04[45],
-	&matlistSHOOTING_0002EB04[46],
-	&matlistSHOOTING_0002EB04[47],
-	&matlistSHOOTING_0002EB04[48],
-	&matlistSHOOTING_0002EB04[49],
-	&matlistSHOOTING_0002EB04[50],
-	&matlistSHOOTING_0002EB04[51],
-	&matlistSHOOTING_0002EB04[52],
-	&matlistSHOOTING_0002EB04[53],
-	&matlistSHOOTING_0002EB04[54],
-	&matlistSHOOTING_0002EB04[55],
-	&matlistSHOOTING_0002EB04[56],
-	&matlistSHOOTING_0002EB04[57],
-	&matlistSHOOTING_0002EB04[58],
-	&matlistSHOOTING_0002EB04[59],
-	&matlistSHOOTING_0002EB04[60],
-	&matlistSHOOTING_0002EB04[61],
-	&matlistSHOOTING_0002EB04[62],
-	&matlistSHOOTING_0002EB04[63],
-	&matlistSHOOTING_0002EB04[64],
-	&matlistSHOOTING_0002EB04[65],
-	&matlistSHOOTING_0002EB04[66],
-	&matlistSHOOTING_0002EB04[67],
-	&matlistSHOOTING_0002EB04[68],
-	&matlistSHOOTING_0002EB04[69],
-	&matlistSHOOTING_0002EB04[70],
-	&matlistSHOOTING_0002EB04[71],
-	&matlistSHOOTING_0002EB04[72],
-	&matlistSHOOTING_0002EB04[73],
-	&matlistSHOOTING_0002EB04[74],
-	&matlistSHOOTING_0002EB04[75],
-	&matlistSHOOTING_0002EB04[76],
-	&matlistSHOOTING_0002EB04[77],
-	&matlistSHOOTING_0002EB04[78],
-	&matlistSHOOTING_0002EB04[79],
-	&matlistSHOOTING_0002EB04[80],
-	&matlistSHOOTING_0002EB04[81],
-	&matlistSHOOTING_0002EB04[82],
-	&matlistSHOOTING_0002EB04[83],
-	&matlistSHOOTING_0002EB04[84],
-	&matlistSHOOTING_0002EB04[85],
-	&matlistSHOOTING_0002EB04[86],
-	&matlistSHOOTING_0002EB04[87],
-	&matlistSHOOTING_0002EB04[88],
-	&matlistSHOOTING_0002EB04[89],
-	&matlistSHOOTING_0002EB04[90],
-	&matlistSHOOTING_0002EB04[91],
-	&matlistSHOOTING_0002EB04[92],
-	&matlistSHOOTING_0002EB04[93],
-	&matlistSHOOTING_0002EB04[94],
-	&matlistSHOOTING_0002EB04[95],
-	&matlistSHOOTING_0002EB04[96],
-	&matlistSHOOTING_0002EB04[97],
-	&matlistSHOOTING_0002EB04[98],
-	&matlistSHOOTING_0002EB04[99],
-	&matlistSHOOTING_0002EB04[100],
-	&matlistSHOOTING_0002EB04[101],
-	&matlistSHOOTING_0002EB04[102],
-	&matlistSHOOTING_0002EB04[103],
-	&matlistSHOOTING_0002EB04[104],
-	&matlistSHOOTING_0002EB04[105],
 };
 
 NJS_MATERIAL* ObjectBaseAndSpecular_Subgames[] = {
@@ -656,40 +416,42 @@ NJS_MATERIAL* ObjectBaseAndSpecular_Subgames[] = {
 	((NJS_MATERIAL*)0x028092C0),
 };
 
-void FixSky1(NJS_OBJECT *a1, float scale)
+void FixSky1(NJS_OBJECT* a1, float scale)
 {
-	if (CurrentLevel == 36 && SkyChaseActionThing == 5) njTranslate(0, 0, 2000.0f, 0);
-	DrawQueueDepthBias = -12000;
-	ProcessModelNode(a1, QueuedModelFlagsB_3, scale);
-	DrawQueueDepthBias = 0;
-}
-
-void FixSky2(NJS_OBJECT *a1, float scale)
-{
-	DrawQueueDepthBias = -13000;
-	if (CurrentLevel == 36) ProcessModelNode(a1, QueuedModelFlagsB_3, scale);
-	else ProcessModelNode(a1, (QueuedModelFlagsB)0, scale);
-	DrawQueueDepthBias = 0;
-}
-
-void FixSkybox(NJS_OBJECT *a1, float scale)
-{
-	if (CurrentLevel == 36)
+	if (CurrentLevel == LevelIDs_SkyChase1 && SkyChaseActionThing == 5) njTranslate(0, 0, 2000.0f, 0);
+	if (CurrentLevel == LevelIDs_SkyChase1)
 	{
-		DrawQueueDepthBias = -10000;
-		ProcessModelNode(&objectSHOOTING_024E0CD8_2, (QueuedModelFlagsB)0, scale); //Skybox top and middle
-		DrawQueueDepthBias = -15000;
-		ProcessModelNode(&objectSHOOTING_024E0CD8, (QueuedModelFlagsB)0, scale); //Skybox bottom
-		DrawQueueDepthBias = 0;
+		DrawQueueDepthBias = -46000.0f;
+		ProcessModelNode_C(a1, (QueuedModelFlagsB)0, scale);
 	}
 	else
 	{
-		DrawQueueDepthBias = -30000;
-		ProcessModelNode(&objectSHOOTING_02418598_2, (QueuedModelFlagsB)0, scale); //Skybox top and middle
-		DrawQueueDepthBias = -15000;
-		ProcessModelNode(&objectSHOOTING_02418598, (QueuedModelFlagsB)0, scale); //Skybox bottom
-		DrawQueueDepthBias = 0;
+		DrawQueueDepthBias = -40000.0f;
+		ProcessModelNode_C(a1, (QueuedModelFlagsB)0, scale);
 	}
+	DrawQueueDepthBias = 0;
+}
+
+void FixSky2(NJS_OBJECT* a1, float scale)
+{
+	if (CurrentLevel == LevelIDs_SkyChase1)
+	{
+		DrawQueueDepthBias = -44000.0f;
+		ProcessModelNode_C(a1, (QueuedModelFlagsB)0, scale);
+	}
+	else
+	{
+		DrawQueueDepthBias = -25000.0f;
+		ProcessModelNode_C(a1, (QueuedModelFlagsB)0, scale);
+	}
+	DrawQueueDepthBias = 0;
+}
+
+void DrawSkyChaseSkybox(NJS_OBJECT* a1, float scale)
+{
+	DrawQueueDepthBias = -40000.0f;
+	ProcessModelNode_C(a1, QueuedModelFlagsB_EnableZWrite, scale);
+	DrawQueueDepthBias = 0;
 }
 
 void UnloadLevelFiles_MINICART()
@@ -724,11 +486,32 @@ void LoadLevelFiles_SBOARD()
 	LandTableArray[184] = SBOARD; //Sand Hill
 }
 
+void AddObjectWhiteDiffuseMaterials_Range(NJS_OBJECT* object, int first, int last)
+{
+	if (object->basicdxmodel)
+	{
+		for (int j = first; j < last + 1; j++)
+		{
+			//PrintDebug("Adding %d\n", j);
+			AddWhiteDiffuseMaterial(&object->basicdxmodel->mats[j]);
+		}
+	}
+}
+
 void Subgames_Init()
 {
-	ReplaceBIN_DC("SET0000A");
-	ReplaceBIN_DC("SET0000S");
-	ReplaceBIN_DC("SET0001S");
+	if (!Use1999SetFiles)
+	{
+		ReplaceBIN_DC("SET0000A");
+		ReplaceBIN_DC("SET0000S");
+		ReplaceBIN_DC("SET0001S");
+	}
+	else
+	{
+		ReplaceBIN_1999("SET0000A");
+		ReplaceBIN_1999("SET0000S");
+		ReplaceBIN_1999("SET0001S");
+	}
 	if (!DLLLoaded_HDGUI)
 	{
 		ReplacePVR("ST_064S_LOCKA");
@@ -740,49 +523,50 @@ void Subgames_Init()
 	{ 
 		ReplaceBIN_DC("CAMSBOARD00S");
 		ReplaceBIN_DC("CAMSBOARD01S");
-		ReplaceBIN_DC("SETSBOARD00M");
-		ReplaceBIN_DC("SETSBOARD00S");
-		ReplaceBIN_DC("SETSBOARD01S");
+		if (!Use1999SetFiles)
+		{
+			ReplaceBIN_DC("SETSBOARD00M");
+			ReplaceBIN_DC("SETSBOARD00S");
+			ReplaceBIN_DC("SETSBOARD01S");
+		}
+		else
+		{
+			ReplaceBIN_1999("SETSBOARD00M");
+			ReplaceBIN_1999("SETSBOARD00S");
+			ReplaceBIN_1999("SETSBOARD01S");
+		}
 		ReplacePVM("BG_SANDBOARD");
 		ReplacePVM("EFF_SANDBOARD");
 		ReplacePVM("OBJ_SANDBOARD");
 		ReplacePVM("SANDBOARD");
-		*(NJS_OBJECT *)0x017424DC = objectSBOARD_0006EA40; //Sand Hill ramp
+		*(NJS_OBJECT *)0x017424DC = *LoadModel("system\\data\\SBOARD\\Models\\0006EA40.sa1mdl", false); //Sand Hill ramp
 	}
 	if (EnableTwinkleCircuit)
 	{
-		ReplaceBIN_DC("SETMCART00S");
-		ReplaceBIN_DC("SETMCART01S");
-		ReplaceBIN_DC("SETMCART02S");
-		ReplaceBIN_DC("SETMCART03S");
-		ReplaceBIN_DC("SETMCART04S");
-		ReplaceBIN_DC("SETMCART05S");
+		if (!Use1999SetFiles)
+		{
+			ReplaceBIN_DC("SETMCART00S");
+			ReplaceBIN_DC("SETMCART01S");
+			ReplaceBIN_DC("SETMCART02S");
+			ReplaceBIN_DC("SETMCART03S");
+			ReplaceBIN_DC("SETMCART04S");
+			ReplaceBIN_DC("SETMCART05S");
+		}
+		else
+		{
+			ReplaceBIN_1999("SETMCART00S");
+			ReplaceBIN_1999("SETMCART01S");
+			ReplaceBIN_1999("SETMCART02S");
+			ReplaceBIN_1999("SETMCART03S");
+			ReplaceBIN_1999("SETMCART04S");
+			ReplaceBIN_1999("SETMCART05S");
+		}
 		ReplaceBIN_DC("CAMMCART00S");
 		ReplaceBIN_DC("CAMMCART01S");
 		ReplaceBIN_DC("CAMMCART02S");
 		ReplaceBIN_DC("CAMMCART03S");
 		ReplaceBIN_DC("CAMMCART04S");
 		ReplaceBIN_DC("CAMMCART05S");
-		switch (EnableSETFixes)
-		{
-			case SETFixes_Normal:
-				AddSETFix("SETMCART00S");
-				AddSETFix("SETMCART01S");
-				ReplaceBIN_DC("SETMCART02S");
-				ReplaceBIN_DC("SETMCART03S");
-				ReplaceBIN_DC("SETMCART04S");
-				ReplaceBIN_DC("SETMCART05S");
-				break;
-			case SETFixes_Extra:
-				AddSETFix_Extra("SETMCART00S");
-				AddSETFix_Extra("SETMCART01S");
-				ReplaceBIN_DC("SETMCART02S");
-				ReplaceBIN_DC("SETMCART03S");
-				ReplaceBIN_DC("SETMCART04S");
-				ReplaceBIN_DC("SETMCART05S");
-			default:
-				break;
-		}
 		ReplacePVM("MINI_CART01");
 		ReplacePVM("MINI_CART02");
 		ReplacePVM("MINI_CART03");
@@ -791,8 +575,17 @@ void Subgames_Init()
 		ReplacePVM("MINI_CART06");
 		if (DLLLoaded_HDGUI == false) ReplacePVM("OBJ_MINI_CART");
 	}
+	//Sky Chase
+	if (!Use1999SetFiles)
+	{
 		ReplaceBIN_DC("SETSHT1S");
 		ReplaceBIN_DC("SETSHT2S");
+	}
+	else
+	{
+		ReplaceBIN_1999("SETSHT1S");
+		ReplaceBIN_1999("SETSHT2S");
+	}
 		ReplaceBIN_DC("CAMSHT1S");
 		ReplaceBIN_DC("CAMSHT2S");
 		//Other Sky Chase fixes
@@ -807,9 +600,11 @@ void Subgames_Init()
 		SkyboxScale_SkyChase1->Normal.x = 4.0f;
 		SkyboxScale_SkyChase1->Normal.y = 4.0f;
 		SkyboxScale_SkyChase1->Normal.z = 4.0f;
-		WriteCall((void*)0x0062BF35, FixSky1); //Sky piece 1
-		WriteCall((void*)0x0062C01D, FixSky2);  //Sky piece 2
-		WriteCall((void*)0x0062C161, FixSkybox); //Skybox rendering function for both acts
+		WriteCall((void*)0x0062BF35, FixSky1); //Sky piece 1 (act 1)
+		((NJS_OBJECT*)0x28DFD34)->basicdxmodel->mats[0].attrflags |= NJD_FLAG_USE_ALPHA;
+		((NJS_OBJECT*)0x28175F4)->basicdxmodel->mats[0].attrflags |= NJD_FLAG_USE_ALPHA;
+		WriteCall((void*)0x0062C01D, FixSky2); //Sky piece 2 (act 1)
+		WriteCall((void*)0x0062C161, DrawSkyChaseSkybox); //Skybox rendering function for both acts
 		//Tornado hit specular
 		((NJS_OBJECT*)0x02916F9C)->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_IGNORE_SPECULAR;
 		((NJS_OBJECT*)0x02916ADC)->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_IGNORE_SPECULAR;
@@ -817,26 +612,37 @@ void Subgames_Init()
 		((NJS_OBJECT*)0x02917F34)->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_IGNORE_SPECULAR;
 		WriteData((char*)0x0062751B, 0x00, 1); //Force Tornado light type
 		WriteData((char*)0x0062AC1F, 0x00, 1); //Force Tornado light type (transformation cutscene)
-	if (EnableSkyChaseEnemyModels)
-	{
-		if (!DLLLoaded_SA1Chars)
+		if (EnableSkyChaseEnemyModels)
 		{
-			ReplacePVM("SHOOTING1");
-			ReplacePVM("SHOOTING2");
-		}
-		if (!DLLLoaded_HDGUI)
-		{
-			ReplacePVM("SHOOTING0");
+			if (!DLLLoaded_SA1Chars)
+			{
+				ReplacePVM("SHOOTING1");
+				ReplacePVM("SHOOTING2");
+			}
+			if (!DLLLoaded_HDGUI)
+			{
+				ReplacePVM("SHOOTING0");
 
+			}
+			//Egg Carrier model
+			NJS_OBJECT *EggCarrierModel= LoadModel("system\\data\\SHOOTING\\Models\\0003FA40.sa1mdl", false);
+			*(NJS_OBJECT*)0x02982F44 = *EggCarrierModel;
+			//Oh gee... This is gonna be long
+			AddObjectWhiteDiffuseMaterials_Range(EggCarrierModel->child->sibling->sibling->sibling, 75, 102);
+			AddObjectWhiteDiffuseMaterials_Range(EggCarrierModel->child->sibling->sibling->sibling->sibling, 19, 96);
+			AddObjectWhiteDiffuseMaterials_Range(EggCarrierModel->child->sibling->sibling->sibling->sibling->sibling, 37, 105);
+			AddObjectWhiteDiffuseMaterials_Range(EggCarrierModel->child->sibling->sibling->sibling->sibling->sibling->sibling, 33, 102);
+			ForceLevelSpecular_Object(EggCarrierModel->child->sibling->sibling->sibling);
+			ForceLevelSpecular_Object(EggCarrierModel->child->sibling->sibling->sibling->sibling->sibling->sibling->sibling);
+			ForceLevelSpecular_Object(EggCarrierModel->child->sibling->sibling->sibling->sibling->sibling->sibling->sibling->sibling);
+			//Other objects
+			*(NJS_OBJECT*)0x298A894 = *LoadModel("system\\data\\SHOOTING\\Models\\00047110.sa1mdl", false); //Hodai
+			*(NJS_OBJECT*)0x2941B2C = *LoadModel("system\\data\\SHOOTING\\Models\\0001342C.sa1mdl", false); //Kirai
+			*(NJS_OBJECT*)0x028E2C88 = *LoadModel("system\\data\\SHOOTING\\Models\\0009153C.sa1mdl", false); //Beam in Act 1
+			*(NJS_OBJECT*)0x0298E7D0 = *LoadModel("system\\data\\SHOOTING\\Models\\0004AEE0.sa1mdl", false); //Beam in Act 2
+			((NJS_ACTION*)0x28E596C)->object = (NJS_OBJECT*)0x028E2C88; //Beam in Act 1
+			((NJS_ACTION*)0x2996C74)->object = (NJS_OBJECT*)0x0298E7D0; //Beam in Act 2
 		}
-		*(NJS_OBJECT *)0x02982F44 = objectSHOOTING_0003FA40; //Egg Carrier model
-		*(NJS_OBJECT *)0x298A894 = objectSHOOTING_00047110; //Hodai
-		*(NJS_OBJECT *)0x2941B2C = objectSHOOTING_0001342C; //Kirai
-		((NJS_ACTION*)0x28E596C)->object = &objectSHOOTING_0009153C; //Beam in Act 1
-		((NJS_ACTION*)0x2996C74)->object = &objectSHOOTING_0004AEE0; //Beam in Act 2
-		*(NJS_OBJECT *)0x028E2C88 = objectSHOOTING_0009153C; //Beam in Act 1
-		*(NJS_OBJECT *)0x0298E7D0 = objectSHOOTING_0004AEE0; //Beam in Act 2
-	}
 	//Lighting stuff
 	ReplaceBIN("PL_Z0B", "PL_Z0X");
 	if (DLLLoaded_Lantern)
@@ -846,7 +652,7 @@ void Subgames_Init()
 		material_register_ptr(WhiteDiffuse_Subgames, LengthOfArray(WhiteDiffuse_Subgames), &ForceWhiteDiffuse);
 	}
 	//Fog and draw distance tweaks
-	for (unsigned int i = 0; i < 3; i++)
+	for (int i = 0; i < 3; i++)
 	{
 		if (EnableSkyChaseFixes) DrawDist_SkyChase1[i].Maximum = -60000.0f;
 		if (EnableSandHill) FogData_SandHill[i].Color = 0xFFE0E0B0;
