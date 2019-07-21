@@ -113,14 +113,14 @@ void ParseMRColFlags()
 	LandTable *landtable;
 	//Station area
 	landtable = ___LANDTABLEMR[0];
-	for (unsigned int j = 0; j < landtable->COLCount; j++)
+	for (int j = 0; j < landtable->COLCount; j++)
 	{
 		colflags = landtable->Col[j].Flags;
 		if (colflags == 0x08000000) AddMRWaterObject(landtable->Col[j].Model);
 	}
 	//Jungle area
 	landtable = ___LANDTABLEMR[2];
-	for (unsigned int j = 0; j < landtable->COLCount; j++)
+	for (int j = 0; j < landtable->COLCount; j++)
 	{
 		colflags = landtable->Col[j].Flags;
 		if (colflags == 0x88001000 || colflags == 0x88000400) AddMRLandtableRotation(landtable->Col[j].Model, false);
@@ -143,7 +143,7 @@ void RemoveMRMaterials(int act)
 	Uint32 materialflags;
 	NJS_MATERIAL* material;
 	landtable = ___LANDTABLEMR[act];
-	for (unsigned int j = 0; j < landtable->COLCount; j++)
+	for (int j = 0; j < landtable->COLCount; j++)
 	{
 		for (int k = 0; k < landtable->Col[j].Model->basicdxmodel->nbMat; ++k)
 		{
@@ -166,7 +166,7 @@ void ParseMRMaterials()
 	LandTable *landtable;
 	//Station area
 	landtable = ___LANDTABLEMR[0];
-	for (unsigned int j = 0; j < landtable->COLCount; j++)
+	for (int j = 0; j < landtable->COLCount; j++)
 	{
 		for (int k = 0; k < landtable->Col[j].Model->basicdxmodel->nbMat; ++k)
 		{
@@ -200,7 +200,7 @@ void ParseMRMaterials()
 	}
 	//Angel Island
 	landtable = ___LANDTABLEMR[1];
-	for (unsigned int j = 0; j < landtable->COLCount; j++)
+	for (int j = 0; j < landtable->COLCount; j++)
 	{
 		for (int k = 0; k < landtable->Col[j].Model->basicdxmodel->nbMat; ++k)
 		{
@@ -215,7 +215,7 @@ void ParseMRMaterials()
 	}
 	//Jungle
 	landtable = ___LANDTABLEMR[2];
-	for (unsigned int j = 0; j < landtable->COLCount; j++)
+	for (int j = 0; j < landtable->COLCount; j++)
 	{
 		for (int k = 0; k < landtable->Col[j].Model->basicdxmodel->nbMat; ++k)
 		{
@@ -271,7 +271,7 @@ void ParseMRMaterials()
 	}
 	//Final Egg base
 	landtable = ___LANDTABLEMR[3];
-	for (unsigned int j = 0; j < landtable->COLCount; j++)
+	for (int j = 0; j < landtable->COLCount; j++)
 	{
 		for (int k = 0; k < landtable->Col[j].Model->basicdxmodel->nbMat; ++k)
 		{
@@ -305,7 +305,7 @@ void __cdecl MRWater_Display(void(__cdecl *function)(void *), void *data, float 
 			DrawQueueDepthBias = 0.0f;
 			njPopMatrix(1u);
 		}
-		for (unsigned int i = 0; i < LengthOfArray(MRWaterObjects); i++)
+		for (int i = 0; i < LengthOfArray(MRWaterObjects); i++)
 		{
 			if (MRWaterObjects[i])
 			{

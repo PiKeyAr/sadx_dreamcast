@@ -355,7 +355,7 @@ void ADV01C_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 	NJS_OBJECT* EggLift = LoadModel("system\\data\\ADV0130\\Models\\000B8CD4.sa1mdl", false); //OEggLift
 	___ADV01C_OBJECTS[23] = EggLift;
 	___ADV01C_ACTIONS[7]->object = EggLift;
-	for (unsigned int i = 0; i < 3; i++)
+	for (int i = 0; i < 3; i++)
 	{
 		EggCarrierInside1Fog[i].Distance = -12000;
 		EggCarrierInside1Fog[i].Layer = -12000;

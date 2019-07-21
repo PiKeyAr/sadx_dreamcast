@@ -146,7 +146,7 @@ void LoadLevelFiles_B_CHAOS7()
 	B_CHAOS7_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\B_CHAOS7\\0.sa1lvl"));
 	LandTable *B_CHAOS7 = B_CHAOS7_Info->getlandtable(); //&landtable_00001214;
 	RemoveMaterialColors_Landtable(B_CHAOS7);
-	for (unsigned int j = 0; j < B_CHAOS7->COLCount; j++)
+	for (int j = 0; j < B_CHAOS7->COLCount; j++)
 	{
 		if (B_CHAOS7->Col[j].Flags & 0x8000000)
 		{
@@ -310,7 +310,7 @@ void PerfectChaos_Init()
 	RemoveVertexColors_Object((NJS_OBJECT*)0x144CFE4);
 	RemoveVertexColors_Object((NJS_OBJECT*)0x144D208);
 	RemoveVertexColors_Object((NJS_OBJECT*)0x144D340);
-	for (unsigned int i = 0; i < 3; i++)
+	for (int i = 0; i < 3; i++)
 	{
 		Chaos7Fog[i].Layer = -6000.0f;
 		Chaos7Fog[i].Distance = -15000.0f;

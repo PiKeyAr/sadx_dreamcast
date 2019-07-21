@@ -343,7 +343,7 @@ void WindyValley_Init()
 	*(NJS_OBJECT*)0xC365AC = *LoadModel("system\\data\\STG02\\Models\\000D6630.sa1mdl", false); //OKazami 2
 	*(NJS_OBJECT*)0xC35F44 = *LoadModel("system\\data\\STG02\\Models\\000D6134.sa1mdl", true); //OKazami 3
 	//Skybox/fog data stuff
-	for (unsigned int i = 0; i < 3; i++)
+	for (int i = 0; i < 3; i++)
 	{
 		SkyboxScale_Windy1->Far.x = 1.0f;
 		SkyboxScale_Windy1->Far.y = 1.0f;

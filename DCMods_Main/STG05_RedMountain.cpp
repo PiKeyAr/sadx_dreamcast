@@ -218,7 +218,7 @@ void RedMountain_Init()
 	ResizeTextureList((NJS_TEXLIST*)0x230FDF4, textures_mountain1);
 	ResizeTextureList((NJS_TEXLIST*)0x229B8CC, textures_mountain2);
 	ResizeTextureList((NJS_TEXLIST*)0x224096C, textures_mountain3);
-	for (unsigned int i = 0; i < 3; i++)
+	for (int i = 0; i < 3; i++)
 	{
 		RedMountain1Fog[i].Color = 0xFFFFFFFF;
 		RedMountain1Fog[i].Layer = 2000.0f;
@@ -245,7 +245,7 @@ void RedMountain_OnFrame()
 	{
 		UVShift1 = (UVShift1 - 1 * FramerateSetting) % 255;
 		UVShift2 = (UVShift2 - 2 * FramerateSetting) % 255;
-		for (unsigned int q = 0; q < 4; q++)
+		for (int q = 0; q < 4; q++)
 		{
 			RMCloudTop->basicdxmodel->meshsets[0].vertuv[q].u = uv_00183A48[q].u + UVShift1;
 			RMCloudBottom->basicdxmodel->meshsets[0].vertuv[q].u = uv_00183A48[q].u + UVShift2;

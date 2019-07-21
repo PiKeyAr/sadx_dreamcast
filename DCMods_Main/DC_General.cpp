@@ -1673,7 +1673,7 @@ void General_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 	WriteCall((void*)0x5DCFB0, RenderEmeraldWithGlow);
 	WriteCall((void*)0x5DCF7D, RotateEmerald);
 	//Material fixes
-	for (unsigned int i = 0; i < LengthOfArray(RemoveColors_General); i++)
+	for (int i = 0; i < LengthOfArray(RemoveColors_General); i++)
 	{
 		RemoveMaterialColors(RemoveColors_General[i]);
 	}

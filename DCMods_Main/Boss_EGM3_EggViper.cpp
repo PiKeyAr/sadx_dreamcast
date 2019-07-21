@@ -40,7 +40,7 @@ void UnloadLevelFiles_B_EGM3()
 {
 	NJS_MATERIAL *material;
 	LandTable *B_EGM3 = B_EGM3_Info->getlandtable();
-	for (unsigned int j = 0; j < B_EGM3->COLCount; j++)
+	for (int j = 0; j < B_EGM3->COLCount; j++)
 	{
 		for (int k = 0; k < B_EGM3->Col[j].Model->basicdxmodel->nbMat; ++k)
 		{
@@ -64,7 +64,7 @@ void LoadLevelFiles_B_EGM3()
 	B_EGM3->TexList = &texlist_eggviper;
 	LandTableArray[56] = B_EGM3;
 	RemoveMaterialColors_Landtable(B_EGM3);
-	for (unsigned int j = 0; j < B_EGM3->COLCount; j++)
+	for (int j = 0; j < B_EGM3->COLCount; j++)
 	{
 		for (int k = 0; k < B_EGM3->Col[j].Model->basicdxmodel->nbMat; ++k)
 		{
@@ -103,7 +103,7 @@ void EggViper_Init()
 	ForceObjectSpecular_Object((NJS_OBJECT*)0x166C54C);
 	WriteCall((void*)0x6D04E3, EggViperCutsceneFix1); //supercoolsonic's position fix
 	WriteCall((void*)0x6D04EA, EggViperCutsceneFix2); //Cutscene pose fix
-	for (unsigned int i = 0; i < 3; i++)
+	for (int i = 0; i < 3; i++)
 	{
 		EggViperFog[i].Distance = -10000.0f;
 		EggViperFog[i].Layer = -10000.0f;

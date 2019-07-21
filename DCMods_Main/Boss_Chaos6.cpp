@@ -192,7 +192,7 @@ void Chaos6_Init()
 	((NJS_ACTION*)0x134C56C)->motion = &Chaos6Animation3; //Fix flickering parts in Chaos 6' walking animation
 	WriteData<1>((char*)0x556E40, 0xC3u); //Disable SetClip_Chaos6S
 	WriteData<1>((char*)0x556D60, 0xC3u); //Disable SetClip_Chaos6K
-	for (unsigned int i = 0; i < 3; i++)
+	for (int i = 0; i < 3; i++)
 	{
 		Chaos6SFog[i].Distance = 12000.0f;
 		Chaos6KFog[i].Distance = 12000.0f;

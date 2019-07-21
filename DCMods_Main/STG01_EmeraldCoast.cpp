@@ -236,7 +236,7 @@ void __cdecl Obj_EC1Water_DisplayX(ObjectMaster *a1)
 			{
 				u2_add = int(255 * (v1->Position.x - oldpos.x) / unitsize_u_small) % 255;
 				if (SADXWater_EmeraldCoast == true) u2_add = roundfloat(1.5f * u2_add);
-				for (unsigned int u_step = 0; u_step < LengthOfArray(uvSTG01_00CBB000_d); u_step++)
+				for (int u_step = 0; u_step < LengthOfArray(uvSTG01_00CBB000_d); u_step++)
 				{
 					HighPolyOceanUVs_Dynamic[u_step].u = HighPolyOceanUVs_Dynamic[u_step].u - u2_add;
 					u2_delta = HighPolyOceanUVs_Dynamic[u_step].u - uvSTG01_00CBB000_d[u_step].u;
@@ -248,7 +248,7 @@ void __cdecl Obj_EC1Water_DisplayX(ObjectMaster *a1)
 			{
 				v2_add = int(255 * (v1->Position.z - oldpos.z) / unitsize_v_small) % 255;
 				if (SADXWater_EmeraldCoast == true) v2_add = roundfloat(0.5f * v2_add);
-				for (unsigned int v_step = 0; v_step < LengthOfArray(uvSTG01_00CBB000_d); v_step++)
+				for (int v_step = 0; v_step < LengthOfArray(uvSTG01_00CBB000_d); v_step++)
 				{
 					HighPolyOceanUVs_Dynamic[v_step].v = HighPolyOceanUVs_Dynamic[v_step].v - v2_add;
 					v2_delta = HighPolyOceanUVs_Dynamic[v_step].v - uvSTG01_00CBB000_d[v_step].v;
@@ -670,7 +670,7 @@ void EmeraldCoast_Init()
 	WriteData<1>((char*)0x4F68E0, 0xC3u); //Disable SetClip_ECoast1
 	if (!IamStupidAndIWantFuckedUpOcean)
 	{
-		for (unsigned int i = 0; i < 3; i++)
+		for (int i = 0; i < 3; i++)
 		{
 			ReplaceBIN_DC("CAM0100E");
 			ReplaceBIN_DC("CAM0100S");
@@ -716,7 +716,7 @@ void EmeraldCoast_Init()
 	if (SADXWater_EmeraldCoast)
 	{
 		//Different UVs on the dynamic ocean model for SADX water
-		for (unsigned int rq = 0; rq < LengthOfArray(uvSTG01_00CBB000_d); rq++)
+		for (int rq = 0; rq < LengthOfArray(uvSTG01_00CBB000_d); rq++)
 		{
 			uvSTG01_00CBB000_d[rq].u = round(0.5 * uvSTG01_00CBB000_d[rq].u);
 			uvSTG01_00CBB000_d[rq].v = round(0.5 * uvSTG01_00CBB000_d[rq].v);
@@ -755,7 +755,7 @@ void EmeraldCoast_Init()
 	WriteJump((void*)0x00501130, Obj_EC1Water_DisplayX); //Act 1
 	WriteJump((void*)0x004F76C0, Obj_EC23Water_DisplayX); //Act 2
 	WriteJump((void*)0x004F7760, Obj_EC23Water_DisplayX); //Act 3
-	for (unsigned int i = 0; i < 3; i++)
+	for (int i = 0; i < 3; i++)
 	{
 		DrawDist_EmeraldCoast3[i].Maximum = -4000.0f;
 		EmeraldCoast3Fog[i].Toggle = 0;
@@ -789,12 +789,12 @@ void EmeraldCoast_OnFrame()
 		//Restore ocean UVs on level exit/restart
 		if ((HighPolyOcean_Dynamic) && (GameState == 3 || GameState == 4 || GameState == 7 || GameState == 21))
 		{
-			for (unsigned int r = 0; r < LengthOfArray(uvSTG01_00CC0530_d); r++)
+			for (int r = 0; r < LengthOfArray(uvSTG01_00CC0530_d); r++)
 			{
 				LowPolyOceanUVs[r].u = uvSTG01_00CC0530_d[r].u;
 				LowPolyOceanUVs[r].v = uvSTG01_00CC0530_d[r].v;
 			}
-			for (unsigned int r2 = 0; r2 < LengthOfArray(uvSTG01_00CBB000_d); r2++)
+			for (int r2 = 0; r2 < LengthOfArray(uvSTG01_00CBB000_d); r2++)
 			{
 				HighPolyOceanUVs_Dynamic[r2].u = uvSTG01_00CBB000_d[r2].u;
 				HighPolyOceanUVs_Dynamic[r2].v = uvSTG01_00CBB000_d[r2].v;

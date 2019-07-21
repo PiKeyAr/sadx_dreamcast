@@ -662,7 +662,7 @@ void FinalEgg_Init()
 	ResizeTextureList((NJS_TEXLIST*)0x1A60488, textures_finalegg2);
 	ResizeTextureList((NJS_TEXLIST*)0x1AC5780, textures_finalegg3);
 	ResizeTextureList(&OBJ_FINALEGG_TEXLIST, 169);
-	for (unsigned int i = 0; i < 3; i++)
+	for (int i = 0; i < 3; i++)
 	{
 		FinalEgg1Fog[i].Color = 0xFF000000;
 		FinalEgg1Fog[i].Layer = 1200.0f;

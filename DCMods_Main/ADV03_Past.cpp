@@ -261,7 +261,7 @@ void ParsePastMaterials()
 	int texid;
 	LandTable *landtable;
 	landtable = ___LANDTABLEPAST[1];
-	for (unsigned int j = 0; j < landtable->COLCount; j++)
+	for (int j = 0; j < landtable->COLCount; j++)
 	{
 		//Reflections
 		if (landtable->Col[j].Flags & 0x8000000)
@@ -299,7 +299,7 @@ void ParsePastMaterials()
 		}
 	}
 	landtable = ___LANDTABLEPAST[2];
-	for (unsigned int j = 0; j < landtable->COLCount; j++)
+	for (int j = 0; j < landtable->COLCount; j++)
 	{
 		//Reflections
 		if (landtable->Col[j].Flags & 0x8000000)
@@ -554,7 +554,7 @@ void ADV03_Init()
 	___ADV03_OBJECTS[19] = LoadModel("system\\data\\ADV03\\Models\\0001E59C.sa1mdl", false); //OBigStairs low LOD
 	___ADV03_OBJECTS[22] = LoadModel("system\\data\\ADV03\\Models\\0001D878.sa1mdl", false); //OPyStairs low LOD
 	//Fog data
-	for (unsigned int i = 0; i < 3; i++)
+	for (int i = 0; i < 3; i++)
 	{
 		FogData_Past1[i].Layer = -12000.0f;
 		FogData_Past1[i].Distance = -12000.0f;

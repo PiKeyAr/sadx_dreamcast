@@ -200,7 +200,7 @@ void UnloadLevelFiles_B_CHAOS4()
 {
 	NJS_MATERIAL *material;
 	LandTable *B_CHAOS4 = LandTableArray[16];
-	for (unsigned int j = 0; j < B_CHAOS4->COLCount; j++)
+	for (int j = 0; j < B_CHAOS4->COLCount; j++)
 	{
 		for (int k = 0; k < B_CHAOS4->Col[j].Model->basicdxmodel->nbMat; ++k)
 		{
@@ -224,7 +224,7 @@ void LoadLevelFiles_B_CHAOS4()
 	RemoveMaterialColors_Landtable(B_CHAOS4);
 	B_CHAOS4->TexList = &texlist_chaos4;
 	LandTableArray[16] = B_CHAOS4;
-	for (unsigned int j = 0; j < B_CHAOS4->COLCount; j++)
+	for (int j = 0; j < B_CHAOS4->COLCount; j++)
 	{
 		for (int k = 0; k < B_CHAOS4->Col[j].Model->basicdxmodel->nbMat; ++k)
 		{
@@ -427,7 +427,7 @@ void Chaos4_Init()
 	{
 		material_register_ptr(Chaos4Materials, LengthOfArray(Chaos4Materials), &Chaos4NPCFunction);
 	}
-	for (unsigned int i = 0; i < 3; i++)
+	for (int i = 0; i < 3; i++)
 	{
 		Chaos4Fog[i].Color = 0xFF000000;
 		Chaos4Fog[i].Layer = 1.0f;

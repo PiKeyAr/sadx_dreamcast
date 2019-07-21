@@ -771,7 +771,7 @@ void HotShelter_Init()
 	*(NJS_OBJECT*)0x1853D7C = *LoadModel("system\\data\\STG12\\Models\\00142958.sa1mdl", false); //Daruma (unused lightning box)
 	*(NJS_OBJECT*)0x181406C = *LoadModel("system\\data\\STG12\\Models\\0010AFB8.sa1mdl", false); //OUkijima
 	//Fog/draw distance data
-	for (unsigned int i = 0; i < 3; i++)
+	for (int i = 0; i < 3; i++)
 	{
 		DrawDist_HotShelter1[i].Maximum = -3000.0;
 		DrawDist_HotShelter2[i].Maximum = -3000.0;

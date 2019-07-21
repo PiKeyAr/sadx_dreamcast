@@ -649,7 +649,7 @@ void SpeedHighway_Init()
 	RemoveVertexColors_Object((NJS_OBJECT*)0x2675730); //container B top broken 3
 	RemoveVertexColors_Object((NJS_OBJECT*)0x2677A4C); //container B top broken 4
 	RemoveVertexColors_Object((NJS_OBJECT*)0x26774B8); //container B top broken 5
-	for (unsigned int i = 0; i < 3; i++)
+	for (int i = 0; i < 3; i++)
 	{
 		SpeedHighway1Fog[i].Layer = 2000.0f;
 		SpeedHighway1Fog[i].Distance = 5200.0f;

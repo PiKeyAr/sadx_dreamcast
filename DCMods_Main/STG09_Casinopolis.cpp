@@ -1199,7 +1199,7 @@ void Casinopolis_Init()
 	memcpy((void*)0x1E3BBC8, uv_001BA0C4, sizeof(uv_001BA0C4)); //ORlti
 	memcpy((void*)0x1E3BC08, uv_001BA104, sizeof(uv_001BA104)); //ORlti
 	//Fog and draw distance stuff 
-	for (unsigned int i = 0; i < 3; i++)
+	for (int i = 0; i < 3; i++)
 	{
 		Casino1Fog[i].Color = 0xFF000000;
 		Casino1Fog[i].Layer = 800.0f;

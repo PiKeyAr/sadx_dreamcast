@@ -507,7 +507,7 @@ void SkyDeck_Init()
 	ResizeTextureList((NJS_TEXLIST*)0x20AA63C, textures_skydeck2);
 	ResizeTextureList((NJS_TEXLIST*)0x203ACE0, textures_skydeck3);
 	ResizeTextureList(&OBJ_SKYDECK_TEXLIST, 213);
-	for (unsigned int i = 0; i < 3; i++)
+	for (int i = 0; i < 3; i++)
 	{
 		SkyDeck1Fog[i].Layer = 4000.0f;
 		SkyDeck1Fog[i].Distance = 12000.0f;
@@ -548,7 +548,7 @@ void SkyDeck_OnFrame()
 		{
 			UVShift1 = (UVShift1 - 4 * FramerateSetting) % 255;
 			UVShift2 = (UVShift2 - 2 * FramerateSetting) % 255;
-			for (unsigned int q = 0; q < LengthOfArray(uvSTG06_01D4BE68_0); q++)
+			for (int q = 0; q < LengthOfArray(uvSTG06_01D4BE68_0); q++)
 			{
 				SkyNormal1->basicdxmodel->meshsets[0].vertuv[q].u = uvSTG06_01D4BE68_0[q].u + UVShift2;
 				SkyNormal2->basicdxmodel->meshsets[0].vertuv[q].u = uvSTG06_01D4BE68_0[q].u + UVShift1;

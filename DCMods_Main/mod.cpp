@@ -284,7 +284,7 @@ extern "C"
 			L"main Dreamcast Conversion mod.\n\n"
 			L"Please uninstall the following mods in the Mod Manager:\n\n";
 		bool OldModsFound = false;
-		for (unsigned int i = 0; i < LengthOfArray(OldModDLLs); i++)
+		for (int i = 0; i < LengthOfArray(OldModDLLs); i++)
 		{
 			if (GetModuleHandle(OldModDLLs[i]) != nullptr)
 			{

@@ -50,7 +50,7 @@ void __cdecl EHWater_Display(void(__cdecl *function)(void *), void *data, float 
 		DrawQueueDepthBias = 0.0f;
 		njPopMatrix(1u);
 	}
-	for (unsigned int i = 0; i < LengthOfArray(EHWaterObjects); i++)
+	for (int i = 0; i < LengthOfArray(EHWaterObjects); i++)
 	{
 		if (EHWaterObjects[i])
 		{
@@ -68,7 +68,7 @@ void UnloadLevelFiles_B_EGM1()
 	LandTable *B_EGM1 = B_EGM1_Info->getlandtable();
 	NJS_MATERIAL *material;
 	//Also unregister white diffuse in the level
-	for (unsigned int j = 0; j < B_EGM1->COLCount; j++)
+	for (int j = 0; j < B_EGM1->COLCount; j++)
 	{
 		for (int k = 0; k < B_EGM1->Col[j].Model->basicdxmodel->nbMat; ++k)
 		{
@@ -93,7 +93,7 @@ void LoadLevelFiles_B_EGM1()
 	RemoveMaterialColors_Landtable(B_EGM1);
 	B_EGM1->TexList = &texlist_egm1land;
 	LandTableArray[40] = B_EGM1;
-	for (unsigned int j = 0; j < B_EGM1->COLCount; j++)
+	for (int j = 0; j < B_EGM1->COLCount; j++)
 	{
 		//Check materials
 		for (int k = 0; k < B_EGM1->Col[j].Model->basicdxmodel->nbMat; ++k)
@@ -214,7 +214,7 @@ void EggHornet_Init()
 	((NJS_OBJECT*)0x01561A70)->basicdxmodel->mats[8].attrflags |= NJD_FLAG_IGNORE_LIGHT; //computer
 	((NJS_MATERIAL*)0x015570AC)->attrflags &= ~NJD_FLAG_IGNORE_SPECULAR;
 	ForceObjectSpecular_Object((NJS_OBJECT*)0x1561A70);
-	for (unsigned int i = 0; i < 3; i++)
+	for (int i = 0; i < 3; i++)
 	{
 		DrawDist_EggHornet[i].Maximum = -12500.0;
 		EggHornetFog[i].Distance = -9000.0f;

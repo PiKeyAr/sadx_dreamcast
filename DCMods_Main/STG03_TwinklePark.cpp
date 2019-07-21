@@ -658,7 +658,7 @@ void TwinklePark_Init()
 	WriteCall((void*)0x79CD61, OPoleFix);
 	WriteCall((void*)0x621FE5, RenderCatapult); //Catapult fix
 	//Fog and draw distance
-	for (unsigned int i = 0; i < 3; i++)
+	for (int i = 0; i < 3; i++)
 	{
 		TwinklePark1Fog[i].Layer = 1500.0f;
 		TwinklePark2Fog[i].Layer = -1400.0f;
@@ -685,7 +685,7 @@ void TwinklePark_OnFrame()
 	{
 		if (!IsGamePaused()) PoleUVIncrease += 16;
 		if (PoleUVIncrease >= 255) PoleUVIncrease -= 255;
-		for (unsigned int i = 0; i < 12; i++)
+		for (int i = 0; i < 12; i++)
 		{
 			OPolePole->basicdxmodel->meshsets[1].vertuv[i].v = PoleUVs[i].v + PoleUVIncrease;
 		}

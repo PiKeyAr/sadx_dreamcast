@@ -346,7 +346,7 @@ void LostWorld_Init()
 	ResizeTextureList((NJS_TEXLIST*)0x1E9B9AC, textures_lw2);
 	ResizeTextureList((NJS_TEXLIST*)0x1E79D80, textures_lw3);
 	ResizeTextureList(&OBJ_RUIN_TEXLIST, 127);
-	for (unsigned int i = 0; i < 3; i++)
+	for (int i = 0; i < 3; i++)
 	{
 		LostWorld1Fog[i].Color = 0xFFFFFFFF;
 		LostWorld1Fog[i].Layer = 1.0f;

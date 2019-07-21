@@ -64,7 +64,7 @@ void EggWalker_Init()
 	//Fix fire sprite texanim to match texture order in the PVM
 	EggWalkerFireTexanims[0].texid = 7;
 	EggWalkerFireTexanims[7].texid = 0;
-	for (unsigned int i = 0; i < 3; i++)
+	for (int i = 0; i < 3; i++)
 	{
 		EggWalkerFog[i].Layer = -10000.0f;
 		EggWalkerFog[i].Distance = -10000.0f;

@@ -203,7 +203,7 @@ void E101R_Init()
 		E101RBossOcean->basicdxmodel->mats[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
 		E101RBossOcean->basicdxmodel->mats[0].diffuse.color = 0x7FB2B2B2;
 	}
-	for (unsigned int i = 0; i < 3; i++)
+	for (int i = 0; i < 3; i++)
 	{
 		Fog_E101R[i].Distance = -10000.0f;
 		Fog_E101R[i].Layer = -10000.0f;

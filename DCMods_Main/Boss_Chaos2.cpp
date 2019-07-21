@@ -110,7 +110,7 @@ void Chaos2_Init()
 	RemoveVertexColors_Object((NJS_OBJECT*)0x011339EC); //Chaos2 small ball
 	RemoveVertexColors_Object((NJS_OBJECT*)0x01139274); //Chaos2 ball
 	RemoveVertexColors_Object((NJS_OBJECT*)0x0113F81C); //Chaos2 ball 2
-	for (unsigned int i = 0; i < 3; i++)
+	for (int i = 0; i < 3; i++)
 	{
 		Chaos2Fog[i].Color = 0xFF000000;
 		Chaos2Fog[i].Layer = 700.0f;

@@ -129,7 +129,7 @@ void Zero_Init()
 		ZeroBossOcean->basicdxmodel->mats[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
 		ZeroBossOcean->basicdxmodel->mats[0].diffuse.color = 0x7FB2B2B2;
 	}
-	for (unsigned int i = 0; i < 3; i++)
+	for (int i = 0; i < 3; i++)
 	{
 		DrawDist_Zero[i].Maximum = -9500.0f;
 		Fog_Zero[i].Distance = -10000.0f;

@@ -266,7 +266,7 @@ void ParseSSColFlags()
 	landtable = ___LANDTABLESS[2];
 	if (SADXWater_StationSquare)
 	{
-		for (unsigned int j = 0; j < landtable->COLCount; j++)
+		for (int j = 0; j < landtable->COLCount; j++)
 		{
 			colflags = landtable->Col[j].Flags;
 			if ((colflags & ColFlags_Visible) && (colflags & ColFlags_Water)) landtable->Col[j].Model->basicdxmodel->mats[0].diffuse.argb.a = 0xD2; //Make the water less transparent
@@ -274,7 +274,7 @@ void ParseSSColFlags()
 	}
 	//Main area
 	landtable = ___LANDTABLESS[3];
-	for (unsigned int j = 0; j < landtable->COLCount; j++)
+	for (int j = 0; j < landtable->COLCount; j++)
 	{
 		colflags = landtable->Col[j].Flags;
 		if (!SADXWater_StationSquare)
@@ -289,7 +289,7 @@ void ParseSSColFlags()
 	}
 	//Hotel area
 	landtable = ___LANDTABLESS[4];
-	for (unsigned int j = 0; j < landtable->COLCount; j++)
+	for (int j = 0; j < landtable->COLCount; j++)
 	{
 		colflags = landtable->Col[j].Flags;
 		if (!SADXWater_StationSquare)
@@ -311,7 +311,7 @@ void ParseSSMaterials(bool remove)
 	LandTable *landtable;
 	//Casino
 	landtable = ___LANDTABLESS[1];
-	for (unsigned int j = 0; j < landtable->COLCount; j++)
+	for (int j = 0; j < landtable->COLCount; j++)
 	{
 		for (int k = 0; k < landtable->Col[j].Model->basicdxmodel->nbMat; ++k)
 		{
@@ -327,7 +327,7 @@ void ParseSSMaterials(bool remove)
 	}
 	//Sewers
 	landtable = ___LANDTABLESS[2];
-	for (unsigned int j = 0; j < landtable->COLCount; j++)
+	for (int j = 0; j < landtable->COLCount; j++)
 	{
 		for (int k = 0; k < landtable->Col[j].Model->basicdxmodel->nbMat; ++k)
 		{
@@ -348,7 +348,7 @@ void ParseSSMaterials(bool remove)
 	}
 	//Main area
 	landtable = ___LANDTABLESS[3];
-	for (unsigned int j = 0; j < landtable->COLCount; j++)
+	for (int j = 0; j < landtable->COLCount; j++)
 	{
 		for (int k = 0; k < landtable->Col[j].Model->basicdxmodel->nbMat; ++k)
 		{
@@ -380,7 +380,7 @@ void ParseSSMaterials(bool remove)
 	}
 	//Hotel and pool
 	landtable = ___LANDTABLESS[4];
-	for (unsigned int j = 0; j < landtable->COLCount; j++)
+	for (int j = 0; j < landtable->COLCount; j++)
 	{
 		for (int k = 0; k < landtable->Col[j].Model->basicdxmodel->nbMat; ++k)
 		{
@@ -425,7 +425,7 @@ void SwitchLighting_TimeOfDay(int act)
 	else if (act == 4) landtable = ___LANDTABLESS[4];
 	else landtable = ___LANDTABLESS[5];
 	//Add or remove "ignore light"
-	for (unsigned int j = 0; j < landtable->COLCount; j++)
+	for (int j = 0; j < landtable->COLCount; j++)
 	{
 		for (int k = 0; k < landtable->Col[j].Model->basicdxmodel->nbMat; ++k)
 		{
@@ -753,7 +753,7 @@ void ADV00_Init()
 	WriteCall((void*)0x6304B6, DelaySettingTimeOfDay); //Prevent sudden lighting change in Sonic's story
 	WriteCall((void*)0x652F4F, LSCutsceneRotationFix); //Fix Sonic's rotation after getting the Light Speed Shoes
 	//Fix materials
-	for (unsigned int i = 0; i < 26; i++)
+	for (int i = 0; i < 26; i++)
 	{
 		RemoveVertexColors_Object(MODEL_SS_PEOPLE_OBJECTS[i]);
 	}
@@ -892,7 +892,7 @@ void ADV00_Init()
 	SwapMeshsets(Parasol_4, 7, 8); //Move lemon after glass
 	WriteCall((void*)0x63A6A4, RenderParasol); //Parasol
 	//Fog data
-	for (unsigned int i = 0; i < 3; i++)
+	for (int i = 0; i < 3; i++)
 	{
 		StationSquare1Fog[i].Toggle = 1;
 		StationSquare2Fog[i].Toggle = 1;

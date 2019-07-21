@@ -172,7 +172,7 @@ void ParseEC00Materials(bool remove)
 	int texid;
 	LandTable* landtable;
 	landtable = ___LANDTABLEEC[0];
-	for (unsigned int j = 0; j < landtable->COLCount; j++)
+	for (int j = 0; j < landtable->COLCount; j++)
 	{
 		for (int k = 0; k < landtable->Col[j].Model->basicdxmodel->nbMat; ++k)
 		{
@@ -187,7 +187,7 @@ void ParseEC00Materials(bool remove)
 		}
 	}
 	landtable = ___LANDTABLEEC[1];
-	for (unsigned int j = 0; j < landtable->COLCount; j++)
+	for (int j = 0; j < landtable->COLCount; j++)
 	{
 		for (int k = 0; k < landtable->Col[j].Model->basicdxmodel->nbMat; ++k)
 		{
@@ -202,7 +202,7 @@ void ParseEC00Materials(bool remove)
 		}
 	}
 	landtable = ___LANDTABLEEC[2];
-	for (unsigned int j = 0; j < landtable->COLCount; j++)
+	for (int j = 0; j < landtable->COLCount; j++)
 	{
 		for (int k = 0; k < landtable->Col[j].Model->basicdxmodel->nbMat; ++k)
 		{
@@ -217,7 +217,7 @@ void ParseEC00Materials(bool remove)
 		}
 	}
 	landtable = ___LANDTABLEEC[3];
-	for (unsigned int j = 0; j < landtable->COLCount; j++)
+	for (int j = 0; j < landtable->COLCount; j++)
 	{
 		//White diffuse for landtable animation
 		if (!remove)
@@ -255,7 +255,7 @@ void ParseEC00Materials(bool remove)
 		}
 	}
 	landtable = ___LANDTABLEEC[4];
-	for (unsigned int j = 0; j < landtable->COLCount; j++)
+	for (int j = 0; j < landtable->COLCount; j++)
 	{
 		for (int k = 0; k < landtable->Col[j].Model->basicdxmodel->nbMat; ++k)
 		{
@@ -270,7 +270,7 @@ void ParseEC00Materials(bool remove)
 		}
 	}
 	landtable = ___LANDTABLEEC[5];
-	for (unsigned int j = 0; j < landtable->COLCount; j++)
+	for (int j = 0; j < landtable->COLCount; j++)
 	{
 		for (int k = 0; k < landtable->Col[j].Model->basicdxmodel->nbMat; ++k)
 		{
@@ -554,7 +554,7 @@ void ADV01_Init(const IniFile* config, const HelperFunctions& helperFunctions)
 	___ADV01_OBJECTS[70]->basicdxmodel = MonorailBack->basicdxmodel;
 	___ADV01_OBJECTS[70]->child->basicdxmodel = MonorailBack->child->basicdxmodel;
 	___ADV01_OBJECTS[70]->child->child->basicdxmodel = MonorailBack->child->child->basicdxmodel;
-	for (unsigned int i = 0; i < 3; i++)
+	for (int i = 0; i < 3; i++)
 	{
 		SkyboxScale_EggCarrier4[i].x = 1.0f;
 		SkyboxScale_EggCarrier4[i].y = 1.0f;
