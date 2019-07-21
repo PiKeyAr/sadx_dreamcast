@@ -42,7 +42,8 @@ DataArray(DrawDistance, MR4DrawDist, 0x01103430, 3);
 FunctionPointer(void, sub_405450, (NJS_ACTION *a1, float frame, float scale), 0x405450);
 FunctionPointer(void, sub_408350, (NJS_ACTION* a1, float a2, int a3, float a4), 0x408350);
 static bool InsideTemple = 0;
-
+static bool AmyMissionCollision = false;
+static int MasterEmeraldTimer = 0;
 NJS_OBJECT* MROcean = nullptr;
 NJS_OBJECT* MRWaterObjects[] = { nullptr, nullptr, nullptr, nullptr, nullptr };
 NJS_OBJECT* OFinalEggModel_Opaque = nullptr;
@@ -320,7 +321,18 @@ void __cdecl MRWater_Display(void(__cdecl *function)(void *), void *data, float 
 
 void SetColor(float a, float r, float g, float b)
 {
-	SetMaterialAndSpriteColor_Float(a, 0, g, 0);
+	//Minimum - 0.35f/0.25f
+	//Maximum - 0.35f/1.0f
+	//PrintDebug("Glow: %f, %f, %f, %f\n", a, r, g, b);
+	a = 0.35f;
+	r = 0;
+	g = max(0.25f, g/0.6f);
+	b = 0;
+	SetMaterialAndSpriteColor_Float(a,r,g,b);
+	ADV02_MODELS[15]->mats[0].diffuse.argb.a = a*255;
+	ADV02_MODELS[15]->mats[0].diffuse.argb.r = r*255;
+	ADV02_MODELS[15]->mats[0].diffuse.argb.g = g*255;
+	ADV02_MODELS[15]->mats[0].diffuse.argb.b = b*255;
 }
 
 void FixMRBase(ObjectMaster *a1)
@@ -364,6 +376,39 @@ void SetBlockEntryMaterialColor(float a, float r, float g, float b)
 	ADV02_OBJECTS[50]->basicdxmodel->mats[0].diffuse.argb.g = max(0, min(255, 255 + g * 255));
 	ADV02_OBJECTS[50]->basicdxmodel->mats[0].diffuse.argb.b = max(0, min(255, 255 + b * 255));
 	SetMaterialAndSpriteColor_Float(0, 0, 0, 0);
+}
+
+void GeoAnimFix(NJS_ACTION* a1, float a2, int a3, float a4)
+{
+	if (CurrentLevel == LevelIDs_MysticRuins && CurrentAct == 2)
+	{
+		DrawQueueDepthBias = -20952.0f;
+		njAction_Queue_407FC0(a1, a2, 1);
+		DrawQueueDepthBias = 0.0f;
+	}
+	else sub_408350(a1, a2, a3, a4);
+}
+
+void MasterEmeraldFix(NJS_OBJECT* obj, float scale)
+{
+	DrawQueueDepthBias = 2000.0f;
+	ProcessModelNode_D_WrapperB(obj, 1, 1.0f);
+	DrawQueueDepthBias = 0.0f;
+}
+
+float __fastcall MrEmeTimer(Angle n)
+{
+	if (MasterEmeraldTimer > 245) MasterEmeraldTimer = 0;
+	if (MasterEmeraldTimer > 45 && MasterEmeraldTimer < 180) MasterEmeraldTimer = 180;
+	//PrintDebug("Value: %d\n", MasterEmeraldTimer);
+	return njSin(MasterEmeraldTimer * 150);
+}
+
+void DrawMasterEmeraldGlow(NJS_MODEL_SADX* model, QueuedModelFlagsB blend, float scale)
+{
+	DrawQueueDepthBias = 4000.0f;
+	DrawModel_QueueVisible(model, blend, scale);
+	DrawQueueDepthBias = 0.0f;
 }
 
 void UnloadLevelFiles_ADV02()
@@ -433,17 +478,6 @@ void LoadLevelFiles_ADV02()
 	WriteCall((void*)0x52FDC3, MRWater_Display);
 }
 
-void GeoAnimFix(NJS_ACTION* a1, float a2, int a3, float a4)
-{
-	if (CurrentLevel == LevelIDs_MysticRuins && CurrentAct == 2)
-	{
-		DrawQueueDepthBias = -20952.0f;
-		njAction_Queue_407FC0(a1, a2, 1);
-		DrawQueueDepthBias = 0.0f;
-	}
-	else sub_408350(a1, a2, a3, a4);
-}
-
 void ADV02_Init()
 {
 	if (!Use1999SetFiles)
@@ -510,6 +544,10 @@ void ADV02_Init()
 	WriteJump((void*)0x538430, FixMRBase);
 	___ADV02_ACTIONS[30]->object = LoadModel("system\\data\\ADV02\\Models\\0020DC78.sa1mdl", false); //OFinalWay
 	OFinalEggModel_Opaque = LoadModel("system\\data\\ADV02\\Models\\0020C3B0.sa1mdl", false); //Base opaque
+	AddWhiteDiffuseMaterial(&OFinalEggModel_Opaque->basicdxmodel->mats[13]);
+	AddWhiteDiffuseMaterial(&OFinalEggModel_Opaque->child->basicdxmodel->mats[5]);
+	AddWhiteDiffuseMaterial(&OFinalEggModel_Opaque->child->basicdxmodel->mats[6]);
+	AddWhiteDiffuseMaterial(&OFinalEggModel_Opaque->child->basicdxmodel->mats[7]);
 	OFinalEggModel_Opaque->child->sibling->sibling->evalflags |= NJD_EVAL_HIDE;
 	OFinalEggModel_Opaque->child->sibling->sibling->sibling->child->evalflags |= NJD_EVAL_HIDE;
 	OFinalEggModel_Opaque->child->sibling->sibling->sibling->child->sibling->evalflags |= NJD_EVAL_HIDE;
@@ -552,7 +590,12 @@ void ADV02_Init()
 	//Enable MR light direction adjustment code
 	WriteData<6>((char*)0x00412536, 0x90u);
 	WriteData<6>((char*)0x00412544, 0x90u);
-	WriteCall((void*)0x0053CD37, SetColor); //Master Emerald glow
+	//Master Emerald fixes
+	WriteCall((void*)0x53CCD2, MasterEmeraldFix); //Always use the more expensive function to render the Master Emerald
+	WriteCall((void*)0x53CCEF, MrEmeTimer); //Timer for Master Emerald glow
+	WriteCall((void*)0x53CD37, SetColor); //Set material color for Master Emerald glow
+	WriteCall((void*)0x53CE7D, DrawMasterEmeraldGlow);
+	WriteCall((void*)0x53CEDC, DrawMasterEmeraldGlow);
 	for (int i = 0; i < 3; i++)
 	{
 		MR1FogDay[i].Distance = -10000.0f;
@@ -578,7 +621,7 @@ void ADV02_Init()
 		MR3FogNight[i].Layer = -5000;
 		MR1DrawDist[i].Maximum = -10000.0f;
 		MR2DrawDist[i].Maximum = -10000.0f;
-		MR3DrawDist[i].Maximum = -10000.0f;
+		MR3DrawDist[i].Maximum = -16000.0f;
 		MR4DrawDist[i].Maximum = -4000.0f;
 	}
 	___ADV02_TEXLISTS[38] = &texlist_mr00;
@@ -603,6 +646,7 @@ void ADV02_Init()
 	___ADV02_OBJECTS[84] = LoadModel("system\\data\\ADV02\\Models\\001F6A04.sa1mdl", true); //Windows and the light above the door of Tails' house
 	ForceLevelSpecular_Object(___ADV02_OBJECTS[84]);
 	___ADV02_OBJECTS[85] = LoadModel("system\\data\\ADV02\\Models\\001F764C.sa1mdl", true); //Same as above but lit up
+	AddWhiteDiffuseMaterial(&ADV02_OBJECTS[85]->basicdxmodel->mats[4]);
 	ForceLevelSpecular_Object(___ADV02_OBJECTS[85]);
 	//Material fixes
 	RemoveVertexColors_Object(___ADV02_OBJECTS[53]); //Diggable place
@@ -661,6 +705,21 @@ void ADV02_OnFrame()
 	auto entity = EntityData1Ptrs[0];
 	if (CurrentLevel == LevelIDs_MysticRuins)
 	{
+		//Master Emerald glow timer
+		if (FramerateSetting >= 2 || (FramerateSetting < 2 && FrameCounter % 2 == 0)) MasterEmeraldTimer += 1;
+		//Amy's Mission Mode hacks
+		if (!AmyMissionCollision && CurrentCharacter == Characters_Amy && GameMode == GameModes_Mission)
+		{
+			if (ADV02_0_Info && (LANDTABLEMR[0]->Col[0].Radius > 252 && LANDTABLEMR[0]->Col[0].Radius < 253)) LANDTABLEMR[0]->Col[0].Flags = 0x1;
+			if (ADV02_0_Info && (LANDTABLEMR[0]->Col[1].Radius > 260 && LANDTABLEMR[0]->Col[1].Radius < 261)) LANDTABLEMR[0]->Col[1].Flags = 0x1;
+			AmyMissionCollision = true;
+		}
+		if (AmyMissionCollision && (CurrentCharacter != Characters_Amy || GameMode != GameModes_Mission))
+		{
+			if (ADV02_0_Info && (LANDTABLEMR[0]->Col[0].Radius > 252 && LANDTABLEMR[0]->Col[0].Radius < 253)) LANDTABLEMR[0]->Col[0].Flags = 0;
+			if (ADV02_0_Info && (LANDTABLEMR[0]->Col[1].Radius > 260 && LANDTABLEMR[0]->Col[1].Radius < 261)) LANDTABLEMR[0]->Col[1].Flags = 0;
+			AmyMissionCollision = false;
+		}
 		if (!IsGamePaused())
 		{
 			//Animate rotating stuff in MR Jungle
