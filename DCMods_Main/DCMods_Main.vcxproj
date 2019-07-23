@@ -185,6 +185,7 @@
     <ClInclude Include="Data\FinalEgg_UVs.h" />
     <ClInclude Include="Data\Fountain.h" />
     <ClInclude Include="Data\Frogs.h" />
+    <ClInclude Include="Data\HedgehogHammer.h" />
     <ClInclude Include="Data\Highway1.h" />
     <ClInclude Include="Data\Highway2.h" />
     <ClInclude Include="Data\Highway3.h" />
@@ -224,7 +225,12 @@
     <ClInclude Include="Data\Twinkle1.h" />
     <ClInclude Include="Data\Twinkle2.h" />
     <ClInclude Include="Data\Twinkle3.h" />
-    <ClInclude Include="Data\TwinkleCircuit.h" />
+    <ClInclude Include="Data\TwinkleCircuit_1.h" />
+    <ClInclude Include="Data\TwinkleCircuit_2.h" />
+    <ClInclude Include="Data\TwinkleCircuit_3.h" />
+    <ClInclude Include="Data\TwinkleCircuit_4.h" />
+    <ClInclude Include="Data\TwinkleCircuit_5.h" />
+    <ClInclude Include="Data\TwinkleCircuit_6.h" />
     <ClInclude Include="Data\TwinklePark_objects.h" />
     <ClInclude Include="Data\Windy1.h" />
     <ClInclude Include="Data\Windy2.h" />

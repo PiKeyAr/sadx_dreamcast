@@ -338,53 +338,6 @@ void ParsePastMaterials()
 	}
 }
 
-void LoadLevelFiles_ADV03()
-{
-	CheckAndUnloadLevelFiles();
-	PastChaoModel_2_Info = new ModelInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV03\\Models\\000DD8A8.sa1mdl"));
-	PastChaoModel_7_Info = new ModelInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV03\\Models\\000DD8A8.sa1mdl"));
-	PastChaoModel_8_Info = new ModelInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV03\\Models\\000DD8A8.sa1mdl"));
-	PastChaoModel_9_Info = new ModelInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV03\\Models\\000DD8A8.sa1mdl"));
-	PastChaoModel_10_Info = new ModelInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV03\\Models\\000DD8A8.sa1mdl"));
-	PastChaoModel_2 = (NJS_OBJECT*)PastChaoModel_2_Info->getmodel();
-	PastChaoModel_7 = (NJS_OBJECT*)PastChaoModel_7_Info->getmodel();
-	PastChaoModel_8 = (NJS_OBJECT*)PastChaoModel_8_Info->getmodel();
-	PastChaoModel_9 = (NJS_OBJECT*)PastChaoModel_9_Info->getmodel();
-	PastChaoModel_10 = (NJS_OBJECT*)PastChaoModel_10_Info->getmodel();
-	PastChaoModel_7->child->sibling->child->sibling->sibling->sibling->sibling->sibling->child->basicdxmodel->mats[0].attr_texId = 7;
-	PastChaoModel_7->child->sibling->child->sibling->sibling->sibling->sibling->sibling->child->sibling->basicdxmodel->mats[0].attr_texId = 7;
-	PastChaoModel_8->child->sibling->child->sibling->sibling->sibling->sibling->sibling->child->basicdxmodel->mats[0].attr_texId = 8;
-	PastChaoModel_8->child->sibling->child->sibling->sibling->sibling->sibling->sibling->child->sibling->basicdxmodel->mats[0].attr_texId = 8;
-	PastChaoModel_9->child->sibling->child->sibling->sibling->sibling->sibling->sibling->child->basicdxmodel->mats[0].attr_texId = 9;
-	PastChaoModel_9->child->sibling->child->sibling->sibling->sibling->sibling->sibling->child->sibling->basicdxmodel->mats[0].attr_texId = 9;
-	PastChaoModel_10->child->sibling->child->sibling->sibling->sibling->sibling->sibling->child->basicdxmodel->mats[0].attr_texId = 10;
-	PastChaoModel_10->child->sibling->child->sibling->sibling->sibling->sibling->sibling->child->sibling->basicdxmodel->mats[0].attr_texId = 10;
-	ADV03_0_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV03\\0.sa1lvl"));
-	ADV03_1_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV03\\1.sa1lvl"));
-	ADV03_2_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV03\\2.sa1lvl"));
-	LandTable *ADV03_0 = ADV03_0_Info->getlandtable(); //&landtable_00000278; // ADV03_0_Info->getlandtable();
-	LandTable *ADV03_1 = ADV03_1_Info->getlandtable(); //&landtable_0000029C; // ADV03_1_Info->getlandtable();
-	LandTable *ADV03_2 = ADV03_2_Info->getlandtable(); //&landtable_000002C0; // ADV03_2_Info->getlandtable();
-	RemoveMaterialColors_Landtable(ADV03_0);
-	RemoveMaterialColors_Landtable(ADV03_1);
-	RemoveMaterialColors_Landtable(ADV03_2);
-	ADV03_0->TexList = &texlist_past00;
-	ADV03_1->TexList = &texlist_past01;
-	ADV03_2->TexList = &texlist_past02;
-	LandTableArray[152] = ADV03_0;
-	LandTableArray[153] = ADV03_1;
-	LandTableArray[154] = ADV03_2;
-	___LANDTABLEPAST[0] = ADV03_0;
-	___LANDTABLEPAST[1] = ADV03_1;
-	___LANDTABLEPAST[2] = ADV03_2;
-	ParsePastMaterials();
-	ForceLightType_Object(PastChaoModel_2, 2, false);
-	ForceLightType_Object(PastChaoModel_7, 2, false);
-	ForceLightType_Object(PastChaoModel_8, 2, false);
-	ForceLightType_Object(PastChaoModel_9, 2, false);
-	ForceLightType_Object(PastChaoModel_10, 2, false);
-}
-
 void UnloadLevelFiles_ADV03()
 {
 	for (int i = 0; i < LengthOfArray(PastAct2Cols); i++)
@@ -425,146 +378,195 @@ void UnloadLevelFiles_ADV03()
 
 void ADV03_Init()
 {
-	ReplaceBIN_DC("CAMPAST00S");
-	ReplaceBIN_DC("CAMPAST01S");
-	ReplaceBIN_DC("CAMPAST02S");
-	if (!Use1999SetFiles)
+	//This is done every time the function is called
+	CheckAndUnloadLevelFiles();
+	PastChaoModel_2_Info = new ModelInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV03\\Models\\000DD8A8.sa1mdl"));
+	PastChaoModel_7_Info = new ModelInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV03\\Models\\000DD8A8.sa1mdl"));
+	PastChaoModel_8_Info = new ModelInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV03\\Models\\000DD8A8.sa1mdl"));
+	PastChaoModel_9_Info = new ModelInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV03\\Models\\000DD8A8.sa1mdl"));
+	PastChaoModel_10_Info = new ModelInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV03\\Models\\000DD8A8.sa1mdl"));
+	PastChaoModel_2 = (NJS_OBJECT*)PastChaoModel_2_Info->getmodel();
+	PastChaoModel_7 = (NJS_OBJECT*)PastChaoModel_7_Info->getmodel();
+	PastChaoModel_8 = (NJS_OBJECT*)PastChaoModel_8_Info->getmodel();
+	PastChaoModel_9 = (NJS_OBJECT*)PastChaoModel_9_Info->getmodel();
+	PastChaoModel_10 = (NJS_OBJECT*)PastChaoModel_10_Info->getmodel();
+	PastChaoModel_7->child->sibling->child->sibling->sibling->sibling->sibling->sibling->child->basicdxmodel->mats[0].attr_texId = 7;
+	PastChaoModel_7->child->sibling->child->sibling->sibling->sibling->sibling->sibling->child->sibling->basicdxmodel->mats[0].attr_texId = 7;
+	PastChaoModel_8->child->sibling->child->sibling->sibling->sibling->sibling->sibling->child->basicdxmodel->mats[0].attr_texId = 8;
+	PastChaoModel_8->child->sibling->child->sibling->sibling->sibling->sibling->sibling->child->sibling->basicdxmodel->mats[0].attr_texId = 8;
+	PastChaoModel_9->child->sibling->child->sibling->sibling->sibling->sibling->sibling->child->basicdxmodel->mats[0].attr_texId = 9;
+	PastChaoModel_9->child->sibling->child->sibling->sibling->sibling->sibling->sibling->child->sibling->basicdxmodel->mats[0].attr_texId = 9;
+	PastChaoModel_10->child->sibling->child->sibling->sibling->sibling->sibling->sibling->child->basicdxmodel->mats[0].attr_texId = 10;
+	PastChaoModel_10->child->sibling->child->sibling->sibling->sibling->sibling->sibling->child->sibling->basicdxmodel->mats[0].attr_texId = 10;
+	ADV03_0_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV03\\0.sa1lvl"));
+	ADV03_1_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV03\\1.sa1lvl"));
+	ADV03_2_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV03\\2.sa1lvl"));
+	LandTable* ADV03_0 = ADV03_0_Info->getlandtable(); //&landtable_00000278; // ADV03_0_Info->getlandtable();
+	LandTable* ADV03_1 = ADV03_1_Info->getlandtable(); //&landtable_0000029C; // ADV03_1_Info->getlandtable();
+	LandTable* ADV03_2 = ADV03_2_Info->getlandtable(); //&landtable_000002C0; // ADV03_2_Info->getlandtable();
+	RemoveMaterialColors_Landtable(ADV03_0);
+	RemoveMaterialColors_Landtable(ADV03_1);
+	RemoveMaterialColors_Landtable(ADV03_2);
+	ADV03_0->TexList = &texlist_past00;
+	ADV03_1->TexList = &texlist_past01;
+	ADV03_2->TexList = &texlist_past02;
+	LandTableArray[152] = ADV03_0;
+	LandTableArray[153] = ADV03_1;
+	LandTableArray[154] = ADV03_2;
+	___LANDTABLEPAST[0] = ADV03_0;
+	___LANDTABLEPAST[1] = ADV03_1;
+	___LANDTABLEPAST[2] = ADV03_2;
+	ParsePastMaterials();
+	ForceLightType_Object(PastChaoModel_2, 2, false);
+	ForceLightType_Object(PastChaoModel_7, 2, false);
+	ForceLightType_Object(PastChaoModel_8, 2, false);
+	ForceLightType_Object(PastChaoModel_9, 2, false);
+	ForceLightType_Object(PastChaoModel_10, 2, false);
+	//This is done only once
+	if (!ModelsLoaded_ADV03)
 	{
-		ReplaceBIN_DC("SETPAST00S");
-		ReplaceBIN_DC("SETPAST01S");
-		ReplaceBIN_DC("SETPAST02S");
-	}
-	else
-	{
-		ReplaceBIN_1999("SETPAST00S");
-		ReplaceBIN_1999("SETPAST01S");
-		ReplaceBIN_1999("SETPAST02S");
-	}
-	ReplacePVM("EFF_PAST");
-	ReplacePVM("EV_ALIFE");
-	ReplacePVM("K_PATYA");
-	ReplacePVM("OBJ_PAST");
-	ReplacePVM("PAST00");
-	ReplacePVM("PAST01");
-	ReplacePVM("PAST02");
-	ReplacePVM("PAST_KN_FAM");
-	ReplacePVM("KNUCKLES_NORMAL");
-	ReplacePVM("KNUCKLES_DEBU");
-	ReplacePVM("KNUCKLES_LONG");
-	//Texlists
-	___ADV03_TEXLISTS[4] = &texlist_past00;
-	___ADV03_TEXLISTS[5] = &texlist_past01;
-	___ADV03_TEXLISTS[6] = &texlist_past02;
-	//SADX water
-	WriteJump((void*)0x542850, Past_OceanDraw_r);
-	//Make stairs objects in Past Act 1 appear sooner
-	WriteData((float**)0x00545349, &PastStairsDistanceFix);
-	WriteData((float**)0x00545409, &PastStairsDistanceFix);
-	//Material fixes
-	ForceLightType_Object(ADV03_OBJECTS[1], 2, false); //Chao
-	RemoveVertexColors_Object(ADV03_OBJECTS[0]); //Master Emerald
-	RemoveVertexColors_Object(ADV03_OBJECTS[1]); //Chao
-	RemoveVertexColors_Object(ADV03_OBJECTS[7]); //Pacman
-	RemoveVertexColors_Object(ADV03_OBJECTS[23]); //Emeralds
-	RemoveVertexColors_Object(ADV03_OBJECTS[24]); //Emeralds
-	RemoveVertexColors_Object(ADV03_OBJECTS[25]); //Emeralds
-	RemoveVertexColors_Object(ADV03_OBJECTS[26]); //Emeralds
-	RemoveVertexColors_Object(ADV03_OBJECTS[27]); //Emeralds
-	RemoveVertexColors_Object(ADV03_OBJECTS[28]); //Emeralds
-	RemoveVertexColors_Object(ADV03_OBJECTS[29]); //Emeralds
-	RemoveVertexColors_Object(ADV03_ACTIONS[3]->object); //Tikal 1
-	RemoveVertexColors_Object((NJS_OBJECT*)0x8D4880); //Tikal 2
-	//Event Chao eye fixes
-	WriteCall((void*)0x653C40, AllocateEventChao_9);
-	WriteCall((void*)0x653C67, AllocateEventChao_9);
-	WriteCall((void*)0x653C91, AllocateEventChao_9);
-	//1
-	WriteCall((void*)0x66181E, AllocateEventChao_9);
-	WriteCall((void*)0x661840, AllocateEventChao_9);
-	WriteCall((void*)0x661862, AllocateEventChao_9);
-	WriteCall((void*)0x661887, AllocateEventChao_9);
-	//2 - Gamma meets Tikal
-	WriteCall((void*)0x67D993, AllocateEventChao_8);
-	WriteCall((void*)0x67D9B4, AllocateEventChao_2);
-	WriteCall((void*)0x67D9D8, AllocateEventChao_10);
-	WriteCall((void*)0x67D9F9, AllocateEventChao_8);
-	WriteCall((void*)0x67DA1A, AllocateEventChao_2);
-	WriteCall((void*)0x67DA3E, AllocateEventChao_10);
-	WriteCall((void*)0x67DA5F, AllocateEventChao_2);
-	WriteCall((void*)0x67DA80, AllocateEventChao_7);
-	WriteCall((void*)0x67DAA4, AllocateEventChao_2);
-	WriteCall((void*)0x67DAC5, AllocateEventChao_8);
-	WriteCall((void*)0x67DAE6, AllocateEventChao_8);
-	WriteCall((void*)0x67DB0A, AllocateEventChao_2);
-	WriteCall((void*)0x67DB2B, AllocateEventChao_10);
-	WriteCall((void*)0x67DB4C, AllocateEventChao_8);
-	WriteCall((void*)0x67DB70, AllocateEventChao_10);
-	WriteCall((void*)0x67DB91, AllocateEventChao_2);
-	//3 - Knuckles meets Tikal
-	WriteCall((void*)0x68BF49, AllocateEventChao_2);
-	WriteCall((void*)0x68BF6D, AllocateEventChao_2);
-	WriteCall((void*)0x68BF8E, AllocateEventChao_2);
-	WriteCall((void*)0x68BFAF, AllocateEventChao_2);
-	WriteCall((void*)0x68BFD3, AllocateEventChao_2);
-	//4
-	WriteCall((void*)0x6A1D94, AllocateEventChao_2);
-	WriteCall((void*)0x6A1DB5, AllocateEventChao_2);
-	WriteCall((void*)0x6A1DD9, AllocateEventChao_2);
-	WriteCall((void*)0x6A1DFA, AllocateEventChao_2);
-	WriteCall((void*)0x6A2A09, AllocateEventChao_2);
-	//Palm fixes
-	ADV03_ACTIONS[10]->object = LoadModel("system\\data\\ADV03\\Models\\00012DA8.sa1mdl", false); //Palm in Act 3
-	ADV03_ACTIONS[10]->object->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_USE_ALPHA; //Hide DA_ONE stuff
-	ADV03_ACTIONS[10]->object->basicdxmodel->meshsets[0].nbMesh = 0; //Hide DA_ONE stuff
-	PalmBottom = LoadModel("system\\data\\ADV03\\Models\\00012DA8.sa1mdl", false);
-	PalmBottom->basicdxmodel->meshsets[1].nbMesh = 0;
-	PalmBottom->basicdxmodel->meshsets[2].nbMesh = 0;
-	PalmBottom->evalflags |= NJD_EVAL_BREAK;
-	PalmBottom->child = NULL;
-	ADV03_OBJECTS[9] = LoadModel("system\\data\\ADV03\\Models\\0001503C.sa1mdl", false); //Palm in Act 2
-	ADV03_OBJECTS[9]->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_USE_ALPHA; //Hide DA_ONE stuff
-	ADV03_OBJECTS[9]->basicdxmodel->meshsets[0].nbMesh = 0; //Hide DA_ONE stuff
-	PalmBottom2 = LoadModel("system\\data\\ADV03\\Models\\0001503C.sa1mdl", false);
-	PalmBottom2->basicdxmodel->meshsets[1].nbMesh = 0;
-	PalmBottom2->basicdxmodel->meshsets[2].nbMesh = 0;
-	PalmBottom2->basicdxmodel->meshsets[3].nbMesh = 0;
-	PalmBottom2->basicdxmodel->meshsets[4].nbMesh = 0;
-	WriteCall((void*)0x545C1A, RenderPalm1);
-	WriteCall((void*)0x545BFD, RenderPalm2);
-	AddWhiteDiffuseMaterial(&ADV03_OBJECTS[12]->basicdxmodel->mats[1]); //OTree 0 second model
-	//Tikal cutscene water ripple thing
-	WriteData((float*)0x0068BA27, -40.7f); //Ripple 1 X
-	WriteData((float*)0x0068BA22, 86.0f); //Ripple 1 Y
-	WriteData((float*)0x0068BA1D, 59.43f); //Ripple 1 Z
-	WriteData((float*)0x0068BA62, -40.7f); //Ripple 2 X
-	WriteData((float*)0x0068BA5D, 86.0f); //Ripple 2 Y
-	WriteData((float*)0x0068BA58, 59.43f); //Ripple 2 Z
-	WriteData((float*)0x0068BA94, -52.01f); //Ripple 3 X
-	WriteData((float*)0x0068BA8F, 86.0f); //Ripple 3 Y
-	WriteData((float*)0x0068BA8A, 52.42f); //Ripple 3 Z
-	//Other objects
-	ADV03_ACTIONS[9]->object = LoadModel("system\\data\\ADV03\\Models\\0000F864.sa1mdl", false); //OTree 0
-	___ADV03_OBJECTS[16] = LoadModel("system\\data\\ADV03\\Models\\0001EDDC.sa1mdl", false); //Tree 16
-	___ADV03_OBJECTS[17] = LoadModel("system\\data\\ADV03\\Models\\0001EDDC.sa1mdl", false); //Tree 17 (identical?)
-	___ADV03_OBJECTS[15] = LoadModel("system\\data\\ADV03\\Models\\00027158.sa1mdl", false); //Small tree shadow
-	___ADV03_OBJECTS[13] = LoadModel("system\\data\\ADV03\\Models\\00016CA0.sa1mdl", false); //OWell
-	___ADV03_OBJECTS[18] = LoadModel("system\\data\\ADV03\\Models\\00027054.sa1mdl", false); //Well shadow
-	___ADV03_OBJECTS[21] = LoadModel("system\\data\\ADV03\\Models\\0001D774.sa1mdl", false); //OPyStairs
-	___ADV03_OBJECTS[20] = LoadModel("system\\data\\ADV03\\Models\\0001E498.sa1mdl", false); //OBigStairs
-	___ADV03_OBJECTS[19] = LoadModel("system\\data\\ADV03\\Models\\0001E59C.sa1mdl", false); //OBigStairs low LOD
-	___ADV03_OBJECTS[22] = LoadModel("system\\data\\ADV03\\Models\\0001D878.sa1mdl", false); //OPyStairs low LOD
-	//Fog data
-	for (int i = 0; i < 3; i++)
-	{
-		FogData_Past1[i].Layer = -12000.0f;
-		FogData_Past1[i].Distance = -12000.0f;
-		FogData_Past2[i].Layer = -12000.0f;
-		FogData_Past2[i].Distance = -12000.0f;
-		FogData_Past3[i].Layer = -12000.0f;
-		FogData_Past3[i].Distance = -12000.0f;
-		DrawDist_Past1[i].Maximum = -12000.0f;
-		DrawDist_Past2[i].Maximum = -16000.0f;
-		DrawDist_Past3[i].Maximum = -16000.0f;
+		ReplaceBIN_DC("CAMPAST00S");
+		ReplaceBIN_DC("CAMPAST01S");
+		ReplaceBIN_DC("CAMPAST02S");
+		if (!Use1999SetFiles)
+		{
+			ReplaceBIN_DC("SETPAST00S");
+			ReplaceBIN_DC("SETPAST01S");
+			ReplaceBIN_DC("SETPAST02S");
+		}
+		else
+		{
+			ReplaceBIN_1999("SETPAST00S");
+			ReplaceBIN_1999("SETPAST01S");
+			ReplaceBIN_1999("SETPAST02S");
+		}
+		ReplacePVM("EFF_PAST");
+		ReplacePVM("EV_ALIFE");
+		ReplacePVM("K_PATYA");
+		ReplacePVM("OBJ_PAST");
+		ReplacePVM("PAST00");
+		ReplacePVM("PAST01");
+		ReplacePVM("PAST02");
+		ReplacePVM("PAST_KN_FAM");
+		ReplacePVM("KNUCKLES_NORMAL");
+		ReplacePVM("KNUCKLES_DEBU");
+		ReplacePVM("KNUCKLES_LONG");
+		//Texlists
+		___ADV03_TEXLISTS[4] = &texlist_past00;
+		___ADV03_TEXLISTS[5] = &texlist_past01;
+		___ADV03_TEXLISTS[6] = &texlist_past02;
+		//SADX water
+		WriteJump((void*)0x542850, Past_OceanDraw_r);
+		//Make stairs objects in Past Act 1 appear sooner
+		WriteData((float**)0x00545349, &PastStairsDistanceFix);
+		WriteData((float**)0x00545409, &PastStairsDistanceFix);
+		//Material fixes
+		ForceLightType_Object(ADV03_OBJECTS[1], 2, false); //Chao
+		RemoveVertexColors_Object(ADV03_OBJECTS[0]); //Master Emerald
+		RemoveVertexColors_Object(ADV03_OBJECTS[1]); //Chao
+		RemoveVertexColors_Object(ADV03_OBJECTS[7]); //Pacman
+		RemoveVertexColors_Object(ADV03_OBJECTS[23]); //Emeralds
+		RemoveVertexColors_Object(ADV03_OBJECTS[24]); //Emeralds
+		RemoveVertexColors_Object(ADV03_OBJECTS[25]); //Emeralds
+		RemoveVertexColors_Object(ADV03_OBJECTS[26]); //Emeralds
+		RemoveVertexColors_Object(ADV03_OBJECTS[27]); //Emeralds
+		RemoveVertexColors_Object(ADV03_OBJECTS[28]); //Emeralds
+		RemoveVertexColors_Object(ADV03_OBJECTS[29]); //Emeralds
+		RemoveVertexColors_Object(ADV03_ACTIONS[3]->object); //Tikal 1
+		RemoveVertexColors_Object((NJS_OBJECT*)0x8D4880); //Tikal 2
+		//Event Chao eye fixes
+		WriteCall((void*)0x653C40, AllocateEventChao_9);
+		WriteCall((void*)0x653C67, AllocateEventChao_9);
+		WriteCall((void*)0x653C91, AllocateEventChao_9);
+		//1
+		WriteCall((void*)0x66181E, AllocateEventChao_9);
+		WriteCall((void*)0x661840, AllocateEventChao_9);
+		WriteCall((void*)0x661862, AllocateEventChao_9);
+		WriteCall((void*)0x661887, AllocateEventChao_9);
+		//2 - Gamma meets Tikal
+		WriteCall((void*)0x67D993, AllocateEventChao_8);
+		WriteCall((void*)0x67D9B4, AllocateEventChao_2);
+		WriteCall((void*)0x67D9D8, AllocateEventChao_10);
+		WriteCall((void*)0x67D9F9, AllocateEventChao_8);
+		WriteCall((void*)0x67DA1A, AllocateEventChao_2);
+		WriteCall((void*)0x67DA3E, AllocateEventChao_10);
+		WriteCall((void*)0x67DA5F, AllocateEventChao_2);
+		WriteCall((void*)0x67DA80, AllocateEventChao_7);
+		WriteCall((void*)0x67DAA4, AllocateEventChao_2);
+		WriteCall((void*)0x67DAC5, AllocateEventChao_8);
+		WriteCall((void*)0x67DAE6, AllocateEventChao_8);
+		WriteCall((void*)0x67DB0A, AllocateEventChao_2);
+		WriteCall((void*)0x67DB2B, AllocateEventChao_10);
+		WriteCall((void*)0x67DB4C, AllocateEventChao_8);
+		WriteCall((void*)0x67DB70, AllocateEventChao_10);
+		WriteCall((void*)0x67DB91, AllocateEventChao_2);
+		//3 - Knuckles meets Tikal
+		WriteCall((void*)0x68BF49, AllocateEventChao_2);
+		WriteCall((void*)0x68BF6D, AllocateEventChao_2);
+		WriteCall((void*)0x68BF8E, AllocateEventChao_2);
+		WriteCall((void*)0x68BFAF, AllocateEventChao_2);
+		WriteCall((void*)0x68BFD3, AllocateEventChao_2);
+		//4
+		WriteCall((void*)0x6A1D94, AllocateEventChao_2);
+		WriteCall((void*)0x6A1DB5, AllocateEventChao_2);
+		WriteCall((void*)0x6A1DD9, AllocateEventChao_2);
+		WriteCall((void*)0x6A1DFA, AllocateEventChao_2);
+		WriteCall((void*)0x6A2A09, AllocateEventChao_2);
+		//Palm fixes
+		ADV03_ACTIONS[10]->object = LoadModel("system\\data\\ADV03\\Models\\00012DA8.sa1mdl", false); //Palm in Act 3
+		ADV03_ACTIONS[10]->object->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_USE_ALPHA; //Hide DA_ONE stuff
+		ADV03_ACTIONS[10]->object->basicdxmodel->meshsets[0].nbMesh = 0; //Hide DA_ONE stuff
+		PalmBottom = LoadModel("system\\data\\ADV03\\Models\\00012DA8.sa1mdl", false);
+		PalmBottom->basicdxmodel->meshsets[1].nbMesh = 0;
+		PalmBottom->basicdxmodel->meshsets[2].nbMesh = 0;
+		PalmBottom->evalflags |= NJD_EVAL_BREAK;
+		PalmBottom->child = NULL;
+		ADV03_OBJECTS[9] = LoadModel("system\\data\\ADV03\\Models\\0001503C.sa1mdl", false); //Palm in Act 2
+		ADV03_OBJECTS[9]->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_USE_ALPHA; //Hide DA_ONE stuff
+		ADV03_OBJECTS[9]->basicdxmodel->meshsets[0].nbMesh = 0; //Hide DA_ONE stuff
+		PalmBottom2 = LoadModel("system\\data\\ADV03\\Models\\0001503C.sa1mdl", false);
+		PalmBottom2->basicdxmodel->meshsets[1].nbMesh = 0;
+		PalmBottom2->basicdxmodel->meshsets[2].nbMesh = 0;
+		PalmBottom2->basicdxmodel->meshsets[3].nbMesh = 0;
+		PalmBottom2->basicdxmodel->meshsets[4].nbMesh = 0;
+		WriteCall((void*)0x545C1A, RenderPalm1);
+		WriteCall((void*)0x545BFD, RenderPalm2);
+		AddWhiteDiffuseMaterial(&ADV03_OBJECTS[12]->basicdxmodel->mats[1]); //OTree 0 second model
+		//Tikal cutscene water ripple thing
+		WriteData((float*)0x0068BA27, -40.7f); //Ripple 1 X
+		WriteData((float*)0x0068BA22, 86.0f); //Ripple 1 Y
+		WriteData((float*)0x0068BA1D, 59.43f); //Ripple 1 Z
+		WriteData((float*)0x0068BA62, -40.7f); //Ripple 2 X
+		WriteData((float*)0x0068BA5D, 86.0f); //Ripple 2 Y
+		WriteData((float*)0x0068BA58, 59.43f); //Ripple 2 Z
+		WriteData((float*)0x0068BA94, -52.01f); //Ripple 3 X
+		WriteData((float*)0x0068BA8F, 86.0f); //Ripple 3 Y
+		WriteData((float*)0x0068BA8A, 52.42f); //Ripple 3 Z
+		//Other objects
+		ADV03_ACTIONS[9]->object = LoadModel("system\\data\\ADV03\\Models\\0000F864.sa1mdl", false); //OTree 0
+		___ADV03_OBJECTS[16] = LoadModel("system\\data\\ADV03\\Models\\0001EDDC.sa1mdl", false); //Tree 16
+		___ADV03_OBJECTS[17] = LoadModel("system\\data\\ADV03\\Models\\0001EDDC.sa1mdl", false); //Tree 17 (identical?)
+		___ADV03_OBJECTS[15] = LoadModel("system\\data\\ADV03\\Models\\00027158.sa1mdl", false); //Small tree shadow
+		___ADV03_OBJECTS[13] = LoadModel("system\\data\\ADV03\\Models\\00016CA0.sa1mdl", false); //OWell
+		___ADV03_OBJECTS[18] = LoadModel("system\\data\\ADV03\\Models\\00027054.sa1mdl", false); //Well shadow
+		___ADV03_OBJECTS[21] = LoadModel("system\\data\\ADV03\\Models\\0001D774.sa1mdl", false); //OPyStairs
+		___ADV03_OBJECTS[20] = LoadModel("system\\data\\ADV03\\Models\\0001E498.sa1mdl", false); //OBigStairs
+		___ADV03_OBJECTS[19] = LoadModel("system\\data\\ADV03\\Models\\0001E59C.sa1mdl", false); //OBigStairs low LOD
+		___ADV03_OBJECTS[22] = LoadModel("system\\data\\ADV03\\Models\\0001D878.sa1mdl", false); //OPyStairs low LOD
+		//Fog data
+		for (int i = 0; i < 3; i++)
+		{
+			FogData_Past1[i].Layer = -12000.0f;
+			FogData_Past1[i].Distance = -12000.0f;
+			FogData_Past2[i].Layer = -12000.0f;
+			FogData_Past2[i].Distance = -12000.0f;
+			FogData_Past3[i].Layer = -12000.0f;
+			FogData_Past3[i].Distance = -12000.0f;
+			DrawDist_Past1[i].Maximum = -12000.0f;
+			DrawDist_Past2[i].Maximum = -16000.0f;
+			DrawDist_Past3[i].Maximum = -16000.0f;
+		}
+		ModelsLoaded_ADV03 = true;
 	}
 }
 

@@ -559,8 +559,9 @@ void UnloadLevelFiles_ADV00()
 	PreviousTimeOfDay = -1;
 }
 
-void LoadLevelFiles_ADV00()
+void ADV00_Init()
 {
+	//This is done every time the function is called
 	CheckAndUnloadLevelFiles();
 	ADV00_0_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV00\\0.sa1lvl"));
 	ADV00_1_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV00\\1.sa1lvl"));
@@ -568,12 +569,12 @@ void LoadLevelFiles_ADV00()
 	ADV00_3_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV00\\3.sa1lvl"));
 	ADV00_4_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV00\\4.sa1lvl"));
 	ADV00_5_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV00\\5.sa1lvl"));
-	LandTable *ADV00_0 = ADV00_0_Info->getlandtable(); // &landtable_000157F4; // 
-	LandTable *ADV00_1 = ADV00_1_Info->getlandtable(); // &landtable_000738F4; // 
-	LandTable *ADV00_2 = ADV00_2_Info->getlandtable(); // &landtable_000C21F0; // 
-	LandTable *ADV00_3 = ADV00_3_Info->getlandtable(); // &landtable_000DCEBC; // 
-	LandTable *ADV00_4 = ADV00_4_Info->getlandtable(); // &landtable_00135A90; // 
-	LandTable *ADV00_5 = ADV00_5_Info->getlandtable(); // &landtable_001573CC; // 
+	LandTable* ADV00_0 = ADV00_0_Info->getlandtable(); // &landtable_000157F4; // 
+	LandTable* ADV00_1 = ADV00_1_Info->getlandtable(); // &landtable_000738F4; // 
+	LandTable* ADV00_2 = ADV00_2_Info->getlandtable(); // &landtable_000C21F0; // 
+	LandTable* ADV00_3 = ADV00_3_Info->getlandtable(); // &landtable_000DCEBC; // 
+	LandTable* ADV00_4 = ADV00_4_Info->getlandtable(); // &landtable_00135A90; // 
+	LandTable* ADV00_5 = ADV00_5_Info->getlandtable(); // &landtable_001573CC; // 
 	RemoveMaterialColors_Landtable(ADV00_0);
 	RemoveMaterialColors_Landtable(ADV00_1);
 	RemoveMaterialColors_Landtable(ADV00_2);
@@ -613,306 +614,307 @@ void LoadLevelFiles_ADV00()
 	ParseSSColFlags();
 	ParseSSMaterials(false);
 	PreviousTimeOfDay = -1;
-	if (!SADXWater_StationSquare) WriteJump((void*)0x631140, RenderStationSquareOcean); //Render SS ocean separately
-}
-
-void ADV00_Init()
-{
-	if (!Use1999SetFiles)
+	//This is done only once
+	if (!ModelsLoaded_ADV00)
 	{
-		ReplaceBIN_DC("SETSS00A");
-		ReplaceBIN_DC("SETSS00B");
-		ReplaceBIN_DC("SETSS00E");
-		ReplaceBIN_DC("SETSS00K");
-		ReplaceBIN_DC("SETSS00L");
-		ReplaceBIN_DC("SETSS00M");
-		ReplaceBIN_DC("SETSS00S");
-		ReplaceBIN_DC("SETSS01A");
-		ReplaceBIN_DC("SETSS01B");
-		ReplaceBIN_DC("SETSS01E");
-		ReplaceBIN_DC("SETSS01K");
-		ReplaceBIN_DC("SETSS01L");
-		ReplaceBIN_DC("SETSS01M");
-		ReplaceBIN_DC("SETSS01S");
-		ReplaceBIN_DC("SETSS02S");
-		ReplaceBIN_DC("SETSS02B");
-		ReplaceBIN_DC("SETSS03A");
-		ReplaceBIN_DC("SETSS03B");
-		ReplaceBIN_DC("SETSS03E");
-		ReplaceBIN_DC("SETSS03K");
-		ReplaceBIN_DC("SETSS03L");
-		ReplaceBIN_DC("SETSS03M");
-		ReplaceBIN_DC("SETSS03S");
-		ReplaceBIN_DC("SETSS04A");
-		ReplaceBIN_DC("SETSS04B");
-		ReplaceBIN_DC("SETSS04E");
-		ReplaceBIN_DC("SETSS04K");
-		ReplaceBIN_DC("SETSS04L");
-		ReplaceBIN_DC("SETSS04M");
-		ReplaceBIN_DC("SETSS04S");
-		ReplaceBIN_DC("SETSS05S");
-	}
-	else
-	{
-		ReplaceBIN_1999("SETSS00A");
-		ReplaceBIN_1999("SETSS00B");
-		ReplaceBIN_1999("SETSS00E");
-		ReplaceBIN_1999("SETSS00K");
-		ReplaceBIN_1999("SETSS00L");
-		ReplaceBIN_1999("SETSS00M");
-		ReplaceBIN_1999("SETSS00S");
-		ReplaceBIN_1999("SETSS01A");
-		ReplaceBIN_1999("SETSS01B");
-		ReplaceBIN_1999("SETSS01E");
-		ReplaceBIN_1999("SETSS01K");
-		ReplaceBIN_1999("SETSS01L");
-		ReplaceBIN_1999("SETSS01M");
-		ReplaceBIN_1999("SETSS01S");
-		ReplaceBIN_1999("SETSS02S");
-		ReplaceBIN_1999("SETSS02B");
-		ReplaceBIN_1999("SETSS03A");
-		ReplaceBIN_1999("SETSS03B");
-		ReplaceBIN_1999("SETSS03E");
-		ReplaceBIN_1999("SETSS03K");
-		ReplaceBIN_1999("SETSS03L");
-		ReplaceBIN_1999("SETSS03M");
-		ReplaceBIN_1999("SETSS03S");
-		ReplaceBIN_1999("SETSS04A");
-		ReplaceBIN_1999("SETSS04B");
-		ReplaceBIN_1999("SETSS04E");
-		ReplaceBIN_1999("SETSS04K");
-		ReplaceBIN_1999("SETSS04L");
-		ReplaceBIN_1999("SETSS04M");
-		ReplaceBIN_1999("SETSS04S");
-		ReplaceBIN_1999("SETSS05S");
-	}
-	if (!DLLLoaded_DLCs)
-	{
-		ReplaceBIN_DC("CAMSS00S");
-		ReplaceBIN_DC("CAMSS01S");
-		ReplaceBIN_DC("CAMSS02S");
-		ReplaceBIN_DC("CAMSS03S");
-		ReplaceBIN_DC("CAMSS04S");
-		ReplaceBIN_DC("CAMSS05S");
-	}
-	ReplacePVM("ADVSS00");
-	ReplacePVM("ADVSS01");
-	ReplacePVM("ADVSS02");
-	ReplacePVM("ADVSS03");
-	ReplacePVM("ADVSS04");
-	ReplacePVM("ADVSS05");
-	ReplacePVM("OBJ_SS");
-	ReplacePVM("SS_BG");
-	ReplacePVM("SS_BOAT");
-	ReplacePVM("SS_BURGER");
-	ReplacePVM("SS_CASINO");
-	ReplacePVM("SS_DENTOU");
-	ReplacePVM("SS_EKIIN");
-	ReplacePVM("SS_KANBAN");
-	ReplacePVM("SS_MIZUGI");
-	ReplacePVM("SS_PEOPLE");
-	ReplacePVM("SS_TRAIN");
-	ReplacePVM("SS_TWINS");
-	ReplacePVM("SSCAR");
-	ReplacePVM("SSPATCAR_BODY");
-	ReplacePVR("SS_FINESKY");
-	ReplacePVR("SS_NIGHTSKY");
-	ReplacePVR("SS_NIGHTSKYB");
-	ReplacePVR("SS_YUSKAY_MINI");
-	___ADV00_TEXLISTS[0] = &texlist_advss00;
-	___ADV00_TEXLISTS[1] = &texlist_advss01;
-	___ADV00_TEXLISTS[2] = &texlist_advss02;
-	___ADV00_TEXLISTS[3] = &texlist_advss03;
-	___ADV00_TEXLISTS[4] = &texlist_advss04;
-	___ADV00_TEXLISTS[5] = &texlist_advss05;
-	ResizeTextureList((NJS_TEXLIST*)0x2AEE920, 22); //SSCAR 
-	ResizeTextureList((NJS_TEXLIST*)0x2AD9F58, 31); //SS_TRAIN
-	ResizeTextureList(&OBJ_SS_TEXLIST, 177);
-	StationSquareCarTextureIDs[5] = 7; //Not an actual car surface texture but it's like that in SA1 too
-	WriteJump((void*)0x63C770, OS1Dnto_Display_Night);
-	WriteJump((void*)0x63A930, OGaitou_Display_Night);
-	WriteCall((void*)0x63EECF, SouvenirShopDoor_Depth);
-	WriteCall((void*)0x636DE9, RenderOfficeDoor);
-	WriteCall((void*)0x636E99, RenderOfficeDoor);
-	WriteCall((void*)0x636F0B, RenderOfficeDoor);
-	WriteCall((void*)0x636E1A, RenderOfficeDoor_Child);
-	WriteCall((void*)0x636E52, RenderOfficeDoor_Child);
-	WriteCall((void*)0x636EC0, RenderOfficeDoor_Child);
-	WriteCall((void*)0x636F32, RenderOfficeDoor_Child);
-	WriteCall((void*)0x638B2E, RenderPoliceCarBarricade);
-	WriteCall((void*)0x638B50, RenderPoliceCarBarricade);
-	WriteCall((void*)0x632773, FixPoliceCar);
-	WriteCall((void*)0x63A908, OGaitou_Day_Fix); //Don't queue a non-transparent model
-	WriteData((float*)0x634EB9, 0.601f); //Prevent Z fighting with SS NPC shadow when overlapping transparent stuff
-	//Fix camera in Light Speed Shoes cutscene
-	WriteData((float*)0x652F74, 800.0f); //X1
-	WriteData((float*)0x652F79, -92.6f); //Y1
-	WriteData((float*)0x6532BB, 509.9f); //X2
-	WriteData((float*)0x6532B6, -89.4f); //Y2
-	WriteData((float*)0x6532B1, 812.3f); //Z2
-	WriteCall((void*)0x6304B6, DelaySettingTimeOfDay); //Prevent sudden lighting change in Sonic's story
-	WriteCall((void*)0x652F4F, LSCutsceneRotationFix); //Fix Sonic's rotation after getting the Light Speed Shoes
-	//Fix materials
-	for (int i = 0; i < 26; i++)
-	{
-		RemoveVertexColors_Object(MODEL_SS_PEOPLE_OBJECTS[i]);
-	}
-	RemoveVertexColors_Object((NJS_OBJECT*)0x2ABF65C); //OS1Solt
-	RemoveVertexColors_Object((NJS_OBJECT*)0x2AB89D4); //OKomonoExit
-	RemoveVertexColors_Object((NJS_OBJECT*)0x2AD702C); //OKeyBlock 1
-	RemoveVertexColors_Object((NJS_OBJECT*)0x2AD746C); //OKeyBlock 2
-	RemoveVertexColors_Object((NJS_OBJECT*)0x2AD7674); //OKeyBlock 3
-	AddWhiteDiffuseMaterial((NJS_MATERIAL*)0x2DBE574); //Police car in first cutscene
-	AddWhiteDiffuseMaterial((NJS_MATERIAL*)0x2DBE588); //Police car in first cutscene
-	AddWhiteDiffuseMaterial((NJS_MATERIAL*)0x2DBE59C); //Police car in first cutscene
-	WriteData<5>((void*)0x630ADA, 0x90); //Hotel door fix 1
-	WriteData<5>((void*)0x630AE6, 0x90); //Hotel door fix 2
-	WriteData<5>((void*)0x630B03, 0x90); //Hotel door fix 3
-	WriteJump((void*)0x62EA30, CheckIfCameraIsInHotel_Lol); //Disable hotel lighting check
-	//Material stuff
-	((NJS_OBJECT*)0x2AB757C)->basicdxmodel->mats[2].attrflags &= ~NJD_FLAG_USE_ALPHA; //Speed Highway elevator door
-	((NJS_OBJECT*)0x2AB6E4C)->basicdxmodel->mats[2].attrflags &= ~NJD_FLAG_USE_ALPHA; //Speed Highway elevator door
-	//Objects
-	*(NJS_MODEL_SADX*)0x2ACBB80 = *LoadModel("system\\data\\ADV00\\Models\\0017F588.sa1mdl", false)->basicdxmodel; //OPoolChair
-	*(NJS_MODEL_SADX*)0x2AC95BC = *LoadModel("system\\data\\ADV00\\Models\\0017D568.sa1mdl", false)->basicdxmodel; //Fire hydrant
-	*(NJS_OBJECT*)0x2AC9F10 = *LoadModel("system\\data\\ADV00\\Models\\0017DDE8.sa1mdl", false); //OGaitou (street light)
-	StreetLight_Night = LoadModel("system\\data\\ADV00\\Models\\0017DDE8.sa1mdl", false); //OGaitou (street light);
-	StreetLight_Night->basicdxmodel->mats[0].attrflags |= NJD_FLAG_USE_ALPHA;
-	StreetLight_Night->basicdxmodel->mats[1].attrflags |= NJD_FLAG_USE_ALPHA;
-	StreetLight_Night->basicdxmodel->mats[2].attrflags |= NJD_FLAG_USE_ALPHA;
-	StreetLight_Night->child->sibling->basicdxmodel->mats[0].attrflags |= NJD_FLAG_USE_ALPHA;
-	*(NJS_OBJECT*)0x2AEA9F8 = *LoadModel("system\\data\\ADV00\\Models\\00197228.sa1mdl", false); //OS1Dnto
-	OS1Dnto_Night = LoadModel("system\\data\\ADV00\\Models\\00197228.sa1mdl", false); //OS1Dnto
-	OS1Dnto_Night->basicdxmodel->mats[0].attrflags |= NJD_FLAG_USE_ALPHA;
-	OS1Dnto_Night->basicdxmodel->mats[1].attrflags |= NJD_FLAG_USE_ALPHA;
-	OS1Dnto_Night->basicdxmodel->mats[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	OS1Dnto_Night->basicdxmodel->mats[1].attr_texId = 2; //Evening/night texture
-	*(NJS_OBJECT*)0x2AB2CCC = *LoadModel("system\\data\\ADV00\\Models\\001689C4.sa1mdl", true); //Souvenir shop door
-	*(NJS_OBJECT*)0x2AB57E4 = *LoadModel("system\\data\\ADV00\\Models\\0016B404.sa1mdl", false); //OTwaDoor
-	*(NJS_OBJECT*)0x2AFE668 = *LoadModel("system\\data\\ADV00\\Models\\001A6DEC.sa1mdl", false); //Casino decoration 1
-	*(NJS_OBJECT*)0x2B027D8 = *LoadModel("system\\data\\ADV00\\Models\\001AADA4.sa1mdl", false); //Casino decoration 2
-	*(NJS_OBJECT*)0x2B04CF8 = *LoadModel("system\\data\\ADV00\\Models\\001AD220.sa1mdl", false); //Casino decoration 3
-	*(NJS_OBJECT*)0x2AC8AEC = *LoadModel("system\\data\\ADV00\\Models\\0017CD14.sa1mdl", false); //OStDoor
-	*(NJS_OBJECT*)0x2AB146C = *LoadModel("system\\data\\ADV00\\Models\\001671B8.sa1mdl", false); //Burger shop door
-	*(NJS_OBJECT*)0x2AD4EA4 = *LoadModel("system\\data\\ADV00\\Models\\00186E88.sa1mdl", false); //Hidden door 1
-	*(NJS_OBJECT*)0x2AD4CD4 = *LoadModel("system\\data\\ADV00\\Models\\00186CC4.sa1mdl", false); //Hidden door 2
-	*(NJS_OBJECT*)0x2AEE7B0 = *LoadModel("system\\data\\ADV00\\Models\\0019AF04.sa1mdl", false); //Boat
-	*(NJS_OBJECT*)0x2AAB0E4 = *LoadModel("system\\data\\ADV00\\Models\\00164444.sa1mdl", false); //OHotelFront 1
-	*(NJS_OBJECT*)0x2AAE0BC = *LoadModel("system\\data\\ADV00\\Models\\00164444.sa1mdl", false); //OHotelFront 2 (duplicate?)
-	*(NJS_OBJECT*)0x2ABDF0C = *LoadModel("system\\data\\ADV00\\Models\\00172BD4.sa1mdl", false); //Box in the sewers
-	*(NJS_OBJECT*)0x2AF1974 = *LoadModel("system\\data\\ADV00\\Models\\0019CBD8.sa1mdl", false); //Red Car
-	*(NJS_OBJECT*)0x2AF8400 = *LoadModel("system\\data\\ADV00\\Models\\001A17C4.sa1mdl", false); //Blue Car
-	*(NJS_OBJECT*)0x2AFBA64 = *LoadModel("system\\data\\ADV00\\Models\\001A4268.sa1mdl", false); //Taxi
-	*(NJS_OBJECT*)0x2AD362C = *LoadModel("system\\data\\ADV00\\Models\\00185A20.sa1mdl", false); //OWakusei
-	*(NJS_OBJECT*)0x2AB6900 = *LoadModel("system\\data\\ADV00\\Models\\0016C3FC.sa1mdl", false); //Twinkle Park elevator
-	*(NJS_OBJECT*)0x2AD14C8 = *LoadModel("system\\data\\ADV00\\Models\\00183B8C.sa1mdl", false); //OMSaku (Gamma's target)
-	*(NJS_OBJECT*)0x2AD484C = *LoadModel("system\\data\\ADV00\\Models\\0018684C.sa1mdl", false); //Ice Key
-	*(NJS_OBJECT*)0x2DBD6D0 = *LoadModel("system\\data\\Other\\00011208.sa1mdl", false); //Event helicopter
-	AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x2DBD6D0)->child->sibling->sibling->sibling->sibling->child->basicdxmodel->mats[1]);
-	AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x2DBD6D0)->child->sibling->sibling->sibling->sibling->child->basicdxmodel->mats[2]);
-	*(NJS_OBJECT*)0x2AE8674 = *LoadModel("system\\data\\ADV00\\Models\\00195DC0.sa1mdl", false); //Train
-	SwapMeshsets(((NJS_OBJECT*)0x2AE8674)->child->sibling->sibling->sibling, 8, 9); //Alpha thing just in case
-	AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x2AE8674)->child->sibling->sibling->sibling->basicdxmodel->mats[9]);
-	//Police car stuff
-	*(NJS_OBJECT*)0x2AF4FC0 = *LoadModel("system\\data\\ADV00\\Models\\0019F390.sa1mdl", false); //Police
-	((NJS_OBJECT*)0x2AF4FC0)->basicdxmodel->meshsets[9].nbMesh = 0; //Hide lights
-	((NJS_OBJECT*)0x2AF4FC0)->basicdxmodel->meshsets[10].nbMesh = 0; //Hide lights
-	PoliceCarModel_LightsOnly = LoadModel("system\\data\\ADV00\\Models\\0019F390.sa1mdl", false); //Police
-	PoliceCarModel_LightsOnly->basicdxmodel->meshsets[0].nbMesh = 0;
-	PoliceCarModel_LightsOnly->basicdxmodel->meshsets[1].nbMesh = 0;
-	PoliceCarModel_LightsOnly->basicdxmodel->meshsets[2].nbMesh = 0;
-	PoliceCarModel_LightsOnly->basicdxmodel->meshsets[3].nbMesh = 0;
-	PoliceCarModel_LightsOnly->basicdxmodel->meshsets[4].nbMesh = 0;
-	PoliceCarModel_LightsOnly->basicdxmodel->meshsets[5].nbMesh = 0;
-	PoliceCarModel_LightsOnly->basicdxmodel->meshsets[6].nbMesh = 0;
-	PoliceCarModel_LightsOnly->basicdxmodel->meshsets[7].nbMesh = 0;
-	PoliceCarModel_LightsOnly->basicdxmodel->meshsets[8].nbMesh = 0;
-	PoliceCarModel_LightsOnly->basicdxmodel->meshsets[11].nbMesh = 0;
-	PoliceCarModel_LightsOnly->basicdxmodel->meshsets[12].nbMesh = 0;
-	PoliceCarModel_LightsOnly->basicdxmodel->meshsets[13].nbMesh = 0;
-	PoliceCarModel_LightsOnly->child->evalflags |= NJD_EVAL_HIDE;
-	PoliceCarModel_LightsOnly->child->sibling->evalflags |= NJD_EVAL_HIDE;
-	PoliceCarModel_LightsOnly->child->sibling->sibling->evalflags |= NJD_EVAL_HIDE;
-	PoliceCarModel_LightsOnly->child->sibling->sibling->sibling->evalflags |= NJD_EVAL_HIDE;
-	//Parasol stuff
-	//Main model
-	Parasol_1 = LoadModel("system\\data\\ADV00\\Models\\00182AD8.sa1mdl", false);
-	Parasol_1->basicdxmodel->meshsets[1].nbMesh = 0;
-	Parasol_1->basicdxmodel->meshsets[2].nbMesh = 0;
-	Parasol_1->basicdxmodel->meshsets[5].nbMesh = 0;
-	Parasol_1->basicdxmodel->meshsets[6].nbMesh = 0;
-	Parasol_1->basicdxmodel->meshsets[7].nbMesh = 0;
-	Parasol_1->basicdxmodel->meshsets[8].nbMesh = 0;
-	Parasol_1->basicdxmodel->meshsets[11].nbMesh = 0;
-	//Chair transparency
-	Parasol_2 = LoadModel("system\\data\\ADV00\\Models\\00182AD8.sa1mdl", false);
-	Parasol_2->basicdxmodel->meshsets[0].nbMesh = 0;
-	Parasol_2->basicdxmodel->meshsets[3].nbMesh = 0;
-	Parasol_2->basicdxmodel->meshsets[4].nbMesh = 0;
-	Parasol_2->basicdxmodel->meshsets[5].nbMesh = 0;
-	Parasol_2->basicdxmodel->meshsets[6].nbMesh = 0;
-	Parasol_2->basicdxmodel->meshsets[7].nbMesh = 0;
-	Parasol_2->basicdxmodel->meshsets[8].nbMesh = 0;
-	Parasol_2->basicdxmodel->meshsets[9].nbMesh = 0;
-	Parasol_2->basicdxmodel->meshsets[10].nbMesh = 0;
-	Parasol_2->basicdxmodel->meshsets[11].nbMesh = 0;
-	Parasol_2->basicdxmodel->meshsets[12].nbMesh = 0;
-	Parasol_2->basicdxmodel->meshsets[13].nbMesh = 0;
-	Parasol_2->basicdxmodel->meshsets[14].nbMesh = 0;
-	//Umbrella
-	Parasol_3 = LoadModel("system\\data\\ADV00\\Models\\00182AD8.sa1mdl", false);
-	Parasol_3->basicdxmodel->meshsets[0].nbMesh = 0;
-	Parasol_3->basicdxmodel->meshsets[1].nbMesh = 0;
-	Parasol_3->basicdxmodel->meshsets[2].nbMesh = 0;
-	Parasol_3->basicdxmodel->meshsets[3].nbMesh = 0;
-	Parasol_3->basicdxmodel->meshsets[4].nbMesh = 0;
-	Parasol_3->basicdxmodel->meshsets[5].nbMesh = 0;
-	Parasol_3->basicdxmodel->meshsets[6].nbMesh = 0;
-	Parasol_3->basicdxmodel->meshsets[7].nbMesh = 0;
-	Parasol_3->basicdxmodel->meshsets[8].nbMesh = 0;
-	Parasol_3->basicdxmodel->meshsets[9].nbMesh = 0;
-	Parasol_3->basicdxmodel->meshsets[10].nbMesh = 0;
-	Parasol_3->basicdxmodel->meshsets[12].nbMesh = 0;
-	Parasol_3->basicdxmodel->meshsets[13].nbMesh = 0;
-	Parasol_3->basicdxmodel->meshsets[14].nbMesh = 0;
-	//Glass
-	Parasol_4 = LoadModel("system\\data\\ADV00\\Models\\00182AD8.sa1mdl", false);
-	Parasol_4->basicdxmodel->meshsets[0].nbMesh = 0;
-	Parasol_4->basicdxmodel->meshsets[1].nbMesh = 0;
-	Parasol_4->basicdxmodel->meshsets[2].nbMesh = 0;
-	Parasol_4->basicdxmodel->meshsets[3].nbMesh = 0;
-	Parasol_4->basicdxmodel->meshsets[4].nbMesh = 0;
-	Parasol_4->basicdxmodel->meshsets[9].nbMesh = 0;
-	Parasol_4->basicdxmodel->meshsets[10].nbMesh = 0;
-	Parasol_4->basicdxmodel->meshsets[11].nbMesh = 0;
-	Parasol_4->basicdxmodel->meshsets[12].nbMesh = 0;
-	Parasol_4->basicdxmodel->meshsets[13].nbMesh = 0;
-	Parasol_4->basicdxmodel->meshsets[14].nbMesh = 0;
-	SwapMeshsets(Parasol_4, 8, 6); //Move heart after glass
-	SwapMeshsets(Parasol_4, 7, 8); //Move lemon after glass
-	WriteCall((void*)0x63A6A4, RenderParasol); //Parasol
-	//Fog data
-	for (int i = 0; i < 3; i++)
-	{
-		StationSquare1Fog[i].Toggle = 1;
-		StationSquare2Fog[i].Toggle = 1;
-		StationSquare3Fog[i].Toggle = 1;
-		StationSquare4Fog[i].Toggle = 1;
-		StationSquare5Fog[i].Toggle = 1;
-		StationSquare6Fog[i].Toggle = 1;
-		StationSquare1Fog[i].Distance = -12000.0f;
-		StationSquare2Fog[i].Distance = -12000.0f;
-		StationSquare3Fog[i].Distance = -12000.0f;
-		StationSquare4Fog[i].Distance = -12000.0f;
-		StationSquare5Fog[i].Distance = -12000.0f;
-		StationSquare6Fog[i].Distance = -12000.0f;
-		StationSquare1Fog[i].Layer = -12000.0f;
-		StationSquare2Fog[i].Layer = -12000.0f;
-		StationSquare3Fog[i].Layer = -12000.0f;
-		StationSquare4Fog[i].Layer = -12000.0f;
-		StationSquare5Fog[i].Layer = -12000.0f;
-		StationSquare6Fog[i].Layer = -12000.0f;
-		StationSquare6DrawDist[i].Maximum = -600.0f;
+		if (!Use1999SetFiles)
+		{
+			ReplaceBIN_DC("SETSS00A");
+			ReplaceBIN_DC("SETSS00B");
+			ReplaceBIN_DC("SETSS00E");
+			ReplaceBIN_DC("SETSS00K");
+			ReplaceBIN_DC("SETSS00L");
+			ReplaceBIN_DC("SETSS00M");
+			ReplaceBIN_DC("SETSS00S");
+			ReplaceBIN_DC("SETSS01A");
+			ReplaceBIN_DC("SETSS01B");
+			ReplaceBIN_DC("SETSS01E");
+			ReplaceBIN_DC("SETSS01K");
+			ReplaceBIN_DC("SETSS01L");
+			ReplaceBIN_DC("SETSS01M");
+			ReplaceBIN_DC("SETSS01S");
+			ReplaceBIN_DC("SETSS02S");
+			ReplaceBIN_DC("SETSS02B");
+			ReplaceBIN_DC("SETSS03A");
+			ReplaceBIN_DC("SETSS03B");
+			ReplaceBIN_DC("SETSS03E");
+			ReplaceBIN_DC("SETSS03K");
+			ReplaceBIN_DC("SETSS03L");
+			ReplaceBIN_DC("SETSS03M");
+			ReplaceBIN_DC("SETSS03S");
+			ReplaceBIN_DC("SETSS04A");
+			ReplaceBIN_DC("SETSS04B");
+			ReplaceBIN_DC("SETSS04E");
+			ReplaceBIN_DC("SETSS04K");
+			ReplaceBIN_DC("SETSS04L");
+			ReplaceBIN_DC("SETSS04M");
+			ReplaceBIN_DC("SETSS04S");
+			ReplaceBIN_DC("SETSS05S");
+		}
+		else
+		{
+			ReplaceBIN_1999("SETSS00A");
+			ReplaceBIN_1999("SETSS00B");
+			ReplaceBIN_1999("SETSS00E");
+			ReplaceBIN_1999("SETSS00K");
+			ReplaceBIN_1999("SETSS00L");
+			ReplaceBIN_1999("SETSS00M");
+			ReplaceBIN_1999("SETSS00S");
+			ReplaceBIN_1999("SETSS01A");
+			ReplaceBIN_1999("SETSS01B");
+			ReplaceBIN_1999("SETSS01E");
+			ReplaceBIN_1999("SETSS01K");
+			ReplaceBIN_1999("SETSS01L");
+			ReplaceBIN_1999("SETSS01M");
+			ReplaceBIN_1999("SETSS01S");
+			ReplaceBIN_1999("SETSS02S");
+			ReplaceBIN_1999("SETSS02B");
+			ReplaceBIN_1999("SETSS03A");
+			ReplaceBIN_1999("SETSS03B");
+			ReplaceBIN_1999("SETSS03E");
+			ReplaceBIN_1999("SETSS03K");
+			ReplaceBIN_1999("SETSS03L");
+			ReplaceBIN_1999("SETSS03M");
+			ReplaceBIN_1999("SETSS03S");
+			ReplaceBIN_1999("SETSS04A");
+			ReplaceBIN_1999("SETSS04B");
+			ReplaceBIN_1999("SETSS04E");
+			ReplaceBIN_1999("SETSS04K");
+			ReplaceBIN_1999("SETSS04L");
+			ReplaceBIN_1999("SETSS04M");
+			ReplaceBIN_1999("SETSS04S");
+			ReplaceBIN_1999("SETSS05S");
+		}
+		if (!DLLLoaded_DLCs)
+		{
+			ReplaceBIN_DC("CAMSS00S");
+			ReplaceBIN_DC("CAMSS01S");
+			ReplaceBIN_DC("CAMSS02S");
+			ReplaceBIN_DC("CAMSS03S");
+			ReplaceBIN_DC("CAMSS04S");
+			ReplaceBIN_DC("CAMSS05S");
+		}
+		if (!SADXWater_StationSquare) WriteJump((void*)0x631140, RenderStationSquareOcean); //Render SS ocean separately
+		ReplacePVM("ADVSS00");
+		ReplacePVM("ADVSS01");
+		ReplacePVM("ADVSS02");
+		ReplacePVM("ADVSS03");
+		ReplacePVM("ADVSS04");
+		ReplacePVM("ADVSS05");
+		ReplacePVM("OBJ_SS");
+		ReplacePVM("SS_BG");
+		ReplacePVM("SS_BOAT");
+		ReplacePVM("SS_BURGER");
+		ReplacePVM("SS_CASINO");
+		ReplacePVM("SS_DENTOU");
+		ReplacePVM("SS_EKIIN");
+		ReplacePVM("SS_KANBAN");
+		ReplacePVM("SS_MIZUGI");
+		ReplacePVM("SS_PEOPLE");
+		ReplacePVM("SS_TRAIN");
+		ReplacePVM("SS_TWINS");
+		ReplacePVM("SSCAR");
+		ReplacePVM("SSPATCAR_BODY");
+		ReplacePVR("SS_FINESKY");
+		ReplacePVR("SS_NIGHTSKY");
+		ReplacePVR("SS_NIGHTSKYB");
+		ReplacePVR("SS_YUSKAY_MINI");
+		___ADV00_TEXLISTS[0] = &texlist_advss00;
+		___ADV00_TEXLISTS[1] = &texlist_advss01;
+		___ADV00_TEXLISTS[2] = &texlist_advss02;
+		___ADV00_TEXLISTS[3] = &texlist_advss03;
+		___ADV00_TEXLISTS[4] = &texlist_advss04;
+		___ADV00_TEXLISTS[5] = &texlist_advss05;
+		ResizeTextureList((NJS_TEXLIST*)0x2AEE920, 22); //SSCAR 
+		ResizeTextureList((NJS_TEXLIST*)0x2AD9F58, 31); //SS_TRAIN
+		ResizeTextureList(&OBJ_SS_TEXLIST, 177);
+		StationSquareCarTextureIDs[5] = 7; //Not an actual car surface texture but it's like that in SA1 too
+		WriteJump((void*)0x63C770, OS1Dnto_Display_Night);
+		WriteJump((void*)0x63A930, OGaitou_Display_Night);
+		WriteCall((void*)0x63EECF, SouvenirShopDoor_Depth);
+		WriteCall((void*)0x636DE9, RenderOfficeDoor);
+		WriteCall((void*)0x636E99, RenderOfficeDoor);
+		WriteCall((void*)0x636F0B, RenderOfficeDoor);
+		WriteCall((void*)0x636E1A, RenderOfficeDoor_Child);
+		WriteCall((void*)0x636E52, RenderOfficeDoor_Child);
+		WriteCall((void*)0x636EC0, RenderOfficeDoor_Child);
+		WriteCall((void*)0x636F32, RenderOfficeDoor_Child);
+		WriteCall((void*)0x638B2E, RenderPoliceCarBarricade);
+		WriteCall((void*)0x638B50, RenderPoliceCarBarricade);
+		WriteCall((void*)0x632773, FixPoliceCar);
+		WriteCall((void*)0x63A908, OGaitou_Day_Fix); //Don't queue a non-transparent model
+		WriteData((float*)0x634EB9, 0.601f); //Prevent Z fighting with SS NPC shadow when overlapping transparent stuff
+		//Fix camera in Light Speed Shoes cutscene
+		WriteData((float*)0x652F74, 800.0f); //X1
+		WriteData((float*)0x652F79, -92.6f); //Y1
+		WriteData((float*)0x6532BB, 509.9f); //X2
+		WriteData((float*)0x6532B6, -89.4f); //Y2
+		WriteData((float*)0x6532B1, 812.3f); //Z2
+		WriteCall((void*)0x6304B6, DelaySettingTimeOfDay); //Prevent sudden lighting change in Sonic's story
+		WriteCall((void*)0x652F4F, LSCutsceneRotationFix); //Fix Sonic's rotation after getting the Light Speed Shoes
+		//Fix materials
+		for (int i = 0; i < 26; i++)
+		{
+			RemoveVertexColors_Object(MODEL_SS_PEOPLE_OBJECTS[i]);
+		}
+		RemoveVertexColors_Object((NJS_OBJECT*)0x2ABF65C); //OS1Solt
+		RemoveVertexColors_Object((NJS_OBJECT*)0x2AB89D4); //OKomonoExit
+		RemoveVertexColors_Object((NJS_OBJECT*)0x2AD702C); //OKeyBlock 1
+		RemoveVertexColors_Object((NJS_OBJECT*)0x2AD746C); //OKeyBlock 2
+		RemoveVertexColors_Object((NJS_OBJECT*)0x2AD7674); //OKeyBlock 3
+		AddWhiteDiffuseMaterial((NJS_MATERIAL*)0x2DBE574); //Police car in first cutscene
+		AddWhiteDiffuseMaterial((NJS_MATERIAL*)0x2DBE588); //Police car in first cutscene
+		AddWhiteDiffuseMaterial((NJS_MATERIAL*)0x2DBE59C); //Police car in first cutscene
+		WriteData<5>((void*)0x630ADA, 0x90); //Hotel door fix 1
+		WriteData<5>((void*)0x630AE6, 0x90); //Hotel door fix 2
+		WriteData<5>((void*)0x630B03, 0x90); //Hotel door fix 3
+		WriteJump((void*)0x62EA30, CheckIfCameraIsInHotel_Lol); //Disable hotel lighting check
+		//Material stuff
+		((NJS_OBJECT*)0x2AB757C)->basicdxmodel->mats[2].attrflags &= ~NJD_FLAG_USE_ALPHA; //Speed Highway elevator door
+		((NJS_OBJECT*)0x2AB6E4C)->basicdxmodel->mats[2].attrflags &= ~NJD_FLAG_USE_ALPHA; //Speed Highway elevator door
+		//Objects
+		*(NJS_MODEL_SADX*)0x2ACBB80 = *LoadModel("system\\data\\ADV00\\Models\\0017F588.sa1mdl", false)->basicdxmodel; //OPoolChair
+		*(NJS_MODEL_SADX*)0x2AC95BC = *LoadModel("system\\data\\ADV00\\Models\\0017D568.sa1mdl", false)->basicdxmodel; //Fire hydrant
+		*(NJS_OBJECT*)0x2AC9F10 = *LoadModel("system\\data\\ADV00\\Models\\0017DDE8.sa1mdl", false); //OGaitou (street light)
+		StreetLight_Night = LoadModel("system\\data\\ADV00\\Models\\0017DDE8.sa1mdl", false); //OGaitou (street light);
+		StreetLight_Night->basicdxmodel->mats[0].attrflags |= NJD_FLAG_USE_ALPHA;
+		StreetLight_Night->basicdxmodel->mats[1].attrflags |= NJD_FLAG_USE_ALPHA;
+		StreetLight_Night->basicdxmodel->mats[2].attrflags |= NJD_FLAG_USE_ALPHA;
+		StreetLight_Night->child->sibling->basicdxmodel->mats[0].attrflags |= NJD_FLAG_USE_ALPHA;
+		*(NJS_OBJECT*)0x2AEA9F8 = *LoadModel("system\\data\\ADV00\\Models\\00197228.sa1mdl", false); //OS1Dnto
+		OS1Dnto_Night = LoadModel("system\\data\\ADV00\\Models\\00197228.sa1mdl", false); //OS1Dnto
+		OS1Dnto_Night->basicdxmodel->mats[0].attrflags |= NJD_FLAG_USE_ALPHA;
+		OS1Dnto_Night->basicdxmodel->mats[1].attrflags |= NJD_FLAG_USE_ALPHA;
+		OS1Dnto_Night->basicdxmodel->mats[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		OS1Dnto_Night->basicdxmodel->mats[1].attr_texId = 2; //Evening/night texture
+		*(NJS_OBJECT*)0x2AB2CCC = *LoadModel("system\\data\\ADV00\\Models\\001689C4.sa1mdl", true); //Souvenir shop door
+		*(NJS_OBJECT*)0x2AB57E4 = *LoadModel("system\\data\\ADV00\\Models\\0016B404.sa1mdl", false); //OTwaDoor
+		*(NJS_OBJECT*)0x2AFE668 = *LoadModel("system\\data\\ADV00\\Models\\001A6DEC.sa1mdl", false); //Casino decoration 1
+		*(NJS_OBJECT*)0x2B027D8 = *LoadModel("system\\data\\ADV00\\Models\\001AADA4.sa1mdl", false); //Casino decoration 2
+		*(NJS_OBJECT*)0x2B04CF8 = *LoadModel("system\\data\\ADV00\\Models\\001AD220.sa1mdl", false); //Casino decoration 3
+		*(NJS_OBJECT*)0x2AC8AEC = *LoadModel("system\\data\\ADV00\\Models\\0017CD14.sa1mdl", false); //OStDoor
+		*(NJS_OBJECT*)0x2AB146C = *LoadModel("system\\data\\ADV00\\Models\\001671B8.sa1mdl", false); //Burger shop door
+		*(NJS_OBJECT*)0x2AD4EA4 = *LoadModel("system\\data\\ADV00\\Models\\00186E88.sa1mdl", false); //Hidden door 1
+		*(NJS_OBJECT*)0x2AD4CD4 = *LoadModel("system\\data\\ADV00\\Models\\00186CC4.sa1mdl", false); //Hidden door 2
+		*(NJS_OBJECT*)0x2AEE7B0 = *LoadModel("system\\data\\ADV00\\Models\\0019AF04.sa1mdl", false); //Boat
+		*(NJS_OBJECT*)0x2AAB0E4 = *LoadModel("system\\data\\ADV00\\Models\\00164444.sa1mdl", false); //OHotelFront 1
+		*(NJS_OBJECT*)0x2AAE0BC = *LoadModel("system\\data\\ADV00\\Models\\00164444.sa1mdl", false); //OHotelFront 2 (duplicate?)
+		*(NJS_OBJECT*)0x2ABDF0C = *LoadModel("system\\data\\ADV00\\Models\\00172BD4.sa1mdl", false); //Box in the sewers
+		*(NJS_OBJECT*)0x2AF1974 = *LoadModel("system\\data\\ADV00\\Models\\0019CBD8.sa1mdl", false); //Red Car
+		*(NJS_OBJECT*)0x2AF8400 = *LoadModel("system\\data\\ADV00\\Models\\001A17C4.sa1mdl", false); //Blue Car
+		*(NJS_OBJECT*)0x2AFBA64 = *LoadModel("system\\data\\ADV00\\Models\\001A4268.sa1mdl", false); //Taxi
+		*(NJS_OBJECT*)0x2AD362C = *LoadModel("system\\data\\ADV00\\Models\\00185A20.sa1mdl", false); //OWakusei
+		*(NJS_OBJECT*)0x2AB6900 = *LoadModel("system\\data\\ADV00\\Models\\0016C3FC.sa1mdl", false); //Twinkle Park elevator
+		*(NJS_OBJECT*)0x2AD14C8 = *LoadModel("system\\data\\ADV00\\Models\\00183B8C.sa1mdl", false); //OMSaku (Gamma's target)
+		*(NJS_OBJECT*)0x2AD484C = *LoadModel("system\\data\\ADV00\\Models\\0018684C.sa1mdl", false); //Ice Key
+		*(NJS_OBJECT*)0x2DBD6D0 = *LoadModel("system\\data\\Other\\00011208.sa1mdl", false); //Event helicopter
+		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x2DBD6D0)->child->sibling->sibling->sibling->sibling->child->basicdxmodel->mats[1]);
+		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x2DBD6D0)->child->sibling->sibling->sibling->sibling->child->basicdxmodel->mats[2]);
+		*(NJS_OBJECT*)0x2AE8674 = *LoadModel("system\\data\\ADV00\\Models\\00195DC0.sa1mdl", false); //Train
+		SwapMeshsets(((NJS_OBJECT*)0x2AE8674)->child->sibling->sibling->sibling, 8, 9); //Alpha thing just in case
+		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x2AE8674)->child->sibling->sibling->sibling->basicdxmodel->mats[9]);
+		//Police car stuff
+		*(NJS_OBJECT*)0x2AF4FC0 = *LoadModel("system\\data\\ADV00\\Models\\0019F390.sa1mdl", false); //Police
+		((NJS_OBJECT*)0x2AF4FC0)->basicdxmodel->meshsets[9].nbMesh = 0; //Hide lights
+		((NJS_OBJECT*)0x2AF4FC0)->basicdxmodel->meshsets[10].nbMesh = 0; //Hide lights
+		PoliceCarModel_LightsOnly = LoadModel("system\\data\\ADV00\\Models\\0019F390.sa1mdl", false); //Police
+		PoliceCarModel_LightsOnly->basicdxmodel->meshsets[0].nbMesh = 0;
+		PoliceCarModel_LightsOnly->basicdxmodel->meshsets[1].nbMesh = 0;
+		PoliceCarModel_LightsOnly->basicdxmodel->meshsets[2].nbMesh = 0;
+		PoliceCarModel_LightsOnly->basicdxmodel->meshsets[3].nbMesh = 0;
+		PoliceCarModel_LightsOnly->basicdxmodel->meshsets[4].nbMesh = 0;
+		PoliceCarModel_LightsOnly->basicdxmodel->meshsets[5].nbMesh = 0;
+		PoliceCarModel_LightsOnly->basicdxmodel->meshsets[6].nbMesh = 0;
+		PoliceCarModel_LightsOnly->basicdxmodel->meshsets[7].nbMesh = 0;
+		PoliceCarModel_LightsOnly->basicdxmodel->meshsets[8].nbMesh = 0;
+		PoliceCarModel_LightsOnly->basicdxmodel->meshsets[11].nbMesh = 0;
+		PoliceCarModel_LightsOnly->basicdxmodel->meshsets[12].nbMesh = 0;
+		PoliceCarModel_LightsOnly->basicdxmodel->meshsets[13].nbMesh = 0;
+		PoliceCarModel_LightsOnly->child->evalflags |= NJD_EVAL_HIDE;
+		PoliceCarModel_LightsOnly->child->sibling->evalflags |= NJD_EVAL_HIDE;
+		PoliceCarModel_LightsOnly->child->sibling->sibling->evalflags |= NJD_EVAL_HIDE;
+		PoliceCarModel_LightsOnly->child->sibling->sibling->sibling->evalflags |= NJD_EVAL_HIDE;
+		//Parasol stuff
+		//Main model
+		Parasol_1 = LoadModel("system\\data\\ADV00\\Models\\00182AD8.sa1mdl", false);
+		Parasol_1->basicdxmodel->meshsets[1].nbMesh = 0;
+		Parasol_1->basicdxmodel->meshsets[2].nbMesh = 0;
+		Parasol_1->basicdxmodel->meshsets[5].nbMesh = 0;
+		Parasol_1->basicdxmodel->meshsets[6].nbMesh = 0;
+		Parasol_1->basicdxmodel->meshsets[7].nbMesh = 0;
+		Parasol_1->basicdxmodel->meshsets[8].nbMesh = 0;
+		Parasol_1->basicdxmodel->meshsets[11].nbMesh = 0;
+		//Chair transparency
+		Parasol_2 = LoadModel("system\\data\\ADV00\\Models\\00182AD8.sa1mdl", false);
+		Parasol_2->basicdxmodel->meshsets[0].nbMesh = 0;
+		Parasol_2->basicdxmodel->meshsets[3].nbMesh = 0;
+		Parasol_2->basicdxmodel->meshsets[4].nbMesh = 0;
+		Parasol_2->basicdxmodel->meshsets[5].nbMesh = 0;
+		Parasol_2->basicdxmodel->meshsets[6].nbMesh = 0;
+		Parasol_2->basicdxmodel->meshsets[7].nbMesh = 0;
+		Parasol_2->basicdxmodel->meshsets[8].nbMesh = 0;
+		Parasol_2->basicdxmodel->meshsets[9].nbMesh = 0;
+		Parasol_2->basicdxmodel->meshsets[10].nbMesh = 0;
+		Parasol_2->basicdxmodel->meshsets[11].nbMesh = 0;
+		Parasol_2->basicdxmodel->meshsets[12].nbMesh = 0;
+		Parasol_2->basicdxmodel->meshsets[13].nbMesh = 0;
+		Parasol_2->basicdxmodel->meshsets[14].nbMesh = 0;
+		//Umbrella
+		Parasol_3 = LoadModel("system\\data\\ADV00\\Models\\00182AD8.sa1mdl", false);
+		Parasol_3->basicdxmodel->meshsets[0].nbMesh = 0;
+		Parasol_3->basicdxmodel->meshsets[1].nbMesh = 0;
+		Parasol_3->basicdxmodel->meshsets[2].nbMesh = 0;
+		Parasol_3->basicdxmodel->meshsets[3].nbMesh = 0;
+		Parasol_3->basicdxmodel->meshsets[4].nbMesh = 0;
+		Parasol_3->basicdxmodel->meshsets[5].nbMesh = 0;
+		Parasol_3->basicdxmodel->meshsets[6].nbMesh = 0;
+		Parasol_3->basicdxmodel->meshsets[7].nbMesh = 0;
+		Parasol_3->basicdxmodel->meshsets[8].nbMesh = 0;
+		Parasol_3->basicdxmodel->meshsets[9].nbMesh = 0;
+		Parasol_3->basicdxmodel->meshsets[10].nbMesh = 0;
+		Parasol_3->basicdxmodel->meshsets[12].nbMesh = 0;
+		Parasol_3->basicdxmodel->meshsets[13].nbMesh = 0;
+		Parasol_3->basicdxmodel->meshsets[14].nbMesh = 0;
+		//Glass
+		Parasol_4 = LoadModel("system\\data\\ADV00\\Models\\00182AD8.sa1mdl", false);
+		Parasol_4->basicdxmodel->meshsets[0].nbMesh = 0;
+		Parasol_4->basicdxmodel->meshsets[1].nbMesh = 0;
+		Parasol_4->basicdxmodel->meshsets[2].nbMesh = 0;
+		Parasol_4->basicdxmodel->meshsets[3].nbMesh = 0;
+		Parasol_4->basicdxmodel->meshsets[4].nbMesh = 0;
+		Parasol_4->basicdxmodel->meshsets[9].nbMesh = 0;
+		Parasol_4->basicdxmodel->meshsets[10].nbMesh = 0;
+		Parasol_4->basicdxmodel->meshsets[11].nbMesh = 0;
+		Parasol_4->basicdxmodel->meshsets[12].nbMesh = 0;
+		Parasol_4->basicdxmodel->meshsets[13].nbMesh = 0;
+		Parasol_4->basicdxmodel->meshsets[14].nbMesh = 0;
+		SwapMeshsets(Parasol_4, 8, 6); //Move heart after glass
+		SwapMeshsets(Parasol_4, 7, 8); //Move lemon after glass
+		WriteCall((void*)0x63A6A4, RenderParasol); //Parasol
+		//Fog data
+		for (int i = 0; i < 3; i++)
+		{
+			StationSquare1Fog[i].Toggle = 1;
+			StationSquare2Fog[i].Toggle = 1;
+			StationSquare3Fog[i].Toggle = 1;
+			StationSquare4Fog[i].Toggle = 1;
+			StationSquare5Fog[i].Toggle = 1;
+			StationSquare6Fog[i].Toggle = 1;
+			StationSquare1Fog[i].Distance = -12000.0f;
+			StationSquare2Fog[i].Distance = -12000.0f;
+			StationSquare3Fog[i].Distance = -12000.0f;
+			StationSquare4Fog[i].Distance = -12000.0f;
+			StationSquare5Fog[i].Distance = -12000.0f;
+			StationSquare6Fog[i].Distance = -12000.0f;
+			StationSquare1Fog[i].Layer = -12000.0f;
+			StationSquare2Fog[i].Layer = -12000.0f;
+			StationSquare3Fog[i].Layer = -12000.0f;
+			StationSquare4Fog[i].Layer = -12000.0f;
+			StationSquare5Fog[i].Layer = -12000.0f;
+			StationSquare6Fog[i].Layer = -12000.0f;
+			StationSquare6DrawDist[i].Maximum = -600.0f;
+		}
+		ModelsLoaded_ADV00 = true;
 	}
 }
 

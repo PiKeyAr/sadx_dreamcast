@@ -78,21 +78,6 @@ void UnloadLevelFiles_B_CHAOS6()
 	B_CHAOS6_1_Info = nullptr;
 }
 
-void LoadLevelFiles_B_CHAOS6()
-{
-	CheckAndUnloadLevelFiles();
-	B_CHAOS6_0_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\B_CHAOS6\\0.sa1lvl"));
-	B_CHAOS6_1_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\B_CHAOS6\\1.sa1lvl"));
-	LandTable *B_CHAOS6_0 = B_CHAOS6_0_Info->getlandtable(); //&landtable_00000318; // B_CHAOS6_0_Info->getlandtable();
-	LandTable *B_CHAOS6_1 = B_CHAOS6_1_Info->getlandtable(); //&landtable_0000033C; // B_CHAOS6_1_Info->getlandtable();
-	RemoveMaterialColors_Landtable(B_CHAOS6_0);
-	RemoveMaterialColors_Landtable(B_CHAOS6_1);
-	B_CHAOS6_0->TexList = &texlist_chaos6s;
-	B_CHAOS6_1->TexList = &texlist_chaos6k;
-	LandTableArray[24] = B_CHAOS6_0; //Chaos 6S
-	LandTableArray[25] = B_CHAOS6_1; //Chaos 6K
-}
-
 void Chaos6Action(NJS_ACTION *a1, float frameNumber)
 {
 	NJS_ACTION ass = { nullptr, nullptr };
@@ -143,66 +128,81 @@ void HideOpaqueParts(NJS_OBJECT *obj)
 
 void Chaos6_Init()
 {
-	if (!Use1999SetFiles)
+	CheckAndUnloadLevelFiles();
+	B_CHAOS6_0_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\B_CHAOS6\\0.sa1lvl"));
+	B_CHAOS6_1_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\B_CHAOS6\\1.sa1lvl"));
+	LandTable* B_CHAOS6_0 = B_CHAOS6_0_Info->getlandtable(); //&landtable_00000318; // B_CHAOS6_0_Info->getlandtable();
+	LandTable* B_CHAOS6_1 = B_CHAOS6_1_Info->getlandtable(); //&landtable_0000033C; // B_CHAOS6_1_Info->getlandtable();
+	RemoveMaterialColors_Landtable(B_CHAOS6_0);
+	RemoveMaterialColors_Landtable(B_CHAOS6_1);
+	B_CHAOS6_0->TexList = &texlist_chaos6s;
+	B_CHAOS6_1->TexList = &texlist_chaos6k;
+	LandTableArray[24] = B_CHAOS6_0; //Chaos 6S
+	LandTableArray[25] = B_CHAOS6_1; //Chaos 6K
+	if (!ModelsLoaded_B_CHAOS6)
 	{
-		ReplaceBIN_DC("SET1800B");
-		ReplaceBIN_DC("SET1800S");
-		ReplaceBIN_DC("SET1801K");
-	}
-	else
-	{
-		ReplaceBIN_1999("SET1800B");
-		ReplaceBIN_1999("SET1800S");
-		ReplaceBIN_1999("SET1801K");
-	}
-	ReplacePVM("LM_CHAOS6");
-	ReplacePVM("LM_CHAOS6_2");
-	ReplacePVM("CHAOS6");
-	ReplacePVM("CHAOS6_BG");
-	ReplacePVM("CHAOS6_EFFECT");
-	ReplacePVM("CHAOS6_EGGMAN");
-	ReplacePVM("CHAOS6_EISEI");
-	ReplacePVM("CHAOS6_OBJECT");
-	//Main model stuff
-	RemoveVertexColors_Object((NJS_OBJECT*)0x1272FF4); 
-	Chaos6Main_OpaqueOnly = LoadModel("system\\data\\B_CHAOS6\\Models\\DX\\00E72FF4.sa1mdl", false);
-	AddBossMaterials_Object(Chaos6Main_OpaqueOnly);
-	HideOpaqueParts((NJS_OBJECT*)0x1272FF4);
-	HideTransparentParts(Chaos6Main_OpaqueOnly);
-	//Other models
-	RemoveVertexColors_Object((NJS_OBJECT*)0x1257754); //Chaos 6 Eggmobile
-	RemoveVertexColors_Object((NJS_OBJECT*)0x12545AC); //Chaos 6 Eggman
-	RemoveVertexColors_Object((NJS_OBJECT*)0x12941B0); //Chaos 6 transformed
-	RemoveVertexColors_Object((NJS_OBJECT*)0x1262B54); //Chaos 6 frozen
-	RemoveVertexColors_Object((NJS_OBJECT*)0x128A6DC); //Chaos 6 transforming
-	RemoveVertexColors_Object((NJS_OBJECT*)0x13802D4); //Ice brick 1
-	RemoveVertexColors_Object((NJS_OBJECT*)0x1380724); //Ice brick 2
-	RemoveVertexColors_Object((NJS_OBJECT*)0x1380B74); //Ice brick 3
-	RemoveVertexColors_Object((NJS_OBJECT*)0x1380F7C); //Ice brick 4
-	RemoveVertexColors_Object((NJS_OBJECT*)0x13812D0); //Ice brick 5
-	RemoveVertexColors_Object((NJS_OBJECT*)0x138154C); //Ice brick 6
-	RemoveVertexColors_Object((NJS_OBJECT*)0x1381690); //Ice brick 7
-	RemoveVertexColors_Object((NJS_OBJECT*)0x1383D54); //Freezer
-	WriteCall((void*)0x558FFC, Chaos6Action); //Chaos 6 main model rendering
-	WriteCall((void*)0x55BCF4, njDrawSprite3D_Queue_TheyForgotToClamp);
-	ResizeTextureList((NJS_TEXLIST*)0x121FF28, textures_chaos6s);
-	ResizeTextureList((NJS_TEXLIST*)0x11F04A0, textures_chaos6k);
-	WriteJump((void*)0x556FD0, Chaos6SkyboxBottom);
-	WriteJump((void*)0x556F20, Chaos6SkyboxMain);
-	((NJS_ACTION*)0x134C56C)->motion = &Chaos6Animation3; //Fix flickering parts in Chaos 6' walking animation
-	WriteData<1>((char*)0x556E40, 0xC3u); //Disable SetClip_Chaos6S
-	WriteData<1>((char*)0x556D60, 0xC3u); //Disable SetClip_Chaos6K
-	for (int i = 0; i < 3; i++)
-	{
-		Chaos6SFog[i].Distance = 12000.0f;
-		Chaos6KFog[i].Distance = 12000.0f;
-		SkyBoxScale_Chaos6S[i].x = 1.0f;
-		SkyBoxScale_Chaos6S[i].y = 1.0f;
-		SkyBoxScale_Chaos6S[i].z = 1.0f;
-		SkyBoxScale_Chaos6K[i].x = 1.0f;
-		SkyBoxScale_Chaos6K[i].y = 1.0f;
-		SkyBoxScale_Chaos6K[i].z = 1.0f;
-		DrawDist_Chaso6S[i].Maximum = -18000.0f;
-		DrawDist_Chaso6K[i].Maximum = -18000.0f;
+		if (!Use1999SetFiles)
+		{
+			ReplaceBIN_DC("SET1800B");
+			ReplaceBIN_DC("SET1800S");
+			ReplaceBIN_DC("SET1801K");
+		}
+		else
+		{
+			ReplaceBIN_1999("SET1800B");
+			ReplaceBIN_1999("SET1800S");
+			ReplaceBIN_1999("SET1801K");
+		}
+		ReplacePVM("LM_CHAOS6");
+		ReplacePVM("LM_CHAOS6_2");
+		ReplacePVM("CHAOS6");
+		ReplacePVM("CHAOS6_BG");
+		ReplacePVM("CHAOS6_EFFECT");
+		ReplacePVM("CHAOS6_EGGMAN");
+		ReplacePVM("CHAOS6_EISEI");
+		ReplacePVM("CHAOS6_OBJECT");
+		//Main model stuff
+		RemoveVertexColors_Object((NJS_OBJECT*)0x1272FF4);
+		Chaos6Main_OpaqueOnly = LoadModel("system\\data\\B_CHAOS6\\Models\\DX\\00E72FF4.sa1mdl", false);
+		AddBossMaterials_Object(Chaos6Main_OpaqueOnly);
+		HideOpaqueParts((NJS_OBJECT*)0x1272FF4);
+		HideTransparentParts(Chaos6Main_OpaqueOnly);
+		//Other models
+		RemoveVertexColors_Object((NJS_OBJECT*)0x1257754); //Chaos 6 Eggmobile
+		RemoveVertexColors_Object((NJS_OBJECT*)0x12545AC); //Chaos 6 Eggman
+		RemoveVertexColors_Object((NJS_OBJECT*)0x12941B0); //Chaos 6 transformed
+		RemoveVertexColors_Object((NJS_OBJECT*)0x1262B54); //Chaos 6 frozen
+		RemoveVertexColors_Object((NJS_OBJECT*)0x128A6DC); //Chaos 6 transforming
+		RemoveVertexColors_Object((NJS_OBJECT*)0x13802D4); //Ice brick 1
+		RemoveVertexColors_Object((NJS_OBJECT*)0x1380724); //Ice brick 2
+		RemoveVertexColors_Object((NJS_OBJECT*)0x1380B74); //Ice brick 3
+		RemoveVertexColors_Object((NJS_OBJECT*)0x1380F7C); //Ice brick 4
+		RemoveVertexColors_Object((NJS_OBJECT*)0x13812D0); //Ice brick 5
+		RemoveVertexColors_Object((NJS_OBJECT*)0x138154C); //Ice brick 6
+		RemoveVertexColors_Object((NJS_OBJECT*)0x1381690); //Ice brick 7
+		RemoveVertexColors_Object((NJS_OBJECT*)0x1383D54); //Freezer
+		WriteCall((void*)0x558FFC, Chaos6Action); //Chaos 6 main model rendering
+		WriteCall((void*)0x55BCF4, njDrawSprite3D_Queue_TheyForgotToClamp);
+		ResizeTextureList((NJS_TEXLIST*)0x121FF28, textures_chaos6s);
+		ResizeTextureList((NJS_TEXLIST*)0x11F04A0, textures_chaos6k);
+		WriteJump((void*)0x556FD0, Chaos6SkyboxBottom);
+		WriteJump((void*)0x556F20, Chaos6SkyboxMain);
+		((NJS_ACTION*)0x134C56C)->motion = &Chaos6Animation3; //Fix flickering parts in Chaos 6' walking animation
+		WriteData<1>((char*)0x556E40, 0xC3u); //Disable SetClip_Chaos6S
+		WriteData<1>((char*)0x556D60, 0xC3u); //Disable SetClip_Chaos6K
+		for (int i = 0; i < 3; i++)
+		{
+			Chaos6SFog[i].Distance = 12000.0f;
+			Chaos6KFog[i].Distance = 12000.0f;
+			SkyBoxScale_Chaos6S[i].x = 1.0f;
+			SkyBoxScale_Chaos6S[i].y = 1.0f;
+			SkyBoxScale_Chaos6S[i].z = 1.0f;
+			SkyBoxScale_Chaos6K[i].x = 1.0f;
+			SkyBoxScale_Chaos6K[i].y = 1.0f;
+			SkyBoxScale_Chaos6K[i].z = 1.0f;
+			DrawDist_Chaso6S[i].Maximum = -18000.0f;
+			DrawDist_Chaso6K[i].Maximum = -18000.0f;
+		}
+		ModelsLoaded_B_CHAOS6 = true;
 	}
 }

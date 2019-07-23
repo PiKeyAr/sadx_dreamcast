@@ -207,6 +207,11 @@ void UnloadLevelFiles_ADV01C()
 
 void LoadLevelFiles_ADV01C()
 {
+	
+}
+
+void ADV01C_Init()
+{
 	CheckAndUnloadLevelFiles();
 	ADV01C_0_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("system\\data\\ADV0130\\0.sa1lvl"));
 	ADV01C_1_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("system\\data\\ADV0130\\1.sa1lvl"));
@@ -214,12 +219,12 @@ void LoadLevelFiles_ADV01C()
 	ADV01C_3_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("system\\data\\ADV0130\\3.sa1lvl"));
 	ADV01C_4_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("system\\data\\ADV0130\\4.sa1lvl"));
 	ADV01C_5_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("system\\data\\ADV0130\\5.sa1lvl"));
-	LandTable *ADV01C_0 = ADV01C_0_Info->getlandtable(); //&landtable_0000C64C; // ADV01C_0_Info->getlandtable();
-	LandTable *ADV01C_1 = ADV01C_1_Info->getlandtable(); //&landtable_0000D7B0; // ADV01C_1_Info->getlandtable();
-	LandTable *ADV01C_2 = ADV01C_2_Info->getlandtable(); //&landtable_0000E1D0; // ADV01C_2_Info->getlandtable();
-	LandTable *ADV01C_3 = ADV01C_3_Info->getlandtable(); //&landtable_0000EDB8; // ADV01C_3_Info->getlandtable();
-	LandTable *ADV01C_4 = ADV01C_4_Info->getlandtable(); //&landtable_0000F7A8; // ADV01C_4_Info->getlandtable();
-	LandTable *ADV01C_5 = ADV01C_5_Info->getlandtable(); //&landtable_0000FE44; // ADV01C_5_Info->getlandtable();
+	LandTable* ADV01C_0 = ADV01C_0_Info->getlandtable(); //&landtable_0000C64C; // ADV01C_0_Info->getlandtable();
+	LandTable* ADV01C_1 = ADV01C_1_Info->getlandtable(); //&landtable_0000D7B0; // ADV01C_1_Info->getlandtable();
+	LandTable* ADV01C_2 = ADV01C_2_Info->getlandtable(); //&landtable_0000E1D0; // ADV01C_2_Info->getlandtable();
+	LandTable* ADV01C_3 = ADV01C_3_Info->getlandtable(); //&landtable_0000EDB8; // ADV01C_3_Info->getlandtable();
+	LandTable* ADV01C_4 = ADV01C_4_Info->getlandtable(); //&landtable_0000F7A8; // ADV01C_4_Info->getlandtable();
+	LandTable* ADV01C_5 = ADV01C_5_Info->getlandtable(); //&landtable_0000FE44; // ADV01C_5_Info->getlandtable();
 	RemoveMaterialColors_Landtable(ADV01C_0);
 	RemoveMaterialColors_Landtable(ADV01C_1);
 	RemoveMaterialColors_Landtable(ADV01C_2);
@@ -244,135 +249,135 @@ void LoadLevelFiles_ADV01C()
 	LandTableArray[139] = ADV01C_3;
 	LandTableArray[140] = ADV01C_4;
 	LandTableArray[141] = ADV01C_5;
-}
-
-void ADV01C_Init(const IniFile *config, const HelperFunctions &helperFunctions)
-{
-	if (!Use1999SetFiles)
+	if (!ModelsLoaded_ADV0130)
 	{
-		ReplaceBIN_DC("SETEC30S");
-		ReplaceBIN_DC("SETEC31S");
-		ReplaceBIN_DC("SETEC31B");
-		ReplaceBIN_DC("SETEC32S");
-		ReplaceBIN_DC("SETEC33S");
-		ReplaceBIN_DC("SETEC34S");
-		ReplaceBIN_DC("SETEC35S");
-	}
-	else
-	{
-		ReplaceBIN_1999("SETEC30S");
-		ReplaceBIN_1999("SETEC31S");
-		ReplaceBIN_1999("SETEC31B");
-		ReplaceBIN_1999("SETEC32S");
-		ReplaceBIN_1999("SETEC33S");
-		ReplaceBIN_1999("SETEC34S");
-		ReplaceBIN_1999("SETEC35S");
-	}
-	ReplaceBIN_DC("CAMEC30S");
-	ReplaceBIN_DC("CAMEC31S");
-	ReplaceBIN_DC("CAMEC32S");
-	ReplaceBIN_DC("CAMEC33S");
-	ReplaceBIN_DC("CAMEC34S");
-	ReplaceBIN_DC("CAMEC35S");
-	ReplacePVM("ADV_EC30");
-	ReplacePVM("ADV_EC31");
-	ReplacePVM("ADV_EC32");
-	ReplacePVM("ADV_EC33");
-	ReplacePVM("ADV_EC34");
-	ReplacePVM("ADV_EC35");
-	ReplacePVM("ADV_EC36");
-	ReplacePVM("OBJ_EC30");
-	ReplacePVM("EC_ACTDOOR");
-	ReplacePVM("EC_ALIFE");
-	ReplacePVM("EC_EGGLIFT");
-	ReplacePVM("EC_TARAI");
-	ReplacePVM("PVME101FACTORY");
-	ReplaceBIN("PL_W1B", "PL_W1X");
-	___ADV01C_TEXLISTS[15] = &texlist_ec30;
-	___ADV01C_TEXLISTS[16] = &texlist_ec31;
-	___ADV01C_TEXLISTS[17] = &texlist_ec32;
-	___ADV01C_TEXLISTS[18] = &texlist_ec33;
-	___ADV01C_TEXLISTS[19] = &texlist_ec34;
-	___ADV01C_TEXLISTS[20] = &texlist_ec35;
-	//Door barrier fixes (Gamma's story)
-	WriteJump((void*)0x52B2E0, ECDoorBarrier1X);
-	WriteJump((void*)0x52B250, ECDoorBarrier2_asm);
-	//Fix camera in Amy-Gamma prison cutscene
-	WriteData((float*)0x006A4EBE, -134.0f); //X1
-	WriteData((float*)0x006A4EB9, 15.0f); //Y1
-	WriteData((float*)0x006A4EB4, 54.0f); //Z1
-	WriteData((float*)0x006A4F41, -143.85f); //X2
-	WriteData((float*)0x006A4F3C, 15.93f); //Y2
-	WriteData((float*)0x006A4F37, 80.25f); //Z2
-	//Fix camera in Gamma-Amy prison cutscene
-	WriteData((float*)0x00678C48, -134.0f); //X1
-	WriteData((float*)0x00678C43, 15.0f); //Y1
-	WriteData((float*)0x00678C3E, 54.0f); //Z1
-	WriteData((float*)0x00678CCB, -143.85f); //X2
-	WriteData((float*)0x00678CC6, 15.93f); //Y2
-	WriteData((float*)0x00678CC1, 80.25f); //Z2
-	//Material fixes
-	AddAlphaRejectMaterial((NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01CMODELS") + 0x000ED480)); //Monorail sign (inside)
-	AddWhiteDiffuseMaterial((NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01CMODELS") + 0x00110B04)); //OHammerSW
-	if (DLLLoaded_Lantern)
-	{
-		WriteCall((void*)0x006F4577, TurnLightsOff); //Turn the lights off in Gamma's Froggy Hunt cutscene
-		WriteCall((void*)0x006F4620, TurnLightsOn); //Turn the lights on in Gamma's Froggy Hunt cutscene
-	}
-	RemoveVertexColors_Object(ADV01C_OBJECTS[0]); //Hedhehog Hammer targets
-	RemoveVertexColors_Object(ADV01C_OBJECTS[1]); //Hedhehog Hammer targets
-	RemoveVertexColors_Object(ADV01C_OBJECTS[2]); //Hedhehog Hammer targets
-	RemoveVertexColors_Object((NJS_OBJECT*)0x31045B8); //Projectors in Gamma's cutscene
-	//Tarai fix
-	TaraiButton_Transparent = LoadModel("system\\data\\ADV0130\\Models\\000D16F4.sa1mdl", false);
-	TaraiButton_OpaqueOnly = LoadModel("system\\data\\ADV0130\\Models\\000D16F4.sa1mdl", false);
-	TaraiButton_OpaqueOnly->basicdxmodel->meshsets[0].nbMesh = 0;
-	AddWhiteDiffuseMaterial(&TaraiButton_OpaqueOnly->basicdxmodel->mats[1]);
-	AddWhiteDiffuseMaterial(&TaraiButton_OpaqueOnly->basicdxmodel->mats[2]);
-	TaraiButton_Transparent->basicdxmodel->meshsets[1].nbMesh = 0;
-	TaraiButton_Transparent->basicdxmodel->meshsets[2].nbMesh = 0;
-	WriteJump((void*)0x52BA70, OTarai_Child_Display);
-	___ADV01C_OBJECTS[7] = TaraiButton_Transparent; //Tarai button
-	___ADV01C_MODELS[28] = TaraiButton_Transparent->basicdxmodel;
-	___ADV01C_OBJECTS[7]->child = TaraiButton_Transparent->child;
-	___ADV01C_MODELS[27] = TaraiButton_Transparent->child->basicdxmodel;
-	___ADV01C_OBJECTS[8] = LoadModel("system\\data\\ADV0130\\Models\\000D243C.sa1mdl", false); //Tarai
-	//Monorail front
-	NJS_OBJECT* MonorailFirstCar = LoadModel("system\\data\\ADV0130\\Models\\000B24D8.sa1mdl", false);
-	___ADV01C_OBJECTS[43]->basicdxmodel = MonorailFirstCar->basicdxmodel;
-	___ADV01C_OBJECTS[43]->child->basicdxmodel = MonorailFirstCar->child->basicdxmodel;
-	___ADV01C_OBJECTS[43]->child->child->basicdxmodel = MonorailFirstCar->child->child->basicdxmodel;
-	___ADV01C_OBJECTS[43]->child->sibling->basicdxmodel = MonorailFirstCar->child->sibling->basicdxmodel;
-	AddAlphaRejectMaterial(&___ADV01C_OBJECTS[43]->child->sibling->basicdxmodel->mats[0]);
-	//Monorail back
-	NJS_OBJECT* MonorailOtherCars = LoadModel("system\\data\\ADV0130\\Models\\000B64DC.sa1mdl", false);
-	___ADV01C_OBJECTS[44]->basicdxmodel = MonorailOtherCars->basicdxmodel;
-	___ADV01C_OBJECTS[44]->child->basicdxmodel = MonorailOtherCars->child->basicdxmodel;
-	___ADV01C_OBJECTS[44]->child->child->basicdxmodel = MonorailOtherCars->child->child->basicdxmodel;
-	//Other objects
-	___ADV01C_OBJECTS[29] = LoadModel("system\\data\\ADV0130\\Models\\000ADCD8.sa1mdl", false); //Monorail station
-	___ADV01C_ACTIONS[6]->object = LoadModel("system\\data\\ADV0130\\Models\\000BAF48.sa1mdl", false); //Door
-	NJS_OBJECT* EggLift = LoadModel("system\\data\\ADV0130\\Models\\000B8CD4.sa1mdl", false); //OEggLift
-	___ADV01C_OBJECTS[23] = EggLift;
-	___ADV01C_ACTIONS[7]->object = EggLift;
-	for (int i = 0; i < 3; i++)
-	{
-		EggCarrierInside1Fog[i].Distance = -12000;
-		EggCarrierInside1Fog[i].Layer = -12000;
-		EggCarrierInside2Fog[i].Toggle = 1;
-		EggCarrierInside2Fog[i].Distance = 4000.0f;
-		EggCarrierInside2Fog[i].Layer = 800.0f;
-		EggCarrierInside2Fog[i].Color = 0xFFA0A0A0;
-		EggCarrierInside3Fog[i].Distance = -12000;
-		EggCarrierInside3Fog[i].Layer = -12000;
-		EggCarrierInside4Fog[i].Toggle = 1;
-		EggCarrierInside4Fog[i].Distance = 1216.0f;
-		EggCarrierInside4Fog[i].Layer = 139.0f;
-		EggCarrierInside4Fog[i].Color = 0xFF7F7F40;
-		EggCarrierInside5Fog[i].Distance = -12000;
-		EggCarrierInside5Fog[i].Layer = -12000;
-		EggCarrierInside6Fog[i].Distance = -12000;
-		EggCarrierInside6Fog[i].Layer = -12000;
+		if (!Use1999SetFiles)
+		{
+			ReplaceBIN_DC("SETEC30S");
+			ReplaceBIN_DC("SETEC31S");
+			ReplaceBIN_DC("SETEC31B");
+			ReplaceBIN_DC("SETEC32S");
+			ReplaceBIN_DC("SETEC33S");
+			ReplaceBIN_DC("SETEC34S");
+			ReplaceBIN_DC("SETEC35S");
+		}
+		else
+		{
+			ReplaceBIN_1999("SETEC30S");
+			ReplaceBIN_1999("SETEC31S");
+			ReplaceBIN_1999("SETEC31B");
+			ReplaceBIN_1999("SETEC32S");
+			ReplaceBIN_1999("SETEC33S");
+			ReplaceBIN_1999("SETEC34S");
+			ReplaceBIN_1999("SETEC35S");
+		}
+		ReplaceBIN_DC("CAMEC30S");
+		ReplaceBIN_DC("CAMEC31S");
+		ReplaceBIN_DC("CAMEC32S");
+		ReplaceBIN_DC("CAMEC33S");
+		ReplaceBIN_DC("CAMEC34S");
+		ReplaceBIN_DC("CAMEC35S");
+		ReplacePVM("ADV_EC30");
+		ReplacePVM("ADV_EC31");
+		ReplacePVM("ADV_EC32");
+		ReplacePVM("ADV_EC33");
+		ReplacePVM("ADV_EC34");
+		ReplacePVM("ADV_EC35");
+		ReplacePVM("ADV_EC36");
+		ReplacePVM("OBJ_EC30");
+		ReplacePVM("EC_ACTDOOR");
+		ReplacePVM("EC_ALIFE");
+		ReplacePVM("EC_EGGLIFT");
+		ReplacePVM("EC_TARAI");
+		ReplacePVM("PVME101FACTORY");
+		ReplaceBIN("PL_W1B", "PL_W1X");
+		___ADV01C_TEXLISTS[15] = &texlist_ec30;
+		___ADV01C_TEXLISTS[16] = &texlist_ec31;
+		___ADV01C_TEXLISTS[17] = &texlist_ec32;
+		___ADV01C_TEXLISTS[18] = &texlist_ec33;
+		___ADV01C_TEXLISTS[19] = &texlist_ec34;
+		___ADV01C_TEXLISTS[20] = &texlist_ec35;
+		//Door barrier fixes (Gamma's story)
+		WriteJump((void*)0x52B2E0, ECDoorBarrier1X);
+		WriteJump((void*)0x52B250, ECDoorBarrier2_asm);
+		//Fix camera in Amy-Gamma prison cutscene
+		WriteData((float*)0x006A4EBE, -134.0f); //X1
+		WriteData((float*)0x006A4EB9, 15.0f); //Y1
+		WriteData((float*)0x006A4EB4, 54.0f); //Z1
+		WriteData((float*)0x006A4F41, -143.85f); //X2
+		WriteData((float*)0x006A4F3C, 15.93f); //Y2
+		WriteData((float*)0x006A4F37, 80.25f); //Z2
+		//Fix camera in Gamma-Amy prison cutscene
+		WriteData((float*)0x00678C48, -134.0f); //X1
+		WriteData((float*)0x00678C43, 15.0f); //Y1
+		WriteData((float*)0x00678C3E, 54.0f); //Z1
+		WriteData((float*)0x00678CCB, -143.85f); //X2
+		WriteData((float*)0x00678CC6, 15.93f); //Y2
+		WriteData((float*)0x00678CC1, 80.25f); //Z2
+		//Material fixes
+		AddAlphaRejectMaterial((NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01CMODELS") + 0x000ED480)); //Monorail sign (inside)
+		AddWhiteDiffuseMaterial((NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01CMODELS") + 0x00110B04)); //OHammerSW
+		if (DLLLoaded_Lantern)
+		{
+			WriteCall((void*)0x006F4577, TurnLightsOff); //Turn the lights off in Gamma's Froggy Hunt cutscene
+			WriteCall((void*)0x006F4620, TurnLightsOn); //Turn the lights on in Gamma's Froggy Hunt cutscene
+		}
+		RemoveVertexColors_Object(ADV01C_OBJECTS[0]); //Hedhehog Hammer targets
+		RemoveVertexColors_Object(ADV01C_OBJECTS[1]); //Hedhehog Hammer targets
+		RemoveVertexColors_Object(ADV01C_OBJECTS[2]); //Hedhehog Hammer targets
+		RemoveVertexColors_Object((NJS_OBJECT*)0x31045B8); //Projectors in Gamma's cutscene
+		//Tarai fix
+		TaraiButton_Transparent = LoadModel("system\\data\\ADV0130\\Models\\000D16F4.sa1mdl", false);
+		TaraiButton_OpaqueOnly = LoadModel("system\\data\\ADV0130\\Models\\000D16F4.sa1mdl", false);
+		TaraiButton_OpaqueOnly->basicdxmodel->meshsets[0].nbMesh = 0;
+		AddWhiteDiffuseMaterial(&TaraiButton_OpaqueOnly->basicdxmodel->mats[1]);
+		AddWhiteDiffuseMaterial(&TaraiButton_OpaqueOnly->basicdxmodel->mats[2]);
+		TaraiButton_Transparent->basicdxmodel->meshsets[1].nbMesh = 0;
+		TaraiButton_Transparent->basicdxmodel->meshsets[2].nbMesh = 0;
+		WriteJump((void*)0x52BA70, OTarai_Child_Display);
+		___ADV01C_OBJECTS[7] = TaraiButton_Transparent; //Tarai button
+		___ADV01C_MODELS[28] = TaraiButton_Transparent->basicdxmodel;
+		___ADV01C_OBJECTS[7]->child = TaraiButton_Transparent->child;
+		___ADV01C_MODELS[27] = TaraiButton_Transparent->child->basicdxmodel;
+		___ADV01C_OBJECTS[8] = LoadModel("system\\data\\ADV0130\\Models\\000D243C.sa1mdl", false); //Tarai
+		//Monorail front
+		NJS_OBJECT* MonorailFirstCar = LoadModel("system\\data\\ADV0130\\Models\\000B24D8.sa1mdl", false);
+		___ADV01C_OBJECTS[43]->basicdxmodel = MonorailFirstCar->basicdxmodel;
+		___ADV01C_OBJECTS[43]->child->basicdxmodel = MonorailFirstCar->child->basicdxmodel;
+		___ADV01C_OBJECTS[43]->child->child->basicdxmodel = MonorailFirstCar->child->child->basicdxmodel;
+		___ADV01C_OBJECTS[43]->child->sibling->basicdxmodel = MonorailFirstCar->child->sibling->basicdxmodel;
+		AddAlphaRejectMaterial(&___ADV01C_OBJECTS[43]->child->sibling->basicdxmodel->mats[0]);
+		//Monorail back
+		NJS_OBJECT* MonorailOtherCars = LoadModel("system\\data\\ADV0130\\Models\\000B64DC.sa1mdl", false);
+		___ADV01C_OBJECTS[44]->basicdxmodel = MonorailOtherCars->basicdxmodel;
+		___ADV01C_OBJECTS[44]->child->basicdxmodel = MonorailOtherCars->child->basicdxmodel;
+		___ADV01C_OBJECTS[44]->child->child->basicdxmodel = MonorailOtherCars->child->child->basicdxmodel;
+		//Other objects
+		___ADV01C_OBJECTS[29] = LoadModel("system\\data\\ADV0130\\Models\\000ADCD8.sa1mdl", false); //Monorail station
+		___ADV01C_ACTIONS[6]->object = LoadModel("system\\data\\ADV0130\\Models\\000BAF48.sa1mdl", false); //Door
+		NJS_OBJECT* EggLift = LoadModel("system\\data\\ADV0130\\Models\\000B8CD4.sa1mdl", false); //OEggLift
+		___ADV01C_OBJECTS[23] = EggLift;
+		___ADV01C_ACTIONS[7]->object = EggLift;
+		for (int i = 0; i < 3; i++)
+		{
+			EggCarrierInside1Fog[i].Distance = -12000;
+			EggCarrierInside1Fog[i].Layer = -12000;
+			EggCarrierInside2Fog[i].Toggle = 1;
+			EggCarrierInside2Fog[i].Distance = 4000.0f;
+			EggCarrierInside2Fog[i].Layer = 800.0f;
+			EggCarrierInside2Fog[i].Color = 0xFFA0A0A0;
+			EggCarrierInside3Fog[i].Distance = -12000;
+			EggCarrierInside3Fog[i].Layer = -12000;
+			EggCarrierInside4Fog[i].Toggle = 1;
+			EggCarrierInside4Fog[i].Distance = 1216.0f;
+			EggCarrierInside4Fog[i].Layer = 139.0f;
+			EggCarrierInside4Fog[i].Color = 0xFF7F7F40;
+			EggCarrierInside5Fog[i].Distance = -12000;
+			EggCarrierInside5Fog[i].Layer = -12000;
+			EggCarrierInside6Fog[i].Distance = -12000;
+			EggCarrierInside6Fog[i].Layer = -12000;
+		}
+		ModelsLoaded_ADV0130 = true;
 	}
 }
 

@@ -215,28 +215,6 @@ void UnloadLevelFiles_B_CHAOS4()
 	B_CHAOS4_Info = nullptr;
 }
 
-void LoadLevelFiles_B_CHAOS4()
-{
-	NJS_MATERIAL *material;
-	CheckAndUnloadLevelFiles();
-	B_CHAOS4_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\B_CHAOS4\\0.sa1lvl"));
-	LandTable *B_CHAOS4 = B_CHAOS4_Info->getlandtable(); // &landtable_00000238;
-	RemoveMaterialColors_Landtable(B_CHAOS4);
-	B_CHAOS4->TexList = &texlist_chaos4;
-	LandTableArray[16] = B_CHAOS4;
-	for (int j = 0; j < B_CHAOS4->COLCount; j++)
-	{
-		for (int k = 0; k < B_CHAOS4->Col[j].Model->basicdxmodel->nbMat; ++k)
-		{
-			if (B_CHAOS4->Col[j].Model->basicdxmodel->mats[k].attr_texId == 4)
-			{
-				material = (NJS_MATERIAL*)&B_CHAOS4->Col[j].Model->basicdxmodel->mats[k];
-				AddWhiteDiffuseMaterial(material);
-			}
-		}
-	}
-}
-
 void Chaos4BubblesHook(NJS_SPRITE *sp, Int n, NJD_SPRITE attr, QueuedModelFlagsB zfunc_type)
 {
 	if (CurrentLevel == LevelIDs_Chaos4)
@@ -376,62 +354,84 @@ void Chaos4_Transform(NJS_OBJECT *object)
 
 void Chaos4_Init()
 {
-	WriteData<1>((char*)0x00555A42, NJD_COLOR_BLENDING_INVSRCALPHA);
-	if (!Use1999SetFiles)
+	NJS_MATERIAL* material;
+	CheckAndUnloadLevelFiles();
+	B_CHAOS4_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\B_CHAOS4\\0.sa1lvl"));
+	LandTable* B_CHAOS4 = B_CHAOS4_Info->getlandtable(); // &landtable_00000238;
+	RemoveMaterialColors_Landtable(B_CHAOS4);
+	B_CHAOS4->TexList = &texlist_chaos4;
+	LandTableArray[16] = B_CHAOS4;
+	for (int j = 0; j < B_CHAOS4->COLCount; j++)
 	{
-		ReplaceBIN_DC("SET1700S");
+		for (int k = 0; k < B_CHAOS4->Col[j].Model->basicdxmodel->nbMat; ++k)
+		{
+			if (B_CHAOS4->Col[j].Model->basicdxmodel->mats[k].attr_texId == 4)
+			{
+				material = (NJS_MATERIAL*)& B_CHAOS4->Col[j].Model->basicdxmodel->mats[k];
+				AddWhiteDiffuseMaterial(material);
+			}
+		}
 	}
-	else
+	if (!ModelsLoaded_B_CHAOS4)
 	{
-		ReplaceBIN_1999("SET1700S");
-	}
-	ReplacePVM("CHAOS4_COMMON");
-	ReplacePVM("CHAOS4_HASHIRA");
-	ReplacePVM("CHAOS4_KAMA");
-	ReplacePVM("CHAOS4_NUMA");
-	ReplacePVM("CHAOS4_OBJECT");
-	ReplacePVM("CHAOS4_SHIBUKI");
-	ReplacePVM("CHAOS4_TIKEI");
-	ReplacePVM("CHAOS4_WAVE");
-	ResizeTextureList(&CHAOS4_OBJECT_TEXLIST, 6);
-	WriteCall((void*)0x5528ED, Chaos4Action); //Main model
-	WriteData<10>((char*)0x55507D, 0x90u); //Disable depth bias setting for balls
-	WriteData<10>((char*)0x555AB1, 0x90u); //Disable depth bias setting for balls attack
-	WriteCall((void*)0x555096, Chaos4Ball);
-	WriteJump((void*)0x553F60, Chaos4_Lilypad_Display);
-	WriteCall((void*)0x7AE00A, Chaos4BubblesHook);
-	WriteCall((void*)0x7ADC1E, Chaos4BrainHook);
-	WriteCall((void*)0x553380, Chaos4NumaFix);
-	WriteCall((void*)0x552918, Chaos4_Transform); //Chaos' model formed from balls
-	*(NJS_OBJECT*)0x11C4B90 = *LoadModel("SYSTEM\\data\\B_CHAOS4\\Models\\000425F8.sa1mdl", false); // Chaos4 swamp water
-	Chaos4CleanWater = LoadModel("SYSTEM\\data\\B_CHAOS4\\Models\\0004476C.sa1mdl", false); // Chaos4 swamp water
-	WriteData<1>((char*)0x00555B3F, 0x08); //Chaos 4 bubble blending mode SA_SRC instead of SA_ONE
-	ResizeTextureList((NJS_TEXLIST*)0x118FF08, textures_chaos4);
-	WriteJump((void*)0x550D10, Chaos4Skybox);
-	*(NJS_OBJECT*)0x11E3240 = *LoadModel("SYSTEM\\data\\B_CHAOS4\\Models\\0003E6CC.sa1mdl", false); //Lilypad
-	//Chaos 4
-	RemoveVertexColors_Object((NJS_OBJECT*)0x119E240); //Chaos4 main model
-	RemoveVertexColors_Object((NJS_OBJECT*)0x302FD70); //Chaos4 cutscene model
-	RemoveVertexColors_Object((NJS_OBJECT*)0x11A652C); //Chaos4 alt model
-	RemoveVertexColors_Object((NJS_OBJECT*)0x11A11C8); //Chaos4 hand attack
-	RemoveVertexColors_Object((NJS_OBJECT*)0x11C1C24); //Chaos4 broken into balls
-	RemoveVertexColors_Object((NJS_OBJECT*)0x11EC85C); //Chaos4 ball attack
-	RemoveVertexColors_Object((NJS_OBJECT*)0x11BFFF4); //Chaos4 wave attack 1
-	RemoveVertexColors_Object((NJS_OBJECT*)0x11C077C); //Chaos4 wave attack 2
-	RemoveVertexColors_Object((NJS_OBJECT*)0x11C0F04); //Chaos4 wave attack 3
-	WriteJump((void*)0x556420, Chaos4Kama); //Chaos 4 attack effect fix
-	WriteCall((void*)0x55667C, Chaos4KamaWave);
-	WriteCall((void*)0x5539E6, SetMaterial_Chaos4Wave); //Make Chaos 4 wave visible
-	((NJS_MATERIAL*)0x11C7BEC)->attr_texId = 0; //Fix Chaos 4 wave texture ID
-	if (DLLLoaded_Lantern)
-	{
-		material_register_ptr(Chaos4Materials, LengthOfArray(Chaos4Materials), &Chaos4NPCFunction);
-	}
-	for (int i = 0; i < 3; i++)
-	{
-		Chaos4Fog[i].Color = 0xFF000000;
-		Chaos4Fog[i].Layer = 1.0f;
-		Chaos4Fog[i].Distance = 2000.0f;
-		Chaos4Fog[i].Toggle = 0;
+		WriteData<1>((char*)0x00555A42, NJD_COLOR_BLENDING_INVSRCALPHA);
+		if (!Use1999SetFiles)
+		{
+			ReplaceBIN_DC("SET1700S");
+		}
+		else
+		{
+			ReplaceBIN_1999("SET1700S");
+		}
+		ReplacePVM("CHAOS4_COMMON");
+		ReplacePVM("CHAOS4_HASHIRA");
+		ReplacePVM("CHAOS4_KAMA");
+		ReplacePVM("CHAOS4_NUMA");
+		ReplacePVM("CHAOS4_OBJECT");
+		ReplacePVM("CHAOS4_SHIBUKI");
+		ReplacePVM("CHAOS4_TIKEI");
+		ReplacePVM("CHAOS4_WAVE");
+		ResizeTextureList(&CHAOS4_OBJECT_TEXLIST, 6);
+		WriteCall((void*)0x5528ED, Chaos4Action); //Main model
+		WriteData<10>((char*)0x55507D, 0x90u); //Disable depth bias setting for balls
+		WriteData<10>((char*)0x555AB1, 0x90u); //Disable depth bias setting for balls attack
+		WriteCall((void*)0x555096, Chaos4Ball);
+		WriteJump((void*)0x553F60, Chaos4_Lilypad_Display);
+		WriteCall((void*)0x7AE00A, Chaos4BubblesHook);
+		WriteCall((void*)0x7ADC1E, Chaos4BrainHook);
+		WriteCall((void*)0x553380, Chaos4NumaFix);
+		WriteCall((void*)0x552918, Chaos4_Transform); //Chaos' model formed from balls
+		*(NJS_OBJECT*)0x11C4B90 = *LoadModel("SYSTEM\\data\\B_CHAOS4\\Models\\000425F8.sa1mdl", false); // Chaos4 swamp water
+		Chaos4CleanWater = LoadModel("SYSTEM\\data\\B_CHAOS4\\Models\\0004476C.sa1mdl", false); // Chaos4 swamp water
+		WriteData<1>((char*)0x00555B3F, 0x08); //Chaos 4 bubble blending mode SA_SRC instead of SA_ONE
+		ResizeTextureList((NJS_TEXLIST*)0x118FF08, textures_chaos4);
+		WriteJump((void*)0x550D10, Chaos4Skybox);
+		*(NJS_OBJECT*)0x11E3240 = *LoadModel("SYSTEM\\data\\B_CHAOS4\\Models\\0003E6CC.sa1mdl", false); //Lilypad
+		//Chaos 4
+		RemoveVertexColors_Object((NJS_OBJECT*)0x119E240); //Chaos4 main model
+		RemoveVertexColors_Object((NJS_OBJECT*)0x302FD70); //Chaos4 cutscene model
+		RemoveVertexColors_Object((NJS_OBJECT*)0x11A652C); //Chaos4 alt model
+		RemoveVertexColors_Object((NJS_OBJECT*)0x11A11C8); //Chaos4 hand attack
+		RemoveVertexColors_Object((NJS_OBJECT*)0x11C1C24); //Chaos4 broken into balls
+		RemoveVertexColors_Object((NJS_OBJECT*)0x11EC85C); //Chaos4 ball attack
+		RemoveVertexColors_Object((NJS_OBJECT*)0x11BFFF4); //Chaos4 wave attack 1
+		RemoveVertexColors_Object((NJS_OBJECT*)0x11C077C); //Chaos4 wave attack 2
+		RemoveVertexColors_Object((NJS_OBJECT*)0x11C0F04); //Chaos4 wave attack 3
+		WriteJump((void*)0x556420, Chaos4Kama); //Chaos 4 attack effect fix
+		WriteCall((void*)0x55667C, Chaos4KamaWave);
+		WriteCall((void*)0x5539E6, SetMaterial_Chaos4Wave); //Make Chaos 4 wave visible
+		((NJS_MATERIAL*)0x11C7BEC)->attr_texId = 0; //Fix Chaos 4 wave texture ID
+		if (DLLLoaded_Lantern)
+		{
+			material_register_ptr(Chaos4Materials, LengthOfArray(Chaos4Materials), &Chaos4NPCFunction);
+		}
+		for (int i = 0; i < 3; i++)
+		{
+			Chaos4Fog[i].Color = 0xFF000000;
+			Chaos4Fog[i].Layer = 1.0f;
+			Chaos4Fog[i].Distance = 2000.0f;
+			Chaos4Fog[i].Toggle = 0;
+		}
+		ModelsLoaded_B_CHAOS4 = true;
 	}
 }

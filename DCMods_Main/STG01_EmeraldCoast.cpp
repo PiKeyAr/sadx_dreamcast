@@ -578,25 +578,25 @@ void ParseEmeraldCoastColFlagsAndMaterials(LandTable *landtable, int act)
 	}
 }
 
-void LoadLevelFiles_STG01()
+void EmeraldCoast_Init()
 {
 	CheckAndUnloadLevelFiles();
 	//Landtables
 	STG01_0_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG01\\0.sa1lvl"));
 	STG01_1_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG01\\1.sa1lvl"));
 	STG01_2_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG01\\2.sa1lvl"));
-	LandTable *STG01_0 = STG01_0_Info->getlandtable();// &landtable_00081554; // STG01_0_Info->getlandtable();
-	LandTable *STG01_1 = STG01_1_Info->getlandtable();// &landtable_000DEB60; // STG01_1_Info->getlandtable();
-	LandTable *STG01_2 = STG01_2_Info->getlandtable();// &landtable_0011DD58; // STG01_2_Info->getlandtable();
+	LandTable* STG01_0 = STG01_0_Info->getlandtable();// &landtable_00081554; // STG01_0_Info->getlandtable();
+	LandTable* STG01_1 = STG01_1_Info->getlandtable();// &landtable_000DEB60; // STG01_1_Info->getlandtable();
+	LandTable* STG01_2 = STG01_2_Info->getlandtable();// &landtable_0011DD58; // STG01_2_Info->getlandtable();
 	STG01_0->TexList = &texlist_ecoast1;
 	STG01_1->TexList = &texlist_ecoast2;
 	STG01_2->TexList = &texlist_ecoast3;
 	RemoveMaterialColors_Landtable(STG01_0);
 	RemoveMaterialColors_Landtable(STG01_1);
 	RemoveMaterialColors_Landtable(STG01_2);
-	WriteData((LandTable**)0x97DA28, STG01_0); //Act 1
-	WriteData((LandTable**)0x97DA2C, STG01_1); //Act 2
-	WriteData((LandTable**)0x97DA30, STG01_2); //Act 3
+	WriteData((LandTable * *)0x97DA28, STG01_0); //Act 1
+	WriteData((LandTable * *)0x97DA2C, STG01_1); //Act 2
+	WriteData((LandTable * *)0x97DA30, STG01_2); //Act 3
 	ParseEmeraldCoastColFlagsAndMaterials(STG01_0, 0);
 	ParseEmeraldCoastColFlagsAndMaterials(STG01_1, 1);
 	ParseEmeraldCoastColFlagsAndMaterials(STG01_2, 2);
@@ -639,129 +639,129 @@ void LoadLevelFiles_STG01()
 		AddTextureAnimation(1, 1, &LowPolyOcean->basicdxmodel->mats[0], false, 4, 0, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); //Static ocean
 		AddTextureAnimation(1, 2, &LowPolyOcean->basicdxmodel->mats[0], false, 4, 0, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); //Static ocean
 	}
-}
-
-void EmeraldCoast_Init()
-{
-	if (!Use1999SetFiles)
+	if (!ModelsLoaded_STG01)
 	{
-		ReplaceBIN_DC("SET0100E");
-		ReplaceBIN_DC("SET0100S");
-		ReplaceBIN_DC("SET0101M");
-		ReplaceBIN_DC("SET0101S");
-		ReplaceBIN_DC("SET0102B");
-		ReplaceBIN_DC("SET0102S");
-	}
-	else
-	{
-		ReplaceBIN_1999("SET0100E");
-		ReplaceBIN_1999("SET0100S");
-		ReplaceBIN_1999("SET0101M");
-		ReplaceBIN_1999("SET0101S");
-		ReplaceBIN_1999("SET0102B");
-		ReplaceBIN_1999("SET0102S");
-	}
-	ReplacePVM("BEACH01");
-	ReplacePVM("BEACH02");
-	ReplacePVM("BEACH03");
-	ReplacePVM("BG_BEACH");
-	ReplacePVM("OBJ_BEACH");
-	ReplacePVM("BEACH_SEA");
-	WriteData<1>((char*)0x4F68E0, 0xC3u); //Disable SetClip_ECoast1
-	if (!IamStupidAndIWantFuckedUpOcean)
-	{
+		if (!Use1999SetFiles)
+		{
+			ReplaceBIN_DC("SET0100E");
+			ReplaceBIN_DC("SET0100S");
+			ReplaceBIN_DC("SET0101M");
+			ReplaceBIN_DC("SET0101S");
+			ReplaceBIN_DC("SET0102B");
+			ReplaceBIN_DC("SET0102S");
+		}
+		else
+		{
+			ReplaceBIN_1999("SET0100E");
+			ReplaceBIN_1999("SET0100S");
+			ReplaceBIN_1999("SET0101M");
+			ReplaceBIN_1999("SET0101S");
+			ReplaceBIN_1999("SET0102B");
+			ReplaceBIN_1999("SET0102S");
+		}
+		ReplacePVM("BEACH01");
+		ReplacePVM("BEACH02");
+		ReplacePVM("BEACH03");
+		ReplacePVM("BG_BEACH");
+		ReplacePVM("OBJ_BEACH");
+		ReplacePVM("BEACH_SEA");
+		WriteData<1>((char*)0x4F68E0, 0xC3u); //Disable SetClip_ECoast1
+		if (!IamStupidAndIWantFuckedUpOcean)
+		{
+			for (int i = 0; i < 3; i++)
+			{
+				ReplaceBIN_DC("CAM0100E");
+				ReplaceBIN_DC("CAM0100S");
+				ReplaceBIN_DC("CAM0101S");
+				ReplaceBIN_DC("CAM0102B");
+				ReplaceBIN_DC("CAM0102S");
+				SkyboxScale_EmeraldCoast1[i].x = 1.0f;
+				SkyboxScale_EmeraldCoast1[i].y = 1.0f;
+				SkyboxScale_EmeraldCoast1[i].z = 1.0f;
+				SkyboxScale_EmeraldCoast2[i].x = 1.0f;
+				SkyboxScale_EmeraldCoast2[i].y = 1.0f;
+				SkyboxScale_EmeraldCoast2[i].z = 1.0f;
+				SkyboxScale_EmeraldCoast3[i].x = 1.0f;
+				SkyboxScale_EmeraldCoast3[i].y = 1.0f;
+				SkyboxScale_EmeraldCoast3[i].z = 1.0f;
+				DrawDist_EmeraldCoast1[i].Maximum = -6000.0f;
+				DrawDist_EmeraldCoast2[i].Maximum = -3900.0f;
+				FogData_EmeraldCoast1[i].Distance = -12000.0f;
+				FogData_EmeraldCoast1[i].Layer = -12000.0f;
+				FogData_EmeraldCoast2[i].Distance = -12000.0f;
+				FogData_EmeraldCoast2[i].Layer = -12000.0f;
+			}
+		}
+		else
+		{
+			ReplaceBIN("CAM0100E", "CAM0100E_R");
+			ReplaceBIN("CAM0100S", "CAM0100S_R");
+			ReplaceBIN("CAM0101S", "CAM0101S_R");
+			ReplaceBIN("CAM0102S", "CAM0102S_R");
+			ReplaceBIN("CAM0102B", "CAM0102B_R");
+		}
+		//Models
+		RemoveVertexColors_Object((NJS_OBJECT*)0x10C782C); //Tails' crashed plane
+		*(NJS_OBJECT*)0x10A298C = *LoadModel("system\\data\\STG01\\Models\\00183CDC.sa1mdl", false); //Jump panel (OJump) 
+		*(NJS_OBJECT*)0x10937B4 = *LoadModel("system\\data\\STG01\\Models\\00174F68.sa1mdl", false); //Pier thing
+		*(NJS_OBJECT*)0x10939A4 = *LoadModel("system\\data\\STG01\\Models\\0017514C.sa1mdl", false); //Log
+		*(NJS_OBJECT*)0x10945EC = *LoadModel("system\\data\\STG01\\Models\\0017514C.sa1mdl", false); //Log2
+		*(NJS_OBJECT*)0x1097F8C = *LoadModel("system\\data\\STG01\\Models\\001795B4.sa1mdl", false); //Pier edge
+		*(NJS_OBJECT*)0x1049A1C = *LoadModel("system\\data\\STG01\\Models\\0012BE80.sa1mdl", false); //Pier small
+		*(NJS_OBJECT*)0x104C00C = *LoadModel("system\\data\\STG01\\Models\\0012E428.sa1mdl", true); //Dolphin
+		*(NJS_OBJECT*)0x106BB4C = *LoadModel("system\\data\\STG01\\Models\\0014DF28.sa1mdl", true); //Whale
+		*(NJS_MODEL_SADX*)0x010C06C8 = *LoadModel("system\\data\\STG01\\Models\\001A16B8.sa1mdl", false)->basicdxmodel; //Spike gate shadow
+		if (SADXWater_EmeraldCoast)
+		{
+			//Different UVs on the dynamic ocean model for SADX water
+			for (int rq = 0; rq < LengthOfArray(uvSTG01_00CBB000_d); rq++)
+			{
+				uvSTG01_00CBB000_d[rq].u = round(0.5 * uvSTG01_00CBB000_d[rq].u);
+				uvSTG01_00CBB000_d[rq].v = round(0.5 * uvSTG01_00CBB000_d[rq].v);
+			}
+			BigDeco1 = LoadModel("system\\data\\STG01\\Models\\DX\\00ACA3EC.sa1mdl", false);
+			BigDeco2 = LoadModel("system\\data\\STG01\\Models\\DX\\00AC97B4.sa1mdl", false);
+			BigDeco3 = LoadModel("system\\data\\STG01\\Models\\DX\\00ACA028.sa1mdl", false);
+		}
+		//Whale splash transparency fixes
+		WriteCall((void*)0x00502F8F, WhaleSplash);
+		WriteCall((void*)0x00502F9A, WhaleSplash);
+		if (DLLLoaded_Lantern)
+		{
+			material_register_ptr(LevelSpecular_STG01, LengthOfArray(LevelSpecular_STG01), &ForceDiffuse0Specular0);
+			material_register_ptr(ObjectSpecular_STG01, LengthOfArray(ObjectSpecular_STG01), &ForceDiffuse0Specular1);
+		}
+		WriteData<2>((void*)0x004F8A9A, 0x90); //Disable water animation in Act 1
+		WriteData<2>((char*)0x004F7816, 0xFF); //Disable water animation in Act 2
+		WriteData<2>((char*)0x004F78E6, 0xFF); //Disable water animation in Act 3
+		ResizeTextureList((NJS_TEXLIST*)0x010C0508, 10); //BEACH_SEA
+		ResizeTextureList((NJS_TEXLIST*)0xF812AC, textures_ecoast1);
+		ResizeTextureList((NJS_TEXLIST*)0xEF553C, textures_ecoast2);
+		ResizeTextureList((NJS_TEXLIST*)0xE9A4CC, textures_ecoast3);
+		//Write floats to fix buggy SADX water positioning code
+		//Act 2
+		WriteData((float**)0x004F7876, &float1);
+		WriteData((float**)0x004F7891, &float1);
+		WriteData((float**)0x004F78A4, &float2);
+		WriteData((float**)0x004F78B1, &float2);
+		//Act 3
+		WriteData((float**)0x004F795D, &float1);
+		WriteData((float**)0x004F7978, &float1);
+		WriteData((float**)0x004F798B, &float2);
+		WriteData((float**)0x004F7998, &float2);
+		//Write water rendering functions
+		WriteJump((void*)0x00501130, Obj_EC1Water_DisplayX); //Act 1
+		WriteJump((void*)0x004F76C0, Obj_EC23Water_DisplayX); //Act 2
+		WriteJump((void*)0x004F7760, Obj_EC23Water_DisplayX); //Act 3
 		for (int i = 0; i < 3; i++)
 		{
-			ReplaceBIN_DC("CAM0100E");
-			ReplaceBIN_DC("CAM0100S");
-			ReplaceBIN_DC("CAM0101S");
-			ReplaceBIN_DC("CAM0102B");
-			ReplaceBIN_DC("CAM0102S");
-			SkyboxScale_EmeraldCoast1[i].x = 1.0f;
-			SkyboxScale_EmeraldCoast1[i].y = 1.0f;
-			SkyboxScale_EmeraldCoast1[i].z = 1.0f;
-			SkyboxScale_EmeraldCoast2[i].x = 1.0f;
-			SkyboxScale_EmeraldCoast2[i].y = 1.0f;
-			SkyboxScale_EmeraldCoast2[i].z = 1.0f;
-			SkyboxScale_EmeraldCoast3[i].x = 1.0f;
-			SkyboxScale_EmeraldCoast3[i].y = 1.0f;
-			SkyboxScale_EmeraldCoast3[i].z = 1.0f;
-			DrawDist_EmeraldCoast1[i].Maximum = -6000.0f;
-			DrawDist_EmeraldCoast2[i].Maximum = -3900.0f;
-			FogData_EmeraldCoast1[i].Distance = -12000.0f;
-			FogData_EmeraldCoast1[i].Layer = -12000.0f;
-			FogData_EmeraldCoast2[i].Distance = -12000.0f;
-			FogData_EmeraldCoast2[i].Layer = -12000.0f;
+			DrawDist_EmeraldCoast3[i].Maximum = -4000.0f;
+			EmeraldCoast3Fog[i].Toggle = 0;
+			EmeraldCoast3Fog[i].Layer = -1200.0f;
+			EmeraldCoast3Fog[i].Distance = -3000.0f;
+			EmeraldCoast3Fog[i].Color = 0xFFFFFFFF;
 		}
-	}
-	else
-	{
-		ReplaceBIN("CAM0100E", "CAM0100E_R");
-		ReplaceBIN("CAM0100S", "CAM0100S_R");
-		ReplaceBIN("CAM0101S", "CAM0101S_R");
-		ReplaceBIN("CAM0102S", "CAM0102S_R");
-		ReplaceBIN("CAM0102B", "CAM0102B_R");
-	}
-	//Models
-	RemoveVertexColors_Object((NJS_OBJECT*)0x10C782C); //Tails' crashed plane
-	*(NJS_OBJECT*)0x10A298C = *LoadModel("system\\data\\STG01\\Models\\00183CDC.sa1mdl", false); //Jump panel (OJump) 
-	*(NJS_OBJECT*)0x10937B4 = *LoadModel("system\\data\\STG01\\Models\\00174F68.sa1mdl", false); //Pier thing
-	*(NJS_OBJECT*)0x10939A4 = *LoadModel("system\\data\\STG01\\Models\\0017514C.sa1mdl", false); //Log
-	*(NJS_OBJECT*)0x10945EC = *LoadModel("system\\data\\STG01\\Models\\0017514C.sa1mdl", false); //Log2
-	*(NJS_OBJECT*)0x1097F8C = *LoadModel("system\\data\\STG01\\Models\\001795B4.sa1mdl", false); //Pier edge
-	*(NJS_OBJECT*)0x1049A1C = *LoadModel("system\\data\\STG01\\Models\\0012BE80.sa1mdl", false); //Pier small
-	*(NJS_OBJECT*)0x104C00C = *LoadModel("system\\data\\STG01\\Models\\0012E428.sa1mdl", true); //Dolphin
-	*(NJS_OBJECT*)0x106BB4C = *LoadModel("system\\data\\STG01\\Models\\0014DF28.sa1mdl", true); //Whale
-	*(NJS_MODEL_SADX*)0x010C06C8 = *LoadModel("system\\data\\STG01\\Models\\001A16B8.sa1mdl", false)->basicdxmodel; //Spike gate shadow
-	if (SADXWater_EmeraldCoast)
-	{
-		//Different UVs on the dynamic ocean model for SADX water
-		for (int rq = 0; rq < LengthOfArray(uvSTG01_00CBB000_d); rq++)
-		{
-			uvSTG01_00CBB000_d[rq].u = round(0.5 * uvSTG01_00CBB000_d[rq].u);
-			uvSTG01_00CBB000_d[rq].v = round(0.5 * uvSTG01_00CBB000_d[rq].v);
-		}
-		BigDeco1 = LoadModel("system\\data\\STG01\\Models\\DX\\00ACA3EC.sa1mdl", false);
-		BigDeco2 = LoadModel("system\\data\\STG01\\Models\\DX\\00AC97B4.sa1mdl", false);
-		BigDeco3 = LoadModel("system\\data\\STG01\\Models\\DX\\00ACA028.sa1mdl", false);
-	}
-	//Whale splash transparency fixes
-	WriteCall((void*)0x00502F8F, WhaleSplash);
-	WriteCall((void*)0x00502F9A, WhaleSplash);
-	if (DLLLoaded_Lantern)
-	{
-		material_register_ptr(LevelSpecular_STG01, LengthOfArray(LevelSpecular_STG01), &ForceDiffuse0Specular0);
-		material_register_ptr(ObjectSpecular_STG01, LengthOfArray(ObjectSpecular_STG01), &ForceDiffuse0Specular1);
-	}
-	WriteData<2>((void*)0x004F8A9A, 0x90); //Disable water animation in Act 1
-	WriteData<2>((char*)0x004F7816, 0xFF); //Disable water animation in Act 2
-	WriteData<2>((char*)0x004F78E6, 0xFF); //Disable water animation in Act 3
-	ResizeTextureList((NJS_TEXLIST*)0x010C0508, 10); //BEACH_SEA
-	ResizeTextureList((NJS_TEXLIST*)0xF812AC, textures_ecoast1);
-	ResizeTextureList((NJS_TEXLIST*)0xEF553C, textures_ecoast2);
-	ResizeTextureList((NJS_TEXLIST*)0xE9A4CC, textures_ecoast3);
-	//Write floats to fix buggy SADX water positioning code
-	//Act 2
-	WriteData((float**)0x004F7876, &float1);
-	WriteData((float**)0x004F7891, &float1);
-	WriteData((float**)0x004F78A4, &float2);
-	WriteData((float**)0x004F78B1, &float2);
-	//Act 3
-	WriteData((float**)0x004F795D, &float1);
-	WriteData((float**)0x004F7978, &float1);
-	WriteData((float**)0x004F798B, &float2);
-	WriteData((float**)0x004F7998, &float2);
-	//Write water rendering functions
-	WriteJump((void*)0x00501130, Obj_EC1Water_DisplayX); //Act 1
-	WriteJump((void*)0x004F76C0, Obj_EC23Water_DisplayX); //Act 2
-	WriteJump((void*)0x004F7760, Obj_EC23Water_DisplayX); //Act 3
-	for (int i = 0; i < 3; i++)
-	{
-		DrawDist_EmeraldCoast3[i].Maximum = -4000.0f;
-		EmeraldCoast3Fog[i].Toggle = 0;
-		EmeraldCoast3Fog[i].Layer = -1200.0f;
-		EmeraldCoast3Fog[i].Distance = -3000.0f;
-		EmeraldCoast3Fog[i].Color = 0xFFFFFFFF;
+		ModelsLoaded_STG01 = true;
 	}
 }
 

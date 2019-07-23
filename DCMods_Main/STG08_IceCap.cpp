@@ -457,32 +457,6 @@ void UnloadLevelFiles_STG08()
 	STG08_3_Info = nullptr;
 }
 
-void LoadLevelFiles_STG08()
-{
-	CheckAndUnloadLevelFiles();
-	STG08_0_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG08\\0.sa1lvl"));
-	STG08_1_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG08\\1.sa1lvl"));
-	STG08_2_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG08\\2.sa1lvl"));
-	STG08_3_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG08\\3.sa1lvl"));
-	LandTable *STG08_0 = STG08_0_Info->getlandtable();
-	LandTable *STG08_1 = STG08_1_Info->getlandtable();
-	LandTable *STG08_2 = STG08_2_Info->getlandtable();
-	LandTable *STG08_3 = STG08_3_Info->getlandtable();
-	RemoveMaterialColors_Landtable(STG08_0);
-	RemoveMaterialColors_Landtable(STG08_1);
-	RemoveMaterialColors_Landtable(STG08_2);
-	RemoveMaterialColors_Landtable(STG08_3);
-	ParseICMaterials(STG08_3);
-	STG08_0->TexList = &texlist_icecap1;
-	STG08_1->TexList = &texlist_icecap2;
-	STG08_2->TexList = &texlist_icecap3;
-	STG08_3->TexList = &texlist_icecap2;
-	WriteData((LandTable**)0x97DB08, STG08_0);
-	WriteData((LandTable**)0x97DB0C, STG08_1);
-	WriteData((LandTable**)0x97DB10, STG08_2);
-	WriteData((LandTable**)0x97DB14, STG08_3);
-}
-
 void RenderBigIcicleWithDepth(NJS_OBJECT* a1, int blend_mode, float scale)
 {
 	DrawQueueDepthBias = 3000.0f;
@@ -492,117 +466,143 @@ void RenderBigIcicleWithDepth(NJS_OBJECT* a1, int blend_mode, float scale)
 
 void IceCap_Init()
 {
-	ReplaceBIN_DC("CAM0800S");
-	ReplaceBIN_DC("CAM0801S");
-	ReplaceBIN_DC("CAM0802S");
-	ReplaceBIN_DC("CAM0803B");
-	if (!Use1999SetFiles)
+	CheckAndUnloadLevelFiles();
+	STG08_0_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG08\\0.sa1lvl"));
+	STG08_1_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG08\\1.sa1lvl"));
+	STG08_2_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG08\\2.sa1lvl"));
+	STG08_3_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG08\\3.sa1lvl"));
+	LandTable* STG08_0 = STG08_0_Info->getlandtable();
+	LandTable* STG08_1 = STG08_1_Info->getlandtable();
+	LandTable* STG08_2 = STG08_2_Info->getlandtable();
+	LandTable* STG08_3 = STG08_3_Info->getlandtable();
+	RemoveMaterialColors_Landtable(STG08_0);
+	RemoveMaterialColors_Landtable(STG08_1);
+	RemoveMaterialColors_Landtable(STG08_2);
+	RemoveMaterialColors_Landtable(STG08_3);
+	ParseICMaterials(STG08_3);
+	STG08_0->TexList = &texlist_icecap1;
+	STG08_1->TexList = &texlist_icecap2;
+	STG08_2->TexList = &texlist_icecap3;
+	STG08_3->TexList = &texlist_icecap2;
+	WriteData((LandTable * *)0x97DB08, STG08_0);
+	WriteData((LandTable * *)0x97DB0C, STG08_1);
+	WriteData((LandTable * *)0x97DB10, STG08_2);
+	WriteData((LandTable * *)0x97DB14, STG08_3);
+	if (!ModelsLoaded_STG08)
 	{
-		ReplaceBIN_DC("SET0800S");
-		ReplaceBIN_DC("SET0801S");
-		ReplaceBIN_DC("SET0802M");
-		ReplaceBIN_DC("SET0802S");
-		ReplaceBIN_DC("SET0803B");
-	}
-	else
-	{
-		ReplaceBIN_1999("SET0800S");
-		ReplaceBIN_1999("SET0801S");
-		ReplaceBIN_1999("SET0802M");
-		ReplaceBIN_1999("SET0802S");
-		ReplaceBIN_1999("SET0803B");
-	}
-	ReplacePVM("BG_ICECAP");
-	ReplacePVM("ICECAP01");
-	ReplacePVM("ICECAP02");
-	ReplacePVM("ICECAP03");
-	ReplacePVM("OBJ_ICECAP");
-	ReplacePVM("OBJ_ICECAP2");
-	ReplacePVR("MIW_B001");
-	ReplacePVR("MTX_BOARD0");
-	ReplacePVR("SB_BOARD1");
-	WriteJump((void*)0x4E91C0, Obj_Icecap_DoColFlagThings_a); //Weird COL flag function
-	//Objects
-	*(NJS_OBJECT*)0xE60F54 = *LoadModel("system\\data\\STG08\\Models\\001702F4.sa1mdl", false); //OSaku01
-	*(NJS_OBJECT*)0xE61BBC = *LoadModel("system\\data\\STG08\\Models\\001713F0.sa1mdl", false); //OSaku01b
-	*(NJS_OBJECT*)0xE6261C = *LoadModel("system\\data\\STG08\\Models\\00170B20.sa1mdl", false); //OSaku02
-	*(NJS_OBJECT*)0xE63444 = *LoadModel("system\\data\\STG08\\Models\\0016F968.sa1mdl", false); //OSaku02b
-	*(NJS_OBJECT*)0xE7B20C = *LoadModel("system\\data\\STG08\\Models\\00188C0C.sa1mdl", false); //OFutaL
-	*(NJS_OBJECT*)0xE7E11C = *LoadModel("system\\data\\STG08\\Models\\0018B1E4.sa1mdl", false); //OFutaL broken
-	*(NJS_OBJECT*)0xE537D8 = *LoadModel("system\\data\\STG08\\Models\\00162694.sa1mdl", false); //Icicle inner part
-	*(NJS_OBJECT*)0xE6E0E0 = *LoadModel("system\\data\\STG08\\Models\\0017BD64.sa1mdl", false); //MizuIwa B
-	*(NJS_OBJECT*)0xE6E694 = *LoadModel("system\\data\\STG08\\Models\\0017C308.sa1mdl", false); //MizuIwa C
-	*(NJS_OBJECT*)0xE52FCC = *LoadModel("system\\data\\STG08\\Models\\00161838.sa1mdl", false); //OIceJmp
-	*(NJS_OBJECT*)0xE6FECC = *LoadModel("system\\data\\STG08\\Models\\0017DAD8.sa1mdl", false); //Giant icicle
-	SwapMeshsets((NJS_OBJECT*)0xE6FECC, 0, 1); //For better looks of the meshes
-	WriteCall((void*)0x4EFE72, RenderBigIcicleWithDepth);
-	*(NJS_OBJECT*)0x986F80 = *LoadModel("system\\data\\STG08\\Models\\001BEF20.sa1mdl", false); //ESMan
-	((NJS_OBJECT*)0x986F80)->basicdxmodel->mats[7].attrflags &= ~NJD_FLAG_USE_ALPHA; //Unnecessary alpha causing errors
-	RemoveVertexColors_Object((NJS_OBJECT*)0x9889E4); //ESMan vehicle
-	//Crystal fixes
-	stru_E773D8.basicdxmodel->mats[0].attrflags |= NJD_FLAG_USE_ALPHA;
-	stru_E773D8.basicdxmodel->mats[1].attrflags |= NJD_FLAG_USE_ALPHA;
-	//Crystal 1
-	Crystal1_1 = LoadModel("system\\data\\STG08\\Models\\00184058.sa1mdl", false);
-	Crystal1_1->basicdxmodel->meshsets[1].nbMesh = 0;
-	Crystal1_1->basicdxmodel->meshsets[2].nbMesh = 0;
-	Crystal1_2 = LoadModel("system\\data\\STG08\\Models\\00184058.sa1mdl", false);
-	Crystal1_2->basicdxmodel->meshsets[0].nbMesh = 0;
-	Crystal1_2->basicdxmodel->meshsets[2].nbMesh = 0;
-	Crystal1_3 = LoadModel("system\\data\\STG08\\Models\\00184058.sa1mdl", false);
-	Crystal1_3->basicdxmodel->meshsets[0].nbMesh = 0;
-	Crystal1_3->basicdxmodel->meshsets[1].nbMesh = 0;
-	//Crystal 2
-	Crystal2_1 = LoadModel("system\\data\\STG08\\Models\\00184918.sa1mdl", false);
-	Crystal2_1->basicdxmodel->meshsets[1].nbMesh = 0;
-	Crystal2_1->basicdxmodel->meshsets[2].nbMesh = 0;
-	Crystal2_2 = LoadModel("system\\data\\STG08\\Models\\00184918.sa1mdl", false);
-	Crystal2_2->basicdxmodel->meshsets[0].nbMesh = 0;
-	Crystal2_2->basicdxmodel->meshsets[2].nbMesh = 0;
-	Crystal2_3 = LoadModel("system\\data\\STG08\\Models\\00184918.sa1mdl", false);
-	Crystal2_3->basicdxmodel->meshsets[0].nbMesh = 0;
-	Crystal2_3->basicdxmodel->meshsets[1].nbMesh = 0;
-	WriteJump((void*)0x4EF5A0, Crystal_Display);
-	WriteCall((void*)0x4EFE10, RenderSmallIcicles);
-	//Snowboard "fixes"
-	RemoveVertexColors_Object(SONIC_OBJECTS[71]);
-	RemoveVertexColors_Object(MILES_OBJECTS[71]);
-	SONIC_OBJECTS[71]->basicdxmodel->mats[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	SONIC_OBJECTS[71]->basicdxmodel->mats[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	MILES_OBJECTS[71]->basicdxmodel->mats[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	MILES_OBJECTS[71]->basicdxmodel->mats[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	//Various effect fixes
-	WriteCall((void*)0x4EFEF7, RenderIcicleSpriteThing);
-	WriteJump((void*)0x4EB770, FixedAvalanche);
-	WriteJump((void*)0x4EA3E0, RenderSnowboardEffect);
-	WriteCall((void*)0x4F5B6F, FixSnowflake); //Snowflake brightness
-	WriteCall((void*)0x4EB948, FixSnowflake); //Snowflake brightness 2
-	((NJS_OBJECT*)0xE43544)->basicdxmodel->mats[0].attr_texId = 58; //Snowboard effect
-	((NJS_SPRITE*)0xE956E4)->tlist = &OBJ_ICECAP_TEXLIST; //Snow effect texlist
-	((NJS_TEXANIM*)0xE956D0)->texid = 96; //Snow effect texture ID
-	ResizeTextureList((NJS_TEXLIST*)0xDE3A74, textures_icecap1);
-	ResizeTextureList((NJS_TEXLIST*)0xD39744, textures_icecap2);
-	ResizeTextureList((NJS_TEXLIST*)0xC68408, textures_icecap3);
-	ResizeTextureList(&OBJ_ICECAP_TEXLIST, 100);
-	for (int i = 0; i < 3; i++)
-	{
-		IceCap1Fog[i].Color = 0xFFFFFFFF;
-		IceCap1Fog[i].Layer = 1500.0f;
-		IceCap1Fog[i].Distance = 3800.0f;
-		IceCap1Fog[i].Toggle = 1;
-		DrawDist_IceCap1[i].Maximum = -12000.0;
-		IceCap2Fog[i].Color = 0xFF000060;
-		IceCap2Fog[i].Layer = 800.0f;
-		IceCap2Fog[i].Distance = 3800.0f;
-		IceCap2Fog[i].Toggle = 1;
-		DrawDist_IceCap2[i].Maximum = -4000.0;
-		DrawDist_IceCap3[i].Maximum = -8000.0;
-		IceCap3Fog[i].Layer = 2500.0f;
-		IceCap3Fog[i].Color = 0xFFFFFFFF;
-		IceCap4Fog[i].Color = 0xFF000060;
-		IceCap4Fog[i].Layer = 800.0f;
-		IceCap4Fog[i].Distance = 3800.0f;
-		IceCap4Fog[i].Toggle = 1;
+		ReplaceBIN_DC("CAM0800S");
+		ReplaceBIN_DC("CAM0801S");
+		ReplaceBIN_DC("CAM0802S");
+		ReplaceBIN_DC("CAM0803B");
+		if (!Use1999SetFiles)
+		{
+			ReplaceBIN_DC("SET0800S");
+			ReplaceBIN_DC("SET0801S");
+			ReplaceBIN_DC("SET0802M");
+			ReplaceBIN_DC("SET0802S");
+			ReplaceBIN_DC("SET0803B");
+		}
+		else
+		{
+			ReplaceBIN_1999("SET0800S");
+			ReplaceBIN_1999("SET0801S");
+			ReplaceBIN_1999("SET0802M");
+			ReplaceBIN_1999("SET0802S");
+			ReplaceBIN_1999("SET0803B");
+		}
+		ReplacePVM("BG_ICECAP");
+		ReplacePVM("ICECAP01");
+		ReplacePVM("ICECAP02");
+		ReplacePVM("ICECAP03");
+		ReplacePVM("OBJ_ICECAP");
+		ReplacePVM("OBJ_ICECAP2");
+		ReplacePVR("MIW_B001");
+		ReplacePVR("MTX_BOARD0");
+		ReplacePVR("SB_BOARD1");
+		WriteJump((void*)0x4E91C0, Obj_Icecap_DoColFlagThings_a); //Weird COL flag function
+		//Objects
+		*(NJS_OBJECT*)0xE60F54 = *LoadModel("system\\data\\STG08\\Models\\001702F4.sa1mdl", false); //OSaku01
+		*(NJS_OBJECT*)0xE61BBC = *LoadModel("system\\data\\STG08\\Models\\001713F0.sa1mdl", false); //OSaku01b
+		*(NJS_OBJECT*)0xE6261C = *LoadModel("system\\data\\STG08\\Models\\00170B20.sa1mdl", false); //OSaku02
+		*(NJS_OBJECT*)0xE63444 = *LoadModel("system\\data\\STG08\\Models\\0016F968.sa1mdl", false); //OSaku02b
+		*(NJS_OBJECT*)0xE7B20C = *LoadModel("system\\data\\STG08\\Models\\00188C0C.sa1mdl", false); //OFutaL
+		*(NJS_OBJECT*)0xE7E11C = *LoadModel("system\\data\\STG08\\Models\\0018B1E4.sa1mdl", false); //OFutaL broken
+		*(NJS_OBJECT*)0xE537D8 = *LoadModel("system\\data\\STG08\\Models\\00162694.sa1mdl", false); //Icicle inner part
+		*(NJS_OBJECT*)0xE6E0E0 = *LoadModel("system\\data\\STG08\\Models\\0017BD64.sa1mdl", false); //MizuIwa B
+		*(NJS_OBJECT*)0xE6E694 = *LoadModel("system\\data\\STG08\\Models\\0017C308.sa1mdl", false); //MizuIwa C
+		*(NJS_OBJECT*)0xE52FCC = *LoadModel("system\\data\\STG08\\Models\\00161838.sa1mdl", false); //OIceJmp
+		*(NJS_OBJECT*)0xE6FECC = *LoadModel("system\\data\\STG08\\Models\\0017DAD8.sa1mdl", false); //Giant icicle
+		SwapMeshsets((NJS_OBJECT*)0xE6FECC, 0, 1); //For better looks of the meshes
+		WriteCall((void*)0x4EFE72, RenderBigIcicleWithDepth);
+		*(NJS_OBJECT*)0x986F80 = *LoadModel("system\\data\\STG08\\Models\\001BEF20.sa1mdl", false); //ESMan
+		((NJS_OBJECT*)0x986F80)->basicdxmodel->mats[7].attrflags &= ~NJD_FLAG_USE_ALPHA; //Unnecessary alpha causing errors
+		RemoveVertexColors_Object((NJS_OBJECT*)0x9889E4); //ESMan vehicle
+		//Crystal fixes
+		stru_E773D8.basicdxmodel->mats[0].attrflags |= NJD_FLAG_USE_ALPHA;
+		stru_E773D8.basicdxmodel->mats[1].attrflags |= NJD_FLAG_USE_ALPHA;
+		//Crystal 1
+		Crystal1_1 = LoadModel("system\\data\\STG08\\Models\\00184058.sa1mdl", false);
+		Crystal1_1->basicdxmodel->meshsets[1].nbMesh = 0;
+		Crystal1_1->basicdxmodel->meshsets[2].nbMesh = 0;
+		Crystal1_2 = LoadModel("system\\data\\STG08\\Models\\00184058.sa1mdl", false);
+		Crystal1_2->basicdxmodel->meshsets[0].nbMesh = 0;
+		Crystal1_2->basicdxmodel->meshsets[2].nbMesh = 0;
+		Crystal1_3 = LoadModel("system\\data\\STG08\\Models\\00184058.sa1mdl", false);
+		Crystal1_3->basicdxmodel->meshsets[0].nbMesh = 0;
+		Crystal1_3->basicdxmodel->meshsets[1].nbMesh = 0;
+		//Crystal 2
+		Crystal2_1 = LoadModel("system\\data\\STG08\\Models\\00184918.sa1mdl", false);
+		Crystal2_1->basicdxmodel->meshsets[1].nbMesh = 0;
+		Crystal2_1->basicdxmodel->meshsets[2].nbMesh = 0;
+		Crystal2_2 = LoadModel("system\\data\\STG08\\Models\\00184918.sa1mdl", false);
+		Crystal2_2->basicdxmodel->meshsets[0].nbMesh = 0;
+		Crystal2_2->basicdxmodel->meshsets[2].nbMesh = 0;
+		Crystal2_3 = LoadModel("system\\data\\STG08\\Models\\00184918.sa1mdl", false);
+		Crystal2_3->basicdxmodel->meshsets[0].nbMesh = 0;
+		Crystal2_3->basicdxmodel->meshsets[1].nbMesh = 0;
+		WriteJump((void*)0x4EF5A0, Crystal_Display);
+		WriteCall((void*)0x4EFE10, RenderSmallIcicles);
+		//Snowboard "fixes"
+		RemoveVertexColors_Object(SONIC_OBJECTS[71]);
+		RemoveVertexColors_Object(MILES_OBJECTS[71]);
+		SONIC_OBJECTS[71]->basicdxmodel->mats[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+		SONIC_OBJECTS[71]->basicdxmodel->mats[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+		MILES_OBJECTS[71]->basicdxmodel->mats[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+		MILES_OBJECTS[71]->basicdxmodel->mats[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+		//Various effect fixes
+		WriteCall((void*)0x4EFEF7, RenderIcicleSpriteThing);
+		WriteJump((void*)0x4EB770, FixedAvalanche);
+		WriteJump((void*)0x4EA3E0, RenderSnowboardEffect);
+		WriteCall((void*)0x4F5B6F, FixSnowflake); //Snowflake brightness
+		WriteCall((void*)0x4EB948, FixSnowflake); //Snowflake brightness 2
+		((NJS_OBJECT*)0xE43544)->basicdxmodel->mats[0].attr_texId = 58; //Snowboard effect
+		((NJS_SPRITE*)0xE956E4)->tlist = &OBJ_ICECAP_TEXLIST; //Snow effect texlist
+		((NJS_TEXANIM*)0xE956D0)->texid = 96; //Snow effect texture ID
+		ResizeTextureList((NJS_TEXLIST*)0xDE3A74, textures_icecap1);
+		ResizeTextureList((NJS_TEXLIST*)0xD39744, textures_icecap2);
+		ResizeTextureList((NJS_TEXLIST*)0xC68408, textures_icecap3);
+		ResizeTextureList(&OBJ_ICECAP_TEXLIST, 100);
+		for (int i = 0; i < 3; i++)
+		{
+			IceCap1Fog[i].Color = 0xFFFFFFFF;
+			IceCap1Fog[i].Layer = 1500.0f;
+			IceCap1Fog[i].Distance = 3800.0f;
+			IceCap1Fog[i].Toggle = 1;
+			DrawDist_IceCap1[i].Maximum = -12000.0;
+			IceCap2Fog[i].Color = 0xFF000060;
+			IceCap2Fog[i].Layer = 800.0f;
+			IceCap2Fog[i].Distance = 3800.0f;
+			IceCap2Fog[i].Toggle = 1;
+			DrawDist_IceCap2[i].Maximum = -4000.0;
+			DrawDist_IceCap3[i].Maximum = -8000.0;
+			IceCap3Fog[i].Layer = 2500.0f;
+			IceCap3Fog[i].Color = 0xFFFFFFFF;
+			IceCap4Fog[i].Color = 0xFF000060;
+			IceCap4Fog[i].Layer = 800.0f;
+			IceCap4Fog[i].Distance = 3800.0f;
+			IceCap4Fog[i].Toggle = 1;
+		}
+		ModelsLoaded_STG08 = true;
 	}
 }
 

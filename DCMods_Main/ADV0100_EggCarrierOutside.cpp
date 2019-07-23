@@ -303,8 +303,9 @@ void UnloadLevelFiles_ADV01()
 	ADV01_5_Info = nullptr;
 }
 
-void LoadLevelFiles_ADV01()
+void ADV01_Init()
 {
+	//This is done every time the function is called
 	CheckAndUnloadLevelFiles();
 	ADV01_0_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV0100\\0.sa1lvl"));
 	ADV01_1_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV0100\\1.sa1lvl"));
@@ -343,241 +344,241 @@ void LoadLevelFiles_ADV01()
 	LandTableArray[116] = ADV01_4;
 	LandTableArray[117] = ADV01_5;
 	ParseEC00Materials(false);
-}
-
-void ADV01_Init(const IniFile* config, const HelperFunctions& helperFunctions)
-{
-	if (!Use1999SetFiles)
+	if (!ModelsLoaded_ADV0100)
 	{
-		ReplaceBIN_DC("SETEC00S");
-		ReplaceBIN_DC("SETEC00M");
-		ReplaceBIN_DC("SETEC00K");
-		ReplaceBIN_DC("SETEC00A");
-		ReplaceBIN_DC("SETEC00E");
-		ReplaceBIN_DC("SETEC00B");
-		ReplaceBIN_DC("SETEC01S");
-		ReplaceBIN_DC("SETEC01M");
-		ReplaceBIN_DC("SETEC01K");
-		ReplaceBIN_DC("SETEC01A");
-		ReplaceBIN_DC("SETEC01E");
-		ReplaceBIN_DC("SETEC01B");
-		ReplaceBIN_DC("SETEC02S");
-		ReplaceBIN_DC("SETEC02M");
-		ReplaceBIN_DC("SETEC02K");
-		ReplaceBIN_DC("SETEC02A");
-		ReplaceBIN_DC("SETEC02E");
-		ReplaceBIN_DC("SETEC02B");
-		ReplaceBIN_DC("SETEC03S");
-		ReplaceBIN_DC("SETEC03M");
-		ReplaceBIN_DC("SETEC04S");
-		ReplaceBIN_DC("SETEC04M");
-		ReplaceBIN_DC("SETEC04K");
-		ReplaceBIN_DC("SETEC04A");
-		ReplaceBIN_DC("SETEC04E");
-		ReplaceBIN_DC("SETEC04B");
-		ReplaceBIN_DC("SETEC05S");
-		ReplaceBIN_DC("SETEC05M");
-	}
-	else
-	{
-		ReplaceBIN_1999("SETEC00S");
-		ReplaceBIN_1999("SETEC00M");
-		ReplaceBIN_1999("SETEC00K");
-		ReplaceBIN_1999("SETEC00A");
-		ReplaceBIN_1999("SETEC00E");
-		ReplaceBIN_1999("SETEC00B");
-		ReplaceBIN_1999("SETEC01S");
-		ReplaceBIN_1999("SETEC01M");
-		ReplaceBIN_1999("SETEC01K");
-		ReplaceBIN_1999("SETEC01A");
-		ReplaceBIN_1999("SETEC01E");
-		ReplaceBIN_1999("SETEC01B");
-		ReplaceBIN_1999("SETEC02S");
-		ReplaceBIN_1999("SETEC02M");
-		ReplaceBIN_1999("SETEC02K");
-		ReplaceBIN_1999("SETEC02A");
-		ReplaceBIN_1999("SETEC02E");
-		ReplaceBIN_1999("SETEC02B");
-		ReplaceBIN_1999("SETEC03S");
-		ReplaceBIN_1999("SETEC03M");
-		ReplaceBIN_1999("SETEC04S");
-		ReplaceBIN_1999("SETEC04M");
-		ReplaceBIN_1999("SETEC04K");
-		ReplaceBIN_1999("SETEC04A");
-		ReplaceBIN_1999("SETEC04E");
-		ReplaceBIN_1999("SETEC04B");
-		ReplaceBIN_1999("SETEC05S");
-		ReplaceBIN_1999("SETEC05M");
-	}
-	ReplaceBIN_DC("CAMEC00S");
-	ReplaceBIN_DC("CAMEC01S");
-	ReplaceBIN_DC("CAMEC02S");
-	ReplaceBIN_DC("CAMEC03S");
-	ReplaceBIN_DC("CAMEC04S");
-	ReplaceBIN_DC("CAMEC05S");
-	ReplacePVM("ADV_EC00");
-	ReplacePVM("ADV_EC01");
-	ReplacePVM("ADV_EC02");
-	ReplacePVM("ADV_EC03");
-	ReplacePVM("ADV_EC04");
-	ReplacePVM("ADV_EC05");
-	ReplacePVM("BG_EC00");
-	ReplacePVM("EC_ACTDOOR");
-	ReplacePVM("EC_BG");
-	ReplacePVM("EC_BOAT");
-	ReplacePVM("EC_CLOUDS");
-	ReplacePVM("EC_IKADA");
-	ReplacePVM("EC_LIGHT");
-	ReplacePVM("EC_SKY");
-	ReplacePVM("EC_TORNADO");
-	ReplacePVM("EC_TRANSFORM");
-	ReplacePVM("EC_WATER");
-	ReplacePVM("EV_ECCLOUD");
-	ReplacePVM("EC_SEA");
-	ReplacePVM("OBJ_EC00");
-	ResizeTextureList(&OBJ_EC00_TEXLIST, 206);
-	___ADV01_TEXLISTS[0] = &texlist_ec00;
-	___ADV01_TEXLISTS[1] = &texlist_ec01;
-	___ADV01_TEXLISTS[2] = &texlist_ec02;
-	___ADV01_TEXLISTS[3] = &texlist_ec03;
-	___ADV01_TEXLISTS[4] = &texlist_ec04;
-	___ADV01_TEXLISTS[5] = &texlist_ec05;
-	if (!SADXWater_EggCarrier)
-	{
-		EggCarrierSeaModel = LoadModel("system\\data\\ADV0100\\Models\\001C0478.sa1mdl", false);
-		AddTextureAnimation_Permanent(29, 0, &EggCarrierSeaModel->basicdxmodel->mats[0], false, 4, 4, 13, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1);
-		AddTextureAnimation_Permanent(29, 1, &EggCarrierSeaModel->basicdxmodel->mats[0], false, 4, 4, 13, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1);
-		AddTextureAnimation_Permanent(29, 2, &EggCarrierSeaModel->basicdxmodel->mats[0], false, 4, 4, 13, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1);
-		WriteJump((void*)0x51C440, EggCarrierSea);
-	}
-	//Code fixes
-	WriteData<5>((void*)0x5244D6, 0x90); //Disable light flickering
-	WriteCall((void*)0x522B49, DrawTornado2WithQueue);
-	WriteCall((void*)0x51F637, ODoseiFix);
-	WriteCall((void*)0x51F669, ODoseiFix);
-	WriteCall((void*)0x51EB2C, OLivingLightFix);
-	WriteCall((void*)0x51AB88, RenderEggCarrier0NPC); //Chaos 4 glitch fix
-	WriteJump((void*)0x51B210, EggCarrierSkyBox_Top);
-	WriteJump((void*)0x51B3B0, EggCarrierSkyBox_Bottom);
-	//Swap EC skybox draw calls to render the outer part last in Acts 1/2
-	WriteCall((void*)0x51B717, EggCarrierSkyBox_Bottom);
-	WriteCall((void*)0x51B71F, EggCarrierSkyBox_Top);
-	WriteCall((void*)0x51B76F, EggCarrierSkyBox_Bottom); //Transformation cutscene
-	WriteCall((void*)0x51B77A, EggCarrierSkyBox_Top); //Transformation cutscene
-	//Fix Sonic jumps in "Come back here" cutscene
-	WriteData((float*)0x6D5227, 2.0f); //Sonic's speed before the first jump
-	WriteData((float*)0x6D5371, -420.0f); //Sonic's X position before the last jump
-	//Fix camera in Amy-Gamma prison cutscene
-	WriteData((float*)0x6A4EBE, -134.0f); //X1
-	WriteData((float*)0x6A4EB9, 15.0f); //Y1
-	WriteData((float*)0x6A4EB4, 54.0f); //Z1
-	WriteData((float*)0x6A4F41, -143.85f); //X2
-	WriteData((float*)0x6A4F3C, 15.93f); //Y2
-	WriteData((float*)0x6A4F37, 80.25f); //Z2
-	//Fix camera in Gamma-Amy prison cutscene
-	WriteData((float*)0x678C48, -134.0f); //X1
-	WriteData((float*)0x678C43, 15.0f); //Y1
-	WriteData((float*)0x678C3E, 54.0f); //Z1
-	WriteData((float*)0x678CCB, -143.85f); //X2
-	WriteData((float*)0x678CC6, 15.93f); //Y2
-	WriteData((float*)0x678CC1, 80.25f); //Z2
-	//Material fixes
-	AddAlphaRejectMaterial((NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01MODELS") + 0x209B6C)); //Rotating lights outside
-	AddAlphaRejectMaterial((NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01MODELS") + 0x1F7A58)); //Monorail sign (outside)
-	RemoveVertexColors_Model(___ADV01_MODELS[13]); //Slot machine
-	RemoveVertexColors_Object(ADV01_OBJECTS[11]); //Books 1
-	RemoveVertexColors_Object(ADV01_OBJECTS[12]); //Books 2
-	//Fix materials on elevator buttons
-	WriteData((float*)0x51E818, 1.0f);
-	WriteData((float*)0x51E81D, 1.0f);
-	WriteData((float*)0x51E88F, 1.0f);
-	WriteData((float*)0x51E894, 1.0f);
-	WriteJump((char*)GetProcAddress(GetModuleHandle(L"ADV01MODELS"), "SetClip_EC00"), SetClip_EggCarrier);
-	WriteJump((char*)GetProcAddress(GetModuleHandle(L"ADV01MODELS"), "SetClip_EC01"), SetClip_EggCarrier);
-	WriteData<5>((void*)0x51BB8C, 0x90); //Don't disable fog in EC transformation cutscene
-	//Model replacements
-	NJS_OBJECT* EggChair = LoadModel("system\\data\\ADV0100\\Models\\0019795C.sa1mdl", false); //OEggChair
-	___ADV01_ACTIONS[2]->object = EggChair;
-	___ADV01_ACTIONS[2]->motion = &_197dbc; //OEggChair
-	___ADV01_OBJECTS[21] = EggChair->child->child;
-	___ADV01_OBJECTS[22] = EggChair->child->child->sibling->sibling->sibling;
-	___ADV01_OBJECTS[23] = EggChair->child->child->sibling->sibling->sibling->sibling;
-	___ADV01_OBJECTS[24] = EggChair->child->child->sibling->sibling->sibling->sibling->sibling;
-	___ADV01_ACTIONS[6]->object = LoadModel("system\\data\\ADV0100\\Models\\0016991C.sa1mdl", false); //OSkyDeck
-	NJS_OBJECT* ECTransform = LoadModel("system\\data\\ADV0100\\Models\\00209538.sa1mdl", false);
-	___ADV01_ACTIONS[7]->object = ECTransform; //EC transform
-	___ADV01_OBJECTS[64] = ECTransform; //EC transform
-	___ADV01_OBJECTS[0] = LoadModel("system\\data\\ADV0100\\Models\\00182160.sa1mdl", false); //SideLift
-	___ADV01_OBJECTS[1] = LoadModel("system\\data\\ADV0100\\Models\\00181DBC.sa1mdl", false); //SideLift
-	___ADV01_OBJECTS[2] = LoadModel("system\\data\\ADV0100\\Models\\00181684.sa1mdl", false); //SideLift
-	ADV01_ACTIONS[3]->object = LoadModel("system\\data\\ADV0100\\Models\\0019A490.sa1mdl", false); //OGunSight
-	ADV01_OBJECTS[6] = LoadModel("system\\data\\ADV0100\\Models\\001AA1A8.sa1mdl", false); //OBChair
-	ADV01_OBJECTS[8] = LoadModel("system\\data\\ADV0100\\Models\\001A01A0.sa1mdl", false); //OEggmanBed
-	___ADV01_OBJECTS[29] = ADV01_ACTIONS[3]->object;
-	___ADV01_OBJECTS[55] = LoadModel("system\\data\\ADV0100\\Models\\0017D82C.sa1mdl", false); //OSLight
-	___ADV01_OBJECTS[56] = ___ADV01_OBJECTS[55]->child; //OSLight
-	___ADV01_OBJECTS[57] = ___ADV01_OBJECTS[55]->child->child; //OSLight
-	AddWhiteDiffuseMaterial(&___ADV01_OBJECTS[55]->child->child->basicdxmodel->mats[3]);
-	AddWhiteDiffuseMaterial(&___ADV01_OBJECTS[55]->child->child->basicdxmodel->mats[4]);
-	AddWhiteDiffuseMaterial(&___ADV01_OBJECTS[55]->child->child->basicdxmodel->mats[5]);
-	AddWhiteDiffuseMaterial(&___ADV01_OBJECTS[55]->child->child->basicdxmodel->mats[6]);
-	AddWhiteDiffuseMaterial(&___ADV01_OBJECTS[55]->child->child->basicdxmodel->mats[7]);
-	___ADV01_OBJECTS[58] = LoadModel("system\\data\\ADV0100\\Models\\0017BFE4.sa1mdl", false); //OSLight
-	___ADV01_OBJECTS[61] = LoadModel("system\\data\\ADV0100\\Models\\001B4794.sa1mdl", false); //OTornado2
-	AddWhiteDiffuseMaterial(&___ADV01_OBJECTS[61]->basicdxmodel->mats[23]);
-	AddWhiteDiffuseMaterial(&___ADV01_OBJECTS[61]->basicdxmodel->mats[24]);
-	SwapMeshsets(___ADV01_OBJECTS[61], 0, 22);
-	NJS_OBJECT* SomeStupidThing = LoadModel("system\\data\\ADV0100\\Models\\00178BC4.sa1mdl", false);
-	___ADV01_ACTIONS[0]->object = SomeStupidThing; //This thing is stupid
-	___ADV01_OBJECTS[5] = SomeStupidThing; //This thing is stupid
-	___ADV01_OBJECTS[13] = LoadModel("system\\data\\ADV0100\\Models\\001A85F0.sa1mdl", false); //OParasol
-	___ADV01_OBJECTS[27] = LoadModel("system\\data\\ADV0100\\Models\\001782D4.sa1mdl", false); //Door top
-	NJS_OBJECT* Taihou = LoadModel("system\\data\\ADV0100\\Models\\0017FDB4.sa1mdl", false);
-	___ADV01_OBJECTS[14]->basicdxmodel = Taihou->basicdxmodel; //OTaihou (Cannon)
-	___ADV01_OBJECTS[14]->child->basicdxmodel = Taihou->child->basicdxmodel; //OTaihou (Cannon)
-	___ADV01_OBJECTS[14]->child->child->basicdxmodel = Taihou->child->child->basicdxmodel; //OTaihou (Cannon)
-	___ADV01_OBJECTS[14]->child->child->sibling->basicdxmodel = Taihou->child->child->sibling->basicdxmodel; //OTaihou (Cannon)
-	___ADV01_OBJECTS[28] = LoadModel("system\\data\\ADV0100\\Models\\001777B4.sa1mdl", false); //Door 2
-	___ADV01_OBJECTS[18] = LoadModel("system\\data\\ADV0100\\Models\\00189EA0.sa1mdl", false); //Eggcap
-	___ADV01_OBJECTS[19] = LoadModel("system\\data\\ADV0100\\Models\\001760A0.sa1mdl", false); //Egglift
-	___ADV01_OBJECTS[34] = LoadModel("system\\data\\ADV0100\\Models\\00189090.sa1mdl", false); //OMast
-	___ADV01_OBJECTS[51]->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT; //Pool water
-	___ADV01_OBJECTS[51]->basicdxmodel->mats[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT; //Pool water
-	___ADV01_OBJECTS[51]->basicdxmodel->mats[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT; //Pool water
-	NJS_OBJECT* MonorailFront = LoadModel("system\\data\\ADV0100\\Models\\00170498.sa1mdl", false);
-	___ADV01_OBJECTS[69]->basicdxmodel = MonorailFront->basicdxmodel;
-	___ADV01_OBJECTS[69]->child->basicdxmodel = MonorailFront->child->basicdxmodel;
-	___ADV01_OBJECTS[69]->child->child->basicdxmodel = MonorailFront->child->child->basicdxmodel;
-	___ADV01_OBJECTS[69]->child->sibling->basicdxmodel = MonorailFront->child->sibling->basicdxmodel;
-	AddAlphaRejectMaterial(&___ADV01_OBJECTS[69]->child->sibling->basicdxmodel->mats[0]);
-	NJS_OBJECT* MonorailBack = LoadModel("system\\data\\ADV0100\\Models\\00170498.sa1mdl", false);
-	___ADV01_OBJECTS[70]->basicdxmodel = MonorailBack->basicdxmodel;
-	___ADV01_OBJECTS[70]->child->basicdxmodel = MonorailBack->child->basicdxmodel;
-	___ADV01_OBJECTS[70]->child->child->basicdxmodel = MonorailBack->child->child->basicdxmodel;
-	for (int i = 0; i < 3; i++)
-	{
-		SkyboxScale_EggCarrier4[i].x = 1.0f;
-		SkyboxScale_EggCarrier4[i].y = 1.0f;
-		SkyboxScale_EggCarrier4[i].z = 1.0f;
-		EggCarrierOutsideSkyDrawDist3[i].Maximum = -9000;
-		EggCarrierOutsideDrawDist1[i].Maximum = -11000;
-		EggCarrierOutsideDrawDist2[i].Maximum = -11000;
-		EggCarrierOutsideDrawDist3[i].Maximum = -11000;
-		EggCarrierOutsideDrawDist7[i].Maximum = -28000;
-		EggCarrierOutside2Fog[i].Distance = -12000;
-		EggCarrierOutside2Fog[i].Layer = -12000;
-		EggCarrierOutside3Fog[i].Distance = -12000;
-		EggCarrierOutside3Fog[i].Layer = -12000;
-		EggCarrierOutside4Fog[i].Distance = -12000;
-		EggCarrierOutside4Fog[i].Layer = -12000;
-		EggCarrierOutside5Fog[i].Distance = -12000;
-		EggCarrierOutside5Fog[i].Layer = -12000;
-		EggCarrierOutside6Fog[i].Distance = -12000;
-		EggCarrierOutside6Fog[i].Layer = -12000;
-		EggCarrierOutside7Fog[i].Toggle = 1;
-		EggCarrierOutside7Fog[i].Layer = 6500;
-		EggCarrierOutside7Fog[i].Color = 0xFF000000;
-		EggCarrierOutside7Fog[i].Distance = 17000;
+		if (!Use1999SetFiles)
+		{
+			ReplaceBIN_DC("SETEC00S");
+			ReplaceBIN_DC("SETEC00M");
+			ReplaceBIN_DC("SETEC00K");
+			ReplaceBIN_DC("SETEC00A");
+			ReplaceBIN_DC("SETEC00E");
+			ReplaceBIN_DC("SETEC00B");
+			ReplaceBIN_DC("SETEC01S");
+			ReplaceBIN_DC("SETEC01M");
+			ReplaceBIN_DC("SETEC01K");
+			ReplaceBIN_DC("SETEC01A");
+			ReplaceBIN_DC("SETEC01E");
+			ReplaceBIN_DC("SETEC01B");
+			ReplaceBIN_DC("SETEC02S");
+			ReplaceBIN_DC("SETEC02M");
+			ReplaceBIN_DC("SETEC02K");
+			ReplaceBIN_DC("SETEC02A");
+			ReplaceBIN_DC("SETEC02E");
+			ReplaceBIN_DC("SETEC02B");
+			ReplaceBIN_DC("SETEC03S");
+			ReplaceBIN_DC("SETEC03M");
+			ReplaceBIN_DC("SETEC04S");
+			ReplaceBIN_DC("SETEC04M");
+			ReplaceBIN_DC("SETEC04K");
+			ReplaceBIN_DC("SETEC04A");
+			ReplaceBIN_DC("SETEC04E");
+			ReplaceBIN_DC("SETEC04B");
+			ReplaceBIN_DC("SETEC05S");
+			ReplaceBIN_DC("SETEC05M");
+		}
+		else
+		{
+			ReplaceBIN_1999("SETEC00S");
+			ReplaceBIN_1999("SETEC00M");
+			ReplaceBIN_1999("SETEC00K");
+			ReplaceBIN_1999("SETEC00A");
+			ReplaceBIN_1999("SETEC00E");
+			ReplaceBIN_1999("SETEC00B");
+			ReplaceBIN_1999("SETEC01S");
+			ReplaceBIN_1999("SETEC01M");
+			ReplaceBIN_1999("SETEC01K");
+			ReplaceBIN_1999("SETEC01A");
+			ReplaceBIN_1999("SETEC01E");
+			ReplaceBIN_1999("SETEC01B");
+			ReplaceBIN_1999("SETEC02S");
+			ReplaceBIN_1999("SETEC02M");
+			ReplaceBIN_1999("SETEC02K");
+			ReplaceBIN_1999("SETEC02A");
+			ReplaceBIN_1999("SETEC02E");
+			ReplaceBIN_1999("SETEC02B");
+			ReplaceBIN_1999("SETEC03S");
+			ReplaceBIN_1999("SETEC03M");
+			ReplaceBIN_1999("SETEC04S");
+			ReplaceBIN_1999("SETEC04M");
+			ReplaceBIN_1999("SETEC04K");
+			ReplaceBIN_1999("SETEC04A");
+			ReplaceBIN_1999("SETEC04E");
+			ReplaceBIN_1999("SETEC04B");
+			ReplaceBIN_1999("SETEC05S");
+			ReplaceBIN_1999("SETEC05M");
+		}
+		ReplaceBIN_DC("CAMEC00S");
+		ReplaceBIN_DC("CAMEC01S");
+		ReplaceBIN_DC("CAMEC02S");
+		ReplaceBIN_DC("CAMEC03S");
+		ReplaceBIN_DC("CAMEC04S");
+		ReplaceBIN_DC("CAMEC05S");
+		ReplacePVM("ADV_EC00");
+		ReplacePVM("ADV_EC01");
+		ReplacePVM("ADV_EC02");
+		ReplacePVM("ADV_EC03");
+		ReplacePVM("ADV_EC04");
+		ReplacePVM("ADV_EC05");
+		ReplacePVM("BG_EC00");
+		ReplacePVM("EC_ACTDOOR");
+		ReplacePVM("EC_BG");
+		ReplacePVM("EC_BOAT");
+		ReplacePVM("EC_CLOUDS");
+		ReplacePVM("EC_IKADA");
+		ReplacePVM("EC_LIGHT");
+		ReplacePVM("EC_SKY");
+		ReplacePVM("EC_TORNADO");
+		ReplacePVM("EC_TRANSFORM");
+		ReplacePVM("EC_WATER");
+		ReplacePVM("EV_ECCLOUD");
+		ReplacePVM("EC_SEA");
+		ReplacePVM("OBJ_EC00");
+		ResizeTextureList(&OBJ_EC00_TEXLIST, 206);
+		___ADV01_TEXLISTS[0] = &texlist_ec00;
+		___ADV01_TEXLISTS[1] = &texlist_ec01;
+		___ADV01_TEXLISTS[2] = &texlist_ec02;
+		___ADV01_TEXLISTS[3] = &texlist_ec03;
+		___ADV01_TEXLISTS[4] = &texlist_ec04;
+		___ADV01_TEXLISTS[5] = &texlist_ec05;
+		if (!SADXWater_EggCarrier)
+		{
+			EggCarrierSeaModel = LoadModel("system\\data\\ADV0100\\Models\\001C0478.sa1mdl", false);
+			AddTextureAnimation_Permanent(29, 0, &EggCarrierSeaModel->basicdxmodel->mats[0], false, 4, 4, 13, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1);
+			AddTextureAnimation_Permanent(29, 1, &EggCarrierSeaModel->basicdxmodel->mats[0], false, 4, 4, 13, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1);
+			AddTextureAnimation_Permanent(29, 2, &EggCarrierSeaModel->basicdxmodel->mats[0], false, 4, 4, 13, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1);
+			WriteJump((void*)0x51C440, EggCarrierSea);
+		}
+		//Code fixes
+		WriteData<5>((void*)0x5244D6, 0x90); //Disable light flickering
+		WriteCall((void*)0x522B49, DrawTornado2WithQueue);
+		WriteCall((void*)0x51F637, ODoseiFix);
+		WriteCall((void*)0x51F669, ODoseiFix);
+		WriteCall((void*)0x51EB2C, OLivingLightFix);
+		WriteCall((void*)0x51AB88, RenderEggCarrier0NPC); //Chaos 4 glitch fix
+		WriteJump((void*)0x51B210, EggCarrierSkyBox_Top);
+		WriteJump((void*)0x51B3B0, EggCarrierSkyBox_Bottom);
+		//Swap EC skybox draw calls to render the outer part last in Acts 1/2
+		WriteCall((void*)0x51B717, EggCarrierSkyBox_Bottom);
+		WriteCall((void*)0x51B71F, EggCarrierSkyBox_Top);
+		WriteCall((void*)0x51B76F, EggCarrierSkyBox_Bottom); //Transformation cutscene
+		WriteCall((void*)0x51B77A, EggCarrierSkyBox_Top); //Transformation cutscene
+		//Fix Sonic jumps in "Come back here" cutscene
+		WriteData((float*)0x6D5227, 2.0f); //Sonic's speed before the first jump
+		WriteData((float*)0x6D5371, -420.0f); //Sonic's X position before the last jump
+		//Fix camera in Amy-Gamma prison cutscene
+		WriteData((float*)0x6A4EBE, -134.0f); //X1
+		WriteData((float*)0x6A4EB9, 15.0f); //Y1
+		WriteData((float*)0x6A4EB4, 54.0f); //Z1
+		WriteData((float*)0x6A4F41, -143.85f); //X2
+		WriteData((float*)0x6A4F3C, 15.93f); //Y2
+		WriteData((float*)0x6A4F37, 80.25f); //Z2
+		//Fix camera in Gamma-Amy prison cutscene
+		WriteData((float*)0x678C48, -134.0f); //X1
+		WriteData((float*)0x678C43, 15.0f); //Y1
+		WriteData((float*)0x678C3E, 54.0f); //Z1
+		WriteData((float*)0x678CCB, -143.85f); //X2
+		WriteData((float*)0x678CC6, 15.93f); //Y2
+		WriteData((float*)0x678CC1, 80.25f); //Z2
+		//Material fixes
+		AddAlphaRejectMaterial((NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01MODELS") + 0x209B6C)); //Rotating lights outside
+		AddAlphaRejectMaterial((NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01MODELS") + 0x1F7A58)); //Monorail sign (outside)
+		RemoveVertexColors_Model(___ADV01_MODELS[13]); //Slot machine
+		RemoveVertexColors_Object(ADV01_OBJECTS[11]); //Books 1
+		RemoveVertexColors_Object(ADV01_OBJECTS[12]); //Books 2
+		//Fix materials on elevator buttons
+		WriteData((float*)0x51E818, 1.0f);
+		WriteData((float*)0x51E81D, 1.0f);
+		WriteData((float*)0x51E88F, 1.0f);
+		WriteData((float*)0x51E894, 1.0f);
+		WriteJump((char*)GetProcAddress(GetModuleHandle(L"ADV01MODELS"), "SetClip_EC00"), SetClip_EggCarrier);
+		WriteJump((char*)GetProcAddress(GetModuleHandle(L"ADV01MODELS"), "SetClip_EC01"), SetClip_EggCarrier);
+		WriteData<5>((void*)0x51BB8C, 0x90); //Don't disable fog in EC transformation cutscene
+		//Model replacements
+		NJS_OBJECT* EggChair = LoadModel("system\\data\\ADV0100\\Models\\0019795C.sa1mdl", false); //OEggChair
+		___ADV01_ACTIONS[2]->object = EggChair;
+		___ADV01_ACTIONS[2]->motion = &_197dbc; //OEggChair
+		___ADV01_OBJECTS[21] = EggChair->child->child;
+		___ADV01_OBJECTS[22] = EggChair->child->child->sibling->sibling->sibling;
+		___ADV01_OBJECTS[23] = EggChair->child->child->sibling->sibling->sibling->sibling;
+		___ADV01_OBJECTS[24] = EggChair->child->child->sibling->sibling->sibling->sibling->sibling;
+		___ADV01_ACTIONS[6]->object = LoadModel("system\\data\\ADV0100\\Models\\0016991C.sa1mdl", false); //OSkyDeck
+		NJS_OBJECT* ECTransform = LoadModel("system\\data\\ADV0100\\Models\\00209538.sa1mdl", false);
+		___ADV01_ACTIONS[7]->object = ECTransform; //EC transform
+		___ADV01_OBJECTS[64] = ECTransform; //EC transform
+		___ADV01_OBJECTS[0] = LoadModel("system\\data\\ADV0100\\Models\\00182160.sa1mdl", false); //SideLift
+		___ADV01_OBJECTS[1] = LoadModel("system\\data\\ADV0100\\Models\\00181DBC.sa1mdl", false); //SideLift
+		___ADV01_OBJECTS[2] = LoadModel("system\\data\\ADV0100\\Models\\00181684.sa1mdl", false); //SideLift
+		ADV01_ACTIONS[3]->object = LoadModel("system\\data\\ADV0100\\Models\\0019A490.sa1mdl", false); //OGunSight
+		ADV01_OBJECTS[6] = LoadModel("system\\data\\ADV0100\\Models\\001AA1A8.sa1mdl", false); //OBChair
+		ADV01_OBJECTS[8] = LoadModel("system\\data\\ADV0100\\Models\\001A01A0.sa1mdl", false); //OEggmanBed
+		___ADV01_OBJECTS[29] = ADV01_ACTIONS[3]->object;
+		___ADV01_OBJECTS[55] = LoadModel("system\\data\\ADV0100\\Models\\0017D82C.sa1mdl", false); //OSLight
+		___ADV01_OBJECTS[56] = ___ADV01_OBJECTS[55]->child; //OSLight
+		___ADV01_OBJECTS[57] = ___ADV01_OBJECTS[55]->child->child; //OSLight
+		AddWhiteDiffuseMaterial(&___ADV01_OBJECTS[55]->child->child->basicdxmodel->mats[3]);
+		AddWhiteDiffuseMaterial(&___ADV01_OBJECTS[55]->child->child->basicdxmodel->mats[4]);
+		AddWhiteDiffuseMaterial(&___ADV01_OBJECTS[55]->child->child->basicdxmodel->mats[5]);
+		AddWhiteDiffuseMaterial(&___ADV01_OBJECTS[55]->child->child->basicdxmodel->mats[6]);
+		AddWhiteDiffuseMaterial(&___ADV01_OBJECTS[55]->child->child->basicdxmodel->mats[7]);
+		___ADV01_OBJECTS[58] = LoadModel("system\\data\\ADV0100\\Models\\0017BFE4.sa1mdl", false); //OSLight
+		___ADV01_OBJECTS[61] = LoadModel("system\\data\\ADV0100\\Models\\001B4794.sa1mdl", false); //OTornado2
+		AddWhiteDiffuseMaterial(&___ADV01_OBJECTS[61]->basicdxmodel->mats[23]);
+		AddWhiteDiffuseMaterial(&___ADV01_OBJECTS[61]->basicdxmodel->mats[24]);
+		SwapMeshsets(___ADV01_OBJECTS[61], 0, 22);
+		NJS_OBJECT* SomeStupidThing = LoadModel("system\\data\\ADV0100\\Models\\00178BC4.sa1mdl", false);
+		___ADV01_ACTIONS[0]->object = SomeStupidThing; //This thing is stupid
+		___ADV01_OBJECTS[5] = SomeStupidThing; //This thing is stupid
+		___ADV01_OBJECTS[13] = LoadModel("system\\data\\ADV0100\\Models\\001A85F0.sa1mdl", false); //OParasol
+		___ADV01_OBJECTS[27] = LoadModel("system\\data\\ADV0100\\Models\\001782D4.sa1mdl", false); //Door top
+		NJS_OBJECT* Taihou = LoadModel("system\\data\\ADV0100\\Models\\0017FDB4.sa1mdl", false);
+		___ADV01_OBJECTS[14]->basicdxmodel = Taihou->basicdxmodel; //OTaihou (Cannon)
+		___ADV01_OBJECTS[14]->child->basicdxmodel = Taihou->child->basicdxmodel; //OTaihou (Cannon)
+		___ADV01_OBJECTS[14]->child->child->basicdxmodel = Taihou->child->child->basicdxmodel; //OTaihou (Cannon)
+		___ADV01_OBJECTS[14]->child->child->sibling->basicdxmodel = Taihou->child->child->sibling->basicdxmodel; //OTaihou (Cannon)
+		___ADV01_OBJECTS[28] = LoadModel("system\\data\\ADV0100\\Models\\001777B4.sa1mdl", false); //Door 2
+		___ADV01_OBJECTS[18] = LoadModel("system\\data\\ADV0100\\Models\\00189EA0.sa1mdl", false); //Eggcap
+		___ADV01_OBJECTS[19] = LoadModel("system\\data\\ADV0100\\Models\\001760A0.sa1mdl", false); //Egglift
+		___ADV01_OBJECTS[34] = LoadModel("system\\data\\ADV0100\\Models\\00189090.sa1mdl", false); //OMast
+		___ADV01_OBJECTS[51]->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT; //Pool water
+		___ADV01_OBJECTS[51]->basicdxmodel->mats[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT; //Pool water
+		___ADV01_OBJECTS[51]->basicdxmodel->mats[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT; //Pool water
+		NJS_OBJECT* MonorailFront = LoadModel("system\\data\\ADV0100\\Models\\00170498.sa1mdl", false);
+		___ADV01_OBJECTS[69]->basicdxmodel = MonorailFront->basicdxmodel;
+		___ADV01_OBJECTS[69]->child->basicdxmodel = MonorailFront->child->basicdxmodel;
+		___ADV01_OBJECTS[69]->child->child->basicdxmodel = MonorailFront->child->child->basicdxmodel;
+		___ADV01_OBJECTS[69]->child->sibling->basicdxmodel = MonorailFront->child->sibling->basicdxmodel;
+		AddAlphaRejectMaterial(&___ADV01_OBJECTS[69]->child->sibling->basicdxmodel->mats[0]);
+		NJS_OBJECT* MonorailBack = LoadModel("system\\data\\ADV0100\\Models\\00170498.sa1mdl", false);
+		___ADV01_OBJECTS[70]->basicdxmodel = MonorailBack->basicdxmodel;
+		___ADV01_OBJECTS[70]->child->basicdxmodel = MonorailBack->child->basicdxmodel;
+		___ADV01_OBJECTS[70]->child->child->basicdxmodel = MonorailBack->child->child->basicdxmodel;
+		for (int i = 0; i < 3; i++)
+		{
+			SkyboxScale_EggCarrier4[i].x = 1.0f;
+			SkyboxScale_EggCarrier4[i].y = 1.0f;
+			SkyboxScale_EggCarrier4[i].z = 1.0f;
+			EggCarrierOutsideSkyDrawDist3[i].Maximum = -9000;
+			EggCarrierOutsideDrawDist1[i].Maximum = -11000;
+			EggCarrierOutsideDrawDist2[i].Maximum = -11000;
+			EggCarrierOutsideDrawDist3[i].Maximum = -11000;
+			EggCarrierOutsideDrawDist7[i].Maximum = -28000;
+			EggCarrierOutside2Fog[i].Distance = -12000;
+			EggCarrierOutside2Fog[i].Layer = -12000;
+			EggCarrierOutside3Fog[i].Distance = -12000;
+			EggCarrierOutside3Fog[i].Layer = -12000;
+			EggCarrierOutside4Fog[i].Distance = -12000;
+			EggCarrierOutside4Fog[i].Layer = -12000;
+			EggCarrierOutside5Fog[i].Distance = -12000;
+			EggCarrierOutside5Fog[i].Layer = -12000;
+			EggCarrierOutside6Fog[i].Distance = -12000;
+			EggCarrierOutside6Fog[i].Layer = -12000;
+			EggCarrierOutside7Fog[i].Toggle = 1;
+			EggCarrierOutside7Fog[i].Layer = 6500;
+			EggCarrierOutside7Fog[i].Color = 0xFF000000;
+			EggCarrierOutside7Fog[i].Distance = 17000;
+		}
+		ModelsLoaded_ADV0100 = true;
 	}
 }
 

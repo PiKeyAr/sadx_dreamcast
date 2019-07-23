@@ -93,17 +93,6 @@ void UnloadLevelFiles_B_CHAOS0()
 	B_CHAOS0_Info = nullptr;
 }
 
-void LoadLevelFiles_B_CHAOS0()
-{
-	CheckAndUnloadLevelFiles();
-	B_CHAOS0_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\B_CHAOS0\\0.sa1lvl"));
-	LandTable *B_CHAOS0 = B_CHAOS0_Info->getlandtable();
-	RemoveMaterialColors_Landtable(B_CHAOS0);
-	B_CHAOS0->TexList = &texlist_chaos0;
-	LandTableArray[0] = B_CHAOS0;
-	___LANDTABLEBOSSCHAOS0[0] = B_CHAOS0;
-}
-
 void Chaos0PuddleFix(NJS_OBJECT* a1)
 {
 	ProcessModelNode_D(a1, (QueuedModelFlagsB)0, 1.0f);
@@ -111,52 +100,63 @@ void Chaos0PuddleFix(NJS_OBJECT* a1)
 
 void Chaos0_Init()
 {
-	if (!Use1999SetFiles)
+	CheckAndUnloadLevelFiles();
+	B_CHAOS0_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\B_CHAOS0\\0.sa1lvl"));
+	LandTable* B_CHAOS0 = B_CHAOS0_Info->getlandtable();
+	RemoveMaterialColors_Landtable(B_CHAOS0);
+	B_CHAOS0->TexList = &texlist_chaos0;
+	LandTableArray[0] = B_CHAOS0;
+	___LANDTABLEBOSSCHAOS0[0] = B_CHAOS0;
+	if (!ModelsLoaded_B_CHAOS0)
 	{
-		ReplaceBIN_DC("SET1500S");
+		if (!Use1999SetFiles)
+		{
+			ReplaceBIN_DC("SET1500S");
+		}
+		else
+		{
+			ReplaceBIN_1999("SET1500S");
+		}
+		ReplacePVM("LM_CHAOS0");
+		ReplacePVM("CHAOS0");
+		ReplacePVM("CHAOS0_EFFECT");
+		ReplacePVM("CHAOS0_OBJECT");
+		ReplacePVM("EV_CHAOS0_MANJU");
+		WriteData<1>((char*)0x54932B, 0x08); //Police car lights blending mode
+		WriteData<1>((char*)0x7AD16D, 0x08); //Chaos 0 puddle mark blending mode
+		WriteData<1>((char*)0x548470, 0i8); //Chaos 0 puddle queued flags I guess
+		WriteCall((void*)0x54847B, Chaos0PuddleFix);
+		WriteJump((void*)0x6E9B00, ComeOneYaBigDrip); //Alterating transparency in the cutscene after Chaos 0
+		___BOSSCHAOS0_TEXLISTS[2] = &texlist_chaos0;
+		___BOSSCHAOS0_TEXLISTS[3] = &chaos0_object;
+		RemoveVertexColors_Object((NJS_OBJECT*)0x2C66B78); //Cutscene model
+		RemoveVertexColors_Object(___BOSSCHAOS0_OBJECTS[0]);
+		RemoveVertexColors_Object(___BOSSCHAOS0_OBJECTS[5]);
+		RemoveVertexColors_Object(___BOSSCHAOS0_OBJECTS[6]);
+		RemoveVertexColors_Object(___BOSSCHAOS0_OBJECTS[7]);
+		RemoveVertexColors_Object(___BOSSCHAOS0_OBJECTS[8]);
+		RemoveVertexColors_Object(___BOSSCHAOS0_OBJECTS[9]);
+		RemoveVertexColors_Object(___BOSSCHAOS0_OBJECTS[10]);
+		RemoveVertexColors_Object(___BOSSCHAOS0_OBJECTS[15]);
+		RemoveVertexColors_Object(___BOSSCHAOS0_OBJECTS[16]);
+		RemoveVertexColors_Object(___BOSSCHAOS0_OBJECTS[17]);
+		RemoveVertexColors_Object(___BOSSCHAOS0_OBJECTS[18]);
+		RemoveVertexColors_Object(___BOSSCHAOS0_OBJECTS[20]);
+		RemoveVertexColors_Object(___BOSSCHAOS0_OBJECTS[21]);
+		RemoveVertexColors_Object(___BOSSCHAOS0_OBJECTS[22]);
+		RemoveVertexColors_Object(___BOSSCHAOS0_OBJECTS[28]);
+		RemoveVertexColors_Object(___BOSSCHAOS0_OBJECTS[29]);
+		RemoveVertexColors_Object(___BOSSCHAOS0_OBJECTS[30]);
+		RemoveVertexColors_Object(___BOSSCHAOS0_OBJECTS[31]);
+		RemoveVertexColors_Object(___BOSSCHAOS0_OBJECTS[33]);
+		___BOSSCHAOS0_ACTIONS[17]->object = LoadModel("system\\data\\B_CHAOS0\\Models\\0005825C.sa1mdl", false); //Helicopter
+		___BOSSCHAOS0_ACTIONS[18]->object = LoadModel("system\\data\\B_CHAOS0\\Models\\0005D234.sa1mdl", false); //Police car
+		AddWhiteDiffuseMaterial(&___BOSSCHAOS0_ACTIONS[18]->object->child->sibling->sibling->sibling->sibling->sibling->sibling->sibling->sibling->basicdxmodel->mats[1]);
+		___BOSSCHAOS0_ACTIONS[18]->object->child->sibling->sibling->sibling->sibling->sibling->sibling->sibling->sibling->evalflags |= NJD_EVAL_HIDE;
+		___BOSSCHAOS0_ACTIONS[18]->object->child->sibling->sibling->sibling->sibling->sibling->sibling->evalflags |= NJD_EVAL_HIDE;
+		WriteCall((void*)0x0054968E, FixChaos0Car);
+		WriteData((float*)0x00549797, 0.12f); //Camera-based car light sprite scale
+		WriteData((float*)0x005497A1, 0.12f); //Camera-based car light sprite scale
+		ModelsLoaded_B_CHAOS0 = true;
 	}
-	else
-	{
-		ReplaceBIN_1999("SET1500S");
-	}
-	ReplacePVM("LM_CHAOS0");
-	ReplacePVM("CHAOS0");
-	ReplacePVM("CHAOS0_EFFECT");
-	ReplacePVM("CHAOS0_OBJECT");
-	ReplacePVM("EV_CHAOS0_MANJU");
-	WriteData<1>((char*)0x54932B, 0x08); //Police car lights blending mode
-	WriteData<1>((char*)0x7AD16D, 0x08); //Chaos 0 puddle mark blending mode
-	WriteData<1>((char*)0x548470, 0i8); //Chaos 0 puddle queued flags I guess
-	WriteCall((void*)0x54847B, Chaos0PuddleFix);
-	WriteJump((void*)0x6E9B00, ComeOneYaBigDrip); //Alterating transparency in the cutscene after Chaos 0
-	___BOSSCHAOS0_TEXLISTS[2] = &texlist_chaos0;
-	___BOSSCHAOS0_TEXLISTS[3] = &chaos0_object;
-	RemoveVertexColors_Object((NJS_OBJECT*)0x2C66B78); //Cutscene model
-	RemoveVertexColors_Object(___BOSSCHAOS0_OBJECTS[0]);
-	RemoveVertexColors_Object(___BOSSCHAOS0_OBJECTS[5]);
-	RemoveVertexColors_Object(___BOSSCHAOS0_OBJECTS[6]);
-	RemoveVertexColors_Object(___BOSSCHAOS0_OBJECTS[7]);
-	RemoveVertexColors_Object(___BOSSCHAOS0_OBJECTS[8]);
-	RemoveVertexColors_Object(___BOSSCHAOS0_OBJECTS[9]);
-	RemoveVertexColors_Object(___BOSSCHAOS0_OBJECTS[10]);
-	RemoveVertexColors_Object(___BOSSCHAOS0_OBJECTS[15]);
-	RemoveVertexColors_Object(___BOSSCHAOS0_OBJECTS[16]);
-	RemoveVertexColors_Object(___BOSSCHAOS0_OBJECTS[17]);
-	RemoveVertexColors_Object(___BOSSCHAOS0_OBJECTS[18]);
-	RemoveVertexColors_Object(___BOSSCHAOS0_OBJECTS[20]);
-	RemoveVertexColors_Object(___BOSSCHAOS0_OBJECTS[21]);
-	RemoveVertexColors_Object(___BOSSCHAOS0_OBJECTS[22]);
-	RemoveVertexColors_Object(___BOSSCHAOS0_OBJECTS[28]);
-	RemoveVertexColors_Object(___BOSSCHAOS0_OBJECTS[29]);
-	RemoveVertexColors_Object(___BOSSCHAOS0_OBJECTS[30]);
-	RemoveVertexColors_Object(___BOSSCHAOS0_OBJECTS[31]);
-	RemoveVertexColors_Object(___BOSSCHAOS0_OBJECTS[33]);
-	___BOSSCHAOS0_ACTIONS[17]->object = LoadModel("system\\data\\B_CHAOS0\\Models\\0005825C.sa1mdl", false); //Helicopter
-	___BOSSCHAOS0_ACTIONS[18]->object = LoadModel("system\\data\\B_CHAOS0\\Models\\0005D234.sa1mdl", false); //Police car
-	AddWhiteDiffuseMaterial(&___BOSSCHAOS0_ACTIONS[18]->object->child->sibling->sibling->sibling->sibling->sibling->sibling->sibling->sibling->basicdxmodel->mats[1]);
-	___BOSSCHAOS0_ACTIONS[18]->object->child->sibling->sibling->sibling->sibling->sibling->sibling->sibling->sibling->evalflags |= NJD_EVAL_HIDE;
-	___BOSSCHAOS0_ACTIONS[18]->object->child->sibling->sibling->sibling->sibling->sibling->sibling->evalflags |= NJD_EVAL_HIDE;
-	WriteCall((void*)0x0054968E, FixChaos0Car);
-	WriteData((float*)0x00549797, 0.12f); //Camera-based car light sprite scale
-	WriteData((float*)0x005497A1, 0.12f); //Camera-based car light sprite scale
 }

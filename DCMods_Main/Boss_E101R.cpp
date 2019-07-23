@@ -147,67 +147,67 @@ void UnloadLevelFiles_B_E101_R()
 	B_E101_R_Info = nullptr;
 }
 
-void LoadLevelFiles_B_E101_R()
+void E101R_Init()
 {
 	CheckAndUnloadLevelFiles();
 	B_E101_R_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\B_E101_R\\0.sa1lvl"));
-	LandTable *B_E101_R = B_E101_R_Info->getlandtable(); //&landtable_00000180;
+	LandTable* B_E101_R = B_E101_R_Info->getlandtable(); //&landtable_00000180;
 	RemoveMaterialColors_Landtable(B_E101_R);
 	B_E101_R->TexList = (NJS_TEXLIST*)0x16B460C;
 	LandTableArray[80] = B_E101_R;
-}
-
-void E101R_Init()
-{
-	if (!Use1999SetFiles)
+	if (!ModelsLoaded_B_E101R)
 	{
-		ReplaceBIN_DC("SETE101RE");
-	}
-	else
-	{
-		ReplaceBIN_1999("SETE101RE");
-	}
-	ReplacePVM("E101R");
-	ReplacePVM("E101R_BG");
-	ReplacePVM("E101R_TIKEI");
-	ReplaceGeneric("E101R_GC.NB", "E101R_DC.NB");
-	//WriteCall((void*)0x570DB1, RenderE101R_Rocket); //Idk yet
-	WriteCall((void*)0x56F839, E101R_Particle_Show);
-	WriteCall((void*)0x4CC13F, E101R_SmallBalls_Show);
-	WriteCall((void*)0x4CC1C7, E101R_SmallBalls_Show);
-	WriteData<1>((char*)0x568D20, 0xC3u); //Disable SetClip_E101R
-	RemoveVertexColors_Object((NJS_OBJECT *)0x02DA8664); //E101R model in cutscenes
-	//E-101R fixes
-	ShadowBlob_Model.basicdxmodel->mats[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-	WriteCall((void*)0x4CC82E, FixFVFZWrite);
-	WriteCall((void*)0x0056FD59, E101R_FVFShit);
-	WriteCall((void*)0x00571581, E101R_DrawExplosion);
-	WriteCall((void*)0x005715AE, E101R_DrawExplosion);
-	WriteCall((void*)0x005709CA, E101R_ArmsHook);
-	WriteData<1>((char*)0x00568D20, 0xC3u); //E101R clip function
-	WriteCall((void*)0x0057069D, E101R_AfterImageMaterial); //E10R afterimage
-	WriteCall((void*)0x00570784, E101R_AfterImageConstantAttr); //E10R afterimage
-	WriteCall((void*)0x0057072A, E101R_AfterImageQueue);
-	WriteCall((void*)0x0056B07D, E101REffect_Orange); //Set arm effect to orange and render
-	WriteCall((void*)0x0056B096, E101REffect_Blue); //Set arm effect to blue and render
-	WriteCall((void*)0x0057098A, E101RRenderAfterEffect); //After effect on E101R's arms
-	WriteCall((void*)0x00570952, E101R_AfterImageArmConstantAttr);
-	WriteCall((void*)0x569078, LoadBossECOceanPVM);
-	WriteJump(E101Mk2_OceanDraw, E101ROceanHook);
-	ResizeTextureList((NJS_TEXLIST*)0x16B460C, 76); //Zero/E101R texlist
-	//Ocean model
-	if (!SADXWater_EggCarrier)
-	{
-		E101RBossOcean = LoadModel("system\\data\\B_E101_R\\Models\\00007C50.sa1mdl", false);
-		E101RBossOcean->basicdxmodel->mats[0].attr_texId = 4;
-		E101RBossOcean->basicdxmodel->mats[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		E101RBossOcean->basicdxmodel->mats[0].diffuse.color = 0x7FB2B2B2;
-	}
-	for (int i = 0; i < 3; i++)
-	{
-		Fog_E101R[i].Distance = -10000.0f;
-		Fog_E101R[i].Layer = -10000.0f;
-		DrawDist_E101R[i].Maximum = -9500.0f;
+		if (!Use1999SetFiles)
+		{
+			ReplaceBIN_DC("SETE101RE");
+		}
+		else
+		{
+			ReplaceBIN_1999("SETE101RE");
+		}
+		ReplacePVM("E101R");
+		ReplacePVM("E101R_BG");
+		ReplacePVM("E101R_TIKEI");
+		ReplaceGeneric("E101R_GC.NB", "E101R_DC.NB");
+		//WriteCall((void*)0x570DB1, RenderE101R_Rocket); //Idk yet
+		WriteCall((void*)0x56F839, E101R_Particle_Show);
+		WriteCall((void*)0x4CC13F, E101R_SmallBalls_Show);
+		WriteCall((void*)0x4CC1C7, E101R_SmallBalls_Show);
+		WriteData<1>((char*)0x568D20, 0xC3u); //Disable SetClip_E101R
+		RemoveVertexColors_Object((NJS_OBJECT*)0x02DA8664); //E101R model in cutscenes
+		//E-101R fixes
+		ShadowBlob_Model.basicdxmodel->mats[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+		WriteCall((void*)0x4CC82E, FixFVFZWrite);
+		WriteCall((void*)0x0056FD59, E101R_FVFShit);
+		WriteCall((void*)0x00571581, E101R_DrawExplosion);
+		WriteCall((void*)0x005715AE, E101R_DrawExplosion);
+		WriteCall((void*)0x005709CA, E101R_ArmsHook);
+		WriteData<1>((char*)0x00568D20, 0xC3u); //E101R clip function
+		WriteCall((void*)0x0057069D, E101R_AfterImageMaterial); //E10R afterimage
+		WriteCall((void*)0x00570784, E101R_AfterImageConstantAttr); //E10R afterimage
+		WriteCall((void*)0x0057072A, E101R_AfterImageQueue);
+		WriteCall((void*)0x0056B07D, E101REffect_Orange); //Set arm effect to orange and render
+		WriteCall((void*)0x0056B096, E101REffect_Blue); //Set arm effect to blue and render
+		WriteCall((void*)0x0057098A, E101RRenderAfterEffect); //After effect on E101R's arms
+		WriteCall((void*)0x00570952, E101R_AfterImageArmConstantAttr);
+		WriteCall((void*)0x569078, LoadBossECOceanPVM);
+		WriteJump(E101Mk2_OceanDraw, E101ROceanHook);
+		ResizeTextureList((NJS_TEXLIST*)0x16B460C, 76); //Zero/E101R texlist
+		//Ocean model
+		if (!SADXWater_EggCarrier)
+		{
+			E101RBossOcean = LoadModel("system\\data\\B_E101_R\\Models\\00007C50.sa1mdl", false);
+			E101RBossOcean->basicdxmodel->mats[0].attr_texId = 4;
+			E101RBossOcean->basicdxmodel->mats[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+			E101RBossOcean->basicdxmodel->mats[0].diffuse.color = 0x7FB2B2B2;
+		}
+		for (int i = 0; i < 3; i++)
+		{
+			Fog_E101R[i].Distance = -10000.0f;
+			Fog_E101R[i].Layer = -10000.0f;
+			DrawDist_E101R[i].Maximum = -9500.0f;
+		}
+		ModelsLoaded_B_E101R = true;
 	}
 }
 

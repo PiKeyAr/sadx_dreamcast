@@ -547,7 +547,7 @@ void UnloadLevelFiles_STG12()
 	STG12_2_Info = nullptr;
 }
 
-void LoadLevelFiles_STG12()
+void HotShelter_Init()
 {
 	CheckAndUnloadLevelFiles();
 	STG12_0_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG12\\0.sa1lvl"));
@@ -565,227 +565,227 @@ void LoadLevelFiles_STG12()
 	ParseHotShelterMaterials(STG12_0, 0, false);
 	ParseHotShelterMaterials(STG12_1, 1, false);
 	ParseHotShelterMaterials(STG12_2, 2, false);
-	WriteData((LandTable**)0x97DB88, STG12_0);
-	WriteData((LandTable**)0x97DB8C, STG12_1);
-	WriteData((LandTable**)0x97DB90, STG12_2);
-}
-
-void HotShelter_Init()
-{
-	if (!Use1999SetFiles)
+	WriteData((LandTable * *)0x97DB88, STG12_0);
+	WriteData((LandTable * *)0x97DB8C, STG12_1);
+	WriteData((LandTable * *)0x97DB90, STG12_2);
+	if (!ModelsLoaded_STG12)
 	{
-		ReplaceBIN_DC("SET1200A");
-		ReplaceBIN_DC("SET1200B");
-		ReplaceBIN_DC("SET1200S");
-		ReplaceBIN_DC("SET1201A");
-		ReplaceBIN_DC("SET1201S");
-		ReplaceBIN_DC("SET1202E");
-		ReplaceBIN_DC("SET1202S");
-		ReplaceBIN_DC("SET1203S");
-	}
-	else
-	{
-		ReplaceBIN_1999("SET1200A");
-		ReplaceBIN_1999("SET1200B");
-		ReplaceBIN_1999("SET1200S");
-		ReplaceBIN_1999("SET1201A");
-		ReplaceBIN_1999("SET1201S");
-		ReplaceBIN_1999("SET1202E");
-		ReplaceBIN_1999("SET1202S");
-		ReplaceBIN_1999("SET1203S");
-	}
-	ReplaceBIN_DC("CAM1200A");
-	ReplaceBIN_DC("CAM1200B");
-	ReplaceBIN_DC("CAM1200S");
-	ReplaceBIN_DC("CAM1201A");
-	ReplaceBIN_DC("CAM1201S");
-	ReplaceBIN_DC("CAM1202E");
-	ReplaceBIN_DC("CAM1202S");
-	ReplaceBIN_DC("CAM1203S");
-	ReplacePVM("HOTSHELTER0");
-	ReplacePVM("HOTSHELTER1");
-	ReplacePVM("HOTSHELTER2");
-	ReplacePVM("HOTSHELTER3");
-	ReplacePVM("HOTSHELTER4");
-	ReplacePVM("SHELTER_COLUMN");
-	ReplacePVM("SHELTER_SUIMEN");
-	//Code fixes
-	WriteData((float*)0x005AB2F0, -1000.0f); //Four glass things in drainage room (depth bias)
-	WriteCall((void*)0x5A93BF, njDrawSprite3D_TheyForgotToClampAgain);
-	WriteJump((void*)0x5A91E0, KowareSuisou_Display_Fixed);
-	WriteJump((void*)0x5A30F0, OLight2_Display);
-	WriteCall((void*)0x5A5D6C, RenderRoboTVBrokenGlass);
-	WriteCall((void*)0x5A3A03, PlayMusicHook_ReduceE105Fog); //Hook to disable fog in E105 room
-	WriteCall((void*)0x5A3C99, E105Animation); //Add missing E105 Zeta animation
-	WriteCall((void*)0x59F75C, AmyHatchFix); //Don't make the ventilation hatch solid when playing as Amy
-	WriteCall((void*)0x5ADAFE, RenderFourWaterThings); //Four aquariums in drainage room
-	//Fix the water splashes created by the water thing
-	WriteCall((void*)0x5AD478, RenderWaterThing);
-	WriteCall((void*)0x5AD4BF, RenderWaterThing);
-	WriteCall((void*)0x5AD506, RenderWaterThing);
-	WriteCall((void*)0x5AD54D, RenderWaterThing);
-	//Texlists
-	ResizeTextureList((NJS_TEXLIST*)0x180DFF4, textures_shelter1);
-	ResizeTextureList((NJS_TEXLIST*)0x17F56F4, textures_shelter2);
-	ResizeTextureList((NJS_TEXLIST*)0x17F4F74, textures_shelter3);
-	//Material colors
-	AddWhiteDiffuseMaterial((NJS_MATERIAL*)0x0181751C); //OKazari2
-	AddWhiteDiffuseMaterial((NJS_MATERIAL*)0x01800E34);	//OBoxAna
-	RemoveVertexColors_Object((NJS_OBJECT*)0x17FF884); //OSubTV
-	RemoveVertexColors_Object((NJS_OBJECT*)0x18289D4); //OLight3 (but actually I'm loading my own model)
-	//Model replacements
-	//OEfHikari
-	*(NJS_OBJECT*)0x187201C = *LoadModel("system\\data\\STG12\\Models\\0015CC48.sa1mdl", false); //OEfHikari
-	((NJS_OBJECT*)0x187201C)->basicdxmodel->meshsets[0].nbMesh = 0; //Hide light 1
-	((NJS_OBJECT*)0x187201C)->basicdxmodel->meshsets[7].nbMesh = 0; //Hide light 2
-	AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x187201C)->basicdxmodel->mats[2]);
-	AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x187201C)->basicdxmodel->mats[3]);
-	AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x187201C)->basicdxmodel->mats[4]);
-	AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x187201C)->basicdxmodel->mats[5]);
-	AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x187201C)->basicdxmodel->mats[6]);
-	AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x187201C)->basicdxmodel->mats[7]);
-	OEfHikari_Light = LoadModel("system\\data\\STG12\\Models\\0015CC48.sa1mdl", false);
-	OEfHikari_Light->basicdxmodel->meshsets[1].nbMesh = 0;
-	OEfHikari_Light->basicdxmodel->meshsets[2].nbMesh = 0;
-	OEfHikari_Light->basicdxmodel->meshsets[3].nbMesh = 0;
-	OEfHikari_Light->basicdxmodel->meshsets[4].nbMesh = 0;
-	OEfHikari_Light->basicdxmodel->meshsets[5].nbMesh = 0;
-	OEfHikari_Light->basicdxmodel->meshsets[6].nbMesh = 0;
-	OEfHikari_Light->basicdxmodel->meshsets[8].nbMesh = 0;
-	WriteCall((void*)0x59D444, RenderOHikari); //Add back OHikari green light
-	//E105 boss missile
-	*(NJS_OBJECT*)0x17DF53C = *LoadModel("system\\data\\STG12\\Models\\0019F8E4.sa1mdl", false);
-	((NJS_OBJECT*)0x17DF53C)->child->basicdxmodel->mats[0].diffuse.color = 0xFF000000;
-	((NJS_OBJECT*)0x17DF53C)->child->basicdxmodel->mats[0].attrflags |= NJD_FLAG_USE_TEXTURE;
-	((NJS_OBJECT*)0x17DF53C)->child->basicdxmodel->mats[0].attr_texId = 3;
-	((NJS_OBJECT*)0x17DF53C)->child->sibling->basicdxmodel->mats[0].diffuse.color = 0xFF000000;
-	((NJS_OBJECT*)0x17DF53C)->child->sibling->basicdxmodel->mats[0].attrflags |= NJD_FLAG_USE_TEXTURE;
-	((NJS_OBJECT*)0x17DF53C)->child->sibling->basicdxmodel->mats[0].attr_texId = 3;
-	((NJS_OBJECT*)0x17DF53C)->child->sibling->sibling->basicdxmodel->mats[0].diffuse.color = 0xFF000000;
-	((NJS_OBJECT*)0x17DF53C)->child->sibling->sibling->basicdxmodel->mats[0].attrflags |= NJD_FLAG_USE_TEXTURE;
-	((NJS_OBJECT*)0x17DF53C)->child->sibling->sibling->basicdxmodel->mats[0].attr_texId = 3;
-	((NJS_OBJECT*)0x17DF53C)->child->sibling->sibling->sibling->basicdxmodel->mats[0].diffuse.color = 0xFF000000;
-	((NJS_OBJECT*)0x17DF53C)->child->sibling->sibling->sibling->basicdxmodel->mats[0].attrflags |= NJD_FLAG_USE_TEXTURE;
-	((NJS_OBJECT*)0x17DF53C)->child->sibling->sibling->sibling->basicdxmodel->mats[0].attr_texId = 3;
-	//OLight3
-	OLight3_1 = LoadModel("system\\data\\STG12\\Models\\0011E380.sa1mdl", false);
-	OLight3_2 = LoadModel("system\\data\\STG12\\Models\\0011E380.sa1mdl", false);
-	OLight3_3 = LoadModel("system\\data\\STG12\\Models\\0011E380.sa1mdl", false);
-	OLight3_4 = LoadModel("system\\data\\STG12\\Models\\0011E380.sa1mdl", false);
-	OLight3_1->child->basicdxmodel->meshsets[3].nbMesh = 0;
-	OLight3_1->child->basicdxmodel->meshsets[4].nbMesh = 0;
-	OLight3_1->child->basicdxmodel->meshsets[5].nbMesh = 0;
-	OLight3_2->evalflags |= NJD_EVAL_HIDE;
-	OLight3_2->child->basicdxmodel->meshsets[0].nbMesh = 0;
-	OLight3_2->child->basicdxmodel->meshsets[1].nbMesh = 0;
-	OLight3_2->child->basicdxmodel->meshsets[2].nbMesh = 0;
-	OLight3_2->child->basicdxmodel->meshsets[4].nbMesh = 0;
-	OLight3_2->child->basicdxmodel->meshsets[5].nbMesh = 0;
-	OLight3_3->evalflags |= NJD_EVAL_HIDE;
-	OLight3_3->child->basicdxmodel->meshsets[0].nbMesh = 0;
-	OLight3_3->child->basicdxmodel->meshsets[1].nbMesh = 0;
-	OLight3_3->child->basicdxmodel->meshsets[2].nbMesh = 0;
-	OLight3_3->child->basicdxmodel->meshsets[3].nbMesh = 0;
-	OLight3_3->child->basicdxmodel->meshsets[5].nbMesh = 0;
-	OLight3_4->evalflags |= NJD_EVAL_HIDE;
-	OLight3_4->child->basicdxmodel->meshsets[0].nbMesh = 0;
-	OLight3_4->child->basicdxmodel->meshsets[1].nbMesh = 0;
-	OLight3_4->child->basicdxmodel->meshsets[2].nbMesh = 0;
-	OLight3_4->child->basicdxmodel->meshsets[3].nbMesh = 0;
-	OLight3_4->child->basicdxmodel->meshsets[4].nbMesh = 0;
-	WriteCall((void*)0x5A2EF4, RenderOLight3);
-	//OBridge
-	NJS_OBJECT* OBridge = LoadModel("system\\data\\STG12\\Models\\0012B71C.sa1mdl", false);
-	*(NJS_MODEL_SADX*)0x183C594 = *OBridge->child->sibling->basicdxmodel; //OBridge moving bit
-	*(NJS_MODEL_SADX*)0x183CC10 = *OBridge->child->basicdxmodel; //OBridge static bit 1 (support)
-	*(NJS_MODEL_SADX*)0x183D2A0 = *OBridge->basicdxmodel; //OBridge static bit 2 (round thing)
-	//OSuimen0
-	*(NJS_OBJECT*)0x180F7F0 = *LoadModel("system\\data\\STG12\\Models\\0015EC18.sa1mdl", false); //OSuimen0 1
-	*(NJS_OBJECT*)0x180FA2C = *LoadModel("system\\data\\STG12\\Models\\0015EE48.sa1mdl", false); //OSuimen0 2
-	*(NJS_OBJECT*)0x180FBB4 = *LoadModel("system\\data\\STG12\\Models\\0015EFC4.sa1mdl", false); //OSuimen0 3
-	*(NJS_OBJECT*)0x180FCC0 = *LoadModel("system\\data\\STG12\\Models\\0015F0C8.sa1mdl", false); //OSuimen0 4
-	WriteCall((void*)0x5A8FE1, RenderSuimen); //Fix OSuimen0 flickering
-	//Other models
-	*(NJS_MODEL_SADX*)0x182DFF8 = *LoadModel("system\\data\\STG12\\Models\\00122168.sa1mdl", false)->basicdxmodel; //OKaitenKey
-	*(NJS_MODEL_SADX*)0x182D6F4 = *LoadModel("system\\data\\STG12\\Models\\001227C8.sa1mdl", false)->basicdxmodel; //OKaitenKey handle
-	BrokenGlass = LoadModel("system\\data\\STG12\\Models\\001781FC.sa1mdl", false); //ORoboTV broken glass
-	*(NJS_MODEL_SADX*)0x180DC54 = *LoadModel("system\\data\\STG12\\Models\\001781FC.sa1mdl", false)->basicdxmodel; //ORoboTV broken glass
-	((NJS_MODEL_SADX*)0x180DC54)->meshsets[2].nbMesh = 0; //Hide the black part to render separately
-	*(NJS_OBJECT*)0x185D200 = *LoadModel("system\\data\\STG12\\Models\\0014A8F4.sa1mdl", false); //OCarne
-	ForceLevelSpecular_Object(((NJS_OBJECT*)0x185D200)->child->sibling->child);
-	ForceLevelSpecular_Object(((NJS_OBJECT*)0x185D200)->child->sibling->child->sibling);
-	((NJS_ACTION*)0x17F1CBC)->object = LoadModel("system\\data\\STG12\\Models\\0017B464.sa1mdl", false); //OCargoTop
-	((NJS_ACTION*)0x17F1E94)->object = LoadModel("system\\data\\STG12\\Models\\001818D4.sa1mdl", false); //OEnemyContainer
-	ForceLevelSpecular_Object(((NJS_ACTION*)0x17F1E94)->object);
-	*(NJS_OBJECT*)0x17F7094 = *LoadModel("system\\data\\STG12\\Models\\001633F8.sa1mdl", false); //OBanji 1
-	*(NJS_OBJECT*)0x17F68E4 = *LoadModel("system\\data\\STG12\\Models\\00162C68.sa1mdl", false); //OBanji 2
-	*(NJS_OBJECT*)0x17E8DE4 = *LoadModel("system\\data\\STG12\\Models\\0017EC28.sa1mdl", false); //Gamma train tracks 1
-	*(NJS_OBJECT*)0x17EAE84 = *LoadModel("system\\data\\STG12\\Models\\001801AC.sa1mdl", false); //Gamma train tracks 2
-	*(NJS_OBJECT*)0x17F36A4 = *LoadModel("system\\data\\STG12\\Models\\00187714.sa1mdl", false); //Gamma train chain
-	*(NJS_OBJECT*)0x17E4AD4 = *LoadModel("system\\data\\STG12\\Models\\0017BDCC.sa1mdl", false); //OCargoContainer related
-	*(NJS_OBJECT*)0x17F42FC = *LoadModel("system\\data\\STG12\\Models\\0018832C.sa1mdl", false); //OCargoContainer related
-	*(NJS_OBJECT*)0x1868C74 = *LoadModel("system\\data\\STG12\\Models\\001547C4.sa1mdl", true); //OFens
-	*(NJS_OBJECT*)0x1863304 = *LoadModel("system\\data\\STG12\\Models\\0014ECBC.sa1mdl", false); //OBiriBiri
-	*(NJS_OBJECT*)0x17E6284 = *LoadModel("system\\data\\STG12\\Models\\0017CF8C.sa1mdl", false); //OCargoStart 1, OCargo, Gamma train platform
-	*(NJS_OBJECT*)0x17E6D44 = *LoadModel("system\\data\\STG12\\Models\\0017D6A4.sa1mdl", false); //OCargoStart 2
-	*(NJS_OBJECT*)0x184AFDC = *LoadModel("system\\data\\STG12\\Models\\0013BCC8.sa1mdl", false); //OGateSide
-	*(NJS_OBJECT*)0x184F358 = *LoadModel("system\\data\\STG12\\Models\\0013EF94.sa1mdl", false); //OSasae1A
-	*(NJS_OBJECT*)0x184E8B0 = *LoadModel("system\\data\\STG12\\Models\\0013E824.sa1mdl", false); //OSasae1B
-	*(NJS_OBJECT*)0x184DE58 = *LoadModel("system\\data\\STG12\\Models\\0013E0B4.sa1mdl", false); //OSasae1C
-	*(NJS_OBJECT*)0x184D694 = *LoadModel("system\\data\\STG12\\Models\\0013DB04.sa1mdl", false); //OSasae1D
-	*(NJS_OBJECT*)0x181DBFC = *LoadModel("system\\data\\STG12\\Models\\001139D8.sa1mdl", false); //OEntotsu
-	*(NJS_OBJECT*)0x1852F4C = *LoadModel("system\\data\\STG12\\Models\\00141B68.sa1mdl", false); //ODrumcan
-	*(NJS_OBJECT*)0x18320D4 = *LoadModel("system\\data\\STG12\\Models\\00126010.sa1mdl", false); //OKaidan
-	*(NJS_OBJECT*)0x18146D4 = *LoadModel("system\\data\\STG12\\Models\\0010B55C.sa1mdl", false); //Floodgates
-	*(NJS_OBJECT*)0x1851CA4 = *LoadModel("system\\data\\STG12\\Models\\00140EBC.sa1mdl", false); //OElevator inside
-	*(NJS_OBJECT*)0x1851EA4 = *LoadModel("system\\data\\STG12\\Models\\00141080.sa1mdl", false); //OElevator door 1
-	*(NJS_OBJECT*)0x18520A4 = *LoadModel("system\\data\\STG12\\Models\\00141244.sa1mdl", false); //OElevator door 2
-	*(NJS_OBJECT*)0x1815678 = *LoadModel("system\\data\\STG12\\Models\\0010BEFC.sa1mdl", false); //OSyoumei
-	*(NJS_OBJECT*)0x1810D60 = *LoadModel("system\\data\\STG12\\Models\\0015FEAC.sa1mdl", false); //Waterfall thing
-	*(NJS_OBJECT*)0x1810690 = *LoadModel("system\\data\\STG12\\Models\\0015F7EC.sa1mdl", false); //No idea but this is some water thing
-	*(NJS_OBJECT*)0x181011C = *LoadModel("system\\data\\STG12\\Models\\0015F518.sa1mdl", false); //Water objects behind glass in drainage room
-	((NJS_OBJECT*)0x180F5D4)->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT; //Water surface in drainage room
-	((NJS_OBJECT*)0x180F5D4)->basicdxmodel->mats[0].diffuse.color = 0x7FFFFFFF; //Water surface in drainage room
-	*(NJS_OBJECT*)0x182ECEC = *LoadModel("system\\data\\STG12\\Models\\001236A4.sa1mdl", false); //OKaitenmeter
-	*(NJS_OBJECT*)0x180391C = *LoadModel("system\\data\\STG12\\Models\\0016F268.sa1mdl", false); //Colored cube 1
-	AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x180391C)->basicdxmodel->mats[8]);
-	*(NJS_OBJECT*)0x1804CD4 = *LoadModel("system\\data\\STG12\\Models\\00170054.sa1mdl", false); //Colored cube 2
-	AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x1804CD4)->basicdxmodel->mats[8]);
-	*(NJS_OBJECT*)0x180608C = *LoadModel("system\\data\\STG12\\Models\\00170E40.sa1mdl", false); //Colored cube 3
-	AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x180608C)->basicdxmodel->mats[8]);
-	*(NJS_OBJECT*)0x1807444 = *LoadModel("system\\data\\STG12\\Models\\00171C2C.sa1mdl", false); //Colored cube 4
-	AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x1807444)->basicdxmodel->mats[8]);
-	*(NJS_OBJECT*)0x18136AC = *LoadModel("system\\data\\STG12\\Models\\0010A8AC.sa1mdl", false); //Bathroom door
-	*(NJS_OBJECT*)0x185A974 = *LoadModel("system\\data\\STG12\\Models\\00148A44.sa1mdl", false); //OComputer
-	*(NJS_OBJECT*)0x18608A4 = *LoadModel("system\\data\\STG12\\Models\\0014D13C.sa1mdl", false); //Broken wall (full)
-	*(NJS_OBJECT*)0x1862834 = *LoadModel("system\\data\\STG12\\Models\\0014E514.sa1mdl", false); //Broken wall (broken)
-	*(NJS_OBJECT*)0x185F280 = *LoadModel("system\\data\\STG12\\Models\\0014C23C.sa1mdl", false); //Broken wall (pieces)
-	*(NJS_OBJECT*)0x1812D34 = *LoadModel("system\\data\\STG12\\Models\\00109F58.sa1mdl", false); //Egghead door 1
-	((NJS_OBJECT*)0x184C22C)->basicdxmodel = LoadModel("system\\data\\STG12\\Models\\0013CDD4.sa1mdl", true)->basicdxmodel; //Egghead door 2 part 1 (has sibling)
-	((NJS_OBJECT*)0x184C22C)->sibling = NULL;
-	((NJS_OBJECT*)0x184C22C)->evalflags |= NJD_EVAL_BREAK;
-	((NJS_OBJECT*)0x184BA64)->basicdxmodel = LoadModel("system\\data\\STG12\\Models\\0013C6AC.sa1mdl", true)->basicdxmodel; //Egghead door 2 part 2 (has sibling)
-	((NJS_OBJECT*)0x184BA64)->sibling = NULL;
-	((NJS_OBJECT*)0x184BA64)->evalflags |= NJD_EVAL_BREAK;
-	*(NJS_OBJECT*)0x186FC1C = *LoadModel("system\\data\\STG12\\Models\\0015ACB0.sa1mdl", false); //OKaitenashiba
-	*(NJS_OBJECT*)0x1853D7C = *LoadModel("system\\data\\STG12\\Models\\00142958.sa1mdl", false); //Daruma (unused lightning box)
-	*(NJS_OBJECT*)0x181406C = *LoadModel("system\\data\\STG12\\Models\\0010AFB8.sa1mdl", false); //OUkijima
-	//Fog/draw distance data
-	for (int i = 0; i < 3; i++)
-	{
-		DrawDist_HotShelter1[i].Maximum = -3000.0;
-		DrawDist_HotShelter2[i].Maximum = -3000.0;
-		FogData_HotShelter1[i].Color = 0xFF000000;
-		FogData_HotShelter1[i].Layer = 600.0f;
-		FogData_HotShelter1[i].Distance = 1500.0f;
-		FogData_HotShelter2[i].Color = 0xFF000000;
-		FogData_HotShelter2[i].Toggle = 1;
-		FogData_HotShelter2[i].Layer = 800.0f;
-		FogData_HotShelter2[i].Distance = 2000.0f;
-		FogData_HotShelter3[i].Color = 0xFF000000;
-		FogData_HotShelter3[i].Toggle = 1;
-		FogData_HotShelter3[i].Layer = 500.0f;
-		FogData_HotShelter3[i].Distance = 1800.0f;
+		if (!Use1999SetFiles)
+		{
+			ReplaceBIN_DC("SET1200A");
+			ReplaceBIN_DC("SET1200B");
+			ReplaceBIN_DC("SET1200S");
+			ReplaceBIN_DC("SET1201A");
+			ReplaceBIN_DC("SET1201S");
+			ReplaceBIN_DC("SET1202E");
+			ReplaceBIN_DC("SET1202S");
+			ReplaceBIN_DC("SET1203S");
+		}
+		else
+		{
+			ReplaceBIN_1999("SET1200A");
+			ReplaceBIN_1999("SET1200B");
+			ReplaceBIN_1999("SET1200S");
+			ReplaceBIN_1999("SET1201A");
+			ReplaceBIN_1999("SET1201S");
+			ReplaceBIN_1999("SET1202E");
+			ReplaceBIN_1999("SET1202S");
+			ReplaceBIN_1999("SET1203S");
+		}
+		ReplaceBIN_DC("CAM1200A");
+		ReplaceBIN_DC("CAM1200B");
+		ReplaceBIN_DC("CAM1200S");
+		ReplaceBIN_DC("CAM1201A");
+		ReplaceBIN_DC("CAM1201S");
+		ReplaceBIN_DC("CAM1202E");
+		ReplaceBIN_DC("CAM1202S");
+		ReplaceBIN_DC("CAM1203S");
+		ReplacePVM("HOTSHELTER0");
+		ReplacePVM("HOTSHELTER1");
+		ReplacePVM("HOTSHELTER2");
+		ReplacePVM("HOTSHELTER3");
+		ReplacePVM("HOTSHELTER4");
+		ReplacePVM("SHELTER_COLUMN");
+		ReplacePVM("SHELTER_SUIMEN");
+		//Code fixes
+		WriteData((float*)0x005AB2F0, -1000.0f); //Four glass things in drainage room (depth bias)
+		WriteCall((void*)0x5A93BF, njDrawSprite3D_TheyForgotToClampAgain);
+		WriteJump((void*)0x5A91E0, KowareSuisou_Display_Fixed);
+		WriteJump((void*)0x5A30F0, OLight2_Display);
+		WriteCall((void*)0x5A5D6C, RenderRoboTVBrokenGlass);
+		WriteCall((void*)0x5A3A03, PlayMusicHook_ReduceE105Fog); //Hook to disable fog in E105 room
+		WriteCall((void*)0x5A3C99, E105Animation); //Add missing E105 Zeta animation
+		WriteCall((void*)0x59F75C, AmyHatchFix); //Don't make the ventilation hatch solid when playing as Amy
+		WriteCall((void*)0x5ADAFE, RenderFourWaterThings); //Four aquariums in drainage room
+		//Fix the water splashes created by the water thing
+		WriteCall((void*)0x5AD478, RenderWaterThing);
+		WriteCall((void*)0x5AD4BF, RenderWaterThing);
+		WriteCall((void*)0x5AD506, RenderWaterThing);
+		WriteCall((void*)0x5AD54D, RenderWaterThing);
+		//Texlists
+		ResizeTextureList((NJS_TEXLIST*)0x180DFF4, textures_shelter1);
+		ResizeTextureList((NJS_TEXLIST*)0x17F56F4, textures_shelter2);
+		ResizeTextureList((NJS_TEXLIST*)0x17F4F74, textures_shelter3);
+		//Material colors
+		AddWhiteDiffuseMaterial((NJS_MATERIAL*)0x0181751C); //OKazari2
+		AddWhiteDiffuseMaterial((NJS_MATERIAL*)0x01800E34);	//OBoxAna
+		RemoveVertexColors_Object((NJS_OBJECT*)0x17FF884); //OSubTV
+		RemoveVertexColors_Object((NJS_OBJECT*)0x18289D4); //OLight3 (but actually I'm loading my own model)
+		//Model replacements
+		//OEfHikari
+		*(NJS_OBJECT*)0x187201C = *LoadModel("system\\data\\STG12\\Models\\0015CC48.sa1mdl", false); //OEfHikari
+		((NJS_OBJECT*)0x187201C)->basicdxmodel->meshsets[0].nbMesh = 0; //Hide light 1
+		((NJS_OBJECT*)0x187201C)->basicdxmodel->meshsets[7].nbMesh = 0; //Hide light 2
+		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x187201C)->basicdxmodel->mats[2]);
+		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x187201C)->basicdxmodel->mats[3]);
+		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x187201C)->basicdxmodel->mats[4]);
+		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x187201C)->basicdxmodel->mats[5]);
+		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x187201C)->basicdxmodel->mats[6]);
+		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x187201C)->basicdxmodel->mats[7]);
+		OEfHikari_Light = LoadModel("system\\data\\STG12\\Models\\0015CC48.sa1mdl", false);
+		OEfHikari_Light->basicdxmodel->meshsets[1].nbMesh = 0;
+		OEfHikari_Light->basicdxmodel->meshsets[2].nbMesh = 0;
+		OEfHikari_Light->basicdxmodel->meshsets[3].nbMesh = 0;
+		OEfHikari_Light->basicdxmodel->meshsets[4].nbMesh = 0;
+		OEfHikari_Light->basicdxmodel->meshsets[5].nbMesh = 0;
+		OEfHikari_Light->basicdxmodel->meshsets[6].nbMesh = 0;
+		OEfHikari_Light->basicdxmodel->meshsets[8].nbMesh = 0;
+		WriteCall((void*)0x59D444, RenderOHikari); //Add back OHikari green light
+		//E105 boss missile
+		*(NJS_OBJECT*)0x17DF53C = *LoadModel("system\\data\\STG12\\Models\\0019F8E4.sa1mdl", false);
+		((NJS_OBJECT*)0x17DF53C)->child->basicdxmodel->mats[0].diffuse.color = 0xFF000000;
+		((NJS_OBJECT*)0x17DF53C)->child->basicdxmodel->mats[0].attrflags |= NJD_FLAG_USE_TEXTURE;
+		((NJS_OBJECT*)0x17DF53C)->child->basicdxmodel->mats[0].attr_texId = 3;
+		((NJS_OBJECT*)0x17DF53C)->child->sibling->basicdxmodel->mats[0].diffuse.color = 0xFF000000;
+		((NJS_OBJECT*)0x17DF53C)->child->sibling->basicdxmodel->mats[0].attrflags |= NJD_FLAG_USE_TEXTURE;
+		((NJS_OBJECT*)0x17DF53C)->child->sibling->basicdxmodel->mats[0].attr_texId = 3;
+		((NJS_OBJECT*)0x17DF53C)->child->sibling->sibling->basicdxmodel->mats[0].diffuse.color = 0xFF000000;
+		((NJS_OBJECT*)0x17DF53C)->child->sibling->sibling->basicdxmodel->mats[0].attrflags |= NJD_FLAG_USE_TEXTURE;
+		((NJS_OBJECT*)0x17DF53C)->child->sibling->sibling->basicdxmodel->mats[0].attr_texId = 3;
+		((NJS_OBJECT*)0x17DF53C)->child->sibling->sibling->sibling->basicdxmodel->mats[0].diffuse.color = 0xFF000000;
+		((NJS_OBJECT*)0x17DF53C)->child->sibling->sibling->sibling->basicdxmodel->mats[0].attrflags |= NJD_FLAG_USE_TEXTURE;
+		((NJS_OBJECT*)0x17DF53C)->child->sibling->sibling->sibling->basicdxmodel->mats[0].attr_texId = 3;
+		//OLight3
+		OLight3_1 = LoadModel("system\\data\\STG12\\Models\\0011E380.sa1mdl", false);
+		OLight3_2 = LoadModel("system\\data\\STG12\\Models\\0011E380.sa1mdl", false);
+		OLight3_3 = LoadModel("system\\data\\STG12\\Models\\0011E380.sa1mdl", false);
+		OLight3_4 = LoadModel("system\\data\\STG12\\Models\\0011E380.sa1mdl", false);
+		OLight3_1->child->basicdxmodel->meshsets[3].nbMesh = 0;
+		OLight3_1->child->basicdxmodel->meshsets[4].nbMesh = 0;
+		OLight3_1->child->basicdxmodel->meshsets[5].nbMesh = 0;
+		OLight3_2->evalflags |= NJD_EVAL_HIDE;
+		OLight3_2->child->basicdxmodel->meshsets[0].nbMesh = 0;
+		OLight3_2->child->basicdxmodel->meshsets[1].nbMesh = 0;
+		OLight3_2->child->basicdxmodel->meshsets[2].nbMesh = 0;
+		OLight3_2->child->basicdxmodel->meshsets[4].nbMesh = 0;
+		OLight3_2->child->basicdxmodel->meshsets[5].nbMesh = 0;
+		OLight3_3->evalflags |= NJD_EVAL_HIDE;
+		OLight3_3->child->basicdxmodel->meshsets[0].nbMesh = 0;
+		OLight3_3->child->basicdxmodel->meshsets[1].nbMesh = 0;
+		OLight3_3->child->basicdxmodel->meshsets[2].nbMesh = 0;
+		OLight3_3->child->basicdxmodel->meshsets[3].nbMesh = 0;
+		OLight3_3->child->basicdxmodel->meshsets[5].nbMesh = 0;
+		OLight3_4->evalflags |= NJD_EVAL_HIDE;
+		OLight3_4->child->basicdxmodel->meshsets[0].nbMesh = 0;
+		OLight3_4->child->basicdxmodel->meshsets[1].nbMesh = 0;
+		OLight3_4->child->basicdxmodel->meshsets[2].nbMesh = 0;
+		OLight3_4->child->basicdxmodel->meshsets[3].nbMesh = 0;
+		OLight3_4->child->basicdxmodel->meshsets[4].nbMesh = 0;
+		WriteCall((void*)0x5A2EF4, RenderOLight3);
+		//OBridge
+		NJS_OBJECT* OBridge = LoadModel("system\\data\\STG12\\Models\\0012B71C.sa1mdl", false);
+		*(NJS_MODEL_SADX*)0x183C594 = *OBridge->child->sibling->basicdxmodel; //OBridge moving bit
+		*(NJS_MODEL_SADX*)0x183CC10 = *OBridge->child->basicdxmodel; //OBridge static bit 1 (support)
+		*(NJS_MODEL_SADX*)0x183D2A0 = *OBridge->basicdxmodel; //OBridge static bit 2 (round thing)
+		//OSuimen0
+		*(NJS_OBJECT*)0x180F7F0 = *LoadModel("system\\data\\STG12\\Models\\0015EC18.sa1mdl", false); //OSuimen0 1
+		*(NJS_OBJECT*)0x180FA2C = *LoadModel("system\\data\\STG12\\Models\\0015EE48.sa1mdl", false); //OSuimen0 2
+		*(NJS_OBJECT*)0x180FBB4 = *LoadModel("system\\data\\STG12\\Models\\0015EFC4.sa1mdl", false); //OSuimen0 3
+		*(NJS_OBJECT*)0x180FCC0 = *LoadModel("system\\data\\STG12\\Models\\0015F0C8.sa1mdl", false); //OSuimen0 4
+		WriteCall((void*)0x5A8FE1, RenderSuimen); //Fix OSuimen0 flickering
+		//Other models
+		*(NJS_MODEL_SADX*)0x182DFF8 = *LoadModel("system\\data\\STG12\\Models\\00122168.sa1mdl", false)->basicdxmodel; //OKaitenKey
+		*(NJS_MODEL_SADX*)0x182D6F4 = *LoadModel("system\\data\\STG12\\Models\\001227C8.sa1mdl", false)->basicdxmodel; //OKaitenKey handle
+		BrokenGlass = LoadModel("system\\data\\STG12\\Models\\001781FC.sa1mdl", false); //ORoboTV broken glass
+		*(NJS_MODEL_SADX*)0x180DC54 = *LoadModel("system\\data\\STG12\\Models\\001781FC.sa1mdl", false)->basicdxmodel; //ORoboTV broken glass
+		((NJS_MODEL_SADX*)0x180DC54)->meshsets[2].nbMesh = 0; //Hide the black part to render separately
+		*(NJS_OBJECT*)0x185D200 = *LoadModel("system\\data\\STG12\\Models\\0014A8F4.sa1mdl", false); //OCarne
+		ForceLevelSpecular_Object(((NJS_OBJECT*)0x185D200)->child->sibling->child);
+		ForceLevelSpecular_Object(((NJS_OBJECT*)0x185D200)->child->sibling->child->sibling);
+		((NJS_ACTION*)0x17F1CBC)->object = LoadModel("system\\data\\STG12\\Models\\0017B464.sa1mdl", false); //OCargoTop
+		((NJS_ACTION*)0x17F1E94)->object = LoadModel("system\\data\\STG12\\Models\\001818D4.sa1mdl", false); //OEnemyContainer
+		ForceLevelSpecular_Object(((NJS_ACTION*)0x17F1E94)->object);
+		*(NJS_OBJECT*)0x17F7094 = *LoadModel("system\\data\\STG12\\Models\\001633F8.sa1mdl", false); //OBanji 1
+		*(NJS_OBJECT*)0x17F68E4 = *LoadModel("system\\data\\STG12\\Models\\00162C68.sa1mdl", false); //OBanji 2
+		*(NJS_OBJECT*)0x17E8DE4 = *LoadModel("system\\data\\STG12\\Models\\0017EC28.sa1mdl", false); //Gamma train tracks 1
+		*(NJS_OBJECT*)0x17EAE84 = *LoadModel("system\\data\\STG12\\Models\\001801AC.sa1mdl", false); //Gamma train tracks 2
+		*(NJS_OBJECT*)0x17F36A4 = *LoadModel("system\\data\\STG12\\Models\\00187714.sa1mdl", false); //Gamma train chain
+		*(NJS_OBJECT*)0x17E4AD4 = *LoadModel("system\\data\\STG12\\Models\\0017BDCC.sa1mdl", false); //OCargoContainer related
+		*(NJS_OBJECT*)0x17F42FC = *LoadModel("system\\data\\STG12\\Models\\0018832C.sa1mdl", false); //OCargoContainer related
+		*(NJS_OBJECT*)0x1868C74 = *LoadModel("system\\data\\STG12\\Models\\001547C4.sa1mdl", true); //OFens
+		*(NJS_OBJECT*)0x1863304 = *LoadModel("system\\data\\STG12\\Models\\0014ECBC.sa1mdl", false); //OBiriBiri
+		*(NJS_OBJECT*)0x17E6284 = *LoadModel("system\\data\\STG12\\Models\\0017CF8C.sa1mdl", false); //OCargoStart 1, OCargo, Gamma train platform
+		*(NJS_OBJECT*)0x17E6D44 = *LoadModel("system\\data\\STG12\\Models\\0017D6A4.sa1mdl", false); //OCargoStart 2
+		*(NJS_OBJECT*)0x184AFDC = *LoadModel("system\\data\\STG12\\Models\\0013BCC8.sa1mdl", false); //OGateSide
+		*(NJS_OBJECT*)0x184F358 = *LoadModel("system\\data\\STG12\\Models\\0013EF94.sa1mdl", false); //OSasae1A
+		*(NJS_OBJECT*)0x184E8B0 = *LoadModel("system\\data\\STG12\\Models\\0013E824.sa1mdl", false); //OSasae1B
+		*(NJS_OBJECT*)0x184DE58 = *LoadModel("system\\data\\STG12\\Models\\0013E0B4.sa1mdl", false); //OSasae1C
+		*(NJS_OBJECT*)0x184D694 = *LoadModel("system\\data\\STG12\\Models\\0013DB04.sa1mdl", false); //OSasae1D
+		*(NJS_OBJECT*)0x181DBFC = *LoadModel("system\\data\\STG12\\Models\\001139D8.sa1mdl", false); //OEntotsu
+		*(NJS_OBJECT*)0x1852F4C = *LoadModel("system\\data\\STG12\\Models\\00141B68.sa1mdl", false); //ODrumcan
+		*(NJS_OBJECT*)0x18320D4 = *LoadModel("system\\data\\STG12\\Models\\00126010.sa1mdl", false); //OKaidan
+		*(NJS_OBJECT*)0x18146D4 = *LoadModel("system\\data\\STG12\\Models\\0010B55C.sa1mdl", false); //Floodgates
+		*(NJS_OBJECT*)0x1851CA4 = *LoadModel("system\\data\\STG12\\Models\\00140EBC.sa1mdl", false); //OElevator inside
+		*(NJS_OBJECT*)0x1851EA4 = *LoadModel("system\\data\\STG12\\Models\\00141080.sa1mdl", false); //OElevator door 1
+		*(NJS_OBJECT*)0x18520A4 = *LoadModel("system\\data\\STG12\\Models\\00141244.sa1mdl", false); //OElevator door 2
+		*(NJS_OBJECT*)0x1815678 = *LoadModel("system\\data\\STG12\\Models\\0010BEFC.sa1mdl", false); //OSyoumei
+		*(NJS_OBJECT*)0x1810D60 = *LoadModel("system\\data\\STG12\\Models\\0015FEAC.sa1mdl", false); //Waterfall thing
+		*(NJS_OBJECT*)0x1810690 = *LoadModel("system\\data\\STG12\\Models\\0015F7EC.sa1mdl", false); //No idea but this is some water thing
+		*(NJS_OBJECT*)0x181011C = *LoadModel("system\\data\\STG12\\Models\\0015F518.sa1mdl", false); //Water objects behind glass in drainage room
+		((NJS_OBJECT*)0x180F5D4)->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT; //Water surface in drainage room
+		((NJS_OBJECT*)0x180F5D4)->basicdxmodel->mats[0].diffuse.color = 0x7FFFFFFF; //Water surface in drainage room
+		*(NJS_OBJECT*)0x182ECEC = *LoadModel("system\\data\\STG12\\Models\\001236A4.sa1mdl", false); //OKaitenmeter
+		*(NJS_OBJECT*)0x180391C = *LoadModel("system\\data\\STG12\\Models\\0016F268.sa1mdl", false); //Colored cube 1
+		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x180391C)->basicdxmodel->mats[8]);
+		*(NJS_OBJECT*)0x1804CD4 = *LoadModel("system\\data\\STG12\\Models\\00170054.sa1mdl", false); //Colored cube 2
+		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x1804CD4)->basicdxmodel->mats[8]);
+		*(NJS_OBJECT*)0x180608C = *LoadModel("system\\data\\STG12\\Models\\00170E40.sa1mdl", false); //Colored cube 3
+		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x180608C)->basicdxmodel->mats[8]);
+		*(NJS_OBJECT*)0x1807444 = *LoadModel("system\\data\\STG12\\Models\\00171C2C.sa1mdl", false); //Colored cube 4
+		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x1807444)->basicdxmodel->mats[8]);
+		*(NJS_OBJECT*)0x18136AC = *LoadModel("system\\data\\STG12\\Models\\0010A8AC.sa1mdl", false); //Bathroom door
+		*(NJS_OBJECT*)0x185A974 = *LoadModel("system\\data\\STG12\\Models\\00148A44.sa1mdl", false); //OComputer
+		*(NJS_OBJECT*)0x18608A4 = *LoadModel("system\\data\\STG12\\Models\\0014D13C.sa1mdl", false); //Broken wall (full)
+		*(NJS_OBJECT*)0x1862834 = *LoadModel("system\\data\\STG12\\Models\\0014E514.sa1mdl", false); //Broken wall (broken)
+		*(NJS_OBJECT*)0x185F280 = *LoadModel("system\\data\\STG12\\Models\\0014C23C.sa1mdl", false); //Broken wall (pieces)
+		*(NJS_OBJECT*)0x1812D34 = *LoadModel("system\\data\\STG12\\Models\\00109F58.sa1mdl", false); //Egghead door 1
+		((NJS_OBJECT*)0x184C22C)->basicdxmodel = LoadModel("system\\data\\STG12\\Models\\0013CDD4.sa1mdl", true)->basicdxmodel; //Egghead door 2 part 1 (has sibling)
+		((NJS_OBJECT*)0x184C22C)->sibling = NULL;
+		((NJS_OBJECT*)0x184C22C)->evalflags |= NJD_EVAL_BREAK;
+		((NJS_OBJECT*)0x184BA64)->basicdxmodel = LoadModel("system\\data\\STG12\\Models\\0013C6AC.sa1mdl", true)->basicdxmodel; //Egghead door 2 part 2 (has sibling)
+		((NJS_OBJECT*)0x184BA64)->sibling = NULL;
+		((NJS_OBJECT*)0x184BA64)->evalflags |= NJD_EVAL_BREAK;
+		*(NJS_OBJECT*)0x186FC1C = *LoadModel("system\\data\\STG12\\Models\\0015ACB0.sa1mdl", false); //OKaitenashiba
+		*(NJS_OBJECT*)0x1853D7C = *LoadModel("system\\data\\STG12\\Models\\00142958.sa1mdl", false); //Daruma (unused lightning box)
+		*(NJS_OBJECT*)0x181406C = *LoadModel("system\\data\\STG12\\Models\\0010AFB8.sa1mdl", false); //OUkijima
+		//Fog/draw distance data
+		for (int i = 0; i < 3; i++)
+		{
+			DrawDist_HotShelter1[i].Maximum = -3000.0;
+			DrawDist_HotShelter2[i].Maximum = -3000.0;
+			FogData_HotShelter1[i].Color = 0xFF000000;
+			FogData_HotShelter1[i].Layer = 600.0f;
+			FogData_HotShelter1[i].Distance = 1500.0f;
+			FogData_HotShelter2[i].Color = 0xFF000000;
+			FogData_HotShelter2[i].Toggle = 1;
+			FogData_HotShelter2[i].Layer = 800.0f;
+			FogData_HotShelter2[i].Distance = 2000.0f;
+			FogData_HotShelter3[i].Color = 0xFF000000;
+			FogData_HotShelter3[i].Toggle = 1;
+			FogData_HotShelter3[i].Layer = 500.0f;
+			FogData_HotShelter3[i].Distance = 1800.0f;
+		}
+		ModelsLoaded_STG12 = true;
 	}
 }
 

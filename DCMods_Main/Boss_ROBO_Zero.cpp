@@ -66,16 +66,6 @@ void UnloadLevelFiles_B_ROBO()
 	B_ROBO_Info = nullptr;
 }
 
-void LoadLevelFiles_B_ROBO()
-{
-	CheckAndUnloadLevelFiles();
-	B_ROBO_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\B_ROBO\\0.sa1lvl"));
-	LandTable *B_ROBO = B_ROBO_Info->getlandtable(); //&landtable_00000110;
-	RemoveMaterialColors_Landtable(B_ROBO);
-	B_ROBO->TexList = (NJS_TEXLIST*)0x16B460C;
-	LandTableArray[64] = B_ROBO;
-}
-
 void __cdecl ZeroOceanHook(OceanData *a1)
 {
 	//Ocean stuff
@@ -96,44 +86,54 @@ void __cdecl ZeroOceanHook(OceanData *a1)
 
 void Zero_Init()
 {
-	if (!Use1999SetFiles)
+	CheckAndUnloadLevelFiles();
+	B_ROBO_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\B_ROBO\\0.sa1lvl"));
+	LandTable* B_ROBO = B_ROBO_Info->getlandtable(); //&landtable_00000110;
+	RemoveMaterialColors_Landtable(B_ROBO);
+	B_ROBO->TexList = (NJS_TEXLIST*)0x16B460C;
+	LandTableArray[64] = B_ROBO;
+	if (!ModelsLoaded_B_ROBO)
 	{
-		ReplaceBIN_DC("SETZEROA");
-		ReplaceBIN_DC("SETZEROS");
-	}
-	else
-	{
-		ReplaceBIN_1999("SETZEROA");
-		ReplaceBIN_1999("SETZEROS");
-	}
-	ReplacePVM("EROBO");
-	ReplaceGeneric("EROBO_GC.NB", "EROBO_DC.NB");
-	ResizeTextureList((NJS_TEXLIST*)0x16B460C, 76); //Zero/E101R texlist
-	WriteData<1>((char*)0x5850F0, 0xC3u); //Disable SetClip_ZERO
-	WriteCall((void*)0x585448, LoadBossECOceanPVM);
-	WriteCall((void*)0x58F4F9, RenderZeroBarrierModel); //Did this to remove material colors on this otherwise inaccessible model
-	WriteData((float*)0x58752C, 0.8f); //Zero constant material alpha
-	RemoveVertexColors_Object((NJS_OBJECT*)0x00991268); //Zero main and cutscene model
-	//Effect fixes
-	WriteCall((void*)0x58B580, ZeroBarrier_SetOnFireHook); //Hook to tell when to fade out barrier effect
-	WriteCall((void*)0x58B61D, RenderZeroSparks);
-	WriteCall((void*)0x58BC56, Zero_FVFShit);
-	WriteJump((void*)0x58C721, ZeroFVF_Show);
-	WriteJump((void*)0x58F798, ZeroBarriers_Show);
-	WriteJump(Zero_OceanDraw, ZeroOceanHook); //Ocean callback replacement
-	//Ocean model
-	if (!SADXWater_EggCarrier)
-	{
-		ZeroBossOcean = LoadModel("system\\data\\B_ROBO\\Models\\0002DBBC.sa1mdl", false);
-		ZeroBossOcean->basicdxmodel->mats[0].attr_texId = 4;
-		ZeroBossOcean->basicdxmodel->mats[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		ZeroBossOcean->basicdxmodel->mats[0].diffuse.color = 0x7FB2B2B2;
-	}
-	for (int i = 0; i < 3; i++)
-	{
-		DrawDist_Zero[i].Maximum = -9500.0f;
-		Fog_Zero[i].Distance = -10000.0f;
-		Fog_Zero[i].Layer = -10000.0f;
+		if (!Use1999SetFiles)
+		{
+			ReplaceBIN_DC("SETZEROA");
+			ReplaceBIN_DC("SETZEROS");
+		}
+		else
+		{
+			ReplaceBIN_1999("SETZEROA");
+			ReplaceBIN_1999("SETZEROS");
+		}
+		ReplacePVM("EROBO");
+		ReplaceGeneric("EROBO_GC.NB", "EROBO_DC.NB");
+		ResizeTextureList((NJS_TEXLIST*)0x16B460C, 76); //Zero/E101R texlist
+		WriteData<1>((char*)0x5850F0, 0xC3u); //Disable SetClip_ZERO
+		WriteCall((void*)0x585448, LoadBossECOceanPVM);
+		WriteCall((void*)0x58F4F9, RenderZeroBarrierModel); //Did this to remove material colors on this otherwise inaccessible model
+		WriteData((float*)0x58752C, 0.8f); //Zero constant material alpha
+		RemoveVertexColors_Object((NJS_OBJECT*)0x00991268); //Zero main and cutscene model
+		//Effect fixes
+		WriteCall((void*)0x58B580, ZeroBarrier_SetOnFireHook); //Hook to tell when to fade out barrier effect
+		WriteCall((void*)0x58B61D, RenderZeroSparks);
+		WriteCall((void*)0x58BC56, Zero_FVFShit);
+		WriteJump((void*)0x58C721, ZeroFVF_Show);
+		WriteJump((void*)0x58F798, ZeroBarriers_Show);
+		WriteJump(Zero_OceanDraw, ZeroOceanHook); //Ocean callback replacement
+		//Ocean model
+		if (!SADXWater_EggCarrier)
+		{
+			ZeroBossOcean = LoadModel("system\\data\\B_ROBO\\Models\\0002DBBC.sa1mdl", false);
+			ZeroBossOcean->basicdxmodel->mats[0].attr_texId = 4;
+			ZeroBossOcean->basicdxmodel->mats[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+			ZeroBossOcean->basicdxmodel->mats[0].diffuse.color = 0x7FB2B2B2;
+		}
+		for (int i = 0; i < 3; i++)
+		{
+			DrawDist_Zero[i].Maximum = -9500.0f;
+			Fog_Zero[i].Distance = -10000.0f;
+			Fog_Zero[i].Layer = -10000.0f;
+		}
+		ModelsLoaded_B_ROBO = true;
 	}
 }
 

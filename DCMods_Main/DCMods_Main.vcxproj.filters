@@ -428,9 +428,6 @@
     <ClInclude Include="StageLights.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Data\TwinkleCircuit.h">
-      <Filter>Header Files\Levels\Subgames</Filter>
-    </ClInclude>
     <ClInclude Include="Data\Chaos6_Motion.h">
       <Filter>Header Files\Levels\Bosses</Filter>
     </ClInclude>
@@ -514,6 +511,27 @@
     </ClInclude>
     <ClInclude Include="Data\ADV0100_5.h">
       <Filter>Header Files\Levels\EggCarrierOutside</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\HedgehogHammer.h">
+      <Filter>Header Files\Levels\Subgames</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\TwinkleCircuit_2.h">
+      <Filter>Header Files\Levels\Subgames</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\TwinkleCircuit_3.h">
+      <Filter>Header Files\Levels\Subgames</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\TwinkleCircuit_4.h">
+      <Filter>Header Files\Levels\Subgames</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\TwinkleCircuit_5.h">
+      <Filter>Header Files\Levels\Subgames</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\TwinkleCircuit_6.h">
+      <Filter>Header Files\Levels\Subgames</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\TwinkleCircuit_1.h">
+      <Filter>Header Files\Levels\Subgames</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

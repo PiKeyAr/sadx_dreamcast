@@ -376,29 +376,6 @@ void ParseTwinkleParkMaterials(LandTable *landtable)
 	}
 }
 
-void LoadLevelFiles_STG03()
-{
-	CheckAndUnloadLevelFiles();
-	STG03_0_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG03\\0.sa1lvl"));
-	STG03_1_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG03\\1.sa1lvl"));
-	STG03_2_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG03\\2.sa1lvl"));
-	LandTable *STG03_0 = STG03_0_Info->getlandtable(); //&landtable_0001788C; // STG03_0_Info->getlandtable();
-	LandTable *STG03_1 = STG03_1_Info->getlandtable(); //&landtable_00019344; // STG03_1_Info->getlandtable();
-	LandTable *STG03_2 = STG03_2_Info->getlandtable(); //&landtable_00019F5C; // STG03_2_Info->getlandtable();
-	RemoveMaterialColors_Landtable(STG03_0);
-	RemoveMaterialColors_Landtable(STG03_1);
-	RemoveMaterialColors_Landtable(STG03_2);
-	STG03_0->TexList = &texlist_twinkle1;
-	STG03_1->TexList = &texlist_twinkle2;
-	STG03_2->TexList = &texlist_twinkle3;
-	ResizeTextureList(&OBJ_TWINKLE_TEXLIST, 96);
-	WriteData((LandTable**)0x97DA68, STG03_0);
-	WriteData((LandTable**)0x97DA6C, STG03_1);
-	WriteData((LandTable**)0x97DA70, STG03_2);
-	LoadTwinkleParkMirrors(STG03_2);
-	ParseTwinkleParkMaterials(STG03_1);
-}
-
 void __cdecl DrawObjectFromObjectMaster(ObjectMaster *a2)
 {
 	EntityData1 *v1; // esi
@@ -475,207 +452,229 @@ void OPoleFix(NJS_MODEL_SADX *a1)
 
 void TwinklePark_Init()
 {
-	WriteCall((void*)0x061F684, FlowerBedFix);
-	ReplaceBIN_DC("CAM0300S");
-	ReplaceBIN_DC("CAM0301A");
-	ReplaceBIN_DC("CAM0301B");
-	ReplaceBIN_DC("CAM0301S");
-	ReplaceBIN_DC("CAM0302A");
-	ReplaceBIN_DC("CAM0302S");
-	if (!Use1999SetFiles)
+	CheckAndUnloadLevelFiles();
+	STG03_0_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG03\\0.sa1lvl"));
+	STG03_1_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG03\\1.sa1lvl"));
+	STG03_2_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG03\\2.sa1lvl"));
+	LandTable* STG03_0 = STG03_0_Info->getlandtable(); //&landtable_0001788C; // STG03_0_Info->getlandtable();
+	LandTable* STG03_1 = STG03_1_Info->getlandtable(); //&landtable_00019344; // STG03_1_Info->getlandtable();
+	LandTable* STG03_2 = STG03_2_Info->getlandtable(); //&landtable_00019F5C; // STG03_2_Info->getlandtable();
+	RemoveMaterialColors_Landtable(STG03_0);
+	RemoveMaterialColors_Landtable(STG03_1);
+	RemoveMaterialColors_Landtable(STG03_2);
+	STG03_0->TexList = &texlist_twinkle1;
+	STG03_1->TexList = &texlist_twinkle2;
+	STG03_2->TexList = &texlist_twinkle3;
+	ResizeTextureList(&OBJ_TWINKLE_TEXLIST, 96);
+	WriteData((LandTable * *)0x97DA68, STG03_0);
+	WriteData((LandTable * *)0x97DA6C, STG03_1);
+	WriteData((LandTable * *)0x97DA70, STG03_2);
+	LoadTwinkleParkMirrors(STG03_2);
+	ParseTwinkleParkMaterials(STG03_1);
+	if (!ModelsLoaded_STG03)
 	{
-		ReplaceBIN_DC("SET0300S");
-		ReplaceBIN_DC("SET0301A");
-		ReplaceBIN_DC("SET0301B");
-		ReplaceBIN_DC("SET0301S");
-		ReplaceBIN_DC("SET0302A");
-		ReplaceBIN_DC("SET0302S");
-	}
-	else
-	{
-		ReplaceBIN_1999("SET0300S");
-		ReplaceBIN_1999("SET0301A");
-		ReplaceBIN_1999("SET0301B");
-		ReplaceBIN_1999("SET0301S");
-		ReplaceBIN_1999("SET0302A");
-		ReplaceBIN_1999("SET0302S");
-	}
-	ReplacePVM("BG_SHAREOBJ");
-	ReplacePVM("OBJ_SHAREOBJ");
-	ReplacePVM("OBJ_TWINKLE");
-	ReplacePVM("TWINKLE01");
-	ReplacePVM("TWINKLE02");
-	ReplacePVM("TWINKLE03");
-	WriteCall((void*)0x621222, DrawObjectFromObjectMaster); //Fix merry-go-round floor shadow flickering
-	//ArchLight fixes
-	*(NJS_OBJECT*)0x38BFA74 = *LoadModel("system\\data\\STG03\\Models\\000ED90C.sa1mdl", false); //Arch
-	*(NJS_OBJECT*)0x38C02C4 = *LoadModel("system\\data\\STG03\\Models\\000EE138.sa1mdl", false); //Arch supporter
-	((NJS_OBJECT*)0x38C02C4)->basicdxmodel->meshsets[2].nbMesh = 0; //Disable transparent parts
-	ArchLightLight = LoadModel("system\\data\\STG03\\Models\\000EE138.sa1mdl", false); //Arch supporter (transparent)
-	ArchLightLight->evalflags |= NJD_EVAL_BREAK;
-	ArchLightLight->child = NULL;
-	ArchLightLight->basicdxmodel->meshsets[0].nbMesh = 0; //Disable opaque parts
-	ArchLightLight->basicdxmodel->meshsets[1].nbMesh = 0; //Disable opaque parts
-	ArchLightLight->basicdxmodel->meshsets[3].nbMesh = 0; //Disable opaque parts
-	WriteCall((void*)0x0079C5FD, FixArchLight);
-	WriteCall((void*)0x0079C36A, FixShittyLightObjects_Pause);
-	//Cart fixes
-	RemoveVertexColors_Object((NJS_OBJECT*)0x038B8780); //Cart enemy
-	LoadModel_ReplaceMeshes((NJS_OBJECT*)0x038BAAA4, "system\\data\\STG03\\Models\\000EAB28.sa1mdl");
-	((NJS_OBJECT*)0x038BAAA4)->child->basicdxmodel->meshsets[1].nbMesh = 0;
-	CartGlass.basicdxmodel = LoadModel("system\\data\\STG03\\Models\\000EAB28.sa1mdl", false)->child->basicdxmodel;
-	CartGlass.basicdxmodel->meshsets[0].nbMesh = 0;
-	CartGlass.basicdxmodel->meshsets[2].nbMesh = 0;
-	CartGlass.basicdxmodel->meshsets[3].nbMesh = 0;
-	CartGlass.basicdxmodel->meshsets[4].nbMesh = 0;
-	WriteCall((void*)0x00796F0C, CartFunction);
-	RemoveVertexColors_Object((NJS_OBJECT*)0x038BAAA4); //Cart 1 (Sonic)
-	RemoveVertexColors_Object((NJS_OBJECT*)0x038BAA70); //Cart 2
-	RemoveVertexColors_Object((NJS_OBJECT*)0x038AB250); //Cart 3
-	RemoveVertexColors_Object((NJS_OBJECT*)0x038A9130); //Cart 4
-	//Amy's barrel fix
-	NJS_OBJECT **___AMY_OBJECTS = (NJS_OBJECT **)GetProcAddress(GetModuleHandle(L"CHRMODELS_orig"), "___AMY_OBJECTS");
-	___AMY_OBJECTS[1]->child->child->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	___AMY_OBJECTS[1]->child->child->basicdxmodel->mats[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	((NJS_OBJECT*)0x008BF3A0)->basicdxmodel->mats[0].attrflags |= NJD_FLAG_IGNORE_LIGHT; //shadow blob
-	ResizeTextureList((NJS_TEXLIST*)0x26B9960, textures_twinkle1);
-	ResizeTextureList((NJS_TEXLIST*)0x2721A8C, textures_twinkle2);
-	ResizeTextureList((NJS_TEXLIST*)0x26FEA54, textures_twinkle3);
-	//OLight1 fixes
-	*(NJS_OBJECT*)0x38C3A9C = *LoadModel("system\\data\\STG03\\Models\\000F1228.sa1mdl", true); //OLight1
-	((NJS_OBJECT*)0x38C3A9C)->basicdxmodel->meshsets[7].nbMesh = 0; //Disable transparent part
-	((NJS_OBJECT*)0x38C3A9C)->basicdxmodel->mats[7].attrflags &= ~NJD_FLAG_USE_ALPHA; //Disable transparent part
-	((NJS_OBJECT*)0x38C3A9C)->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_IGNORE_SPECULAR;
-	((NJS_OBJECT*)0x38C3A9C)->basicdxmodel->mats[1].attrflags &= ~NJD_FLAG_IGNORE_SPECULAR;
-	AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x38C3A9C)->basicdxmodel->mats[0]);
-	AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x38C3A9C)->basicdxmodel->mats[1]);
-	*(NJS_OBJECT*)0x38C3A68 = *LoadModel("system\\data\\STG03\\Models\\000F1228.sa1mdl", false); //OLight1 (transparent)
-	((NJS_OBJECT*)0x38C3A68)->basicdxmodel->meshsets[1].nbMesh = 0; //Disable opaque part
-	((NJS_OBJECT*)0x38C3A68)->basicdxmodel->meshsets[2].nbMesh = 0; //Disable opaque part
-	((NJS_OBJECT*)0x38C3A68)->basicdxmodel->meshsets[3].nbMesh = 0; //Disable opaque part
-	((NJS_OBJECT*)0x38C3A68)->basicdxmodel->meshsets[4].nbMesh = 0; //Disable opaque part
-	((NJS_OBJECT*)0x38C3A68)->basicdxmodel->meshsets[5].nbMesh = 0; //Disable opaque part
-	((NJS_OBJECT*)0x38C3A68)->basicdxmodel->meshsets[6].nbMesh = 0; //Disable opaque part
-	((NJS_OBJECT*)0x38C3A68)->basicdxmodel->meshsets[7].nbMesh = 0; //Disable opaque part
-	((NJS_OBJECT*)0x38C3A9C)->sibling = (NJS_OBJECT*)0x38C3A68; //Make transparent part sibling
-	//ORocket fixes
-	WriteCall((void*)0x79BEBA, ORocketFix1);
-	WriteCall((void*)0x79BEF8, ORocketFix1);
-	WriteCall((void*)0x79BF5D, ORocketFix1);
-	WriteCall((void*)0x79BF97, ORocketFix1);
-	//Pirate ship fixes
-	*(NJS_OBJECT*)0x27AC44C = *LoadModel("system\\data\\STG03\\Models\\000AB6DC.sa1mdl", false); //Pirate ship
-	PirateShipStars = LoadModel("system\\data\\STG03\\Models\\000AB6DC.sa1mdl", false); //Pirate ship stars mesh
-	PirateShipStars->child = NULL;
-	PirateShipStars->evalflags |= NJD_EVAL_BREAK;
-	PirateShipStars->basicdxmodel->meshsets[0].nbMesh = 0;
-	PirateShipStars->basicdxmodel->meshsets[1].nbMesh = 0;
-	PirateShipStars->basicdxmodel->meshsets[2].nbMesh = 0;
-	PirateShipStars->basicdxmodel->meshsets[3].nbMesh = 0;
-	PirateShipStars->basicdxmodel->meshsets[4].nbMesh = 0;
-	PirateShipStars->basicdxmodel->meshsets[6].nbMesh = 0;
-	PirateShipStars->basicdxmodel->meshsets[7].nbMesh = 0;
-	((NJS_OBJECT*)0x27AC44C)->basicdxmodel->meshsets[5].nbMesh = 0;
-	WriteJump((void*)0x620BC0, DrawPirateShipShit);
-	//Models
-	*(NJS_OBJECT*)0x27A3358 = *LoadModel("system\\data\\STG03\\Models\\000A6584.sa1mdl", false); //Fence (merged meshes 0+1 and made it trimesh instead of MESHSET_N)
-	AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x27A3358)->basicdxmodel->mats[1]);
-	AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x27A3358)->basicdxmodel->mats[2]);
-	*(NJS_OBJECT*)0x27B0708 = *LoadModel("system\\data\\STG03\\Models\\000AEC6C.sa1mdl", false); //Merry-go-round floor
-	*(NJS_OBJECT*)0x27AF5EC = *LoadModel("system\\data\\STG03\\Models\\000ADBE0.sa1mdl", false); //Double door
-	*(NJS_OBJECT*)0x27C17CC = *LoadModel("system\\data\\STG03\\Models\\000BB2B4.sa1mdl", false); //OShutter
-	*(NJS_OBJECT*)0x27A3F5C = *LoadModel("system\\data\\STG03\\Models\\000A6CD8.sa1mdl", false); //OFlyer
-	*(NJS_OBJECT*)0x27AFCF0 = *LoadModel("system\\data\\STG03\\Models\\000AE2BC.sa1mdl", false); //Crown
-	*(NJS_OBJECT*)0x38B119C = *LoadModel("system\\data\\STG03\\Models\\000DF3F0.sa1mdl", false); //Ship
-	*(NJS_OBJECT*)0x38BE5F4 = *LoadModel("system\\data\\STG03\\Models\\000EC4E0.sa1mdl", false); //Dash pad
-	*(NJS_OBJECT*)0x38C07CC = *LoadModel("system\\data\\STG03\\Models\\000EE618.sa1mdl", false); //Jump pad
-	*(NJS_OBJECT*)0x38C5B3C = *LoadModel("system\\data\\STG03\\Models\\000F3170.sa1mdl", false); //OCartStopper
-	*(NJS_OBJECT*)0x38BE2B4 = *LoadModel("system\\data\\STG03\\Models\\000EC1B4.sa1mdl", false); //OPlanet with rings
-	*(NJS_OBJECT*)0x27AE4F4 = *LoadModel("system\\data\\STG03\\Models\\000AD08C.sa1mdl", false); //Merry-go-round (swapped materials/meshsets 0 and 2 for compatibility with DX animation code)
-	*(NJS_OBJECT*)0x27BEA34 = *LoadModel("system\\data\\STG03\\Models\\000B95A0.sa1mdl", false); //Horsies
-	*(NJS_OBJECT*)0x27AD86C = *LoadModel("system\\data\\STG03\\Models\\000AC45C.sa1mdl", false); //Bowling door
-	*(NJS_OBJECT*)0x27A67B4 = *LoadModel("system\\data\\STG03\\Models\\000A8D60.sa1mdl", false); //OBowWindow
-	*(NJS_OBJECT*)0x27B23E4 = *LoadModel("system\\data\\STG03\\Models\\000B0818.sa1mdl", false); //Trap door
-	*(NJS_OBJECT*)0x27A0454 = *LoadModel("system\\data\\STG03\\Models\\000A3CCC.sa1mdl", false); //Bowling catapult
-	((NJS_OBJECT*)0x27A0454)->basicdxmodel->meshsets[0].nbMesh = 0; //Disable transparent floor
-	OCatapultFloor = LoadModel("system\\data\\STG03\\Models\\000A3CCC.sa1mdl", false); //Bowling catapult (floor)
-	OCatapultFloor->basicdxmodel->meshsets[1].nbMesh = 0;
-	OCatapultFloor->basicdxmodel->meshsets[2].nbMesh = 0;
-	OCatapultFloor->basicdxmodel->meshsets[3].nbMesh = 0;
-	OCatapultFloor->evalflags |= NJD_EVAL_BREAK;
-	OCatapultFloor->child = NULL;
-	*(NJS_OBJECT*)0x27B5884 = *LoadModel("system\\data\\STG03\\Models\\000B2A40.sa1mdl", false); //O Foothold
-	*(NJS_OBJECT*)0x279D364 = *LoadModel("system\\data\\STG03\\Models\\000A0E58.sa1mdl", true); //Barrel
-	AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x279D364)->basicdxmodel->mats[1]);
-	AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x279D364)->basicdxmodel->mats[2]);
-	*(NJS_OBJECT*)0x27B6170 = *LoadModel("system\\data\\STG03\\Models\\000B34C8.sa1mdl", false); //Yellow flower pot (wall)
-	*(NJS_OBJECT*)0x27B80C4 = *LoadModel("system\\data\\STG03\\Models\\000B4F1C.sa1mdl", false); //Yellow flower pot
-	*(NJS_OBJECT*)0x27BAC54 = *LoadModel("system\\data\\STG03\\Models\\000B6CF8.sa1mdl", false); //Yellow flower bed
-	*(NJS_OBJECT*)0x27B6A58 = *LoadModel("system\\data\\STG03\\Models\\000B3F50.sa1mdl", false); //Pink flower pot (wall)
-	*(NJS_OBJECT*)0x27B972C = *LoadModel("system\\data\\STG03\\Models\\000B5EE8.sa1mdl", false); //Pink flower pot
-	*(NJS_OBJECT*)0x27BC1C4 = *LoadModel("system\\data\\STG03\\Models\\000B7B08.sa1mdl", false); //Pink flower bed
-	*(NJS_OBJECT*)0x27BF9DC = *LoadModel("system\\data\\STG03\\Models\\000B9E98.sa1mdl", false); //Spinning roof
-	*(NJS_OBJECT*)0x27BCD7C = *LoadModel("system\\data\\STG03\\Models\\000B812C.sa1mdl", false); //Lilypad
-	*(NJS_OBJECT*)0x27C05FC = *LoadModel("system\\data\\STG03\\Models\\000BA81C.sa1mdl", false); //Monitor in Act 1 (meshes 4 and 5 swapped for UV code compatibility)
-	*(NJS_OBJECT*)0x27B3DB8 = *LoadModel("system\\data\\STG03\\Models\\000B13A8.sa1mdl", false); //Bowling pin
-	*(NJS_OBJECT*)0x38E50C4 = *LoadModel("system\\data\\STG03\\Models\\000C6264.sa1mdl", false); //Buyon feet
-	*(NJS_OBJECT*)0x38E3584 = *LoadModel("system\\data\\STG03\\Models\\000C47C8.sa1mdl", false); //Buyon head
-	*(NJS_OBJECT*)0x38E3B2C = *LoadModel("system\\data\\STG03\\Models\\000C4D60.sa1mdl", false); //Buyon body
-	*(NJS_OBJECT*)0x27A247C = *LoadModel("system\\data\\STG03\\Models\\000A56D0.sa1mdl", false); //Rollercoaster
-	((NJS_ACTION*)0x27C295C)->object = LoadModel("system\\data\\STG03\\Models\\000A7A7C.sa1mdl", false); //Flag 1
-	((NJS_ACTION*)0x27C26B4)->object = LoadModel("system\\data\\STG03\\Models\\000A7640.sa1mdl", false); //Flag 2
-	((NJS_ACTION*)0x27C2EA4)->object = LoadModel("system\\data\\STG03\\Models\\000A89E4.sa1mdl", false); //OFlagWLamp
-	*(NJS_OBJECT*)0x27A0560 = *LoadModel("system\\data\\STG03\\Models\\000A3DD0.sa1mdl", false); //OFlagWLamp light
-	AddAlphaRejectMaterial(&((NJS_OBJECT*)0x27A0560)->basicdxmodel->mats[0]);
-	*(NJS_OBJECT*)0x27B49AC = *LoadModel("system\\data\\STG03\\Models\\000B1DEC.sa1mdl", false); //OLamp
-	AddAlphaRejectMaterial(&((NJS_OBJECT*)0x27B49AC)->child->basicdxmodel->mats[0]);
-	AddAlphaRejectMaterial(&((NJS_OBJECT*)0x27B49AC)->child->sibling->basicdxmodel->mats[0]);
-	//OPanel fix
-	*(NJS_OBJECT*)0x38C214C = *LoadModel("system\\data\\STG03\\Models\\000EFF38.sa1mdl", false); //OPanel (opaque)
-	((NJS_OBJECT*)0x38C214C)->basicdxmodel->meshsets[1].nbMesh = 0;
-	((NJS_OBJECT*)0x38C214C)->basicdxmodel->meshsets[4].nbMesh = 0;
-	((NJS_OBJECT*)0x38C214C)->basicdxmodel->meshsets[6].nbMesh = 0;
-	OPanelPanel = LoadModel("system\\data\\STG03\\Models\\000EFF38.sa1mdl", false); //OPanel (transparent)
-	OPanelPanel->basicdxmodel->meshsets[0].nbMesh = 0;
-	OPanelPanel->basicdxmodel->meshsets[2].nbMesh = 0;
-	OPanelPanel->basicdxmodel->meshsets[3].nbMesh = 0;
-	OPanelPanel->basicdxmodel->meshsets[5].nbMesh = 0;
-	AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x38C214C)->basicdxmodel->mats[2]);
-	AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x38C214C)->basicdxmodel->mats[3]);
-	WriteCall((void*)0x79DB94, RenderOPanel_Main);
-	WriteCall((void*)0x79DBA4, RenderOPanel_Transparent);
-	//OPole fix
-	*(NJS_OBJECT*)0x38C28A8 = *LoadModel("system\\data\\STG03\\Models\\000F066C.sa1mdl", false); //OPole model (opaque)
-	AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x38C28A8)->basicdxmodel->mats[3]);
-	((NJS_OBJECT*)0x38C28A8)->basicdxmodel->meshsets[1].nbMesh = 0;
-	((NJS_OBJECT*)0x38C28A8)->basicdxmodel->meshsets[2].nbMesh = 0;
-	((NJS_OBJECT*)0x38C28A8)->basicdxmodel->meshsets[4].nbMesh = 0;
-	OPolePole = LoadModel("system\\data\\STG03\\Models\\000F066C.sa1mdl", false); //OPole model (transparent)
-	OPolePole->basicdxmodel->meshsets[0].nbMesh = 0;
-	OPolePole->basicdxmodel->meshsets[3].nbMesh = 0;
-	OPolePole->evalflags |= NJD_EVAL_BREAK;
-	OPolePole->child = NULL;
-	WriteCall((void*)0x79CD61, OPoleFix);
-	WriteCall((void*)0x621FE5, RenderCatapult); //Catapult fix
-	//Fog and draw distance
-	for (int i = 0; i < 3; i++)
-	{
-		TwinklePark1Fog[i].Layer = 1500.0f;
-		TwinklePark2Fog[i].Layer = -1400.0f;
-		TwinklePark2Fog[i].Distance = -3200.0f;
-		TwinklePark2Fog[i].Color = 0xFF100030;
-		TwinklePark3Fog[i].Layer = -800.0f;
-		TwinklePark3Fog[i].Distance = -2200.0f;
-		TwinklePark3Fog[i].Color = 0xFF100030;
-		TwinklePark4Fog[i].Color = 0xFF000000;
-		TwinklePark4Fog[i].Layer = 1.0f;
-		TwinklePark4Fog[i].Distance = 1200.0f;
-		TwinklePark4Fog[i].Toggle = 1;
-	}
-	//Lantern stuff
-	if (DLLLoaded_Lantern)
-	{
-		material_register_ptr(WhiteDiffuse_Twinkle, LengthOfArray(WhiteDiffuse_Twinkle), &ForceWhiteDiffuse);
+		WriteCall((void*)0x061F684, FlowerBedFix);
+		ReplaceBIN_DC("CAM0300S");
+		ReplaceBIN_DC("CAM0301A");
+		ReplaceBIN_DC("CAM0301B");
+		ReplaceBIN_DC("CAM0301S");
+		ReplaceBIN_DC("CAM0302A");
+		ReplaceBIN_DC("CAM0302S");
+		if (!Use1999SetFiles)
+		{
+			ReplaceBIN_DC("SET0300S");
+			ReplaceBIN_DC("SET0301A");
+			ReplaceBIN_DC("SET0301B");
+			ReplaceBIN_DC("SET0301S");
+			ReplaceBIN_DC("SET0302A");
+			ReplaceBIN_DC("SET0302S");
+		}
+		else
+		{
+			ReplaceBIN_1999("SET0300S");
+			ReplaceBIN_1999("SET0301A");
+			ReplaceBIN_1999("SET0301B");
+			ReplaceBIN_1999("SET0301S");
+			ReplaceBIN_1999("SET0302A");
+			ReplaceBIN_1999("SET0302S");
+		}
+		ReplacePVM("BG_SHAREOBJ");
+		ReplacePVM("OBJ_SHAREOBJ");
+		ReplacePVM("OBJ_TWINKLE");
+		ReplacePVM("TWINKLE01");
+		ReplacePVM("TWINKLE02");
+		ReplacePVM("TWINKLE03");
+		WriteCall((void*)0x621222, DrawObjectFromObjectMaster); //Fix merry-go-round floor shadow flickering
+		//ArchLight fixes
+		*(NJS_OBJECT*)0x38BFA74 = *LoadModel("system\\data\\STG03\\Models\\000ED90C.sa1mdl", false); //Arch
+		*(NJS_OBJECT*)0x38C02C4 = *LoadModel("system\\data\\STG03\\Models\\000EE138.sa1mdl", false); //Arch supporter
+		((NJS_OBJECT*)0x38C02C4)->basicdxmodel->meshsets[2].nbMesh = 0; //Disable transparent parts
+		ArchLightLight = LoadModel("system\\data\\STG03\\Models\\000EE138.sa1mdl", false); //Arch supporter (transparent)
+		ArchLightLight->evalflags |= NJD_EVAL_BREAK;
+		ArchLightLight->child = NULL;
+		ArchLightLight->basicdxmodel->meshsets[0].nbMesh = 0; //Disable opaque parts
+		ArchLightLight->basicdxmodel->meshsets[1].nbMesh = 0; //Disable opaque parts
+		ArchLightLight->basicdxmodel->meshsets[3].nbMesh = 0; //Disable opaque parts
+		WriteCall((void*)0x0079C5FD, FixArchLight);
+		WriteCall((void*)0x0079C36A, FixShittyLightObjects_Pause);
+		//Cart fixes
+		RemoveVertexColors_Object((NJS_OBJECT*)0x038B8780); //Cart enemy
+		LoadModel_ReplaceMeshes((NJS_OBJECT*)0x038BAAA4, "system\\data\\STG03\\Models\\000EAB28.sa1mdl");
+		((NJS_OBJECT*)0x038BAAA4)->child->basicdxmodel->meshsets[1].nbMesh = 0;
+		CartGlass.basicdxmodel = LoadModel("system\\data\\STG03\\Models\\000EAB28.sa1mdl", false)->child->basicdxmodel;
+		CartGlass.basicdxmodel->meshsets[0].nbMesh = 0;
+		CartGlass.basicdxmodel->meshsets[2].nbMesh = 0;
+		CartGlass.basicdxmodel->meshsets[3].nbMesh = 0;
+		CartGlass.basicdxmodel->meshsets[4].nbMesh = 0;
+		WriteCall((void*)0x00796F0C, CartFunction);
+		RemoveVertexColors_Object((NJS_OBJECT*)0x038BAAA4); //Cart 1 (Sonic)
+		RemoveVertexColors_Object((NJS_OBJECT*)0x038BAA70); //Cart 2
+		RemoveVertexColors_Object((NJS_OBJECT*)0x038AB250); //Cart 3
+		RemoveVertexColors_Object((NJS_OBJECT*)0x038A9130); //Cart 4
+		//Amy's barrel fix
+		NJS_OBJECT** ___AMY_OBJECTS = (NJS_OBJECT * *)GetProcAddress(GetModuleHandle(L"CHRMODELS_orig"), "___AMY_OBJECTS");
+		___AMY_OBJECTS[1]->child->child->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		___AMY_OBJECTS[1]->child->child->basicdxmodel->mats[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_OBJECT*)0x008BF3A0)->basicdxmodel->mats[0].attrflags |= NJD_FLAG_IGNORE_LIGHT; //shadow blob
+		ResizeTextureList((NJS_TEXLIST*)0x26B9960, textures_twinkle1);
+		ResizeTextureList((NJS_TEXLIST*)0x2721A8C, textures_twinkle2);
+		ResizeTextureList((NJS_TEXLIST*)0x26FEA54, textures_twinkle3);
+		//OLight1 fixes
+		*(NJS_OBJECT*)0x38C3A9C = *LoadModel("system\\data\\STG03\\Models\\000F1228.sa1mdl", true); //OLight1
+		((NJS_OBJECT*)0x38C3A9C)->basicdxmodel->meshsets[7].nbMesh = 0; //Disable transparent part
+		((NJS_OBJECT*)0x38C3A9C)->basicdxmodel->mats[7].attrflags &= ~NJD_FLAG_USE_ALPHA; //Disable transparent part
+		((NJS_OBJECT*)0x38C3A9C)->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_IGNORE_SPECULAR;
+		((NJS_OBJECT*)0x38C3A9C)->basicdxmodel->mats[1].attrflags &= ~NJD_FLAG_IGNORE_SPECULAR;
+		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x38C3A9C)->basicdxmodel->mats[0]);
+		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x38C3A9C)->basicdxmodel->mats[1]);
+		*(NJS_OBJECT*)0x38C3A68 = *LoadModel("system\\data\\STG03\\Models\\000F1228.sa1mdl", false); //OLight1 (transparent)
+		((NJS_OBJECT*)0x38C3A68)->basicdxmodel->meshsets[1].nbMesh = 0; //Disable opaque part
+		((NJS_OBJECT*)0x38C3A68)->basicdxmodel->meshsets[2].nbMesh = 0; //Disable opaque part
+		((NJS_OBJECT*)0x38C3A68)->basicdxmodel->meshsets[3].nbMesh = 0; //Disable opaque part
+		((NJS_OBJECT*)0x38C3A68)->basicdxmodel->meshsets[4].nbMesh = 0; //Disable opaque part
+		((NJS_OBJECT*)0x38C3A68)->basicdxmodel->meshsets[5].nbMesh = 0; //Disable opaque part
+		((NJS_OBJECT*)0x38C3A68)->basicdxmodel->meshsets[6].nbMesh = 0; //Disable opaque part
+		((NJS_OBJECT*)0x38C3A68)->basicdxmodel->meshsets[7].nbMesh = 0; //Disable opaque part
+		((NJS_OBJECT*)0x38C3A9C)->sibling = (NJS_OBJECT*)0x38C3A68; //Make transparent part sibling
+		//ORocket fixes
+		WriteCall((void*)0x79BEBA, ORocketFix1);
+		WriteCall((void*)0x79BEF8, ORocketFix1);
+		WriteCall((void*)0x79BF5D, ORocketFix1);
+		WriteCall((void*)0x79BF97, ORocketFix1);
+		//Pirate ship fixes
+		*(NJS_OBJECT*)0x27AC44C = *LoadModel("system\\data\\STG03\\Models\\000AB6DC.sa1mdl", false); //Pirate ship
+		PirateShipStars = LoadModel("system\\data\\STG03\\Models\\000AB6DC.sa1mdl", false); //Pirate ship stars mesh
+		PirateShipStars->child = NULL;
+		PirateShipStars->evalflags |= NJD_EVAL_BREAK;
+		PirateShipStars->basicdxmodel->meshsets[0].nbMesh = 0;
+		PirateShipStars->basicdxmodel->meshsets[1].nbMesh = 0;
+		PirateShipStars->basicdxmodel->meshsets[2].nbMesh = 0;
+		PirateShipStars->basicdxmodel->meshsets[3].nbMesh = 0;
+		PirateShipStars->basicdxmodel->meshsets[4].nbMesh = 0;
+		PirateShipStars->basicdxmodel->meshsets[6].nbMesh = 0;
+		PirateShipStars->basicdxmodel->meshsets[7].nbMesh = 0;
+		((NJS_OBJECT*)0x27AC44C)->basicdxmodel->meshsets[5].nbMesh = 0;
+		WriteJump((void*)0x620BC0, DrawPirateShipShit);
+		//Models
+		*(NJS_OBJECT*)0x27A3358 = *LoadModel("system\\data\\STG03\\Models\\000A6584.sa1mdl", false); //Fence (merged meshes 0+1 and made it trimesh instead of MESHSET_N)
+		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x27A3358)->basicdxmodel->mats[1]);
+		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x27A3358)->basicdxmodel->mats[2]);
+		*(NJS_OBJECT*)0x27B0708 = *LoadModel("system\\data\\STG03\\Models\\000AEC6C.sa1mdl", false); //Merry-go-round floor
+		*(NJS_OBJECT*)0x27AF5EC = *LoadModel("system\\data\\STG03\\Models\\000ADBE0.sa1mdl", false); //Double door
+		*(NJS_OBJECT*)0x27C17CC = *LoadModel("system\\data\\STG03\\Models\\000BB2B4.sa1mdl", false); //OShutter
+		*(NJS_OBJECT*)0x27A3F5C = *LoadModel("system\\data\\STG03\\Models\\000A6CD8.sa1mdl", false); //OFlyer
+		*(NJS_OBJECT*)0x27AFCF0 = *LoadModel("system\\data\\STG03\\Models\\000AE2BC.sa1mdl", false); //Crown
+		*(NJS_OBJECT*)0x38B119C = *LoadModel("system\\data\\STG03\\Models\\000DF3F0.sa1mdl", false); //Ship
+		*(NJS_OBJECT*)0x38BE5F4 = *LoadModel("system\\data\\STG03\\Models\\000EC4E0.sa1mdl", false); //Dash pad
+		*(NJS_OBJECT*)0x38C07CC = *LoadModel("system\\data\\STG03\\Models\\000EE618.sa1mdl", false); //Jump pad
+		*(NJS_OBJECT*)0x38C5B3C = *LoadModel("system\\data\\STG03\\Models\\000F3170.sa1mdl", false); //OCartStopper
+		*(NJS_OBJECT*)0x38BE2B4 = *LoadModel("system\\data\\STG03\\Models\\000EC1B4.sa1mdl", false); //OPlanet with rings
+		*(NJS_OBJECT*)0x27AE4F4 = *LoadModel("system\\data\\STG03\\Models\\000AD08C.sa1mdl", false); //Merry-go-round (swapped materials/meshsets 0 and 2 for compatibility with DX animation code)
+		*(NJS_OBJECT*)0x27BEA34 = *LoadModel("system\\data\\STG03\\Models\\000B95A0.sa1mdl", false); //Horsies
+		*(NJS_OBJECT*)0x27AD86C = *LoadModel("system\\data\\STG03\\Models\\000AC45C.sa1mdl", false); //Bowling door
+		*(NJS_OBJECT*)0x27A67B4 = *LoadModel("system\\data\\STG03\\Models\\000A8D60.sa1mdl", false); //OBowWindow
+		*(NJS_OBJECT*)0x27B23E4 = *LoadModel("system\\data\\STG03\\Models\\000B0818.sa1mdl", false); //Trap door
+		*(NJS_OBJECT*)0x27A0454 = *LoadModel("system\\data\\STG03\\Models\\000A3CCC.sa1mdl", false); //Bowling catapult
+		((NJS_OBJECT*)0x27A0454)->basicdxmodel->meshsets[0].nbMesh = 0; //Disable transparent floor
+		OCatapultFloor = LoadModel("system\\data\\STG03\\Models\\000A3CCC.sa1mdl", false); //Bowling catapult (floor)
+		OCatapultFloor->basicdxmodel->meshsets[1].nbMesh = 0;
+		OCatapultFloor->basicdxmodel->meshsets[2].nbMesh = 0;
+		OCatapultFloor->basicdxmodel->meshsets[3].nbMesh = 0;
+		OCatapultFloor->evalflags |= NJD_EVAL_BREAK;
+		OCatapultFloor->child = NULL;
+		*(NJS_OBJECT*)0x27B5884 = *LoadModel("system\\data\\STG03\\Models\\000B2A40.sa1mdl", false); //O Foothold
+		*(NJS_OBJECT*)0x279D364 = *LoadModel("system\\data\\STG03\\Models\\000A0E58.sa1mdl", true); //Barrel
+		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x279D364)->basicdxmodel->mats[1]);
+		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x279D364)->basicdxmodel->mats[2]);
+		*(NJS_OBJECT*)0x27B6170 = *LoadModel("system\\data\\STG03\\Models\\000B34C8.sa1mdl", false); //Yellow flower pot (wall)
+		*(NJS_OBJECT*)0x27B80C4 = *LoadModel("system\\data\\STG03\\Models\\000B4F1C.sa1mdl", false); //Yellow flower pot
+		*(NJS_OBJECT*)0x27BAC54 = *LoadModel("system\\data\\STG03\\Models\\000B6CF8.sa1mdl", false); //Yellow flower bed
+		*(NJS_OBJECT*)0x27B6A58 = *LoadModel("system\\data\\STG03\\Models\\000B3F50.sa1mdl", false); //Pink flower pot (wall)
+		*(NJS_OBJECT*)0x27B972C = *LoadModel("system\\data\\STG03\\Models\\000B5EE8.sa1mdl", false); //Pink flower pot
+		*(NJS_OBJECT*)0x27BC1C4 = *LoadModel("system\\data\\STG03\\Models\\000B7B08.sa1mdl", false); //Pink flower bed
+		*(NJS_OBJECT*)0x27BF9DC = *LoadModel("system\\data\\STG03\\Models\\000B9E98.sa1mdl", false); //Spinning roof
+		*(NJS_OBJECT*)0x27BCD7C = *LoadModel("system\\data\\STG03\\Models\\000B812C.sa1mdl", false); //Lilypad
+		*(NJS_OBJECT*)0x27C05FC = *LoadModel("system\\data\\STG03\\Models\\000BA81C.sa1mdl", false); //Monitor in Act 1 (meshes 4 and 5 swapped for UV code compatibility)
+		*(NJS_OBJECT*)0x27B3DB8 = *LoadModel("system\\data\\STG03\\Models\\000B13A8.sa1mdl", false); //Bowling pin
+		*(NJS_OBJECT*)0x38E50C4 = *LoadModel("system\\data\\STG03\\Models\\000C6264.sa1mdl", false); //Buyon feet
+		*(NJS_OBJECT*)0x38E3584 = *LoadModel("system\\data\\STG03\\Models\\000C47C8.sa1mdl", false); //Buyon head
+		*(NJS_OBJECT*)0x38E3B2C = *LoadModel("system\\data\\STG03\\Models\\000C4D60.sa1mdl", false); //Buyon body
+		*(NJS_OBJECT*)0x27A247C = *LoadModel("system\\data\\STG03\\Models\\000A56D0.sa1mdl", false); //Rollercoaster
+		((NJS_ACTION*)0x27C295C)->object = LoadModel("system\\data\\STG03\\Models\\000A7A7C.sa1mdl", false); //Flag 1
+		((NJS_ACTION*)0x27C26B4)->object = LoadModel("system\\data\\STG03\\Models\\000A7640.sa1mdl", false); //Flag 2
+		((NJS_ACTION*)0x27C2EA4)->object = LoadModel("system\\data\\STG03\\Models\\000A89E4.sa1mdl", false); //OFlagWLamp
+		*(NJS_OBJECT*)0x27A0560 = *LoadModel("system\\data\\STG03\\Models\\000A3DD0.sa1mdl", false); //OFlagWLamp light
+		AddAlphaRejectMaterial(&((NJS_OBJECT*)0x27A0560)->basicdxmodel->mats[0]);
+		*(NJS_OBJECT*)0x27B49AC = *LoadModel("system\\data\\STG03\\Models\\000B1DEC.sa1mdl", false); //OLamp
+		AddAlphaRejectMaterial(&((NJS_OBJECT*)0x27B49AC)->child->basicdxmodel->mats[0]);
+		AddAlphaRejectMaterial(&((NJS_OBJECT*)0x27B49AC)->child->sibling->basicdxmodel->mats[0]);
+		//OPanel fix
+		*(NJS_OBJECT*)0x38C214C = *LoadModel("system\\data\\STG03\\Models\\000EFF38.sa1mdl", false); //OPanel (opaque)
+		((NJS_OBJECT*)0x38C214C)->basicdxmodel->meshsets[1].nbMesh = 0;
+		((NJS_OBJECT*)0x38C214C)->basicdxmodel->meshsets[4].nbMesh = 0;
+		((NJS_OBJECT*)0x38C214C)->basicdxmodel->meshsets[6].nbMesh = 0;
+		OPanelPanel = LoadModel("system\\data\\STG03\\Models\\000EFF38.sa1mdl", false); //OPanel (transparent)
+		OPanelPanel->basicdxmodel->meshsets[0].nbMesh = 0;
+		OPanelPanel->basicdxmodel->meshsets[2].nbMesh = 0;
+		OPanelPanel->basicdxmodel->meshsets[3].nbMesh = 0;
+		OPanelPanel->basicdxmodel->meshsets[5].nbMesh = 0;
+		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x38C214C)->basicdxmodel->mats[2]);
+		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x38C214C)->basicdxmodel->mats[3]);
+		WriteCall((void*)0x79DB94, RenderOPanel_Main);
+		WriteCall((void*)0x79DBA4, RenderOPanel_Transparent);
+		//OPole fix
+		*(NJS_OBJECT*)0x38C28A8 = *LoadModel("system\\data\\STG03\\Models\\000F066C.sa1mdl", false); //OPole model (opaque)
+		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x38C28A8)->basicdxmodel->mats[3]);
+		((NJS_OBJECT*)0x38C28A8)->basicdxmodel->meshsets[1].nbMesh = 0;
+		((NJS_OBJECT*)0x38C28A8)->basicdxmodel->meshsets[2].nbMesh = 0;
+		((NJS_OBJECT*)0x38C28A8)->basicdxmodel->meshsets[4].nbMesh = 0;
+		OPolePole = LoadModel("system\\data\\STG03\\Models\\000F066C.sa1mdl", false); //OPole model (transparent)
+		OPolePole->basicdxmodel->meshsets[0].nbMesh = 0;
+		OPolePole->basicdxmodel->meshsets[3].nbMesh = 0;
+		OPolePole->evalflags |= NJD_EVAL_BREAK;
+		OPolePole->child = NULL;
+		WriteCall((void*)0x79CD61, OPoleFix);
+		WriteCall((void*)0x621FE5, RenderCatapult); //Catapult fix
+		//Fog and draw distance
+		for (int i = 0; i < 3; i++)
+		{
+			TwinklePark1Fog[i].Layer = 1500.0f;
+			TwinklePark2Fog[i].Layer = -1400.0f;
+			TwinklePark2Fog[i].Distance = -3200.0f;
+			TwinklePark2Fog[i].Color = 0xFF100030;
+			TwinklePark3Fog[i].Layer = -800.0f;
+			TwinklePark3Fog[i].Distance = -2200.0f;
+			TwinklePark3Fog[i].Color = 0xFF100030;
+			TwinklePark4Fog[i].Color = 0xFF000000;
+			TwinklePark4Fog[i].Layer = 1.0f;
+			TwinklePark4Fog[i].Distance = 1200.0f;
+			TwinklePark4Fog[i].Toggle = 1;
+		}
+		//Lantern stuff
+		if (DLLLoaded_Lantern)
+		{
+			material_register_ptr(WhiteDiffuse_Twinkle, LengthOfArray(WhiteDiffuse_Twinkle), &ForceWhiteDiffuse);
+		}
 	}
 }
 
@@ -685,9 +684,12 @@ void TwinklePark_OnFrame()
 	{
 		if (!IsGamePaused()) PoleUVIncrease += 16;
 		if (PoleUVIncrease >= 255) PoleUVIncrease -= 255;
-		for (int i = 0; i < 12; i++)
+		if (OPolePole)
 		{
-			OPolePole->basicdxmodel->meshsets[1].vertuv[i].v = PoleUVs[i].v + PoleUVIncrease;
+			for (int i = 0; i < 12; i++)
+			{
+				OPolePole->basicdxmodel->meshsets[1].vertuv[i].v = PoleUVs[i].v + PoleUVIncrease;
+			}
 		}
 	}
 }

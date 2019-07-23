@@ -140,25 +140,6 @@ void UnloadLevelFiles_B_CHAOS7()
 	B_CHAOS7_Info = nullptr;
 }
 
-void LoadLevelFiles_B_CHAOS7()
-{
-	CheckAndUnloadLevelFiles();
-	B_CHAOS7_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\B_CHAOS7\\0.sa1lvl"));
-	LandTable *B_CHAOS7 = B_CHAOS7_Info->getlandtable(); //&landtable_00001214;
-	RemoveMaterialColors_Landtable(B_CHAOS7);
-	for (int j = 0; j < B_CHAOS7->COLCount; j++)
-	{
-		if (B_CHAOS7->Col[j].Flags & 0x8000000)
-		{
-			if (Chaos7UnderwaterPieces[0] == nullptr) Chaos7UnderwaterPieces[0] = B_CHAOS7->Col[j].Model;
-			else if (Chaos7UnderwaterPieces[1] == nullptr) Chaos7UnderwaterPieces[1] = B_CHAOS7->Col[j].Model;
-			else if (Chaos7UnderwaterPieces[2] == nullptr) Chaos7UnderwaterPieces[2] = B_CHAOS7->Col[j].Model;
-		}
-	}
-	B_CHAOS7->TexList = &texlist_chaos7;
-	LandTableArray[32] = B_CHAOS7;
-}
-
 void Chaos7WaterHook(NJS_OBJECT *object)
 {
 	sub_408530(object); //Skybox
@@ -200,123 +181,142 @@ void PerfectChaosBreathFix2(NJS_OBJECT *a1, float scale)
 
 void PerfectChaos_Init()
 {
-	if (!Use1999SetFiles)
+	CheckAndUnloadLevelFiles();
+	B_CHAOS7_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\B_CHAOS7\\0.sa1lvl"));
+	LandTable* B_CHAOS7 = B_CHAOS7_Info->getlandtable(); //&landtable_00001214;
+	RemoveMaterialColors_Landtable(B_CHAOS7);
+	for (int j = 0; j < B_CHAOS7->COLCount; j++)
 	{
-		ReplaceBIN_DC("SET1900S");
-		ReplaceBIN_DC("CAM1900S");
+		if (B_CHAOS7->Col[j].Flags & 0x8000000)
+		{
+			if (Chaos7UnderwaterPieces[0] == nullptr) Chaos7UnderwaterPieces[0] = B_CHAOS7->Col[j].Model;
+			else if (Chaos7UnderwaterPieces[1] == nullptr) Chaos7UnderwaterPieces[1] = B_CHAOS7->Col[j].Model;
+			else if (Chaos7UnderwaterPieces[2] == nullptr) Chaos7UnderwaterPieces[2] = B_CHAOS7->Col[j].Model;
+		}
 	}
-	else
+	B_CHAOS7->TexList = &texlist_chaos7;
+	LandTableArray[32] = B_CHAOS7;
+	if (!ModelsLoaded_B_CHAOS7)
 	{
-		ReplaceBIN_1999("SET1900S");
-		ReplaceBIN_1999("CAM1900S");
-	}
-	ReplacePVM("CHAOS7_0");
-	ReplacePVM("CHAOS7_0BREATH");
-	ReplacePVM("CHAOS7_0BREATH2ND");
-	ReplacePVM("CHAOS7_0DAMAGE");
-	ReplacePVM("CHAOS7_0DEAD_PTCHG");
-	ReplacePVM("CHAOS7_0SURFACE");
-	ReplacePVM("CHAOS7_0WATEREXP");
-	ReplacePVM("CHAOS7_0WEXP_PTCHG");
-	ReplacePVM("LM_CHAOS7_0");
-	ReplacePVM("OBJ_CHAOS7");
-	ResizeTextureList((NJS_TEXLIST*)0x1494FBC, textures_chaos7);
-	RemoveVertexColors_Object((NJS_OBJECT*)0x139757C); //Main model
-	RemoveVertexColors_Object((NJS_OBJECT*)0x13A27F0); //Sinking/rising
-	WriteCall((void*)0x56463B, PerfectChaosWaterfallHook);
-	//Tornado around Perfect Chaos
-	WriteCall((void*)0x562303, TornadoFunc); //Perfect Chaos tornado fade-in
-	//Tornado attack fix
-	WriteCall((void*)0x566673, Chaos7TornadoAttackHook);
-	TornadoAttack1 = LoadModel("system\\data\\B_CHAOS7\\Models\\000E16E8.sa1mdl", false); //Tornado attack
-	TornadoAttack2 = LoadModel("system\\data\\B_CHAOS7\\Models\\000E16E8.sa1mdl", false); //Tornado attack
-	TornadoAttack3 = LoadModel("system\\data\\B_CHAOS7\\Models\\000E16E8.sa1mdl", false); //Tornado attack
-	//1 is just the middle layer
-	TornadoAttack1->basicdxmodel->meshsets[0].nbMesh = 0;
-	TornadoAttack1->child->basicdxmodel->meshsets[0].nbMesh = 0;
-	TornadoAttack1->child->basicdxmodel->meshsets[1].nbMesh = 0;
-	TornadoAttack1->child->sibling->sibling->basicdxmodel->meshsets[0].nbMesh = 0;
-	//2 is just the top layer
-	TornadoAttack2->basicdxmodel->meshsets[0].nbMesh = 0;
-	TornadoAttack2->child->sibling->basicdxmodel->meshsets[0].nbMesh = 0;
-	TornadoAttack2->child->sibling->basicdxmodel->meshsets[1].nbMesh = 0;
-	TornadoAttack2->child->sibling->sibling->basicdxmodel->meshsets[0].nbMesh = 0;
-	//3 is just the front layer
-	TornadoAttack3->basicdxmodel->meshsets[0].nbMesh = 0;
-	TornadoAttack3->child->basicdxmodel->meshsets[0].nbMesh = 0;
-	TornadoAttack3->child->basicdxmodel->meshsets[1].nbMesh = 0;
-	TornadoAttack3->child->sibling->basicdxmodel->meshsets[0].nbMesh = 0;
-	TornadoAttack3->child->sibling->basicdxmodel->meshsets[1].nbMesh = 0;
-	//Perfect Chaos breath fix
-	WriteData((float*)0x566A03, 1.0f);
-	WriteCall((void*)0x5660BE, PerfectChaosBreathFix2);
-	//Egg Carrier 2 crash in Perfect Chaos cutscene
-	WriteData((float*)0x65D8D1, 837.418f); //X1
-	WriteData((float*)0x65D8CC, 412.38f); //Y1
-	WriteData((float*)0x65D8C7, -406.796f); //Z1
-	WriteData((int*)0x65D8E3, 65238); //XA1
-	WriteData((int*)0x65D8DE, 29421); //YA1
-	WriteData((float*)0x65D8FC, 1148.37f); //X2
-	WriteData((float*)0x65D8F7, 423.5f); //Y2
-	WriteData((float*)0x65D8F2, -325.65f); //Z2
-	WriteData((int*)0x65D912, 64083); //XA2
-	WriteData((int*)0x65D90D, 28705); //YA2
-	//Perfect Chaos damage functions
-	WriteJump((void*)0x5632F0, Chaos7Explosion_DisplayX);
-	WriteJump((void*)0x5633C0, Chaos7Damage_DisplayX);
-	//Perfect Chaos misc
-	WriteCall((void*)0x55DC0C, Chaos7WaterHook);
-	((NJS_OBJECT*)0x248B1B4)->basicdxmodel->mats[2].attrflags &= ~NJD_FLAG_IGNORE_SPECULAR; //Egg Carrier 2
-	//Objects
-	*(NJS_OBJECT*)0x142C740 = *LoadModel("system\\data\\B_CHAOS7\\Models\\0006B410.sa1mdl", false); //ORoad0
-	*(NJS_OBJECT*)0x1455C0C = *LoadModel("system\\data\\B_CHAOS7\\Models\\000938C4.sa1mdl", false); //ORoad1
-	*(NJS_OBJECT*)0x1458A58 = *LoadModel("system\\data\\B_CHAOS7\\Models\\00095598.sa1mdl", false); //ORoad2
-	*(NJS_OBJECT*)0x145B4AC = *LoadModel("system\\data\\B_CHAOS7\\Models\\00096FC8.sa1mdl", false); //ORoad3
-	*(NJS_OBJECT*)0x145D000 = *LoadModel("system\\data\\B_CHAOS7\\Models\\000981B8.sa1mdl", false); //ORoad4
-	//Remove material colors in cars and other objects
-	RemoveVertexColors_Object((NJS_OBJECT*)0x142F08C);
-	RemoveVertexColors_Object((NJS_OBJECT*)0x14319AC);
-	RemoveVertexColors_Object((NJS_OBJECT*)0x14342F4);
-	RemoveVertexColors_Object((NJS_OBJECT*)0x1447898);
-	RemoveVertexColors_Object((NJS_OBJECT*)0x144A28C);
-	RemoveVertexColors_Object((NJS_OBJECT*)0x144DEF0);
-	RemoveVertexColors_Object((NJS_OBJECT*)0x143A4FC);
-	RemoveVertexColors_Object((NJS_OBJECT*)0x143463C);
-	RemoveVertexColors_Object((NJS_OBJECT*)0x1434A3C);
-	RemoveVertexColors_Object((NJS_OBJECT*)0x1435478);
-	RemoveVertexColors_Object((NJS_OBJECT*)0x1436BEC);
-	RemoveVertexColors_Object((NJS_OBJECT*)0x14386F4);
-	RemoveVertexColors_Object((NJS_OBJECT*)0x143A844);
-	RemoveVertexColors_Object((NJS_OBJECT*)0x143AC44);
-	RemoveVertexColors_Object((NJS_OBJECT*)0x143B680);
-	RemoveVertexColors_Object((NJS_OBJECT*)0x143CDF4);
-	RemoveVertexColors_Object((NJS_OBJECT*)0x143E8FC);
-	RemoveVertexColors_Object((NJS_OBJECT*)0x1440704);
-	RemoveVertexColors_Object((NJS_OBJECT*)0x1440A4C);
-	RemoveVertexColors_Object((NJS_OBJECT*)0x1440E4C);
-	RemoveVertexColors_Object((NJS_OBJECT*)0x1441888);
-	RemoveVertexColors_Object((NJS_OBJECT*)0x1443034);
-	RemoveVertexColors_Object((NJS_OBJECT*)0x1444B3C);
-	RemoveVertexColors_Object((NJS_OBJECT*)0x1446944);
-	RemoveVertexColors_Object((NJS_OBJECT*)0x1447A7C);
-	RemoveVertexColors_Object((NJS_OBJECT*)0x1447D3C);
-	RemoveVertexColors_Object((NJS_OBJECT*)0x14483C0);
-	RemoveVertexColors_Object((NJS_OBJECT*)0x14488BC);
-	RemoveVertexColors_Object((NJS_OBJECT*)0x1448B14);
-	RemoveVertexColors_Object((NJS_OBJECT*)0x1448C7C);
-	RemoveVertexColors_Object((NJS_OBJECT*)0x144AB4C);
-	RemoveVertexColors_Object((NJS_OBJECT*)0x144B174);
-	RemoveVertexColors_Object((NJS_OBJECT*)0x144C1CC);
-	RemoveVertexColors_Object((NJS_OBJECT*)0x144CFE4);
-	RemoveVertexColors_Object((NJS_OBJECT*)0x144D208);
-	RemoveVertexColors_Object((NJS_OBJECT*)0x144D340);
-	for (int i = 0; i < 3; i++)
-	{
-		Chaos7Fog[i].Layer = -6000.0f;
-		Chaos7Fog[i].Distance = -15000.0f;
-		Chaos7Fog[i].Toggle = 1;
-		Chaos7Fog[i].Color = 0xFF19CED3;
-		DrawDist_Chaos7[i].Maximum = -6500.0;
+		if (!Use1999SetFiles)
+		{
+			ReplaceBIN_DC("SET1900S");
+			ReplaceBIN_DC("CAM1900S");
+		}
+		else
+		{
+			ReplaceBIN_1999("SET1900S");
+			ReplaceBIN_1999("CAM1900S");
+		}
+		ReplacePVM("CHAOS7_0");
+		ReplacePVM("CHAOS7_0BREATH");
+		ReplacePVM("CHAOS7_0BREATH2ND");
+		ReplacePVM("CHAOS7_0DAMAGE");
+		ReplacePVM("CHAOS7_0DEAD_PTCHG");
+		ReplacePVM("CHAOS7_0SURFACE");
+		ReplacePVM("CHAOS7_0WATEREXP");
+		ReplacePVM("CHAOS7_0WEXP_PTCHG");
+		ReplacePVM("LM_CHAOS7_0");
+		ReplacePVM("OBJ_CHAOS7");
+		ResizeTextureList((NJS_TEXLIST*)0x1494FBC, textures_chaos7);
+		RemoveVertexColors_Object((NJS_OBJECT*)0x139757C); //Main model
+		RemoveVertexColors_Object((NJS_OBJECT*)0x13A27F0); //Sinking/rising
+		WriteCall((void*)0x56463B, PerfectChaosWaterfallHook);
+		//Tornado around Perfect Chaos
+		WriteCall((void*)0x562303, TornadoFunc); //Perfect Chaos tornado fade-in
+		//Tornado attack fix
+		WriteCall((void*)0x566673, Chaos7TornadoAttackHook);
+		TornadoAttack1 = LoadModel("system\\data\\B_CHAOS7\\Models\\000E16E8.sa1mdl", false); //Tornado attack
+		TornadoAttack2 = LoadModel("system\\data\\B_CHAOS7\\Models\\000E16E8.sa1mdl", false); //Tornado attack
+		TornadoAttack3 = LoadModel("system\\data\\B_CHAOS7\\Models\\000E16E8.sa1mdl", false); //Tornado attack
+		//1 is just the middle layer
+		TornadoAttack1->basicdxmodel->meshsets[0].nbMesh = 0;
+		TornadoAttack1->child->basicdxmodel->meshsets[0].nbMesh = 0;
+		TornadoAttack1->child->basicdxmodel->meshsets[1].nbMesh = 0;
+		TornadoAttack1->child->sibling->sibling->basicdxmodel->meshsets[0].nbMesh = 0;
+		//2 is just the top layer
+		TornadoAttack2->basicdxmodel->meshsets[0].nbMesh = 0;
+		TornadoAttack2->child->sibling->basicdxmodel->meshsets[0].nbMesh = 0;
+		TornadoAttack2->child->sibling->basicdxmodel->meshsets[1].nbMesh = 0;
+		TornadoAttack2->child->sibling->sibling->basicdxmodel->meshsets[0].nbMesh = 0;
+		//3 is just the front layer
+		TornadoAttack3->basicdxmodel->meshsets[0].nbMesh = 0;
+		TornadoAttack3->child->basicdxmodel->meshsets[0].nbMesh = 0;
+		TornadoAttack3->child->basicdxmodel->meshsets[1].nbMesh = 0;
+		TornadoAttack3->child->sibling->basicdxmodel->meshsets[0].nbMesh = 0;
+		TornadoAttack3->child->sibling->basicdxmodel->meshsets[1].nbMesh = 0;
+		//Perfect Chaos breath fix
+		WriteData((float*)0x566A03, 1.0f);
+		WriteCall((void*)0x5660BE, PerfectChaosBreathFix2);
+		//Egg Carrier 2 crash in Perfect Chaos cutscene
+		WriteData((float*)0x65D8D1, 837.418f); //X1
+		WriteData((float*)0x65D8CC, 412.38f); //Y1
+		WriteData((float*)0x65D8C7, -406.796f); //Z1
+		WriteData((int*)0x65D8E3, 65238); //XA1
+		WriteData((int*)0x65D8DE, 29421); //YA1
+		WriteData((float*)0x65D8FC, 1148.37f); //X2
+		WriteData((float*)0x65D8F7, 423.5f); //Y2
+		WriteData((float*)0x65D8F2, -325.65f); //Z2
+		WriteData((int*)0x65D912, 64083); //XA2
+		WriteData((int*)0x65D90D, 28705); //YA2
+		//Perfect Chaos damage functions
+		WriteJump((void*)0x5632F0, Chaos7Explosion_DisplayX);
+		WriteJump((void*)0x5633C0, Chaos7Damage_DisplayX);
+		//Perfect Chaos misc
+		WriteCall((void*)0x55DC0C, Chaos7WaterHook);
+		((NJS_OBJECT*)0x248B1B4)->basicdxmodel->mats[2].attrflags &= ~NJD_FLAG_IGNORE_SPECULAR; //Egg Carrier 2
+		//Objects
+		*(NJS_OBJECT*)0x142C740 = *LoadModel("system\\data\\B_CHAOS7\\Models\\0006B410.sa1mdl", false); //ORoad0
+		*(NJS_OBJECT*)0x1455C0C = *LoadModel("system\\data\\B_CHAOS7\\Models\\000938C4.sa1mdl", false); //ORoad1
+		*(NJS_OBJECT*)0x1458A58 = *LoadModel("system\\data\\B_CHAOS7\\Models\\00095598.sa1mdl", false); //ORoad2
+		*(NJS_OBJECT*)0x145B4AC = *LoadModel("system\\data\\B_CHAOS7\\Models\\00096FC8.sa1mdl", false); //ORoad3
+		*(NJS_OBJECT*)0x145D000 = *LoadModel("system\\data\\B_CHAOS7\\Models\\000981B8.sa1mdl", false); //ORoad4
+		//Remove material colors in cars and other objects
+		RemoveVertexColors_Object((NJS_OBJECT*)0x142F08C);
+		RemoveVertexColors_Object((NJS_OBJECT*)0x14319AC);
+		RemoveVertexColors_Object((NJS_OBJECT*)0x14342F4);
+		RemoveVertexColors_Object((NJS_OBJECT*)0x1447898);
+		RemoveVertexColors_Object((NJS_OBJECT*)0x144A28C);
+		RemoveVertexColors_Object((NJS_OBJECT*)0x144DEF0);
+		RemoveVertexColors_Object((NJS_OBJECT*)0x143A4FC);
+		RemoveVertexColors_Object((NJS_OBJECT*)0x143463C);
+		RemoveVertexColors_Object((NJS_OBJECT*)0x1434A3C);
+		RemoveVertexColors_Object((NJS_OBJECT*)0x1435478);
+		RemoveVertexColors_Object((NJS_OBJECT*)0x1436BEC);
+		RemoveVertexColors_Object((NJS_OBJECT*)0x14386F4);
+		RemoveVertexColors_Object((NJS_OBJECT*)0x143A844);
+		RemoveVertexColors_Object((NJS_OBJECT*)0x143AC44);
+		RemoveVertexColors_Object((NJS_OBJECT*)0x143B680);
+		RemoveVertexColors_Object((NJS_OBJECT*)0x143CDF4);
+		RemoveVertexColors_Object((NJS_OBJECT*)0x143E8FC);
+		RemoveVertexColors_Object((NJS_OBJECT*)0x1440704);
+		RemoveVertexColors_Object((NJS_OBJECT*)0x1440A4C);
+		RemoveVertexColors_Object((NJS_OBJECT*)0x1440E4C);
+		RemoveVertexColors_Object((NJS_OBJECT*)0x1441888);
+		RemoveVertexColors_Object((NJS_OBJECT*)0x1443034);
+		RemoveVertexColors_Object((NJS_OBJECT*)0x1444B3C);
+		RemoveVertexColors_Object((NJS_OBJECT*)0x1446944);
+		RemoveVertexColors_Object((NJS_OBJECT*)0x1447A7C);
+		RemoveVertexColors_Object((NJS_OBJECT*)0x1447D3C);
+		RemoveVertexColors_Object((NJS_OBJECT*)0x14483C0);
+		RemoveVertexColors_Object((NJS_OBJECT*)0x14488BC);
+		RemoveVertexColors_Object((NJS_OBJECT*)0x1448B14);
+		RemoveVertexColors_Object((NJS_OBJECT*)0x1448C7C);
+		RemoveVertexColors_Object((NJS_OBJECT*)0x144AB4C);
+		RemoveVertexColors_Object((NJS_OBJECT*)0x144B174);
+		RemoveVertexColors_Object((NJS_OBJECT*)0x144C1CC);
+		RemoveVertexColors_Object((NJS_OBJECT*)0x144CFE4);
+		RemoveVertexColors_Object((NJS_OBJECT*)0x144D208);
+		RemoveVertexColors_Object((NJS_OBJECT*)0x144D340);
+		for (int i = 0; i < 3; i++)
+		{
+			Chaos7Fog[i].Layer = -6000.0f;
+			Chaos7Fog[i].Distance = -15000.0f;
+			Chaos7Fog[i].Toggle = 1;
+			Chaos7Fog[i].Color = 0xFF19CED3;
+			DrawDist_Chaos7[i].Maximum = -6500.0;
+		}
+		ModelsLoaded_B_CHAOS7 = true;
 	}
 }
 

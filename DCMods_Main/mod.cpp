@@ -74,13 +74,52 @@ LandTableInfo *ADV02_3_Info = nullptr;
 LandTableInfo *ADV03_0_Info = nullptr;
 LandTableInfo *ADV03_1_Info = nullptr;
 LandTableInfo *ADV03_2_Info = nullptr;
-LandTableInfo *MINICART_Info = nullptr;
+LandTableInfo *MINICART_0_Info = nullptr;
+LandTableInfo *MINICART_1_Info = nullptr;
+LandTableInfo *MINICART_2_Info = nullptr;
+LandTableInfo *MINICART_3_Info = nullptr;
+LandTableInfo *MINICART_4_Info = nullptr;
+LandTableInfo *MINICART_5_Info = nullptr;
 LandTableInfo *SBOARD_Info = nullptr;
 LandTableInfo *AL_GARDEN00_Info = nullptr;
 LandTableInfo *AL_GARDEN01_Info = nullptr;
 LandTableInfo *AL_GARDEN02_Info = nullptr;
 LandTableInfo *AL_RACE_0_Info = nullptr;
 LandTableInfo *AL_RACE_1_Info = nullptr;
+
+bool ModelsLoaded_General = false;
+bool ModelsLoaded_Chao = false;
+bool ModelsLoaded_STG00 = false;
+bool ModelsLoaded_STG01 = false;
+bool ModelsLoaded_STG02 = false;
+bool ModelsLoaded_STG03 = false;
+bool ModelsLoaded_STG04 = false;
+bool ModelsLoaded_STG05 = false;
+bool ModelsLoaded_STG06 = false;
+bool ModelsLoaded_STG07 = false;
+bool ModelsLoaded_STG08 = false;
+bool ModelsLoaded_STG09 = false;
+bool ModelsLoaded_STG10 = false;
+bool ModelsLoaded_STG12 = false;
+bool ModelsLoaded_B_CHAOS0 = false;
+bool ModelsLoaded_B_CHAOS2 = false;
+bool ModelsLoaded_B_CHAOS4 = false;
+bool ModelsLoaded_B_CHAOS6 = false;
+bool ModelsLoaded_B_CHAOS7 = false;
+bool ModelsLoaded_B_EGM1 = false;
+bool ModelsLoaded_B_EGM2 = false;
+bool ModelsLoaded_B_EGM3 = false;
+bool ModelsLoaded_B_ROBO = false;
+bool ModelsLoaded_B_E101 = false;
+bool ModelsLoaded_B_E101R = false;
+bool ModelsLoaded_ADV00 = false;
+bool ModelsLoaded_ADV0100 = false;
+bool ModelsLoaded_ADV0130 = false;
+bool ModelsLoaded_ADV02 = false;
+bool ModelsLoaded_ADV03 = false;
+bool ModelsLoaded_SHOOTING = false;
+bool ModelsLoaded_MINICART = false;
+bool ModelsLoaded_SBOARD = false;
 
 set_shader_flags* set_shader_flags_ptr;
 material_register* material_register_ptr;
@@ -123,6 +162,17 @@ NJS_OBJECT **___ADV03PAST02_OBJECTS = nullptr;
 NJS_OBJECT **___ADV03_OBJECTS = nullptr;
 
 HelperFunctions HelperFunctionsGlobal;
+
+bool EnableCutsceneFix = true;
+int CutsceneSkipMode = 0;
+int CutsceneFrameCounter = 0;
+std::string EnableImpressFont = "Off";
+bool ColorizeFont = true;
+bool DisableFontSmoothing = true;
+bool EnableLSDFix = false;
+bool FPSLock = false;
+bool EnableDCRipple = true;
+
 bool Use1999SetFiles = false;
 bool EnableWindowTitle = true;
 bool EnableDCBranding = true;
@@ -166,6 +216,7 @@ bool EnableMRGarden = true;
 bool EnableECGarden = true;
 bool ReplaceEggs = true;
 int ReplaceFruits = 0;
+bool EnableLobby = true;
 
 bool SADXWater_EmeraldCoast = false;
 bool SADXWater_StationSquare = false;
@@ -305,7 +356,15 @@ extern "C"
 		const std::string s_config_ini(s_path + "\\config.ini");
 		//Config stuff
 		const IniFile *const config = new IniFile(s_config_ini);
-		//Read config stuff for levels and branding
+		//Read config stuff
+		FPSLock = config->getBool("General", "FPSLock", false);
+		EnableDCRipple = config->getBool("General", "EnableDreamcastWaterRipple", true);
+		EnableCutsceneFix = config->getBool("General", "EnableCutsceneFix", true);
+		EnableImpressFont = config->getString("General", "EnableImpressFont", "Impress");
+		CutsceneSkipMode = config->getInt("General", "CutsceneSkipMode", 0);
+		ColorizeFont = config->getBool("General", "ColorizeFont", true);
+		DisableFontSmoothing = config->getBool("General", "DisableFontSmoothing", true);
+		EnableLSDFix = config->getBool("Miscellaneous", "EnableLSDFix", false);
 		EnableDCBranding = config->getBool("General", "EnableDreamcastBranding", true);
 		EnableSpeedFixes = config->getBool("General", "EnableSpeedFixes", true);
 		EnableWindowTitle = config->getBool("General", "EnableWindowTitle", true);
@@ -351,6 +410,7 @@ extern "C"
 		EnableECGarden = config->getBool("Chao Gardens", "EnableEggCarrierGarden", true);
 		ReplaceFruits = config->getInt("Chao Gardens", "ReplaceFruits", 0);
 		ReplaceEggs = config->getBool("Chao Gardens", "ReplaceEggs", true);
+		EnableLobby = config->getBool("Chao Gardens", "EnableChaoRaceLobby", true);
 		//Autodemo mods check
 		if (GetModuleHandle(L"AutoDemo_WindyValley") != nullptr) EnableWindyValley = false;
 		if (GetModuleHandle(L"AutoDemo_SpeedHighway") != nullptr) EnableSpeedHighway = false;
@@ -360,6 +420,7 @@ extern "C"
 		//Another error message
 		if (EnableEmeraldCoast && GetModuleHandle(L"WaterEffect") != nullptr)
 		{
+			EnableEmeraldCoast = false;
 			MessageBox(WindowHandle,
 				L"The Enhanced Emerald Coast mod is not "
 				L"compatible with Dreamcast Emerald Coast. Please "
@@ -373,150 +434,122 @@ extern "C"
 		//Init functions
 		SADXStyleWater_Init(config, helperFunctions);
 		if (EnableDCBranding) Branding_Init(config, helperFunctions);
+		WriteCall((void*)0x422B2A, HedgehogHammer_Init);
 		if (EnableStationSquare)
 		{
-			WriteCall((void*)0x4231E6, LoadLevelFiles_ADV00);
-			ADV00_Init();
+			WriteCall((void*)0x4231E6, ADV00_Init);
 		}
 		if (EnableEggCarrier)
 		{
-			WriteCall((void*)0x4232C9, LoadLevelFiles_ADV01);
-			WriteCall((void*)0x4233BB, LoadLevelFiles_ADV01C);
-			ADV01_Init(config, helperFunctions);
-			ADV01C_Init(config, helperFunctions);
+			WriteCall((void*)0x4232C9, ADV01_Init);
+			WriteCall((void*)0x4233BB, ADV01C_Init);
 		}
 		if (EnableMysticRuins)
 		{
-			WriteCall((void*)0x4234AD, LoadLevelFiles_ADV02);
-			ADV02_Init();
+			WriteCall((void*)0x4234AD, ADV02_Init);
 		}
 		if (EnablePast)
 		{
-			WriteCall((void*)0x423554, LoadLevelFiles_ADV03);
-			ADV03_Init();
+			WriteCall((void*)0x423554, ADV03_Init);
 		}
-		Bosses_Init();
-		if (!GetModuleHandle(L"WaterEffect") && EnableEmeraldCoast)
+		Bosses_Init(); //General boss stuff
+		if (EnableEmeraldCoast)
 		{
-			WriteCall((void*)0x422B68, LoadLevelFiles_STG01);
-			EmeraldCoast_Init();
+			WriteCall((void*)0x422B68, EmeraldCoast_Init);
 		}
 		if (EnableWindyValley)
 		{
-			WriteCall((void*)0x422BD3, LoadLevelFiles_STG02);
-			WindyValley_Init();
+			WriteCall((void*)0x422BD3, WindyValley_Init);
 		}
 		if (EnableTwinklePark)
 		{
-			WriteCall((void*)0x422C3E, LoadLevelFiles_STG03);
-			TwinklePark_Init();
+			WriteCall((void*)0x422C3E, TwinklePark_Init);
 		}
 		if (EnableSpeedHighway)
 		{
-			WriteCall((void*)0x422CA9, LoadLevelFiles_STG04);
-			SpeedHighway_Init();
+			WriteCall((void*)0x422CA9, SpeedHighway_Init);
 		}
 		if (EnableRedMountain)
 		{
-			WriteCall((void*)0x422D14, LoadLevelFiles_STG05);
-			RedMountain_Init();
+			WriteCall((void*)0x422D14, RedMountain_Init);
 		}
 		if (EnableSkyDeck)
 		{
-			WriteCall((void*)0x422D84, LoadLevelFiles_STG06);
-			SkyDeck_Init();
+			WriteCall((void*)0x422D84, SkyDeck_Init);
 		}
 		if (EnableLostWorld)
 		{
-			WriteCall((void*)0x422DEF, LoadLevelFiles_STG07);
-			LostWorld_Init();
+			WriteCall((void*)0x422DEF, LostWorld_Init);
 		}
 		if (EnableIceCap)
 		{
-			WriteCall((void*)0x422E5A, LoadLevelFiles_STG08);
-			IceCap_Init();
+			WriteCall((void*)0x422E5A, IceCap_Init);
 		}
 		if (EnableCasinopolis)
 		{
-			WriteCall((void*)0x422EE8, LoadLevelFiles_STG09);
-			Casinopolis_Init();
+			WriteCall((void*)0x422EE8, Casinopolis_Init);
 		}
 		if (EnableFinalEgg)
 		{
-			WriteCall((void*)0x422F71, LoadLevelFiles_STG10);
-			FinalEgg_Init();
+			WriteCall((void*)0x422F71, FinalEgg_Init);
 		}
 		if (EnableHotShelter)
 		{
-			WriteCall((void*)0x422FFF, LoadLevelFiles_STG12);
-			HotShelter_Init();
+			WriteCall((void*)0x422FFF, HotShelter_Init);
 		}
 		if (EnableChaos0)
 		{
-			WriteCall((void*)0x423088, LoadLevelFiles_B_CHAOS0);
-			Chaos0_Init();
+			WriteCall((void*)0x423088, Chaos0_Init);
 		}
 		if (EnableChaos2)
 		{
-			WriteCall((void*)0x4230B7, LoadLevelFiles_B_CHAOS2);
-			Chaos2_Init();
+			WriteCall((void*)0x4230B7, Chaos2_Init);
 		}
 		if (EnableChaos4)
 		{
-			WriteCall((void*)0x4230CD, LoadLevelFiles_B_CHAOS4);
-			Chaos4_Init();
+			WriteCall((void*)0x4230CD, Chaos4_Init);
 		}
 		if (EnableChaos6)
 		{
-			WriteCall((void*)0x4230E3, LoadLevelFiles_B_CHAOS6);
-			Chaos6_Init();
+			WriteCall((void*)0x4230E3, Chaos6_Init);
 		}
 		if (EnablePerfectChaos)
 		{
-			WriteCall((void*)0x423108, LoadLevelFiles_B_CHAOS7);
-			PerfectChaos_Init();
+			WriteCall((void*)0x423108, PerfectChaos_Init);
 		}
 		if (EnableEggHornet)
 		{
-			WriteCall((void*)0x423146, LoadLevelFiles_B_EGM1);
-			EggHornet_Init();
+			WriteCall((void*)0x423146, EggHornet_Init);
 		}
 		if (EnableEggWalker)
 		{
-			WriteCall((void*)0x42315F, LoadLevelFiles_B_EGM2);
-			EggWalker_Init();
+			WriteCall((void*)0x42315F, EggWalker_Init);
 		}
 		if (EnableEggViper)
 		{
-			WriteCall((void*)0x423178, LoadLevelFiles_B_EGM3);
-			EggViper_Init();
+			WriteCall((void*)0x423178, EggViper_Init);
 		}
 		if (EnableE101)
 		{
-			WriteCall((void*)0x4231AF, LoadLevelFiles_B_E101);
-			E101_Init();
+			WriteCall((void*)0x4231AF, E101_Init);
 		}
 		if (EnableZeroE101R)
 		{
-			WriteCall((void*)0x423196, LoadLevelFiles_B_ROBO);
-			WriteCall((void*)0x4231CD, LoadLevelFiles_B_E101_R);
-			Zero_Init();
-			E101R_Init();
+			WriteCall((void*)0x423196, Zero_Init);
+			WriteCall((void*)0x4231CD, E101R_Init);
 		}
 		SkyChaseFix_Init();
-		Subgames_Init();
+		WriteCall((void*)0x4236B1, SkyChase_Init);
+		WriteCall((void*)0x4236E0, SkyChase_Init);
 		if (EnableTwinkleCircuit)
 		{
-			WriteCall((void*)0x4235EC, LoadLevelFiles_MINICART);
+			WriteCall((void*)0x4235EC, TwinkleCircuit_Init);
 		}
 		if (EnableSandHill)
 		{
-			WriteCall((void*)0x42370F, LoadLevelFiles_SBOARD);
+			WriteCall((void*)0x42370F, SandHill_Init);
 		}
-		WriteCall((void*)0x423795, LoadLevelFiles_Chao);
-		ChaoGardens_Init(config, helperFunctions);
-		ChaoRace_Init(config, helperFunctions);
-		General_Init(config, helperFunctions);
+		WriteCall((void*)0x423795, ChaoGardens_Init);
 		if (!DisableAllVideoStuff) Videos_Init(config, helperFunctions);
 		if (EnableSpeedFixes) SpeedFixes_Init();
 		delete config;

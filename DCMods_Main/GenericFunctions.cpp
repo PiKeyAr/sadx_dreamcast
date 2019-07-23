@@ -3,6 +3,7 @@
 
 void CheckAndUnloadLevelFiles()
 {
+	if (!ModelsLoaded_General) General_Init();
 	ClearTextureAnimationData();
 	if (CurrentLevel != LevelIDs_StationSquare && ADV00_0_Info) UnloadLevelFiles_ADV00();
 	if (CurrentLevel != LevelIDs_EggCarrierOutside && ADV01_0_Info) UnloadLevelFiles_ADV01();
@@ -33,11 +34,7 @@ void CheckAndUnloadLevelFiles()
 	if (CurrentLevel != LevelIDs_HotShelter && STG12_0_Info) UnloadLevelFiles_STG12();
 	if (CurrentLevel != LevelIDs_SandHill && SBOARD_Info) UnloadLevelFiles_SBOARD();
 	if (CurrentLevel != LevelIDs_TwinkleCircuit && SBOARD_Info) UnloadLevelFiles_MINICART();
-	if (CurrentLevel < 39 && AL_RACE_0_Info)
-	{
-		UnloadLevelFiles_Chao();
-		UnloadLevelFiles_AL_RACE();
-	}
+	if (CurrentLevel < 39 && AL_RACE_0_Info) UnloadLevelFiles_Chao();
 }
 
 void AnimateTexture(TextureAnimation *texanim)
