@@ -3,8 +3,37 @@
 NJS_TEXNAME textures_sandhill[50];
 NJS_TEXLIST texlist_sandhill = { arrayptrandlength(textures_sandhill) };
 
-NJS_TEXNAME textures_twinklecircuit[12];
-NJS_TEXLIST texlist_twinklecircuit = { arrayptrandlength(textures_twinklecircuit) };
+NJS_TEXNAME textures_hhammer[21];
+NJS_TEXLIST texlist_hhammer = { arrayptrandlength(textures_hhammer) };
+
+NJS_TEXNAME textures_minicart01[12];
+NJS_TEXLIST texlist_minicart01 = { arrayptrandlength(textures_minicart01) };
+
+NJS_TEXNAME textures_minicart02[11];
+NJS_TEXLIST texlist_minicart02 = { arrayptrandlength(textures_minicart02) };
+
+NJS_TEXNAME textures_minicart03[11];
+NJS_TEXLIST texlist_minicart03 = { arrayptrandlength(textures_minicart03) };
+
+NJS_TEXNAME textures_minicart04[11];
+NJS_TEXLIST texlist_minicart04 = { arrayptrandlength(textures_minicart04) };
+
+NJS_TEXNAME textures_minicart05[10];
+NJS_TEXLIST texlist_minicart05 = { arrayptrandlength(textures_minicart05) };
+
+NJS_TEXNAME textures_minicart06[10];
+NJS_TEXLIST texlist_minicart06 = { arrayptrandlength(textures_minicart06) };
+
+/*
+#include "SandHill.h"
+#include "HedgehogHammer.h"
+#include "TwinkleCircuit_1.h"
+#include "TwinkleCircuit_2.h"
+#include "TwinkleCircuit_3.h"
+#include "TwinkleCircuit_4.h"
+#include "TwinkleCircuit_5.h"
+#include "TwinkleCircuit_6.h"
+*/
 
 DataArray(FogData, FogData_SandHill, 0x0173BB74, 3);
 DataArray(FogData, FogData_HedgehogHammer, 0x027C69C4, 3);
@@ -456,34 +485,24 @@ void DrawSkyChaseSkybox(NJS_OBJECT* a1, float scale)
 
 void UnloadLevelFiles_MINICART()
 {
-	delete MINICART_Info;
-	MINICART_Info = nullptr;
+	delete MINICART_0_Info;
+	delete MINICART_1_Info;
+	delete MINICART_2_Info;
+	delete MINICART_3_Info;
+	delete MINICART_4_Info;
+	delete MINICART_5_Info;
+	MINICART_0_Info = nullptr;
+	MINICART_1_Info = nullptr;
+	MINICART_2_Info = nullptr;
+	MINICART_3_Info = nullptr;
+	MINICART_4_Info = nullptr;
+	MINICART_5_Info = nullptr;
 }
 
 void UnloadLevelFiles_SBOARD()
 {
 	delete SBOARD_Info;
 	SBOARD_Info = nullptr;
-}
-
-void LoadLevelFiles_MINICART()
-{
-	CheckAndUnloadLevelFiles();
-	MINICART_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\MINICART\\0.sa1lvl"));
-	LandTable *MINICART = MINICART_Info->getlandtable();
-	RemoveMaterialColors_Landtable(MINICART);
-	MINICART->TexList = &texlist_twinklecircuit;
-	LandTableArray[160] = MINICART; //Twinkle Circuit
-}
-
-void LoadLevelFiles_SBOARD()
-{
-	CheckAndUnloadLevelFiles();
-	SBOARD_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\SBOARD\\0.sa1lvl"));
-	LandTable *SBOARD = SBOARD_Info->getlandtable();
-	RemoveMaterialColors_Landtable(SBOARD);
-	SBOARD->TexList = &texlist_sandhill;
-	LandTableArray[184] = SBOARD; //Sand Hill
 }
 
 void AddObjectWhiteDiffuseMaterials_Range(NJS_OBJECT* object, int first, int last)
@@ -498,107 +517,60 @@ void AddObjectWhiteDiffuseMaterials_Range(NJS_OBJECT* object, int first, int las
 	}
 }
 
-void Subgames_Init()
+void HedgehogHammer_Init()
 {
-	if (!Use1999SetFiles)
-	{
-		ReplaceBIN_DC("SET0000A");
-		ReplaceBIN_DC("SET0000S");
-		ReplaceBIN_DC("SET0001S");
-	}
-	else
-	{
-		ReplaceBIN_1999("SET0000A");
-		ReplaceBIN_1999("SET0000S");
-		ReplaceBIN_1999("SET0001S");
-	}
-	if (!DLLLoaded_HDGUI)
-	{
-		ReplacePVR("ST_064S_LOCKA");
-		ReplacePVR("ST_064S_LOCKB");
-		ReplacePVR("ST_064S_LOCKC");
-		ReplacePVR("STG_S_LOCKMK");
-	}
-	if (EnableSandHill)
-	{ 
-		ReplaceBIN_DC("CAMSBOARD00S");
-		ReplaceBIN_DC("CAMSBOARD01S");
-		if (!Use1999SetFiles)
-		{
-			ReplaceBIN_DC("SETSBOARD00M");
-			ReplaceBIN_DC("SETSBOARD00S");
-			ReplaceBIN_DC("SETSBOARD01S");
-		}
-		else
-		{
-			ReplaceBIN_1999("SETSBOARD00M");
-			ReplaceBIN_1999("SETSBOARD00S");
-			ReplaceBIN_1999("SETSBOARD01S");
-		}
-		ReplacePVM("BG_SANDBOARD");
-		ReplacePVM("EFF_SANDBOARD");
-		ReplacePVM("OBJ_SANDBOARD");
-		ReplacePVM("SANDBOARD");
-		*(NJS_OBJECT *)0x017424DC = *LoadModel("system\\data\\SBOARD\\Models\\0006EA40.sa1mdl", false); //Sand Hill ramp
-		//Clear material colors
-		RemoveVertexColors_Object((NJS_OBJECT*)0x1741A9C); //RockyHead
-		RemoveVertexColors_Object((NJS_OBJECT*)0x174DED0); //Rock
-		RemoveVertexColors_Object((NJS_OBJECT*)0x174D76C); //SnakeStatue
-		RemoveVertexColors_Object((NJS_OBJECT*)0x174E974); //PillarS
-		RemoveVertexColors_Object((NJS_OBJECT*)0x174C148); //PillarM
-		RemoveVertexColors_Object((NJS_OBJECT*)0x174AF94); //PillarL
-		RemoveVertexColors_Object((NJS_OBJECT*)0x174EAC8); //BigCactusA
-		RemoveVertexColors_Object((NJS_OBJECT*)0x1744D24); //BigCactusB
-		RemoveVertexColors_Object((NJS_OBJECT*)0x1745A38); //BigCactusC
-		RemoveVertexColors_Object((NJS_OBJECT*)0x1749E44); //Sand worm tail
-		RemoveVertexColors_Object((NJS_OBJECT*)0x17499DC); //Sand worm body
-		RemoveVertexColors_Object((NJS_OBJECT*)0x17495AC); //Sand worm head
-	}
-	if (EnableTwinkleCircuit)
+	CheckAndUnloadLevelFiles();
+	STG00_0_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG00\\0.sa1lvl"));
+	LandTable* STG00_0 = STG00_0_Info->getlandtable();
+	RemoveMaterialColors_Landtable(STG00_0);
+	STG00_0->TexList = &texlist_hhammer;
+	WriteData((LandTable**)0x97DA08, STG00_0);
+	//No models to load here but using the same pattern for the sake of consistency
+	if (!ModelsLoaded_ADV00)
 	{
 		if (!Use1999SetFiles)
 		{
-			ReplaceBIN_DC("SETMCART00S");
-			ReplaceBIN_DC("SETMCART01S");
-			ReplaceBIN_DC("SETMCART02S");
-			ReplaceBIN_DC("SETMCART03S");
-			ReplaceBIN_DC("SETMCART04S");
-			ReplaceBIN_DC("SETMCART05S");
+			ReplaceBIN_DC("SET0000A");
+			ReplaceBIN_DC("SET0000S");
+			ReplaceBIN_DC("SET0001S");
 		}
 		else
 		{
-			ReplaceBIN_1999("SETMCART00S");
-			ReplaceBIN_1999("SETMCART01S");
-			ReplaceBIN_1999("SETMCART02S");
-			ReplaceBIN_1999("SETMCART03S");
-			ReplaceBIN_1999("SETMCART04S");
-			ReplaceBIN_1999("SETMCART05S");
+			ReplaceBIN_1999("SET0000A");
+			ReplaceBIN_1999("SET0000S");
+			ReplaceBIN_1999("SET0001S");
 		}
-		ReplaceBIN_DC("CAMMCART00S");
-		ReplaceBIN_DC("CAMMCART01S");
-		ReplaceBIN_DC("CAMMCART02S");
-		ReplaceBIN_DC("CAMMCART03S");
-		ReplaceBIN_DC("CAMMCART04S");
-		ReplaceBIN_DC("CAMMCART05S");
-		ReplacePVM("MINI_CART01");
-		ReplacePVM("MINI_CART02");
-		ReplacePVM("MINI_CART03");
-		ReplacePVM("MINI_CART04");
-		ReplacePVM("MINI_CART05");
-		ReplacePVM("MINI_CART06");
-		if (DLLLoaded_HDGUI == false) ReplacePVM("OBJ_MINI_CART");
+		for (int i = 0; i < 3; i++)
+		{
+			FogData_HedgehogHammer[i].Distance = 16000.0f;
+			FogData_HedgehogHammer[i].Layer = 5000.0f;
+		}
+		ModelsLoaded_ADV00 = true;
 	}
-	//Sky Chase
-	if (!Use1999SetFiles)
+}
+
+void SkyChase_Init()
+{
+	//This stuff is done only once
+	if (!ModelsLoaded_SHOOTING)
 	{
-		ReplaceBIN_DC("SETSHT1S");
-		ReplaceBIN_DC("SETSHT2S");
-	}
-	else
-	{
-		ReplaceBIN_1999("SETSHT1S");
-		ReplaceBIN_1999("SETSHT2S");
-	}
+		if (!DLLLoaded_HDGUI)
+		{
+			ReplacePVR("ST_064S_LOCKA");
+			ReplacePVR("ST_064S_LOCKB");
+			ReplacePVR("ST_064S_LOCKC");
+			ReplacePVR("STG_S_LOCKMK");
+		}
+		if (!Use1999SetFiles)
+		{
+			ReplaceBIN_DC("SETSHT1S");
+			ReplaceBIN_DC("SETSHT2S");
+		}
+		else
+		{
+			ReplaceBIN_1999("SETSHT1S");
+			ReplaceBIN_1999("SETSHT2S");
+		}
 		ReplaceBIN_DC("CAMSHT1S");
 		ReplaceBIN_DC("CAMSHT2S");
 		//Other Sky Chase fixes
@@ -638,7 +610,7 @@ void Subgames_Init()
 
 			}
 			//Egg Carrier model
-			NJS_OBJECT *EggCarrierModel= LoadModel("system\\data\\SHOOTING\\Models\\0003FA40.sa1mdl", false);
+			NJS_OBJECT* EggCarrierModel = LoadModel("system\\data\\SHOOTING\\Models\\0003FA40.sa1mdl", false);
 			*(NJS_OBJECT*)0x02982F44 = *EggCarrierModel;
 			//Oh gee... This is gonna be long
 			AddObjectWhiteDiffuseMaterials_Range(EggCarrierModel->child->sibling->sibling->sibling, 75, 102);
@@ -655,21 +627,144 @@ void Subgames_Init()
 			*(NJS_OBJECT*)0x0298E7D0 = *LoadModel("system\\data\\SHOOTING\\Models\\0004AEE0.sa1mdl", false); //Beam in Act 2
 			((NJS_ACTION*)0x28E596C)->object = (NJS_OBJECT*)0x028E2C88; //Beam in Act 1
 			((NJS_ACTION*)0x2996C74)->object = (NJS_OBJECT*)0x0298E7D0; //Beam in Act 2
+			//Lighting
+			if (DLLLoaded_Lantern)
+			{
+				material_register_ptr(ObjectBaseAndSpecular_Subgames, LengthOfArray(ObjectBaseAndSpecular_Subgames), &ForceDiffuse0Specular1);
+				material_register_ptr(LevelSpecular_Subgames, LengthOfArray(LevelSpecular_Subgames), &ForceDiffuse0Specular0);
+			}
 		}
-	//Lighting stuff
-	ReplaceBIN("PL_Z0B", "PL_Z0X");
-	if (DLLLoaded_Lantern)
-	{
-		material_register_ptr(ObjectBaseAndSpecular_Subgames, LengthOfArray(ObjectBaseAndSpecular_Subgames), &ForceDiffuse0Specular1);
-		material_register_ptr(LevelSpecular_Subgames, LengthOfArray(LevelSpecular_Subgames), &ForceDiffuse0Specular0);
-		material_register_ptr(WhiteDiffuse_Subgames, LengthOfArray(WhiteDiffuse_Subgames), &ForceWhiteDiffuse);
+		for (int i = 0; i < 3; i++)
+		{
+			if (EnableSkyChaseFixes) DrawDist_SkyChase1[i].Maximum = -60000.0f;
+		}
+		ModelsLoaded_SHOOTING = true;
 	}
-	//Fog and draw distance tweaks
-	for (int i = 0; i < 3; i++)
+}
+
+void TwinkleCircuit_Init()
+{
+	CheckAndUnloadLevelFiles();
+	MINICART_0_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\MINICART\\0.sa1lvl"));
+	MINICART_1_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\MINICART\\1.sa1lvl"));
+	MINICART_2_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\MINICART\\2.sa1lvl"));
+	MINICART_3_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\MINICART\\3.sa1lvl"));
+	MINICART_4_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\MINICART\\4.sa1lvl"));
+	MINICART_5_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\MINICART\\5.sa1lvl"));
+	LandTable* MINICART_0 = MINICART_0_Info->getlandtable();
+	LandTable* MINICART_1 = MINICART_1_Info->getlandtable();
+	LandTable* MINICART_2 = MINICART_2_Info->getlandtable();
+	LandTable* MINICART_3 = MINICART_3_Info->getlandtable();
+	LandTable* MINICART_4 = MINICART_4_Info->getlandtable();
+	LandTable* MINICART_5 = MINICART_5_Info->getlandtable();
+	RemoveMaterialColors_Landtable(MINICART_0);
+	RemoveMaterialColors_Landtable(MINICART_1);
+	RemoveMaterialColors_Landtable(MINICART_2);
+	RemoveMaterialColors_Landtable(MINICART_3);
+	RemoveMaterialColors_Landtable(MINICART_4);
+	RemoveMaterialColors_Landtable(MINICART_5);
+	MINICART_0->TexList = &texlist_minicart01;
+	MINICART_1->TexList = &texlist_minicart02;
+	MINICART_2->TexList = &texlist_minicart03;
+	MINICART_3->TexList = &texlist_minicart04;
+	MINICART_4->TexList = &texlist_minicart05;
+	MINICART_5->TexList = &texlist_minicart06;
+	LandTableArray[160] = MINICART_0;
+	LandTableArray[161] = MINICART_1;
+	LandTableArray[162] = MINICART_2;
+	LandTableArray[163] = MINICART_3;
+	LandTableArray[164] = MINICART_4;
+	LandTableArray[165] = MINICART_5;
+	if (!ModelsLoaded_MINICART)
 	{
-		if (EnableSkyChaseFixes) DrawDist_SkyChase1[i].Maximum = -60000.0f;
-		if (EnableSandHill) FogData_SandHill[i].Color = 0xFFE0E0B0;
-		FogData_HedgehogHammer[i].Distance = 16000.0f;
-		FogData_HedgehogHammer[i].Layer = 5000.0f;
+		if (!Use1999SetFiles)
+		{
+			ReplaceBIN_DC("SETMCART00S");
+			ReplaceBIN_DC("SETMCART01S");
+			ReplaceBIN_DC("SETMCART02S");
+			ReplaceBIN_DC("SETMCART03S");
+			ReplaceBIN_DC("SETMCART04S");
+			ReplaceBIN_DC("SETMCART05S");
+		}
+		else
+		{
+			ReplaceBIN_1999("SETMCART00S");
+			ReplaceBIN_1999("SETMCART01S");
+			ReplaceBIN_1999("SETMCART02S");
+			ReplaceBIN_1999("SETMCART03S");
+			ReplaceBIN_1999("SETMCART04S");
+			ReplaceBIN_1999("SETMCART05S");
+		}
+		ReplaceBIN_DC("CAMMCART00S");
+		ReplaceBIN_DC("CAMMCART01S");
+		ReplaceBIN_DC("CAMMCART02S");
+		ReplaceBIN_DC("CAMMCART03S");
+		ReplaceBIN_DC("CAMMCART04S");
+		ReplaceBIN_DC("CAMMCART05S");
+		ReplacePVM("MINI_CART01");
+		ReplacePVM("MINI_CART02");
+		ReplacePVM("MINI_CART03");
+		ReplacePVM("MINI_CART04");
+		ReplacePVM("MINI_CART05");
+		ReplacePVM("MINI_CART06");
+		if (!DLLLoaded_HDGUI) ReplacePVM("OBJ_MINI_CART");
+		ReplaceBIN("PL_Z0B", "PL_Z0X");
+		if (DLLLoaded_Lantern)
+		{
+			material_register_ptr(WhiteDiffuse_Subgames, LengthOfArray(WhiteDiffuse_Subgames), &ForceWhiteDiffuse);
+		}
+		ModelsLoaded_MINICART = true;
+	}
+}
+
+void SandHill_Init()
+{
+	//This stuff is done every time the function is called
+	CheckAndUnloadLevelFiles();
+	SBOARD_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\SBOARD\\0.sa1lvl"));
+	LandTable* SBOARD = SBOARD_Info->getlandtable();
+	RemoveMaterialColors_Landtable(SBOARD);
+	SBOARD->TexList = &texlist_sandhill;
+	LandTableArray[184] = SBOARD; //Sand Hill
+	LandTableArray[185] = SBOARD; //Sand Hill duplicate
+	//This stuff is done only once
+	if (!ModelsLoaded_SBOARD)
+	{
+		ReplaceBIN_DC("CAMSBOARD00S");
+		ReplaceBIN_DC("CAMSBOARD01S");
+		if (!Use1999SetFiles)
+		{
+			ReplaceBIN_DC("SETSBOARD00M");
+			ReplaceBIN_DC("SETSBOARD00S");
+			ReplaceBIN_DC("SETSBOARD01S");
+		}
+		else
+		{
+			ReplaceBIN_1999("SETSBOARD00M");
+			ReplaceBIN_1999("SETSBOARD00S");
+			ReplaceBIN_1999("SETSBOARD01S");
+		}
+		ReplacePVM("BG_SANDBOARD");
+		ReplacePVM("EFF_SANDBOARD");
+		ReplacePVM("OBJ_SANDBOARD");
+		ReplacePVM("SANDBOARD");
+		//Models
+		*(NJS_OBJECT*)0x017424DC = *LoadModel("system\\data\\SBOARD\\Models\\0006EA40.sa1mdl", false); //Sand Hill ramp
+		//Clear material colors
+		RemoveVertexColors_Object((NJS_OBJECT*)0x1741A9C); //RockyHead
+		RemoveVertexColors_Object((NJS_OBJECT*)0x174DED0); //Rock
+		RemoveVertexColors_Object((NJS_OBJECT*)0x174D76C); //SnakeStatue
+		RemoveVertexColors_Object((NJS_OBJECT*)0x174E974); //PillarS
+		RemoveVertexColors_Object((NJS_OBJECT*)0x174C148); //PillarM
+		RemoveVertexColors_Object((NJS_OBJECT*)0x174AF94); //PillarL
+		RemoveVertexColors_Object((NJS_OBJECT*)0x174EAC8); //BigCactusA
+		RemoveVertexColors_Object((NJS_OBJECT*)0x1744D24); //BigCactusB
+		RemoveVertexColors_Object((NJS_OBJECT*)0x1745A38); //BigCactusC
+		RemoveVertexColors_Object((NJS_OBJECT*)0x1749E44); //Sand worm tail
+		RemoveVertexColors_Object((NJS_OBJECT*)0x17499DC); //Sand worm body
+		RemoveVertexColors_Object((NJS_OBJECT*)0x17495AC); //Sand worm head
+		//Fog color
+		for (int i = 0; i < 3; i++) FogData_SandHill[i].Color = 0xFFE0E0B0;
+		ModelsLoaded_SBOARD = true;
 	}
 }
