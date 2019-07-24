@@ -131,36 +131,6 @@ set_blend_factor* set_blend_factor_ptr;
 set_diffuse_blend* set_diffuse_blend_ptr;
 set_specular_blend* set_specular_blend_ptr;
 
-LandTable **___LANDTABLEBOSSCHAOS0 = nullptr;
-NJS_ACTION **___BOSSCHAOS0_ACTIONS = nullptr;
-NJS_OBJECT **___BOSSCHAOS0_OBJECTS = nullptr;
-NJS_TEXLIST **___BOSSCHAOS0_TEXLISTS = nullptr;
-NJS_TEXLIST **___ADV00_TEXLISTS = nullptr;
-LandTable **___LANDTABLESS = nullptr;
-NJS_OBJECT **___MILES_OBJECTS = nullptr;
-NJS_TEXLIST **___ADV01_TEXLISTS = nullptr;
-NJS_MODEL_SADX **___ADV01_MODELS = nullptr;
-NJS_TEXLIST **___ADV01C_TEXLISTS = nullptr;
-LandTable **___LANDTABLEEC = nullptr;
-LandTable **___LANDTABLEECC = nullptr;
-NJS_OBJECT **___ADV01C_OBJECTS = nullptr;
-NJS_ACTION **___ADV01C_ACTIONS = nullptr;
-NJS_ACTION **___ADV01_ACTIONS = nullptr;
-NJS_OBJECT **___ADV01_OBJECTS = nullptr;
-NJS_OBJECT **___ADV01EC00_OBJECTS = nullptr;
-NJS_MODEL_SADX **___ADV01C_MODELS = nullptr;
-NJS_TEXLIST **___ADV02_TEXLISTS = nullptr;
-NJS_MODEL_SADX **___ADV02_MODELS = nullptr;
-NJS_OBJECT **___ADV02_OBJECTS = nullptr;
-NJS_OBJECT **___ADV02MR02_OBJECTS = nullptr;
-NJS_ACTION **___ADV02_ACTIONS = nullptr;
-LandTable **___LANDTABLEMR = nullptr;
-NJS_TEXLIST **___ADV03_TEXLISTS = nullptr;
-LandTable **___LANDTABLEPAST = nullptr;
-NJS_OBJECT **___ADV03PAST01_OBJECTS = nullptr;
-NJS_OBJECT **___ADV03PAST02_OBJECTS = nullptr;
-NJS_OBJECT **___ADV03_OBJECTS = nullptr;
-
 HelperFunctions HelperFunctionsGlobal;
 
 bool EnableCutsceneFix = true;
@@ -264,40 +234,20 @@ static const wchar_t *const OldModDLLs[] = {
 	L"MRFinalEggFix"
 };
 
+void ReinitializeDLLStuff()
+{
+	int (**v1)(void);
+	for (int i = 3; i < 528; i++)
+	{
+		v1 = (int (**)(void))&InitializationFunctions[i];
+		if (v1) (*v1)();
+	}
+}
+
 extern "C"
 {
 	__declspec(dllexport) void __cdecl Init(const char *path, const HelperFunctions &helperFunctions)
 	{
-		//Get handles for all DLLs
-		___LANDTABLEBOSSCHAOS0 = (LandTable **)GetProcAddress(GetModuleHandle(L"BOSSCHAOS0MODELS"), "___LANDTABLEBOSSCHAOS0");
-		___BOSSCHAOS0_ACTIONS = (NJS_ACTION **)GetProcAddress(GetModuleHandle(L"BOSSCHAOS0MODELS"), "___BOSSCHAOS0_ACTIONS");
-		___BOSSCHAOS0_OBJECTS = (NJS_OBJECT **)GetProcAddress(GetModuleHandle(L"BOSSCHAOS0MODELS"), "___BOSSCHAOS0_OBJECTS");
-		___BOSSCHAOS0_TEXLISTS = (NJS_TEXLIST **)GetProcAddress(GetModuleHandle(L"BOSSCHAOS0MODELS"), "___BOSSCHAOS0_TEXLISTS");
-		___ADV00_TEXLISTS = (NJS_TEXLIST **)GetProcAddress(GetModuleHandle(L"ADV00MODELS"), "___ADV00_TEXLISTS");
-		___LANDTABLESS = (LandTable **)GetProcAddress(GetModuleHandle(L"ADV00MODELS"), "___LANDTABLESS");
-		___MILES_OBJECTS = (NJS_OBJECT **)GetProcAddress(GetModuleHandle(L"CHRMODELS_orig"), "___MILES_OBJECTS");
-		___ADV01_TEXLISTS = (NJS_TEXLIST **)GetProcAddress(GetModuleHandle(L"ADV01MODELS"), "___ADV01_TEXLISTS");
-		___ADV01_MODELS = (NJS_MODEL_SADX **)GetProcAddress(GetModuleHandle(L"ADV01MODELS"), "___ADV01_MODELS");
-		___ADV01C_TEXLISTS = (NJS_TEXLIST **)GetProcAddress(GetModuleHandle(L"ADV01CMODELS"), "___ADV01C_TEXLISTS");
-		___LANDTABLEEC = (LandTable **)GetProcAddress(GetModuleHandle(L"ADV01MODELS"), "___LANDTABLEEC");
-		___LANDTABLEECC = (LandTable **)GetProcAddress(GetModuleHandle(L"ADV01CMODELS"), "___LANDTABLEEC");
-		___ADV01C_OBJECTS = (NJS_OBJECT **)GetProcAddress(GetModuleHandle(L"ADV01CMODELS"), "___ADV01C_OBJECTS");
-		___ADV01C_ACTIONS = (NJS_ACTION **)GetProcAddress(GetModuleHandle(L"ADV01CMODELS"), "___ADV01C_ACTIONS");
-		___ADV01_ACTIONS = (NJS_ACTION **)GetProcAddress(GetModuleHandle(L"ADV01MODELS"), "___ADV01_ACTIONS");
-		___ADV01_OBJECTS = (NJS_OBJECT **)GetProcAddress(GetModuleHandle(L"ADV01MODELS"), "___ADV01_OBJECTS");
-		___ADV01EC00_OBJECTS = (NJS_OBJECT **)GetProcAddress(GetModuleHandle(L"ADV01MODELS"), "___ADV01EC00_OBJECTS");
-		___ADV01C_MODELS = (NJS_MODEL_SADX **)GetProcAddress(GetModuleHandle(L"ADV01CMODELS"), "___ADV01C_MODELS");
-		___ADV02_TEXLISTS = (NJS_TEXLIST **)GetProcAddress(GetModuleHandle(L"ADV02MODELS"), "___ADV02_TEXLISTS");
-		___ADV02_MODELS = (NJS_MODEL_SADX **)GetProcAddress(GetModuleHandle(L"ADV02MODELS"), "___ADV02_MODELS");
-		___ADV02_OBJECTS = (NJS_OBJECT **)GetProcAddress(GetModuleHandle(L"ADV02MODELS"), "___ADV02_OBJECTS");
-		___ADV02MR02_OBJECTS = (NJS_OBJECT **)GetProcAddress(GetModuleHandle(L"ADV02MODELS"), "___ADV02MR02_OBJECTS");
-		___ADV02_ACTIONS = (NJS_ACTION **)GetProcAddress(GetModuleHandle(L"ADV02MODELS"), "___ADV02_ACTIONS");
-		___LANDTABLEMR = (LandTable **)GetProcAddress(GetModuleHandle(L"ADV02MODELS"), "___LANDTABLEMR");
-		___ADV03_TEXLISTS = (NJS_TEXLIST **)GetProcAddress(GetModuleHandle(L"ADV03MODELS"), "___ADV03_TEXLISTS");
-		___LANDTABLEPAST = (LandTable **)GetProcAddress(GetModuleHandle(L"ADV03MODELS"), "___LANDTABLEPAST");
-		___ADV03PAST01_OBJECTS = (NJS_OBJECT **)GetProcAddress(GetModuleHandle(L"ADV03MODELS"), "___ADV03PAST01_OBJECTS");
-		___ADV03PAST02_OBJECTS = (NJS_OBJECT **)GetProcAddress(GetModuleHandle(L"ADV03MODELS"), "___ADV03PAST02_OBJECTS");
-		___ADV03_OBJECTS = (NJS_OBJECT **)GetProcAddress(GetModuleHandle(L"ADV03MODELS"), "___ADV03_OBJECTS");
 		HelperFunctionsGlobal = helperFunctions;
 		//Global mod path
 		ModPath = std::string(path);

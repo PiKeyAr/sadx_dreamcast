@@ -189,6 +189,13 @@ void OTarai_Child_Display(ObjectMaster* a1)
 	}
 }
 
+void RenderChaoTransporterEffect_Fix(NJS_MODEL_SADX *a1, float scale)
+{
+	DrawQueueDepthBias = 2000.0f;
+	DrawModel_Queue_407CF0(a1, QueuedModelFlagsB_SomeTextureThing);
+	DrawQueueDepthBias = 0;
+}
+
 void UnloadLevelFiles_ADV01C()
 {
 	delete ADV01C_0_Info;
@@ -203,11 +210,6 @@ void UnloadLevelFiles_ADV01C()
 	ADV01C_3_Info = nullptr;
 	ADV01C_4_Info = nullptr;
 	ADV01C_5_Info = nullptr;
-}
-
-void LoadLevelFiles_ADV01C()
-{
-	
 }
 
 void ADV01C_Init()
@@ -237,12 +239,12 @@ void ADV01C_Init()
 	ADV01C_3->TexList = &texlist_ec33;
 	ADV01C_4->TexList = &texlist_ec34;
 	ADV01C_5->TexList = &texlist_ec35;
-	___LANDTABLEECC[0] = ADV01C_0;
-	___LANDTABLEECC[1] = ADV01C_1;
-	___LANDTABLEECC[2] = ADV01C_2;
-	___LANDTABLEECC[3] = ADV01C_3;
-	___LANDTABLEECC[4] = ADV01C_4;
-	___LANDTABLEECC[5] = ADV01C_5;
+	LANDTABLEEC3[0] = ADV01C_0;
+	LANDTABLEEC3[1] = ADV01C_1;
+	LANDTABLEEC3[2] = ADV01C_2;
+	LANDTABLEEC3[3] = ADV01C_3;
+	LANDTABLEEC3[4] = ADV01C_4;
+	LANDTABLEEC3[5] = ADV01C_5;
 	LandTableArray[136] = ADV01C_0;
 	LandTableArray[137] = ADV01C_1;
 	LandTableArray[138] = ADV01C_2;
@@ -291,12 +293,14 @@ void ADV01C_Init()
 		ReplacePVM("EC_TARAI");
 		ReplacePVM("PVME101FACTORY");
 		ReplaceBIN("PL_W1B", "PL_W1X");
-		___ADV01C_TEXLISTS[15] = &texlist_ec30;
-		___ADV01C_TEXLISTS[16] = &texlist_ec31;
-		___ADV01C_TEXLISTS[17] = &texlist_ec32;
-		___ADV01C_TEXLISTS[18] = &texlist_ec33;
-		___ADV01C_TEXLISTS[19] = &texlist_ec34;
-		___ADV01C_TEXLISTS[20] = &texlist_ec35;
+		ADV01C_TEXLISTS[15] = &texlist_ec30;
+		ADV01C_TEXLISTS[16] = &texlist_ec31;
+		ADV01C_TEXLISTS[17] = &texlist_ec32;
+		ADV01C_TEXLISTS[18] = &texlist_ec33;
+		ADV01C_TEXLISTS[19] = &texlist_ec34;
+		ADV01C_TEXLISTS[20] = &texlist_ec35;
+		//Chao transporter fix
+		WriteCall((void*)0x526369, RenderChaoTransporterEffect_Fix); //Transporter effect fix
 		//Door barrier fixes (Gamma's story)
 		WriteJump((void*)0x52B2E0, ECDoorBarrier1X);
 		WriteJump((void*)0x52B250, ECDoorBarrier2_asm);
@@ -335,29 +339,29 @@ void ADV01C_Init()
 		TaraiButton_Transparent->basicdxmodel->meshsets[1].nbMesh = 0;
 		TaraiButton_Transparent->basicdxmodel->meshsets[2].nbMesh = 0;
 		WriteJump((void*)0x52BA70, OTarai_Child_Display);
-		___ADV01C_OBJECTS[7] = TaraiButton_Transparent; //Tarai button
-		___ADV01C_MODELS[28] = TaraiButton_Transparent->basicdxmodel;
-		___ADV01C_OBJECTS[7]->child = TaraiButton_Transparent->child;
-		___ADV01C_MODELS[27] = TaraiButton_Transparent->child->basicdxmodel;
-		___ADV01C_OBJECTS[8] = LoadModel("system\\data\\ADV0130\\Models\\000D243C.sa1mdl", false); //Tarai
+		ADV01C_OBJECTS[7] = TaraiButton_Transparent; //Tarai button
+		ADV01C_MODELS[28] = TaraiButton_Transparent->basicdxmodel;
+		ADV01C_OBJECTS[7]->child = TaraiButton_Transparent->child;
+		ADV01C_MODELS[27] = TaraiButton_Transparent->child->basicdxmodel;
+		ADV01C_OBJECTS[8] = LoadModel("system\\data\\ADV0130\\Models\\000D243C.sa1mdl", false); //Tarai
 		//Monorail front
 		NJS_OBJECT* MonorailFirstCar = LoadModel("system\\data\\ADV0130\\Models\\000B24D8.sa1mdl", false);
-		___ADV01C_OBJECTS[43]->basicdxmodel = MonorailFirstCar->basicdxmodel;
-		___ADV01C_OBJECTS[43]->child->basicdxmodel = MonorailFirstCar->child->basicdxmodel;
-		___ADV01C_OBJECTS[43]->child->child->basicdxmodel = MonorailFirstCar->child->child->basicdxmodel;
-		___ADV01C_OBJECTS[43]->child->sibling->basicdxmodel = MonorailFirstCar->child->sibling->basicdxmodel;
-		AddAlphaRejectMaterial(&___ADV01C_OBJECTS[43]->child->sibling->basicdxmodel->mats[0]);
+		ADV01C_OBJECTS[43]->basicdxmodel = MonorailFirstCar->basicdxmodel;
+		ADV01C_OBJECTS[43]->child->basicdxmodel = MonorailFirstCar->child->basicdxmodel;
+		ADV01C_OBJECTS[43]->child->child->basicdxmodel = MonorailFirstCar->child->child->basicdxmodel;
+		ADV01C_OBJECTS[43]->child->sibling->basicdxmodel = MonorailFirstCar->child->sibling->basicdxmodel;
+		AddAlphaRejectMaterial(&ADV01C_OBJECTS[43]->child->sibling->basicdxmodel->mats[0]);
 		//Monorail back
 		NJS_OBJECT* MonorailOtherCars = LoadModel("system\\data\\ADV0130\\Models\\000B64DC.sa1mdl", false);
-		___ADV01C_OBJECTS[44]->basicdxmodel = MonorailOtherCars->basicdxmodel;
-		___ADV01C_OBJECTS[44]->child->basicdxmodel = MonorailOtherCars->child->basicdxmodel;
-		___ADV01C_OBJECTS[44]->child->child->basicdxmodel = MonorailOtherCars->child->child->basicdxmodel;
+		ADV01C_OBJECTS[44]->basicdxmodel = MonorailOtherCars->basicdxmodel;
+		ADV01C_OBJECTS[44]->child->basicdxmodel = MonorailOtherCars->child->basicdxmodel;
+		ADV01C_OBJECTS[44]->child->child->basicdxmodel = MonorailOtherCars->child->child->basicdxmodel;
 		//Other objects
-		___ADV01C_OBJECTS[29] = LoadModel("system\\data\\ADV0130\\Models\\000ADCD8.sa1mdl", false); //Monorail station
-		___ADV01C_ACTIONS[6]->object = LoadModel("system\\data\\ADV0130\\Models\\000BAF48.sa1mdl", false); //Door
+		ADV01C_OBJECTS[29] = LoadModel("system\\data\\ADV0130\\Models\\000ADCD8.sa1mdl", false); //Monorail station
+		ADV01C_ACTIONS[6]->object = LoadModel("system\\data\\ADV0130\\Models\\000BAF48.sa1mdl", false); //Door
 		NJS_OBJECT* EggLift = LoadModel("system\\data\\ADV0130\\Models\\000B8CD4.sa1mdl", false); //OEggLift
-		___ADV01C_OBJECTS[23] = EggLift;
-		___ADV01C_ACTIONS[7]->object = EggLift;
+		ADV01C_OBJECTS[23] = EggLift;
+		ADV01C_ACTIONS[7]->object = EggLift;
 		for (int i = 0; i < 3; i++)
 		{
 			EggCarrierInside1Fog[i].Distance = -12000;
@@ -377,6 +381,7 @@ void ADV01C_Init()
 			EggCarrierInside6Fog[i].Distance = -12000;
 			EggCarrierInside6Fog[i].Layer = -12000;
 		}
+		ReinitializeDLLStuff();
 		ModelsLoaded_ADV0130 = true;
 	}
 }

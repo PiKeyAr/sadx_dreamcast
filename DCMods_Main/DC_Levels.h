@@ -23,6 +23,7 @@ DataPointer(float, EnvMap2, 0x038A5DE4);
 DataPointer(float, EnvMap3, 0x038A5E00);
 DataPointer(float, EnvMap4, 0x038A5E04);
 DataArray(LandTable*, LandTableArray, 0x97DBE8, 193);
+DataArray(int **, InitializationFunctions, 0x892004, 538);
 FunctionPointer(void, DrawModelCallback_QueueModel, (void(__cdecl* function)(NJS_MODEL_SADX*), NJS_MODEL_SADX* data, float depth, QueuedModelFlagsB queueflags), 0x404840);
 FunctionPointer(void, DrawModelCallback_QueueObject, (void(__cdecl* function)(NJS_OBJECT*), NJS_OBJECT* data, float depth, QueuedModelFlagsB queueflags), 0x404840);
 FunctionPointer(void, DrawModelCallback_QueueObjectMaster, (void(__cdecl* function)(ObjectMaster*), ObjectMaster* data, float depth, QueuedModelFlagsB queueflags), 0x404840);
@@ -139,36 +140,6 @@ extern NJS_TEXLIST texlist_sadxwtr_sewers;
 extern NJS_TEXLIST texlist_sadxwtr_waves;
 extern SecondaryEntrance BK_SSGardenStartPoint;
 extern std::string ModPath;
-
-extern LandTable **___LANDTABLEBOSSCHAOS0;
-extern NJS_ACTION **___BOSSCHAOS0_ACTIONS;
-extern NJS_OBJECT **___BOSSCHAOS0_OBJECTS;
-extern NJS_TEXLIST **___BOSSCHAOS0_TEXLISTS;
-extern NJS_TEXLIST **___ADV00_TEXLISTS;
-extern LandTable **___LANDTABLESS;
-extern NJS_OBJECT **___MILES_OBJECTS;
-extern NJS_TEXLIST **___ADV01_TEXLISTS;
-extern NJS_MODEL_SADX **___ADV01_MODELS;
-extern NJS_TEXLIST **___ADV01C_TEXLISTS;
-extern LandTable **___LANDTABLEEC;
-extern LandTable **___LANDTABLEECC;
-extern NJS_OBJECT **___ADV01C_OBJECTS;
-extern NJS_ACTION **___ADV01C_ACTIONS;
-extern NJS_ACTION **___ADV01_ACTIONS;
-extern NJS_OBJECT **___ADV01_OBJECTS;
-extern NJS_OBJECT **___ADV01EC00_OBJECTS;
-extern NJS_MODEL_SADX **___ADV01C_MODELS;
-extern NJS_TEXLIST **___ADV02_TEXLISTS;
-extern NJS_MODEL_SADX **___ADV02_MODELS;
-extern NJS_OBJECT **___ADV02_OBJECTS;
-extern NJS_OBJECT **___ADV02MR02_OBJECTS;
-extern NJS_ACTION **___ADV02_ACTIONS;
-extern LandTable **___LANDTABLEMR;
-extern NJS_TEXLIST **___ADV03_TEXLISTS;
-extern LandTable **___LANDTABLEPAST;
-extern NJS_OBJECT **___ADV03PAST01_OBJECTS;
-extern NJS_OBJECT **___ADV03PAST02_OBJECTS;
-extern NJS_OBJECT **___ADV03_OBJECTS;
 
 #define ReplacePVM(a) HelperFunctionsGlobal.ReplaceFile("system\\" a ".PVM", "system\\" a "_DC.PVM")
 #define ReplacePVR(a) HelperFunctionsGlobal.ReplaceFile("system\\" a ".PVR", "system\\" a "_DC.PVR")
@@ -385,7 +356,7 @@ void UnloadLevelFiles_ADV03();
 void UnloadLevelFiles_MINICART();
 void UnloadLevelFiles_SBOARD();
 void UnloadLevelFiles_Chao();
-void UnloadLevelFiles_AL_RACE();
+void ReinitializeDLLStuff();
 
 //Mod Init and OnFrame functions
 void Branding_Init(const IniFile *config, const HelperFunctions &helperFunctions);

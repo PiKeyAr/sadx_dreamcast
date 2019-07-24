@@ -260,7 +260,7 @@ void ParsePastMaterials()
 	NJS_TEX *uv;
 	int texid;
 	LandTable *landtable;
-	landtable = ___LANDTABLEPAST[1];
+	landtable = LANDTABLEPAST[1];
 	for (int j = 0; j < landtable->COLCount; j++)
 	{
 		//Reflections
@@ -298,7 +298,7 @@ void ParsePastMaterials()
 			}
 		}
 	}
-	landtable = ___LANDTABLEPAST[2];
+	landtable = LANDTABLEPAST[2];
 	for (int j = 0; j < landtable->COLCount; j++)
 	{
 		//Reflections
@@ -413,9 +413,9 @@ void ADV03_Init()
 	LandTableArray[152] = ADV03_0;
 	LandTableArray[153] = ADV03_1;
 	LandTableArray[154] = ADV03_2;
-	___LANDTABLEPAST[0] = ADV03_0;
-	___LANDTABLEPAST[1] = ADV03_1;
-	___LANDTABLEPAST[2] = ADV03_2;
+	LANDTABLEPAST[0] = ADV03_0;
+	LANDTABLEPAST[1] = ADV03_1;
+	LANDTABLEPAST[2] = ADV03_2;
 	ParsePastMaterials();
 	ForceLightType_Object(PastChaoModel_2, 2, false);
 	ForceLightType_Object(PastChaoModel_7, 2, false);
@@ -452,9 +452,9 @@ void ADV03_Init()
 		ReplacePVM("KNUCKLES_DEBU");
 		ReplacePVM("KNUCKLES_LONG");
 		//Texlists
-		___ADV03_TEXLISTS[4] = &texlist_past00;
-		___ADV03_TEXLISTS[5] = &texlist_past01;
-		___ADV03_TEXLISTS[6] = &texlist_past02;
+		ADV03_TEXLISTS[4] = &texlist_past00;
+		ADV03_TEXLISTS[5] = &texlist_past01;
+		ADV03_TEXLISTS[6] = &texlist_past02;
 		//SADX water
 		WriteJump((void*)0x542850, Past_OceanDraw_r);
 		//Make stairs objects in Past Act 1 appear sooner
@@ -544,15 +544,15 @@ void ADV03_Init()
 		WriteData((float*)0x0068BA8A, 52.42f); //Ripple 3 Z
 		//Other objects
 		ADV03_ACTIONS[9]->object = LoadModel("system\\data\\ADV03\\Models\\0000F864.sa1mdl", false); //OTree 0
-		___ADV03_OBJECTS[16] = LoadModel("system\\data\\ADV03\\Models\\0001EDDC.sa1mdl", false); //Tree 16
-		___ADV03_OBJECTS[17] = LoadModel("system\\data\\ADV03\\Models\\0001EDDC.sa1mdl", false); //Tree 17 (identical?)
-		___ADV03_OBJECTS[15] = LoadModel("system\\data\\ADV03\\Models\\00027158.sa1mdl", false); //Small tree shadow
-		___ADV03_OBJECTS[13] = LoadModel("system\\data\\ADV03\\Models\\00016CA0.sa1mdl", false); //OWell
-		___ADV03_OBJECTS[18] = LoadModel("system\\data\\ADV03\\Models\\00027054.sa1mdl", false); //Well shadow
-		___ADV03_OBJECTS[21] = LoadModel("system\\data\\ADV03\\Models\\0001D774.sa1mdl", false); //OPyStairs
-		___ADV03_OBJECTS[20] = LoadModel("system\\data\\ADV03\\Models\\0001E498.sa1mdl", false); //OBigStairs
-		___ADV03_OBJECTS[19] = LoadModel("system\\data\\ADV03\\Models\\0001E59C.sa1mdl", false); //OBigStairs low LOD
-		___ADV03_OBJECTS[22] = LoadModel("system\\data\\ADV03\\Models\\0001D878.sa1mdl", false); //OPyStairs low LOD
+		ADV03_OBJECTS[16] = LoadModel("system\\data\\ADV03\\Models\\0001EDDC.sa1mdl", false); //Tree 16
+		ADV03_OBJECTS[17] = LoadModel("system\\data\\ADV03\\Models\\0001EDDC.sa1mdl", false); //Tree 17 (identical?)
+		ADV03_OBJECTS[15] = LoadModel("system\\data\\ADV03\\Models\\00027158.sa1mdl", false); //Small tree shadow
+		ADV03_OBJECTS[13] = LoadModel("system\\data\\ADV03\\Models\\00016CA0.sa1mdl", false); //OWell
+		ADV03_OBJECTS[18] = LoadModel("system\\data\\ADV03\\Models\\00027054.sa1mdl", false); //Well shadow
+		ADV03_OBJECTS[21] = LoadModel("system\\data\\ADV03\\Models\\0001D774.sa1mdl", false); //OPyStairs
+		ADV03_OBJECTS[20] = LoadModel("system\\data\\ADV03\\Models\\0001E498.sa1mdl", false); //OBigStairs
+		ADV03_OBJECTS[19] = LoadModel("system\\data\\ADV03\\Models\\0001E59C.sa1mdl", false); //OBigStairs low LOD
+		ADV03_OBJECTS[22] = LoadModel("system\\data\\ADV03\\Models\\0001D878.sa1mdl", false); //OPyStairs low LOD
 		//Fog data
 		for (int i = 0; i < 3; i++)
 		{
@@ -566,6 +566,7 @@ void ADV03_Init()
 			DrawDist_Past2[i].Maximum = -16000.0f;
 			DrawDist_Past3[i].Maximum = -16000.0f;
 		}
+		ReinitializeDLLStuff();
 		ModelsLoaded_ADV03 = true;
 	}
 }

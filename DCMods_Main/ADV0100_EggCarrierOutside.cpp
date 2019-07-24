@@ -171,7 +171,7 @@ void ParseEC00Materials(bool remove)
 	NJS_TEX* uv;
 	int texid;
 	LandTable* landtable;
-	landtable = ___LANDTABLEEC[0];
+	landtable = LANDTABLEEC0[0];
 	for (int j = 0; j < landtable->COLCount; j++)
 	{
 		for (int k = 0; k < landtable->Col[j].Model->basicdxmodel->nbMat; ++k)
@@ -186,7 +186,7 @@ void ParseEC00Materials(bool remove)
 			}
 		}
 	}
-	landtable = ___LANDTABLEEC[1];
+	landtable = LANDTABLEEC0[1];
 	for (int j = 0; j < landtable->COLCount; j++)
 	{
 		for (int k = 0; k < landtable->Col[j].Model->basicdxmodel->nbMat; ++k)
@@ -201,7 +201,7 @@ void ParseEC00Materials(bool remove)
 			}
 		}
 	}
-	landtable = ___LANDTABLEEC[2];
+	landtable = LANDTABLEEC0[2];
 	for (int j = 0; j < landtable->COLCount; j++)
 	{
 		for (int k = 0; k < landtable->Col[j].Model->basicdxmodel->nbMat; ++k)
@@ -216,31 +216,31 @@ void ParseEC00Materials(bool remove)
 			}
 		}
 	}
-	landtable = ___LANDTABLEEC[3];
+	landtable = LANDTABLEEC0[3];
 	for (int j = 0; j < landtable->COLCount; j++)
 	{
 		//White diffuse for landtable animation
 		if (!remove)
 		{
-			AddWhiteDiffuseMaterial(&___LANDTABLEEC[3]->AnimData[___LANDTABLEEC[3]->AnimCount - 1].Model->basicdxmodel->mats[1]);
-			AddWhiteDiffuseMaterial(&___LANDTABLEEC[3]->AnimData[___LANDTABLEEC[3]->AnimCount - 1].Model->basicdxmodel->mats[2]);
-			AddWhiteDiffuseMaterial(&___LANDTABLEEC[3]->AnimData[___LANDTABLEEC[3]->AnimCount - 1].Model->basicdxmodel->mats[3]);
-			AddWhiteDiffuseMaterial(&___LANDTABLEEC[3]->AnimData[___LANDTABLEEC[3]->AnimCount - 1].Model->basicdxmodel->mats[4]);
-			AddWhiteDiffuseMaterial(&___LANDTABLEEC[3]->AnimData[___LANDTABLEEC[3]->AnimCount - 1].Model->basicdxmodel->mats[6]);
-			AddWhiteDiffuseMaterial(&___LANDTABLEEC[3]->AnimData[___LANDTABLEEC[3]->AnimCount - 1].Model->basicdxmodel->mats[7]);
-			AddWhiteDiffuseMaterial(&___LANDTABLEEC[3]->AnimData[___LANDTABLEEC[3]->AnimCount - 1].Model->basicdxmodel->mats[8]);
-			AddWhiteDiffuseMaterial(&___LANDTABLEEC[3]->AnimData[___LANDTABLEEC[3]->AnimCount - 1].Model->basicdxmodel->mats[9]);
+			AddWhiteDiffuseMaterial(&LANDTABLEEC0[3]->AnimData[LANDTABLEEC0[3]->AnimCount - 1].Model->basicdxmodel->mats[1]);
+			AddWhiteDiffuseMaterial(&LANDTABLEEC0[3]->AnimData[LANDTABLEEC0[3]->AnimCount - 1].Model->basicdxmodel->mats[2]);
+			AddWhiteDiffuseMaterial(&LANDTABLEEC0[3]->AnimData[LANDTABLEEC0[3]->AnimCount - 1].Model->basicdxmodel->mats[3]);
+			AddWhiteDiffuseMaterial(&LANDTABLEEC0[3]->AnimData[LANDTABLEEC0[3]->AnimCount - 1].Model->basicdxmodel->mats[4]);
+			AddWhiteDiffuseMaterial(&LANDTABLEEC0[3]->AnimData[LANDTABLEEC0[3]->AnimCount - 1].Model->basicdxmodel->mats[6]);
+			AddWhiteDiffuseMaterial(&LANDTABLEEC0[3]->AnimData[LANDTABLEEC0[3]->AnimCount - 1].Model->basicdxmodel->mats[7]);
+			AddWhiteDiffuseMaterial(&LANDTABLEEC0[3]->AnimData[LANDTABLEEC0[3]->AnimCount - 1].Model->basicdxmodel->mats[8]);
+			AddWhiteDiffuseMaterial(&LANDTABLEEC0[3]->AnimData[LANDTABLEEC0[3]->AnimCount - 1].Model->basicdxmodel->mats[9]);
 		}
 		else
 		{
-			RemoveWhiteDiffuseMaterial(&___LANDTABLEEC[3]->AnimData[___LANDTABLEEC[3]->AnimCount - 1].Model->basicdxmodel->mats[1]);
-			RemoveWhiteDiffuseMaterial(&___LANDTABLEEC[3]->AnimData[___LANDTABLEEC[3]->AnimCount - 1].Model->basicdxmodel->mats[2]);
-			RemoveWhiteDiffuseMaterial(&___LANDTABLEEC[3]->AnimData[___LANDTABLEEC[3]->AnimCount - 1].Model->basicdxmodel->mats[3]);
-			RemoveWhiteDiffuseMaterial(&___LANDTABLEEC[3]->AnimData[___LANDTABLEEC[3]->AnimCount - 1].Model->basicdxmodel->mats[4]);
-			RemoveWhiteDiffuseMaterial(&___LANDTABLEEC[3]->AnimData[___LANDTABLEEC[3]->AnimCount - 1].Model->basicdxmodel->mats[6]);
-			RemoveWhiteDiffuseMaterial(&___LANDTABLEEC[3]->AnimData[___LANDTABLEEC[3]->AnimCount - 1].Model->basicdxmodel->mats[7]);
-			RemoveWhiteDiffuseMaterial(&___LANDTABLEEC[3]->AnimData[___LANDTABLEEC[3]->AnimCount - 1].Model->basicdxmodel->mats[8]);
-			RemoveWhiteDiffuseMaterial(&___LANDTABLEEC[3]->AnimData[___LANDTABLEEC[3]->AnimCount - 1].Model->basicdxmodel->mats[9]);
+			RemoveWhiteDiffuseMaterial(&LANDTABLEEC0[3]->AnimData[LANDTABLEEC0[3]->AnimCount - 1].Model->basicdxmodel->mats[1]);
+			RemoveWhiteDiffuseMaterial(&LANDTABLEEC0[3]->AnimData[LANDTABLEEC0[3]->AnimCount - 1].Model->basicdxmodel->mats[2]);
+			RemoveWhiteDiffuseMaterial(&LANDTABLEEC0[3]->AnimData[LANDTABLEEC0[3]->AnimCount - 1].Model->basicdxmodel->mats[3]);
+			RemoveWhiteDiffuseMaterial(&LANDTABLEEC0[3]->AnimData[LANDTABLEEC0[3]->AnimCount - 1].Model->basicdxmodel->mats[4]);
+			RemoveWhiteDiffuseMaterial(&LANDTABLEEC0[3]->AnimData[LANDTABLEEC0[3]->AnimCount - 1].Model->basicdxmodel->mats[6]);
+			RemoveWhiteDiffuseMaterial(&LANDTABLEEC0[3]->AnimData[LANDTABLEEC0[3]->AnimCount - 1].Model->basicdxmodel->mats[7]);
+			RemoveWhiteDiffuseMaterial(&LANDTABLEEC0[3]->AnimData[LANDTABLEEC0[3]->AnimCount - 1].Model->basicdxmodel->mats[8]);
+			RemoveWhiteDiffuseMaterial(&LANDTABLEEC0[3]->AnimData[LANDTABLEEC0[3]->AnimCount - 1].Model->basicdxmodel->mats[9]);
 		}
 		for (int k = 0; k < landtable->Col[j].Model->basicdxmodel->nbMat; ++k)
 		{
@@ -254,7 +254,7 @@ void ParseEC00Materials(bool remove)
 			}
 		}
 	}
-	landtable = ___LANDTABLEEC[4];
+	landtable = LANDTABLEEC0[4];
 	for (int j = 0; j < landtable->COLCount; j++)
 	{
 		for (int k = 0; k < landtable->Col[j].Model->basicdxmodel->nbMat; ++k)
@@ -269,7 +269,7 @@ void ParseEC00Materials(bool remove)
 			}
 		}
 	}
-	landtable = ___LANDTABLEEC[5];
+	landtable = LANDTABLEEC0[5];
 	for (int j = 0; j < landtable->COLCount; j++)
 	{
 		for (int k = 0; k < landtable->Col[j].Model->basicdxmodel->nbMat; ++k)
@@ -331,12 +331,12 @@ void ADV01_Init()
 	ADV01_3->TexList = &texlist_ec03;
 	ADV01_4->TexList = &texlist_ec04;
 	ADV01_5->TexList = &texlist_ec05;
-	___LANDTABLEEC[0] = ADV01_0;
-	___LANDTABLEEC[1] = ADV01_1;
-	___LANDTABLEEC[2] = ADV01_2;
-	___LANDTABLEEC[3] = ADV01_3;
-	___LANDTABLEEC[4] = ADV01_4;
-	___LANDTABLEEC[5] = ADV01_5;
+	LANDTABLEEC0[0] = ADV01_0;
+	LANDTABLEEC0[1] = ADV01_1;
+	LANDTABLEEC0[2] = ADV01_2;
+	LANDTABLEEC0[3] = ADV01_3;
+	LANDTABLEEC0[4] = ADV01_4;
+	LANDTABLEEC0[5] = ADV01_5;
 	LandTableArray[112] = ADV01_0;
 	LandTableArray[113] = ADV01_1;
 	LandTableArray[114] = ADV01_2;
@@ -435,12 +435,12 @@ void ADV01_Init()
 		ReplacePVM("EC_SEA");
 		ReplacePVM("OBJ_EC00");
 		ResizeTextureList(&OBJ_EC00_TEXLIST, 206);
-		___ADV01_TEXLISTS[0] = &texlist_ec00;
-		___ADV01_TEXLISTS[1] = &texlist_ec01;
-		___ADV01_TEXLISTS[2] = &texlist_ec02;
-		___ADV01_TEXLISTS[3] = &texlist_ec03;
-		___ADV01_TEXLISTS[4] = &texlist_ec04;
-		___ADV01_TEXLISTS[5] = &texlist_ec05;
+		ADV01_TEXLISTS[0] = &texlist_ec00;
+		ADV01_TEXLISTS[1] = &texlist_ec01;
+		ADV01_TEXLISTS[2] = &texlist_ec02;
+		ADV01_TEXLISTS[3] = &texlist_ec03;
+		ADV01_TEXLISTS[4] = &texlist_ec04;
+		ADV01_TEXLISTS[5] = &texlist_ec05;
 		if (!SADXWater_EggCarrier)
 		{
 			EggCarrierSeaModel = LoadModel("system\\data\\ADV0100\\Models\\001C0478.sa1mdl", false);
@@ -483,7 +483,7 @@ void ADV01_Init()
 		//Material fixes
 		AddAlphaRejectMaterial((NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01MODELS") + 0x209B6C)); //Rotating lights outside
 		AddAlphaRejectMaterial((NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01MODELS") + 0x1F7A58)); //Monorail sign (outside)
-		RemoveVertexColors_Model(___ADV01_MODELS[13]); //Slot machine
+		RemoveVertexColors_Model(ADV01_MODELS[13]); //Slot machine
 		RemoveVertexColors_Object(ADV01_OBJECTS[11]); //Books 1
 		RemoveVertexColors_Object(ADV01_OBJECTS[12]); //Books 2
 		//Fix materials on elevator buttons
@@ -496,63 +496,63 @@ void ADV01_Init()
 		WriteData<5>((void*)0x51BB8C, 0x90); //Don't disable fog in EC transformation cutscene
 		//Model replacements
 		NJS_OBJECT* EggChair = LoadModel("system\\data\\ADV0100\\Models\\0019795C.sa1mdl", false); //OEggChair
-		___ADV01_ACTIONS[2]->object = EggChair;
-		___ADV01_ACTIONS[2]->motion = &_197dbc; //OEggChair
-		___ADV01_OBJECTS[21] = EggChair->child->child;
-		___ADV01_OBJECTS[22] = EggChair->child->child->sibling->sibling->sibling;
-		___ADV01_OBJECTS[23] = EggChair->child->child->sibling->sibling->sibling->sibling;
-		___ADV01_OBJECTS[24] = EggChair->child->child->sibling->sibling->sibling->sibling->sibling;
-		___ADV01_ACTIONS[6]->object = LoadModel("system\\data\\ADV0100\\Models\\0016991C.sa1mdl", false); //OSkyDeck
+		ADV01_ACTIONS[2]->object = EggChair;
+		ADV01_ACTIONS[2]->motion = &_197dbc; //OEggChair
+		ADV01_OBJECTS[21] = EggChair->child->child;
+		ADV01_OBJECTS[22] = EggChair->child->child->sibling->sibling->sibling;
+		ADV01_OBJECTS[23] = EggChair->child->child->sibling->sibling->sibling->sibling;
+		ADV01_OBJECTS[24] = EggChair->child->child->sibling->sibling->sibling->sibling->sibling;
+		ADV01_ACTIONS[6]->object = LoadModel("system\\data\\ADV0100\\Models\\0016991C.sa1mdl", false); //OSkyDeck
 		NJS_OBJECT* ECTransform = LoadModel("system\\data\\ADV0100\\Models\\00209538.sa1mdl", false);
-		___ADV01_ACTIONS[7]->object = ECTransform; //EC transform
-		___ADV01_OBJECTS[64] = ECTransform; //EC transform
-		___ADV01_OBJECTS[0] = LoadModel("system\\data\\ADV0100\\Models\\00182160.sa1mdl", false); //SideLift
-		___ADV01_OBJECTS[1] = LoadModel("system\\data\\ADV0100\\Models\\00181DBC.sa1mdl", false); //SideLift
-		___ADV01_OBJECTS[2] = LoadModel("system\\data\\ADV0100\\Models\\00181684.sa1mdl", false); //SideLift
+		ADV01_ACTIONS[7]->object = ECTransform; //EC transform
+		ADV01_OBJECTS[64] = ECTransform; //EC transform
+		ADV01_OBJECTS[0] = LoadModel("system\\data\\ADV0100\\Models\\00182160.sa1mdl", false); //SideLift
+		ADV01_OBJECTS[1] = LoadModel("system\\data\\ADV0100\\Models\\00181DBC.sa1mdl", false); //SideLift
+		ADV01_OBJECTS[2] = LoadModel("system\\data\\ADV0100\\Models\\00181684.sa1mdl", false); //SideLift
 		ADV01_ACTIONS[3]->object = LoadModel("system\\data\\ADV0100\\Models\\0019A490.sa1mdl", false); //OGunSight
 		ADV01_OBJECTS[6] = LoadModel("system\\data\\ADV0100\\Models\\001AA1A8.sa1mdl", false); //OBChair
 		ADV01_OBJECTS[8] = LoadModel("system\\data\\ADV0100\\Models\\001A01A0.sa1mdl", false); //OEggmanBed
-		___ADV01_OBJECTS[29] = ADV01_ACTIONS[3]->object;
-		___ADV01_OBJECTS[55] = LoadModel("system\\data\\ADV0100\\Models\\0017D82C.sa1mdl", false); //OSLight
-		___ADV01_OBJECTS[56] = ___ADV01_OBJECTS[55]->child; //OSLight
-		___ADV01_OBJECTS[57] = ___ADV01_OBJECTS[55]->child->child; //OSLight
-		AddWhiteDiffuseMaterial(&___ADV01_OBJECTS[55]->child->child->basicdxmodel->mats[3]);
-		AddWhiteDiffuseMaterial(&___ADV01_OBJECTS[55]->child->child->basicdxmodel->mats[4]);
-		AddWhiteDiffuseMaterial(&___ADV01_OBJECTS[55]->child->child->basicdxmodel->mats[5]);
-		AddWhiteDiffuseMaterial(&___ADV01_OBJECTS[55]->child->child->basicdxmodel->mats[6]);
-		AddWhiteDiffuseMaterial(&___ADV01_OBJECTS[55]->child->child->basicdxmodel->mats[7]);
-		___ADV01_OBJECTS[58] = LoadModel("system\\data\\ADV0100\\Models\\0017BFE4.sa1mdl", false); //OSLight
-		___ADV01_OBJECTS[61] = LoadModel("system\\data\\ADV0100\\Models\\001B4794.sa1mdl", false); //OTornado2
-		AddWhiteDiffuseMaterial(&___ADV01_OBJECTS[61]->basicdxmodel->mats[23]);
-		AddWhiteDiffuseMaterial(&___ADV01_OBJECTS[61]->basicdxmodel->mats[24]);
-		SwapMeshsets(___ADV01_OBJECTS[61], 0, 22);
+		ADV01_OBJECTS[29] = ADV01_ACTIONS[3]->object;
+		ADV01_OBJECTS[55] = LoadModel("system\\data\\ADV0100\\Models\\0017D82C.sa1mdl", false); //OSLight
+		ADV01_OBJECTS[56] = ADV01_OBJECTS[55]->child; //OSLight
+		ADV01_OBJECTS[57] = ADV01_OBJECTS[55]->child->child; //OSLight
+		AddWhiteDiffuseMaterial(&ADV01_OBJECTS[55]->child->child->basicdxmodel->mats[3]);
+		AddWhiteDiffuseMaterial(&ADV01_OBJECTS[55]->child->child->basicdxmodel->mats[4]);
+		AddWhiteDiffuseMaterial(&ADV01_OBJECTS[55]->child->child->basicdxmodel->mats[5]);
+		AddWhiteDiffuseMaterial(&ADV01_OBJECTS[55]->child->child->basicdxmodel->mats[6]);
+		AddWhiteDiffuseMaterial(&ADV01_OBJECTS[55]->child->child->basicdxmodel->mats[7]);
+		ADV01_OBJECTS[58] = LoadModel("system\\data\\ADV0100\\Models\\0017BFE4.sa1mdl", false); //OSLight
+		ADV01_OBJECTS[61] = LoadModel("system\\data\\ADV0100\\Models\\001B4794.sa1mdl", false); //OTornado2
+		AddWhiteDiffuseMaterial(&ADV01_OBJECTS[61]->basicdxmodel->mats[23]);
+		AddWhiteDiffuseMaterial(&ADV01_OBJECTS[61]->basicdxmodel->mats[24]);
+		SwapMeshsets(ADV01_OBJECTS[61], 0, 22);
 		NJS_OBJECT* SomeStupidThing = LoadModel("system\\data\\ADV0100\\Models\\00178BC4.sa1mdl", false);
-		___ADV01_ACTIONS[0]->object = SomeStupidThing; //This thing is stupid
-		___ADV01_OBJECTS[5] = SomeStupidThing; //This thing is stupid
-		___ADV01_OBJECTS[13] = LoadModel("system\\data\\ADV0100\\Models\\001A85F0.sa1mdl", false); //OParasol
-		___ADV01_OBJECTS[27] = LoadModel("system\\data\\ADV0100\\Models\\001782D4.sa1mdl", false); //Door top
+		ADV01_ACTIONS[0]->object = SomeStupidThing; //This thing is stupid
+		ADV01_OBJECTS[5] = SomeStupidThing; //This thing is stupid
+		ADV01_OBJECTS[13] = LoadModel("system\\data\\ADV0100\\Models\\001A85F0.sa1mdl", false); //OParasol
+		ADV01_OBJECTS[27] = LoadModel("system\\data\\ADV0100\\Models\\001782D4.sa1mdl", false); //Door top
 		NJS_OBJECT* Taihou = LoadModel("system\\data\\ADV0100\\Models\\0017FDB4.sa1mdl", false);
-		___ADV01_OBJECTS[14]->basicdxmodel = Taihou->basicdxmodel; //OTaihou (Cannon)
-		___ADV01_OBJECTS[14]->child->basicdxmodel = Taihou->child->basicdxmodel; //OTaihou (Cannon)
-		___ADV01_OBJECTS[14]->child->child->basicdxmodel = Taihou->child->child->basicdxmodel; //OTaihou (Cannon)
-		___ADV01_OBJECTS[14]->child->child->sibling->basicdxmodel = Taihou->child->child->sibling->basicdxmodel; //OTaihou (Cannon)
-		___ADV01_OBJECTS[28] = LoadModel("system\\data\\ADV0100\\Models\\001777B4.sa1mdl", false); //Door 2
-		___ADV01_OBJECTS[18] = LoadModel("system\\data\\ADV0100\\Models\\00189EA0.sa1mdl", false); //Eggcap
-		___ADV01_OBJECTS[19] = LoadModel("system\\data\\ADV0100\\Models\\001760A0.sa1mdl", false); //Egglift
-		___ADV01_OBJECTS[34] = LoadModel("system\\data\\ADV0100\\Models\\00189090.sa1mdl", false); //OMast
-		___ADV01_OBJECTS[51]->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT; //Pool water
-		___ADV01_OBJECTS[51]->basicdxmodel->mats[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT; //Pool water
-		___ADV01_OBJECTS[51]->basicdxmodel->mats[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT; //Pool water
+		ADV01_OBJECTS[14]->basicdxmodel = Taihou->basicdxmodel; //OTaihou (Cannon)
+		ADV01_OBJECTS[14]->child->basicdxmodel = Taihou->child->basicdxmodel; //OTaihou (Cannon)
+		ADV01_OBJECTS[14]->child->child->basicdxmodel = Taihou->child->child->basicdxmodel; //OTaihou (Cannon)
+		ADV01_OBJECTS[14]->child->child->sibling->basicdxmodel = Taihou->child->child->sibling->basicdxmodel; //OTaihou (Cannon)
+		ADV01_OBJECTS[28] = LoadModel("system\\data\\ADV0100\\Models\\001777B4.sa1mdl", false); //Door 2
+		ADV01_OBJECTS[18] = LoadModel("system\\data\\ADV0100\\Models\\00189EA0.sa1mdl", false); //Eggcap
+		ADV01_OBJECTS[19] = LoadModel("system\\data\\ADV0100\\Models\\001760A0.sa1mdl", false); //Egglift
+		ADV01_OBJECTS[34] = LoadModel("system\\data\\ADV0100\\Models\\00189090.sa1mdl", false); //OMast
+		ADV01_OBJECTS[51]->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT; //Pool water
+		ADV01_OBJECTS[51]->basicdxmodel->mats[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT; //Pool water
+		ADV01_OBJECTS[51]->basicdxmodel->mats[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT; //Pool water
 		NJS_OBJECT* MonorailFront = LoadModel("system\\data\\ADV0100\\Models\\00170498.sa1mdl", false);
-		___ADV01_OBJECTS[69]->basicdxmodel = MonorailFront->basicdxmodel;
-		___ADV01_OBJECTS[69]->child->basicdxmodel = MonorailFront->child->basicdxmodel;
-		___ADV01_OBJECTS[69]->child->child->basicdxmodel = MonorailFront->child->child->basicdxmodel;
-		___ADV01_OBJECTS[69]->child->sibling->basicdxmodel = MonorailFront->child->sibling->basicdxmodel;
-		AddAlphaRejectMaterial(&___ADV01_OBJECTS[69]->child->sibling->basicdxmodel->mats[0]);
+		ADV01_OBJECTS[69]->basicdxmodel = MonorailFront->basicdxmodel;
+		ADV01_OBJECTS[69]->child->basicdxmodel = MonorailFront->child->basicdxmodel;
+		ADV01_OBJECTS[69]->child->child->basicdxmodel = MonorailFront->child->child->basicdxmodel;
+		ADV01_OBJECTS[69]->child->sibling->basicdxmodel = MonorailFront->child->sibling->basicdxmodel;
+		AddAlphaRejectMaterial(&ADV01_OBJECTS[69]->child->sibling->basicdxmodel->mats[0]);
 		NJS_OBJECT* MonorailBack = LoadModel("system\\data\\ADV0100\\Models\\00170498.sa1mdl", false);
-		___ADV01_OBJECTS[70]->basicdxmodel = MonorailBack->basicdxmodel;
-		___ADV01_OBJECTS[70]->child->basicdxmodel = MonorailBack->child->basicdxmodel;
-		___ADV01_OBJECTS[70]->child->child->basicdxmodel = MonorailBack->child->child->basicdxmodel;
+		ADV01_OBJECTS[70]->basicdxmodel = MonorailBack->basicdxmodel;
+		ADV01_OBJECTS[70]->child->basicdxmodel = MonorailBack->child->basicdxmodel;
+		ADV01_OBJECTS[70]->child->child->basicdxmodel = MonorailBack->child->child->basicdxmodel;
 		for (int i = 0; i < 3; i++)
 		{
 			SkyboxScale_EggCarrier4[i].x = 1.0f;
@@ -578,6 +578,7 @@ void ADV01_Init()
 			EggCarrierOutside7Fog[i].Color = 0xFF000000;
 			EggCarrierOutside7Fog[i].Distance = 17000;
 		}
+		ReinitializeDLLStuff();
 		ModelsLoaded_ADV0100 = true;
 	}
 }

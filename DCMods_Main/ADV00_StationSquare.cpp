@@ -263,7 +263,7 @@ void ParseSSColFlags()
 	int colflags;
 	LandTable *landtable;
 	//Sewers
-	landtable = ___LANDTABLESS[2];
+	landtable = LANDTABLESS[2];
 	if (SADXWater_StationSquare)
 	{
 		for (int j = 0; j < landtable->COLCount; j++)
@@ -273,7 +273,7 @@ void ParseSSColFlags()
 		}
 	}
 	//Main area
-	landtable = ___LANDTABLESS[3];
+	landtable = LANDTABLESS[3];
 	for (int j = 0; j < landtable->COLCount; j++)
 	{
 		colflags = landtable->Col[j].Flags;
@@ -288,7 +288,7 @@ void ParseSSColFlags()
 		}
 	}
 	//Hotel area
-	landtable = ___LANDTABLESS[4];
+	landtable = LANDTABLESS[4];
 	for (int j = 0; j < landtable->COLCount; j++)
 	{
 		colflags = landtable->Col[j].Flags;
@@ -310,7 +310,7 @@ void ParseSSMaterials(bool remove)
 	NJS_MATERIAL *material;
 	LandTable *landtable;
 	//Casino
-	landtable = ___LANDTABLESS[1];
+	landtable = LANDTABLESS[1];
 	for (int j = 0; j < landtable->COLCount; j++)
 	{
 		for (int k = 0; k < landtable->Col[j].Model->basicdxmodel->nbMat; ++k)
@@ -326,7 +326,7 @@ void ParseSSMaterials(bool remove)
 		}
 	}
 	//Sewers
-	landtable = ___LANDTABLESS[2];
+	landtable = LANDTABLESS[2];
 	for (int j = 0; j < landtable->COLCount; j++)
 	{
 		for (int k = 0; k < landtable->Col[j].Model->basicdxmodel->nbMat; ++k)
@@ -347,7 +347,7 @@ void ParseSSMaterials(bool remove)
 		}
 	}
 	//Main area
-	landtable = ___LANDTABLESS[3];
+	landtable = LANDTABLESS[3];
 	for (int j = 0; j < landtable->COLCount; j++)
 	{
 		for (int k = 0; k < landtable->Col[j].Model->basicdxmodel->nbMat; ++k)
@@ -379,7 +379,7 @@ void ParseSSMaterials(bool remove)
 		}
 	}
 	//Hotel and pool
-	landtable = ___LANDTABLESS[4];
+	landtable = LANDTABLESS[4];
 	for (int j = 0; j < landtable->COLCount; j++)
 	{
 		for (int k = 0; k < landtable->Col[j].Model->basicdxmodel->nbMat; ++k)
@@ -418,12 +418,12 @@ void SwitchLighting_TimeOfDay(int act)
 	Uint32 materialflags;
 	int texid;
 	LandTable *landtable;
-	if (act == 0) landtable = ___LANDTABLESS[0];
-	else if (act == 1) landtable = ___LANDTABLESS[1];
-	else if (act == 2) landtable = ___LANDTABLESS[2];
-	else if (act == 3) landtable = ___LANDTABLESS[3];
-	else if (act == 4) landtable = ___LANDTABLESS[4];
-	else landtable = ___LANDTABLESS[5];
+	if (act == 0) landtable = LANDTABLESS[0];
+	else if (act == 1) landtable = LANDTABLESS[1];
+	else if (act == 2) landtable = LANDTABLESS[2];
+	else if (act == 3) landtable = LANDTABLESS[3];
+	else if (act == 4) landtable = LANDTABLESS[4];
+	else landtable = LANDTABLESS[5];
 	//Add or remove "ignore light"
 	for (int j = 0; j < landtable->COLCount; j++)
 	{
@@ -605,12 +605,12 @@ void ADV00_Init()
 	LandTableArray[107] = ADV00_3;
 	LandTableArray[108] = ADV00_4;
 	LandTableArray[109] = ADV00_5;
-	___LANDTABLESS[0] = ADV00_0;
-	___LANDTABLESS[1] = ADV00_1;
-	___LANDTABLESS[2] = ADV00_2;
-	___LANDTABLESS[3] = ADV00_3;
-	___LANDTABLESS[4] = ADV00_4;
-	___LANDTABLESS[5] = ADV00_5;
+	LANDTABLESS[0] = ADV00_0;
+	LANDTABLESS[1] = ADV00_1;
+	LANDTABLESS[2] = ADV00_2;
+	LANDTABLESS[3] = ADV00_3;
+	LANDTABLESS[4] = ADV00_4;
+	LANDTABLESS[5] = ADV00_5;
 	ParseSSColFlags();
 	ParseSSMaterials(false);
 	PreviousTimeOfDay = -1;
@@ -719,12 +719,12 @@ void ADV00_Init()
 		ReplacePVR("SS_NIGHTSKY");
 		ReplacePVR("SS_NIGHTSKYB");
 		ReplacePVR("SS_YUSKAY_MINI");
-		___ADV00_TEXLISTS[0] = &texlist_advss00;
-		___ADV00_TEXLISTS[1] = &texlist_advss01;
-		___ADV00_TEXLISTS[2] = &texlist_advss02;
-		___ADV00_TEXLISTS[3] = &texlist_advss03;
-		___ADV00_TEXLISTS[4] = &texlist_advss04;
-		___ADV00_TEXLISTS[5] = &texlist_advss05;
+		ADV00_TEXLISTS[0] = &texlist_advss00;
+		ADV00_TEXLISTS[1] = &texlist_advss01;
+		ADV00_TEXLISTS[2] = &texlist_advss02;
+		ADV00_TEXLISTS[3] = &texlist_advss03;
+		ADV00_TEXLISTS[4] = &texlist_advss04;
+		ADV00_TEXLISTS[5] = &texlist_advss05;
 		ResizeTextureList((NJS_TEXLIST*)0x2AEE920, 22); //SSCAR 
 		ResizeTextureList((NJS_TEXLIST*)0x2AD9F58, 31); //SS_TRAIN
 		ResizeTextureList(&OBJ_SS_TEXLIST, 177);
@@ -914,6 +914,7 @@ void ADV00_Init()
 			StationSquare6Fog[i].Layer = -12000.0f;
 			StationSquare6DrawDist[i].Maximum = -600.0f;
 		}
+		ReinitializeDLLStuff();
 		ModelsLoaded_ADV00 = true;
 	}
 }
