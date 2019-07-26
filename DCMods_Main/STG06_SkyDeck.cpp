@@ -266,9 +266,9 @@ void SkyDeck_Init()
 	STG06_0->TexList = &texlist_skydeck1;
 	STG06_1->TexList = &texlist_skydeck2;
 	STG06_2->TexList = &texlist_skydeck3;
-	WriteData((LandTable * *)0x97DAC8, STG06_0);
-	WriteData((LandTable * *)0x97DACC, STG06_1);
-	WriteData((LandTable * *)0x97DAD0, STG06_2);
+	WriteData((LandTable**)0x97DAC8, STG06_0);
+	WriteData((LandTable**)0x97DACC, STG06_1);
+	WriteData((LandTable**)0x97DAD0, STG06_2);
 	((LandTable*)0x022369A0)->COLCount = STG06_1->COLCount;
 	((LandTable*)0x022369A0)->Col = STG06_1->Col;
 	if (!ModelsLoaded_STG06)
@@ -497,10 +497,10 @@ void SkyDeck_Init()
 		SkyNormal2 = LoadModel("system\\data\\STG06\\Models\\000FBC08.sa1mdl", false); //Clouds normal
 		SkyDark2 = LoadModel("system\\data\\STG06\\Models\\000FE03C.sa1mdl", false); //Clouds dark top 2 
 		SkyDark1 = LoadModel("system\\data\\STG06\\Models\\000FE03C.sa1mdl", false); //Clouds dark top 1 
-		WriteData((NJS_OBJECT * *)0x005ED3AC, SkyNormal1);
-		WriteData((NJS_OBJECT * *)0x005ED3A5, SkyDark2);
-		WriteData((NJS_OBJECT * *)0x005ED46D, SkyDark1); //Clouds dark top
-		WriteData((NJS_OBJECT * *)0x005ED4FC, SkyDark1); //Clouds dark bottom
+		WriteData((NJS_OBJECT**)0x005ED3AC, SkyNormal1);
+		WriteData((NJS_OBJECT**)0x005ED3A5, SkyDark2);
+		WriteData((NJS_OBJECT**)0x005ED46D, SkyDark1); //Clouds dark top
+		WriteData((NJS_OBJECT**)0x005ED4FC, SkyDark1); //Clouds dark bottom
 		ResizeTextureList((NJS_TEXLIST*)0x20E0BB0, textures_skydeck1);
 		ResizeTextureList((NJS_TEXLIST*)0x20AA63C, textures_skydeck2);
 		ResizeTextureList((NJS_TEXLIST*)0x203ACE0, textures_skydeck3);

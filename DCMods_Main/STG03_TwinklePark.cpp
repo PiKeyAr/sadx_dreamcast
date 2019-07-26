@@ -466,9 +466,9 @@ void TwinklePark_Init()
 	STG03_1->TexList = &texlist_twinkle2;
 	STG03_2->TexList = &texlist_twinkle3;
 	ResizeTextureList(&OBJ_TWINKLE_TEXLIST, 96);
-	WriteData((LandTable * *)0x97DA68, STG03_0);
-	WriteData((LandTable * *)0x97DA6C, STG03_1);
-	WriteData((LandTable * *)0x97DA70, STG03_2);
+	WriteData((LandTable**)0x97DA68, STG03_0);
+	WriteData((LandTable**)0x97DA6C, STG03_1);
+	WriteData((LandTable**)0x97DA70, STG03_2);
 	LoadTwinkleParkMirrors(STG03_2);
 	ParseTwinkleParkMaterials(STG03_1);
 	if (!ModelsLoaded_STG03)
@@ -532,7 +532,7 @@ void TwinklePark_Init()
 		RemoveVertexColors_Object((NJS_OBJECT*)0x038AB250); //Cart 3
 		RemoveVertexColors_Object((NJS_OBJECT*)0x038A9130); //Cart 4
 		//Amy's barrel fix
-		NJS_OBJECT** ___AMY_OBJECTS = (NJS_OBJECT * *)GetProcAddress(GetModuleHandle(L"CHRMODELS_orig"), "___AMY_OBJECTS");
+		NJS_OBJECT** ___AMY_OBJECTS = (NJS_OBJECT**)GetProcAddress(GetModuleHandle(L"CHRMODELS_orig"), "___AMY_OBJECTS");
 		___AMY_OBJECTS[1]->child->child->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
 		___AMY_OBJECTS[1]->child->child->basicdxmodel->mats[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
 		((NJS_OBJECT*)0x008BF3A0)->basicdxmodel->mats[0].attrflags |= NJD_FLAG_IGNORE_LIGHT; //shadow blob

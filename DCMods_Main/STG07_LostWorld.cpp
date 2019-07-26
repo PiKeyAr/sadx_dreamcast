@@ -225,9 +225,9 @@ void LostWorld_Init()
 	STG07_0->TexList = &texlist_lw1;
 	STG07_1->TexList = &texlist_lw2;
 	STG07_2->TexList = &texlist_lw3;
-	WriteData((LandTable * *)0x97DAE8, STG07_0);
-	WriteData((LandTable * *)0x97DAEC, STG07_1);
-	WriteData((LandTable * *)0x97DAF0, STG07_2);
+	WriteData((LandTable**)0x97DAE8, STG07_0);
+	WriteData((LandTable**)0x97DAEC, STG07_1);
+	WriteData((LandTable**)0x97DAF0, STG07_2);
 	if (!ModelsLoaded_STG07)
 	{
 		ReplaceBIN_DC("CAM0700S");

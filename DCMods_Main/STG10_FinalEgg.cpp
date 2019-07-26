@@ -467,9 +467,9 @@ void FinalEgg_Init()
 	ParseFinalEggMaterials(STG10_0, 0, false);
 	ParseFinalEggMaterials(STG10_1, 1, false);
 	ParseFinalEggMaterials(STG10_2, 2, false);
-	WriteData((LandTable * *)0x97DB48, STG10_0); //Act 1
-	WriteData((LandTable * *)0x97DB4C, STG10_1); //Act 2
-	WriteData((LandTable * *)0x97DB50, STG10_2); //Act 3
+	WriteData((LandTable**)0x97DB48, STG10_0); //Act 1
+	WriteData((LandTable**)0x97DB4C, STG10_1); //Act 2
+	WriteData((LandTable**)0x97DB50, STG10_2); //Act 3
 	if (!ModelsLoaded_STG10)
 	{
 		ReplaceBIN_DC("CAM1000A");

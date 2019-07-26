@@ -131,9 +131,9 @@ void RedMountain_Init()
 	STG05_0->TexList = &texlist_mountain1;
 	STG05_1->TexList = &texlist_mountain2;
 	STG05_2->TexList = &texlist_mountain3;
-	WriteData((LandTable * *)0x97DAA8, STG05_0);
-	WriteData((LandTable * *)0x97DAAC, STG05_1);
-	WriteData((LandTable * *)0x97DAB0, STG05_2);
+	WriteData((LandTable**)0x97DAA8, STG05_0);
+	WriteData((LandTable**)0x97DAAC, STG05_1);
+	WriteData((LandTable**)0x97DAB0, STG05_2);
 	if (!ModelsLoaded_STG05)
 	{
 		ReplaceBIN_DC("CAM0500S");

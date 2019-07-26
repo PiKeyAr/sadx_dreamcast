@@ -544,7 +544,13 @@ void ParseEmeraldCoastColFlagsAndMaterials(LandTable *landtable, int act)
 				//Texanim 3
 				if (material->attr_texId >= 57 && material->attr_texId <= 70)
 				{
-					AddTextureAnimation(1, 1, material, false, 4, 57, 70, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+					if (material->attr_texId != 61) AddTextureAnimation(1, 1, material, false, 4, 57, 70, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+					else
+					{
+						//Retarded as usual, I see
+						AddTextureAnimation(1, 1, material, false, 4, 71, 85, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+						if (SADXWater_EmeraldCoast) landtable->Col[j].Flags = 0x80000402;
+					}
 				}
 			}
 		}
@@ -594,9 +600,9 @@ void EmeraldCoast_Init()
 	RemoveMaterialColors_Landtable(STG01_0);
 	RemoveMaterialColors_Landtable(STG01_1);
 	RemoveMaterialColors_Landtable(STG01_2);
-	WriteData((LandTable * *)0x97DA28, STG01_0); //Act 1
-	WriteData((LandTable * *)0x97DA2C, STG01_1); //Act 2
-	WriteData((LandTable * *)0x97DA30, STG01_2); //Act 3
+	WriteData((LandTable**)0x97DA28, STG01_0); //Act 1
+	WriteData((LandTable**)0x97DA2C, STG01_1); //Act 2
+	WriteData((LandTable**)0x97DA30, STG01_2); //Act 3
 	ParseEmeraldCoastColFlagsAndMaterials(STG01_0, 0);
 	ParseEmeraldCoastColFlagsAndMaterials(STG01_1, 1);
 	ParseEmeraldCoastColFlagsAndMaterials(STG01_2, 2);

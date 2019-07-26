@@ -565,9 +565,9 @@ void HotShelter_Init()
 	ParseHotShelterMaterials(STG12_0, 0, false);
 	ParseHotShelterMaterials(STG12_1, 1, false);
 	ParseHotShelterMaterials(STG12_2, 2, false);
-	WriteData((LandTable * *)0x97DB88, STG12_0);
-	WriteData((LandTable * *)0x97DB8C, STG12_1);
-	WriteData((LandTable * *)0x97DB90, STG12_2);
+	WriteData((LandTable**)0x97DB88, STG12_0);
+	WriteData((LandTable**)0x97DB8C, STG12_1);
+	WriteData((LandTable**)0x97DB90, STG12_2);
 	if (!ModelsLoaded_STG12)
 	{
 		if (!Use1999SetFiles)

@@ -484,10 +484,10 @@ void IceCap_Init()
 	STG08_1->TexList = &texlist_icecap2;
 	STG08_2->TexList = &texlist_icecap3;
 	STG08_3->TexList = &texlist_icecap2;
-	WriteData((LandTable * *)0x97DB08, STG08_0);
-	WriteData((LandTable * *)0x97DB0C, STG08_1);
-	WriteData((LandTable * *)0x97DB10, STG08_2);
-	WriteData((LandTable * *)0x97DB14, STG08_3);
+	WriteData((LandTable**)0x97DB08, STG08_0);
+	WriteData((LandTable**)0x97DB0C, STG08_1);
+	WriteData((LandTable**)0x97DB10, STG08_2);
+	WriteData((LandTable**)0x97DB14, STG08_3);
 	if (!ModelsLoaded_STG08)
 	{
 		ReplaceBIN_DC("CAM0800S");

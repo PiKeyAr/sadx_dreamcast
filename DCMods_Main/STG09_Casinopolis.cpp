@@ -906,10 +906,10 @@ void Casinopolis_Init()
 	STG09_1->TexList = &texlist_casino2;
 	STG09_2->TexList = &texlist_casino3;
 	STG09_3->TexList = &texlist_casino4;
-	WriteData((LandTable * *)0x97DB28, STG09_0);
-	WriteData((LandTable * *)0x97DB2C, STG09_1);
-	WriteData((LandTable * *)0x97DB30, STG09_2);
-	WriteData((LandTable * *)0x97DB34, STG09_3);
+	WriteData((LandTable**)0x97DB28, STG09_0);
+	WriteData((LandTable**)0x97DB2C, STG09_1);
+	WriteData((LandTable**)0x97DB30, STG09_2);
+	WriteData((LandTable**)0x97DB34, STG09_3);
 	ParseCasMaterials(STG09_0, 0);
 	ParseCasMaterials(STG09_1, 1);
 	if (!ModelsLoaded_STG09)
@@ -956,7 +956,7 @@ void Casinopolis_Init()
 		//Code fixes
 		TikeiAnim_WaterAroundShip = LoadModel("system\\data\\STG09\\Models\\00066F28.sa1mdl", false);
 		AddTextureAnimation_Permanent(9, 0, &TikeiAnim_WaterAroundShip->basicdxmodel->mats[0], true, 3, 75, 68, 69, 70, 71, 72, 73, 74, 67, 76, 77, 78, 79, 80, -1, -1);
-		WriteData((NJS_OBJECT * *)0x005CB1B7, TikeiAnim_WaterAroundShip);
+		WriteData((NJS_OBJECT**)0x005CB1B7, TikeiAnim_WaterAroundShip);
 		//OKBS
 		WriteCall((void*)0x5CE84B, RenderOKBSText);
 		AddAlphaRejectMaterial(&((NJS_OBJECT*)0x1E40344)->child->basicdxmodel->mats[0]);

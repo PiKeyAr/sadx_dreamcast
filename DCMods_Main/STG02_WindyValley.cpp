@@ -1,5 +1,5 @@
 #include "stdafx.h"
-//TODO: E103
+//TODO: E103, Spindash charge in Act 3
 NJS_TEXNAME textures_windy1[20];
 NJS_TEXLIST texlist_windy1 = { arrayptrandlength(textures_windy1) };
 
@@ -167,9 +167,9 @@ void WindyValley_Init()
 	STG02_0->TexList = &texlist_windy1;
 	STG02_1->TexList = &texlist_windy2;
 	STG02_2->TexList = &texlist_windy3;
-	WriteData((LandTable * *)0x97DA48, STG02_0); //Act 1
-	WriteData((LandTable * *)0x97DA4C, STG02_1); //Act 2
-	WriteData((LandTable * *)0x97DA50, STG02_2); //Act 3
+	WriteData((LandTable**)0x97DA48, STG02_0); //Act 1
+	WriteData((LandTable**)0x97DA4C, STG02_1); //Act 2
+	WriteData((LandTable**)0x97DA50, STG02_2); //Act 3
 	ParseWindyColFlags(STG02_2);
 	if (!ModelsLoaded_STG02)
 	{

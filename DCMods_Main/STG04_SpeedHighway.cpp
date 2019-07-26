@@ -391,9 +391,9 @@ void SpeedHighway_Init()
 	STG04_0->TexList = &texlist_hw1;
 	STG04_1->TexList = &texlist_hw2;
 	STG04_2->TexList = &texlist_hw3;
-	WriteData((LandTable * *)0x97DA88, STG04_0);
-	WriteData((LandTable * *)0x97DA8C, STG04_1);
-	WriteData((LandTable * *)0x97DA90, STG04_2);
+	WriteData((LandTable**)0x97DA88, STG04_0);
+	WriteData((LandTable**)0x97DA8C, STG04_1);
+	WriteData((LandTable**)0x97DA90, STG04_2);
 	if (!ModelsLoaded_STG04)
 	{
 		ReplaceBIN("PL_40B", "PL_40X");
@@ -436,10 +436,10 @@ void SpeedHighway_Init()
 		WriteCall((void*)0x0061BB31, FountainPart3);
 		FountainBottom = LoadModel("system\\data\\STG04\\Models\\00134B34.sa1mdl", false); //Fountain bottom
 		FountainBottom->basicdxmodel->mats[0].attr_texId = 25;
-		WriteData((NJS_OBJECT * *)0x0061BC4C, FountainBottom);
+		WriteData((NJS_OBJECT**)0x0061BC4C, FountainBottom);
 		FountainSide = LoadModel("system\\data\\STG04\\Models\\001350C8.sa1mdl", false); //Fountain side
 		FountainSide->basicdxmodel->mats[0].attr_texId = 25;
-		WriteData((NJS_OBJECT * *)0x026B3150, FountainSide);
+		WriteData((NJS_OBJECT**)0x026B3150, FountainSide);
 		//Fountain animation enhancement
 		TexLists_Level[11]->PVMList = (PVMEntry*)& SpeedHighway3Textures_list;
 		TexLists_Level[11]->NumTextures = LengthOfArray(SpeedHighway3Textures_list);
@@ -447,8 +447,8 @@ void SpeedHighway_Init()
 		((NJS_OBJECT*)0x0266403C)->basicdxmodel->mats[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
 		((NJS_OBJECT*)0x0266403C)->basicdxmodel->mats[2].attrflags |= NJD_FLAG_IGNORE_LIGHT;
 		((NJS_OBJECT*)0x0266403C)->basicdxmodel->mats[4].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		WriteData((NJS_TEXNAME * *)0x26B2968, (NJS_TEXNAME*)0x2670590); //OJamer texture list 1
-		WriteData((NJS_TEXNAME * *)0x26B2960, (NJS_TEXNAME*)0x2670554); //OJamer texture list 2
+		WriteData((NJS_TEXNAME**)0x26B2968, (NJS_TEXNAME*)0x2670590); //OJamer texture list 1
+		WriteData((NJS_TEXNAME**)0x26B2960, (NJS_TEXNAME*)0x2670554); //OJamer texture list 2
 		*(NJS_OBJECT*)0x026919C0 = *LoadModel("system\\data\\STG04\\Models\\0015D440.sa1mdl", false); //Antenna model
 		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x026919C0)->basicdxmodel->mats[4]);
 		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x026919C0)->basicdxmodel->mats[5]);
