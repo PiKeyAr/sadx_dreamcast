@@ -167,7 +167,7 @@ void E101R_Init()
 		}
 		ReplacePVM("E101R");
 		ReplacePVM("E101R_BG");
-		ReplacePVM("E101R_TIKEI");
+		if (!ModelsLoaded_B_ROBO) ReplacePVM("E101R_TIKEI");
 		ReplaceGeneric("E101R_GC.NB", "E101R_DC.NB");
 		//WriteCall((void*)0x570DB1, RenderE101R_Rocket); //Idk yet
 		WriteCall((void*)0x56F839, E101R_Particle_Show);

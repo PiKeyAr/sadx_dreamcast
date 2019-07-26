@@ -90,6 +90,7 @@ void Zero_Init()
 	B_ROBO_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\B_ROBO\\0.sa1lvl"));
 	LandTable* B_ROBO = B_ROBO_Info->getlandtable(); //&landtable_00000110;
 	RemoveMaterialColors_Landtable(B_ROBO);
+	ResizeTextureList((NJS_TEXLIST*)0x16B460C, 76); //Zero/E101R texlist
 	B_ROBO->TexList = (NJS_TEXLIST*)0x16B460C;
 	LandTableArray[64] = B_ROBO;
 	if (!ModelsLoaded_B_ROBO)
@@ -105,8 +106,8 @@ void Zero_Init()
 			ReplaceBIN_1999("SETZEROS");
 		}
 		ReplacePVM("EROBO");
+		if (!ModelsLoaded_B_E101R) ReplacePVM("E101R_TIKEI");
 		ReplaceGeneric("EROBO_GC.NB", "EROBO_DC.NB");
-		ResizeTextureList((NJS_TEXLIST*)0x16B460C, 76); //Zero/E101R texlist
 		WriteData<1>((char*)0x5850F0, 0xC3u); //Disable SetClip_ZERO
 		WriteCall((void*)0x585448, LoadBossECOceanPVM);
 		WriteCall((void*)0x58F4F9, RenderZeroBarrierModel); //Did this to remove material colors on this otherwise inaccessible model
