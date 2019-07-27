@@ -512,10 +512,21 @@ extern "C"
 		{
 			for (int i = 0; i < 128; ++i)
 			{
-				if (UVAnimationData_Permanent[i].level == CurrentLevel && UVAnimationData_Permanent[i].act == CurrentAct) AnimateUVs(&UVAnimationData_Permanent[i]);
-				if (UVAnimationData[i].level == CurrentLevel && UVAnimationData[i].act == CurrentAct) AnimateUVs(&UVAnimationData[i]);
-				if (TextureAnimationData[i].level == CurrentLevel && TextureAnimationData[i].act == CurrentAct) AnimateTexture(&TextureAnimationData[i]);
-				if (TextureAnimationData_Permanent[i].level == CurrentLevel && TextureAnimationData_Permanent[i].act == CurrentAct) AnimateTexture(&TextureAnimationData_Permanent[i]);
+				if (CurrentChaoStage != 0xFFFFFFFF)
+				{
+					if (TextureAnimationData[i].level == LevelIDs_ECGarden && CurrentChaoStage == SADXChaoStage_EggCarrier) AnimateTexture(&TextureAnimationData[i]);
+					if (TextureAnimationData[i].level == LevelIDs_SSGarden && CurrentChaoStage == SADXChaoStage_StationSquare) AnimateTexture(&TextureAnimationData[i]);
+					if (TextureAnimationData[i].level == LevelIDs_MRGarden && CurrentChaoStage == SADXChaoStage_MysticRuins) AnimateTexture(&TextureAnimationData[i]);
+					if (TextureAnimationData[i].level == LevelIDs_ChaoRace && CurrentChaoStage == SADXChaoStage_Race) AnimateTexture(&TextureAnimationData[i]);
+					if (UVAnimationData[i].level == LevelIDs_MRGarden && CurrentChaoStage == SADXChaoStage_MysticRuins) AnimateUVs(&UVAnimationData[i]);
+				}
+				else
+				{
+					if (UVAnimationData_Permanent[i].level == CurrentLevel && UVAnimationData_Permanent[i].act == CurrentAct) AnimateUVs(&UVAnimationData_Permanent[i]);
+					if (UVAnimationData[i].level == CurrentLevel && UVAnimationData[i].act == CurrentAct) AnimateUVs(&UVAnimationData[i]);
+					if (TextureAnimationData[i].level == CurrentLevel && TextureAnimationData[i].act == CurrentAct) AnimateTexture(&TextureAnimationData[i]);
+					if (TextureAnimationData_Permanent[i].level == CurrentLevel && TextureAnimationData_Permanent[i].act == CurrentAct) AnimateTexture(&TextureAnimationData_Permanent[i]);
+				}
 			}
 		}
 		if (EnableDCBranding) Branding_OnFrame();

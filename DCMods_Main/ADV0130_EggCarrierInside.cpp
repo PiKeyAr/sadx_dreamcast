@@ -300,7 +300,7 @@ void ADV01C_Init()
 		ADV01C_TEXLISTS[19] = &texlist_ec34;
 		ADV01C_TEXLISTS[20] = &texlist_ec35;
 		//Chao transporter fix
-		WriteCall((void*)0x526369, RenderChaoTransporterEffect_Fix); //Transporter effect fix
+		if (!ModelsLoaded_Chao) WriteCall((void*)0x526369, RenderChaoTransporterEffect_Fix); //Transporter effect fix
 		//Door barrier fixes (Gamma's story)
 		WriteJump((void*)0x52B2E0, ECDoorBarrier1X);
 		WriteJump((void*)0x52B250, ECDoorBarrier2_asm);

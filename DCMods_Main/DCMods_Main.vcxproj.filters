@@ -419,12 +419,6 @@
     <ClInclude Include="Data\ChaoObjects_Race.h">
       <Filter>Header Files\Levels\Chao</Filter>
     </ClInclude>
-    <ClInclude Include="Data\ChaoEggs.h">
-      <Filter>Header Files\Levels\Chao</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\ChaoFruits.h">
-      <Filter>Header Files\Levels\Chao</Filter>
-    </ClInclude>
     <ClInclude Include="StageLights.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -532,6 +526,9 @@
     </ClInclude>
     <ClInclude Include="Data\TwinkleCircuit_1.h">
       <Filter>Header Files\Levels\Subgames</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\ECGarden_Skybox.h">
+      <Filter>Header Files\Levels\Chao</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

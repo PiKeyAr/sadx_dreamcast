@@ -440,6 +440,7 @@ void __cdecl EggCarrier_OceanDraw_SADXStyle(OceanData *o);
 void __cdecl Past_OceanDraw_SADXStyle(OceanData *o);
 void LoadBossECOceanPVM(const char *filename, NJS_TEXLIST *texlist);
 void LoadBossECOceanTexlist();
+void RenderChaoTransporterEffect_Fix(NJS_MODEL_SADX *a1, float scale);
 
 bool ForceWhiteDiffuse(NJS_MATERIAL* material, uint32_t flags);
 bool ForceWhiteDiffuse3_Night(NJS_MATERIAL* material, uint32_t flags);

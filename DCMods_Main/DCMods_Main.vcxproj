@@ -133,8 +133,6 @@
   <ItemGroup>
     <ClInclude Include="Data\Animals.h" />
     <ClInclude Include="Data\Animals_motions.h" />
-    <ClInclude Include="Data\ChaoEggs.h" />
-    <ClInclude Include="Data\ChaoFruits.h" />
     <ClInclude Include="Data\ChaoObjects_Race.h" />
     <ClInclude Include="Data\Chaos2_Objects.h" />
     <ClInclude Include="Data\ADV01C_00.h" />
@@ -171,6 +169,7 @@
     <ClInclude Include="Data\E101.h" />
     <ClInclude Include="Data\E101R.h" />
     <ClInclude Include="Data\ECGarden.h" />
+    <ClInclude Include="Data\ECGarden_Skybox.h" />
     <ClInclude Include="Data\EggCarrier_Motions.h" />
     <ClInclude Include="Data\EggHornet.h" />
     <ClInclude Include="Data\EggViper.h" />
