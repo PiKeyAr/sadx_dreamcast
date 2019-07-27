@@ -3,6 +3,15 @@
 
 void CheckAndUnloadLevelFiles()
 {
+	//Unload title screen/main menu textures when loading levels
+	for (int i = 0; i < 30; i++)
+	{
+		if (TextLanguage == 0) njReleaseTexture(GUITextures_Japanese[i].TexList);
+		else if (TextLanguage == 1) njReleaseTexture(GUITextures_English[i].TexList);
+		else if (TextLanguage == 2) njReleaseTexture(GUITextures_French[i].TexList);
+		else if (TextLanguage == 3) njReleaseTexture(GUITextures_German[i].TexList);
+		else if (TextLanguage == 4) njReleaseTexture(GUITextures_Spanish[i].TexList);
+	}
 	if (!ModelsLoaded_General) General_Init();
 	ClearTextureAnimationData();
 	if (CurrentLevel != LevelIDs_StationSquare && ADV00_0_Info) UnloadLevelFiles_ADV00();

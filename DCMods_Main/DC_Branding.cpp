@@ -21,11 +21,6 @@ FunctionPointer(ObjectMaster*, sub_510390, (int a1), 0x510390);
 FunctionPointer(void, sub_505B40, (int a1), 0x505B40);
 FunctionPointer(void, sub_432EA0, (), 0x432EA0);
 DataPointer(CreditsList, MainCredits, 0x2BC2FD0);
-DataArray(PVMEntry, GUITextures_Japanese, 0x007EECF0, 30);
-DataArray(PVMEntry, GUITextures_English, 0x007EEDE0, 30);
-DataArray(PVMEntry, GUITextures_French, 0x007EEED0, 30);
-DataArray(PVMEntry, GUITextures_Spanish, 0x007EEFC0, 30);
-DataArray(PVMEntry, GUITextures_German, 0x007EF0B0, 30);
 DataArray(NJS_TEXANIM, PauseMenu_TEXANIMs, 0x009177B8, 15);
 
 //Tutorial screen items
@@ -1467,9 +1462,16 @@ void Branding_SetUpVariables()
 	ResolutionDeltaY = (VerticalResolution_float - ResolutionScaleY * 480.0f) / 2.0f;
 }
 
+Sint32 __cdecl ReleaseTexturesHook(NJS_TEXLIST *texlist)
+{
+	return 0;
+	//return njReleaseTexture(texlist);
+}
+
 void Branding_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 {
-	// Load configuration settings.
+	WriteCall((void*)0x505F9D, ReleaseTexturesHook); //Don't unload title screen and main menu textures
+	//Load configuration settings
 	RipplesOn = config->getBool("Branding", "RippleEffect", true);
 	EnableTransition = config->getBool("Branding", "EnableTransition", true);
 	DisableSA1TitleScreen = config->getBool("Branding", "DisableSA1TitleScreen", false);

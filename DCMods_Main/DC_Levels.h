@@ -14,6 +14,11 @@ class IniFile;
 #define NJD_CUSTOMFLAG_RESERVED		(BIT_6)
 #define NJD_CUSTOMFLAG_NO_REJECT	(BIT_7)
 
+DataArray(PVMEntry, GUITextures_Japanese, 0x007EECF0, 30);
+DataArray(PVMEntry, GUITextures_English, 0x007EEDE0, 30);
+DataArray(PVMEntry, GUITextures_French, 0x007EEED0, 30);
+DataArray(PVMEntry, GUITextures_Spanish, 0x007EEFC0, 30);
+DataArray(PVMEntry, GUITextures_German, 0x007EF0B0, 30);
 DataPointer(int, FramerateSetting_Config, 0x0089295C);
 DataPointer(int, FramerateSetting, 0x0389D7DC);
 DataPointer(int, DroppedFrames, 0x03B1117C);
