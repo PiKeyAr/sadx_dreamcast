@@ -23,14 +23,13 @@ NJS_TEXLIST texlist_ChaoRace = { arrayptrandlength(textures_chaorace) };
 NJS_TEXNAME textures_chaoraceentry[23];
 NJS_TEXLIST texlist_ChaoRaceEntry = { arrayptrandlength(textures_chaoraceentry) };
 
-NJS_TEXNAME textures_chaoracebg[1];
-NJS_TEXLIST texlist_chaoracebg = { arrayptrandlength(textures_chaoracebg) };
-
 /*
 #include "SSGarden.h"
 #include "MRGarden.h"
 #include "ECGarden.h"
 #include "ECGarden_Skybox.h"
+#include "ChaoRaceEntry.h"
+#include "ChaoRace.h"
 */
 
 NJS_OBJECT* ChaoFruit_Chaonut = nullptr;
@@ -71,10 +70,7 @@ DataPointer(NJS_CNK_OBJECT, Fruit_Chao, 0x33BCBC4);
 DataPointer(NJS_CNK_OBJECT, SADXHatEyes, 0x35E2BBC);
 DataPointer(NJS_CNK_MODEL, SADXChaoEggTop_Model, 0x3601484);
 SecondaryEntrance BK_SSGardenStartPoint;
-static int ssgardenwater = 0;
-static int ecgardensand = 64;
 static int ecgardenwater = 54;
-static int mrgardenwater = 36;
 static int vmuframe = 0;
 
 struct ChaoTreeEntityData1
@@ -1998,6 +1994,10 @@ void ProcessChaoGardenMaterials(LandTable *landtable, int garden)
 				if (material->attr_texId == 24) AddUVAnimation(LevelIDs_MRGarden, 0, landtable->Col[j].Model->basicdxmodel->meshsets[k].vertuv, 48, 0, 0, -6);
 				if (material->attr_texId >= 36 && material->attr_texId <= 45) AddTextureAnimation(LevelIDs_MRGarden, 0, material, false, 4, 36, 45, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1);
 			}
+			if (garden == 3) //Race
+			{
+				if (material->attr_texId >= 55 && material->attr_texId <= 68) AddTextureAnimation(LevelIDs_ChaoRace, 0, material, false, 4, 55, 68, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1);
+			}
 		}
 	}
 }
@@ -2037,6 +2037,7 @@ void ChaoGardens_Init()
 	ProcessChaoGardenMaterials(AL_GARDEN00, 0);
 	ProcessChaoGardenMaterials(AL_GARDEN01, 1);
 	ProcessChaoGardenMaterials(AL_GARDEN02, 2);
+	ProcessChaoGardenMaterials(AL_RACE_1, 3);
 	AL_GARDEN00->TexList = &texlist_ssgarden;
 	AL_GARDEN01->TexList = &texlist_ecgarden;
 	AL_GARDEN02->TexList = &texlist_mrgarden;
@@ -2387,7 +2388,6 @@ void ChaoGardens_OnFrame()
 	if (AL_GARDEN01_Info && CurrentChaoStage == 5 && !IsGamePaused() && EnableECGarden)
 	{
 		if (ecgardenwater > 63) ecgardenwater = 54;
-		if (ecgardensand > 78) ecgardensand = 64;
 		ChaoGardenSky_EC_Water->basicdxmodel->mats[0].attr_texId = ecgardenwater;
 		if (FramerateSetting < 2 && FrameCounter % 4 == 0 || FramerateSetting == 2 && FrameCounter % 2 == 0 || FramerateSetting > 2)
 		{

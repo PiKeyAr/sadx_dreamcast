@@ -182,7 +182,6 @@
     <ClInclude Include="Data\FinalEgg2.h" />
     <ClInclude Include="Data\FinalEgg3.h" />
     <ClInclude Include="Data\FinalEgg_UVs.h" />
-    <ClInclude Include="Data\Fountain.h" />
     <ClInclude Include="Data\Frogs.h" />
     <ClInclude Include="Data\HedgehogHammer.h" />
     <ClInclude Include="Data\Highway1.h" />

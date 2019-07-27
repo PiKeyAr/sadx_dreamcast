@@ -305,9 +305,6 @@
     <ClInclude Include="Data\FinalEgg3.h">
       <Filter>Header Files\Levels\FinalEgg</Filter>
     </ClInclude>
-    <ClInclude Include="Data\Fountain.h">
-      <Filter>Header Files\Levels\Chao</Filter>
-    </ClInclude>
     <ClInclude Include="Data\Highway1.h">
       <Filter>Header Files\Levels\SpeedHighway</Filter>
     </ClInclude>

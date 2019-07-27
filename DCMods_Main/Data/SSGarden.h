@@ -10187,7 +10187,7 @@ extern "C" __declspec(dllexport) NJS_OBJECT object_8D469330D456A155BDC = { NJD_E
 
 extern "C" __declspec(dllexport) COL collist_000115F4[] = {
 	//{ { 0, 40, -5 }, 253.1798f, 0, 0, &object_00004F68, 0, 0xA0000001 }, //walls
-	{ { 0, 40, -5 }, 253.1798f, 0, 0, &object_8D469330D456A155BDC, 0, 0xA0000001 }, //walls with hole
+	{ { 0, 40, -5 }, 253.1798f, 0, 0, &object_8D469330D456A155BDC, 0, 0xA0000001 }, //walls with hole (edited by ItsEasyActually)
 	{ { 55, 0, 145 }, 800, 0, 0, &object_0323C4BC, 0, 0x80000001 }, //black market wall piece
 	{ { -150, 1.7f, -104 }, 70.74807f, 0, 0, &object_00003B5C, 0, 0xC0000001 },
 	{ { 133.25f, 1.5f, 48.25426f }, 117.5481f, 0, 0, &object_00004148, 0, 0xC0000101 },

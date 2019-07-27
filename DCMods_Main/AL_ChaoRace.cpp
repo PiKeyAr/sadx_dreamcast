@@ -1,19 +1,30 @@
 #include "stdafx.h"
 #include "ChaoObjects_Race.h"
 
-NJS_TEXNAME textures_chaorace[69];
-NJS_TEXLIST texlist_ChaoRace = { arrayptrandlength(textures_chaorace) };
-
-NJS_TEXNAME textures_chaoraceentry[23];
-NJS_TEXLIST texlist_ChaoRaceEntry = { arrayptrandlength(textures_chaoraceentry) };
+static bool SkipSA1Entry = false;
+static bool MedalTextLoaded = false;
 
 NJS_TEXNAME textures_chaoracebg[1];
 NJS_TEXLIST texlist_chaoracebg = { arrayptrandlength(textures_chaoracebg) };
 
-static bool EnableLobby = true;
-static int chaoracewater = 55;
-static bool SkipSA1Entry = false;
-static bool MedalTextLoaded = false;
+NJS_OBJECT* ChaoRaceSlidingDoors = nullptr;
+NJS_OBJECT* ChaoRaceStartMark1 = nullptr;
+NJS_OBJECT* ChaoRaceStartMark2 = nullptr;
+NJS_OBJECT* ChaoRaceLetters = nullptr;
+NJS_OBJECT* ChaoRaceNumber0 = nullptr;
+NJS_OBJECT* ChaoRaceNumber1 = nullptr;
+NJS_OBJECT* ChaoRaceNumber2 = nullptr;
+NJS_OBJECT* ChaoRaceNumber3 = nullptr;
+NJS_OBJECT* ChaoRaceNumber4 = nullptr;
+NJS_OBJECT* ChaoRaceNumber5 = nullptr;
+NJS_OBJECT* ChaoRaceNumber6 = nullptr;
+NJS_OBJECT* ChaoRaceNumber7 = nullptr;
+NJS_OBJECT* ChaoRaceWaterfall1 = nullptr;
+NJS_OBJECT* ChaoRaceWaterfall2 = nullptr;
+NJS_OBJECT* ChaoRaceSkyboxBottom = nullptr;
+NJS_OBJECT* ChaoRaceSkyboxMain = nullptr;
+NJS_OBJECT* ChaoRaceCracker = nullptr;
+NJS_OBJECT* ChaoRaceBall = nullptr;
 
 DataPointer(char, ChaoRaceType, 0x3CD370A);
 DataPointer(int, ChaoRaceOver, 0x3CD7714);
@@ -617,7 +628,7 @@ void ChaoLetters_Main(ObjectMaster *a1)
 	njRotateY(0, v1->Rotation.y);
 	njScale(0, 1.0f, 1.0f, 1.0f);
 	DrawQueueDepthBias = 2000.0f;
-	ProcessModelNode(&chao_letters, QueuedModelFlagsB_SomeTextureThing, 1.0f);
+	ProcessModelNode(ChaoRaceLetters, QueuedModelFlagsB_SomeTextureThing, 1.0f);
 	njPopMatrix(1u);
 	DrawQueueDepthBias = 0;
 }
@@ -641,13 +652,13 @@ void ChaoSlidingDoors_Display(ObjectMaster *a1)
 	njPushMatrix(0);
 	njTranslate(0, 2099.9f, 0, -1 * CharIndexShit);
 	njScale(0, 1.0f, 1.0f, 1.0f);
-	ProcessModelNode(&objectCHAO_00049AF0, QueuedModelFlagsB_EnableZWrite, 1.0f);
+	DrawModel(ChaoRaceSlidingDoors->child->sibling->basicdxmodel);
 	njPopMatrix(1u);
 	//Gate 2
 	njPushMatrix(0);
 	njTranslate(0, 2099.9f, 0, CharIndexShit);
 	njScale(0, 1.0f, 1.0f, 1.0f);
-	ProcessModelNode(&objectCHAO_00049BF4, QueuedModelFlagsB_EnableZWrite, 1.0f);
+	DrawModel(ChaoRaceSlidingDoors->child->basicdxmodel);
 	njPopMatrix(1u);
 	DrawQueueDepthBias = 0;
 }
@@ -710,28 +721,28 @@ void ChaoNumbers_Display(ObjectMaster *a1)
 	switch (ObjectIndex)
 	{
 	case 0:
-		ProcessModelNode(&objectCHAO_0004E7BC, QueuedModelFlagsB_EnableZWrite, 1.0f);
+		ProcessModelNode(ChaoRaceNumber0, QueuedModelFlagsB_EnableZWrite, 1.0f);
 		break;
 	case 1:
-		ProcessModelNode(&objectCHAO_0004E8C0, QueuedModelFlagsB_EnableZWrite, 1.0f);
+		ProcessModelNode(ChaoRaceNumber1, QueuedModelFlagsB_EnableZWrite, 1.0f);
 		break;
 	case 2:
-		ProcessModelNode(&objectCHAO_0004E9C4, QueuedModelFlagsB_EnableZWrite, 1.0f);
+		ProcessModelNode(ChaoRaceNumber2, QueuedModelFlagsB_EnableZWrite, 1.0f);
 		break;
 	case 3:
-		ProcessModelNode(&objectCHAO_0004EAC8, QueuedModelFlagsB_EnableZWrite, 1.0f);
+		ProcessModelNode(ChaoRaceNumber3, QueuedModelFlagsB_EnableZWrite, 1.0f);
 		break;
 	case 4:
-		ProcessModelNode(&objectCHAO_0004EBCC, QueuedModelFlagsB_EnableZWrite, 1.0f);
+		ProcessModelNode(ChaoRaceNumber4, QueuedModelFlagsB_EnableZWrite, 1.0f);
 		break;
 	case 5:
-		ProcessModelNode(&objectCHAO_0004ECD0, QueuedModelFlagsB_EnableZWrite, 1.0f);
+		ProcessModelNode(ChaoRaceNumber5, QueuedModelFlagsB_EnableZWrite, 1.0f);
 		break;
 	case 6:
-		ProcessModelNode(&objectCHAO_0004EDD4, QueuedModelFlagsB_EnableZWrite, 1.0f);
+		ProcessModelNode(ChaoRaceNumber6, QueuedModelFlagsB_EnableZWrite, 1.0f);
 		break;
 	case 7:
-		ProcessModelNode(&objectCHAO_0004EED8, QueuedModelFlagsB_EnableZWrite, 1.0f);
+		ProcessModelNode(ChaoRaceNumber7, QueuedModelFlagsB_EnableZWrite, 1.0f);
 		break;
 	}
 	njPopMatrix(1u);
@@ -756,49 +767,49 @@ void ChaoRaceNumbers_Load(ObjectMaster *a1)
 	switch (ObjectIndex)
 	{
 	case 0:
-		v2 = DynamicCOL_AddFromEntity(&objectCHAO_0004E7BC, a1, (ColFlags)0x80000001);
+		v2 = DynamicCOL_AddFromEntity(ChaoRaceNumber0, a1, (ColFlags)0x80000001);
 		v2->scl[0] = 1.0f;
 		v2->scl[1] = 1.0f;
 		v2->scl[2] = 1.0f;
 		break;
 	case 1:
-		v2 = DynamicCOL_AddFromEntity(&objectCHAO_0004E8C0, a1, (ColFlags)0x80000001);
+		v2 = DynamicCOL_AddFromEntity(ChaoRaceNumber1, a1, (ColFlags)0x80000001);
 		v2->scl[0] = 1.0f;
 		v2->scl[1] = 1.0f;
 		v2->scl[2] = 1.0f;
 		break;
 	case 2:
-		v2 = DynamicCOL_AddFromEntity(&objectCHAO_0004E9C4, a1, (ColFlags)0x80000001);
+		v2 = DynamicCOL_AddFromEntity(ChaoRaceNumber2, a1, (ColFlags)0x80000001);
 		v2->scl[0] = 1.0f;
 		v2->scl[1] = 1.0f;
 		v2->scl[2] = 1.0f;
 		break;
 	case 3:
-		v2 = DynamicCOL_AddFromEntity(&objectCHAO_0004EAC8, a1, (ColFlags)0x80000001);
+		v2 = DynamicCOL_AddFromEntity(ChaoRaceNumber3, a1, (ColFlags)0x80000001);
 		v2->scl[0] = 1.0f;
 		v2->scl[1] = 1.0f;
 		v2->scl[2] = 1.0f;
 		break;
 	case 4:
-		v2 = DynamicCOL_AddFromEntity(&objectCHAO_0004EBCC, a1, (ColFlags)0x80000001);
+		v2 = DynamicCOL_AddFromEntity(ChaoRaceNumber4, a1, (ColFlags)0x80000001);
 		v2->scl[0] = 1.0f;
 		v2->scl[1] = 1.0f;
 		v2->scl[2] = 1.0f;
 		break;
 	case 5:
-		v2 = DynamicCOL_AddFromEntity(&objectCHAO_0004ECD0, a1, (ColFlags)0x80000001);
+		v2 = DynamicCOL_AddFromEntity(ChaoRaceNumber5, a1, (ColFlags)0x80000001);
 		v2->scl[0] = 1.0f;
 		v2->scl[1] = 1.0f;
 		v2->scl[2] = 1.0f;
 		break;
 	case 6:
-		v2 = DynamicCOL_AddFromEntity(&objectCHAO_0004EDD4, a1, (ColFlags)0x80000001);
+		v2 = DynamicCOL_AddFromEntity(ChaoRaceNumber6, a1, (ColFlags)0x80000001);
 		v2->scl[0] = 1.0f;
 		v2->scl[1] = 1.0f;
 		v2->scl[2] = 1.0f;
 		break;
 	case 7:
-		v2 = DynamicCOL_AddFromEntity(&objectCHAO_0004EED8, a1, (ColFlags)0x80000001);
+		v2 = DynamicCOL_AddFromEntity(ChaoRaceNumber7, a1, (ColFlags)0x80000001);
 		v2->scl[0] = 1.0f;
 		v2->scl[1] = 1.0f;
 		v2->scl[2] = 1.0f;
@@ -934,29 +945,16 @@ void ChaoRaceWaterfall_Display(ObjectMaster *a1)
 	njRotateXYZ(0, v1->Rotation.x, v1->Rotation.y, v1->Rotation.z);
 	njScale(0, 1.0f, 1.0f, 1.0f);
 	DrawQueueDepthBias = 2000.0f;
-	if (ObjectIndex) ProcessModelNode(&objectCHAO_00046254, QueuedModelFlagsB_EnableZWrite, 1.0f);
-	else ProcessModelNode(&objectCHAO_00045EB4, QueuedModelFlagsB_EnableZWrite, 1.0f);
+	if (ObjectIndex) ProcessModelNode(ChaoRaceWaterfall1, (QueuedModelFlagsB)0, 1.0f);
+	else ProcessModelNode(ChaoRaceWaterfall2, (QueuedModelFlagsB)0, 1.0f);
 	njPopMatrix(1u);
 	DrawQueueDepthBias = 0;
 }
 
 void ChaoRaceWaterfall_Main(ObjectMaster *a1)
 {
-	int UVShift;
-	EntityData1 *v1;
-	v1 = a1->Data1;
-	UVShift = v1->CharIndex;
-	for (unsigned int w = 0; w < LengthOfArray(uvCHAO_00045AF4); w++)
-	{
-		uvCHAO_00045AF4[w].v = uvCHAO_00045AF4R[w].v + UVShift;
-	}
-	for (unsigned int w = 0; w < LengthOfArray(uvCHAO_00045F74); w++)
-	{
-		uvCHAO_00045F74[w].v = uvCHAO_00045F74_r[w].v + UVShift;
-	}
+	EntityData1 *v1 = a1->Data1;
 	ChaoRaceWaterfall_Display(a1);
-	UVShift = (UVShift - 6) % 255;
-	a1->Data1->CharIndex = UVShift;
 	QueueSound_XYZ(686, v1, 0, 1, 10, v1->Position.x, v1->Position.y, v1->Position.z);
 }
 
@@ -978,8 +976,8 @@ void ChaoRaceSkybox_Display(ObjectMaster *a1)
 	njRotateY(0, v1->Rotation.y);
 	njScale(0, 1.0f, 1.0f, 1.0f);
 	DrawQueueDepthBias = -47000;
-	ProcessModelNode(&objectCHAO_0002A888, QueuedModelFlagsB_EnableZWrite, 1.0f); //Bottom thing
-	ProcessModelNode(&objectCHAO_0001C628, QueuedModelFlagsB_EnableZWrite, 1.0f); //Sky
+	ProcessModelNode(ChaoRaceSkyboxBottom, QueuedModelFlagsB_EnableZWrite, 1.0f); //Bottom thing
+	ProcessModelNode(ChaoRaceSkyboxMain, QueuedModelFlagsB_EnableZWrite, 1.0f); //Sky
 	njPopMatrix(1u);
 	DrawQueueDepthBias = 0;
 }
@@ -996,7 +994,7 @@ void ChaoRaceSkybox_Load(ObjectMaster *a1)
 	a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))CheckThingButThenDeleteObject;
 }
 
-void ChaoRaceNumberPlate_Display(ObjectMaster *a1)
+void ChaoRaceStartMark_Display(ObjectMaster *a1)
 {
 	EntityData1 *v1;
 	v1 = a1->Data1;
@@ -1005,21 +1003,21 @@ void ChaoRaceNumberPlate_Display(ObjectMaster *a1)
 	njTranslateV(0, &v1->Position);
 	njScale(0, 1.0f, 1.0f, 1.0f);
 	DrawQueueDepthBias = -47000;
-	ProcessModelNode(&objectCHAO_000445A0, QueuedModelFlagsB_EnableZWrite, 1.0f); //Thing 1
-	ProcessModelNode(&objectCHAO_000459E4, QueuedModelFlagsB_EnableZWrite, 1.0f); //Thing 2
+	ProcessModelNode(ChaoRaceStartMark1, QueuedModelFlagsB_EnableZWrite, 1.0f); //Thing 1
+	ProcessModelNode(ChaoRaceStartMark2, QueuedModelFlagsB_EnableZWrite, 1.0f); //Thing 2
 	njPopMatrix(1u);
 	DrawQueueDepthBias = 0;
 }
 
-void ChaoRaceNumberPlate_Main(ObjectMaster *a1)
+void ChaoRaceStartMark_Main(ObjectMaster *a1)
 {
-	ChaoRaceNumberPlate_Display(a1);
+	ChaoRaceStartMark_Display(a1);
 }
 
-void ChaoRaceNumberPlate_Load(ObjectMaster *a1)
+void ChaoRaceStartMark_Load(ObjectMaster *a1)
 {
-	a1->MainSub = (void(__cdecl *)(ObjectMaster *))ChaoRaceNumberPlate_Main;
-	a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))ChaoRaceNumberPlate_Display;
+	a1->MainSub = (void(__cdecl *)(ObjectMaster *))ChaoRaceStartMark_Main;
+	a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))ChaoRaceStartMark_Display;
 	a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))CheckThingButThenDeleteObject;
 }
 
@@ -1033,7 +1031,7 @@ void ChaoRaceCracker_Display(ObjectMaster *a1)
 	njRotateZYX(0, v1->Rotation.x, v1->Rotation.y, v1->Rotation.z);
 	njScale(0, 1.0f, 1.0f, 1.0f);
 	DrawQueueDepthBias = -37000;
-	ProcessModelNode(&object_00046364, QueuedModelFlagsB_EnableZWrite, 1.0f);
+	ProcessModelNode(ChaoRaceCracker, QueuedModelFlagsB_EnableZWrite, 1.0f);
 	njPopMatrix(1u);
 	DrawQueueDepthBias = 0;
 }
@@ -1060,7 +1058,7 @@ ObjectFunc(OF4, 0x71CBC0); // COCONUT
 ObjectFunc(OF5, 0x71CA70); // FLAG
 ObjectFunc(OF6, 0x71C9D0); // WHITE FLOWER
 ObjectFunc(OF7, 0x71C9F0); // PURPLE FLOWER
-ObjectFunc(OF8, ChaoRaceNumberPlate_Load); // START MARK
+ObjectFunc(OF8, ChaoRaceStartMark_Load); // START MARK
 ObjectFunc(OF9, 0x71C7D0); // WATERING CAN
 ObjectFunc(OF10, 0x71C5F0); // BUGLE
 ObjectFunc(OF11, 0x71C3D0); // SCOOP
@@ -3949,7 +3947,7 @@ void __cdecl LoadRaceEntryX()
 		SSGardenStartPoint.YRot = NJM_DEG_ANG(180);
 		PrintDebug("ChaoStgEntrance _prolog begin.\n");
 		LoadObject(LoadObj_Data1, 5, ChaoStgEntrance_MainX);
-		SetChaoLandTable((LandTable*)AL_RACE_0_Info->getdata("landtable_00000270"));
+		SetChaoLandTable(AL_RACE_0_Info->getlandtable());
 		PrintDebug("ChaoStgEntrance _prolog end.\n");
 	}
 }
@@ -3973,7 +3971,7 @@ void RenderChaoBall()
 {
 	njSetTexture(&CHAO_TEXLIST);
 	njScale(0, 1.5f, 1.5f, 1.5f);
-	ProcessModelNode_AB_Wrapper(&object_0014B2C0, 1.5f);
+	ProcessModelNode_AB_Wrapper(ChaoRaceBall, 1.5f);
 }
 
 void __cdecl LoadChaoRaceX()
@@ -3985,7 +3983,7 @@ void __cdecl LoadChaoRaceX()
 	LoadPVM("BG_AL_RACE02", &texlist_chaoracebg);
 	LoadPVM("AL_TEX_COMMON", &ChaoTexLists[1]); //Name font
 	LoadObjects_Race();
-	SetChaoLandTable((LandTable*)AL_RACE_1_Info->getdata("landtable_00000E64"));
+	SetChaoLandTable(AL_RACE_1_Info->getlandtable());
 	PrintDebug("ChaoStgRace _prolog end.\n");
 }
 
@@ -4001,34 +3999,59 @@ void LoadChaoRaceJewelAndText(int a1, NJS_VECTOR *a2)
 	ChaoRaceStartGoalSprite_Load(3);
 }
 
-void UnloadLevelFiles_AL_RACE()
+void RemovePositionRotation_Object(NJS_OBJECT *object)
 {
-	delete AL_RACE_0_Info;
-	delete AL_RACE_1_Info;
-	AL_RACE_0_Info = nullptr;
-	AL_RACE_1_Info = nullptr;
+	object->pos[0] = 0;
+	object->pos[1] = 0;
+	object->pos[2] = 0;
+	object->ang[0] = 0;
+	object->ang[1] = 0;
+	object->ang[2] = 0;
 }
 
-void LoadLevelFiles_AL_RACE()
+void ChaoRace_Init()
 {
-	CheckAndUnloadLevelFiles();
-	AL_RACE_0_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\AL_RACE\\0.sa1lvl"));
-	AL_RACE_1_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\AL_RACE\\1.sa1lvl"));
-	LandTable *AL_RACE_0 = AL_RACE_0_Info->getlandtable();
-	LandTable *AL_RACE_1 = AL_RACE_1_Info->getlandtable();
-	RemoveMaterialColors_Landtable(AL_RACE_0);
-	RemoveMaterialColors_Landtable(AL_RACE_1);
-	AL_RACE_0->TexList = &texlist_ChaoRaceEntry;
-	AL_RACE_1->TexList = &texlist_ChaoRace;
-}
-
-void ChaoRace_Init(const IniFile *config, const HelperFunctions &helperFunctions)
-{
-	//Load configuration settings
-	EnableLobby = config->getBool("Chao Gardens", "EnableChaoRaceLobby", true);
+	//Load models
+	OBJ_AL_RACE_TEXLISTS[1].Name = "BG_AL_RACE02";
+	OBJ_AL_RACE_TEXLISTS[1].TexList = &texlist_chaoracebg;
+	ChaoRaceSlidingDoors = LoadModel("system\\data\\AL_RACE\\Models\\00049C28.sa1mdl", false);
+	ChaoRaceNumber0 = LoadModel("system\\data\\AL_RACE\\Models\\0004E7BC.sa1mdl", false);
+	RemovePositionRotation_Object(ChaoRaceNumber0);
+	ChaoRaceNumber1 = LoadModel("system\\data\\AL_RACE\\Models\\0004E8C0.sa1mdl", false);
+	RemovePositionRotation_Object(ChaoRaceNumber1);
+	ChaoRaceNumber2 = LoadModel("system\\data\\AL_RACE\\Models\\0004E9C4.sa1mdl", false);
+	RemovePositionRotation_Object(ChaoRaceNumber2);
+	ChaoRaceNumber3 = LoadModel("system\\data\\AL_RACE\\Models\\0004EAC8.sa1mdl", false);
+	RemovePositionRotation_Object(ChaoRaceNumber3);
+	ChaoRaceNumber4 = LoadModel("system\\data\\AL_RACE\\Models\\0004EBCC.sa1mdl", false);
+	RemovePositionRotation_Object(ChaoRaceNumber4);
+	ChaoRaceNumber5 = LoadModel("system\\data\\AL_RACE\\Models\\0004ECD0.sa1mdl", false);
+	RemovePositionRotation_Object(ChaoRaceNumber5);
+	ChaoRaceNumber6 = LoadModel("system\\data\\AL_RACE\\Models\\0004EDD4.sa1mdl", false);
+	RemovePositionRotation_Object(ChaoRaceNumber6);
+	ChaoRaceNumber7 = LoadModel("system\\data\\AL_RACE\\Models\\0004EED8.sa1mdl", false);
+	RemovePositionRotation_Object(ChaoRaceNumber7);
+	ChaoRaceLetters = LoadModel("system\\data\\AL_RACE\\Models\\00048224.sa1mdl", false);
+	RemovePositionRotation_Object(ChaoRaceLetters);
+	ChaoRaceWaterfall1 = LoadModel("system\\data\\AL_RACE\\Models\\00046254.sa1mdl", false);
+	RemovePositionRotation_Object(ChaoRaceWaterfall1);
+	ChaoRaceWaterfall1->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_CLAMP_V;
+	AddUVAnimation_Permanent(LevelIDs_ChaoRace, 0, ChaoRaceWaterfall1->basicdxmodel->meshsets[0].vertuv, 48, 0, 0, -6);
+	ChaoRaceWaterfall2 = LoadModel("system\\data\\AL_RACE\\Models\\00045EB4.sa1mdl", false);
+	RemovePositionRotation_Object(ChaoRaceWaterfall2);
+	ChaoRaceWaterfall2->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_CLAMP_V;
+	AddUVAnimation_Permanent(LevelIDs_ChaoRace, 0, ChaoRaceWaterfall2->basicdxmodel->meshsets[0].vertuv, 80, 0, 0, -6);
+	ChaoRaceSkyboxBottom = LoadModel("system\\data\\AL_RACE\\Models\\0002A888.sa1mdl", false);
+	ChaoRaceSkyboxBottom->basicdxmodel->mats[0].attr_texId = 0;
+	ChaoRaceSkyboxMain = LoadModel("system\\data\\AL_RACE\\Models\\0001C628.sa1mdl", false);
+	ChaoRaceStartMark1 = LoadModel("system\\data\\AL_RACE\\Models\\000445A0.sa1mdl", false);
+	ChaoRaceStartMark2 = LoadModel("system\\data\\AL_RACE\\Models\\000459E4.sa1mdl", false);
+	ChaoRaceCracker = LoadModel("system\\data\\AL_RACE\\Models\\00046364.sa1mdl", false);
+	ChaoRaceBall = LoadModel("system\\data\\AL_MAIN\\Models\\0014B2C0.sa1mdl", false); //This is in AL_MAIN
 	//Chao Race Entry
 	if (EnableLobby)
 	{
+		ReplaceBIN_DC("CAMAL_RACE00S");
 		ReplacePVM("AL_RACE01");
 		WriteCall((void*)0x0071C0CF, BowChaoThing);
 		WriteJump((void*)0x007199B0, LoadRaceEntryX);
@@ -4037,8 +4060,10 @@ void ChaoRace_Init(const IniFile *config, const HelperFunctions &helperFunctions
 		WriteData<5>((void*)0x0071D158, 0x90); //Don't move Sanic
 		WriteData<5>((void*)0x0071CEE0, 0x90); //Don't mess with entry button
 		WriteData<5>((void*)0x0071CEC2, 0x90); //Don't mess with entry button
+		RemoveVertexColors_Object((NJS_OBJECT*)0x33AEF88); //Old Chao Race button
 	}
 	//Chao Race stuff
+	ReplaceBIN_DC("CAMAL_RACE01S");
 	WriteData((int**)0x751B11, &CurrentChaoStage); //Restore Chao Race jewel by replacing the invalid pointer with something that always returns something
 	WriteCall((void*)0x72E688, LoadChaoRaceJewelAndText);
 	WriteCall((void*)0x719D8C, LoadObjChaoRaceTexlist);
@@ -4054,31 +4079,37 @@ void ChaoRace_Init(const IniFile *config, const HelperFunctions &helperFunctions
 	WriteCall((void*)0x72F031, ChaoRaceSoundHook_Goal); //Play sound and load "Goal" graphics
 	WriteJump((void*)0x71BF20, LoadChaoRaceCrackers); //Load crackers
 	WriteCall((void*)0x75A550, RenderChaoBall); //Chao Race ball model
-	WriteData((NJS_OBJECT**)0x883E68, &object_000459E4); //Start Mark in Chao Race
+	WriteData((NJS_OBJECT**)0x883E68, ChaoRaceStartMark2); //Start Mark in Chao Race
 	WriteJump((void*)0x00719DB0, LoadChaoRaceX);
 	WriteData((float*)0x00719D74, -16000.0f); //Draw distance
 	ReplacePVM("AL_RACE02");
 	ReplacePVM("BG_AL_RACE02");
 	ReplacePVM("OBJ_AL_RACE");
 	ReplacePVM("OBJ_AL_RACE_E");
-	ReplaceBIN_DC("SETAL_RACE00S");
-	ReplaceBIN_DC("SETAL_RACE01S");
+	if (!Use1999SetFiles)
+	{
+		ReplaceBIN_DC("SETAL_RACE00S");
+		ReplaceBIN_DC("SETAL_RACE01S");
+	}
+	else
+	{
+		ReplaceBIN_1999("SETAL_RACE00S");
+		ReplaceBIN_1999("SETAL_RACE01S");
+	}
 }
 
 void ChaoRace_OnFrame()
 {
 	//Chao Race Entry
-	if (CurrentChaoStage == 2 && GameState != 16 && EnableLobby)
+	if (CurrentChaoStage == 2 && !IsGamePaused() && EnableLobby)
 	{
 		if (SkipSA1Entry)
 		{
 			((NJS_MATERIAL*)0x033AEB70)->attrflags |= NJD_FLAG_IGNORE_LIGHT;
-			((NJS_MATERIAL*)0x033AEB70)->diffuse.color = 0xFFFFFFFF;
 		}
 		else
 		{
 			((NJS_MATERIAL*)0x033AEB70)->attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-			((NJS_MATERIAL*)0x033AEB70)->diffuse.color = 0xFFB2B2B2;
 		}
 		//Cheer Chao hologram
 		if (FrameCounter % (35 / FramerateSetting) == 0) cheerchaoanim = !cheerchaoanim;
@@ -4092,14 +4123,14 @@ void ChaoRace_OnFrame()
 		a2 = letteranims[letterframe][5];
 		c2 = letteranims[letterframe][6];
 		e2 = letteranims[letterframe][7];
-		if (c1) matlistCHAO_00047DEC[0].attr_texId = 19; else matlistCHAO_00047DEC[0].attr_texId = 20;
-		if (h1) matlistCHAO_00047DEC[1].attr_texId = 21; else matlistCHAO_00047DEC[1].attr_texId = 18;
-		if (a1) matlistCHAO_00047DEC[2].attr_texId = 22; else matlistCHAO_00047DEC[2].attr_texId = 23;
-		if (o1) matlistCHAO_00047DEC[3].attr_texId = 24; else matlistCHAO_00047DEC[3].attr_texId = 25;
-		if (r2) matlistCHAO_00047DEC[6].attr_texId = 26; else matlistCHAO_00047DEC[6].attr_texId = 27;
-		if (a2) matlistCHAO_00047DEC[7].attr_texId = 28; else matlistCHAO_00047DEC[7].attr_texId = 29;
-		if (c2) matlistCHAO_00047DEC[5].attr_texId = 30; else matlistCHAO_00047DEC[5].attr_texId = 31;
-		if (e2) matlistCHAO_00047DEC[4].attr_texId = 32; else matlistCHAO_00047DEC[4].attr_texId = 33;
+		if (c1) ChaoRaceLetters->basicdxmodel->mats[0].attr_texId = 19; else ChaoRaceLetters->basicdxmodel->mats[0].attr_texId = 20;
+		if (h1) ChaoRaceLetters->basicdxmodel->mats[1].attr_texId = 21; else ChaoRaceLetters->basicdxmodel->mats[1].attr_texId = 18;
+		if (a1) ChaoRaceLetters->basicdxmodel->mats[2].attr_texId = 22; else ChaoRaceLetters->basicdxmodel->mats[2].attr_texId = 23;
+		if (o1) ChaoRaceLetters->basicdxmodel->mats[3].attr_texId = 24; else ChaoRaceLetters->basicdxmodel->mats[3].attr_texId = 25;
+		if (r2) ChaoRaceLetters->basicdxmodel->mats[6].attr_texId = 26; else ChaoRaceLetters->basicdxmodel->mats[6].attr_texId = 27;
+		if (a2) ChaoRaceLetters->basicdxmodel->mats[7].attr_texId = 28; else ChaoRaceLetters->basicdxmodel->mats[7].attr_texId = 29;
+		if (c2) ChaoRaceLetters->basicdxmodel->mats[5].attr_texId = 30; else ChaoRaceLetters->basicdxmodel->mats[5].attr_texId = 31;
+		if (e2) ChaoRaceLetters->basicdxmodel->mats[4].attr_texId = 32; else ChaoRaceLetters->basicdxmodel->mats[4].attr_texId = 33;
 		if (FrameCounter % (10 / FramerateSetting) == 0) letterframe++;
 		if (letterframe > LengthOfArray(letteranims)) letterframe = 0;
 		//Exit
@@ -4128,14 +4159,9 @@ void ChaoRace_OnFrame()
 		}
 	}
 	//Chao Race
-	if (AL_RACE_1_Info && CurrentChaoStage == 1 && GameState != 16)
+	if (AL_RACE_1_Info && CurrentChaoStage == 1 && !IsGamePaused())
 	{
 		if (!ChaoRaceEnded) ChaoRaceTimer += FramerateSetting;
-		if (FramerateSetting < 2 && FrameCounter % 3 == 0 || FramerateSetting == 2 && FrameCounter % 2 == 0 || FramerateSetting > 2) chaoracewater++;
-		if (chaoracewater > 68) chaoracewater = 55;
-		((NJS_MATERIAL*)AL_RACE_1_Info->getdata("matlistCHAO_0002A548"))[0].attr_texId = chaoracewater;
-		((NJS_MATERIAL*)AL_RACE_1_Info->getdata("matlistCHAO_0003EFB0"))[0].attr_texId = chaoracewater;
-		((NJS_MATERIAL*)AL_RACE_1_Info->getdata("matlistCHAO_0003F2DC"))[0].attr_texId = chaoracewater;
 		//Winning the race (not jewel)
 		if (!MedalTextLoaded)
 		{

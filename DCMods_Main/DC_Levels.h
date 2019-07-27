@@ -322,7 +322,6 @@ extern UVAnimation UVAnimationData_Permanent[];
 
 extern NJS_TEXLIST texlist_ChaoRace;
 extern NJS_TEXLIST texlist_ChaoRaceEntry;
-extern NJS_TEXLIST texlist_chaoracebg;
 
 //Level unload functions
 void CheckAndUnloadLevelFiles();

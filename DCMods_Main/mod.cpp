@@ -519,6 +519,7 @@ extern "C"
 					if (TextureAnimationData[i].level == LevelIDs_MRGarden && CurrentChaoStage == SADXChaoStage_MysticRuins) AnimateTexture(&TextureAnimationData[i]);
 					if (TextureAnimationData[i].level == LevelIDs_ChaoRace && CurrentChaoStage == SADXChaoStage_Race) AnimateTexture(&TextureAnimationData[i]);
 					if (UVAnimationData[i].level == LevelIDs_MRGarden && CurrentChaoStage == SADXChaoStage_MysticRuins) AnimateUVs(&UVAnimationData[i]);
+					if (UVAnimationData_Permanent[i].level == LevelIDs_ChaoRace && CurrentChaoStage == SADXChaoStage_Race) AnimateUVs(&UVAnimationData_Permanent[i]);
 				}
 				else
 				{
