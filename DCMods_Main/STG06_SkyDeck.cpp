@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "SkyDeck_objects.h"
-//TODO: Control tower animation fix
+
 NJS_TEXNAME textures_skydeck1[76];
 NJS_TEXLIST texlist_skydeck1 = { arrayptrandlength(textures_skydeck1) };
 
@@ -37,6 +37,9 @@ DataPointer(NJS_BGRA, CurrentFogColorX, 0x03ABDC68);
 DataPointer(NJS_OBJECT, SkyDeckSmallCloud, 0x0214D300);
 DataPointer(NJS_OBJECT, SkyDeckSkyboxModel_Normal, 0x214E2A0);
 DataPointer(NJS_OBJECT, SkyDeckSkyboxModel_Dark, 0x214C9E4);
+DataArray(NJS_OBJECT*, SkyDeckObjectArray, 0x203A1C0, 300);
+DataArray(NJS_MOTION*, SkyDeckSharedMotionArray, 0x203A6CC, 7);
+DataArray(float, SkyDeckSharedMotionLengthArray, 0x203A6F4, 10);
 DataArray(char, byte_223AEB4, 0x223AEB4, 100);
 DataArray(char, byte_223B000, 0x223B000, 4);
 DataArray(FogData, SkyDeck1Fog, 0x0203A094, 3);
@@ -50,6 +53,7 @@ FunctionPointer(void, sub_408530, (NJS_OBJECT *a1), 0x408530);
 FunctionPointer(void, sub_407A00, (NJS_MODEL_SADX *model, float scale), 0x407A00);
 FunctionPointer(void, sub_5ED790, (ObjectMaster *a1, NJS_OBJECT *a2), 0x5ED790);
 FunctionPointer(void, sub_408300, (NJS_OBJECT *a1, NJS_MOTION *a2, float a3, QueuedModelFlagsB a4, float a5), 0x408300);
+FunctionPointer(void, DrawObjectWithMotion_407BB0, (NJS_OBJECT *a1, NJS_MOTION *a2, float framenumber, int a4, int a5), 0x4082D0);
 
 void DisableMetalStruts(LandTable* landtable)
 {
@@ -250,6 +254,81 @@ void UnloadLevelFiles_STG06()
 	STG06_2_Info = nullptr;
 }
 
+void __cdecl SkyDeckSharedDisplaySubFix(ObjectMaster *a1)
+{
+	ObjectMaster *v1; // ebp
+	EntityData1 *v2; // esi
+	NJS_OBJECT *v3; // edi
+	Angle v4; // eax
+	Angle v5; // eax
+	Angle v6; // eax
+	float v7; // eax
+	unsigned __int8 v8; // al
+	double v9; // st7
+	NJS_MOTION *v10; // edx
+	double v11; // st6
+	double v12; // st7
+	float a1a; // [esp+10h] [ebp+4h]
+
+	v1 = a1;
+	v2 = a1->Data1;
+	v3 = SkyDeckObjectArray[4 * v2->NextAction];
+	if ( !MissedFrames )
+	{
+		if ( v3 )
+		{
+			njSetTexture(&OBJ_SKYDECK_TEXLIST);
+			njPushMatrix(0);
+			njTranslateV(0, &v2->Position);
+			v4 = v2->Rotation.z;
+			if ( v4 )
+			{
+				njRotateZ(0, (unsigned __int16)v4);
+			}
+			v5 = v2->Rotation.x;
+			if ( v5 )
+			{
+				njRotateX(0, (unsigned __int16)v5);
+			}
+			v6 = v2->Rotation.y;
+			if ( v6 )
+			{
+				njRotateY(0, (unsigned __int16)v6);
+			}
+			v7 = v2->Scale.x;
+			if ( v7 != 1.0 )
+			{
+				njScale(0, v7, v7, v2->Scale.x);
+				ScaleVectorThing_Scale(v2->Scale.x);
+			}
+			v8 = v2->Index;
+			if ( v8 )
+			{
+				v9 = v2->Scale.z;
+				if (!IsGamePaused())
+				{
+					v9 = v9 + 0.5f * FramerateSetting;
+				}
+				v10 = (NJS_MOTION*)SkyDeckSharedMotionArray[v8];
+				v11 = SkyDeckSharedMotionLengthArray[v8];
+				if (v9 > v11 - 1.0f) v9 = 0;
+				v2->Scale.z = v9;
+				DrawObjectWithMotion_407BB0(v3, v10, v9, 1, v2->Scale.x);
+			}
+			else
+			{
+				ProcessModelNode_C_VerifyTexList(v3, QueuedModelFlagsB_EnableZWrite, v2->Scale.x);
+			}
+			if ( v2->Scale.x != 1.0f )
+			{
+				ScaleVectorThing_RestoreB();
+			}
+			njPopMatrix(1u);
+		}
+		sub_5ED790(v1, SkyDeckObjectArray[4 * v2->NextAction + 2]);
+	}
+}
+
 void SkyDeck_Init()
 {
 	CheckAndUnloadLevelFiles();
@@ -303,6 +382,7 @@ void SkyDeck_Init()
 		ReplacePVM("SKYDECK01");
 		ReplacePVM("SKYDECK02");
 		ReplacePVM("SKYDECK03");
+		WriteJump((void*)0x5EF870, SkyDeckSharedDisplaySubFix); //Fix jerky animation for some objects (mostly unused)
 		//Skybox transparency
 		SkyDeckSkyboxModel_Normal.basicdxmodel->nbMeshset = 2; //Disable the annoying sky mesh
 		SkyDeckSkyboxModel_Normal.basicdxmodel->mats[0].diffuse.color = 0x11FFFFFF;
