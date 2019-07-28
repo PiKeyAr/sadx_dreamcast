@@ -2,7 +2,7 @@
 #include "Casino_UVs.h"
 
 //TODO: Replace whole models instead of just the UVs in "UV fixes", Cowgirl dynamic collision
-
+//Check medal Z fighting in the landtable
 NJS_TEXNAME textures_casino1[131];
 NJS_TEXLIST texlist_casino1 = { arrayptrandlength(textures_casino1) };
 

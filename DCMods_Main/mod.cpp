@@ -239,6 +239,7 @@ void ReinitializeDLLStuff()
 	int (**v1)(void);
 	for (int i = 3; i < 528; i++)
 	{
+		//PrintDebug("Init function: %d\n", i);
 		v1 = (int (**)(void))&InitializationFunctions[i];
 		if (v1) (*v1)();
 	}

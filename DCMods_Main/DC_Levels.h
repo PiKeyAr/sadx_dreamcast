@@ -447,6 +447,7 @@ void RenderChaoTransporterEffect_Fix(NJS_MODEL_SADX *a1, float scale);
 bool ForceWhiteDiffuse(NJS_MATERIAL* material, uint32_t flags);
 bool ForceWhiteDiffuse3_Night(NJS_MATERIAL* material, uint32_t flags);
 bool ForceWhiteDiffuse3Specular1(NJS_MATERIAL* material, uint32_t flags);
+bool ForceWhiteDiffuse1Specular3(NJS_MATERIAL* material, uint32_t flags);
 bool ChaosPuddleFunc(NJS_MATERIAL* material, uint32_t flags);
 bool Chaos2Function(NJS_MATERIAL* material, uint32_t flags);
 bool Chaos4NPCFunction(NJS_MATERIAL* material, uint32_t flags);

@@ -574,8 +574,14 @@ void SkyChase_Init()
 		ReplaceBIN_DC("CAMSHT1S");
 		ReplaceBIN_DC("CAMSHT2S");
 		//Other Sky Chase fixes
-		((NJS_OBJECT*)0x028DFD34)->basicdxmodel->mats[0].diffuse.color = 0xFFFFFFFF; //Sky materials in Act 1
-		((NJS_OBJECT*)0x028175F4)->basicdxmodel->mats[0].diffuse.color = 0xFFFFFFFF; //Sky materials in Act 1
+		RemoveVertexColors_Object((NJS_OBJECT*)0x293A1BC); //Rocket
+		RemoveVertexColors_Object((NJS_OBJECT*)0x299734C); //Hodai rocket
+		RemoveVertexColors_Object((NJS_OBJECT*)0x298B938); //Arm
+		RemoveVertexColors_Object((NJS_OBJECT*)0x293D95C); //Renzako
+		RemoveVertexColors_Object((NJS_OBJECT*)0x2947130); //Zako1 1
+		RemoveVertexColors_Object((NJS_OBJECT*)0x294457C); //Zako1 2
+		RemoveVertexColors_Object((NJS_OBJECT*)0x028DFD34); //Sky materials in Act 1
+		RemoveVertexColors_Object((NJS_OBJECT*)0x028175F4); //Sky materials in Act 1
 		SkyboxScale_SkyChase1->Far.x = 4.0f;
 		SkyboxScale_SkyChase1->Far.y = 4.0f;
 		SkyboxScale_SkyChase1->Far.z = 4.0f;

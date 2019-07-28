@@ -173,8 +173,6 @@ void E101R_Init()
 		WriteCall((void*)0x56F839, E101R_Particle_Show);
 		WriteCall((void*)0x4CC13F, E101R_SmallBalls_Show);
 		WriteCall((void*)0x4CC1C7, E101R_SmallBalls_Show);
-		WriteData<1>((char*)0x568D20, 0xC3u); //Disable SetClip_E101R
-		RemoveVertexColors_Object((NJS_OBJECT*)0x02DA8664); //E101R model in cutscenes
 		//E-101R fixes
 		ShadowBlob_Model.basicdxmodel->mats[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
 		WriteCall((void*)0x4CC82E, FixFVFZWrite);

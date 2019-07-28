@@ -51,11 +51,20 @@ void Bosses_Init()
 	ReplacePVM("ICM0001_3");
 	ReplacePVM("ICM0001_5");
 	//Various Chaos puddle things
+	RemoveVertexColors_Object((NJS_OBJECT*)0x991268); //Zero main and cutscene model
+	RemoveVertexColors_Object((NJS_OBJECT*)0x3306270); //Egg Hornet cutscene model
+	RemoveVertexColors_Object((NJS_OBJECT*)0x330A4D0); //Eggman in Egg Hornet cutscene model
+	RemoveVertexColors_Object((NJS_OBJECT*)0x2EEB524); //Eggman in Eggmobile in cutscenes (EV_EGGMOBLE0)
+	WriteData<1>((char*)0x568D20, 0xC3u); //Disable SetClip_E101R
+	RemoveVertexColors_Object((NJS_OBJECT*)0x02DA8664); //E101R model in cutscenes
 	RemoveVertexColors_Object((NJS_OBJECT*)0x269D214); //Eggmobile 2P
 	RemoveVertexColors_Object((NJS_OBJECT*)0x269EE24); //Eggman 2P
 	RemoveVertexColors_Object((NJS_OBJECT*)0x2C66BAC); //Chaos 0 in cutscenes
+	RemoveVertexColors_Object((NJS_OBJECT*)0x1133328); //Chaos 2 (main and cutscenes)
+	RemoveVertexColors_Object((NJS_OBJECT*)0x302FD70); //Chaos 4 cutscene model
 	RemoveVertexColors_Object((NJS_OBJECT*)0x2D6962C); //Chaos puddle in cutscenes
 	RemoveVertexColors_Object((NJS_OBJECT*)0x38DD9BC); //Chaos puddle in cutscenes + Chaos 0
+	RemoveVertexColors_Object((NJS_OBJECT*)0x38DEA10); //Chaos 2 small puddles + Chaos 0 when defeated
 	WriteCall((void*)0x6EE43F, ComeOnChaosTimeToEat); //Environment mapping effect on Chaos' puddle before Chaos 0 emerges
 	((NJS_MATERIAL*)0x02D64FD8)->exponent = 11; //Chaos 1/4 puddle
 	((NJS_MATERIAL*)0x038D936C)->attrflags &= ~NJD_FLAG_USE_ENV; //Chaos 0/2/6 puddle

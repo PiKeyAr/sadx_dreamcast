@@ -486,6 +486,7 @@ void ADV01_Init()
 		RemoveVertexColors_Model(ADV01_MODELS[13]); //Slot machine
 		RemoveVertexColors_Object(ADV01_OBJECTS[11]); //Books 1
 		RemoveVertexColors_Object(ADV01_OBJECTS[12]); //Books 2
+		RemoveVertexColors_Object((NJS_OBJECT*)0x10FEF74); //Eggman in Eggmobile NPC model (Egg Carrier)
 		//Fix materials on elevator buttons
 		WriteData((float*)0x51E818, 1.0f);
 		WriteData((float*)0x51E81D, 1.0f);
@@ -588,32 +589,35 @@ void ADV01_OnFrame()
 	//This dirty hack is needed to prevent the DX collision object from interfering with Gamma's hover animation in cutscenes
 	if (CurrentLevel == LevelIDs_EggCarrierOutside && CurrentAct == 2)
 	{
-		if (EV_MainThread_ptr)
+		if (ADV01_2_Info)
 		{
+			if (EV_MainThread_ptr)
 			{
-				if (LANDTABLEEC0[2]->Col[0].Flags == 0x40000001 && LANDTABLEEC0[2]->Col[0].Radius < 53.0f)
 				{
-					if (LANDTABLEEC0[2]->Col[0].Model->pos[1] >= 1524.0f)
+					if (LANDTABLEEC0[2]->Col[0].Flags == 0x40000001 && LANDTABLEEC0[2]->Col[0].Radius < 53.0f)
 					{
-						//PrintDebug("Disabling collision\n");
-						LANDTABLEEC0[2]->Col[0].Model->pos[1] = -1500.0f;
-						LANDTABLEEC0[2]->Col[0].Center = { 0, 0, 0 };
-						LANDTABLEEC0[2]->Col[0].Radius = 0;
-						LANDTABLEEC0[2]->Col[0].Flags = 0;
-					}
+						if (LANDTABLEEC0[2]->Col[0].Model->pos[1] >= 1524.0f)
+						{
+							//PrintDebug("Disabling collision\n");
+							LANDTABLEEC0[2]->Col[0].Model->pos[1] = -1500.0f;
+							LANDTABLEEC0[2]->Col[0].Center = { 0, 0, 0 };
+							LANDTABLEEC0[2]->Col[0].Radius = 0;
+							LANDTABLEEC0[2]->Col[0].Flags = 0;
+						}
 
+					}
 				}
 			}
-		}
-		else
-		{
-			if (LANDTABLEEC0[2]->Col[0].Model->pos[1] == -1500.0f)
+			else
 			{
-				//PrintDebug("Enabling collision\n");
-				LANDTABLEEC0[2]->Col[0].Model->pos[1] = 1525.692f;
-				LANDTABLEEC0[2]->Col[0].Center = { 1.572876f, 1527.742f, 3462.564f };
-				LANDTABLEEC0[2]->Col[0].Radius = 51.01946f;
-				LANDTABLEEC0[2]->Col[0].Flags = 0x40000001;
+				if (LANDTABLEEC0[2]->Col[0].Model->pos[1] == -1500.0f)
+				{
+					//PrintDebug("Enabling collision\n");
+					LANDTABLEEC0[2]->Col[0].Model->pos[1] = 1525.692f;
+					LANDTABLEEC0[2]->Col[0].Center = { 1.572876f, 1527.742f, 3462.564f };
+					LANDTABLEEC0[2]->Col[0].Radius = 51.01946f;
+					LANDTABLEEC0[2]->Col[0].Flags = 0x40000001;
+				}
 			}
 		}
 	}

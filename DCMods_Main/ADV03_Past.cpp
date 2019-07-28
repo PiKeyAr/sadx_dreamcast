@@ -348,11 +348,11 @@ void UnloadLevelFiles_ADV03()
 	{
 		PastAct3Cols[i] = -1;
 	}
-	ForceLightType_Object(PastChaoModel_2, 2, true);
-	ForceLightType_Object(PastChaoModel_7, 2, true);
-	ForceLightType_Object(PastChaoModel_8, 2, true);
-	ForceLightType_Object(PastChaoModel_9, 2, true);
-	ForceLightType_Object(PastChaoModel_10, 2, true);
+	if (PastChaoModel_2) ForceLightType_Object(PastChaoModel_2, 2, true);
+	if (PastChaoModel_7) ForceLightType_Object(PastChaoModel_7, 2, true);
+	if (PastChaoModel_8) ForceLightType_Object(PastChaoModel_8, 2, true);
+	if (PastChaoModel_9) ForceLightType_Object(PastChaoModel_9, 2, true);
+	if (PastChaoModel_10) ForceLightType_Object(PastChaoModel_10, 2, true);
 	delete PastChaoModel_2_Info;
 	delete PastChaoModel_7_Info;
 	delete PastChaoModel_8_Info;

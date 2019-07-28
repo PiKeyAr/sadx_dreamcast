@@ -103,11 +103,10 @@ void Chaos2_Init()
 		WriteCall((void*)0x54D928, Chaos2Ball); //Puddle
 		WriteCall((void*)0x54F5AC, Chaos2Ball); //Small puddles
 		WriteCall((void*)0x54F5DF, Chaos2Ball); //Small ball attack
-		RemoveVertexColors_Object((NJS_OBJECT*)0x01133328); //Chaos2 (main)
-		RemoveVertexColors_Object((NJS_OBJECT*)0x0114B918); //Chaos2 (alt)
-		RemoveVertexColors_Object((NJS_OBJECT*)0x011339EC); //Chaos2 small ball
-		RemoveVertexColors_Object((NJS_OBJECT*)0x01139274); //Chaos2 ball
-		RemoveVertexColors_Object((NJS_OBJECT*)0x0113F81C); //Chaos2 ball 2
+		RemoveVertexColors_Object((NJS_OBJECT*)0x114B918); //Chaos2 (alt)
+		RemoveVertexColors_Object((NJS_OBJECT*)0x11339EC); //Chaos2 small ball
+		RemoveVertexColors_Object((NJS_OBJECT*)0x1139274); //Chaos2 ball
+		RemoveVertexColors_Object((NJS_OBJECT*)0x113F81C); //Chaos2 ball 2
 		for (int i = 0; i < 3; i++)
 		{
 			Chaos2Fog[i].Color = 0xFF000000;

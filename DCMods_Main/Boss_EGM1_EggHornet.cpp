@@ -168,7 +168,6 @@ void EggHornet_Init()
 		ResizeTextureList((NJS_TEXLIST*)0x1557064, 118); //Egg Hornet level texlist
 		RemoveVertexColors_Object((NJS_OBJECT*)0x1561A70); //Egg Hornet main model
 		RemoveVertexColors_Object((NJS_OBJECT*)0x1561A70); //Egg Hornet eggmobile part
-		RemoveVertexColors_Object((NJS_OBJECT*)0x3306270); //Egg Hornet cutscene model
 		//Water
 		WriteCall((void*)0x57192A, EHWater_Display); //Egg Hornet water
 		//SADX style water

@@ -143,7 +143,6 @@ static void __cdecl FountainDisplay_r(ObjectMaster *a1)
 	original(a1);
 }
 
-
 void RemoveMaterials_SpeedHighway(LandTable *landtable)
 {
 	Uint32 materialflags;
@@ -170,7 +169,7 @@ void RemoveMaterials_SpeedHighway(LandTable *landtable)
 
 void UnloadLevelFiles_STG04()
 {
-	if (DLLLoaded_Lantern) RemoveMaterials_SpeedHighway(STG02_0_Info->getlandtable());
+	if (DLLLoaded_Lantern) RemoveMaterials_SpeedHighway(STG04_0_Info->getlandtable());
 	for (int i = 0; i < LengthOfArray(Highway3Cols); i++)
 	{
 		Highway3Cols[i] = -1;

@@ -60,6 +60,63 @@ static int CutsceneFadeMode = 0;
 static bool SkipPressed_Cutscene = false;
 static float EmeraldScale = 1.005f;
 
+static const NJS_MATERIAL* WhiteDiffuse_General[] = {
+	//Egg Hornet
+	((NJS_MATERIAL*)0x0155D1DC),
+	//Egg Viper cockpit
+	((NJS_MATERIAL*)0x0166BD68),
+	((NJS_MATERIAL*)0x0166BD7C),
+	((NJS_MATERIAL*)0x0166BD90),
+	((NJS_MATERIAL*)0x0166BDA4),
+	((NJS_MATERIAL*)0x0166BDB8),
+	((NJS_MATERIAL*)0x0166BDCC),
+	((NJS_MATERIAL*)0x0166BDE0),
+	//Mecha fish
+	((NJS_MATERIAL*)0x016F96C0),
+	((NJS_MATERIAL*)0x016F96D4),
+	((NJS_MATERIAL*)0x016F96E8),
+	((NJS_MATERIAL*)0x016F96FC),
+	((NJS_MATERIAL*)0x016F9710),
+	((NJS_MATERIAL*)0x016F9724),
+	((NJS_MATERIAL*)0x016FA4EC),
+	((NJS_MATERIAL*)0x016FA500),
+	((NJS_MATERIAL*)0x016FA514),
+	((NJS_MATERIAL*)0x0172872C),
+	((NJS_MATERIAL*)0x01728740),
+	((NJS_MATERIAL*)0x01728754),
+	((NJS_MATERIAL*)0x01727900),
+	((NJS_MATERIAL*)0x01727914),
+	((NJS_MATERIAL*)0x01727928),
+	((NJS_MATERIAL*)0x0172793C),
+	((NJS_MATERIAL*)0x01727950),
+	((NJS_MATERIAL*)0x01727964),
+	//Item capsule
+	((NJS_MATERIAL*)0x008BEB44),
+	//Emblem
+	((NJS_MATERIAL*)0x009740FC),
+	((NJS_MATERIAL*)0x00974110),
+	((NJS_MATERIAL*)0x00974124),
+	((NJS_MATERIAL*)0x00974138),
+};
+
+static const NJS_MATERIAL* WhiteDiffuseSecondCharSpecular[] = {
+	//Metal Sonic in Amy's cutscene
+	((NJS_MATERIAL*)0x032D31BC),
+	((NJS_MATERIAL*)0x032D31D0),
+	((NJS_MATERIAL*)0x032D31E4),
+	((NJS_MATERIAL*)0x032D31F8),
+};
+
+static const NJS_MATERIAL* E101Material[] = {
+	((NJS_MATERIAL*)0x014D5EB0),
+	((NJS_MATERIAL*)0x00C409AC),
+	((NJS_MATERIAL*)0x0312C188),
+	((NJS_MATERIAL*)0x02499330),
+	((NJS_MATERIAL*)0x03096CD8),
+	((NJS_MATERIAL*)0x0309F380),
+	((NJS_MATERIAL*)0x030A7B00),
+};
+
 NJS_MATERIAL* AlphaRejectMaterials[] = {
 	((NJS_MATERIAL*)0x8B2E6C), //Invincibility lines
 	((NJS_MATERIAL*)0x8B2F80), //Invincibility ball
@@ -170,6 +227,72 @@ NJS_MATERIAL* RemoveColors_General[] = {
 	((NJS_MATERIAL*)0x2F043EC),
 	((NJS_MATERIAL*)0x2F04138),
 	((NJS_MATERIAL*)0x2F0402C),
+};
+
+NJS_MATERIAL* LevelSpecular_General[] = {
+	//Zero
+	((NJS_MATERIAL*)0x0098A2B0),
+	((NJS_MATERIAL*)0x0098A2C4),
+	((NJS_MATERIAL*)0x0098A2D8),
+	((NJS_MATERIAL*)0x0098A2EC),
+	((NJS_MATERIAL*)0x0098A300),
+	((NJS_MATERIAL*)0x0098ACD0),
+	((NJS_MATERIAL*)0x0098ACE4),
+	((NJS_MATERIAL*)0x0098ACF8),
+	((NJS_MATERIAL*)0x0098AAE0),
+	((NJS_MATERIAL*)0x0098C140),
+	((NJS_MATERIAL*)0x0098C154),
+	((NJS_MATERIAL*)0x0098C168),
+	((NJS_MATERIAL*)0x0098BF50),
+	((NJS_MATERIAL*)0x00990FE0),
+	((NJS_MATERIAL*)0x00990FF4),
+	//Amy's balloon
+	((NJS_MATERIAL*)0x008BD7A0),
+	//Sweep
+	((NJS_MATERIAL*)0x038D05C8),
+	((NJS_MATERIAL*)0x038D05DC),
+	((NJS_MATERIAL*)0x038D05F0),
+	((NJS_MATERIAL*)0x038D0604),
+	((NJS_MATERIAL*)0x038D0618),
+	((NJS_MATERIAL*)0x038CFB80),
+	((NJS_MATERIAL*)0x038CFB94),
+	((NJS_MATERIAL*)0x038CFBA8),
+	((NJS_MATERIAL*)0x038CFBBC),
+	((NJS_MATERIAL*)0x038CFBD0),
+	((NJS_MATERIAL*)0x038CFBE4),
+	((NJS_MATERIAL*)0x038CFBF8),
+	((NJS_MATERIAL*)0x038CFC0C),
+	((NJS_MATERIAL*)0x038CF850),
+	((NJS_MATERIAL*)0x038CF864),
+	((NJS_MATERIAL*)0x038CF878),
+	((NJS_MATERIAL*)0x038CF88C),
+	((NJS_MATERIAL*)0x038CF5E8),
+	((NJS_MATERIAL*)0x038CF5FC),
+	((NJS_MATERIAL*)0x038CF610),
+	((NJS_MATERIAL*)0x038CF260),
+	((NJS_MATERIAL*)0x038CF274),
+	((NJS_MATERIAL*)0x038CEF58),
+	((NJS_MATERIAL*)0x038CEF6C),
+	((NJS_MATERIAL*)0x038CEF80),
+	((NJS_MATERIAL*)0x038CEDE8),
+	((NJS_MATERIAL*)0x038CEA60),
+	((NJS_MATERIAL*)0x038CEA74),
+	((NJS_MATERIAL*)0x038CE758),
+	((NJS_MATERIAL*)0x038CE76C),
+	((NJS_MATERIAL*)0x038CE780),
+	((NJS_MATERIAL*)0x038CE5E8),
+	((NJS_MATERIAL*)0x038CE260),
+	((NJS_MATERIAL*)0x038CE274),
+	((NJS_MATERIAL*)0x038CDF58),
+	((NJS_MATERIAL*)0x038CDF6C),
+	((NJS_MATERIAL*)0x038CDF80),
+	((NJS_MATERIAL*)0x038CDDE8),
+	((NJS_MATERIAL*)0x038CDA60),
+	((NJS_MATERIAL*)0x038CDA74),
+	((NJS_MATERIAL*)0x038CD758),
+	((NJS_MATERIAL*)0x038CD76C),
+	((NJS_MATERIAL*)0x038CD780),
+	((NJS_MATERIAL*)0x038CD5E8),
 };
 
 NJS_MATERIAL* ObjectSpecular_General[] = {
@@ -1391,6 +1514,7 @@ void General_Init()
 		*/
 		WriteCall((void*)0x4A22A6, SonicFrozenCubeFix);
 		//Material/vertex color fixes
+		RemoveVertexColors_Object((NJS_OBJECT*)0x3175528); //Tails' model in the cutscene where Sonic sees him crash
 		RemoveVertexColors_Object(BIG_OBJECTS[42]); //Big fishing thing 1
 		RemoveVertexColors_Object(BIG_OBJECTS[43]); //Big fishing thing 2
 		RemoveVertexColors_Object(SONIC_OBJECTS[72]); //Ice cube for frozen Sonic
@@ -1401,6 +1525,8 @@ void General_Init()
 		RemoveVertexColors_Object((NJS_OBJECT*)0x38E3B2C); //Buyon B
 		RemoveVertexColors_Object((NJS_OBJECT*)0x38E3584); //Buyon C
 		RemoveVertexColors_Object((NJS_OBJECT*)0x9538EC); //Leon body
+		RemoveVertexColors_Object((NJS_OBJECT*)0x96BC08); //Kiki's bomb
+		RemoveVertexColors_Object((NJS_OBJECT*)0x96C9B4); //Kiki's toge bomb
 		RemoveVertexColors_Model((NJS_MODEL_SADX*)0x8B966C); //Capsule
 		RemoveVertexColors_Model((NJS_MODEL_SADX*)0x8BA2AC); //Capsule
 		*(NJS_OBJECT*)0x96F3F0 = *LoadModel("system\\data\\1ST_READ\\Models\\005B8C04.sa1mdl", false); //Unidus spinning part
@@ -1664,8 +1790,14 @@ void General_Init()
 		if (DLLLoaded_Lantern == true)
 		{
 			if (set_alpha_reject_ptr != nullptr) material_register_ptr(AlphaRejectMaterials, LengthOfArray(AlphaRejectMaterials), &DisableAlphaRejection);
+			material_register_ptr(WhiteDiffuse_General, LengthOfArray(LevelSpecular_General), &ForceWhiteDiffuse);
+			material_register_ptr(LevelSpecular_General, LengthOfArray(LevelSpecular_General), &ForceDiffuse0Specular0);
 			material_register_ptr(ObjectSpecular_General, LengthOfArray(ObjectSpecular_General), &ForceDiffuse0Specular1);
 		}
+		RemoveVertexColors_Object((NJS_OBJECT*)0x31AB49C); //Birdie in "Zero holding Amy" cutscenes
+		RemoveVertexColors_Object((NJS_OBJECT*)0x31A72D8); //Zero holding Amy
+		RemoveVertexColors_Object((NJS_OBJECT*)0x319F714); //Amy held by Zero (talking head)
+		RemoveVertexColors_Object((NJS_OBJECT*)0x319C3EC); //Amy held by Zero
 		RemoveVertexColors_Object((NJS_OBJECT*)0x33144B0); //Egg Walker cutscene
 		RemoveVertexColors_Object((NJS_OBJECT*)0x10D7774); //Question mark from Character Select
 		((NJS_OBJECT*)0x10D7774)->basicdxmodel->mats[0].attr_texId = 10; //Fix wrong texture on question mark
@@ -1698,7 +1830,6 @@ void General_Init()
 
 void General_OnFrame()
 {
-
 	//Global colors screen fade fix
 	if (GlobalColor_wait)
 	{

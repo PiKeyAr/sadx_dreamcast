@@ -149,6 +149,8 @@ void Chaos0_Init()
 		RemoveVertexColors_Object(BOSSCHAOS0_OBJECTS[30]);
 		RemoveVertexColors_Object(BOSSCHAOS0_OBJECTS[31]);
 		RemoveVertexColors_Object(BOSSCHAOS0_OBJECTS[33]);
+		RemoveVertexColors_Object((NJS_OBJECT*)0x337B794); //SS policemen
+		RemoveVertexColors_Object((NJS_OBJECT*)0x339889C); //Bullets fired at Chaos
 		BOSSCHAOS0_ACTIONS[17]->object = LoadModel("system\\data\\B_CHAOS0\\Models\\0005825C.sa1mdl", false); //Helicopter
 		BOSSCHAOS0_ACTIONS[18]->object = LoadModel("system\\data\\B_CHAOS0\\Models\\0005D234.sa1mdl", false); //Police car
 		AddWhiteDiffuseMaterial(&BOSSCHAOS0_ACTIONS[18]->object->child->sibling->sibling->sibling->sibling->sibling->sibling->sibling->sibling->basicdxmodel->mats[1]);

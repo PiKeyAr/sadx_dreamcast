@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "TwinklePark_objects.h"
 
+//Todo: Pole UVs, merge Twinke Circuit objects
 NJS_TEXNAME textures_twinkle1[35];
 NJS_TEXLIST texlist_twinkle1 = { arrayptrandlength(textures_twinkle1) };
 
@@ -46,91 +47,6 @@ NJS_MATERIAL* WhiteDiffuse_Twinkle[] = {
 	//Satellite
 	((NJS_MATERIAL*)0x038AE590),
 	((NJS_MATERIAL*)0x038AE5A4),
-};
-
-NJS_MATERIAL* LevelSpecular_Twinkle[]={
-	//Barrel pieces
-	((NJS_MATERIAL*)0x0279D398),
-	((NJS_MATERIAL*)0x0279D3AC),
-	((NJS_MATERIAL*)0x0279D6E0),
-	((NJS_MATERIAL*)0x0279D828),
-	((NJS_MATERIAL*)0x0279D934),
-	((NJS_MATERIAL*)0x0279DA5C),
-	//Zero
-	((NJS_MATERIAL*)0x0098A2B0),
-	((NJS_MATERIAL*)0x0098A2C4),
-	((NJS_MATERIAL*)0x0098A2D8),
-	((NJS_MATERIAL*)0x0098A2EC),
-	((NJS_MATERIAL*)0x0098A300),
-	((NJS_MATERIAL*)0x0098ACD0),
-	((NJS_MATERIAL*)0x0098ACE4),
-	((NJS_MATERIAL*)0x0098ACF8),
-	((NJS_MATERIAL*)0x0098AAE0),
-	((NJS_MATERIAL*)0x0098C140),
-	((NJS_MATERIAL*)0x0098C154),
-	((NJS_MATERIAL*)0x0098C168),
-	((NJS_MATERIAL*)0x0098BF50),
-	((NJS_MATERIAL*)0x00990FE0),
-	((NJS_MATERIAL*)0x00990FF4),
-	//Amy's balloon
-	((NJS_MATERIAL*)0x008BD7A0),
-	//ODoor
-	((NJS_MATERIAL*)0x027B2418),
-	((NJS_MATERIAL*)0x027B242C),
-	((NJS_MATERIAL*)0x027B2440),
-	//Dash pad
-	((NJS_MATERIAL*)0x008B8828),
-	((NJS_MATERIAL*)0x008B883C),
-	((NJS_MATERIAL*)0x008B8850),
-	((NJS_MATERIAL*)0x008B8864),
-	((NJS_MATERIAL*)0x008B8878),
-	((NJS_MATERIAL*)0x008B8498),
-	((NJS_MATERIAL*)0x008B84AC),
-	//Sweep
-	((NJS_MATERIAL*)0x038D05C8),
-	((NJS_MATERIAL*)0x038D05DC),
-	((NJS_MATERIAL*)0x038D05F0),
-	((NJS_MATERIAL*)0x038D0604),
-	((NJS_MATERIAL*)0x038D0618),
-	((NJS_MATERIAL*)0x038CFB80),
-	((NJS_MATERIAL*)0x038CFB94),
-	((NJS_MATERIAL*)0x038CFBA8),
-	((NJS_MATERIAL*)0x038CFBBC),
-	((NJS_MATERIAL*)0x038CFBD0),
-	((NJS_MATERIAL*)0x038CFBE4),
-	((NJS_MATERIAL*)0x038CFBF8),
-	((NJS_MATERIAL*)0x038CFC0C),
-	((NJS_MATERIAL*)0x038CF850),
-	((NJS_MATERIAL*)0x038CF864),
-	((NJS_MATERIAL*)0x038CF878),
-	((NJS_MATERIAL*)0x038CF88C),
-	((NJS_MATERIAL*)0x038CF5E8),
-	((NJS_MATERIAL*)0x038CF5FC),
-	((NJS_MATERIAL*)0x038CF610),
-	((NJS_MATERIAL*)0x038CF260),
-	((NJS_MATERIAL*)0x038CF274),
-	((NJS_MATERIAL*)0x038CEF58),
-	((NJS_MATERIAL*)0x038CEF6C),
-	((NJS_MATERIAL*)0x038CEF80),
-	((NJS_MATERIAL*)0x038CEDE8),
-	((NJS_MATERIAL*)0x038CEA60),
-	((NJS_MATERIAL*)0x038CEA74),
-	((NJS_MATERIAL*)0x038CE758),
-	((NJS_MATERIAL*)0x038CE76C),
-	((NJS_MATERIAL*)0x038CE780),
-	((NJS_MATERIAL*)0x038CE5E8),
-	((NJS_MATERIAL*)0x038CE260),
-	((NJS_MATERIAL*)0x038CE274),
-	((NJS_MATERIAL*)0x038CDF58),
-	((NJS_MATERIAL*)0x038CDF6C),
-	((NJS_MATERIAL*)0x038CDF80),
-	((NJS_MATERIAL*)0x038CDDE8),
-	((NJS_MATERIAL*)0x038CDA60),
-	((NJS_MATERIAL*)0x038CDA74),
-	((NJS_MATERIAL*)0x038CD758),
-	((NJS_MATERIAL*)0x038CD76C),
-	((NJS_MATERIAL*)0x038CD780),
-	((NJS_MATERIAL*)0x038CD5E8),
 };
 
 void Mirror_Delete(ObjectMaster *a1)
@@ -519,6 +435,36 @@ void TwinklePark_Init()
 		WriteCall((void*)0x0079C36A, FixShittyLightObjects_Pause);
 		//Cart fixes
 		RemoveVertexColors_Object((NJS_OBJECT*)0x038B8780); //Cart enemy
+		//Cart models (destroyed)
+		RemoveVertexColors_Model((NJS_MODEL_SADX*)0x38BA758); //1
+		RemoveVertexColors_Model((NJS_MODEL_SADX*)0x38BA284); //2
+		RemoveVertexColors_Model((NJS_MODEL_SADX*)0x38BA138); //3
+		RemoveVertexColors_Model((NJS_MODEL_SADX*)0x38B9C9C); //4
+		RemoveVertexColors_Model((NJS_MODEL_SADX*)0x38B9B6C); //5
+		RemoveVertexColors_Model((NJS_MODEL_SADX*)0x38B9950); //6
+		RemoveVertexColors_Model((NJS_MODEL_SADX*)0x38B97FC); //7
+		RemoveVertexColors_Model((NJS_MODEL_SADX*)0x38B95E0); //8
+		RemoveVertexColors_Model((NJS_MODEL_SADX*)0x38B907C); //9
+		RemoveVertexColors_Model((NJS_MODEL_SADX*)0x38A7164); //11
+		RemoveVertexColors_Model((NJS_MODEL_SADX*)0x38A7630); //12
+		RemoveVertexColors_Model((NJS_MODEL_SADX*)0x38A77AC); //13
+		RemoveVertexColors_Model((NJS_MODEL_SADX*)0x38A7C78); //14
+		RemoveVertexColors_Model((NJS_MODEL_SADX*)0x38A7DE0); //15
+		RemoveVertexColors_Model((NJS_MODEL_SADX*)0x38A802C); //16
+		RemoveVertexColors_Model((NJS_MODEL_SADX*)0x38A81B8); //17
+		RemoveVertexColors_Model((NJS_MODEL_SADX*)0x38A8404); //18
+		RemoveVertexColors_Model((NJS_MODEL_SADX*)0x38A896C); //19
+		RemoveVertexColors_Model((NJS_MODEL_SADX*)0x38A90D0); //20
+		RemoveVertexColors_Model((NJS_MODEL_SADX*)0x38A9284); //22
+		RemoveVertexColors_Model((NJS_MODEL_SADX*)0x38A9750); //23
+		RemoveVertexColors_Model((NJS_MODEL_SADX*)0x38A98CC); //24
+		RemoveVertexColors_Model((NJS_MODEL_SADX*)0x38A9D98); //25
+		RemoveVertexColors_Model((NJS_MODEL_SADX*)0x38A9F00); //26
+		RemoveVertexColors_Model((NJS_MODEL_SADX*)0x38AA14C); //27
+		RemoveVertexColors_Model((NJS_MODEL_SADX*)0x38AA2D8); //28
+		RemoveVertexColors_Model((NJS_MODEL_SADX*)0x38AA524); //29
+		RemoveVertexColors_Model((NJS_MODEL_SADX*)0x38AAA8C); //30
+		RemoveVertexColors_Model((NJS_MODEL_SADX*)0x38AB1F0); //31
 		LoadModel_ReplaceMeshes((NJS_OBJECT*)0x038BAAA4, "system\\data\\STG03\\Models\\000EAB28.sa1mdl");
 		((NJS_OBJECT*)0x038BAAA4)->child->basicdxmodel->meshsets[1].nbMesh = 0;
 		CartGlass.basicdxmodel = LoadModel("system\\data\\STG03\\Models\\000EAB28.sa1mdl", false)->child->basicdxmodel;
@@ -594,6 +540,12 @@ void TwinklePark_Init()
 		*(NJS_OBJECT*)0x27AD86C = *LoadModel("system\\data\\STG03\\Models\\000AC45C.sa1mdl", false); //Bowling door
 		*(NJS_OBJECT*)0x27A67B4 = *LoadModel("system\\data\\STG03\\Models\\000A8D60.sa1mdl", false); //OBowWindow
 		*(NJS_OBJECT*)0x27B23E4 = *LoadModel("system\\data\\STG03\\Models\\000B0818.sa1mdl", false); //Trap door
+		*(NJS_OBJECT*)0x27B2DE4 = *LoadModel("system\\data\\STG03\\Models\\000B0A9C.sa1mdl", false); //ODoor
+		*(NJS_OBJECT*)0x279D6AC = *LoadModel("system\\data\\STG03\\Models\\000A1064.sa1mdl", false); //Barrel (destroyed) part 1
+		*(NJS_OBJECT*)0x279D7F4 = *LoadModel("system\\data\\STG03\\Models\\000A11A4.sa1mdl", false); //Barrel (destroyed) part 2
+		*(NJS_OBJECT*)0x279D900 = *LoadModel("system\\data\\STG03\\Models\\000A12A8.sa1mdl", false); //Barrel (destroyed) part 3
+		*(NJS_OBJECT*)0x279DA28 = *LoadModel("system\\data\\STG03\\Models\\000A13C8.sa1mdl", false); //Barrel (destroyed) part 4
+		*(NJS_OBJECT*)0x279DB14 = *LoadModel("system\\data\\STG03\\Models\\000A14AC.sa1mdl", false); //Barrel (destroyed) part 5
 		*(NJS_OBJECT*)0x27A0454 = *LoadModel("system\\data\\STG03\\Models\\000A3CCC.sa1mdl", false); //Bowling catapult
 		((NJS_OBJECT*)0x27A0454)->basicdxmodel->meshsets[0].nbMesh = 0; //Disable transparent floor
 		OCatapultFloor = LoadModel("system\\data\\STG03\\Models\\000A3CCC.sa1mdl", false); //Bowling catapult (floor)

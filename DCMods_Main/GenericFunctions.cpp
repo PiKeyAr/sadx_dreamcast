@@ -411,6 +411,13 @@ bool ForceWhiteDiffuse3Specular1(NJS_MATERIAL* material, uint32_t flags)
 	return true;
 }
 
+bool ForceWhiteDiffuse1Specular3(NJS_MATERIAL* material, uint32_t flags)
+{
+	set_diffuse_ptr(1, false);
+	set_specular_ptr(3, false);
+	return true;
+}
+
 bool ForceDiffuse2Specular2(NJS_MATERIAL* material, uint32_t flags)
 {
 	set_diffuse_ptr(2, false);
@@ -513,21 +520,24 @@ bool Chaos2Function(NJS_MATERIAL* material, uint32_t flags)
 
 void RemoveVertexColors_Object(NJS_OBJECT *obj)
 {
-	if (obj->basicdxmodel)
+	if (obj)
 	{
-		for (int k = 0; k < obj->basicdxmodel->nbMeshset; ++k)
+		if (obj->basicdxmodel)
 		{
-			obj->basicdxmodel->mats[obj->basicdxmodel->meshsets[k].type_matId & ~0xC000].diffuse.argb.r = 0xFF;
-			obj->basicdxmodel->mats[obj->basicdxmodel->meshsets[k].type_matId & ~0xC000].diffuse.argb.g = 0xFF;
-			obj->basicdxmodel->mats[obj->basicdxmodel->meshsets[k].type_matId & ~0xC000].diffuse.argb.b = 0xFF;
-			if (obj->basicdxmodel->meshsets[k].vertcolor != nullptr)
+			for (int k = 0; k < obj->basicdxmodel->nbMeshset; ++k)
 			{
-				obj->basicdxmodel->meshsets[k].vertcolor = nullptr;
+				obj->basicdxmodel->mats[obj->basicdxmodel->meshsets[k].type_matId & ~0xC000].diffuse.argb.r = 0xFF;
+				obj->basicdxmodel->mats[obj->basicdxmodel->meshsets[k].type_matId & ~0xC000].diffuse.argb.g = 0xFF;
+				obj->basicdxmodel->mats[obj->basicdxmodel->meshsets[k].type_matId & ~0xC000].diffuse.argb.b = 0xFF;
+				if (obj->basicdxmodel->meshsets[k].vertcolor != nullptr)
+				{
+					obj->basicdxmodel->meshsets[k].vertcolor = nullptr;
+				}
 			}
 		}
+		if (obj->child != nullptr) RemoveVertexColors_Object(obj->child);
+		if (obj->sibling != nullptr) RemoveVertexColors_Object(obj->sibling);
 	}
-	if (obj->child != nullptr) RemoveVertexColors_Object(obj->child);
-	if (obj->sibling != nullptr) RemoveVertexColors_Object(obj->sibling);
 }
 
 void RemoveVertexColors_Model(NJS_MODEL_SADX *model)
@@ -892,25 +902,31 @@ NJS_OBJECT* LoadModel(const char *ModelName, bool sort)
 
 void ForceLevelSpecular_Object(NJS_OBJECT *obj)
 {
-	if (obj->basicdxmodel)
+	if (obj)
 	{
-		for (int k = 0; k < obj->basicdxmodel->nbMat; ++k)
+		if (obj->basicdxmodel)
 		{
-			if (!(obj->basicdxmodel->mats[k].attrflags & NJD_FLAG_IGNORE_SPECULAR)) obj->basicdxmodel->mats[k].attrflags |= NJD_FLAG_IGNORE_SPECULAR;
+			for (int k = 0; k < obj->basicdxmodel->nbMat; ++k)
+			{
+				if (!(obj->basicdxmodel->mats[k].attrflags & NJD_FLAG_IGNORE_SPECULAR)) obj->basicdxmodel->mats[k].attrflags |= NJD_FLAG_IGNORE_SPECULAR;
+			}
 		}
 	}
 }
 
 void ForceObjectSpecular_Object(NJS_OBJECT *obj)
 {
-	if (obj->basicdxmodel)
+	if (obj)
 	{
-		for (int k = 0; k < obj->basicdxmodel->nbMat; ++k)
+		if (obj->basicdxmodel)
 		{
-			obj->basicdxmodel->mats[k].specular.color = 0xFFFFFFFF;
-			if (obj->basicdxmodel->mats[k].attrflags & NJD_FLAG_IGNORE_SPECULAR)
+			for (int k = 0; k < obj->basicdxmodel->nbMat; ++k)
 			{
-				obj->basicdxmodel->mats[k].attrflags &= ~NJD_FLAG_IGNORE_SPECULAR;
+				obj->basicdxmodel->mats[k].specular.color = 0xFFFFFFFF;
+				if (obj->basicdxmodel->mats[k].attrflags & NJD_FLAG_IGNORE_SPECULAR)
+				{
+					obj->basicdxmodel->mats[k].attrflags &= ~NJD_FLAG_IGNORE_SPECULAR;
+				}
 			}
 		}
 	}
@@ -918,6 +934,7 @@ void ForceObjectSpecular_Object(NJS_OBJECT *obj)
 
 void RegisterLanternMaterial(NJS_MATERIAL* material, int diffuse, int specular, bool unregister)
 {
+	PrintDebug("Registering Lantern material with diffuse %d, specular %d, unregister: %d\n", diffuse, specular, unregister);
 	TemporaryMaterialArray[0] = material;
 	if (!DLLLoaded_Lantern) return;
 	if (diffuse == 0 && specular == 0)
@@ -962,21 +979,24 @@ void ForceLightType_Object(NJS_OBJECT* obj, int light_type, bool unregister)
 {
 	NJS_MATERIAL* material;
 	if (!DLLLoaded_Lantern) return;
-	if (obj->basicdxmodel)
+	if (obj)
 	{
-		for (int k = 0; k < obj->basicdxmodel->nbMat; ++k)
+		if (obj->basicdxmodel)
 		{
-			material = &obj->basicdxmodel->mats[k];
-			if (obj->basicdxmodel->mats[0].attrflags & NJD_FLAG_IGNORE_SPECULAR)
+			for (int k = 0; k < obj->basicdxmodel->nbMat; ++k)
 			{
-				if (!(material->attrflags & NJD_FLAG_IGNORE_LIGHT)) RegisterLanternMaterial(material, light_type, light_type, unregister);
-			}
-			else
-			{
-				if (!(material->attrflags & NJD_FLAG_IGNORE_LIGHT)) RegisterLanternMaterial(material, light_type, light_type + 1, unregister);
+				material = &obj->basicdxmodel->mats[k];
+				if (obj->basicdxmodel->mats[0].attrflags & NJD_FLAG_IGNORE_SPECULAR)
+				{
+					if (!(material->attrflags & NJD_FLAG_IGNORE_LIGHT)) RegisterLanternMaterial(material, light_type, light_type, unregister);
+				}
+				else
+				{
+					if (!(material->attrflags & NJD_FLAG_IGNORE_LIGHT)) RegisterLanternMaterial(material, light_type, light_type + 1, unregister);
+				}
 			}
 		}
+		if (obj->child) ForceLightType_Object(obj->child, light_type, unregister);
+		if (obj->sibling) ForceLightType_Object(obj->sibling, light_type, unregister);
 	}
-	if (obj->child) ForceLightType_Object(obj->child, light_type, unregister);
-	if (obj->sibling) ForceLightType_Object(obj->sibling, light_type, unregister);
 }

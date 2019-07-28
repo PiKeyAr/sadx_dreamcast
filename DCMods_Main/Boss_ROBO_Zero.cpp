@@ -112,7 +112,6 @@ void Zero_Init()
 		WriteCall((void*)0x585448, LoadBossECOceanPVM);
 		WriteCall((void*)0x58F4F9, RenderZeroBarrierModel); //Did this to remove material colors on this otherwise inaccessible model
 		WriteData((float*)0x58752C, 0.8f); //Zero constant material alpha
-		RemoveVertexColors_Object((NJS_OBJECT*)0x00991268); //Zero main and cutscene model
 		//Effect fixes
 		WriteCall((void*)0x58B580, ZeroBarrier_SetOnFireHook); //Hook to tell when to fade out barrier effect
 		WriteCall((void*)0x58B61D, RenderZeroSparks);

@@ -388,7 +388,7 @@ void ADV01C_Init()
 
 void ADV01C_OnFrame()
 {
-	if (ADV01C_1_Info && GameState != 16)
+	if (ADV01C_1_Info && !IsGamePaused())
 	{
 		if (DLLLoaded_Lantern && dword_3C85138 == 0)
 		{

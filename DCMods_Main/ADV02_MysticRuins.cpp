@@ -45,37 +45,37 @@ static bool InsideTemple = 0;
 static bool AmyMissionCollision = false;
 static int MasterEmeraldTimer = 0;
 NJS_OBJECT* MROcean = nullptr;
-NJS_OBJECT* MRWaterObjects[] = { nullptr, nullptr, nullptr, nullptr, nullptr };
 NJS_OBJECT* OFinalEggModel_Opaque = nullptr;
 NJS_OBJECT* OFinalEggModel_Transparent = nullptr;
-NJS_OBJECT* MRJungleObjectAnimations_Propeller[] = { nullptr, nullptr, nullptr, nullptr, nullptr };
-NJS_OBJECT* MRJungleObjectAnimations_Lantern[] = { nullptr, nullptr, nullptr, nullptr, nullptr };
+int MRWaterObjects[] = { -1, -1, -1, -1, -1 };
+int MRJungleObjectAnimations_Propeller[] = { -1, -1, -1, -1, -1 };
+int MRJungleObjectAnimations_Lantern[] = { -1, -1, -1, -1, -1 };
 NJS_OBJECT* MRJungleObjectsCallback[] = { nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr };
 NJS_VECTOR TempleVector = { -515.99f, 90.0f, -1137.45f };
 
-void AddMRWaterObject(NJS_OBJECT *object)
+void AddMRWaterObject(int colnumber)
 {
 	for (int q = 0; q < LengthOfArray(MRWaterObjects); ++q)
 	{
-		if (MRWaterObjects[q] == object) return;
-		else if (MRWaterObjects[q] == nullptr)
+		if (MRWaterObjects[q] == colnumber) return;
+		else if (MRWaterObjects[q] == -1)
 		{
-			MRWaterObjects[q] = object;
+			MRWaterObjects[q] = colnumber;
 			return;
 		}
 	}
 }
 
-void AddMRLandtableRotation(NJS_OBJECT *object, bool propeller)
+void AddMRLandtableRotation(int colnumber, bool propeller)
 {
 	if (propeller)
 	{
 		for (int q = 0; q < LengthOfArray(MRJungleObjectAnimations_Propeller); ++q)
 		{
-			if (MRJungleObjectAnimations_Propeller[q] == object) return;
-			else if (MRJungleObjectAnimations_Propeller[q] == nullptr)
+			if (MRJungleObjectAnimations_Propeller[q] == colnumber) return;
+			else if (MRJungleObjectAnimations_Propeller[q] == -1)
 			{
-				MRJungleObjectAnimations_Propeller[q] = object;
+				MRJungleObjectAnimations_Propeller[q] = colnumber;
 				return;
 			}
 		}
@@ -84,10 +84,10 @@ void AddMRLandtableRotation(NJS_OBJECT *object, bool propeller)
 	{
 		for (int q = 0; q < LengthOfArray(MRJungleObjectAnimations_Lantern); ++q)
 		{
-			if (MRJungleObjectAnimations_Lantern[q] == object) return;
-			else if (MRJungleObjectAnimations_Lantern[q] == nullptr)
+			if (MRJungleObjectAnimations_Lantern[q] == colnumber) return;
+			else if (MRJungleObjectAnimations_Lantern[q] == -1)
 			{
-				MRJungleObjectAnimations_Lantern[q] = object;
+				MRJungleObjectAnimations_Lantern[q] = colnumber;
 				return;
 			}
 		}
@@ -116,15 +116,15 @@ void ParseMRColFlags()
 	for (int j = 0; j < landtable->COLCount; j++)
 	{
 		colflags = landtable->Col[j].Flags;
-		if (colflags == 0x08000000) AddMRWaterObject(landtable->Col[j].Model);
+		if (colflags == 0x08000000) AddMRWaterObject(j);
 	}
 	//Jungle area
 	landtable = LANDTABLEMR[2];
 	for (int j = 0; j < landtable->COLCount; j++)
 	{
 		colflags = landtable->Col[j].Flags;
-		if (colflags == 0x88001000 || colflags == 0x88000400) AddMRLandtableRotation(landtable->Col[j].Model, false);
-		else if (colflags == 0x88000000) AddMRLandtableRotation(landtable->Col[j].Model, true);
+		if (colflags == 0x88001000 || colflags == 0x88000400) AddMRLandtableRotation(j, false);
+		else if (colflags == 0x88000000) AddMRLandtableRotation(j, true);
 		else if (colflags == 0) AddMRJungleCallback(landtable->Col[j].Model);
 	}
 	//Add models for MR jungle callback
@@ -307,12 +307,12 @@ void __cdecl MRWater_Display(void(__cdecl *function)(void *), void *data, float 
 		}
 		for (int i = 0; i < LengthOfArray(MRWaterObjects); i++)
 		{
-			if (MRWaterObjects[i])
+			if (MRWaterObjects[i] != -1)
 			{
 				njSetTexture(&texlist_mr00);
 				njPushMatrix(0);
 				njTranslate(0, 0, 0, 0);
-				ProcessModelNode_A_Wrapper(MRWaterObjects[i], QueuedModelFlagsB_3, 1.0f);
+				ProcessModelNode_A_Wrapper(LANDTABLEMR[0]->Col[MRWaterObjects[i]].Model, QueuedModelFlagsB_3, 1.0f);
 				njPopMatrix(1u);
 			}
 		}
@@ -411,20 +411,40 @@ void DrawMasterEmeraldGlow(NJS_MODEL_SADX* model, QueuedModelFlagsB blend, float
 	DrawQueueDepthBias = 0.0f;
 }
 
+void __cdecl MRJungleCallback_Simple(void *a1)
+{
+	NJS_OBJECT* v2;
+	NJS_MATRIX a2; // [esp+0h] [ebp-40h]
+	njGetMatrix(a2);
+	njSetTexture(ADV02_TEXLISTS[40]);
+	for (int i = 0; i < LengthOfArray(MRJungleObjectsCallback); i++)
+	{
+		v2 = MRJungleObjectsCallback[i];
+		if (v2)
+		{
+			njTranslateEx((NJS_VECTOR*)v2->pos);
+			njRotateXYZ(0, v2->ang[0], v2->ang[1], v2->ang[2]);
+			DrawModel(MRJungleObjectsCallback[i]->basicdxmodel);
+			njSetMatrix(0, a2);
+		}
+	}
+}
+
 void UnloadLevelFiles_ADV02()
 {
 	//Clear all pointers and arrays
+	MROcean = nullptr;
 	for (int k = 0; k < LengthOfArray(MRWaterObjects); ++k)
 	{
-		MRWaterObjects[k] = nullptr;
+		MRWaterObjects[k] = -1;
 	}
 	for (int k = 0; k < LengthOfArray(MRJungleObjectAnimations_Propeller); ++k)
 	{
-		MRJungleObjectAnimations_Propeller[k] = nullptr;
+		MRJungleObjectAnimations_Propeller[k] = -1;
 	}
 	for (int k = 0; k < LengthOfArray(MRJungleObjectAnimations_Lantern); ++k)
 	{
-		MRJungleObjectAnimations_Lantern[k] = nullptr;
+		MRJungleObjectAnimations_Lantern[k] = -1;
 	}
 	for (int k = 0; k < LengthOfArray(MRJungleObjectsCallback); ++k)
 	{
@@ -539,6 +559,7 @@ void ADV02_Init()
 		ReplacePVM("MR_PYRAMID");
 		ReplacePVM("MR_TORNADO2");
 		ReplacePVM("MR_FINALEGG");
+		WriteJump((void*)0x52F800, MRJungleCallback_Simple); //To prevent crashes when MR isn't loaded
 		WriteCall((void*)0x43A85F, GeoAnimFix); //Landtable animation hook
 		//MR base stuff
 		WriteJump((void*)0x538430, FixMRBase);
@@ -711,35 +732,38 @@ void ADV02_OnFrame()
 		//Master Emerald glow timer
 		if (FramerateSetting >= 2 || (FramerateSetting < 2 && FrameCounter % 2 == 0)) MasterEmeraldTimer += 1;
 		//Amy's Mission Mode hacks
-		if (!AmyMissionCollision && CurrentCharacter == Characters_Amy && GameMode == GameModes_Mission)
+		if (CurrentAct == 0 && ADV02_0_Info)
 		{
-			if (ADV02_0_Info && (LANDTABLEMR[0]->Col[0].Radius > 252 && LANDTABLEMR[0]->Col[0].Radius < 253)) LANDTABLEMR[0]->Col[0].Flags = 0x1;
-			if (ADV02_0_Info && (LANDTABLEMR[0]->Col[1].Radius > 260 && LANDTABLEMR[0]->Col[1].Radius < 261)) LANDTABLEMR[0]->Col[1].Flags = 0x1;
-			AmyMissionCollision = true;
-		}
-		if (AmyMissionCollision && (CurrentCharacter != Characters_Amy || GameMode != GameModes_Mission))
-		{
-			if (ADV02_0_Info && (LANDTABLEMR[0]->Col[0].Radius > 252 && LANDTABLEMR[0]->Col[0].Radius < 253)) LANDTABLEMR[0]->Col[0].Flags = 0;
-			if (ADV02_0_Info && (LANDTABLEMR[0]->Col[1].Radius > 260 && LANDTABLEMR[0]->Col[1].Radius < 261)) LANDTABLEMR[0]->Col[1].Flags = 0;
-			AmyMissionCollision = false;
+			if (!AmyMissionCollision && CurrentCharacter == Characters_Amy && GameMode == GameModes_Mission)
+			{
+				if (LANDTABLEMR[0]->Col[0].Radius > 252 && LANDTABLEMR[0]->Col[0].Radius < 253) LANDTABLEMR[0]->Col[0].Flags = 0x1;
+				if (LANDTABLEMR[0]->Col[1].Radius > 260 && LANDTABLEMR[0]->Col[1].Radius < 261) LANDTABLEMR[0]->Col[1].Flags = 0x1;
+				AmyMissionCollision = true;
+			}
+			if (AmyMissionCollision && (CurrentCharacter != Characters_Amy || GameMode != GameModes_Mission))
+			{
+				if (LANDTABLEMR[0]->Col[0].Radius > 252 && LANDTABLEMR[0]->Col[0].Radius < 253) LANDTABLEMR[0]->Col[0].Flags = 0;
+				if (LANDTABLEMR[0]->Col[1].Radius > 260 && LANDTABLEMR[0]->Col[1].Radius < 261) LANDTABLEMR[0]->Col[1].Flags = 0;
+				AmyMissionCollision = false;
+			}
 		}
 		if (!IsGamePaused())
 		{
 			//Animate rotating stuff in MR Jungle
-			if (CurrentAct == 2)
+			if (CurrentAct == 2 && ADV02_2_Info)
 			{
 				for (int q = 0; q < LengthOfArray(MRJungleObjectAnimations_Propeller); ++q)
 				{
-					if (MRJungleObjectAnimations_Propeller[q])
+					if (MRJungleObjectAnimations_Propeller[q] != -1)
 					{
-						MRJungleObjectAnimations_Propeller[q]->ang[0] = (MRJungleObjectAnimations_Propeller[q]->ang[0] + (1024 - 512 * (q % 2)) * FramerateSetting) % 65535;
+						LANDTABLEMR[2]->Col[MRJungleObjectAnimations_Propeller[q]].Model->ang[0] = (LANDTABLEMR[2]->Col[MRJungleObjectAnimations_Propeller[q]].Model->ang[0] + (1024 - 512 * (q % 2)) * FramerateSetting) % 65535;
 					}
 				}
 				for (int q = 0; q < LengthOfArray(MRJungleObjectAnimations_Lantern); ++q)
 				{
-					if (MRJungleObjectAnimations_Lantern[q])
+					if (MRJungleObjectAnimations_Lantern[q] != -1)
 					{
-						MRJungleObjectAnimations_Lantern[q]->ang[1] = (MRJungleObjectAnimations_Lantern[q]->ang[1] + (256 * FramerateSetting)) % 65535;
+						LANDTABLEMR[2]->Col[MRJungleObjectAnimations_Lantern[q]].Model->ang[1] = (LANDTABLEMR[2]->Col[MRJungleObjectAnimations_Lantern[q]].Model->ang[1] + (256 * FramerateSetting)) % 65535;
 					}
 				}
 			}
