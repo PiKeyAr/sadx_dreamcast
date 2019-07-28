@@ -22,6 +22,11 @@ FunctionPointer(void, sub_505B40, (int a1), 0x505B40);
 FunctionPointer(void, sub_432EA0, (), 0x432EA0);
 DataPointer(CreditsList, MainCredits, 0x2BC2FD0);
 DataArray(NJS_TEXANIM, PauseMenu_TEXANIMs, 0x009177B8, 15);
+DataArray(PVMEntry, GUITextures_Japanese, 0x007EECF0, 30);
+DataArray(PVMEntry, GUITextures_English, 0x007EEDE0, 30);
+DataArray(PVMEntry, GUITextures_French, 0x007EEED0, 30);
+DataArray(PVMEntry, GUITextures_Spanish, 0x007EEFC0, 30);
+DataArray(PVMEntry, GUITextures_German, 0x007EF0B0, 30);
 
 //Tutorial screen items
 DataArray(TutorialScreenItem, TutorialScreenLayout_Sonic_Page1_E, 0x02BC3ACE, 6);
@@ -1106,6 +1111,21 @@ void DrawTexture_Hook(int that_cant_be_right, float x, float y, float z)
 	njTextureShadingMode(1);
 	DisplayScreenTexture(that_cant_be_right, x, y, z);
 	njTextureShadingMode(2);
+}
+
+void UnloadGUITextures()
+{
+	njReleaseTexture(&texlist_cmns);
+	njReleaseTexture(&texlist_gtitle);
+	if (RipplesOn) njReleaseTexture(&texlist_cmnx);
+	for (int i = 0; i < 30; i++)
+	{
+		if (TextLanguage == 0) njReleaseTexture(GUITextures_Japanese[i].TexList);
+		else if (TextLanguage == 1) njReleaseTexture(GUITextures_English[i].TexList);
+		else if (TextLanguage == 2) njReleaseTexture(GUITextures_French[i].TexList);
+		else if (TextLanguage == 3) njReleaseTexture(GUITextures_German[i].TexList);
+		else if (TextLanguage == 4) njReleaseTexture(GUITextures_Spanish[i].TexList);
+	}
 }
 
 void DisplayScreenTexture_AlwaysTop(int that_cant_be_right, float x, float y, float z)

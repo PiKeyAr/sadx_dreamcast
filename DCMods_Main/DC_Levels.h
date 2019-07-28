@@ -14,11 +14,6 @@ class IniFile;
 #define NJD_CUSTOMFLAG_RESERVED		(BIT_6)
 #define NJD_CUSTOMFLAG_NO_REJECT	(BIT_7)
 
-DataArray(PVMEntry, GUITextures_Japanese, 0x007EECF0, 30);
-DataArray(PVMEntry, GUITextures_English, 0x007EEDE0, 30);
-DataArray(PVMEntry, GUITextures_French, 0x007EEED0, 30);
-DataArray(PVMEntry, GUITextures_Spanish, 0x007EEFC0, 30);
-DataArray(PVMEntry, GUITextures_German, 0x007EF0B0, 30);
 DataPointer(int, FramerateSetting_Config, 0x0089295C);
 DataPointer(int, FramerateSetting, 0x0389D7DC);
 DataPointer(int, DroppedFrames, 0x03B1117C);
@@ -438,6 +433,8 @@ void SpeedFixes_OnFrame();
 void SADXStyleWater_OnFrame();
 
 //Other stuff
+void UnloadGUITextures();
+void DisplayVideoFadeout(int fadeout, int mode);
 void __cdecl EmeraldCoast_OceanDraw_SADXStyle(OceanData *o);
 void __cdecl MysticRuins_OceanDraw_SADXStyle(OceanData *o);
 void __cdecl EggCarrier_OceanDraw_SADXStyle(OceanData *o);
@@ -446,6 +443,7 @@ void LoadBossECOceanPVM(const char *filename, NJS_TEXLIST *texlist);
 void LoadBossECOceanTexlist();
 void RenderChaoTransporterEffect_Fix(NJS_MODEL_SADX *a1, float scale);
 
+//Lighting functions
 bool ForceWhiteDiffuse(NJS_MATERIAL* material, uint32_t flags);
 bool ForceWhiteDiffuse3_Night(NJS_MATERIAL* material, uint32_t flags);
 bool ForceWhiteDiffuse3Specular1(NJS_MATERIAL* material, uint32_t flags);
@@ -454,7 +452,6 @@ bool Chaos2Function(NJS_MATERIAL* material, uint32_t flags);
 bool Chaos4NPCFunction(NJS_MATERIAL* material, uint32_t flags);
 void RemoveMaterialColors(NJS_MATERIAL* material);
 bool DisableAlphaRejection(NJS_MATERIAL* material, uint32_t flags);
-
 bool ForceDiffuse0Specular0(NJS_MATERIAL* material, uint32_t flags);
 bool ForceDiffuse0Specular1(NJS_MATERIAL* material, uint32_t flags);
 bool ForceDiffuse0Specular0or1(NJS_MATERIAL* material, uint32_t flags);
@@ -462,8 +459,7 @@ bool ForceDiffuse2Specular2(NJS_MATERIAL* material, uint32_t flags);
 bool ForceDiffuse2Specular3(NJS_MATERIAL* material, uint32_t flags);
 bool ForceDiffuse4Specular5(NJS_MATERIAL* material, uint32_t flags);
 
-void DisplayVideoFadeout(int fadeout, int mode);
-
+//Generic functions
 void AnimateTexture(TextureAnimation *texanim);
 void AnimateUVs(UVAnimation *animation);
 void ClearTextureAnimationData();
