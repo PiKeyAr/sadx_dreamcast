@@ -755,7 +755,10 @@ void ADV02_Init()
 		AddWhiteDiffuseMaterial(&ADV02_OBJECTS[85]->basicdxmodel->mats[4]);
 		ForceLevelSpecular_Object(ADV02_OBJECTS[85]);
 		//Material fixes
-		RemoveVertexColors_Object(ADV02_OBJECTS[39]); //Monkey cage (broken)
+		for (int i = 27; i < 44; i++)
+		{
+			RemoveVertexColors_Object(ADV02_OBJECTS[i]); //Monkey cage (broken) material fixes
+		}
 		RemoveVertexColors_Object(ADV02_OBJECTS[53]); //Diggable place
 		ADV02_OBJECTS[90]->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_IGNORE_SPECULAR;
 		ADV02_OBJECTS[91]->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_IGNORE_SPECULAR;
