@@ -30,7 +30,6 @@ DataArray(FogData, RedMountain1Fog, 0x02240700, 3);
 DataArray(FogData, RedMountain2Fog, 0x02240730, 3);
 DataArray(FogData, RedMountain3Fog, 0x02240760, 3);
 FunctionPointer(void, sub_600BF0, (ObjectMaster *a1, NJS_OBJECT *a2), 0x600BF0);
-FunctionPointer(void, ProcessModel_NoSorting, (NJS_MODEL_SADX *model, float scale), 0x407A00);
 
 static int UVShift1 = 0;
 static int UVShift2 = 0;
@@ -106,13 +105,11 @@ void SetCloudColor(NJS_ARGB *a1)
 	SetMaterialAndSpriteColor_Float(a1->a, 1.0f, 1.0f, 1.0f);
 }
 
-FunctionPointer(void, sub_407CF0, (NJS_MODEL_SADX *a1, QueuedModelFlagsB a2), 0x407CF0);
-
 void FixPropellerThing(NJS_MODEL_SADX *model, QueuedModelFlagsB blend, float scale)
 {
 	ProcessModel_NoSorting(model, scale);
 	DrawQueueDepthBias = 2000.0f;
-	sub_407CF0(PropellerGlass, QueuedModelFlagsB_EnableZWrite); //Should have been 0, but that doesn't look good
+	DrawModel_Queue_407CF0(PropellerGlass, QueuedModelFlagsB_EnableZWrite); //Should have been 0, but that doesn't look good
 	DrawQueueDepthBias = 0.0f;
 }
 

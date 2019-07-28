@@ -49,10 +49,7 @@ DataArray(FogData, StationSquare6Fog, 0x02AA3E00, 3);
 DataArray(DrawDistance, StationSquare6DrawDist, 0x02AA3CF8, 3);
 DataPointer(float, OS1Dnto_LightY, 0x2BC08A4);
 DataPointer(float, OS1Dnto_LightZ, 0x2BC08A8);
-FunctionPointer(void, sub_405450, (NJS_ACTION *a1, float frame, float scale), 0x405450);
-FunctionPointer(void, ProcessModel_NoSorting, (NJS_MODEL_SADX* model, float scale), 0x407A00);
 FunctionPointer(long double, sub_49CC70, (float a1, float a2, float a3), 0x49CC70);
-FunctionPointer(void, njAction_Queue_407BB0_2, (NJS_ACTION* a1, float a2, int a3, float a4), 0x408350);
 
 static Sint8 PreviousTimeOfDay = -1;
 static Sint8 DelayedTimeOfDay = -1;
@@ -90,7 +87,7 @@ void __cdecl RenderStationSquareOcean(OceanData *x)
 
 void FixPoliceCar(NJS_ACTION *a1, float a2, int a3)
 {
-	sub_405450(a1, a2, a3);
+	njAction_DontQueue(a1, a2, a3);
 	if (a1->object == ((NJS_OBJECT*)0x2AF4FC0))
 	{
 		DrawQueueDepthBias = 1000.0f;
