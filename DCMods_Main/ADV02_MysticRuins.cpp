@@ -39,8 +39,8 @@ DataArray(DrawDistance, MR1DrawDist, 0x011033E8, 3);
 DataArray(DrawDistance, MR2DrawDist, 0x01103400, 3);
 DataArray(DrawDistance, MR3DrawDist, 0x01103418, 3);
 DataArray(DrawDistance, MR4DrawDist, 0x01103430, 3);
-FunctionPointer(void, sub_405450, (NJS_ACTION *a1, float frame, float scale), 0x405450);
-FunctionPointer(void, sub_408350, (NJS_ACTION* a1, float a2, int a3, float a4), 0x408350);
+FunctionPointer(void, EmeraldShardCutscene_DrawLightRays_Real, (ObjectMaster *a1), 0x7A6950);
+
 static bool InsideTemple = 0;
 static bool AmyMissionCollision = false;
 static int MasterEmeraldTimer = 0;
@@ -52,6 +52,229 @@ int MRJungleObjectAnimations_Propeller[] = { -1, -1, -1, -1, -1 };
 int MRJungleObjectAnimations_Lantern[] = { -1, -1, -1, -1, -1 };
 NJS_OBJECT* MRJungleObjectsCallback[] = { nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr };
 NJS_VECTOR TempleVector = { -515.99f, 90.0f, -1137.45f };
+NJS_ARGB EmeraldShardGlowColor = { 0, 0, 0, 0 };
+
+void __cdecl MRWater_Display(void(__cdecl *function)(void *), void *data, float depth, QueuedModelFlagsB queueflags)
+{
+	if (CurrentAct == 0 && !DroppedFrames)
+	{
+		if (SADXWater_MysticRuins)
+		{
+			DrawModelCallback_Queue((void(__cdecl *)(void *))MysticRuins_OceanDraw, OceanDataArray, -7952.0f, QueuedModelFlagsB_EnableZWrite);
+		}
+		else
+		{
+			DisableFog();
+			njSetTexture(&texlist_mr00);
+			njPushMatrix(0);
+			njTranslate(0, 0, 0, 0);
+			DrawQueueDepthBias = -47952.0f;
+			if (MROcean) ProcessModelNode_AB_Wrapper(MROcean, 1.0f);
+			DrawQueueDepthBias = 0.0f;
+			njPopMatrix(1u);
+		}
+		for (int i = 0; i < LengthOfArray(MRWaterObjects); i++)
+		{
+			if (MRWaterObjects[i] != -1)
+			{
+				njSetTexture(&texlist_mr00);
+				njPushMatrix(0);
+				njTranslate(0, 0, 0, 0);
+				ProcessModelNode_A_Wrapper(LANDTABLEMR[0]->Col[MRWaterObjects[i]].Model, QueuedModelFlagsB_3, 1.0f);
+				njPopMatrix(1u);
+			}
+		}
+	}
+}
+
+void SetColor(float a, float r, float g, float b)
+{
+	//Minimum - 0.35f/0.25f
+	//Maximum - 0.35f/1.0f
+	//PrintDebug("Glow: %f, %f, %f, %f\n", a, r, g, b);
+	a = 0.35f;
+	r = 0;
+	g = max(0.25f, g/0.6f);
+	b = 0;
+	SetMaterialAndSpriteColor_Float(a,r,g,b);
+	ADV02_MODELS[15]->mats[0].diffuse.argb.a = a*255;
+	ADV02_MODELS[15]->mats[0].diffuse.argb.r = r*255;
+	ADV02_MODELS[15]->mats[0].diffuse.argb.g = g*255;
+	ADV02_MODELS[15]->mats[0].diffuse.argb.b = b*255;
+}
+
+void FixMRBase(ObjectMaster *a1)
+{
+	NJS_ACTION OpaqueAction = { nullptr, nullptr };
+	NJS_ACTION TransAction = { nullptr, nullptr };
+	Angle v1; // eax
+	EntityData1 *v2; // esi
+	v2 = a1->Data1;
+	Direct3D_SetNearFarPlanes(-1.0f, -100000.0f);
+	DisableFog();
+	njSetTexture(ADV02_TEXLISTS[1]);
+	njPushMatrix(0);
+	njTranslateV(0, &v2->Position);
+	v1 = v2->Rotation.y;
+	if (v1)
+	{
+		njRotateY(0, (unsigned __int16)v1);
+	}
+	OpaqueAction.object = OFinalEggModel_Opaque;
+	OpaqueAction.motion = ADV02_ACTIONS[0]->motion;
+	TransAction.object = OFinalEggModel_Transparent;
+	TransAction.motion = ADV02_ACTIONS[0]->motion;
+	//Render the FinalWay
+	njAction_Queue_407FC0(ADV02_ACTIONS[30], v2->Scale.y, 1);
+	//Render the animation without the lights
+	njAction_Queue_407FC0(&OpaqueAction, v2->Scale.x, 1);
+	//Render the lights
+	njAction_Queue_407FC0(&TransAction, v2->Scale.x, 0);
+	//Render the EfHikari thing
+	DrawModel_Queue(OFinalEggModel_Opaque->child->sibling->sibling->basicdxmodel, QueuedModelFlagsB_3);
+	njPopMatrix(1u);
+	ToggleStageFog();
+	Direct3D_SetNearFarPlanes(LevelDrawDistance.Minimum, LevelDrawDistance.Maximum);
+}
+
+void SetBlockEntryMaterialColor(float a, float r, float g, float b)
+{
+	ADV02_OBJECTS[50]->basicdxmodel->mats[0].diffuse.argb.a = max(0, min(255, 255 + r * 255));
+	ADV02_OBJECTS[50]->basicdxmodel->mats[0].diffuse.argb.r = max(0, min(255, 255 + r * 255));
+	ADV02_OBJECTS[50]->basicdxmodel->mats[0].diffuse.argb.g = max(0, min(255, 255 + g * 255));
+	ADV02_OBJECTS[50]->basicdxmodel->mats[0].diffuse.argb.b = max(0, min(255, 255 + b * 255));
+	SetMaterialAndSpriteColor_Float(0, 0, 0, 0);
+}
+
+void GeoAnimFix(NJS_ACTION* a1, float a2, int a3, float a4)
+{
+	if (CurrentLevel == LevelIDs_MysticRuins && CurrentAct == 2)
+	{
+		DrawQueueDepthBias = -20952.0f;
+		njAction_Queue_407FC0(a1, a2, 1);
+		DrawQueueDepthBias = 0.0f;
+	}
+	else njAction_Queue_407BB0_2(a1, a2, a3, a4);
+}
+
+void MasterEmeraldFix(NJS_OBJECT* obj, float scale)
+{
+	DrawQueueDepthBias = 2000.0f;
+	ProcessModelNode_D_WrapperB(obj, 1, 1.0f);
+	DrawQueueDepthBias = 0.0f;
+}
+
+float __fastcall MrEmeTimer(Angle n)
+{
+	if (MasterEmeraldTimer > 245) MasterEmeraldTimer = 0;
+	if (MasterEmeraldTimer > 45 && MasterEmeraldTimer < 180) MasterEmeraldTimer = 180;
+	//PrintDebug("Value: %d\n", MasterEmeraldTimer);
+	return njSin(MasterEmeraldTimer * 150);
+}
+
+void DrawMasterEmeraldGlow(NJS_MODEL_SADX* model, QueuedModelFlagsB blend, float scale)
+{
+	DrawQueueDepthBias = 4000.0f;
+	DrawModel_QueueVisible(model, blend, scale);
+	DrawQueueDepthBias = 0.0f;
+}
+
+void EmeraldShardGlow_GetColor(float a, float r, float g, float b)
+{
+	EmeraldShardGlowColor.a = a;
+	EmeraldShardGlowColor.r = r;
+	EmeraldShardGlowColor.g = g;
+	EmeraldShardGlowColor.b = b;
+	SetMaterialAndSpriteColor_Float(1.0f, 0.78f, 0.78f, 0.78f);
+}
+
+void __cdecl MRJungleCallback_Simple(void *a1)
+{
+	NJS_OBJECT* v2;
+	NJS_MATRIX a2; // [esp+0h] [ebp-40h]
+	njGetMatrix(a2);
+	njSetTexture(ADV02_TEXLISTS[40]);
+	for (int i = 0; i < LengthOfArray(MRJungleObjectsCallback); i++)
+	{
+		v2 = MRJungleObjectsCallback[i];
+		if (v2)
+		{
+			njTranslateEx((NJS_VECTOR*)v2->pos);
+			njRotateXYZ(0, v2->ang[0], v2->ang[1], v2->ang[2]);
+			DrawModel(MRJungleObjectsCallback[i]->basicdxmodel);
+			njSetMatrix(0, a2);
+		}
+	}
+}
+
+void RenderEmeraldShard(NJS_OBJECT *a1, int blend_mode, float scale)
+{
+	SetMaterialAndSpriteColor_Float(0.78f, 0.78f, 0.78f, 0.78f);
+	DrawQueueDepthBias = -4000.0f;
+	ProcessModelNode_D_WrapperB(a1, 1, scale);
+	DrawQueueDepthBias = 0.0f;
+}
+
+void RenderEmeraldShardGlow(NJS_MODEL_SADX *a1, int a2, float a3)
+{
+	float radius; // ST04_4
+	if (a3 == 0.0f || a1->r == 0.0f || (radius = a3 * a1->r, IsVisible(&a1->center, radius)))
+	{
+		if (!MissedFrames && !VerifyTexList(CurrentTexList))
+		{
+			if (a1)
+			{
+				if (a3 == 0.0 || a1->r == 0.0 || (radius = a3 * a1->r, IsVisible(&a1->center, radius)))
+				{
+					SetMaterialAndSpriteColor(&EmeraldShardGlowColor);
+					DrawQueueDepthBias = -2000.0f;
+					DrawModel_Queue_407CF0(a1, (QueuedModelFlagsB)0);
+					DrawQueueDepthBias = 0.0f;
+				}
+			}
+		}
+	}
+}
+
+void RenderEmeraldShardGlow_Final(NJS_MODEL_SADX *a1, int a2, float a3)
+{
+	float radius; // ST04_4
+	if (a3 == 0.0f || a1->r == 0.0f || (radius = a3 * a1->r, IsVisible(&a1->center, radius)))
+	{
+		if (!MissedFrames && !VerifyTexList(CurrentTexList))
+		{
+			if (a1)
+			{
+				if (a3 == 0.0 || a1->r == 0.0 || (radius = a3 * a1->r, IsVisible(&a1->center, radius)))
+				{
+					SetMaterialAndSpriteColor(&EmeraldShardGlowColor);
+					DrawQueueDepthBias = 6000.0f;
+					DrawModel_Queue_407CF0(a1, (QueuedModelFlagsB)0);
+					DrawQueueDepthBias = 0.0f;
+				}
+			}
+		}
+	}
+}
+
+void EmeraldShardCutscene_DrawLightRays_Callback(ObjectMaster *a1)
+{
+	DrawModelCallback_QueueObjectMaster(EmeraldShardCutscene_DrawLightRays_Real, a1, -27000.0f, QueuedModelFlagsB_SomeTextureThing);
+}
+
+void RustlingGrassDepthFix1(NJS_ACTION *a1, float a2, int a3, float a4)
+{
+	if (EV_MainThread_ptr != nullptr) DrawQueueDepthBias = -27000.0f;
+	njAction_Queue_407BB0_2(a1, a2, a3, a4);
+	DrawQueueDepthBias = 0.0f;
+}
+
+void RustlingGrassDepthFix2(NJS_OBJECT *a1, QueuedModelFlagsB a2, float a3)
+{
+	if (EV_MainThread_ptr != nullptr) DrawQueueDepthBias = -27000.0f;
+	ProcessModelNode_C_VerifyTexList(a1, a2, a3);
+	DrawQueueDepthBias = 0.0f;
+}
 
 void AddMRWaterObject(int colnumber)
 {
@@ -286,150 +509,6 @@ void ParseMRMaterials()
 	}
 }
 
-void __cdecl MRWater_Display(void(__cdecl *function)(void *), void *data, float depth, QueuedModelFlagsB queueflags)
-{
-	if (CurrentAct == 0 && !DroppedFrames)
-	{
-		if (SADXWater_MysticRuins)
-		{
-			DrawModelCallback_Queue((void(__cdecl *)(void *))MysticRuins_OceanDraw, OceanDataArray, -7952.0f, QueuedModelFlagsB_EnableZWrite);
-		}
-		else
-		{
-			DisableFog();
-			njSetTexture(&texlist_mr00);
-			njPushMatrix(0);
-			njTranslate(0, 0, 0, 0);
-			DrawQueueDepthBias = -47952.0f;
-			if (MROcean) ProcessModelNode_AB_Wrapper(MROcean, 1.0f);
-			DrawQueueDepthBias = 0.0f;
-			njPopMatrix(1u);
-		}
-		for (int i = 0; i < LengthOfArray(MRWaterObjects); i++)
-		{
-			if (MRWaterObjects[i] != -1)
-			{
-				njSetTexture(&texlist_mr00);
-				njPushMatrix(0);
-				njTranslate(0, 0, 0, 0);
-				ProcessModelNode_A_Wrapper(LANDTABLEMR[0]->Col[MRWaterObjects[i]].Model, QueuedModelFlagsB_3, 1.0f);
-				njPopMatrix(1u);
-			}
-		}
-	}
-}
-
-void SetColor(float a, float r, float g, float b)
-{
-	//Minimum - 0.35f/0.25f
-	//Maximum - 0.35f/1.0f
-	//PrintDebug("Glow: %f, %f, %f, %f\n", a, r, g, b);
-	a = 0.35f;
-	r = 0;
-	g = max(0.25f, g/0.6f);
-	b = 0;
-	SetMaterialAndSpriteColor_Float(a,r,g,b);
-	ADV02_MODELS[15]->mats[0].diffuse.argb.a = a*255;
-	ADV02_MODELS[15]->mats[0].diffuse.argb.r = r*255;
-	ADV02_MODELS[15]->mats[0].diffuse.argb.g = g*255;
-	ADV02_MODELS[15]->mats[0].diffuse.argb.b = b*255;
-}
-
-void FixMRBase(ObjectMaster *a1)
-{
-	NJS_ACTION OpaqueAction = { nullptr, nullptr };
-	NJS_ACTION TransAction = { nullptr, nullptr };
-	Angle v1; // eax
-	EntityData1 *v2; // esi
-	v2 = a1->Data1;
-	Direct3D_SetNearFarPlanes(-1.0f, -100000.0f);
-	DisableFog();
-	njSetTexture(ADV02_TEXLISTS[1]);
-	njPushMatrix(0);
-	njTranslateV(0, &v2->Position);
-	v1 = v2->Rotation.y;
-	if (v1)
-	{
-		njRotateY(0, (unsigned __int16)v1);
-	}
-	OpaqueAction.object = OFinalEggModel_Opaque;
-	OpaqueAction.motion = ADV02_ACTIONS[0]->motion;
-	TransAction.object = OFinalEggModel_Transparent;
-	TransAction.motion = ADV02_ACTIONS[0]->motion;
-	//Render the FinalWay
-	njAction_Queue_407FC0(ADV02_ACTIONS[30], v2->Scale.y, 1);
-	//Render the animation without the lights
-	njAction_Queue_407FC0(&OpaqueAction, v2->Scale.x, 1);
-	//Render the lights
-	njAction_Queue_407FC0(&TransAction, v2->Scale.x, 0);
-	//Render the EfHikari thing
-	DrawModel_Queue(OFinalEggModel_Opaque->child->sibling->sibling->basicdxmodel, QueuedModelFlagsB_3);
-	njPopMatrix(1u);
-	ToggleStageFog();
-	Direct3D_SetNearFarPlanes(LevelDrawDistance.Minimum, LevelDrawDistance.Maximum);
-}
-
-void SetBlockEntryMaterialColor(float a, float r, float g, float b)
-{
-	ADV02_OBJECTS[50]->basicdxmodel->mats[0].diffuse.argb.a = max(0, min(255, 255 + r * 255));
-	ADV02_OBJECTS[50]->basicdxmodel->mats[0].diffuse.argb.r = max(0, min(255, 255 + r * 255));
-	ADV02_OBJECTS[50]->basicdxmodel->mats[0].diffuse.argb.g = max(0, min(255, 255 + g * 255));
-	ADV02_OBJECTS[50]->basicdxmodel->mats[0].diffuse.argb.b = max(0, min(255, 255 + b * 255));
-	SetMaterialAndSpriteColor_Float(0, 0, 0, 0);
-}
-
-void GeoAnimFix(NJS_ACTION* a1, float a2, int a3, float a4)
-{
-	if (CurrentLevel == LevelIDs_MysticRuins && CurrentAct == 2)
-	{
-		DrawQueueDepthBias = -20952.0f;
-		njAction_Queue_407FC0(a1, a2, 1);
-		DrawQueueDepthBias = 0.0f;
-	}
-	else sub_408350(a1, a2, a3, a4);
-}
-
-void MasterEmeraldFix(NJS_OBJECT* obj, float scale)
-{
-	DrawQueueDepthBias = 2000.0f;
-	ProcessModelNode_D_WrapperB(obj, 1, 1.0f);
-	DrawQueueDepthBias = 0.0f;
-}
-
-float __fastcall MrEmeTimer(Angle n)
-{
-	if (MasterEmeraldTimer > 245) MasterEmeraldTimer = 0;
-	if (MasterEmeraldTimer > 45 && MasterEmeraldTimer < 180) MasterEmeraldTimer = 180;
-	//PrintDebug("Value: %d\n", MasterEmeraldTimer);
-	return njSin(MasterEmeraldTimer * 150);
-}
-
-void DrawMasterEmeraldGlow(NJS_MODEL_SADX* model, QueuedModelFlagsB blend, float scale)
-{
-	DrawQueueDepthBias = 4000.0f;
-	DrawModel_QueueVisible(model, blend, scale);
-	DrawQueueDepthBias = 0.0f;
-}
-
-void __cdecl MRJungleCallback_Simple(void *a1)
-{
-	NJS_OBJECT* v2;
-	NJS_MATRIX a2; // [esp+0h] [ebp-40h]
-	njGetMatrix(a2);
-	njSetTexture(ADV02_TEXLISTS[40]);
-	for (int i = 0; i < LengthOfArray(MRJungleObjectsCallback); i++)
-	{
-		v2 = MRJungleObjectsCallback[i];
-		if (v2)
-		{
-			njTranslateEx((NJS_VECTOR*)v2->pos);
-			njRotateXYZ(0, v2->ang[0], v2->ang[1], v2->ang[2]);
-			DrawModel(MRJungleObjectsCallback[i]->basicdxmodel);
-			njSetMatrix(0, a2);
-		}
-	}
-}
-
 void UnloadLevelFiles_ADV02()
 {
 	//Clear all pointers and arrays
@@ -561,6 +640,8 @@ void ADV02_Init()
 		ReplacePVM("MR_FINALEGG");
 		WriteJump((void*)0x52F800, MRJungleCallback_Simple); //To prevent crashes when MR isn't loaded
 		WriteCall((void*)0x43A85F, GeoAnimFix); //Landtable animation hook
+		WriteCall((void*)0x53816F, RustlingGrassDepthFix1); //Rustling grass depth bias for Knuckles' cutscene
+		WriteCall((void*)0x53818F, RustlingGrassDepthFix2); //Rustling grass depth bias for Knuckles' cutscene
 		//MR base stuff
 		WriteJump((void*)0x538430, FixMRBase);
 		ADV02_ACTIONS[30]->object = LoadModel("system\\data\\ADV02\\Models\\0020DC78.sa1mdl", false); //OFinalWay
@@ -594,8 +675,12 @@ void ADV02_Init()
 		WriteData<1>((char*)0x00537038, 0x01); //Fix blending mode on floating bricks in WV entrance
 		WriteData<1>((char*)0x00537181, 0x01); //Fix blending mode on floating bricks in WV entrance
 		WriteData<1>((char*)0x00537354, 0x01); //Fix blending mode on floating bricks in WV entrance
-		WriteData<1>((char*)0x006F4DA0, 0x04); //Emerald shard (cutscene) glow blending mode
-		WriteData<1>((char*)0x006F4BF1, 0x04); //Emerald shard (cutscene) glow blending mode	
+		WriteCall((void*)0x6F4A89, EmeraldShardGlow_GetColor); //Delay the setting of sprite color
+		WriteCall((void*)0x7A69FA, EmeraldShardCutscene_DrawLightRays_Callback); //Draw light rays behind glow
+		WriteCall((void*)0x7A6A8F, EmeraldShardCutscene_DrawLightRays_Callback); //Draw light rays behind glow
+		WriteCall((void*)0x6F4AF3, RenderEmeraldShard); //Emerald shard (cutscene)
+		WriteCall((void*)0x6F4BF3, RenderEmeraldShardGlow); //Emerald shard (cutscene) glow
+		WriteCall((void*)0x6F4F02, RenderEmeraldShardGlow_Final); //Emerald shard (cutscene) glow (big)
 		//OBlockEntry brightness
 		WriteCall((void*)0x53B5E8, SetBlockEntryMaterialColor);
 		RemoveVertexColors_Object(ADV02_OBJECTS[50]);
@@ -670,6 +755,7 @@ void ADV02_Init()
 		AddWhiteDiffuseMaterial(&ADV02_OBJECTS[85]->basicdxmodel->mats[4]);
 		ForceLevelSpecular_Object(ADV02_OBJECTS[85]);
 		//Material fixes
+		RemoveVertexColors_Object(ADV02_OBJECTS[39]); //Monkey cage (broken)
 		RemoveVertexColors_Object(ADV02_OBJECTS[53]); //Diggable place
 		ADV02_OBJECTS[90]->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_IGNORE_SPECULAR;
 		ADV02_OBJECTS[91]->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_IGNORE_SPECULAR;
