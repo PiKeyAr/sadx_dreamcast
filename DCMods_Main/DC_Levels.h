@@ -437,6 +437,7 @@ void SADXStyleWater_OnFrame();
 
 //Other stuff
 void UnloadGUITextures();
+void ColorizeRecapText(int a1, int a2, float a3, float a4, float a5, float a6, float a7, float a8);
 void DisplayVideoFadeout(int fadeout, int mode);
 void __cdecl EmeraldCoast_OceanDraw_SADXStyle(OceanData *o);
 void __cdecl MysticRuins_OceanDraw_SADXStyle(OceanData *o);

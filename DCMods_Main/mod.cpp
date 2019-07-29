@@ -136,7 +136,7 @@ HelperFunctions HelperFunctionsGlobal;
 bool EnableCutsceneFix = true;
 int CutsceneSkipMode = 0;
 int CutsceneFrameCounter = 0;
-std::string EnableImpressFont = "Off";
+std::string EnableImpressFont = "Impress";
 bool ColorizeFont = true;
 bool DisableFontSmoothing = true;
 bool EnableLSDFix = false;
@@ -381,6 +381,37 @@ extern "C"
 				L"Style Water in Dreamcast Conversion's config.",
 				L"DC Conversion error: incompatible mod detected",
 				MB_OK | MB_ICONERROR);
+		}
+		//Disable font smoothing
+		if (DisableFontSmoothing)
+		{
+			//Probably better than making the whole texture ARGB1555
+			WriteData<1>((char*)0x40DA0B, 0x00);
+			WriteData<1>((char*)0x40DA0C, 0x00);
+			WriteData<1>((char*)0x40DA12, 0x00);
+		}
+		//Enable Impress font
+		if (EnableImpressFont == "Impress")
+		{
+			ReplaceBIN("FONTDATA1", "FONTDATA1_I");
+		}
+		//Enable Comic Sans font (experimental)
+		else if (EnableImpressFont == "ComicSans")
+		{
+			ReplaceBIN("FONTDATA1", "FONTDATA1_C");
+		}
+		if (ColorizeFont)
+		{
+			//Subtitles (ARGB from 0 to F: CEEF)
+			WriteData<1>((char*)0x40E28D, 0xEF);
+			WriteData<1>((char*)0x40E28E, 0xCE);
+			//Pause menu text (ARGB from 00 to FF: BFEFEFFF)
+			WriteData<1>((char*)0x40E541, 0xFF);
+			WriteData<1>((char*)0x40E542, 0xEF);
+			WriteData<1>((char*)0x40E543, 0xEF);
+			WriteData<1>((char*)0x40E544, 0xBF);
+			//Recap screen (just FF F8 F8 F8)
+			WriteCall((void*)0x6428AD, ColorizeRecapText);
 		}
 		//Init functions
 		SADXStyleWater_Init(config, helperFunctions);
