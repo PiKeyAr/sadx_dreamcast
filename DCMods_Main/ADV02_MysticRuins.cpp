@@ -759,6 +759,13 @@ void ADV02_Init()
 		{
 			RemoveVertexColors_Object(ADV02_OBJECTS[i]); //Monkey cage (broken) material fixes
 		}
+		RemoveVertexColors_Object(ADV02_OBJECTS[101]); //Chaos emeralds in ADV02MODELS
+		RemoveVertexColors_Object(ADV02_OBJECTS[102]); //Chaos emeralds in ADV02MODELS
+		RemoveVertexColors_Object(ADV02_OBJECTS[106]); //Chaos emeralds in ADV02MODELS
+		RemoveVertexColors_Object(ADV02_OBJECTS[107]); //Chaos emeralds in ADV02MODELS
+		RemoveVertexColors_Object(ADV02_OBJECTS[110]); //Chaos emeralds in ADV02MODELS
+		RemoveVertexColors_Object(ADV02_OBJECTS[111]); //Chaos emeralds in ADV02MODELS
+		RemoveVertexColors_Object(ADV02_OBJECTS[112]); //Chaos emeralds in ADV02MODELS
 		RemoveVertexColors_Object(ADV02_OBJECTS[53]); //Diggable place
 		ADV02_OBJECTS[90]->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_IGNORE_SPECULAR;
 		ADV02_OBJECTS[91]->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_IGNORE_SPECULAR;
