@@ -53,6 +53,7 @@ void EggWalker_Init()
 		RemoveVertexColors_Object((NJS_OBJECT*)0x162DAC0); //Egg Walker body
 		RemoveVertexColors_Object((NJS_OBJECT*)0x162F554); //Egg Walker cockpit
 		RemoveVertexColors_Object((NJS_OBJECT*)0x1654F28); //Egg Walker Eggman
+		RemoveVertexColors_Object((NJS_OBJECT*)0x16556F8); //Egg Walker bomb
 		((NJS_OBJECT*)0x162E0FC)->basicdxmodel->mats[2].attrflags &= ~NJD_FLAG_IGNORE_SPECULAR;
 		((NJS_MATERIAL*)0x0162E158)->attrflags &= ~NJD_FLAG_IGNORE_SPECULAR;
 		//Object fixes

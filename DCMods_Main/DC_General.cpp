@@ -1515,6 +1515,7 @@ void General_Init()
 		WriteCall((void*)0x4A22A6, SonicFrozenCubeFix);
 		//Material/vertex color fixes
 		RemoveVertexColors_Object((NJS_OBJECT*)0x3175528); //Tails' model in the cutscene where Sonic sees him crash
+		RemoveVertexColors_Object(MILES_OBJECTS[71]); //Tails' snowboard
 		RemoveVertexColors_Object(BIG_OBJECTS[42]); //Big fishing thing 1
 		RemoveVertexColors_Object(BIG_OBJECTS[43]); //Big fishing thing 2
 		RemoveVertexColors_Object(SONIC_OBJECTS[72]); //Ice cube for frozen Sonic
@@ -1636,37 +1637,6 @@ void General_Init()
 			WriteData<1>((char*)0x492CC1, 0x80); //Set speed to 16 if below minimum
 			//Disabling this since it doesn't seem necessary and it breaks Egg Carrier captain's room
 			//WriteData((float**)0x492CB0, &LSDFix); //16 is the minimum speed
-		}
-		//Disable font smoothing
-		if (DisableFontSmoothing)
-		{
-			//Probably better than making the whole texture ARGB1555
-			WriteData<1>((char*)0x40DA0B, 0x00);
-			WriteData<1>((char*)0x40DA0C, 0x00);
-			WriteData<1>((char*)0x40DA12, 0x00);
-		}
-		//Enable Impress font
-		if (EnableImpressFont == "Impress")
-		{
-			ReplaceBIN("FONTDATA1", "FONTDATA1_I");
-		}
-		//Enable Comic Sans font (experimental)
-		else if (EnableImpressFont == "ComicSans")
-		{
-			ReplaceBIN("FONTDATA1", "FONTDATA1_C");
-		}
-		if (ColorizeFont)
-		{
-			//Subtitles (ARGB from 0 to F: CEEF)
-			WriteData<1>((char*)0x40E28D, 0xEF);
-			WriteData<1>((char*)0x40E28E, 0xCE);
-			//Pause menu text (ARGB from 00 to FF: BFEFEFFF)
-			WriteData<1>((char*)0x40E541, 0xFF);
-			WriteData<1>((char*)0x40E542, 0xEF);
-			WriteData<1>((char*)0x40E543, 0xEF);
-			WriteData<1>((char*)0x40E544, 0xBF);
-			//Recap screen (just FF F8 F8 F8)
-			WriteCall((void*)0x6428AD, ColorizeRecapText);
 		}
 		//Fix for cutscene transitions
 		if (EnableCutsceneFix)

@@ -804,6 +804,7 @@ void ADV02_Init()
 		ADV02_OBJECTS[71] = LoadModel("system\\data\\ADV02\\Models\\001D6AC8.sa1mdl", false); //The gate for Tails' Tornado
 		ADV02_OBJECTS[69] = ADV02_OBJECTS[71]->child;
 		ADV02_OBJECTS[70] = ADV02_OBJECTS[71]->child->sibling;
+		ADV02_OBJECTS[72] = ADV02_OBJECTS[71]->child->sibling->sibling; //I have no idea why it's set up this way
 		ADV02_MODELS[15] = LoadModel("system\\data\\ADV02\\Models\\002043D0.sa1mdl", false)->basicdxmodel; //Master Emerald glow
 		ADV02_ACTIONS[10]->object = LoadModel("system\\data\\ADV02\\Models\\00201C18.sa1mdl", false); //Train
 		AddWhiteDiffuseMaterial(&ADV02_ACTIONS[10]->object->child->sibling->sibling->sibling->basicdxmodel->mats[9]);
@@ -813,8 +814,8 @@ void ADV02_Init()
 		ADV02_MODELS[9] = LoadModel("system\\data\\ADV02\\Models\\001CDEF0.sa1mdl", false)->basicdxmodel; //OHiddenGate button
 		AddWhiteDiffuseMaterial(&ADV02_MODELS[9]->mats[2]);
 		NJS_OBJECT* SandSwitch = LoadModel("system\\data\\ADV02\\Models\\001B42DC.sa1mdl", false);
-		ADV02_MODELS[12] = SandSwitch->basicdxmodel; //OSandSwitch
-		ADV02_MODELS[13] = SandSwitch->child->basicdxmodel; //OSandSwitch
+		ADV02_MODELS[12] = SandSwitch->child->basicdxmodel; //OSandSwitch
+		ADV02_MODELS[13] = SandSwitch->basicdxmodel; //OSandSwitch
 		ReinitializeDLLStuff();
 		ModelsLoaded_ADV02 = true;
 	}
