@@ -408,7 +408,6 @@ void Chaos4_Init()
 		WriteJump((void*)0x550D10, Chaos4Skybox);
 		*(NJS_OBJECT*)0x11E3240 = *LoadModel("SYSTEM\\data\\B_CHAOS4\\Models\\0003E6CC.sa1mdl", false); //Lilypad
 		//Chaos 4
-		RemoveVertexColors_Object((NJS_OBJECT*)0x119E240); //Chaos4 main model
 		RemoveVertexColors_Object((NJS_OBJECT*)0x11A652C); //Chaos4 alt model
 		RemoveVertexColors_Object((NJS_OBJECT*)0x11A11C8); //Chaos4 hand attack
 		RemoveVertexColors_Object((NJS_OBJECT*)0x11C1C24); //Chaos4 broken into balls

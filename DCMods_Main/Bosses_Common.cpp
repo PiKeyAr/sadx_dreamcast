@@ -61,6 +61,7 @@ void Bosses_Init()
 	RemoveVertexColors_Object((NJS_OBJECT*)0x269EE24); //Eggman 2P
 	RemoveVertexColors_Object((NJS_OBJECT*)0x2C66BAC); //Chaos 0 in cutscenes
 	RemoveVertexColors_Object((NJS_OBJECT*)0x1133328); //Chaos 2 (main and cutscenes)
+	RemoveVertexColors_Object((NJS_OBJECT*)0x119E240); //Chaos 4 main/NPC model
 	RemoveVertexColors_Object((NJS_OBJECT*)0x302FD70); //Chaos 4 cutscene model
 	RemoveVertexColors_Object((NJS_OBJECT*)0x2D6962C); //Chaos puddle in cutscenes
 	RemoveVertexColors_Object((NJS_OBJECT*)0x38DD9BC); //Chaos puddle in cutscenes + Chaos 0
