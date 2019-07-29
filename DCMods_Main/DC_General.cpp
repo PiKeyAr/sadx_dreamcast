@@ -1366,7 +1366,6 @@ void General_Init()
 		ReplacePVM("EGGROB");
 		ReplacePVM("EGG_MISSILE");
 		ReplacePVM("EME_KIRAN");
-		ReplacePVM("EROBO");
 		ReplacePVM("ER_9000_EGGMANROBO");
 		ReplacePVM("EV_EGGMAN_BODY");
 		ReplacePVM("EV_EGGMOBILE1");
@@ -1514,6 +1513,7 @@ void General_Init()
 		*/
 		WriteCall((void*)0x4A22A6, SonicFrozenCubeFix);
 		//Material/vertex color fixes
+		((NJS_OBJECT*)0x008BF3A0)->basicdxmodel->mats[0].attrflags |= NJD_FLAG_IGNORE_LIGHT; //shadow blob
 		RemoveVertexColors_Object((NJS_OBJECT*)0x3175528); //Tails' model in the cutscene where Sonic sees him crash
 		RemoveVertexColors_Object(MILES_OBJECTS[71]); //Tails' snowboard
 		RemoveVertexColors_Object(BIG_OBJECTS[42]); //Big fishing thing 1

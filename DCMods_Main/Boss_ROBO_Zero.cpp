@@ -15,13 +15,6 @@ static int zerosea_dc = 4;
 static NJS_COLOR BarrierColor = { 0x00000000 };
 NJS_OBJECT *ZeroBossOcean = nullptr;
 
-void RenderZeroBarrierModel(NJS_OBJECT *obj, float scale)
-{
-	SetMaterialAndSpriteColor_Float(1.0f, 1.0f, 1.0f, 1.0f);
-	ProcessModelNode_AB_Wrapper(obj, scale);
-	ClampGlobalColorThing_Thing();
-}
-
 void ZeroFVF_Show(ObjectMaster *a1)
 {
 	DrawModelCallback_Queue(ZeroAttack_Display, a1, 22048.0f, QueuedModelFlagsB_SomeTextureThing);
@@ -29,7 +22,7 @@ void ZeroFVF_Show(ObjectMaster *a1)
 
 void ZeroBarriers_Show(ObjectMaster *a1)
 {
-	DrawModelCallback_Queue(ZeroBarriers_Display, a1, 22048.0f, QueuedModelFlagsB_SomeTextureThing);
+	DrawModelCallback_Queue(ZeroBarriers_Display, a1, -1000.0f, (QueuedModelFlagsB)0);
 }
 
 void ZeroBarrier_SetOnFireHook(NJS_VECTOR *a1, float a2)
@@ -84,6 +77,11 @@ void __cdecl ZeroOceanHook(OceanData *a1)
 	else EggCarrier_OceanDraw_SADXStyle(a1);
 }
 
+void DrawShadow_ERobo_Fix(NJS_OBJECT *a1)
+{
+	ProcessModelNode(a1, QueuedModelFlagsB_SomeTextureThing, 1.0f);
+}
+
 void Zero_Init()
 {
 	CheckAndUnloadLevelFiles();
@@ -108,9 +106,9 @@ void Zero_Init()
 		ReplacePVM("EROBO");
 		if (!ModelsLoaded_B_E101R) ReplacePVM("E101R_TIKEI");
 		ReplaceGeneric("EROBO_GC.NB", "EROBO_DC.NB");
+		WriteCall((void*)0x58C7E4, DrawShadow_ERobo_Fix);
 		WriteData<1>((char*)0x5850F0, 0xC3u); //Disable SetClip_ZERO
 		WriteCall((void*)0x585448, LoadBossECOceanPVM);
-		WriteCall((void*)0x58F4F9, RenderZeroBarrierModel); //Did this to remove material colors on this otherwise inaccessible model
 		WriteData((float*)0x58752C, 0.8f); //Zero constant material alpha
 		//Effect fixes
 		WriteCall((void*)0x58B580, ZeroBarrier_SetOnFireHook); //Hook to tell when to fade out barrier effect
@@ -142,7 +140,7 @@ void Zero_OnFrame()
 	//Ocean animation
 	if (!IsGamePaused() && CurrentLevel == LevelIDs_Zero)
 	{
-		if (FramerateSetting < 2 && FrameCounter % 2 == 0 || FramerateSetting >= 2) zerosea_dc++;
+		if (FramerateSetting < 2 && FrameCounter % 4 == 0 || FramerateSetting >= 2) zerosea_dc++;
 		if (zerosea_dc > 13) zerosea_dc = 4;
 		if (ZeroBossOcean != nullptr) ZeroBossOcean->basicdxmodel->mats[0].attr_texId = zerosea_dc;
 	}

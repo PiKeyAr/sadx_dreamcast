@@ -160,7 +160,7 @@ void OTarai_Child_Display(ObjectMaster* a1)
 			njRotateY(0, v2);
 		}
 		//Draw the letter
-		DrawModelCallback_QueueObjectInt(RenderTaraiButtonLetter, TaraiButtons[byte_3C6293C[v1->Index]], -27000.0f, QueuedModelFlagsB_SomeTextureThing);
+		DrawModelCallback_QueueInt(RenderTaraiButtonLetter, TaraiButtons[byte_3C6293C[v1->Index]], -27000.0f, QueuedModelFlagsB_SomeTextureThing);
 		//Render the opaque part of the button
 		DrawModel(TaraiButton_OpaqueOnly->basicdxmodel);
 		//Create and the button (transparent)

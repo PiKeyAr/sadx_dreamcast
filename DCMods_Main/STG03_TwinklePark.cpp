@@ -433,8 +433,10 @@ void TwinklePark_Init()
 		ArchLightLight->basicdxmodel->meshsets[3].nbMesh = 0; //Disable opaque parts
 		WriteCall((void*)0x0079C5FD, FixArchLight);
 		WriteCall((void*)0x0079C36A, FixShittyLightObjects_Pause);
-		//Cart fixes
-		RemoveVertexColors_Object((NJS_OBJECT*)0x038B8780); //Cart enemy
+		//Material fixes
+		RemoveVertexColors_Object((NJS_OBJECT*)0x38B8780); //Cart enemy
+		RemoveVertexColors_Object((NJS_OBJECT*)0x27B1374); //OCandle1
+		RemoveVertexColors_Object((NJS_OBJECT*)0x27B1FB4); //OCandle2
 		//Cart models (destroyed)
 		RemoveVertexColors_Model((NJS_MODEL_SADX*)0x38BA758); //1
 		RemoveVertexColors_Model((NJS_MODEL_SADX*)0x38BA284); //2
@@ -481,7 +483,6 @@ void TwinklePark_Init()
 		NJS_OBJECT** ___AMY_OBJECTS = (NJS_OBJECT**)GetProcAddress(GetModuleHandle(L"CHRMODELS_orig"), "___AMY_OBJECTS");
 		___AMY_OBJECTS[1]->child->child->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
 		___AMY_OBJECTS[1]->child->child->basicdxmodel->mats[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		((NJS_OBJECT*)0x008BF3A0)->basicdxmodel->mats[0].attrflags |= NJD_FLAG_IGNORE_LIGHT; //shadow blob
 		ResizeTextureList((NJS_TEXLIST*)0x26B9960, textures_twinkle1);
 		ResizeTextureList((NJS_TEXLIST*)0x2721A8C, textures_twinkle2);
 		ResizeTextureList((NJS_TEXLIST*)0x26FEA54, textures_twinkle3);
