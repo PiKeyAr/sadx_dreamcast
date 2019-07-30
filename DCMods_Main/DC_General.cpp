@@ -1297,6 +1297,10 @@ void SpindashChargeSpriteHook(NJS_SPRITE *sp, Int n, NJD_SPRITE attr, QueuedMode
 	njDrawSprite3D_Queue(sp, n, attr, zfunc_type);
 }
 
+void RenderChaosPuddle_Last(NJS_OBJECT *a1)
+{
+	ProcessModelNode_D(a1, (QueuedModelFlagsB)0, 1.0f);
+}
 
 void General_Init()
 {
@@ -1500,6 +1504,9 @@ void General_Init()
 		*/
 		WriteCall((void*)0x4A22A6, SonicFrozenCubeFix);
 		//Material/vertex color fixes
+		RemoveVertexColors_Model((NJS_MODEL_SADX*)0x94BAA0); //ERobo0 head
+		AddWhiteDiffuseMaterial(&(((NJS_MODEL_SADX*)0x94BAA0)->mats[4]));
+		RemoveVertexColors_Object((NJS_OBJECT*)0x94DA44); //ERobo0 body
 		((NJS_OBJECT*)0x008BF3A0)->basicdxmodel->mats[0].attrflags |= NJD_FLAG_IGNORE_LIGHT; //Shadow blob
 		RemoveVertexColors_Object((NJS_OBJECT*)0x3175528); //Tails' model in the cutscene where Sonic sees him crash
 		RemoveVertexColors_Object(MILES_OBJECTS[71]); //Tails' snowboard
@@ -1952,6 +1959,8 @@ void General_OnFrame()
 	//Chaos 1 puddle
 	if (CurrentLevel == 33 && CutsceneID != 57) ((NJS_MATERIAL*)0x2D64FD8)->attrflags |= NJD_FLAG_IGNORE_LIGHT;
 	else ((NJS_MATERIAL*)0x2D64FD8)->attrflags &= ~NJD_FLAG_IGNORE_LIGHT;	
+	//Chaos puddle in Final Story cutscenes
+	WriteCall((void*)0x7AF877, RenderChaosPuddle_Last); 
 }
 
 void General_OnInput()

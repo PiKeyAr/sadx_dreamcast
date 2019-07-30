@@ -522,9 +522,6 @@ void FinalEgg_Init()
 		RemoveVertexColors_Model((NJS_MODEL_SADX*)0x19CA66C); //OEGacha destroyed
 		RemoveVertexColors_Model((NJS_MODEL_SADX*)0x19CA8DC); //OEGacha destroyed
 		RemoveVertexColors_Model((NJS_MODEL_SADX*)0x19CAF10); //OEGacha destroyed
-		RemoveVertexColors_Model((NJS_MODEL_SADX*)0x94BAA0); //ERobo0 head
-		AddWhiteDiffuseMaterial(&(((NJS_MODEL_SADX*)0x94BAA0)->mats[4]));
-		RemoveVertexColors_Object((NJS_OBJECT*)0x94DA44); //ERobo0 body
 		RemoveVertexColors_Object((NJS_OBJECT*)0x1A1D710); //OColorDoor 1
 		RemoveVertexColors_Object((NJS_OBJECT*)0x1A1D928); //OColorDoor 2
 		RemoveVertexColors_Object((NJS_OBJECT*)0x1A1DB40); //OColorDoor 3

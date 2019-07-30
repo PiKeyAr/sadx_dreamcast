@@ -464,6 +464,9 @@ void ADV03_Init()
 		ForceLightType_Object(ADV03_OBJECTS[1], 2, false); //Chao
 		RemoveVertexColors_Object(ADV03_OBJECTS[0]); //Master Emerald
 		RemoveVertexColors_Object(ADV03_OBJECTS[1]); //Chao
+		RemoveVertexColors_Object(ADV03_OBJECTS[3]); //Echidna 1
+		RemoveVertexColors_Object(ADV03_OBJECTS[5]); //Echidna 2
+		RemoveVertexColors_Object(ADV03_OBJECTS[6]); //Echidna 3
 		RemoveVertexColors_Object(ADV03_OBJECTS[7]); //Pacman
 		RemoveVertexColors_Object(ADV03_OBJECTS[23]); //Emeralds
 		RemoveVertexColors_Object(ADV03_OBJECTS[24]); //Emeralds

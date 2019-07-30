@@ -307,6 +307,9 @@ void PerfectChaos_Init()
 		RemoveVertexColors_Object((NJS_OBJECT*)0x144CFE4);
 		RemoveVertexColors_Object((NJS_OBJECT*)0x144D208);
 		RemoveVertexColors_Object((NJS_OBJECT*)0x144D340);
+		//Breath
+		RemoveVertexColors_Object((NJS_OBJECT*)0x13A4034);
+		RemoveVertexColors_Object((NJS_OBJECT*)0x14D5530);
 		for (int i = 0; i < 3; i++)
 		{
 			Chaos7Fog[i].Layer = -6000.0f;

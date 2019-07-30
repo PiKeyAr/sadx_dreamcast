@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "RM_Objects.h"
-//TODO: E104
+
 NJS_TEXNAME textures_mountain1[45];
 NJS_TEXLIST texlist_mountain1 = { arrayptrandlength(textures_mountain1) };
 
@@ -171,6 +171,7 @@ void RedMountain_Init()
 		WriteData((float*)0x006011ED, -20.0f); //Cloud height (Knuckles) - this is inaccurate but I dunno how to fix it
 		WriteData((float*)0x006011A9, 30.0f); //Cloud height (Knuckles) - this is inaccurate but I dunno how to fix it
 		//Objects
+		RemoveVertexColors_Object((NJS_OBJECT*)0x024A265C); //E104's rocket
 		RemoveVertexColors_Object((NJS_OBJECT*)0x02459814); //MtnSpiderA
 		RemoveVertexColors_Object((NJS_OBJECT*)0x0247E4D4); //OBat
 		RemoveVertexColors_Object((NJS_OBJECT*)0x024633B8); //Syuujin

@@ -2,6 +2,7 @@
 
 //The init function here runs right when the mod loads. 
 //It fixes/replaces various character and boss-related things that are used across multiple levels and/or load before any level (e.g. character select screen).
+//Maybe I should move it to mod.cpp or elsewhere... Also maybe do PVM/BIN replacements in advance too
 
 FunctionPointer(void, sub_4014B0, (), 0x4014B0);
 FunctionPointer(void, sub_436550, (), 0x436550);
