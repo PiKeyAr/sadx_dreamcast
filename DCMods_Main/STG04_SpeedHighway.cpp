@@ -428,7 +428,6 @@ void SpeedHighway_Init()
 		ReplacePVM("HIGHWAY_CAR");
 		ReplacePVM("OBJ_HIGHWAY");
 		ReplacePVM("OBJ_HIGHWAY2");
-		ResizeTextureList(&HIGHWAY_CAR_TEXLIST, 16);
 		//Fountain fixes
 		WriteCall((void*)0x0061BAA0, FountainPart1);
 		WriteCall((void*)0x0061BAF1, FountainPart2);
@@ -581,10 +580,6 @@ void SpeedHighway_Init()
 		((NJS_TEXLIST*)0x26B2BA0)->textures = (NJS_TEXNAME*)0x2670614; //Texlists for posters
 		((NJS_TEXLIST*)0x26B2BA8)->textures = (NJS_TEXNAME*)0x2670638; //Texlists for posters
 		((NJS_TEXLIST*)0x26B2BB0)->textures = (NJS_TEXNAME*)0x267065C; //Texlists for posters
-		ResizeTextureList((NJS_TEXLIST*)0x2592E8C, textures_highway1);
-		ResizeTextureList((NJS_TEXLIST*)0x2581310, textures_highway2);
-		ResizeTextureList((NJS_TEXLIST*)0x24CAC94, textures_highway3);
-		ResizeTextureList(&OBJ_HIGHWAY_TEXLIST, 118);
 		((NJS_OBJECT*)0x02671A20)->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_USE_ALPHA; //O Crane platform alpha fix
 		((NJS_OBJECT*)0x02671A20)->basicdxmodel->mats[2].attrflags |= NJD_FLAG_IGNORE_SPECULAR; //O Crane platform specular fix
 		RemoveVertexColors_Object((NJS_OBJECT*)0x02671A20);

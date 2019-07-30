@@ -381,7 +381,6 @@ void TwinklePark_Init()
 	STG03_0->TexList = &texlist_twinkle1;
 	STG03_1->TexList = &texlist_twinkle2;
 	STG03_2->TexList = &texlist_twinkle3;
-	ResizeTextureList(&OBJ_TWINKLE_TEXLIST, 96);
 	WriteData((LandTable**)0x97DA68, STG03_0);
 	WriteData((LandTable**)0x97DA6C, STG03_1);
 	WriteData((LandTable**)0x97DA70, STG03_2);
@@ -479,13 +478,6 @@ void TwinklePark_Init()
 		RemoveVertexColors_Object((NJS_OBJECT*)0x038BAA70); //Cart 2
 		RemoveVertexColors_Object((NJS_OBJECT*)0x038AB250); //Cart 3
 		RemoveVertexColors_Object((NJS_OBJECT*)0x038A9130); //Cart 4
-		//Amy's barrel fix
-		NJS_OBJECT** ___AMY_OBJECTS = (NJS_OBJECT**)GetProcAddress(GetModuleHandle(L"CHRMODELS_orig"), "___AMY_OBJECTS");
-		___AMY_OBJECTS[1]->child->child->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		___AMY_OBJECTS[1]->child->child->basicdxmodel->mats[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		ResizeTextureList((NJS_TEXLIST*)0x26B9960, textures_twinkle1);
-		ResizeTextureList((NJS_TEXLIST*)0x2721A8C, textures_twinkle2);
-		ResizeTextureList((NJS_TEXLIST*)0x26FEA54, textures_twinkle3);
 		//OLight1 fixes
 		*(NJS_OBJECT*)0x38C3A9C = *LoadModel("system\\data\\STG03\\Models\\000F1228.sa1mdl", true); //OLight1
 		((NJS_OBJECT*)0x38C3A9C)->basicdxmodel->meshsets[7].nbMesh = 0; //Disable transparent part

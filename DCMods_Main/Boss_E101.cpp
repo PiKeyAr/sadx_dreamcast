@@ -31,7 +31,6 @@ void E101_Init()
 		}
 		ReplacePVM("E101");
 		ReplacePVM("E101_TIKEI");
-		ResizeTextureList((NJS_TEXLIST*)0x14FBFB4, 77);
 		RemoveVertexColors_Object((NJS_OBJECT*)0x14DE020); //E101 boss model
 		RemoveVertexColors_Object((NJS_OBJECT*)0x14DEC5C); //E101 rocket
 		((NJS_OBJECT*)0x014D857C)->basicdxmodel->mats[1].attrflags |= NJD_FLAG_IGNORE_LIGHT; //E101R left eye

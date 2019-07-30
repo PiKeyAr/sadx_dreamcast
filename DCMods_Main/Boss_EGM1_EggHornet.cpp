@@ -165,7 +165,6 @@ void EggHornet_Init()
 		ReplacePVM("EGM1MIS");
 		ReplacePVM("EGM1SORA");
 		ReplacePVM("EGM1TSUCHI");
-		ResizeTextureList((NJS_TEXLIST*)0x1557064, 118); //Egg Hornet level texlist
 		RemoveVertexColors_Object((NJS_OBJECT*)0x1561A70); //Egg Hornet main model
 		RemoveVertexColors_Object((NJS_OBJECT*)0x1561A70); //Egg Hornet eggmobile part
 		//Water

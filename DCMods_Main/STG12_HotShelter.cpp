@@ -622,10 +622,6 @@ void HotShelter_Init()
 		WriteCall((void*)0x5AD4BF, RenderWaterThing);
 		WriteCall((void*)0x5AD506, RenderWaterThing);
 		WriteCall((void*)0x5AD54D, RenderWaterThing);
-		//Texlists
-		ResizeTextureList((NJS_TEXLIST*)0x180DFF4, textures_shelter1);
-		ResizeTextureList((NJS_TEXLIST*)0x17F56F4, textures_shelter2);
-		ResizeTextureList((NJS_TEXLIST*)0x17F4F74, textures_shelter3);
 		//Material colors
 		AddWhiteDiffuseMaterial((NJS_MATERIAL*)0x0181751C); //OKazari2
 		AddWhiteDiffuseMaterial((NJS_MATERIAL*)0x01800E34);	//OBoxAna

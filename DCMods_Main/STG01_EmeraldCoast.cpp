@@ -606,45 +606,6 @@ void EmeraldCoast_Init()
 	ParseEmeraldCoastColFlagsAndMaterials(STG01_0, 0);
 	ParseEmeraldCoastColFlagsAndMaterials(STG01_1, 1);
 	ParseEmeraldCoastColFlagsAndMaterials(STG01_2, 2);
-	//Ocean models
-	if (HighPolyOcean_Dynamic == nullptr) HighPolyOcean_Dynamic = LoadModel("system\\data\\STG01\\Models\\001A132C.sa1mdl", false);
-	if (HighPolyOcean_Static == nullptr) HighPolyOcean_Static = LoadModel("system\\data\\STG01\\Models\\001A132C.sa1mdl", false);
-	if (LowPolyOcean == nullptr) LowPolyOcean = LoadModel("system\\data\\STG01\\Models\\001A1430.sa1mdl", false);
-	LowPolyOceanUVs = LowPolyOcean->basicdxmodel->meshsets[0].vertuv;
-	*(NJS_OBJECT*)0x010C03FC = *HighPolyOcean_Dynamic;
-	HighPolyOcean_Dynamic->basicdxmodel->mats[0].diffuse.argb.a = 0x99; //Match dynamic ocean alpha with normal ocean
-	HighPolyOcean_Static->basicdxmodel->mats[0].diffuse.argb.a = 0x99; //Match dynamic ocean alpha with normal ocean
-	HighPolyOceanUVs_Dynamic = HighPolyOcean_Dynamic->basicdxmodel->meshsets[0].vertuv;
-	HighPolyOceanUVs_Static = HighPolyOcean_Static->basicdxmodel->meshsets[0].vertuv;
-	if (SADXWater_EmeraldCoast)
-	{
-		WriteData((float*)0x004F8D2F, -2153.0f); //Remove gap in Act 2 small pool
-		//Blending modes for ocean models
-		LowPolyOcean->basicdxmodel->mats[0].attrflags &= ~NJD_DA_INV_SRC;
-		LowPolyOcean->basicdxmodel->mats[0].attrflags |= NJD_DA_ONE;
-		LowPolyOcean->basicdxmodel->mats[0].diffuse.color = 0xFFFFFFFF;
-		HighPolyOcean_Dynamic->basicdxmodel->mats[0].attrflags &= ~NJD_DA_INV_SRC;
-		HighPolyOcean_Dynamic->basicdxmodel->mats[0].attrflags |= NJD_DA_ONE;
-		HighPolyOcean_Dynamic->basicdxmodel->mats[0].diffuse.color = 0xFFFFFFFF;
-		HighPolyOcean_Static->basicdxmodel->mats[0].attrflags &= ~NJD_DA_INV_SRC;
-		HighPolyOcean_Static->basicdxmodel->mats[0].attrflags |= NJD_DA_ONE;
-		HighPolyOcean_Static->basicdxmodel->mats[0].diffuse.color = 0xFFFFFFFF;
-		WriteData<1>((void*)0x004F783A, 0x0F); //15 animation frames for water in Act 2
-		WriteData<1>((void*)0x004F790A, 0x0F); //15 animation frames for water in Act 3
-		AddTextureAnimation(1, 0, &HighPolyOcean_Static->basicdxmodel->mats[0], false, 4, 0, 14, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); //Static ocean
-		AddTextureAnimation(1, 0, &HighPolyOcean_Dynamic->basicdxmodel->mats[0], false, 4, 0, 14, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); //Dynamic ocean
-		AddTextureAnimation(1, 0, &LowPolyOcean->basicdxmodel->mats[0], false, 4, 0, 14, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); //Static ocean
-		AddTextureAnimation(1, 1, &LowPolyOcean->basicdxmodel->mats[0], false, 4, 0, 14, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); //Static ocean
-		AddTextureAnimation(1, 2, &LowPolyOcean->basicdxmodel->mats[0], false, 4, 0, 14, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); //Static ocean
-	}
-	else
-	{
-		AddTextureAnimation(1, 0, &HighPolyOcean_Static->basicdxmodel->mats[0], false, 4, 0, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); //Static ocean
-		AddTextureAnimation(1, 0, &HighPolyOcean_Dynamic->basicdxmodel->mats[0], false, 4, 0, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); //Dynamic ocean
-		AddTextureAnimation(1, 0, &LowPolyOcean->basicdxmodel->mats[0], false, 4, 0, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); //Static ocean
-		AddTextureAnimation(1, 1, &LowPolyOcean->basicdxmodel->mats[0], false, 4, 0, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); //Static ocean
-		AddTextureAnimation(1, 2, &LowPolyOcean->basicdxmodel->mats[0], false, 4, 0, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); //Static ocean
-	}
 	if (!ModelsLoaded_STG01)
 	{
 		if (!Use1999SetFiles)
@@ -706,6 +667,45 @@ void EmeraldCoast_Init()
 			ReplaceBIN("CAM0102S", "CAM0102S_R");
 			ReplaceBIN("CAM0102B", "CAM0102B_R");
 		}
+		//Ocean models
+		HighPolyOcean_Dynamic = LoadModel("system\\data\\STG01\\Models\\001A132C.sa1mdl", false);
+		HighPolyOcean_Static = LoadModel("system\\data\\STG01\\Models\\001A132C.sa1mdl", false);
+		LowPolyOcean = LoadModel("system\\data\\STG01\\Models\\001A1430.sa1mdl", false);
+		LowPolyOceanUVs = LowPolyOcean->basicdxmodel->meshsets[0].vertuv;
+		*(NJS_OBJECT*)0x010C03FC = *HighPolyOcean_Dynamic;
+		HighPolyOcean_Dynamic->basicdxmodel->mats[0].diffuse.argb.a = 0x99; //Match dynamic ocean alpha with normal ocean
+		HighPolyOcean_Static->basicdxmodel->mats[0].diffuse.argb.a = 0x99; //Match dynamic ocean alpha with normal ocean
+		HighPolyOceanUVs_Dynamic = HighPolyOcean_Dynamic->basicdxmodel->meshsets[0].vertuv;
+		HighPolyOceanUVs_Static = HighPolyOcean_Static->basicdxmodel->meshsets[0].vertuv;
+		if (SADXWater_EmeraldCoast)
+		{
+			WriteData((float*)0x004F8D2F, -2153.0f); //Remove gap in Act 2 small pool
+													 //Blending modes for ocean models
+			LowPolyOcean->basicdxmodel->mats[0].attrflags &= ~NJD_DA_INV_SRC;
+			LowPolyOcean->basicdxmodel->mats[0].attrflags |= NJD_DA_ONE;
+			LowPolyOcean->basicdxmodel->mats[0].diffuse.color = 0xFFFFFFFF;
+			HighPolyOcean_Dynamic->basicdxmodel->mats[0].attrflags &= ~NJD_DA_INV_SRC;
+			HighPolyOcean_Dynamic->basicdxmodel->mats[0].attrflags |= NJD_DA_ONE;
+			HighPolyOcean_Dynamic->basicdxmodel->mats[0].diffuse.color = 0xFFFFFFFF;
+			HighPolyOcean_Static->basicdxmodel->mats[0].attrflags &= ~NJD_DA_INV_SRC;
+			HighPolyOcean_Static->basicdxmodel->mats[0].attrflags |= NJD_DA_ONE;
+			HighPolyOcean_Static->basicdxmodel->mats[0].diffuse.color = 0xFFFFFFFF;
+			WriteData<1>((void*)0x004F783A, 0x0F); //15 animation frames for water in Act 2
+			WriteData<1>((void*)0x004F790A, 0x0F); //15 animation frames for water in Act 3
+			AddTextureAnimation_Permanent(1, 0, &HighPolyOcean_Static->basicdxmodel->mats[0], false, 4, 0, 14, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); //Static ocean
+			AddTextureAnimation_Permanent(1, 0, &HighPolyOcean_Dynamic->basicdxmodel->mats[0], false, 4, 0, 14, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); //Dynamic ocean
+			AddTextureAnimation_Permanent(1, 0, &LowPolyOcean->basicdxmodel->mats[0], false, 4, 0, 14, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); //Static ocean
+			AddTextureAnimation_Permanent(1, 1, &LowPolyOcean->basicdxmodel->mats[0], false, 4, 0, 14, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); //Static ocean
+			AddTextureAnimation_Permanent(1, 2, &LowPolyOcean->basicdxmodel->mats[0], false, 4, 0, 14, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); //Static ocean
+		}
+		else
+		{
+			AddTextureAnimation_Permanent(1, 0, &HighPolyOcean_Static->basicdxmodel->mats[0], false, 4, 0, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); //Static ocean
+			AddTextureAnimation_Permanent(1, 0, &HighPolyOcean_Dynamic->basicdxmodel->mats[0], false, 4, 0, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); //Dynamic ocean
+			AddTextureAnimation_Permanent(1, 0, &LowPolyOcean->basicdxmodel->mats[0], false, 4, 0, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); //Static ocean
+			AddTextureAnimation_Permanent(1, 1, &LowPolyOcean->basicdxmodel->mats[0], false, 4, 0, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); //Static ocean
+			AddTextureAnimation_Permanent(1, 2, &LowPolyOcean->basicdxmodel->mats[0], false, 4, 0, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0); //Static ocean
+		}
 		//Models
 		RemoveVertexColors_Object((NJS_OBJECT*)0x10C782C); //Tails' crashed plane
 		*(NJS_OBJECT*)0x10A298C = *LoadModel("system\\data\\STG01\\Models\\00183CDC.sa1mdl", false); //Jump panel (OJump) 
@@ -740,10 +740,6 @@ void EmeraldCoast_Init()
 		WriteData<2>((void*)0x004F8A9A, 0x90); //Disable water animation in Act 1
 		WriteData<2>((char*)0x004F7816, 0xFF); //Disable water animation in Act 2
 		WriteData<2>((char*)0x004F78E6, 0xFF); //Disable water animation in Act 3
-		ResizeTextureList((NJS_TEXLIST*)0x010C0508, 10); //BEACH_SEA
-		ResizeTextureList((NJS_TEXLIST*)0xF812AC, textures_ecoast1);
-		ResizeTextureList((NJS_TEXLIST*)0xEF553C, textures_ecoast2);
-		ResizeTextureList((NJS_TEXLIST*)0xE9A4CC, textures_ecoast3);
 		//Write floats to fix buggy SADX water positioning code
 		//Act 2
 		WriteData((float**)0x004F7876, &float1);

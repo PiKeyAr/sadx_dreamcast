@@ -95,7 +95,6 @@ void EggViper_Init()
 		WriteCall((void*)0x7B596C, (void*)0x408300);
 		WriteCall((void*)0x7B596C, (void*)0x408300);
 		((NJS_MATERIAL*)0x016737F0)->attrflags |= NJD_FLAG_IGNORE_LIGHT; //Dust effect at the bottom of the room
-		ResizeTextureList((NJS_TEXLIST*)0x167E5CC, textures_eggviper);
 		*(NJS_OBJECT*)0x01669DA8 = *LoadModel("system\\data\\B_EGM3\\Models\\000434A0.sa1mdl", false); //part of Egg Viper model with different UVs
 		RemoveVertexColors_Object((NJS_OBJECT*)0x166C54C); //Egg Viper cockpit with Eggman
 		ForceObjectSpecular_Object((NJS_OBJECT*)0x166C54C);

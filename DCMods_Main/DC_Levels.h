@@ -22,6 +22,11 @@ DataPointer(float, EnvMap1, 0x038A5DD0);
 DataPointer(float, EnvMap2, 0x038A5DE4);
 DataPointer(float, EnvMap3, 0x038A5E00);
 DataPointer(float, EnvMap4, 0x038A5E04);
+DataPointer(NJS_VECTOR, DrawQueueDistanceVector_Current, 0x3AB9898);
+DataPointer(NJS_VECTOR, DrawQueueDistanceVector1, 0x900840);
+DataPointer(NJS_VECTOR, DrawQueueDistanceVector2, 0x90084C);
+DataPointer(NJS_VECTOR, DrawQueueDistanceVector3, 0x900858);
+DataPointer(NJS_VECTOR, DrawQueueDistanceVector4, 0x900864);
 DataArray(LandTable*, LandTableArray, 0x97DBE8, 193);
 DataArray(int **, InitializationFunctions, 0x892004, 538);
 FunctionPointer(void, DrawModelCallback_QueueModel, (void(__cdecl* function)(NJS_MODEL_SADX*), NJS_MODEL_SADX* data, float depth, QueuedModelFlagsB queueflags), 0x404840);
@@ -40,7 +45,6 @@ FunctionPointer(void, njAction_Queue_407BB0_2, (NJS_ACTION *a1, float a2, int a3
 FunctionPointer(void, DrawModel_TryReallyHard, (NJS_MODEL_SADX* a1), 0x409EF0);
 
 extern HelperFunctions HelperFunctionsGlobal;
-
 extern bool ModelsLoaded_General;
 extern bool ModelsLoaded_Chao;
 extern bool ModelsLoaded_STG00;
@@ -144,6 +148,9 @@ extern NJS_TEXLIST texlist_sadxwtr_sewers;
 extern NJS_TEXLIST texlist_sadxwtr_waves;
 extern SecondaryEntrance BK_SSGardenStartPoint;
 extern std::string ModPath;
+extern int CutsceneFadeValue;
+extern int CutsceneFadeMode;
+extern bool SkipPressed_Cutscene;
 
 #define ReplacePVM(a) HelperFunctionsGlobal.ReplaceFile("system\\" a ".PVM", "system\\" a "_DC.PVM")
 #define ReplacePVR(a) HelperFunctionsGlobal.ReplaceFile("system\\" a ".PVR", "system\\" a "_DC.PVR")
@@ -376,7 +383,7 @@ void ADV02_Init();
 void ADV02_OnFrame();
 void ADV03_Init();
 void ADV03_OnFrame();
-void Bosses_Init();
+void Init_Global();
 void EggViper_OnFrame();
 void PerfectChaos_OnFrame();
 void EggHornet_OnFrame();

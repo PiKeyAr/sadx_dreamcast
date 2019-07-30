@@ -210,9 +210,6 @@ void RedMountain_Init()
 		*(NJS_MODEL_SADX*)0x24394CC = *LoadModel("system\\data\\STG05\\Models\\00151600.sa1mdl", false)->basicdxmodel; //Light thing propeller 1
 		*(NJS_MODEL_SADX*)0x24392C4 = *LoadModel("system\\data\\STG05\\Models\\001513F0.sa1mdl", false)->basicdxmodel; //Light thing propeller 2
 		WriteCall((void*)0x60C987, FixPropellerThing);
-		ResizeTextureList((NJS_TEXLIST*)0x230FDF4, textures_mountain1);
-		ResizeTextureList((NJS_TEXLIST*)0x229B8CC, textures_mountain2);
-		ResizeTextureList((NJS_TEXLIST*)0x224096C, textures_mountain3);
 		for (int i = 0; i < 3; i++)
 		{
 			RedMountain1Fog[i].Color = 0xFFFFFFFF;

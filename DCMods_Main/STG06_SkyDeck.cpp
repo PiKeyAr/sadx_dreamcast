@@ -581,10 +581,6 @@ void SkyDeck_Init()
 		WriteData((NJS_OBJECT**)0x005ED3A5, SkyDark2);
 		WriteData((NJS_OBJECT**)0x005ED46D, SkyDark1); //Clouds dark top
 		WriteData((NJS_OBJECT**)0x005ED4FC, SkyDark1); //Clouds dark bottom
-		ResizeTextureList((NJS_TEXLIST*)0x20E0BB0, textures_skydeck1);
-		ResizeTextureList((NJS_TEXLIST*)0x20AA63C, textures_skydeck2);
-		ResizeTextureList((NJS_TEXLIST*)0x203ACE0, textures_skydeck3);
-		ResizeTextureList(&OBJ_SKYDECK_TEXLIST, 213);
 		for (int i = 0; i < 3; i++)
 		{
 			SkyDeck1Fog[i].Layer = 4000.0f;

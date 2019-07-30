@@ -218,7 +218,6 @@ void PerfectChaos_Init()
 		ReplacePVM("CHAOS7_0WEXP_PTCHG");
 		ReplacePVM("LM_CHAOS7_0");
 		ReplacePVM("OBJ_CHAOS7");
-		ResizeTextureList((NJS_TEXLIST*)0x1494FBC, textures_chaos7);
 		RemoveVertexColors_Object((NJS_OBJECT*)0x139757C); //Main model
 		RemoveVertexColors_Object((NJS_OBJECT*)0x13A27F0); //Sinking/rising
 		WriteCall((void*)0x56463B, PerfectChaosWaterfallHook);

@@ -2149,7 +2149,6 @@ void ChaoGardens_Init()
 		*(NJS_MODEL_SADX*)0x036076E4 = *ChaoTree->child->sibling->basicdxmodel; //Tree leaves 2
 		//Misc
 		WriteData<1>((char*)0x007151D3, 0x1A); //The secret EC egg is a two-tone black egg
-		ResizeTextureList(&GARDEN00_OBJECT_TEXLIST, 16);
 		//Name Machine stuff
 		ECGardenStartPoint.Position.y = 71.0f; //Prevent endless jumping in EC garden with the DC model for the Name Machine
 		MRGardenReturnPoint.Position.x = 219; //Same for MR garden

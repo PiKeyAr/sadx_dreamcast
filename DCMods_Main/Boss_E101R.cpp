@@ -190,7 +190,6 @@ void E101R_Init()
 		WriteCall((void*)0x00570952, E101R_AfterImageArmConstantAttr);
 		WriteCall((void*)0x569078, LoadBossECOceanPVM);
 		WriteJump(E101Mk2_OceanDraw, E101ROceanHook);
-		ResizeTextureList((NJS_TEXLIST*)0x16B460C, 76); //Zero/E101R texlist
 		//Ocean model
 		if (!SADXWater_EggCarrier)
 		{

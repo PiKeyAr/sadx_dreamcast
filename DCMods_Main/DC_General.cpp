@@ -26,12 +26,10 @@ DataPointer(NJS_MATRIX, nj_unit_matrix_, 0x389D650);
 FunctionPointer(void, BarrierChild, (ObjectMaster *a1), 0x4BA1E0);
 FunctionPointer(void, sub_4083D0, (NJS_ACTION *a1, float a2, int a3), 0x4083D0);
 FunctionPointer(EntityData1*, sub_4B9430, (NJS_VECTOR *a1, NJS_VECTOR *a2, float a3), 0x4B9430);
-FunctionPointer(void, sub_436550, (), 0x436550);
 FunctionPointer(void, sub_40EFE0, (), 0x40EFE0);
 FunctionPointer(double, sub_49EAD0, (float a1, float a2, float a3, int a4), 0x49EAD0);
 FunctionPointer(float, sub_49E920, (float x, float y, float z, Rotation3 *rotation), 0x49E920);
 FunctionPointer(SubtitleThing *, sub_6424A0, (int a1, int a2, float a3, float a4, float a5, float a6, float a7, float a8), 0x6424A0);
-FunctionPointer(void, sub_4014B0, (), 0x4014B0);
 FunctionPointer(void, sub_409E70, (NJS_MODEL_SADX *a1, int a2, float a3), 0x409E70);
 FunctionPointer(void, Cutscene_MoveCharacterAtoB, (ObjectMaster *a1, float a2, float a3, float a4, float a5, float a6, float a7, signed int a8), 0x6EC2B0);
 FunctionPointer(void, Cutscene_WaitForInput, (int a1), 0x4314D0);
@@ -55,9 +53,9 @@ static float heat_float1 = 1.0f; //1
 static float heat_float2 = 0.2f; //0.5
 static float alphathing = 1.0f;
 static float LSDFix = 16.0f;
-static int CutsceneFadeValue = 0;
-static int CutsceneFadeMode = 0;
-static bool SkipPressed_Cutscene = false;
+int CutsceneFadeValue = 0;
+int CutsceneFadeMode = 0;
+bool SkipPressed_Cutscene = false;
 static float EmeraldScale = 1.005f;
 
 static const NJS_MATERIAL* WhiteDiffuse_General[] = {
@@ -663,12 +661,6 @@ void __cdecl FixedRipple_Bubble(ObjectMaster *a2)
 	}
 }
 
-void GammaHook()
-{
-	if (GameMode == 12) SetMaterialAndSpriteColor_Float(1.0f, 1.0f, 1.0f, 1.0f);
-	else SetMaterialAndSpriteColor_Float(0.85f, 1.0f, 1.0f, 1.0f);
-}
-
 float __cdecl EggKeeperFix(float x, float y, float z, Rotation3 *rotation)
 {
 	float result;
@@ -825,12 +817,6 @@ void ColorizeRecapText(int a1, int a2, float a3, float a4, float a5, float a6, f
 	sub_6424A0(a1, 0xFFF8F8F8, a3, a4, a5, a6, a7, a8);
 }
 
-void InputHookForCutscenes()
-{
-	sub_4014B0();
-	if (CutsceneFadeMode == 1) ControllerPointers[0]->PressedButtons |= Buttons_C;
-}
-
 static Sint32 DisplayTitleCard_r();
 static Trampoline DisplayTitleCard_t(0x47E170, 0x47E175, DisplayTitleCard_r);
 static Sint32 __cdecl DisplayTitleCard_r()
@@ -882,12 +868,6 @@ void __fastcall DrawUnderwaterOverlay(NJS_MATRIX_PTR m)
 		njColorBlendingMode(0, NJD_COLOR_BLENDING_SRCALPHA);
 		njColorBlendingMode(NJD_DESTINATION_COLOR, NJD_COLOR_BLENDING_INVSRCALPHA);
 	//}
-}
-
-void FPSLockHook(int a1)
-{
-	if (a1 == 1 && CurrentLevel != LevelIDs_TwinkleCircuit) a1 = 2;
-	DeltaTime_Multiplier(a1);
 }
 
 void __cdecl sub_4B9CE0(EntityData1 *a1, EntityData1 *a2)
@@ -951,12 +931,6 @@ void __cdecl Barrier_MainX(ObjectMaster *a1)
 	{
 		CheckThingButThenDeleteObject(a1);
 	}
-}
-
-void FixCutsceneTransition()
-{
-	if (CutsceneID == 134) sub_436550(); //Knuckles back in Station Square after meeting Pacman
-	if (CutsceneID == 380) sub_436550(); //Gamma after Windy Valley
 }
 
 void __cdecl RenderInvincibilityLines(NJS_MODEL_SADX *a1)
@@ -1311,6 +1285,19 @@ void RenderItemBoxIcon(NJS_MODEL_SADX* a1)
 	DrawModel_Queue(a1, QueuedModelFlagsB_EnableZWrite);
 }
 
+void SpindashChargeLinesHook(NJS_POINT3COL *a1, int a2, NJD_DRAW attr, QueuedModelFlagsB a4)
+{
+	if (CurrentLevel == LevelIDs_WindyValley && CurrentAct == 2) DrawQueueDepthBias = 4000.0f;
+	Draw3DLinesMaybe_Queue(a1, a2, attr, a4);
+}
+
+void SpindashChargeSpriteHook(NJS_SPRITE *sp, Int n, NJD_SPRITE attr, QueuedModelFlagsB zfunc_type)
+{
+	if (CurrentLevel == LevelIDs_WindyValley && CurrentAct == 2) DrawQueueDepthBias = 4000.0f;
+	njDrawSprite3D_Queue(sp, n, attr, zfunc_type);
+}
+
+
 void General_Init()
 {
 	if (!ModelsLoaded_General)
@@ -1513,7 +1500,7 @@ void General_Init()
 		*/
 		WriteCall((void*)0x4A22A6, SonicFrozenCubeFix);
 		//Material/vertex color fixes
-		((NJS_OBJECT*)0x008BF3A0)->basicdxmodel->mats[0].attrflags |= NJD_FLAG_IGNORE_LIGHT; //shadow blob
+		((NJS_OBJECT*)0x008BF3A0)->basicdxmodel->mats[0].attrflags |= NJD_FLAG_IGNORE_LIGHT; //Shadow blob
 		RemoveVertexColors_Object((NJS_OBJECT*)0x3175528); //Tails' model in the cutscene where Sonic sees him crash
 		RemoveVertexColors_Object(MILES_OBJECTS[71]); //Tails' snowboard
 		RemoveVertexColors_Object(BIG_OBJECTS[42]); //Big fishing thing 1
@@ -1548,6 +1535,8 @@ void General_Init()
 		//Stupid hacks for Windy Valley 3 and other stages
 		WriteCall((void*)0x49EE10, DrawRingShadowHook);
 		WriteCall((void*)0x49EFAE, DrawScalableShadowHook);
+		WriteCall((void*)0x4A1827, SpindashChargeLinesHook);
+		WriteCall((void*)0x4A1E55, SpindashChargeSpriteHook);
 		//Replace hint monitor model
 		HintMonitorModel = LoadModel("system\\data\\1st_read\\Models\\001AD358.sa1mdl", false);
 		HintMonitorModel->basicdxmodel->meshsets[10].nbMesh = 0; //Hide screen (rendered separately in DX)
@@ -1570,7 +1559,7 @@ void General_Init()
 		((NJS_OBJECT*)0x30AB08C)->basicdxmodel->mats[3].attrflags &= ~NJD_FLAG_USE_ALPHA; //E103 unnecessary alpha (cutscene model)
 		((NJS_OBJECT*)0x30A290C)->basicdxmodel->mats[3].attrflags &= ~NJD_FLAG_USE_ALPHA; //E104 unnecessary alpha (cutscene model)
 		((NJS_OBJECT*)0x309A21C)->basicdxmodel->mats[3].attrflags &= ~NJD_FLAG_USE_ALPHA; //E105 unnecessary alpha (cutscene model)
-		WriteData((float*)0x6F4718, 0.85f); //Some cutscene model idk
+		WriteData((float*)0x6F4718, 0.85f); //E101 (cutscene model)
 		WriteData((float*)0x4E7BFD, 0.85f); //E103 (reused Gamma model)
 		WriteData((float*)0x4E7C40, 0.85f); //E103 (reused Gamma model)
 		WriteData((float*)0x605813, 0.85f); //E104 (reused Gamma model)
@@ -1621,14 +1610,6 @@ void General_Init()
 		((NJS_MODEL_SADX*)0x989384)->meshsets[4].vertcolor = SwitchDark_vcolor2;
 		((NJS_MODEL_SADX*)0x989384)->meshsets[3].vertcolor = SwitchDark_vcolor1;
 		((NJS_ACTION*)0x8B8BC4)->object = LoadModel("system\\data\\1ST_READ\\Models\\0019A118.sa1mdl", false); //Dash panel
-		//FPS lock
-		if (FPSLock) WriteCall((void*)0x411E79, FPSLockHook);
-		//Cancel cutscenes with C button
-		if (CutsceneSkipMode != 3)
-		{
-			WriteData<1>((char*)0x431520, 0x01);
-			if (CutsceneSkipMode != 2) WriteCall((void*)0x4314F9, InputHookForCutscenes);
-		}
 		//Light Speed Dash distance fix
 		if (EnableLSDFix)
 		{
@@ -1637,12 +1618,6 @@ void General_Init()
 			WriteData<1>((char*)0x492CC1, 0x80); //Set speed to 16 if below minimum
 			//Disabling this since it doesn't seem necessary and it breaks Egg Carrier captain's room
 			//WriteData((float**)0x492CB0, &LSDFix); //16 is the minimum speed
-		}
-		//Fix for cutscene transitions
-		if (EnableCutsceneFix)
-		{
-			WriteCall((void*)0x4311E3, FixCutsceneTransition); //Main thread
-			WriteData<5>((void*)0x43131D, 0x90u); //Skipping cutscenes
 		}
 		//Ripples
 		if (EnableDCRipple)
@@ -1674,9 +1649,6 @@ void General_Init()
 		//Underwater overlay
 		WriteCall((void*)0x43708D, DrawUnderwaterOverlay);
 		WriteCall((void*)0x43705A, DrawUnderwaterOverlay_Reset);
-		//Gamma's chest patch lol
-		((NJS_MATERIAL*)((size_t)GetModuleHandle(L"CHRMODELS_orig") + 0x00200DE8))->attrflags &= ~NJD_FLAG_USE_ALPHA; //Unnecessary alpha in Gamma's model
-		WriteCall((void*)0x47FE13, GammaHook); //Gamma's chest transparency
 		//Character effects
 		WriteJump((void*)0x4A1630, Sonic_DisplayLightDashModelX);
 		WriteData((float**)0x47404B, &heat_float1);
@@ -1698,11 +1670,6 @@ void General_Init()
 		WriteJump(Barrier_Main, Barrier_MainX); //Barrier
 		WriteCall((void*)0x4BA0E4, RenderInvincibilityLines);
 		WriteData<10>((char*)0x40889C, 0x90u); //Queued model lighting/specular fix
-		//Environment maps
-		EnvMap1 = 0.5f;
-		EnvMap2 = 0.5f;
-		EnvMap3 = 0.5f;
-		EnvMap4 = 0.5f;
 		//Various bugfixes
 		//Gamma cutscenes fix 
 		WriteCall((void*)0x6D9DA7, ECGammaCutsceneFix); //Fix Gamma hover scene in Sonic's story
@@ -1769,8 +1736,6 @@ void General_Init()
 		RemoveVertexColors_Object((NJS_OBJECT*)0x319F714); //Amy held by Zero (talking head)
 		RemoveVertexColors_Object((NJS_OBJECT*)0x319C3EC); //Amy held by Zero
 		RemoveVertexColors_Object((NJS_OBJECT*)0x33144B0); //Egg Walker cutscene
-		RemoveVertexColors_Object((NJS_OBJECT*)0x10D7774); //Question mark from Character Select
-		((NJS_OBJECT*)0x10D7774)->basicdxmodel->mats[0].attr_texId = 10; //Fix wrong texture on question mark
 		WriteCall((void*)0x4D7718, AnimalBubbleHook); //Animal bubble blending mode + depth
 		*(NJS_OBJECT*)0x2F67B78 = *LoadModel("system\\data\\Other\\00006C38.sa1mdl", false); //Tornado 2 crashed
 		//Animals

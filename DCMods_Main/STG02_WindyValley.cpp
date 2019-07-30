@@ -1,5 +1,5 @@
 #include "stdafx.h"
-//TODO: E103, Spindash charge in Act 3
+
 NJS_TEXNAME textures_windy1[20];
 NJS_TEXLIST texlist_windy1 = { arrayptrandlength(textures_windy1) };
 
@@ -209,6 +209,7 @@ void WindyValley_Init()
 		WriteData<5>((void*)0x004DD7EF, 0x90);
 		WriteData<5>((void*)0x004DD7F9, 0x90);
 		//Material fixes
+		RemoveVertexColors_Object((NJS_OBJECT*)0xC496BC); //E103 rocket
 		((NJS_MATERIAL*)0x00C1C468)->attr_texId &= ~NJD_FLAG_IGNORE_SPECULAR;
 		((NJS_MATERIAL*)0x00C1C47C)->attr_texId &= ~NJD_FLAG_IGNORE_SPECULAR;
 		WriteData<1>((void*)0x4DD120, 0xC3); //Disable some fog thing
@@ -364,9 +365,6 @@ void WindyValley_Init()
 			FogData_Windy3[i].Layer = 200.0f;
 			FogData_Windy3[i].Color = 0xFFFFFFFF;
 		}
-		ResizeTextureList((NJS_TEXLIST*)0xB98BF8, textures_windy1);
-		ResizeTextureList((NJS_TEXLIST*)0xB81304, textures_windy2);
-		ResizeTextureList((NJS_TEXLIST*)0xAFEC30, textures_windy3);
 		ModelsLoaded_STG02 = true;
 	}
 };

@@ -88,7 +88,6 @@ void Zero_Init()
 	B_ROBO_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\B_ROBO\\0.sa1lvl"));
 	LandTable* B_ROBO = B_ROBO_Info->getlandtable(); //&landtable_00000110;
 	RemoveMaterialColors_Landtable(B_ROBO);
-	ResizeTextureList((NJS_TEXLIST*)0x16B460C, 76); //Zero/E101R texlist
 	B_ROBO->TexList = (NJS_TEXLIST*)0x16B460C;
 	LandTableArray[64] = B_ROBO;
 	if (!ModelsLoaded_B_ROBO)

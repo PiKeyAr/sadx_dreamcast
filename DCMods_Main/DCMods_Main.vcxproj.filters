@@ -138,9 +138,6 @@
     <ClCompile Include="Boss_E101R.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Bosses_Common.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="STG01_EmeraldCoast.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -196,6 +193,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ADV0130_EggCarrierInside.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Init_Global.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

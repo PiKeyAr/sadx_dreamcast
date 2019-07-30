@@ -1,5 +1,11 @@
 #include "stdafx.h"
 
+//The init function here runs right when the mod loads. 
+//It fixes/replaces various character and boss-related things that are used across multiple levels and/or load before any level (e.g. character select screen).
+
+FunctionPointer(void, sub_4014B0, (), 0x4014B0);
+FunctionPointer(void, sub_436550, (), 0x436550);
+
 void LoadBossECOceanPVM(const char *filename, NJS_TEXLIST *texlist)
 {
 	LoadPVM(filename, texlist);
@@ -32,7 +38,31 @@ void ComeOnChaosTimeToEat(NJS_OBJECT *a1)
 	DrawModelCallback_QueueObject(ChaosTimeToEat_DrawModel, a1, 2000.0f, (QueuedModelFlagsB)0);
 }
 
-void Bosses_Init()
+void FPSLockHook(int a1)
+{
+	if (a1 == 1 && CurrentLevel != LevelIDs_TwinkleCircuit) a1 = 2;
+	DeltaTime_Multiplier(a1);
+}
+
+void InputHookForCutscenes()
+{
+	sub_4014B0();
+	if (CutsceneFadeMode == 1) ControllerPointers[0]->PressedButtons |= Buttons_C;
+}
+
+void FixCutsceneTransition()
+{
+	if (CutsceneID == 134) sub_436550(); //Knuckles back in Station Square after meeting Pacman
+	if (CutsceneID == 380) sub_436550(); //Gamma after Windy Valley
+}
+
+void GammaHook()
+{
+	if (GameMode == 12) SetMaterialAndSpriteColor_Float(1.0f, 1.0f, 1.0f, 1.0f);
+	else SetMaterialAndSpriteColor_Float(0.85f, 1.0f, 1.0f, 1.0f);
+}
+
+void Init_Global()
 {
 	ReplacePVM("CHAOS1");
 	ReplacePVM("CHAOS_BRAINFRAME");
@@ -50,7 +80,34 @@ void Bosses_Init()
 	ReplacePVM("EV_E105_FUN");
 	ReplacePVM("ICM0001_3");
 	ReplacePVM("ICM0001_5");
-	//Various Chaos puddle things
+	//FPS lock
+	if (FPSLock) WriteCall((void*)0x411E79, FPSLockHook);
+	//Cancel cutscenes with C button
+	if (CutsceneSkipMode != 3)
+	{
+		WriteData<1>((char*)0x431520, 0x01);
+		if (CutsceneSkipMode != 2) WriteCall((void*)0x4314F9, InputHookForCutscenes);
+	}
+	//Fix for cutscene transitions
+	if (EnableCutsceneFix)
+	{
+		WriteCall((void*)0x4311E3, FixCutsceneTransition); //Main thread
+		WriteData<5>((void*)0x43131D, 0x90u); //Skipping cutscenes
+	}
+	//Gamma's chest patch lol
+	((NJS_MATERIAL*)((size_t)GetModuleHandle(L"CHRMODELS_orig") + 0x00200DE8))->attrflags &= ~NJD_FLAG_USE_ALPHA; //Unnecessary alpha in Gamma's model
+	WriteCall((void*)0x47FE13, GammaHook); //Gamma's chest transparency
+	//Environment maps
+	EnvMap1 = 0.5f;
+	EnvMap2 = 0.5f;
+	EnvMap3 = 0.5f;
+	EnvMap4 = 0.5f;
+	//Amy's barrel fix
+	AMY_OBJECTS[1]->child->child->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	AMY_OBJECTS[1]->child->child->basicdxmodel->mats[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	//Various material fixes
+	RemoveVertexColors_Object((NJS_OBJECT*)0x10D7774); //Question mark from Character Select
+	((NJS_OBJECT*)0x10D7774)->basicdxmodel->mats[0].attr_texId = 10; //Fix wrong texture on question mark
 	RemoveVertexColors_Object((NJS_OBJECT*)0x991268); //Zero main and cutscene model
 	RemoveVertexColors_Object((NJS_OBJECT*)0x3306270); //Egg Hornet cutscene model
 	RemoveVertexColors_Object((NJS_OBJECT*)0x330A4D0); //Eggman in Egg Hornet cutscene model

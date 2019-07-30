@@ -183,8 +183,6 @@ void Chaos6_Init()
 		RemoveVertexColors_Object((NJS_OBJECT*)0x1383D54); //Freezer
 		WriteCall((void*)0x558FFC, Chaos6Action); //Chaos 6 main model rendering
 		WriteCall((void*)0x55BCF4, njDrawSprite3D_Queue_TheyForgotToClamp);
-		ResizeTextureList((NJS_TEXLIST*)0x121FF28, textures_chaos6s);
-		ResizeTextureList((NJS_TEXLIST*)0x11F04A0, textures_chaos6k);
 		WriteJump((void*)0x556FD0, Chaos6SkyboxBottom);
 		WriteJump((void*)0x556F20, Chaos6SkyboxMain);
 		((NJS_ACTION*)0x134C56C)->motion = &Chaos6Animation3; //Fix flickering parts in Chaos 6' walking animation

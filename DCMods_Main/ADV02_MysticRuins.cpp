@@ -512,7 +512,6 @@ void ParseMRMaterials()
 void UnloadLevelFiles_ADV02()
 {
 	//Clear all pointers and arrays
-	MROcean = nullptr;
 	for (int k = 0; k < LengthOfArray(MRWaterObjects); ++k)
 	{
 		MRWaterObjects[k] = -1;

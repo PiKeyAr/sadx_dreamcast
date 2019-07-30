@@ -102,7 +102,7 @@
     <ClCompile Include="ADV0100_EggCarrierOutside.cpp" />
     <ClCompile Include="ADV02_MysticRuins.cpp" />
     <ClCompile Include="ADV03_Past.cpp" />
-    <ClCompile Include="Bosses_Common.cpp" />
+    <ClCompile Include="Init_Global.cpp" />
     <ClCompile Include="DC_Branding.cpp" />
     <ClCompile Include="STG09_Casinopolis.cpp" />
     <ClCompile Include="AL_ChaoGardens.cpp" />

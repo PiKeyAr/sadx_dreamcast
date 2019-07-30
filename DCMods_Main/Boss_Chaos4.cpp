@@ -391,7 +391,6 @@ void Chaos4_Init()
 		ReplacePVM("CHAOS4_SHIBUKI");
 		ReplacePVM("CHAOS4_TIKEI");
 		ReplacePVM("CHAOS4_WAVE");
-		ResizeTextureList(&CHAOS4_OBJECT_TEXLIST, 6);
 		WriteCall((void*)0x5528ED, Chaos4Action); //Main model
 		WriteData<10>((char*)0x55507D, 0x90u); //Disable depth bias setting for balls
 		WriteData<10>((char*)0x555AB1, 0x90u); //Disable depth bias setting for balls attack
@@ -404,7 +403,6 @@ void Chaos4_Init()
 		*(NJS_OBJECT*)0x11C4B90 = *LoadModel("SYSTEM\\data\\B_CHAOS4\\Models\\000425F8.sa1mdl", false); // Chaos4 swamp water
 		Chaos4CleanWater = LoadModel("SYSTEM\\data\\B_CHAOS4\\Models\\0004476C.sa1mdl", false); // Chaos4 swamp water
 		WriteData<1>((char*)0x00555B3F, 0x08); //Chaos 4 bubble blending mode SA_SRC instead of SA_ONE
-		ResizeTextureList((NJS_TEXLIST*)0x118FF08, textures_chaos4);
 		WriteJump((void*)0x550D10, Chaos4Skybox);
 		*(NJS_OBJECT*)0x11E3240 = *LoadModel("SYSTEM\\data\\B_CHAOS4\\Models\\0003E6CC.sa1mdl", false); //Lilypad
 		//Chaos 4

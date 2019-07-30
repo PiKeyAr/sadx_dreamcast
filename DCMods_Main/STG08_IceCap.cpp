@@ -578,10 +578,6 @@ void IceCap_Init()
 		((NJS_OBJECT*)0xE43544)->basicdxmodel->mats[0].attr_texId = 58; //Snowboard effect
 		((NJS_SPRITE*)0xE956E4)->tlist = &OBJ_ICECAP_TEXLIST; //Snow effect texlist
 		((NJS_TEXANIM*)0xE956D0)->texid = 96; //Snow effect texture ID
-		ResizeTextureList((NJS_TEXLIST*)0xDE3A74, textures_icecap1);
-		ResizeTextureList((NJS_TEXLIST*)0xD39744, textures_icecap2);
-		ResizeTextureList((NJS_TEXLIST*)0xC68408, textures_icecap3);
-		ResizeTextureList(&OBJ_ICECAP_TEXLIST, 100);
 		for (int i = 0; i < 3; i++)
 		{
 			IceCap1Fog[i].Color = 0xFFFFFFFF;

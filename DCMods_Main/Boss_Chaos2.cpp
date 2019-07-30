@@ -92,7 +92,6 @@ void Chaos2_Init()
 		AddAlphaRejectMaterial(&((NJS_OBJECT*)0x117EB1C)->basicdxmodel->mats[0]);
 		WriteCall((void*)0x54DFCC, ChandelierFix);
 		WriteCall((void*)0x54E13C, ChandLightFix);
-		ResizeTextureList((NJS_TEXLIST*)0x117C76C, textures_chaos2);
 		((NJS_OBJECT*)0x117EB1C)->basicdxmodel->mats[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
 		WriteCall((void*)0x0054AC30, FixChaos2Columns);
 		WriteCall((void*)0x54D991, Chaos2Ball); //Ball bouncing

@@ -656,10 +656,6 @@ void FinalEgg_Init()
 		WriteJump(OStandLight_Main, OStandLight_Main_F);
 		WriteJump(OStandLight_Display, OStandLight_Display_F); //O Stand Light function
 		WriteJump((void*)0x005B4690, OTatekan_Display); //Cylinder function
-		ResizeTextureList((NJS_TEXLIST*)0x1B98518, textures_finalegg1);
-		ResizeTextureList((NJS_TEXLIST*)0x1A60488, textures_finalegg2);
-		ResizeTextureList((NJS_TEXLIST*)0x1AC5780, textures_finalegg3);
-		ResizeTextureList(&OBJ_FINALEGG_TEXLIST, 169);
 		for (int i = 0; i < 3; i++)
 		{
 			FinalEgg1Fog[i].Color = 0xFF000000;

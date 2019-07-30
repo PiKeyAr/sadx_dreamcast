@@ -340,10 +340,6 @@ void LostWorld_Init()
 		//Fog and other stuff
 		WriteData<1>((char*)0x005E315D, 0i8); //Prevent the mirror room from disabling character lighting
 		WriteData((float*)0x814CB4, -25.0f); //LW2 fog stuff
-		ResizeTextureList((NJS_TEXLIST*)0x1F6F02C, textures_lw1);
-		ResizeTextureList((NJS_TEXLIST*)0x1E9B9AC, textures_lw2);
-		ResizeTextureList((NJS_TEXLIST*)0x1E79D80, textures_lw3);
-		ResizeTextureList(&OBJ_RUIN_TEXLIST, 127);
 		for (int i = 0; i < 3; i++)
 		{
 			LostWorld1Fog[i].Color = 0xFFFFFFFF;

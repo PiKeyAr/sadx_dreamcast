@@ -49,7 +49,6 @@ void EggWalker_Init()
 		ReplacePVM("EGM2_MISSILE");
 		ReplacePVM("EGM2_SKY");
 		ReplacePVM("EGM2_TIKEI");
-		ResizeTextureList((NJS_TEXLIST*)0x15E99F8, textures_eggwalker);
 		RemoveVertexColors_Object((NJS_OBJECT*)0x162DAC0); //Egg Walker body
 		RemoveVertexColors_Object((NJS_OBJECT*)0x162F554); //Egg Walker cockpit
 		RemoveVertexColors_Object((NJS_OBJECT*)0x1654F28); //Egg Walker Eggman

@@ -948,11 +948,6 @@ void Casinopolis_Init()
 		ReplacePVM("OBJ_CASINO9");
 		ReplacePVM("OBJ_CASINO_E");
 		ReplaceBIN("PL_90B", "PL_90X");
-		ResizeTextureList((NJS_TEXLIST*)0x1D1B050, textures_casino1);
-		ResizeTextureList((NJS_TEXLIST*)0x1CBD1C4, textures_casino2);
-		ResizeTextureList((NJS_TEXLIST*)0x1C8AF04, textures_casino3);
-		ResizeTextureList((NJS_TEXLIST*)0x1C47004, textures_casino4);
-		ResizeTextureList(&OBJ_CASINO9_TEXLIST, 203);
 		//Code fixes
 		TikeiAnim_WaterAroundShip = LoadModel("system\\data\\STG09\\Models\\00066F28.sa1mdl", false);
 		AddTextureAnimation_Permanent(9, 0, &TikeiAnim_WaterAroundShip->basicdxmodel->mats[0], true, 3, 75, 68, 69, 70, 71, 72, 73, 74, 67, 76, 77, 78, 79, 80, -1, -1);

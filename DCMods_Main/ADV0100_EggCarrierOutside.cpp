@@ -434,7 +434,6 @@ void ADV01_Init()
 		ReplacePVM("EV_ECCLOUD");
 		ReplacePVM("EC_SEA");
 		ReplacePVM("OBJ_EC00");
-		ResizeTextureList(&OBJ_EC00_TEXLIST, 206);
 		ADV01_TEXLISTS[0] = &texlist_ec00;
 		ADV01_TEXLISTS[1] = &texlist_ec01;
 		ADV01_TEXLISTS[2] = &texlist_ec02;
