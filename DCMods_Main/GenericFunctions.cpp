@@ -1,6 +1,14 @@
 #include "stdafx.h"
 #include "GenericData.h"
 
+Sint32 DeadPoly[] = { 0 };
+
+void HideMesh(NJS_MESHSET_SADX *meshset)
+{
+	meshset->meshes = (Sint16*)&DeadPoly;
+	meshset->nbMesh = 1;
+}
+
 void CheckAndUnloadLevelFiles()
 {
 	UnloadGUITextures();

@@ -229,21 +229,21 @@ void PerfectChaos_Init()
 		TornadoAttack2 = LoadModel("system\\data\\B_CHAOS7\\Models\\000E16E8.sa1mdl", false); //Tornado attack
 		TornadoAttack3 = LoadModel("system\\data\\B_CHAOS7\\Models\\000E16E8.sa1mdl", false); //Tornado attack
 		//1 is just the middle layer
-		TornadoAttack1->basicdxmodel->meshsets[0].nbMesh = 0;
-		TornadoAttack1->child->basicdxmodel->meshsets[0].nbMesh = 0;
-		TornadoAttack1->child->basicdxmodel->meshsets[1].nbMesh = 0;
-		TornadoAttack1->child->sibling->sibling->basicdxmodel->meshsets[0].nbMesh = 0;
+		HideMesh(&TornadoAttack1->basicdxmodel->meshsets[0]);
+		HideMesh(&TornadoAttack1->child->basicdxmodel->meshsets[0]);
+		HideMesh(&TornadoAttack1->child->basicdxmodel->meshsets[1]);
+		HideMesh(&TornadoAttack1->child->sibling->sibling->basicdxmodel->meshsets[0]);
 		//2 is just the top layer
-		TornadoAttack2->basicdxmodel->meshsets[0].nbMesh = 0;
-		TornadoAttack2->child->sibling->basicdxmodel->meshsets[0].nbMesh = 0;
-		TornadoAttack2->child->sibling->basicdxmodel->meshsets[1].nbMesh = 0;
-		TornadoAttack2->child->sibling->sibling->basicdxmodel->meshsets[0].nbMesh = 0;
+		HideMesh(&TornadoAttack2->basicdxmodel->meshsets[0]);
+		HideMesh(&TornadoAttack2->child->sibling->basicdxmodel->meshsets[0]);
+		HideMesh(&TornadoAttack2->child->sibling->basicdxmodel->meshsets[1]);
+		HideMesh(&TornadoAttack2->child->sibling->sibling->basicdxmodel->meshsets[0]);
 		//3 is just the front layer
-		TornadoAttack3->basicdxmodel->meshsets[0].nbMesh = 0;
-		TornadoAttack3->child->basicdxmodel->meshsets[0].nbMesh = 0;
-		TornadoAttack3->child->basicdxmodel->meshsets[1].nbMesh = 0;
-		TornadoAttack3->child->sibling->basicdxmodel->meshsets[0].nbMesh = 0;
-		TornadoAttack3->child->sibling->basicdxmodel->meshsets[1].nbMesh = 0;
+		HideMesh(&TornadoAttack3->basicdxmodel->meshsets[0]);
+		HideMesh(&TornadoAttack3->child->basicdxmodel->meshsets[0]);
+		HideMesh(&TornadoAttack3->child->basicdxmodel->meshsets[1]);
+		HideMesh(&TornadoAttack3->child->sibling->basicdxmodel->meshsets[0]);
+		HideMesh(&TornadoAttack3->child->sibling->basicdxmodel->meshsets[1]);
 		//Perfect Chaos breath fix
 		WriteData((float*)0x566A03, 1.0f);
 		WriteCall((void*)0x5660BE, PerfectChaosBreathFix2);

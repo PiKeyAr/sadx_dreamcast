@@ -497,4 +497,5 @@ void ForceLevelSpecular_Object(NJS_OBJECT *obj);
 void ForceObjectSpecular_Object(NJS_OBJECT *obj);
 void AddBossMaterials_Object(NJS_OBJECT *obj);
 void SwapMeshsets(NJS_OBJECT* object, int mesh1, int mesh2);
+void HideMesh(NJS_MESHSET_SADX *meshset);
 void ForceLightType_Object(NJS_OBJECT* obj, int light_type, bool unregister);

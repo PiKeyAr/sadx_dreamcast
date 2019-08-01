@@ -205,9 +205,9 @@ void RedMountain_Init()
 		*(NJS_MODEL_SADX*)0x2466818 = *LoadModel("system\\data\\STG05\\Models\\0017DF54.sa1mdl", false)->basicdxmodel; //Bridge piece
 		*(NJS_MODEL_SADX*)0x2466568 = *LoadModel("system\\data\\STG05\\Models\\0017DCBC.sa1mdl", false)->basicdxmodel; //Bridge piece 2
 		*(NJS_MODEL_SADX*)0x24390BC = *LoadModel("system\\data\\STG05\\Models\\00151AB4.sa1mdl", false)->basicdxmodel; //Light thing
-		((NJS_MODEL_SADX*)0x24390BC)->meshsets[0].nbMesh = 0;
+		HideMesh(&((NJS_MODEL_SADX*)0x24390BC)->meshsets[0]);
 		PropellerGlass = LoadModel("system\\data\\STG05\\Models\\00151AB4.sa1mdl", false)->basicdxmodel;
-		PropellerGlass->meshsets[1].nbMesh = 0;
+		HideMesh(&PropellerGlass->meshsets[1]);
 		*(NJS_MODEL_SADX*)0x24394CC = *LoadModel("system\\data\\STG05\\Models\\00151600.sa1mdl", false)->basicdxmodel; //Light thing propeller 1
 		*(NJS_MODEL_SADX*)0x24392C4 = *LoadModel("system\\data\\STG05\\Models\\001513F0.sa1mdl", false)->basicdxmodel; //Light thing propeller 2
 		WriteCall((void*)0x60C987, FixPropellerThing);

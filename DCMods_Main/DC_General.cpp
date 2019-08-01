@@ -1546,7 +1546,7 @@ void General_Init()
 		WriteCall((void*)0x4A1E55, SpindashChargeSpriteHook);
 		//Replace hint monitor model
 		HintMonitorModel = LoadModel("system\\data\\1st_read\\Models\\001AD358.sa1mdl", false);
-		HintMonitorModel->basicdxmodel->meshsets[10].nbMesh = 0; //Hide screen (rendered separately in DX)
+		HideMesh(&HintMonitorModel->basicdxmodel->meshsets[10]); //Hide screen (rendered separately in DX)
 		WriteCall((void*)0x7A9509, RenderHintMonitor_Main);
 		WriteCall((void*)0x7A957F, SetHintMonitorTransparency);
 		//Fix frogs lol

@@ -450,13 +450,13 @@ void SpeedHighway_Init()
 		*(NJS_OBJECT*)0x026919C0 = *LoadModel("system\\data\\STG04\\Models\\0015D440.sa1mdl", false); //Antenna model
 		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x026919C0)->basicdxmodel->mats[4]);
 		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x026919C0)->basicdxmodel->mats[5]);
-		((NJS_OBJECT*)0x026919C0)->basicdxmodel->meshsets[3].nbMesh = 0; //Hide DA_ONE thing
+		HideMesh(&((NJS_OBJECT*)0x026919C0)->basicdxmodel->meshsets[3]); //Hide DA_ONE thing
 		Antenna = LoadModel("system\\data\\STG04\\Models\\0015D440.sa1mdl", false); //Antenna model
-		Antenna->basicdxmodel->meshsets[0].nbMesh = 0; //Hide all but the DA_ONE thing
-		Antenna->basicdxmodel->meshsets[1].nbMesh = 0; //Hide all but the DA_ONE thing
-		Antenna->basicdxmodel->meshsets[2].nbMesh = 0; //Hide all but the DA_ONE thing
-		Antenna->basicdxmodel->meshsets[4].nbMesh = 0; //Hide all but the DA_ONE thing
-		Antenna->basicdxmodel->meshsets[5].nbMesh = 0; //Hide all but the DA_ONE thing
+		HideMesh(&Antenna->basicdxmodel->meshsets[0]); //Hide all but the DA_ONE thing
+		HideMesh(&Antenna->basicdxmodel->meshsets[1]); //Hide all but the DA_ONE thing
+		HideMesh(&Antenna->basicdxmodel->meshsets[2]); //Hide all but the DA_ONE thing
+		HideMesh(&Antenna->basicdxmodel->meshsets[4]); //Hide all but the DA_ONE thing
+		HideMesh(&Antenna->basicdxmodel->meshsets[5]); //Hide all but the DA_ONE thing
 		WriteCall((void*)0x00615D60, AntennaModel);
 		WriteData<1>((char*)0x004B19E2, 0x08); //Cop speeder effect blending
 		WriteCall((void*)0x4B1C6F, SetCopSpeederEffectAlpha);
@@ -524,39 +524,39 @@ void SpeedHighway_Init()
 		((NJS_MATERIAL*)0x0268131C)->attrflags &= ~NJD_FLAG_IGNORE_SPECULAR;
 		((NJS_MATERIAL*)0x02681330)->attrflags &= ~NJD_FLAG_IGNORE_SPECULAR;
 		ConeBase = LoadModel("system\\data\\STG04\\Models\\001554A8.sa1mdl", false); //Cone
-		ConeBase->basicdxmodel->meshsets[0].nbMesh = 0;
+		HideMesh(&ConeBase->basicdxmodel->meshsets[0]);
 		AddWhiteDiffuseMaterial(&ConeBase->basicdxmodel->mats[1]);
 		ConeTop = LoadModel("system\\data\\STG04\\Models\\001554A8.sa1mdl", false); //Cone
-		ConeTop->basicdxmodel->meshsets[1].nbMesh = 0;
+		HideMesh(&ConeTop->basicdxmodel->meshsets[1]);
 		WriteCall((void*)0x6165E5, ConeModel);
 		WriteCall((void*)0x616733, ConeSprite);
 		*(NJS_OBJECT*)0x0267497C = *LoadModel("system\\data\\STG04\\Models\\001434F4.sa1mdl", false); //Platform
 		*(NJS_OBJECT*)0x02687284 = *LoadModel("system\\data\\STG04\\Models\\00154480.sa1mdl", true); //Small plant in Act 3
 		FlySt1 = LoadModel("system\\data\\STG04\\Models\\00142D48.sa1mdl", false); //Platform2
-		FlySt1->basicdxmodel->meshsets[6].nbMesh = 0;
+		HideMesh(&FlySt1->basicdxmodel->meshsets[6]);
 		AddAlphaRejectMaterial(&FlySt1->child->basicdxmodel->mats[0]);
 		AddAlphaRejectMaterial(&FlySt1->child->sibling->basicdxmodel->mats[0]);
 		AddAlphaRejectMaterial(&FlySt1->child->sibling->sibling->basicdxmodel->mats[0]);
 		AddAlphaRejectMaterial(&FlySt1->child->sibling->sibling->sibling->basicdxmodel->mats[0]);
 		FlySt2 = LoadModel("system\\data\\STG04\\Models\\00142D48.sa1mdl", false); //Platform2
-		FlySt2->basicdxmodel->meshsets[0].nbMesh = 0;
-		FlySt2->basicdxmodel->meshsets[1].nbMesh = 0;
-		FlySt2->basicdxmodel->meshsets[2].nbMesh = 0;
-		FlySt2->basicdxmodel->meshsets[3].nbMesh = 0;
-		FlySt2->basicdxmodel->meshsets[4].nbMesh = 0;
-		FlySt2->basicdxmodel->meshsets[5].nbMesh = 0;
+		HideMesh(&FlySt2->basicdxmodel->meshsets[0]);
+		HideMesh(&FlySt2->basicdxmodel->meshsets[1]);
+		HideMesh(&FlySt2->basicdxmodel->meshsets[2]);
+		HideMesh(&FlySt2->basicdxmodel->meshsets[3]);
+		HideMesh(&FlySt2->basicdxmodel->meshsets[4]);
+		HideMesh(&FlySt2->basicdxmodel->meshsets[5]);
 		((NJS_ACTION*)0x02674424)->object = FlySt1;
 		WriteCall((void*)0x617FCA, FlyStFix);
 		*(NJS_OBJECT*)0x02679ECC = *LoadModel("system\\data\\STG04\\Models\\00148880.sa1mdl", false); //Platform (Tails)
 		*(NJS_OBJECT*)0x026A0008 = *LoadModel("system\\data\\STG04\\Models\\0016B6FC.sa1mdl", false); //Missile (Tails)
-		((NJS_OBJECT*)0x026A0008)->basicdxmodel->meshsets[6].nbMesh = 0; //Hide Eggman logo
+		HideMesh(&((NJS_OBJECT*)0x026A0008)->basicdxmodel->meshsets[6]); //Hide Eggman logo
 		MissileLogo = LoadModel("system\\data\\STG04\\Models\\0016B6FC.sa1mdl", false);
-		MissileLogo->basicdxmodel->meshsets[0].nbMesh = 0;
-		MissileLogo->basicdxmodel->meshsets[1].nbMesh = 0;
-		MissileLogo->basicdxmodel->meshsets[2].nbMesh = 0;
-		MissileLogo->basicdxmodel->meshsets[3].nbMesh = 0;
-		MissileLogo->basicdxmodel->meshsets[4].nbMesh = 0;
-		MissileLogo->basicdxmodel->meshsets[5].nbMesh = 0;
+		HideMesh(&MissileLogo->basicdxmodel->meshsets[0]);
+		HideMesh(&MissileLogo->basicdxmodel->meshsets[1]);
+		HideMesh(&MissileLogo->basicdxmodel->meshsets[2]);
+		HideMesh(&MissileLogo->basicdxmodel->meshsets[3]);
+		HideMesh(&MissileLogo->basicdxmodel->meshsets[4]);
+		HideMesh(&MissileLogo->basicdxmodel->meshsets[5]);
 		AddAlphaRejectMaterial(&MissileLogo->basicdxmodel->mats[6]);
 		WriteCall((void*)0x613FD6, MissileFix);
 		*(NJS_OBJECT*)0x0267225C = *LoadModel("system\\data\\STG04\\Models\\00140EA4.sa1mdl", false); //OCrane

@@ -333,11 +333,11 @@ void ADV01C_Init()
 		//Tarai fix
 		TaraiButton_Transparent = LoadModel("system\\data\\ADV0130\\Models\\000D16F4.sa1mdl", false);
 		TaraiButton_OpaqueOnly = LoadModel("system\\data\\ADV0130\\Models\\000D16F4.sa1mdl", false);
-		TaraiButton_OpaqueOnly->basicdxmodel->meshsets[0].nbMesh = 0;
+		HideMesh(&TaraiButton_OpaqueOnly->basicdxmodel->meshsets[0]);
 		AddWhiteDiffuseMaterial(&TaraiButton_OpaqueOnly->basicdxmodel->mats[1]);
 		AddWhiteDiffuseMaterial(&TaraiButton_OpaqueOnly->basicdxmodel->mats[2]);
-		TaraiButton_Transparent->basicdxmodel->meshsets[1].nbMesh = 0;
-		TaraiButton_Transparent->basicdxmodel->meshsets[2].nbMesh = 0;
+		HideMesh(&TaraiButton_Transparent->basicdxmodel->meshsets[1]);
+		HideMesh(&TaraiButton_Transparent->basicdxmodel->meshsets[2]);
 		WriteJump((void*)0x52BA70, OTarai_Child_Display);
 		ADV01C_OBJECTS[7] = TaraiButton_Transparent; //Tarai button
 		ADV01C_MODELS[28] = TaraiButton_Transparent->basicdxmodel;

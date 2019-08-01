@@ -518,20 +518,20 @@ void ADV03_Init()
 		//Palm fixes
 		ADV03_ACTIONS[10]->object = LoadModel("system\\data\\ADV03\\Models\\00012DA8.sa1mdl", false); //Palm in Act 3
 		ADV03_ACTIONS[10]->object->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_USE_ALPHA; //Hide DA_ONE stuff
-		ADV03_ACTIONS[10]->object->basicdxmodel->meshsets[0].nbMesh = 0; //Hide DA_ONE stuff
+		HideMesh(&ADV03_ACTIONS[10]->object->basicdxmodel->meshsets[0]); //Hide DA_ONE stuff
 		PalmBottom = LoadModel("system\\data\\ADV03\\Models\\00012DA8.sa1mdl", false);
-		PalmBottom->basicdxmodel->meshsets[1].nbMesh = 0;
-		PalmBottom->basicdxmodel->meshsets[2].nbMesh = 0;
+		HideMesh(&PalmBottom->basicdxmodel->meshsets[1]);
+		HideMesh(&PalmBottom->basicdxmodel->meshsets[2]);
 		PalmBottom->evalflags |= NJD_EVAL_BREAK;
 		PalmBottom->child = NULL;
 		ADV03_OBJECTS[9] = LoadModel("system\\data\\ADV03\\Models\\0001503C.sa1mdl", false); //Palm in Act 2
 		ADV03_OBJECTS[9]->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_USE_ALPHA; //Hide DA_ONE stuff
-		ADV03_OBJECTS[9]->basicdxmodel->meshsets[0].nbMesh = 0; //Hide DA_ONE stuff
+		HideMesh(&ADV03_OBJECTS[9]->basicdxmodel->meshsets[0]); //Hide DA_ONE stuff
 		PalmBottom2 = LoadModel("system\\data\\ADV03\\Models\\0001503C.sa1mdl", false);
-		PalmBottom2->basicdxmodel->meshsets[1].nbMesh = 0;
-		PalmBottom2->basicdxmodel->meshsets[2].nbMesh = 0;
-		PalmBottom2->basicdxmodel->meshsets[3].nbMesh = 0;
-		PalmBottom2->basicdxmodel->meshsets[4].nbMesh = 0;
+		HideMesh(&PalmBottom2->basicdxmodel->meshsets[1]);
+		HideMesh(&PalmBottom2->basicdxmodel->meshsets[2]);
+		HideMesh(&PalmBottom2->basicdxmodel->meshsets[3]);
+		HideMesh(&PalmBottom2->basicdxmodel->meshsets[4]);
 		WriteCall((void*)0x545C1A, RenderPalm1);
 		WriteCall((void*)0x545BFD, RenderPalm2);
 		AddWhiteDiffuseMaterial(&ADV03_OBJECTS[12]->basicdxmodel->mats[1]); //OTree 0 second model

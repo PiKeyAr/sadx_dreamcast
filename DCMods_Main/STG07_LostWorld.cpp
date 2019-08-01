@@ -260,16 +260,16 @@ void LostWorld_Init()
 		AokiSwitchModel_Child1 = LoadModel("system\\data\\STG07\\Models\\00151E58.sa1mdl", false);
 		AokiSwitchModel_Child2 = LoadModel("system\\data\\STG07\\Models\\00151E58.sa1mdl", false);
 		AokiSwitchModel_Child3 = LoadModel("system\\data\\STG07\\Models\\00151E58.sa1mdl", false);
-		AokiSwitchModel_Child1->basicdxmodel->meshsets[3].nbMesh = 0;
-		AokiSwitchModel_Child1->basicdxmodel->meshsets[4].nbMesh = 0;
-		AokiSwitchModel_Child2->basicdxmodel->meshsets[0].nbMesh = 0;
-		AokiSwitchModel_Child2->basicdxmodel->meshsets[1].nbMesh = 0;
-		AokiSwitchModel_Child2->basicdxmodel->meshsets[2].nbMesh = 0;
-		AokiSwitchModel_Child2->basicdxmodel->meshsets[3].nbMesh = 0;
-		AokiSwitchModel_Child3->basicdxmodel->meshsets[0].nbMesh = 0;
-		AokiSwitchModel_Child3->basicdxmodel->meshsets[1].nbMesh = 0;
-		AokiSwitchModel_Child3->basicdxmodel->meshsets[2].nbMesh = 0;
-		AokiSwitchModel_Child3->basicdxmodel->meshsets[4].nbMesh = 0;
+		HideMesh(&AokiSwitchModel_Child1->basicdxmodel->meshsets[3]);
+		HideMesh(&AokiSwitchModel_Child1->basicdxmodel->meshsets[4]);
+		HideMesh(&AokiSwitchModel_Child2->basicdxmodel->meshsets[0]);
+		HideMesh(&AokiSwitchModel_Child2->basicdxmodel->meshsets[1]);
+		HideMesh(&AokiSwitchModel_Child2->basicdxmodel->meshsets[2]);
+		HideMesh(&AokiSwitchModel_Child2->basicdxmodel->meshsets[3]);
+		HideMesh(&AokiSwitchModel_Child3->basicdxmodel->meshsets[0]);
+		HideMesh(&AokiSwitchModel_Child3->basicdxmodel->meshsets[1]);
+		HideMesh(&AokiSwitchModel_Child3->basicdxmodel->meshsets[2]);
+		HideMesh(&AokiSwitchModel_Child3->basicdxmodel->meshsets[4]);
 		//Models
 		RemoveVertexColors_Object((NJS_OBJECT*)0x10AD204); //OTaki
 		*(NJS_MODEL_SADX*)0x2027290 = *LoadModel("system\\data\\STG07\\Models\\0014A190.sa1mdl", false)->basicdxmodel; //RndBox

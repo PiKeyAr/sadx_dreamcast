@@ -561,14 +561,14 @@ void FinalEgg_Init()
 		AddAlphaRejectMaterial(&((NJS_MODEL_SADX*)0x19FBDAC)->mats[0]); //OPurs_Camera
 		WriteCall((void*)0x5B2636, RenderOLight2WithDepth);
 		*(NJS_OBJECT*)0x1A478CC = *LoadModel("system\\data\\STG10\\Models\\001EFCC8.sa1mdl", false); //OLight2
-		((NJS_OBJECT*)0x1A478CC)->basicdxmodel->meshsets[3].nbMesh = 0; //Hide light
+		HideMesh(&((NJS_OBJECT*)0x1A478CC)->basicdxmodel->meshsets[3]); //Hide light
 		((NJS_OBJECT*)0x1A478CC)->basicdxmodel->mats[5].attrflags &= ~NJD_FLAG_USE_ALPHA;
 		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x1A478CC)->basicdxmodel->mats[5]);
 		OLight2_Light = LoadModel("system\\data\\STG10\\Models\\001EFCC8.sa1mdl", false);
-		OLight2_Light->basicdxmodel->meshsets[0].nbMesh = 0;
-		OLight2_Light->basicdxmodel->meshsets[1].nbMesh = 0;
-		OLight2_Light->basicdxmodel->meshsets[2].nbMesh = 0;
-		OLight2_Light->basicdxmodel->meshsets[4].nbMesh = 0;
+		HideMesh(&OLight2_Light->basicdxmodel->meshsets[0]);
+		HideMesh(&OLight2_Light->basicdxmodel->meshsets[1]);
+		HideMesh(&OLight2_Light->basicdxmodel->meshsets[2]);
+		HideMesh(&OLight2_Light->basicdxmodel->meshsets[4]);
 		AddAlphaRejectMaterial(&((NJS_OBJECT*)0x19FDD58)->basicdxmodel->mats[0]); //OLight_Camera
 		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x19FDC4C)->basicdxmodel->mats[1]);
 		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x19FDC4C)->basicdxmodel->mats[2]);
@@ -633,13 +633,13 @@ void FinalEgg_Init()
 		*(NJS_OBJECT*)0x19FBC64 = *LoadModel("system\\data\\STG10\\Models\\001ABB5C.sa1mdl", false); //OHammer 1
 		*(NJS_MODEL_SADX*)0x19FA5DC = *LoadModel("system\\data\\STG10\\Models\\001AA9F0.sa1mdl", false)->basicdxmodel; //OHammer 2
 		*(NJS_OBJECT*)0x1C28C78 = *LoadModel("system\\data\\STG10\\Models\\0021BC74.sa1mdl", false); //OStandLight
-		((NJS_OBJECT*)0x1C28C78)->child->basicdxmodel->meshsets[4].nbMesh = 0; //Hide beam
+		HideMesh(&((NJS_OBJECT*)0x1C28C78)->child->basicdxmodel->meshsets[4]); //Hide beam
 		OStandLight_Light = LoadModel("system\\data\\STG10\\Models\\0021BC74.sa1mdl", false);
 		OStandLight_Light->evalflags |= NJD_EVAL_HIDE;
-		OStandLight_Light->child->basicdxmodel->meshsets[0].nbMesh = 0;
-		OStandLight_Light->child->basicdxmodel->meshsets[1].nbMesh = 0;
-		OStandLight_Light->child->basicdxmodel->meshsets[2].nbMesh = 0;
-		OStandLight_Light->child->basicdxmodel->meshsets[3].nbMesh = 0;
+		HideMesh(&OStandLight_Light->child->basicdxmodel->meshsets[0]);
+		HideMesh(&OStandLight_Light->child->basicdxmodel->meshsets[1]);
+		HideMesh(&OStandLight_Light->child->basicdxmodel->meshsets[2]);
+		HideMesh(&OStandLight_Light->child->basicdxmodel->meshsets[3]);
 		OStandLight_Light->child->basicdxmodel->mats[4].attrflags &= ~NJD_DA_SRC; //No idea why it has that in the original model
 		OStandLight_Light->child->basicdxmodel->mats[4].attrflags |= NJD_DA_ONE;
 		memcpy((void*)0x019CDCD0, uv_0018AD48, sizeof(uv_0018AD48)); //Conveyour belt UVs
