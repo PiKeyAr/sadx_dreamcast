@@ -42,6 +42,7 @@ DataArray(int, dword_7ECA44, 0x7ECA44, 2);
 DataArray(char, byte_7ECA20, 0x7ECA20, 4);
 DataPointer(CreditsList, MainCredits, 0x2BC2FD0);
 DataPointer(ObjectMaster*, CurrentMenuObjectMaster_Maybe, 0x3C5E8D0);
+DataPointer(byte, NumberOfSaves_Current, 0x03B290E0);
 DataArray(NJS_TEXANIM, PauseMenu_TEXANIMs, 0x009177B8, 15);
 
 //GUI texture arrays
@@ -2920,6 +2921,8 @@ void Branding_Init(const IniFile *config, const HelperFunctions &helperFunctions
 
 void Branding_OnFrame()
 {
+	//Update the save file count for the options/file select transition
+	if (NumberOfSaves_Current != 0) NumberOfSaves = NumberOfSaves_Current;
 	whiteoverlaydrawn = false;
 	//This game is a hardcoded piece of shit
 	if (DLLLoaded_HDGUI  == false)
