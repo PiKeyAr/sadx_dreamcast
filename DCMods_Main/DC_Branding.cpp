@@ -115,6 +115,7 @@ static float LogoScaleY = 1.0f;
 static float LogoScaleXT = 1.0f;
 static float LogoScaleYT = 1.0f;
 static Uint32 FileSelectVtxColor = 0xFFFFFFFF;
+static int NumberOfSaves = 0;
 
 //Options
 static float Options_ArrowScale = 0.0f;
@@ -947,11 +948,11 @@ void DrawFileSelectMockup(float depth_orig, bool use_scaling, int VertexColor)
 	ypos = 165.0f;
 	DrawFuckingButton(0xFF12B4FF, ScreenDeltaX + xpos * BaseScaleX, ScreenDeltaY + ypos * BaseScaleY, depth_orig-6.0f, BaseScaleX * scaleX, BaseScaleY * scaleY);
 	ypos = 225;
-	DrawFuckingButton(0xFF12B4FF, ScreenDeltaX + xpos * BaseScaleX, ScreenDeltaY + ypos * BaseScaleY, depth_orig-6.0f, BaseScaleX * scaleX, BaseScaleY * scaleY);
+	if (NumberOfSaves >= 1) DrawFuckingButton(0xFF12B4FF, ScreenDeltaX + xpos * BaseScaleX, ScreenDeltaY + ypos * BaseScaleY, depth_orig-6.0f, BaseScaleX * scaleX, BaseScaleY * scaleY);
 	ypos = 285;
-	DrawFuckingButton(0xFF12B4FF, ScreenDeltaX + xpos * BaseScaleX, ScreenDeltaY + ypos * BaseScaleY, depth_orig-6.0f, BaseScaleX * scaleX, BaseScaleY * scaleY);
+	if (NumberOfSaves >= 2) DrawFuckingButton(0xFF12B4FF, ScreenDeltaX + xpos * BaseScaleX, ScreenDeltaY + ypos * BaseScaleY, depth_orig-6.0f, BaseScaleX * scaleX, BaseScaleY * scaleY);
 	ypos = 345;
-	DrawFuckingButton(0xFF12B4FF, ScreenDeltaX + xpos * BaseScaleX, ScreenDeltaY + ypos * BaseScaleY, depth_orig-6.0f, BaseScaleX * scaleX, BaseScaleY * scaleY);
+	if (NumberOfSaves >= 3) DrawFuckingButton(0xFF12B4FF, ScreenDeltaX + xpos * BaseScaleX, ScreenDeltaY + ypos * BaseScaleY, depth_orig-6.0f, BaseScaleX * scaleX, BaseScaleY * scaleY);
 	//Right side
 	DoColorGradientThingMaybe(0x7812B4FFu, 0x7812B4FFu, 0x7812B4FFu, 0x7812B4FFu);
 	xpos = 268;
@@ -2794,6 +2795,7 @@ void Branding_Init(const IniFile *config, const HelperFunctions &helperFunctions
 	//Title screen stuff
 	if (DisableSA1TitleScreen == false)
 	{
+		NumberOfSaves = FindSaveFiles();
 		TitleBackOverlayColor.color = 0x99FFFFFF;
 		//Disable native PVMs
 		//AVA_GTITLE_0_E texlist is always 10 textures
