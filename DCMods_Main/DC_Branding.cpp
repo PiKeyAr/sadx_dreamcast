@@ -1,5 +1,8 @@
 #include "stdafx.h"
 
+//TODO: Find a better solution to the file select/options issue, 
+//TODO: Look into unloading some PVMs dynamically (e.g. after accessing the main menu file select PVMs don't need to load on the title screen etc.)
+
 struct TutorialScreenItem
 {
 	char TexID;
@@ -8,25 +11,46 @@ struct TutorialScreenItem
 	__int16 YOffset;
 };
 
-NJS_TEXNAME textures_cmnx[184];
-NJS_TEXLIST texlist_cmnx = { arrayptrandlength(textures_cmnx) };
-
-NJS_TEXNAME textures_cmns[8];
-NJS_TEXLIST texlist_cmns = { arrayptrandlength(textures_cmns) };
-
-NJS_TEXNAME textures_gtitle[10];
-NJS_TEXLIST texlist_gtitle = { arrayptrandlength(textures_gtitle) };
+struct TitleScreenData
+{
+	int f0;
+	void *field_4;
+	void *field_8;
+	float field_C;
+	char gap_10[4];
+	int field_14;
+	int field_18;
+	char gap_1c[8];
+	_DWORD dword24;
+	_DWORD dword28;
+	char f2C[4];
+	_DWORD dword30;
+	float float34;
+	char byte38;
+	char _padding[3];
+	char field_3C[36];
+};
 
 FunctionPointer(ObjectMaster*, sub_510390, (int a1), 0x510390);
 FunctionPointer(void, sub_505B40, (int a1), 0x505B40);
 FunctionPointer(void, sub_432EA0, (), 0x432EA0);
+FunctionPointer(int, CreateColorGradient, (int a1, int a2, float a3), 0x4319D0);
+FunctionPointer(int, sub_433190, (int a1, int a2, int a3, float a4), 0x433190);
+FunctionPointer(void, SetABCTextThingColor, (int a1, int a2, int a3, int a4), 0x420A70);
+DataArray(int, dword_7ECA74, 0x7ECA74, 2);
+DataArray(int, dword_7ECA44, 0x7ECA44, 2);
+DataArray(char, byte_7ECA20, 0x7ECA20, 4);
 DataPointer(CreditsList, MainCredits, 0x2BC2FD0);
+DataPointer(ObjectMaster*, CurrentMenuObjectMaster_Maybe, 0x3C5E8D0);
 DataArray(NJS_TEXANIM, PauseMenu_TEXANIMs, 0x009177B8, 15);
+
+//GUI texture arrays
 DataArray(PVMEntry, GUITextures_Japanese, 0x007EECF0, 30);
 DataArray(PVMEntry, GUITextures_English, 0x007EEDE0, 30);
 DataArray(PVMEntry, GUITextures_French, 0x007EEED0, 30);
 DataArray(PVMEntry, GUITextures_Spanish, 0x007EEFC0, 30);
 DataArray(PVMEntry, GUITextures_German, 0x007EF0B0, 30);
+DataArray(int*, GUIPVMIndices, 0x10D7CC4, 14);
 
 //Tutorial screen items
 DataArray(TutorialScreenItem, TutorialScreenLayout_Sonic_Page1_E, 0x02BC3ACE, 6);
@@ -48,6 +72,7 @@ DataArray(TutorialScreenItem, TutorialScreenLayout_BigPage5_E, 0x2BC4F46, 6);
 DataArray(TutorialScreenItem, TutorialScreenLayout_Gamma_Page1_E, 0x2BC4A7E, 2);
 DataArray(TutorialScreenItem, TutorialScreenLayout_Gamma_Page1_J, 0x2BC4A6E, 2);
 
+//Variables
 NJS_TEXANIM PauseBar_Top = { 0x10, 0x10, 0, 0, 0, 0, 0, 0, 8, 0x20 };
 NJS_TEXANIM PauseBar_Bottom = { 0x10, 0x10, 0, 0, 0, 255, 0, 255, 8, 0x20 };
 
@@ -60,6 +85,12 @@ static float HorizontalResolution_float = 640.0f;
 static float VerticalResolution_float = 640.0f;
 static float f480_Fixed = 0;
 static float f640_Fixed = 0;
+
+//PVM IDs for menus
+int TitleScreenIndices[] = { 17, 18, 0, 1, 10, 13, 7, 30 }; //0, 1, 10, 13, 7 from the file select screen
+int MainMenuIndices[] = { 19, 20, 1, 10, 17, 18, 30 }; //17 and 18 from the title screen
+int FileSelectIndices[] = { 0, 1, 10, 4, 5, 6, 22, 3, 15, 13, 7, 8, 11, 24, 17, 18, 30 }; //17 and 18 from the title screen
+
 //Title screen
 NJS_COLOR TitleBackOverlayColor;
 static NJS_COLOR TitleBGTransparency;
@@ -73,17 +104,22 @@ static int logodrawn = -1;
 static int startframe = 0;
 static int startdrawn = -1;
 static int transitionmode = 0;
+static int PreviousMenuIndex = 0;
+static int CurrentMenuIndex = 0;
 static bool whiteoverlaydrawn = false;
-static bool titlebackloaded = false;
-static bool disablevtxcolor = false;
-static bool disableavaback = false; 
+static bool MainMenuAccessed = false;
+static bool EnableFileSelectScreenFade = false;
+static bool TitleScreenFadedIntoBlack = false; 
 static float LogoScaleX = 1.0f;
 static float LogoScaleY = 1.0f;
 static float LogoScaleXT = 1.0f;
 static float LogoScaleYT = 1.0f;
+static Uint32 FileSelectVtxColor = 0xFFFFFFFF;
+
 //Options
 static float Options_ArrowScale = 0.0f;
 static float Options_ArrowScaleAmount = 0.1f;
+
 //Crap textures
 static int PSInt = 0;
 static float PSsX = 0;
@@ -93,6 +129,7 @@ static int BSInt = 0;
 static float BSsX = 0;
 static float BSsY = 0;
 static float BSsZ = 0;
+
 //Ini stuff
 static bool RipplesOn = true;
 static bool EnableTransition = true;
@@ -101,6 +138,7 @@ static bool DrawOverlay = true;
 static bool RemoveCream = true;
 static bool HUDTweak = true;
 static int SA1LogoMode = 0;
+
 //Tutorial stuff
 float PadManuXOffset_F = 175.0f;
 float PadManuXOffset_General = 220.0f;
@@ -108,10 +146,12 @@ float PadManuXOffset_J = 200.0f;
 float PadManuYOffset = 136.0f;
 float PadManuYOffset2 = 105.0f;
 float PadManuYMultiplier = 1.0f;
+
 //PVM accuracy stuff
 float sphe_cursol_scale = 1.0f;
 float wins_scaleXmultiplier = 3.96900012f;
 float wins_scaleYmultiplier = 1.0f;
+
 //HUD
 static float HUDYOffset1 = 80.0f;
 static float HUDYOffset2 = 0.0f;
@@ -568,35 +608,45 @@ CreditsEntry SA1Credits[] = {
 { 7, -1, 0, 0, "SEGA ENTERPRISES,LTD." }
 };
 
+void GreenRect_Wrapper(float x, float y, float z, float width, float height)
+{
+	njTextureShadingMode(1);
+	GreenMenuRect_Draw(x, y, z, width, height);
+	njTextureShadingMode(2);
+}
+
 void DelayTransitionHook(int a1)
 {
-	disableavaback = true;
+	//Fade into black
+	TitleScreenFadedIntoBlack = true;
 	transitionmode = 1;
 	sub_505B40(a1);
 }
 
 int __cdecl PlayStartSound_EnableTransition()
 {
-	disableavaback = false;
+	//Crossfade
+	TitleScreenFadedIntoBlack = false;
+	EnableFileSelectScreenFade = false;
 	transitionmode = 1;
-	disablevtxcolor = true;
 	PlaySound(2, 0, 0, 0);
 	return 0;
 }
 
 int __cdecl PlayReturnSound_EnableTransition()
 {
+	//Crossfade back
 	PlaySound(3, 0, 0, 0);
 	transitionmode = 3;
-	disablevtxcolor = true;
+	EnableFileSelectScreenFade = false;
 	SonicTeamAlpha = 0;
 	return 0;
 }
 
 void __cdecl DrawAVA_TITLE_BACK_E_DC(float depth)
 {
-	titlebackloaded = true;
-	disablevtxcolor = true;
+	MainMenuAccessed = true;
+	EnableFileSelectScreenFade = true;
 	float xpos = 0;
 	float ypos = 0;
 	float ydelta = 0;
@@ -625,9 +675,8 @@ void __cdecl DrawAVA_TITLE_BACK_E_DC(float depth)
 	float v16; // ST04_4@1
 	float z; // [sp+1Ch] [bp+4h]@1
 	njTextureShadingMode(1);
-	njSetTexture(&ava_title_e_TEXLIST);
 	SetVtxColorB(0xFFFFFFFF);
-	njSetTexture(&texlist_cmns);
+	njSetTexture(&ava_title_back_e_TEXLIST);
 	z = depth - 4.0f;
 	if (HorizontalStretch == 1.0f) is640 = true;
 	else is640 = false;
@@ -694,7 +743,7 @@ void __cdecl DrawAVA_TITLE_BACK_E_DC(float depth)
 	ypos = 0 - abs(ydelta) + 384.0f*scaleY2;
 	DrawBG(texturenumber + 7, xpos, ypos, z, scaleX, scaleY);
 	//Draw logo
-	njSetTexture(&texlist_gtitle);
+	njSetTexture(&ava_gtitle0_e_TEXLIST);
 	if (SA1LogoMode < 2)
 	{
 		if (!TextLanguage) xpos = ResolutionDeltaX + 64 * ResolutionScaleY; //Japanese
@@ -739,7 +788,7 @@ void __cdecl DrawAVA_TITLE_BACK_E_DC(float depth)
 	//Draw white overlay
 	if (!whiteoverlaydrawn)
 	{
-		njSetTexture(&texlist_cmns);
+		njSetTexture(&ava_title_back_e_TEXLIST);
 		SetVtxColorB(0x99FFFFFF);
 		xpos = -16.0f*ResolutionScaleX;
 		ypos = 0;
@@ -756,31 +805,252 @@ void BoxBackgroundColor()
 	SetMaterialAndSpriteColor_Float(0.8f, 1.0f, 1.0f, 1.0f);
 }
 
-void FreeGGMenuPVM_FuckThisGame()
+void __cdecl DrawFuckingFileSelectWindows(float pos_x, float pos_y, float pos_z, float width, float height, float scaleX, float scaleY)
 {
-	if (GGMENU_TEXLIST.textures->texaddr)
+	Uint32 v5; // esi
+	Uint32 v6; // edi
+	double v7; // st7
+	float v8; // ST50_4
+	float v9; // ST3C_4
+	int v10; // ebp
+	float v11; // ST3C_4
+	int a1; // ST64_4
+	float v13; // ST50_4
+	float y; // ST54_4
+	float centerY; // ST58_4
+	float v16; // ST54_4
+	float v17; // ST2C_4
+	float centerX; // ST38_4
+	float v19; // ST2C_4
+
+	njColorBlendingMode(0, NJD_COLOR_BLENDING_SRCALPHA);
+	njColorBlendingMode(NJD_DESTINATION_COLOR, NJD_COLOR_BLENDING_INVSRCALPHA);
+	ClampGlobalColorThing_Thing();
+	v5 = ScreenTextureVertices[0].col;
+	v6 = ScreenTextureVertices[1].col;
+	njSetTexture(&adv_window_TEXLIST);
+	SetVtxColorB(0xC0808080);
+	v7 = 1.0 / height;
+	v8 = v7;
+	v9 = v7 * 16.0;
+	v10 = sub_433190(0, v5, v6, v9);
+	v11 = (height - 16.0) * v8;
+	a1 = sub_433190(0, v5, v6, v11);
+	DoColorGradientThingMaybe(v5, v10, v5, v10);
+	DrawBG(0, pos_x, pos_y, pos_z, scaleX, scaleY);
+	v13 = pos_x + width;
+	DrawBG(0x82000000, v13, pos_y, pos_z, scaleX, scaleY);
+	DoColorGradientThingMaybe(a1, v6, a1, v6);
+	y = pos_y + height;
+	DrawBG(0x46000000, pos_x, y, pos_z, scaleX, scaleY);
+	DrawBG(0xC8000000, v13, y, pos_z, scaleX, scaleY);
+	DoColorGradientThingMaybe(v10, a1, v10, a1);
+	centerY = height - 32.0*scaleX;
+	v16 = pos_y + 16.0*scaleY;
+	DisplayScreenTextureCenter(1, pos_x, v16, pos_z, 16.0*scaleX, centerY);
+	v17 = v13 - 16.0*scaleX;
+	DisplayScreenTextureCenter(1, v17, v16, pos_z, 16.0*scaleX, centerY);
+	DoColorGradientThingMaybe(v5, v6, v5, v6);
+	centerX = width - 32.0*scaleX;
+	v19 = pos_x + 16.0*scaleY;
+	DisplayScreenTextureCenter(1, v19, pos_y, pos_z, centerX, height);
+	njColorBlendingMode(0, NJD_COLOR_BLENDING_SRCALPHA);
+	njColorBlendingMode(NJD_DESTINATION_COLOR, NJD_COLOR_BLENDING_INVSRCALPHA);
+	ClampGlobalColorThing_Thing();
+}
+
+void DrawFuckingButton(unsigned int n, float x, float y, float z, float sx, float sy)
+{
+	float scaleY; // ST18_4
+	float scaleX; // ST14_4
+	njSetTexture(&ava_square_TEXLIST);
+	SetVtxColorB(0xFFFFFF0D | n);
+	scaleY = sy * 1.1770245f;
+	scaleX = sx * 1.0460432f;
+	DrawBG(67108865, x, y, z, scaleX, scaleY);
+	SetVtxColorB(n);
+	DrawBG(0x4000000, x, y, z - 0.30000001f, sx, sy);
+}
+
+void DrawFileSelectMockup(float depth_orig, bool use_scaling, int VertexColor)
+{
+	njTextureShadingMode(1);
+	SetVtxColorA(VertexColor);
+	float xpos;
+	float ypos;
+	float zpos;
+	float ydelta;
+	float width;
+	float height;
+	float depth;
+	bool is640 = false;
+	float scaleX;
+	float scaleY;
+	float ScreenScaleX;
+	float ScreenScaleY;
+	float ScreenDeltaX;
+	float ScreenDeltaY;
+	float BaseScaleX;
+	float BaseScaleY;
+	//Set scaling
+	if (HorizontalResolution == 640 && VerticalResolution == 480) is640 = true;
+	else is640 = false;
+	if (is640 || !use_scaling)
 	{
-		njReleaseTexture_(&GGMENU_TEXLIST);
-	}
-	njReleaseTexture(&texlist_gtitle);
-	njReleaseTexture(&texlist_cmnx);
-	njReleaseTexture(&texlist_cmns);
-	PrintDebug("Loading title screen textures...\n");
-	if (HorizontalStretch == 1.0f)
-	{
-		LoadPVM("AVA_TITLE_CMN_SMALLS", &texlist_cmns);
-		LoadPVM("AVA_GTITLE0_ES_640", &texlist_gtitle);
-		if (RipplesOn) LoadPVM("AVA_TITLE_CMN_SMALLX", &texlist_cmnx);
+		ScreenScaleX = 1.0f;
+		ScreenScaleY = 1.0f;
+		BaseScaleX = 1.0f;
+		BaseScaleY = 1.0f;
+		ScreenDeltaY = 0;
+		ScreenDeltaX = 0;
 	}
 	else
 	{
-		LoadPVM("AVA_TITLE_CMNS", &texlist_cmns);
-		LoadPVM("AVA_GTITLE0_ES", &texlist_gtitle);
-		if (RipplesOn) LoadPVM("AVA_TITLE_CMNX", &texlist_cmnx);
+		ScreenScaleX = HorizontalResolution_float / 640.0f;
+		ScreenScaleY = VerticalResolution_float / 480.0f;
+		if (ScreenScaleX > ScreenScaleY)
+		{
+			BaseScaleX = ScreenScaleY;
+			BaseScaleY = ScreenScaleY;
+			ScreenDeltaX = (HorizontalResolution_float - ScreenScaleY * 640.0f) / 2.0f;
+			ScreenDeltaY = (VerticalResolution_float - ScreenScaleY * 480.0f) / 2.0f;
+		}
+		else
+		{
+			BaseScaleX = ScreenScaleX;
+			BaseScaleY = ScreenScaleX;
+			ScreenDeltaX = (HorizontalResolution_float - ScreenScaleX * 640.0f) / 2.0f;
+			ScreenDeltaY = (VerticalResolution_float - ScreenScaleX * 480.0f) / 2.0f;
+		}
 	}
+	//AVA_BACK
+	DrawTiledBG_AVA_BACK(depth_orig - 2.0f);
+	//Green rectangle (scaled by the Mod Loader so I don't need to fix the coordinates)
+	//Draw the green rect when:
+	GreenRect_Wrapper(0, 38, depth_orig - 10.0f, 564.0f, 41.0f);
+	//"Select a file" texture
+	njSetTexture(&ava_vmssel_e_TEXLIST);
+	xpos = 42;
+	ypos = 46;
+	DrawBG(8, ScreenDeltaX + xpos * BaseScaleX, ScreenDeltaY + ypos * BaseScaleY, depth_orig - 14.0f, BaseScaleX, BaseScaleY);
+	//File select window
+	SetVtxColorB(0x78004FFFu);
+	xpos = 47;
+	ypos = 84;
+	width = 200;
+	height = 340;
+	DrawFuckingFileSelectWindows(ScreenDeltaX + xpos * BaseScaleX, ScreenDeltaY + ypos * BaseScaleY, depth_orig-6.0f, width * BaseScaleX, height * BaseScaleY, BaseScaleX, BaseScaleY);
+	//File buttons
+	scaleX = 0.69999999f;
+	scaleY = 0.69999999f;
+	xpos = 147.0f;
+	ypos = 165.0f;
+	DrawFuckingButton(0xFF12B4FF, ScreenDeltaX + xpos * BaseScaleX, ScreenDeltaY + ypos * BaseScaleY, depth_orig-6.0f, BaseScaleX * scaleX, BaseScaleY * scaleY);
+	ypos = 225;
+	DrawFuckingButton(0xFF12B4FF, ScreenDeltaX + xpos * BaseScaleX, ScreenDeltaY + ypos * BaseScaleY, depth_orig-6.0f, BaseScaleX * scaleX, BaseScaleY * scaleY);
+	ypos = 285;
+	DrawFuckingButton(0xFF12B4FF, ScreenDeltaX + xpos * BaseScaleX, ScreenDeltaY + ypos * BaseScaleY, depth_orig-6.0f, BaseScaleX * scaleX, BaseScaleY * scaleY);
+	ypos = 345;
+	DrawFuckingButton(0xFF12B4FF, ScreenDeltaX + xpos * BaseScaleX, ScreenDeltaY + ypos * BaseScaleY, depth_orig-6.0f, BaseScaleX * scaleX, BaseScaleY * scaleY);
+	//Right side
+	DoColorGradientThingMaybe(0x7812B4FFu, 0x7812B4FFu, 0x7812B4FFu, 0x7812B4FFu);
+	xpos = 268;
+	ypos = 78;
+	width = 320;
+	height = 360;
+	DrawFuckingFileSelectWindows(ScreenDeltaX + xpos * BaseScaleX, ScreenDeltaY + ypos * BaseScaleY, depth_orig-4.0f, width * BaseScaleX, height * BaseScaleY, BaseScaleX, BaseScaleY);
+	njSetTexture(&ava_filesel_e_TEXLIST);
+	//Yellow thing
+	int *v4 = dword_7ECA74;
+	do
+	{
+		//Top left corner
+		xpos = 268;
+		ypos = 78;
+		scaleX = 0.78125f;
+		scaleY = 0.78125f;
+		int v5 = CreateColorGradient(v4[0], v4[1], 0.069444448f);
+		DoColorGradientThingMaybe(v4[0], v5, v4[0], v5);
+		depth = depth_orig + (*((float *)v4 - 1));
+		DrawBG(*((unsigned __int8 *)v4 + 8), ScreenDeltaX + xpos * BaseScaleX, ScreenDeltaY + ypos * BaseScaleY, depth, BaseScaleX * scaleX, BaseScaleY * scaleY);
+		//Top right corner
+		xpos = 588;
+		DrawBG(*((unsigned __int8 *)v4 + 8) | 0x82000000, ScreenDeltaX + xpos * BaseScaleX, ScreenDeltaY + ypos * BaseScaleY, depth, BaseScaleX * scaleX, BaseScaleY * scaleY); 
+		//Top horizonal bar
+		xpos = 293;
+		ypos = 78;
+		width = 270;
+		height = 25;
+		DisplayScreenTextureCenter(*((unsigned __int8 *)v4 + 9), ScreenDeltaX + xpos * BaseScaleX, ScreenDeltaY + ypos * BaseScaleY, depth, BaseScaleX * width, BaseScaleY * height); 
+		//Left vertical bar
+		int v15 = CreateColorGradient(v4[0], v4[1], 0.93055558);
+		DoColorGradientThingMaybe(v5, v15, v5, v15);
+		xpos = 268;
+		ypos = 103;
+		width = 25;
+		height = 310;
+		DisplayScreenTextureCenter(*((unsigned __int8 *)v4 + 10), ScreenDeltaX + xpos * BaseScaleX, ScreenDeltaY + ypos * BaseScaleY, depth, BaseScaleX * width, BaseScaleY * height); 
+		//Right vertical bar
+		xpos = 588;
+		DisplayScreenTextureCenter(*((unsigned __int8 *)v4 + 10) | 0x82000000, ScreenDeltaX + xpos * BaseScaleX, ScreenDeltaY + ypos * BaseScaleY, depth, BaseScaleX * width, BaseScaleY * height);
+		//Bottom left corner
+		DoColorGradientThingMaybe(v15, v4[1], v15, v4[1]);
+		xpos = 268;
+		ypos = 438;
+		DrawBG(*((unsigned __int8 *)v4 + 8) | 0x46000000, ScreenDeltaX + xpos * BaseScaleX, ScreenDeltaY + ypos * BaseScaleY, depth, BaseScaleX * scaleX, BaseScaleY * scaleY);
+		//Bottom right corner
+		xpos = 588;
+		DrawBG(*((unsigned __int8 *)v4 + 8) | 0xC8000000, ScreenDeltaX + xpos * BaseScaleX, ScreenDeltaY + ypos * BaseScaleY, depth, BaseScaleX * scaleX, BaseScaleY * scaleY);
+		//Bottom horizontal bar
+		xpos = 293;
+		ypos = 413;
+		width = 270;
+		height = 25;
+		DisplayScreenTextureCenter(*((unsigned __int8 *)v4 + 9) | 0x40000000, ScreenDeltaX + xpos * BaseScaleX, ScreenDeltaY + ypos * BaseScaleY, depth, BaseScaleX * width, BaseScaleY * height);
+		v4 -= 6;
+	} 
+	while (v4 >= dword_7ECA44);
+	//Right pane
+	njSetTexture(&ava_filesel_e_TEXLIST);
+	SetVtxColorB(0xFFFFFFFF);
+	int inc_count = 0;
+	int counter = 0;
+	do
+	{
+		float temp_offset = counter * 57.0f + 200.0f;
+		njSetTexture(&ava_filesel_e_TEXLIST);
+		SetVtxColorB(0xFFFFFFFF);
+		float yoffset = temp_offset - 240.0f;
+		depth = depth_orig - 8.0f;
+		xpos = 20 + 248.0f + 160.0f;
+		ypos = 240 + yoffset;
+		DrawBG(0x4000000, ScreenDeltaX + xpos * BaseScaleX, ScreenDeltaY + ypos * BaseScaleY, depth, BaseScaleX, BaseScaleY);
+		depth = depth_orig - 10.0f;
+		ypos = 240.0f + yoffset;
+		xpos = 20 + 248.0f + 160.0f;
+		DrawBG((unsigned __int8)byte_7ECA20[inc_count] | 0x4000000, ScreenDeltaX + xpos * BaseScaleX, ScreenDeltaY + ypos * BaseScaleY, depth, BaseScaleX, BaseScaleY);
+		depth = depth_orig - 6.0f;
+		ypos = temp_offset + 28.0f;
+		xpos = 20 + 248.0f + 160.0f;
+		scaleX = 0.96899998f;
+		scaleY = 0.5f;
+		DrawFuckingButton(0xFF12B4FF, ScreenDeltaX + xpos * BaseScaleX, ScreenDeltaY + ypos * BaseScaleY, depth, BaseScaleX * scaleX, BaseScaleY * scaleY);
+		counter = ++inc_count;
+	} 
+	while (inc_count < 4);
+	//Oval thing
+	njSetTexture(&ava_filesel_e_TEXLIST);
+	SetVtxColorB(0xFFFFFFFF);
+	depth = depth_orig-5.0f;
+	ypos = 240.0 - 118.0;
+	xpos = 20 + 248.0 + 160.0;
+	scaleX = 1.883f;
+	scaleY = 1.0f;
+	DrawBG(0x4000008, ScreenDeltaX + xpos * BaseScaleX, ScreenDeltaY + ypos * BaseScaleY, depth, scaleX * BaseScaleX, scaleY * BaseScaleY);
+	njTextureShadingMode(2);
 }
 
-void DrawTitleScreen(NJS_TEXLIST *texlist)
+void DrawTitleScreen()
 {
 	//Variables for logo/background
 	float xpos;
@@ -793,22 +1063,30 @@ void DrawTitleScreen(NJS_TEXLIST *texlist)
 	float scaleY;
 	float scaleX2;
 	float scaleY2;
-	if (transitionmode == 0) TitleBGTransparency.argb.a = 255;
-	//Draw AVA_BACK first
-	if (disableavaback == false && titlebackloaded == false && transitionmode != -1)
+	//Transition modes:
+	//0 - title screen loaded
+	//1 - fading out
+	//2 - outside of title screen
+	//3 - fading in
+	if (transitionmode == 0)
 	{
-		njSetTexture(&ava_back_TEXLIST);
-		SetVtxColorB(0xFFFFFFFF);
-		DrawTiledBG_AVA_BACK(1.2f);
+		TitleBGTransparency.argb.a = 255;
+		if (BlackFadeout.argb.a >= 32) BlackFadeout.argb.a -= 32;
+	}
+	//Draw file select screen mockup
+	if (TitleScreenFadedIntoBlack == false && MainMenuAccessed == false && transitionmode != -1)
+	{
+		DrawFileSelectMockup(5800.0f, true, 0xFFFFFFFF);
 	}
 	//Draw title BG
 	if (HorizontalStretch == 1.0f) is640 = true;
 	else is640 = false;
-	if (RipplesOn == true) njSetTexture(&texlist_cmnx); else njSetTexture(&texlist_cmns);
+	if (RipplesOn) njSetTexture(&ava_title_cmn_TEXLIST);
+	else njSetTexture(&ava_title_back_e_TEXLIST);
 	njTextureShadingMode(1);
 	if (!DroppedFrames)
 	{
-		if (titlebackloaded == false || disableavaback == true) SetVtxColorB(TitleBGTransparency.color); else SetVtxColorB(0xFFFFFFFF);
+		if (MainMenuAccessed == false || TitleScreenFadedIntoBlack == true) SetVtxColorB(TitleBGTransparency.color); else SetVtxColorB(0xFFFFFFFF);
 		if (titledrawn != titleframe)
 		{
 			if (titleframe > 22) titleframe = 0;
@@ -881,10 +1159,10 @@ void DrawTitleScreen(NJS_TEXLIST *texlist)
 	//Draw logo
 	if (logodrawn != logoframe)
 	{
-		njSetTexture(&texlist_gtitle);
+		njSetTexture(&ava_gtitle0_e_TEXLIST);
 		if (logoframe > 128) logoframe = 0;
 		//Draw logo
-		if (titlebackloaded == false || disableavaback == true)  SetVtxColorB(TitleBGTransparency.color);
+		if (MainMenuAccessed == false || TitleScreenFadedIntoBlack == true) SetVtxColorB(TitleBGTransparency.color);
 		else SetVtxColorB(0xFFFFFFFF);
 		if (SA1LogoMode < 2)
 		{
@@ -924,7 +1202,7 @@ void DrawTitleScreen(NJS_TEXLIST *texlist)
 		}
 		if (transitionmode == 1)
 		{
-			if (SonicTeamAlpha >= 0) SonicTeamAlpha -= 16;
+			if (SonicTeamAlpha >= 0) SonicTeamAlpha -= 32;
 			else SonicTeamAlpha = 0;
 		}
 		if (EnableTransition == false)
@@ -956,42 +1234,57 @@ void DrawTitleScreen(NJS_TEXLIST *texlist)
 	}
 	if (transitionmode != 0)
 	{
+		//Fade out
 		if (transitionmode == 1)
 		{
 			{
-				if (TitleBGTransparency.argb.a >= 16)
+				//Fade out in progress
+				if (TitleBGTransparency.argb.a >= 32)
 				{
-					TitleBGTransparency.argb.a -= 16;
+					TitleBGTransparency.argb.a -= 32;
 					if (LogoScaleXT < LogoScaleX * 2.0f) LogoScaleXT = LogoScaleXT * 1.05f;
 					if (LogoScaleYT < LogoScaleY * 2.0f) LogoScaleYT = LogoScaleYT * 1.05f;
-					if (BlackFadeout.argb.a <= 48) BlackFadeout.argb.a += 16;
+					if (TitleBGTransparency.argb.a > 64)
+					{
+						if (BlackFadeout.argb.a < 128) BlackFadeout.argb.a += 32;
+					}
+					else
+					{
+						if (BlackFadeout.argb.a >= 32) BlackFadeout.argb.a -= 32;
+					}
+					//PrintDebug("Fade: %d\n", BlackFadeout.argb.a);
 				}
+				//Fade out complete
 				else
 				{
 					transitionmode = 2;
 					TitleBGTransparency.argb.a = 0;
-					BlackFadeout.argb.a = 64;
+					BlackFadeout.argb.a = 0;
+					//PrintDebug("Fade: %d\n", BlackFadeout.argb.a);
 					LogoScaleXT = LogoScaleX * 2.0f;
 					LogoScaleYT = LogoScaleY * 2.0f;
 				}
 			}
 		}
+		//Fade back in
 		if (transitionmode == 3)
 		{
 			if (TitleBGTransparency.argb.a <= 223)
 			{
-				if (BlackFadeout.argb.a >= 8) BlackFadeout.argb.a -= 8;
+				if (BlackFadeout.argb.a < 128) BlackFadeout.argb.a += 32;
 				TitleBGTransparency.argb.a += 32;
 				if (LogoScaleXT > LogoScaleX) LogoScaleXT = LogoScaleXT * 0.92f;
 				if (LogoScaleYT > LogoScaleY) LogoScaleYT = LogoScaleYT * 0.92f;
+				//PrintDebug("Fade1: %d\n", BlackFadeout.argb.a);
 			}
 			else
 			{
-				BlackFadeout.argb.a = 0;
+				if (BlackFadeout.argb.a >= 32) BlackFadeout.argb.a -= 32;
 				transitionmode = 0;
 				TitleBGTransparency.argb.a = 255;
 				LogoScaleXT = LogoScaleX;
 				LogoScaleYT = LogoScaleY;
+				//PrintDebug("Fade2: %d\n", BlackFadeout.argb.a);
 			}
 		}
 		if (transitionmode == -1)
@@ -1048,9 +1341,9 @@ void DrawTitleScreen(NJS_TEXLIST *texlist)
 		if (TitleBackOverlayColor.argb.a >= 8) TitleBackOverlayColor.argb.a -= 8;
 		else TitleBackOverlayColor.argb.a = 0;
 	}
-	if (titlebackloaded == true && disableavaback == false)
+	if (MainMenuAccessed == true && TitleScreenFadedIntoBlack == false)
 	{
-		njSetTexture(&texlist_cmns);
+		njSetTexture(&ava_title_back_e_TEXLIST);
 		SetVtxColorB(TitleBackOverlayColor.color);
 		xpos = -16.0f*ResolutionScaleX;
 		ypos = 0;
@@ -1061,14 +1354,14 @@ void DrawTitleScreen(NJS_TEXLIST *texlist)
 	else DrawRect_Queue(0, 0, HorizontalResolution, VerticalResolution, 1.2f, BlackFadeout.color, QueuedModelFlagsB_SomeTextureThing);
 }
 
-void DrawPressStart(int texnum, float x, float y, float z, float scaleX, float scaleY)
+void DrawPressStart()
 {
 	float sourcepos_x = 193.0f;
 	float sourcepos_y = 364.0f;
-	if (transitionmode != 1)
+	if (transitionmode < 1)
 	{
 		njTextureShadingMode(1);
-		njSetTexture(&texlist_gtitle);
+		njSetTexture(&ava_gtitle0_e_TEXLIST);
 		if (startdrawn != startframe)
 		{
 			if (HorizontalStretch != 1.0f)
@@ -1111,21 +1404,6 @@ void DrawTexture_Hook(int that_cant_be_right, float x, float y, float z)
 	njTextureShadingMode(1);
 	DisplayScreenTexture(that_cant_be_right, x, y, z);
 	njTextureShadingMode(2);
-}
-
-void UnloadGUITextures()
-{
-	njReleaseTexture(&texlist_cmns);
-	njReleaseTexture(&texlist_gtitle);
-	if (RipplesOn) njReleaseTexture(&texlist_cmnx);
-	for (int i = 0; i < 30; i++)
-	{
-		if (TextLanguage == 0) njReleaseTexture(GUITextures_Japanese[i].TexList);
-		else if (TextLanguage == 1) njReleaseTexture(GUITextures_English[i].TexList);
-		else if (TextLanguage == 2) njReleaseTexture(GUITextures_French[i].TexList);
-		else if (TextLanguage == 3) njReleaseTexture(GUITextures_German[i].TexList);
-		else if (TextLanguage == 4) njReleaseTexture(GUITextures_Spanish[i].TexList);
-	}
 }
 
 void DisplayScreenTexture_AlwaysTop(int that_cant_be_right, float x, float y, float z)
@@ -1188,65 +1466,6 @@ void FileIcon_Hook(int that_cant_be_right, float Texture_X, float Texture_Y, flo
 	DrawBG(45, Arrow1_X, Arrow1_Y, Texture_Z, Arrow1Scale, Arrow1Scale);
 	DrawBG(46, Arrow2_X, Arrow2_Y, Texture_Z, Arrow2Scale, Arrow2Scale);
 	njTextureShadingMode(2);
-}
-
-void LoadTitleScreenHook(int a1)
-{
-	PrintDebug("Loading title screen textures...\n");
-	if (HorizontalStretch == 1.0f)
-	{
-		LoadPVM("AVA_TITLE_CMN_SMALLS", &texlist_cmns);
-		LoadPVM("AVA_GTITLE0_ES_640", &texlist_gtitle);
-		if (RipplesOn) LoadPVM("AVA_TITLE_CMN_SMALLX", &texlist_cmnx);
-	}
-	else
-	{
-		LoadPVM("AVA_TITLE_CMNS", &texlist_cmns);
-		LoadPVM("AVA_GTITLE0_ES", &texlist_gtitle);
-		if (RipplesOn) LoadPVM("AVA_TITLE_CMNX", &texlist_cmnx);
-	}
-	if (titlebackloaded == false)
-	{
-		PrintDebug("Precaching file select textures...\n");
-		LoadPVM("AVA_BACK", &ava_back_TEXLIST);
-		LoadPVM("adv_window", &adv_window_TEXLIST);
-		LoadPVM("ava_square", &ava_square_TEXLIST);
-		LoadPVM("ava_csr", &ava_csr_TEXLIST);
-		LoadPVM("ava_dlg_e", &ava_dlg_e_TEXLIST);
-		LoadPVM("ava_fsdlg_e", &ava_fsdlg_g_TEXLIST);
-		LoadPVM("ava_emblem", &ava_emblem_TEXLIST);
-		LoadPVM("ava_suuji", &ava_suuji_TEXLIST);
-		LoadPVM("m_chnam", &m_chnam_TEXLIST);
-		LoadPVM("ava_vmssel_e", &ava_vmssel_e_TEXLIST);
-		LoadPVM("ava_filesel_e", &ava_filesel_e_TEXLIST);
-		LoadPVM("ava_stnam_e", &ava_stnam_e_TEXLIST);
-		LoadPVM("ava_san", &ava_san_TEXLIST);
-	}
-	sub_510390(a1);
-}
-
-void FileSelectAVABACKHook(float depth)
-{
-	SetVtxColorA(0xFFFFFFFF);
-	DrawTiledBG_AVA_BACK(depth);
-}
-
-void VtxColorHook(Uint32 color)
-{
-	if (disablevtxcolor == true) SetVtxColorA(0xFFFFFFFF);
-	else SetVtxColorA(color);
-}
-
-void VtxColorHook2(Uint32 color)
-{
-	if (titlebackloaded == true && disableavaback == false) SetVtxColorA(0xFFFFFFFF);
-	else SetVtxColorA(color);
-}
-
-void VtxColorHook_Options(Uint32 color)
-{
-	disablevtxcolor = false;
-	SetVtxColorA(color);
 }
 
 void DrawBG_CreditsLogo(int texnum, float x, float y, float z, float scaleX, float scaleY)
@@ -1447,13 +1666,6 @@ void DrawSprite_Hook(NJS_SPRITE *sp, Int n, Float pri, NJD_SPRITE attr, QueuedMo
 	njTextureShadingMode(2);
 }
 
-void GreenRect_Wrapper(float x, float y, float z, float width, float height)
-{
-	njTextureShadingMode(1);
-	GreenMenuRect_Draw(x, y, z, width, height);
-	njTextureShadingMode(2);
-}
-
 void __cdecl BossHUDHack(void *a1)
 {
 	float x; // ST0C_4
@@ -1470,6 +1682,142 @@ void __cdecl BossHUDHack(void *a1)
 	DrawBG(*((_DWORD *)a1 + 3), x, y, *((float *)a1 + 2), scale, scale);
 }
 
+void FileSelectVtxColorHook(Uint32 a1)
+{
+	FileSelectVtxColor = a1;
+	if (!EnableFileSelectScreenFade) 
+		SetVtxColorA(0xFFFFFFFF);
+	else SetVtxColorA(a1);
+}
+
+void FileSelect_AVA_BACK_Hook(float depth)
+{
+	SetVtxColorA(0xFFFFFFFF);
+	DrawTiledBG_AVA_BACK(depth);
+}
+
+void FileSelect_VtxColorB_Hook(Uint32 a1)
+{
+	if (CurrentMenuIndex == 2) SetVtxColorB(FileSelectVtxColor);
+	else SetVtxColorB(0xFFFFFFFF);
+}
+
+void DrawStringHook(const char *text, float x, float y, float scale)
+{
+	SetABCTextThingColor(FileSelectVtxColor, FileSelectVtxColor, FileSelectVtxColor, FileSelectVtxColor);
+	DrawString(text, x, y, scale);
+}
+
+void FileSelectGreenRectHook(float x, float y, float z, float width, float height)
+{
+	//Avoid drawing the green rectangle in the transition between file select and options because it draws on top of everything for whatever reason
+	if (FileSelectVtxColor == 0xFFFFFFFF || (CurrentMenuIndex != 7 && CurrentMenuIndex != 2) || (CurrentMenuIndex == 2 && PreviousMenuIndex != 7)) GreenRect_Wrapper(x, y, z, width, height);
+}
+
+void MainMenuVtxColorHook(Uint32 a1)
+{
+	if (CurrentMenuIndex == 5) SetVtxColorA(0xFFFFFFFF);
+	else SetVtxColorA(a1);
+}
+
+static void __cdecl SwitchMenu_r(int a1);
+static Trampoline SwitchMenu_t(0x505B40, 0x505B45, SwitchMenu_r);
+static void __cdecl SwitchMenu_r(int a1)
+{
+	auto original = reinterpret_cast<decltype(SwitchMenu_r)*>(SwitchMenu_t.Target());
+	PreviousMenuIndex = CurrentMenuIndex;
+	CurrentMenuIndex = a1;
+	original(a1);
+}
+
+static void __cdecl OptionsDisplay_r(ObjectMaster *a1);
+static Trampoline OptionsDisplay_t(0x509810, 0x509815, OptionsDisplay_r);
+static void __cdecl OptionsDisplay_r(ObjectMaster *a1)
+{
+	auto original = reinterpret_cast<decltype(OptionsDisplay_r)*>(OptionsDisplay_t.Target());
+	if (!DisableSA1TitleScreen)
+	{
+		//Don't draw the options screen if the current menu has nothing to do with it
+		if (CurrentMenuIndex != 7 && CurrentMenuIndex != 2 && CurrentMenuIndex != 6 && CurrentMenuIndex != 4) return;
+		//Dont' draw the options screen if the file select overlay obscures it completely
+		if (FileSelectVtxColor == 0xFFFFFFFF) return;
+		//Draw file select overlay when going from options to file select
+		if (CurrentMenuIndex == 7 && PreviousMenuIndex == 2)
+		{
+			DrawFileSelectMockup(5800.0f, true, 0xFFFFFFFF);
+		}
+		original(a1);
+		//Draw file select overlay when going from file select to options
+		if (CurrentMenuIndex == 2 && PreviousMenuIndex == 7)
+		{
+			DrawFileSelectMockup(1000.0f, true, FileSelectVtxColor);
+		}
+	}
+	else original(a1);
+}
+
+static void __cdecl TitleScreenDisplay_r(ObjectMaster *a1);
+static Trampoline TitleScreenDisplay_t(0x510350, 0x510355, TitleScreenDisplay_r);
+static void __cdecl TitleScreenDisplay_r(ObjectMaster *a1)
+{
+	NJS_COLOR StartColor = { 0x00FFFFFF };
+	TitleScreenData *v1; // esi
+	auto original = reinterpret_cast<decltype(TitleScreenDisplay_r)*>(TitleScreenDisplay_t.Target());
+	if (DisableSA1TitleScreen)
+	{
+		original(a1);
+		return;
+	}
+	else
+	{
+		v1 = (TitleScreenData *)a1->UnknownB_ptr;
+		if (v1->field_14)
+		{
+			if (v1->field_18 >= 0)
+			{
+				SetDefaultAlphaBlend();
+				if (transitionmode != 0 && transitionmode != 3) SetVtxColorA(0xFFFFFFFF);
+				else if (!TitleScreenFadedIntoBlack && PreviousMenuIndex == 6) SetVtxColorA(0xFFFFFFFF);
+				else SetVtxColorA(v1->field_14);
+				DrawTitleScreen();
+				//Draw Press Start
+				unsigned char PressStartTransparency = v1->dword28;
+				if ((v1->dword28 & 0x1FFu) >= 0x100)
+				{
+					PressStartTransparency = -1 - v1->dword28;
+				}
+				StartColor.argb.a = PressStartTransparency;
+				SetVtxColorB(StartColor.color);
+				DrawPressStart();
+			}
+		}
+	}
+}
+
+/*
+static void __cdecl LoadPVM_r(const char *filename, NJS_TEXLIST *texlist);
+static Trampoline LoadPVM_t(0x421180, 0x421185, LoadPVM_r);
+static void __cdecl LoadPVM_r(const char *filename, NJS_TEXLIST *texlist)
+{
+auto original = reinterpret_cast<decltype(LoadPVM_r)*>(LoadPVM_t.Target());
+PrintDebug("Loading PVM: %s result:", filename);
+PrintDebug("%d\n", VerifyTexList(texlist));
+original(filename, texlist);
+}
+*/
+
+void UnloadGUITextures()
+{
+	for (int i = 0; i < 30; i++)
+	{
+		if (TextLanguage == 0) njReleaseTexture(GUITextures_Japanese[i].TexList);
+		else if (TextLanguage == 1) njReleaseTexture(GUITextures_English[i].TexList);
+		else if (TextLanguage == 2) njReleaseTexture(GUITextures_French[i].TexList);
+		else if (TextLanguage == 3) njReleaseTexture(GUITextures_German[i].TexList);
+		else if (TextLanguage == 4) njReleaseTexture(GUITextures_Spanish[i].TexList);
+	}
+}
+
 void Branding_SetUpVariables()
 {
 	//Set up variables
@@ -1482,15 +1830,9 @@ void Branding_SetUpVariables()
 	ResolutionDeltaY = (VerticalResolution_float - ResolutionScaleY * 480.0f) / 2.0f;
 }
 
-Sint32 __cdecl ReleaseTexturesHook(NJS_TEXLIST *texlist)
-{
-	return 0;
-	//return njReleaseTexture(texlist);
-}
 
 void Branding_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 {
-	WriteCall((void*)0x505F9D, ReleaseTexturesHook); //Don't unload title screen and main menu textures
 	//Load configuration settings
 	RipplesOn = config->getBool("Branding", "RippleEffect", true);
 	EnableTransition = config->getBool("Branding", "EnableTransition", true);
@@ -1582,6 +1924,7 @@ void Branding_Init(const IniFile *config, const HelperFunctions &helperFunctions
 		WriteData((float*)0x0050AF5A, 1.125f); //sub_50AF30
 		WriteData((float*)0x0050AF5F, 1.125f); //sub_50AF30
 		WriteCall((void*)0x64393E, GreenRect_Wrapper); //Fix alpha rejection on green rectangle in tutorials
+		WriteCall((void*)0x50959A, GreenRect_Wrapper); //Fix alpha rejection on green rectangle in the options screen
 		//Tutorial stuff
 		//PVMs
 		ReplacePVM("TUTO_CMN");
@@ -1622,7 +1965,7 @@ void Branding_Init(const IniFile *config, const HelperFunctions &helperFunctions
 		WriteData((float**)0x006432C6, &PadManuYOffset);
 		WriteData((float**)0x006432E4, &PadManuYOffset2);
 		WriteData((float**)0x006432D4, &PadManuYMultiplier);
-//Sonic
+		//Sonic
 		//English
 		TutoScreenSonic_E[0].BoxScaleX = 390;
 		TutoScreenSonic_E[0].BoxScaleY = 144;
@@ -1670,7 +2013,7 @@ void Branding_Init(const IniFile *config, const HelperFunctions &helperFunctions
 		TutoScreenSonic_S[0].BoxScaleY = 144;
 		TutoScreenSonic_S[0].BoxX = 230;
 		TutoScreenSonic_S[4].BoxScaleY = 192;
-//Tails
+		//Tails
 		//English
 		TutoScreenTails_E[0].BoxScaleX = 390;
 		TutoScreenTails_E[0].BoxScaleY = 144;
@@ -1717,7 +2060,7 @@ void Branding_Init(const IniFile *config, const HelperFunctions &helperFunctions
 		TutoScreenTails_S[0].BoxScaleY = 144;
 		TutoScreenTails_S[0].BoxX = 230;
 		TutoScreenTails_S[4].BoxScaleY = 192;
-//Knuckles
+		//Knuckles
 		//English
 		TutoScreenKnuckles_E[0].BoxScaleX = 390;
 		TutoScreenKnuckles_E[0].BoxScaleY = 144;
@@ -1770,7 +2113,7 @@ void Branding_Init(const IniFile *config, const HelperFunctions &helperFunctions
 		TutoScreenKnuckles_S[4].BoxX = 190;
 		TutoScreenKnuckles_S[4].BoxScaleY = 128;
 		TutoScreenKnuckles_S[5].BoxScaleY = 192;
-//Amy
+		//Amy
 		//English
 		TutoScreenAmy_E[0].BoxScaleX = 390;
 		TutoScreenAmy_E[0].BoxScaleY = 144;
@@ -1813,7 +2156,7 @@ void Branding_Init(const IniFile *config, const HelperFunctions &helperFunctions
 		TutoScreenAmy_S[0].BoxScaleY = 144;
 		TutoScreenAmy_S[0].BoxX = 230;
 		TutoScreenAmy_S[4].BoxScaleY = 192;
-//Big
+		//Big
 		//English
 		TutoScreenBig_E[0].BoxScaleX = 390;
 		TutoScreenBig_E[0].BoxScaleY = 144;
@@ -1867,7 +2210,7 @@ void Branding_Init(const IniFile *config, const HelperFunctions &helperFunctions
 		TutoScreenBig_S[7].BoxX = 180;
 		TutoScreenBig_S[7].BoxScaleX = 475;
 		TutoScreenBig_S[7].BoxX = 125;
-//Gamma
+		//Gamma
 		//English
 		TutoScreenGamma_E[0].BoxScaleX = 390;
 		TutoScreenGamma_E[0].BoxScaleY = 144;
@@ -2451,111 +2794,76 @@ void Branding_Init(const IniFile *config, const HelperFunctions &helperFunctions
 	//Title screen stuff
 	if (DisableSA1TitleScreen == false)
 	{
-		WriteJump(FreeGGMenuPVM, FreeGGMenuPVM_FuckThisGame);
 		TitleBackOverlayColor.color = 0x99FFFFFF;
 		//Disable native PVMs
-		ResizeTextureList(&ava_title_cmn_TEXLIST, 1);
-		ResizeTextureList(&ava_gtitle0_e_TEXLIST, 1);
-		ResizeTextureList(&TexList_Ava_Gtitle0, 1);
-		ResizeTextureList(&ava_title_cmn_small_TEXLIST, 1);
-		ResizeTextureList(&ava_title_back_e_TEXLIST, 1);
-		GUITextures_Japanese[17].Name = "AVA_TITLE_EMPTY";
-		GUITextures_English[17].Name = "AVA_TITLE_EMPTY";
-		GUITextures_French[17].Name = "AVA_TITLE_EMPTY";
-		GUITextures_Spanish[17].Name = "AVA_TITLE_EMPTY";
-		GUITextures_German[17].Name = "AVA_TITLE_EMPTY";
-		GUITextures_Japanese[20].Name = "AVA_TITLE_EMPTY";
-		GUITextures_English[20].Name = "AVA_TITLE_EMPTY";
-		GUITextures_French[20].Name = "AVA_TITLE_EMPTY";
-		GUITextures_Spanish[20].Name = "AVA_TITLE_EMPTY";
-		GUITextures_German[20].Name = "AVA_TITLE_EMPTY";
-		GUITextures_Japanese[18].Name = "AVA_TITLE_EMPTY";
-		GUITextures_English[18].Name = "AVA_TITLE_EMPTY";
-		GUITextures_French[18].Name = "AVA_TITLE_EMPTY";
-		GUITextures_Spanish[18].Name = "AVA_TITLE_EMPTY";
-		GUITextures_German[18].Name = "AVA_TITLE_EMPTY";
-		GUITextures_Japanese[29].Name = "AVA_TITLE_EMPTY";
-		GUITextures_English[29].Name = "AVA_TITLE_EMPTY";
-		GUITextures_German[29].Name = "AVA_TITLE_EMPTY";
-		GUITextures_Spanish[29].Name = "AVA_TITLE_EMPTY";
-		GUITextures_French[29].Name = "AVA_TITLE_EMPTY";
-		//640x480 stuff
-		WriteData<5>((void*)0x0050E4D5, 0x90);
-		WriteData<5>((void*)0x0050E547, 0x90);
-		WriteData<5>((void*)0x0050E58E, 0x90);
-		WriteData<5>((void*)0x0050E659, 0x90);
-		WriteData<5>((void*)0x0050E6F4, 0x90);
-		WriteData<5>((void*)0x0050E754, 0x90);
-		WriteData<5>((void*)0x0050E7B4, 0x90);
-		WriteData<5>((void*)0x0050E814, 0x90);
-		WriteData<5>((void*)0x0050EAB1, 0x90);
-		WriteData<5>((void*)0x0050EB04, 0x90);
-		WriteData<5>((void*)0x0050EB57, 0x90);
-		WriteData<5>((void*)0x0050F1C5, 0x90);
-		WriteData<5>((void*)0x0050F570, 0x90);
-		WriteData<5>((void*)0x0050F5C1, 0x90);
-		WriteData<5>((void*)0x0050F612, 0x90);
-		WriteData<5>((void*)0x0050FF59, 0x90);
-		//Kill titlescreen fade
-		WriteData<5>((char*)0x0050E49B, 0x90);
+		//AVA_GTITLE_0_E texlist is always 10 textures
+		ResizeTextureList(&ava_gtitle0_e_TEXLIST, 10);
+		//Title screen BG texlist is always 8 textures
+		ResizeTextureList(&ava_title_back_e_TEXLIST, 8);
+		if (HorizontalStretch == 1.0f)
+		{
+			//AVA_TITLE_CMN_SMALLS is loaded in place of AVA_TITLE_BACK_E (Main menu background)
+			GUITextures_Japanese[20].Name = "AVA_TITLE_CMN_SMALLS";
+			GUITextures_English[20].Name = "AVA_TITLE_CMN_SMALLS";
+			GUITextures_French[20].Name = "AVA_TITLE_CMN_SMALLS";
+			GUITextures_Spanish[20].Name = "AVA_TITLE_CMN_SMALLS";
+			GUITextures_German[20].Name = "AVA_TITLE_CMN_SMALLS";
+			//AVA_GTITLE0_ES_640 is loaded in place of AVA_GTITLE0_E (Logo)
+			GUITextures_Japanese[17].Name = "AVA_GTITLE0_ES_640";
+			GUITextures_English[17].Name = "AVA_GTITLE0_ES_640";
+			GUITextures_French[17].Name = "AVA_GTITLE0_ES_640";
+			GUITextures_Spanish[17].Name = "AVA_GTITLE0_ES_640";
+			GUITextures_German[17].Name = "AVA_GTITLE0_ES_640";
+			if (RipplesOn)
+			{
+				//AVA_TITLE_CMN_SMALLX is loaded in place of AVA_TITLE_CMN_E (only when ripples are enabled)
+				GUITextures_Japanese[18].Name = "AVA_TITLE_CMN_SMALLX";
+				GUITextures_English[18].Name = "AVA_TITLE_CMN_SMALLX";
+				GUITextures_French[18].Name = "AVA_TITLE_CMN_SMALLX";
+				GUITextures_Spanish[18].Name = "AVA_TITLE_CMN_SMALLX";
+				GUITextures_German[18].Name = "AVA_TITLE_CMN_SMALLX";
+				ResizeTextureList(&ava_title_cmn_TEXLIST, 184);
+				TitleScreenIndices[1] = 18;
+			}
+			else
+			{
+				//Otherwise it's not loaded and AVA_TITLE_CMNS is loaded instead
+				TitleScreenIndices[1] = 20;
+			}
+		}
+		else
+		{
+			//AVA_TITLE_CMNS is loaded in place of AVA_TITLE_BACK_E (Main menu background)
+			//AVA_GTITLE0_ES is loaded in place of AVA_GTITLE0_E (Logo)
+			GUITextures_Japanese[20].Name = "AVA_TITLE_CMNS";
+			GUITextures_English[20].Name = "AVA_TITLE_CMNS";
+			GUITextures_French[20].Name = "AVA_TITLE_CMNS";
+			GUITextures_Spanish[20].Name = "AVA_TITLE_CMNS";
+			GUITextures_German[20].Name = "AVA_TITLE_CMNS";
+			GUITextures_Japanese[17].Name = "AVA_GTITLE0_ES";
+			GUITextures_English[17].Name = "AVA_GTITLE0_ES";
+			GUITextures_French[17].Name = "AVA_GTITLE0_ES";
+			GUITextures_Spanish[17].Name = "AVA_GTITLE0_ES";
+			GUITextures_German[17].Name = "AVA_GTITLE0_ES";
+			if (RipplesOn)
+			{
+				//AVA_TITLE_CMNX is loaded in place of AVA_TITLE_CMN_E (only when ripples are enabled)
+				GUITextures_Japanese[18].Name = "AVA_TITLE_CMNX";
+				GUITextures_English[18].Name = "AVA_TITLE_CMNX";
+				GUITextures_French[18].Name = "AVA_TITLE_CMNX";
+				GUITextures_Spanish[18].Name = "AVA_TITLE_CMNX";
+				GUITextures_German[18].Name = "AVA_TITLE_CMNX";
+				ResizeTextureList(&ava_title_cmn_TEXLIST, 184);
+				TitleScreenIndices[1] = 18;
+			}
+			else
+			{
+				//Otherwise it's not loaded and AVA_TITLE_CMNS is loaded instead
+				TitleScreenIndices[1] = 20;
+			}
+		}
+		//Main menu background
 		WriteJump((void*)0x50BA90, DrawAVA_TITLE_BACK_E_DC);
-		WriteData<5>((char*)0x0050E6F4, 0x90);
-		WriteData<5>((char*)0x0050E8AF, 0x90);
-		WriteCall((void*)0x0050E4B1, DrawTitleScreen);
-		WriteCall((void*)0x0051002B, DrawPressStart);
-		//Kill other BG
-		WriteData<5>((char*)0x0050E754, 0x90);
-		WriteData<5>((char*)0x0050E7B4, 0x90);
-		WriteData<5>((char*)0x0050E814, 0x90);
-		WriteData<5>((char*)0x0050EA11, 0x90);
-		WriteData<5>((char*)0x0050E99A, 0x90);
-		WriteData<5>((char*)0x0050E929, 0x90);
-		//Kill Sonic
-		WriteData<5>((char*)0x0050EC03, 0x90);
-		WriteData<5>((char*)0x0050EC6D, 0x90);
-		WriteData<5>((char*)0x0050ECD7, 0x90);
-		WriteData<5>((char*)0x0050ED4F, 0x90);
-		WriteData<5>((char*)0x0050EDC7, 0x90);
-		WriteData<5>((char*)0x0050EE31, 0x90);
-		WriteData<5>((char*)0x0050EEA9, 0x90);
-		WriteData<5>((char*)0x0050EF21, 0x90);
-		WriteData<5>((char*)0x0050EF99, 0x90);
-		WriteData<5>((char*)0x0050F003, 0x90);
-		WriteData<5>((char*)0x0050F07B, 0x90);
-		WriteData<5>((char*)0x0050F0F3, 0x90);
-		WriteData<5>((char*)0x0050F6BA, 0x90);
-		WriteData<5>((char*)0x0050F722, 0x90);
-		WriteData<5>((char*)0x0050F78A, 0x90);
-		WriteData<5>((char*)0x0050F800, 0x90);
-		WriteData<5>((char*)0x0050F876, 0x90);
-		WriteData<5>((char*)0x0050F8DE, 0x90);
-		WriteData<5>((char*)0x0050F954, 0x90);
-		WriteData<5>((char*)0x0050F9CA, 0x90);
-		WriteData<5>((char*)0x0050FA40, 0x90);
-		WriteData<5>((char*)0x0050FAA8, 0x90);
-		WriteData<5>((char*)0x0050FB1E, 0x90);
-		WriteData<5>((char*)0x0050FB94, 0x90);
-		WriteData<5>((char*)0x0050F16B, 0x90);
-		WriteData<5>((char*)0x0050FC0A, 0x90);
-		//Kill Logo 1
-		WriteData<5>((char*)0x0050FCAB, 0x90);
-		WriteData<5>((char*)0x0050FD07, 0x90);
-		WriteData<5>((char*)0x0050FD63, 0x90);
-		WriteData<5>((char*)0x0050FDBF, 0x90);
-		WriteData<5>((char*)0x0050FE1B, 0x90);
-		WriteData<5>((char*)0x0050FE85, 0x90);
-		WriteData<5>((char*)0x0050FEEF, 0x90);
-		//Kill Logo 2
-		WriteData<5>((char*)0x0050F1C5, 0x90);
-		WriteData<5>((char*)0x0050F223, 0x90);
-		WriteData<5>((char*)0x0050F281, 0x90);
-		WriteData<5>((char*)0x0050F2DF, 0x90);
-		WriteData<5>((char*)0x0050F33D, 0x90);
-		WriteData<5>((char*)0x0050F3A9, 0x90);
-		WriteData<5>((char*)0x0050F415, 0x90);
-		//Kill PressEnter
-		WriteData<5>((char*)0x00510085, 0x90);
-		WriteData<5>((char*)0x005100EB, 0x90);
 		//Various transition stuff
 		BlackFadeout.color = 0x00000000;
 		TitleBGTransparency.argb.r = 255;
@@ -2564,7 +2872,6 @@ void Branding_Init(const IniFile *config, const HelperFunctions &helperFunctions
 		SonicTeamTransparency.argb.r = 255;
 		SonicTeamTransparency.argb.g = 255;
 		SonicTeamTransparency.argb.b = 255;
-		//Transition stuff
 		transitionmode = -1;
 		LogoScaleXT = LogoScaleX * 2.0f;
 		LogoScaleYT = LogoScaleY * 2.0f;
@@ -2574,12 +2881,30 @@ void Branding_Init(const IniFile *config, const HelperFunctions &helperFunctions
 		BlackFadeout.argb.a = 0;
 		WriteCall((void*)0x503DD8, PlayReturnSound_EnableTransition);
 		WriteCall((void*)0x50E386, PlayStartSound_EnableTransition);
-		WriteCall((void*)0x50557D, FileSelectAVABACKHook);
-		WriteCall((void*)0x50558D, VtxColorHook);
-		WriteCall((void*)0x51036F, VtxColorHook2);
-		WriteCall((void*)0x509829, VtxColorHook_Options);
 		WriteCall((void*)0x50E3E2, DelayTransitionHook);
-		WriteData((void**)0x010D7B60, (void*)LoadTitleScreenHook);
+		//Transitions and other fixes
+		WriteCall((void*)0x504F9C, FileSelectGreenRectHook);
+		WriteCall((void*)0x504C38, DrawStringHook);
+		WriteCall((void*)0x504D2C, DrawStringHook);
+		WriteCall((void*)0x504B5F, DrawStringHook);
+		WriteCall((void*)0x5077D1, FileSelect_VtxColorB_Hook); //AVA_SAN
+		WriteCall((void*)0x504830, FileSelect_VtxColorB_Hook); //Character spheres
+		WriteCall((void*)0x504143, FileSelect_VtxColorB_Hook); //Emblem count 1
+		WriteCall((void*)0x507454, FileSelect_VtxColorB_Hook); //Emblem count 2
+		WriteCall((void*)0x5076DC, FileSelect_VtxColorB_Hook); //Emblem count 3
+		WriteCall((void*)0x507261, FileSelect_VtxColorB_Hook); //Character name 1
+		WriteCall((void*)0x5071F2, FileSelect_VtxColorB_Hook); //Character name 2
+		WriteCall((void*)0x503E69, FileSelect_VtxColorB_Hook); //Last Adventure Field
+		WriteCall((void*)0x503F09, FileSelect_VtxColorB_Hook); //Stage Completed
+		WriteCall((void*)0x50400B, FileSelect_VtxColorB_Hook); //Play Time 1
+		WriteCall((void*)0x507454, FileSelect_VtxColorB_Hook); //Play Time 2
+		WriteCall((void*)0x50557D, FileSelect_AVA_BACK_Hook);
+		WriteCall((void*)0x50558D, FileSelectVtxColorHook); //FileSelect_Display
+		WriteCall((void*)0x50BCC8, MainMenuVtxColorHook); //MainMenu_Display
+		//PVM indices to load in different menus
+		GUIPVMIndices[2] = (int*)&FileSelectIndices;
+		GUIPVMIndices[5] = (int*)&TitleScreenIndices;
+		GUIPVMIndices[6] = (int*)&MainMenuIndices;
 	}
 	//Pause box stuff
 	WriteCall((void*)0x00458232, DrawPauseSelectionBox_DC);
@@ -2590,6 +2915,7 @@ void Branding_Init(const IniFile *config, const HelperFunctions &helperFunctions
 	WriteData((float*)0x0045812A, 0.7f); //Selection box G
 	WriteData((float*)0x0045812F, 0.0f); //Selection box R
 }
+
 void Branding_OnFrame()
 {
 	whiteoverlaydrawn = false;

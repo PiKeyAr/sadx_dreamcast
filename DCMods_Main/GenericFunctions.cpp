@@ -3,7 +3,7 @@
 
 void CheckAndUnloadLevelFiles()
 {
-	UnloadGUITextures(); //Unload title screen/main menu textures when loading levels
+	UnloadGUITextures();
 	if (!ModelsLoaded_General) General_Init();
 	ClearTextureAnimationData();
 	if (CurrentLevel != LevelIDs_StationSquare && ADV00_0_Info) UnloadLevelFiles_ADV00();
