@@ -5,7 +5,6 @@
 //Maybe I should move it to mod.cpp or elsewhere... Also maybe do PVM/BIN replacements in advance too
 
 FunctionPointer(void, sub_4014B0, (), 0x4014B0);
-FunctionPointer(void, sub_436550, (), 0x436550);
 
 void LoadBossECOceanPVM(const char *filename, NJS_TEXLIST *texlist)
 {
@@ -53,8 +52,8 @@ void InputHookForCutscenes()
 
 void FixCutsceneTransition()
 {
-	if (CutsceneID == 134) sub_436550(); //Knuckles back in Station Square after meeting Pacman
-	if (CutsceneID == 380) sub_436550(); //Gamma after Windy Valley
+	if (CutsceneID == 134) Cutscene_ResetTransition(); //Knuckles back in Station Square after meeting Pacman
+	if (CutsceneID == 380) Cutscene_ResetTransition(); //Gamma after Windy Valley
 }
 
 void GammaHook()
