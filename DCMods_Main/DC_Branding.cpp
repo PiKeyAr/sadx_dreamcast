@@ -44,7 +44,7 @@ DataPointer(CreditsList, MainCredits, 0x2BC2FD0);
 DataPointer(ObjectMaster*, CurrentMenuObjectMaster_Maybe, 0x3C5E8D0);
 DataPointer(byte, NumberOfSaves_Current, 0x03B290E0);
 DataArray(NJS_TEXANIM, PauseMenu_TEXANIMs, 0x009177B8, 15);
-
+DataArray(PVMEntry*, GUIPVMLists, 0x10D7CB0, 5);
 //GUI texture arrays
 DataArray(PVMEntry, GUITextures_Japanese, 0x007EECF0, 30);
 DataArray(PVMEntry, GUITextures_English, 0x007EEDE0, 30);
@@ -89,10 +89,9 @@ static float f640_Fixed = 0;
 
 //PVM IDs for menus
 int TitleScreenIndices[] = { 17, 18, 0, 1, 10, 13, 7, 30 }; //0, 1, 10, 13, 7 from the file select screen
-int MainMenuIndices[] = { 19, 20, 1, 10, 17, 18, 30 }; //17 and 18 from the title screen
-int FileSelectIndices[] = { 0, 1, 10, 4, 5, 6, 22, 3, 15, 13, 7, 8, 11, 24, 17, 18, 30 }; //17 and 18 from the title screen
+int MainMenuIndices[] = { 19, 20, 1, 10, 17, 18, 0, 13, 7, 30 }; //17 and 18 from the title screen, 0, 13, 7 from the file select screen (to make the title screen load faster)
+int FileSelectIndices[] = { 0, 1, 10, 4, 5, 6, 22, 3, 15, 13, 7, 8, 11, 24, 17, 18, 30 }; //17 and 18 from the title screen//Title screen
 
-//Title screen
 NJS_COLOR TitleBackOverlayColor;
 static NJS_COLOR TitleBGTransparency;
 static NJS_COLOR SonicTeamTransparency;
@@ -1727,8 +1726,11 @@ static Trampoline SwitchMenu_t(0x505B40, 0x505B45, SwitchMenu_r);
 static void __cdecl SwitchMenu_r(int a1)
 {
 	auto original = reinterpret_cast<decltype(SwitchMenu_r)*>(SwitchMenu_t.Target());
-	PreviousMenuIndex = CurrentMenuIndex;
-	CurrentMenuIndex = a1;
+	if (!DisableSA1TitleScreen)
+	{
+		PreviousMenuIndex = CurrentMenuIndex;
+		CurrentMenuIndex = a1;
+	}
 	original(a1);
 }
 
@@ -1801,10 +1803,10 @@ static void __cdecl LoadPVM_r(const char *filename, NJS_TEXLIST *texlist);
 static Trampoline LoadPVM_t(0x421180, 0x421185, LoadPVM_r);
 static void __cdecl LoadPVM_r(const char *filename, NJS_TEXLIST *texlist)
 {
-auto original = reinterpret_cast<decltype(LoadPVM_r)*>(LoadPVM_t.Target());
-PrintDebug("Loading PVM: %s result:", filename);
-PrintDebug("%d\n", VerifyTexList(texlist));
-original(filename, texlist);
+	auto original = reinterpret_cast<decltype(LoadPVM_r)*>(LoadPVM_t.Target());
+	PrintDebug("Loading PVM: %s result:", filename);
+	PrintDebug("%d\n", VerifyTexList(texlist));
+	original(filename, texlist);
 }
 */
 
@@ -1812,11 +1814,7 @@ void UnloadGUITextures()
 {
 	for (int i = 0; i < 30; i++)
 	{
-		if (TextLanguage == 0) njReleaseTexture(GUITextures_Japanese[i].TexList);
-		else if (TextLanguage == 1) njReleaseTexture(GUITextures_English[i].TexList);
-		else if (TextLanguage == 2) njReleaseTexture(GUITextures_French[i].TexList);
-		else if (TextLanguage == 3) njReleaseTexture(GUITextures_German[i].TexList);
-		else if (TextLanguage == 4) njReleaseTexture(GUITextures_Spanish[i].TexList);
+		njReleaseTexture(GUIPVMLists[TextLanguage][i].TexList);
 	}
 }
 
@@ -1831,7 +1829,6 @@ void Branding_SetUpVariables()
 	ResolutionDeltaX = (HorizontalResolution_float - ResolutionScaleY * 640.0f) / 2.0f;
 	ResolutionDeltaY = (VerticalResolution_float - ResolutionScaleY * 480.0f) / 2.0f;
 }
-
 
 void Branding_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 {
