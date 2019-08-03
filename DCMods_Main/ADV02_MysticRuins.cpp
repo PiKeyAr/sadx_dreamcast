@@ -72,6 +72,7 @@ void __cdecl MRWater_Display(void(__cdecl *function)(void *), void *data, float 
 			if (MROcean) ProcessModelNode_AB_Wrapper(MROcean, 1.0f);
 			DrawQueueDepthBias = 0.0f;
 			njPopMatrix(1u);
+			ToggleStageFog();
 		}
 		for (int i = 0; i < LengthOfArray(MRWaterObjects); i++)
 		{
@@ -703,8 +704,8 @@ void ADV02_Init()
 		WriteCall((void*)0x53CEDC, DrawMasterEmeraldGlow);
 		for (int i = 0; i < 3; i++)
 		{
-			MR1FogDay[i].Distance = -10000.0f;
-			MR1FogDay[i].Layer = -2500.0f;
+			MR1FogDay[i].Distance = -14000.0f;
+			MR1FogDay[i].Layer = -2000.0f;
 			MR1FogDay[i].Toggle = 1;
 			MR1FogDay[i].Color = 0xFFA0A0A0;
 			MR1FogEvening[i].Distance = -9000.0f;
@@ -775,8 +776,11 @@ void ADV02_Init()
 		ADV02_OBJECTS[25] = LoadModel("system\\data\\ADV02\\Models\\001B9854.sa1mdl", false); //Ice Cap door 1 
 		ADV02_OBJECTS[26] = LoadModel("system\\data\\ADV02\\Models\\001B9D9C.sa1mdl", false); //Ice Cap door 2
 		ADV02_OBJECTS[86] = LoadModel("system\\data\\ADV02\\Models\\001BF00C.sa1mdl", false); //Ice Cap lock
-		ADV02_OBJECTS[88] = LoadModel("system\\data\\ADV02\\Models\\001BBA04.sa1mdl", false); //Ice Stone
 		ADV02_OBJECTS[76] = LoadModel("system\\data\\ADV02\\Models\\001BCA10.sa1mdl", false); //Wind Stone
+		ForceLevelSpecular_Object(ADV02_OBJECTS[76]); //Wind Stone
+		ADV02_ACTIONS[28]->object = ADV02_OBJECTS[76]; //Wind Stone
+		ADV02_OBJECTS[88] = LoadModel("system\\data\\ADV02\\Models\\001BBA04.sa1mdl", false); //Ice Stone
+		ForceLevelSpecular_Object(ADV02_OBJECTS[88]); //Ice Stone
 		ADV02_ACTIONS[29]->object = ADV02_OBJECTS[88]; //Ice Stone
 		ADV02_OBJECTS[64] = LoadModel("system\\data\\ADV02\\Models\\001E87F0.sa1mdl", false); //Angel Island rock
 		ADV02_OBJECTS[68] = LoadModel("system\\data\\ADV02\\Models\\002145D4.sa1mdl", false); //That thing that pushes the Chao Egg out
