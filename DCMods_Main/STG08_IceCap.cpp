@@ -537,7 +537,8 @@ void IceCap_Init()
 		*(NJS_OBJECT*)0x986F80 = *LoadModel("system\\data\\STG08\\Models\\001BEF20.sa1mdl", false); //ESMan
 		((NJS_OBJECT*)0x986F80)->basicdxmodel->mats[7].attrflags &= ~NJD_FLAG_USE_ALPHA; //Unnecessary alpha causing errors
 		RemoveVertexColors_Object((NJS_OBJECT*)0x9889E4); //ESMan vehicle
-		//Crystal fixes
+		//Crystal fixes, hopefully someday
+		/*
 		stru_E773D8.basicdxmodel->mats[0].attrflags |= NJD_FLAG_USE_ALPHA;
 		stru_E773D8.basicdxmodel->mats[1].attrflags |= NJD_FLAG_USE_ALPHA;
 		//Crystal 1
@@ -560,7 +561,7 @@ void IceCap_Init()
 		Crystal2_3 = LoadModel("system\\data\\STG08\\Models\\00184918.sa1mdl", false);
 		HideMesh(&Crystal2_3->basicdxmodel->meshsets[0]);
 		HideMesh(&Crystal2_3->basicdxmodel->meshsets[1]);
-		WriteJump((void*)0x4EF5A0, Crystal_Display);
+		WriteJump((void*)0x4EF5A0, Crystal_Display);*/
 		WriteCall((void*)0x4EFE10, RenderSmallIcicles);
 		//Snowboard "fixes"
 		RemoveVertexColors_Object(SONIC_OBJECTS[71]);
