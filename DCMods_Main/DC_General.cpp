@@ -5,8 +5,9 @@
 //#include "Animals.h"
 //#include "Frogs.h"
 
-NJS_TEXANIM EmeraldGlowTexanim = { 32, 32, 0, 0, 0, 0, 0xFF, 0xFF, 3, 0 };
-NJS_SPRITE EmeraldGlowSprite = { { -16.0f, -10.5f, 0.0f }, 1.0f, 1.0f, 0, (NJS_TEXLIST*)0xC3FE20, &EmeraldGlowTexanim };
+NJS_TEXANIM EmeraldGlowTexanim = { 64, 64, 32, 32, 0, 0, 0xFF, 0xFF, 3, 0 };
+NJS_SPRITE EmeraldGlowSprite = { { 0.0f, 4.2f, 0.0f }, 0.35f, 0.35f, 0, (NJS_TEXLIST*)0xC3FE20, &EmeraldGlowTexanim };
+NJS_VECTOR EmeraldGlowPosition = { 0, 10, 0 };
 
 NJS_TEXANIM Heat1Texanim = { 56, 64, 28, 32, 0, 0, 0xFF, 0xFF, 2, 0 };
 NJS_TEXANIM Heat2Texanim = { 56, 64, 28, 32, 0, 0, 0xFF, 0xFF, 2, 0 };
@@ -343,27 +344,97 @@ NJS_MATERIAL* ObjectSpecular_General[] = {
 	((NJS_MATERIAL*)0x33178B0),
 };
 
-void RenderEmeraldWithGlow(NJS_OBJECT *a1, int scale)
+void GetEmeraldGlow(ObjectMaster* a1)
 {
-	ProcessModelNode_D_Wrapper(a1, scale);
-	if (EmeraldGlowAlpha >= 255) EmeraldGlowDirection = false;
+	EntityData1* Data1 = a1->Data1;
+	EmeraldGlowPosition.x = Data1->Position.x;
+	EmeraldGlowPosition.y = Data1->Position.y + 10;
+	EmeraldGlowPosition.z = Data1->Position.z;
+}
+
+static void GoalEmerald_Windy_Display_r(ObjectMaster* a1);
+static Trampoline GoalEmerald_Windy_Display_t(0x4DF3B0, 0x4DF3B6, GoalEmerald_Windy_Display_r);
+static void __cdecl GoalEmerald_Windy_Display_r(ObjectMaster* a1)
+{
+	auto original = reinterpret_cast<decltype(GoalEmerald_Windy_Display_r)*>(GoalEmerald_Windy_Display_t.Target());
+	GetEmeraldGlow(a1);
+	original(a1);
+}
+
+static void GoalEmerald_Ice_Display_r(ObjectMaster* a1);
+static Trampoline GoalEmerald_Ice_Display_t(0x4ECFA0, 0x4ECFA6, GoalEmerald_Ice_Display_r);
+static void __cdecl GoalEmerald_Ice_Display_r(ObjectMaster* a1)
+{
+	auto original = reinterpret_cast<decltype(GoalEmerald_Ice_Display_r)*>(GoalEmerald_Ice_Display_t.Target());
+	GetEmeraldGlow(a1);
+	original(a1);
+}
+
+static void GoalEmerald_Casino_Display_r(ObjectMaster* a1);
+static Trampoline GoalEmerald_Casino_Display_t(0x5DD0A0, 0x5DD0A6, GoalEmerald_Casino_Display_r);
+static void __cdecl GoalEmerald_Casino_Display_r(ObjectMaster* a1)
+{
+	auto original = reinterpret_cast<decltype(GoalEmerald_Casino_Display_r)*>(GoalEmerald_Casino_Display_t.Target());
+	GetEmeraldGlow(a1);
+	original(a1);
+}
+
+void RenderEmeraldWithGlow_Windy(NJS_OBJECT *object, int flags)
+{
+	//Do the emerald itself first
+	ProcessModelNode_D_Wrapper(object, flags);
+	njPopMatrix(1u);
+	if (EmeraldGlowAlpha >= 360) EmeraldGlowDirection = false;
 	if (EmeraldGlowAlpha <= 128) EmeraldGlowDirection = true;
 	if (EmeraldGlowDirection) EmeraldGlowAlpha = EmeraldGlowAlpha + 2; else EmeraldGlowAlpha = EmeraldGlowAlpha - 2;
 	if (CurrentLevel == 2) EmeraldGlowTexanim.texid = 3;
 	if (CurrentLevel == 9) EmeraldGlowTexanim.texid = 4;
 	if (CurrentLevel == 8) EmeraldGlowTexanim.texid = 5;
-	SetMaterialAndSpriteColor_Float((EmeraldGlowAlpha / 255.0f), 1.0f, 1.0f, 1.0f);
-	njColorBlendingMode(NJD_SOURCE_COLOR, NJD_COLOR_BLENDING_SRCALPHA);
+	//Emerald glow sprite
+	njColorBlendingMode(NJD_SOURCE_COLOR, NJD_COLOR_BLENDING_ONE);
 	njColorBlendingMode(NJD_DESTINATION_COLOR, NJD_COLOR_BLENDING_ONE);
-	njDrawSprite3D(&EmeraldGlowSprite, 0, NJD_SPRITE_ALPHA | NJD_SPRITE_COLOR);
+	njPushMatrix(0);
+	DisableFog();
+	float finalcolor = (min(255, EmeraldGlowAlpha) / 255.0f);
+	SetMaterialAndSpriteColor_Float(1.0f, finalcolor, finalcolor, finalcolor);
+	//SetMaterialAndSpriteColor_Float(1.0f, 1.0f, 1.0f, 1.0f);
+	njTranslateV(0, &EmeraldGlowPosition);
+	njRotateXYZ(0, Camera_Data1->Rotation.x, Camera_Data1->Rotation.y, 0);
+	njDrawSprite3D_Queue(&EmeraldGlowSprite, 0, NJD_SPRITE_ALPHA | NJD_SPRITE_COLOR, (QueuedModelFlagsB)4);
 	njColorBlendingMode(NJD_SOURCE_COLOR, NJD_COLOR_BLENDING_SRCALPHA);
 	njColorBlendingMode(NJD_DESTINATION_COLOR, NJD_COLOR_BLENDING_INVSRCALPHA);
 	ClampGlobalColorThing_Thing();
+	ToggleStageFog();
+	//Don't njPopMatrix because there's one right after this hook in code
 }
 
-void RotateEmerald()
+void RenderEmeraldWithGlow_Ice(NJS_OBJECT *object, int flags, float scale)
 {
-	njRotateY(0, Camera_Data1->Rotation.y);
+	//Do the emerald itself first
+	ProcessModelNode_D_Wrapper(object, flags);
+	njPopMatrix(1u);
+	if (EmeraldGlowAlpha >= 360) EmeraldGlowDirection = false;
+	if (EmeraldGlowAlpha <= 128) EmeraldGlowDirection = true;
+	if (EmeraldGlowDirection) EmeraldGlowAlpha = EmeraldGlowAlpha + 2; else EmeraldGlowAlpha = EmeraldGlowAlpha - 2;
+	if (CurrentLevel == 2) EmeraldGlowTexanim.texid = 3;
+	if (CurrentLevel == 9) EmeraldGlowTexanim.texid = 4;
+	if (CurrentLevel == 8) EmeraldGlowTexanim.texid = 5;
+	//Emerald glow sprite
+	njColorBlendingMode(NJD_SOURCE_COLOR, NJD_COLOR_BLENDING_ONE);
+	njColorBlendingMode(NJD_DESTINATION_COLOR, NJD_COLOR_BLENDING_ONE);
+	njPushMatrix(0);
+	DisableFog();
+	float finalcolor = (min(255, EmeraldGlowAlpha) / 255.0f);
+	SetMaterialAndSpriteColor_Float(1.0f, finalcolor, finalcolor, finalcolor);
+	//SetMaterialAndSpriteColor_Float(1.0f, 1.0f, 1.0f, 1.0f);
+	njTranslateV(0, &EmeraldGlowPosition);
+	njRotateXYZ(0, Camera_Data1->Rotation.x, Camera_Data1->Rotation.y, 0);
+	njDrawSprite3D_Queue(&EmeraldGlowSprite, 0, NJD_SPRITE_ALPHA | NJD_SPRITE_COLOR, (QueuedModelFlagsB)4);
+	njColorBlendingMode(NJD_SOURCE_COLOR, NJD_COLOR_BLENDING_SRCALPHA);
+	njColorBlendingMode(NJD_DESTINATION_COLOR, NJD_COLOR_BLENDING_INVSRCALPHA);
+	ClampGlobalColorThing_Thing();
+	ToggleStageFog();
+	//Don't njPopMatrix because there's one right after this hook in code
 }
 
 void SonicDashTrailFix(NJS_OBJECT *a1, QueuedModelFlagsB a2)
@@ -1302,10 +1373,24 @@ void RenderChaosPuddle_Last(NJS_OBJECT *a1)
 	ProcessModelNode_D(a1, (QueuedModelFlagsB)0, 1.0f);
 }
 
+void PlayCharacterHurtVoice(int ID, void *a2, int a3, void *a4)
+{
+	PlaySound(ID, a2, a3, a4);
+	if ( GetCurrentCharacterID() == Characters_Gamma )
+	{
+		PlaySound(1431, 0, 0, 0);
+	}
+	else
+	{
+		PlaySound(23, 0, 0, 0);
+	}
+}
+
 void General_Init()
 {
 	if (!ModelsLoaded_General)
 	{
+		WriteCall((void*)0x4507FA, PlayCharacterHurtVoice); //Move to Sound Overhaul
 		ReplacePVR("AL_BARRIA");
 		ReplacePVR("AM_SEA124_8");
 		ReplacePVR("BELT2");
@@ -1504,6 +1589,26 @@ void General_Init()
 		*/
 		WriteCall((void*)0x4A22A6, SonicFrozenCubeFix);
 		//Material/vertex color fixes
+		//Eggman's eyes (UV-less / SA1 model only)
+		if (DLLLoaded_SA1Chars)
+		{
+			//Regular model
+			if (!(((NJS_ACTION*)0x89E254)->object->child->child->basicdxmodel->mats[4].attrflags & NJD_FLAG_USE_TEXTURE))
+			{
+				ForceLevelSpecular_Object(((NJS_ACTION*)0x89E254)->object->child->child); //Prevent the glasses from "forgetting" specular in some cutscenes
+				((NJS_ACTION*)0x89E254)->object->child->child->basicdxmodel->mats[4].attrflags |= NJD_FLAG_USE_TEXTURE;
+				((NJS_ACTION*)0x89E254)->object->child->child->basicdxmodel->mats[4].attr_texId = 9;
+				((NJS_ACTION*)0x89E254)->object->child->child->basicdxmodel->mats[4].diffuse.color = 0xFF000000;
+			}
+			//Event Eggmobile 0
+			if (!(((NJS_ACTION*)0x2CD393C)->object->child->child->basicdxmodel->mats[4].attrflags & NJD_FLAG_USE_TEXTURE))
+			{
+				ForceLevelSpecular_Object(((NJS_ACTION*)0x2CD393C)->object->child->child); //Prevent the glasses from "forgetting" specular in some cutscenes
+				((NJS_ACTION*)0x2CD393C)->object->child->child->basicdxmodel->mats[4].attrflags |= NJD_FLAG_USE_TEXTURE;
+				((NJS_ACTION*)0x2CD393C)->object->child->child->basicdxmodel->mats[4].attr_texId = 7;
+				((NJS_ACTION*)0x2CD393C)->object->child->child->basicdxmodel->mats[4].diffuse.color = 0xFF000000;
+			}
+		}
 		RemoveVertexColors_Model((NJS_MODEL_SADX*)0x94BAA0); //ERobo0 head
 		AddWhiteDiffuseMaterial(&(((NJS_MODEL_SADX*)0x94BAA0)->mats[4]));
 		RemoveVertexColors_Object((NJS_OBJECT*)0x94DA44); //ERobo0 body
@@ -1620,9 +1725,9 @@ void General_Init()
 		//Light Speed Dash distance fix
 		if (EnableLSDFix)
 		{
-			WriteData<1>((char*)0x49306C, 0x80); //Initial speed 16 instead of 8
-			WriteData<1>((char*)0x492FED, 0x80); //Initial speed 16 instead of 8
-			WriteData<1>((char*)0x492CC1, 0x80); //Set speed to 16 if below minimum
+			WriteData<1>((char*)0x49306C, 0x60); //Initial speed 14 instead of 8
+			WriteData<1>((char*)0x492FED, 0x60); //Initial speed 14 instead of 8
+			WriteData<1>((char*)0x492CC1, 0x60); //Set speed to 14 if below minimum
 			//Disabling this since it doesn't seem necessary and it breaks Egg Carrier captain's room
 			//WriteData((float**)0x492CB0, &LSDFix); //16 is the minimum speed
 		}
@@ -1718,14 +1823,11 @@ void General_Init()
 		RemoveVertexColors_Object(&EV_MODEL_EME_YELLOW);
 		//Emeralds glow
 		//Windy Valley
-		WriteCall((void*)0x4DF27F, RenderEmeraldWithGlow);
-		WriteCall((void*)0x4DF250, RotateEmerald);
+		WriteCall((void*)0x4DF27F, RenderEmeraldWithGlow_Windy); //Uses a different function than Ice Cap or Casino
 		//Ice Cap
-		WriteCall((void*)0x4ECEC4, RenderEmeraldWithGlow);
-		WriteCall((void*)0x4ECE90, RotateEmerald);
+		WriteCall((void*)0x4ECEC4, RenderEmeraldWithGlow_Ice);
 		//Casino
-		WriteCall((void*)0x5DCFB0, RenderEmeraldWithGlow);
-		WriteCall((void*)0x5DCF7D, RotateEmerald);
+		WriteCall((void*)0x5DCFB0, RenderEmeraldWithGlow_Ice); //Same function
 		//Material fixes
 		for (int i = 0; i < LengthOfArray(RemoveColors_General); i++)
 		{
