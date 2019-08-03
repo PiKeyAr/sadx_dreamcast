@@ -1,9 +1,8 @@
 #include "stdafx.h"
-//TODO: Burger Shop man lighting should use type 0, but its materials are hardcoded in Lantern Engine
+//TODO: Burger Shop man lighting should use type 0 but the model parts are shared among NPCs
 //TODO: Check pool transparency maybe
 //TODO: Light speed shoes cutscene last camera angle
 //TODO: Casino uses level specular
-DataPointer(NJS_TEXLIST, M_EM_RED_TEXLIST, 0x2CBCF48);
 
 NJS_TEXNAME textures_advss00[220];
 NJS_TEXLIST texlist_advss00 = { arrayptrandlength(textures_advss00) };
@@ -157,7 +156,6 @@ void OMSakuFix(NJS_OBJECT *a1, float scale)
 {
 	ProcessModelNode(a1, QueuedModelFlagsB_EnableZWrite, scale);
 }
-
 
 void DrawEventHelicopter(NJS_ACTION *a1, float a2, int a3)
 {
@@ -717,7 +715,7 @@ void ADV00_Init()
 		*(NJS_MODEL_SADX*)0x2AC95BC = *LoadModel("system\\data\\ADV00\\Models\\0017D568.sa1mdl", false)->basicdxmodel; //Fire hydrant
 		*(NJS_OBJECT*)0x2AC9F10 = *LoadModel("system\\data\\ADV00\\Models\\0017DDE8.sa1mdl", false); //OGaitou (street light)
 		*(NJS_OBJECT*)0x2AEA9F8 = *LoadModel("system\\data\\ADV00\\Models\\00197228.sa1mdl", false); //OS1Dnto
-		((NJS_OBJECT*)0x2AEA9F8)->basicdxmodel->mats[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_OBJECT*)0x2AEA9F8)->basicdxmodel->mats[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT; //OS1Dnto doesn't ignore lighting on DC even though the model does
 		*(NJS_OBJECT*)0x2AB2CCC = *LoadModel("system\\data\\ADV00\\Models\\001689C4.sa1mdl", true); //Souvenir shop door
 		*(NJS_OBJECT*)0x2AB57E4 = *LoadModel("system\\data\\ADV00\\Models\\0016B404.sa1mdl", false); //OTwaDoor
 		*(NJS_OBJECT*)0x2AFE668 = *LoadModel("system\\data\\ADV00\\Models\\001A6DEC.sa1mdl", false); //Casino decoration 1
