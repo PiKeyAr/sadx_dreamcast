@@ -22,6 +22,7 @@ DataArray(FogData, FogData_Windy1, 0x00AFEA20, 3);
 DataArray(FogData, FogData_Windy2, 0x00AFEA50, 3);
 DataArray(FogData, FogData_Windy3, 0x00AFEA80, 3);
 DataPointer(float, CurrentFogDist, 0x03ABDC64);
+DataPointer(ObjectMaster*, TornadoObjectMaster, 0x03C5B32C);
 DataPointer(float, CurrentFogLayer, 0x03ABDC60);
 DataPointer(NJS_VECTOR, CurrentSkybox, 0x03ABDC94);
 DataPointer(NJS_BGRA, CurrentFogColorX, 0x03ABDC68);
@@ -446,52 +447,57 @@ void WindyValley_OnFrame()
 	float TornadoDistance;
 	auto entity = EntityData1Ptrs[0];
 	//Tornado stuff
-	if (CurrentLevel == LevelIDs_WindyValley && CurrentAct == 0)
+	if (CurrentLevel == LevelIDs_WindyValley)
 	{
-		if (GameState == 3 || GameState == 4 || GameState == 7 || GameState == 21 || CurrentCharacter == 6) TornadoMode = 0;
-		if (CurrentCharacter != 6 && entity != nullptr)
+		if (CurrentAct == 0)
 		{
-			TornadoDistance = squareroot((entity->Position.x - TornadoSpawnPosition.x) * (entity->Position.x - TornadoSpawnPosition.x) + (entity->Position.y - TornadoSpawnPosition.y)*(entity->Position.y - TornadoSpawnPosition.y) + (entity->Position.z - TornadoSpawnPosition.z)*(entity->Position.z - TornadoSpawnPosition.z));
-			if (TornadoMode != 4)
+			if (GameState == 3 || GameState == 4 || GameState == 7 || GameState == 21 || CurrentCharacter == 6) TornadoMode = 0;
+			if (CurrentCharacter != 6 && entity != nullptr)
 			{
-				if (TornadoDistance < 680) TornadoMode = 1;
-				if (TornadoDistance < 310) TornadoMode = 2;
-				if (TornadoDistance < 170) TornadoMode = 3;
-				if (TornadoDistance < 150) TornadoMode = 4;
-			}
-			if (TornadoMode == 0 || TornadoMode == 4)
-			{
-				if (CurrentFogDist < 2200) CurrentFogDist = CurrentFogDist + 32.0f;
-				if (CurrentFogLayer < 400) CurrentFogLayer = CurrentFogLayer + 16.0f;
-			}
-			if (TornadoMode == 1)
-			{
-				if (CurrentFogColorX.r > 7)
+				TornadoDistance = squareroot((entity->Position.x - TornadoSpawnPosition.x) * (entity->Position.x - TornadoSpawnPosition.x) + (entity->Position.y - TornadoSpawnPosition.y) * (entity->Position.y - TornadoSpawnPosition.y) + (entity->Position.z - TornadoSpawnPosition.z) * (entity->Position.z - TornadoSpawnPosition.z));
+				if (TornadoMode != 4)
 				{
-					CurrentFogColorX.r = CurrentFogColorX.r - 8;
-					CurrentFogColorX.g = CurrentFogColorX.g - 8;
-					CurrentFogColorX.b = CurrentFogColorX.b - 8;
+					if (TornadoDistance < 680) TornadoMode = 1;
+					if (TornadoDistance < 310) TornadoMode = 2;
+					if (TornadoDistance < 170) TornadoMode = 3;
+					if (TornadoDistance < 150) TornadoMode = 4;
 				}
-				if (CurrentFogColorX.r <= 7 && CurrentFogColorX.r > 0)
+				if (TornadoMode == 0 || TornadoMode == 4)
 				{
-					CurrentFogColorX.r = 0;
-					CurrentFogColorX.g = 0;
-					CurrentFogColorX.b = 0;
+					if (CurrentFogDist < 2200) CurrentFogDist = CurrentFogDist + 32.0f;
+					if (CurrentFogLayer < 400) CurrentFogLayer = CurrentFogLayer + 16.0f;
 				}
-				if (CurrentFogDist > 5000) CurrentFogDist = CurrentFogDist - 128.0f;
-				if (CurrentFogLayer >= 100) CurrentFogLayer = CurrentFogLayer - 128.0f;
-			}
-			if (TornadoMode == 2)
-			{
-				if (CurrentFogDist > 450) CurrentFogDist = CurrentFogDist - 64.0f;
-				if (CurrentFogLayer >= 64) CurrentFogLayer = CurrentFogLayer - 64.0f;
-				if (CurrentFogColorX.r > 1)
+				if (TornadoMode == 1)
 				{
-					CurrentFogColorX.r--;
-					CurrentFogColorX.g--;
-					CurrentFogColorX.b--;
+					if (CurrentFogColorX.r > 7)
+					{
+						CurrentFogColorX.r = CurrentFogColorX.r - 8;
+						CurrentFogColorX.g = CurrentFogColorX.g - 8;
+						CurrentFogColorX.b = CurrentFogColorX.b - 8;
+					}
+					if (CurrentFogColorX.r <= 7 && CurrentFogColorX.r > 0)
+					{
+						CurrentFogColorX.r = 0;
+						CurrentFogColorX.g = 0;
+						CurrentFogColorX.b = 0;
+					}
+					if (CurrentFogDist > 5000) CurrentFogDist = CurrentFogDist - 128.0f;
+					if (CurrentFogLayer >= 100) CurrentFogLayer = CurrentFogLayer - 128.0f;
+				}
+				if (TornadoMode == 2)
+				{
+					if (CurrentFogDist > 450) CurrentFogDist = CurrentFogDist - 64.0f;
+					if (CurrentFogLayer >= 64) CurrentFogLayer = CurrentFogLayer - 64.0f;
+					if (CurrentFogColorX.r > 1)
+					{
+						CurrentFogColorX.r--;
+						CurrentFogColorX.g--;
+						CurrentFogColorX.b--;
+					}
 				}
 			}
 		}
+		//Clear tornado ObjectMaster pointer after Act 1 - if it isn't cleared the dandelions get weird
+		if (CurrentAct != 0 && TornadoObjectMaster != nullptr) TornadoObjectMaster = nullptr;
 	}
 }
