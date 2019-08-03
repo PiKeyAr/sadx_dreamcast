@@ -2,7 +2,7 @@
 #include "Casino_UVs.h"
 
 //TODO: Replace whole models instead of just the UVs in "UV fixes", Cowgirl dynamic collision
-//Check medal Z fighting in the landtable
+
 NJS_TEXNAME textures_casino1[131];
 NJS_TEXLIST texlist_casino1 = { arrayptrandlength(textures_casino1) };
 
@@ -1125,12 +1125,18 @@ void Casinopolis_Init()
 		AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1DF716C)->basicdxmodel->meshsets[8].vertuv, 14, 16, 65, 0);
 		*(NJS_OBJECT*)0x1DF5164 = *LoadModel("system\\data\\STG09\\Models\\00175E6C.sa1mdl", false); //Slot blue
 		AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1DF5164)->basicdxmodel->meshsets[8].vertuv, 14, 16, 65, 0);
-		*(NJS_OBJECT*)0x1E49864 = *LoadModel("system\\data\\STG09\\Models\\001C6E9C.sa1mdl", false); //Card pinball entrance
-		AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E49864)->basicdxmodel->meshsets[0].vertuv, 67, 12, 65, 0);
-		AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E49864)->basicdxmodel->meshsets[5].vertuv, 8, 12, 65, 0);
-		*(NJS_OBJECT*)0x1E4B1A8 = *LoadModel("system\\data\\STG09\\Models\\001C8150.sa1mdl", false); //Slot pinball entrance
-		AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E4B1A8)->basicdxmodel->meshsets[0].vertuv, 28, 12, 65, 0);
-		AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E4B1A8)->basicdxmodel->meshsets[11].vertuv, 24, 12, 65, 0);
+		//Card pinball entrance OTensC
+		*(NJS_OBJECT*)0x1E49864 = *LoadModel("system\\data\\STG09\\Models\\001C6E9C.sa1mdl", false); //Main object
+		AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E49864)->basicdxmodel->meshsets[0].vertuv, 67, 12, 65, 0); //Main object UV animation 1
+		AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E49864)->basicdxmodel->meshsets[5].vertuv, 8, 12, 65, 0); //Main object UV animation 1
+		WriteData((NJS_MESHSET_SADX**)0x1E76D30, &((NJS_OBJECT*)0x1E49864)->child->basicdxmodel->meshsets[1]); //Child UV animation 1
+		WriteData((NJS_MESHSET_SADX**)0x1E76D40, &((NJS_OBJECT*)0x1E49864)->child->basicdxmodel->meshsets[0]); //Child UV animation 2
+		//Slot pinball entrance OTensS
+		*(NJS_OBJECT*)0x1E4B1A8 = *LoadModel("system\\data\\STG09\\Models\\001C8150.sa1mdl", false); //Main object
+		AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E4B1A8)->basicdxmodel->meshsets[0].vertuv, 28, 12, 65, 0); //Main object UV animation 1
+		AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E4B1A8)->basicdxmodel->meshsets[11].vertuv, 24, 12, 65, 0); //Main object UV animation 2
+		WriteData((NJS_MESHSET_SADX**)0x1E76F18, &((NJS_OBJECT*)0x1E4B1A8)->child->basicdxmodel->meshsets[0]); //Child UV animation (meshes merged in the DC version so just one)
+		//OSl objects
 		OSlX_Base = LoadModel("system\\data\\STG09\\Models\\001BF300.sa1mdl", false); //OSl Base
 		HideMesh(&OSlX_Base->child->basicdxmodel->meshsets[0]); //Hide light start
 		HideMesh(&OSlX_Base->child->basicdxmodel->meshsets[2]); //Hide light
@@ -1223,6 +1229,12 @@ void Casinopolis_OnFrame()
 			set_specular_blend_ptr(3, -1);
 			set_shader_flags_ptr(ShaderFlags_Blend, false);
 			SonicWhiteBlendFactor = 0;
+			//Restore OTeleport UVs
+			for (int i = 0; i < 14; i++)
+			{
+				((NJS_MESHSET_SADX*)0x1E45F1C)->vertuv[i].v = uv_01A45EE4[i].v;
+				((NJS_MESHSET_SADX*)0x1E46124)->vertuv[i].v = uv_01A460EC[i].v;
+			}
 		}
 		if (CurrentLevel == LevelIDs_Casinopolis && CurrentAct == 0 && !IsGamePaused())
 		{
@@ -1234,9 +1246,14 @@ void Casinopolis_OnFrame()
 				set_specular_blend_ptr(2, 4);
 				set_specular_blend_ptr(3, 4);
 			}
-			//Make Sonic normal
 			if (WhiteSonic && SonicWhiteBlendFactor <= 0.75f)
 			{
+				//Move OTeleport UVs
+				for (int i = 0; i < 14; i++)
+				{
+					((NJS_MESHSET_SADX*)0x1E45F1C)->vertuv[i].v += 16 * min(1, FramerateSetting); //uv_01A45EE4
+					((NJS_MESHSET_SADX*)0x1E46124)->vertuv[i].v += 16 * min(1, FramerateSetting); //uv_01A460EC
+				}
 				set_blend_factor_ptr(SonicWhiteBlendFactor);
 				SonicWhiteBlendFactor += (0.01f * FramerateSetting);
 			}
