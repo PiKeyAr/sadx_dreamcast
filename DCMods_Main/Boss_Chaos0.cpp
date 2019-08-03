@@ -18,6 +18,9 @@ DataPointer(ObjectMaster*, Chaos0ObjectMaster, 0x3C84628);
 static int Chaos0PuddleTransparency = 255;
 static bool Chaos0TransUp = false;
 
+NJS_OBJECT* C0HelicopterLight1 = nullptr;
+NJS_OBJECT* C0HelicopterLight2 = nullptr;
+
 void DrawChaos0Spotlight(ObjectMaster *a1)
 {
 	EntityData1 *v1 = a1->Data1;
@@ -98,6 +101,22 @@ void Chaos0PuddleFix(NJS_OBJECT* a1)
 	ProcessModelNode_D(a1, (QueuedModelFlagsB)0, 1.0f);
 }
 
+void DrawChaos0HelicopterWithLight(NJS_ACTION *a1, float a2, int a3, float a4)
+{
+	NJS_ACTION Light1Action = { nullptr, nullptr };
+	NJS_ACTION Light2Action = { nullptr, nullptr };
+	Light1Action.motion = a1->motion;
+	Light2Action.motion = a1->motion;
+	Light1Action.object = C0HelicopterLight1;
+	Light2Action.object = C0HelicopterLight2;
+	//Draw the helicopter
+	njAction_Queue_407BB0_2(a1, a2, 1, a4);
+	//Draw the light cover
+	njAction_Queue_407BB0_2(&Light1Action, a2, 1, a4);
+	//Draw the light
+	njAction_Queue_407BB0_2(&Light2Action, a2, a3, a4);
+}
+
 void Chaos0_Init()
 {
 	CheckAndUnloadLevelFiles();
@@ -151,11 +170,40 @@ void Chaos0_Init()
 		RemoveVertexColors_Object(BOSSCHAOS0_OBJECTS[33]);
 		RemoveVertexColors_Object((NJS_OBJECT*)0x337B794); //SS policemen
 		RemoveVertexColors_Object((NJS_OBJECT*)0x339889C); //Bullets fired at Chaos
-		BOSSCHAOS0_ACTIONS[17]->object = LoadModel("system\\data\\B_CHAOS0\\Models\\0005825C.sa1mdl", false); //Helicopter
-		BOSSCHAOS0_ACTIONS[18]->object = LoadModel("system\\data\\B_CHAOS0\\Models\\0005D234.sa1mdl", false); //Police car
+		//Helicopter
+		BOSSCHAOS0_ACTIONS[17]->object = LoadModel("system\\data\\B_CHAOS0\\Models\\0005825C.sa1mdl", false);
+		//UV-less stuff fix
+		BOSSCHAOS0_ACTIONS[17]->object->child->child->child->basicdxmodel->mats[2].attr_texId = 26;
+		BOSSCHAOS0_ACTIONS[17]->object->child->child->child->basicdxmodel->mats[2].attrflags |= NJD_FLAG_USE_TEXTURE;
+		//Add white diffuse on opaque things
+		AddWhiteDiffuseMaterial(&BOSSCHAOS0_ACTIONS[17]->object->child->sibling->sibling->sibling->sibling->child->basicdxmodel->mats[1]);
+		AddWhiteDiffuseMaterial(&BOSSCHAOS0_ACTIONS[17]->object->child->sibling->sibling->sibling->sibling->child->basicdxmodel->mats[2]);
+		//Disable all transparent bits in the original model except SSPD
+		HideMesh(&BOSSCHAOS0_ACTIONS[17]->object->child->sibling->sibling->sibling->sibling->child->basicdxmodel->meshsets[0]);
+		BOSSCHAOS0_ACTIONS[17]->object->child->sibling->sibling->sibling->sibling->child->child->evalflags |= NJD_EVAL_HIDE;
+		//Remove transparency in the part the light is coming from, because it isn't a transparent texture and it uses regular blending
+		BOSSCHAOS0_ACTIONS[17]->object->child->sibling->sibling->sibling->sibling->child->child->sibling->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_USE_ALPHA;
+		//Light1 is the metal cover of the thing the light is supposed to be coming from
+		C0HelicopterLight1 = LoadModel("system\\data\\B_CHAOS0\\Models\\0005825C.sa1mdl", false);
+		HideEntireObject(C0HelicopterLight1);
+		C0HelicopterLight1->child->sibling->sibling->sibling->sibling->child->evalflags &= ~NJD_EVAL_HIDE; //Unhide first transparent bit in mesh 1
+		HideMesh(&C0HelicopterLight1->child->sibling->sibling->sibling->sibling->child->basicdxmodel->meshsets[1]); //Hide opaque bits in mesh 1
+		HideMesh(&C0HelicopterLight1->child->sibling->sibling->sibling->sibling->child->basicdxmodel->meshsets[2]); //Hide opaque bits in mesh 1
+		//Light2 is the actual light
+		C0HelicopterLight2 = LoadModel("system\\data\\B_CHAOS0\\Models\\0005825C.sa1mdl", false);
+		HideEntireObject(C0HelicopterLight2);
+		C0HelicopterLight2->child->sibling->sibling->sibling->sibling->child->child->evalflags &= ~NJD_EVAL_HIDE; //Unhide the light
+		WriteCall((void*)0x5498F6, DrawChaos0HelicopterWithLight);
+		//Police car
+		BOSSCHAOS0_ACTIONS[18]->object = LoadModel("system\\data\\B_CHAOS0\\Models\\0005D234.sa1mdl", false);
 		AddWhiteDiffuseMaterial(&BOSSCHAOS0_ACTIONS[18]->object->child->sibling->sibling->sibling->sibling->sibling->sibling->sibling->sibling->basicdxmodel->mats[1]);
 		BOSSCHAOS0_ACTIONS[18]->object->child->sibling->sibling->sibling->sibling->sibling->sibling->sibling->sibling->evalflags |= NJD_EVAL_HIDE;
 		BOSSCHAOS0_ACTIONS[18]->object->child->sibling->sibling->sibling->sibling->sibling->sibling->evalflags |= NJD_EVAL_HIDE;
+		//Make spinning things inside flashers (UV-less) dark like in SA1
+		BOSSCHAOS0_ACTIONS[18]->object->child->sibling->sibling->sibling->sibling->sibling->sibling->sibling->sibling->child->sibling->basicdxmodel->mats[0].attrflags |= NJD_FLAG_USE_TEXTURE;
+		BOSSCHAOS0_ACTIONS[18]->object->child->sibling->sibling->sibling->sibling->sibling->sibling->sibling->sibling->child->sibling->basicdxmodel->mats[0].attr_texId = 26;
+		BOSSCHAOS0_ACTIONS[18]->object->child->sibling->sibling->sibling->sibling->sibling->sibling->sibling->sibling->child->basicdxmodel->mats[0].attrflags |= NJD_FLAG_USE_TEXTURE;
+		BOSSCHAOS0_ACTIONS[18]->object->child->sibling->sibling->sibling->sibling->sibling->sibling->sibling->sibling->child->basicdxmodel->mats[0].attr_texId = 26;
 		WriteCall((void*)0x0054968E, FixChaos0Car);
 		WriteData((float*)0x00549797, 0.12f); //Camera-based car light sprite scale
 		WriteData((float*)0x005497A1, 0.12f); //Camera-based car light sprite scale
