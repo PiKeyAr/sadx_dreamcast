@@ -110,6 +110,7 @@ float OMekaSpeedOverride = 0.5f;
 //Casinopolis
 double OKaizAnimationSpeedOverride = 0.001388885f;
 int OCrystalAnimationSpeedOverride = 168;
+float NightsOverlayTransparencySubtract = 0.05f;
 
 //Ice Cap
 float AvalancheMultiplier = 12.5f;
@@ -728,6 +729,7 @@ void SpeedFixes_Init()
 	WriteCall((void*)0x5EE29D, OTankHAnimationOverride); //OTankH
 	WriteData((float**)0x005F4146, &OMekaSpeedOverride); //OMeka OTutu	
 	//Casinopolis
+	WriteData((float**)0x5D70F6, &NightsOverlayTransparencySubtract);
 	WriteData((double**)0x5C802C, &OKaizAnimationSpeedOverride); //OKaiza Animation Speed Tweak
 	WriteData((double**)0x5C747C, &OKaizAnimationSpeedOverride); //OKaizb Animation Speed Tweak
 	WriteData((double**)0x5C698C, &OKaizAnimationSpeedOverride); //Green Pirate / KaizC Animation Speed Tweak
@@ -830,6 +832,7 @@ void SpeedFixes_OnFrame()
 			//Casinopolis
 			OKaizAnimationSpeedOverride = 0.00277777f;
 			OCrystalAnimationSpeedOverride = 336;
+			NightsOverlayTransparencySubtract = 0.1f;
 			//LostWorld
 			OTPanel1SpeedOverride = 0.016949153f;
 			OTPanelTimer = 60;
@@ -901,6 +904,7 @@ void SpeedFixes_OnFrame()
 			//Casinopolis
 			OKaizAnimationSpeedOverride = 0.001388885f;
 			OCrystalAnimationSpeedOverride = 168;
+			NightsOverlayTransparencySubtract = 0.05f;
 			//Lost World
 			OTPanel1SpeedOverride = 0.0084745765f;
 			OTPanelTimer = 120;
