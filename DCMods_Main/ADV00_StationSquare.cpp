@@ -1,5 +1,9 @@
 #include "stdafx.h"
 //TODO: Burger Shop man lighting should use type 0, but its materials are hardcoded in Lantern Engine
+//TODO: Check pool transparency maybe
+//TODO: Light speed shoes cutscene last camera angle
+//TODO: Casino uses level specular
+DataPointer(NJS_TEXLIST, M_EM_RED_TEXLIST, 0x2CBCF48);
 
 NJS_TEXNAME textures_advss00[220];
 NJS_TEXLIST texlist_advss00 = { arrayptrandlength(textures_advss00) };
@@ -27,6 +31,8 @@ NJS_OBJECT* Parasol_1 = nullptr;
 NJS_OBJECT* Parasol_2 = nullptr;
 NJS_OBJECT* Parasol_3 = nullptr;
 NJS_OBJECT* Parasol_4 = nullptr;
+NJS_OBJECT* EVHelicopterLight1 = nullptr;
+NJS_OBJECT* EVHelicopterLight2 = nullptr;
 
 /*
 #include "SS00_CityHall.h"
@@ -153,6 +159,41 @@ void OMSakuFix(NJS_OBJECT *a1, float scale)
 }
 
 
+void DrawEventHelicopter(NJS_ACTION *a1, float a2, int a3)
+{
+	NJS_ACTION Light1Action = { nullptr, nullptr };
+	NJS_ACTION Light2Action = { nullptr, nullptr };
+	Light1Action.motion = a1->motion;
+	Light2Action.motion = a1->motion;
+	Light1Action.object = EVHelicopterLight1;
+	Light2Action.object = EVHelicopterLight2;
+	//Draw the helicopter
+	njAction_Queue_407BB0_2(a1, a2, 1, 0);
+	//Draw the light cover
+	njAction_Queue_407BB0_2(&Light1Action, a2, 1, 1.0f);
+	//Draw the light
+	njAction_Queue_407BB0_2(&Light2Action, a2, a3, 1.0f);
+}
+
+void CutsceneAnimationHook1(NJS_ACTION *a1, float a2, QueuedModelFlagsB a3)
+{
+	//Event helicopter
+	if (CurrentTexList == &EV_HELI_TEXLIST)
+	{
+		DrawEventHelicopter(a1, a2, a3);
+	}
+	else njAction_Queue_407FC0(a1, a2, a3);
+}
+
+void CutsceneAnimationHook2(NJS_ACTION *anim, float a2, int a3)
+{
+	//Chaos emeralds
+	if (CurrentTexList == &M_EM_BLUE_TEXLIST || CurrentTexList == &M_EM_GREEN_TEXLIST || CurrentTexList == &M_EM_WHITE_TEXLIST || CurrentTexList == &M_EM_PURPLE_TEXLIST || CurrentTexList == &M_EM_SKY_TEXLIST || CurrentTexList == &M_EM_YELLOW_TEXLIST || CurrentTexList == &M_EM_RED_TEXLIST)
+	{
+		njAction_Queue_407FC0(anim, a2, a3);
+	}
+	else njAction_Queue_407BB0(anim, a2, a3);
+}
 
 void SouvenirShopDoor_Depth(NJS_ACTION* a1, float a2, int a3, float a4)
 {
@@ -676,6 +717,7 @@ void ADV00_Init()
 		*(NJS_MODEL_SADX*)0x2AC95BC = *LoadModel("system\\data\\ADV00\\Models\\0017D568.sa1mdl", false)->basicdxmodel; //Fire hydrant
 		*(NJS_OBJECT*)0x2AC9F10 = *LoadModel("system\\data\\ADV00\\Models\\0017DDE8.sa1mdl", false); //OGaitou (street light)
 		*(NJS_OBJECT*)0x2AEA9F8 = *LoadModel("system\\data\\ADV00\\Models\\00197228.sa1mdl", false); //OS1Dnto
+		((NJS_OBJECT*)0x2AEA9F8)->basicdxmodel->mats[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
 		*(NJS_OBJECT*)0x2AB2CCC = *LoadModel("system\\data\\ADV00\\Models\\001689C4.sa1mdl", true); //Souvenir shop door
 		*(NJS_OBJECT*)0x2AB57E4 = *LoadModel("system\\data\\ADV00\\Models\\0016B404.sa1mdl", false); //OTwaDoor
 		*(NJS_OBJECT*)0x2AFE668 = *LoadModel("system\\data\\ADV00\\Models\\001A6DEC.sa1mdl", false); //Casino decoration 1
@@ -696,7 +738,31 @@ void ADV00_Init()
 		*(NJS_OBJECT*)0x2AB6900 = *LoadModel("system\\data\\ADV00\\Models\\0016C3FC.sa1mdl", false); //Twinkle Park elevator
 		*(NJS_OBJECT*)0x2AD14C8 = *LoadModel("system\\data\\ADV00\\Models\\00183B8C.sa1mdl", false); //OMSaku (Gamma's target)
 		*(NJS_OBJECT*)0x2AD484C = *LoadModel("system\\data\\ADV00\\Models\\0018684C.sa1mdl", false); //Ice Key
-		*(NJS_OBJECT*)0x2DBD6D0 = *LoadModel("system\\data\\Other\\00011208.sa1mdl", false); //Event helicopter
+		//Event helicopter (set up exactly like the Chaos 0 helicopter so lots of copy-paste here)
+		((NJS_ACTION*)0x2DBD864)->object = LoadModel("system\\data\\Other\\00011208.sa1mdl", false);
+		//UV-less stuff fix
+		((NJS_ACTION*)0x2DBD864)->object->child->child->child->basicdxmodel->mats[2].attr_texId = 10;
+		((NJS_ACTION*)0x2DBD864)->object->child->child->child->basicdxmodel->mats[2].attrflags |= NJD_FLAG_USE_TEXTURE;
+		//Add white diffuse on opaque things (have to use a different function because it "forgets" the light type
+		AddWhiteDiffuseMaterial_Specular3(&((NJS_ACTION*)0x2DBD864)->object->child->sibling->sibling->sibling->sibling->child->basicdxmodel->mats[1]);
+		AddWhiteDiffuseMaterial_Specular3(&((NJS_ACTION*)0x2DBD864)->object->child->sibling->sibling->sibling->sibling->child->basicdxmodel->mats[2]);
+		//Disable all transparent bits in the original model except SSPD
+		HideMesh(&((NJS_ACTION*)0x2DBD864)->object->child->sibling->sibling->sibling->sibling->child->basicdxmodel->meshsets[0]);
+		((NJS_ACTION*)0x2DBD864)->object->child->sibling->sibling->sibling->sibling->child->child->evalflags |= NJD_EVAL_HIDE;
+		//Remove transparency in the part the light is coming from, because it isn't a transparent texture and it uses regular blending
+		((NJS_ACTION*)0x2DBD864)->object->child->sibling->sibling->sibling->sibling->child->child->sibling->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_USE_ALPHA;
+		//Light1 is the metal cover of the thing the light is supposed to be coming from
+		EVHelicopterLight1 = LoadModel("system\\data\\Other\\00011208.sa1mdl", false);
+		HideEntireObject(EVHelicopterLight1);
+		EVHelicopterLight1->child->sibling->sibling->sibling->sibling->child->evalflags &= ~NJD_EVAL_HIDE; //Unhide first transparent bit in mesh 1
+		HideMesh(&EVHelicopterLight1->child->sibling->sibling->sibling->sibling->child->basicdxmodel->meshsets[1]); //Hide opaque bits in mesh 1
+		HideMesh(&EVHelicopterLight1->child->sibling->sibling->sibling->sibling->child->basicdxmodel->meshsets[2]); //Hide opaque bits in mesh 1
+		//Light2 is the actual light
+		EVHelicopterLight2 = LoadModel("system\\data\\Other\\00011208.sa1mdl", false);
+		HideEntireObject(EVHelicopterLight2);
+		EVHelicopterLight2->child->sibling->sibling->sibling->sibling->child->child->evalflags &= ~NJD_EVAL_HIDE; //Unhide the light
+		WriteCall((void*)0x4181FD, CutsceneAnimationHook1);
+		WriteCall((void*)0x418214, CutsceneAnimationHook2);
 		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x2DBD6D0)->child->sibling->sibling->sibling->sibling->child->basicdxmodel->mats[1]);
 		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x2DBD6D0)->child->sibling->sibling->sibling->sibling->child->basicdxmodel->mats[2]);
 		*(NJS_OBJECT*)0x2AE8674 = *LoadModel("system\\data\\ADV00\\Models\\00195DC0.sa1mdl", false); //Train
