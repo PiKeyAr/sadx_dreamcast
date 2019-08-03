@@ -42,6 +42,7 @@ FunctionPointer(void, njAction_ReallyHard, (NJS_ACTION* a1, float frameNumber), 
 FunctionPointer(void, DrawModel_Queue_407CF0, (NJS_MODEL_SADX* a1, int blend), 0x407FC0);
 FunctionPointer(void, njAction_Queue_DrawModelQueue, (NJS_ACTION* a1, float a2, int a3, float a4), 0x405490);
 FunctionPointer(void, njAction_DontQueue, (NJS_ACTION *a1, float frame, float scale), 0x405450);
+FunctionPointer(void, njAction_Queue_407BB0, (NJS_ACTION *anim, float a2, int a3), 0x408350);
 FunctionPointer(void, njAction_Queue_407BB0_2, (NJS_ACTION *a1, float a2, int a3, float a4), 0x408350);
 FunctionPointer(void, DrawModel_TryReallyHard, (NJS_MODEL_SADX* a1), 0x409EF0);
 
@@ -489,9 +490,11 @@ void SortModel(NJS_OBJECT *model);
 void LoadModel_ReplaceMeshes(NJS_OBJECT *object, const char *ModelName);
 void AddAlphaRejectMaterial(NJS_MATERIAL *material);
 void AddWhiteDiffuseMaterial(NJS_MATERIAL *material);
+void AddWhiteDiffuseMaterial_Specular3(NJS_MATERIAL *material);
 void AddWhiteDiffuseNightMaterial(NJS_MATERIAL* material);
 void RemoveAlphaRejectMaterial(NJS_MATERIAL *material);
 void RemoveWhiteDiffuseMaterial(NJS_MATERIAL *material);
+void RemoveWhiteDiffuseMaterial_Specular3(NJS_MATERIAL *material);
 void RemoveWhiteDiffuseNightMaterial(NJS_MATERIAL* material);
 void AddBossMaterial(NJS_MATERIAL *material);
 void ForceLevelSpecular_Object(NJS_OBJECT *obj);
@@ -500,3 +503,4 @@ void AddBossMaterials_Object(NJS_OBJECT *obj);
 void SwapMeshsets(NJS_OBJECT* object, int mesh1, int mesh2);
 void HideMesh(NJS_MESHSET_SADX *meshset);
 void ForceLightType_Object(NJS_OBJECT* obj, int light_type, bool unregister);
+void HideEntireObject(NJS_OBJECT* a1);

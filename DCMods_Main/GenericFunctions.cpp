@@ -593,6 +593,15 @@ void AddWhiteDiffuseMaterial(NJS_MATERIAL *material)
 	}
 }
 
+void AddWhiteDiffuseMaterial_Specular3(NJS_MATERIAL *material)
+{
+	if (DLLLoaded_Lantern)
+	{
+		TemporaryMaterialArray[0] = material;
+		material_register_ptr(TemporaryMaterialArray, 1, ForceWhiteDiffuse1Specular3);
+	}
+}
+
 void AddWhiteDiffuseNightMaterial(NJS_MATERIAL* material)
 {
 	if (DLLLoaded_Lantern)
@@ -648,6 +657,15 @@ void RemoveWhiteDiffuseMaterial(NJS_MATERIAL *material)
 	{
 		TemporaryMaterialArray[0] = material;
 		material_unregister_ptr(TemporaryMaterialArray, 1, ForceWhiteDiffuse);
+	}
+}
+
+void RemoveWhiteDiffuseMaterial_Specular3(NJS_MATERIAL *material)
+{
+	if (DLLLoaded_Lantern)
+	{
+		TemporaryMaterialArray[0] = material;
+		material_unregister_ptr(TemporaryMaterialArray, 1, ForceWhiteDiffuse1Specular3);
 	}
 }
 
@@ -1007,4 +1025,11 @@ void ForceLightType_Object(NJS_OBJECT* obj, int light_type, bool unregister)
 		if (obj->child) ForceLightType_Object(obj->child, light_type, unregister);
 		if (obj->sibling) ForceLightType_Object(obj->sibling, light_type, unregister);
 	}
+}
+
+void HideEntireObject(NJS_OBJECT* a1)
+{
+	if (!(a1->evalflags & NJD_EVAL_HIDE)) a1->evalflags |= NJD_EVAL_HIDE;
+	if (a1->child) HideEntireObject(a1->child);
+	if (a1->sibling) HideEntireObject(a1->sibling);
 }
