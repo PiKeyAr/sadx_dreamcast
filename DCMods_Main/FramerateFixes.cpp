@@ -54,6 +54,7 @@ FunctionPointer(void, Chaos0_Raindrop_Display, (ObjectMaster *a1), 0x546090);
 FunctionPointer(void, sub_4083F0, (NJS_ACTION *a1, float a2, int a3, float a4), 0x4083F0);
 FunctionPointer(void, DrawHudCharacter, (SomeSpriteThing *a1), 0x427BB0);
 FunctionPointer(void, ZeroSparks_Display, (ObjectMaster *a1), 0x58B5B0);
+FunctionPointer(void, sub_408300, (NJS_OBJECT* a1, NJS_MOTION* a2, float a3, int a4, float a5), 0x408300);
 
 //Main
 static int FramerateSettingOld = 0;
@@ -586,8 +587,6 @@ void OFunAnimationOverride(NJS_ACTION* a1, float frame, float scale)
 	DisplayAnimationFrame(a1, OFunFrame, (QueuedModelFlagsB)0, scale, (void(__cdecl*)(NJS_MODEL_SADX*, int, int))DrawModelThing);
 }
 
-FunctionPointer(void, sub_408300, (NJS_OBJECT* a1, NJS_MOTION* a2, float a3, int a4, float a5), 0x408300);
-
 void OTankHAnimationOverride(NJS_OBJECT* a1, NJS_MOTION* a2, float a3, int a4, float a5)
 {
 	sub_408300(a1, a2, OFunFrame, a4, a5);
@@ -754,18 +753,24 @@ void SpeedFixes_OnFrame()
 	//60 FPS
 	if (FramerateSetting < 2)
 	{
-		OFunFrame -= 0.25f;
-		if (OFunFrame < 0) OFunFrame = 19;
-		DashPanelAnimationFrame -= 0.25f;
-		if (DashPanelAnimationFrame < 0) DashPanelAnimationFrame = 7;
+		if (!IsGamePaused)
+		{
+			OFunFrame -= 0.25f;
+			if (OFunFrame < 0) OFunFrame = 19;
+			DashPanelAnimationFrame -= 0.25f;
+			if (DashPanelAnimationFrame < 0) DashPanelAnimationFrame = 7;
+		}
 	}
 	//30 FPS
 	else
 	{
-		OFunFrame += 1.0f;
-		if (OFunFrame > 19) OFunFrame = 0;
-		DashPanelAnimationFrame += 1.0f;
-		if (DashPanelAnimationFrame > 7) DashPanelAnimationFrame = 0;
+		if (!IsGamePaused)
+		{
+			OFunFrame += 1.0f;
+			if (OFunFrame > 19) OFunFrame = 0;
+			DashPanelAnimationFrame += 1.0f;
+			if (DashPanelAnimationFrame > 7) DashPanelAnimationFrame = 0;
+		}
 	}
 	//Half frame counter
 	if (FrameCounter % 2 == 0) FrameCounter_Half++;
