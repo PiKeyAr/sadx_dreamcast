@@ -73,18 +73,32 @@ void __cdecl AokiSwitch_Display(ObjectMaster *a1)
 	}
 }
 
-void RenderLWPlatformTriangle(NJS_MODEL_SADX *model, QueuedModelFlagsB blend, float scale)
+void RenderTPanel(NJS_MODEL_SADX *model, QueuedModelFlagsB blend, float scale)
 {
-	DrawQueueDepthBias = -2000.0f;
-	DrawModel_QueueVisible(model, blend, scale);
+	DrawModel(model);
+}
+
+void RenderTPanelTriangle(NJS_MODEL_SADX *model, QueuedModelFlagsB blend, float scale)
+{
+	DrawQueueDepthBias = -40000.0f;
+	DrawModel_QueueVisible(model, QueuedModelFlagsB_EnableZWrite, scale);
 	DrawQueueDepthBias = 0.0f;
 }
 
-void RenderLWPlatformLight(NJS_MODEL_SADX *model, QueuedModelFlagsB blend, float scale)
-{
-	DrawQueueDepthBias = -1000.0f;
-	DrawModel_QueueVisible(model, blend, scale);
+void RenderTPanelLight(NJS_MODEL_SADX *model, QueuedModelFlagsB blend, float scale)
+{	
+	DrawQueueDepthBias = -20000.0f;
+	DrawModel_QueueVisible(model, QueuedModelFlagsB_SomeTextureThing, scale);
 	DrawQueueDepthBias = 0.0f;
+}
+
+void RenderTPanelDust(NJS_MODEL_SADX *model, QueuedModelFlagsB blend, float scale) //5E8AAC
+{
+	Direct3D_EnableZWrite(0);
+	Direct3D_SetZFunc(7u);
+	DrawModel(((NJS_OBJECT*)0x20275D8)->basicdxmodel);
+	Direct3D_SetZFunc(1u);
+	Direct3D_EnableZWrite(1);
 }
 
 void RLight_Display(ObjectMaster *a1)
@@ -254,6 +268,8 @@ void LostWorld_Init()
 		ReplacePVM("RUIN03");
 		ReplacePVM("OBJ_RUIN");
 		ReplacePVM("OBJ_RUIN2");
+		//Various effects
+		WriteData((float*)0x2039774, 0.005f); //SA1 scale for fire particle
 		//AokiSwitch
 		WriteJump((void*)0x5E66D0, AokiSwitch_Display);
 		AokiSwitchModel_Base = LoadModel("system\\data\\STG07\\Models\\00152214.sa1mdl", false);
@@ -281,7 +297,6 @@ void LostWorld_Init()
 		*(NJS_MODEL_SADX*)0x2004E80 = *LoadModel("system\\data\\STG07\\Models\\00130608.sa1mdl", false)->basicdxmodel; //Hasira01 and Sekicyuu 3
 		*(NJS_MODEL_SADX*)0x20062E0 = *LoadModel("system\\data\\STG07\\Models\\001313E4.sa1mdl", false)->basicdxmodel; //Hasira02 and Sekicyuu 4
 		*(NJS_MODEL_SADX*)0x2026E38 = *LoadModel("system\\data\\STG07\\Models\\00149EA4.sa1mdl", false)->basicdxmodel; //Fire obstacle
-		*(NJS_MODEL_SADX*)0x201CE60 = *LoadModel("system\\data\\STG07\\Models\\00142710.sa1mdl", false)->basicdxmodel; //TPanel
 		*(NJS_MODEL_SADX*)0x201AF60 = *LoadModel("system\\data\\STG07\\Models\\00140C64.sa1mdl", false)->basicdxmodel; //Box part 1 model
 		*(NJS_MODEL_SADX*)0x201B198 = *LoadModel("system\\data\\STG07\\Models\\00140E84.sa1mdl", false)->basicdxmodel; //Box part 2 model
 		*(NJS_MODEL_SADX*)0x201B3E0 = *LoadModel("system\\data\\STG07\\Models\\001410B4.sa1mdl", false)->basicdxmodel; //Box part 3 model
@@ -290,8 +305,8 @@ void LostWorld_Init()
 		*(NJS_MODEL_SADX*)0x201BB90 = *LoadModel("system\\data\\STG07\\Models\\0014180C.sa1mdl", false)->basicdxmodel; //Box part 6 model
 		*(NJS_MODEL_SADX*)0x202A9D8 = *LoadModel("system\\data\\STG07\\Models\\0014D094.sa1mdl", false)->basicdxmodel; //OTap (snake head)
 		*(NJS_MODEL_SADX*)0x202AE00 = *LoadModel("system\\data\\STG07\\Models\\0014D47C.sa1mdl", false)->basicdxmodel; //OTap (water)
-		WriteData((NJS_MESHSET_SADX * **)0x005E8818, &((NJS_OBJECT*)0x202AE2C)->basicdxmodel->meshsets); //UV animation for OTap
-		WriteData((NJS_MESHSET_SADX * **)0x005E884C, &((NJS_OBJECT*)0x202AE2C)->basicdxmodel->meshsets); //UV animation for OTap
+		WriteData((NJS_MESHSET_SADX***)0x005E8818, &((NJS_OBJECT*)0x202AE2C)->basicdxmodel->meshsets); //UV animation for OTap
+		WriteData((NJS_MESHSET_SADX***)0x005E884C, &((NJS_OBJECT*)0x202AE2C)->basicdxmodel->meshsets); //UV animation for OTap
 		((NJS_OBJECT*)0x201AF8C)->basicdxmodel = (NJS_MODEL_SADX*)0x201AF60; //Box part 1 object
 		((NJS_OBJECT*)0x201B1C4)->basicdxmodel = (NJS_MODEL_SADX*)0x201B198; //Box part 2 object
 		((NJS_OBJECT*)0x201B40C)->basicdxmodel = (NJS_MODEL_SADX*)0x201B3E0; //Box part 3 object
@@ -332,9 +347,13 @@ void LostWorld_Init()
 		((NJS_MATERIAL*)0x2031660)->attrflags |= NJD_SA_SRC;
 		((NJS_MATERIAL*)0x2031660)->attrflags |= NJD_DA_DST;
 		WriteCall((void*)0x5E8976, RLight_Load);
-		//Object fixes
-		WriteCall((void*)0x5E9216, RenderLWPlatformTriangle);
-		WriteCall((void*)0x5E927F, RenderLWPlatformLight);
+		//TPanel fixes
+		*(NJS_MODEL_SADX*)0x201CE60 = *LoadModel("system\\data\\STG07\\Models\\00142710.sa1mdl", false)->basicdxmodel; //TPanel
+		WriteCall((void*)0x5E9216, RenderTPanelTriangle);
+		WriteCall((void*)0x5E927F, RenderTPanelLight);
+		WriteCall((void*)0x5E91CA, RenderTPanel);
+		WriteCall((void*)0x5E8AAC, RenderTPanelDust);
+		*(NJS_OBJECT*)0x20275D8 = *LoadModel("system\\data\\STG07\\Models\\0014A380.sa1mdl", false); //TPanel effect
 		//Water fixes
 		WriteData<1>((void*)0x005E2090, 0xC3u); //Kill water animation in Act 1
 		//Fog and other stuff
