@@ -56,12 +56,6 @@ void FixCutsceneTransition()
 	if (CutsceneID == 380) Cutscene_ResetTransition(); //Gamma after Windy Valley
 }
 
-void GammaHook()
-{
-	if (GameMode == 12) SetMaterialAndSpriteColor_Float(1.0f, 1.0f, 1.0f, 1.0f);
-	else SetMaterialAndSpriteColor_Float(0.85f, 1.0f, 1.0f, 1.0f);
-}
-
 void Init_Global()
 {
 	ReplacePVM("CHAOS1");
@@ -94,9 +88,6 @@ void Init_Global()
 		WriteCall((void*)0x4311E3, FixCutsceneTransition); //Main thread
 		WriteData<5>((void*)0x43131D, 0x90u); //Skipping cutscenes
 	}
-	//Gamma's chest patch lol
-	((NJS_MATERIAL*)((size_t)GetModuleHandle(L"CHRMODELS_orig") + 0x00200DE8))->attrflags &= ~NJD_FLAG_USE_ALPHA; //Unnecessary alpha in Gamma's model
-	WriteCall((void*)0x47FE13, GammaHook); //Gamma's chest transparency
 	//Environment maps
 	EnvMap1 = 0.5f;
 	EnvMap2 = 0.5f;
