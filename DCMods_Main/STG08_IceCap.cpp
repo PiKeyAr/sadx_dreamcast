@@ -587,8 +587,8 @@ void IceCap_Init()
 			IceCap1Fog[i].Toggle = 1;
 			DrawDist_IceCap1[i].Maximum = -12000.0;
 			IceCap2Fog[i].Color = 0xFF000060;
-			IceCap2Fog[i].Layer = 800.0f;
-			IceCap2Fog[i].Distance = 3800.0f;
+			IceCap2Fog[i].Layer = 1600.0f;
+			IceCap2Fog[i].Distance = 4000.0f;
 			IceCap2Fog[i].Toggle = 1;
 			DrawDist_IceCap2[i].Maximum = -4000.0;
 			DrawDist_IceCap3[i].Maximum = -8000.0;
