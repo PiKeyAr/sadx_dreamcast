@@ -1,5 +1,7 @@
 #include "stdafx.h"
 
+//TODO: Ice Cap door maybe, OLOCK transparency
+
 NJS_TEXNAME textures_mr00[153];
 NJS_TEXLIST texlist_mr00 = { arrayptrandlength(textures_mr00) };
 
@@ -47,6 +49,7 @@ static int MasterEmeraldTimer = 0;
 NJS_OBJECT* MROcean = nullptr;
 NJS_OBJECT* OFinalEggModel_Opaque = nullptr;
 NJS_OBJECT* OFinalEggModel_Transparent = nullptr;
+NJS_OBJECT* OFinalEggModel_Lights = nullptr;
 int MRWaterObjects[] = { -1, -1, -1, -1, -1 };
 int MRJungleObjectAnimations_Propeller[] = { -1, -1, -1, -1, -1 };
 int MRJungleObjectAnimations_Lantern[] = { -1, -1, -1, -1, -1 };
@@ -106,10 +109,14 @@ void SetColor(float a, float r, float g, float b)
 
 void FixMRBase(ObjectMaster *a1)
 {
-	NJS_ACTION OpaqueAction = { nullptr, nullptr };
-	NJS_ACTION TransAction = { nullptr, nullptr };
 	Angle v1; // eax
 	EntityData1 *v2; // esi
+	NJS_ACTION OpaqueAction = { nullptr, nullptr };
+	NJS_ACTION LightsAction = { nullptr, nullptr };
+	OpaqueAction.object = OFinalEggModel_Opaque;
+	OpaqueAction.motion = ADV02_ACTIONS[0]->motion;
+	LightsAction.object = OFinalEggModel_Lights;
+	LightsAction.motion = ADV02_ACTIONS[0]->motion;
 	v2 = a1->Data1;
 	Direct3D_SetNearFarPlanes(-1.0f, -100000.0f);
 	DisableFog();
@@ -121,16 +128,14 @@ void FixMRBase(ObjectMaster *a1)
 	{
 		njRotateY(0, (unsigned __int16)v1);
 	}
-	OpaqueAction.object = OFinalEggModel_Opaque;
-	OpaqueAction.motion = ADV02_ACTIONS[0]->motion;
-	TransAction.object = OFinalEggModel_Transparent;
-	TransAction.motion = ADV02_ACTIONS[0]->motion;
-	//Render the FinalWay
-	njAction_Queue_407FC0(ADV02_ACTIONS[30], v2->Scale.y, 1);
 	//Render the animation without the lights
-	njAction_Queue_407FC0(&OpaqueAction, v2->Scale.x, 1);
+	njAction_Queue_407BB0(&OpaqueAction, v2->Scale.x, 1);
+	//Render the transparent part of the animation without the lights
+	DrawModel_Queue_407CF0(OFinalEggModel_Transparent->child->basicdxmodel, QueuedModelFlagsB_SomeTextureThing);
+	//Render the FinalWay
+	njAction_Queue_407BB0(ADV02_ACTIONS[30], v2->Scale.y, 0);
 	//Render the lights
-	njAction_Queue_407FC0(&TransAction, v2->Scale.x, 0);
+	njAction_Queue_407FC0(&LightsAction, v2->Scale.x, 0);
 	//Render the EfHikari thing
 	DrawModel_Queue(OFinalEggModel_Opaque->child->sibling->sibling->basicdxmodel, QueuedModelFlagsB_3);
 	njPopMatrix(1u);
@@ -645,11 +650,9 @@ void ADV02_Init()
 		//MR base stuff
 		WriteJump((void*)0x538430, FixMRBase);
 		ADV02_ACTIONS[30]->object = LoadModel("system\\data\\ADV02\\Models\\0020DC78.sa1mdl", false); //OFinalWay
-		OFinalEggModel_Opaque = LoadModel("system\\data\\ADV02\\Models\\0020C3B0.sa1mdl", false); //Base opaque
-		AddWhiteDiffuseMaterial(&OFinalEggModel_Opaque->basicdxmodel->mats[13]);
-		AddWhiteDiffuseMaterial(&OFinalEggModel_Opaque->child->basicdxmodel->mats[5]);
-		AddWhiteDiffuseMaterial(&OFinalEggModel_Opaque->child->basicdxmodel->mats[6]);
-		AddWhiteDiffuseMaterial(&OFinalEggModel_Opaque->child->basicdxmodel->mats[7]);
+		//Base opaque model
+		OFinalEggModel_Opaque = LoadModel("system\\data\\ADV02\\Models\\0020C3B0.sa1mdl", false);
+		HideMesh(&OFinalEggModel_Opaque->child->basicdxmodel->meshsets[4]); //Lights around the tower
 		OFinalEggModel_Opaque->child->sibling->sibling->evalflags |= NJD_EVAL_HIDE;
 		OFinalEggModel_Opaque->child->sibling->sibling->sibling->child->evalflags |= NJD_EVAL_HIDE;
 		OFinalEggModel_Opaque->child->sibling->sibling->sibling->child->sibling->evalflags |= NJD_EVAL_HIDE;
@@ -659,15 +662,46 @@ void ADV02_Init()
 		OFinalEggModel_Opaque->child->sibling->sibling->sibling->sibling->sibling->child->sibling->evalflags |= NJD_EVAL_HIDE;
 		OFinalEggModel_Opaque->child->sibling->sibling->sibling->sibling->sibling->sibling->child->evalflags |= NJD_EVAL_HIDE;
 		OFinalEggModel_Opaque->child->sibling->sibling->sibling->sibling->sibling->sibling->child->sibling->evalflags |= NJD_EVAL_HIDE;
-		OFinalEggModel_Transparent = LoadModel("system\\data\\ADV02\\Models\\0020C3B0.sa1mdl", false); //Base transparent
+		AddWhiteDiffuseMaterial(&OFinalEggModel_Opaque->basicdxmodel->mats[7]); //Grass stuff
+		AddWhiteDiffuseMaterial(&OFinalEggModel_Opaque->basicdxmodel->mats[13]); //Platforms
+		AddWhiteDiffuseMaterial(&OFinalEggModel_Opaque->child->basicdxmodel->mats[5]); //City 1
+		AddWhiteDiffuseMaterial(&OFinalEggModel_Opaque->child->basicdxmodel->mats[6]); //City 2
+		AddWhiteDiffuseMaterial(&OFinalEggModel_Opaque->child->basicdxmodel->mats[7]); //City 3
+		OFinalEggModel_Opaque->basicdxmodel->mats[8].attrflags = 0x8631A400; //Not the same as on DC but looks like an error in the original
+		//Base transparent model
+		OFinalEggModel_Transparent = LoadModel("system\\data\\ADV02\\Models\\0020C3B0.sa1mdl", false);
 		OFinalEggModel_Transparent->evalflags |= NJD_EVAL_HIDE;
-		OFinalEggModel_Transparent->child->evalflags |= NJD_EVAL_HIDE;
 		OFinalEggModel_Transparent->child->sibling->evalflags |= NJD_EVAL_HIDE;
 		OFinalEggModel_Transparent->child->sibling->sibling->evalflags |= NJD_EVAL_HIDE;
 		OFinalEggModel_Transparent->child->sibling->sibling->sibling->evalflags |= NJD_EVAL_HIDE;
 		OFinalEggModel_Transparent->child->sibling->sibling->sibling->sibling->evalflags |= NJD_EVAL_HIDE;
 		OFinalEggModel_Transparent->child->sibling->sibling->sibling->sibling->sibling->evalflags |= NJD_EVAL_HIDE;
 		OFinalEggModel_Transparent->child->sibling->sibling->sibling->sibling->sibling->sibling->evalflags |= NJD_EVAL_HIDE;
+		OFinalEggModel_Transparent->child->sibling->sibling->sibling->child->evalflags |= NJD_EVAL_HIDE;
+		OFinalEggModel_Transparent->child->sibling->sibling->sibling->child->sibling->evalflags |= NJD_EVAL_HIDE;
+		OFinalEggModel_Transparent->child->sibling->sibling->sibling->sibling->child->evalflags |= NJD_EVAL_HIDE;
+		OFinalEggModel_Transparent->child->sibling->sibling->sibling->sibling->child->sibling->evalflags |= NJD_EVAL_HIDE;
+		OFinalEggModel_Transparent->child->sibling->sibling->sibling->sibling->sibling->child->evalflags |= NJD_EVAL_HIDE;
+		OFinalEggModel_Transparent->child->sibling->sibling->sibling->sibling->sibling->child->sibling->evalflags |= NJD_EVAL_HIDE;
+		OFinalEggModel_Transparent->child->sibling->sibling->sibling->sibling->sibling->sibling->child->evalflags |= NJD_EVAL_HIDE;
+		OFinalEggModel_Transparent->child->sibling->sibling->sibling->sibling->sibling->sibling->child->sibling->evalflags |= NJD_EVAL_HIDE;
+		HideMesh(&OFinalEggModel_Transparent->child->basicdxmodel->meshsets[0]);
+		HideMesh(&OFinalEggModel_Transparent->child->basicdxmodel->meshsets[1]);
+		HideMesh(&OFinalEggModel_Transparent->child->basicdxmodel->meshsets[2]);
+		HideMesh(&OFinalEggModel_Transparent->child->basicdxmodel->meshsets[3]);
+		HideMesh(&OFinalEggModel_Transparent->child->basicdxmodel->meshsets[5]);
+		HideMesh(&OFinalEggModel_Transparent->child->basicdxmodel->meshsets[6]);
+		HideMesh(&OFinalEggModel_Transparent->child->basicdxmodel->meshsets[7]);
+		//Base lights model
+		OFinalEggModel_Lights = LoadModel("system\\data\\ADV02\\Models\\0020C3B0.sa1mdl", false); 
+		OFinalEggModel_Lights->evalflags |= NJD_EVAL_HIDE;
+		OFinalEggModel_Lights->child->evalflags |= NJD_EVAL_HIDE;
+		OFinalEggModel_Lights->child->sibling->evalflags |= NJD_EVAL_HIDE;
+		OFinalEggModel_Lights->child->sibling->sibling->evalflags |= NJD_EVAL_HIDE;
+		OFinalEggModel_Lights->child->sibling->sibling->sibling->evalflags |= NJD_EVAL_HIDE;
+		OFinalEggModel_Lights->child->sibling->sibling->sibling->sibling->evalflags |= NJD_EVAL_HIDE;
+		OFinalEggModel_Lights->child->sibling->sibling->sibling->sibling->sibling->evalflags |= NJD_EVAL_HIDE;
+		OFinalEggModel_Lights->child->sibling->sibling->sibling->sibling->sibling->sibling->evalflags |= NJD_EVAL_HIDE;
 		//Code fixes
 		WriteData((float*)0x005343BE, 239.0f); //Windows in Tails' workshop
 		WriteData((float*)0x005343EF, 239.0f); //Windows in Tails' workshop 
@@ -750,10 +784,10 @@ void ADV02_Init()
 		AddWhiteDiffuseMaterial(&ADV02_OBJECTS[67]->child->sibling->sibling->sibling->sibling->child->basicdxmodel->mats[1]);
 		AddWhiteDiffuseMaterial(&ADV02_OBJECTS[67]->child->sibling->sibling->sibling->sibling->sibling->child->basicdxmodel->mats[1]);
 		ADV02_OBJECTS[84] = LoadModel("system\\data\\ADV02\\Models\\001F6A04.sa1mdl", true); //Windows and the light above the door of Tails' house
-		ForceLevelSpecular_Object(ADV02_OBJECTS[84]);
+		ForceLevelSpecular_Object(ADV02_OBJECTS[84], false);
 		ADV02_OBJECTS[85] = LoadModel("system\\data\\ADV02\\Models\\001F764C.sa1mdl", true); //Same as above but lit up
 		AddWhiteDiffuseMaterial(&ADV02_OBJECTS[85]->basicdxmodel->mats[4]);
-		ForceLevelSpecular_Object(ADV02_OBJECTS[85]);
+		ForceLevelSpecular_Object(ADV02_OBJECTS[85], false);
 		//Material fixes
 		for (int i = 27; i < 44; i++)
 		{
@@ -777,10 +811,10 @@ void ADV02_Init()
 		ADV02_OBJECTS[26] = LoadModel("system\\data\\ADV02\\Models\\001B9D9C.sa1mdl", false); //Ice Cap door 2
 		ADV02_OBJECTS[86] = LoadModel("system\\data\\ADV02\\Models\\001BF00C.sa1mdl", false); //Ice Cap lock
 		ADV02_OBJECTS[76] = LoadModel("system\\data\\ADV02\\Models\\001BCA10.sa1mdl", false); //Wind Stone
-		ForceLevelSpecular_Object(ADV02_OBJECTS[76]); //Wind Stone
+		ForceLevelSpecular_Object(ADV02_OBJECTS[76], false); //Wind Stone
 		ADV02_ACTIONS[28]->object = ADV02_OBJECTS[76]; //Wind Stone
 		ADV02_OBJECTS[88] = LoadModel("system\\data\\ADV02\\Models\\001BBA04.sa1mdl", false); //Ice Stone
-		ForceLevelSpecular_Object(ADV02_OBJECTS[88]); //Ice Stone
+		ForceLevelSpecular_Object(ADV02_OBJECTS[88], false); //Ice Stone
 		ADV02_ACTIONS[29]->object = ADV02_OBJECTS[88]; //Ice Stone
 		ADV02_OBJECTS[64] = LoadModel("system\\data\\ADV02\\Models\\001E87F0.sa1mdl", false); //Angel Island rock
 		ADV02_OBJECTS[68] = LoadModel("system\\data\\ADV02\\Models\\002145D4.sa1mdl", false); //That thing that pushes the Chao Egg out
