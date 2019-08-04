@@ -2,7 +2,6 @@
 //TODO: Burger Shop man lighting should use type 0 but the model parts are shared among NPCs
 //TODO: Check pool transparency maybe
 //TODO: Light speed shoes cutscene last camera angle
-//TODO: Casino uses level specular
 
 NJS_TEXNAME textures_advss00[220];
 NJS_TEXLIST texlist_advss00 = { arrayptrandlength(textures_advss00) };
@@ -171,26 +170,6 @@ void DrawEventHelicopter(NJS_ACTION *a1, float a2, int a3)
 	njAction_Queue_407BB0_2(&Light1Action, a2, 1, 1.0f);
 	//Draw the light
 	njAction_Queue_407BB0_2(&Light2Action, a2, a3, 1.0f);
-}
-
-void CutsceneAnimationHook1(NJS_ACTION *a1, float a2, QueuedModelFlagsB a3)
-{
-	//Event helicopter
-	if (CurrentTexList == &EV_HELI_TEXLIST)
-	{
-		DrawEventHelicopter(a1, a2, a3);
-	}
-	else njAction_Queue_407FC0(a1, a2, a3);
-}
-
-void CutsceneAnimationHook2(NJS_ACTION *anim, float a2, int a3)
-{
-	//Chaos emeralds
-	if (CurrentTexList == &M_EM_BLUE_TEXLIST || CurrentTexList == &M_EM_GREEN_TEXLIST || CurrentTexList == &M_EM_WHITE_TEXLIST || CurrentTexList == &M_EM_PURPLE_TEXLIST || CurrentTexList == &M_EM_SKY_TEXLIST || CurrentTexList == &M_EM_YELLOW_TEXLIST || CurrentTexList == &M_EM_RED_TEXLIST)
-	{
-		njAction_Queue_407FC0(anim, a2, a3);
-	}
-	else njAction_Queue_407BB0(anim, a2, a3);
 }
 
 void SouvenirShopDoor_Depth(NJS_ACTION* a1, float a2, int a3, float a4)
@@ -718,9 +697,12 @@ void ADV00_Init()
 		((NJS_OBJECT*)0x2AEA9F8)->basicdxmodel->mats[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT; //OS1Dnto doesn't ignore lighting on DC even though the model does
 		*(NJS_OBJECT*)0x2AB2CCC = *LoadModel("system\\data\\ADV00\\Models\\001689C4.sa1mdl", true); //Souvenir shop door
 		*(NJS_OBJECT*)0x2AB57E4 = *LoadModel("system\\data\\ADV00\\Models\\0016B404.sa1mdl", false); //OTwaDoor
-		*(NJS_OBJECT*)0x2AFE668 = *LoadModel("system\\data\\ADV00\\Models\\001A6DEC.sa1mdl", false); //Casino decoration 1
-		*(NJS_OBJECT*)0x2B027D8 = *LoadModel("system\\data\\ADV00\\Models\\001AADA4.sa1mdl", false); //Casino decoration 2
-		*(NJS_OBJECT*)0x2B04CF8 = *LoadModel("system\\data\\ADV00\\Models\\001AD220.sa1mdl", false); //Casino decoration 3
+		*(NJS_OBJECT*)0x2AFE668 = *LoadModel("system\\data\\ADV00\\Models\\001A6DEC.sa1mdl", false); //Casino decoration 1 (stars)
+		*(NJS_OBJECT*)0x2B027D8 = *LoadModel("system\\data\\ADV00\\Models\\001AADA4.sa1mdl", false); //Casino decoration 2 (wall)
+		*(NJS_OBJECT*)0x2B04CF8 = *LoadModel("system\\data\\ADV00\\Models\\001AD220.sa1mdl", false); //Casino decoration 3 (letters)
+		ForceLevelSpecular_Object((NJS_OBJECT*)0x2B03A38, false); //Big Casino object
+		ForceLevelSpecular_Object((NJS_OBJECT*)0x2B03320, false); //Big Casino object
+		ForceLevelSpecular_Object((NJS_OBJECT*)0x2B00E14, true); //Big Casino object (wall)
 		*(NJS_OBJECT*)0x2AC8AEC = *LoadModel("system\\data\\ADV00\\Models\\0017CD14.sa1mdl", false); //OStDoor
 		*(NJS_OBJECT*)0x2AB146C = *LoadModel("system\\data\\ADV00\\Models\\001671B8.sa1mdl", false); //Burger shop door
 		*(NJS_OBJECT*)0x2AD4EA4 = *LoadModel("system\\data\\ADV00\\Models\\00186E88.sa1mdl", false); //Hidden door 1
@@ -759,8 +741,6 @@ void ADV00_Init()
 		EVHelicopterLight2 = LoadModel("system\\data\\Other\\00011208.sa1mdl", false);
 		HideEntireObject(EVHelicopterLight2);
 		EVHelicopterLight2->child->sibling->sibling->sibling->sibling->child->child->evalflags &= ~NJD_EVAL_HIDE; //Unhide the light
-		WriteCall((void*)0x4181FD, CutsceneAnimationHook1);
-		WriteCall((void*)0x418214, CutsceneAnimationHook2);
 		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x2DBD6D0)->child->sibling->sibling->sibling->sibling->child->basicdxmodel->mats[1]);
 		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x2DBD6D0)->child->sibling->sibling->sibling->sibling->child->basicdxmodel->mats[2]);
 		*(NJS_OBJECT*)0x2AE8674 = *LoadModel("system\\data\\ADV00\\Models\\00195DC0.sa1mdl", false); //Train
