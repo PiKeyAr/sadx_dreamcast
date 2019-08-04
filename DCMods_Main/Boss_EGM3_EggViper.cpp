@@ -97,7 +97,7 @@ void EggViper_Init()
 		((NJS_MATERIAL*)0x016737F0)->attrflags |= NJD_FLAG_IGNORE_LIGHT; //Dust effect at the bottom of the room
 		*(NJS_OBJECT*)0x01669DA8 = *LoadModel("system\\data\\B_EGM3\\Models\\000434A0.sa1mdl", false); //part of Egg Viper model with different UVs
 		RemoveVertexColors_Object((NJS_OBJECT*)0x166C54C); //Egg Viper cockpit with Eggman
-		ForceObjectSpecular_Object((NJS_OBJECT*)0x166C54C);
+		ForceObjectSpecular_Object((NJS_OBJECT*)0x166C54C, false);
 		WriteCall((void*)0x6D04E3, EggViperCutsceneFix1); //supercoolsonic's position fix
 		WriteCall((void*)0x6D04EA, EggViperCutsceneFix2); //Cutscene pose fix
 		for (int i = 0; i < 3; i++)

@@ -926,7 +926,7 @@ NJS_OBJECT* LoadModel(const char *ModelName, bool sort)
 	return object;
 }
 
-void ForceLevelSpecular_Object(NJS_OBJECT *obj)
+void ForceLevelSpecular_Object(NJS_OBJECT *obj, bool recursive)
 {
 	if (obj)
 	{
@@ -937,10 +937,13 @@ void ForceLevelSpecular_Object(NJS_OBJECT *obj)
 				if (!(obj->basicdxmodel->mats[k].attrflags & NJD_FLAG_IGNORE_SPECULAR)) obj->basicdxmodel->mats[k].attrflags |= NJD_FLAG_IGNORE_SPECULAR;
 			}
 		}
+		if (recursive && obj->child) ForceLevelSpecular_Object(obj->child, true);
+		if (recursive && obj->sibling) ForceLevelSpecular_Object(obj->sibling, true);
 	}
+
 }
 
-void ForceObjectSpecular_Object(NJS_OBJECT *obj)
+void ForceObjectSpecular_Object(NJS_OBJECT *obj, bool recursive)
 {
 	if (obj)
 	{
@@ -955,6 +958,8 @@ void ForceObjectSpecular_Object(NJS_OBJECT *obj)
 				}
 			}
 		}
+		if (recursive && obj->child) ForceObjectSpecular_Object(obj->child, true);
+		if (recursive && obj->sibling) ForceObjectSpecular_Object(obj->sibling, true);
 	}
 }
 
@@ -1032,4 +1037,34 @@ void HideEntireObject(NJS_OBJECT* a1)
 	if (!(a1->evalflags & NJD_EVAL_HIDE)) a1->evalflags |= NJD_EVAL_HIDE;
 	if (a1->child) HideEntireObject(a1->child);
 	if (a1->sibling) HideEntireObject(a1->sibling);
+}
+
+void RemoveTransparency_Object(NJS_OBJECT* obj, bool recursive)
+{
+	NJS_MATERIAL* material;
+	if (obj->basicdxmodel)
+	{
+		for (int k = 0; k < obj->basicdxmodel->nbMat; ++k)
+		{
+			material->diffuse.argb.a = 255;
+			if (material->attrflags & NJD_FLAG_USE_ALPHA) material->attrflags &= ~NJD_FLAG_USE_ALPHA;
+		}
+	}
+	if (recursive)
+	{
+		if (obj->child) RemoveTransparency_Object(obj->child, true);
+		if (obj->sibling) RemoveTransparency_Object(obj->sibling, true);
+	}
+}
+
+void HideAllButOneMesh(NJS_OBJECT *obj, int meshID)
+{
+	NJS_MATERIAL* material;
+	if (obj->basicdxmodel)
+	{
+		for (int k = 0; k < obj->basicdxmodel->nbMeshset; ++k)
+		{
+			if (k != meshID) HideMesh(&obj->basicdxmodel->meshsets[k]);
+		}
+	}
 }

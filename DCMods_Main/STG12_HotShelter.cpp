@@ -706,11 +706,11 @@ void HotShelter_Init()
 		*(NJS_MODEL_SADX*)0x180DC54 = *LoadModel("system\\data\\STG12\\Models\\001781FC.sa1mdl", false)->basicdxmodel; //ORoboTV broken glass
 		HideMesh(&((NJS_MODEL_SADX*)0x180DC54)->meshsets[2]); //Hide the black part to render separately
 		*(NJS_OBJECT*)0x185D200 = *LoadModel("system\\data\\STG12\\Models\\0014A8F4.sa1mdl", false); //OCarne
-		ForceLevelSpecular_Object(((NJS_OBJECT*)0x185D200)->child->sibling->child);
-		ForceLevelSpecular_Object(((NJS_OBJECT*)0x185D200)->child->sibling->child->sibling);
+		ForceLevelSpecular_Object(((NJS_OBJECT*)0x185D200)->child->sibling->child, false);
+		ForceLevelSpecular_Object(((NJS_OBJECT*)0x185D200)->child->sibling->child->sibling, false);
 		((NJS_ACTION*)0x17F1CBC)->object = LoadModel("system\\data\\STG12\\Models\\0017B464.sa1mdl", false); //OCargoTop
 		((NJS_ACTION*)0x17F1E94)->object = LoadModel("system\\data\\STG12\\Models\\001818D4.sa1mdl", false); //OEnemyContainer
-		ForceLevelSpecular_Object(((NJS_ACTION*)0x17F1E94)->object);
+		ForceLevelSpecular_Object(((NJS_ACTION*)0x17F1E94)->object, false);
 		*(NJS_OBJECT*)0x17F7094 = *LoadModel("system\\data\\STG12\\Models\\001633F8.sa1mdl", false); //OBanji 1
 		*(NJS_OBJECT*)0x17F68E4 = *LoadModel("system\\data\\STG12\\Models\\00162C68.sa1mdl", false); //OBanji 2
 		*(NJS_OBJECT*)0x17E8DE4 = *LoadModel("system\\data\\STG12\\Models\\0017EC28.sa1mdl", false); //Gamma train tracks 1

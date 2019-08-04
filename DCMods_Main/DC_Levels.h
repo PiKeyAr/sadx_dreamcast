@@ -40,6 +40,7 @@ FunctionPointer(void, ProcessModelNode_Try, (NJS_OBJECT* a1, int a2, float a3), 
 FunctionPointer(void, ProcessModel_NoSorting, (NJS_MODEL_SADX* model, float scale), 0x407A00);
 FunctionPointer(void, njAction_ReallyHard, (NJS_ACTION* a1, float frameNumber), 0x409FB0);
 FunctionPointer(void, DrawModel_Queue_407CF0, (NJS_MODEL_SADX* a1, int blend), 0x407FC0);
+FunctionPointer(void, DrawModel_Queue_407CF0_WithScale, (NJS_MODEL_SADX *model, QueuedModelFlagsB blend, float scale), 0x409E70);
 FunctionPointer(void, njAction_Queue_DrawModelQueue, (NJS_ACTION* a1, float a2, int a3, float a4), 0x405490);
 FunctionPointer(void, njAction_DontQueue, (NJS_ACTION *a1, float frame, float scale), 0x405450);
 FunctionPointer(void, njAction_Queue_407BB0, (NJS_ACTION *anim, float a2, int a3), 0x408350);
@@ -456,6 +457,8 @@ void __cdecl Past_OceanDraw_SADXStyle(OceanData *o);
 void LoadBossECOceanPVM(const char *filename, NJS_TEXLIST *texlist);
 void LoadBossECOceanTexlist();
 void RenderChaoTransporterEffect_Fix(NJS_MODEL_SADX *a1, float scale);
+void DrawEventHelicopter(NJS_ACTION *a1, float a2, int a3);
+void DrawRobotChest(NJS_ACTION *action, Float frame);
 
 //Lighting functions
 bool ForceWhiteDiffuse(NJS_MATERIAL* material, uint32_t flags);
@@ -497,10 +500,12 @@ void RemoveWhiteDiffuseMaterial(NJS_MATERIAL *material);
 void RemoveWhiteDiffuseMaterial_Specular3(NJS_MATERIAL *material);
 void RemoveWhiteDiffuseNightMaterial(NJS_MATERIAL* material);
 void AddBossMaterial(NJS_MATERIAL *material);
-void ForceLevelSpecular_Object(NJS_OBJECT *obj);
-void ForceObjectSpecular_Object(NJS_OBJECT *obj);
+void ForceLevelSpecular_Object(NJS_OBJECT *obj, bool recursive);
+void ForceObjectSpecular_Object(NJS_OBJECT *obj, bool recursive);
 void AddBossMaterials_Object(NJS_OBJECT *obj);
 void SwapMeshsets(NJS_OBJECT* object, int mesh1, int mesh2);
 void HideMesh(NJS_MESHSET_SADX *meshset);
 void ForceLightType_Object(NJS_OBJECT* obj, int light_type, bool unregister);
 void HideEntireObject(NJS_OBJECT* a1);
+void RemoveTransparency_Object(NJS_OBJECT* obj, bool recursive);
+void HideAllButOneMesh(NJS_OBJECT *obj, int meshID);

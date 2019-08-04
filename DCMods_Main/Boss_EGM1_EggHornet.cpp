@@ -209,7 +209,7 @@ void EggHornet_Init()
 		((NJS_OBJECT*)0x01561A70)->basicdxmodel->mats[18].attrflags |= NJD_FLAG_IGNORE_LIGHT; //front light
 		((NJS_OBJECT*)0x01561A70)->basicdxmodel->mats[8].attrflags |= NJD_FLAG_IGNORE_LIGHT; //computer
 		((NJS_MATERIAL*)0x015570AC)->attrflags &= ~NJD_FLAG_IGNORE_SPECULAR;
-		ForceObjectSpecular_Object((NJS_OBJECT*)0x1561A70);
+		ForceObjectSpecular_Object((NJS_OBJECT*)0x1561A70, false);
 		for (int i = 0; i < 3; i++)
 		{
 			DrawDist_EggHornet[i].Maximum = -12500.0;

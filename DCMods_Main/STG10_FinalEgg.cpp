@@ -548,7 +548,7 @@ void FinalEgg_Init()
 		//OLight1
 		AddWhiteDiffuseMaterial((NJS_MATERIAL*)0x01A46C10);
 		AddWhiteDiffuseMaterial((NJS_MATERIAL*)0x01A46C24);
-		ForceObjectSpecular_Object((NJS_OBJECT*)0x1C27FB0); //OEggKanban sibling
+		ForceObjectSpecular_Object((NJS_OBJECT*)0x1C27FB0, false); //OEggKanban sibling
 		//0LightCamera lighting
 		((NJS_MATERIAL*)0x019FD098)->attrflags |= NJD_FLAG_IGNORE_SPECULAR;
 		((NJS_MATERIAL*)0x019FD0AC)->attrflags |= NJD_FLAG_IGNORE_SPECULAR;

@@ -623,9 +623,9 @@ void SkyChase_Init()
 			AddObjectWhiteDiffuseMaterials_Range(EggCarrierModel->child->sibling->sibling->sibling->sibling, 19, 96);
 			AddObjectWhiteDiffuseMaterials_Range(EggCarrierModel->child->sibling->sibling->sibling->sibling->sibling, 37, 105);
 			AddObjectWhiteDiffuseMaterials_Range(EggCarrierModel->child->sibling->sibling->sibling->sibling->sibling->sibling, 33, 102);
-			ForceLevelSpecular_Object(EggCarrierModel->child->sibling->sibling->sibling);
-			ForceLevelSpecular_Object(EggCarrierModel->child->sibling->sibling->sibling->sibling->sibling->sibling->sibling);
-			ForceLevelSpecular_Object(EggCarrierModel->child->sibling->sibling->sibling->sibling->sibling->sibling->sibling->sibling);
+			ForceLevelSpecular_Object(EggCarrierModel->child->sibling->sibling->sibling, false);
+			ForceLevelSpecular_Object(EggCarrierModel->child->sibling->sibling->sibling->sibling->sibling->sibling->sibling, false);
+			ForceLevelSpecular_Object(EggCarrierModel->child->sibling->sibling->sibling->sibling->sibling->sibling->sibling->sibling, false);
 			//Other objects
 			*(NJS_OBJECT*)0x298A894 = *LoadModel("system\\data\\SHOOTING\\Models\\00047110.sa1mdl", false); //Hodai
 			*(NJS_OBJECT*)0x2941B2C = *LoadModel("system\\data\\SHOOTING\\Models\\0001342C.sa1mdl", false); //Kirai
