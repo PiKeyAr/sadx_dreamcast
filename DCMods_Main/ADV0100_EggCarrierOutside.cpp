@@ -125,13 +125,6 @@ void __cdecl EggCarrierSkyBox_Bottom(EntityData1* a1, float a2)
 	njPopMatrix(1u);
 	ToggleStageFog();
 }
-
-void RenderEggCarrier0NPC(NJS_ACTION* action, Float frame)
-{
-	if (action == (NJS_ACTION*)0x11A86D4) sub_409FB0(action, frame);
-	else njAction(action, frame);
-}
-
 void EggCarrierSea()
 {
 	if (!DroppedFrames)
@@ -454,7 +447,6 @@ void ADV01_Init()
 		WriteCall((void*)0x51F637, ODoseiFix);
 		WriteCall((void*)0x51F669, ODoseiFix);
 		WriteCall((void*)0x51EB2C, OLivingLightFix);
-		WriteCall((void*)0x51AB88, RenderEggCarrier0NPC); //Chaos 4 glitch fix
 		WriteJump((void*)0x51B210, EggCarrierSkyBox_Top);
 		WriteJump((void*)0x51B3B0, EggCarrierSkyBox_Bottom);
 		//Swap EC skybox draw calls to render the outer part last in Acts 1/2
@@ -523,8 +515,8 @@ void ADV01_Init()
 		AddWhiteDiffuseMaterial(&ADV01_OBJECTS[55]->child->child->basicdxmodel->mats[7]);
 		ADV01_OBJECTS[58] = LoadModel("system\\data\\ADV0100\\Models\\0017BFE4.sa1mdl", false); //OSLight
 		ADV01_OBJECTS[61] = LoadModel("system\\data\\ADV0100\\Models\\001B4794.sa1mdl", false); //OTornado2
-		AddWhiteDiffuseMaterial(&ADV01_OBJECTS[61]->basicdxmodel->mats[23]);
 		AddWhiteDiffuseMaterial(&ADV01_OBJECTS[61]->basicdxmodel->mats[24]);
+		AddWhiteDiffuseMaterial(&ADV01_OBJECTS[61]->basicdxmodel->mats[25]);
 		SwapMeshsets(ADV01_OBJECTS[61], 0, 22);
 		NJS_OBJECT* SomeStupidThing = LoadModel("system\\data\\ADV0100\\Models\\00178BC4.sa1mdl", false);
 		ADV01_ACTIONS[0]->object = SomeStupidThing; //This thing is stupid
