@@ -527,6 +527,8 @@ void TwinklePark_Init()
 		*(NJS_OBJECT*)0x38BE5F4 = *LoadModel("system\\data\\STG03\\Models\\000EC4E0.sa1mdl", false); //Dash pad
 		*(NJS_OBJECT*)0x38C07CC = *LoadModel("system\\data\\STG03\\Models\\000EE618.sa1mdl", false); //Jump pad
 		*(NJS_OBJECT*)0x38C5B3C = *LoadModel("system\\data\\STG03\\Models\\000F3170.sa1mdl", false); //OCartStopper
+		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x38C5B3C)->basicdxmodel->mats[2]);
+		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x38C5B3C)->basicdxmodel->mats[8]);
 		*(NJS_OBJECT*)0x38BE2B4 = *LoadModel("system\\data\\STG03\\Models\\000EC1B4.sa1mdl", false); //OPlanet with rings
 		*(NJS_OBJECT*)0x27AE4F4 = *LoadModel("system\\data\\STG03\\Models\\000AD08C.sa1mdl", false); //Merry-go-round (swapped materials/meshsets 0 and 2 for compatibility with DX animation code)
 		*(NJS_OBJECT*)0x27BEA34 = *LoadModel("system\\data\\STG03\\Models\\000B95A0.sa1mdl", false); //Horsies
