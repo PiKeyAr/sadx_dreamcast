@@ -1,6 +1,5 @@
 #include "stdafx.h"
 
-//TODO: Pole
 NJS_TEXNAME textures_chaos0[34];
 NJS_TEXLIST texlist_chaos0 = { arrayptrandlength(textures_chaos0) };
 
