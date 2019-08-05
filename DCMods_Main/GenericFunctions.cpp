@@ -1,20 +1,13 @@
 #include "stdafx.h"
 #include "GenericData.h"
 
+static NJS_MESHSET_SADX DeadMeshset = { NJD_MESHSET_N | 0, 0, NULL, NULL, NULL, NULL, NULL, NULL };
+
 void HideMesh_Object(NJS_OBJECT *object, int meshID)
 {
-	NJS_MODEL_SADX *model = object->basicdxmodel;
-	if (model)
+	if (object->basicdxmodel)
 	{
-		NJS_MESHSET_SADX *tmp = new NJS_MESHSET_SADX[model->nbMeshset - 1];
-		int d = 0;
-		for (int s = 0; s < model->nbMeshset; s++)
-		{
-			if (s == meshID) continue;
-			tmp[d++] = model->meshsets[s];
-		}
-		memcpy(model->meshsets, tmp, sizeof(NJS_MESHSET_SADX) * (--model->nbMeshset));
-		delete[] tmp;
+		object->basicdxmodel->meshsets[meshID] = DeadMeshset;
 	}
 }
 
@@ -22,22 +15,14 @@ void HideMesh_Model(NJS_MODEL_SADX *model, int meshID)
 {
 	if (model)
 	{
-		NJS_MESHSET_SADX *tmp = new NJS_MESHSET_SADX[model->nbMeshset - 1];
-		int d = 0;
-		for (int s = 0; s < model->nbMeshset; s++)
-		{
-			if (s == meshID) continue;
-			tmp[d++] = model->meshsets[s];
-		}
-		memcpy(model->meshsets, tmp, sizeof(NJS_MESHSET_SADX) * (--model->nbMeshset));
-		delete[] tmp;
+		model->meshsets[meshID] = DeadMeshset;
 	}
 }
 
 void CheckAndUnloadLevelFiles()
 {
 	UnloadGUITextures();
-	if (!ModelsLoaded_General) General_Init();
+	General_Init();
 	ClearTextureAnimationData();
 	if (CurrentLevel != LevelIDs_StationSquare && ADV00_0_Info) UnloadLevelFiles_ADV00();
 	if (CurrentLevel != LevelIDs_EggCarrierOutside && ADV01_0_Info) UnloadLevelFiles_ADV01();
