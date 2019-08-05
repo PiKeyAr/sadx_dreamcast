@@ -753,7 +753,7 @@ void SpeedFixes_OnFrame()
 	//60 FPS
 	if (FramerateSetting < 2)
 	{
-		if (!IsGamePaused)
+		if (!IsGamePaused())
 		{
 			OFunFrame -= 0.25f;
 			if (OFunFrame < 0) OFunFrame = 19;
@@ -764,7 +764,7 @@ void SpeedFixes_OnFrame()
 	//30 FPS
 	else
 	{
-		if (!IsGamePaused)
+		if (!IsGamePaused())
 		{
 			OFunFrame += 1.0f;
 			if (OFunFrame > 19) OFunFrame = 0;

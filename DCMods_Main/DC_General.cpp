@@ -4,9 +4,11 @@
 //#include "StageLights.h"
 //#include "Animals.h"
 //#include "Frogs.h"
+//#include "RobotChest.h"
+//TODO: Replicate goal emerald glow exactly
 
 NJS_TEXANIM EmeraldGlowTexanim = { 64, 64, 32, 32, 0, 0, 0xFF, 0xFF, 3, 0 };
-NJS_SPRITE EmeraldGlowSprite = { { 0.0f, 4.2f, 0.0f }, 0.35f, 0.35f, 0, (NJS_TEXLIST*)0xC3FE20, &EmeraldGlowTexanim };
+NJS_SPRITE EmeraldGlowSprite = { { 0.0f, 5.2f, 0.0f }, 0.5f, 0.5f, 0, (NJS_TEXLIST*)0xC3FE20, &EmeraldGlowTexanim };
 NJS_VECTOR EmeraldGlowPosition = { 0, 10, 0 };
 
 NJS_TEXANIM Heat1Texanim = { 56, 64, 28, 32, 0, 0, 0xFF, 0xFF, 2, 0 };
@@ -21,6 +23,7 @@ NJS_OBJECT* EmeraldPieceOutline = nullptr;
 NJS_OBJECT* ItemBoxAirModel = nullptr;
 NJS_OBJECT* ItemBoxAirModel_Resize = nullptr;
 NJS_OBJECT* ItemBoxAirModel_ResizeChild = nullptr;
+NJS_OBJECT* RobotChest = nullptr;
 
 DataPointer(NJS_OBJECT, stru_8B22F4, 0x8B22F4);
 DataPointer(NJS_MATRIX, nj_unit_matrix_, 0x389D650);
@@ -38,6 +41,8 @@ FunctionPointer(void, sub_4094D0, (NJS_MODEL_SADX *model, QueuedModelFlagsB blen
 FunctionPointer(void, sub_4053A0, (NJS_OBJECT *a1, NJS_MOTION *a2, float frame, int flags, float scale), 0x4053A0);
 FunctionPointer(void, sub_407CF0, (NJS_MODEL_SADX *a1, QueuedModelFlagsB a2), 0x407CF0);
 FunctionPointer(void, sub_4BFF90, (NJS_OBJECT* a1), 0x4BFF90);
+DataPointer(NJS_ACTION*, Tornado2Pointer, 0x006B9527);
+DataPointer(NJS_ACTION, Tornado2ChangeAction, 0x032ECE0C);
 
 ObjectThingC ItemBoxAirResizeThing = { (NJS_OBJECT*)0, sub_4BFF90 };
 
@@ -114,14 +119,6 @@ static const NJS_MATERIAL* E101Material[] = {
 	((NJS_MATERIAL*)0x03096CD8),
 	((NJS_MATERIAL*)0x0309F380),
 	((NJS_MATERIAL*)0x030A7B00),
-};
-
-NJS_MATERIAL* AlphaRejectMaterials[] = {
-	((NJS_MATERIAL*)0x8B2E6C), //Invincibility lines
-	((NJS_MATERIAL*)0x8B2F80), //Invincibility ball
-	((NJS_MATERIAL*)0x8B26E4), //Magnetic barrier
-	((NJS_MATERIAL*)0x8BF2C0), //Shadow blob
-	(NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x7C334), //Emerald shards (cutscene)
 };
 
 NJS_MATERIAL* RemoveColors_General[] = {
@@ -228,7 +225,7 @@ NJS_MATERIAL* RemoveColors_General[] = {
 	((NJS_MATERIAL*)0x2F0402C),
 };
 
-NJS_MATERIAL* LevelSpecular_General[] = {
+static const NJS_MATERIAL* LevelSpecular_General[] = {
 	//Zero
 	((NJS_MATERIAL*)0x0098A2B0),
 	((NJS_MATERIAL*)0x0098A2C4),
@@ -294,7 +291,7 @@ NJS_MATERIAL* LevelSpecular_General[] = {
 	((NJS_MATERIAL*)0x038CD5E8),
 };
 
-NJS_MATERIAL* ObjectSpecular_General[] = {
+static const NJS_MATERIAL* ObjectSpecular_General[] = {
 	//Chaos6 eggmobile
 	((NJS_MATERIAL*)0x12545E0),
 	((NJS_MATERIAL*)0x12545F4),
@@ -321,7 +318,7 @@ NJS_MATERIAL* ObjectSpecular_General[] = {
 	((NJS_MATERIAL*)0x1254798),
 	((NJS_MATERIAL*)0x12547AC),
 	((NJS_MATERIAL*)0x12547C0),
-	//Sewers elevator
+	//Sewers elevator (OHighEle)
 	((NJS_MATERIAL*)0x2AB7798),
 	((NJS_MATERIAL*)0x2AB77AC),
 	((NJS_MATERIAL*)0x2AB77C0),
@@ -343,6 +340,19 @@ NJS_MATERIAL* ObjectSpecular_General[] = {
 	((NJS_MATERIAL*)0x331789C),
 	((NJS_MATERIAL*)0x33178B0),
 };
+
+void DrawRobotChest(NJS_ACTION *action, Float frame) //4800DE
+{
+	NJS_ACTION ChestAction = { nullptr, nullptr };
+	ChestAction.object = RobotChest;
+	ChestAction.motion = action->motion;
+	E102_OBJECTS[0]->child->child->sibling->sibling->sibling->sibling->sibling->sibling->sibling->sibling->sibling->sibling->child->sibling->child->evalflags |= NJD_EVAL_HIDE;
+	njAction(action, frame);
+	SetMaterialAndSpriteColor_Float(0.847f, 1.0f, 1.0f, 1.0f);
+	njAction(&ChestAction, frame);
+	SetMaterialAndSpriteColor_Float(1.0f, 1.0f, 1.0f, 1.0f);
+	E102_OBJECTS[0]->child->child->sibling->sibling->sibling->sibling->sibling->sibling->sibling->sibling->sibling->sibling->child->sibling->child->evalflags &= ~NJD_EVAL_HIDE;
+}
 
 void GetEmeraldGlow(ObjectMaster* a1)
 {
@@ -429,7 +439,7 @@ void RenderEmeraldWithGlow_Ice(NJS_OBJECT *object, int flags, float scale)
 	//SetMaterialAndSpriteColor_Float(1.0f, 1.0f, 1.0f, 1.0f);
 	njTranslateV(0, &EmeraldGlowPosition);
 	njRotateXYZ(0, Camera_Data1->Rotation.x, Camera_Data1->Rotation.y, 0);
-	njDrawSprite3D_Queue(&EmeraldGlowSprite, 0, NJD_SPRITE_ALPHA | NJD_SPRITE_COLOR, (QueuedModelFlagsB)4);
+	njDrawSprite3D_Queue(&EmeraldGlowSprite, 0, NJD_SPRITE_ALPHA | NJD_SPRITE_COLOR, (QueuedModelFlagsB)0);
 	njColorBlendingMode(NJD_SOURCE_COLOR, NJD_COLOR_BLENDING_SRCALPHA);
 	njColorBlendingMode(NJD_DESTINATION_COLOR, NJD_COLOR_BLENDING_INVSRCALPHA);
 	ClampGlobalColorThing_Thing();
@@ -1386,11 +1396,70 @@ void PlayCharacterHurtVoice(int ID, void *a2, int a3, void *a4)
 	}
 }
 
+void CutsceneAnimationHook1(NJS_ACTION *a1, float a2, QueuedModelFlagsB a3)
+{
+	//Event helicopter
+	if (CurrentTexList == &EV_HELI_TEXLIST)
+	{
+		DrawEventHelicopter(a1, a2, a3);
+	}
+	//Gamma
+	if (CurrentTexList == &E102_TEXLIST) DrawRobotChest(a1, a2);
+	else njAction_Queue_407FC0(a1, a2, a3);
+}
+
+void CutsceneAnimationHook2(NJS_ACTION *anim, float a2, int a3)
+{
+	//Chaos emeralds
+	if (CurrentTexList == &M_EM_BLUE_TEXLIST || CurrentTexList == &M_EM_GREEN_TEXLIST || CurrentTexList == &M_EM_WHITE_TEXLIST || CurrentTexList == &M_EM_PURPLE_TEXLIST || CurrentTexList == &M_EM_SKY_TEXLIST || CurrentTexList == &M_EM_YELLOW_TEXLIST || CurrentTexList == &M_EM_RED_TEXLIST)
+	{
+		njAction_Queue_407FC0(anim, a2, a3);
+	}
+	//Gamma
+	else if (CurrentTexList == &E102_TEXLIST) DrawRobotChest(anim, a2);
+	else njAction_Queue_407BB0(anim, a2, a3);
+}
+
+void SSNPCHook(NJS_ACTION *a1, float frame, float scale)
+{
+	if (a1->object == E102_OBJECTS[0]) DrawRobotChest(a1, frame);
+	else njAction_DontQueue(a1, frame, scale);
+}
+
+void RenderEggCarrier0NPC(NJS_ACTION* action, Float frame)
+{
+	if (action == (NJS_ACTION*)0x11A86D4) njAction_ReallyHard(action, frame); //Chaos 4
+	else if (action->object == E102_OBJECTS[0]) DrawRobotChest(action, frame);
+	else njAction(action, frame);
+}
+
+void RenderEggCarrier3NPC(NJS_ACTION* action, Float frame)
+{
+	if (action->object == E102_OBJECTS[0]) DrawRobotChest(action, frame);
+	else njAction(action, frame);
+}
+
+void GeoAnimFix(NJS_ACTION* a1, float a2, int a3, float a4)
+{
+	if (CurrentLevel == LevelIDs_MysticRuins && CurrentAct == 2)
+	{
+		DrawQueueDepthBias = -20952.0f;
+		njAction_Queue_407FC0(a1, a2, 1);
+		DrawQueueDepthBias = 0.0f;
+	}
+	else if (CurrentLevel == LevelIDs_FinalEgg && CurrentAct == 2)
+	{
+		DrawQueueDepthBias = -47952.0f;
+		njAction_Queue_407BB0_2(a1, a2, a3, a4);
+		DrawQueueDepthBias = 0.0f;
+	}
+	else njAction_Queue_407BB0_2(a1, a2, a3, a4);
+}
+
 void General_Init()
 {
 	if (!ModelsLoaded_General)
 	{
-		WriteCall((void*)0x4507FA, PlayCharacterHurtVoice); //Move to Sound Overhaul
 		ReplacePVR("AL_BARRIA");
 		ReplacePVR("AM_SEA124_8");
 		ReplacePVR("BELT2");
@@ -1558,6 +1627,15 @@ void General_Init()
 		WriteCall((void*)0x49F182, CharacterShadowHook);
 		//NPC shadow fix
 		WriteCall((void*)0x5252E8, DrawNPCShadowFix);
+		//Gamma's chest fix in NPC model
+		WriteCall((void*)0x51AB88, RenderEggCarrier0NPC); //EC outside / Chaos 4 glitch fix, Gamma's chest
+		WriteCall((void*)0x525405, RenderEggCarrier3NPC); //EC inside / Gamma's chest
+		WriteCall((void*)0x52EB7F, RenderEggCarrier3NPC); //MR / Gamma's chest
+		WriteCall((void*)0x62F2B3, SSNPCHook); //SS / Gamma's chest
+		WriteCall((void*)0x4181FD, CutsceneAnimationHook1);
+		WriteCall((void*)0x418214, CutsceneAnimationHook2);
+		WriteCall((void*)0x4507FA, PlayCharacterHurtVoice); //Move to Sound Overhaul
+		WriteCall((void*)0x43A85F, GeoAnimFix); //Landtable animation hook
 		//DirLight data... Someday
 		/*
 		//Replace SADX DirLight data with SA1 DirLight data
@@ -1595,7 +1673,7 @@ void General_Init()
 			//Regular model
 			if (!(((NJS_ACTION*)0x89E254)->object->child->child->basicdxmodel->mats[4].attrflags & NJD_FLAG_USE_TEXTURE))
 			{
-				ForceLevelSpecular_Object(((NJS_ACTION*)0x89E254)->object->child->child); //Prevent the glasses from "forgetting" specular in some cutscenes
+				ForceLevelSpecular_Object(((NJS_ACTION*)0x89E254)->object->child->child, false); //Prevent the glasses from "forgetting" specular in some cutscenes
 				((NJS_ACTION*)0x89E254)->object->child->child->basicdxmodel->mats[4].attrflags |= NJD_FLAG_USE_TEXTURE;
 				((NJS_ACTION*)0x89E254)->object->child->child->basicdxmodel->mats[4].attr_texId = 9;
 				((NJS_ACTION*)0x89E254)->object->child->child->basicdxmodel->mats[4].diffuse.color = 0xFF000000;
@@ -1603,11 +1681,17 @@ void General_Init()
 			//Event Eggmobile 0
 			if (!(((NJS_ACTION*)0x2CD393C)->object->child->child->basicdxmodel->mats[4].attrflags & NJD_FLAG_USE_TEXTURE))
 			{
-				ForceLevelSpecular_Object(((NJS_ACTION*)0x2CD393C)->object->child->child); //Prevent the glasses from "forgetting" specular in some cutscenes
+				ForceLevelSpecular_Object(((NJS_ACTION*)0x2CD393C)->object->child->child, false); //Prevent the glasses from "forgetting" specular in some cutscenes
 				((NJS_ACTION*)0x2CD393C)->object->child->child->basicdxmodel->mats[4].attrflags |= NJD_FLAG_USE_TEXTURE;
 				((NJS_ACTION*)0x2CD393C)->object->child->child->basicdxmodel->mats[4].attr_texId = 7;
 				((NJS_ACTION*)0x2CD393C)->object->child->child->basicdxmodel->mats[4].diffuse.color = 0xFF000000;
 			}
+			//Event Tornado 2 pre-transformed light type fix
+			ForceLightType_Object(Tornado2Pointer->object->child->sibling->sibling->sibling->sibling, 2, false);
+			//Event Tornado 2 transformed specular fix
+			ForceObjectSpecular_Object(Tornado2ChangeAction.object->child, false);
+			//Event Tornado 2 transformed emerald transparency fix
+			SortModel(Tornado2ChangeAction.object->child->sibling->sibling);
 		}
 		RemoveVertexColors_Model((NJS_MODEL_SADX*)0x94BAA0); //ERobo0 head
 		AddWhiteDiffuseMaterial(&(((NJS_MODEL_SADX*)0x94BAA0)->mats[4]));
@@ -1651,7 +1735,7 @@ void General_Init()
 		WriteCall((void*)0x4A1E55, SpindashChargeSpriteHook);
 		//Replace hint monitor model
 		HintMonitorModel = LoadModel("system\\data\\1st_read\\Models\\001AD358.sa1mdl", false);
-		HideMesh(&HintMonitorModel->basicdxmodel->meshsets[10]); //Hide screen (rendered separately in DX)
+		HideMesh_Object(HintMonitorModel, 10); //Hide screen (rendered separately in DX)
 		WriteCall((void*)0x7A9509, RenderHintMonitor_Main);
 		WriteCall((void*)0x7A957F, SetHintMonitorTransparency);
 		//Fix frogs lol
@@ -1665,19 +1749,22 @@ void General_Init()
 		WriteData((float**)0x4CD75A, &_nj_screen_.w); //from SADXFE
 		WriteData((float**)0x4CD77C, &_nj_screen_.h); //from SADXFE
 		//Robot chest stuff
+		RobotChest = LoadModel("system\\data\\Other\\0042096C.sa1mdl", false);
+		ForceLightType_Object(RobotChest->child->child->sibling->sibling->sibling->sibling->sibling->sibling->sibling->sibling->sibling->sibling->child->sibling->child, 2, false);
+		WriteCall((void*)0x4800DE, DrawRobotChest);
 		WriteData<1>((char*)0x4CFC05, 0x08); //Zero constant material thing
 		WriteData<1>((char*)0x4CFC99, 0x08); //Zero constant material thing
 		((NJS_OBJECT*)0x312F714)->basicdxmodel->mats[3].attrflags &= ~NJD_FLAG_USE_ALPHA; //E101 unnecessary alpha (cutscene model)
 		((NJS_OBJECT*)0x30AB08C)->basicdxmodel->mats[3].attrflags &= ~NJD_FLAG_USE_ALPHA; //E103 unnecessary alpha (cutscene model)
 		((NJS_OBJECT*)0x30A290C)->basicdxmodel->mats[3].attrflags &= ~NJD_FLAG_USE_ALPHA; //E104 unnecessary alpha (cutscene model)
 		((NJS_OBJECT*)0x309A21C)->basicdxmodel->mats[3].attrflags &= ~NJD_FLAG_USE_ALPHA; //E105 unnecessary alpha (cutscene model)
-		WriteData((float*)0x6F4718, 0.85f); //E101 (cutscene model)
-		WriteData((float*)0x4E7BFD, 0.85f); //E103 (reused Gamma model)
-		WriteData((float*)0x4E7C40, 0.85f); //E103 (reused Gamma model)
-		WriteData((float*)0x605813, 0.85f); //E104 (reused Gamma model)
-		WriteData((float*)0x6F3F94, 0.85f); //E103 (cutscene model)
-		WriteData((float*)0x6F3D54, 0.85f); //E104 (cutscene model)
-		WriteData((float*)0x6F3B24, 0.85f); //E105 (cutscene model)
+		WriteData((float*)0x6F4718, 0.847f); //E101 (cutscene model)
+		WriteData((float*)0x4E7BFD, 0.847f); //E103 (reused Gamma model)
+		WriteData((float*)0x4E7C40, 0.847f); //E103 (reused Gamma model)
+		WriteData((float*)0x605813, 0.847f); //E104 (reused Gamma model)
+		WriteData((float*)0x6F3F94, 0.847f); //E103 (cutscene model)
+		WriteData((float*)0x6F3D54, 0.847f); //E104 (cutscene model)
+		WriteData((float*)0x6F3B24, 0.847f); //E105 (cutscene model)
 		//Gamma's projectile fix. I have no idea why this works, but ok I guess
 		E102_OBJECTS[5]->basicdxmodel->mats[0].attr_texId = 10;
 		E102_OBJECTS[5]->basicdxmodel->mats[0].attrflags |= NJD_FLAG_USE_TEXTURE;
@@ -1835,10 +1922,15 @@ void General_Init()
 		}
 		if (DLLLoaded_Lantern == true)
 		{
-			if (set_alpha_reject_ptr != nullptr) material_register_ptr(AlphaRejectMaterials, LengthOfArray(AlphaRejectMaterials), &DisableAlphaRejection);
-			material_register_ptr(WhiteDiffuse_General, LengthOfArray(LevelSpecular_General), &ForceWhiteDiffuse);
-			material_register_ptr(LevelSpecular_General, LengthOfArray(LevelSpecular_General), &ForceDiffuse0Specular0);
-			material_register_ptr(ObjectSpecular_General, LengthOfArray(ObjectSpecular_General), &ForceDiffuse0Specular1);
+			AddAlphaRejectMaterial(&((NJS_OBJECT*)0x8BF3A0)->basicdxmodel->mats[0]);
+			AddAlphaRejectMaterial((NJS_MATERIAL*)0x8B2E6C); //Invincibility lines
+			AddAlphaRejectMaterial((NJS_MATERIAL*)0x8B2F80); //Invincibility ball
+			AddAlphaRejectMaterial((NJS_MATERIAL*)0x8B26E4); //Magnetic barrier
+			AddAlphaRejectMaterial((NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x7C334)); //Emerald shards (cutscene)
+			material_register_ptr(WhiteDiffuse_General, LengthOfArray(WhiteDiffuse_General), &ForceWhiteDiffuse);
+			material_register_ptr(WhiteDiffuseSecondCharSpecular, LengthOfArray(WhiteDiffuseSecondCharSpecular), &ForceWhiteDiffuse1Specular3);
+			//material_register_ptr(LevelSpecular_General, LengthOfArray(LevelSpecular_General), &ForceDiffuse0Specular0);
+			//material_register_ptr(ObjectSpecular_General, LengthOfArray(ObjectSpecular_General), &ForceDiffuse0Specular1);
 		}
 		RemoveVertexColors_Object((NJS_OBJECT*)0x31AB49C); //Birdie in "Zero holding Amy" cutscenes
 		RemoveVertexColors_Object((NJS_OBJECT*)0x31A72D8); //Zero holding Amy
