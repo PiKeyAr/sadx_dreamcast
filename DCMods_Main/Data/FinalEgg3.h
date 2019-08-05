@@ -52970,7 +52970,7 @@ extern "C" __declspec(dllexport) NJS_OBJECT object_0014C344 = { NJD_EVAL_UNIT_PO
 
 extern "C" __declspec(dllexport) NJS_MATERIAL matlist_0014C378[] = {
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 1, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_FLAG_USE_ENV | NJD_FLAG_IGNORE_LIGHT | NJD_DA_ONE | NJD_SA_SRC },
-	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 1, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_FLAG_USE_ENV | NJD_FLAG_DOUBLE_SIDE | NJD_DA_ONE | NJD_SA_SRC }
+	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 1, NJD_CUSTOMFLAG_WHITE | NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_CLAMP_U | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_FLAG_USE_ENV | NJD_FLAG_DOUBLE_SIDE | NJD_DA_ONE | NJD_SA_SRC }
 };
 
 extern "C" __declspec(dllexport) Sint16 poly_0014C3A0[] = {
@@ -83920,7 +83920,6 @@ extern "C" __declspec(dllexport) COL collist_000E1298[] = {
 	{ { 2267.929f, -513.4002f, -1048.9f }, 156.1962f, 0, 0, &object_001756BC, 0, 0xC0000001 },
 	{ { 2271.176f, -2325.87f, -1048.787f }, 114.2934f, 0, 0, &object_001456B0, 0, 0x80000000 },
 	{ { 1691.286f, -185.738f, -1845 }, 31.0389f, 0, 0, &object_0017BDBC, 0, 0x80040001 },
-	{ { 1072.276f, 76.80636f, -851.2651f }, 269.8409f, 0, 0, &object_001228B0_3, 0, 0x80000001 },
 	{ { 1072.276f, 76.80636f, -851.2651f }, 269.8409f, 0, 0, &object_001228B0_4, 0, 0x80000001 },
 	{ { 72.7795f, -3189.729f, -233.1178f }, 228.2536f, 0, 0, &object_0014F5B8_2, 0, 0x80040000 },
 	{ { 2664.194f, -2888.399f, -949.787f }, 56.47933f, 0, 0, &object_0010EDB4, 0, 0xC0000001 },
@@ -83935,6 +83934,7 @@ extern "C" __declspec(dllexport) COL collist_000E1298[] = {
 	{ { 1071.106f, 58.81738f, -517.3977f }, 168.0316f, 0, 0, &object_0014BDC0_2, 0, 0x80000000 },
 	{ { 1071.106f, 164.3174f, -517.3977f }, 168.0316f, 0, 0, &object_00181364_2, 0, 0x80000000 },
 	{ { 1071.106f, -152.1825f, -517.3977f }, 168.0316f, 0, 0, &object_00181398_2, 0, 0x80000000 },
+	{ { 1072.276f, 76.80636f, -851.2651f }, 269.8409f, 0, 0, &object_001228B0_3, 0, 0x80040001 }, //Floor in the first room with plasma underneath
 	{ { 1580.9f, -3106.712f, -690.3f }, 135.4228f, 0, 0, &object_00159F64, 0, 0x80000000 }, //forgot what these two are
 	{ { 1575.9f, -3106.712f, -446 }, 135.4228f, 0, 0, &object_00181DC0, 0, 0x80000000 }, //forgot what these two are
 	{ { 1072.276f, 76.80636f, -851.2651f }, 269.8409f, 0, 0, &object_001228B0_2, 0, 0x80000001 }, //floor in the first room

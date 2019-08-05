@@ -24457,10 +24457,11 @@ extern "C" __declspec(dllexport) NJS_TEX uv_000B61DC[] = {
 };
 
 extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_000B61FC[] = {
+	{ NJD_MESHSET_TRIMESH | 3, 1, poly_000B5D88, NULL, NULL, NULL, uv_000B61B4, NULL },
+	{ NJD_MESHSET_TRIMESH | 4, 2, poly_000B5D9E, NULL, NULL, NULL, uv_000B61DC, NULL },
 	{ NJD_MESHSET_TRIMESH | 1, 3, poly_000B5B80, NULL, NULL, NULL, uv_000B5DB4, NULL },
 	{ NJD_MESHSET_TRIMESH | 2, 1, poly_000B5D06, NULL, NULL, NULL, uv_000B60B4, NULL },
-	{ NJD_MESHSET_TRIMESH | 3, 1, poly_000B5D88, NULL, NULL, NULL, uv_000B61B4, NULL },
-	{ NJD_MESHSET_TRIMESH | 4, 2, poly_000B5D9E, NULL, NULL, NULL, uv_000B61DC, NULL }
+
 };
 
 extern "C" __declspec(dllexport) NJS_VECTOR vertex_000B625C[] = {
@@ -46354,14 +46355,14 @@ extern "C" __declspec(dllexport) COL collist_00081980[] = {
 	{ { 1059.987f, -1019.301f, -849.9924f }, 254.3315f, 0, 0, &object_000E017C, 0, 0x88000000 }, //Tube thing 4
 	{ { 1059.987f, -1124.801f, -849.9924f }, 254.3315f, 0, 0, &object_000E01B0, 0, 0x88000000 }, //Tube thing 3
 	{ { 1059.987f, -1230.301f, -849.9924f }, 254.3315f, 0, 0, &object_000E01E4, 0, 0x88000000 }, //Tube thing 2
-	{ { 1059.987f, -908.301f, -849.9924f }, 255.5289f, 0, 0, &object_000B7544, 0, 0x88000000 }, //Tube thing 4
+	{ { 1059.987f, -908.301f, -849.9924f }, 255.5289f, 0, 0, &object_000B7544, 0, 0x88000000 }, //Tube thing 4 (top)
 	{ { 1059.987f, -1335.801f, -849.9924f }, 254.3315f, 0, 0, &object_000B8FA0, 0, 0x88000000 }, //Tube thing 1
 	{ { 995.3222f, -355.0974f, -650.7584f }, 70.6865f, 0, 0, &object_000B9E54_2, 0, 0x89000000 }, //elevator glass
 	{ { 996.3504f, -463.3272f, -639.0367f }, 69.24775f, 0, 0, &object_000C1350, 0, 0x88040001 }, //vertical tube 1
 	{ { 996.3504f, -585.5854f, -639.0367f }, 67.22473f, 0, 0, &object_000C0E68, 0, 0x88040001 }, //vertical tube 2
 	{ { 993.7653f, -702.2927f, -636.814f }, 68.61455f, 0, 0, &object_000C1A48, 0, 0x88040001 },  //vertical tube 3
-	{ { 1060, -781.45f, -850.0001f }, 348.4782f, 0, 0, &object_00089114_2, 0, 0x88000001 }, //big glass inner layer
-	{ { 900.7501f, -830, -850.0001f }, 372.6965f, 0, 0, &object_00087F80_2, 0, 0x88040001 }, //big glass outer layer
+	{ { 1060, -781.45f, -850.0001f }, 348.4782f, 0, 0, &object_00089114_2, 0, 0x89040001 }, //big glass inner layer
+	{ { 900.7501f, -830, -850.0001f }, 372.6965f, 0, 0, &object_00087F80_2, 0, 0x89040001 }, //big glass outer layer
 	{ { 1219.243f, -785.0252f, -850.0001f }, 361.985f, 0, 0, &object_00085D08_2, 0, 0x88040001 }, //big glass outer layer part 2
 	{ { 1120.431f, -2095.545f, -850.0001f }, 605.6641f, 0, 0, &object_000BB9A4, 0, 0x82000000 }, //Pillars for elevator
 	{ { 1001.216f, -2095.545f, -850.0001f }, 605.6641f, 0, 0, &object_000E02B4, 0, 0x82000000 }, //Pillars for elevator
