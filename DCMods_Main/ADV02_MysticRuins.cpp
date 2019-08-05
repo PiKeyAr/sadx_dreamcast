@@ -131,13 +131,13 @@ void FixMRBase(ObjectMaster *a1)
 	//Render the animation without the lights
 	njAction_Queue_407BB0(&OpaqueAction, v2->Scale.x, 1);
 	//Render the transparent part of the animation without the lights
-	DrawModel_Queue_407CF0(OFinalEggModel_Transparent->child->basicdxmodel, QueuedModelFlagsB_SomeTextureThing);
+	DrawModel_Queue_407FC0(OFinalEggModel_Transparent->child->basicdxmodel, QueuedModelFlagsB_SomeTextureThing);
 	//Render the FinalWay
 	njAction_Queue_407BB0(ADV02_ACTIONS[30], v2->Scale.y, 0);
 	//Render the lights
 	njAction_Queue_407FC0(&LightsAction, v2->Scale.x, 0);
 	//Render the EfHikari thing
-	DrawModel_Queue(OFinalEggModel_Opaque->child->sibling->sibling->basicdxmodel, QueuedModelFlagsB_3);
+	DrawModel_Queue_407CF0(OFinalEggModel_Opaque->child->sibling->sibling->basicdxmodel, QueuedModelFlagsB_3);
 	njPopMatrix(1u);
 	ToggleStageFog();
 	Direct3D_SetNearFarPlanes(LevelDrawDistance.Minimum, LevelDrawDistance.Maximum);
@@ -223,7 +223,7 @@ void RenderEmeraldShardGlow(NJS_MODEL_SADX *a1, int a2, float a3)
 				{
 					SetMaterialAndSpriteColor(&EmeraldShardGlowColor);
 					DrawQueueDepthBias = -2000.0f;
-					DrawModel_Queue_407CF0(a1, (QueuedModelFlagsB)0);
+					DrawModel_Queue_407FC0(a1, (QueuedModelFlagsB)0);
 					DrawQueueDepthBias = 0.0f;
 				}
 			}
@@ -244,7 +244,7 @@ void RenderEmeraldShardGlow_Final(NJS_MODEL_SADX *a1, int a2, float a3)
 				{
 					SetMaterialAndSpriteColor(&EmeraldShardGlowColor);
 					DrawQueueDepthBias = 6000.0f;
-					DrawModel_Queue_407CF0(a1, (QueuedModelFlagsB)0);
+					DrawModel_Queue_407FC0(a1, (QueuedModelFlagsB)0);
 					DrawQueueDepthBias = 0.0f;
 				}
 			}

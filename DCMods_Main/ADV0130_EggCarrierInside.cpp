@@ -192,7 +192,7 @@ void OTarai_Child_Display(ObjectMaster* a1)
 void RenderChaoTransporterEffect_Fix(NJS_MODEL_SADX *a1, float scale)
 {
 	DrawQueueDepthBias = 2000.0f;
-	DrawModel_Queue_407CF0(a1, QueuedModelFlagsB_SomeTextureThing);
+	DrawModel_Queue_407FC0(a1, QueuedModelFlagsB_SomeTextureThing);
 	DrawQueueDepthBias = 0;
 }
 

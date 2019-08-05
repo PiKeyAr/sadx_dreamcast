@@ -154,7 +154,7 @@ void OLivingLightFix(NJS_OBJECT* a1, int blend_mode, float scale)
 
 void DrawTornado2WithQueue(NJS_OBJECT* obj, float scale)
 {
-	DrawModel_Queue_407CF0(obj->basicdxmodel, QueuedModelFlagsB_EnableZWrite);
+	DrawModel_Queue_407FC0(obj->basicdxmodel, QueuedModelFlagsB_EnableZWrite);
 }
 
 void ParseEC00Materials(bool remove)
