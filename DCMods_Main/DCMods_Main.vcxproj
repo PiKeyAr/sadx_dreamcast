@@ -207,6 +207,7 @@
     <ClInclude Include="Data\MR03_FinalEgg.h" />
     <ClInclude Include="Data\MRGarden.h" />
     <ClInclude Include="Data\RM_Objects.h" />
+    <ClInclude Include="Data\RobotChest.h" />
     <ClInclude Include="Data\SandHill.h" />
     <ClInclude Include="Data\SH_helicopter.h" />
     <ClInclude Include="Data\SkyDeck1.h" />

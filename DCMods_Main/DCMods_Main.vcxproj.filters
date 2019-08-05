@@ -527,5 +527,8 @@
     <ClInclude Include="Data\ECGarden_Skybox.h">
       <Filter>Header Files\Levels\Chao</Filter>
     </ClInclude>
+    <ClInclude Include="Data\RobotChest.h">
+      <Filter>Header Files\Levels\General</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
