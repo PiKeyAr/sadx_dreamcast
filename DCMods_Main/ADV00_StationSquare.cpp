@@ -1,7 +1,6 @@
 #include "stdafx.h"
 //TODO: Burger Shop man lighting should use type 0 but the model parts are shared among NPCs
 //TODO: Check pool transparency maybe
-//TODO: Light speed shoes cutscene last camera angle
 
 NJS_TEXNAME textures_advss00[220];
 NJS_TEXLIST texlist_advss00 = { arrayptrandlength(textures_advss00) };
@@ -667,6 +666,9 @@ void ADV00_Init()
 		WriteData((float*)0x6532B1, 812.3f); //Z2
 		WriteCall((void*)0x6304B6, DelaySettingTimeOfDay); //Prevent sudden lighting change in Sonic's story
 		WriteCall((void*)0x652F4F, LSCutsceneRotationFix); //Fix Sonic's rotation after getting the Light Speed Shoes
+		WriteData((float*)0x00652EA1, 487.0f); //LSD cutscene end camera X
+		WriteData((float*)0x00652E9C, -77.0f); //LSD cutscene end camera Y
+		WriteData((float*)0x00652E97, 837.0f); //LSD cutscene end camera Z
 		//Fix materials
 		for (int i = 0; i < 26; i++)
 		{
