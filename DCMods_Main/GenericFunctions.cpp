@@ -1,12 +1,37 @@
 #include "stdafx.h"
 #include "GenericData.h"
 
-Sint32 DeadPoly[] = { 0 };
-
-void HideMesh(NJS_MESHSET_SADX *meshset)
+void HideMesh_Object(NJS_OBJECT *object, int meshID)
 {
-	meshset->meshes = (Sint16*)&DeadPoly;
-	meshset->nbMesh = 1;
+	NJS_MODEL_SADX *model = object->basicdxmodel;
+	if (model)
+	{
+		NJS_MESHSET_SADX *tmp = new NJS_MESHSET_SADX[model->nbMeshset - 1];
+		int d = 0;
+		for (int s = 0; s < model->nbMeshset; s++)
+		{
+			if (s == meshID) continue;
+			tmp[d++] = model->meshsets[s];
+		}
+		memcpy(model->meshsets, tmp, sizeof(NJS_MESHSET_SADX) * (--model->nbMeshset));
+		delete[] tmp;
+	}
+}
+
+void HideMesh_Model(NJS_MODEL_SADX *model, int meshID)
+{
+	if (model)
+	{
+		NJS_MESHSET_SADX *tmp = new NJS_MESHSET_SADX[model->nbMeshset - 1];
+		int d = 0;
+		for (int s = 0; s < model->nbMeshset; s++)
+		{
+			if (s == meshID) continue;
+			tmp[d++] = model->meshsets[s];
+		}
+		memcpy(model->meshsets, tmp, sizeof(NJS_MESHSET_SADX) * (--model->nbMeshset));
+		delete[] tmp;
+	}
 }
 
 void CheckAndUnloadLevelFiles()
@@ -1059,12 +1084,11 @@ void RemoveTransparency_Object(NJS_OBJECT* obj, bool recursive)
 
 void HideAllButOneMesh(NJS_OBJECT *obj, int meshID)
 {
-	NJS_MATERIAL* material;
 	if (obj->basicdxmodel)
 	{
 		for (int k = 0; k < obj->basicdxmodel->nbMeshset; ++k)
 		{
-			if (k != meshID) HideMesh(&obj->basicdxmodel->meshsets[k]);
+			if (k != meshID) HideMesh_Model(obj->basicdxmodel, k);
 		}
 	}
 }

@@ -1,5 +1,8 @@
 #include "stdafx.h"
 
+//TODO: Altar top pillar reflections
+//Palm not entirely visible
+
 NJS_TEXNAME textures_past0[60];
 NJS_TEXLIST texlist_past00 = { arrayptrandlength(textures_past0) };
 
@@ -518,20 +521,20 @@ void ADV03_Init()
 		//Palm fixes
 		ADV03_ACTIONS[10]->object = LoadModel("system\\data\\ADV03\\Models\\00012DA8.sa1mdl", false); //Palm in Act 3
 		ADV03_ACTIONS[10]->object->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_USE_ALPHA; //Hide DA_ONE stuff
-		HideMesh(&ADV03_ACTIONS[10]->object->basicdxmodel->meshsets[0]); //Hide DA_ONE stuff
+		HideMesh_Object(ADV03_ACTIONS[10]->object, 0); //Hide DA_ONE stuff
 		PalmBottom = LoadModel("system\\data\\ADV03\\Models\\00012DA8.sa1mdl", false);
-		HideMesh(&PalmBottom->basicdxmodel->meshsets[1]);
-		HideMesh(&PalmBottom->basicdxmodel->meshsets[2]);
+		HideMesh_Object(PalmBottom, 1);
+		HideMesh_Object(PalmBottom, 2);
 		PalmBottom->evalflags |= NJD_EVAL_BREAK;
 		PalmBottom->child = NULL;
 		ADV03_OBJECTS[9] = LoadModel("system\\data\\ADV03\\Models\\0001503C.sa1mdl", false); //Palm in Act 2
 		ADV03_OBJECTS[9]->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_USE_ALPHA; //Hide DA_ONE stuff
-		HideMesh(&ADV03_OBJECTS[9]->basicdxmodel->meshsets[0]); //Hide DA_ONE stuff
+		HideMesh_Object(ADV03_OBJECTS[9], 0); //Hide DA_ONE stuff
 		PalmBottom2 = LoadModel("system\\data\\ADV03\\Models\\0001503C.sa1mdl", false);
-		HideMesh(&PalmBottom2->basicdxmodel->meshsets[1]);
-		HideMesh(&PalmBottom2->basicdxmodel->meshsets[2]);
-		HideMesh(&PalmBottom2->basicdxmodel->meshsets[3]);
-		HideMesh(&PalmBottom2->basicdxmodel->meshsets[4]);
+		HideMesh_Object(PalmBottom2, 1);
+		HideMesh_Object(PalmBottom2, 2);
+		HideMesh_Object(PalmBottom2, 3);
+		HideMesh_Object(PalmBottom2, 4);
 		WriteCall((void*)0x545C1A, RenderPalm1);
 		WriteCall((void*)0x545BFD, RenderPalm2);
 		AddWhiteDiffuseMaterial(&ADV03_OBJECTS[12]->basicdxmodel->mats[1]); //OTree 0 second model

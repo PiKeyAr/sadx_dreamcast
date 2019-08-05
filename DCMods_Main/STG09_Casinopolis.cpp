@@ -1052,37 +1052,37 @@ void Casinopolis_Init()
 			AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E74A94)->child->basicdxmodel->meshsets[10].vertuv, 18, 16, -100, 0);
 			AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E74A94)->child->sibling->basicdxmodel->meshsets[1].vertuv, 20, 32, 100, 0);
 			AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E74A94)->child->sibling->sibling->basicdxmodel->meshsets[0].vertuv, 20, 32, 100, 0);
-			HideMesh(&((NJS_OBJECT*)0x1E74A94)->basicdxmodel->meshsets[16]); //Hide NeonK text
-			HideMesh(&((NJS_OBJECT*)0x1E74A94)->child->basicdxmodel->meshsets[6]); //Hide NeonK decoration
+			HideMesh_Object((NJS_OBJECT*)0x1E74A94, 16); //Hide NeonK text
+			HideMesh_Object(((NJS_OBJECT*)0x1E74A94)->child, 6); //Hide NeonK decoration
 			NeonK_Text = LoadModel("system\\data\\STG09\\Models\\001F0CCC.sa1mdl", false);
 			AddUVAnimation_Permanent(9, 0, NeonK_Text->child->basicdxmodel->meshsets[6].vertuv, 78, 16, 0, 100);
 			AddAlphaRejectMaterial(&NeonK_Text->basicdxmodel->mats[16]);
 			WriteCall((void*)0x5CAB34, RenderNeonK);
 			for (int i = 0; i < NeonK_Text->basicdxmodel->nbMeshset; i++)
 			{
-				if (i != 16) HideMesh(&NeonK_Text->basicdxmodel->meshsets[i]);
+				if (i != 16) HideMesh_Object(NeonK_Text, i);
 			}
 			for (int i = 0; i < NeonK_Text->child->basicdxmodel->nbMeshset; i++)
 			{
-				if (i != 6) HideMesh(&NeonK_Text->child->basicdxmodel->meshsets[i]);
+				if (i != 6) HideMesh_Object(NeonK_Text->child, i);
 			}
 		}
 		//Models
 		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x01E4B760)->basicdxmodel->mats[2]); //OShwrl
 		//ODento
 		ODento_1 = LoadModel("system\\data\\STG09\\Models\\001DA8C8.sa1mdl", false);
-		HideMesh(&ODento_1->basicdxmodel->meshsets[1]);
-		HideMesh(&ODento_1->basicdxmodel->meshsets[2]);
-		HideMesh(&ODento_1->basicdxmodel->meshsets[4]);
+		HideMesh_Object(ODento_1, 1);
+		HideMesh_Object(ODento_1, 2);
+		HideMesh_Object(ODento_1, 4);
 		ODento_2 = LoadModel("system\\data\\STG09\\Models\\001DA8C8.sa1mdl", false);
-		HideMesh(&ODento_2->basicdxmodel->meshsets[0]);
-		HideMesh(&ODento_2->basicdxmodel->meshsets[3]);
-		HideMesh(&ODento_2->basicdxmodel->meshsets[4]);
+		HideMesh_Object(ODento_2, 0);
+		HideMesh_Object(ODento_2, 3);
+		HideMesh_Object(ODento_2, 4);
 		ODento_3 = LoadModel("system\\data\\STG09\\Models\\001DA8C8.sa1mdl", false);
-		HideMesh(&ODento_3->basicdxmodel->meshsets[0]);
-		HideMesh(&ODento_3->basicdxmodel->meshsets[1]);
-		HideMesh(&ODento_3->basicdxmodel->meshsets[2]);
-		HideMesh(&ODento_3->basicdxmodel->meshsets[3]);
+		HideMesh_Object(ODento_3, 0);
+		HideMesh_Object(ODento_3, 1);
+		HideMesh_Object(ODento_3, 2);
+		HideMesh_Object(ODento_3, 3);
 		AddAlphaRejectMaterial(&ODento_3->basicdxmodel->mats[4]);
 		WriteCall((void*)0x5DDADF, ODentoFix);
 		*(NJS_OBJECT*)0x1E4D66C = *LoadModel("system\\data\\STG09\\Models\\001CA53C.sa1mdl", true); //OCardKan
@@ -1138,38 +1138,38 @@ void Casinopolis_Init()
 		WriteData((NJS_MESHSET_SADX**)0x1E76F18, &((NJS_OBJECT*)0x1E4B1A8)->child->basicdxmodel->meshsets[0]); //Child UV animation (meshes merged in the DC version so just one)
 		//OSl objects
 		OSlX_Base = LoadModel("system\\data\\STG09\\Models\\001BF300.sa1mdl", false); //OSl Base
-		HideMesh(&OSlX_Base->child->basicdxmodel->meshsets[0]); //Hide light start
-		HideMesh(&OSlX_Base->child->basicdxmodel->meshsets[2]); //Hide light
-		HideMesh(&((NJS_OBJECT*)0x01E5E7BC)->basicdxmodel->meshsets[2]); //OLhtr base
+		HideMesh_Object(OSlX_Base->child, 0); //Hide light start
+		HideMesh_Object(OSlX_Base->child, 2); //Hide light
+		HideMesh_Object(((NJS_OBJECT*)0x01E5E7BC), 2); //OLhtr base
 		OLhtr_Bright = LoadModel("system\\data\\STG09\\Models\\001DAE74.sa1mdl", false); //OLhtr bright
-		HideMesh(&OLhtr_Bright->basicdxmodel->meshsets[0]);
-		HideMesh(&OLhtr_Bright->basicdxmodel->meshsets[1]);
+		HideMesh_Object(OLhtr_Bright, 0);
+		HideMesh_Object(OLhtr_Bright, 1);
 		OLhtr_Dark = LoadModel("system\\data\\STG09\\Models\\001DAE74.sa1mdl", false); //OLhtr dark
-		HideMesh(&OLhtr_Dark->basicdxmodel->meshsets[0]);
-		HideMesh(&OLhtr_Dark->basicdxmodel->meshsets[1]);
+		HideMesh_Object(OLhtr_Dark, 0);
+		HideMesh_Object(OLhtr_Dark, 1);
 		OLhtr_Dark->basicdxmodel->mats[2].diffuse.color = 0xFF4F4F4F;
-		HideMesh(&((NJS_OBJECT*)0x1E5EC4C)->basicdxmodel->meshsets[3]); //OLhtg base
+		HideMesh_Object(((NJS_OBJECT*)0x1E5EC4C), 3); //OLhtg base
 		OLhtg_Bright = LoadModel("system\\data\\STG09\\Models\\001DB2E4.sa1mdl", false); //OLhtg bright
-		HideMesh(&OLhtg_Bright->basicdxmodel->meshsets[0]);
-		HideMesh(&OLhtg_Bright->basicdxmodel->meshsets[1]);
-		HideMesh(&OLhtg_Bright->basicdxmodel->meshsets[2]);
+		HideMesh_Object(OLhtg_Bright, 0);
+		HideMesh_Object(OLhtg_Bright, 1);
+		HideMesh_Object(OLhtg_Bright, 2);
 		OLhtg_Dark = LoadModel("system\\data\\STG09\\Models\\001DB2E4.sa1mdl", false); //OLhtg dark
-		HideMesh(&OLhtg_Dark->basicdxmodel->meshsets[0]);
-		HideMesh(&OLhtg_Dark->basicdxmodel->meshsets[1]);
-		HideMesh(&OLhtg_Dark->basicdxmodel->meshsets[2]);
+		HideMesh_Object(OLhtg_Dark, 0);
+		HideMesh_Object(OLhtg_Dark, 1);
+		HideMesh_Object(OLhtg_Dark, 2);
 		OLhtg_Dark->basicdxmodel->mats[4].diffuse.color = 0xFF4F4F4F;
 		*(NJS_OBJECT*)0x1E40FB8 = *LoadModel("system\\data\\STG09\\Models\\001BF300.sa1mdl", false); //OSl G
 		((NJS_OBJECT*)0x1E40FB8)->evalflags |= NJD_EVAL_HIDE;
-		HideMesh(&((NJS_OBJECT*)0x1E40FB8)->child->basicdxmodel->meshsets[1]);
+		HideMesh_Object(((NJS_OBJECT*)0x1E40FB8)->child, 1);
 		*(NJS_OBJECT*)0x1E40980 = *LoadModel("system\\data\\STG09\\Models\\001BECF4.sa1mdl", false); //OSl B
 		((NJS_OBJECT*)0x1E40980)->evalflags |= NJD_EVAL_HIDE;
-		HideMesh(&((NJS_OBJECT*)0x1E40980)->child->basicdxmodel->meshsets[1]);
+		HideMesh_Object(((NJS_OBJECT*)0x1E40980)->child, 1);
 		*(NJS_OBJECT*)0x1E415F0 = *LoadModel("system\\data\\STG09\\Models\\001BF90C.sa1mdl", false); //OSl R
 		((NJS_OBJECT*)0x1E415F0)->evalflags |= NJD_EVAL_HIDE;
-		HideMesh(&((NJS_OBJECT*)0x1E415F0)->child->basicdxmodel->meshsets[1]);
+		HideMesh_Object(((NJS_OBJECT*)0x1E415F0)->child, 1);
 		*(NJS_OBJECT*)0x1E41C28 = *LoadModel("system\\data\\STG09\\Models\\001BFF18.sa1mdl", false); //OSl Y
 		((NJS_OBJECT*)0x1E41C28)->evalflags |= NJD_EVAL_HIDE;
-		HideMesh(&((NJS_OBJECT*)0x1E41C28)->child->basicdxmodel->meshsets[1]);
+		HideMesh_Object(((NJS_OBJECT*)0x1E41C28)->child, 1);
 		*(NJS_OBJECT*)0x1E47B1C = *LoadModel("system\\data\\STG09\\Models\\001C5990.sa1mdl", false); //MizuA (fountain)
 		AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E47B1C)->basicdxmodel->meshsets[0].vertuv, 36, 0, 0, -16);
 		AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E47B1C)->basicdxmodel->meshsets[1].vertuv, 80, 0, 0, -16);

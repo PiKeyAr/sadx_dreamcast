@@ -1,6 +1,9 @@
 #include "stdafx.h"
 #include "RM_Objects.h"
 
+//TODO: Hammer shadow maybe?
+//TODO: Pre-transformed EV Tornado glass maybe
+
 NJS_TEXNAME textures_mountain1[45];
 NJS_TEXLIST texlist_mountain1 = { arrayptrandlength(textures_mountain1) };
 
@@ -181,13 +184,13 @@ void RedMountain_Init()
 		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x243A220)->basicdxmodel->mats[2]);
 		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x243A220)->basicdxmodel->mats[3]);
 		*(NJS_OBJECT*)0x248213C = *LoadModel("system\\data\\STG05\\Models\\00197E70.sa1mdl", false); //Lamp1
-		ForceObjectSpecular_Object((NJS_OBJECT*)0x248213C);
+		ForceObjectSpecular_Object((NJS_OBJECT*)0x248213C, false);
 		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x248213C)->basicdxmodel->mats[1]);
 		*(NJS_OBJECT*)0x2482D94 = *LoadModel("system\\data\\STG05\\Models\\00198A88.sa1mdl", false); //Lamp2
-		ForceObjectSpecular_Object((NJS_OBJECT*)0x2482D94);
+		ForceObjectSpecular_Object((NJS_OBJECT*)0x2482D94, false);
 		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x2482D94)->basicdxmodel->mats[1]);
 		*(NJS_OBJECT*)0x243D1B4 = *LoadModel("system\\data\\STG05\\Models\\00155284.sa1mdl", false); //OSaku2
-		ForceLevelSpecular_Object((NJS_OBJECT*)0x243D1B4);
+		ForceLevelSpecular_Object((NJS_OBJECT*)0x243D1B4, false);
 		AddAlphaRejectMaterial(&((NJS_OBJECT*)0x243D1B4)->child->basicdxmodel->mats[0]);
 		AddAlphaRejectMaterial(&((NJS_OBJECT*)0x243D1B4)->child->basicdxmodel->mats[1]);
 		*(NJS_OBJECT*)0x2447920 = *LoadModel("system\\data\\STG05\\Models\\0015F77C.sa1mdl", false); //OErupt small piece //SL OBJECT
@@ -205,9 +208,9 @@ void RedMountain_Init()
 		*(NJS_MODEL_SADX*)0x2466818 = *LoadModel("system\\data\\STG05\\Models\\0017DF54.sa1mdl", false)->basicdxmodel; //Bridge piece
 		*(NJS_MODEL_SADX*)0x2466568 = *LoadModel("system\\data\\STG05\\Models\\0017DCBC.sa1mdl", false)->basicdxmodel; //Bridge piece 2
 		*(NJS_MODEL_SADX*)0x24390BC = *LoadModel("system\\data\\STG05\\Models\\00151AB4.sa1mdl", false)->basicdxmodel; //Light thing
-		HideMesh(&((NJS_MODEL_SADX*)0x24390BC)->meshsets[0]);
+		HideMesh_Model((NJS_MODEL_SADX*)0x24390BC, 0);
 		PropellerGlass = LoadModel("system\\data\\STG05\\Models\\00151AB4.sa1mdl", false)->basicdxmodel;
-		HideMesh(&PropellerGlass->meshsets[1]);
+		HideMesh_Model(PropellerGlass, 1);
 		*(NJS_MODEL_SADX*)0x24394CC = *LoadModel("system\\data\\STG05\\Models\\00151600.sa1mdl", false)->basicdxmodel; //Light thing propeller 1
 		*(NJS_MODEL_SADX*)0x24392C4 = *LoadModel("system\\data\\STG05\\Models\\001513F0.sa1mdl", false)->basicdxmodel; //Light thing propeller 2
 		WriteCall((void*)0x60C987, FixPropellerThing);

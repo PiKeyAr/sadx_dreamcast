@@ -1,5 +1,7 @@
 #include "stdafx.h"
 
+//TODO: The weird behavior of the light on conveyour belt
+
 NJS_TEXNAME textures_highway1[89];
 NJS_TEXLIST texlist_hw1 = { arrayptrandlength(textures_highway1) };
 
@@ -53,20 +55,20 @@ PVMEntry SpeedHighway3Textures_list[] = {
 
 void FountainPart1(NJS_MODEL_SADX *a1, int a2, float a3)
 {
-	DrawQueueDepthBias = 2000.0f;
-	sub_409E70(Fountain1->basicdxmodel, 4, a3);
+	DrawQueueDepthBias = 3000.0f;
+	sub_409E70(Fountain1->basicdxmodel, 0, a3);
 }
 
 void FountainPart2(NJS_MODEL_SADX *a1, int a2, float a3)
 {
-	DrawQueueDepthBias = 4000.0f;
-	sub_409E70(Fountain2->basicdxmodel, 4, a3);
+	DrawQueueDepthBias = 3050.0f;
+	sub_409E70(Fountain2->basicdxmodel, 0, a3);
 }
 
 void FountainPart3(NJS_MODEL_SADX *a1, int a2, float a3)
 {
-	DrawQueueDepthBias = 6000.0f;
-	sub_409E70(Fountain3->basicdxmodel, 4, a3);
+	DrawQueueDepthBias = 3060.0f;
+	sub_409E70(Fountain3->basicdxmodel, 0, a3);
 }
 
 NJS_MATERIAL* DisableAlphaRejection_SpeedHighway[] = {
@@ -450,13 +452,13 @@ void SpeedHighway_Init()
 		*(NJS_OBJECT*)0x026919C0 = *LoadModel("system\\data\\STG04\\Models\\0015D440.sa1mdl", false); //Antenna model
 		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x026919C0)->basicdxmodel->mats[4]);
 		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x026919C0)->basicdxmodel->mats[5]);
-		HideMesh(&((NJS_OBJECT*)0x026919C0)->basicdxmodel->meshsets[3]); //Hide DA_ONE thing
+		HideMesh_Object(((NJS_OBJECT*)0x026919C0), 3); //Hide DA_ONE thing
 		Antenna = LoadModel("system\\data\\STG04\\Models\\0015D440.sa1mdl", false); //Antenna model
-		HideMesh(&Antenna->basicdxmodel->meshsets[0]); //Hide all but the DA_ONE thing
-		HideMesh(&Antenna->basicdxmodel->meshsets[1]); //Hide all but the DA_ONE thing
-		HideMesh(&Antenna->basicdxmodel->meshsets[2]); //Hide all but the DA_ONE thing
-		HideMesh(&Antenna->basicdxmodel->meshsets[4]); //Hide all but the DA_ONE thing
-		HideMesh(&Antenna->basicdxmodel->meshsets[5]); //Hide all but the DA_ONE thing
+		HideMesh_Object(Antenna, 0); //Hide all but the DA_ONE thing
+		HideMesh_Object(Antenna, 1); //Hide all but the DA_ONE thing
+		HideMesh_Object(Antenna, 2); //Hide all but the DA_ONE thing
+		HideMesh_Object(Antenna, 4); //Hide all but the DA_ONE thing
+		HideMesh_Object(Antenna, 5); //Hide all but the DA_ONE thing
 		WriteCall((void*)0x00615D60, AntennaModel);
 		WriteData<1>((char*)0x004B19E2, 0x08); //Cop speeder effect blending
 		WriteCall((void*)0x4B1C6F, SetCopSpeederEffectAlpha);
@@ -475,7 +477,7 @@ void SpeedHighway_Init()
 		if (DLLLoaded_Lantern)
 		{
 			material_register_ptr(WhiteDiffuse_Highway, LengthOfArray(WhiteDiffuse_Highway), &ForceWhiteDiffuse);
-			if (set_alpha_reject_ptr != nullptr) material_register_ptr(DisableAlphaRejection_SpeedHighway, LengthOfArray(DisableAlphaRejection_SpeedHighway), &DisableAlphaRejection);
+			material_register_ptr(DisableAlphaRejection_SpeedHighway, LengthOfArray(DisableAlphaRejection_SpeedHighway), &DisableAlphaRejection);
 		}
 		WriteCall((void*)0x61AF66, OCraneFix); //Was it really necessary to queue a non-transparent model??
 		//Helicopter light
@@ -524,39 +526,39 @@ void SpeedHighway_Init()
 		((NJS_MATERIAL*)0x0268131C)->attrflags &= ~NJD_FLAG_IGNORE_SPECULAR;
 		((NJS_MATERIAL*)0x02681330)->attrflags &= ~NJD_FLAG_IGNORE_SPECULAR;
 		ConeBase = LoadModel("system\\data\\STG04\\Models\\001554A8.sa1mdl", false); //Cone
-		HideMesh(&ConeBase->basicdxmodel->meshsets[0]);
+		HideMesh_Object(ConeBase, 0);
 		AddWhiteDiffuseMaterial(&ConeBase->basicdxmodel->mats[1]);
 		ConeTop = LoadModel("system\\data\\STG04\\Models\\001554A8.sa1mdl", false); //Cone
-		HideMesh(&ConeTop->basicdxmodel->meshsets[1]);
+		HideMesh_Object(ConeTop, 1);
 		WriteCall((void*)0x6165E5, ConeModel);
 		WriteCall((void*)0x616733, ConeSprite);
 		*(NJS_OBJECT*)0x0267497C = *LoadModel("system\\data\\STG04\\Models\\001434F4.sa1mdl", false); //Platform
 		*(NJS_OBJECT*)0x02687284 = *LoadModel("system\\data\\STG04\\Models\\00154480.sa1mdl", true); //Small plant in Act 3
 		FlySt1 = LoadModel("system\\data\\STG04\\Models\\00142D48.sa1mdl", false); //Platform2
-		HideMesh(&FlySt1->basicdxmodel->meshsets[6]);
+		HideMesh_Object(FlySt1, 6);
 		AddAlphaRejectMaterial(&FlySt1->child->basicdxmodel->mats[0]);
 		AddAlphaRejectMaterial(&FlySt1->child->sibling->basicdxmodel->mats[0]);
 		AddAlphaRejectMaterial(&FlySt1->child->sibling->sibling->basicdxmodel->mats[0]);
 		AddAlphaRejectMaterial(&FlySt1->child->sibling->sibling->sibling->basicdxmodel->mats[0]);
 		FlySt2 = LoadModel("system\\data\\STG04\\Models\\00142D48.sa1mdl", false); //Platform2
-		HideMesh(&FlySt2->basicdxmodel->meshsets[0]);
-		HideMesh(&FlySt2->basicdxmodel->meshsets[1]);
-		HideMesh(&FlySt2->basicdxmodel->meshsets[2]);
-		HideMesh(&FlySt2->basicdxmodel->meshsets[3]);
-		HideMesh(&FlySt2->basicdxmodel->meshsets[4]);
-		HideMesh(&FlySt2->basicdxmodel->meshsets[5]);
+		HideMesh_Object(FlySt2, 0);
+		HideMesh_Object(FlySt2, 1);
+		HideMesh_Object(FlySt2, 2);
+		HideMesh_Object(FlySt2, 3);
+		HideMesh_Object(FlySt2, 4);
+		HideMesh_Object(FlySt2, 5);
 		((NJS_ACTION*)0x02674424)->object = FlySt1;
 		WriteCall((void*)0x617FCA, FlyStFix);
 		*(NJS_OBJECT*)0x02679ECC = *LoadModel("system\\data\\STG04\\Models\\00148880.sa1mdl", false); //Platform (Tails)
 		*(NJS_OBJECT*)0x026A0008 = *LoadModel("system\\data\\STG04\\Models\\0016B6FC.sa1mdl", false); //Missile (Tails)
-		HideMesh(&((NJS_OBJECT*)0x026A0008)->basicdxmodel->meshsets[6]); //Hide Eggman logo
+		HideMesh_Object(((NJS_OBJECT*)0x026A0008), 6); //Hide Eggman logo
 		MissileLogo = LoadModel("system\\data\\STG04\\Models\\0016B6FC.sa1mdl", false);
-		HideMesh(&MissileLogo->basicdxmodel->meshsets[0]);
-		HideMesh(&MissileLogo->basicdxmodel->meshsets[1]);
-		HideMesh(&MissileLogo->basicdxmodel->meshsets[2]);
-		HideMesh(&MissileLogo->basicdxmodel->meshsets[3]);
-		HideMesh(&MissileLogo->basicdxmodel->meshsets[4]);
-		HideMesh(&MissileLogo->basicdxmodel->meshsets[5]);
+		HideMesh_Object(MissileLogo, 0);
+		HideMesh_Object(MissileLogo, 1);
+		HideMesh_Object(MissileLogo, 2);
+		HideMesh_Object(MissileLogo, 3);
+		HideMesh_Object(MissileLogo, 4);
+		HideMesh_Object(MissileLogo, 5);
 		AddAlphaRejectMaterial(&MissileLogo->basicdxmodel->mats[6]);
 		WriteCall((void*)0x613FD6, MissileFix);
 		*(NJS_OBJECT*)0x0267225C = *LoadModel("system\\data\\STG04\\Models\\00140EA4.sa1mdl", false); //OCrane

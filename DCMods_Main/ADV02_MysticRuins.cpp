@@ -152,17 +152,6 @@ void SetBlockEntryMaterialColor(float a, float r, float g, float b)
 	SetMaterialAndSpriteColor_Float(0, 0, 0, 0);
 }
 
-void GeoAnimFix(NJS_ACTION* a1, float a2, int a3, float a4)
-{
-	if (CurrentLevel == LevelIDs_MysticRuins && CurrentAct == 2)
-	{
-		DrawQueueDepthBias = -20952.0f;
-		njAction_Queue_407FC0(a1, a2, 1);
-		DrawQueueDepthBias = 0.0f;
-	}
-	else njAction_Queue_407BB0_2(a1, a2, a3, a4);
-}
-
 void MasterEmeraldFix(NJS_OBJECT* obj, float scale)
 {
 	DrawQueueDepthBias = 2000.0f;
@@ -513,6 +502,10 @@ void ParseMRMaterials()
 			}
 		}
 	}
+	AddWhiteDiffuseMaterial(&LANDTABLEMR[3]->AnimData[1].Model->basicdxmodel->mats[0]); //Metal Sonic in tube
+	AddWhiteDiffuseMaterial(&LANDTABLEMR[3]->AnimData[1].Model->basicdxmodel->mats[1]); //Metal Sonic in tube
+	AddWhiteDiffuseMaterial(&LANDTABLEMR[3]->AnimData[1].Model->basicdxmodel->mats[2]); //Metal Sonic in tube
+	AddWhiteDiffuseMaterial(&LANDTABLEMR[3]->AnimData[1].Model->basicdxmodel->mats[3]); //Metal Sonic in tube
 }
 
 void UnloadLevelFiles_ADV02()
@@ -539,6 +532,10 @@ void UnloadLevelFiles_ADV02()
 	RemoveMRMaterials(1);
 	RemoveMRMaterials(2);
 	RemoveMRMaterials(3);
+	RemoveWhiteDiffuseMaterial(&LANDTABLEMR[3]->AnimData[1].Model->basicdxmodel->mats[0]); //Metal Sonic in tube
+	RemoveWhiteDiffuseMaterial(&LANDTABLEMR[3]->AnimData[1].Model->basicdxmodel->mats[1]); //Metal Sonic in tube
+	RemoveWhiteDiffuseMaterial(&LANDTABLEMR[3]->AnimData[1].Model->basicdxmodel->mats[2]); //Metal Sonic in tube
+	RemoveWhiteDiffuseMaterial(&LANDTABLEMR[3]->AnimData[1].Model->basicdxmodel->mats[3]); //Metal Sonic in tube
 	//Finish
 	delete ADV02_0_Info;
 	delete ADV02_1_Info;
@@ -644,7 +641,6 @@ void ADV02_Init()
 		ReplacePVM("MR_TORNADO2");
 		ReplacePVM("MR_FINALEGG");
 		WriteJump((void*)0x52F800, MRJungleCallback_Simple); //To prevent crashes when MR isn't loaded
-		WriteCall((void*)0x43A85F, GeoAnimFix); //Landtable animation hook
 		WriteCall((void*)0x53816F, RustlingGrassDepthFix1); //Rustling grass depth bias for Knuckles' cutscene
 		WriteCall((void*)0x53818F, RustlingGrassDepthFix2); //Rustling grass depth bias for Knuckles' cutscene
 		//MR base stuff
@@ -652,7 +648,7 @@ void ADV02_Init()
 		ADV02_ACTIONS[30]->object = LoadModel("system\\data\\ADV02\\Models\\0020DC78.sa1mdl", false); //OFinalWay
 		//Base opaque model
 		OFinalEggModel_Opaque = LoadModel("system\\data\\ADV02\\Models\\0020C3B0.sa1mdl", false);
-		HideMesh(&OFinalEggModel_Opaque->child->basicdxmodel->meshsets[4]); //Lights around the tower
+		HideMesh_Object(OFinalEggModel_Opaque->child, 4); //Lights around the tower
 		OFinalEggModel_Opaque->child->sibling->sibling->evalflags |= NJD_EVAL_HIDE;
 		OFinalEggModel_Opaque->child->sibling->sibling->sibling->child->evalflags |= NJD_EVAL_HIDE;
 		OFinalEggModel_Opaque->child->sibling->sibling->sibling->child->sibling->evalflags |= NJD_EVAL_HIDE;
@@ -685,13 +681,13 @@ void ADV02_Init()
 		OFinalEggModel_Transparent->child->sibling->sibling->sibling->sibling->sibling->child->sibling->evalflags |= NJD_EVAL_HIDE;
 		OFinalEggModel_Transparent->child->sibling->sibling->sibling->sibling->sibling->sibling->child->evalflags |= NJD_EVAL_HIDE;
 		OFinalEggModel_Transparent->child->sibling->sibling->sibling->sibling->sibling->sibling->child->sibling->evalflags |= NJD_EVAL_HIDE;
-		HideMesh(&OFinalEggModel_Transparent->child->basicdxmodel->meshsets[0]);
-		HideMesh(&OFinalEggModel_Transparent->child->basicdxmodel->meshsets[1]);
-		HideMesh(&OFinalEggModel_Transparent->child->basicdxmodel->meshsets[2]);
-		HideMesh(&OFinalEggModel_Transparent->child->basicdxmodel->meshsets[3]);
-		HideMesh(&OFinalEggModel_Transparent->child->basicdxmodel->meshsets[5]);
-		HideMesh(&OFinalEggModel_Transparent->child->basicdxmodel->meshsets[6]);
-		HideMesh(&OFinalEggModel_Transparent->child->basicdxmodel->meshsets[7]);
+		HideMesh_Object(OFinalEggModel_Transparent->child, 0);
+		HideMesh_Object(OFinalEggModel_Transparent->child, 1);
+		HideMesh_Object(OFinalEggModel_Transparent->child, 2);
+		HideMesh_Object(OFinalEggModel_Transparent->child, 3);
+		HideMesh_Object(OFinalEggModel_Transparent->child, 5);
+		HideMesh_Object(OFinalEggModel_Transparent->child, 6);
+		HideMesh_Object(OFinalEggModel_Transparent->child, 7);
 		//Base lights model
 		OFinalEggModel_Lights = LoadModel("system\\data\\ADV02\\Models\\0020C3B0.sa1mdl", false); 
 		OFinalEggModel_Lights->evalflags |= NJD_EVAL_HIDE;

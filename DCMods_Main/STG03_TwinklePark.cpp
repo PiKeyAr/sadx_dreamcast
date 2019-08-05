@@ -423,13 +423,13 @@ void TwinklePark_Init()
 		//ArchLight fixes
 		*(NJS_OBJECT*)0x38BFA74 = *LoadModel("system\\data\\STG03\\Models\\000ED90C.sa1mdl", false); //Arch
 		*(NJS_OBJECT*)0x38C02C4 = *LoadModel("system\\data\\STG03\\Models\\000EE138.sa1mdl", false); //Arch supporter
-		HideMesh(&((NJS_OBJECT*)0x38C02C4)->basicdxmodel->meshsets[2]); //Disable transparent parts
+		HideMesh_Object(((NJS_OBJECT*)0x38C02C4), 2); //Disable transparent parts
 		ArchLightLight = LoadModel("system\\data\\STG03\\Models\\000EE138.sa1mdl", false); //Arch supporter (transparent)
 		ArchLightLight->evalflags |= NJD_EVAL_BREAK;
 		ArchLightLight->child = NULL;
-		HideMesh(&ArchLightLight->basicdxmodel->meshsets[0]); //Disable opaque parts
-		HideMesh(&ArchLightLight->basicdxmodel->meshsets[1]); //Disable opaque parts
-		HideMesh(&ArchLightLight->basicdxmodel->meshsets[3]); //Disable opaque parts
+		HideMesh_Object(ArchLightLight, 0); //Disable opaque parts
+		HideMesh_Object(ArchLightLight, 1); //Disable opaque parts
+		HideMesh_Object(ArchLightLight, 3); //Disable opaque parts
 		WriteCall((void*)0x0079C5FD, FixArchLight);
 		WriteCall((void*)0x0079C36A, FixShittyLightObjects_Pause);
 		//Material fixes
@@ -467,12 +467,12 @@ void TwinklePark_Init()
 		RemoveVertexColors_Model((NJS_MODEL_SADX*)0x38AAA8C); //30
 		RemoveVertexColors_Model((NJS_MODEL_SADX*)0x38AB1F0); //31
 		LoadModel_ReplaceMeshes((NJS_OBJECT*)0x038BAAA4, "system\\data\\STG03\\Models\\000EAB28.sa1mdl");
-		HideMesh(&((NJS_OBJECT*)0x038BAAA4)->child->basicdxmodel->meshsets[1]);
+		HideMesh_Object(((NJS_OBJECT*)0x038BAAA4)->child, 1);
 		CartGlass.basicdxmodel = LoadModel("system\\data\\STG03\\Models\\000EAB28.sa1mdl", false)->child->basicdxmodel;
-		HideMesh(&CartGlass.basicdxmodel->meshsets[0]);
-		HideMesh(&CartGlass.basicdxmodel->meshsets[2]);
-		HideMesh(&CartGlass.basicdxmodel->meshsets[3]);
-		HideMesh(&CartGlass.basicdxmodel->meshsets[4]);
+		HideMesh_Object(&CartGlass, 0);
+		HideMesh_Object(&CartGlass, 2);
+		HideMesh_Object(&CartGlass, 3);
+		HideMesh_Object(&CartGlass, 4);
 		WriteCall((void*)0x00796F0C, CartFunction);
 		RemoveVertexColors_Object((NJS_OBJECT*)0x038BAAA4); //Cart 1 (Sonic)
 		RemoveVertexColors_Object((NJS_OBJECT*)0x038BAA70); //Cart 2
@@ -480,20 +480,20 @@ void TwinklePark_Init()
 		RemoveVertexColors_Object((NJS_OBJECT*)0x038A9130); //Cart 4
 		//OLight1 fixes
 		*(NJS_OBJECT*)0x38C3A9C = *LoadModel("system\\data\\STG03\\Models\\000F1228.sa1mdl", true); //OLight1
-		HideMesh(&((NJS_OBJECT*)0x38C3A9C)->basicdxmodel->meshsets[7]); //Disable transparent part
+		HideMesh_Object(((NJS_OBJECT*)0x38C3A9C), 7); //Disable transparent part
 		((NJS_OBJECT*)0x38C3A9C)->basicdxmodel->mats[7].attrflags &= ~NJD_FLAG_USE_ALPHA; //Disable transparent part
 		((NJS_OBJECT*)0x38C3A9C)->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_IGNORE_SPECULAR;
 		((NJS_OBJECT*)0x38C3A9C)->basicdxmodel->mats[1].attrflags &= ~NJD_FLAG_IGNORE_SPECULAR;
 		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x38C3A9C)->basicdxmodel->mats[0]);
 		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x38C3A9C)->basicdxmodel->mats[1]);
 		*(NJS_OBJECT*)0x38C3A68 = *LoadModel("system\\data\\STG03\\Models\\000F1228.sa1mdl", false); //OLight1 (transparent)
-		HideMesh(&((NJS_OBJECT*)0x38C3A68)->basicdxmodel->meshsets[1]); //Disable opaque part
-		HideMesh(&((NJS_OBJECT*)0x38C3A68)->basicdxmodel->meshsets[2]); //Disable opaque part
-		HideMesh(&((NJS_OBJECT*)0x38C3A68)->basicdxmodel->meshsets[3]); //Disable opaque part
-		HideMesh(&((NJS_OBJECT*)0x38C3A68)->basicdxmodel->meshsets[4]); //Disable opaque part
-		HideMesh(&((NJS_OBJECT*)0x38C3A68)->basicdxmodel->meshsets[5]); //Disable opaque part
-		HideMesh(&((NJS_OBJECT*)0x38C3A68)->basicdxmodel->meshsets[6]); //Disable opaque part
-		HideMesh(&((NJS_OBJECT*)0x38C3A68)->basicdxmodel->meshsets[7]); //Disable opaque part
+		HideMesh_Object(((NJS_OBJECT*)0x38C3A68), 1); //Disable opaque part
+		HideMesh_Object(((NJS_OBJECT*)0x38C3A68), 2); //Disable opaque part
+		HideMesh_Object(((NJS_OBJECT*)0x38C3A68), 3); //Disable opaque part
+		HideMesh_Object(((NJS_OBJECT*)0x38C3A68), 4); //Disable opaque part
+		HideMesh_Object(((NJS_OBJECT*)0x38C3A68), 5); //Disable opaque part
+		HideMesh_Object(((NJS_OBJECT*)0x38C3A68), 6); //Disable opaque part
+		HideMesh_Object(((NJS_OBJECT*)0x38C3A68), 7); //Disable opaque part
 		((NJS_OBJECT*)0x38C3A9C)->sibling = (NJS_OBJECT*)0x38C3A68; //Make transparent part sibling
 		//ORocket fixes
 		WriteCall((void*)0x79BEBA, ORocketFix1);
@@ -505,14 +505,14 @@ void TwinklePark_Init()
 		PirateShipStars = LoadModel("system\\data\\STG03\\Models\\000AB6DC.sa1mdl", false); //Pirate ship stars mesh
 		PirateShipStars->child = NULL;
 		PirateShipStars->evalflags |= NJD_EVAL_BREAK;
-		HideMesh(&PirateShipStars->basicdxmodel->meshsets[0]);
-		HideMesh(&PirateShipStars->basicdxmodel->meshsets[1]);
-		HideMesh(&PirateShipStars->basicdxmodel->meshsets[2]);
-		HideMesh(&PirateShipStars->basicdxmodel->meshsets[3]);
-		HideMesh(&PirateShipStars->basicdxmodel->meshsets[4]);
-		HideMesh(&PirateShipStars->basicdxmodel->meshsets[6]);
-		HideMesh(&PirateShipStars->basicdxmodel->meshsets[7]);
-		HideMesh(&((NJS_OBJECT*)0x27AC44C)->basicdxmodel->meshsets[5]);
+		HideMesh_Object(PirateShipStars, 0);
+		HideMesh_Object(PirateShipStars, 1);
+		HideMesh_Object(PirateShipStars, 2);
+		HideMesh_Object(PirateShipStars, 3);
+		HideMesh_Object(PirateShipStars, 4);
+		HideMesh_Object(PirateShipStars, 6);
+		HideMesh_Object(PirateShipStars, 7);
+		HideMesh_Object(((NJS_OBJECT*)0x27AC44C), 5);
 		WriteJump((void*)0x620BC0, DrawPirateShipShit);
 		//Models
 		*(NJS_OBJECT*)0x27A3358 = *LoadModel("system\\data\\STG03\\Models\\000A6584.sa1mdl", false); //Fence (merged meshes 0+1 and made it trimesh instead of MESHSET_N)
@@ -542,11 +542,11 @@ void TwinklePark_Init()
 		*(NJS_OBJECT*)0x279DA28 = *LoadModel("system\\data\\STG03\\Models\\000A13C8.sa1mdl", false); //Barrel (destroyed) part 4
 		*(NJS_OBJECT*)0x279DB14 = *LoadModel("system\\data\\STG03\\Models\\000A14AC.sa1mdl", false); //Barrel (destroyed) part 5
 		*(NJS_OBJECT*)0x27A0454 = *LoadModel("system\\data\\STG03\\Models\\000A3CCC.sa1mdl", false); //Bowling catapult
-		HideMesh(&((NJS_OBJECT*)0x27A0454)->basicdxmodel->meshsets[0]); //Disable transparent floor
+		HideMesh_Object(((NJS_OBJECT*)0x27A0454), 0); //Disable transparent floor
 		OCatapultFloor = LoadModel("system\\data\\STG03\\Models\\000A3CCC.sa1mdl", false); //Bowling catapult (floor)
-		HideMesh(&OCatapultFloor->basicdxmodel->meshsets[1]);
-		HideMesh(&OCatapultFloor->basicdxmodel->meshsets[2]);
-		HideMesh(&OCatapultFloor->basicdxmodel->meshsets[3]);
+		HideMesh_Object(OCatapultFloor, 1);
+		HideMesh_Object(OCatapultFloor, 2);
+		HideMesh_Object(OCatapultFloor, 3);
 		OCatapultFloor->evalflags |= NJD_EVAL_BREAK;
 		OCatapultFloor->child = NULL;
 		*(NJS_OBJECT*)0x27B5884 = *LoadModel("system\\data\\STG03\\Models\\000B2A40.sa1mdl", false); //O Foothold
@@ -577,14 +577,14 @@ void TwinklePark_Init()
 		AddAlphaRejectMaterial(&((NJS_OBJECT*)0x27B49AC)->child->sibling->basicdxmodel->mats[0]);
 		//OPanel fix
 		*(NJS_OBJECT*)0x38C214C = *LoadModel("system\\data\\STG03\\Models\\000EFF38.sa1mdl", false); //OPanel (opaque)
-		HideMesh(&((NJS_OBJECT*)0x38C214C)->basicdxmodel->meshsets[1]);
-		HideMesh(&((NJS_OBJECT*)0x38C214C)->basicdxmodel->meshsets[4]);
-		HideMesh(&((NJS_OBJECT*)0x38C214C)->basicdxmodel->meshsets[6]);
+		HideMesh_Object(((NJS_OBJECT*)0x38C214C), 1);
+		HideMesh_Object(((NJS_OBJECT*)0x38C214C), 4);
+		HideMesh_Object(((NJS_OBJECT*)0x38C214C), 6);
 		OPanelPanel = LoadModel("system\\data\\STG03\\Models\\000EFF38.sa1mdl", false); //OPanel (transparent)
-		HideMesh(&OPanelPanel->basicdxmodel->meshsets[0]);
-		HideMesh(&OPanelPanel->basicdxmodel->meshsets[2]);
-		HideMesh(&OPanelPanel->basicdxmodel->meshsets[3]);
-		HideMesh(&OPanelPanel->basicdxmodel->meshsets[5]);
+		HideMesh_Object(OPanelPanel, 0);
+		HideMesh_Object(OPanelPanel, 2);
+		HideMesh_Object(OPanelPanel, 3);
+		HideMesh_Object(OPanelPanel, 5);
 		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x38C214C)->basicdxmodel->mats[2]);
 		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x38C214C)->basicdxmodel->mats[3]);
 		WriteCall((void*)0x79DB94, RenderOPanel_Main);
@@ -592,12 +592,12 @@ void TwinklePark_Init()
 		//OPole fix
 		*(NJS_OBJECT*)0x38C28A8 = *LoadModel("system\\data\\STG03\\Models\\000F066C.sa1mdl", false); //OPole model (opaque)
 		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x38C28A8)->basicdxmodel->mats[3]);
-		HideMesh(&((NJS_OBJECT*)0x38C28A8)->basicdxmodel->meshsets[1]);
-		HideMesh(&((NJS_OBJECT*)0x38C28A8)->basicdxmodel->meshsets[2]);
-		HideMesh(&((NJS_OBJECT*)0x38C28A8)->basicdxmodel->meshsets[4]);
+		HideMesh_Object(((NJS_OBJECT*)0x38C28A8), 1);
+		HideMesh_Object(((NJS_OBJECT*)0x38C28A8), 2);
+		HideMesh_Object(((NJS_OBJECT*)0x38C28A8), 4);
 		OPolePole = LoadModel("system\\data\\STG03\\Models\\000F066C.sa1mdl", false); //OPole model (transparent)
-		HideMesh(&OPolePole->basicdxmodel->meshsets[0]);
-		HideMesh(&OPolePole->basicdxmodel->meshsets[3]);
+		HideMesh_Object(OPolePole, 0);
+		HideMesh_Object(OPolePole, 3);
 		OPolePole->evalflags |= NJD_EVAL_BREAK;
 		OPolePole->child = NULL;
 		WriteCall((void*)0x79CD61, OPoleFix);
