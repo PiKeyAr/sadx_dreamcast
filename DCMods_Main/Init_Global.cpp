@@ -74,6 +74,7 @@ void Init_Global()
 	ReplacePVM("EV_E105_FUN");
 	ReplacePVM("ICM0001_3");
 	ReplacePVM("ICM0001_5");
+	WriteData<1>((char*)0x00480080, 0x0i8); //Light type for Gamma's upgrades
 	//FPS lock
 	if (FPSLock) WriteCall((void*)0x411E79, FPSLockHook);
 	//Cancel cutscenes with C button
