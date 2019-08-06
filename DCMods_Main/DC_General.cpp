@@ -67,14 +67,6 @@ static float EmeraldScale = 1.005f;
 static const NJS_MATERIAL* WhiteDiffuse_General[] = {
 	//Egg Hornet
 	((NJS_MATERIAL*)0x0155D1DC),
-	//Egg Viper cockpit
-	((NJS_MATERIAL*)0x0166BD68),
-	((NJS_MATERIAL*)0x0166BD7C),
-	((NJS_MATERIAL*)0x0166BD90),
-	((NJS_MATERIAL*)0x0166BDA4),
-	((NJS_MATERIAL*)0x0166BDB8),
-	((NJS_MATERIAL*)0x0166BDCC),
-	((NJS_MATERIAL*)0x0166BDE0),
 	//Mecha fish
 	((NJS_MATERIAL*)0x016F96C0),
 	((NJS_MATERIAL*)0x016F96D4),
