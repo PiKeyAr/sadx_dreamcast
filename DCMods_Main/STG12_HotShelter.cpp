@@ -549,7 +549,6 @@ void UnloadLevelFiles_STG12()
 
 void HotShelter_Init()
 {
-	CheckAndUnloadLevelFiles();
 	STG12_0_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG12\\0.sa1lvl"));
 	STG12_1_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG12\\1.sa1lvl"));
 	STG12_2_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG12\\2.sa1lvl"));

@@ -466,7 +466,6 @@ void RenderBigIcicleWithDepth(NJS_OBJECT* a1, int blend_mode, float scale)
 
 void IceCap_Init()
 {
-	CheckAndUnloadLevelFiles();
 	STG08_0_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG08\\0.sa1lvl"));
 	STG08_1_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG08\\1.sa1lvl"));
 	STG08_2_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG08\\2.sa1lvl"));

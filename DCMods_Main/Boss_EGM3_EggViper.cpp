@@ -88,7 +88,6 @@ void UnloadLevelFiles_B_EGM3()
 void EggViper_Init()
 {
 	NJS_MATERIAL* material;
-	CheckAndUnloadLevelFiles();
 	B_EGM3_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\B_EGM3\\0.sa1lvl"));
 	LandTable* B_EGM3 = B_EGM3_Info->getlandtable(); //&landtable_000580F4;
 	B_EGM3->TexList = &texlist_eggviper;

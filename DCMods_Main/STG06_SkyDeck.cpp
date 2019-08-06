@@ -331,7 +331,6 @@ void __cdecl SkyDeckSharedDisplaySubFix(ObjectMaster *a1)
 
 void SkyDeck_Init()
 {
-	CheckAndUnloadLevelFiles();
 	STG06_0_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG06\\0.sa1lvl"));
 	STG06_1_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG06\\1.sa1lvl"));
 	STG06_2_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG06\\2.sa1lvl"));

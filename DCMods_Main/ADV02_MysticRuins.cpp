@@ -563,7 +563,6 @@ void IceCapDoorFix(NJS_MODEL_SADX *a1, QueuedModelFlagsB a2, float a3)
 void ADV02_Init()
 {
 	//This is done every time the function is called
-	CheckAndUnloadLevelFiles();
 	ADV02_0_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV02\\0.sa1lvl"));
 	ADV02_1_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV02\\1.sa1lvl"));
 	ADV02_2_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV02\\2.sa1lvl"));

@@ -245,6 +245,16 @@ void ReinitializeDLLStuff()
 	}
 }
 
+//The most important trampoline
+static void LoadLevelFiles_r();
+static Trampoline LoadLevelFiles_t(0x422AD0, 0x422AD8, LoadLevelFiles_r);
+static void __cdecl LoadLevelFiles_r()
+{
+	auto original = reinterpret_cast<decltype(LoadLevelFiles_r)*>(LoadLevelFiles_t.Target());
+	CheckAndUnloadLevelFiles();
+	original();
+}
+
 extern "C"
 {
 	__declspec(dllexport) void __cdecl Init(const char *path, const HelperFunctions &helperFunctions)

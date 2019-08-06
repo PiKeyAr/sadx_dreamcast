@@ -61,7 +61,6 @@ void ChandLightFix(NJS_OBJECT *a1, QueuedModelFlagsB a2)
 
 void Chaos2_Init()
 {
-	CheckAndUnloadLevelFiles();
 	B_CHAOS2_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\B_CHAOS2\\0.sa1lvl"));
 	LandTable* B_CHAOS2 = B_CHAOS2_Info->getlandtable();
 	RemoveMaterialColors_Landtable(B_CHAOS2);

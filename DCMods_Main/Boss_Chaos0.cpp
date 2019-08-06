@@ -118,7 +118,6 @@ void DrawChaos0HelicopterWithLight(NJS_ACTION *a1, float a2, int a3, float a4)
 
 void Chaos0_Init()
 {
-	CheckAndUnloadLevelFiles();
 	B_CHAOS0_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\B_CHAOS0\\0.sa1lvl"));
 	LandTable* B_CHAOS0 = B_CHAOS0_Info->getlandtable();
 	RemoveMaterialColors_Landtable(B_CHAOS0);

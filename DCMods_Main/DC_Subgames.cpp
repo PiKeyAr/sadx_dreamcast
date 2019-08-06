@@ -519,7 +519,6 @@ void AddObjectWhiteDiffuseMaterials_Range(NJS_OBJECT* object, int first, int las
 
 void HedgehogHammer_Init()
 {
-	CheckAndUnloadLevelFiles();
 	STG00_0_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG00\\0.sa1lvl"));
 	LandTable* STG00_0 = STG00_0_Info->getlandtable();
 	RemoveMaterialColors_Landtable(STG00_0);
@@ -650,7 +649,6 @@ void SkyChase_Init()
 
 void TwinkleCircuit_Init()
 {
-	CheckAndUnloadLevelFiles();
 	MINICART_0_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\MINICART\\0.sa1lvl"));
 	MINICART_1_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\MINICART\\1.sa1lvl"));
 	MINICART_2_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\MINICART\\2.sa1lvl"));
@@ -726,7 +724,6 @@ void TwinkleCircuit_Init()
 void SandHill_Init()
 {
 	//This stuff is done every time the function is called
-	CheckAndUnloadLevelFiles();
 	SBOARD_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\SBOARD\\0.sa1lvl"));
 	LandTable* SBOARD = SBOARD_Info->getlandtable();
 	RemoveMaterialColors_Landtable(SBOARD);

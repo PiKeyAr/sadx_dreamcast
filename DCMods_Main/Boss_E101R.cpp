@@ -149,7 +149,6 @@ void UnloadLevelFiles_B_E101_R()
 
 void E101R_Init()
 {
-	CheckAndUnloadLevelFiles();
 	B_E101_R_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\B_E101_R\\0.sa1lvl"));
 	LandTable* B_E101_R = B_E101_R_Info->getlandtable(); //&landtable_00000180;
 	RemoveMaterialColors_Landtable(B_E101_R);

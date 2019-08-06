@@ -382,7 +382,6 @@ void UnloadLevelFiles_ADV03()
 void ADV03_Init()
 {
 	//This is done every time the function is called
-	CheckAndUnloadLevelFiles();
 	PastChaoModel_2_Info = new ModelInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV03\\Models\\000DD8A8.sa1mdl"));
 	PastChaoModel_7_Info = new ModelInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV03\\Models\\000DD8A8.sa1mdl"));
 	PastChaoModel_8_Info = new ModelInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV03\\Models\\000DD8A8.sa1mdl"));

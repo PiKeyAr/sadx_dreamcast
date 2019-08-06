@@ -108,7 +108,6 @@ void EggHornet_Init()
 {
 	Uint32 materialflags;
 	NJS_MATERIAL* material;
-	CheckAndUnloadLevelFiles();
 	B_EGM1_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\B_EGM1\\0.sa1lvl"));
 	LandTable* B_EGM1 = B_EGM1_Info->getlandtable(); //&landtable_00000128;
 	RemoveMaterialColors_Landtable(B_EGM1);

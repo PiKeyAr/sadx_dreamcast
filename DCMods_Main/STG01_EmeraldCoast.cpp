@@ -586,7 +586,6 @@ void ParseEmeraldCoastColFlagsAndMaterials(LandTable *landtable, int act)
 
 void EmeraldCoast_Init()
 {
-	CheckAndUnloadLevelFiles();
 	//Landtables
 	STG01_0_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG01\\0.sa1lvl"));
 	STG01_1_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG01\\1.sa1lvl"));

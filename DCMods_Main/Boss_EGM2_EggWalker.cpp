@@ -22,7 +22,6 @@ void SetEggWalkerFireColor(NJS_ARGB *a1a)
 
 void EggWalker_Init()
 {
-	CheckAndUnloadLevelFiles();
 	B_EGM2_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\B_EGM2\\0.sa1lvl"));
 	LandTable* B_EGM2 = B_EGM2_Info->getlandtable(); //&landtable_0000022C;
 	RemoveMaterialColors_Landtable(B_EGM2);

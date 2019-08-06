@@ -214,7 +214,6 @@ void UnloadLevelFiles_ADV01C()
 
 void ADV01C_Init()
 {
-	CheckAndUnloadLevelFiles();
 	ADV01C_0_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("system\\data\\ADV0130\\0.sa1lvl"));
 	ADV01C_1_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("system\\data\\ADV0130\\1.sa1lvl"));
 	ADV01C_2_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("system\\data\\ADV0130\\2.sa1lvl"));

@@ -355,7 +355,6 @@ void Chaos4_Transform(NJS_OBJECT *object)
 void Chaos4_Init()
 {
 	NJS_MATERIAL* material;
-	CheckAndUnloadLevelFiles();
 	B_CHAOS4_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\B_CHAOS4\\0.sa1lvl"));
 	LandTable* B_CHAOS4 = B_CHAOS4_Info->getlandtable(); // &landtable_00000238;
 	RemoveMaterialColors_Landtable(B_CHAOS4);

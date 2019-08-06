@@ -224,7 +224,6 @@ void ParseLWMaterials(LandTable *landtable, int act)
 
 void LostWorld_Init()
 {
-	CheckAndUnloadLevelFiles();
 	STG07_0_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG07\\0.sa1lvl"));
 	STG07_1_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG07\\1.sa1lvl"));
 	STG07_2_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG07\\2.sa1lvl"));

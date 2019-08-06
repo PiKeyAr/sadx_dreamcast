@@ -377,7 +377,6 @@ void MissileFix(NJS_OBJECT *obj)
 
 void SpeedHighway_Init()
 {
-	CheckAndUnloadLevelFiles();
 	STG04_0_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG04\\0.sa1lvl"));
 	STG04_1_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG04\\1.sa1lvl"));
 	STG04_2_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG04\\2.sa1lvl"));

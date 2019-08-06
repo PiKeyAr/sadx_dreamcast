@@ -181,7 +181,6 @@ void PerfectChaosBreathFix2(NJS_OBJECT *a1, float scale)
 
 void PerfectChaos_Init()
 {
-	CheckAndUnloadLevelFiles();
 	B_CHAOS7_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\B_CHAOS7\\0.sa1lvl"));
 	LandTable* B_CHAOS7 = B_CHAOS7_Info->getlandtable(); //&landtable_00001214;
 	RemoveMaterialColors_Landtable(B_CHAOS7);

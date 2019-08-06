@@ -84,7 +84,6 @@ void DrawShadow_ERobo_Fix(NJS_OBJECT *a1)
 
 void Zero_Init()
 {
-	CheckAndUnloadLevelFiles();
 	B_ROBO_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\B_ROBO\\0.sa1lvl"));
 	LandTable* B_ROBO = B_ROBO_Info->getlandtable(); //&landtable_00000110;
 	RemoveMaterialColors_Landtable(B_ROBO);

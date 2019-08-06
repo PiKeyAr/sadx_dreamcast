@@ -2018,7 +2018,6 @@ void UnloadLevelFiles_Chao()
 void ChaoGardens_Init()
 {
 	//This stuff is done every time the function is called
-	CheckAndUnloadLevelFiles();
 	AL_GARDEN00_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\AL_GARDEN00\\0.sa1lvl"));
 	AL_GARDEN01_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\AL_GARDEN01\\0.sa1lvl"));
 	AL_GARDEN02_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\AL_GARDEN02\\0.sa1lvl"));

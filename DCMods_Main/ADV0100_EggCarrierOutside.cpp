@@ -299,7 +299,6 @@ void UnloadLevelFiles_ADV01()
 void ADV01_Init()
 {
 	//This is done every time the function is called
-	CheckAndUnloadLevelFiles();
 	ADV01_0_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV0100\\0.sa1lvl"));
 	ADV01_1_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV0100\\1.sa1lvl"));
 	ADV01_2_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV0100\\2.sa1lvl"));

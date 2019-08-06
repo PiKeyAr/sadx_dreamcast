@@ -128,7 +128,6 @@ void HideOpaqueParts(NJS_OBJECT *obj)
 
 void Chaos6_Init()
 {
-	CheckAndUnloadLevelFiles();
 	B_CHAOS6_0_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\B_CHAOS6\\0.sa1lvl"));
 	B_CHAOS6_1_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\B_CHAOS6\\1.sa1lvl"));
 	LandTable* B_CHAOS6_0 = B_CHAOS6_0_Info->getlandtable(); //&landtable_00000318; // B_CHAOS6_0_Info->getlandtable();

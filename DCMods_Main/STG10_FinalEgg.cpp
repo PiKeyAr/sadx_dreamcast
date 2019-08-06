@@ -521,7 +521,6 @@ void __cdecl _0Light_Camera_DisplayFix(ObjectMaster *a1)
 
 void FinalEgg_Init()
 {
-	CheckAndUnloadLevelFiles();
 	STG10_0_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG10\\0.sa1lvl"));
 	STG10_1_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG10\\1.sa1lvl"));
 	STG10_2_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG10\\2.sa1lvl"));
