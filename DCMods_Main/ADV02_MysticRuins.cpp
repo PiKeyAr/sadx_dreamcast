@@ -1,7 +1,5 @@
 #include "stdafx.h"
 
-//TODO: Ice Cap door maybe, OLOCK transparency
-
 NJS_TEXNAME textures_mr00[153];
 NJS_TEXLIST texlist_mr00 = { arrayptrandlength(textures_mr00) };
 
@@ -50,6 +48,8 @@ NJS_OBJECT* MROcean = nullptr;
 NJS_OBJECT* OFinalEggModel_Opaque = nullptr;
 NJS_OBJECT* OFinalEggModel_Transparent = nullptr;
 NJS_OBJECT* OFinalEggModel_Lights = nullptr;
+NJS_OBJECT* IceCapDoorSnowflakeWall = nullptr;
+NJS_OBJECT* IceCapDoorSnowflake = nullptr;
 int MRWaterObjects[] = { -1, -1, -1, -1, -1 };
 int MRJungleObjectAnimations_Propeller[] = { -1, -1, -1, -1, -1 };
 int MRJungleObjectAnimations_Lantern[] = { -1, -1, -1, -1, -1 };
@@ -547,6 +547,19 @@ void UnloadLevelFiles_ADV02()
 	ADV02_3_Info = nullptr;
 }
 
+void IceCapDoorFix(NJS_MODEL_SADX *a1, QueuedModelFlagsB a2, float a3)
+{
+	//Draw the solid stuff underneath the wall
+	DrawModel_Queue_407FC0_WithScale(a1, a2, a3);
+	DrawQueueDepthBias = -27000.0f;
+	//Draw the snowflake
+	DrawModel_Queue_407FC0_WithScale(IceCapDoorSnowflake->basicdxmodel, a2, a3);
+	DrawQueueDepthBias = -20000.0f;
+	//Draw the icy surface
+	DrawModel_Queue_407FC0_WithScale(IceCapDoorSnowflakeWall->basicdxmodel, a2, a3);
+	DrawQueueDepthBias = 0.0f;
+}
+
 void ADV02_Init()
 {
 	//This is done every time the function is called
@@ -797,13 +810,23 @@ void ADV02_Init()
 		RemoveVertexColors_Object(ADV02_OBJECTS[111]); //Chaos emeralds in ADV02MODELS
 		RemoveVertexColors_Object(ADV02_OBJECTS[112]); //Chaos emeralds in ADV02MODELS
 		RemoveVertexColors_Object(ADV02_OBJECTS[53]); //Diggable place
-		ADV02_OBJECTS[90]->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_IGNORE_SPECULAR;
-		ADV02_OBJECTS[91]->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_IGNORE_SPECULAR;
+		ADV02_OBJECTS[90]->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_IGNORE_SPECULAR; //Palm trees
+		ADV02_OBJECTS[91]->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_IGNORE_SPECULAR; //Palm trees
+		//Ice Cap door fix
+		ADV02_OBJECTS[23] = LoadModel("system\\data\\ADV02\\Models\\001BACAC.sa1mdl", false); //Ice Cap door full
+		ADV02_OBJECTS[25] = LoadModel("system\\data\\ADV02\\Models\\001B9854.sa1mdl", false); //Ice Cap door 1 (with snowflake)
+		HideMesh_Object(ADV02_OBJECTS[25], 0);
+		HideMesh_Object(ADV02_OBJECTS[25], 2);
+		IceCapDoorSnowflake = LoadModel("system\\data\\ADV02\\Models\\001B9854.sa1mdl", false);
+		HideMesh_Object(IceCapDoorSnowflake, 0);
+		HideMesh_Object(IceCapDoorSnowflake, 1);
+		IceCapDoorSnowflakeWall = LoadModel("system\\data\\ADV02\\Models\\001B9854.sa1mdl", false);
+		HideMesh_Object(IceCapDoorSnowflakeWall, 1);
+		HideMesh_Object(IceCapDoorSnowflakeWall, 2);
+		WriteCall((void*)0x53E0B2, IceCapDoorFix);
 		//Other objects
 		MROcean = LoadModel("system\\data\\ADV02\\Models\\0005FEE0.sa1mdl", false);
 		AddTextureAnimation_Permanent(33, 0, &MROcean->basicdxmodel->mats[0], false, 5, 130, 139, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1);
-		ADV02_OBJECTS[23] = LoadModel("system\\data\\ADV02\\Models\\001BACAC.sa1mdl", false); //Ice Cap door full
-		ADV02_OBJECTS[25] = LoadModel("system\\data\\ADV02\\Models\\001B9854.sa1mdl", false); //Ice Cap door 1 
 		ADV02_OBJECTS[26] = LoadModel("system\\data\\ADV02\\Models\\001B9D9C.sa1mdl", false); //Ice Cap door 2
 		ADV02_OBJECTS[86] = LoadModel("system\\data\\ADV02\\Models\\001BF00C.sa1mdl", false); //Ice Cap lock
 		ADV02_OBJECTS[76] = LoadModel("system\\data\\ADV02\\Models\\001BCA10.sa1mdl", false); //Wind Stone
