@@ -65,8 +65,6 @@ bool SkipPressed_Cutscene = false;
 static float EmeraldScale = 1.005f;
 
 static const NJS_MATERIAL* WhiteDiffuse_General[] = {
-	//Egg Hornet
-	((NJS_MATERIAL*)0x0155D1DC),
 	//Mecha fish
 	((NJS_MATERIAL*)0x016F96C0),
 	((NJS_MATERIAL*)0x016F96D4),
