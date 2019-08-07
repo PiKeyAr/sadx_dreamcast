@@ -803,7 +803,12 @@ void SandHill_Init()
 		RemoveVertexColors_Object((NJS_OBJECT*)0x17499DC); //Sand worm body
 		RemoveVertexColors_Object((NJS_OBJECT*)0x17495AC); //Sand worm head
 		//Fog color
-		for (int i = 0; i < 3; i++) FogData_SandHill[i].Color = 0xFFE0E0B0;
+		for (int i = 0; i < 3; i++)
+		{
+			FogData_SandHill[i].Color = 0xFFE0E0B0;
+			FogData_SandHill[i].Layer = 800.0f;
+			FogData_SandHill[i].Distance = 10000.0f;
+		}
 		ModelsLoaded_SBOARD = true;
 	}
 }

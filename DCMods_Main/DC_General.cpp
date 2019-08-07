@@ -41,8 +41,9 @@ FunctionPointer(void, sub_4094D0, (NJS_MODEL_SADX *model, QueuedModelFlagsB blen
 FunctionPointer(void, sub_4053A0, (NJS_OBJECT *a1, NJS_MOTION *a2, float frame, int flags, float scale), 0x4053A0);
 FunctionPointer(void, sub_407CF0, (NJS_MODEL_SADX *a1, QueuedModelFlagsB a2), 0x407CF0);
 FunctionPointer(void, sub_4BFF90, (NJS_OBJECT* a1), 0x4BFF90);
-DataPointer(NJS_ACTION*, Tornado2Pointer, 0x006B9527);
-DataPointer(NJS_ACTION, Tornado2ChangeAction, 0x032ECE0C);
+DataPointer(NJS_ACTION*, Tornado2Pointer, 0x6B9527);
+DataPointer(NJS_ACTION, Tornado2ChangeAction, 0x32ECE0C);
+DataPointer(NJS_ACTION, Tornado2TransformationAction, 0x28988FC);
 
 ObjectThingC ItemBoxAirResizeThing = { (NJS_OBJECT*)0, sub_4BFF90 };
 
@@ -1446,6 +1447,19 @@ void GeoAnimFix(NJS_ACTION* a1, float a2, int a3, float a4)
 	else njAction_Queue_407BB0_2(a1, a2, a3, a4);
 }
 
+void BeamFix(NJS_OBJECT *a1, QueuedModelFlagsB a2, float a3)
+{
+	//53 - Sonic and Tails gassed at Casinopolis (Tails)
+	//57 - Chaos 4 emerges (Tails)
+	if (CutsceneID == 53 || CutsceneID == 57)
+	{
+		DrawQueueDepthBias = 8000.0f;
+		ProcessModelNode_D_WrapperB(a1, a2, a3);
+		DrawQueueDepthBias = 0.0f;
+	}
+	else ProcessModelNode_A_Wrapper(a1, a2, a3);
+}
+
 void General_Init()
 {
 	if (!ModelsLoaded_General)
@@ -1609,6 +1623,13 @@ void General_Init()
 		ReplacePVM("WING_P");
 		ReplacePVM("WING_T");
 		ReplacePVM("ZOU");
+		//Snow/sandboard "fixes" (SL OBJECTS)
+		RemoveVertexColors_Object(SONIC_OBJECTS[71]);
+		RemoveVertexColors_Object(MILES_OBJECTS[71]);
+		ForceLightType_Object(SONIC_OBJECTS[71], 2, false);
+		ForceLightType_Object(MILES_OBJECTS[71], 2, false);
+		//The beam that collects the emerald in "Sonic and Tails gassed at Casinopolis" cutscene
+		WriteCall((void*)0x6F37DC, BeamFix);
 		//Big's fishing thing fix
 		WriteCall((void*)0x46C547, BigFishingThingFix);
 		//Metal Sonic afterimage fix
@@ -1682,7 +1703,15 @@ void General_Init()
 			ForceObjectSpecular_Object(Tornado2ChangeAction.object->child, false);
 			//Event Tornado 2 transformed emerald transparency fix
 			SortModel(Tornado2ChangeAction.object->child->sibling->sibling);
+			//Event Tornado 2 transformation emerald transparency fix
+			SortModel(Tornado2TransformationAction.object->child->child->sibling->sibling->sibling->child);
+			AddWhiteDiffuseMaterial(&Tornado2TransformationAction.object->child->child->sibling->sibling->sibling->child->basicdxmodel->mats[0]);
+			AddWhiteDiffuseMaterial(&Tornado2TransformationAction.object->child->child->sibling->sibling->sibling->child->basicdxmodel->mats[1]);
+			AddWhiteDiffuseMaterial(&Tornado2TransformationAction.object->child->child->sibling->sibling->sibling->child->basicdxmodel->mats[2]);
+			AddWhiteDiffuseMaterial(&Tornado2TransformationAction.object->child->child->sibling->sibling->sibling->child->basicdxmodel->mats[3]);
 		}
+		RemoveVertexColors_Object((NJS_OBJECT*)0x3318898); //Egg Missile cutscene model
+		ForceObjectSpecular_Object((NJS_OBJECT*)0x3318898, false); //Egg Missile cutscene model
 		RemoveVertexColors_Model((NJS_MODEL_SADX*)0x94BAA0); //ERobo0 head
 		AddWhiteDiffuseMaterial(&(((NJS_MODEL_SADX*)0x94BAA0)->mats[4]));
 		RemoveVertexColors_Object((NJS_OBJECT*)0x94DA44); //ERobo0 body

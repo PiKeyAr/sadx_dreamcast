@@ -562,13 +562,6 @@ void IceCap_Init()
 		HideMesh_Object(Crystal2_3, 1);
 		WriteJump((void*)0x4EF5A0, Crystal_Display);*/
 		WriteCall((void*)0x4EFE10, RenderSmallIcicles);
-		//Snowboard "fixes"
-		RemoveVertexColors_Object(SONIC_OBJECTS[71]);
-		RemoveVertexColors_Object(MILES_OBJECTS[71]);
-		SONIC_OBJECTS[71]->basicdxmodel->mats[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		SONIC_OBJECTS[71]->basicdxmodel->mats[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		MILES_OBJECTS[71]->basicdxmodel->mats[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		MILES_OBJECTS[71]->basicdxmodel->mats[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
 		//Various effect fixes
 		WriteCall((void*)0x4EFEF7, RenderIcicleSpriteThing);
 		WriteJump((void*)0x4EB770, FixedAvalanche);

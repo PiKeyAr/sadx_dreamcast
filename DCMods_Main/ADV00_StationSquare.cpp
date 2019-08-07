@@ -1,6 +1,8 @@
 #include "stdafx.h"
 //TODO: Burger Shop man lighting should use type 0 but the model parts are shared among NPCs
 //TODO: Check pool transparency maybe
+//TODO: The shadow in main area sewers should render behind the water, the windows in secret area
+//TODO: Very slight transparency issue with Casino door
 
 NJS_TEXNAME textures_advss00[220];
 NJS_TEXLIST texlist_advss00 = { arrayptrandlength(textures_advss00) };
@@ -31,12 +33,12 @@ NJS_OBJECT* Parasol_4 = nullptr;
 NJS_OBJECT* EVHelicopterLight1 = nullptr;
 NJS_OBJECT* EVHelicopterLight2 = nullptr;
 
-/*
+
 #include "SS00_CityHall.h"
 #include "SS01_Casino.h"
 #include "SS02_Sewers.h"
 #include "SS03_MainArea.h"
-#include "SS04_Hotel.h"
+/*#include "SS04_Hotel.h"
 #include "SS05_Twinkle.h"
 */
 
@@ -153,6 +155,11 @@ void DelaySettingTimeOfDay(Sint8 time)
 void OMSakuFix(NJS_OBJECT *a1, float scale)
 {
 	ProcessModelNode(a1, QueuedModelFlagsB_EnableZWrite, scale);
+}
+
+void __fastcall EggWalkerCarsFix(NJS_MATRIX_PTR m, const NJS_VECTOR *v)
+{
+	njTranslate(0, v->x, -2.65f, v->z);
 }
 
 void DrawEventHelicopter(NJS_ACTION *a1, float a2, int a3)
@@ -656,6 +663,7 @@ void ADV00_Init()
 		WriteCall((void*)0x638B2E, RenderPoliceCarBarricade);
 		WriteCall((void*)0x638B50, RenderPoliceCarBarricade);
 		WriteCall((void*)0x632773, FixPoliceCar);
+		WriteCall((void*)0x6F7EA4, EggWalkerCarsFix); //Fixed cars not showing up in the cutscene before Egg Walker
 		WriteData((float*)0x634EB9, 0.601f); //Prevent Z fighting with SS NPC shadow when overlapping transparent stuff
 		//Fix camera in Light Speed Shoes cutscene
 		WriteData((float*)0x652F74, 800.0f); //X1

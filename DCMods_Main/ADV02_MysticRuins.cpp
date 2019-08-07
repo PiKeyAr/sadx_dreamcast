@@ -1,5 +1,8 @@
 #include "stdafx.h"
 
+//TODO: FinalWay
+//TODO: Transparency inside Tails' house?
+
 NJS_TEXNAME textures_mr00[153];
 NJS_TEXLIST texlist_mr00 = { arrayptrandlength(textures_mr00) };
 
