@@ -1,8 +1,5 @@
 #include "stdafx.h"
 
-//TODO: FinalWay
-//TODO: Transparency inside Tails' house?
-
 NJS_TEXNAME textures_mr00[153];
 NJS_TEXLIST texlist_mr00 = { arrayptrandlength(textures_mr00) };
 
@@ -51,6 +48,8 @@ NJS_OBJECT* MROcean = nullptr;
 NJS_OBJECT* OFinalEggModel_Opaque = nullptr;
 NJS_OBJECT* OFinalEggModel_Transparent = nullptr;
 NJS_OBJECT* OFinalEggModel_Lights = nullptr;
+NJS_OBJECT* OFinalWayMain = nullptr;
+NJS_OBJECT* OFinalWayCar = nullptr;
 NJS_OBJECT* IceCapDoorSnowflakeWall = nullptr;
 NJS_OBJECT* IceCapDoorSnowflake = nullptr;
 int MRWaterObjects[] = { -1, -1, -1, -1, -1 };
@@ -110,17 +109,25 @@ void SetColor(float a, float r, float g, float b)
 	ADV02_MODELS[15]->mats[0].diffuse.argb.b = b*255;
 }
 
-void FixMRBase(ObjectMaster *a1)
+void OFinalEgg_DisplayFix(ObjectMaster *a1)
 {
 	Angle v1; // eax
 	EntityData1 *v2; // esi
-	NJS_ACTION OpaqueAction = { nullptr, nullptr };
-	NJS_ACTION LightsAction = { nullptr, nullptr };
-	OpaqueAction.object = OFinalEggModel_Opaque;
-	OpaqueAction.motion = ADV02_ACTIONS[0]->motion;
-	LightsAction.object = OFinalEggModel_Lights;
-	LightsAction.motion = ADV02_ACTIONS[0]->motion;
+	NJS_ACTION OFinalEggOpaqueAction = { nullptr, nullptr };
+	NJS_ACTION OFinalEggLightsAction = { nullptr, nullptr };
+	NJS_ACTION OFinalWayMainAction = { nullptr, nullptr };
+	NJS_ACTION OFinalWayCarAction = { nullptr, nullptr };
+	OFinalEggOpaqueAction.object = OFinalEggModel_Opaque;
+	OFinalEggOpaqueAction.motion = ADV02_ACTIONS[0]->motion;
+	OFinalEggLightsAction.object = OFinalEggModel_Lights;
+	OFinalEggLightsAction.motion = ADV02_ACTIONS[0]->motion;
+	OFinalWayMainAction.object = OFinalWayMain;
+	OFinalWayMainAction.motion = ADV02_ACTIONS[30]->motion;
+	OFinalWayCarAction.object = OFinalWayCar;
+	OFinalWayCarAction.motion = ADV02_ACTIONS[30]->motion;
 	v2 = a1->Data1;
+	//v2->Scale.y += 0.2f; //Animate the car
+	//if (v2->Scale.y >= 29) v2->Scale.y = 0;
 	Direct3D_SetNearFarPlanes(-1.0f, -100000.0f);
 	DisableFog();
 	njSetTexture(ADV02_TEXLISTS[1]);
@@ -132,18 +139,25 @@ void FixMRBase(ObjectMaster *a1)
 		njRotateY(0, (unsigned __int16)v1);
 	}
 	//Render the animation without the lights
-	njAction_Queue_407BB0(&OpaqueAction, v2->Scale.x, 1);
+	njAction_Queue_407BB0(&OFinalEggOpaqueAction, v2->Scale.x, QueuedModelFlagsB_EnableZWrite);
 	//Render the transparent part of the animation without the lights
 	DrawModel_Queue_407FC0(OFinalEggModel_Transparent->child->basicdxmodel, QueuedModelFlagsB_SomeTextureThing);
-	//Render the FinalWay
-	njAction_Queue_407BB0(ADV02_ACTIONS[30], v2->Scale.y, 0);
+	//Render the FinalWay car
+	Direct3D_SetNearFarPlanes(-1.0f, -6000.0f);
+	DrawQueueDepthBias = -20000.0f;
+	njAction_Queue(&OFinalWayCarAction, v2->Scale.y, QueuedModelFlagsB_EnableZWrite);
+	//Render the FinalWay without the car
+	Direct3D_SetNearFarPlanes(-1.0f, -100000.0f);
+	DrawQueueDepthBias = 20000.0f;
+	njAction_Queue(&OFinalWayMainAction, v2->Scale.y, QueuedModelFlagsB_EnableZWrite);
 	//Render the lights
-	njAction_Queue_407FC0(&LightsAction, v2->Scale.x, 0);
+	njAction_Queue_407FC0(&OFinalEggLightsAction, v2->Scale.x, 0);
 	//Render the EfHikari thing
 	DrawModel_Queue_407CF0(OFinalEggModel_Opaque->child->sibling->sibling->basicdxmodel, QueuedModelFlagsB_3);
 	njPopMatrix(1u);
 	ToggleStageFog();
 	Direct3D_SetNearFarPlanes(LevelDrawDistance.Minimum, LevelDrawDistance.Maximum);
+	DrawQueueDepthBias = 0.0f;
 }
 
 void SetBlockEntryMaterialColor(float a, float r, float g, float b)
@@ -659,8 +673,7 @@ void ADV02_Init()
 		WriteCall((void*)0x53816F, RustlingGrassDepthFix1); //Rustling grass depth bias for Knuckles' cutscene
 		WriteCall((void*)0x53818F, RustlingGrassDepthFix2); //Rustling grass depth bias for Knuckles' cutscene
 		//MR base stuff
-		WriteJump((void*)0x538430, FixMRBase);
-		ADV02_ACTIONS[30]->object = LoadModel("system\\data\\ADV02\\Models\\0020DC78.sa1mdl", false); //OFinalWay
+		WriteJump((void*)0x538430, OFinalEgg_DisplayFix);
 		//Base opaque model
 		OFinalEggModel_Opaque = LoadModel("system\\data\\ADV02\\Models\\0020C3B0.sa1mdl", false);
 		HideMesh_Object(OFinalEggModel_Opaque->child, 4); //Lights around the tower
@@ -713,6 +726,13 @@ void ADV02_Init()
 		OFinalEggModel_Lights->child->sibling->sibling->sibling->sibling->evalflags |= NJD_EVAL_HIDE;
 		OFinalEggModel_Lights->child->sibling->sibling->sibling->sibling->sibling->evalflags |= NJD_EVAL_HIDE;
 		OFinalEggModel_Lights->child->sibling->sibling->sibling->sibling->sibling->sibling->evalflags |= NJD_EVAL_HIDE;
+		//Transporter model (without car)
+		OFinalWayMain = LoadModel("system\\data\\ADV02\\Models\\0020DC78.sa1mdl", false); //OFinalWay
+		OFinalWayMain->child->sibling->evalflags |= NJD_EVAL_HIDE; //Hide car
+		//Transporter model (car only)
+		OFinalWayCar = LoadModel("system\\data\\ADV02\\Models\\0020DC78.sa1mdl", false); //OFinalWay
+		OFinalWayCar->evalflags |= NJD_EVAL_HIDE;
+		OFinalWayCar->child->evalflags |= NJD_EVAL_HIDE;
 		//Code fixes
 		WriteData((float*)0x005343BE, 239.0f); //Windows in Tails' workshop
 		WriteData((float*)0x005343EF, 239.0f); //Windows in Tails' workshop 
