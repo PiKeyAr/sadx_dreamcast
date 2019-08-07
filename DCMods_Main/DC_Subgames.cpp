@@ -517,6 +517,41 @@ void AddObjectWhiteDiffuseMaterials_Range(NJS_OBJECT* object, int first, int las
 	}
 }
 
+void DrawBeam_Lol(float frame)
+{
+	Direct3D_SetZFunc(7u);
+	Direct3D_EnableZWrite(0);
+	njAction((NJS_ACTION*)0x28E596C, frame);
+	Direct3D_EnableZWrite(1);
+	Direct3D_ResetZFunc();
+}
+
+void __cdecl SkyChaseBeam1_Display_Fix(ObjectMaster *a1)
+{
+	EntityData1 *v1; // esi
+
+	v1 = a1->Data1;
+	PrintDebug("Action: %f\n", *(float *)&v1->CharIndex);
+	njPushMatrix(0);
+	njTranslate(0, 0.0, 0.0, 0.0);
+	njSetTexture(&SHOOTING0_TEXLIST);
+	njAction((NJS_ACTION*)0x290A414, *(Float *)&v1->CharIndex);
+	njAction_Queue_407BB0((NJS_ACTION*)0x2985984, *(float *)&v1->CharIndex, 4);
+	njPopMatrix(1u);
+	njPushMatrix(0);
+	njTranslate(0, 0.0, 0.0, 0.0);
+	njSetTexture(&SHOOTING1_TEXLIST);
+	//Draw normally after the camera angle changes, but before that just draw on top of everything
+	if (*(float *)&v1->CharIndex >= 440.0f) njAction_Queue_407BB0_2((NJS_ACTION*)0x28E596C, *(float *)& v1->CharIndex, 4, 1.0);
+	else DrawModelCallback_QueueFloat(DrawBeam_Lol, *(float *)&v1->CharIndex, 30000.0f, QueuedModelFlagsB_SomeTextureThing);
+	njPopMatrix(1u);
+	njPushMatrix(0);
+	njTranslate(0, 0.0, -648.09998, -3698.0);
+	njSetTexture(&SHOOTING0_TEXLIST);
+	njAction_Queue_407BB0_2((NJS_ACTION*)0x290761C, *(float *)&v1->CharIndex, 4, 1.0);
+	njPopMatrix(1u);
+}
+
 void HedgehogHammer_Init()
 {
 	STG00_0_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG00\\0.sa1lvl"));
@@ -632,6 +667,7 @@ void SkyChase_Init()
 			*(NJS_OBJECT*)0x0298E7D0 = *LoadModel("system\\data\\SHOOTING\\Models\\0004AEE0.sa1mdl", false); //Beam in Act 2
 			((NJS_ACTION*)0x28E596C)->object = (NJS_OBJECT*)0x028E2C88; //Beam in Act 1
 			((NJS_ACTION*)0x2996C74)->object = (NJS_OBJECT*)0x0298E7D0; //Beam in Act 2
+			WriteJump((void*)0x62A8C0, SkyChaseBeam1_Display_Fix); //Make the beam in Act 1 render above the clouds
 			//Lighting
 			if (DLLLoaded_Lantern)
 			{
