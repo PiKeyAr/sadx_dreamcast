@@ -33,12 +33,12 @@ NJS_OBJECT* Parasol_4 = nullptr;
 NJS_OBJECT* EVHelicopterLight1 = nullptr;
 NJS_OBJECT* EVHelicopterLight2 = nullptr;
 
-
+/*
 #include "SS00_CityHall.h"
 #include "SS01_Casino.h"
 #include "SS02_Sewers.h"
 #include "SS03_MainArea.h"
-/*#include "SS04_Hotel.h"
+#include "SS04_Hotel.h"
 #include "SS05_Twinkle.h"
 */
 
