@@ -23675,7 +23675,7 @@ extern "C" __declspec(dllexport) COL collist_000976C0[] = {
 	{ { -86.25f, 61.5f, 0.00008578999f }, 26.04443f, 0, 0, &object_000C8EC8, 0, 0x88000000 }, //Pillar reflection top
 	{ { -43.12495f, 61.5f, 74.69471f }, 26.04443f, 0, 0, &object_000C8EFC, 0, 0x88000000 }, //Pillar reflection top
 	{ { 0, 1, 0 }, 395.6269f, 0, 0, &object_000BCC28_2, 0, 0xA0040001 }, //floor  transparent
-	{ { 0, 65.25f, 0 }, 171.0811f, 0, 0, &object_000AFA9C_2, 0, 0xC0000001 }, //Middle thing transparent
+	{ { 0, 65.25f, 0 }, 171.0811f, 0, 0, &object_000AFA9C_2, 0, 0xC0040001 }, //Middle thing transparent
 	{ { 0, -0.25f, 0 }, 381.8376f, 0, 0, &object_000C7BE4, 0, 0xA0000002 }, //Water bottom
 	{ { 0, 45, 0 }, 204.3916f, 0, 0, &object_000C6F40, 0, 0xC0000002 }, //Water middle
 	{ { 0, 87.5f, 0 }, 125.0876f, 0, 0, &object_000C71B4, 0, 0xC0000002 }, //Water top
