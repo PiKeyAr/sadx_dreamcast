@@ -702,6 +702,8 @@ void HotShelter_Init()
 		*(NJS_MODEL_SADX*)0x182DFF8 = *LoadModel("system\\data\\STG12\\Models\\00122168.sa1mdl", false)->basicdxmodel; //OKaitenKey
 		*(NJS_MODEL_SADX*)0x182D6F4 = *LoadModel("system\\data\\STG12\\Models\\001227C8.sa1mdl", false)->basicdxmodel; //OKaitenKey handle
 		BrokenGlass = LoadModel("system\\data\\STG12\\Models\\001781FC.sa1mdl", false); //ORoboTV broken glass
+		HideMesh_Object(BrokenGlass, 0);
+		HideMesh_Object(BrokenGlass, 1);
 		*(NJS_MODEL_SADX*)0x180DC54 = *LoadModel("system\\data\\STG12\\Models\\001781FC.sa1mdl", false)->basicdxmodel; //ORoboTV broken glass
 		HideMesh_Model((NJS_MODEL_SADX*)0x180DC54, 2); //Hide the black part to render separately
 		*(NJS_OBJECT*)0x185D200 = *LoadModel("system\\data\\STG12\\Models\\0014A8F4.sa1mdl", false); //OCarne

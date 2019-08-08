@@ -334,7 +334,7 @@ static const NJS_MATERIAL* ObjectSpecular_General[] = {
 	((NJS_MATERIAL*)0x33178B0),
 };
 
-void DrawRobotChest(NJS_ACTION *action, Float frame) //4800DE
+void DrawRobotChest(NJS_ACTION *action, float frame) //4800DE
 {
 	NJS_ACTION ChestAction = { nullptr, nullptr };
 	ChestAction.object = RobotChest;
@@ -1257,8 +1257,7 @@ void CharacterShadowHook(NJS_OBJECT *a1, float a2)
 	}
 	else if (EnableRedMountain && CurrentLevel == LevelIDs_RedMountain && CurrentAct != 1) DrawQueueDepthBias = 1000.0f;
 	else if (EnableFinalEgg && CurrentLevel == LevelIDs_FinalEgg) DrawQueueDepthBias = 3000.0f;
-	//else if (EnableHotShelter && CurrentLevel == LevelIDs_HotShelter) DrawQueueDepthBias = 8500.0f;
-	else  DrawQueueDepthBias = -27952.0f;
+	else DrawQueueDepthBias = -27952.0f;
 	if (MissedFrames || VerifyTexList(CurrentTexList))
 	{
 		DrawQueueDepthBias = v2;
@@ -1268,6 +1267,13 @@ void CharacterShadowHook(NJS_OBJECT *a1, float a2)
 		ProcessModelNode(a1, (QueuedModelFlagsB)6, a2);
 		DrawQueueDepthBias = v2;
 	}
+}
+
+void DrawCutsceneZeroShadow(NJS_OBJECT *object, float scale)
+{
+	DrawQueueDepthBias = 2000.0f;
+	ProcessModelNode(object, QueuedModelFlagsB_SomeTextureThing, scale);
+	DrawQueueDepthBias = 0.0f;
 }
 
 void DrawScalableShadowHook(NJS_OBJECT *a1, float a2)
@@ -1392,16 +1398,16 @@ void PlayCharacterHurtVoice(int ID, void *a2, int a3, void *a4)
 void CutsceneAnimationHook1(NJS_ACTION *a1, float a2, QueuedModelFlagsB a3)
 {
 	//Event helicopter
-	if (CurrentTexList == &EV_HELI_TEXLIST)
-	{
-		DrawEventHelicopter(a1, a2, a3);
-	}
+	if (CurrentTexList == &EV_HELI_TEXLIST) DrawEventHelicopter(a1, a2, a3);
 	//Gamma
-	if (CurrentTexList == &E102_TEXLIST) DrawRobotChest(a1, a2);
+	else if (a1->object == E102_OBJECTS[0])
+	{
+		DrawRobotChest(a1, a2);
+	}
 	else njAction_Queue_407FC0(a1, a2, a3);
 }
 
-void CutsceneAnimationHook2(NJS_ACTION *anim, float a2, int a3)
+void CutsceneAnimationHook2(NJS_ACTION *anim, float a2, QueuedModelFlagsB a3)
 {
 	//Chaos emeralds
 	if (CurrentTexList == &M_EM_BLUE_TEXLIST || CurrentTexList == &M_EM_GREEN_TEXLIST || CurrentTexList == &M_EM_WHITE_TEXLIST || CurrentTexList == &M_EM_PURPLE_TEXLIST || CurrentTexList == &M_EM_SKY_TEXLIST || CurrentTexList == &M_EM_YELLOW_TEXLIST || CurrentTexList == &M_EM_RED_TEXLIST)
@@ -1409,8 +1415,81 @@ void CutsceneAnimationHook2(NJS_ACTION *anim, float a2, int a3)
 		njAction_Queue_407FC0(anim, a2, a3);
 	}
 	//Gamma
-	else if (CurrentTexList == &E102_TEXLIST) DrawRobotChest(anim, a2);
+	else if (anim->object == E102_OBJECTS[0])
+	{
+		DrawRobotChest(anim, a2);
+	}
 	else njAction_Queue_407BB0(anim, a2, a3);
+}
+
+void CutsceneAnimationHook3(NJS_ACTION *anim, float a2, QueuedModelFlagsB a3)
+{
+	//Gamma
+	if (anim->object == E102_OBJECTS[0])
+	{
+		DrawRobotChest(anim, a2);
+	}
+	else njAction_Queue(anim, a2, a3);
+}
+
+static void AnimationCallback_A_r(NJS_ACTION *a1, float a2, int a3);
+static Trampoline AnimationCallback_A_t(0x4084D0, 0x4084D8, AnimationCallback_A_r);
+static void __cdecl AnimationCallback_A_r(NJS_ACTION *action, float frame, int flags)
+{
+	NJS_ACTION ChestAction = { nullptr, nullptr };
+	auto original = reinterpret_cast<decltype(AnimationCallback_A_r)*>(AnimationCallback_A_t.Target());
+	if (action->object == E102_OBJECTS[0])
+	{
+		ChestAction.object = RobotChest;
+		ChestAction.motion = action->motion;
+		E102_OBJECTS[0]->child->child->sibling->sibling->sibling->sibling->sibling->sibling->sibling->sibling->sibling->sibling->child->sibling->child->evalflags |= NJD_EVAL_HIDE;
+		original(action, frame, flags);
+		SetMaterialAndSpriteColor_Float(0.847f, 1.0f, 1.0f, 1.0f);
+		original(&ChestAction, frame, flags);
+		SetMaterialAndSpriteColor_Float(1.0f, 1.0f, 1.0f, 1.0f);
+		E102_OBJECTS[0]->child->child->sibling->sibling->sibling->sibling->sibling->sibling->sibling->sibling->sibling->sibling->child->sibling->child->evalflags &= ~NJD_EVAL_HIDE;
+	}
+	else original(action, frame, flags);
+}
+
+static void AnimationCallback_B_r(NJS_ACTION *a1, float a2, int a3);
+static Trampoline AnimationCallback_B_t(0x406EE0, 0x406EE8, AnimationCallback_B_r);
+static void __cdecl AnimationCallback_B_r(NJS_ACTION *action, float frame, int flags)
+{
+	NJS_ACTION ChestAction = { nullptr, nullptr };
+	auto original = reinterpret_cast<decltype(AnimationCallback_B_r)*>(AnimationCallback_B_t.Target());
+	if (action->object == E102_OBJECTS[0])
+	{
+		ChestAction.object = RobotChest;
+		ChestAction.motion = action->motion;
+		E102_OBJECTS[0]->child->child->sibling->sibling->sibling->sibling->sibling->sibling->sibling->sibling->sibling->sibling->child->sibling->child->evalflags |= NJD_EVAL_HIDE;
+		original(action, frame, flags);
+		SetMaterialAndSpriteColor_Float(0.847f, 1.0f, 1.0f, 1.0f);
+		original(&ChestAction, frame, flags);
+		SetMaterialAndSpriteColor_Float(1.0f, 1.0f, 1.0f, 1.0f);
+		E102_OBJECTS[0]->child->child->sibling->sibling->sibling->sibling->sibling->sibling->sibling->sibling->sibling->sibling->child->sibling->child->evalflags &= ~NJD_EVAL_HIDE;
+	}
+	else original(action, frame, flags);
+}
+
+static void AnimationCallback_C_r(NJS_ACTION *a1, float a2, int a3);
+static Trampoline AnimationCallback_C_t(0x4084B0, 0x4084B8, AnimationCallback_C_r);
+static void __cdecl AnimationCallback_C_r(NJS_ACTION *action, float frame, int flags)
+{
+	NJS_ACTION ChestAction = { nullptr, nullptr };
+	auto original = reinterpret_cast<decltype(AnimationCallback_C_r)*>(AnimationCallback_C_t.Target());
+	if (action->object == E102_OBJECTS[0])
+	{
+		ChestAction.object = RobotChest;
+		ChestAction.motion = action->motion;
+		E102_OBJECTS[0]->child->child->sibling->sibling->sibling->sibling->sibling->sibling->sibling->sibling->sibling->sibling->child->sibling->child->evalflags |= NJD_EVAL_HIDE;
+		original(action, frame, flags);
+		SetMaterialAndSpriteColor_Float(0.847f, 1.0f, 1.0f, 1.0f);
+		original(&ChestAction, frame, flags);
+		SetMaterialAndSpriteColor_Float(1.0f, 1.0f, 1.0f, 1.0f);
+		E102_OBJECTS[0]->child->child->sibling->sibling->sibling->sibling->sibling->sibling->sibling->sibling->sibling->sibling->child->sibling->child->evalflags &= ~NJD_EVAL_HIDE;
+	}
+	else original(action, frame, flags);
 }
 
 void SSNPCHook(NJS_ACTION *a1, float frame, float scale)
@@ -1432,7 +1511,7 @@ void RenderEggCarrier3NPC(NJS_ACTION* action, Float frame)
 	else njAction(action, frame);
 }
 
-void GeoAnimFix(NJS_ACTION* a1, float a2, int a3, float a4)
+void GeoAnimFix(NJS_ACTION* a1, float a2, QueuedModelFlagsB a3, float a4)
 {
 	if (CurrentLevel == LevelIDs_MysticRuins && CurrentAct == 2)
 	{
@@ -1648,6 +1727,7 @@ void General_Init()
 		WriteCall((void*)0x62F2B3, SSNPCHook); //SS / Gamma's chest
 		WriteCall((void*)0x4181FD, CutsceneAnimationHook1);
 		WriteCall((void*)0x418214, CutsceneAnimationHook2);
+		WriteCall((void*)0x41820D, CutsceneAnimationHook3);
 		WriteCall((void*)0x4507FA, PlayCharacterHurtVoice); //Move to Sound Overhaul
 		WriteCall((void*)0x43A85F, GeoAnimFix); //Landtable animation hook
 		//DirLight data... Someday
@@ -1719,6 +1799,7 @@ void General_Init()
 		AddWhiteDiffuseMaterial(&(((NJS_MODEL_SADX*)0x94BAA0)->mats[4]));
 		RemoveVertexColors_Object((NJS_OBJECT*)0x94DA44); //ERobo0 body
 		((NJS_OBJECT*)0x008BF3A0)->basicdxmodel->mats[0].attrflags |= NJD_FLAG_IGNORE_LIGHT; //Shadow blob
+		WriteCall((void*)0x6A65CB, DrawCutsceneZeroShadow); //Fix Zero's shadow overlapping Amy's in a cutscene
 		RemoveVertexColors_Object((NJS_OBJECT*)0x3175528); //Tails' model in the cutscene where Sonic sees him crash
 		RemoveVertexColors_Object(MILES_OBJECTS[71]); //Tails' snowboard
 		RemoveVertexColors_Object(BIG_OBJECTS[42]); //Big fishing thing 1

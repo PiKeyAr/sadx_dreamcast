@@ -1,8 +1,8 @@
 #include "stdafx.h"
 //TODO: Burger Shop man lighting should use type 0 but the model parts are shared among NPCs
-//TODO: Check pool transparency maybe
 //TODO: The shadow in main area sewers should render behind the water, the windows in secret area
 //TODO: Very slight transparency issue with Casino door
+//TODO: OS1Dnto shouldn't ignore lighting (use object specular)
 
 NJS_TEXNAME textures_advss00[220];
 NJS_TEXLIST texlist_advss00 = { arrayptrandlength(textures_advss00) };

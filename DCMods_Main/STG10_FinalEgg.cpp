@@ -456,6 +456,13 @@ void ParseFinalEggMaterials(LandTable* landtable, int act, bool remove)
 			}
 		}
 	}
+	//Alpha rejection in GeoAnim
+	if (act == 0)
+	{
+		//Thing under the floor in Amy's puzzle room
+		if (!remove) AddAlphaRejectMaterial(&landtable->AnimData[21].Model->child->basicdxmodel->mats[1]); 
+		else RemoveAlphaRejectMaterial(&landtable->AnimData[21].Model->child->basicdxmodel->mats[1]);
+	}
 }
 
 void UnloadLevelFiles_STG10()
