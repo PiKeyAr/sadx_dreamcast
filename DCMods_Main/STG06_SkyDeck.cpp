@@ -1,5 +1,4 @@
 #include "stdafx.h"
-#include "SkyDeck_objects.h"
 
 NJS_TEXNAME textures_skydeck1[76];
 NJS_TEXLIST texlist_skydeck1 = { arrayptrandlength(textures_skydeck1) };
@@ -39,6 +38,7 @@ DataPointer(NJS_OBJECT, SkyDeckSkyboxModel_Normal, 0x214E2A0);
 DataPointer(NJS_OBJECT, SkyDeckSkyboxModel_Dark, 0x214C9E4);
 DataArray(NJS_OBJECT*, SkyDeckObjectArray, 0x203A1C0, 300);
 DataArray(NJS_MOTION*, SkyDeckSharedMotionArray, 0x203A6CC, 7);
+DataArray(NJS_TEX, uvSTG06_01D4BE68_0, 0x0214BE68, 4);
 DataArray(float, SkyDeckSharedMotionLengthArray, 0x203A6F4, 10);
 DataArray(char, byte_223AEB4, 0x223AEB4, 100);
 DataArray(char, byte_223B000, 0x223B000, 4);
@@ -625,7 +625,7 @@ void SkyDeck_OnFrame()
 			UVShift2 = (UVShift2 - 2 * FramerateSetting) % 255;
 			if (SkyNormal1 && SkyNormal2 && SkyDark1 && SkyDark2)
 			{
-				for (int q = 0; q < LengthOfArray(uvSTG06_01D4BE68_0); q++)
+				for (int q = 0; q < 4; q++)
 				{
 					SkyNormal1->basicdxmodel->meshsets[0].vertuv[q].u = uvSTG06_01D4BE68_0[q].u + UVShift2;
 					SkyNormal2->basicdxmodel->meshsets[0].vertuv[q].u = uvSTG06_01D4BE68_0[q].u + UVShift1;

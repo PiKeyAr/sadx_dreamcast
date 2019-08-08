@@ -365,9 +365,6 @@
     <ClInclude Include="Data\SandHill.h">
       <Filter>Header Files\Levels\Subgames</Filter>
     </ClInclude>
-    <ClInclude Include="Data\SkyDeck_objects.h">
-      <Filter>Header Files\Levels\SkyDeck</Filter>
-    </ClInclude>
     <ClInclude Include="Data\SkyDeck1.h">
       <Filter>Header Files\Levels\SkyDeck</Filter>
     </ClInclude>

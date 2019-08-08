@@ -212,7 +212,6 @@
     <ClInclude Include="Data\SkyDeck1.h" />
     <ClInclude Include="Data\SkyDeck2.h" />
     <ClInclude Include="Data\SkyDeck3.h" />
-    <ClInclude Include="Data\SkyDeck_objects.h" />
     <ClInclude Include="Data\SS00_CityHall.h" />
     <ClInclude Include="Data\SS01_Casino.h" />
     <ClInclude Include="Data\SS02_Sewers.h" />
