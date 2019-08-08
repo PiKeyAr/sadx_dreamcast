@@ -3,6 +3,8 @@
 #pragma warning(push)
 #pragma warning(disable: 4267 4838)
 
+static NJS_MESHSET_SADX DeadMeshset = { NJD_MESHSET_N | 0, 0, NULL, NULL, NULL, NULL, NULL, NULL };
+
 NJS_MATERIAL tempmaterialarray_transparent[] = {
 	{ { 0xFFFFFFFF },{ 0xFFFFFFFF }, 11, 0, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF },{ 0xFFFFFFFF }, 11, 0, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_DA_INV_SRC | NJD_SA_SRC },

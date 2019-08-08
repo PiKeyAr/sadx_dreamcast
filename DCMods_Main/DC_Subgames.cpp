@@ -40,7 +40,7 @@ DataArray(FogData, FogData_HedgehogHammer, 0x027C69C4, 3);
 DataArray(SkyboxScale, SkyboxScale_SkyChase1, 0x027D6CE0, 3);
 DataArray(DrawDistance, DrawDist_SkyChase1, 0x027D6D58, 3);
 
-NJS_MATERIAL* LevelSpecular_Subgames[] = {
+static const NJS_MATERIAL* LevelSpecular_Subgames[] = {
 	//Tornado 2 transformation cutscene
 	((NJS_MATERIAL*)0x0285F230),
 	((NJS_MATERIAL*)0x0285F028),
@@ -110,7 +110,7 @@ NJS_MATERIAL* LevelSpecular_Subgames[] = {
 	((NJS_MATERIAL*)0x028472DC),
 };
 
-NJS_MATERIAL* WhiteDiffuse_Subgames[] = {
+static const NJS_MATERIAL* WhiteDiffuse_Subgames[] = {
 	//Start and goal robot (Twinkle Circuit)
 	((NJS_MATERIAL*)0x009CC010),
 	((NJS_MATERIAL*)0x009CC024),
@@ -122,7 +122,7 @@ NJS_MATERIAL* WhiteDiffuse_Subgames[] = {
 	((NJS_MATERIAL*)0x009CC09C),
 };
 
-NJS_MATERIAL* ObjectBaseAndSpecular_Subgames[] = {
+static const NJS_MATERIAL* ObjectBaseAndSpecular_Subgames[] = {
 	//Tornado 2 transformation cutscene
 	((NJS_MATERIAL*)0x028634D8),
 	((NJS_MATERIAL*)0x028634EC),
@@ -529,7 +529,6 @@ void DrawBeam_Lol(float frame)
 void __cdecl SkyChaseBeam1_Display_Fix(ObjectMaster *a1)
 {
 	EntityData1 *v1; // esi
-
 	v1 = a1->Data1;
 	PrintDebug("Action: %f\n", *(float *)&v1->CharIndex);
 	njPushMatrix(0);
@@ -755,6 +754,7 @@ void TwinkleCircuit_Init()
 		}
 		ModelsLoaded_MINICART = true;
 	}
+	if (!ModelsLoaded_ShareObj) ShareObj_Init();
 }
 
 void SandHill_Init()

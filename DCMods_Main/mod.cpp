@@ -88,6 +88,7 @@ LandTableInfo *AL_RACE_0_Info = nullptr;
 LandTableInfo *AL_RACE_1_Info = nullptr;
 
 bool ModelsLoaded_General = false;
+bool ModelsLoaded_ShareObj = false;
 bool ModelsLoaded_Chao = false;
 bool ModelsLoaded_STG00 = false;
 bool ModelsLoaded_STG01 = false;
@@ -624,7 +625,7 @@ extern "C"
 				}
 				else
 				{
-					if (UVAnimationData_Permanent[i].level == CurrentLevel && UVAnimationData_Permanent[i].act == CurrentAct) AnimateUVs(&UVAnimationData_Permanent[i]);
+					if (UVAnimationData_Permanent[i].level == CurrentLevel && (UVAnimationData_Permanent[i].act == CurrentAct || UVAnimationData_Permanent[i].act == -1)) AnimateUVs(&UVAnimationData_Permanent[i]);
 					if (UVAnimationData[i].level == CurrentLevel && UVAnimationData[i].act == CurrentAct) AnimateUVs(&UVAnimationData[i]);
 					if (TextureAnimationData[i].level == CurrentLevel && TextureAnimationData[i].act == CurrentAct) AnimateTexture(&TextureAnimationData[i]);
 					if (TextureAnimationData_Permanent[i].level == CurrentLevel && TextureAnimationData_Permanent[i].act == CurrentAct) AnimateTexture(&TextureAnimationData_Permanent[i]);
@@ -650,7 +651,8 @@ extern "C"
 		if (EnablePerfectChaos) PerfectChaos_OnFrame();
 		if (EnableEmeraldCoast) EmeraldCoast_OnFrame();
 		if (EnableWindyValley) WindyValley_OnFrame();
-		if (EnableTwinklePark) TwinklePark_OnFrame();
+		//if (EnableTwinklePark) TwinklePark_OnFrame();
+		//if (EnableTwinklePark || EnableTwinkleCircuit) ShareObj_OnFrame();
 		if (EnableSpeedHighway) SpeedHighway_OnFrame();
 		if (EnableRedMountain) RedMountain_OnFrame();
 		if (EnableSkyDeck) SkyDeck_OnFrame();

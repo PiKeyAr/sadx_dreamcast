@@ -1,8 +1,6 @@
 #include "stdafx.h"
 #include "GenericData.h"
 
-static NJS_MESHSET_SADX DeadMeshset = { NJD_MESHSET_N | 0, 0, NULL, NULL, NULL, NULL, NULL, NULL };
-
 void HideMesh_Object(NJS_OBJECT *object, int meshID)
 {
 	if (object->basicdxmodel)
@@ -181,7 +179,7 @@ void AnimateTexture(TextureAnimation *texanim)
 
 void AnimateUVs(UVAnimation *animation)
 {
-	if (CurrentLevel == animation->level && CurrentAct == animation->act)
+	if (CurrentLevel == animation->level && (CurrentAct == animation->act || animation->act == -1))
 	{
 		int actualtimer = 1;
 		//Calculate animation speed if in 30 or 15 FPS mode
@@ -374,7 +372,7 @@ void AddUVAnimation_Permanent(int level, int act, NJS_TEX* uv, int uv_count, int
 {
 	for (int i = 0; i < LengthOfArray(UVAnimationData_Permanent); i++)
 	{
-		if (UVAnimationData_Permanent[i].uv_pointer == uv)
+		if (UVAnimationData_Permanent[i].uv_pointer == uv && UVAnimationData_Permanent[i].level == level && UVAnimationData_Permanent[i].act == act)
 		{
 			//PrintDebug("Duplicate UVs found\n");
 			return;
