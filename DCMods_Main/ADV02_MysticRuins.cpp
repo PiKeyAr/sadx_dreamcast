@@ -171,7 +171,7 @@ void SetBlockEntryMaterialColor(float a, float r, float g, float b)
 
 void MasterEmeraldFix(NJS_OBJECT* obj, float scale)
 {
-	DrawQueueDepthBias = 2000.0f;
+	if (!(EV_MainThread_ptr && CutsceneID == 128)) DrawQueueDepthBias = 2000.0f;
 	ProcessModelNode_D_WrapperB(obj, 1, 1.0f);
 	DrawQueueDepthBias = 0.0f;
 }
@@ -186,7 +186,7 @@ float __fastcall MrEmeTimer(Angle n)
 
 void DrawMasterEmeraldGlow(NJS_MODEL_SADX* model, QueuedModelFlagsB blend, float scale)
 {
-	DrawQueueDepthBias = 4000.0f;
+	if (!(EV_MainThread_ptr && CutsceneID == 128)) DrawQueueDepthBias = 4000.0f;
 	DrawModel_QueueVisible(model, blend, scale);
 	DrawQueueDepthBias = 0.0f;
 }

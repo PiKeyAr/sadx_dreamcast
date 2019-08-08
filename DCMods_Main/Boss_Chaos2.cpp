@@ -6,6 +6,8 @@ NJS_TEXLIST texlist_chaos2 = { arrayptrandlength(textures_chaos2) };
 //#include "Chaos2.h"
 //#include "Chaos2_Objects.h"
 //Todo: try to sort the chandelier model manually
+//Chaos 2 ball right after being attacked should use object light type
+//And puddle too, in the custcene after Chaos 2 is defeated
 
 DataArray(FogData, Chaos2Fog, 0x01120638, 3);
 

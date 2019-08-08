@@ -5,7 +5,9 @@
 //#include "Animals.h"
 //#include "Frogs.h"
 //#include "RobotChest.h"
+//TODO: Fix all Capture Beam cutscenes
 //TODO: Replicate goal emerald glow exactly
+//TODO: Chaos puddle in Knuckles' "Chaos 4 emerges" cutscene shouldn't ignore lighting (use specular 3)
 
 NJS_TEXANIM EmeraldGlowTexanim = { 64, 64, 32, 32, 0, 0, 0xFF, 0xFF, 3, 0 };
 NJS_SPRITE EmeraldGlowSprite = { { 0.0f, 5.2f, 0.0f }, 0.5f, 0.5f, 0, (NJS_TEXLIST*)0xC3FE20, &EmeraldGlowTexanim };
@@ -1447,11 +1449,12 @@ void GeoAnimFix(NJS_ACTION* a1, float a2, int a3, float a4)
 	else njAction_Queue_407BB0_2(a1, a2, a3, a4);
 }
 
-void BeamFix(NJS_OBJECT *a1, QueuedModelFlagsB a2, float a3)
+void CaptureBeamFix(NJS_OBJECT *a1, QueuedModelFlagsB a2, float a3)
 {
 	//53 - Sonic and Tails gassed at Casinopolis (Tails)
 	//57 - Chaos 4 emerges (Tails)
-	if (CutsceneID == 53 || CutsceneID == 57)
+	//139 - Chaos 4 emerges (Knuckles)
+	if (CutsceneID == 53 || CutsceneID == 57 || CutsceneID == 139)
 	{
 		DrawQueueDepthBias = 8000.0f;
 		ProcessModelNode_D_WrapperB(a1, a2, a3);
@@ -1629,7 +1632,7 @@ void General_Init()
 		ForceLightType_Object(SONIC_OBJECTS[71], 2, false);
 		ForceLightType_Object(MILES_OBJECTS[71], 2, false);
 		//The beam that collects the emerald in "Sonic and Tails gassed at Casinopolis" cutscene
-		WriteCall((void*)0x6F37DC, BeamFix);
+		WriteCall((void*)0x6F37DC, CaptureBeamFix);
 		//Big's fishing thing fix
 		WriteCall((void*)0x46C547, BigFishingThingFix);
 		//Metal Sonic afterimage fix

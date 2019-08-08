@@ -1,5 +1,8 @@
 #include "stdafx.h"
 
+//TODO: Water ripples in Knuckles' cutscene "My father is coming here soon" aren't positioned exactly like on DC
+//TODO: Pacman's eyes (the invisible bit) don't ignore specular
+
 NJS_TEXNAME textures_past0[60];
 NJS_TEXLIST texlist_past00 = { arrayptrandlength(textures_past0) };
 
