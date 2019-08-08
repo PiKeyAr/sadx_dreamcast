@@ -177,7 +177,6 @@
     <ClInclude Include="Data\EmeraldCoast1.h" />
     <ClInclude Include="Data\EmeraldCoast2.h" />
     <ClInclude Include="Data\EmeraldCoast3.h" />
-    <ClInclude Include="Data\EmeraldCoast_Objects.h" />
     <ClInclude Include="Data\FinalEgg1.h" />
     <ClInclude Include="Data\FinalEgg2.h" />
     <ClInclude Include="Data\FinalEgg3.h" />

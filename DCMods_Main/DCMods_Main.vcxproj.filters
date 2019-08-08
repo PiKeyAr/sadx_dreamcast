@@ -284,9 +284,6 @@
     <ClInclude Include="Data\EggWalker.h">
       <Filter>Header Files\Levels\Bosses</Filter>
     </ClInclude>
-    <ClInclude Include="Data\EmeraldCoast_Objects.h">
-      <Filter>Header Files\Levels\EmeraldCoast</Filter>
-    </ClInclude>
     <ClInclude Include="Data\EmeraldCoast1.h">
       <Filter>Header Files\Levels\EmeraldCoast</Filter>
     </ClInclude>
