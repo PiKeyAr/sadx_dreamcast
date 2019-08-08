@@ -78,31 +78,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="DC_Branding.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="DC_General.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="DC_Subgames.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="mod.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="stdafx.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SkyChaseFixes.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Videos.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SADXStyleWater.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GenericFunctions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Boss_Chaos0.cpp">
@@ -183,9 +159,6 @@
     <ClCompile Include="ADV02_MysticRuins.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="FramerateFixes.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="AL_ChaoRace.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -195,7 +168,34 @@
     <ClCompile Include="ADV0130_EggCarrierInside.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Init_Global.cpp">
+    <ClCompile Include="Common_SkyChaseFixes.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Common_SADXStyleWater.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Common_GenericFunctions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Common_FramerateFixes.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Common_Subgames.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Common_General.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Common_Branding.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Common_Startup.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Common_Videos.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
