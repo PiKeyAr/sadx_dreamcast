@@ -1634,7 +1634,6 @@ void General_Init()
 		RemoveVertexColors_Object(E102_OBJECTS[18]);
 		RemoveVertexColors_Object(E102_OBJECTS[20]);
 		RemoveVertexColors_Object(E102_ACTIONS[50]->object);
-		RemoveVertexColors_Object((NJS_OBJECT*)0x14DE020); //E101 boss model
 		WriteData<1>((char*)0x47FDF9, 0x08); //Gamma constant material thing
 		WriteData<1>((char*)0x4CFC05, 0x08); //Zero constant material thing
 		WriteData<1>((char*)0x4CFC99, 0x08); //Zero constant material thing
