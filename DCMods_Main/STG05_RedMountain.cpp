@@ -2,7 +2,6 @@
 #include "RM_Objects.h"
 
 //TODO: Hammer shadow maybe?
-//TODO: Pre-transformed EV Tornado glass maybe
 
 NJS_TEXNAME textures_mountain1[45];
 NJS_TEXLIST texlist_mountain1 = { arrayptrandlength(textures_mountain1) };

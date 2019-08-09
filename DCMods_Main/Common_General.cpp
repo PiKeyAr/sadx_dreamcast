@@ -1327,6 +1327,11 @@ void CutsceneAnimationHook2(NJS_ACTION *anim, float a2, QueuedModelFlagsB a3)
 	{
 		njAction_Queue_407FC0(anim, a2, a3);
 	}
+	//Event Tornado 2
+	if (anim->object == Tornado2Pointer->object)
+	{
+		njAction_Queue_407FC0(anim, a2, a3);
+	}
 	else njAction_Queue_407BB0(anim, a2, a3);
 }
 
@@ -1600,7 +1605,7 @@ void General_Init()
 				((NJS_ACTION*)0x2CD393C)->object->child->child->basicdxmodel->mats[4].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
 			}
 			//Event Tornado 2 pre-transformed light type fix
-			ForceLightType_Object(Tornado2Pointer->object->child->sibling->sibling->sibling->sibling, 2, false);
+			ForceLightType_Object(Tornado2Pointer->object, 2, false);
 			//Event Tornado 2 transformed specular fix
 			ForceObjectSpecular_Object(Tornado2ChangeAction.object->child, false);
 			//Event Tornado 2 transformed emerald transparency fix
