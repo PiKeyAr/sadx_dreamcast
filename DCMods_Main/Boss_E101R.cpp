@@ -1,5 +1,5 @@
 #include "stdafx.h"
-//TODO: Figure out why the rockets are yellow
+
 DataArray(FogData, Fog_E101R, 0x015225F0, 3);
 DataArray(DrawDistance, DrawDist_E101R, 0x015225D8, 3);
 
@@ -137,6 +137,18 @@ void FixFVFZWrite(FVFStruct_H_B *a1, signed int count, int a3)
 void RenderE101R_Rocket(NJS_OBJECT *a1, NJS_MOTION *a2, float a3)
 {
 	SetMaterialAndSpriteColor_Float(1.0f, 1.0f, 1.0f, 1.0f);
+	a1->child->basicdxmodel->mats[0].diffuse.color = 0xFF000000;
+	a1->child->basicdxmodel->mats[0].attrflags = 0x96202400;
+	a1->child->basicdxmodel->mats[0].attr_texId = 68;
+	a1->child->sibling->basicdxmodel->mats[0].diffuse.color = 0xFF000000;
+	a1->child->sibling->basicdxmodel->mats[0].attrflags = 0x96202400;
+	a1->child->sibling->basicdxmodel->mats[0].attr_texId = 68;
+	a1->child->sibling->sibling->basicdxmodel->mats[0].diffuse.color = 0xFF000000;
+	a1->child->sibling->sibling->basicdxmodel->mats[0].attrflags = 0x96202400;
+	a1->child->sibling->sibling->basicdxmodel->mats[0].attr_texId = 68;
+	a1->child->sibling->sibling->sibling->basicdxmodel->mats[0].diffuse.color = 0xFF000000;
+	a1->child->sibling->sibling->sibling->basicdxmodel->mats[0].attrflags = 0x96202400;
+	a1->child->sibling->sibling->sibling->basicdxmodel->mats[0].attr_texId = 68;
 	njAction_QueueObject(a1, a2, a3);
 	ClampGlobalColorThing_Thing();
 }
@@ -168,7 +180,7 @@ void E101R_Init()
 		ReplacePVM("E101R_BG");
 		if (!ModelsLoaded_B_ROBO) ReplacePVM("E101R_TIKEI");
 		ReplaceGeneric("E101R_GC.NB", "E101R_DC.NB");
-		//WriteCall((void*)0x570DB1, RenderE101R_Rocket); //Idk yet
+		WriteCall((void*)0x570DB1, RenderE101R_Rocket); //Can't access the model directly so I have to do this
 		WriteCall((void*)0x56F839, E101R_Particle_Show);
 		WriteCall((void*)0x4CC13F, E101R_SmallBalls_Show);
 		WriteCall((void*)0x4CC1C7, E101R_SmallBalls_Show);

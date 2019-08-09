@@ -105,7 +105,17 @@ void Init_Global()
 	RemoveVertexColors_Object((NJS_OBJECT*)0x330A4D0); //Eggman in Egg Hornet cutscene model
 	RemoveVertexColors_Object((NJS_OBJECT*)0x2EEB524); //Eggman in Eggmobile in cutscenes (EV_EGGMOBLE0)
 	WriteData<1>((char*)0x568D20, 0xC3u); //Disable SetClip_E101R
-	RemoveVertexColors_Object((NJS_OBJECT*)0x02DA8664); //E101R model in cutscenes
+	RemoveVertexColors_Object((NJS_OBJECT*)0x2DA8664); //E101R model in cutscenes
+	((NJS_OBJECT*)0x2DA770C)->basicdxmodel->mats[2].attrflags |= NJD_FLAG_IGNORE_LIGHT; //E101R model in cutscenes
+	((NJS_OBJECT*)0x2DA770C)->basicdxmodel->mats[5].attrflags |= NJD_FLAG_IGNORE_LIGHT; //E101R model in cutscenes
+	((NJS_OBJECT*)0x2DA3064)->basicdxmodel->mats[1].attrflags |= NJD_FLAG_IGNORE_LIGHT; //E101R model in cutscenes
+	((NJS_OBJECT*)0x2DA6364)->basicdxmodel->mats[1].attrflags |= NJD_FLAG_IGNORE_LIGHT; //E101R model in cutscenes
+	((NJS_OBJECT*)0x2DA2A2C)->basicdxmodel->mats[3].attrflags |= NJD_FLAG_IGNORE_LIGHT; //E101R model in cutscenes
+	((NJS_OBJECT*)0x2DA1014)->basicdxmodel->mats[3].attrflags |= NJD_FLAG_IGNORE_LIGHT; //E101R model in cutscenes
+	((NJS_OBJECT*)0x2DA3064)->basicdxmodel->mats[1].attrflags |= NJD_FLAG_IGNORE_LIGHT; //E101R model in cutscenes
+	((NJS_OBJECT*)0x2DA1444)->basicdxmodel->mats[1].attrflags |= NJD_FLAG_IGNORE_LIGHT; //E101R model in cutscenes
+	((NJS_OBJECT*)0x2DA3CEC)->basicdxmodel->mats[1].attrflags |= NJD_FLAG_IGNORE_LIGHT; //E101R model in cutscenes
+	((NJS_OBJECT*)0x2DA39EC)->basicdxmodel->mats[1].attrflags |= NJD_FLAG_IGNORE_LIGHT; //E101R model in cutscenes
 	RemoveVertexColors_Object((NJS_OBJECT*)0x269D214); //Eggmobile 2P
 	RemoveVertexColors_Object((NJS_OBJECT*)0x269EE24); //Eggman 2P
 	RemoveVertexColors_Object((NJS_OBJECT*)0x2C66BAC); //Chaos 0 in cutscenes

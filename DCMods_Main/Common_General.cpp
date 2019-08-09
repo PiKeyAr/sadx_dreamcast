@@ -1989,12 +1989,12 @@ void General_OnFrame()
 	//Alpha rejection
 	if (DLLLoaded_Lantern)
 	{
-		if (AlphaRejectionMode == 0 && CurrentLevel != 25 && GameMode != GameModes_CharSel && GameMode != GameModes_Menu && CurrentChaoStage != 2)
+		if (AlphaRejectionMode == 0 && GameMode != GameModes_CharSel && GameMode != GameModes_Menu && CurrentChaoStage != 2)
 		{
 			WriteData((char*)0x7919CD, 0i8);
 			AlphaRejectionMode = 1;
 		}
-		if (AlphaRejectionMode == 1 && (CurrentLevel == 25 || GameMode == GameModes_CharSel || GameMode == GameModes_Menu || CurrentChaoStage == 2))
+		if (AlphaRejectionMode == 1 && (GameMode == GameModes_CharSel || GameMode == GameModes_Menu || CurrentChaoStage == 2))
 		{
 			WriteData<1>((char*)0x7919CD, 0x16u);
 			AlphaRejectionMode = 0;
