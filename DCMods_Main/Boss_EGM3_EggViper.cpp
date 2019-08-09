@@ -106,7 +106,6 @@ void EggViper_Init()
 	}
 	if (!ModelsLoaded_B_EGM3)
 	{
-		ReplaceBIN("PL_M0B", "PL_M0X");
 		if (!Use1999SetFiles)
 		{
 			ReplaceBIN_DC("SETEGM3S");

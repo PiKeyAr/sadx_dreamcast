@@ -291,7 +291,6 @@ void ADV01C_Init()
 		ReplacePVM("EC_EGGLIFT");
 		ReplacePVM("EC_TARAI");
 		ReplacePVM("PVME101FACTORY");
-		ReplaceBIN("PL_W1B", "PL_W1X");
 		ADV01C_TEXLISTS[15] = &texlist_ec30;
 		ADV01C_TEXLISTS[16] = &texlist_ec31;
 		ADV01C_TEXLISTS[17] = &texlist_ec32;

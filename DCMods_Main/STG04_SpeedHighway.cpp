@@ -396,8 +396,6 @@ void SpeedHighway_Init()
 	WriteData((LandTable**)0x97DA90, STG04_2);
 	if (!ModelsLoaded_STG04)
 	{
-		ReplaceBIN("PL_40B", "PL_40X");
-		ReplaceBIN("PL_41B", "PL_41X");
 		ReplaceBIN_DC("CAM0400M");
 		ReplaceBIN_DC("CAM0400S");
 		ReplaceBIN_DC("CAM0401S");

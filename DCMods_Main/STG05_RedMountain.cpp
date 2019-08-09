@@ -162,7 +162,6 @@ void RedMountain_Init()
 		ReplacePVM("MOUNTAIN_STEAM");
 		ReplacePVM("OBJ_MOUNTAIN");
 		ReplacePVM("YOUGAN_ANIM");
-		ReplaceBIN("PL_51B", "PL_51X");
 		WriteData<1>((char*)0x600700, 0xC3u); //Disable SetClip_RedMountain
 		//Cloud fixes
 		RMCloudTop = LoadModel("system\\data\\STG05\\Models\\00183AF8.sa1mdl", false);

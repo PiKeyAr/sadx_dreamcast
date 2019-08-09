@@ -440,10 +440,14 @@ extern "C"
 			WriteCall((void*)0x4232C9, ADV01_Init);
 			WriteCall((void*)0x4233BB, ADV01C_Init);
 			ResizeTextureList(&OBJ_EC00_TEXLIST, 206);
+			ReplaceBIN("PL_W1B", "PL_W1X");
 		}
 		if (EnableMysticRuins)
 		{
 			WriteCall((void*)0x4234AD, ADV02_Init);
+			ReplaceBIN("SL_X0B", "SL_X0X"); //Day light direction override
+			ReplaceBIN("SL_X1B", "SL_X1X"); //Evening light direction override
+			ReplaceBIN("SL_X2B", "SL_X2X"); //Night light direction override
 		}
 		if (EnablePast)
 		{
@@ -481,6 +485,8 @@ extern "C"
 			ResizeTextureList((NJS_TEXLIST*)0x2592E8C, 89);
 			ResizeTextureList((NJS_TEXLIST*)0x2581310, 32);
 			ResizeTextureList((NJS_TEXLIST*)0x24CAC94, 107);
+			ReplaceBIN("PL_40B", "PL_40X");
+			ReplaceBIN("PL_41B", "PL_41X");
 		}
 		if (EnableRedMountain)
 		{
@@ -488,6 +494,7 @@ extern "C"
 			ResizeTextureList((NJS_TEXLIST*)0x230FDF4, 45);
 			ResizeTextureList((NJS_TEXLIST*)0x229B8CC, 43);
 			ResizeTextureList((NJS_TEXLIST*)0x224096C, 27);
+			ReplaceBIN("PL_51B", "PL_51X");
 		}
 		if (EnableSkyDeck)
 		{
@@ -521,6 +528,7 @@ extern "C"
 			ResizeTextureList((NJS_TEXLIST*)0x1C8AF04, 26);
 			ResizeTextureList((NJS_TEXLIST*)0x1C47004, 71);
 			ResizeTextureList(&OBJ_CASINO9_TEXLIST, 203);
+			ReplaceBIN("PL_90B", "PL_90X");
 		}
 		if (EnableFinalEgg)
 		{
@@ -529,6 +537,7 @@ extern "C"
 			ResizeTextureList((NJS_TEXLIST*)0x1A60488, 68);
 			ResizeTextureList((NJS_TEXLIST*)0x1AC5780, 90);
 			ResizeTextureList(&OBJ_FINALEGG_TEXLIST, 169);
+			ReplaceBIN("PL_A2B", "PL_A2X");
 		}
 		if (EnableHotShelter)
 		{
@@ -577,6 +586,7 @@ extern "C"
 		{
 			WriteCall((void*)0x423178, EggViper_Init);
 			ResizeTextureList((NJS_TEXLIST*)0x167E5CC, 45);
+			ReplaceBIN("PL_M0B", "PL_M0X");
 		}
 		if (EnableE101)
 		{
