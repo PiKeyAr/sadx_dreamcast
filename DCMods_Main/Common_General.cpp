@@ -6,11 +6,10 @@
 //#include "Frogs.h"
 //#include "RobotChest.h"
 //TODO: Fix all Capture Beam cutscenes
-//TODO: Replicate goal emerald glow exactly
 //TODO: Chaos puddle in Knuckles' "Chaos 4 emerges" cutscene shouldn't ignore lighting (use specular 3)
 
 NJS_TEXANIM EmeraldGlowTexanim = { 64, 64, 32, 32, 0, 0, 0xFF, 0xFF, 3, 0 };
-NJS_SPRITE EmeraldGlowSprite = { { 0.0f, 5.2f, 0.0f }, 0.5f, 0.5f, 0, (NJS_TEXLIST*)0xC3FE20, &EmeraldGlowTexanim };
+NJS_SPRITE EmeraldGlowSprite = { { 0.0f, 5.0f, 0.0f }, 0.35f, 0.35f, 61439, (NJS_TEXLIST*)0xC3FE20, &EmeraldGlowTexanim };
 NJS_VECTOR EmeraldGlowPosition = { 0, 10, 0 };
 
 NJS_TEXANIM Heat1Texanim = { 56, 64, 28, 32, 0, 0, 0xFF, 0xFF, 2, 0 };
@@ -318,10 +317,10 @@ void RenderEmeraldWithGlow_Windy(NJS_OBJECT *object, int flags)
 	DisableFog();
 	float finalcolor = (min(255, EmeraldGlowAlpha) / 255.0f);
 	SetMaterialAndSpriteColor_Float(1.0f, finalcolor, finalcolor, finalcolor);
-	//SetMaterialAndSpriteColor_Float(1.0f, 1.0f, 1.0f, 1.0f);
 	njTranslateV(0, &EmeraldGlowPosition);
 	njRotateXYZ(0, Camera_Data1->Rotation.x, Camera_Data1->Rotation.y, 0);
-	njDrawSprite3D_Queue(&EmeraldGlowSprite, 0, NJD_SPRITE_ALPHA | NJD_SPRITE_COLOR, (QueuedModelFlagsB)4);
+	njDrawSprite3D_Queue(&EmeraldGlowSprite, 0, NJD_SPRITE_ALPHA | NJD_SPRITE_COLOR | NJD_SPRITE_ANGLE, (QueuedModelFlagsB)4);
+	njDrawSprite3D_Queue(&EmeraldGlowSprite, 0, NJD_SPRITE_ALPHA | NJD_SPRITE_COLOR | NJD_SPRITE_ANGLE, (QueuedModelFlagsB)4);
 	njColorBlendingMode(NJD_SOURCE_COLOR, NJD_COLOR_BLENDING_SRCALPHA);
 	njColorBlendingMode(NJD_DESTINATION_COLOR, NJD_COLOR_BLENDING_INVSRCALPHA);
 	ClampGlobalColorThing_Thing();
@@ -350,7 +349,8 @@ void RenderEmeraldWithGlow_Ice(NJS_OBJECT *object, int flags, float scale)
 	//SetMaterialAndSpriteColor_Float(1.0f, 1.0f, 1.0f, 1.0f);
 	njTranslateV(0, &EmeraldGlowPosition);
 	njRotateXYZ(0, Camera_Data1->Rotation.x, Camera_Data1->Rotation.y, 0);
-	njDrawSprite3D_Queue(&EmeraldGlowSprite, 0, NJD_SPRITE_ALPHA | NJD_SPRITE_COLOR, (QueuedModelFlagsB)0);
+	njDrawSprite3D_Queue(&EmeraldGlowSprite, 0, NJD_SPRITE_ALPHA | NJD_SPRITE_COLOR | NJD_SPRITE_ANGLE, (QueuedModelFlagsB)4);
+	njDrawSprite3D_Queue(&EmeraldGlowSprite, 0, NJD_SPRITE_ALPHA | NJD_SPRITE_COLOR | NJD_SPRITE_ANGLE, (QueuedModelFlagsB)4);
 	njColorBlendingMode(NJD_SOURCE_COLOR, NJD_COLOR_BLENDING_SRCALPHA);
 	njColorBlendingMode(NJD_DESTINATION_COLOR, NJD_COLOR_BLENDING_INVSRCALPHA);
 	ClampGlobalColorThing_Thing();
