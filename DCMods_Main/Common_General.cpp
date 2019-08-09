@@ -1637,22 +1637,34 @@ void General_Init()
 		RemoveVertexColors_Object(E102_OBJECTS[18]);
 		RemoveVertexColors_Object(E102_OBJECTS[20]);
 		RemoveVertexColors_Object(E102_ACTIONS[50]->object);
+		RemoveVertexColors_Object((NJS_OBJECT*)0x14DE020); //E101 boss model
 		WriteData<1>((char*)0x47FDF9, 0x08); //Gamma constant material thing
 		WriteData<1>((char*)0x4CFC05, 0x08); //Zero constant material thing
 		WriteData<1>((char*)0x4CFC99, 0x08); //Zero constant material thing
+		WriteData<1>((char*)0x567CF2, 0x08); //E101 Beta (boss) constant material
 		E102_OBJECTS[0]->child->child->sibling->sibling->sibling->child->child->sibling->child->sibling->sibling->child->child->sibling->basicdxmodel->mats[8].attrflags &= ~NJD_FLAG_USE_ALPHA; //E102 unnecessary alpha
+		((NJS_OBJECT*)0x14D857C)->basicdxmodel->mats[1].attrflags |= NJD_FLAG_IGNORE_LIGHT; //E101 left eye (boss model)
+		((NJS_OBJECT*)0x14D857C)->basicdxmodel->mats[2].attrflags |= NJD_FLAG_IGNORE_LIGHT; //E101 nose (boss model)
+		((NJS_OBJECT*)0x14D887C)->basicdxmodel->mats[1].attrflags |= NJD_FLAG_IGNORE_LIGHT; //E101 right eye (boss model)
+		((NJS_OBJECT*)0x14D6504)->basicdxmodel->mats[2].attrflags |= NJD_FLAG_IGNORE_LIGHT; //E101 chest (boss model)
+		((NJS_OBJECT*)0x14D943C)->basicdxmodel->mats[3].attrflags &= ~NJD_FLAG_USE_ALPHA; //E101 unnecessary alpha (boss model)
 		((NJS_OBJECT*)0x312F714)->basicdxmodel->mats[3].attrflags &= ~NJD_FLAG_USE_ALPHA; //E101 unnecessary alpha (cutscene model)
 		((NJS_OBJECT*)0x30AB08C)->basicdxmodel->mats[3].attrflags &= ~NJD_FLAG_USE_ALPHA; //E103 unnecessary alpha (cutscene model)
 		((NJS_OBJECT*)0x30A290C)->basicdxmodel->mats[3].attrflags &= ~NJD_FLAG_USE_ALPHA; //E104 unnecessary alpha (cutscene model)
 		((NJS_OBJECT*)0x309A21C)->basicdxmodel->mats[3].attrflags &= ~NJD_FLAG_USE_ALPHA; //E105 unnecessary alpha (cutscene model)
 		WriteData((float*)0x47FE0F, 0.847f); //E102 (main model)
+		WriteData((float*)0x567D08, 0.847f); //E101 (boss model)
+		WriteData((float*)0x4E7BFD, 0.847f); //E103 (boss model)
+		WriteData((float*)0x4E7C40, 0.847f); //E103 (boss model/other)
+		WriteData((float*)0x605813, 0.847f); //E104 (boss model)
 		WriteData((float*)0x6F4718, 0.847f); //E101 (cutscene model)
-		WriteData((float*)0x4E7BFD, 0.847f); //E103 (reused Gamma model)
-		WriteData((float*)0x4E7C40, 0.847f); //E103 (reused Gamma model)
-		WriteData((float*)0x605813, 0.847f); //E104 (reused Gamma model)
 		WriteData((float*)0x6F3F94, 0.847f); //E103 (cutscene model)
 		WriteData((float*)0x6F3D54, 0.847f); //E104 (cutscene model)
 		WriteData((float*)0x6F3B24, 0.847f); //E105 (cutscene model)
+		ForceLightType_Object((NJS_OBJECT*)0x31342F8, 2, false); //E101 cutscene chest model light type
+		ForceLightType_Object((NJS_OBJECT*)0x30A7D44, 2, false); //E103 cutscene chest model light type
+		ForceLightType_Object((NJS_OBJECT*)0x309F5C4, 2, false); //E104 cutscene chest model light type
+		ForceLightType_Object((NJS_OBJECT*)0x3096F1C, 2, false); //E105 cutscene chest model light type
 		//Gamma's projectile fix. I have no idea why this works, but ok I guess
 		E102_OBJECTS[5]->basicdxmodel->mats[0].attr_texId = 10;
 		E102_OBJECTS[5]->basicdxmodel->mats[0].attrflags |= NJD_FLAG_USE_TEXTURE;
@@ -1666,6 +1678,11 @@ void General_Init()
 			ReplacePVM("OBJ_REGULAR");
 			ResizeTextureList(&OBJ_REGULAR_TEXLIST, 100); //Added DC ripple texture
 		}
+		//Gamma's dynamite
+		*(NJS_OBJECT*)0x8C9C4C = *LoadModel("system\\data\\1ST_READ\\Models\\001AAD68.sa1mdl", false);
+		((NJS_OBJECT*)0x8C9C4C)->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_USE_ALPHA; //I think it's supposed to be transparent but it looks like that on DC so...
+		((NJS_OBJECT*)0x8C9C4C)->basicdxmodel->mats[1].attrflags &= ~NJD_FLAG_USE_ALPHA; //But this one is totally unnecessary either way
+		ForceObjectSpecular_Object((NJS_OBJECT*)0x8C9C4C, false);
 		//Item box fixes
 		WriteCall((void*)0x4C0066, RenderItemBoxIcon);
 		ItemBoxAirModel = LoadModel("system\\data\\1ST_READ\\Models\\001AC4F4.sa1mdl", false);

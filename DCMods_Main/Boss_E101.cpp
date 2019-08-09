@@ -32,11 +32,6 @@ void E101_Init()
 		ReplacePVM("E101_TIKEI");
 		RemoveVertexColors_Object((NJS_OBJECT*)0x14DE020); //E101 boss model
 		RemoveVertexColors_Object((NJS_OBJECT*)0x14DEC5C); //E101 rocket
-		((NJS_OBJECT*)0x014D857C)->basicdxmodel->mats[1].attrflags |= NJD_FLAG_IGNORE_LIGHT; //E101R left eye
-		((NJS_OBJECT*)0x014D857C)->basicdxmodel->mats[2].attrflags |= NJD_FLAG_IGNORE_LIGHT; //E101R nose
-		((NJS_OBJECT*)0x014D887C)->basicdxmodel->mats[1].attrflags |= NJD_FLAG_IGNORE_LIGHT; //E101R right eye
-		WriteData((float*)0x00567D08, 0.85f); //E101 Beta (boss model) chest patch
-		((NJS_OBJECT*)0x014D943C)->basicdxmodel->mats[3].attrflags &= ~NJD_FLAG_USE_ALPHA; //E101 unnecessary alpha (boss model)
 		//E101 rocket (SL object)
 		((NJS_MATERIAL*)0x014DE5D0)->attrflags |= NJD_FLAG_IGNORE_LIGHT;
 		((NJS_MATERIAL*)0x014DE5E4)->attrflags |= NJD_FLAG_IGNORE_LIGHT;
