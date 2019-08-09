@@ -29,6 +29,7 @@ NJS_OBJECT* ItemBoxAirModel_ResizeChild = nullptr;
 DataPointer(float, GammaConstantMaterialAlpha, 0x47FE0F);
 DataPointer(NJS_OBJECT, stru_8B22F4, 0x8B22F4);
 DataPointer(NJS_MATRIX, nj_unit_matrix_, 0x389D650);
+DataPointer(NJS_TEXLIST, M_EM_BLACK_TEXLIST, 0x2E2C858);
 FunctionPointer(void, BarrierChild, (ObjectMaster *a1), 0x4BA1E0);
 FunctionPointer(void, sub_4083D0, (NJS_ACTION *a1, float a2, int a3), 0x4083D0);
 FunctionPointer(EntityData1*, sub_4B9430, (NJS_VECTOR *a1, NJS_VECTOR *a2, float a3), 0x4B9430);
@@ -67,7 +68,6 @@ int CutsceneFadeMode = 0;
 bool SkipPressed_Cutscene = false;
 static float EmeraldScale = 1.005f;
 static bool BigRodIgnoresSpecular = false;
-
 
 static const NJS_MATERIAL* Chaos4Materials[] = {
 	((NJS_MATERIAL*)0x0119D0FC),
@@ -1323,7 +1323,7 @@ void CutsceneAnimationHook1(NJS_ACTION *a1, float a2, QueuedModelFlagsB a3)
 void CutsceneAnimationHook2(NJS_ACTION *anim, float a2, QueuedModelFlagsB a3)
 {
 	//Chaos emeralds
-	if (CurrentTexList == &M_EM_BLUE_TEXLIST || CurrentTexList == &M_EM_GREEN_TEXLIST || CurrentTexList == &M_EM_WHITE_TEXLIST || CurrentTexList == &M_EM_PURPLE_TEXLIST || CurrentTexList == &M_EM_SKY_TEXLIST || CurrentTexList == &M_EM_YELLOW_TEXLIST || CurrentTexList == &M_EM_RED_TEXLIST)
+	if (CurrentTexList == &M_EM_BLUE_TEXLIST || CurrentTexList == &M_EM_GREEN_TEXLIST || CurrentTexList == &M_EM_WHITE_TEXLIST || CurrentTexList == &M_EM_PURPLE_TEXLIST || CurrentTexList == &M_EM_SKY_TEXLIST || CurrentTexList == &M_EM_YELLOW_TEXLIST || CurrentTexList == &M_EM_RED_TEXLIST || CurrentTexList == &M_EM_BLACK_TEXLIST)
 	{
 		njAction_Queue_407FC0(anim, a2, a3);
 	}
@@ -1595,6 +1595,8 @@ void General_Init()
 			if (((NJS_ACTION*)0x2CD393C)->object->child->child->basicdxmodel->mats[4].attrflags & NJD_FLAG_IGNORE_LIGHT)
 			{
 				ForceLevelSpecular_Object(((NJS_ACTION*)0x2CD393C)->object->child->child, false); //Prevent the glasses from "forgetting" specular in some cutscenes
+				ForceObjectSpecular_Object(((NJS_ACTION*)0x2CD393C)->object->child->child->sibling->sibling->child, false); //Right hand
+				ForceObjectSpecular_Object(((NJS_ACTION*)0x2CD393C)->object->child->child->sibling->child, false); //Left hand
 				((NJS_ACTION*)0x2CD393C)->object->child->child->basicdxmodel->mats[4].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
 			}
 			//Event Tornado 2 pre-transformed light type fix
