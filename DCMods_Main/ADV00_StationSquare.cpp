@@ -730,8 +730,7 @@ void ADV00_Init()
 		//Event helicopter (set up exactly like the Chaos 0 helicopter so lots of copy-paste here)
 		((NJS_ACTION*)0x2DBD864)->object = LoadModel("system\\data\\Other\\00011208.sa1mdl", false);
 		//UV-less stuff fix
-		((NJS_ACTION*)0x2DBD864)->object->child->child->child->basicdxmodel->mats[2].attr_texId = 10;
-		((NJS_ACTION*)0x2DBD864)->object->child->child->child->basicdxmodel->mats[2].attrflags |= NJD_FLAG_USE_TEXTURE;
+		((NJS_ACTION*)0x2DBD864)->object->child->child->child->basicdxmodel->mats[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
 		//Add white diffuse on opaque things (have to use a different function because it "forgets" the light type
 		AddWhiteDiffuseMaterial_Specular3(&((NJS_ACTION*)0x2DBD864)->object->child->sibling->sibling->sibling->sibling->child->basicdxmodel->mats[1]);
 		AddWhiteDiffuseMaterial_Specular3(&((NJS_ACTION*)0x2DBD864)->object->child->sibling->sibling->sibling->sibling->child->basicdxmodel->mats[2]);

@@ -171,8 +171,7 @@ void Chaos0_Init()
 		//Helicopter
 		BOSSCHAOS0_ACTIONS[17]->object = LoadModel("system\\data\\B_CHAOS0\\Models\\0005825C.sa1mdl", false);
 		//UV-less stuff fix
-		BOSSCHAOS0_ACTIONS[17]->object->child->child->child->basicdxmodel->mats[2].attr_texId = 26;
-		BOSSCHAOS0_ACTIONS[17]->object->child->child->child->basicdxmodel->mats[2].attrflags |= NJD_FLAG_USE_TEXTURE;
+		BOSSCHAOS0_ACTIONS[17]->object->child->child->child->basicdxmodel->mats[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
 		//Add white diffuse on opaque things
 		AddWhiteDiffuseMaterial(&BOSSCHAOS0_ACTIONS[17]->object->child->sibling->sibling->sibling->sibling->child->basicdxmodel->mats[1]);
 		AddWhiteDiffuseMaterial(&BOSSCHAOS0_ACTIONS[17]->object->child->sibling->sibling->sibling->sibling->child->basicdxmodel->mats[2]);
@@ -198,10 +197,8 @@ void Chaos0_Init()
 		BOSSCHAOS0_ACTIONS[18]->object->child->sibling->sibling->sibling->sibling->sibling->sibling->sibling->sibling->evalflags |= NJD_EVAL_HIDE;
 		BOSSCHAOS0_ACTIONS[18]->object->child->sibling->sibling->sibling->sibling->sibling->sibling->evalflags |= NJD_EVAL_HIDE;
 		//Make spinning things inside flashers (UV-less) dark like in SA1
-		BOSSCHAOS0_ACTIONS[18]->object->child->sibling->sibling->sibling->sibling->sibling->sibling->sibling->sibling->child->sibling->basicdxmodel->mats[0].attrflags |= NJD_FLAG_USE_TEXTURE;
-		BOSSCHAOS0_ACTIONS[18]->object->child->sibling->sibling->sibling->sibling->sibling->sibling->sibling->sibling->child->sibling->basicdxmodel->mats[0].attr_texId = 26;
-		BOSSCHAOS0_ACTIONS[18]->object->child->sibling->sibling->sibling->sibling->sibling->sibling->sibling->sibling->child->basicdxmodel->mats[0].attrflags |= NJD_FLAG_USE_TEXTURE;
-		BOSSCHAOS0_ACTIONS[18]->object->child->sibling->sibling->sibling->sibling->sibling->sibling->sibling->sibling->child->basicdxmodel->mats[0].attr_texId = 26;
+		BOSSCHAOS0_ACTIONS[18]->object->child->sibling->sibling->sibling->sibling->sibling->sibling->sibling->sibling->child->sibling->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		BOSSCHAOS0_ACTIONS[18]->object->child->sibling->sibling->sibling->sibling->sibling->sibling->sibling->sibling->child->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
 		WriteCall((void*)0x0054968E, FixChaos0Car);
 		WriteData((float*)0x00549797, 0.12f); //Camera-based car light sprite scale
 		WriteData((float*)0x005497A1, 0.12f); //Camera-based car light sprite scale

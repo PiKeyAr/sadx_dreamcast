@@ -1538,20 +1538,16 @@ void General_Init()
 		if (DLLLoaded_SA1Chars)
 		{
 			//Regular model
-			if (!(((NJS_ACTION*)0x89E254)->object->child->child->basicdxmodel->mats[4].attrflags & NJD_FLAG_USE_TEXTURE))
+			if (((NJS_ACTION*)0x89E254)->object->child->child->basicdxmodel->mats[4].attrflags & NJD_FLAG_IGNORE_LIGHT)
 			{
 				ForceLevelSpecular_Object(((NJS_ACTION*)0x89E254)->object->child->child, false); //Prevent the glasses from "forgetting" specular in some cutscenes
-				((NJS_ACTION*)0x89E254)->object->child->child->basicdxmodel->mats[4].attrflags |= NJD_FLAG_USE_TEXTURE;
-				((NJS_ACTION*)0x89E254)->object->child->child->basicdxmodel->mats[4].attr_texId = 9;
-				((NJS_ACTION*)0x89E254)->object->child->child->basicdxmodel->mats[4].diffuse.color = 0xFF000000;
+				((NJS_ACTION*)0x89E254)->object->child->child->basicdxmodel->mats[4].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
 			}
 			//Event Eggmobile 0
-			if (!(((NJS_ACTION*)0x2CD393C)->object->child->child->basicdxmodel->mats[4].attrflags & NJD_FLAG_USE_TEXTURE))
+			if (((NJS_ACTION*)0x2CD393C)->object->child->child->basicdxmodel->mats[4].attrflags & NJD_FLAG_IGNORE_LIGHT)
 			{
 				ForceLevelSpecular_Object(((NJS_ACTION*)0x2CD393C)->object->child->child, false); //Prevent the glasses from "forgetting" specular in some cutscenes
-				((NJS_ACTION*)0x2CD393C)->object->child->child->basicdxmodel->mats[4].attrflags |= NJD_FLAG_USE_TEXTURE;
-				((NJS_ACTION*)0x2CD393C)->object->child->child->basicdxmodel->mats[4].attr_texId = 7;
-				((NJS_ACTION*)0x2CD393C)->object->child->child->basicdxmodel->mats[4].diffuse.color = 0xFF000000;
+				((NJS_ACTION*)0x2CD393C)->object->child->child->basicdxmodel->mats[4].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
 			}
 			//Event Tornado 2 pre-transformed light type fix
 			ForceLightType_Object(Tornado2Pointer->object->child->sibling->sibling->sibling->sibling, 2, false);
@@ -1561,6 +1557,7 @@ void General_Init()
 			SortModel(Tornado2ChangeAction.object->child->sibling->sibling);
 			//Event Tornado 2 transformation emerald transparency fix
 			SortModel(Tornado2TransformationAction.object->child->child->sibling->sibling->sibling->child);
+			//Tornado 2 white diffuse during transformation custcene
 			AddWhiteDiffuseMaterial(&Tornado2TransformationAction.object->child->child->sibling->sibling->sibling->child->basicdxmodel->mats[0]);
 			AddWhiteDiffuseMaterial(&Tornado2TransformationAction.object->child->child->sibling->sibling->sibling->child->basicdxmodel->mats[1]);
 			AddWhiteDiffuseMaterial(&Tornado2TransformationAction.object->child->child->sibling->sibling->sibling->child->basicdxmodel->mats[2]);
@@ -1590,7 +1587,7 @@ void General_Init()
 		RemoveVertexColors_Model((NJS_MODEL_SADX*)0x8B966C); //Capsule
 		RemoveVertexColors_Model((NJS_MODEL_SADX*)0x8BA2AC); //Capsule
 		*(NJS_OBJECT*)0x96F3F0 = *LoadModel("system\\data\\1ST_READ\\Models\\005B8C04.sa1mdl", false); //Unidus spinning part
-		((NJS_OBJECT*)0x96F3F0)->basicdxmodel->mats[1].diffuse.color = 0x00000000;
+		((NJS_OBJECT*)0x96F3F0)->basicdxmodel->mats[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
 		*(NJS_OBJECT*)0x954D28 = *LoadModel("system\\data\\1ST_READ\\Models\\005A2DDC.sa1mdl", false); //Leon eyes
 		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x954D28)->child->basicdxmodel->mats[1]);
 		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x954D28)->child->basicdxmodel->mats[2]);

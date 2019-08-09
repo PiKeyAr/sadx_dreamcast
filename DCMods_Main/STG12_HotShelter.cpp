@@ -648,18 +648,10 @@ void HotShelter_Init()
 		WriteCall((void*)0x59D444, RenderOHikari); //Add back OHikari green light
 		//E105 boss missile
 		*(NJS_OBJECT*)0x17DF53C = *LoadModel("system\\data\\STG12\\Models\\0019F8E4.sa1mdl", false);
-		((NJS_OBJECT*)0x17DF53C)->child->basicdxmodel->mats[0].diffuse.color = 0xFF000000;
-		((NJS_OBJECT*)0x17DF53C)->child->basicdxmodel->mats[0].attrflags |= NJD_FLAG_USE_TEXTURE;
-		((NJS_OBJECT*)0x17DF53C)->child->basicdxmodel->mats[0].attr_texId = 3;
-		((NJS_OBJECT*)0x17DF53C)->child->sibling->basicdxmodel->mats[0].diffuse.color = 0xFF000000;
-		((NJS_OBJECT*)0x17DF53C)->child->sibling->basicdxmodel->mats[0].attrflags |= NJD_FLAG_USE_TEXTURE;
-		((NJS_OBJECT*)0x17DF53C)->child->sibling->basicdxmodel->mats[0].attr_texId = 3;
-		((NJS_OBJECT*)0x17DF53C)->child->sibling->sibling->basicdxmodel->mats[0].diffuse.color = 0xFF000000;
-		((NJS_OBJECT*)0x17DF53C)->child->sibling->sibling->basicdxmodel->mats[0].attrflags |= NJD_FLAG_USE_TEXTURE;
-		((NJS_OBJECT*)0x17DF53C)->child->sibling->sibling->basicdxmodel->mats[0].attr_texId = 3;
-		((NJS_OBJECT*)0x17DF53C)->child->sibling->sibling->sibling->basicdxmodel->mats[0].diffuse.color = 0xFF000000;
-		((NJS_OBJECT*)0x17DF53C)->child->sibling->sibling->sibling->basicdxmodel->mats[0].attrflags |= NJD_FLAG_USE_TEXTURE;
-		((NJS_OBJECT*)0x17DF53C)->child->sibling->sibling->sibling->basicdxmodel->mats[0].attr_texId = 3;
+		((NJS_OBJECT*)0x17DF53C)->child->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_OBJECT*)0x17DF53C)->child->sibling->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_OBJECT*)0x17DF53C)->child->sibling->sibling->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+		((NJS_OBJECT*)0x17DF53C)->child->sibling->sibling->sibling->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
 		//OLight3
 		OLight3_1 = LoadModel("system\\data\\STG12\\Models\\0011E380.sa1mdl", false);
 		OLight3_2 = LoadModel("system\\data\\STG12\\Models\\0011E380.sa1mdl", false);

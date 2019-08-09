@@ -408,12 +408,9 @@ void SkyDeck_Init()
 		WriteCall((void*)0x005ED72F, RenderSmallCloud);
 		WriteJump((void*)0x005ED1E0, SkyDeckSky_new);
 		//Some material fixes
-		((NJS_OBJECT*)0x95A334)->basicdxmodel->mats[4].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		((NJS_OBJECT*)0x95A334)->basicdxmodel->mats[4].diffuse.color = 0xFF000000;
-		((NJS_OBJECT*)0x95D0F4)->basicdxmodel->mats[7].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		((NJS_OBJECT*)0x95D0F4)->basicdxmodel->mats[7].diffuse.color = 0xFF000000;
-		((NJS_OBJECT*)0x95C204)->basicdxmodel->mats[7].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		((NJS_OBJECT*)0x95C204)->basicdxmodel->mats[7].diffuse.color = 0xFF000000;
+		((NJS_OBJECT*)0x95D0F4)->basicdxmodel->mats[7].attrflags &= ~NJD_FLAG_IGNORE_LIGHT; //Aircraft
+		((NJS_OBJECT*)0x95A334)->basicdxmodel->mats[4].attrflags &= ~NJD_FLAG_IGNORE_LIGHT; //Some rocket or whatever
+		((NJS_OBJECT*)0x95C204)->basicdxmodel->mats[7].attrflags &= ~NJD_FLAG_IGNORE_LIGHT; //Some other thing related to aircraft
 		//Lol wtf is this? Disable robot underwear?
 		WriteData((float*)0x005F4D20, 1.0f);
 		WriteData((float*)0x005F4D28, 1.0f);
