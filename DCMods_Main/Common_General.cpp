@@ -68,6 +68,52 @@ bool SkipPressed_Cutscene = false;
 static float EmeraldScale = 1.005f;
 static bool BigRodIgnoresSpecular = false;
 
+
+static const NJS_MATERIAL* Chaos4Materials[] = {
+	((NJS_MATERIAL*)0x0119D0FC),
+	((NJS_MATERIAL*)0x0119B210),
+	((NJS_MATERIAL*)0x0119B224),
+	((NJS_MATERIAL*)0x0119ACA0),
+	((NJS_MATERIAL*)0x0119A600),
+	((NJS_MATERIAL*)0x0119A614),
+	((NJS_MATERIAL*)0x0119A010),
+	((NJS_MATERIAL*)0x01199D28),
+	((NJS_MATERIAL*)0x011997B8),
+	((NJS_MATERIAL*)0x01199380),
+	((NJS_MATERIAL*)0x01198F4C),
+	((NJS_MATERIAL*)0x01198B00),
+	((NJS_MATERIAL*)0x011986C8),
+	((NJS_MATERIAL*)0x01198468),
+	((NJS_MATERIAL*)0x01198030),
+	((NJS_MATERIAL*)0x01197DD0),
+	((NJS_MATERIAL*)0x011975E8),
+	((NJS_MATERIAL*)0x01197430),
+	((NJS_MATERIAL*)0x011972B0),
+	((NJS_MATERIAL*)0x011970F8),
+	((NJS_MATERIAL*)0x01196F78),
+	((NJS_MATERIAL*)0x01196254),
+	((NJS_MATERIAL*)0x011958D0),
+	((NJS_MATERIAL*)0x011953B8),
+	((NJS_MATERIAL*)0x01195200),
+	((NJS_MATERIAL*)0x01195080),
+	((NJS_MATERIAL*)0x01194B68),
+	((NJS_MATERIAL*)0x01194700),
+	((NJS_MATERIAL*)0x011942C8),
+	((NJS_MATERIAL*)0x01193EE0),
+	((NJS_MATERIAL*)0x01193B4C),
+	((NJS_MATERIAL*)0x01193734),
+	((NJS_MATERIAL*)0x01192DB0),
+	((NJS_MATERIAL*)0x01192898),
+	((NJS_MATERIAL*)0x011926E0),
+	((NJS_MATERIAL*)0x01192560),
+	((NJS_MATERIAL*)0x01192048),
+	((NJS_MATERIAL*)0x01191BD0),
+	((NJS_MATERIAL*)0x01191798),
+	((NJS_MATERIAL*)0x011913E0),
+	((NJS_MATERIAL*)0x0119104C),
+	((NJS_MATERIAL*)0x01190C30),
+};
+
 static const NJS_MATERIAL* WhiteDiffuse_General[] = {
 	//Mecha fish
 	((NJS_MATERIAL*)0x016F96C0),
@@ -2053,6 +2099,11 @@ void General_OnFrame()
 	else ((NJS_MATERIAL*)0x2D64FD8)->attrflags &= ~NJD_FLAG_IGNORE_LIGHT;	
 	//Chaos puddle in Final Story cutscenes
 	WriteCall((void*)0x7AF877, RenderChaosPuddle_Last); 
+	//Chaos 4 lighting in cutscenes
+	if (DLLLoaded_Lantern)
+	{
+		material_register_ptr(Chaos4Materials, LengthOfArray(Chaos4Materials), &Chaos4NPCFunction);
+	}
 	//Big's rod upgrade lighting - basically make it ignore specular when it's part of Big's model (upgrade attained), otherwise don't (field model)
 	if (!(BIG_OBJECTS[19]->child->basicdxmodel->mats[0].attrflags & NJD_FLAG_IGNORE_SPECULAR) && BigRodIgnoresSpecular) ForceLevelSpecular_Object(BIG_OBJECTS[19]->child, true);
 	if (BIG_OBJECTS[19]->child->basicdxmodel->mats[0].attrflags & NJD_FLAG_IGNORE_SPECULAR && !BigRodIgnoresSpecular) ForceObjectSpecular_Object(BIG_OBJECTS[19]->child, true);

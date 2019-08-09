@@ -18,51 +18,6 @@ FunctionPointer(void, sub_407CF0, (NJS_MODEL_SADX *a1, QueuedModelFlagsB a2), 0x
 
 static int Chaos4Water = 0;
 
-NJS_MATERIAL* Chaos4Materials[] = {
-	((NJS_MATERIAL*)0x0119D0FC),
-	((NJS_MATERIAL*)0x0119B210),
-	((NJS_MATERIAL*)0x0119B224),
-	((NJS_MATERIAL*)0x0119ACA0),
-	((NJS_MATERIAL*)0x0119A600),
-	((NJS_MATERIAL*)0x0119A614),
-	((NJS_MATERIAL*)0x0119A010),
-	((NJS_MATERIAL*)0x01199D28),
-	((NJS_MATERIAL*)0x011997B8),
-	((NJS_MATERIAL*)0x01199380),
-	((NJS_MATERIAL*)0x01198F4C),
-	((NJS_MATERIAL*)0x01198B00),
-	((NJS_MATERIAL*)0x011986C8),
-	((NJS_MATERIAL*)0x01198468),
-	((NJS_MATERIAL*)0x01198030),
-	((NJS_MATERIAL*)0x01197DD0),
-	((NJS_MATERIAL*)0x011975E8),
-	((NJS_MATERIAL*)0x01197430),
-	((NJS_MATERIAL*)0x011972B0),
-	((NJS_MATERIAL*)0x011970F8),
-	((NJS_MATERIAL*)0x01196F78),
-	((NJS_MATERIAL*)0x01196254),
-	((NJS_MATERIAL*)0x011958D0),
-	((NJS_MATERIAL*)0x011953B8),
-	((NJS_MATERIAL*)0x01195200),
-	((NJS_MATERIAL*)0x01195080),
-	((NJS_MATERIAL*)0x01194B68),
-	((NJS_MATERIAL*)0x01194700),
-	((NJS_MATERIAL*)0x011942C8),
-	((NJS_MATERIAL*)0x01193EE0),
-	((NJS_MATERIAL*)0x01193B4C),
-	((NJS_MATERIAL*)0x01193734),
-	((NJS_MATERIAL*)0x01192DB0),
-	((NJS_MATERIAL*)0x01192898),
-	((NJS_MATERIAL*)0x011926E0),
-	((NJS_MATERIAL*)0x01192560),
-	((NJS_MATERIAL*)0x01192048),
-	((NJS_MATERIAL*)0x01191BD0),
-	((NJS_MATERIAL*)0x01191798),
-	((NJS_MATERIAL*)0x011913E0),
-	((NJS_MATERIAL*)0x0119104C),
-	((NJS_MATERIAL*)0x01190C30),
-};
-
 void Chaos4Skybox(ObjectMaster *o1)
 {
 	float WaterTrans;
@@ -366,7 +321,7 @@ void Chaos4_Init()
 		{
 			if (B_CHAOS4->Col[j].Model->basicdxmodel->mats[k].attr_texId == 4)
 			{
-				material = (NJS_MATERIAL*)& B_CHAOS4->Col[j].Model->basicdxmodel->mats[k];
+				material = (NJS_MATERIAL*)&B_CHAOS4->Col[j].Model->basicdxmodel->mats[k];
 				AddWhiteDiffuseMaterial(material);
 			}
 		}
@@ -399,8 +354,8 @@ void Chaos4_Init()
 		WriteCall((void*)0x7ADC1E, Chaos4BrainHook);
 		WriteCall((void*)0x553380, Chaos4NumaFix);
 		WriteCall((void*)0x552918, Chaos4_Transform); //Chaos' model formed from balls
-		*(NJS_OBJECT*)0x11C4B90 = *LoadModel("SYSTEM\\data\\B_CHAOS4\\Models\\000425F8.sa1mdl", false); // Chaos4 swamp water
-		Chaos4CleanWater = LoadModel("SYSTEM\\data\\B_CHAOS4\\Models\\0004476C.sa1mdl", false); // Chaos4 swamp water
+		*(NJS_OBJECT*)0x11C4B90 = *LoadModel("SYSTEM\\data\\B_CHAOS4\\Models\\000425F8.sa1mdl", false); //Chaos 4 swamp water
+		Chaos4CleanWater = LoadModel("SYSTEM\\data\\B_CHAOS4\\Models\\0004476C.sa1mdl", false); //Chaos 4 swamp water
 		WriteData<1>((char*)0x00555B3F, 0x08); //Chaos 4 bubble blending mode SA_SRC instead of SA_ONE
 		WriteJump((void*)0x550D10, Chaos4Skybox);
 		*(NJS_OBJECT*)0x11E3240 = *LoadModel("SYSTEM\\data\\B_CHAOS4\\Models\\0003E6CC.sa1mdl", false); //Lilypad
@@ -416,10 +371,6 @@ void Chaos4_Init()
 		WriteCall((void*)0x55667C, Chaos4KamaWave);
 		WriteCall((void*)0x5539E6, SetMaterial_Chaos4Wave); //Make Chaos 4 wave visible
 		((NJS_MATERIAL*)0x11C7BEC)->attr_texId = 0; //Fix Chaos 4 wave texture ID
-		if (DLLLoaded_Lantern)
-		{
-			material_register_ptr(Chaos4Materials, LengthOfArray(Chaos4Materials), &Chaos4NPCFunction);
-		}
 		for (int i = 0; i < 3; i++)
 		{
 			Chaos4Fog[i].Color = 0xFF000000;
