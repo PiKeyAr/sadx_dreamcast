@@ -75,6 +75,21 @@ void Init_Global()
 	ReplacePVM("ICM0001_3");
 	ReplacePVM("ICM0001_5");
 	WriteData<1>((char*)0x00480080, 0x0i8); //Light type for Gamma's upgrades
+	//Gamma's chest stuff
+	//Actual code in General_OnFrame
+	RemoveVertexColors_Object(E102_OBJECTS[0]);
+	RemoveVertexColors_Object(E102_OBJECTS[1]);
+	RemoveVertexColors_Object(E102_OBJECTS[2]);
+	RemoveVertexColors_Object(E102_OBJECTS[4]);
+	RemoveVertexColors_Object(E102_OBJECTS[5]);
+	RemoveVertexColors_Object(E102_OBJECTS[6]);
+	RemoveVertexColors_Object(E102_OBJECTS[13]);
+	RemoveVertexColors_Object(E102_OBJECTS[14]);
+	RemoveVertexColors_Object(E102_OBJECTS[16]);
+	RemoveVertexColors_Object(E102_OBJECTS[18]);
+	RemoveVertexColors_Object(E102_OBJECTS[20]);
+	RemoveVertexColors_Object(E102_ACTIONS[50]->object);
+	E102_OBJECTS[0]->child->child->sibling->sibling->sibling->child->child->sibling->child->sibling->sibling->child->child->sibling->basicdxmodel->mats[8].attrflags &= ~NJD_FLAG_USE_ALPHA; //E102 unnecessary alpha
 	//FPS lock
 	if (FPSLock) WriteCall((void*)0x411E79, FPSLockHook);
 	//Cancel cutscenes with C button

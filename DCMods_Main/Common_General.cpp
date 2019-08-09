@@ -26,6 +26,7 @@ NJS_OBJECT* ItemBoxAirModel = nullptr;
 NJS_OBJECT* ItemBoxAirModel_Resize = nullptr;
 NJS_OBJECT* ItemBoxAirModel_ResizeChild = nullptr;
 
+DataPointer(float, GammaConstantMaterialAlpha, 0x47FE0F);
 DataPointer(NJS_OBJECT, stru_8B22F4, 0x8B22F4);
 DataPointer(NJS_MATRIX, nj_unit_matrix_, 0x389D650);
 FunctionPointer(void, BarrierChild, (ObjectMaster *a1), 0x4BA1E0);
@@ -65,6 +66,7 @@ int CutsceneFadeValue = 0;
 int CutsceneFadeMode = 0;
 bool SkipPressed_Cutscene = false;
 static float EmeraldScale = 1.005f;
+static bool BigRodIgnoresSpecular = false;
 
 static const NJS_MATERIAL* WhiteDiffuse_General[] = {
 	//Mecha fish
@@ -1621,24 +1623,10 @@ void General_Init()
 		//Leon fixes
 		WriteData((float**)0x4CD75A, &_nj_screen_.w); //from SADXFE
 		WriteData((float**)0x4CD77C, &_nj_screen_.h); //from SADXFE
-		//Robot chest stuff
-		RemoveVertexColors_Object(E102_OBJECTS[0]);
-		RemoveVertexColors_Object(E102_OBJECTS[1]);
-		RemoveVertexColors_Object(E102_OBJECTS[2]);
-		RemoveVertexColors_Object(E102_OBJECTS[4]);
-		RemoveVertexColors_Object(E102_OBJECTS[5]);
-		RemoveVertexColors_Object(E102_OBJECTS[6]);
-		RemoveVertexColors_Object(E102_OBJECTS[13]);
-		RemoveVertexColors_Object(E102_OBJECTS[14]);
-		RemoveVertexColors_Object(E102_OBJECTS[16]);
-		RemoveVertexColors_Object(E102_OBJECTS[18]);
-		RemoveVertexColors_Object(E102_OBJECTS[20]);
-		RemoveVertexColors_Object(E102_ACTIONS[50]->object);
-		WriteData<1>((char*)0x47FDF9, 0x08); //Gamma constant material thing
+		
 		WriteData<1>((char*)0x4CFC05, 0x08); //Zero constant material thing
 		WriteData<1>((char*)0x4CFC99, 0x08); //Zero constant material thing
 		WriteData<1>((char*)0x567CF2, 0x08); //E101 Beta (boss) constant material
-		E102_OBJECTS[0]->child->child->sibling->sibling->sibling->child->child->sibling->child->sibling->sibling->child->child->sibling->basicdxmodel->mats[8].attrflags &= ~NJD_FLAG_USE_ALPHA; //E102 unnecessary alpha
 		((NJS_OBJECT*)0x14D857C)->basicdxmodel->mats[1].attrflags |= NJD_FLAG_IGNORE_LIGHT; //E101 left eye (boss model)
 		((NJS_OBJECT*)0x14D857C)->basicdxmodel->mats[2].attrflags |= NJD_FLAG_IGNORE_LIGHT; //E101 nose (boss model)
 		((NJS_OBJECT*)0x14D887C)->basicdxmodel->mats[1].attrflags |= NJD_FLAG_IGNORE_LIGHT; //E101 right eye (boss model)
@@ -1648,7 +1636,6 @@ void General_Init()
 		((NJS_OBJECT*)0x30AB08C)->basicdxmodel->mats[3].attrflags &= ~NJD_FLAG_USE_ALPHA; //E103 unnecessary alpha (cutscene model)
 		((NJS_OBJECT*)0x30A290C)->basicdxmodel->mats[3].attrflags &= ~NJD_FLAG_USE_ALPHA; //E104 unnecessary alpha (cutscene model)
 		((NJS_OBJECT*)0x309A21C)->basicdxmodel->mats[3].attrflags &= ~NJD_FLAG_USE_ALPHA; //E105 unnecessary alpha (cutscene model)
-		WriteData((float*)0x47FE0F, 0.847f); //E102 (main model)
 		WriteData((float*)0x567D08, 0.847f); //E101 (boss model)
 		WriteData((float*)0x4E7BFD, 0.847f); //E103 (boss model)
 		WriteData((float*)0x4E7C40, 0.847f); //E103 (boss model/other)
@@ -1907,6 +1894,19 @@ void General_Init()
 
 void General_OnFrame()
 {
+	//This is stupid but I need to disable Gamma's chest fix on the character select screen because it breaks there
+	if (GameMode == GameModes_Menu && GammaConstantMaterialAlpha != 1.0f)
+	{
+		WriteData<1>((char*)0x47FDF9, 0x10u);
+		WriteData((float*)0x47FE0F, 1.0f);
+		E102_OBJECTS[0]->child->child->sibling->sibling->sibling->sibling->sibling->sibling->sibling->sibling->sibling->sibling->child->sibling->child->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_USE_ALPHA;
+	}
+	if (GameMode != GameModes_Menu && GammaConstantMaterialAlpha == 1.0f)
+	{
+		WriteData<1>((char*)0x47FDF9, 0x08u);
+		WriteData((float*)0x47FE0F, 0.847f);
+		E102_OBJECTS[0]->child->child->sibling->sibling->sibling->sibling->sibling->sibling->sibling->sibling->sibling->sibling->child->sibling->child->basicdxmodel->mats[0].attrflags |= NJD_FLAG_USE_ALPHA;
+	}
 	//Global colors screen fade fix
 	if (GlobalColor_wait)
 	{
@@ -2053,6 +2053,10 @@ void General_OnFrame()
 	else ((NJS_MATERIAL*)0x2D64FD8)->attrflags &= ~NJD_FLAG_IGNORE_LIGHT;	
 	//Chaos puddle in Final Story cutscenes
 	WriteCall((void*)0x7AF877, RenderChaosPuddle_Last); 
+	//Big's rod upgrade lighting - basically make it ignore specular when it's part of Big's model (upgrade attained), otherwise don't (field model)
+	if (!(BIG_OBJECTS[19]->child->basicdxmodel->mats[0].attrflags & NJD_FLAG_IGNORE_SPECULAR) && BigRodIgnoresSpecular) ForceLevelSpecular_Object(BIG_OBJECTS[19]->child, true);
+	if (BIG_OBJECTS[19]->child->basicdxmodel->mats[0].attrflags & NJD_FLAG_IGNORE_SPECULAR && !BigRodIgnoresSpecular) ForceObjectSpecular_Object(BIG_OBJECTS[19]->child, true);
+	if (EventFlagArray[EventFlags_Big_PowerRod] == 1) BigRodIgnoresSpecular = true; else BigRodIgnoresSpecular = false;
 }
 
 void General_OnInput()
