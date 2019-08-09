@@ -120,7 +120,7 @@
     <ClCompile Include="STG03_TwinklePark.cpp" />
     <ClCompile Include="STG02_WindyValley.cpp" />
     <ClCompile Include="Common_GenericFunctions.cpp" />
-    <ClCompile Include="mod.cpp" />
+    <ClCompile Include="Common_Main.cpp" />
     <ClCompile Include="Common_SADXStyleWater.cpp" />
     <ClCompile Include="Common_SkyChaseFixes.cpp" />
     <ClCompile Include="Common_Videos.cpp" />

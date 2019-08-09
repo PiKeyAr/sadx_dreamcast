@@ -425,126 +425,70 @@ extern "C"
 			WriteCall((void*)0x6428AD, ColorizeRecapText);
 		}
 		//Init functions
+		Init_Global(); //General stuff that runs at mod startup, some level-specific stuff there too
 		SADXStyleWater_Init(config, helperFunctions);
 		if (EnableDCBranding) Branding_Init(config, helperFunctions);
 		WriteCall((void*)0x422B2A, HedgehogHammer_Init);
 		if (EnableStationSquare)
 		{
 			WriteCall((void*)0x4231E6, ADV00_Init);
-			ResizeTextureList((NJS_TEXLIST*)0x2AEE920, 22); //SSCAR 
-			ResizeTextureList((NJS_TEXLIST*)0x2AD9F58, 31); //SS_TRAIN
-			ResizeTextureList(&OBJ_SS_TEXLIST, 177);
 		}
 		if (EnableEggCarrier)
 		{
 			WriteCall((void*)0x4232C9, ADV01_Init);
 			WriteCall((void*)0x4233BB, ADV01C_Init);
-			ResizeTextureList(&OBJ_EC00_TEXLIST, 206);
-			ReplaceBIN("PL_W1B", "PL_W1X");
 		}
 		if (EnableMysticRuins)
 		{
 			WriteCall((void*)0x4234AD, ADV02_Init);
-			ReplaceBIN("SL_X0B", "SL_X0X"); //Day light direction override
-			ReplaceBIN("SL_X1B", "SL_X1X"); //Evening light direction override
-			ReplaceBIN("SL_X2B", "SL_X2X"); //Night light direction override
 		}
 		if (EnablePast)
 		{
 			WriteCall((void*)0x423554, ADV03_Init);
 		}
-		Init_Global(); //General stuff that runs at mod startup
 		if (EnableEmeraldCoast)
 		{
 			WriteCall((void*)0x422B68, EmeraldCoast_Init);
-			ResizeTextureList((NJS_TEXLIST*)0x010C0508, 10); //BEACH_SEA
-			ResizeTextureList((NJS_TEXLIST*)0xF812AC, 97);
-			ResizeTextureList((NJS_TEXLIST*)0xEF553C, 86);
-			ResizeTextureList((NJS_TEXLIST*)0xE9A4CC, 94);
 		}
 		if (EnableWindyValley)
 		{
 			WriteCall((void*)0x422BD3, WindyValley_Init);
-			ResizeTextureList((NJS_TEXLIST*)0xB98BF8, 20);
-			ResizeTextureList((NJS_TEXLIST*)0xB81304, 17);
-			ResizeTextureList((NJS_TEXLIST*)0xAFEC30, 28);
 		}
 		if (EnableTwinklePark)
 		{
 			WriteCall((void*)0x422C3E, TwinklePark_Init);
-			ResizeTextureList(&OBJ_TWINKLE_TEXLIST, 96);
-			ResizeTextureList((NJS_TEXLIST*)0x26B9960, 35);
-			ResizeTextureList((NJS_TEXLIST*)0x2721A8C, 88);
-			ResizeTextureList((NJS_TEXLIST*)0x26FEA54, 30);
 		}
 		if (EnableSpeedHighway)
 		{
 			WriteCall((void*)0x422CA9, SpeedHighway_Init);
-			ResizeTextureList(&HIGHWAY_CAR_TEXLIST, 16);
-			ResizeTextureList(&OBJ_HIGHWAY_TEXLIST, 118);
-			ResizeTextureList((NJS_TEXLIST*)0x2592E8C, 89);
-			ResizeTextureList((NJS_TEXLIST*)0x2581310, 32);
-			ResizeTextureList((NJS_TEXLIST*)0x24CAC94, 107);
-			ReplaceBIN("PL_40B", "PL_40X");
-			ReplaceBIN("PL_41B", "PL_41X");
 		}
 		if (EnableRedMountain)
 		{
 			WriteCall((void*)0x422D14, RedMountain_Init);
-			ResizeTextureList((NJS_TEXLIST*)0x230FDF4, 45);
-			ResizeTextureList((NJS_TEXLIST*)0x229B8CC, 43);
-			ResizeTextureList((NJS_TEXLIST*)0x224096C, 27);
-			ReplaceBIN("PL_51B", "PL_51X");
 		}
 		if (EnableSkyDeck)
 		{
 			WriteCall((void*)0x422D84, SkyDeck_Init);
-			ResizeTextureList((NJS_TEXLIST*)0x20E0BB0, 76);
-			ResizeTextureList((NJS_TEXLIST*)0x20AA63C, 58);
-			ResizeTextureList((NJS_TEXLIST*)0x203ACE0, 65);
-			ResizeTextureList(&OBJ_SKYDECK_TEXLIST, 213);
 		}
 		if (EnableLostWorld)
 		{
 			WriteCall((void*)0x422DEF, LostWorld_Init);
-			ResizeTextureList((NJS_TEXLIST*)0x1F6F02C, 58);
-			ResizeTextureList((NJS_TEXLIST*)0x1E9B9AC, 95);
-			ResizeTextureList((NJS_TEXLIST*)0x1E79D80, 30);
-			ResizeTextureList(&OBJ_RUIN_TEXLIST, 127);
 		}
 		if (EnableIceCap)
 		{
 			WriteCall((void*)0x422E5A, IceCap_Init);
-			ResizeTextureList((NJS_TEXLIST*)0xDE3A74, 34);
-			ResizeTextureList((NJS_TEXLIST*)0xD39744, 55);
-			ResizeTextureList((NJS_TEXLIST*)0xC68408, 40);
-			ResizeTextureList(&OBJ_ICECAP_TEXLIST, 100);
 		}
 		if (EnableCasinopolis)
 		{
 			WriteCall((void*)0x422EE8, Casinopolis_Init);
-			ResizeTextureList((NJS_TEXLIST*)0x1D1B050, 131);
-			ResizeTextureList((NJS_TEXLIST*)0x1CBD1C4, 58);
-			ResizeTextureList((NJS_TEXLIST*)0x1C8AF04, 26);
-			ResizeTextureList((NJS_TEXLIST*)0x1C47004, 71);
-			ResizeTextureList(&OBJ_CASINO9_TEXLIST, 203);
-			ReplaceBIN("PL_90B", "PL_90X");
 		}
 		if (EnableFinalEgg)
 		{
 			WriteCall((void*)0x422F71, FinalEgg_Init);
-			ResizeTextureList((NJS_TEXLIST*)0x1B98518, 80);
-			ResizeTextureList((NJS_TEXLIST*)0x1A60488, 68);
-			ResizeTextureList((NJS_TEXLIST*)0x1AC5780, 90);
-			ResizeTextureList(&OBJ_FINALEGG_TEXLIST, 169);
-			ReplaceBIN("PL_A2B", "PL_A2X");
 		}
 		if (EnableHotShelter)
 		{
 			WriteCall((void*)0x422FFF, HotShelter_Init);
-			ResizeTextureList((NJS_TEXLIST*)0x180DFF4, 78);
-			ResizeTextureList((NJS_TEXLIST*)0x17F56F4, 156);
-			ResizeTextureList((NJS_TEXLIST*)0x17F4F74, 121);
 		}
 		if (EnableChaos0)
 		{
@@ -553,51 +497,39 @@ extern "C"
 		if (EnableChaos2)
 		{
 			WriteCall((void*)0x4230B7, Chaos2_Init);
-			ResizeTextureList((NJS_TEXLIST*)0x117C76C, 15);
 		}
 		if (EnableChaos4)
 		{
 			WriteCall((void*)0x4230CD, Chaos4_Init);
-			ResizeTextureList((NJS_TEXLIST*)0x118FF08, 13);
-			ResizeTextureList(&CHAOS4_OBJECT_TEXLIST, 6);
 		}
 		if (EnableChaos6)
 		{
 			WriteCall((void*)0x4230E3, Chaos6_Init);
-			ResizeTextureList((NJS_TEXLIST*)0x121FF28, 77);
-			ResizeTextureList((NJS_TEXLIST*)0x11F04A0, 79);
 		}
 		if (EnablePerfectChaos)
 		{
 			WriteCall((void*)0x423108, PerfectChaos_Init);
-			ResizeTextureList((NJS_TEXLIST*)0x1494FBC, 168);
 		}
 		if (EnableEggHornet)
 		{
 			WriteCall((void*)0x423146, EggHornet_Init);
-			ResizeTextureList((NJS_TEXLIST*)0x1557064, 118); //Egg Hornet level texlist
 		}
 		if (EnableEggWalker)
 		{
 			WriteCall((void*)0x42315F, EggWalker_Init);
-			ResizeTextureList((NJS_TEXLIST*)0x15E99F8, 231);
 		}
 		if (EnableEggViper)
 		{
 			WriteCall((void*)0x423178, EggViper_Init);
-			ResizeTextureList((NJS_TEXLIST*)0x167E5CC, 45);
-			ReplaceBIN("PL_M0B", "PL_M0X");
 		}
 		if (EnableE101)
 		{
 			WriteCall((void*)0x4231AF, E101_Init);
-			ResizeTextureList((NJS_TEXLIST*)0x14FBFB4, 77);
 		}
 		if (EnableZeroE101R)
 		{
 			WriteCall((void*)0x423196, Zero_Init);
 			WriteCall((void*)0x4231CD, E101R_Init);
-			ResizeTextureList((NJS_TEXLIST*)0x16B460C, 76); //Zero/E101R texlist
 		}
 		SkyChaseFix_Init();
 		WriteCall((void*)0x4236B1, SkyChase_Init);
@@ -611,7 +543,6 @@ extern "C"
 			WriteCall((void*)0x42370F, SandHill_Init);
 		}
 		WriteCall((void*)0x423795, ChaoGardens_Init);
-		if (EnableSSGarden) ResizeTextureList(&GARDEN00_OBJECT_TEXLIST, 16);
 		if (!DisableAllVideoStuff) Videos_Init(config, helperFunctions);
 		if (EnableSpeedFixes) SpeedFixes_Init();
 		delete config;
