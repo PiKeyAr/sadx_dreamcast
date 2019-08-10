@@ -681,7 +681,7 @@ void EmeraldCoast_Init()
 		if (SADXWater_EmeraldCoast)
 		{
 			WriteData((float*)0x004F8D2F, -2153.0f); //Remove gap in Act 2 small pool
-													 //Blending modes for ocean models
+			//Blending modes for ocean models
 			LowPolyOcean->basicdxmodel->mats[0].attrflags &= ~NJD_DA_INV_SRC;
 			LowPolyOcean->basicdxmodel->mats[0].attrflags |= NJD_DA_ONE;
 			LowPolyOcean->basicdxmodel->mats[0].diffuse.color = 0xFFFFFFFF;
