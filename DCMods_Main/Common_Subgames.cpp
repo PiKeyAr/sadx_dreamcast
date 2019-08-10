@@ -530,7 +530,7 @@ void __cdecl SkyChaseBeam1_Display_Fix(ObjectMaster *a1)
 {
 	EntityData1 *v1; // esi
 	v1 = a1->Data1;
-	PrintDebug("Action: %f\n", *(float *)&v1->CharIndex);
+	//PrintDebug("Action: %f\n", *(float *)&v1->CharIndex);
 	njPushMatrix(0);
 	njTranslate(0, 0.0, 0.0, 0.0);
 	njSetTexture(&SHOOTING0_TEXLIST);

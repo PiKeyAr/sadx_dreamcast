@@ -125,6 +125,7 @@ extern bool EnableMysticRuins;
 extern bool EnableEggCarrier;
 extern bool EnablePast;
 extern bool DisableAllVideoStuff;
+extern bool EnableWhiteDiffuse;
 extern bool SADXWater_EmeraldCoast;
 extern bool SADXWater_StationSquare;
 extern bool SADXWater_MysticRuins;
@@ -464,7 +465,6 @@ void LoadBossECOceanPVM(const char *filename, NJS_TEXLIST *texlist);
 void LoadBossECOceanTexlist();
 void RenderChaoTransporterEffect_Fix(NJS_MODEL_SADX *a1, float scale);
 void DrawEventHelicopter(NJS_ACTION *a1, float a2, int a3);
-void DrawRobotChest(NJS_ACTION *action, Float frame);
 
 //Lighting functions
 bool ForceWhiteDiffuse(NJS_MATERIAL* material, uint32_t flags);

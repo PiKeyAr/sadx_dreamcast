@@ -594,7 +594,7 @@ void AddAlphaRejectMaterial(NJS_MATERIAL *material)
 
 void AddWhiteDiffuseMaterial(NJS_MATERIAL *material)
 {
-	if (DLLLoaded_Lantern)
+	if (DLLLoaded_Lantern && EnableWhiteDiffuse)
 	{
 		TemporaryMaterialArray[0] = material;
 		material_register_ptr(TemporaryMaterialArray, 1, ForceWhiteDiffuse);
@@ -606,13 +606,14 @@ void AddWhiteDiffuseMaterial_Specular3(NJS_MATERIAL *material)
 	if (DLLLoaded_Lantern)
 	{
 		TemporaryMaterialArray[0] = material;
-		material_register_ptr(TemporaryMaterialArray, 1, ForceWhiteDiffuse1Specular3);
+		if (EnableWhiteDiffuse) material_register_ptr(TemporaryMaterialArray, 1, ForceWhiteDiffuse1Specular3);
+		else material_register_ptr(TemporaryMaterialArray, 1, ForceSpecular3);
 	}
 }
 
 void AddWhiteDiffuseNightMaterial(NJS_MATERIAL* material)
 {
-	if (DLLLoaded_Lantern)
+	if (DLLLoaded_Lantern && EnableWhiteDiffuse)
 	{
 		TemporaryMaterialArray[0] = material;
 		material_register_ptr(TemporaryMaterialArray, 1, ForceWhiteDiffuse3_Night);
@@ -621,7 +622,7 @@ void AddWhiteDiffuseNightMaterial(NJS_MATERIAL* material)
 
 void RemoveWhiteDiffuseNightMaterial(NJS_MATERIAL* material)
 {
-	if (DLLLoaded_Lantern)
+	if (DLLLoaded_Lantern && EnableWhiteDiffuse)
 	{
 		TemporaryMaterialArray[0] = material;
 		material_unregister_ptr(TemporaryMaterialArray, 1, ForceWhiteDiffuse3_Night);
@@ -661,7 +662,7 @@ void RemoveAlphaRejectMaterial(NJS_MATERIAL *material)
 
 void RemoveWhiteDiffuseMaterial(NJS_MATERIAL *material)
 {
-	if (DLLLoaded_Lantern)
+	if (DLLLoaded_Lantern && EnableWhiteDiffuse)
 	{
 		TemporaryMaterialArray[0] = material;
 		material_unregister_ptr(TemporaryMaterialArray, 1, ForceWhiteDiffuse);
@@ -673,7 +674,8 @@ void RemoveWhiteDiffuseMaterial_Specular3(NJS_MATERIAL *material)
 	if (DLLLoaded_Lantern)
 	{
 		TemporaryMaterialArray[0] = material;
-		material_unregister_ptr(TemporaryMaterialArray, 1, ForceWhiteDiffuse1Specular3);
+		if (EnableWhiteDiffuse) material_unregister_ptr(TemporaryMaterialArray, 1, ForceWhiteDiffuse1Specular3);
+		else material_unregister_ptr(TemporaryMaterialArray, 1, ForceSpecular3);
 	}
 }
 
@@ -756,7 +758,7 @@ void SwapModel(NJS_OBJECT *object1, NJS_OBJECT *object2)
 
 void LoadModel_ReplaceMeshes(NJS_OBJECT *object, const char *ModelName)
 {
-	PrintDebug("Loading model: %s: ", HelperFunctionsGlobal.GetReplaceablePath(ModelName));
+	//PrintDebug("Loading model: %s: ", HelperFunctionsGlobal.GetReplaceablePath(ModelName));
 	ModelInfo *info = new ModelInfo(HelperFunctionsGlobal.GetReplaceablePath(ModelName));
 	NJS_OBJECT *object2 = info->getmodel();
 	if (object->basicdxmodel)
@@ -765,7 +767,7 @@ void LoadModel_ReplaceMeshes(NJS_OBJECT *object, const char *ModelName)
 	}
 	if (object->child) SwapModel(object->child, object2->child);
 	if (object->sibling) SwapModel(object->sibling, object2->sibling);
-	PrintDebug("OK\n");
+	//PrintDebug("OK\n");
 }
 
 void SwapMeshsets(NJS_OBJECT* object, int mesh1, int mesh2)
@@ -925,12 +927,12 @@ void SortModel(NJS_OBJECT *object)
 
 NJS_OBJECT* LoadModel(const char *ModelName, bool sort)
 {
-	PrintDebug("Loading model: %s: ", HelperFunctionsGlobal.GetReplaceablePath(ModelName));
+	//PrintDebug("Loading model: %s: ", HelperFunctionsGlobal.GetReplaceablePath(ModelName));
 	ModelInfo *info = new ModelInfo(HelperFunctionsGlobal.GetReplaceablePath(ModelName));
 	NJS_OBJECT *object = info->getmodel();
 	if (sort) SortModel(object);
 	ProcessMaterials_Object(object);
-	PrintDebug("OK\n");
+	//PrintDebug("OK\n");
 	return object;
 }
 
@@ -973,7 +975,7 @@ void ForceObjectSpecular_Object(NJS_OBJECT *obj, bool recursive)
 
 void RegisterLanternMaterial(NJS_MATERIAL* material, int diffuse, int specular, bool unregister)
 {
-	PrintDebug("Registering Lantern material with diffuse %d, specular %d, unregister: %d\n", diffuse, specular, unregister);
+	//PrintDebug("Registering Lantern material with diffuse %d, specular %d, unregister: %d\n", diffuse, specular, unregister);
 	TemporaryMaterialArray[0] = material;
 	if (!DLLLoaded_Lantern) return;
 	if (diffuse == 0 && specular == 0)

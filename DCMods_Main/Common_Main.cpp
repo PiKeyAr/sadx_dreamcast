@@ -143,6 +143,7 @@ bool DisableFontSmoothing = true;
 bool EnableLSDFix = false;
 bool FPSLock = false;
 bool EnableDCRipple = true;
+bool EnableWhiteDiffuse = true;
 
 bool Use1999SetFiles = false;
 bool EnableWindowTitle = true;
@@ -367,6 +368,7 @@ extern "C"
 		Use1999SetFiles = config->getBool("Miscellaneous", "Use1999SetFiles", false);
 		IamStupidAndIWantFuckedUpOcean = config->getBool("Miscellaneous", "RevertEmeraldCoastDrawDistance", false);
 		EnableSkyChaseEnemyModels = config->getBool("Miscellaneous", "EnableSkyChaseEnemyModels", true);
+		EnableWhiteDiffuse = config->getBool("Miscellaneous", "EnableWhiteDiffuse", true);
 		EnableSSGarden = config->getBool("Chao Gardens", "EnableStationSquareGarden", true);
 		EnableMRGarden = config->getBool("Chao Gardens", "EnableMysticRuinsGarden", true);
 		EnableECGarden = config->getBool("Chao Gardens", "EnableEggCarrierGarden", true);
