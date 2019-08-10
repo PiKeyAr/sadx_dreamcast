@@ -49,6 +49,7 @@ void __cdecl EHWater_Display(void(__cdecl *function)(void *), void *data, float 
 		if (EHOcean) ProcessModelNode_AB_Wrapper(EHOcean, 1.0f);
 		DrawQueueDepthBias = 0.0f;
 		njPopMatrix(1u);
+		ToggleStageFog();
 	}
 	for (int i = 0; i < LengthOfArray(EHWaterObjects); i++)
 	{
@@ -213,8 +214,8 @@ void EggHornet_Init()
 		for (int i = 0; i < 3; i++)
 		{
 			DrawDist_EggHornet[i].Maximum = -12500.0;
-			EggHornetFog[i].Distance = -9000.0f;
-			EggHornetFog[i].Layer = -1500.0f;
+			EggHornetFog[i].Distance = -14000.0f;
+			EggHornetFog[i].Layer = -2000.0f;
 			EggHornetFog[i].Toggle = 1;
 			EggHornetFog[i].Color = 0xFFA0A0A0;
 		}
