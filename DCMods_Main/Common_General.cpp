@@ -1300,19 +1300,6 @@ void RenderChaosPuddle_Last(NJS_OBJECT *a1)
 	ProcessModelNode_D(a1, (QueuedModelFlagsB)0, 1.0f);
 }
 
-void PlayCharacterHurtVoice(int ID, void *a2, int a3, void *a4)
-{
-	PlaySound(ID, a2, a3, a4);
-	if ( GetCurrentCharacterID() == Characters_Gamma )
-	{
-		PlaySound(1431, 0, 0, 0);
-	}
-	else
-	{
-		PlaySound(23, 0, 0, 0);
-	}
-}
-
 void CutsceneAnimationHook1(NJS_ACTION *a1, float a2, QueuedModelFlagsB a3)
 {
 	//Event helicopter
@@ -1554,7 +1541,6 @@ void General_Init()
 		//Cutscene stuff
 		WriteCall((void*)0x4181FD, CutsceneAnimationHook1);
 		WriteCall((void*)0x418214, CutsceneAnimationHook2);
-		WriteCall((void*)0x4507FA, PlayCharacterHurtVoice); //Move to Sound Overhaul
 		WriteCall((void*)0x43A85F, GeoAnimFix); //Landtable animation hook
 		//DirLight data... Someday
 		/*

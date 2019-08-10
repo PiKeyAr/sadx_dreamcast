@@ -61,7 +61,6 @@ static int FramerateSettingOld = 0;
 static int FrameCounter_Half = 0;
 static int MissedFrames_Half = 1;
 static bool FixesApplied = false;
-static int SoundQueueThing = 120;
 
 //General
 float BigHudFix_float = 2.0f; //For both 30 and 60 FPS because it's broken in SADX
@@ -599,8 +598,6 @@ void DashPanelFix(NJS_ACTION* action, Float frame)
 
 void SpeedFixes_Init()
 {
-	//Sound queue fix
-	WriteData((int*)0x004250AE, SoundQueueThing);
 	//Big ring flashing HUD
 	WriteData((float**)0x0046CE9B, &BigHudFix_float);
 	WriteData((short*)0x0046CE6B, RingCountFlashSpeed);
@@ -780,8 +777,6 @@ void SpeedFixes_OnFrame()
 		//Original values for 30 FPS
 		if (FramerateSetting >= 2)
 		{
-			//Sound queue
-			SoundQueueThing = 120;
 			//Ring count
 			RingCountFlashSpeed = 1024;
 			//Invincibility
@@ -852,8 +847,6 @@ void SpeedFixes_OnFrame()
 		//60 FPS values
 		else
 		{
-			//Sound queue
-			SoundQueueThing = 240;
 			//Ring count
 			RingCountFlashSpeed = 512;
 			//Invincibility
