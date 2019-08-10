@@ -125,6 +125,7 @@ void __cdecl EggCarrierSkyBox_Bottom(EntityData1* a1, float a2)
 	njPopMatrix(1u);
 	ToggleStageFog();
 }
+
 void EggCarrierSea()
 {
 	if (!DroppedFrames)

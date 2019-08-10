@@ -196,6 +196,13 @@ void RenderChaoTransporterEffect_Fix(NJS_MODEL_SADX *a1, float scale)
 	DrawQueueDepthBias = 0;
 }
 
+void OReservoirFix(NJS_OBJECT *obj, float scale)
+{
+	DrawQueueDepthBias = 20000.0f;
+	ProcessModelNode(obj, (QueuedModelFlagsB)0, scale);
+	DrawQueueDepthBias = 0.0f;
+}
+
 void UnloadLevelFiles_ADV01C()
 {
 	delete ADV01C_0_Info;
@@ -299,6 +306,7 @@ void ADV01C_Init()
 		ADV01C_TEXLISTS[20] = &texlist_ec35;
 		//Chao transporter fix
 		if (!ModelsLoaded_Chao) WriteCall((void*)0x526369, RenderChaoTransporterEffect_Fix); //Transporter effect fix
+		WriteCall((void*)0x525D39, OReservoirFix); //Fix water in Gamma's upgrade room
 		//Door barrier fixes (Gamma's story)
 		WriteJump((void*)0x52B2E0, ECDoorBarrier1X);
 		WriteJump((void*)0x52B250, ECDoorBarrier2_asm);
