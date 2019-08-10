@@ -119,7 +119,7 @@ void EggHornet_Init()
 		//Check materials
 		for (int k = 0; k < B_EGM1->Col[j].Model->basicdxmodel->nbMat; ++k)
 		{
-			material = (NJS_MATERIAL*)& B_EGM1->Col[j].Model->basicdxmodel->mats[k];
+			material = (NJS_MATERIAL*)&B_EGM1->Col[j].Model->basicdxmodel->mats[k];
 			//Texanim 1
 			if (material->attr_texId == 55)
 			{
@@ -178,7 +178,7 @@ void EggHornet_Init()
 		else
 		{
 			EggHornetObjectTextures[0].TexList = &BEACH_SEA_TEXLIST;
-			EggHornetObjectTextures[0].Name = "BEACH_SEA";
+			EggHornetObjectTextures[0].Name = "BEACH_SEA_DC";
 		}
 		//Egg Hornet model stuff
 		((NJS_OBJECT*)0x0155AA54)->basicdxmodel->mats[0].attrflags |= NJD_FLAG_IGNORE_SPECULAR;
