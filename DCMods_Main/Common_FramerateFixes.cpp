@@ -372,10 +372,17 @@ static void __cdecl UpgradeSparks_r(ObjectMaster *a1)
 
 void RenderUpgradeSparks(NJS_SPRITE *sp, Int n, NJD_SPRITE attr, QueuedModelFlagsB zfunc_type)
 {
-	DrawQueueDepthBias = 2000.0f;
-	SetMaterialAndSpriteColor_Float(1.0f, 1.0f, 1.0f, 1.0f);
-	njDrawSprite3D_Queue(sp, n, attr, QueuedModelFlagsB_3);
-	DrawQueueDepthBias = 0;
+	if (!IsChaoStage)
+	{
+		DrawQueueDepthBias = 2000.0f;
+		SetMaterialAndSpriteColor_Float(1.0f, 1.0f, 1.0f, 1.0f);
+		njDrawSprite3D_Queue(sp, n, attr, QueuedModelFlagsB_3);
+		DrawQueueDepthBias = 0;
+	}
+	else
+	{
+		njDrawSprite3D_Queue(sp, n, attr, zfunc_type);
+	}
 }
 
 void RenderMainUpgradeModel(NJS_OBJECT *a1, QueuedModelFlagsB a2, float a3)

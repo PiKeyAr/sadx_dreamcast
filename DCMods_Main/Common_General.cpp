@@ -29,7 +29,10 @@ NJS_OBJECT* ItemBoxAirModel_ResizeChild = nullptr;
 DataPointer(float, GammaConstantMaterialAlpha, 0x47FE0F);
 DataPointer(NJS_OBJECT, stru_8B22F4, 0x8B22F4);
 DataPointer(NJS_MATRIX, nj_unit_matrix_, 0x389D650);
-DataPointer(NJS_TEXLIST, M_EM_BLACK_TEXLIST, 0x2E2C858);
+DataPointer(NJS_ACTION*, Tornado2Pointer, 0x6B9527);
+DataPointer(NJS_ACTION, Tornado2ChangeAction, 0x32ECE0C);
+DataPointer(NJS_ACTION, Tornado2TransformationAction, 0x28988FC);
+
 FunctionPointer(void, BarrierChild, (ObjectMaster *a1), 0x4BA1E0);
 FunctionPointer(void, sub_4083D0, (NJS_ACTION *a1, float a2, int a3), 0x4083D0);
 FunctionPointer(EntityData1*, sub_4B9430, (NJS_VECTOR *a1, NJS_VECTOR *a2, float a3), 0x4B9430);
@@ -44,9 +47,9 @@ FunctionPointer(void, sub_4094D0, (NJS_MODEL_SADX *model, QueuedModelFlagsB blen
 FunctionPointer(void, sub_4053A0, (NJS_OBJECT *a1, NJS_MOTION *a2, float frame, int flags, float scale), 0x4053A0);
 FunctionPointer(void, sub_407CF0, (NJS_MODEL_SADX *a1, QueuedModelFlagsB a2), 0x407CF0);
 FunctionPointer(void, sub_4BFF90, (NJS_OBJECT* a1), 0x4BFF90);
-DataPointer(NJS_ACTION*, Tornado2Pointer, 0x6B9527);
-DataPointer(NJS_ACTION, Tornado2ChangeAction, 0x32ECE0C);
-DataPointer(NJS_ACTION, Tornado2TransformationAction, 0x28988FC);
+FunctionPointer(void, AnimationCallback_C, (NJS_ACTION *a1, float a2, QueuedModelFlagsB a3), 0x4084B0);
+FunctionPointer(void, DrawObjectWithMotion_407BB0, (NJS_OBJECT *a1, NJS_MOTION *a2, float framenumber, QueuedModelFlagsB a4, float scale), 0x4082D0);
+FunctionPointer(void, DrawObjectWithMotion_407FC0, (NJS_OBJECT *a1, NJS_MOTION *a2, float framenumber, QueuedModelFlagsB a4, float scale), 0x408300);
 
 ObjectThingC ItemBoxAirResizeThing = { (NJS_OBJECT*)0, sub_4BFF90 };
 
@@ -1365,6 +1368,25 @@ void CaptureBeamFix(NJS_OBJECT *a1, QueuedModelFlagsB a2, float a3)
 	else ProcessModelNode_A_Wrapper(a1, a2, a3);
 }
 
+void QueueAnimals(NJS_ACTION *action, Float frame)
+{
+	njAction_Queue(action, frame, QueuedModelFlagsB_EnableZWrite);
+}
+
+void QueueChaoAnimals1(NJS_ACTION *a1, float a2)
+{
+	DrawQueueDepthBias = -20000.0f;
+	AnimationCallback_C(a1, a2, QueuedModelFlagsB_EnableZWrite);
+	DrawQueueDepthBias = 0.0f;
+}
+
+void QueueChaoAnimals2(NJS_OBJECT *a1, NJS_MOTION *a2, float a3)
+{
+	DrawQueueDepthBias = -20000.0f;
+	DrawObjectWithMotion_407BB0(a1, a2, a3, QueuedModelFlagsB_EnableZWrite, 1.0f);
+	DrawQueueDepthBias = 0.0f;
+}
+
 void General_Init()
 {
 	if (!ModelsLoaded_General)
@@ -1668,7 +1690,7 @@ void General_Init()
 		//Leon fixes
 		WriteData((float**)0x4CD75A, &_nj_screen_.w); //from SADXFE
 		WriteData((float**)0x4CD77C, &_nj_screen_.h); //from SADXFE
-		
+		//Robot chest stuff
 		WriteData<1>((char*)0x4CFC05, 0x08); //Zero constant material thing
 		WriteData<1>((char*)0x4CFC99, 0x08); //Zero constant material thing
 		WriteData<1>((char*)0x567CF2, 0x08); //E101 Beta (boss) constant material
@@ -1874,6 +1896,9 @@ void General_Init()
 		WriteCall((void*)0x4D7718, AnimalBubbleHook); //Animal bubble blending mode + depth
 		*(NJS_OBJECT*)0x2F67B78 = *LoadModel("system\\data\\Other\\00006C38.sa1mdl", false); //Tornado 2 crashed
 		//Animals
+		WriteCall((void*)0x4D769B, QueueAnimals); //Queue animal models because they have transparency
+		WriteCall((void*)0x73F726, QueueChaoAnimals1); //Also queue Chao animals
+		WriteCall((void*)0x73F742, QueueChaoAnimals2); //Also queue Chao animals
 		ResizeTextureList((NJS_TEXLIST*)0x92ACE4, 5); //GOMA texlist
 		//Load SA1 animal models and replace their models/animations in Action Stages
 		NJS_OBJECT* SA1Animal_Goma = LoadModel("system\\data\\1st_read\\Models\\00157760.sa1mdl", false);
