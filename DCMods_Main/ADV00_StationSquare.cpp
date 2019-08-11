@@ -89,8 +89,7 @@ void __cdecl RenderStationSquareOcean(OceanData *x)
 
 void SSOceanCallback(void(__cdecl *function)(OceanData *), OceanData *data, float depth, QueuedModelFlagsB queueflags)
 {
-	//if (EV_MainThread_ptr && CutsceneID == 19) 
-	depth = -47952.0f;
+	if (EV_MainThread_ptr && CutsceneID == 19) depth = -47952.0f;
 	DrawModelCallback_QueueOceanData(RenderStationSquareOcean, data, depth, queueflags);
 }
 
