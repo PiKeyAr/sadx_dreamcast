@@ -22,6 +22,7 @@ NJS_TEX *LowPolyOceanUVs = nullptr;
 
 DataArray(NJS_TEX, uvSTG01_00CC0530_d, 0x10C0530, 4); //Static ocean default UVs
 DataArray(NJS_TEX, uvSTG01_00CBB000_d, 0x10BB000, 1300); //Dynamic ocean default UVs
+DataPointer(char, DolphinsActivated, 0x3C5E444);
 
 /*
 #include "EmeraldCoast1.h"
@@ -770,6 +771,8 @@ void EmeraldCoast_Init()
 
 void EmeraldCoast_OnFrame()
 {
+	//Reset dolphin status
+	if (GameState == 3 || GameState == 4 || GameState == 7 || GameState == 21) DolphinsActivated = 0;
 	if (CurrentLevel == LevelIDs_EmeraldCoast)
 	{
 		//Hide skybox bottom in Act 3
