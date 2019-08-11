@@ -9,8 +9,6 @@ DataArray(FogData, EggViperFog, 0x0165D334, 3);
 DataPointer(int, EVEffect, 0x3C6E1EC);
 DataPointer(char, EggViperByteThing, 0x03C6E178);
 DataPointer(float, EggViperHitCount, 0x03C58158);
-
-FunctionPointer(void, Cutscene_WaitForInput, (int a1), 0x4314D0);
 FunctionPointer(void, Cutscene_FreeMemory2, (ObjectMaster *a1), 0x42FE40);
 
 NJS_OBJECT* EggViperDustTop = nullptr;
