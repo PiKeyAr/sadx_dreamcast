@@ -72,7 +72,6 @@ int CutsceneFadeValue = 0;
 int CutsceneFadeMode = 0;
 bool SkipPressed_Cutscene = false;
 static float EmeraldScale = 1.005f;
-static bool BigRodIgnoresSpecular = false;
 
 static const NJS_MATERIAL* Chaos4Materials[] = {
 	((NJS_MATERIAL*)0x0119D0FC),
@@ -1617,15 +1616,15 @@ void General_Init()
 				ForceObjectSpecular_Object(((NJS_ACTION*)0x2CD393C)->object->child->child->sibling->child, false); //Left hand
 				((NJS_ACTION*)0x2CD393C)->object->child->child->basicdxmodel->mats[4].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
 			}
+			//Disabled most of these since they're being taken care of in SA1_Chars now
 			//Event Tornado 2 pre-transformed light type fix
 			ForceLightType_Object(Tornado2Pointer->object, 2, false);
-			if (Tornado2Pointer->object->child->sibling->sibling->sibling->sibling->basicdxmodel->mats[0].attrflags & NJD_FLAG_USE_ALPHA && Tornado2Pointer->object->child->sibling->sibling->sibling->sibling->basicdxmodel->mats[0].attr_texId == 7) Tornado2Pointer->object->child->sibling->sibling->sibling->sibling->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_USE_ALPHA;
 			//Event Tornado 2 transformed specular fix
-			ForceObjectSpecular_Object(Tornado2ChangeAction.object->child, false);
+			//ForceObjectSpecular_Object(Tornado2ChangeAction.object->child, false); //Moved to SA1_Chars
 			//Event Tornado 2 transformed emerald transparency fix
-			SortModel(Tornado2ChangeAction.object->child->sibling->sibling);
+			//SortModel(Tornado2ChangeAction.object->child->sibling->sibling); //Sorted already?
 			//Event Tornado 2 transformation emerald transparency fix
-			SortModel(Tornado2TransformationAction.object->child->child->sibling->sibling->sibling->child);
+			//SortModel(Tornado2TransformationAction.object->child->child->sibling->sibling->sibling->child); //Sorted in SA1_Chars
 			//Tornado 2 white diffuse during transformation custcene
 			AddWhiteDiffuseMaterial(&Tornado2TransformationAction.object->child->child->sibling->sibling->sibling->child->basicdxmodel->mats[0]);
 			AddWhiteDiffuseMaterial(&Tornado2TransformationAction.object->child->child->sibling->sibling->sibling->child->basicdxmodel->mats[1]);
@@ -2132,10 +2131,6 @@ void General_OnFrame()
 	{
 		material_register_ptr(Chaos4Materials, LengthOfArray(Chaos4Materials), &Chaos4NPCFunction);
 	}
-	//Big's rod upgrade lighting - basically make it ignore specular when it's part of Big's model (upgrade attained), otherwise don't (field model)
-	if (!(BIG_OBJECTS[19]->child->basicdxmodel->mats[0].attrflags & NJD_FLAG_IGNORE_SPECULAR) && BigRodIgnoresSpecular) ForceLevelSpecular_Object(BIG_OBJECTS[19]->child, true);
-	if (BIG_OBJECTS[19]->child->basicdxmodel->mats[0].attrflags & NJD_FLAG_IGNORE_SPECULAR && !BigRodIgnoresSpecular) ForceObjectSpecular_Object(BIG_OBJECTS[19]->child, true);
-	if (EventFlagArray[EventFlags_Big_PowerRod] == 1) BigRodIgnoresSpecular = true; else BigRodIgnoresSpecular = false;
 }
 
 void General_OnInput()
