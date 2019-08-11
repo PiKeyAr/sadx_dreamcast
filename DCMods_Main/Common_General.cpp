@@ -5,7 +5,8 @@
 //#include "Animals.h"
 //#include "Frogs.h"
 //#include "RobotChest.h"
-//TODO: Fix all Capture Beam cutscenes
+
+//TODO: Maybe queue animals?
 //TODO: Chaos puddle in Knuckles' "Chaos 4 emerges" cutscene shouldn't ignore lighting (use specular 3)
 
 NJS_TEXANIM EmeraldGlowTexanim = { 64, 64, 32, 32, 0, 0, 0xFF, 0xFF, 3, 0 };
@@ -49,6 +50,10 @@ DataPointer(NJS_ACTION, Tornado2TransformationAction, 0x28988FC);
 
 ObjectThingC ItemBoxAirResizeThing = { (NJS_OBJECT*)0, sub_4BFF90 };
 
+float LSDMinimumCheck1 = 8.0f;
+float LSDMinimumSet1 = 9.0f;
+float LSDMinimumCheck2 = 4.0f;
+float LSDMinimumSet2 = 4.0f;
 static Uint32 GlobalColor_one = 0;
 static Uint32 GlobalColor_two = 0;
 static Uint32 GlobalColor_threefour = 0;
@@ -61,7 +66,6 @@ static bool EmeraldGlowDirection = false;
 static float heat_float1 = 1.0f; //1
 static float heat_float2 = 0.2f; //0.5
 static float alphathing = 1.0f;
-static float LSDFix = 16.0f;
 int CutsceneFadeValue = 0;
 int CutsceneFadeMode = 0;
 bool SkipPressed_Cutscene = false;
@@ -1347,10 +1351,12 @@ void GeoAnimFix(NJS_ACTION* a1, float a2, QueuedModelFlagsB a3, float a4)
 
 void CaptureBeamFix(NJS_OBJECT *a1, QueuedModelFlagsB a2, float a3)
 {
+	//9 - Sonic and Tails gassed at Casinopolis (Sonic)
 	//53 - Sonic and Tails gassed at Casinopolis (Tails)
+	//11 - Chaos 4 emerges (Sonic)
 	//57 - Chaos 4 emerges (Tails)
 	//139 - Chaos 4 emerges (Knuckles)
-	if (CutsceneID == 53 || CutsceneID == 57 || CutsceneID == 139)
+	if (CutsceneID == 9 || CutsceneID == 11 | CutsceneID == 53 || CutsceneID == 57 || CutsceneID == 139)
 	{
 		DrawQueueDepthBias = 8000.0f;
 		ProcessModelNode_D_WrapperB(a1, a2, a3);
@@ -1738,11 +1744,15 @@ void General_Init()
 		//Light Speed Dash distance fix
 		if (EnableLSDFix)
 		{
-			WriteData<1>((char*)0x49306C, 0x60); //Initial speed 14 instead of 8
-			WriteData<1>((char*)0x492FED, 0x60); //Initial speed 14 instead of 8
-			WriteData<1>((char*)0x492CC1, 0x60); //Set speed to 14 if below minimum
-			//Disabling this since it doesn't seem necessary and it breaks Egg Carrier captain's room
-			//WriteData((float**)0x492CB0, &LSDFix); //16 is the minimum speed
+			LSDMinimumCheck1 = 8.0f;
+			LSDMinimumSet1 = 9.0f;
+			LSDMinimumCheck2 = 4.0f;
+			LSDMinimumSet2 = 4.0f;
+			WriteData((float*)0x49306A, 16.0f); //Initial X speed
+			WriteData((float**)0x492CCB, &LSDMinimumCheck2); //Minimum check 1 (2.0 in SADX)
+			WriteData((float*)0x492CDA, LSDMinimumSet2); //Set if met check 1 (2.0 in SADX)
+			WriteData((float**)0x492CB0, &LSDMinimumCheck1); //Minimum speed to be compared
+			WriteData((float*)0x492CBF, LSDMinimumSet1); //Minimum speed to be set
 		}
 		//Ripples
 		if (EnableDCRipple)
