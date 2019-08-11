@@ -521,5 +521,8 @@
     <ClInclude Include="Data\RobotChest.h">
       <Filter>Header Files\Levels\General</Filter>
     </ClInclude>
+    <ClInclude Include="Data\ADV00_Motions.h">
+      <Filter>Header Files\Levels\StationSquare</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

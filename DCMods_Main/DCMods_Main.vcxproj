@@ -131,6 +131,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Data\ADV00_Motions.h" />
     <ClInclude Include="Data\Animals.h" />
     <ClInclude Include="Data\Animals_motions.h" />
     <ClInclude Include="Data\ChaoObjects_Race.h" />
