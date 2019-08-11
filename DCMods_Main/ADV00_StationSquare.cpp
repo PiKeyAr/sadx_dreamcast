@@ -55,6 +55,7 @@ DataArray(DrawDistance, StationSquare6DrawDist, 0x02AA3CF8, 3);
 
 static Sint8 PreviousTimeOfDay = -1;
 static Sint8 DelayedTimeOfDay = -1;
+static bool ReduceSSOceanDepth = false;
 
 int __cdecl CheckIfCameraIsInHotel_Lol()
 {
@@ -89,7 +90,7 @@ void __cdecl RenderStationSquareOcean(OceanData *x)
 
 void SSOceanCallback(void(__cdecl *function)(OceanData *), OceanData *data, float depth, QueuedModelFlagsB queueflags)
 {
-	if (EV_MainThread_ptr && CutsceneID == 19) depth = -47952.0f;
+	if (ReduceSSOceanDepth) depth = -47952.0f;
 	DrawModelCallback_QueueOceanData(RenderStationSquareOcean, data, depth, queueflags);
 }
 
@@ -494,6 +495,13 @@ void UnloadLevelFiles_ADV00()
 	PreviousTimeOfDay = -1;
 }
 
+void CutsceneHook_ReduceOceanDepth(int a1)
+{
+	ReduceSSOceanDepth = true;
+	Cutscene_WaitForInput(a1);
+	PrintDebug("Depth\n");
+}
+
 void ADV00_Init()
 {
 	//This is done every time the function is called
@@ -631,6 +639,8 @@ void ADV00_Init()
 		if (!SADXWater_StationSquare) 
 		{
 			WriteCall((void*)0x62EC3C, SSOceanCallback); //Render SS ocean separately
+			WriteCall((void*)0x6DD7F1, CutsceneHook_ReduceOceanDepth); //Sonic's story
+			WriteCall((void*)0x6A99C3, CutsceneHook_ReduceOceanDepth); //Amy's story
 			WriteData<5>((char*)0x62EC52, 0x90u); //Don't call the ocean rendering function twice
 		}
 		ReplacePVM("ADVSS00");
@@ -878,6 +888,8 @@ void ADV00_OnFrame()
 {
 	if (CurrentLevel == LevelIDs_StationSquare)
 	{
+		//Stupid hack to make ocean visible in cutscenes
+		if (!EV_MainThread_ptr) ReduceSSOceanDepth = false;
 		//Switch textures/lighting depending on time of day
 		if (ADV00_0_Info && ADV00_1_Info && ADV00_3_Info && ADV00_4_Info && PreviousTimeOfDay != GetTimeOfDay())
 		{
