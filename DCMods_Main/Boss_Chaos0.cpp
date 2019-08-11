@@ -53,7 +53,9 @@ static void OPato0_Display_r(ObjectMaster *a1);
 static Trampoline OPato0_Display_t(0x549600, 0x549605, OPato0_Display_r);
 static void __cdecl OPato0_Display_r(ObjectMaster *a1)
 {
+	float nbFrames = BOSSCHAOS0_ACTIONS[18]->motion->nbFrame - 1.0f;
 	auto original = reinterpret_cast<decltype(OPato0_Display_r)*>(OPato0_Display_t.Target());
+	if (a1->Data1->Scale.x >= nbFrames) a1->Data1->Scale.x -= nbFrames; //Animation stutter fix
 	original(a1);
 	if (EnableChaos0)
 	{
