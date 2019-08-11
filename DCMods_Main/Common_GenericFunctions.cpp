@@ -19,7 +19,6 @@ void HideMesh_Model(NJS_MODEL_SADX *model, int meshID)
 
 void CheckAndUnloadLevelFiles()
 {
-	UnloadGUITextures();
 	General_Init();
 	ClearTextureAnimationData();
 	if (CurrentLevel != LevelIDs_StationSquare && ADV00_0_Info) UnloadLevelFiles_ADV00();
