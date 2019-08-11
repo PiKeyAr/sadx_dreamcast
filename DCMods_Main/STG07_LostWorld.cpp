@@ -267,6 +267,19 @@ void LostWorld_Init()
 		ReplacePVM("RUIN03");
 		ReplacePVM("OBJ_RUIN");
 		ReplacePVM("OBJ_RUIN2");
+		//Improve clip distance for some platforms in the snake room
+		ObjList_LWorld[31].UseDistance = 1;
+		ObjList_LWorld[32].UseDistance = 1;
+		ObjList_LWorld[33].UseDistance = 1;
+		ObjList_LWorld[34].UseDistance = 1;
+		ObjList_LWorld[35].UseDistance = 1;
+		ObjList_LWorld[36].UseDistance = 1;
+		ObjList_LWorld[31].Distance = 800000;
+		ObjList_LWorld[32].Distance = 800000;
+		ObjList_LWorld[33].Distance = 800000;
+		ObjList_LWorld[34].Distance = 800000;
+		ObjList_LWorld[35].Distance = 800000;
+		ObjList_LWorld[36].Distance = 800000;
 		//Various effects
 		WriteData((float*)0x2039774, 0.005f); //SA1 scale for fire particle
 		//AokiSwitch
