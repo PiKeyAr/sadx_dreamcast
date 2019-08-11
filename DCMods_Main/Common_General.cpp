@@ -1385,6 +1385,18 @@ void QueueChaoAnimals2(NJS_OBJECT *a1, NJS_MOTION *a2, float a3)
 	DrawQueueDepthBias = 0.0f;
 }
 
+void CutsceneFadeHookForSubtitleBox(float left, float top, float right, float bottom, float depth, NJS_COLOR color)
+{
+	color.argb.a = color.argb.a * (1.0f - CutsceneFadeValue / 255.0f);
+	DrawRect_DrawNowMaybe(left, top, right, bottom, depth, color.color);
+}
+
+void CutsceneFadeHookForSubtitleText(NJS_ARGB *a1)
+{
+	float alpha = a1->a * (1.0f - CutsceneFadeValue / 255.0f);
+	SetMaterialAndSpriteColor_Float(alpha, a1->r, a1->g, a1->b);
+}
+
 void General_Init()
 {
 	if (!ModelsLoaded_General)
@@ -1548,6 +1560,12 @@ void General_Init()
 		ReplacePVM("WING_P");
 		ReplacePVM("WING_T");
 		ReplacePVM("ZOU");
+		//Cutscene skip hooks
+		if (CutsceneSkipMode == 0)
+		{
+			WriteCall((void*)0x40D69C, CutsceneFadeHookForSubtitleBox);
+			WriteCall((void*)0x40D78A, CutsceneFadeHookForSubtitleText);
+		}
 		//Snow/sandboard "fixes" (SL OBJECTS)
 		RemoveVertexColors_Object(SONIC_OBJECTS[71]);
 		RemoveVertexColors_Object(MILES_OBJECTS[71]);
