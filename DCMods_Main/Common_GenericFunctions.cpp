@@ -178,7 +178,7 @@ void AnimateTexture(TextureAnimation *texanim)
 
 void AnimateUVs(UVAnimation *animation)
 {
-	if (CurrentLevel == animation->level && (CurrentAct == animation->act || animation->act == -1))
+	if (CurrentAct == animation->act || animation->act == -1)
 	{
 		int actualtimer = 1;
 		//Calculate animation speed if in 30 or 15 FPS mode
