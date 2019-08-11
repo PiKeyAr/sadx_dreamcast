@@ -1620,6 +1620,7 @@ void General_Init()
 			}
 			//Event Tornado 2 pre-transformed light type fix
 			ForceLightType_Object(Tornado2Pointer->object, 2, false);
+			if (Tornado2Pointer->object->child->sibling->sibling->sibling->sibling->basicdxmodel->mats[0].attrflags & NJD_FLAG_USE_ALPHA && Tornado2Pointer->object->child->sibling->sibling->sibling->sibling->basicdxmodel->mats[0].attr_texId == 7) Tornado2Pointer->object->child->sibling->sibling->sibling->sibling->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_USE_ALPHA;
 			//Event Tornado 2 transformed specular fix
 			ForceObjectSpecular_Object(Tornado2ChangeAction.object->child, false);
 			//Event Tornado 2 transformed emerald transparency fix
