@@ -215,6 +215,11 @@ void Videos_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 			ResizeTextureList(&SEGALOGO_E_TEXLIST, 6);
 		}
 	}
+	//Fix EC crash cutscene fadeout
+	WriteData((float*)0x10F1D44, (float)HorizontalResolution);
+	WriteData((float*)0x10F1D54, (float)HorizontalResolution);
+	WriteData((float*)0x10F1D48, (float)HorizontalResolution);
+	WriteData((float*)0x10F1D50, (float)HorizontalResolution);
 	//Video stuff
 	InitVideoFrameStuff();
 	WriteCall((void*)0x00513A88, AdjustVideoFrame); //Center video frame vertically if playing Sonic Team logo/SA1 intro
