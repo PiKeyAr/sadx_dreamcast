@@ -36,6 +36,7 @@ FunctionPointer(void, DrawModelCallback_QueueObjectMaster, (void(__cdecl* functi
 FunctionPointer(void, DrawModelCallback_QueueInt, (void(__cdecl* function)(int), int data, float depth, QueuedModelFlagsB queueflags), 0x404840);
 FunctionPointer(void, DrawModelCallback_QueueOceanData, (void(__cdecl* function)(OceanData*), OceanData* data, float depth, QueuedModelFlagsB queueflags), 0x404840);
 FunctionPointer(void, DrawModelCallback_QueueFloat, (void(__cdecl* function)(float), float data, float depth, QueuedModelFlagsB queueflags), 0x404840);
+FunctionPointer(void, ProcessModel_407BB0, (NJS_MODEL_SADX *model, QueuedModelFlagsB blend, float radius_scale), 0x4094D0);
 FunctionPointer(void, ProcessModelNode_TryReallyHard_2, (NJS_OBJECT* a1), 0x40A280);
 FunctionPointer(void, ProcessModelNode_Try, (NJS_OBJECT* a1, int a2, float a3), 0x40A1E0);
 FunctionPointer(void, ProcessModel_NoSorting, (NJS_MODEL_SADX* model, float scale), 0x407A00);

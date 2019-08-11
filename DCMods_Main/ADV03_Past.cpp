@@ -31,6 +31,7 @@ NJS_OBJECT *PastChaoModel_9 = nullptr;
 NJS_OBJECT *PastChaoModel_10 = nullptr;
 NJS_OBJECT* PalmBottom = nullptr;
 NJS_OBJECT* PalmBottom2 = nullptr;
+NJS_OBJECT* TreeShadow = nullptr;
 
 FunctionPointer(void, AllocateEventObject, (ObjectMaster *a1, NJS_ACTION *a2, NJS_TEXLIST *a3, float a4, char a5, char a6), 0x42FE00);
 FunctionPointer(void, sub_408350, (NJS_ACTION *a1, float a2, int a3, float a4), 0x408350);
@@ -254,6 +255,28 @@ void AllocateEventChao_10(ObjectMaster *a1, NJS_ACTION *a2, NJS_TEXLIST *a3, flo
 	newaction.motion = a2->motion;
 	newaction.object = PastChaoModel_10;
 	AllocateEventObject(a1, &newaction, a3, a4, a5, a6);
+}
+
+void FixTreeShadowFlickering1(NJS_OBJECT *a1, QueuedModelFlagsB a2, float a3)
+{
+	ProcessModelNode_C_VerifyTexList(a1, a2, a3);
+	if (TreeShadow)
+	{
+		DrawQueueDepthBias = -27000.0f;
+		DrawModel_Queue(TreeShadow->basicdxmodel, (QueuedModelFlagsB)4);
+		DrawQueueDepthBias = 0.0f;
+	}
+}
+
+void FixTreeShadowFlickering2(NJS_OBJECT *a1, QueuedModelFlagsB a2, float a3)
+{
+	ProcessModelNode_D_WrapperB(a1, a2, a3);
+	if (TreeShadow)
+	{
+		DrawQueueDepthBias = -27000.0f;
+		DrawModel_Queue(TreeShadow->basicdxmodel, (QueuedModelFlagsB)4);
+		DrawQueueDepthBias = 0.0f;
+	}
 }
 
 void ParsePastMaterials()
@@ -551,7 +574,14 @@ void ADV03_Init()
 		//Other objects
 		ADV03_ACTIONS[9]->object = LoadModel("system\\data\\ADV03\\Models\\0000F864.sa1mdl", false); //OTree 0
 		ADV03_OBJECTS[16] = LoadModel("system\\data\\ADV03\\Models\\0001EDDC.sa1mdl", false); //Tree 16
-		ADV03_OBJECTS[17] = LoadModel("system\\data\\ADV03\\Models\\0001EDDC.sa1mdl", false); //Tree 17 (identical?)
+		ADV03_OBJECTS[17] = LoadModel("system\\data\\ADV03\\Models\\0001EDDC.sa1mdl", false); //Tree 17 (low LOD model in SADX)
+		HideMesh_Object(ADV03_OBJECTS[16], 2);
+		HideMesh_Object(ADV03_OBJECTS[17], 2);
+		TreeShadow = LoadModel("system\\data\\ADV03\\Models\\0001EDDC.sa1mdl", false);
+		HideMesh_Object(TreeShadow, 0);
+		HideMesh_Object(TreeShadow, 1);
+		WriteCall((void*)0x5455A9, FixTreeShadowFlickering1);
+		WriteCall((void*)0x54557C, FixTreeShadowFlickering2);
 		ADV03_OBJECTS[15] = LoadModel("system\\data\\ADV03\\Models\\00027158.sa1mdl", false); //Small tree shadow
 		ADV03_OBJECTS[13] = LoadModel("system\\data\\ADV03\\Models\\00016CA0.sa1mdl", false); //OWell
 		ADV03_OBJECTS[18] = LoadModel("system\\data\\ADV03\\Models\\00027054.sa1mdl", false); //Well shadow
