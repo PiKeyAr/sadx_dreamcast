@@ -89,8 +89,8 @@ static float f640_Fixed = 0;
 
 //PVM IDs for menus
 int TitleScreenIndices[] = { 17, 18, 0, 1, 10, 13, 7, 30 }; //0, 1, 10, 13, 7 from the file select screen
-int MainMenuIndices[] = { 19, 20, 1, 10, 17, 18, 0, 13, 7, 30 }; //17 and 18 from the title screen, 0, 13, 7 from the file select screen (to make the title screen load faster)
-int FileSelectIndices[] = { 0, 1, 10, 4, 5, 6, 22, 3, 15, 13, 7, 8, 11, 24, 17, 18, 30 }; //17 and 18 from the title screen//Title screen
+int MainMenuIndices[] = { 19, 20, 1, 17, 10, 30 }; //17 is needed to draw the title. Removed: 18 is from the title screen, 0, 13, 7 from the file select screen
+int FileSelectIndices[] = { 0, 1, 10, 4, 5, 6, 22, 3, 15, 13, 7, 8, 11, 24, 30 }; //17 and 18 from the title screen
 
 NJS_COLOR TitleBackOverlayColor;
 static NJS_COLOR TitleBGTransparency;
@@ -1809,14 +1809,6 @@ static void __cdecl LoadPVM_r(const char *filename, NJS_TEXLIST *texlist)
 	original(filename, texlist);
 }
 */
-
-void UnloadGUITextures()
-{
-	for (int i = 0; i < 30; i++)
-	{
-		njReleaseTexture(GUIPVMLists[TextLanguage][i].TexList);
-	}
-}
 
 void Branding_SetUpVariables()
 {
