@@ -863,7 +863,9 @@ void ADV02_Init()
 		ADV02_ACTIONS[18]->object = LoadModel("system\\data\\ADV02\\Models\\001D76AC.sa1mdl", false); //Wall in Tails' house
 		ADV02_OBJECTS[61] = LoadModel("system\\data\\ADV02\\Models\\001B1A98.sa1mdl", false); //OIslandDoor
 		ADV02_OBJECTS[60] = LoadModel("system\\data\\ADV02\\Models\\001B0FE0.sa1mdl", false); //OIslandDoor right
+		ADV02_OBJECTS[60]->pos[2] = 0.05f;
 		ADV02_OBJECTS[59] = LoadModel("system\\data\\ADV02\\Models\\001B1648.sa1mdl", false); //OIslandDoor left
+		ADV02_OBJECTS[59]->pos[2] = 0.05f;
 		ADV02_OBJECTS[39] = LoadModel("system\\data\\ADV02\\Models\\001AF63C.sa1mdl", false); //Monkey cage (full)
 		ADV02_OBJECTS[38] = LoadModel("system\\data\\ADV02\\Models\\001AF0B0.sa1mdl", false); //Monkey cage (bottom)
 		ADV02_OBJECTS[42] = LoadModel("system\\data\\ADV02\\Models\\001AE9B0.sa1mdl", false); //Monkey cage (bottom)
