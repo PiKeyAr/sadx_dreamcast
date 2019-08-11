@@ -1,4 +1,6 @@
 #include "stdafx.h"
+#include "ADV00_Motions.h"
+
 //TODO: Burger Shop man lighting should use type 0 but the model parts are shared among NPCs
 //TODO: The shadow in main area sewers should render behind the water, the windows in secret area
 //TODO: Very slight transparency issue with Casino door
@@ -83,6 +85,13 @@ void __cdecl RenderStationSquareOcean(OceanData *x)
 			njPopMatrix(1u);
 		}
 	}
+}
+
+void SSOceanCallback(void(__cdecl *function)(OceanData *), OceanData *data, float depth, QueuedModelFlagsB queueflags)
+{
+	//if (EV_MainThread_ptr && CutsceneID == 19) 
+	depth = -47952.0f;
+	DrawModelCallback_QueueOceanData(RenderStationSquareOcean, data, depth, queueflags);
 }
 
 void FixPoliceCar(NJS_ACTION *a1, float a2, int a3)
@@ -620,7 +629,11 @@ void ADV00_Init()
 			ReplaceBIN_DC("CAMSS04S");
 			ReplaceBIN_DC("CAMSS05S");
 		}
-		if (!SADXWater_StationSquare) WriteJump((void*)0x631140, RenderStationSquareOcean); //Render SS ocean separately
+		if (!SADXWater_StationSquare) 
+		{
+			WriteCall((void*)0x62EC3C, SSOceanCallback); //Render SS ocean separately
+			WriteData<5>((char*)0x62EC52, 0x90u); //Don't call the ocean rendering function twice
+		}
 		ReplacePVM("ADVSS00");
 		ReplacePVM("ADVSS01");
 		ReplacePVM("ADVSS02");
@@ -707,6 +720,7 @@ void ADV00_Init()
 		((NJS_OBJECT*)0x2AEA9F8)->basicdxmodel->mats[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT; //OS1Dnto doesn't ignore lighting on DC even though the model does
 		*(NJS_OBJECT*)0x2AB2CCC = *LoadModel("system\\data\\ADV00\\Models\\001689C4.sa1mdl", true); //Souvenir shop door
 		*(NJS_OBJECT*)0x2AB57E4 = *LoadModel("system\\data\\ADV00\\Models\\0016B404.sa1mdl", false); //OTwaDoor
+		*(NJS_MOTION*)0x2AB5960 = _0016B4B4; //OTwaDoor motion
 		*(NJS_OBJECT*)0x2AFE668 = *LoadModel("system\\data\\ADV00\\Models\\001A6DEC.sa1mdl", false); //Casino decoration 1 (stars)
 		*(NJS_OBJECT*)0x2B027D8 = *LoadModel("system\\data\\ADV00\\Models\\001AADA4.sa1mdl", false); //Casino decoration 2 (wall)
 		*(NJS_OBJECT*)0x2B04CF8 = *LoadModel("system\\data\\ADV00\\Models\\001AD220.sa1mdl", false); //Casino decoration 3 (letters)
