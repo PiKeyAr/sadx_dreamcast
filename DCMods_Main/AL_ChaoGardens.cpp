@@ -2258,7 +2258,6 @@ void ChaoGardens_Init()
 			WriteJump((void*)0x0072A820, sub_72A820); //Mystic Ruins garden function 2
 			WriteJump((void*)0x0072A8B0, sub_72A8B0); //Mystic Ruins garden function 3
 			WriteData<5>((void*)0x00718E43, 0x90); //Kill SADX water
-			WriteData<5>((void*)0x00728F1E, 0x90); //Kill SADX water 2
 			WriteData<1>((void*)0x00718E7F, 0xC6); //Draw distance
 			WriteData<1>((void*)0x00718E7E, 0x3B); //Draw distance
 			WriteData<1>((void*)0x00718E7D, 0x80); //Draw distance
