@@ -21,7 +21,7 @@ static Trampoline E101RHurtExplosion_t(0x4CC880, 0x4CC886, E101RHurtExplosion_r)
 static void __cdecl E101RHurtExplosion_r(void *a1)
 {
 	auto original = reinterpret_cast<decltype(E101RHurtExplosion_r)*>(E101RHurtExplosion_t.Target());
-	if (EnableZeroE101R) DrawModelCallback_Queue(original, a1, 22048.0f, QueuedModelFlagsB_SomeTextureThing);
+	if (EnableZeroE101R || EnableE101) DrawModelCallback_Queue(original, a1, 22048.0f, QueuedModelFlagsB_SomeTextureThing);
 	else original(a1);
 }
 
@@ -151,6 +151,17 @@ void UnloadLevelFiles_B_E101_R()
 	B_E101_R_Info = nullptr;
 }
 
+void FixFVFShit()
+{
+	WriteCall((void*)0x56F839, E101R_Particle_Show);
+	WriteCall((void*)0x4CC13F, E101R_SmallBalls_Show);
+	WriteCall((void*)0x4CC1C7, E101R_SmallBalls_Show);
+	WriteCall((void*)0x4CC82E, FixFVFZWrite);
+	WriteCall((void*)0x0056FD59, E101R_FVFShit);
+	WriteCall((void*)0x00571581, E101R_DrawExplosion);
+	WriteCall((void*)0x005715AE, E101R_DrawExplosion);
+}
+
 void E101R_Init()
 {
 	B_E101_R_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\B_E101_R\\0.sa1lvl"));
@@ -168,24 +179,18 @@ void E101R_Init()
 		{
 			ReplaceBIN_1999("SETE101RE");
 		}
+		FixFVFShit();
 		ReplacePVM("E101R");
 		ReplacePVM("E101R_BG");
 		if (!ModelsLoaded_B_ROBO) ReplacePVM("E101R_TIKEI");
 		ReplaceGeneric("E101R_GC.NB", "E101R_DC.NB");
 		WriteCall((void*)0x570DB1, RenderE101R_Rocket);
-		WriteCall((void*)0x56F839, E101R_Particle_Show);
-		WriteCall((void*)0x4CC13F, E101R_SmallBalls_Show);
-		WriteCall((void*)0x4CC1C7, E101R_SmallBalls_Show);
 		//E-101R fixes
 		ShadowBlob_Model.basicdxmodel->mats[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		WriteCall((void*)0x4CC82E, FixFVFZWrite);
-		WriteCall((void*)0x0056FD59, E101R_FVFShit);
-		WriteCall((void*)0x00571581, E101R_DrawExplosion);
-		WriteCall((void*)0x005715AE, E101R_DrawExplosion);
 		WriteCall((void*)0x005709CA, E101R_ArmsHook);
 		WriteData<1>((char*)0x00568D20, 0xC3u); //E101R clip function
-		WriteCall((void*)0x0057069D, E101R_AfterImageMaterial); //E10R afterimage
-		WriteCall((void*)0x00570784, E101R_AfterImageConstantAttr); //E10R afterimage
+		WriteCall((void*)0x0057069D, E101R_AfterImageMaterial); //E101R afterimage
+		WriteCall((void*)0x00570784, E101R_AfterImageConstantAttr); //E101R afterimage
 		WriteCall((void*)0x0057072A, E101R_AfterImageQueue);
 		WriteCall((void*)0x0056B07D, E101REffect_Orange); //Set arm effect to orange and render
 		WriteCall((void*)0x0056B096, E101REffect_Blue); //Set arm effect to blue and render

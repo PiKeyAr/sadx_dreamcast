@@ -455,6 +455,7 @@ void Branding_SetUpVariables();
 void SpeedFixes_Init();
 void SpeedFixes_OnFrame();
 void SADXStyleWater_OnFrame();
+void FixFVFShit();
 
 //Other stuff
 void UnloadGUITextures();

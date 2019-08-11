@@ -28,6 +28,7 @@ void E101_Init()
 		{
 			ReplaceBIN_1999("SETE101E");
 		}
+		FixFVFShit();
 		ReplacePVM("E101");
 		ReplacePVM("E101_TIKEI");
 		RemoveVertexColors_Object((NJS_OBJECT*)0x14DE020); //E101 boss model
