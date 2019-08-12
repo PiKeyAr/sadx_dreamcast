@@ -223,7 +223,6 @@ signed int __cdecl JapaneseSpikes(ObjectMaster *a1)
 			*(float *)&v1->LoopData = LevelFrameCount;
 			break;
 		default:
-			Rings = 77;
 			goto LABEL_21;
 		}
 	}
