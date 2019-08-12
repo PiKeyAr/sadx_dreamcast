@@ -572,7 +572,6 @@ void SpeedHighway_Init()
 		*(NJS_OBJECT*)0x02677288 = *LoadModel("system\\data\\STG04\\Models\\00145D34.sa1mdl", true); //container B top broken 2
 		WriteData<1>((void*)0x00619545, 1); //blending mode for poster
 		WriteData<1>((void*)0x0061A8EA, 0); //blending mode for glass
-		WriteData<1>((void*)0x0061A8EA, 0); //blending mode for glass 2
 		WriteData<1>((void*)0x0061A951, 0); //blending mode for glass 3
 		((NJS_TEXLIST*)0x26B2B90)->textures = (NJS_TEXNAME*)0x26705CC; //Texlists for posters
 		((NJS_TEXLIST*)0x26B2B98)->textures = (NJS_TEXNAME*)0x26705F0; //Texlists for posters
