@@ -771,8 +771,9 @@ void EmeraldCoast_Init()
 
 void EmeraldCoast_OnFrame()
 {
+	auto entity = EntityData1Ptrs[0];
 	//Reset dolphin status
-	if (GameState == 3 || GameState == 4 || GameState == 7 || GameState == 21) DolphinsActivated = 0;
+	if ((entity != nullptr && CurrentAct == 1 && entity->Position.x < 4000) || (GameState == 3 || GameState == 4 || GameState == 7 || GameState == 21)) DolphinsActivated = 0;
 	if (CurrentLevel == LevelIDs_EmeraldCoast)
 	{
 		//Hide skybox bottom in Act 3
