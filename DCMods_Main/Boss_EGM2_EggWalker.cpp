@@ -29,25 +29,6 @@ void EggWalker_Init()
 	LandTableArray[48] = B_EGM2;
 	if (!ModelsLoaded_B_EGM2)
 	{
-		if (!Use1999SetFiles)
-		{
-			ReplaceBIN_DC("SETEGM2S");
-		}
-		else
-		{
-			ReplaceBIN_1999("SETEGM2S");
-		}
-		ReplacePVM("EGM2");
-		ReplacePVM("EGM2_BAKU");
-		ReplacePVM("EGM2_CAR");
-		ReplacePVM("EGM2_COMMON");
-		ReplacePVM("EGM2_EFFECT");
-		ReplacePVM("EGM2_FIRE");
-		ReplacePVM("EGM2_HAMON");
-		ReplacePVM("EGM2_MINE");
-		ReplacePVM("EGM2_MISSILE");
-		ReplacePVM("EGM2_SKY");
-		ReplacePVM("EGM2_TIKEI");
 		RemoveVertexColors_Object((NJS_OBJECT*)0x162DAC0); //Egg Walker body
 		RemoveVertexColors_Object((NJS_OBJECT*)0x162F554); //Egg Walker cockpit
 		RemoveVertexColors_Object((NJS_OBJECT*)0x1654F28); //Egg Walker Eggman

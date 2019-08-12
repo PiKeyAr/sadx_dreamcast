@@ -4051,8 +4051,6 @@ void ChaoRace_Init()
 	//Chao Race Entry
 	if (EnableLobby)
 	{
-		ReplaceBIN_DC("CAMAL_RACE00S");
-		ReplacePVM("AL_RACE01");
 		WriteCall((void*)0x0071C0CF, BowChaoThing);
 		WriteJump((void*)0x007199B0, LoadRaceEntryX);
 		WriteCall((void*)0x0072C618, ExitRaceEntry);
@@ -4063,7 +4061,6 @@ void ChaoRace_Init()
 		RemoveVertexColors_Object((NJS_OBJECT*)0x33AEF88); //Old Chao Race button
 	}
 	//Chao Race stuff
-	ReplaceBIN_DC("CAMAL_RACE01S");
 	WriteData((int**)0x751B11, &CurrentChaoStage); //Restore Chao Race jewel by replacing the invalid pointer with something that always returns something
 	WriteCall((void*)0x72E688, LoadChaoRaceJewelAndText);
 	WriteCall((void*)0x719D8C, LoadObjChaoRaceTexlist);
@@ -4082,20 +4079,6 @@ void ChaoRace_Init()
 	WriteData((NJS_OBJECT**)0x883E68, ChaoRaceStartMark2); //Start Mark in Chao Race
 	WriteJump((void*)0x00719DB0, LoadChaoRaceX);
 	WriteData((float*)0x00719D74, -16000.0f); //Draw distance
-	ReplacePVM("AL_RACE02");
-	ReplacePVM("BG_AL_RACE02");
-	ReplacePVM("OBJ_AL_RACE");
-	ReplacePVM("OBJ_AL_RACE_E");
-	if (!Use1999SetFiles)
-	{
-		ReplaceBIN_DC("SETAL_RACE00S");
-		ReplaceBIN_DC("SETAL_RACE01S");
-	}
-	else
-	{
-		ReplaceBIN_1999("SETAL_RACE00S");
-		ReplaceBIN_1999("SETAL_RACE01S");
-	}
 }
 
 void ChaoRace_OnFrame()

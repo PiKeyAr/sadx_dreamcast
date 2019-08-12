@@ -548,36 +548,6 @@ void FinalEgg_Init()
 	WriteData((LandTable**)0x97DB50, STG10_2); //Act 3
 	if (!ModelsLoaded_STG10)
 	{
-		ReplaceBIN_DC("CAM1000A");
-		ReplaceBIN_DC("CAM1000S");
-		ReplaceBIN_DC("CAM1001S");
-		ReplaceBIN_DC("CAM1002E");
-		ReplaceBIN_DC("CAM1002S");
-		ReplaceBIN_DC("CAM1003S");
-		if (!Use1999SetFiles)
-		{
-			ReplaceBIN_DC("SET1000A");
-			ReplaceBIN_DC("SET1000S");
-			ReplaceBIN_DC("SET1001S");
-			ReplaceBIN_DC("SET1002E");
-			ReplaceBIN_DC("SET1002S");
-			ReplaceBIN_DC("SET1003S");
-		}
-		else
-		{
-			ReplaceBIN_1999("SET1000A");
-			ReplaceBIN_1999("SET1000S");
-			ReplaceBIN_1999("SET1001S");
-			ReplaceBIN_1999("SET1002E");
-			ReplaceBIN_1999("SET1002S");
-			ReplaceBIN_1999("SET1003S");
-		}
-		ReplacePVM("EFF_FINALEGG_POM");
-		ReplacePVM("FINALEGG1");
-		ReplacePVM("FINALEGG2");
-		ReplacePVM("FINALEGG3");
-		ReplacePVM("FINALEGG4");
-		ReplacePVM("OBJ_FINALEGG");
 		TexLists_Obj[10] = FinalEggObjectTextures;
 		WriteCall((void*)0x005AEF29, GachaponExplosionFix);
 		WriteData<1>((char*)0x5ADC40, 0xC3u); //Disable SetClip_FEgg2

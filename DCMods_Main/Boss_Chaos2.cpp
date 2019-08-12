@@ -70,19 +70,6 @@ void Chaos2_Init()
 	LandTableArray[8] = B_CHAOS2; //Chaos 2
 	if (!ModelsLoaded_B_CHAOS2)
 	{
-		if (!Use1999SetFiles)
-		{
-			ReplaceBIN_DC("SET1600S");
-		}
-		else
-		{
-			ReplaceBIN_1999("SET1600S");
-		}
-		ReplacePVM("CHAOS2");
-		ReplacePVM("LM_CHAOS2");
-		ReplacePVM("CHAOS2_BARRIER");
-		ReplacePVM("CHAOS2_EFFECT");
-		ReplacePVM("CHAOS2_OBJECT");
 		*(NJS_MODEL_SADX*)0x11863C0 = *LoadModel("system\\data\\B_CHAOS2\\Models\\0006CD68.sa1mdl", false)->basicdxmodel; //Column
 		*(NJS_OBJECT*)0x11835B4 = *LoadModel("system\\data\\B_CHAOS2\\Models\\0006812C.sa1mdl", false); //Table
 		((NJS_OBJECT*)0x11835B4)->basicdxmodel->mats[1].attrflags &= ~NJD_FLAG_USE_ALPHA; //This doesn't use alpha anyway

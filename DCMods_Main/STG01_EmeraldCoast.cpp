@@ -45,6 +45,8 @@ static int beachsea_water = 0;
 static int inside_secret_area = 0;
 static int water_anim = 17;
 static bool lilocean = false;
+static float WallCollisionNerf = 0.0f;
+
 static NJS_VECTOR oldpos{ 0,0,0 };
 
 DataArray(FogData, EmeraldCoast1Fog, 0x00E99DDC, 3);
@@ -610,40 +612,16 @@ void EmeraldCoast_Init()
 	ParseEmeraldCoastColFlagsAndMaterials(STG01_2, 2);
 	if (!ModelsLoaded_STG01)
 	{
-		if (!Use1999SetFiles)
+		if (Use1999SetFiles > 0)
 		{
-			ReplaceBIN_DC("SET0100E");
-			ReplaceBIN_DC("SET0100S");
-			ReplaceBIN_DC("SET0101M");
-			ReplaceBIN_DC("SET0101S");
-			ReplaceBIN_DC("SET0102B");
-			ReplaceBIN_DC("SET0102S");
+			WriteData((float**)0x4D46C8, &WallCollisionNerf);
+			WriteData((float**)0x4D46D7, &WallCollisionNerf);
+			WriteData((float**)0x4D46E3, &WallCollisionNerf);
 		}
-		else
-		{
-			ReplaceBIN_1999("SET0100E");
-			ReplaceBIN_1999("SET0100S");
-			ReplaceBIN_1999("SET0101M");
-			ReplaceBIN_1999("SET0101S");
-			ReplaceBIN_1999("SET0102B");
-			ReplaceBIN_1999("SET0102S");
-		}
-		ReplacePVM("BEACH01");
-		ReplacePVM("BEACH02");
-		ReplacePVM("BEACH03");
-		ReplacePVM("BG_BEACH");
-		ReplacePVM("OBJ_BEACH");
-		ReplacePVM("BEACH_SEA");
-		WriteData<1>((char*)0x4F68E0, 0xC3u); //Disable SetClip_ECoast1
 		if (!IamStupidAndIWantFuckedUpOcean)
 		{
 			for (int i = 0; i < 3; i++)
 			{
-				ReplaceBIN_DC("CAM0100E");
-				ReplaceBIN_DC("CAM0100S");
-				ReplaceBIN_DC("CAM0101S");
-				ReplaceBIN_DC("CAM0102B");
-				ReplaceBIN_DC("CAM0102S");
 				SkyboxScale_EmeraldCoast1[i].x = 1.0f;
 				SkyboxScale_EmeraldCoast1[i].y = 1.0f;
 				SkyboxScale_EmeraldCoast1[i].z = 1.0f;
@@ -660,14 +638,6 @@ void EmeraldCoast_Init()
 				FogData_EmeraldCoast2[i].Distance = -12000.0f;
 				FogData_EmeraldCoast2[i].Layer = -12000.0f;
 			}
-		}
-		else
-		{
-			ReplaceBIN("CAM0100E", "CAM0100E_R");
-			ReplaceBIN("CAM0100S", "CAM0100S_R");
-			ReplaceBIN("CAM0101S", "CAM0101S_R");
-			ReplaceBIN("CAM0102S", "CAM0102S_R");
-			ReplaceBIN("CAM0102B", "CAM0102B_R");
 		}
 		//Ocean models
 		HighPolyOcean_Dynamic = LoadModel("system\\data\\STG01\\Models\\001A132C.sa1mdl", false);

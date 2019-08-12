@@ -610,65 +610,6 @@ void ADV02_Init()
 	//This is done only once
 	if (!ModelsLoaded_ADV02)
 	{
-		if (!Use1999SetFiles)
-		{
-			ReplaceBIN_DC("SETMR00A");
-			ReplaceBIN_DC("SETMR00B");
-			ReplaceBIN_DC("SETMR00E");
-			ReplaceBIN_DC("SETMR00K");
-			ReplaceBIN_DC("SETMR00L");
-			ReplaceBIN_DC("SETMR00M");
-			ReplaceBIN_DC("SETMR00S");
-			ReplaceBIN_DC("SETMR01A");
-			ReplaceBIN_DC("SETMR01B");
-			ReplaceBIN_DC("SETMR01E");
-			ReplaceBIN_DC("SETMR01K");
-			ReplaceBIN_DC("SETMR01L");
-			ReplaceBIN_DC("SETMR01M");
-			ReplaceBIN_DC("SETMR01S");
-			ReplaceBIN_DC("SETMR02S");
-			ReplaceBIN_DC("SETMR03S");
-		}
-		else
-		{
-			ReplaceBIN_1999("SETMR00A");
-			ReplaceBIN_1999("SETMR00B");
-			ReplaceBIN_1999("SETMR00E");
-			ReplaceBIN_1999("SETMR00K");
-			ReplaceBIN_1999("SETMR00L");
-			ReplaceBIN_1999("SETMR00M");
-			ReplaceBIN_1999("SETMR00S");
-			ReplaceBIN_1999("SETMR01A");
-			ReplaceBIN_1999("SETMR01B");
-			ReplaceBIN_1999("SETMR01E");
-			ReplaceBIN_1999("SETMR01K");
-			ReplaceBIN_1999("SETMR01L");
-			ReplaceBIN_1999("SETMR01M");
-			ReplaceBIN_1999("SETMR01S");
-			ReplaceBIN_1999("SETMR02S");
-			ReplaceBIN_1999("SETMR03S");
-		}
-		ReplaceBIN_DC("CAMMR00S");
-		ReplaceBIN_DC("CAMMR01S");
-		ReplaceBIN_DC("CAMMR02S");
-		ReplaceBIN_DC("CAMMR03S");
-		ReplacePVM("ADV_MR00");
-		ReplacePVM("ADV_MR01");
-		ReplacePVM("ADV_MR02");
-		ReplacePVM("ADV_MR03");
-		ReplacePVM("MROBJ");
-		ReplacePVM("MR_SKY00");
-		ReplacePVM("MR_SKY01");
-		ReplacePVM("MR_SKY02");
-		ReplacePVM("MR_TRAIN");
-		ReplacePVM("TANKEN");
-		ReplacePVM("MROBJ_MAST");
-		ReplacePVM("MROBJ_MASTLDAM");
-		ReplacePVM("MROBJ_MASTSDAM");
-		ReplacePVM("MR_EGG");
-		ReplacePVM("MR_PYRAMID");
-		ReplacePVM("MR_TORNADO2");
-		ReplacePVM("MR_FINALEGG");
 		WriteJump((void*)0x52F800, MRJungleCallback_Simple); //To prevent crashes when MR isn't loaded
 		WriteCall((void*)0x53816F, RustlingGrassDepthFix1); //Rustling grass depth bias for Knuckles' cutscene
 		WriteCall((void*)0x53818F, RustlingGrassDepthFix2); //Rustling grass depth bias for Knuckles' cutscene

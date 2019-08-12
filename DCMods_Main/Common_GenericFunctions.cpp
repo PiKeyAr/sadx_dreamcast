@@ -1,6 +1,62 @@
 #include "stdafx.h"
 #include "GenericData.h"
 
+void ReplaceGeneric(std::string src, std::string dest)
+{
+	std::string fullsrc = "system\\" + src;
+	std::string fulldest = "system\\" + dest;
+	HelperFunctionsGlobal.ReplaceFile(fullsrc.c_str(), fulldest.c_str());
+	PrintDebug("Replace file %s with file %s\n", fullsrc.c_str(), fulldest.c_str());
+}
+
+void ReplaceSET(std::string src)
+{
+	std::string fulldest;
+	std::string fullsrc;
+	if (Use1999SetFiles == 1)
+	{
+		fulldest = "system\\bin_1999\\" + src + ".BIN";
+	}
+	else if (Use1999SetFiles == 2)
+	{
+		fulldest = "system\\bin_1998\\" + src + ".BIN";
+	}
+	else
+	{
+		fulldest = "system\\" + src + "_DC.BIN";
+	}
+	fullsrc = "system\\" + src + ".BIN";
+	HelperFunctionsGlobal.ReplaceFile(fullsrc.c_str(), fulldest.c_str());
+	PrintDebug("Replace SET file %s with file %s\n", fullsrc.c_str(), fulldest.c_str());
+}
+
+void ReplaceCAM(std::string src)
+{
+	std::string fulldest;
+	std::string fullsrc;
+	if (Use1999SetFiles == 2)
+	{
+		fulldest = "system\\bin_1998\\" + src + ".BIN";
+	}
+	else
+	{
+		fulldest = "system\\" + src + "_DC.BIN";
+	}
+	fullsrc = "system\\" + src + ".BIN";
+	HelperFunctionsGlobal.ReplaceFile(fullsrc.c_str(), fulldest.c_str());
+	PrintDebug("Replace CAM file %s with file %s\n", fullsrc.c_str(), fulldest.c_str());
+}
+
+void ReplaceBIN(std::string src)
+{
+	std::string fulldest;
+	std::string fullsrc;
+	fulldest = "system\\" + src + "_DC.BIN";
+	fullsrc = "system\\" + src + ".BIN";
+	HelperFunctionsGlobal.ReplaceFile(fullsrc.c_str(), fulldest.c_str());
+	PrintDebug("Replace generic BIN file %s with file %s\n", fullsrc.c_str(), fulldest.c_str());
+}
+
 void HideMesh_Object(NJS_OBJECT *object, int meshID)
 {
 	if (object->basicdxmodel)

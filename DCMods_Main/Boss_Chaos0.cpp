@@ -128,19 +128,6 @@ void Chaos0_Init()
 	LANDTABLEBOSSCHAOS0[0] = B_CHAOS0;
 	if (!ModelsLoaded_B_CHAOS0)
 	{
-		if (!Use1999SetFiles)
-		{
-			ReplaceBIN_DC("SET1500S");
-		}
-		else
-		{
-			ReplaceBIN_1999("SET1500S");
-		}
-		ReplacePVM("LM_CHAOS0");
-		ReplacePVM("CHAOS0");
-		ReplacePVM("CHAOS0_EFFECT");
-		ReplacePVM("CHAOS0_OBJECT");
-		ReplacePVM("EV_CHAOS0_MANJU");
 		WriteData<1>((char*)0x54932B, 0x08); //Police car lights blending mode
 		WriteData<1>((char*)0x7AD16D, 0x08); //Chaos 0 puddle mark blending mode
 		WriteData<1>((char*)0x548470, 0i8); //Chaos 0 puddle queued flags I guess

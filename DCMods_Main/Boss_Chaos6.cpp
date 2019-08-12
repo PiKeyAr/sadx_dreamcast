@@ -140,26 +140,6 @@ void Chaos6_Init()
 	LandTableArray[25] = B_CHAOS6_1; //Chaos 6K
 	if (!ModelsLoaded_B_CHAOS6)
 	{
-		if (!Use1999SetFiles)
-		{
-			ReplaceBIN_DC("SET1800B");
-			ReplaceBIN_DC("SET1800S");
-			ReplaceBIN_DC("SET1801K");
-		}
-		else
-		{
-			ReplaceBIN_1999("SET1800B");
-			ReplaceBIN_1999("SET1800S");
-			ReplaceBIN_1999("SET1801K");
-		}
-		ReplacePVM("LM_CHAOS6");
-		ReplacePVM("LM_CHAOS6_2");
-		ReplacePVM("CHAOS6");
-		ReplacePVM("CHAOS6_BG");
-		ReplacePVM("CHAOS6_EFFECT");
-		ReplacePVM("CHAOS6_EGGMAN");
-		ReplacePVM("CHAOS6_EISEI");
-		ReplacePVM("CHAOS6_OBJECT");
 		//Main model stuff
 		RemoveVertexColors_Object((NJS_OBJECT*)0x1272FF4);
 		Chaos6Main_OpaqueOnly = LoadModel("system\\data\\B_CHAOS6\\Models\\DX\\00E72FF4.sa1mdl", false);

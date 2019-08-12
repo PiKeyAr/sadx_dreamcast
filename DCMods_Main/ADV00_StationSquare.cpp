@@ -616,83 +616,6 @@ void ADV00_Init()
 	//This is done only once
 	if (!ModelsLoaded_ADV00)
 	{
-		if (!Use1999SetFiles)
-		{
-			ReplaceBIN_DC("SETSS00A");
-			ReplaceBIN_DC("SETSS00B");
-			ReplaceBIN_DC("SETSS00E");
-			ReplaceBIN_DC("SETSS00K");
-			ReplaceBIN_DC("SETSS00L");
-			ReplaceBIN_DC("SETSS00M");
-			ReplaceBIN_DC("SETSS00S");
-			ReplaceBIN_DC("SETSS01A");
-			ReplaceBIN_DC("SETSS01B");
-			ReplaceBIN_DC("SETSS01E");
-			ReplaceBIN_DC("SETSS01K");
-			ReplaceBIN_DC("SETSS01L");
-			ReplaceBIN_DC("SETSS01M");
-			ReplaceBIN_DC("SETSS01S");
-			ReplaceBIN_DC("SETSS02S");
-			ReplaceBIN_DC("SETSS02B");
-			ReplaceBIN_DC("SETSS03A");
-			ReplaceBIN_DC("SETSS03B");
-			ReplaceBIN_DC("SETSS03E");
-			ReplaceBIN_DC("SETSS03K");
-			ReplaceBIN_DC("SETSS03L");
-			ReplaceBIN_DC("SETSS03M");
-			ReplaceBIN_DC("SETSS03S");
-			ReplaceBIN_DC("SETSS04A");
-			ReplaceBIN_DC("SETSS04B");
-			ReplaceBIN_DC("SETSS04E");
-			ReplaceBIN_DC("SETSS04K");
-			ReplaceBIN_DC("SETSS04L");
-			ReplaceBIN_DC("SETSS04M");
-			ReplaceBIN_DC("SETSS04S");
-			ReplaceBIN_DC("SETSS05S");
-		}
-		else
-		{
-			ReplaceBIN_1999("SETSS00A");
-			ReplaceBIN_1999("SETSS00B");
-			ReplaceBIN_1999("SETSS00E");
-			ReplaceBIN_1999("SETSS00K");
-			ReplaceBIN_1999("SETSS00L");
-			ReplaceBIN_1999("SETSS00M");
-			ReplaceBIN_1999("SETSS00S");
-			ReplaceBIN_1999("SETSS01A");
-			ReplaceBIN_1999("SETSS01B");
-			ReplaceBIN_1999("SETSS01E");
-			ReplaceBIN_1999("SETSS01K");
-			ReplaceBIN_1999("SETSS01L");
-			ReplaceBIN_1999("SETSS01M");
-			ReplaceBIN_1999("SETSS01S");
-			ReplaceBIN_1999("SETSS02S");
-			ReplaceBIN_1999("SETSS02B");
-			ReplaceBIN_1999("SETSS03A");
-			ReplaceBIN_1999("SETSS03B");
-			ReplaceBIN_1999("SETSS03E");
-			ReplaceBIN_1999("SETSS03K");
-			ReplaceBIN_1999("SETSS03L");
-			ReplaceBIN_1999("SETSS03M");
-			ReplaceBIN_1999("SETSS03S");
-			ReplaceBIN_1999("SETSS04A");
-			ReplaceBIN_1999("SETSS04B");
-			ReplaceBIN_1999("SETSS04E");
-			ReplaceBIN_1999("SETSS04K");
-			ReplaceBIN_1999("SETSS04L");
-			ReplaceBIN_1999("SETSS04M");
-			ReplaceBIN_1999("SETSS04S");
-			ReplaceBIN_1999("SETSS05S");
-		}
-		if (!DLLLoaded_DLCs)
-		{
-			ReplaceBIN_DC("CAMSS00S");
-			ReplaceBIN_DC("CAMSS01S");
-			ReplaceBIN_DC("CAMSS02S");
-			ReplaceBIN_DC("CAMSS03S");
-			ReplaceBIN_DC("CAMSS04S");
-			ReplaceBIN_DC("CAMSS05S");
-		}
 		WriteCall((void*)0x62EC3C, SSOceanCallback); //Render SS ocean separately (both normal and SADX water)
 		if (!SADXWater_StationSquare) 
 		{
@@ -700,30 +623,6 @@ void ADV00_Init()
 			WriteCall((void*)0x6A99C3, CutsceneHook_ReduceOceanDepth); //Amy's story
 			WriteData<5>((char*)0x62EC52, 0x90u); //Don't call the ocean rendering function twice
 		}
-		ReplacePVM("ADVSS00");
-		ReplacePVM("ADVSS01");
-		ReplacePVM("ADVSS02");
-		ReplacePVM("ADVSS03");
-		ReplacePVM("ADVSS04");
-		ReplacePVM("ADVSS05");
-		ReplacePVM("OBJ_SS");
-		ReplacePVM("SS_BG");
-		ReplacePVM("SS_BOAT");
-		ReplacePVM("SS_BURGER");
-		ReplacePVM("SS_CASINO");
-		ReplacePVM("SS_DENTOU");
-		ReplacePVM("SS_EKIIN");
-		ReplacePVM("SS_KANBAN");
-		ReplacePVM("SS_MIZUGI");
-		ReplacePVM("SS_PEOPLE");
-		ReplacePVM("SS_TRAIN");
-		ReplacePVM("SS_TWINS");
-		ReplacePVM("SSCAR");
-		ReplacePVM("SSPATCAR_BODY");
-		ReplacePVR("SS_FINESKY");
-		ReplacePVR("SS_NIGHTSKY");
-		ReplacePVR("SS_NIGHTSKYB");
-		ReplacePVR("SS_YUSKAY_MINI");
 		ADV00_TEXLISTS[0] = &texlist_advss00;
 		ADV00_TEXLISTS[1] = &texlist_advss01;
 		ADV00_TEXLISTS[2] = &texlist_advss02;

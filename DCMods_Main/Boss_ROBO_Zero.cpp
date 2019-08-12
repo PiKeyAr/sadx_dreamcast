@@ -91,19 +91,6 @@ void Zero_Init()
 	LandTableArray[64] = B_ROBO;
 	if (!ModelsLoaded_B_ROBO)
 	{
-		if (!Use1999SetFiles)
-		{
-			ReplaceBIN_DC("SETZEROA");
-			ReplaceBIN_DC("SETZEROS");
-		}
-		else
-		{
-			ReplaceBIN_1999("SETZEROA");
-			ReplaceBIN_1999("SETZEROS");
-		}
-		ReplacePVM("EROBO");
-		if (!ModelsLoaded_B_E101R) ReplacePVM("E101R_TIKEI");
-		ReplaceGeneric("EROBO_GC.NB", "EROBO_DC.NB");
 		WriteCall((void*)0x58C7E4, DrawShadow_ERobo_Fix);
 		WriteData<1>((char*)0x5850F0, 0xC3u); //Disable SetClip_ZERO
 		WriteCall((void*)0x585448, LoadBossECOceanPVM);

@@ -134,34 +134,6 @@ void RedMountain_Init()
 	WriteData((LandTable**)0x97DAB0, STG05_2);
 	if (!ModelsLoaded_STG05)
 	{
-		ReplaceBIN_DC("CAM0500S");
-		ReplaceBIN_DC("CAM0501E");
-		ReplaceBIN_DC("CAM0501S");
-		ReplaceBIN_DC("CAM0502K");
-		if (!Use1999SetFiles)
-		{
-			ReplaceBIN_DC("SET0500S");
-			ReplaceBIN_DC("SET0501E");
-			ReplaceBIN_DC("SET0501S");
-			ReplaceBIN_DC("SET0502K");
-		}
-		else
-		{
-			ReplaceBIN_1999("SET0500S");
-			ReplaceBIN_1999("SET0501E");
-			ReplaceBIN_1999("SET0501S");
-			ReplaceBIN_1999("SET0502K");
-		}
-		ReplacePVM("MOUNTAIN01");
-		ReplacePVM("MOUNTAIN02");
-		ReplacePVM("MOUNTAIN03");
-		ReplacePVM("MOUNTAIN_CARRIER");
-		ReplacePVM("MOUNTAIN_E104");
-		ReplacePVM("MOUNTAIN_MEXPLOSION");
-		ReplacePVM("MOUNTAIN_STEAM");
-		ReplacePVM("OBJ_MOUNTAIN");
-		ReplacePVM("YOUGAN_ANIM");
-		WriteData<1>((char*)0x600700, 0xC3u); //Disable SetClip_RedMountain
 		//Cloud fixes
 		RMCloudTop = LoadModel("system\\data\\STG05\\Models\\00183AF8.sa1mdl", false);
 		RMCloudBottom = LoadModel("system\\data\\STG05\\Models\\00183AF8.sa1mdl", false);

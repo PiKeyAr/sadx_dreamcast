@@ -351,59 +351,6 @@ void SkyDeck_Init()
 	((LandTable*)0x022369A0)->Col = STG06_1->Col;
 	if (!ModelsLoaded_STG06)
 	{
-		if (!Use1999SetFiles)
-		{
-			ReplaceBIN_DC("SET0600M");
-			ReplaceBIN_DC("SET0600S");
-			ReplaceBIN_DC("SET0601M");
-			ReplaceBIN_DC("SET0601S");
-			ReplaceBIN_DC("SET0602K");
-			ReplaceBIN_DC("SET0602M");
-			ReplaceBIN_DC("SET0602S");
-		}
-		else
-		{
-			ReplaceBIN_1999("SET0600M");
-			ReplaceBIN_1999("SET0600S");
-			ReplaceBIN_1999("SET0601M");
-			ReplaceBIN_1999("SET0601S");
-			ReplaceBIN_1999("SET0602K");
-			ReplaceBIN_1999("SET0602M");
-			ReplaceBIN_1999("SET0602S");
-		}
-		ReplaceBIN_DC("CAM0600M");
-		ReplaceBIN_DC("CAM0600S");
-		ReplaceBIN_DC("CAM0601S");
-		ReplaceBIN_DC("CAM0602K");
-		ReplaceBIN_DC("CAM0602S");
-		ReplacePVM("E_AIRCRAFT");
-		ReplacePVM("OBJ_SKYDECK");
-		ReplacePVM("SKYDECK01");
-		ReplacePVM("SKYDECK02");
-		ReplacePVM("SKYDECK03");
-		//Clip distance improvements
-		ObjList_SDeck[25].UseDistance = 1;
-		ObjList_SDeck[29].UseDistance = 1;
-		ObjList_SDeck[30].UseDistance = 1;
-		ObjList_SDeck[31].UseDistance = 1;
-		ObjList_SDeck[32].UseDistance = 1;
-		ObjList_SDeck[33].UseDistance = 1;
-		ObjList_SDeck[34].UseDistance = 1;
-		ObjList_SDeck[35].UseDistance = 1;
-		ObjList_SDeck[36].UseDistance = 1;
-		ObjList_SDeck[37].UseDistance = 1;
-		ObjList_SDeck[38].UseDistance = 1;
-		ObjList_SDeck[25].Distance = 30000000;
-		ObjList_SDeck[29].Distance = 30000000;
-		ObjList_SDeck[30].Distance = 30000000;
-		ObjList_SDeck[31].Distance = 30000000;
-		ObjList_SDeck[32].Distance = 30000000;
-		ObjList_SDeck[33].Distance = 30000000;
-		ObjList_SDeck[34].Distance = 30000000;
-		ObjList_SDeck[35].Distance = 30000000;
-		ObjList_SDeck[36].Distance = 30000000;
-		ObjList_SDeck[37].Distance = 30000000;
-		ObjList_SDeck[38].Distance = 30000000;
 		WriteJump((void*)0x5EF870, SkyDeckSharedDisplaySubFix); //Fix jerky animation for some objects (mostly unused)
 		//Skybox transparency
 		SkyDeckSkyboxModel_Normal.basicdxmodel->nbMeshset = 2; //Disable the annoying sky mesh

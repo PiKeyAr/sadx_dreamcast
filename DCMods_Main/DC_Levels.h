@@ -92,7 +92,7 @@ extern bool ModelsLoaded_SBOARD;
 extern bool IsCameraUnderwater;
 extern int SADXWaveAnimation;
 extern int CutsceneSkipMode;
-extern bool Use1999SetFiles;
+extern int Use1999SetFiles;
 extern bool EnableSpeedFixes;
 extern bool DLLLoaded_DLCs;
 extern bool DLLLoaded_SA1Chars;
@@ -165,10 +165,11 @@ extern bool SkipPressed_Cutscene;
 
 #define ReplacePVM(a) HelperFunctionsGlobal.ReplaceFile("system\\" a ".PVM", "system\\" a "_DC.PVM")
 #define ReplacePVR(a) HelperFunctionsGlobal.ReplaceFile("system\\" a ".PVR", "system\\" a "_DC.PVR")
-#define ReplaceGeneric(a,b) HelperFunctionsGlobal.ReplaceFile("system\\" a, "system\\" b)
-#define ReplaceBIN(a,b) HelperFunctionsGlobal.ReplaceFile("system\\" a ".BIN", "system\\" b ".BIN")
-#define ReplaceBIN_DC(a) HelperFunctionsGlobal.ReplaceFile("system\\" a ".BIN", "system\\" a "_DC.BIN")
-#define ReplaceBIN_1999(a) HelperFunctionsGlobal.ReplaceFile("system\\" a ".BIN", "system\\set_original\\" a "_DC.BIN")
+
+void ReplaceBIN(std::string src);
+void ReplaceSET(std::string src);
+void ReplaceCAM(std::string src);
+void ReplaceGeneric(std::string src, std::string dest);
 
 extern set_shader_flags* set_shader_flags_ptr;
 extern material_register* material_register_ptr;

@@ -148,23 +148,6 @@ void EggHornet_Init()
 	}
 	if (!ModelsLoaded_B_EGM1)
 	{
-		if (!Use1999SetFiles)
-		{
-			ReplaceBIN_DC("SETEGM1S");
-		}
-		else
-		{
-			ReplaceBIN_1999("SETEGM1S");
-		}
-		ReplacePVM("EGM1");
-		ReplacePVM("EGM1LAND");
-		ReplacePVM("EGM1BARRIER");
-		ReplacePVM("EGM1EGGMAN");
-		ReplacePVM("EGM1JET");
-		ReplacePVM("EGM1JETB");
-		ReplacePVM("EGM1MIS");
-		ReplacePVM("EGM1SORA");
-		ReplacePVM("EGM1TSUCHI");
 		RemoveVertexColors_Object((NJS_OBJECT*)0x1561A70); //Egg Hornet main model
 		RemoveVertexColors_Object((NJS_OBJECT*)0x1561A70); //Egg Hornet eggmobile part
 		//Water

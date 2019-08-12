@@ -173,34 +173,6 @@ void WindyValley_Init()
 	ParseWindyColFlags(STG02_2);
 	if (!ModelsLoaded_STG02)
 	{
-		if (!Use1999SetFiles)
-		{
-			ReplaceBIN_DC("SET0200S");
-			ReplaceBIN_DC("SET0200E");
-			ReplaceBIN_DC("SET0201S");
-			ReplaceBIN_DC("SET0202M");
-			ReplaceBIN_DC("SET0202S");
-		}
-		else
-		{
-			ReplaceBIN_1999("SET0200S");
-			ReplaceBIN_1999("SET0200E");
-			ReplaceBIN_1999("SET0201S");
-			ReplaceBIN_1999("SET0202M");
-			ReplaceBIN_1999("SET0202S");
-		}
-		ReplaceBIN_DC("CAM0200E");
-		ReplaceBIN_DC("CAM0200S");
-		ReplaceBIN_DC("CAM0201S");
-		ReplaceBIN_DC("CAM0202M");
-		ReplaceBIN_DC("CAM0202S");
-		ReplacePVM("OBJ_WINDY");
-		ReplacePVM("WINDY01");
-		ReplacePVM("WINDY02");
-		ReplacePVM("WINDY03");
-		ReplacePVM("WINDY_BACK");
-		ReplacePVM("WINDY_BACK2");
-		ReplacePVM("WINDY_BACK3");
 		//Skybox stuff
 		WriteCall((void*)0x004DD794, RetrieveWindy1SkyTransparency);
 		WriteCall((void*)0x004DD7D1, RenderWindy1Sky);

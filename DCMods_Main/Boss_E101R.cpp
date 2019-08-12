@@ -171,19 +171,7 @@ void E101R_Init()
 	LandTableArray[80] = B_E101_R;
 	if (!ModelsLoaded_B_E101R)
 	{
-		if (!Use1999SetFiles)
-		{
-			ReplaceBIN_DC("SETE101RE");
-		}
-		else
-		{
-			ReplaceBIN_1999("SETE101RE");
-		}
 		FixFVFShit();
-		ReplacePVM("E101R");
-		ReplacePVM("E101R_BG");
-		if (!ModelsLoaded_B_ROBO) ReplacePVM("E101R_TIKEI");
-		ReplaceGeneric("E101R_GC.NB", "E101R_DC.NB");
 		WriteCall((void*)0x570DB1, RenderE101R_Rocket);
 		//E-101R fixes
 		ShadowBlob_Model.basicdxmodel->mats[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;

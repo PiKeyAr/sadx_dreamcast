@@ -259,45 +259,6 @@ void ADV01C_Init()
 	LandTableArray[141] = ADV01C_5;
 	if (!ModelsLoaded_ADV0130)
 	{
-		if (!Use1999SetFiles)
-		{
-			ReplaceBIN_DC("SETEC30S");
-			ReplaceBIN_DC("SETEC31S");
-			ReplaceBIN_DC("SETEC31B");
-			ReplaceBIN_DC("SETEC32S");
-			ReplaceBIN_DC("SETEC33S");
-			ReplaceBIN_DC("SETEC34S");
-			ReplaceBIN_DC("SETEC35S");
-		}
-		else
-		{
-			ReplaceBIN_1999("SETEC30S");
-			ReplaceBIN_1999("SETEC31S");
-			ReplaceBIN_1999("SETEC31B");
-			ReplaceBIN_1999("SETEC32S");
-			ReplaceBIN_1999("SETEC33S");
-			ReplaceBIN_1999("SETEC34S");
-			ReplaceBIN_1999("SETEC35S");
-		}
-		ReplaceBIN_DC("CAMEC30S");
-		ReplaceBIN_DC("CAMEC31S");
-		ReplaceBIN_DC("CAMEC32S");
-		ReplaceBIN_DC("CAMEC33S");
-		ReplaceBIN_DC("CAMEC34S");
-		ReplaceBIN_DC("CAMEC35S");
-		ReplacePVM("ADV_EC30");
-		ReplacePVM("ADV_EC31");
-		ReplacePVM("ADV_EC32");
-		ReplacePVM("ADV_EC33");
-		ReplacePVM("ADV_EC34");
-		ReplacePVM("ADV_EC35");
-		ReplacePVM("ADV_EC36");
-		ReplacePVM("OBJ_EC30");
-		ReplacePVM("EC_ACTDOOR");
-		ReplacePVM("EC_ALIFE");
-		ReplacePVM("EC_EGGLIFT");
-		ReplacePVM("EC_TARAI");
-		ReplacePVM("PVME101FACTORY");
 		ADV01C_TEXLISTS[15] = &texlist_ec30;
 		ADV01C_TEXLISTS[16] = &texlist_ec31;
 		ADV01C_TEXLISTS[17] = &texlist_ec32;

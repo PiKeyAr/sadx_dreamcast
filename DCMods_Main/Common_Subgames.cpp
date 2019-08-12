@@ -561,18 +561,6 @@ void HedgehogHammer_Init()
 	//No models to load here but using the same pattern for the sake of consistency
 	if (!ModelsLoaded_ADV00)
 	{
-		if (!Use1999SetFiles)
-		{
-			ReplaceBIN_DC("SET0000A");
-			ReplaceBIN_DC("SET0000S");
-			ReplaceBIN_DC("SET0001S");
-		}
-		else
-		{
-			ReplaceBIN_1999("SET0000A");
-			ReplaceBIN_1999("SET0000S");
-			ReplaceBIN_1999("SET0001S");
-		}
 		for (int i = 0; i < 3; i++)
 		{
 			FogData_HedgehogHammer[i].Distance = 16000.0f;
@@ -587,25 +575,6 @@ void SkyChase_Init()
 	//This stuff is done only once
 	if (!ModelsLoaded_SHOOTING)
 	{
-		if (!DLLLoaded_HDGUI)
-		{
-			ReplacePVR("ST_064S_LOCKA");
-			ReplacePVR("ST_064S_LOCKB");
-			ReplacePVR("ST_064S_LOCKC");
-			ReplacePVR("STG_S_LOCKMK");
-		}
-		if (!Use1999SetFiles)
-		{
-			ReplaceBIN_DC("SETSHT1S");
-			ReplaceBIN_DC("SETSHT2S");
-		}
-		else
-		{
-			ReplaceBIN_1999("SETSHT1S");
-			ReplaceBIN_1999("SETSHT2S");
-		}
-		ReplaceBIN_DC("CAMSHT1S");
-		ReplaceBIN_DC("CAMSHT2S");
 		//Other Sky Chase fixes
 		RemoveVertexColors_Object((NJS_OBJECT*)0x293A1BC); //Rocket
 		RemoveVertexColors_Object((NJS_OBJECT*)0x299734C); //Hodai rocket
@@ -638,16 +607,6 @@ void SkyChase_Init()
 		WriteData((char*)0x0062AC1F, 0x00, 1); //Force Tornado light type (transformation cutscene)
 		if (EnableSkyChaseEnemyModels)
 		{
-			if (!DLLLoaded_SA1Chars)
-			{
-				ReplacePVM("SHOOTING1");
-				ReplacePVM("SHOOTING2");
-			}
-			if (!DLLLoaded_HDGUI)
-			{
-				ReplacePVM("SHOOTING0");
-
-			}
 			//Egg Carrier model
 			NJS_OBJECT* EggCarrierModel = LoadModel("system\\data\\SHOOTING\\Models\\0003FA40.sa1mdl", false);
 			*(NJS_OBJECT*)0x02982F44 = *EggCarrierModel;
@@ -716,38 +675,6 @@ void TwinkleCircuit_Init()
 	LandTableArray[165] = MINICART_5;
 	if (!ModelsLoaded_MINICART)
 	{
-		if (!Use1999SetFiles)
-		{
-			ReplaceBIN_DC("SETMCART00S");
-			ReplaceBIN_DC("SETMCART01S");
-			ReplaceBIN_DC("SETMCART02S");
-			ReplaceBIN_DC("SETMCART03S");
-			ReplaceBIN_DC("SETMCART04S");
-			ReplaceBIN_DC("SETMCART05S");
-		}
-		else
-		{
-			ReplaceBIN_1999("SETMCART00S");
-			ReplaceBIN_1999("SETMCART01S");
-			ReplaceBIN_1999("SETMCART02S");
-			ReplaceBIN_1999("SETMCART03S");
-			ReplaceBIN_1999("SETMCART04S");
-			ReplaceBIN_1999("SETMCART05S");
-		}
-		ReplaceBIN_DC("CAMMCART00S");
-		ReplaceBIN_DC("CAMMCART01S");
-		ReplaceBIN_DC("CAMMCART02S");
-		ReplaceBIN_DC("CAMMCART03S");
-		ReplaceBIN_DC("CAMMCART04S");
-		ReplaceBIN_DC("CAMMCART05S");
-		ReplacePVM("MINI_CART01");
-		ReplacePVM("MINI_CART02");
-		ReplacePVM("MINI_CART03");
-		ReplacePVM("MINI_CART04");
-		ReplacePVM("MINI_CART05");
-		ReplacePVM("MINI_CART06");
-		if (!DLLLoaded_HDGUI) ReplacePVM("OBJ_MINI_CART");
-		ReplaceBIN("PL_Z0B", "PL_Z0X");
 		if (DLLLoaded_Lantern)
 		{
 			material_register_ptr(WhiteDiffuse_Subgames, LengthOfArray(WhiteDiffuse_Subgames), &ForceWhiteDiffuse);
@@ -769,24 +696,6 @@ void SandHill_Init()
 	//This stuff is done only once
 	if (!ModelsLoaded_SBOARD)
 	{
-		ReplaceBIN_DC("CAMSBOARD00S");
-		ReplaceBIN_DC("CAMSBOARD01S");
-		if (!Use1999SetFiles)
-		{
-			ReplaceBIN_DC("SETSBOARD00M");
-			ReplaceBIN_DC("SETSBOARD00S");
-			ReplaceBIN_DC("SETSBOARD01S");
-		}
-		else
-		{
-			ReplaceBIN_1999("SETSBOARD00M");
-			ReplaceBIN_1999("SETSBOARD00S");
-			ReplaceBIN_1999("SETSBOARD01S");
-		}
-		ReplacePVM("BG_SANDBOARD");
-		ReplacePVM("EFF_SANDBOARD");
-		ReplacePVM("OBJ_SANDBOARD");
-		ReplacePVM("SANDBOARD");
 		//Models
 		*(NJS_OBJECT*)0x017424DC = *LoadModel("system\\data\\SBOARD\\Models\\0006EA40.sa1mdl", false); //Sand Hill ramp
 		//Clear material colors

@@ -569,43 +569,6 @@ void HotShelter_Init()
 	WriteData((LandTable**)0x97DB90, STG12_2);
 	if (!ModelsLoaded_STG12)
 	{
-		if (!Use1999SetFiles)
-		{
-			ReplaceBIN_DC("SET1200A");
-			ReplaceBIN_DC("SET1200B");
-			ReplaceBIN_DC("SET1200S");
-			ReplaceBIN_DC("SET1201A");
-			ReplaceBIN_DC("SET1201S");
-			ReplaceBIN_DC("SET1202E");
-			ReplaceBIN_DC("SET1202S");
-			ReplaceBIN_DC("SET1203S");
-		}
-		else
-		{
-			ReplaceBIN_1999("SET1200A");
-			ReplaceBIN_1999("SET1200B");
-			ReplaceBIN_1999("SET1200S");
-			ReplaceBIN_1999("SET1201A");
-			ReplaceBIN_1999("SET1201S");
-			ReplaceBIN_1999("SET1202E");
-			ReplaceBIN_1999("SET1202S");
-			ReplaceBIN_1999("SET1203S");
-		}
-		ReplaceBIN_DC("CAM1200A");
-		ReplaceBIN_DC("CAM1200B");
-		ReplaceBIN_DC("CAM1200S");
-		ReplaceBIN_DC("CAM1201A");
-		ReplaceBIN_DC("CAM1201S");
-		ReplaceBIN_DC("CAM1202E");
-		ReplaceBIN_DC("CAM1202S");
-		ReplaceBIN_DC("CAM1203S");
-		ReplacePVM("HOTSHELTER0");
-		ReplacePVM("HOTSHELTER1");
-		ReplacePVM("HOTSHELTER2");
-		ReplacePVM("HOTSHELTER3");
-		ReplacePVM("HOTSHELTER4");
-		ReplacePVM("SHELTER_COLUMN");
-		ReplacePVM("SHELTER_SUIMEN");
 		//Code fixes
 		WriteData((float*)0x005AB2F0, -1000.0f); //Four glass things in drainage room (depth bias)
 		WriteCall((void*)0x5A93BF, njDrawSprite3D_TheyForgotToClampAgain);

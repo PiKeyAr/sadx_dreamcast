@@ -144,8 +144,8 @@ bool EnableLSDFix = false;
 bool FPSLock = false;
 bool EnableDCRipple = true;
 bool EnableWhiteDiffuse = true;
+int Use1999SetFiles = 0;
 
-bool Use1999SetFiles = false;
 bool EnableWindowTitle = true;
 bool EnableDCBranding = true;
 bool EnableEmeraldCoast = true;
@@ -365,7 +365,7 @@ extern "C"
 		EnableTwinkleCircuit = config->getBool("Miscellaneous", "EnableTwinkleCircuit", true);
 		EnableSandHill = config->getBool("Miscellaneous", "EnableSandHill", true);
 		CowgirlOn = config->getBool("Miscellaneous", "EnableCasinopolisCowgirl", true);
-		Use1999SetFiles = config->getBool("Miscellaneous", "Use1999SetFiles", false);
+		Use1999SetFiles = config->getInt("Miscellaneous", "Use1999SetFiles", 0);
 		IamStupidAndIWantFuckedUpOcean = config->getBool("Miscellaneous", "RevertEmeraldCoastDrawDistance", false);
 		EnableSkyChaseEnemyModels = config->getBool("Miscellaneous", "EnableSkyChaseEnemyModels", true);
 		EnableWhiteDiffuse = config->getBool("Miscellaneous", "EnableWhiteDiffuse", true);
@@ -406,12 +406,12 @@ extern "C"
 		//Enable Impress font
 		if (EnableImpressFont == "Impress")
 		{
-			ReplaceBIN("FONTDATA1", "FONTDATA1_I");
+			ReplaceGeneric("FONTDATA1.BIN", "FONTDATA1_I.BIN");
 		}
 		//Enable Comic Sans font (experimental)
 		else if (EnableImpressFont == "ComicSans")
 		{
-			ReplaceBIN("FONTDATA1", "FONTDATA1_C");
+			ReplaceGeneric("FONTDATA1.BIN", "FONTDATA1_C.BIN");
 		}
 		if (ColorizeFont)
 		{

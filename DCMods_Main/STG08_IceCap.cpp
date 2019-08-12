@@ -489,35 +489,6 @@ void IceCap_Init()
 	WriteData((LandTable**)0x97DB14, STG08_3);
 	if (!ModelsLoaded_STG08)
 	{
-		ReplaceBIN_DC("CAM0800S");
-		ReplaceBIN_DC("CAM0801S");
-		ReplaceBIN_DC("CAM0802S");
-		ReplaceBIN_DC("CAM0803B");
-		if (!Use1999SetFiles)
-		{
-			ReplaceBIN_DC("SET0800S");
-			ReplaceBIN_DC("SET0801S");
-			ReplaceBIN_DC("SET0802M");
-			ReplaceBIN_DC("SET0802S");
-			ReplaceBIN_DC("SET0803B");
-		}
-		else
-		{
-			ReplaceBIN_1999("SET0800S");
-			ReplaceBIN_1999("SET0801S");
-			ReplaceBIN_1999("SET0802M");
-			ReplaceBIN_1999("SET0802S");
-			ReplaceBIN_1999("SET0803B");
-		}
-		ReplacePVM("BG_ICECAP");
-		ReplacePVM("ICECAP01");
-		ReplacePVM("ICECAP02");
-		ReplacePVM("ICECAP03");
-		ReplacePVM("OBJ_ICECAP");
-		ReplacePVM("OBJ_ICECAP2");
-		ReplacePVR("MIW_B001");
-		ReplacePVR("MTX_BOARD0");
-		ReplacePVR("SB_BOARD1");
 		WriteJump((void*)0x4E91C0, Obj_Icecap_DoColFlagThings_a); //Weird COL flag function
 		//Objects
 		*(NJS_OBJECT*)0xE60F54 = *LoadModel("system\\data\\STG08\\Models\\001702F4.sa1mdl", false); //OSaku01

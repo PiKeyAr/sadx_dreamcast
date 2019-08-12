@@ -396,37 +396,6 @@ void SpeedHighway_Init()
 	WriteData((LandTable**)0x97DA90, STG04_2);
 	if (!ModelsLoaded_STG04)
 	{
-		ReplaceBIN_DC("CAM0400M");
-		ReplaceBIN_DC("CAM0400S");
-		ReplaceBIN_DC("CAM0401S");
-		ReplaceBIN_DC("CAM0402K");
-		ReplaceBIN_DC("CAM0402S");
-		if (!Use1999SetFiles)
-		{
-			ReplaceBIN_DC("SET0400M");
-			ReplaceBIN_DC("SET0400S");
-			ReplaceBIN_DC("SET0401S");
-			ReplaceBIN_DC("SET0402K");
-			ReplaceBIN_DC("SET0402S");
-		}
-		else
-		{
-			ReplaceBIN_1999("SET0400M");
-			ReplaceBIN_1999("SET0400S");
-			ReplaceBIN_1999("SET0401S");
-			ReplaceBIN_1999("SET0402K");
-			ReplaceBIN_1999("SET0402S");
-		}
-		ReplacePVM("BG_HIGHWAY");
-		ReplacePVM("BG_HIGHWAY01");
-		ReplacePVM("BG_HIGHWAY02");
-		ReplacePVM("BG_HIGHWAY03");
-		ReplacePVM("HIGHWAY01");
-		ReplacePVM("HIGHWAY02");
-		ReplacePVM("HIGHWAY03");
-		ReplacePVM("HIGHWAY_CAR");
-		ReplacePVM("OBJ_HIGHWAY");
-		ReplacePVM("OBJ_HIGHWAY2");
 		//Fountain fixes
 		WriteCall((void*)0x0061BAA0, FountainPart1);
 		WriteCall((void*)0x0061BAF1, FountainPart2);

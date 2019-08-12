@@ -197,26 +197,6 @@ void PerfectChaos_Init()
 	LandTableArray[32] = B_CHAOS7;
 	if (!ModelsLoaded_B_CHAOS7)
 	{
-		if (!Use1999SetFiles)
-		{
-			ReplaceBIN_DC("SET1900S");
-			ReplaceBIN_DC("CAM1900S");
-		}
-		else
-		{
-			ReplaceBIN_1999("SET1900S");
-			ReplaceBIN_1999("CAM1900S");
-		}
-		ReplacePVM("CHAOS7_0");
-		ReplacePVM("CHAOS7_0BREATH");
-		ReplacePVM("CHAOS7_0BREATH2ND");
-		ReplacePVM("CHAOS7_0DAMAGE");
-		ReplacePVM("CHAOS7_0DEAD_PTCHG");
-		ReplacePVM("CHAOS7_0SURFACE");
-		ReplacePVM("CHAOS7_0WATEREXP");
-		ReplacePVM("CHAOS7_0WEXP_PTCHG");
-		ReplacePVM("LM_CHAOS7_0");
-		ReplacePVM("OBJ_CHAOS7");
 		RemoveVertexColors_Object((NJS_OBJECT*)0x139757C); //Main model
 		RemoveVertexColors_Object((NJS_OBJECT*)0x13A27F0); //Sinking/rising
 		WriteCall((void*)0x56463B, PerfectChaosWaterfallHook);

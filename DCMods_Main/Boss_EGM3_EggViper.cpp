@@ -104,17 +104,6 @@ void EggViper_Init()
 	}
 	if (!ModelsLoaded_B_EGM3)
 	{
-		if (!Use1999SetFiles)
-		{
-			ReplaceBIN_DC("SETEGM3S");
-		}
-		else
-		{
-			ReplaceBIN_1999("SETEGM3S");
-		}
-		ReplacePVM("EGM3CHIKEI");
-		ReplacePVM("EGM3MDL");
-		ReplacePVM("EGM3SPR");
 		//Replace function calls for better cockpit transparency sorting
 		WriteCall((void*)0x57E297, (void*)0x408300);
 		WriteCall((void*)0x57E35B, (void*)0x408300);

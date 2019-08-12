@@ -451,32 +451,6 @@ void ADV03_Init()
 	//This is done only once
 	if (!ModelsLoaded_ADV03)
 	{
-		ReplaceBIN_DC("CAMPAST00S");
-		ReplaceBIN_DC("CAMPAST01S");
-		ReplaceBIN_DC("CAMPAST02S");
-		if (!Use1999SetFiles)
-		{
-			ReplaceBIN_DC("SETPAST00S");
-			ReplaceBIN_DC("SETPAST01S");
-			ReplaceBIN_DC("SETPAST02S");
-		}
-		else
-		{
-			ReplaceBIN_1999("SETPAST00S");
-			ReplaceBIN_1999("SETPAST01S");
-			ReplaceBIN_1999("SETPAST02S");
-		}
-		ReplacePVM("EFF_PAST");
-		ReplacePVM("EV_ALIFE");
-		ReplacePVM("K_PATYA");
-		ReplacePVM("OBJ_PAST");
-		ReplacePVM("PAST00");
-		ReplacePVM("PAST01");
-		ReplacePVM("PAST02");
-		ReplacePVM("PAST_KN_FAM");
-		ReplacePVM("KNUCKLES_NORMAL");
-		ReplacePVM("KNUCKLES_DEBU");
-		ReplacePVM("KNUCKLES_LONG");
 		//Texlists
 		ADV03_TEXLISTS[4] = &texlist_past00;
 		ADV03_TEXLISTS[5] = &texlist_past01;

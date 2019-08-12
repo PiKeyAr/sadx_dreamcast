@@ -27,6 +27,208 @@ DataArray(FogData, LostWorld3Fog, 0x01E79B0C, 3);
 DataArray(char, AokiSwitchByteArray, 0x3C7ED8C, 32);
 FunctionPointer(long double, sub_49CC70, (float a1, float a2, float a3), 0x49CC70);
 FunctionPointer(void, sub_407A00, (NJS_MODEL_SADX *model, float scale), 0x407A00);
+FunctionPointer(void, AllocateLWSpikeParticle, (NJS_VECTOR *a1, NJS_VECTOR *a2, float a3), 0x4B9820);
+FunctionPointer(void, ResetEntityStatus, (EntityData1 *a1, int a2), 0x49CE60);
+FunctionPointer(void, LostWorldSpikes_Display, (ObjectMaster *a1), 0x5EA720);
+
+signed int __cdecl JapaneseSpikes(ObjectMaster *a1)
+{
+	EntityData1 *v1; // esi
+	NJS_VECTOR v2; // edi
+	signed int result; // eax
+	char v4; // al
+	double v5; // st7
+	double v6; // st6
+	double v7; // st5
+	float v8; // ST0C_4
+	double v9; // st7
+	Angle v10; // edi
+	Angle v11; // eax
+	Angle v12; // eax
+	Angle v13; // eax
+	double v14; // st7
+	double v15; // st7
+	Angle v16; // eax
+	Angle v17; // eax
+	Angle v18; // eax
+	_BOOL1 v19; // zf
+	double v20; // st7
+	double v21; // st7
+	NJS_VECTOR a3; // [esp+10h] [ebp-24h]
+	NJS_VECTOR a2; // [esp+1Ch] [ebp-18h]
+	NJS_VECTOR v24; // [esp+28h] [ebp-Ch]
+	ObjectMaster *a4;
+
+	v1 = a1->Data1;
+	v2 = EntityData1Ptrs[0]->Position;
+	a3.x = 0.0;
+	a3.y = 0.0;
+	a3.z = 0.0;
+	a4 = a1;
+	result = ClipSetObject(a1);
+	if (!result)
+	{
+		v4 = v1->Action;
+		switch (v1->Action)
+		{
+		case 0:
+			v5 = v2.z - v1->Position.z;
+			v6 = v2.y - v1->Position.y;
+			v7 = v2.x - v1->Position.x;
+			v8 = v7 * v7 + v6 * v6 + v5 * v5;
+			if (sqrt(v8) < 60.0f)
+			{
+				PlaySound(204, 0, 0, 0);
+				*(float *)&v1->Object = 1;
+				v1->Action = 20;
+				goto LABEL_22;
+			}
+			if (*(float *)&v1->Object == 0)
+			{
+				goto LABEL_21;
+			}
+			//v1->Action = 20; This seemded to cause problems. It made it always be moving, so I disabled it.
+			goto LABEL_22;
+		case 1:
+			a3.y = v1->Scale.y;
+			v9 = a3.y + v1->Scale.z;
+			*(float *)&v1->Object = 0;
+			v1->Scale.z = v9;
+			if (v9 >= v1->Scale.x)
+			{
+				goto LABEL_21;
+			}
+			v10 = (unsigned __int64)(atan2(Camera_Data1->Position.x - v1->Position.x, Camera_Data1->Position.z - v1->Position.z) * 65536.0 * 0.1591549762031479);
+			a2.y = -12.0;
+			a2.x = njSin(v10) * 20.0f;
+			a2.z = njCos(v10) * 20.0f;
+			njPushMatrix(_nj_unit_matrix_);
+			v11 = v1->Rotation.z;
+			if (v11)
+			{
+				njRotateZ(0, (unsigned __int16)v11);
+			}
+			v12 = v1->Rotation.x;
+			if (v12)
+			{
+				njRotateX(0, (unsigned __int16)v12);
+			}
+			v13 = v1->Rotation.y;
+			if (v13)
+			{
+				njRotateY(0, (unsigned __int16)v13);
+			}
+			njCalcVector(0, &a2, &a2);
+			njPopMatrix(1u);
+			v24.x = a2.x + v1->Position.x;
+			v14 = a2.y + v1->Position.y;
+			a2.y = 0.0;
+			a2.x = 0.0;
+			v24.y = v14;
+			v15 = a2.z;
+			a2.z = 0.0;
+			v24.z = v15 + v1->Position.z;
+			AllocateLWSpikeParticle(&v24, &a2, 3.0f);
+			v1->Index = 30;
+			goto LABEL_19;
+		case 2:
+			if (v1->Status & 0x100)
+			{
+				v1->Action = 5;
+				goto LABEL_29;
+			}
+			v19 = v1->Index-- == 1;
+			if (v19)
+			{
+			LABEL_20:
+				v1->Action = v4 + 1;
+			}
+			goto LABEL_21;
+		case 3:
+			v20 = v1->Scale.y * -0.1f;
+			a3.y = v20;
+			v21 = v20 + v1->Scale.z;
+			v1->Scale.z = v21;
+			if (v21 <= 0.0f)
+			{
+				goto LABEL_21;
+			}
+			a3.y = 0.0;
+			v1->Position.x = a4->SETData.SETData->SETEntry->Position.x;
+			v1->Position.y = a4->SETData.SETData->SETEntry->Position.y;
+			v1->Position.z = a4->SETData.SETData->SETEntry->Position.z;
+			v1->Index = 10;
+		LABEL_19:
+			v4 = v1->Action;
+			goto LABEL_20;
+		case 4:
+			v19 = v1->Index-- == 1;
+			if (!v19)
+			{
+				goto LABEL_21;
+			}
+			v1->Action = 0;
+			goto LABEL_22;
+		case 20:
+			if (LevelFrameCount == *(float *)&v1->LoopData)
+			{
+				if (*(float *)&v1->Object == 2)
+				{
+					v1->Action = 1;
+				}
+				else
+				{
+				LABEL_21:
+					if (v1->Action == 5)
+					{
+						goto LABEL_29;
+					}
+				}
+			}
+			else
+			{
+				*(float *)&v1->Object = 2;
+				v1->Action = 1;
+			}
+		LABEL_22:
+			njPushMatrix(_nj_unit_matrix_);
+			v16 = v1->Rotation.z;
+			if (v16)
+			{
+				njRotateZ(0, (unsigned __int16)v16);
+			}
+			v17 = v1->Rotation.x;
+			if (v17)
+			{
+				njRotateX(0, (unsigned __int16)v17);
+			}
+			v18 = v1->Rotation.y;
+			if (v18)
+			{
+				njRotateY(0, (unsigned __int16)v18);
+			}
+			njCalcVector(0, &a3, &a3);
+			njPopMatrix(1u);
+			v1->Position.x = a3.x + v1->Position.x;
+			v1->Position.y = a3.y + v1->Position.y;
+			v1->Position.z = a3.z + v1->Position.z;
+		LABEL_29:
+			LostWorldSpikes_Display(a1);
+			if (!ObjectSelectedDebug((ObjectMaster *)a1))
+			{
+				AddToCollisionList(v1);
+				ResetEntityStatus(v1, 0);
+			}
+			result = LevelFrameCount;
+			*(float *)&v1->LoopData = LevelFrameCount;
+			break;
+		default:
+			Rings = 77;
+			goto LABEL_21;
+		}
+	}
+	return result;
+}
 
 void __cdecl AokiSwitch_Display(ObjectMaster *a1)
 {
@@ -243,30 +445,8 @@ void LostWorld_Init()
 	WriteData((LandTable**)0x97DAF0, STG07_2);
 	if (!ModelsLoaded_STG07)
 	{
-		ReplaceBIN_DC("CAM0700S");
-		ReplaceBIN_DC("CAM0701K");
-		ReplaceBIN_DC("CAM0701S");
-		ReplaceBIN_DC("CAM0702S");
-		if (!Use1999SetFiles)
-		{
-			ReplaceBIN_DC("SET0700S");
-			ReplaceBIN_DC("SET0701K");
-			ReplaceBIN_DC("SET0701S");
-			ReplaceBIN_DC("SET0702S");
-		}
-		else
-		{
-			ReplaceBIN_1999("SET0700S");
-			ReplaceBIN_1999("SET0701K");
-			ReplaceBIN_1999("SET0701S");
-			ReplaceBIN_1999("SET0702S");
-		}
-		ReplacePVM("BG_RUIN");
-		ReplacePVM("RUIN01");
-		ReplacePVM("RUIN02");
-		ReplacePVM("RUIN03");
-		ReplacePVM("OBJ_RUIN");
-		ReplacePVM("OBJ_RUIN2");
+		//SA1 J spike behavior by supercoolsonic
+		if (Use1999SetFiles == 2) WriteJump((signed int*)0x5EA7A0, JapaneseSpikes);
 		//Improve clip distance for some platforms in the snake room
 		ObjList_LWorld[31].UseDistance = 1;
 		ObjList_LWorld[32].UseDistance = 1;

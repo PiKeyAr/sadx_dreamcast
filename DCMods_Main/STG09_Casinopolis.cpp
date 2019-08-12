@@ -913,39 +913,6 @@ void Casinopolis_Init()
 	ParseCasMaterials(STG09_1, 1);
 	if (!ModelsLoaded_STG09)
 	{
-		ReplaceBIN_DC("CAM0900K");
-		ReplaceBIN_DC("CAM0900S");
-		ReplaceBIN_DC("CAM0901M");
-		ReplaceBIN_DC("CAM0901S");
-		ReplaceBIN_DC("CAM0902S");
-		ReplaceBIN_DC("CAM0903S");
-		if (!Use1999SetFiles)
-		{
-			ReplaceBIN_DC("SET0900K");
-			ReplaceBIN_DC("SET0900S");
-			ReplaceBIN_DC("SET0901M");
-			ReplaceBIN_DC("SET0901S");
-			ReplaceBIN_DC("SET0902S");
-			ReplaceBIN_DC("SET0903S");
-		}
-		else
-		{
-			ReplaceBIN_1999("SET0900K");
-			ReplaceBIN_1999("SET0900S");
-			ReplaceBIN_1999("SET0901M");
-			ReplaceBIN_1999("SET0901S");
-			ReplaceBIN_1999("SET0902S");
-			ReplaceBIN_1999("SET0903S");
-		}
-		ReplaceBIN_DC("SETMI0900K"); //I forgot what this is for
-		ReplacePVM("CASINO01");
-		ReplacePVM("CASINO02");
-		ReplacePVM("CASINO03");
-		ReplacePVM("CASINO04");
-		ReplacePVM("OBJ_CASINO2");
-		ReplacePVM("OBJ_CASINO8");
-		ReplacePVM("OBJ_CASINO9");
-		ReplacePVM("OBJ_CASINO_E");
 		//Code fixes
 		WriteData((float*)0x5C0CA4, 10000.0f); //BALLS depth
 		TikeiAnim_WaterAroundShip = LoadModel("system\\data\\STG09\\Models\\00066F28.sa1mdl", false);

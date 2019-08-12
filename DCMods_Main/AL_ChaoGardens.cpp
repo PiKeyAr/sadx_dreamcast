@@ -2045,14 +2045,6 @@ void ChaoGardens_Init()
 	//This stuff is done only once
 	if (!ModelsLoaded_Chao)
 	{
-		ReplacePVM("CHAO");
-		ReplacePVM("CHAO_OBJECT");
-		ReplacePVM("CHAO_HYOUJI");
-		ReplacePVM("CHAO_HYOUJI_E");
-		ReplacePVM("CHAO_HYOUJI_F");
-		ReplacePVM("CHAO_HYOUJI_G");
-		ReplacePVM("CHAO_HYOUJI_S");
-		ReplacePVM("EC_ALIFE");
 		LoadChaoGardenHintMessages();
 		//Load models
 		ChaoFruit_Chaonut = LoadModel("system\\data\\AL_MAIN\\Models\\0017D068.sa1mdl", false);
@@ -2177,9 +2169,6 @@ void ChaoGardens_Init()
 		BK_SSGardenStartPoint.YRot = SSGardenStartPoint.YRot;
 		if (EnableSSGarden)
 		{
-			ReplacePVM("GARDEN00");
-			ReplaceBIN_DC("SETMI3900M");
-			ReplacePVM("GARDEN00_OBJECT");
 			WriteData<5>((void*)0x007195AE, 0x90); //Don't load SADX button prompts in SS garden
 			WriteData<5>((void*)0x0071957E, 0x90); //Disable the Sonic Team homepage prompt
 			WriteJump((void*)0x4145D0, sub_4145D0); //Elevator function
@@ -2245,11 +2234,6 @@ void ChaoGardens_Init()
 		//Mystic Ruins garden stuff
 		if (EnableMRGarden)
 		{
-			ReplacePVM("GARDEN_MR_SKY_HIRU");
-			ReplacePVM("GARDEN_MR_SKY_YORU");
-			ReplacePVM("GARDEN_MR_SKY_YUU");
-			ReplacePVM("GARDEN02");
-			ReplacePVM("GARDEN02_OBJECT");
 			ChaoGardenSky_MR_Day = LoadModel("system\\data\\AL_GARDEN02\\Models\\00013A78.sa1mdl", false);
 			ChaoGardenSky_MR_Night = LoadModel("system\\data\\AL_GARDEN02\\Models\\0001BC88.sa1mdl", false);
 			WriteData<5>((void*)0x00718E20, 0x90); //Don't load SADX button prompts in MR garden
@@ -2296,8 +2280,6 @@ void ChaoGardens_Init()
 		//Egg Carrier garden stuff
 		if (EnableECGarden)
 		{
-			ReplacePVM("GARDEN01");
-			ReplacePVM("GARDEN01_SKY");
 			ChaoGardenSky_EC_Sky = LoadModel("system\\data\\AL_GARDEN01\\Models\\000105E4.sa1mdl", false); //Modified model with different UVs
 			ChaoGardenSky_EC_Water = LoadModel("system\\data\\AL_GARDEN01\\Models\\0000F01C.sa1mdl", false);
 			ChaoGardenSky_EC_Water->basicdxmodel->mats[0].attrflags &= ~NJD_DA_ONE;

@@ -329,22 +329,6 @@ void Chaos4_Init()
 	if (!ModelsLoaded_B_CHAOS4)
 	{
 		WriteData<1>((char*)0x00555A42, NJD_COLOR_BLENDING_INVSRCALPHA);
-		if (!Use1999SetFiles)
-		{
-			ReplaceBIN_DC("SET1700S");
-		}
-		else
-		{
-			ReplaceBIN_1999("SET1700S");
-		}
-		ReplacePVM("CHAOS4_COMMON");
-		ReplacePVM("CHAOS4_HASHIRA");
-		ReplacePVM("CHAOS4_KAMA");
-		ReplacePVM("CHAOS4_NUMA");
-		ReplacePVM("CHAOS4_OBJECT");
-		ReplacePVM("CHAOS4_SHIBUKI");
-		ReplacePVM("CHAOS4_TIKEI");
-		ReplacePVM("CHAOS4_WAVE");
 		WriteCall((void*)0x5528ED, Chaos4Action); //Main model
 		WriteData<10>((char*)0x55507D, 0x90u); //Disable depth bias setting for balls
 		WriteData<10>((char*)0x555AB1, 0x90u); //Disable depth bias setting for balls attack

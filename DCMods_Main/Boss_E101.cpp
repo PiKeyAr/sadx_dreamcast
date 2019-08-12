@@ -20,17 +20,7 @@ void E101_Init()
 	LandTableArray[72] = B_E101;
 	if (!ModelsLoaded_B_E101)
 	{
-		if (!Use1999SetFiles)
-		{
-			ReplaceBIN_DC("SETE101E");
-		}
-		else
-		{
-			ReplaceBIN_1999("SETE101E");
-		}
 		FixFVFShit();
-		ReplacePVM("E101");
-		ReplacePVM("E101_TIKEI");
 		RemoveVertexColors_Object((NJS_OBJECT*)0x14DE020); //E101 boss model
 		RemoveVertexColors_Object((NJS_OBJECT*)0x14DEC5C); //E101 rocket
 		//E101 rocket (SL object)

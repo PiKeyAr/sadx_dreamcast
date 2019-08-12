@@ -391,34 +391,6 @@ void TwinklePark_Init()
 	ParseTwinkleParkMaterials(STG03_1);
 	if (!ModelsLoaded_STG03)
 	{
-		ReplaceBIN_DC("CAM0300S");
-		ReplaceBIN_DC("CAM0301A");
-		ReplaceBIN_DC("CAM0301B");
-		ReplaceBIN_DC("CAM0301S");
-		ReplaceBIN_DC("CAM0302A");
-		ReplaceBIN_DC("CAM0302S");
-		if (!Use1999SetFiles)
-		{
-			ReplaceBIN_DC("SET0300S");
-			ReplaceBIN_DC("SET0301A");
-			ReplaceBIN_DC("SET0301B");
-			ReplaceBIN_DC("SET0301S");
-			ReplaceBIN_DC("SET0302A");
-			ReplaceBIN_DC("SET0302S");
-		}
-		else
-		{
-			ReplaceBIN_1999("SET0300S");
-			ReplaceBIN_1999("SET0301A");
-			ReplaceBIN_1999("SET0301B");
-			ReplaceBIN_1999("SET0301S");
-			ReplaceBIN_1999("SET0302A");
-			ReplaceBIN_1999("SET0302S");
-		}
-		ReplacePVM("OBJ_TWINKLE");
-		ReplacePVM("TWINKLE01");
-		ReplacePVM("TWINKLE02");
-		ReplacePVM("TWINKLE03");
 		//Code fixes
 		WriteCall((void*)0x061F684, FlowerBedFix);
 		WriteCall((void*)0x621222, DrawObjectFromObjectMaster); //Fix merry-go-round floor shadow flickering
@@ -525,8 +497,6 @@ void ShareObj_Init()
 {
 	if (!ModelsLoaded_ShareObj)
 	{
-		ReplacePVM("BG_SHAREOBJ");
-		ReplacePVM("OBJ_SHAREOBJ");
 		//OLight1 fixes
 		*(NJS_OBJECT*)0x38C3A9C = *LoadModel("system\\data\\STG03\\Models\\000F1228.sa1mdl", true); //OLight1
 		HideMesh_Object(((NJS_OBJECT*)0x38C3A9C), 7); //Disable transparent part
