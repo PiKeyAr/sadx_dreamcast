@@ -497,7 +497,7 @@ void SetMagneticBarrierColor(float a, float r, float g, float b)
 int __cdecl RenderBarrierModels(NJS_MODEL_SADX *a1)
 {
 	if ((unsigned __int16)(CurrentAct | (CurrentLevel << 8)) >> 8 == 3 && CurrentAct == 2) DrawQueueDepthBias = 0; else DrawQueueDepthBias = 20048.0f;
-	if (CurrentLevel == LevelIDs_SpeedHighway && CurrentAct == 2) DrawQueueDepthBias = -1000.0f;
+	if (CurrentLevel == LevelIDs_SpeedHighway && CurrentAct == 2) DrawQueueDepthBias = 500.0f;
 	DrawVisibleModel_Queue(a1, (QueuedModelFlagsB)0);
 	DrawQueueDepthBias = 0;
 	return 0;
