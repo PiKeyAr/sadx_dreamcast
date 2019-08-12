@@ -33648,7 +33648,7 @@ extern "C" __declspec(dllexport) NJS_VECTOR normal_0012256C[] = {
 
 extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_001226BC = { vertex_0012241C, normal_0012256C, LengthOfArray<Sint32>(vertex_0012241C), meshlist_00122404, matlist_0012231C, LengthOfArray<Uint16>(meshlist_00122404), LengthOfArray<Uint16>(matlist_0012231C), { -122.4447f, 4.375f, -58.96784f }, 345.4631f, NULL };
 
-extern "C" __declspec(dllexport) NJS_OBJECT object_001226E4 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_001226BC, 200.7649f, -22.5f, 1867.891f, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_001226E4 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_001226BC, 200.7649f, -22.45f, 1867.891f, 0, 0, 0, 1, 1, 1, NULL, NULL };
 extern "C" __declspec(dllexport) NJS_MATERIAL matlist_00122718[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 28, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
@@ -48829,14 +48829,14 @@ extern "C" __declspec(dllexport) COL collist_000DA99C[] = {
 	{ { 679, 187.5f, 1771.5f }, 86.63862f, 0, 0, &object_0012A1A8, 0, 0x80040000 }, //Twinkle top
 	{ { 457.8635f, -39.14253f, 1736.436f }, 141.2818f, 0, 0, &object_00123F14, 0, 0x80040000 }, //Seashore bit
 	{ { 870.5f, -25, 2005.5f }, 512.3165f, 0, 0, &object_001235EC_2, 0, 0x80040000 }, //Seashore 1
-	{ { 112.3754f, -22.5f, 1842 }, 391.2533f, 0, 0, &object_000E7CA8_2, 0, 0xC0140101 }, //Seashore 2
-	{ { 898.5f, -14.62535f, 1966.875f }, 464.1407f, 0, 0, &object_00123AEC, 0, 0x80000000 }, //Sea waves 1
-	{ { 78.32019f, -18.125f, 1808.923f }, 345.4697f, 0, 0, &object_001226E4, 0, 0x80000000 }, //Sea waves 2
+	{ { 112.3754f, -22.5f, 1842 }, 391.2533f, 0, 0, &object_000E7CA8_2, 0, 0xC0100101 }, //Seashore 2
+	{ { 898.5f, -14.62535f, 1966.875f }, 464.1407f, 0, 0, &object_00123AEC, 0, 0x88040000 }, //Sea waves 1
+	{ { 78.32019f, -18.125f, 1808.923f }, 345.4697f, 0, 0, &object_001226E4, 0, 0x88040000 }, //Sea waves 2
 	{ { 673.3333f, -18.5f, 1415 }, 338.9731f, 0, 0, &object_001340E0, 0, 0x80000002 }, //Sewers water
-	{ { 220, -18.5f, 4420 }, 3946.758f, 0, 0, &object_00114E50, 0, 0x08000000 }, //Sea
-	{ { 400.1259f, 66, 1547 }, 38.39181f, 0, 0, &object_001266EC_2, 0, 0x80040000 }, //Glass 1
-	{ { 400.0001f, 66, 1606.5f }, 42.19535f, 0, 0, &object_00101948_2, 0, 0x80040000 }, //Glass 2
-	{ { 483.9287f, 66, 1709.625f }, 124.5781f, 0, 0, &object_00128350_2, 0, 0x80040000 }, //Glass 3
+	{ { 220, -18.5f, 4420 }, 3946.758f, 0, 0, &object_00114E50, 0, 0x88000000 }, //Sea
+	{ { 400.1259f, 66, 1547 }, 38.39181f, 0, 0, &object_001266EC_2, 0, 0x82000000 }, //Glass 1
+	{ { 483.9287f, 66, 1709.625f }, 124.5781f, 0, 0, &object_00128350_2, 0, 0x82000000 }, //Glass 2
+	{ { 400.0001f, 66, 1606.5f }, 42.19535f, 0, 0, &object_00101948_2, 0, 0x86000000 }, //Glass 3
 	{ { 256.7499f, 35, 1046.5f }, 86.19102f, 0, 0, &object_000E3C90_2, 0, 0xC2001001 }, //Roof tops transparent
 	{ { 220, -17.29691f, 4420 }, 3947.758f, 0, 0, &SADXWaterCollision, 0, 2 }, //SADX water (the invisible part)
 	{ { 220, -50.71019f, 4420 }, 3947.758f, 0, 0, &SADXSeaBottom, 0, 0x00000000 }, //SADX water (sea bottom)

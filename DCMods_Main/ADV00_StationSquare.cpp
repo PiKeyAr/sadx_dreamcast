@@ -35,6 +35,8 @@ NJS_OBJECT* Parasol_4 = nullptr;
 NJS_OBJECT* EVHelicopterLight1 = nullptr;
 NJS_OBJECT* EVHelicopterLight2 = nullptr;
 
+int SS03Cols[] = { -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 };
+
 /*
 #include "SS00_CityHall.h"
 #include "SS01_Casino.h"
@@ -71,7 +73,11 @@ void __cdecl RenderStationSquareOcean(OceanData *x)
 			njSetTexture(&texlist_advss03);
 			njPushMatrix(0);
 			njTranslate(0, 0, 0, 0);
+			Direct3D_SetZFunc(1u);
+			Direct3D_EnableZWrite(0);
 			ProcessModelNode_AB_Wrapper(SS03SeaModel, 1.0f);
+			Direct3D_SetZFunc(1u);
+			Direct3D_EnableZWrite(1u);
 			njPopMatrix(1u);
 		}
 	}
@@ -88,10 +94,46 @@ void __cdecl RenderStationSquareOcean(OceanData *x)
 	}
 }
 
+void AddSS03Cols(int colnumber)
+{
+	for (int i = 0; i < LengthOfArray(SS03Cols); i++)
+	{
+		if (SS03Cols[i] == colnumber) return;
+		else if (SS03Cols[i] == -1)
+		{
+			SS03Cols[i] = colnumber;
+			//PrintDebug("Added COl: %d\n", colnumber);
+			return;
+		}
+	}
+}
+
+void RenderSS03Cols(OceanData *data)
+{
+	if (CurrentAct == 3 && ADV00_3_Info)
+	{
+		if (!DroppedFrames)
+		{
+			njSetTexture(&texlist_advss03);
+			njPushMatrix(0);
+			njTranslate(0, 0, 0, 0);
+			for (int i = 0; i < LengthOfArray(SS03Cols); i++)
+			{
+				if (SS03Cols[i] != -1) ProcessModelNode_AB_Wrapper(LANDTABLESS[3]->Col[SS03Cols[i]].Model, 3.0f);
+			}
+			njPopMatrix(1u);
+		}
+	}
+}
+
 void SSOceanCallback(void(__cdecl *function)(OceanData *), OceanData *data, float depth, QueuedModelFlagsB queueflags)
 {
-	if (ReduceSSOceanDepth) depth = -47952.0f;
-	DrawModelCallback_QueueOceanData(RenderStationSquareOcean, data, depth, queueflags);
+	if (SADXWater_StationSquare) DrawModelCallback_QueueOceanData(StationSquare_OceanDraw, data, depth, queueflags);
+	else
+	{
+		DrawModelCallback_QueueOceanData(RenderStationSquareOcean, data, depth, queueflags);
+	}
+	DrawModelCallback_QueueOceanData(RenderSS03Cols, data, -6000.0f, (QueuedModelFlagsB)0);
 }
 
 void FixPoliceCar(NJS_ACTION *a1, float a2, int a3)
@@ -215,12 +257,23 @@ void ParseSSColFlags()
 		colflags = landtable->Col[j].Flags;
 		if (!SADXWater_StationSquare)
 		{
-			if (colflags == 0x8000000) SS03SeaModel = landtable->Col[j].Model;
+			if (colflags == 0x88000000)
+			{
+				SS03SeaModel = landtable->Col[j].Model;
+				landtable->Col[j].Flags &= ~ColFlags_Visible;
+			}
 		}
 		else
 		{
+			if (colflags == 0x88000000) landtable->Col[j].Flags &= ~ColFlags_Visible; //Hide SA1 sea
 			if (colflags == 0) landtable->Col[j].Flags = 0x80000000; //Show SADX sea bottom
 			if ((colflags & ColFlags_Visible) && (colflags & ColFlags_Water)) landtable->Col[j].Flags = 0x00000002; //Hide sewers water
+		}
+		//Add sea waves
+		if (colflags == 0x88040000)
+		{
+			landtable->Col[j].Flags &= ~ColFlags_Visible;
+			AddSS03Cols(j);
 		}
 	}
 	//Hotel area
@@ -477,6 +530,10 @@ void SwitchLighting_TimeOfDay(int act)
 
 void UnloadLevelFiles_ADV00()
 {
+	for (int i = 0; i < LengthOfArray(SS03Cols); i++)
+	{
+		SS03Cols[i] = -1;
+	}
 	ParseSSMaterials(true);
 	SS03SeaModel = nullptr;
 	SS04SeaModel = nullptr;
@@ -636,9 +693,9 @@ void ADV00_Init()
 			ReplaceBIN_DC("CAMSS04S");
 			ReplaceBIN_DC("CAMSS05S");
 		}
+		WriteCall((void*)0x62EC3C, SSOceanCallback); //Render SS ocean separately (both normal and SADX water)
 		if (!SADXWater_StationSquare) 
 		{
-			WriteCall((void*)0x62EC3C, SSOceanCallback); //Render SS ocean separately
 			WriteCall((void*)0x6DD7F1, CutsceneHook_ReduceOceanDepth); //Sonic's story
 			WriteCall((void*)0x6A99C3, CutsceneHook_ReduceOceanDepth); //Amy's story
 			WriteData<5>((char*)0x62EC52, 0x90u); //Don't call the ocean rendering function twice

@@ -365,9 +365,20 @@ void RenderEmeraldWithGlow_Ice(NJS_OBJECT *object, int flags, float scale)
 
 void SonicDashTrailFix(NJS_OBJECT *a1, QueuedModelFlagsB a2)
 {
+	DrawQueueDepthBias = 2500.0f;
+	if (CurrentLevel == LevelIDs_StationSquare && CurrentAct == 3) DrawQueueDepthBias = -2000.0f;
 	a1->basicdxmodel->mats->attr_texId = rand() % 2;
 	ProcessModelNode(a1, (QueuedModelFlagsB)0, 1.0f);
 	a1->basicdxmodel->mats->attr_texId = 0;
+	DrawQueueDepthBias = 0.0f;
+}
+
+void SonicDashTrailFix2(NJS_OBJECT *a1, QueuedModelFlagsB a2)
+{
+	DrawQueueDepthBias = 2500.0f;
+	if (CurrentLevel == LevelIDs_StationSquare && CurrentAct == 3) DrawQueueDepthBias = -2000.0f;
+	ProcessModelNode_A_WrapperB(a1, a2);
+	DrawQueueDepthBias = 0.0f;
 }
 
 void __cdecl Knuckles_MaximumHeat_DrawX(NJS_VECTOR *position, float alpha)
@@ -486,6 +497,7 @@ void SetMagneticBarrierColor(float a, float r, float g, float b)
 int __cdecl RenderBarrierModels(NJS_MODEL_SADX *a1)
 {
 	if ((unsigned __int16)(CurrentAct | (CurrentLevel << 8)) >> 8 == 3 && CurrentAct == 2) DrawQueueDepthBias = 0; else DrawQueueDepthBias = 20048.0f;
+	if (CurrentLevel == LevelIDs_SpeedHighway && CurrentAct == 2) DrawQueueDepthBias = -1000.0f;
 	DrawVisibleModel_Queue(a1, (QueuedModelFlagsB)0);
 	DrawQueueDepthBias = 0;
 	return 0;
@@ -498,8 +510,11 @@ void __cdecl Sonic_DisplayLightDashModelX(EntityData1 *data1, CharObj2 **data2_p
 	double v5; // st7
 	float v6; // ST28_4
 	double v7; // st7
+	float basedepth = 8000.0f;
 	NJS_ACTION v8; // [esp+4h] [ebp-18h]
 	NJS_ARGB a1; // [esp+Ch] [ebp-10h]
+	if (CurrentLevel == LevelIDs_SpeedHighway && CurrentAct == 2) basedepth = 1000.0f;
+	if (CurrentLevel == LevelIDs_StationSquare && CurrentAct == 3) basedepth = -500.0f;
 	NJS_OBJECT **___SONIC_OBJECTS = (NJS_OBJECT **)GetProcAddress(GetModuleHandle(L"CHRMODELS_orig"), "___SONIC_OBJECTS");
 	if (!MissedFrames)
 	{
@@ -526,17 +541,17 @@ void __cdecl Sonic_DisplayLightDashModelX(EntityData1 *data1, CharObj2 **data2_p
 		njColorBlendingMode(NJD_DESTINATION_COLOR, NJD_COLOR_BLENDING_ONE);
 		//Main
 		SetMaterialAndSpriteColor_Float(1.0f, 0, 0.06f + (64 - v5) / 880.0f, 1.0f);
-		DrawQueueDepthBias = 8000.0f;
+		DrawQueueDepthBias = basedepth;
 		sub_4083D0(&v8, data2->AnimationThing.Frame, 0);
 		//Outer 1
 		njScale(0, 1.05f, 1.05f, 1.05f);
 		SetMaterialAndSpriteColor_Float(1.0f, 0.0245f, (64 - v5) / 1050.0f, 1.0f);
-		DrawQueueDepthBias = 9000.0f;
+		DrawQueueDepthBias = basedepth + 300.0f;
 		sub_4083D0(&v8, data2->AnimationThing.Frame, 0);
 		//Outer 2
 		njScale(0, 1.05f, 1.05f, 1.05f);
 		SetMaterialAndSpriteColor_Float(1.0f, 0.024f, (64 - v5) / 2000.0f, 0.15f);
-		DrawQueueDepthBias = 10000.0f;
+		DrawQueueDepthBias = basedepth + 600.0f;
 		sub_4083D0(&v8, data2->AnimationThing.Frame, 0);
 		njColorBlendingMode(0, NJD_COLOR_BLENDING_SRCALPHA);
 		njColorBlendingMode(NJD_DESTINATION_COLOR, NJD_COLOR_BLENDING_INVSRCALPHA);
@@ -1291,13 +1306,17 @@ void RenderItemBoxIcon(NJS_MODEL_SADX* a1)
 void SpindashChargeLinesHook(NJS_POINT3COL *a1, int a2, NJD_DRAW attr, QueuedModelFlagsB a4)
 {
 	if (CurrentLevel == LevelIDs_WindyValley && CurrentAct == 2) DrawQueueDepthBias = 4000.0f;
+	if (CurrentLevel == LevelIDs_StationSquare && CurrentAct == 3) DrawQueueDepthBias = -2000.0f;
 	Draw3DLinesMaybe_Queue(a1, a2, attr, a4);
+	DrawQueueDepthBias = 0.0f;
 }
 
 void SpindashChargeSpriteHook(NJS_SPRITE *sp, Int n, NJD_SPRITE attr, QueuedModelFlagsB zfunc_type)
 {
 	if (CurrentLevel == LevelIDs_WindyValley && CurrentAct == 2) DrawQueueDepthBias = 4000.0f;
+	if (CurrentLevel == LevelIDs_StationSquare && CurrentAct == 3) DrawQueueDepthBias = -2000.0f;
 	njDrawSprite3D_Queue(sp, n, attr, zfunc_type);
+	DrawQueueDepthBias = 0.0f;
 }
 
 void RenderChaosPuddle_Last(NJS_OBJECT *a1)
@@ -1833,8 +1852,8 @@ void General_Init()
 		WriteCall((void*)0x4C1305, KnucklesPunch_Render);
 		//Dash trail fixes
 		WriteCall((void*)0x4A0F56, SonicDashTrailFix);
+		WriteCall((void*)0x4A1233, SonicDashTrailFix2);
 		WriteData((float*)0x4A1216, 2500.0f); //Long dash trail depth bias
-		WriteData((float*)0x4A0F49, 2500.0f); //Main dash trail depth bias
 		WriteData<1>((char*)0x4A1220, 0i8); //Spindash trail queued flags
 		//Barrier fixes
 		WriteData<5>((char*)0x4B9E3A, 0x90u); //Disable ClampGlobalColorThing (it's called later in my replacement function)
