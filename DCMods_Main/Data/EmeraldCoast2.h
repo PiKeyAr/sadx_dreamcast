@@ -44982,7 +44982,7 @@ extern "C" __declspec(dllexport) NJS_VECTOR normal_00AF57CC[] = {
 
 extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00AF57FC = { vertex_00AF579C, normal_00AF57CC, LengthOfArray<Sint32>(vertex_00AF579C), meshlist_00AF5780, matlist_00AF5760, LengthOfArray<Uint16>(meshlist_00AF5780), LengthOfArray<Uint16>(matlist_00AF5760), { 4250, -1.5f, -2925 }, 4038.332f, NULL };
 
-extern "C" __declspec(dllexport) NJS_OBJECT objectDX_00AF5828 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00AF57FC, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT objectDX_00AF5828 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00AF57FC, 0, -3.0f, -5850.0f, 32768, 0, 0, 1, 1, 1, NULL, NULL };
 
 extern "C" __declspec(dllexport) NJS_MATERIAL matlist_00B7F4F4[] = {
 	{ { 0xFFFFFFFF }, { 0x00000000 }, 0, 0, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_LIGHT | NJD_DA_INV_SRC | NJD_SA_SRC }
