@@ -2274,7 +2274,7 @@ void Branding_Init(const IniFile *config, const HelperFunctions &helperFunctions
 		ReplacePVM("AVA_CSR");
 		ReplacePVM("AVA_DLG");
 		ReplacePVM("AVA_DLG_E");
-		ResizeTextureList(&ava_dlg_e_TEXLIST, 10);
+		//ResizeTextureList(&ava_dlg_e_TEXLIST, 10);
 		ReplacePVM("AVA_EMBLEM");
 		ReplacePVM("AVA_EMBLEMVIEW");
 		ReplacePVM("AVA_EMBLEMVIEW_E");
@@ -2789,9 +2789,9 @@ void Branding_Init(const IniFile *config, const HelperFunctions &helperFunctions
 		TitleBackOverlayColor.color = 0x99FFFFFF;
 		//Disable native PVMs
 		//AVA_GTITLE_0_E texlist is always 10 textures
-		ResizeTextureList(&ava_gtitle0_e_TEXLIST, 10);
+		//ResizeTextureList(&ava_gtitle0_e_TEXLIST, 10);
 		//Title screen BG texlist is always 8 textures
-		ResizeTextureList(&ava_title_back_e_TEXLIST, 8);
+		//ResizeTextureList(&ava_title_back_e_TEXLIST, 8);
 		if (HorizontalStretch == 1.0f)
 		{
 			//AVA_TITLE_CMN_SMALLS is loaded in place of AVA_TITLE_BACK_E (Main menu background)
@@ -2814,7 +2814,7 @@ void Branding_Init(const IniFile *config, const HelperFunctions &helperFunctions
 				GUITextures_French[18].Name = "AVA_TITLE_CMN_SMALLX";
 				GUITextures_Spanish[18].Name = "AVA_TITLE_CMN_SMALLX";
 				GUITextures_German[18].Name = "AVA_TITLE_CMN_SMALLX";
-				ResizeTextureList(&ava_title_cmn_TEXLIST, 184);
+				//ResizeTextureList(&ava_title_cmn_TEXLIST, 184);
 				TitleScreenIndices[1] = 18;
 			}
 			else
@@ -2845,7 +2845,7 @@ void Branding_Init(const IniFile *config, const HelperFunctions &helperFunctions
 				GUITextures_French[18].Name = "AVA_TITLE_CMNX";
 				GUITextures_Spanish[18].Name = "AVA_TITLE_CMNX";
 				GUITextures_German[18].Name = "AVA_TITLE_CMNX";
-				ResizeTextureList(&ava_title_cmn_TEXLIST, 184);
+				//ResizeTextureList(&ava_title_cmn_TEXLIST, 184);
 				TitleScreenIndices[1] = 18;
 			}
 			else

@@ -199,7 +199,7 @@ void Videos_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 		{
 			ReplacePVM("SEGALOGO");
 			WriteCall((void*)0x42C756, LoadSegalogoPVM);
-			ResizeTextureList(&SEGALOGO_E_TEXLIST, 6);
+			//ResizeTextureList(&SEGALOGO_E_TEXLIST, 6);
 		}
 	}
 	else if (SonicTeamLogo_String == "Static")
@@ -212,7 +212,7 @@ void Videos_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 		{
 			ReplacePVM("SEGALOGO");
 			WriteCall((void*)0x42C756, LoadSegalogoPVM);
-			ResizeTextureList(&SEGALOGO_E_TEXLIST, 6);
+			//ResizeTextureList(&SEGALOGO_E_TEXLIST, 6);
 		}
 	}
 	//Fix EC crash cutscene fadeout
