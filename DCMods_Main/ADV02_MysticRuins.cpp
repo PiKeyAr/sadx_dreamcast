@@ -148,7 +148,7 @@ void OFinalEgg_DisplayFix(ObjectMaster *a1)
 	njAction_Queue(&OFinalWayCarAction, v2->Scale.y, QueuedModelFlagsB_EnableZWrite);
 	//Render the FinalWay without the car
 	Direct3D_SetNearFarPlanes(-1.0f, -100000.0f);
-	DrawQueueDepthBias = 20000.0f;
+	DrawQueueDepthBias = 1000.0f;
 	njAction_Queue(&OFinalWayMainAction, v2->Scale.y, QueuedModelFlagsB_EnableZWrite);
 	//Render the lights
 	njAction_Queue_407FC0(&OFinalEggLightsAction, v2->Scale.x, 0);
