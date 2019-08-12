@@ -5,6 +5,14 @@
 
 FunctionPointer(void, sub_4014B0, (), 0x4014B0);
 
+NJS_TEXNAME textures_obj_regular[100];
+NJS_TEXNAME textures_e101r_tikei[76];
+
+void ResizeE101RTexlist()
+{
+	ResizeTextureList((NJS_TEXLIST*)0x16B460C, textures_e101r_tikei);
+}
+
 void LoadBossECOceanPVM(const char *filename, NJS_TEXLIST *texlist)
 {
 	LoadPVM(filename, texlist);
@@ -78,7 +86,7 @@ void Init_Global()
 	if (DLLLoaded_HDGUI == false)
 	{
 		ReplacePVM("OBJ_REGULAR");
-		ResizeTextureList(&OBJ_REGULAR_TEXLIST, 100); //Added DC ripple texture
+		ResizeTextureList(&OBJ_REGULAR_TEXLIST, textures_obj_regular); //Added DC ripple texture
 	}
 	ReplacePVR("AL_BARRIA");
 	ReplacePVR("AM_SEA124_8");
@@ -313,9 +321,6 @@ void Init_Global()
 	//Stage-specific stuff
 	if (EnableStationSquare)
 	{
-		ResizeTextureList((NJS_TEXLIST*)0x2AEE920, 22); //SSCAR 
-		ResizeTextureList((NJS_TEXLIST*)0x2AD9F58, 31); //SS_TRAIN
-		ResizeTextureList(&OBJ_SS_TEXLIST, 177);
 		ReplaceSET("SETSS00A");
 		ReplaceSET("SETSS00B");
 		ReplaceSET("SETSS00E");
@@ -438,7 +443,6 @@ void Init_Global()
 		ReplacePVM("EV_ECCLOUD");
 		ReplacePVM("EC_SEA");
 		ReplacePVM("OBJ_EC00");
-		ResizeTextureList(&OBJ_EC00_TEXLIST, 206);
 		//Inside
 		ReplaceSET("SETEC30S");
 		ReplaceSET("SETEC31S");
@@ -562,10 +566,6 @@ void Init_Global()
 		ReplacePVM("OBJ_BEACH");
 		ReplacePVM("BEACH_SEA");
 		WriteData<1>((char*)0x4F68E0, 0xC3u); //Disable SetClip_ECoast1
-		ResizeTextureList((NJS_TEXLIST*)0x010C0508, 10); //BEACH_SEA
-		ResizeTextureList((NJS_TEXLIST*)0xF812AC, 97);
-		ResizeTextureList((NJS_TEXLIST*)0xEF553C, 86);
-		ResizeTextureList((NJS_TEXLIST*)0xE9A4CC, 94);
 	}
 	if (EnableWindyValley)
 	{
@@ -586,9 +586,6 @@ void Init_Global()
 		ReplacePVM("WINDY_BACK");
 		ReplacePVM("WINDY_BACK2");
 		ReplacePVM("WINDY_BACK3");
-		ResizeTextureList((NJS_TEXLIST*)0xB98BF8, 20);
-		ResizeTextureList((NJS_TEXLIST*)0xB81304, 17);
-		ResizeTextureList((NJS_TEXLIST*)0xAFEC30, 28);
 	}
 	if (EnableTwinklePark)
 	{
@@ -608,10 +605,6 @@ void Init_Global()
 		ReplacePVM("TWINKLE01");
 		ReplacePVM("TWINKLE02");
 		ReplacePVM("TWINKLE03");
-		ResizeTextureList(&OBJ_TWINKLE_TEXLIST, 96);
-		ResizeTextureList((NJS_TEXLIST*)0x26B9960, 35);
-		ResizeTextureList((NJS_TEXLIST*)0x2721A8C, 88);
-		ResizeTextureList((NJS_TEXLIST*)0x26FEA54, 30);
 	}
 	if (EnableTwinklePark || EnableTwinkleCircuit)
 	{
@@ -640,11 +633,6 @@ void Init_Global()
 		ReplacePVM("HIGHWAY_CAR");
 		ReplacePVM("OBJ_HIGHWAY");
 		ReplacePVM("OBJ_HIGHWAY2");
-		ResizeTextureList(&HIGHWAY_CAR_TEXLIST, 16);
-		ResizeTextureList(&OBJ_HIGHWAY_TEXLIST, 118);
-		ResizeTextureList((NJS_TEXLIST*)0x2592E8C, 89);
-		ResizeTextureList((NJS_TEXLIST*)0x2581310, 32);
-		ResizeTextureList((NJS_TEXLIST*)0x24CAC94, 107);
 		ReplaceBIN("PL_40B");
 		ReplaceBIN("PL_41B");
 	}
@@ -667,9 +655,6 @@ void Init_Global()
 		ReplacePVM("MOUNTAIN_STEAM");
 		ReplacePVM("OBJ_MOUNTAIN");
 		ReplacePVM("YOUGAN_ANIM");
-		ResizeTextureList((NJS_TEXLIST*)0x230FDF4, 45);
-		ResizeTextureList((NJS_TEXLIST*)0x229B8CC, 43);
-		ResizeTextureList((NJS_TEXLIST*)0x224096C, 27);
 		ReplaceBIN("PL_51B");
 		WriteData<1>((char*)0x600700, 0xC3u); //Disable SetClip_RedMountain
 	}
@@ -715,10 +700,6 @@ void Init_Global()
 		ObjList_SDeck[36].Distance = 30000000;
 		ObjList_SDeck[37].Distance = 30000000;
 		ObjList_SDeck[38].Distance = 30000000;
-		ResizeTextureList((NJS_TEXLIST*)0x20E0BB0, 76);
-		ResizeTextureList((NJS_TEXLIST*)0x20AA63C, 58);
-		ResizeTextureList((NJS_TEXLIST*)0x203ACE0, 65);
-		ResizeTextureList(&OBJ_SKYDECK_TEXLIST, 213);
 	}
 	if (EnableLostWorld)
 	{
@@ -736,10 +717,6 @@ void Init_Global()
 		ReplacePVM("RUIN03");
 		ReplacePVM("OBJ_RUIN");
 		ReplacePVM("OBJ_RUIN2");
-		ResizeTextureList((NJS_TEXLIST*)0x1F6F02C, 58);
-		ResizeTextureList((NJS_TEXLIST*)0x1E9B9AC, 95);
-		ResizeTextureList((NJS_TEXLIST*)0x1E79D80, 30);
-		ResizeTextureList(&OBJ_RUIN_TEXLIST, 127);
 	}
 	if (EnableIceCap)
 	{
@@ -761,10 +738,6 @@ void Init_Global()
 		ReplacePVR("MIW_B001");
 		ReplacePVR("MTX_BOARD0");
 		ReplacePVR("SB_BOARD1");
-		ResizeTextureList((NJS_TEXLIST*)0xDE3A74, 34);
-		ResizeTextureList((NJS_TEXLIST*)0xD39744, 55);
-		ResizeTextureList((NJS_TEXLIST*)0xC68408, 40);
-		ResizeTextureList(&OBJ_ICECAP_TEXLIST, 100);
 	}
 	if (EnableCasinopolis)
 	{
@@ -789,11 +762,6 @@ void Init_Global()
 		ReplacePVM("OBJ_CASINO8");
 		ReplacePVM("OBJ_CASINO9");
 		ReplacePVM("OBJ_CASINO_E");
-		ResizeTextureList((NJS_TEXLIST*)0x1D1B050, 131);
-		ResizeTextureList((NJS_TEXLIST*)0x1CBD1C4, 58);
-		ResizeTextureList((NJS_TEXLIST*)0x1C8AF04, 26);
-		ResizeTextureList((NJS_TEXLIST*)0x1C47004, 71);
-		ResizeTextureList(&OBJ_CASINO9_TEXLIST, 203);
 		ReplaceBIN("PL_90B");
 	}
 	if (EnableFinalEgg)
@@ -816,10 +784,6 @@ void Init_Global()
 		ReplacePVM("FINALEGG3");
 		ReplacePVM("FINALEGG4");
 		ReplacePVM("OBJ_FINALEGG");
-		ResizeTextureList((NJS_TEXLIST*)0x1B98518, 80);
-		ResizeTextureList((NJS_TEXLIST*)0x1A60488, 68);
-		ResizeTextureList((NJS_TEXLIST*)0x1AC5780, 90);
-		ResizeTextureList(&OBJ_FINALEGG_TEXLIST, 169);
 		ReplaceBIN("PL_A2B");
 	}
 	if (EnableHotShelter)
@@ -847,9 +811,6 @@ void Init_Global()
 		ReplacePVM("HOTSHELTER4");
 		ReplacePVM("SHELTER_COLUMN");
 		ReplacePVM("SHELTER_SUIMEN");
-		ResizeTextureList((NJS_TEXLIST*)0x180DFF4, 78);
-		ResizeTextureList((NJS_TEXLIST*)0x17F56F4, 156);
-		ResizeTextureList((NJS_TEXLIST*)0x17F4F74, 121);
 	}
 	if (EnableChaos0)
 	{
@@ -868,7 +829,6 @@ void Init_Global()
 		ReplacePVM("CHAOS2_BARRIER");
 		ReplacePVM("CHAOS2_EFFECT");
 		ReplacePVM("CHAOS2_OBJECT");
-		ResizeTextureList((NJS_TEXLIST*)0x117C76C, 15);
 	}
 	if (EnableChaos4)
 	{
@@ -881,8 +841,6 @@ void Init_Global()
 		ReplacePVM("CHAOS4_SHIBUKI");
 		ReplacePVM("CHAOS4_TIKEI");
 		ReplacePVM("CHAOS4_WAVE");
-		ResizeTextureList((NJS_TEXLIST*)0x118FF08, 13);
-		ResizeTextureList(&CHAOS4_OBJECT_TEXLIST, 6);
 	}
 	if (EnableChaos6)
 	{
@@ -897,8 +855,6 @@ void Init_Global()
 		ReplacePVM("CHAOS6_EGGMAN");
 		ReplacePVM("CHAOS6_EISEI");
 		ReplacePVM("CHAOS6_OBJECT");
-		ResizeTextureList((NJS_TEXLIST*)0x121FF28, 77);
-		ResizeTextureList((NJS_TEXLIST*)0x11F04A0, 79);
 	}
 	if (EnablePerfectChaos)
 	{
@@ -914,7 +870,6 @@ void Init_Global()
 		ReplacePVM("CHAOS7_0WEXP_PTCHG");
 		ReplacePVM("LM_CHAOS7_0");
 		ReplacePVM("OBJ_CHAOS7");
-		ResizeTextureList((NJS_TEXLIST*)0x1494FBC, 168);
 	}
 	if (EnableEggHornet)
 	{
@@ -928,7 +883,6 @@ void Init_Global()
 		ReplacePVM("EGM1MIS");
 		ReplacePVM("EGM1SORA");
 		ReplacePVM("EGM1TSUCHI");
-		ResizeTextureList((NJS_TEXLIST*)0x1557064, 118); //Egg Hornet level texlist
 	}
 	if (EnableEggWalker)
 	{
@@ -944,7 +898,6 @@ void Init_Global()
 		ReplacePVM("EGM2_MISSILE");
 		ReplacePVM("EGM2_SKY");
 		ReplacePVM("EGM2_TIKEI");
-		ResizeTextureList((NJS_TEXLIST*)0x15E99F8, 231);
 	}
 	if (EnableEggViper)
 	{
@@ -952,7 +905,6 @@ void Init_Global()
 		ReplacePVM("EGM3CHIKEI");
 		ReplacePVM("EGM3MDL");
 		ReplacePVM("EGM3SPR");
-		ResizeTextureList((NJS_TEXLIST*)0x167E5CC, 45);
 		ReplaceBIN("PL_M0B");
 	}
 	if (EnableE101)
@@ -960,7 +912,6 @@ void Init_Global()
 		ReplaceSET("SETE101E");
 		ReplacePVM("E101");
 		ReplacePVM("E101_TIKEI");
-		ResizeTextureList((NJS_TEXLIST*)0x14FBFB4, 77);
 	}
 	if (EnableZeroE101R)
 	{
@@ -975,7 +926,6 @@ void Init_Global()
 		ReplacePVM("E101R");
 		ReplacePVM("E101R_BG");
 		ReplacePVM("E101R_TIKEI"); //Shared with Zero
-		ResizeTextureList((NJS_TEXLIST*)0x16B460C, 76); //Shared with Zero
 	}
 	ReplacePVM("CHAO");
 	ReplacePVM("CHAO_OBJECT");
@@ -990,7 +940,6 @@ void Init_Global()
 		ReplacePVM("GARDEN00");
 		ReplaceCAM("SETMI3900M");
 		ReplacePVM("GARDEN00_OBJECT");
-		ResizeTextureList(&GARDEN00_OBJECT_TEXLIST, 16);
 	}
 	if (EnableMRGarden)
 	{

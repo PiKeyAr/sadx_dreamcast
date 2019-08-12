@@ -171,6 +171,7 @@ void E101R_Init()
 	LandTableArray[80] = B_E101_R;
 	if (!ModelsLoaded_B_E101R)
 	{
+		if (!ModelsLoaded_B_ROBO) ResizeE101RTexlist();
 		FixFVFShit();
 		WriteCall((void*)0x570DB1, RenderE101R_Rocket);
 		//E-101R fixes

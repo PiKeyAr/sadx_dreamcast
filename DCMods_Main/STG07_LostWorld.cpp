@@ -1,5 +1,7 @@
 #include "stdafx.h"
 
+NJS_TEXNAME textures_obj_ruin[127];
+
 NJS_TEXNAME textures_lw1[58];
 NJS_TEXLIST texlist_lw1 = { arrayptrandlength(textures_lw1) };
 
@@ -61,9 +63,9 @@ signed int __cdecl JapaneseSpikes(ObjectMaster *a1)
 
 	v1 = a1->Data1;
 	v2 = EntityData1Ptrs[0]->Position;
-	a3.x = 0.0;
-	a3.y = 0.0;
-	a3.z = 0.0;
+	a3.x = 0.0f;
+	a3.y = 0.0f;
+	a3.z = 0.0f;
 	a4 = a1;
 	result = ClipSetObject(a1);
 	if (!result)
@@ -444,6 +446,10 @@ void LostWorld_Init()
 	WriteData((LandTable**)0x97DAF0, STG07_2);
 	if (!ModelsLoaded_STG07)
 	{
+		ResizeTextureList(&RUIN01_TEXLIST, textures_lw1);
+		ResizeTextureList(&RUIN02_TEXLIST, textures_lw2);
+		ResizeTextureList(&RUIN03_TEXLIST, textures_lw3);
+		ResizeTextureList(&OBJ_RUIN_TEXLIST, textures_obj_ruin);
 		//SA1 J spike behavior by supercoolsonic
 		if (Use1999SetFiles == 2) WriteJump((signed int*)0x5EA7A0, JapaneseSpikes);
 		//Improve clip distance for some platforms in the snake room

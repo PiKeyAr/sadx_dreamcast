@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "EggCarrier_Motions.h"
 
+NJS_TEXNAME textures_obj_ec00[206];
+
 NJS_TEXNAME textures_ec00[98];
 NJS_TEXLIST texlist_ec00 = { arrayptrandlength(textures_ec00) };
 
@@ -339,6 +341,7 @@ void ADV01_Init()
 	ParseEC00Materials(false);
 	if (!ModelsLoaded_ADV0100)
 	{
+		ResizeTextureList(&OBJ_EC00_TEXLIST, textures_obj_ec00);
 		ADV01_TEXLISTS[0] = &texlist_ec00;
 		ADV01_TEXLISTS[1] = &texlist_ec01;
 		ADV01_TEXLISTS[2] = &texlist_ec02;

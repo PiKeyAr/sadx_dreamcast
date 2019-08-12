@@ -459,7 +459,6 @@ void SADXStyleWater_OnFrame();
 void FixFVFShit();
 
 //Other stuff
-void UnloadGUITextures();
 void ColorizeRecapText(int a1, int a2, float a3, float a4, float a5, float a6, float a7, float a8);
 void DisplayVideoFadeout(int fadeout, int mode);
 void __cdecl EmeraldCoast_OceanDraw_SADXStyle(OceanData *o);
@@ -470,6 +469,7 @@ void LoadBossECOceanPVM(const char *filename, NJS_TEXLIST *texlist);
 void LoadBossECOceanTexlist();
 void RenderChaoTransporterEffect_Fix(NJS_MODEL_SADX *a1, float scale);
 void DrawEventHelicopter(NJS_ACTION *a1, float a2, int a3);
+void ResizeE101RTexlist();
 
 //Lighting functions
 bool ForceWhiteDiffuse(NJS_MATERIAL* material, uint32_t flags);

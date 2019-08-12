@@ -4,6 +4,8 @@
 NJS_VECTOR DepthSphere1 = { 1054.796f, -443.4858f, -852.1802f };
 NJS_VECTOR DepthSphere2 = { 1054.796f, 51.51416f, -852.1802f };
 
+NJS_TEXNAME textures_obj_finalegg[169];
+
 NJS_TEXNAME textures_finalegg1[80];
 NJS_TEXLIST texlist_finalegg1 = { arrayptrandlength(textures_finalegg1) };
 
@@ -548,6 +550,10 @@ void FinalEgg_Init()
 	WriteData((LandTable**)0x97DB50, STG10_2); //Act 3
 	if (!ModelsLoaded_STG10)
 	{
+		ResizeTextureList((NJS_TEXLIST*)0x1B98518, textures_finalegg1);
+		ResizeTextureList((NJS_TEXLIST*)0x1A60488, textures_finalegg2);
+		ResizeTextureList((NJS_TEXLIST*)0x1AC5780, textures_finalegg3);
+		ResizeTextureList(&OBJ_FINALEGG_TEXLIST, textures_obj_finalegg);
 		TexLists_Obj[10] = FinalEggObjectTextures;
 		WriteCall((void*)0x005AEF29, GachaponExplosionFix);
 		WriteData<1>((char*)0x5ADC40, 0xC3u); //Disable SetClip_FEgg2

@@ -173,6 +173,9 @@ void WindyValley_Init()
 	ParseWindyColFlags(STG02_2);
 	if (!ModelsLoaded_STG02)
 	{
+		ResizeTextureList(&WINDY01_TEXLIST, textures_windy1);
+		ResizeTextureList(&WINDY02_TEXLIST, textures_windy2);
+		ResizeTextureList(&WINDY03_TEXLIST, textures_windy3);
 		//Skybox stuff
 		WriteCall((void*)0x004DD794, RetrieveWindy1SkyTransparency);
 		WriteCall((void*)0x004DD7D1, RenderWindy1Sky);

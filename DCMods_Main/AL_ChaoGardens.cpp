@@ -2,6 +2,8 @@
 #include "ChaoObjects.h"
 #include "HintMessages.h"
 
+NJS_TEXNAME textures_garden00_object[16];
+
 NJS_TEXNAME textures_ecgarden[79];
 NJS_TEXLIST texlist_ecgarden = { arrayptrandlength(textures_ecgarden) };
 
@@ -2045,6 +2047,7 @@ void ChaoGardens_Init()
 	//This stuff is done only once
 	if (!ModelsLoaded_Chao)
 	{
+		ResizeTextureList(&GARDEN00_OBJECT_TEXLIST, textures_garden00_object);
 		LoadChaoGardenHintMessages();
 		//Load models
 		ChaoFruit_Chaonut = LoadModel("system\\data\\AL_MAIN\\Models\\0017D068.sa1mdl", false);

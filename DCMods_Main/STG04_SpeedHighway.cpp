@@ -2,6 +2,9 @@
 
 //TODO: The weird behavior of the light on conveyour belt
 
+NJS_TEXNAME textures_hwcar[16];
+NJS_TEXNAME textures_obj_highway[118];
+
 NJS_TEXNAME textures_highway1[89];
 NJS_TEXLIST texlist_hw1 = { arrayptrandlength(textures_highway1) };
 
@@ -396,6 +399,11 @@ void SpeedHighway_Init()
 	WriteData((LandTable**)0x97DA90, STG04_2);
 	if (!ModelsLoaded_STG04)
 	{
+		ResizeTextureList(&HIGHWAY_CAR_TEXLIST, textures_hwcar);
+		ResizeTextureList(&OBJ_HIGHWAY_TEXLIST, textures_obj_highway);
+		ResizeTextureList(&HIGHWAY01_TEXLIST, textures_highway1);
+		ResizeTextureList(&HIGHWAY02_TEXLIST, textures_highway2);
+		ResizeTextureList(&HIGHWAY03_TEXLIST, textures_highway3);
 		//Fountain fixes
 		WriteCall((void*)0x0061BAA0, FountainPart1);
 		WriteCall((void*)0x0061BAF1, FountainPart2);

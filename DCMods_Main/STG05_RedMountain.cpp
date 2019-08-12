@@ -134,6 +134,9 @@ void RedMountain_Init()
 	WriteData((LandTable**)0x97DAB0, STG05_2);
 	if (!ModelsLoaded_STG05)
 	{
+		ResizeTextureList(&MOUNTAIN01_TEXLIST, textures_mountain1);
+		ResizeTextureList(&MOUNTAIN02_TEXLIST, textures_mountain2);
+		ResizeTextureList(&MOUNTAIN03_TEXLIST, textures_mountain3);
 		//Cloud fixes
 		RMCloudTop = LoadModel("system\\data\\STG05\\Models\\00183AF8.sa1mdl", false);
 		RMCloudBottom = LoadModel("system\\data\\STG05\\Models\\00183AF8.sa1mdl", false);

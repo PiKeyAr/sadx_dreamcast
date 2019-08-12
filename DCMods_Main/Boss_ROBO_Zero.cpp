@@ -91,6 +91,7 @@ void Zero_Init()
 	LandTableArray[64] = B_ROBO;
 	if (!ModelsLoaded_B_ROBO)
 	{
+		if (!ModelsLoaded_B_E101R) ResizeE101RTexlist();
 		WriteCall((void*)0x58C7E4, DrawShadow_ERobo_Fix);
 		WriteData<1>((char*)0x5850F0, 0xC3u); //Disable SetClip_ZERO
 		WriteCall((void*)0x585448, LoadBossECOceanPVM);

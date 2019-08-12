@@ -197,6 +197,7 @@ void PerfectChaos_Init()
 	LandTableArray[32] = B_CHAOS7;
 	if (!ModelsLoaded_B_CHAOS7)
 	{
+		ResizeTextureList((NJS_TEXLIST*)0x1494FBC, textures_chaos7);
 		RemoveVertexColors_Object((NJS_OBJECT*)0x139757C); //Main model
 		RemoveVertexColors_Object((NJS_OBJECT*)0x13A27F0); //Sinking/rising
 		WriteCall((void*)0x56463B, PerfectChaosWaterfallHook);

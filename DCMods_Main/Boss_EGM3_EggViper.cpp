@@ -104,6 +104,7 @@ void EggViper_Init()
 	}
 	if (!ModelsLoaded_B_EGM3)
 	{
+		ResizeTextureList((NJS_TEXLIST*)0x167E5CC, textures_eggviper);
 		//Replace function calls for better cockpit transparency sorting
 		WriteCall((void*)0x57E297, (void*)0x408300);
 		WriteCall((void*)0x57E35B, (void*)0x408300);

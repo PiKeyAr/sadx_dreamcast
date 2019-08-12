@@ -569,6 +569,9 @@ void HotShelter_Init()
 	WriteData((LandTable**)0x97DB90, STG12_2);
 	if (!ModelsLoaded_STG12)
 	{
+		ResizeTextureList(&HOTSHELTER1_TEXLIST, textures_shelter1);
+		ResizeTextureList(&HOTSHELTER2_TEXLIST, textures_shelter2);
+		ResizeTextureList(&HOTSHELTER3_TEXLIST, textures_shelter3);
 		//Code fixes
 		WriteData((float*)0x005AB2F0, -1000.0f); //Four glass things in drainage room (depth bias)
 		WriteCall((void*)0x5A93BF, njDrawSprite3D_TheyForgotToClampAgain);

@@ -1,5 +1,7 @@
 #include "stdafx.h"
 
+NJS_TEXNAME textures_obj_twinkle[96];
+
 NJS_TEXNAME textures_twinkle1[35];
 NJS_TEXLIST texlist_twinkle1 = { arrayptrandlength(textures_twinkle1) };
 
@@ -391,6 +393,10 @@ void TwinklePark_Init()
 	ParseTwinkleParkMaterials(STG03_1);
 	if (!ModelsLoaded_STG03)
 	{
+		ResizeTextureList(&OBJ_TWINKLE_TEXLIST, textures_obj_twinkle);
+		ResizeTextureList(&TWINKLE01_TEXLIST, textures_twinkle1);
+		ResizeTextureList(&TWINKLE02_TEXLIST, textures_twinkle2);
+		ResizeTextureList(&TWINKLE03_TEXLIST, textures_twinkle3);
 		//Code fixes
 		WriteCall((void*)0x061F684, FlowerBedFix);
 		WriteCall((void*)0x621222, DrawObjectFromObjectMaster); //Fix merry-go-round floor shadow flickering

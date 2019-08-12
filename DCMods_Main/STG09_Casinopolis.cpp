@@ -3,6 +3,8 @@
 
 //TODO: Replace whole models instead of just the UVs in "UV fixes", Cowgirl dynamic collision
 
+NJS_TEXNAME textures_obj_casino[203];
+
 NJS_TEXNAME textures_casino1[131];
 NJS_TEXLIST texlist_casino1 = { arrayptrandlength(textures_casino1) };
 
@@ -913,6 +915,11 @@ void Casinopolis_Init()
 	ParseCasMaterials(STG09_1, 1);
 	if (!ModelsLoaded_STG09)
 	{
+		ResizeTextureList(&CASINO01_TEXLIST, textures_casino1);
+		ResizeTextureList(&CASINO02_TEXLIST, textures_casino2);
+		ResizeTextureList(&CASINO03_TEXLIST, textures_casino3);
+		ResizeTextureList(&CASINO04_TEXLIST, textures_casino4);
+		ResizeTextureList(&OBJ_CASINO9_TEXLIST, textures_obj_casino);
 		//Code fixes
 		WriteData((float*)0x5C0CA4, 10000.0f); //BALLS depth
 		TikeiAnim_WaterAroundShip = LoadModel("system\\data\\STG09\\Models\\00066F28.sa1mdl", false);
