@@ -191,6 +191,16 @@ void OTarai_Child_Display(ObjectMaster* a1)
 
 void RenderChaoTransporterEffect_Fix(NJS_MODEL_SADX *a1, float scale)
 {
+	if (CurrentLevel != LevelIDs_EggCarrierInside)
+	{
+		ADV01C_MODELS[32]->mats[0].attr_texId = 68;
+		njSetTexture(&CHAO_OBJECT_TEXLIST);
+	}
+	else
+	{
+		ADV01C_MODELS[32]->mats[0].attr_texId = 1;
+		njSetTexture(ADV01C_TEXLISTS[3]);
+	}
 	DrawQueueDepthBias = 2000.0f;
 	DrawModel_Queue_407FC0(a1, QueuedModelFlagsB_SomeTextureThing);
 	DrawQueueDepthBias = 0;
@@ -266,7 +276,11 @@ void ADV01C_Init()
 		ADV01C_TEXLISTS[19] = &texlist_ec34;
 		ADV01C_TEXLISTS[20] = &texlist_ec35;
 		//Chao transporter fix
-		if (!ModelsLoaded_Chao) WriteCall((void*)0x526369, RenderChaoTransporterEffect_Fix); //Transporter effect fix
+		if (!ModelsLoaded_Chao)
+		{
+			RemoveVertexColors_Model(ADV01C_MODELS[32]);
+			WriteCall((void*)0x526369, RenderChaoTransporterEffect_Fix); //Transporter effect fix
+		}
 		WriteCall((void*)0x525D39, OReservoirFix); //Fix water in Gamma's upgrade room
 		//Door barrier fixes (Gamma's story)
 		WriteJump((void*)0x52B2E0, ECDoorBarrier1X);

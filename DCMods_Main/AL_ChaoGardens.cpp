@@ -1381,22 +1381,6 @@ void __cdecl SetElevatorTexlist()
 	else SetTextureToLevelObj();
 }
 
-//Function to set texture/texlist for garden transporters
-void SetTransporterTexture()
-{
-	ADV01C_MODELS[32]->mats[0].diffuse.color = 0xFFFFFFFF;
-	if (CurrentLevel != 32)
-	{
-		njSetTexture(&CHAO_OBJECT_TEXLIST);
-		ADV01C_MODELS[32]->mats[0].attr_texId = 68;
-	}
-	else
-	{
-		njSetTexture(ADV01C_TEXLISTS[7]);
-		ADV01C_MODELS[32]->mats[0].attr_texId = 1;
-	}
-}
-
 //Name machine
 void cdecl NameMachineTexlist()
 {
@@ -2105,8 +2089,11 @@ void ChaoGardens_Init()
 		WriteData<1>((char*)0x00729577, 0x8B); //Collision struct pointer
 		WriteData<1>((char*)0x00729578, 0x7F); //Collision struct pointer
 		WriteData<1>((char*)0x00729574, 0x04); //Collision parameter for InitCollision
-		WriteCall((void*)0x005262DE, SetTransporterTexture);// Garden transporter texture/texlist
-		if (!ModelsLoaded_ADV0130) WriteCall((void*)0x526369, RenderChaoTransporterEffect_Fix); //Transporter effect fix
+		if (!ModelsLoaded_ADV0130)
+		{
+			RemoveVertexColors_Model(ADV01C_MODELS[32]);
+			WriteCall((void*)0x526369, RenderChaoTransporterEffect_Fix); //Transporter effect fix
+		}
 		WriteJump((void*)0x00729260, (void*)0x005262B0);// Garden transporter effects
 		//Fruits
 		if (ReplaceFruits == 0)
