@@ -204,6 +204,8 @@ bool DLLLoaded_SADXFE = false;
 bool DLLLoaded_DX11 = false;
 bool EnableSpeedFixes = true;
 
+int LanternErrorMessageTimer = 0;
+
 std::string ModPath = "";
 
 static const wchar_t *const OldModDLLs[] = {
@@ -283,11 +285,19 @@ extern "C"
 		DLLLoaded_DLCs = (GetModuleHandle(L"DLCs_Main") != nullptr);
 		DLLLoaded_SADXFE = (GetModuleHandle(L"sadx-fixed-edition") != nullptr);
 		//Error messages
+		if (!DLLLoaded_Lantern) LanternErrorMessageTimer = 600;
+		if (DLLLoaded_Lantern && set_alpha_reject_ptr == nullptr)
+		{
+			MessageBox(WindowHandle,
+				L"Please update the Lantern Engine mod. Dreamcast Conversion requires Lantern Engine 1.4.4 or newer.",
+				L"DC Conversion error: Lantern Engine out of date", MB_OK | MB_ICONERROR);
+			return;
+		}
 		if (helperFunctions.Version < 7)
 		{
 			MessageBox(WindowHandle,
 				L"Please update SADX Mod Loader. Dreamcast Conversion requires API version 7 or newer.",
-				L"DC Conversion error: Mod loader out of date", MB_OK | MB_ICONERROR);
+				L"DC Conversion error: Mod Loader out of date", MB_OK | MB_ICONERROR);
 			return;
 		}
 		//Check for old mod DLLs
@@ -552,6 +562,14 @@ extern "C"
 		
 	__declspec(dllexport) void __cdecl OnFrame()
 	{
+		//Display Lantern Engine missing error
+		if (LanternErrorMessageTimer && (IsIngame() || GameMode == GameModes_Menu))
+		{
+			DisplayDebugString(NJM_LOCATION(4, 1), "Failed to detect the Lantern Engine mod.");
+			DisplayDebugString(NJM_LOCATION(4, 2), "Dreamcast levels will have no lighting, and alpha rejection fixes will not be applied.");
+			DisplayDebugString(NJM_LOCATION(4, 3), "Please install and enable SonicFreak94's Lantern Engine mod for correct visuals.");
+			LanternErrorMessageTimer--;
+		}
 		//Animate materials and UVs
 		if (!IsGamePaused() && Camera_Data1)
 		{
