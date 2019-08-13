@@ -6,7 +6,7 @@ void ReplaceGeneric(std::string src, std::string dest)
 	std::string fullsrc = "system\\" + src;
 	std::string fulldest = "system\\" + dest;
 	HelperFunctionsGlobal.ReplaceFile(fullsrc.c_str(), fulldest.c_str());
-	PrintDebug("Replace file %s with file %s\n", fullsrc.c_str(), fulldest.c_str());
+	//PrintDebug("Replace file %s with file %s\n", fullsrc.c_str(), fulldest.c_str());
 }
 
 void ReplaceSET(std::string src)
@@ -27,7 +27,7 @@ void ReplaceSET(std::string src)
 	}
 	fullsrc = "system\\" + src + ".BIN";
 	HelperFunctionsGlobal.ReplaceFile(fullsrc.c_str(), fulldest.c_str());
-	PrintDebug("Replace SET file %s with file %s\n", fullsrc.c_str(), fulldest.c_str());
+	//PrintDebug("Replace SET file %s with file %s\n", fullsrc.c_str(), fulldest.c_str());
 }
 
 void ReplaceCAM(std::string src)
@@ -44,7 +44,7 @@ void ReplaceCAM(std::string src)
 	}
 	fullsrc = "system\\" + src + ".BIN";
 	HelperFunctionsGlobal.ReplaceFile(fullsrc.c_str(), fulldest.c_str());
-	PrintDebug("Replace CAM file %s with file %s\n", fullsrc.c_str(), fulldest.c_str());
+	//PrintDebug("Replace CAM file %s with file %s\n", fullsrc.c_str(), fulldest.c_str());
 }
 
 void ReplaceBIN(std::string src)
@@ -54,7 +54,7 @@ void ReplaceBIN(std::string src)
 	fulldest = "system\\" + src + "_DC.BIN";
 	fullsrc = "system\\" + src + ".BIN";
 	HelperFunctionsGlobal.ReplaceFile(fullsrc.c_str(), fulldest.c_str());
-	PrintDebug("Replace generic BIN file %s with file %s\n", fullsrc.c_str(), fulldest.c_str());
+	//PrintDebug("Replace generic BIN file %s with file %s\n", fullsrc.c_str(), fulldest.c_str());
 }
 
 void HideMesh_Object(NJS_OBJECT *object, int meshID)
