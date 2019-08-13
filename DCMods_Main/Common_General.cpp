@@ -366,7 +366,6 @@ void RenderEmeraldWithGlow_Ice(NJS_OBJECT *object, int flags, float scale)
 void SonicDashTrailFix(NJS_OBJECT *a1, QueuedModelFlagsB a2)
 {
 	DrawQueueDepthBias = 2500.0f;
-	if (CurrentLevel == LevelIDs_StationSquare && CurrentAct == 3) DrawQueueDepthBias = -2000.0f;
 	a1->basicdxmodel->mats->attr_texId = rand() % 2;
 	ProcessModelNode(a1, (QueuedModelFlagsB)0, 1.0f);
 	a1->basicdxmodel->mats->attr_texId = 0;
@@ -376,7 +375,6 @@ void SonicDashTrailFix(NJS_OBJECT *a1, QueuedModelFlagsB a2)
 void SonicDashTrailFix2(NJS_OBJECT *a1, QueuedModelFlagsB a2)
 {
 	DrawQueueDepthBias = 2500.0f;
-	if (CurrentLevel == LevelIDs_StationSquare && CurrentAct == 3) DrawQueueDepthBias = -2000.0f;
 	ProcessModelNode_A_WrapperB(a1, a2);
 	DrawQueueDepthBias = 0.0f;
 }
@@ -514,7 +512,7 @@ void __cdecl Sonic_DisplayLightDashModelX(EntityData1 *data1, CharObj2 **data2_p
 	NJS_ACTION v8; // [esp+4h] [ebp-18h]
 	NJS_ARGB a1; // [esp+Ch] [ebp-10h]
 	if (CurrentLevel == LevelIDs_SpeedHighway && CurrentAct == 2) basedepth = 1000.0f;
-	if (CurrentLevel == LevelIDs_StationSquare && CurrentAct == 3) basedepth = -500.0f;
+	if (CurrentLevel == LevelIDs_StationSquare && CurrentAct == 3) basedepth = 1000.0f;
 	NJS_OBJECT **___SONIC_OBJECTS = (NJS_OBJECT **)GetProcAddress(GetModuleHandle(L"CHRMODELS_orig"), "___SONIC_OBJECTS");
 	if (!MissedFrames)
 	{
@@ -1306,7 +1304,7 @@ void RenderItemBoxIcon(NJS_MODEL_SADX* a1)
 void SpindashChargeLinesHook(NJS_POINT3COL *a1, int a2, NJD_DRAW attr, QueuedModelFlagsB a4)
 {
 	if (CurrentLevel == LevelIDs_WindyValley && CurrentAct == 2) DrawQueueDepthBias = 4000.0f;
-	if (CurrentLevel == LevelIDs_StationSquare && CurrentAct == 3) DrawQueueDepthBias = -2000.0f;
+	if (CurrentLevel == LevelIDs_StationSquare && CurrentAct == 3) DrawQueueDepthBias = 1000.0f;
 	Draw3DLinesMaybe_Queue(a1, a2, attr, a4);
 	DrawQueueDepthBias = 0.0f;
 }
@@ -1314,7 +1312,7 @@ void SpindashChargeLinesHook(NJS_POINT3COL *a1, int a2, NJD_DRAW attr, QueuedMod
 void SpindashChargeSpriteHook(NJS_SPRITE *sp, Int n, NJD_SPRITE attr, QueuedModelFlagsB zfunc_type)
 {
 	if (CurrentLevel == LevelIDs_WindyValley && CurrentAct == 2) DrawQueueDepthBias = 4000.0f;
-	if (CurrentLevel == LevelIDs_StationSquare && CurrentAct == 3) DrawQueueDepthBias = -2000.0f;
+	if (CurrentLevel == LevelIDs_StationSquare && CurrentAct == 3) DrawQueueDepthBias = 1000.0f;
 	njDrawSprite3D_Queue(sp, n, attr, zfunc_type);
 	DrawQueueDepthBias = 0.0f;
 }

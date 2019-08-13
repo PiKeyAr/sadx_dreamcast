@@ -112,7 +112,7 @@ void AddSS03Cols(int colnumber)
 	}
 }
 
-void RenderSS03Cols(OceanData *data)
+void RenderSS03Cols_1(OceanData *data)
 {
 	if (CurrentAct == 3 && ADV00_3_Info)
 	{
@@ -123,12 +123,36 @@ void RenderSS03Cols(OceanData *data)
 			njTranslate(0, 0, 0, 0);
 			for (int i = 0; i < LengthOfArray(SS03Cols); i++)
 			{
-				if (SS03Cols[i] != -1) ProcessModelNode_AB_Wrapper(LANDTABLESS[3]->Col[SS03Cols[i]].Model, 3.0f);
+				if (SS03Cols[i] != -1)
+				{
+					if (!(LANDTABLESS[3]->Col[SS03Cols[i]].Flags & 0x1000000)) ProcessModelNode_AB_Wrapper(LANDTABLESS[3]->Col[SS03Cols[i]].Model, 3.0f);
+				}
 			}
 			njPopMatrix(1u);
 		}
 	}
 }
+
+void RenderSS03Cols_2()
+{
+	if (CurrentAct == 3 && ADV00_3_Info)
+	{
+		if (!DroppedFrames)
+		{
+			njSetTexture(&texlist_advss03);
+			njPushMatrix(0);
+			njTranslate(0, 0, 0, 0);
+			for (int i = 0; i < LengthOfArray(SS03Cols); i++)
+			{
+				DrawQueueDepthBias = 5000.0f;
+				if (LANDTABLESS[3]->Col[SS03Cols[i]].Flags & 0x1000000) ProcessModelNode(LANDTABLESS[3]->Col[SS03Cols[i]].Model, (QueuedModelFlagsB)0, 1.0f);
+				DrawQueueDepthBias = 0.0f;
+			}
+			njPopMatrix(1u);
+		}
+	}
+}
+
 
 void SSOceanCallback(void(__cdecl *function)(OceanData *), OceanData *data, float depth, QueuedModelFlagsB queueflags)
 {
@@ -137,7 +161,8 @@ void SSOceanCallback(void(__cdecl *function)(OceanData *), OceanData *data, floa
 	{
 		DrawModelCallback_QueueOceanData(RenderStationSquareOcean, data, depth, queueflags);
 	}
-	DrawModelCallback_QueueOceanData(RenderSS03Cols, data, -6000.0f, (QueuedModelFlagsB)0);
+	DrawModelCallback_QueueOceanData(RenderSS03Cols_1, data, -6000.0f, (QueuedModelFlagsB)0);
+	RenderSS03Cols_2();
 }
 
 void FixPoliceCar(NJS_ACTION *a1, float a2, int a3)
@@ -274,7 +299,7 @@ void ParseSSColFlags()
 			if ((colflags & ColFlags_Visible) && (colflags & ColFlags_Water)) landtable->Col[j].Flags = 0x00000002; //Hide sewers water
 		}
 		//Add sea waves
-		if (colflags == 0x88040000)
+		if (colflags == 0x88040000 || colflags == 0x89000000)
 		{
 			landtable->Col[j].Flags &= ~ColFlags_Visible;
 			AddSS03Cols(j);
