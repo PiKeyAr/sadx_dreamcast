@@ -483,6 +483,18 @@ void DrawSkyChaseSkybox(NJS_OBJECT* a1, float scale)
 	DrawQueueDepthBias = 0;
 }
 
+void DrawHedgehogHammerScoreboardHook(NJS_POINT3COL *a1, int texnum, NJD_DRAW n, QueuedModelFlagsB a4)
+{
+	if (EV_MainThread_ptr) DrawTriFanThing_Queue(a1, texnum, n, a4);
+	else DrawTriFanThing_Queue(a1, texnum, n, QueuedModelFlagsB_3);
+}
+
+void DrawHedgehogHammerTextHook(NJS_SPRITE *sp, Int n, NJD_SPRITE attr)
+{
+	if (EV_MainThread_ptr) njDrawSprite3D_ADV01C_C(sp, n, attr);
+	else njDrawSprite3D_Queue(sp, n, attr, QueuedModelFlagsB_3);
+}
+
 void UnloadLevelFiles_MINICART()
 {
 	delete MINICART_0_Info;
@@ -561,6 +573,9 @@ void HedgehogHammer_Init()
 	//No models to load here but using the same pattern for the sake of consistency
 	if (!ModelsLoaded_ADV00)
 	{
+		WriteCall((void*)0x5279E2, DrawHedgehogHammerTextHook);
+		WriteCall((void*)0x527C53, DrawHedgehogHammerScoreboardHook); //Adventure Field version
+		WriteCall((void*)0x625713, DrawHedgehogHammerScoreboardHook); //Minigame version
 		for (int i = 0; i < 3; i++)
 		{
 			FogData_HedgehogHammer[i].Distance = 16000.0f;
