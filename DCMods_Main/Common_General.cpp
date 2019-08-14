@@ -1191,7 +1191,12 @@ void CharacterShadowHook(NJS_OBJECT *a1, float a2)
 		if (EntityData1Ptrs[0]->Position.y >= 18) DrawQueueDepthBias = 4000.0f;
 		else DrawQueueDepthBias = -32952.0f;
 	}
-	else if (EnableRedMountain && CurrentLevel == LevelIDs_RedMountain && CurrentAct != 1) DrawQueueDepthBias = 1000.0f;
+	else if (EnableRedMountain && CurrentLevel == LevelIDs_RedMountain && CurrentAct != 1)
+	{
+		//Disable for digging
+		if (CurrentCharacter == Characters_Knuckles && CharObj2Ptrs[0]->AnimationThing.Index >= 41 && CharObj2Ptrs[0]->AnimationThing.Index <= 44) DrawQueueDepthBias = -21000.0f;
+		else DrawQueueDepthBias = 1000.0f;
+	}
 	else if (EnableFinalEgg && CurrentLevel == LevelIDs_FinalEgg) DrawQueueDepthBias = 3000.0f;
 	else DrawQueueDepthBias = -27952.0f;
 	if (MissedFrames || VerifyTexList(CurrentTexList))
