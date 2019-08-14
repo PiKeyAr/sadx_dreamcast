@@ -671,20 +671,34 @@ void __cdecl FixedRipple_Bubble(ObjectMaster *a2)
 	}
 }
 
-float __cdecl EggKeeperFix(float x, float y, float z, Rotation3 *rotation)
+//This one is used by most badniks in the game
+static float CalculateEnemyYCoordinate_General_r(float x, float y, float z, Rotation3 *rotation);
+static Trampoline CalculateEnemyYCoordinate_General_t(0x49E920, 0x49E927, CalculateEnemyYCoordinate_General_r);
+static float __cdecl CalculateEnemyYCoordinate_General_r(float x, float y, float z, Rotation3 *rotation)
 {
-	float result;
-	result = sub_49E920(x, y, z, rotation);
-	if (result == -1000000) result = y;
+	auto original = reinterpret_cast<decltype(CalculateEnemyYCoordinate_General_r)*>(CalculateEnemyYCoordinate_General_t.Target());
+	float result = 	original(x, y, z, rotation);
+	if (result == -1000000.0f) 
+	{
+		result = y - 10.0f;
+		//PrintDebug("Result (corrected): %f\n", result);
+	}
+	//else PrintDebug("Result: %f\n", result);
 	return result;
 }
 
-double __cdecl AmenboFix(float a1, float a2, float a3, int a4)
+//This one is used exclusively by the Sweep badnik
+static double CalculateEnemyYCoordinate_Sweep_r(float x, float y, float z, Rotation3 *rotation);
+static Trampoline CalculateEnemyYCoordinate_Sweep_t(0x49EAD0, 0x49EAD7, CalculateEnemyYCoordinate_Sweep_r);
+static double __cdecl CalculateEnemyYCoordinate_Sweep_r(float x, float y, float z, Rotation3 *rotation)
 {
-	double u;
-	u = sub_49EAD0(a1, a2, a3, a4);
-	if (u == -1000000) u = a2;
-	return u;
+	auto original = reinterpret_cast<decltype(CalculateEnemyYCoordinate_Sweep_r)*>(CalculateEnemyYCoordinate_Sweep_t.Target());
+	float result = 	original(x, y, z, rotation);
+	if (result == -1000000.0f) 
+	{
+		result = y;
+	}
+	return result;
 }
 
 void __cdecl ItemBox_Display_Destroyed_Rotate(ObjectMaster* _this)
@@ -1564,9 +1578,6 @@ void General_Init()
 		*(NJS_OBJECT*)0x30CB4F8 = *LoadModel("system\\data\\Other\\02CCB4F8.sa1mdl", false);
 		*(NJS_OBJECT*)0x30CDB28 = *LoadModel("system\\data\\Other\\02CCDB28.sa1mdl", false);
 		*(NJS_OBJECT*)0x30D0160 = *LoadModel("system\\data\\Other\\02CD0160.sa1mdl", false);
-		//Fix for badniks not spawning
-		WriteCall((void*)0x7AA9F9, AmenboFix);
-		WriteCall((void*)0x49EFE7, EggKeeperFix);
 		//Leon fixes
 		WriteData((float**)0x4CD75A, &_nj_screen_.w); //from SADXFE
 		WriteData((float**)0x4CD77C, &_nj_screen_.h); //from SADXFE
