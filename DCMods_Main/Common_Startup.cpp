@@ -352,15 +352,12 @@ void Init_Global()
 		ReplaceSET("SETSS04M");
 		ReplaceSET("SETSS04S");
 		ReplaceSET("SETSS05S");
-		if (!DLLLoaded_DLCs)
-		{
-			ReplaceCAM("CAMSS00S");
-			ReplaceCAM("CAMSS01S");
-			ReplaceCAM("CAMSS02S");
-			ReplaceCAM("CAMSS03S");
-			ReplaceCAM("CAMSS04S");
-			ReplaceCAM("CAMSS05S");
-		}
+		ReplaceCAM("CAMSS00S");
+		ReplaceCAM("CAMSS01S");
+		ReplaceCAM("CAMSS02S");
+		ReplaceCAM("CAMSS03S");
+		ReplaceCAM("CAMSS04S");
+		ReplaceCAM("CAMSS05S");
 		ReplacePVM("ADVSS00");
 		ReplacePVM("ADVSS01");
 		ReplacePVM("ADVSS02");
