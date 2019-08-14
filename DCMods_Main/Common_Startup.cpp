@@ -678,6 +678,7 @@ void Init_Global()
 		ReplacePVM("SKYDECK02");
 		ReplacePVM("SKYDECK03");
 		//Clip distance improvements
+		ObjList_SDeck[24].UseDistance = 1;
 		ObjList_SDeck[25].UseDistance = 1;
 		ObjList_SDeck[29].UseDistance = 1;
 		ObjList_SDeck[30].UseDistance = 1;
@@ -689,17 +690,18 @@ void Init_Global()
 		ObjList_SDeck[36].UseDistance = 1;
 		ObjList_SDeck[37].UseDistance = 1;
 		ObjList_SDeck[38].UseDistance = 1;
-		ObjList_SDeck[25].Distance = 30000000;
-		ObjList_SDeck[29].Distance = 30000000;
-		ObjList_SDeck[30].Distance = 30000000;
-		ObjList_SDeck[31].Distance = 30000000;
-		ObjList_SDeck[32].Distance = 30000000;
-		ObjList_SDeck[33].Distance = 30000000;
-		ObjList_SDeck[34].Distance = 30000000;
-		ObjList_SDeck[35].Distance = 30000000;
-		ObjList_SDeck[36].Distance = 30000000;
-		ObjList_SDeck[37].Distance = 30000000;
-		ObjList_SDeck[38].Distance = 30000000;
+		ObjList_SDeck[24].Distance = 8000000;
+		ObjList_SDeck[25].Distance = 8000000;
+		ObjList_SDeck[29].Distance = 8000000;
+		ObjList_SDeck[30].Distance = 8000000;
+		ObjList_SDeck[31].Distance = 8000000;
+		ObjList_SDeck[32].Distance = 8000000;
+		ObjList_SDeck[33].Distance = 8000000;
+		ObjList_SDeck[34].Distance = 8000000;
+		ObjList_SDeck[35].Distance = 8000000;
+		ObjList_SDeck[36].Distance = 8000000;
+		ObjList_SDeck[37].Distance = 8000000;
+		ObjList_SDeck[38].Distance = 3000000;
 	}
 	if (EnableLostWorld)
 	{
