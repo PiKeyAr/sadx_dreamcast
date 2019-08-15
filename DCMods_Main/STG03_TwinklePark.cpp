@@ -318,7 +318,11 @@ void __cdecl DrawObjectFromObjectMaster(ObjectMaster *a2)
 
 void __cdecl FlowerBedFix(NJS_OBJECT *a1, QueuedModelFlagsB a2, float a3)
 {
-	sub_407FC0(a1->basicdxmodel, (QueuedModelFlagsB)1);
+	if (a1 == (NJS_OBJECT*)0x27B6170 || a1 == (NJS_OBJECT*)0x27B80C4 || a1 == (NJS_OBJECT*)0x27BAC54 || a1 == (NJS_OBJECT*)0x27B6A58 || a1 == (NJS_OBJECT*)0x27B972C || a1 == (NJS_OBJECT*)0x27BC1C4)
+	{
+		sub_407FC0(a1->basicdxmodel, (QueuedModelFlagsB)1);
+	}
+	else ProcessModelNode_C_VerifyTexList(a1, a2, a3);
 }
 
 void FixArchLight(NJS_MODEL_SADX *model)
