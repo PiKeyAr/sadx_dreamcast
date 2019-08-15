@@ -236,6 +236,37 @@ static void __cdecl TheyForgotToClampAgain_r(ObjectMaster *a1)
 	if (EnableSkyDeck) ClampGlobalColorThing_Thing();
 }
 
+/*
+
+static void SkyDeckShockwave2_r(ObjectMaster *a1);
+static Trampoline SkyDeckShockwave2_t(0x5FF370, 0x5FF378, SkyDeckShockwave2_r);
+static void __cdecl SkyDeckShockwave2_r(ObjectMaster *a1)
+{
+	auto original = reinterpret_cast<decltype(SkyDeckShockwave2_r)*>(SkyDeckShockwave2_t.Target());
+	if (EnableSkyDeck)
+	{
+		DrawQueueDepthBias = 4000.0f;
+		original(a1);
+		DrawQueueDepthBias = 0.0f;
+	}
+	else original(a1);
+}
+
+static void SkyDeckShockwave3_r(ObjectMaster *a1);
+static Trampoline SkyDeckShockwave3_t(0x5FD860, 0x5FD867, SkyDeckShockwave3_r);
+static void __cdecl SkyDeckShockwave3_r(ObjectMaster *a1)
+{
+	auto original = reinterpret_cast<decltype(SkyDeckShockwave3_r)*>(SkyDeckShockwave3_t.Target());
+	if (EnableSkyDeck)
+	{
+		DrawQueueDepthBias = 4000.0f;
+		original(a1);
+		DrawQueueDepthBias = 0.0f;
+	}
+	else original(a1);
+}
+*/
+
 void FixHangA(NJS_OBJECT *obj, float scale)
 {
 	ProcessModelNode(obj, QueuedModelFlagsB_EnableZWrite, scale);
@@ -392,6 +423,25 @@ void SkyDeck_Init()
 		WriteData((float*)0x005F4D28, 1.0f);
 		WriteData((float*)0x005F4D30, 1.0f);
 		WriteData((float*)0x005F4D38, 1.0f);
+		//Alpha rejected explosions/shockwaves
+		*(NJS_OBJECT*)0x21DF2A4 = *LoadModel("system\\data\\STG06\\Models\\0017C8A8.sa1mdl", false);
+		AddAlphaRejectMaterial(&((NJS_OBJECT*)0x21DF2A4)->basicdxmodel->mats[0]);
+		*(NJS_OBJECT*)0x21DF554 = *LoadModel("system\\data\\STG06\\Models\\0017CB48.sa1mdl", false);
+		AddAlphaRejectMaterial(&((NJS_OBJECT*)0x21DF554)->basicdxmodel->mats[0]);
+		*(NJS_OBJECT*)0x21DFEB4 = *LoadModel("system\\data\\STG06\\Models\\0017D498.sa1mdl", false);
+		AddAlphaRejectMaterial(&((NJS_OBJECT*)0x21DFEB4)->basicdxmodel->mats[0]);
+		*(NJS_OBJECT*)0x21E0438 = *LoadModel("system\\data\\STG06\\Models\\0017DA08.sa1mdl", false);
+		AddAlphaRejectMaterial(&((NJS_OBJECT*)0x21E0438)->basicdxmodel->mats[0]);
+		*(NJS_OBJECT*)0x21E06BC = *LoadModel("system\\data\\STG06\\Models\\0017DC80.sa1mdl", false);
+		AddAlphaRejectMaterial(&((NJS_OBJECT*)0x21E06BC)->basicdxmodel->mats[0]);
+		*(NJS_OBJECT*)0x21ED6E4 = *LoadModel("system\\data\\STG06\\Models\\00188178.sa1mdl", false);
+		AddAlphaRejectMaterial(&((NJS_OBJECT*)0x21ED6E4)->basicdxmodel->mats[0]);
+		*(NJS_OBJECT*)0x21ED7F0 = *LoadModel("system\\data\\STG06\\Models\\0018827C.sa1mdl", false);
+		AddAlphaRejectMaterial(&((NJS_OBJECT*)0x21ED7F0)->basicdxmodel->mats[0]);
+		*(NJS_OBJECT*)0x21EDE68 = *LoadModel("system\\data\\STG06\\Models\\001888E4.sa1mdl", false);
+		AddAlphaRejectMaterial(&((NJS_OBJECT*)0x21EDE68)->basicdxmodel->mats[0]);
+		*(NJS_OBJECT*)0x21EE164 = *LoadModel("system\\data\\STG06\\Models\\00188BD4.sa1mdl", false);
+		AddAlphaRejectMaterial(&((NJS_OBJECT*)0x21EE164)->basicdxmodel->mats[0]);
 		//Objects
 		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x21FB818)->basicdxmodel->mats[1]); //OUeKi
 		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x21FB818)->basicdxmodel->mats[2]); //OUeKi
