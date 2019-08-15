@@ -442,6 +442,8 @@ void SkyDeck_Init()
 		AddAlphaRejectMaterial(&((NJS_OBJECT*)0x21EDE68)->basicdxmodel->mats[0]);
 		*(NJS_OBJECT*)0x21EE164 = *LoadModel("system\\data\\STG06\\Models\\00188BD4.sa1mdl", false);
 		AddAlphaRejectMaterial(&((NJS_OBJECT*)0x21EE164)->basicdxmodel->mats[0]);
+		*(NJS_OBJECT*)0x21ED460 = *LoadModel("system\\data\\STG06\\Models\\00187F00.sa1mdl", false);
+		AddAlphaRejectMaterial(&((NJS_OBJECT*)0x21ED460)->basicdxmodel->mats[0]);
 		//Objects
 		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x21FB818)->basicdxmodel->mats[1]); //OUeKi
 		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x21FB818)->basicdxmodel->mats[2]); //OUeKi
