@@ -1854,13 +1854,13 @@ void General_Init()
 void General_OnFrame()
 {
 	//This is stupid but I need to disable Gamma's chest fix on the character select screen or when he dies because it breaks there
-	if ((GameMode == GameModes_Menu || (CurrentCharacter == Characters_Gamma && EntityData1Ptrs[0] && EntityData1Ptrs[0]->NextAction == 51)) && GammaConstantMaterialAlpha != 1.0f)
+	if (GammaConstantMaterialAlpha != 1.0f && (GameMode == GameModes_Menu || (CurrentCharacter == Characters_Gamma && EntityData1Ptrs[0] && EntityData1Ptrs[0]->Action == 51)))
 	{
 		WriteData<1>((char*)0x47FDF9, 0x10u);
 		WriteData((float*)0x47FE0F, 1.0f);
 		E102_OBJECTS[0]->child->child->sibling->sibling->sibling->sibling->sibling->sibling->sibling->sibling->sibling->sibling->child->sibling->child->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_USE_ALPHA;
 	}
-	if (!(GameMode != GameModes_Menu || (CurrentCharacter == Characters_Gamma && EntityData1Ptrs[0] && EntityData1Ptrs[0]->NextAction == 51)) && GammaConstantMaterialAlpha == 1.0f)
+	if (GammaConstantMaterialAlpha == 1.0f && !(GameMode == GameModes_Menu || (CurrentCharacter == Characters_Gamma && EntityData1Ptrs[0] && EntityData1Ptrs[0]->Action == 51)))
 	{
 		WriteData<1>((char*)0x47FDF9, 0x08u);
 		WriteData((float*)0x47FE0F, 0.847f);
