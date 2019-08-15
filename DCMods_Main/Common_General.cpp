@@ -504,6 +504,15 @@ int __cdecl RenderBarrierModels(NJS_MODEL_SADX *a1)
 	return 0;
 }
 
+void SuperSonicAuraHook(NJS_OBJECT *a1, QueuedModelFlagsB a2)
+{
+	//Same deal as the barriers basically
+	if ((unsigned __int16)(CurrentAct | (CurrentLevel << 8)) >> 8 == 3 && CurrentAct == 2) DrawQueueDepthBias = 0; else DrawQueueDepthBias = 20048.0f;
+	if (CurrentLevel == LevelIDs_SpeedHighway && CurrentAct == 2) DrawQueueDepthBias = 500.0f;
+	ProcessModelNode_A_WrapperB(a1, a2);
+	DrawQueueDepthBias = 0;
+}
+
 void __cdecl Sonic_DisplayLightDashModelX(EntityData1 *data1, CharObj2 **data2_pp, CharObj2 *data2)
 {
 	int v3; // eax
@@ -1709,6 +1718,9 @@ void General_Init()
 		WriteCall((void*)0x4B9F0F, MagneticBarrierLightning);
 		WriteCall((void*)0x4B9DDA, SetMagneticBarrierColor);
 		WriteJump((void*)0x4B9C90, RenderBarrierModels);
+		WriteCall((void*)0x55E782, SuperSonicAuraHook); //Super Sonic aura 1
+		WriteCall((void*)0x55E76A, SuperSonicAuraHook); //Super Sonic aura 2
+		WriteCall((void*)0x55E72A, SuperSonicAuraHook); //Super Sonic aura 3
 		WriteJump(Barrier_Main, Barrier_MainX); //Barrier
 		WriteCall((void*)0x4BA0E4, RenderInvincibilityLines);
 		WriteData<10>((char*)0x40889C, 0x90u); //Queued model lighting/specular fix
