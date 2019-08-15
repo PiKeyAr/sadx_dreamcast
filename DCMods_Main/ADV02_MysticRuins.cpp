@@ -55,7 +55,7 @@ NJS_OBJECT* IceCapDoorSnowflake = nullptr;
 int MRWaterObjects[] = { -1, -1, -1, -1, -1 };
 int MRJungleObjectAnimations_Propeller[] = { -1, -1, -1, -1, -1 };
 int MRJungleObjectAnimations_Lantern[] = { -1, -1, -1, -1, -1 };
-NJS_OBJECT* MRJungleObjectsCallback[] = { nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr };
+int MRJungleObjectsCallback[] = { -1, -1, -1, -1, -1, -1, -1 };
 NJS_VECTOR TempleVector = { -515.99f, 90.0f, -1137.45f };
 NJS_ARGB EmeraldShardGlowColor = { 0, 0, 0, 0 };
 
@@ -204,17 +204,20 @@ void __cdecl MRJungleCallback_Simple(void *a1)
 {
 	NJS_OBJECT* v2;
 	NJS_MATRIX a2; // [esp+0h] [ebp-40h]
-	njGetMatrix(a2);
 	njSetTexture(ADV02_TEXLISTS[40]);
 	for (int i = 0; i < LengthOfArray(MRJungleObjectsCallback); i++)
 	{
-		v2 = MRJungleObjectsCallback[i];
-		if (v2)
+		if (MRJungleObjectsCallback[i] != -1);
 		{
-			njTranslateEx((NJS_VECTOR*)v2->pos);
-			njRotateXYZ(0, v2->ang[0], v2->ang[1], v2->ang[2]);
-			DrawModel(MRJungleObjectsCallback[i]->basicdxmodel);
-			njSetMatrix(0, a2);
+			v2 = LANDTABLEMR[2]->Col[MRJungleObjectsCallback[i]].Model;
+			if (v2)
+			{
+				njGetMatrix(a2);
+				njTranslateEx((NJS_VECTOR*)v2->pos);
+				njRotateXYZ(0, v2->ang[0], v2->ang[1], v2->ang[2]);
+				DrawModel(v2->basicdxmodel);
+				njSetMatrix(0, a2);
+			}
 		}
 	}
 }
@@ -329,14 +332,14 @@ void AddMRLandtableRotation(int colnumber, bool propeller)
 	}
 }
 
-void AddMRJungleCallback(NJS_OBJECT *object)
+void AddMRJungleCallback(int colnumber)
 {
 	for (int q = 0; q < LengthOfArray(MRJungleObjectsCallback); ++q)
 	{
-		if (MRJungleObjectsCallback[q] == object) return;
-		else if (MRJungleObjectsCallback[q] == nullptr)
+		if (MRJungleObjectsCallback[q] == colnumber) return;
+		else if (MRJungleObjectsCallback[q] == -1)
 		{
-			MRJungleObjectsCallback[q] = object;
+			MRJungleObjectsCallback[q] = colnumber;
 			return;
 		}
 	}
@@ -360,16 +363,16 @@ void ParseMRColFlags()
 		colflags = landtable->Col[j].Flags;
 		if (colflags == 0x88001000 || colflags == 0x88000400) AddMRLandtableRotation(j, false);
 		else if (colflags == 0x88000000) AddMRLandtableRotation(j, true);
-		else if (colflags == 0) AddMRJungleCallback(landtable->Col[j].Model);
+		else if (colflags == 0) AddMRJungleCallback(j);
 	}
 	//Add models for MR jungle callback
-	ADV02MR02_OBJECTS[118] = MRJungleObjectsCallback[0];
-	ADV02MR02_OBJECTS[119] = MRJungleObjectsCallback[1];
-	ADV02MR02_OBJECTS[135] = MRJungleObjectsCallback[2];
-	ADV02MR02_OBJECTS[136] = MRJungleObjectsCallback[3];
-	ADV02MR02_OBJECTS[137] = MRJungleObjectsCallback[4];
-	ADV02MR02_OBJECTS[138] = MRJungleObjectsCallback[5];
-	ADV02MR02_OBJECTS[139] = MRJungleObjectsCallback[6];
+	ADV02MR02_OBJECTS[118] = LANDTABLEMR[2]->Col[MRJungleObjectsCallback[0]].Model;
+	ADV02MR02_OBJECTS[119] = LANDTABLEMR[2]->Col[MRJungleObjectsCallback[1]].Model;
+	ADV02MR02_OBJECTS[135] = LANDTABLEMR[2]->Col[MRJungleObjectsCallback[2]].Model;
+	ADV02MR02_OBJECTS[136] = LANDTABLEMR[2]->Col[MRJungleObjectsCallback[3]].Model;
+	ADV02MR02_OBJECTS[137] = LANDTABLEMR[2]->Col[MRJungleObjectsCallback[4]].Model;
+	ADV02MR02_OBJECTS[138] = LANDTABLEMR[2]->Col[MRJungleObjectsCallback[5]].Model;
+	ADV02MR02_OBJECTS[139] = LANDTABLEMR[2]->Col[MRJungleObjectsCallback[6]].Model;
 }
 
 void RemoveMRMaterials(int act)
@@ -542,7 +545,7 @@ void UnloadLevelFiles_ADV02()
 	}
 	for (int k = 0; k < LengthOfArray(MRJungleObjectsCallback); ++k)
 	{
-		MRJungleObjectsCallback[k] = nullptr;
+		MRJungleObjectsCallback[k] = -1;
 	}
 	//Unregister white diffuse
 	RemoveMRMaterials(0);

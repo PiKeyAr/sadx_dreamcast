@@ -80,12 +80,12 @@ void UnloadLevelFiles_B_CHAOS6()
 
 void Chaos6Action(NJS_ACTION *a1, float frameNumber)
 {
-	NJS_ACTION ass = { nullptr, nullptr };
+	NJS_ACTION Chaos6Actions_OpaqueOnly = { nullptr, nullptr };
 	if (a1->object == (NJS_OBJECT*)0x1272FF4)
 	{
-		ass.motion = a1->motion;
-		ass.object = Chaos6Main_OpaqueOnly;
-		if (ass.object) njAction(&ass, frameNumber);
+		Chaos6Actions_OpaqueOnly.motion = a1->motion;
+		Chaos6Actions_OpaqueOnly.object = Chaos6Main_OpaqueOnly;
+		if (Chaos6Actions_OpaqueOnly.object) njAction(&Chaos6Actions_OpaqueOnly, frameNumber);
 	}
 	njAction_TryReallyHard(a1, frameNumber);
 }

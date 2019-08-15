@@ -11,7 +11,7 @@ NJS_TEXLIST texlist_ecoast2 = { arrayptrandlength(textures_ecoast2) };
 NJS_TEXNAME textures_ecoast3[94];
 NJS_TEXLIST texlist_ecoast3 = { arrayptrandlength(textures_ecoast3) };
 
-NJS_OBJECT* WaterObjects[] = { nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr };
+int Act2WaterCols[] = { -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 };
 NJS_OBJECT *BigDeco1 = nullptr;
 NJS_OBJECT *BigDeco2 = nullptr;
 NJS_OBJECT *BigDeco3 = nullptr;
@@ -103,9 +103,9 @@ void __cdecl Obj_EC23Water_DisplayX(ObjectMaster *a1)
 			njPushMatrix(0);
 			njTranslate(0, 0, 0, 0);
 			DrawQueueDepthBias = 1000.0f;
-			for (int j = 0; j < LengthOfArray(WaterObjects); j++)
+			for (int j = 0; j < LengthOfArray(Act2WaterCols); j++)
 			{
-				ProcessModelNode_A_Wrapper(WaterObjects[j], QueuedModelFlagsB_SomeTextureThing, 1.0f);
+				if (Act2WaterCols[j] != -1) ProcessModelNode_A_Wrapper(GeoLists[9]->Col[Act2WaterCols[j]].Model, QueuedModelFlagsB_SomeTextureThing, 1.0f);
 			}
 			DrawQueueDepthBias = 0;
 			njPopMatrix(1u);
@@ -468,9 +468,9 @@ void WhaleSplash(NJS_OBJECT *a1)
 
 void UnloadLevelFiles_STG01()
 {
-	for (int j = 0; j < LengthOfArray(WaterObjects); j++)
+	for (int j = 0; j < LengthOfArray(Act2WaterCols); j++)
 	{
-		WaterObjects[j] = nullptr;
+		Act2WaterCols[j] = -1;
 	}
 	delete STG01_0_Info;
 	delete STG01_1_Info;
@@ -480,14 +480,14 @@ void UnloadLevelFiles_STG01()
 	STG01_2_Info = nullptr;
 }
 
-void AddWaterObject(NJS_OBJECT *object)
+void AddWaterObject(int colnumber)
 {
-	for (int j = 0; j < LengthOfArray(WaterObjects); j++)
+	for (int j = 0; j < LengthOfArray(Act2WaterCols); j++)
 	{
-		if (WaterObjects[j] == object) return;
-		else if (WaterObjects[j] == nullptr)
+		if (Act2WaterCols[j] == colnumber) return;
+		else if (Act2WaterCols[j] == -1)
 		{
-			WaterObjects[j] = object;
+			Act2WaterCols[j] = colnumber;
 			return;
 		}
 	}
@@ -530,7 +530,7 @@ void ParseEmeraldCoastColFlagsAndMaterials(LandTable *landtable, int act)
 			colflags = landtable->Col[j].Flags;
 			if (colflags == 0x28000002)
 			{
-				AddWaterObject(landtable->Col[j].Model);
+				AddWaterObject(j);
 			}
 			if (colflags == 0xA8000002 && SADXWater_EmeraldCoast) landtable->Col[j].Flags = 0x20000002;
 			for (int k = 0; k < landtable->Col[j].Model->basicdxmodel->nbMat; ++k)
@@ -606,9 +606,9 @@ void EmeraldCoast_Init()
 	RemoveMaterialColors_Landtable(STG01_0);
 	RemoveMaterialColors_Landtable(STG01_1);
 	RemoveMaterialColors_Landtable(STG01_2);
-	WriteData((LandTable**)0x97DA28, STG01_0); //Act 1
-	WriteData((LandTable**)0x97DA2C, STG01_1); //Act 2
-	WriteData((LandTable**)0x97DA30, STG01_2); //Act 3
+	GeoLists[8]= STG01_0; //Act 1
+	GeoLists[9]= STG01_1; //Act 2
+	GeoLists[10]= STG01_2; //Act 3
 	ParseEmeraldCoastColFlagsAndMaterials(STG01_0, 0);
 	ParseEmeraldCoastColFlagsAndMaterials(STG01_1, 1);
 	ParseEmeraldCoastColFlagsAndMaterials(STG01_2, 2);

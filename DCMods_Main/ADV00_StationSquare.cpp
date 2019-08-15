@@ -28,10 +28,9 @@ NJS_TEXLIST texlist_advss04 = { arrayptrandlength(textures_advss04) };
 NJS_TEXNAME textures_advss05[33];
 NJS_TEXLIST texlist_advss05 = { arrayptrandlength(textures_advss05) };
 
-NJS_OBJECT *SS03SeaModel = nullptr;
-NJS_OBJECT *SS04SeaModel = nullptr;
+int SS03SeaModel = -1;
+int SS04SeaModel = -1;
 NJS_OBJECT* PoliceCarModel_LightsOnly = nullptr;
-NJS_OBJECT* StationDoor = nullptr;
 NJS_OBJECT* Parasol_1 = nullptr;
 NJS_OBJECT* Parasol_2 = nullptr;
 NJS_OBJECT* Parasol_3 = nullptr;
@@ -69,7 +68,7 @@ int __cdecl CheckIfCameraIsInHotel_Lol()
 
 void __cdecl RenderStationSquareOcean(OceanData *x)
 {
-	if (CurrentAct == 3 && SS03SeaModel)
+	if (CurrentAct == 3 && SS03SeaModel != -1)
 	{
 		if (!DroppedFrames)
 		{
@@ -78,20 +77,20 @@ void __cdecl RenderStationSquareOcean(OceanData *x)
 			njTranslate(0, 0, 0, 0);
 			Direct3D_SetZFunc(1u);
 			Direct3D_EnableZWrite(0);
-			ProcessModelNode_AB_Wrapper(SS03SeaModel, 1.0f);
+			ProcessModelNode_AB_Wrapper(LANDTABLESS[3]->Col[SS03SeaModel].Model, 1.0f);
 			Direct3D_SetZFunc(1u);
 			Direct3D_EnableZWrite(1u);
 			njPopMatrix(1u);
 		}
 	}
-	if (CurrentAct == 4 && SS04SeaModel)
+	if (CurrentAct == 4 && SS04SeaModel != -1)
 	{
 		if (!DroppedFrames)
 		{
 			njSetTexture(&texlist_advss04);
 			njPushMatrix(0);
 			njTranslate(0, 0, 0, 0);
-			ProcessModelNode_AB_Wrapper(SS04SeaModel, 1.0f);
+			ProcessModelNode_AB_Wrapper(LANDTABLESS[4]->Col[SS04SeaModel].Model, 1.0f);
 			njPopMatrix(1u);
 		}
 	}
@@ -287,7 +286,7 @@ void ParseSSColFlags()
 		{
 			if (colflags == 0x88000000)
 			{
-				SS03SeaModel = landtable->Col[j].Model;
+				SS03SeaModel = j;
 				landtable->Col[j].Flags &= ~ColFlags_Visible;
 			}
 		}
@@ -311,7 +310,7 @@ void ParseSSColFlags()
 		colflags = landtable->Col[j].Flags;
 		if (!SADXWater_StationSquare)
 		{
-			if (colflags & 0x8000000) SS04SeaModel = landtable->Col[j].Model;
+			if (colflags & 0x8000000) SS04SeaModel = j;
 		}
 		else
 		{
@@ -563,8 +562,8 @@ void UnloadLevelFiles_ADV00()
 		SS03Cols[i] = -1;
 	}
 	ParseSSMaterials(true);
-	SS03SeaModel = nullptr;
-	SS04SeaModel = nullptr;
+	SS03SeaModel = -1;
+	SS04SeaModel = -1;
 	delete ADV00_0_Info;
 	delete ADV00_1_Info;
 	delete ADV00_2_Info;
