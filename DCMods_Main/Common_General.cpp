@@ -49,6 +49,7 @@ FunctionPointer(void, sub_4BFF90, (NJS_OBJECT* a1), 0x4BFF90);
 FunctionPointer(void, AnimationCallback_C, (NJS_ACTION *a1, float a2, QueuedModelFlagsB a3), 0x4084B0);
 FunctionPointer(void, DrawObjectWithMotion_407BB0, (NJS_OBJECT *a1, NJS_MOTION *a2, float framenumber, QueuedModelFlagsB a4, float scale), 0x4082D0);
 FunctionPointer(void, DrawObjectWithMotion_407FC0, (NJS_OBJECT *a1, NJS_MOTION *a2, float framenumber, QueuedModelFlagsB a4, float scale), 0x408300);
+FunctionPointer(float, CalculateEnemyYCoordinate, (float x, float y, float z, Rotation3 *rotation), 0x49E920);
 
 ObjectThingC ItemBoxAirResizeThing = { (NJS_OBJECT*)0, sub_4BFF90 };
 
@@ -366,6 +367,7 @@ void RenderEmeraldWithGlow_Ice(NJS_OBJECT *object, int flags, float scale)
 void SonicDashTrailFix(NJS_OBJECT *a1, QueuedModelFlagsB a2)
 {
 	DrawQueueDepthBias = 2500.0f;
+	if (CurrentLevel == LevelIDs_WindyValley && CurrentAct == 2) DrawQueueDepthBias = 3500.0f;
 	a1->basicdxmodel->mats->attr_texId = rand() % 2;
 	ProcessModelNode(a1, (QueuedModelFlagsB)0, 1.0f);
 	a1->basicdxmodel->mats->attr_texId = 0;
@@ -375,6 +377,7 @@ void SonicDashTrailFix(NJS_OBJECT *a1, QueuedModelFlagsB a2)
 void SonicDashTrailFix2(NJS_OBJECT *a1, QueuedModelFlagsB a2)
 {
 	DrawQueueDepthBias = 2500.0f;
+	if (CurrentLevel == LevelIDs_WindyValley && CurrentAct == 2) DrawQueueDepthBias = 3500.0f;
 	ProcessModelNode_A_WrapperB(a1, a2);
 	DrawQueueDepthBias = 0.0f;
 }
@@ -671,19 +674,13 @@ void __cdecl FixedRipple_Bubble(ObjectMaster *a2)
 	}
 }
 
-//This one is used by most badniks in the game
-static float CalculateEnemyYCoordinate_General_r(float x, float y, float z, Rotation3 *rotation);
-static Trampoline CalculateEnemyYCoordinate_General_t(0x49E920, 0x49E927, CalculateEnemyYCoordinate_General_r);
-static float __cdecl CalculateEnemyYCoordinate_General_r(float x, float y, float z, Rotation3 *rotation)
+float CalculateEnemyYCoordinate_Wrapper(float x, float y, float z, Rotation3 *rotation)
 {
-	auto original = reinterpret_cast<decltype(CalculateEnemyYCoordinate_General_r)*>(CalculateEnemyYCoordinate_General_t.Target());
-	float result = 	original(x, y, z, rotation);
-	if (result == -1000000.0f) 
+	float result = CalculateEnemyYCoordinate(x, y, z, rotation);
+	if (result == -1000000.0f)
 	{
-		result = y - 10.0f;
-		//PrintDebug("Result (corrected): %f\n", result);
+		result = y - 5.0f;
 	}
-	//else PrintDebug("Result: %f\n", result);
 	return result;
 }
 
@@ -1662,6 +1659,8 @@ void General_Init()
 			WriteData((float**)0x492CB0, &LSDMinimumCheck1); //Minimum speed to be compared
 			WriteData((float*)0x492CBF, LSDMinimumSet1); //Minimum speed to be set
 		}
+		//Fix badniks not spawning (Amenbo fix in trampoline)
+		WriteCall((void*)0x49EFE7, CalculateEnemyYCoordinate_Wrapper);
 		//Ripples
 		if (EnableDCRipple)
 		{
