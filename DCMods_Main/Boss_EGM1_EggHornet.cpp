@@ -11,22 +11,21 @@ DataArray(DrawDistance, DrawDist_EggHornet, 0x01556B1C, 3);
 
 FunctionPointer(void, sub_571AD0, (ObjectMaster *a1), 0x571AD0);
 
-static int EggHornetOceanAnimationSA1 = 0;
 static int EggHornet_Rotation = 0;
 static int EggHornet_RotationDirection = 1;
 static bool EggHornet_RotationEnabled = false;
 
-NJS_OBJECT* EHOcean = nullptr;
-NJS_OBJECT* EHWaterObjects[] = { nullptr, nullptr, nullptr, nullptr, nullptr };
+int EHOcean = -1;
+int EHWaterObjects[] = { -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 };
 
-void AddEHWaterObject(NJS_OBJECT *object)
+void AddEHWaterObject(int colnumber)
 {
 	for (int q = 0; q < LengthOfArray(EHWaterObjects); ++q)
 	{
-		if (EHWaterObjects[q] == object) return;
-		else if (EHWaterObjects[q] == nullptr)
+		if (EHWaterObjects[q] == colnumber) return;
+		else if (EHWaterObjects[q] == -1)
 		{
-			EHWaterObjects[q] = object;
+			EHWaterObjects[q] = colnumber;
 			return;
 		}
 	}
@@ -38,7 +37,7 @@ void __cdecl EHWater_Display(void(__cdecl *function)(void *), void *data, float 
 	{
 		DrawModelCallback_Queue((void(__cdecl *)(void *))MysticRuins_OceanDraw, OceanDataArray, -7952.0f, QueuedModelFlagsB_EnableZWrite);
 	}
-	else
+	else if (EHOcean != -1)
 	{
 		ClampGlobalColorThing_Thing();
 		DisableFog();
@@ -46,19 +45,19 @@ void __cdecl EHWater_Display(void(__cdecl *function)(void *), void *data, float 
 		njPushMatrix(0);
 		njTranslate(0, 0, 0, 0);
 		DrawQueueDepthBias = -47952.0f;
-		if (EHOcean) ProcessModelNode_AB_Wrapper(EHOcean, 1.0f);
+		ProcessModelNode_AB_Wrapper(LandTableArray[40]->Col[EHOcean].Model, 1.0f);
 		DrawQueueDepthBias = 0.0f;
 		njPopMatrix(1u);
 		ToggleStageFog();
 	}
 	for (int i = 0; i < LengthOfArray(EHWaterObjects); i++)
 	{
-		if (EHWaterObjects[i])
+		if (EHWaterObjects[i] != -1)
 		{
 			njSetTexture(&texlist_egm1land);
 			njPushMatrix(0);
 			njTranslate(0, 0, 0, 0);
-			ProcessModelNode_A_Wrapper(EHWaterObjects[i], QueuedModelFlagsB_3, 1.0f);
+			ProcessModelNode_A_Wrapper(LandTableArray[40]->Col[EHWaterObjects[i]].Model, QueuedModelFlagsB_3, 1.0f);
 			njPopMatrix(1u);
 		}
 	}
@@ -66,6 +65,11 @@ void __cdecl EHWater_Display(void(__cdecl *function)(void *), void *data, float 
 
 void UnloadLevelFiles_B_EGM1()
 {
+	EHOcean = -1;
+	for (int j = 0; j < LengthOfArray(EHWaterObjects); j++)
+	{
+		EHWaterObjects[j] = -1;
+	}
 	LandTable *B_EGM1 = B_EGM1_Info->getlandtable();
 	NJS_MATERIAL *material;
 	//Also unregister white diffuse in the level
@@ -138,11 +142,11 @@ void EggHornet_Init()
 			if (B_EGM1->Col[j].Flags & ColFlags_Visible) B_EGM1->Col[j].Flags &= ~ColFlags_Visible;
 			if (B_EGM1->Col[j].Flags & 0x2)
 			{
-				EHOcean = B_EGM1->Col[j].Model;
+				EHOcean = j;
 			}
 			else
 			{
-				AddEHWaterObject(B_EGM1->Col[j].Model);
+				AddEHWaterObject(j);
 			}
 		}
 	}
