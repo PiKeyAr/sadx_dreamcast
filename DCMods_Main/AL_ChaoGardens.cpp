@@ -34,6 +34,7 @@ NJS_TEXLIST texlist_ChaoRaceEntry = { arrayptrandlength(textures_chaoraceentry) 
 #include "ChaoRace.h"
 */
 
+NJS_OBJECT* ChaoGardenTransporterEffect = nullptr;
 NJS_OBJECT* ChaoFruit_Chaonut = nullptr;
 NJS_OBJECT* ChaoFruit_Starnut = nullptr;
 NJS_OBJECT* ChaoFruit_Hastnut = nullptr;
@@ -1897,6 +1898,93 @@ void ChaoEggshellHatHook_Empty(NJS_CNK_MODEL *a1, int a2)
 	}
 }
 
+void ChaoGardenTransporterEffect_Display(ObjectMaster *a2)
+{
+	EntityData1 *a1 = a2->Data1;
+	float a; // ST18_4
+	Angle v2; // eax
+	float sx; // [esp+0h] [ebp-Ch]
+	float sy; // [esp+4h] [ebp-8h]
+
+	sx = a1->Scale.x * 0.69999999f;
+	a = a1->Scale.z;
+	sy = a1->Scale.y * 4.5f;
+	njSetTexture(&CHAO_OBJECT_TEXLIST);
+	AddConstantAttr(0, NJD_FLAG_USE_ALPHA);
+	njPushMatrix(0);
+	SetMaterialAndSpriteColor_Float(a, a, a, a);
+	njTranslateV(0, &a1->Position);
+	v2 = a1->Rotation.y;
+	if ( v2 )
+	{
+		njRotateY(0, (unsigned __int16)v2);
+	}
+	njScale(0, sx, sy, sx);
+	if ( sx > (double)sy )
+	{
+		sy = sx;
+	}
+	DrawQueueDepthBias = 3000.0f;
+	DrawModel_Queue_407FC0(ChaoGardenTransporterEffect->basicdxmodel, QueuedModelFlagsB_SomeTextureThing);
+	DrawQueueDepthBias = 0;
+	njPopMatrix(1u);
+	RemoveConstantAttr(0, NJD_FLAG_USE_ALPHA);
+	ClampGlobalColorThing_Thing();
+}
+
+void __cdecl ChaoGardenTransporterEffect_Main(ObjectMaster *a1)
+{
+	EntityData1 *v1; // esi
+	double v2; // st7
+	Angle v3; // ecx
+	double v4; // st7
+	Angle v5; // edx
+	double v6; // st6
+
+	v1 = a1->Data1;
+	if ( !v1->Action )
+	{
+		v2 = v1->Scale.x - 0.0020000001f;
+		v3 = v1->Rotation.x;
+		v1->Rotation.y += 384;
+		v1->Scale.x = v2;
+		v4 = njSin(v3);
+		v5 = v1->Rotation.x;
+		v1->Scale.y = v4;
+		v6 = v1->Scale.z - 0.018181818f;
+		v1->Rotation.x = v5 + 546;
+		v1->Scale.z = v6;
+		if ( v5 + 546 >= 0x4000 )
+		{
+			v1->Position.y = (2.0 - v4) * 9.0f + *(float*)&v1->CharIndex;
+		}
+		else
+		{
+			v1->Position.y = v4 * 9.0f + *(float*)&v1->CharIndex;
+		}
+		ChaoGardenTransporterEffect_Display(a1);
+	}
+	if ( v1->Rotation.x > 0x8000 )
+	{
+		CheckThingButThenDeleteObject(a1);
+	}
+}
+
+void __cdecl ChaoGardenTransporterEffect_Load(ObjectMaster *a1)
+{
+	EntityData1 *v1; // eax
+
+	v1 = a1->Data1;
+	v1->Scale.x = 1.0f;
+	v1->Scale.y = 0.0f;
+	v1->Scale.z = 0.0f;
+	v1->Rotation.x = 0;
+	v1->Rotation.z = 0;
+	a1->MainSub = ChaoGardenTransporterEffect_Main;
+	a1->DeleteSub = (void (__cdecl *)(ObjectMaster *))nullsub;
+	a1->DisplaySub = ChaoGardenTransporterEffect_Display;
+}
+
 void LoadChaoGardenHintMessages()
 {
 	WriteData((HintText_Entry**)0x9BF06C, (HintText_Entry*)&ChaoGardenMessages_Japanese);
@@ -1987,6 +2075,7 @@ void ProcessChaoGardenMaterials(LandTable *landtable, int garden)
 		}
 	}
 }
+
 void UnloadLevelFiles_Chao()
 {
 	delete AL_GARDEN00_Info;
@@ -2034,6 +2123,7 @@ void ChaoGardens_Init()
 		ResizeTextureList(&GARDEN00_OBJECT_TEXLIST, textures_garden00_object);
 		LoadChaoGardenHintMessages();
 		//Load models
+		ChaoGardenTransporterEffect = LoadModel("system\\data\\AL_MAIN\\Models\\00180744.sa1mdl", false);
 		ChaoFruit_Chaonut = LoadModel("system\\data\\AL_MAIN\\Models\\0017D068.sa1mdl", false);
 		ChaoFruit_Starnut = LoadModel("system\\data\\AL_MAIN\\Models\\0017D55C.sa1mdl", false);
 		ChaoFruit_Hastnut = LoadModel("system\\data\\AL_MAIN\\Models\\0017DA88.sa1mdl", false);
@@ -2089,12 +2179,7 @@ void ChaoGardens_Init()
 		WriteData<1>((char*)0x00729577, 0x8B); //Collision struct pointer
 		WriteData<1>((char*)0x00729578, 0x7F); //Collision struct pointer
 		WriteData<1>((char*)0x00729574, 0x04); //Collision parameter for InitCollision
-		if (!ModelsLoaded_ADV0130)
-		{
-			RemoveVertexColors_Model(ADV01C_MODELS[32]);
-			WriteCall((void*)0x526369, RenderChaoTransporterEffect_Fix); //Transporter effect fix
-		}
-		WriteJump((void*)0x00729260, (void*)0x005262B0);// Garden transporter effects
+		WriteJump((void*)0x7293A0, ChaoGardenTransporterEffect_Load); //Garden transporter effects
 		//Fruits
 		if (ReplaceFruits == 0)
 		{
