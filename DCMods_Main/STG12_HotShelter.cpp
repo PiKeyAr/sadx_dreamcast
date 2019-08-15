@@ -131,6 +131,7 @@ void HotShelterCols_Display(ObjectMaster* a1)
 					//Ladder thing in the drainage room
 					else
 					{
+						DrawQueueDepthBias = -27000.0f;
 						ProcessModelNode_D(GeoLists[96]->Col[HotShelterCols_Act1[i]].Model, QueuedModelFlagsB_EnableZWrite, 1.0f);
 					}
 					njPopMatrix(1u);
