@@ -1705,7 +1705,7 @@ void FileSelect_AVA_BACK_Hook(float depth)
 void FileSelect_VtxColorB_Hook(Uint32 a1)
 {
 	if (CurrentMenuIndex == 2) SetVtxColorB(FileSelectVtxColor);
-	else SetVtxColorB(0xFFFFFFFF);
+	else SetVtxColorB(a1);
 }
 
 void DrawStringHook(const char *text, float x, float y, float scale)
@@ -1733,6 +1733,7 @@ static void __cdecl SwitchMenu_r(int a1)
 	auto original = reinterpret_cast<decltype(SwitchMenu_r)*>(SwitchMenu_t.Target());
 	if (!DisableSA1TitleScreen)
 	{
+		//PrintDebug("Menu index: %d\n", a1);
 		PreviousMenuIndex = CurrentMenuIndex;
 		CurrentMenuIndex = a1;
 	}
