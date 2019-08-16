@@ -766,17 +766,11 @@ void __cdecl ItemBox_Display_Unknown_Rotate(ObjectMaster* _this)
 				material->attr_texId = texId;
 				DrawModel(model);
 				njPopMatrixEx();
-				//DrawQueueDepthBias = -17952.0f;
-
-				// This was originally DrawModelIGuess_N, but that's wrong.
 				DrawModel(&ItemBox_Base_MODEL);
-				DrawQueueDepthBias = 8000.0f;
+				if (IsCameraUnderwater) DrawQueueDepthBias = -10000.0f; else DrawQueueDepthBias = 8000.0f;
 				DrawModel_Queue(&ItemBox_Capsule_MODEL, (QueuedModelFlagsB)0);
 				DrawQueueDepthBias = 0.0f;
-				// This was originally DrawModelIGuess_N, but that's wrong.
 				DrawModel(&ItemBox_Top_MODEL);
-
-				DrawQueueDepthBias = 0;
 			}
 			njPopMatrixEx();
 		}
@@ -819,22 +813,16 @@ void __cdecl ItemBox_Display_Rotate(ObjectMaster* _this)
 				}
 				memcpy(model, &ItemBox_Item_MODEL, 0x2Cu);
 				memcpy(material, ItemBox_Item_MODEL.mats, 0x14u);
-
 				model->mats = material;
 				auto v7 = ItemBoxPowerups[(int)_this->Data1->Scale.x].Texture;
 				ItemBox_CurrentItem = (int)_this->Data1->Scale.x;
 				material->attr_texId = v7;
-
 				DrawModel(model);
 				njPopMatrixEx();
-
-				// This was originally DrawModelIGuess_N, but that's wrong.
 				DrawModel(&ItemBox_Base_MODEL);
-				//DrawQueueDepthBias = -17952.0f;
-				DrawQueueDepthBias = 8000.0f;
+				if (IsCameraUnderwater) DrawQueueDepthBias = -10000.0f; else DrawQueueDepthBias = 8000.0f;
 				DrawModel_Queue(&ItemBox_Capsule_MODEL, (QueuedModelFlagsB)0);
 				DrawQueueDepthBias = 0.0f;
-				// This was originally DrawModelIGuess_N, but that's wrong.
 				DrawModel(&ItemBox_Top_MODEL);
 			}
 			njPopMatrixEx();
@@ -1061,7 +1049,7 @@ void __cdecl ItemBoxAirDrawFunction_Normal(NJS_OBJECT *a1, ObjectThingC *a2)
 				}
 				njScaleV(0, (const NJS_VECTOR *)v2->scl);
 				a3 = VectorMaxAbs((NJS_VECTOR *)v2->scl);
-				DrawQueueDepthBias = 3000.0f;
+				if (IsCameraUnderwater) DrawQueueDepthBias = -13000.0f; else DrawQueueDepthBias = 3000.0f;
 				sub_4094D0(v2->basicdxmodel, (QueuedModelFlagsB)0, a3);
 				DrawQueueDepthBias = 0.0f;
 			}
@@ -1439,6 +1427,20 @@ void CutsceneFadeHookForSubtitleText(NJS_ARGB *a1)
 	SetMaterialAndSpriteColor_Float(alpha, a1->r, a1->g, a1->b);
 }
 
+void DrawBombExplosionHook(NJS_MODEL_SADX *model, QueuedModelFlagsB blend)
+{
+	DrawQueueDepthBias = 2000.0f;
+	DrawVisibleModel_Queue(model, blend);
+	DrawQueueDepthBias = 0.0f;
+}
+
+void SGeneHook(NJS_ACTION *action, Float frame)
+{
+	if (IsCameraUnderwater) DrawQueueDepthBias = 100.0f; else DrawQueueDepthBias = -28000.0f;
+	njAction_Queue(action, frame, QueuedModelFlagsB_EnableZWrite);
+	DrawQueueDepthBias = 0.0f;
+}
+
 void General_Init()
 {
 	if (!ModelsLoaded_General)
@@ -1553,6 +1555,8 @@ void General_Init()
 		RemoveVertexColors_Object((NJS_OBJECT*)0x9538EC); //Leon body
 		RemoveVertexColors_Object((NJS_OBJECT*)0x96BC08); //Kiki's bomb
 		RemoveVertexColors_Object((NJS_OBJECT*)0x96C9B4); //Kiki's toge bomb
+		WriteCall((void*)0x4CE670, DrawBombExplosionHook); //Depth bias for explosion
+		WriteCall((void*)0x596C7C, SGeneHook); //Fishes
 		RemoveVertexColors_Model((NJS_MODEL_SADX*)0x8B966C); //Capsule
 		RemoveVertexColors_Model((NJS_MODEL_SADX*)0x8BA2AC); //Capsule
 		*(NJS_OBJECT*)0x96F3F0 = *LoadModel("system\\data\\1ST_READ\\Models\\005B8C04.sa1mdl", false); //Unidus spinning part
