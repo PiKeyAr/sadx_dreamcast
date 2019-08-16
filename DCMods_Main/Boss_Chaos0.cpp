@@ -91,12 +91,6 @@ void __cdecl ComeOneYaBigDrip()
 	njPopMatrix(1u);
 }
 
-void UnloadLevelFiles_B_CHAOS0()
-{
-	delete B_CHAOS0_Info;
-	B_CHAOS0_Info = nullptr;
-}
-
 void Chaos0PuddleFix(NJS_OBJECT* a1)
 {
 	ProcessModelNode_D(a1, (QueuedModelFlagsB)0, 1.0f);
@@ -118,6 +112,30 @@ void DrawChaos0HelicopterWithLight(NJS_ACTION *a1, float a2, int a3, float a4)
 	njAction_Queue_407BB0_2(&Light2Action, a2, a3, a4);
 }
 
+void ParseChaos0Materials(LandTable *landtable, bool remove)
+{
+	NJS_MATERIAL *material;
+	for (int j = 0; j < landtable->COLCount; j++)
+	{
+		for (int k = 0; k < landtable->Col[j].Model->basicdxmodel->nbMat; ++k)
+		{
+			material = &landtable->Col[j].Model->basicdxmodel->mats[k];
+			if (material->attr_texId == 5 || material->attr_texId == 15)
+			{
+				if (remove) RemoveAlphaRejectMaterial(material);
+				else AddAlphaRejectMaterial(material);
+			}
+		}
+	}
+}
+
+void UnloadLevelFiles_B_CHAOS0()
+{
+	ParseChaos0Materials(B_CHAOS0_Info->getlandtable(), true);
+	delete B_CHAOS0_Info;
+	B_CHAOS0_Info = nullptr;
+}
+
 void Chaos0_Init()
 {
 	B_CHAOS0_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\B_CHAOS0\\0.sa1lvl"));
@@ -126,6 +144,7 @@ void Chaos0_Init()
 	B_CHAOS0->TexList = &texlist_chaos0;
 	LandTableArray[0] = B_CHAOS0;
 	LANDTABLEBOSSCHAOS0[0] = B_CHAOS0;
+	ParseChaos0Materials(B_CHAOS0, false);
 	if (!ModelsLoaded_B_CHAOS0)
 	{
 		WriteData<1>((char*)0x54932B, 0x08); //Police car lights blending mode
