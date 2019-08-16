@@ -367,7 +367,7 @@ void RenderEmeraldWithGlow_Ice(NJS_OBJECT *object, int flags, float scale)
 void SonicDashTrailFix(NJS_OBJECT *a1, QueuedModelFlagsB a2)
 {
 	DrawQueueDepthBias = 2500.0f;
-	if (CurrentLevel == LevelIDs_WindyValley && CurrentAct == 2) DrawQueueDepthBias = 3500.0f;
+	if (EnableWindyValley && CurrentLevel == LevelIDs_WindyValley && CurrentAct == 2) DrawQueueDepthBias = 3500.0f;
 	a1->basicdxmodel->mats->attr_texId = rand() % 2;
 	ProcessModelNode(a1, (QueuedModelFlagsB)0, 1.0f);
 	a1->basicdxmodel->mats->attr_texId = 0;
@@ -377,7 +377,7 @@ void SonicDashTrailFix(NJS_OBJECT *a1, QueuedModelFlagsB a2)
 void SonicDashTrailFix2(NJS_OBJECT *a1, QueuedModelFlagsB a2)
 {
 	DrawQueueDepthBias = 2500.0f;
-	if (CurrentLevel == LevelIDs_WindyValley && CurrentAct == 2) DrawQueueDepthBias = 3500.0f;
+	if (EnableWindyValley && CurrentLevel == LevelIDs_WindyValley && CurrentAct == 2) DrawQueueDepthBias = 3500.0f;
 	ProcessModelNode_A_WrapperB(a1, a2);
 	DrawQueueDepthBias = 0.0f;
 }
@@ -498,7 +498,7 @@ void SetMagneticBarrierColor(float a, float r, float g, float b)
 int __cdecl RenderBarrierModels(NJS_MODEL_SADX *a1)
 {
 	if ((unsigned __int16)(CurrentAct | (CurrentLevel << 8)) >> 8 == 3 && CurrentAct == 2) DrawQueueDepthBias = 0; else DrawQueueDepthBias = 20048.0f;
-	if (CurrentLevel == LevelIDs_SpeedHighway && CurrentAct == 2) DrawQueueDepthBias = 500.0f;
+	if (EnableSpeedHighway && CurrentLevel == LevelIDs_SpeedHighway && CurrentAct == 2) DrawQueueDepthBias = 500.0f;
 	DrawVisibleModel_Queue(a1, (QueuedModelFlagsB)0);
 	DrawQueueDepthBias = 0;
 	return 0;
@@ -508,7 +508,7 @@ void SuperSonicAuraHook(NJS_OBJECT *a1, QueuedModelFlagsB a2)
 {
 	//Same deal as the barriers basically
 	if ((unsigned __int16)(CurrentAct | (CurrentLevel << 8)) >> 8 == 3 && CurrentAct == 2) DrawQueueDepthBias = 0; else DrawQueueDepthBias = 20048.0f;
-	if (CurrentLevel == LevelIDs_SpeedHighway && CurrentAct == 2) DrawQueueDepthBias = 500.0f;
+	if (EnableSpeedHighway && CurrentLevel == LevelIDs_SpeedHighway && CurrentAct == 2) DrawQueueDepthBias = 500.0f;
 	ProcessModelNode_A_WrapperB(a1, a2);
 	DrawQueueDepthBias = 0;
 }
@@ -523,8 +523,8 @@ void __cdecl Sonic_DisplayLightDashModelX(EntityData1 *data1, CharObj2 **data2_p
 	float basedepth = 8000.0f;
 	NJS_ACTION v8; // [esp+4h] [ebp-18h]
 	NJS_ARGB a1; // [esp+Ch] [ebp-10h]
-	if (CurrentLevel == LevelIDs_SpeedHighway && CurrentAct == 2) basedepth = 1000.0f;
-	if (CurrentLevel == LevelIDs_StationSquare && CurrentAct == 3) basedepth = 1000.0f;
+	if (EnableSpeedHighway && CurrentLevel == LevelIDs_SpeedHighway && CurrentAct == 2) basedepth = 1000.0f;
+	if (EnableStationSquare && CurrentLevel == LevelIDs_StationSquare && CurrentAct == 3) basedepth = 1000.0f;
 	NJS_OBJECT **___SONIC_OBJECTS = (NJS_OBJECT **)GetProcAddress(GetModuleHandle(L"CHRMODELS_orig"), "___SONIC_OBJECTS");
 	if (!MissedFrames)
 	{
@@ -1233,7 +1233,7 @@ void DrawScalableShadowHook(NJS_OBJECT *a1, float a2)
 	double v2; // st7
 	float v3; // [esp+0h] [ebp-4h]
 	v2 = DrawQueueDepthBias;
-	if (CurrentLevel == LevelIDs_WindyValley && CurrentAct == 2)
+	if (EnableWindyValley && CurrentLevel == LevelIDs_WindyValley && CurrentAct == 2)
 	{
 		DrawQueueDepthBias = 2600.0f;
 		ProcessModelNode(a1, (QueuedModelFlagsB)6, a2);
@@ -1256,11 +1256,11 @@ void DrawScalableShadowHook(NJS_OBJECT *a1, float a2)
 void DrawRingShadowHook(NJS_MODEL_SADX *a1, float a2)
 {
 	float v2 = DrawQueueDepthBias;
-	if (CurrentLevel == LevelIDs_WindyValley && CurrentAct == 2)
+	if (EnableWindyValley && CurrentLevel == LevelIDs_WindyValley && CurrentAct == 2)
 	{
 		DrawQueueDepthBias = 2600.0f;
 	}
-	else if (CurrentLevel == LevelIDs_FinalEgg && CurrentAct == 2)
+	else if (EnableFinalEgg && CurrentLevel == LevelIDs_FinalEgg && CurrentAct == 2)
 	{
 		DrawQueueDepthBias = 3000.0f;
 	}
@@ -1319,16 +1319,16 @@ void RenderItemBoxIcon(NJS_MODEL_SADX* a1)
 
 void SpindashChargeLinesHook(NJS_POINT3COL *a1, int a2, NJD_DRAW attr, QueuedModelFlagsB a4)
 {
-	if (CurrentLevel == LevelIDs_WindyValley && CurrentAct == 2) DrawQueueDepthBias = 4000.0f;
-	if (CurrentLevel == LevelIDs_StationSquare && CurrentAct == 3) DrawQueueDepthBias = 1000.0f;
+	if (EnableWindyValley && CurrentLevel == LevelIDs_WindyValley && CurrentAct == 2) DrawQueueDepthBias = 4000.0f;
+	if (EnableStationSquare && CurrentLevel == LevelIDs_StationSquare && CurrentAct == 3) DrawQueueDepthBias = 1000.0f;
 	Draw3DLinesMaybe_Queue(a1, a2, attr, a4);
 	DrawQueueDepthBias = 0.0f;
 }
 
 void SpindashChargeSpriteHook(NJS_SPRITE *sp, Int n, NJD_SPRITE attr, QueuedModelFlagsB zfunc_type)
 {
-	if (CurrentLevel == LevelIDs_WindyValley && CurrentAct == 2) DrawQueueDepthBias = 4000.0f;
-	if (CurrentLevel == LevelIDs_StationSquare && CurrentAct == 3) DrawQueueDepthBias = 1000.0f;
+	if (EnableWindyValley && CurrentLevel == LevelIDs_WindyValley && CurrentAct == 2) DrawQueueDepthBias = 4000.0f;
+	if (EnableStationSquare && CurrentLevel == LevelIDs_StationSquare && CurrentAct == 3) DrawQueueDepthBias = 1000.0f;
 	njDrawSprite3D_Queue(sp, n, attr, zfunc_type);
 	DrawQueueDepthBias = 0.0f;
 }
@@ -1368,13 +1368,13 @@ void RenderEggCarrier0NPC(NJS_ACTION* action, Float frame)
 
 void GeoAnimFix(NJS_ACTION* a1, float a2, QueuedModelFlagsB a3, float a4)
 {
-	if (CurrentLevel == LevelIDs_MysticRuins && CurrentAct == 2)
+	if (EnableMysticRuins && CurrentLevel == LevelIDs_MysticRuins && CurrentAct == 2)
 	{
 		DrawQueueDepthBias = -20952.0f;
 		njAction_Queue_407FC0(a1, a2, 1);
 		DrawQueueDepthBias = 0.0f;
 	}
-	else if (CurrentLevel == LevelIDs_FinalEgg && CurrentAct == 2)
+	else if (EnableFinalEgg && CurrentLevel == LevelIDs_FinalEgg && CurrentAct == 2)
 	{
 		DrawQueueDepthBias = -47952.0f;
 		njAction_Queue_407BB0_2(a1, a2, a3, a4);
