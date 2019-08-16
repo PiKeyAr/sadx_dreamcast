@@ -1,9 +1,8 @@
 #include "stdafx.h"
 #include "ADV00_Motions.h"
 
-//TODO: Burger Shop man lighting should use type 0 but the model parts are shared among NPCs
 //TODO: Very slight transparency issue with Casino door
-//TODO: OS1Dnto shouldn't ignore lighting (use object specular)
+//TODO: OS1Dnto shouldn't ignore lighting (use object specular) - this'll have to wait until soft particles are implemented in sadx-dc-lighting
 
 NJS_TEXNAME textures_sscar[22];
 NJS_TEXNAME textures_sstrain[31];
@@ -29,6 +28,7 @@ NJS_TEXLIST texlist_advss05 = { arrayptrandlength(textures_advss05) };
 
 int SS03SeaModel = -1;
 int SS04SeaModel = -1;
+NJS_OBJECT* BurgerShopMan = nullptr;
 NJS_OBJECT* PoliceCarModel_LightsOnly = nullptr;
 NJS_OBJECT* Parasol_1 = nullptr;
 NJS_OBJECT* Parasol_2 = nullptr;
@@ -274,6 +274,11 @@ void SouvenirShopDoor_Depth(NJS_ACTION* a1, float a2, int a3, float a4)
 	DrawQueueDepthBias = 3000.0f;
 	njAction_Queue_407BB0_2(a1, a2, a3, a4);
 	DrawQueueDepthBias = 0.0f;
+}
+
+void BurgerShopManHook(NJS_OBJECT *a1, NJS_MOTION *a2, float a3)
+{
+	njAction_QueueObject(BurgerShopMan, a2, a3);
 }
 
 void ParseSSColFlags()
@@ -712,6 +717,9 @@ void ADV00_Init()
 		((NJS_OBJECT*)0x2AB6E4C)->basicdxmodel->mats[2].attrflags &= ~NJD_FLAG_USE_ALPHA; //Speed Highway elevator door
 		ForceObjectSpecular_Object((NJS_OBJECT*)0x2AB7F74, false); //OHighEle (elevator in sewers)
 		//Objects
+		BurgerShopMan = LoadModel("system\\data\\ADV00\\Models\\001C9E28.sa1mdl", false);
+		ForceLightType_Object(BurgerShopMan, 0, false);
+		WriteCall((void*)0x63072B, BurgerShopManHook);
 		*(NJS_MODEL_SADX*)0x2ACBB80 = *LoadModel("system\\data\\ADV00\\Models\\0017F588.sa1mdl", false)->basicdxmodel; //OPoolChair
 		*(NJS_MODEL_SADX*)0x2AC95BC = *LoadModel("system\\data\\ADV00\\Models\\0017D568.sa1mdl", false)->basicdxmodel; //Fire hydrant
 		*(NJS_OBJECT*)0x2AC9F10 = *LoadModel("system\\data\\ADV00\\Models\\0017DDE8.sa1mdl", false); //OGaitou (street light)
