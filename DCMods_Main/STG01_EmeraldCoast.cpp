@@ -12,6 +12,7 @@ NJS_TEXNAME textures_ecoast3[94];
 NJS_TEXLIST texlist_ecoast3 = { arrayptrandlength(textures_ecoast3) };
 
 int Act2WaterCols[] = { -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 };
+int Act3WaterCols[] = { -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 };
 NJS_OBJECT *BigDeco1 = nullptr;
 NJS_OBJECT *BigDeco2 = nullptr;
 NJS_OBJECT *BigDeco3 = nullptr;
@@ -91,7 +92,7 @@ void __cdecl Obj_EC23Water_DisplayX(ObjectMaster *a1)
 			uvSTG01_00CC0530[1].u = uvSTG01_00CC0530_d[1].u + OceanUVShift1 % 255;
 			uvSTG01_00CC0530[2].u = uvSTG01_00CC0530_d[2].u + OceanUVShift1 % 255;
 			uvSTG01_00CC0530[3].u = uvSTG01_00CC0530_d[3].u + OceanUVShift1 % 255;*/
-			DrawQueueDepthBias = -25952.0f;
+			if (CurrentAct == 1) DrawQueueDepthBias = -25952.0f; else DrawQueueDepthBias = -7000.0f;
 			ProcessModelNode_A_Wrapper(LowPolyOcean, QueuedModelFlagsB_SomeTextureThing, 1.0f);
 			DrawQueueDepthBias = 0;
 			njPopMatrix(1u);
@@ -110,9 +111,37 @@ void __cdecl Obj_EC23Water_DisplayX(ObjectMaster *a1)
 			DrawQueueDepthBias = 0;
 			njPopMatrix(1u);
 		}
+		//Act 3 only (both SA1 and SADX water)
+		if (CurrentAct == 2 && !DroppedFrames)
+		{
+			njSetTexture((NJS_TEXLIST*)&texlist_ecoast3);
+			njPushMatrix(0);
+			njTranslate(0, 0, 0, 0);
+			DrawQueueDepthBias = -4000.0f;
+			for (int j = 0; j < LengthOfArray(Act3WaterCols); j++)
+			{
+				if (Act3WaterCols[j] != -1) ProcessModelNode_A_Wrapper(GeoLists[10]->Col[Act3WaterCols[j]].Model, QueuedModelFlagsB_SomeTextureThing, 1.0f);
+			}
+			DrawQueueDepthBias = 0;
+			njPopMatrix(1u);
+		}
 	}
 	else
 	{
+		//Act 3 only (both SA1 and SADX water)
+		if (CurrentAct == 2 && !DroppedFrames)
+		{
+			njSetTexture((NJS_TEXLIST*)&texlist_ecoast3);
+			njPushMatrix(0);
+			njTranslate(0, 0, 0, 0);
+			DrawQueueDepthBias = -4000.0f;
+			for (int j = 0; j < LengthOfArray(Act3WaterCols); j++)
+			{
+				if (Act3WaterCols[j] != -1) ProcessModelNode_A_Wrapper(GeoLists[10]->Col[Act3WaterCols[j]].Model, QueuedModelFlagsB_SomeTextureThing, 1.0f);
+			}
+			DrawQueueDepthBias = 0;
+			njPopMatrix(1u);
+		}
 		//Draw decorations in Big's level
 		if (CurrentAct == 2 && BigDeco1 && BigDeco2 && BigDeco3)
 		{
@@ -133,7 +162,7 @@ void __cdecl Obj_EC23Water_DisplayX(ObjectMaster *a1)
 				OceanDataA.Position.z = -800.0f;
 				OceanDataA.Position.x = 4000.0f;
 			}
-			DrawModelCallback_Queue((void(__cdecl *)(void *))EmeraldCoast_OceanDraw_SADXStyle, &OceanDataA, -17952.0, (QueuedModelFlagsB)0); //Main water
+			DrawModelCallback_Queue((void(__cdecl *)(void *))EmeraldCoast_OceanDraw_SADXStyle, &OceanDataA, -17952.0f, (QueuedModelFlagsB)0); //Main water
 		}
 		//Draw second pool (Act 2 only because Act 3 looks pretty awful without vertex colors)
 		if (CurrentAct == 1)
@@ -466,6 +495,21 @@ void WhaleSplash(NJS_OBJECT *a1)
 	ProcessModelNode(a1, (QueuedModelFlagsB)0, 1.0f);
 }
 
+void PalmFix1(NJS_OBJECT *a1, QueuedModelFlagsB a2, float a3)
+{
+	if (IsCameraUnderwater)	DrawQueueDepthBias = -18952.0f;
+	if (a1 == (NJS_OBJECT*)0x109D5FC) ProcessModelNode_D_WrapperB(a1, a2, a3); //OGrasC
+	else ProcessModelNode_C_VerifyTexList(a1, a2, a3);
+	if (IsCameraUnderwater) DrawQueueDepthBias = 0.0f;
+}
+
+void PalmFix2(NJS_MODEL_SADX *model, QueuedModelFlagsB blend, float scale)
+{
+	if (IsCameraUnderwater)	DrawQueueDepthBias = -18952.0f;
+	DrawModel_QueueVisible(model, blend, scale);
+	if (IsCameraUnderwater)	DrawQueueDepthBias = 0.0f;
+}
+
 void UnloadLevelFiles_STG01()
 {
 	for (int j = 0; j < LengthOfArray(Act2WaterCols); j++)
@@ -480,7 +524,7 @@ void UnloadLevelFiles_STG01()
 	STG01_2_Info = nullptr;
 }
 
-void AddWaterObject(int colnumber)
+void AddAct2WaterCol(int colnumber)
 {
 	for (int j = 0; j < LengthOfArray(Act2WaterCols); j++)
 	{
@@ -488,6 +532,19 @@ void AddWaterObject(int colnumber)
 		else if (Act2WaterCols[j] == -1)
 		{
 			Act2WaterCols[j] = colnumber;
+			return;
+		}
+	}
+}
+
+void AddAct3WaterCol(int colnumber)
+{
+	for (int j = 0; j < LengthOfArray(Act3WaterCols); j++)
+	{
+		if (Act3WaterCols[j] == colnumber) return;
+		else if (Act3WaterCols[j] == -1)
+		{
+			Act3WaterCols[j] = colnumber;
 			return;
 		}
 	}
@@ -530,7 +587,7 @@ void ParseEmeraldCoastColFlagsAndMaterials(LandTable *landtable, int act)
 			colflags = landtable->Col[j].Flags;
 			if (colflags == 0x28000002)
 			{
-				AddWaterObject(j);
+				AddAct2WaterCol(j);
 			}
 			if (colflags == 0xA8000002 && SADXWater_EmeraldCoast) landtable->Col[j].Flags = 0x20000002;
 			for (int k = 0; k < landtable->Col[j].Model->basicdxmodel->nbMat; ++k)
@@ -579,7 +636,8 @@ void ParseEmeraldCoastColFlagsAndMaterials(LandTable *landtable, int act)
 				if (material->attr_texId >= 50 && material->attr_texId <= 64)
 				{
 					AddTextureAnimation(1, 2, material, false, 4, 50, 64, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-					if (SADXWater_EmeraldCoast) landtable->Col[j].Flags |= 0x00000400;
+					AddAct3WaterCol(j);
+					if (landtable->Col[j].Flags & ColFlags_Visible) landtable->Col[j].Flags &= ~ColFlags_Visible;
 				}
 				//Texanim 3
 				if (material->attr_texId >= 80 && material->attr_texId <= 93)
@@ -707,6 +765,13 @@ void EmeraldCoast_Init()
 			BigDeco2 = LoadModel("system\\data\\STG01\\Models\\DX\\00AC97B4.sa1mdl", false);
 			BigDeco3 = LoadModel("system\\data\\STG01\\Models\\DX\\00ACA028.sa1mdl", false);
 		}
+		//Palm trees and other objects underwater transparency fixes
+		WriteCall((void*)0x500D66, PalmFix1);
+		WriteCall((void*)0x4FD233, PalmFix1); //Works for OBKusa too
+		WriteCall((void*)0x49CD32, PalmFix1); //OGrasC and many other objects probably
+		WriteCall((void*)0x500CB2, PalmFix1); //Yasi3
+		WriteCall((void*)0x500DCA, PalmFix2); //Yasi0_Display2
+		WriteCall((void*)0x500E47, PalmFix2); //Yasi0_Display2
 		//Whale splash transparency fixes
 		WriteCall((void*)0x00502F8F, WhaleSplash);
 		WriteCall((void*)0x00502F9A, WhaleSplash);
