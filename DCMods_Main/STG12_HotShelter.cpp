@@ -176,7 +176,7 @@ void HotShelterCols_Display(ObjectMaster* a1)
 					//Fence objects in the gear area
 					else if (GeoLists[97]->Col[HotShelterCols_Act2[i]].Flags & 0x1000000)
 					{
-						DrawQueueDepthBias = 3200.0f;
+						DrawQueueDepthBias = -1000.0f;
 						ProcessModelNode_D(GeoLists[97]->Col[HotShelterCols_Act2[i]].Model, 0, 1.0f);
 						njPopMatrix(1u);
 						DrawQueueDepthBias = 0;
@@ -221,7 +221,7 @@ void HotShelterCols_Display(ObjectMaster* a1)
 					//Fence objects in the gear area
 					if (GeoLists[98]->Col[HotShelterCols_Act3[i]].Flags & 0x01000000)
 					{
-						DrawQueueDepthBias = 3200.0f;
+						DrawQueueDepthBias = -1000.0f;
 						ProcessModelNode_D(GeoLists[98]->Col[HotShelterCols_Act3[i]].Model, 0, 1.0f);
 						njPopMatrix(1u);
 						DrawQueueDepthBias = 0;
@@ -463,6 +463,20 @@ void E105Animation(NJS_OBJECT *a1, NJS_MOTION *a2, float a3, float a4)
 		((NJS_OBJECT*)0x017D5F34)->pos[1] = -7.5f - 7.5f*njSin((E105Angle + 32768 + 1024 * FramerateSetting) % 65535);
 		((NJS_OBJECT*)0x017D65CC)->pos[1] = -7.5f - 7.5f*njSin((E105Angle + 16384 + 1024 * FramerateSetting) % 65535);
 	}
+}
+
+static void OEntotsu_Particle_r(NJS_VECTOR *a1, NJS_VECTOR *a2, float a3);
+static Trampoline OEntotsu_Particle_t(0x4B9820, 0x4B9826, OEntotsu_Particle_r);
+static void __cdecl OEntotsu_Particle_r(NJS_VECTOR *a1, NJS_VECTOR *a2, float a3)
+{
+	auto original = reinterpret_cast<decltype(OEntotsu_Particle_r)*>(OEntotsu_Particle_t.Target());
+	if (EnableHotShelter)
+	{
+		ParticleDepthOverride = -2000.0f;
+		original(a1, a2, a3);
+		ParticleDepthOverride = 0.0f;
+	}
+	else original(a1, a2, a3);
 }
 
 void PlayMusicHook_ReduceE105Fog(MusicIDs song)
