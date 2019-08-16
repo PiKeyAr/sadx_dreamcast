@@ -2,7 +2,6 @@
 #include "ADV00_Motions.h"
 
 //TODO: Burger Shop man lighting should use type 0 but the model parts are shared among NPCs
-//TODO: The shadow in main area sewers should render behind the water, the windows in secret area
 //TODO: Very slight transparency issue with Casino door
 //TODO: OS1Dnto shouldn't ignore lighting (use object specular)
 
@@ -38,7 +37,7 @@ NJS_OBJECT* Parasol_4 = nullptr;
 NJS_OBJECT* EVHelicopterLight1 = nullptr;
 NJS_OBJECT* EVHelicopterLight2 = nullptr;
 
-int SS03Cols[] = { -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 };
+int SS03Cols[] = { -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1  };
 
 /*
 #include "SS00_CityHall.h"
@@ -142,9 +141,23 @@ void RenderSS03Cols_2()
 			njTranslate(0, 0, 0, 0);
 			for (int i = 0; i < LengthOfArray(SS03Cols); i++)
 			{
-				DrawQueueDepthBias = 5000.0f;
-				if (LANDTABLESS[3]->Col[SS03Cols[i]].Flags & 0x1000000) ProcessModelNode(LANDTABLESS[3]->Col[SS03Cols[i]].Model, (QueuedModelFlagsB)0, 1.0f);
-				DrawQueueDepthBias = 0.0f;
+				if (SS03Cols[i] != -1)
+				{
+					//Glass, Twinkle top etc.
+					if (LANDTABLESS[3]->Col[SS03Cols[i]].Flags & 0x1000000 && LANDTABLESS[3]->Col[SS03Cols[i]].Flags != 0xA9040000)
+					{
+						DrawQueueDepthBias = 5000.0f;
+						ProcessModelNode(LANDTABLESS[3]->Col[SS03Cols[i]].Model, (QueuedModelFlagsB)0, 1.0f);
+						DrawQueueDepthBias = 0.0f;
+					}
+					//Shadow thing in the sewers
+					else if (LANDTABLESS[3]->Col[SS03Cols[i]].Flags == 0xA9040000)
+					{
+						DrawQueueDepthBias = -12000.0f;
+						ProcessModelNode(LANDTABLESS[3]->Col[SS03Cols[i]].Model, (QueuedModelFlagsB)0, 1.0f);
+						DrawQueueDepthBias = 0.0f;
+					}
+				}
 			}
 			njPopMatrix(1u);
 		}

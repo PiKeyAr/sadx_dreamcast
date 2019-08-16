@@ -37409,6 +37409,9 @@ extern "C" __declspec(dllexport) NJS_TEX uv_00129D88[] = {
 
 extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00129DF0[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 1, poly_00129CB4, NULL, NULL, NULL, uv_00129D20, NULL },
+};
+
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00129DF0_2[] = {
 	{ NJD_MESHSET_TRIMESH | 1, 1, poly_00129CEA, NULL, NULL, NULL, uv_00129D88, NULL }
 };
 
@@ -37493,6 +37496,11 @@ extern "C" __declspec(dllexport) NJS_VECTOR normal_00129FD0[] = {
 extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_0012A180 = { vertex_00129E20, normal_00129FD0, LengthOfArray<Sint32>(vertex_00129E20), meshlist_00129DF0, matlist_00129C8C, LengthOfArray<Uint16>(meshlist_00129DF0), LengthOfArray<Uint16>(matlist_00129C8C), { 0, 7.5f, 0 }, 84.85281f, NULL };
 
 extern "C" __declspec(dllexport) NJS_OBJECT object_0012A1A8 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0012A180, 679, 180, 1771.5f, 0, 0, 0, 1, 1, 1, NULL, NULL };
+
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_0012A180_2 = { vertex_00129E20, normal_00129FD0, LengthOfArray<Sint32>(vertex_00129E20), meshlist_00129DF0_2, matlist_00129C8C, LengthOfArray<Uint16>(meshlist_00129DF0_2), LengthOfArray<Uint16>(matlist_00129C8C), { 0, 7.5f, 0 }, 84.85281f, NULL };
+
+extern "C" __declspec(dllexport) NJS_OBJECT object_0012A1A8_2 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0012A180_2, 679, 180, 1771.5f, 0, 0, 0, 1, 1, 1, NULL, NULL };
+
 extern "C" __declspec(dllexport) NJS_MATERIAL matlist_0012A1DC[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 196, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_FLIP_V | NJD_FLAG_FLIP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_FLAG_USE_FLAT | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 197, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_FLAG_USE_FLAT | NJD_DA_INV_SRC | NJD_SA_SRC }
@@ -48800,8 +48808,8 @@ extern "C" __declspec(dllexport) COL collist_000DA99C[] = {
 	{ { 4.602696f, 56, 1440.988f }, 44.75768f, 0, 0, &object_00134CA8, 0, 0xC0000001 },
 	{ { -34.75202f, 56, 1460.666f }, 44.75768f, 0, 0, &object_00134CDC, 0, 0xC0000001 },
 	{ { 152.3689f, 20.5f, 1055.52f }, 27.34206f, 0, 0, &object_001222E8_2, 0, 0x80000000 }, //Newspapers
-	{ { 682.9835f, 66.46802f, 1299.016f }, 35.25409f, 0, 0, &object_0011935C_2, 0, 0x80000400 }, //Windows in secret area
-	{ { 683, -31.5f, 1349 }, 26.87006f, 0, 0, &object_00117660, 0, 0x80000000 }, //Underwater thing
+	{ { 682.9835f, 66.46802f, 1299.016f }, 35.25409f, 0, 0, &object_0011935C_2, 0, 0x89000000 }, //Windows in secret area
+	{ { 683, -31.5f, 1349 }, 26.87006f, 0, 0, &object_00117660, 0, 0xA9040000 }, //Underwater thing
 	{ { 683, 5.718987f, 1349 }, 15.38035f, 0, 0, &object_001177E8, 0, 0x80000000 }, //Ceiling light in the sewers
 	{ { -0.686898f, -2.5f, 1664.888f }, 203.471f, 0, 0, &object_001870BC_DX, 0, 0x00000001 }, //DX asphalt 1
 	{ { 212.4902f, -2.5f, 1555.488f }, 190.0104f, 0, 0, &object_00188500_DX, 0, 0x00000001 }, //DX asphalt 2
@@ -48823,10 +48831,9 @@ extern "C" __declspec(dllexport) COL collist_000DA99C[] = {
 	{ { 307.5f, -1.249105f, 1132.438f }, 204.5435f, 0, 0, &object_000EA608, 0, 0xA0000000 }, // DC sidewalk 3
 	{ { 542.5f, -1.25f, 924.3148f }, 241.7118f, 0, 0, &object_000EAD24, 0, 0xA0000000 }, //DC sidewalk 4
 	{ { -18.16935f, -1.25f, 1676.565f }, 51.11457f, 0, 0, &object_000E053C, 0, 0xC0000100 }, //DC sidewalk 5
+	{ { 679, 187.5f, 1771.5f }, 86.63862f, 0, 0, &object_0012A1A8, 0, 0x80000000 }, //Twinkle top opaque
 	{ { 165.4789f, -2.450001f, 1607.474f }, 83.79536f, 0, 0, &object_00113688, 0, 0x80040000 }, //Crossing
 	{ { 340.1062f, -2.449997f, 1112.502f }, 60.258f, 0, 0, &object_0011378C, 0, 0x80040000 }, //Crossing
-	{ { 676.3814f, 27.5f, 1771.5f }, 147.0324f, 0, 0, &object_00125C08_2, 0, 0x80000000 }, //Twinkle bottom
-	{ { 679, 187.5f, 1771.5f }, 86.63862f, 0, 0, &object_0012A1A8, 0, 0x80040000 }, //Twinkle top
 	{ { 457.8635f, -39.14253f, 1736.436f }, 141.2818f, 0, 0, &object_00123F14, 0, 0x80040000 }, //Seashore bit
 	{ { 870.5f, -25, 2005.5f }, 512.3165f, 0, 0, &object_001235EC_2, 0, 0x80040000 }, //Seashore 1
 	{ { 112.3754f, -22.5f, 1842 }, 391.2533f, 0, 0, &object_000E7CA8_2, 0, 0xC0100101 }, //Seashore 2
@@ -48834,6 +48841,8 @@ extern "C" __declspec(dllexport) COL collist_000DA99C[] = {
 	{ { 78.32019f, -18.125f, 1808.923f }, 345.4697f, 0, 0, &object_001226E4, 0, 0x88040000 }, //Sea waves 2
 	{ { 673.3333f, -18.5f, 1415 }, 338.9731f, 0, 0, &object_001340E0, 0, 0x80000002 }, //Sewers water
 	{ { 220, -18.5f, 4420 }, 3946.758f, 0, 0, &object_00114E50, 0, 0x88000000 }, //Sea
+	{ { 679, 187.5f, 1771.5f }, 86.63862f, 0, 0, &object_0012A1A8_2, 0, 0x89000000 }, //Twinkle top transparent
+	{ { 676.3814f, 27.5f, 1771.5f }, 147.0324f, 0, 0, &object_00125C08_2, 0, 0x88040000 }, //Twinkle bottom transparent
 	{ { 400.1259f, 66, 1547 }, 38.39181f, 0, 0, &object_001266EC_2, 0, 0x89000000 }, //Glass 1
 	{ { 483.9287f, 66, 1709.625f }, 124.5781f, 0, 0, &object_00128350_2, 0, 0x89000000 }, //Glass 2
 	{ { 400.0001f, 66, 1606.5f }, 42.19535f, 0, 0, &object_00101948_2, 0, 0x89000000 }, //Glass 3
