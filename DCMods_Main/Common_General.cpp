@@ -846,6 +846,15 @@ static Sint32 __cdecl DisplayTitleCard_r()
 	return original();
 }
 
+static void CameraB_Display_r();
+static Trampoline CameraB_Display_t(0x436CD0, 0x436CD6, CameraB_Display_r);
+static void __cdecl CameraB_Display_r()
+{
+	auto original = reinterpret_cast<decltype(CameraB_Display_r)*>(CameraB_Display_t.Target());
+	IsCameraUnderwater = false;
+	original();
+}
+
 static void SetGlobalPoint2Col_Colors_r(Uint32 one, Uint32 two, Uint32 threefour);
 static Trampoline SetGlobalPoint2Col_Colors_t(0x402F10, 0x402F18, SetGlobalPoint2Col_Colors_r);
 static void __cdecl SetGlobalPoint2Col_Colors_r(Uint32 one, Uint32 two, Uint32 threefour)
@@ -864,12 +873,6 @@ static void __cdecl SetGlobalPoint2Col_Colors_r(Uint32 one, Uint32 two, Uint32 t
 		GlobalColor_threefour = threefour;
 		GlobalColor_wait = true;
 	}
-}
-
-void __fastcall DrawUnderwaterOverlay_Reset(NJS_MATRIX_CONST_PTR m, const NJS_VECTOR* p3, NJS_POINT2* p2)
-{
-	njProjectScreen(0, p3, p2);
-	IsCameraUnderwater = false;
 }
 
 void __fastcall DrawUnderwaterOverlay(NJS_MATRIX_PTR m)
@@ -1703,7 +1706,6 @@ void General_Init()
 		WriteData((float**)0x4A2D39, &EmeraldScale); //Prevent minor Z Fighting with the main model
 		//Underwater overlay
 		WriteCall((void*)0x43708D, DrawUnderwaterOverlay);
-		WriteCall((void*)0x43705A, DrawUnderwaterOverlay_Reset);
 		//Character effects
 		WriteJump((void*)0x4A1630, Sonic_DisplayLightDashModelX);
 		WriteData((float**)0x47404B, &heat_float1);
