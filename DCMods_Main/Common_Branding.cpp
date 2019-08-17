@@ -1,7 +1,6 @@
 #include "stdafx.h"
 
-//TODO: Find a better solution to the file select/options issue, 
-//TODO: Look into unloading some PVMs dynamically (e.g. after accessing the main menu file select PVMs don't need to load on the title screen etc.)
+//TODO: Find a better solution to the file select/options issue
 
 NJS_TEXNAME textures_ava_dlg_e[10];
 NJS_TEXNAME textures_ava_gtitle0_e[10];

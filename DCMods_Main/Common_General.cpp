@@ -6,8 +6,8 @@
 //#include "Frogs.h"
 //#include "RobotChest.h"
 
-//TODO: Maybe queue animals?
 //TODO: Chaos puddle in Knuckles' "Chaos 4 emerges" cutscene shouldn't ignore lighting (use specular 3)
+//TODO: Chaos puddle in the cutscene after Chaos 2 is defeated should use object light type
 
 NJS_TEXANIM EmeraldGlowTexanim = { 64, 64, 32, 32, 0, 0, 0xFF, 0xFF, 3, 0 };
 NJS_SPRITE EmeraldGlowSprite = { { 0.0f, 5.0f, 0.0f }, 0.35f, 0.35f, 61439, (NJS_TEXLIST*)0xC3FE20, &EmeraldGlowTexanim };
