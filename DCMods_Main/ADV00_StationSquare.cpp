@@ -458,6 +458,9 @@ void SwitchLighting_TimeOfDay(int act)
 	else if (act == 3) landtable = LANDTABLESS[3];
 	else if (act == 4) landtable = LANDTABLESS[4];
 	else landtable = LANDTABLESS[5];
+	//OGaitou "fix"
+	if (TimeOfDay != 2) ((NJS_OBJECT*)0x2AC9F10)->child->sibling->basicdxmodel->mats[0].attrflags = 0x9421A500;
+	else ((NJS_OBJECT*)0x2AC9F10)->child->sibling->basicdxmodel->mats[0].attrflags = 0x9621A500;
 	//Add or remove "ignore light"
 	for (int j = 0; j < landtable->COLCount; j++)
 	{
