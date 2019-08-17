@@ -1372,6 +1372,23 @@ void CutsceneAnimationHook2(NJS_ACTION *anim, float a2, QueuedModelFlagsB a3)
 void RenderEggCarrier0NPC(NJS_ACTION* action, Float frame)
 {
 	if (action == (NJS_ACTION*)0x11A86D4) njAction_ReallyHard(action, frame); //Chaos 4
+	else if (action->object == E102_OBJECTS[0])
+	{
+		njControl3D_Remove(NJD_CONTROL_3D_CONSTANT_MATERIAL);
+		njControl3D_Add(NJD_CONTROL_3D_ENABLE_ALPHA);
+		njAction_Queue_407BB0(action, frame, QueuedModelFlagsB_EnableZWrite);
+	}
+	else njAction(action, frame);
+}
+
+void RenderEggCarrier3NPC(NJS_ACTION* action, Float frame)
+{
+	if (action->object == E102_OBJECTS[0])
+	{
+		njControl3D_Remove(NJD_CONTROL_3D_CONSTANT_MATERIAL);
+		njControl3D_Add(NJD_CONTROL_3D_ENABLE_ALPHA);
+		njAction_Queue_407BB0(action, frame, QueuedModelFlagsB_EnableZWrite);
+	}
 	else njAction(action, frame);
 }
 
@@ -1488,6 +1505,7 @@ void General_Init()
 		//NPC shadow fix
 		WriteCall((void*)0x5252E8, DrawNPCShadowFix);
 		WriteCall((void*)0x51AB88, RenderEggCarrier0NPC); //Chaos 4 glitch
+		WriteCall((void*)0x525405, RenderEggCarrier3NPC); //Gamma's chest fix
 		//Cutscene stuff
 		WriteCall((void*)0x4181FD, CutsceneAnimationHook1);
 		WriteCall((void*)0x418214, CutsceneAnimationHook2);
@@ -1895,13 +1913,13 @@ void General_OnFrame()
 	{
 		WriteData<1>((char*)0x47FDF9, 0x10u);
 		WriteData((float*)0x47FE0F, 1.0f);
-		E102_OBJECTS[0]->child->child->sibling->sibling->sibling->sibling->sibling->sibling->sibling->sibling->sibling->sibling->child->sibling->child->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_USE_ALPHA;
+		E102_OBJECTS[0]->child->child->sibling->sibling->sibling->sibling->sibling->sibling->sibling->sibling->sibling->sibling->child->sibling->child->basicdxmodel->mats[0].attrflags = 0x94218400;
 	}
 	if (GammaConstantMaterialAlpha == 1.0f && !(GameMode == GameModes_Menu || (CurrentCharacter == Characters_Gamma && EntityData1Ptrs[0] && EntityData1Ptrs[0]->Action == 51)))
 	{
 		WriteData<1>((char*)0x47FDF9, 0x08u);
 		WriteData((float*)0x47FE0F, 0.847f);
-		E102_OBJECTS[0]->child->child->sibling->sibling->sibling->sibling->sibling->sibling->sibling->sibling->sibling->sibling->child->sibling->child->basicdxmodel->mats[0].attrflags |= NJD_FLAG_USE_ALPHA;
+		E102_OBJECTS[0]->child->child->sibling->sibling->sibling->sibling->sibling->sibling->sibling->sibling->sibling->sibling->child->sibling->child->basicdxmodel->mats[0].attrflags = 0x94318400;
 	}
 	//Global colors screen fade fix
 	if (GlobalColor_wait)
