@@ -362,6 +362,13 @@ void __cdecl SkyDeckSharedDisplaySubFix(ObjectMaster *a1)
 	}
 }
 
+void DrawDecalHook(NJS_OBJECT *a1)
+{
+	DrawQueueDepthBias = -47952.0f;
+	ProcessModelNode(a1, (QueuedModelFlagsB)0, 1.0f);
+	DrawQueueDepthBias = 0.0f;
+}
+
 void SkyDeck_Init()
 {
 	STG06_0_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG06\\0.sa1lvl"));
@@ -521,6 +528,7 @@ void SkyDeck_Init()
 		AddAlphaRejectMaterial(&((NJS_OBJECT*)0x21FED1C)->basicdxmodel->mats[0]);
 		*(NJS_OBJECT*)0x21FEE28 = *LoadModel("system\\data\\STG06\\Models\\00198C68.sa1mdl", false); //Decal 6 not sure
 		AddAlphaRejectMaterial(&((NJS_OBJECT*)0x21FEE28)->basicdxmodel->mats[0]);
+		WriteCall((void*)0x5F2399, DrawDecalHook);
 		*(NJS_OBJECT*)0x21FEF34 = *LoadModel("system\\data\\STG06\\Models\\00198D6C.sa1mdl", false); //Warning sign
 		*(NJS_OBJECT*)0x214FB74 = *LoadModel("system\\data\\STG06\\Models\\000FF4A4.sa1mdl", false); //Cannon in Act 1
 		*(NJS_OBJECT*)0x2161F68 = *LoadModel("system\\data\\STG06\\Models\\0010EB4C.sa1mdl", false); //Cannon in Act 2
