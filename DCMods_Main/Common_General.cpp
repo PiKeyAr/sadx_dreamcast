@@ -1410,13 +1410,12 @@ void CaptureBeamFix(NJS_OBJECT *a1, QueuedModelFlagsB a2, float a3)
 
 void QueueAnimals(NJS_ACTION *action, Float frame)
 {
-	if (!IsCameraUnderwater && 
-		(
+	if (
 		(CurrentLevel == LevelIDs_EmeraldCoast && CurrentAct > 0) || 
 		(CurrentLevel == LevelIDs_TwinklePark && CurrentAct == 1) || 
 		(CurrentLevel == LevelIDs_LostWorld) || 
-		(CurrentLevel == LevelIDs_HotShelter && CurrentAct == 0))
-		) 
+		(CurrentLevel == LevelIDs_HotShelter && CurrentAct == 0)
+		)
 		DrawQueueDepthBias = -20952.0f;
 	njAction_Queue(action, frame, QueuedModelFlagsB_EnableZWrite);
 	DrawQueueDepthBias = 0.0f;
