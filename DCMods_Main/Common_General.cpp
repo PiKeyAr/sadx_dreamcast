@@ -767,7 +767,9 @@ void __cdecl ItemBox_Display_Unknown_Rotate(ObjectMaster* _this)
 				DrawModel(model);
 				njPopMatrixEx();
 				DrawModel(&ItemBox_Base_MODEL);
-				if (IsCameraUnderwater) DrawQueueDepthBias = -10000.0f; else DrawQueueDepthBias = 8000.0f;
+				if (IsCameraUnderwater) DrawQueueDepthBias = -10000.0f; 
+				else if (CurrentLevel == LevelIDs_HotShelter && CurrentAct == 0 && EntityData1Ptrs[0]->Position.x < 1050) DrawQueueDepthBias = -1000.0f; 
+				else DrawQueueDepthBias = 8000.0f;
 				DrawModel_Queue(&ItemBox_Capsule_MODEL, (QueuedModelFlagsB)0);
 				DrawQueueDepthBias = 0.0f;
 				DrawModel(&ItemBox_Top_MODEL);
@@ -820,7 +822,9 @@ void __cdecl ItemBox_Display_Rotate(ObjectMaster* _this)
 				DrawModel(model);
 				njPopMatrixEx();
 				DrawModel(&ItemBox_Base_MODEL);
-				if (IsCameraUnderwater) DrawQueueDepthBias = -10000.0f; else DrawQueueDepthBias = 8000.0f;
+				if (IsCameraUnderwater) DrawQueueDepthBias = -10000.0f; 
+				else if (CurrentLevel == LevelIDs_HotShelter && CurrentAct == 0 && EntityData1Ptrs[0]->Position.x < 1050) DrawQueueDepthBias = -1000.0f; 
+				else DrawQueueDepthBias = 8000.0f;
 				DrawModel_Queue(&ItemBox_Capsule_MODEL, (QueuedModelFlagsB)0);
 				DrawQueueDepthBias = 0.0f;
 				DrawModel(&ItemBox_Top_MODEL);
@@ -1052,7 +1056,9 @@ void __cdecl ItemBoxAirDrawFunction_Normal(NJS_OBJECT *a1, ObjectThingC *a2)
 				}
 				njScaleV(0, (const NJS_VECTOR *)v2->scl);
 				a3 = VectorMaxAbs((NJS_VECTOR *)v2->scl);
-				if (IsCameraUnderwater) DrawQueueDepthBias = -13000.0f; else DrawQueueDepthBias = 3000.0f;
+				if (IsCameraUnderwater) DrawQueueDepthBias = -13000.0f; 
+				else if (CurrentLevel == LevelIDs_HotShelter && CurrentAct == 0 && EntityData1Ptrs[0]->Position.x < 1050) DrawQueueDepthBias = -1000.0f; 
+				else DrawQueueDepthBias = 3000.0f;
 				sub_4094D0(v2->basicdxmodel, (QueuedModelFlagsB)0, a3);
 				DrawQueueDepthBias = 0.0f;
 			}
@@ -1314,7 +1320,10 @@ void BigFishingThingFix(NJS_OBJECT* a1)
 
 void RenderItemBoxIcon(NJS_MODEL_SADX* a1)
 {
+	if (IsCameraUnderwater) DrawQueueDepthBias = -15000.0f;
+	else if (CurrentLevel == LevelIDs_HotShelter && CurrentAct == 0 && EntityData1Ptrs[0]->Position.x < 1050) DrawQueueDepthBias = -2000.0f; 
 	DrawModel_Queue(a1, QueuedModelFlagsB_EnableZWrite);
+	DrawQueueDepthBias = 0.0f;
 }
 
 void SpindashChargeLinesHook(NJS_POINT3COL *a1, int a2, NJD_DRAW attr, QueuedModelFlagsB a4)
@@ -1441,6 +1450,13 @@ void SGeneHook(NJS_ACTION *action, Float frame)
 {
 	if (IsCameraUnderwater) DrawQueueDepthBias = 100.0f; else DrawQueueDepthBias = -28000.0f;
 	njAction_Queue(action, frame, QueuedModelFlagsB_EnableZWrite);
+	DrawQueueDepthBias = 0.0f;
+}
+
+void CharBubbleHook(NJS_SPRITE *a1, Int n, NJD_SPRITE attr)
+{
+	if (!IsCameraUnderwater) DrawQueueDepthBias = -20000.0f;
+	njDrawSprite3D_Queue(a1, n, attr, QueuedModelFlagsB_SomeTextureThing);
 	DrawQueueDepthBias = 0.0f;
 }
 
@@ -1577,6 +1593,7 @@ void General_Init()
 		RemoveVertexColors_Object((NJS_OBJECT*)0x94EFD4); //Boa 4
 		RemoveVertexColors_Object((NJS_OBJECT*)0x97388C); //Cop speeder
 		RemoveVertexColors_Object((NJS_OBJECT*)0x970D8C); //Spinner
+		WriteCall((void*)0x4A07D9, CharBubbleHook); //Draw bubbles behind water
 		//Stupid hacks for Windy Valley 3 and other stages
 		WriteCall((void*)0x49EE10, DrawRingShadowHook);
 		WriteCall((void*)0x49EFAE, DrawScalableShadowHook);

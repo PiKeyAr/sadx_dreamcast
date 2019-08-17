@@ -37,7 +37,7 @@ int HotShelterCols_Act1[] = { -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1
 int HotShelterCols_Act2[] = { -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 };
 int HotShelterCols_Act3[] = { -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 };
 
-void OLight2_Display(ObjectMaster *a1)
+void OLight1_Display(ObjectMaster *a1)
 {
 	EntityData1* v1; // esi
 	Angle v2; // eax
@@ -82,7 +82,7 @@ void OLight2_Display(ObjectMaster *a1)
 				DrawQueueDepthBias = 0.0f;
 				SetMaterialAndSpriteColor_Float(1.0f, 1.0f, 1.0f, 1.0f);
 			}
-			if (v1->Position.x > 1050) DrawQueueDepthBias = -20000.0f;
+			if (v1->Position.x > 1050) DrawQueueDepthBias = -48000.0f;
 			ProcessModelNode_D_WrapperB((NJS_OBJECT*)0x1828BD4, (QueuedModelFlagsB)0, 1.0f);
 			njPopMatrix(1u);
 			ClampGlobalColorThing_Thing();
@@ -591,7 +591,7 @@ void HotShelter_Init()
 		WriteData((float*)0x005AB2F0, -1000.0f); //Four glass things in drainage room (depth bias)
 		WriteCall((void*)0x5A93BF, njDrawSprite3D_TheyForgotToClampAgain);
 		WriteJump((void*)0x5A91E0, KowareSuisou_Display_Fixed);
-		WriteJump((void*)0x5A30F0, OLight2_Display);
+		WriteJump((void*)0x5A30F0, OLight1_Display);
 		WriteCall((void*)0x5A5D6C, RenderRoboTVBrokenGlass);
 		WriteCall((void*)0x5A3A03, PlayMusicHook_ReduceE105Fog); //Hook to disable fog in E105 room
 		WriteCall((void*)0x5A3C99, E105Animation); //Add missing E105 Zeta animation
