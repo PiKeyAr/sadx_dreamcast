@@ -21740,8 +21740,8 @@ extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_0003BDC0 = { vertex_0003B
 
 extern "C" __declspec(dllexport) NJS_OBJECT object_0003BDE8 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0003BDC0, 2275.416f, -562.5f, -146.9656f, 0, 0, 0, 1, 1, 1, NULL, NULL };
 extern "C" __declspec(dllexport) NJS_MATERIAL matlist_0003BE1C[] = {
+	{ { 0xFFB2B2B2 }, { 0xFFFFFFFF }, 11, 19, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFB2B2B2 }, { 0xFFFFFFFF }, 11, 18, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
-	{ { 0xFFB2B2B2 }, { 0xFFFFFFFF }, 11, 19, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
 extern "C" __declspec(dllexport) Sint16 poly_0003BE44[] = {
@@ -21795,8 +21795,8 @@ extern "C" __declspec(dllexport) NJS_TEX uv_0003BEA0[] = {
 };
 
 extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_0003BF10[] = {
-	{ NJD_MESHSET_TRIMESH | 0, 1, poly_0003BE44, NULL, NULL, NULL, uv_0003BE90, NULL },
-	{ NJD_MESHSET_TRIMESH | 1, 5, poly_0003BE4E, NULL, NULL, NULL, uv_0003BEA0, NULL }
+	{ NJD_MESHSET_TRIMESH | 0, 5, poly_0003BE4E, NULL, NULL, NULL, uv_0003BEA0, NULL },
+	{ NJD_MESHSET_TRIMESH | 1, 1, poly_0003BE44, NULL, NULL, NULL, uv_0003BE90, NULL },
 };
 
 extern "C" __declspec(dllexport) NJS_VECTOR vertex_0003BF40[] = {
@@ -27716,7 +27716,7 @@ extern "C" __declspec(dllexport) COL collist_0000CDC0[] = {
 	{ { 1084.519f, -173, -93.57903f }, 172.9801f, 0, 0, &object_0003B0E4, 0, 0x80000000 },
 	{ { 1863.446f, -603.5f, 201.6157f }, 76.00436f, 0, 0, &object_0003B4B8, 0, 0x80000000 },
 	{ { 2275.416f, -562.5f, -146.9656f }, 115.1273f, 0, 0, &object_0003BDE8, 0, 0x80000000 },
-	{ { 3205.821f, -516.9236f, -1560.348f }, 110.984f, 0, 0, &object_0003C0E8, 0, 0x80000000 },
+	{ { 3205.821f, -516.9236f, -1560.348f }, 110.984f, 0, 0, &object_0003C0E8, 0, 0x80000000 }, 
 	{ { 102.428f, -554, 76.08775f }, 307.5718f, 0, 0, &object_0003C714, 0, 0x80000000 },
 	{ { 226.3474f, -191.6151f, -52.25811f }, 227.691f, 0, 0, &object_0003CF64, 0, 0x80000000 },
 	{ { 1293.843f, -189, -74.83332f }, 256.6974f, 0, 0, &object_0003D904, 0, 0x80000000 },

@@ -31,6 +31,7 @@ FunctionPointer(void, sub_408530, (NJS_OBJECT *o), 0x408530);
 FunctionPointer(void, sub_408350, (NJS_ACTION *a1, float a2, int a3, float a4), 0x408350);
 FunctionPointer(void, sub_4CACF0, (NJS_VECTOR *a1, float a2), 0x4CACF0);
 FunctionPointer(void, DrawModel_407FC0, (NJS_MODEL_SADX *a1, int blend), 0x407FC0);
+FunctionPointer(void, Bridge_CreateDustParticle, (NJS_VECTOR *a1, NJS_VECTOR *a2, float a3), 0x4B9820);
 static int TornadoMode = 0;
 static float SkyTrans = 1.0f;
 static bool Windy3ColsLoaded = false;
@@ -153,6 +154,20 @@ void __cdecl OTanpopo_Child_Display(ObjectMaster *a1)
 	}
 }
 
+void OTuriBr2_Particle(NJS_VECTOR *a1, NJS_VECTOR *a2, float a3)
+{
+	ParticleDepthOverride = 20000.0f;
+	Bridge_CreateDustParticle(a1, a2, a3);
+	ParticleDepthOverride = 0.0f;
+}
+
+void OHaneAFix(NJS_MODEL_SADX *model, QueuedModelFlagsB blend, float scale)
+{
+	DrawQueueDepthBias = -5000.0f;
+	ProcessModel_407BB0(model, blend, scale);
+	DrawQueueDepthBias = 0.0f;
+}
+
 void WindyValley_Init()
 {
 	STG02_0_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG02\\0.sa1lvl"));
@@ -201,6 +216,8 @@ void WindyValley_Init()
 		WriteJump((void*)0x4DFA60, OTanpopo_Child_Display); //Fix hanging dandelion seed
 		*(NJS_MODEL_SADX*)0xC1DDF8 = *LoadModel("system\\data\\STG02\\Models\\000C4A70.sa1mdl", false)->basicdxmodel; //Bridge piece
 		*(NJS_MODEL_SADX*)0xC1E168 = *LoadModel("system\\data\\STG02\\Models\\000C4D24.sa1mdl", false)->basicdxmodel; //Fixed bridge rope
+		WriteCall((void*)0x7A525C, OTuriBr2_Particle);
+		WriteCall((void*)0x4E09FB, OTuriBr2_Particle);
 		*(NJS_MODEL_SADX*)0xC1D068 = *LoadModel("system\\data\\STG02\\Models\\000C4024.sa1mdl", false)->basicdxmodel; //OPopo base
 		*(NJS_OBJECT*)0xC1C648 = *LoadModel("system\\data\\STG02\\Models\\000C3A70.sa1mdl", false); //OPopo part 2
 		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0xC1C648)->basicdxmodel->mats[1]);
@@ -232,6 +249,8 @@ void WindyValley_Init()
 		*(NJS_OBJECT*)0xC0B188 = *LoadModel("system\\data\\STG02\\Models\\000B6C3C.sa1mdl", false); //Skybox bottom in Act 3
 		*(NJS_OBJECT*)0xC21704 = *LoadModel("system\\data\\STG02\\Models\\000C7F08.sa1mdl", false); //Yure
 		*(NJS_OBJECT*)0xC29B94 = *LoadModel("system\\data\\STG02\\Models\\000CE310.sa1mdl", false); //HaneA
+		WriteCall((void*)0x4E108A, OHaneAFix);
+		WriteCall((void*)0x4E11C1, OHaneAFix);
 		*(NJS_OBJECT*)0xC3C8D4 = *LoadModel("system\\data\\STG02\\Models\\000DA8FC.sa1mdl", false); //OStBrid
 		*(NJS_OBJECT*)0xC157C4 = *LoadModel("system\\data\\STG02\\Models\\000BF0F8.sa1mdl", false); //Bridge D
 		*(NJS_OBJECT*)0xC1560C = *LoadModel("system\\data\\STG02\\Models\\000BEF7C.sa1mdl", false); //Bridge C
