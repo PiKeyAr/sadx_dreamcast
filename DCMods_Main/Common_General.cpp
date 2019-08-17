@@ -1410,7 +1410,7 @@ void CaptureBeamFix(NJS_OBJECT *a1, QueuedModelFlagsB a2, float a3)
 
 void QueueAnimals(NJS_ACTION *action, Float frame)
 {
-	DrawQueueDepthBias = -20952.0f;
+	DrawQueueDepthBias = -47952.0f;
 	njAction_Queue(action, frame, QueuedModelFlagsB_EnableZWrite);
 	DrawQueueDepthBias = 0.0f;
 }
