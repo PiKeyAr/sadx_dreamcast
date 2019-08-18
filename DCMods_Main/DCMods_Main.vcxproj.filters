@@ -16,21 +16,6 @@
     <Filter Include="Header Files\Levels">
       <UniqueIdentifier>{eace49c7-4b6e-42f5-ad4d-6770239b893a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Levels\ADV00MODELS">
-      <UniqueIdentifier>{003e8907-eaaa-448f-a7bf-239c9fa20625}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Levels\ADV02MODELS">
-      <UniqueIdentifier>{54a3fd4a-d12f-493b-ba36-413e5e3d2768}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Levels\ADV01MODELS">
-      <UniqueIdentifier>{90648a9e-8410-4076-81a2-538840d2ba0c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Levels\ADV01CMODELS">
-      <UniqueIdentifier>{0d42c006-da31-4aa8-b04f-bc11db563ed0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Levels\ADV03MODELS">
-      <UniqueIdentifier>{70b0dfe4-c69e-4f7c-8207-83fdddea9dbe}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Levels\General">
       <UniqueIdentifier>{34190024-f44d-4af5-88be-ca1860caa879}</UniqueIdentifier>
     </Filter>
@@ -76,97 +61,145 @@
     <Filter Include="Header Files\Levels\SkyDeck">
       <UniqueIdentifier>{ce194479-c793-42b0-93c8-81cacb51d160}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Levels\EggCarrierOutside">
+      <UniqueIdentifier>{90648a9e-8410-4076-81a2-538840d2ba0c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Levels\EggCarrierInside">
+      <UniqueIdentifier>{0d42c006-da31-4aa8-b04f-bc11db563ed0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Levels\StationSquare">
+      <UniqueIdentifier>{003e8907-eaaa-448f-a7bf-239c9fa20625}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Levels\MysticRuins">
+      <UniqueIdentifier>{54a3fd4a-d12f-493b-ba36-413e5e3d2768}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Levels\Past">
+      <UniqueIdentifier>{70b0dfe4-c69e-4f7c-8207-83fdddea9dbe}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="DC_ADV00MODELS.cpp">
+    <ClCompile Include="Boss_Chaos0.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DC_ADV01MODELS.cpp">
+    <ClCompile Include="Boss_Chaos2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DC_ADV02MODELS.cpp">
+    <ClCompile Include="Boss_Chaos4.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DC_ADV03MODELS.cpp">
+    <ClCompile Include="Boss_Chaos6.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DC_Bosses.cpp">
+    <ClCompile Include="Boss_Chaos7.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DC_Branding.cpp">
+    <ClCompile Include="Boss_EGM1_EggHornet.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DC_Casinopolis.cpp">
+    <ClCompile Include="Boss_EGM2_EggWalker.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DC_ChaoGardens.cpp">
+    <ClCompile Include="Boss_EGM3_EggViper.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DC_ChaoRace.cpp">
+    <ClCompile Include="Boss_ROBO_Zero.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DC_EmeraldCoast.cpp">
+    <ClCompile Include="Boss_E101.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DC_FinalEgg.cpp">
+    <ClCompile Include="Boss_E101R.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DC_General.cpp">
+    <ClCompile Include="STG01_EmeraldCoast.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DC_HotShelter.cpp">
+    <ClCompile Include="STG10_FinalEgg.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DC_IceCap.cpp">
+    <ClCompile Include="STG12_HotShelter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DC_LostWorld.cpp">
+    <ClCompile Include="STG08_IceCap.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DC_RedMountain.cpp">
+    <ClCompile Include="STG07_LostWorld.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DC_SkyDeck.cpp">
+    <ClCompile Include="STG05_RedMountain.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DC_SpeedHighway.cpp">
+    <ClCompile Include="STG06_SkyDeck.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DC_Subgames.cpp">
+    <ClCompile Include="STG04_SpeedHighway.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DC_TwinklePark.cpp">
+    <ClCompile Include="STG03_TwinklePark.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DC_WindyValley.cpp">
+    <ClCompile Include="STG02_WindyValley.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="mod.cpp">
+    <ClCompile Include="STG09_Casinopolis.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AL_ChaoGardens.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ADV00_StationSquare.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ADV03_Past.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ADV02_MysticRuins.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AL_ChaoRace.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ADV0100_EggCarrierOutside.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ADV0130_EggCarrierInside.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Common_SkyChaseFixes.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Common_SADXStyleWater.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Common_GenericFunctions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Common_FramerateFixes.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Common_Subgames.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Common_General.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Common_Branding.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Common_Startup.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Common_Videos.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SkyChaseFixes.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Videos.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SpeedFixes.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SADXStyleWater.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GenericFunctions.cpp">
+    <ClCompile Include="Common_Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Data\textures.h">
-      <Filter>Header Files\Levels</Filter>
-    </ClInclude>
     <ClInclude Include="DC_Levels.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -176,104 +209,32 @@
     <ClInclude Include="targetver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Data\ADV_MR00(StationArea).h">
-      <Filter>Header Files\Levels\ADV02MODELS</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\ADV_MR01(AngelIsland).h">
-      <Filter>Header Files\Levels\ADV02MODELS</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\ADV_MR01_Fixes.h">
-      <Filter>Header Files\Levels\ADV02MODELS</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\ADV_MR02(JungleArea).h">
-      <Filter>Header Files\Levels\ADV02MODELS</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\ADV_MR03(FinalEggEntrance).h">
-      <Filter>Header Files\Levels\ADV02MODELS</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\ADV01_0.h">
-      <Filter>Header Files\Levels\ADV01MODELS</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\ADV01_0_animlist.h">
-      <Filter>Header Files\Levels\ADV01MODELS</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\ADV01_1.h">
-      <Filter>Header Files\Levels\ADV01MODELS</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\ADV01_2.h">
-      <Filter>Header Files\Levels\ADV01MODELS</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\ADV01_3.h">
-      <Filter>Header Files\Levels\ADV01MODELS</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\ADV01_4.h">
-      <Filter>Header Files\Levels\ADV01MODELS</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\ADV01_5.h">
-      <Filter>Header Files\Levels\ADV01MODELS</Filter>
-    </ClInclude>
     <ClInclude Include="Data\ADV01C_00.h">
-      <Filter>Header Files\Levels\ADV01CMODELS</Filter>
+      <Filter>Header Files\Levels\EggCarrierInside</Filter>
     </ClInclude>
     <ClInclude Include="Data\ADV01C_01.h">
-      <Filter>Header Files\Levels\ADV01CMODELS</Filter>
+      <Filter>Header Files\Levels\EggCarrierInside</Filter>
     </ClInclude>
     <ClInclude Include="Data\ADV01C_02.h">
-      <Filter>Header Files\Levels\ADV01CMODELS</Filter>
+      <Filter>Header Files\Levels\EggCarrierInside</Filter>
     </ClInclude>
     <ClInclude Include="Data\ADV01C_03.h">
-      <Filter>Header Files\Levels\ADV01CMODELS</Filter>
+      <Filter>Header Files\Levels\EggCarrierInside</Filter>
     </ClInclude>
     <ClInclude Include="Data\ADV01C_04.h">
-      <Filter>Header Files\Levels\ADV01CMODELS</Filter>
+      <Filter>Header Files\Levels\EggCarrierInside</Filter>
     </ClInclude>
     <ClInclude Include="Data\ADV01C_05.h">
-      <Filter>Header Files\Levels\ADV01CMODELS</Filter>
+      <Filter>Header Files\Levels\EggCarrierInside</Filter>
     </ClInclude>
     <ClInclude Include="Data\ADV03_00.h">
-      <Filter>Header Files\Levels\ADV03MODELS</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\ADV03_00_PC.h">
-      <Filter>Header Files\Levels\ADV03MODELS</Filter>
+      <Filter>Header Files\Levels\Past</Filter>
     </ClInclude>
     <ClInclude Include="Data\ADV03_01.h">
-      <Filter>Header Files\Levels\ADV03MODELS</Filter>
+      <Filter>Header Files\Levels\Past</Filter>
     </ClInclude>
     <ClInclude Include="Data\ADV03_02.h">
-      <Filter>Header Files\Levels\ADV03MODELS</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\ADVSS00(CityHall).h">
-      <Filter>Header Files\Levels\ADV00MODELS</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\ADVSS01(CasinoArea).h">
-      <Filter>Header Files\Levels\ADV00MODELS</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\ADVSS02(Sewers).h">
-      <Filter>Header Files\Levels\ADV00MODELS</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\ADVSS03(StationMainArea).h">
-      <Filter>Header Files\Levels\ADV00MODELS</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\ADVSS03Fixes.h">
-      <Filter>Header Files\Levels\ADV00MODELS</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\ADVSS04(Hotel).h">
-      <Filter>Header Files\Levels\ADV00MODELS</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\ADVSS04Collision.h">
-      <Filter>Header Files\Levels\ADV00MODELS</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\ADVSS05(TwinkleParkEntrance).h">
-      <Filter>Header Files\Levels\ADV00MODELS</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\Animals.h">
-      <Filter>Header Files\Levels\General</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\button.h">
-      <Filter>Header Files\Levels\ADV02MODELS</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\Casino_objects.h">
-      <Filter>Header Files\Levels\Casinopolis</Filter>
+      <Filter>Header Files\Levels\Past</Filter>
     </ClInclude>
     <ClInclude Include="Data\Casino1.h">
       <Filter>Header Files\Levels\Casinopolis</Filter>
@@ -296,79 +257,25 @@
     <ClInclude Include="Data\ChaoRaceEntry.h">
       <Filter>Header Files\Levels\Chao</Filter>
     </ClInclude>
-    <ClInclude Include="Data\Chaos0_helicopter.h">
-      <Filter>Header Files\Levels\Bosses</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\Chaos0_Landtable.h">
-      <Filter>Header Files\Levels\Bosses</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\Chaos0_Model.h">
-      <Filter>Header Files\Levels\Bosses</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\Chaos0_policecar.h">
-      <Filter>Header Files\Levels\Bosses</Filter>
-    </ClInclude>
     <ClInclude Include="Data\Chaos2.h">
-      <Filter>Header Files\Levels\Bosses</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\Chaos2_PC.h">
       <Filter>Header Files\Levels\Bosses</Filter>
     </ClInclude>
     <ClInclude Include="Data\Chaos4.h">
       <Filter>Header Files\Levels\Bosses</Filter>
     </ClInclude>
-    <ClInclude Include="Data\Chaos4_water.h">
-      <Filter>Header Files\Levels\Bosses</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\Chaos6_Act1.h">
-      <Filter>Header Files\Levels\Bosses</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\Chaos6_Act2.h">
-      <Filter>Header Files\Levels\Bosses</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\Chaos6_models.h">
-      <Filter>Header Files\Levels\Bosses</Filter>
-    </ClInclude>
     <ClInclude Include="Data\Chaos7.h">
-      <Filter>Header Files\Levels\Bosses</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\Chaos7_fixes.h">
       <Filter>Header Files\Levels\Bosses</Filter>
     </ClInclude>
     <ClInclude Include="Data\CommonObjects.h">
       <Filter>Header Files\Levels\General</Filter>
     </ClInclude>
-    <ClInclude Include="Data\CharacterEffects.h">
-      <Filter>Header Files\Levels\General</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\Buyon.h">
-      <Filter>Header Files\Levels\TwinklePark</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\Cowgirl.h">
-      <Filter>Header Files\Levels\Casinopolis</Filter>
-    </ClInclude>
     <ClInclude Include="Data\E101.h">
-      <Filter>Header Files\Levels\Bosses</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\E101Kai_Model.h">
       <Filter>Header Files\Levels\Bosses</Filter>
     </ClInclude>
     <ClInclude Include="Data\E101R.h">
       <Filter>Header Files\Levels\Bosses</Filter>
     </ClInclude>
-    <ClInclude Include="Data\EC_Tornado.h">
-      <Filter>Header Files\Levels\ADV01MODELS</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\EC_Transform.h">
-      <Filter>Header Files\Levels\ADV01MODELS</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\EggCarrier_Objects.h">
-      <Filter>Header Files\Levels\ADV01MODELS</Filter>
-    </ClInclude>
     <ClInclude Include="Data\EggHornet.h">
-      <Filter>Header Files\Levels\Bosses</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\EggHornet_Model.h">
       <Filter>Header Files\Levels\Bosses</Filter>
     </ClInclude>
     <ClInclude Include="Data\EggViper.h">
@@ -377,13 +284,7 @@
     <ClInclude Include="Data\EggWalker.h">
       <Filter>Header Files\Levels\Bosses</Filter>
     </ClInclude>
-    <ClInclude Include="Data\EmeraldCoast_Objects.h">
-      <Filter>Header Files\Levels\EmeraldCoast</Filter>
-    </ClInclude>
     <ClInclude Include="Data\EmeraldCoast1.h">
-      <Filter>Header Files\Levels\EmeraldCoast</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\EmeraldCoast1_PC.h">
       <Filter>Header Files\Levels\EmeraldCoast</Filter>
     </ClInclude>
     <ClInclude Include="Data\EmeraldCoast2.h">
@@ -391,12 +292,6 @@
     </ClInclude>
     <ClInclude Include="Data\EmeraldCoast3.h">
       <Filter>Header Files\Levels\EmeraldCoast</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\EmeraldGlow.h">
-      <Filter>Header Files\Levels\General</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\FinalEgg_objects.h">
-      <Filter>Header Files\Levels\FinalEgg</Filter>
     </ClInclude>
     <ClInclude Include="Data\FinalEgg1.h">
       <Filter>Header Files\Levels\FinalEgg</Filter>
@@ -407,22 +302,7 @@
     <ClInclude Include="Data\FinalEgg3.h">
       <Filter>Header Files\Levels\FinalEgg</Filter>
     </ClInclude>
-    <ClInclude Include="Data\ERobo.h">
-      <Filter>Header Files\Levels\Bosses</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\Fountain.h">
-      <Filter>Header Files\Levels\Chao</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\Grass.h">
-      <Filter>Header Files\Levels\ADV02MODELS</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\Highway_objects.h">
-      <Filter>Header Files\Levels\SpeedHighway</Filter>
-    </ClInclude>
     <ClInclude Include="Data\Highway1.h">
-      <Filter>Header Files\Levels\SpeedHighway</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\Highway2 Fixes.h">
       <Filter>Header Files\Levels\SpeedHighway</Filter>
     </ClInclude>
     <ClInclude Include="Data\Highway2.h">
@@ -434,9 +314,6 @@
     <ClInclude Include="Data\HintMessages.h">
       <Filter>Header Files\Levels\Chao</Filter>
     </ClInclude>
-    <ClInclude Include="Data\HotShelter_Objects.h">
-      <Filter>Header Files\Levels\HotShelter</Filter>
-    </ClInclude>
     <ClInclude Include="Data\HotShelter1.h">
       <Filter>Header Files\Levels\HotShelter</Filter>
     </ClInclude>
@@ -445,9 +322,6 @@
     </ClInclude>
     <ClInclude Include="Data\HotShelter3.h">
       <Filter>Header Files\Levels\HotShelter</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\HW_Jammer.h">
-      <Filter>Header Files\Levels\SpeedHighway</Filter>
     </ClInclude>
     <ClInclude Include="Data\IceCap1.h">
       <Filter>Header Files\Levels\IceCap</Filter>
@@ -461,38 +335,8 @@
     <ClInclude Include="Data\IceCap4.h">
       <Filter>Header Files\Levels\IceCap</Filter>
     </ClInclude>
-    <ClInclude Include="Data\Icicle.h">
-      <Filter>Header Files\Levels\IceCap</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\LightingArrays.h">
-      <Filter>Header Files\Levels\Bosses</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\SH_bluecar.h">
-      <Filter>Header Files\Levels\SpeedHighway</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\SH_bus.h">
-      <Filter>Header Files\Levels\SpeedHighway</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\SH_Glass.h">
-      <Filter>Header Files\Levels\SpeedHighway</Filter>
-    </ClInclude>
     <ClInclude Include="Data\SH_helicopter.h">
       <Filter>Header Files\Levels\SpeedHighway</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\SH_redcar.h">
-      <Filter>Header Files\Levels\SpeedHighway</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\SH_turnasi.h">
-      <Filter>Header Files\Levels\SpeedHighway</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\SH_yellowcar.h">
-      <Filter>Header Files\Levels\SpeedHighway</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\MasterEmerald.h">
-      <Filter>Header Files\Levels\ADV02MODELS</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\LostWorld_objects.h">
-      <Filter>Header Files\Levels\LostWorld</Filter>
     </ClInclude>
     <ClInclude Include="Data\LostWorld1.h">
       <Filter>Header Files\Levels\LostWorld</Filter>
@@ -501,9 +345,6 @@
       <Filter>Header Files\Levels\LostWorld</Filter>
     </ClInclude>
     <ClInclude Include="Data\LostWorld3.h">
-      <Filter>Header Files\Levels\LostWorld</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\LostWorld3_PC.h">
       <Filter>Header Files\Levels\LostWorld</Filter>
     </ClInclude>
     <ClInclude Include="Data\Mountain1.h">
@@ -515,53 +356,14 @@
     <ClInclude Include="Data\Mountain3.h">
       <Filter>Header Files\Levels\RedMountain</Filter>
     </ClInclude>
-    <ClInclude Include="Data\MR_IceCapDoor.h">
-      <Filter>Header Files\Levels\ADV02MODELS</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\MR_Objects.h">
-      <Filter>Header Files\Levels\ADV02MODELS</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\MR_Palms.h">
-      <Filter>Header Files\Levels\ADV02MODELS</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\MR_Rock.h">
-      <Filter>Header Files\Levels\ADV02MODELS</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\MR_train.h">
-      <Filter>Header Files\Levels\ADV02MODELS</Filter>
-    </ClInclude>
     <ClInclude Include="Data\MRGarden.h">
       <Filter>Header Files\Levels\Chao</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\Objects_Windy.h">
-      <Filter>Header Files\Levels\WindyValley</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\OFinalEgg.h">
-      <Filter>Header Files\Levels\ADV02MODELS</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\OLmpa.h">
-      <Filter>Header Files\Levels\SpeedHighway</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\Palm.h">
-      <Filter>Header Files\Levels\ADV03MODELS</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\Past_objects.h">
-      <Filter>Header Files\Levels\ADV03MODELS</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\Ripple.h">
-      <Filter>Header Files\Levels\General</Filter>
     </ClInclude>
     <ClInclude Include="Data\RM_Objects.h">
       <Filter>Header Files\Levels\RedMountain</Filter>
     </ClInclude>
     <ClInclude Include="Data\SandHill.h">
       <Filter>Header Files\Levels\Subgames</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\SkyChaseModels.h">
-      <Filter>Header Files\Levels\Subgames</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\SkyDeck_objects.h">
-      <Filter>Header Files\Levels\SkyDeck</Filter>
     </ClInclude>
     <ClInclude Include="Data\SkyDeck1.h">
       <Filter>Header Files\Levels\SkyDeck</Filter>
@@ -572,23 +374,8 @@
     <ClInclude Include="Data\SkyDeck3.h">
       <Filter>Header Files\Levels\SkyDeck</Filter>
     </ClInclude>
-    <ClInclude Include="Data\SkyDeck3_Fixes.h">
-      <Filter>Header Files\Levels\SkyDeck</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\SS_Objects.h">
-      <Filter>Header Files\Levels\ADV00MODELS</Filter>
-    </ClInclude>
     <ClInclude Include="Data\SSGarden.h">
       <Filter>Header Files\Levels\Chao</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\Tanken.h">
-      <Filter>Header Files\Levels\ADV02MODELS</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\Tanken2.h">
-      <Filter>Header Files\Levels\ADV02MODELS</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\Tanken3.h">
-      <Filter>Header Files\Levels\ADV02MODELS</Filter>
     </ClInclude>
     <ClInclude Include="Data\Twinkle1.h">
       <Filter>Header Files\Levels\TwinklePark</Filter>
@@ -599,77 +386,143 @@
     <ClInclude Include="Data\Twinkle3.h">
       <Filter>Header Files\Levels\TwinklePark</Filter>
     </ClInclude>
-    <ClInclude Include="Data\Twinkle3_Trans.h">
-      <Filter>Header Files\Levels\TwinklePark</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\TwinklePark_objects.h">
-      <Filter>Header Files\Levels\TwinklePark</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\windy1.h">
+    <ClInclude Include="Data\Windy1.h">
       <Filter>Header Files\Levels\WindyValley</Filter>
     </ClInclude>
-    <ClInclude Include="Data\windy2.h">
+    <ClInclude Include="Data\Windy2.h">
       <Filter>Header Files\Levels\WindyValley</Filter>
     </ClInclude>
-    <ClInclude Include="Data\windy3.h">
+    <ClInclude Include="Data\Windy3.h">
       <Filter>Header Files\Levels\WindyValley</Filter>
     </ClInclude>
     <ClInclude Include="Data\Zero.h">
       <Filter>Header Files\Levels\Bosses</Filter>
     </ClInclude>
-    <ClInclude Include="Data\TornadoCrash.h">
-      <Filter>Header Files\Levels\ADV02MODELS</Filter>
-    </ClInclude>
-    <ClInclude Include="OStandLight.h">
-      <Filter>Header Files\Levels\FinalEgg</Filter>
-    </ClInclude>
     <ClInclude Include="Data\ECGarden.h">
       <Filter>Header Files\Levels\Chao</Filter>
-    </ClInclude>
-    <ClInclude Include="Frogs.h">
-      <Filter>Header Files\Levels\General</Filter>
     </ClInclude>
     <ClInclude Include="Lantern\lanternapi.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Data\HintMonitor.h">
-      <Filter>Header Files\Levels\General</Filter>
-    </ClInclude>
     <ClInclude Include="Data\ChaoObjects_Race.h">
       <Filter>Header Files\Levels\Chao</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\BigBeach.h">
-      <Filter>Header Files\Levels\EmeraldCoast</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\ChaoEggs.h">
-      <Filter>Header Files\Levels\Chao</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\ChaoFruits.h">
-      <Filter>Header Files\Levels\Chao</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\Chaos2_Column.h">
-      <Filter>Header Files\Levels\Bosses</Filter>
     </ClInclude>
     <ClInclude Include="StageLights.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Data\TwinkleCircuit.h">
-      <Filter>Header Files\Levels\Subgames</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\SandHill_objects.h">
-      <Filter>Header Files\Levels\Subgames</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\EggHornet_Water.h">
-      <Filter>Header Files\Levels\Bosses</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\EggViper_Head.h">
-      <Filter>Header Files\Levels\Bosses</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\ZeroE101R_Water.h">
-      <Filter>Header Files\Levels\Bosses</Filter>
-    </ClInclude>
     <ClInclude Include="Data\Chaos6_Motion.h">
       <Filter>Header Files\Levels\Bosses</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\SS00_CityHall.h">
+      <Filter>Header Files\Levels\StationSquare</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\SS01_Casino.h">
+      <Filter>Header Files\Levels\StationSquare</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\SS02_Sewers.h">
+      <Filter>Header Files\Levels\StationSquare</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\SS03_MainArea.h">
+      <Filter>Header Files\Levels\StationSquare</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\SS04_Hotel.h">
+      <Filter>Header Files\Levels\StationSquare</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\SS05_Twinkle.h">
+      <Filter>Header Files\Levels\StationSquare</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\MR00_Station.h">
+      <Filter>Header Files\Levels\MysticRuins</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\MR01_Island.h">
+      <Filter>Header Files\Levels\MysticRuins</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\MR02_Jungle.h">
+      <Filter>Header Files\Levels\MysticRuins</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\MR03_FinalEgg.h">
+      <Filter>Header Files\Levels\MysticRuins</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\Chaos0.h">
+      <Filter>Header Files\Levels\Bosses</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\Chaos2_Objects.h">
+      <Filter>Header Files\Levels\Bosses</Filter>
+    </ClInclude>
+    <ClInclude Include="GenericData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\Chaos6_Sonic.h">
+      <Filter>Header Files\Levels\Bosses</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\Chaos6_Knuckles.h">
+      <Filter>Header Files\Levels\Bosses</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\Casino_UVs.h">
+      <Filter>Header Files\Levels\Casinopolis</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\FinalEgg_UVs.h">
+      <Filter>Header Files\Levels\FinalEgg</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\Animals.h">
+      <Filter>Header Files\Levels\General</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\Animals_motions.h">
+      <Filter>Header Files\Levels\General</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\Frogs.h">
+      <Filter>Header Files\Levels\General</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\EggCarrier_Motions.h">
+      <Filter>Header Files\Levels\EggCarrierOutside</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\ADV0100_0.h">
+      <Filter>Header Files\Levels\EggCarrierOutside</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\ADV0100_1.h">
+      <Filter>Header Files\Levels\EggCarrierOutside</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\ADV0100_2.h">
+      <Filter>Header Files\Levels\EggCarrierOutside</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\ADV0100_3.h">
+      <Filter>Header Files\Levels\EggCarrierOutside</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\ADV0100_4.h">
+      <Filter>Header Files\Levels\EggCarrierOutside</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\ADV0100_5.h">
+      <Filter>Header Files\Levels\EggCarrierOutside</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\HedgehogHammer.h">
+      <Filter>Header Files\Levels\Subgames</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\TwinkleCircuit_2.h">
+      <Filter>Header Files\Levels\Subgames</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\TwinkleCircuit_3.h">
+      <Filter>Header Files\Levels\Subgames</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\TwinkleCircuit_4.h">
+      <Filter>Header Files\Levels\Subgames</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\TwinkleCircuit_5.h">
+      <Filter>Header Files\Levels\Subgames</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\TwinkleCircuit_6.h">
+      <Filter>Header Files\Levels\Subgames</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\TwinkleCircuit_1.h">
+      <Filter>Header Files\Levels\Subgames</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\ECGarden_Skybox.h">
+      <Filter>Header Files\Levels\Chao</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\RobotChest.h">
+      <Filter>Header Files\Levels\General</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\ADV00_Motions.h">
+      <Filter>Header Files\Levels\StationSquare</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

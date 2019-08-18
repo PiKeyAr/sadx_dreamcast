@@ -31,6 +31,9 @@ struct DirLightData_SADX
 	float AmbientB;
 };
 
+DataArray(DirLightData_SADX, DirLights_SADX, 0x900918, 29);
+DataPointer(DirLightData_SADX, DefaultDirLight_SADX, 0x9008E4);
+
 DirLightData_SA1 DefaultDirLight = { 0, 0, { 0.822f, -0.57f, 0 }, 1, 1, 1, 0.8f, 1, 0.25f };
 
 DirLightData_SA1 DirLights_SA1[] = {

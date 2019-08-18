@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27130.2036
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29201.188
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DCMods_Main", "DCMods_Main\DCMods_Main.vcxproj", "{20722887-443C-45BE-AD68-2DCF8962527D}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -23,26 +23,6 @@ Global
 		{20722887-443C-45BE-AD68-2DCF8962527D}.Debug|x86.Build.0 = Debug|Win32
 		{20722887-443C-45BE-AD68-2DCF8962527D}.Release|x86.ActiveCfg = Release|Win32
 		{20722887-443C-45BE-AD68-2DCF8962527D}.Release|x86.Build.0 = Release|Win32
-		{EB53BD35-68E0-4141-BA15-C3C58226B46E}.Debug|x86.ActiveCfg = Debug|Win32
-		{EB53BD35-68E0-4141-BA15-C3C58226B46E}.Debug|x86.Build.0 = Debug|Win32
-		{EB53BD35-68E0-4141-BA15-C3C58226B46E}.Release|x86.ActiveCfg = Release|Win32
-		{EB53BD35-68E0-4141-BA15-C3C58226B46E}.Release|x86.Build.0 = Release|Win32
-		{392AE35A-F746-421C-9566-E3ABBA9EECA0}.Debug|x86.ActiveCfg = Debug|Win32
-		{392AE35A-F746-421C-9566-E3ABBA9EECA0}.Debug|x86.Build.0 = Debug|Win32
-		{392AE35A-F746-421C-9566-E3ABBA9EECA0}.Release|x86.ActiveCfg = Release|Win32
-		{392AE35A-F746-421C-9566-E3ABBA9EECA0}.Release|x86.Build.0 = Release|Win32
-		{A9ABF1CE-1C33-4AE0-9812-69DFB47481E5}.Debug|x86.ActiveCfg = Debug|Win32
-		{A9ABF1CE-1C33-4AE0-9812-69DFB47481E5}.Debug|x86.Build.0 = Debug|Win32
-		{A9ABF1CE-1C33-4AE0-9812-69DFB47481E5}.Release|x86.ActiveCfg = Release|Win32
-		{A9ABF1CE-1C33-4AE0-9812-69DFB47481E5}.Release|x86.Build.0 = Release|Win32
-		{166D0676-BFF0-4F96-99A6-192FFC5F38CF}.Debug|x86.ActiveCfg = Debug|Win32
-		{166D0676-BFF0-4F96-99A6-192FFC5F38CF}.Debug|x86.Build.0 = Debug|Win32
-		{166D0676-BFF0-4F96-99A6-192FFC5F38CF}.Release|x86.ActiveCfg = Release|Win32
-		{166D0676-BFF0-4F96-99A6-192FFC5F38CF}.Release|x86.Build.0 = Release|Win32
-		{F7B5C701-3FAF-491A-AD56-40D96BCA7972}.Debug|x86.ActiveCfg = Debug|Win32
-		{F7B5C701-3FAF-491A-AD56-40D96BCA7972}.Debug|x86.Build.0 = Debug|Win32
-		{F7B5C701-3FAF-491A-AD56-40D96BCA7972}.Release|x86.ActiveCfg = Release|Win32
-		{F7B5C701-3FAF-491A-AD56-40D96BCA7972}.Release|x86.Build.0 = Release|Win32
 		{EC0293F5-4BCF-46B2-8133-18CAEA141C5B}.Debug|x86.ActiveCfg = Debug|Win32
 		{EC0293F5-4BCF-46B2-8133-18CAEA141C5B}.Debug|x86.Build.0 = Debug|Win32
 		{EC0293F5-4BCF-46B2-8133-18CAEA141C5B}.Release|x86.ActiveCfg = Release|Win32

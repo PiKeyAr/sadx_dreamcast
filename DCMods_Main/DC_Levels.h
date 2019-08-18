@@ -5,14 +5,14 @@
 #include <string>
 
 class IniFile;
-#define NJD_CUSTOMFLAG_TEXANIM1		(BIT_0)
-#define NJD_CUSTOMFLAG_TEXANIM2		(BIT_1)
-#define NJD_CUSTOMFLAG_WHITE		(BIT_2)
-#define NJD_CUSTOMFLAG_NIGHT		(BIT_3)
-#define NJD_CUSTOMFLAG_LIGHT0		(BIT_4)
-#define NJD_CUSTOMFLAG_LIGHT2		(BIT_5)
-#define NJD_CUSTOMFLAG_RESERVED_SA1		(BIT_6)
-#define NJD_CUSTOMFLAG_ALPHA_REJECT		(BIT_7)
+#define NJD_CUSTOMFLAG_UVANIM3		(BIT_0)
+#define NJD_CUSTOMFLAG_UVANIM4		(BIT_1)
+#define NJD_CUSTOMFLAG_UVANIM1		(BIT_2)
+#define NJD_CUSTOMFLAG_UVANIM2		(BIT_3)
+#define NJD_CUSTOMFLAG_WHITE		(BIT_4)
+#define NJD_CUSTOMFLAG_NIGHT		(BIT_5)
+#define NJD_CUSTOMFLAG_RESERVED		(BIT_6)
+#define NJD_CUSTOMFLAG_NO_REJECT	(BIT_7)
 
 DataPointer(int, FramerateSetting_Config, 0x0089295C);
 DataPointer(int, FramerateSetting, 0x0389D7DC);
@@ -22,26 +22,93 @@ DataPointer(float, EnvMap1, 0x038A5DD0);
 DataPointer(float, EnvMap2, 0x038A5DE4);
 DataPointer(float, EnvMap3, 0x038A5E00);
 DataPointer(float, EnvMap4, 0x038A5E04);
+DataPointer(NJS_VECTOR, DrawQueueDistanceVector_Current, 0x3AB9898);
+DataPointer(NJS_VECTOR, DrawQueueDistanceVector1, 0x900840);
+DataPointer(NJS_VECTOR, DrawQueueDistanceVector2, 0x90084C);
+DataPointer(NJS_VECTOR, DrawQueueDistanceVector3, 0x900858);
+DataPointer(NJS_VECTOR, DrawQueueDistanceVector4, 0x900864);
 DataArray(LandTable*, LandTableArray, 0x97DBE8, 193);
+DataArray(int **, InitializationFunctions, 0x892004, 538);
+FunctionPointer(void, Cutscene_ResetTransition, (), 0x436550);
+FunctionPointer(void, Cutscene_WaitForInput, (int a1), 0x4314D0);
+FunctionPointer(void, DrawModelCallback_QueueModel, (void(__cdecl* function)(NJS_MODEL_SADX*), NJS_MODEL_SADX* data, float depth, QueuedModelFlagsB queueflags), 0x404840);
+FunctionPointer(void, DrawModelCallback_QueueObject, (void(__cdecl* function)(NJS_OBJECT*), NJS_OBJECT* data, float depth, QueuedModelFlagsB queueflags), 0x404840);
+FunctionPointer(void, DrawModelCallback_QueueObjectMaster, (void(__cdecl* function)(ObjectMaster*), ObjectMaster* data, float depth, QueuedModelFlagsB queueflags), 0x404840);
+FunctionPointer(void, DrawModelCallback_QueueInt, (void(__cdecl* function)(int), int data, float depth, QueuedModelFlagsB queueflags), 0x404840);
+FunctionPointer(void, DrawModelCallback_QueueOceanData, (void(__cdecl* function)(OceanData*), OceanData* data, float depth, QueuedModelFlagsB queueflags), 0x404840);
+FunctionPointer(void, DrawModelCallback_QueueFloat, (void(__cdecl* function)(float), float data, float depth, QueuedModelFlagsB queueflags), 0x404840);
+FunctionPointer(void, ProcessModel_407BB0, (NJS_MODEL_SADX *model, QueuedModelFlagsB blend, float radius_scale), 0x4094D0);
+FunctionPointer(void, ProcessModelNode_TryReallyHard_2, (NJS_OBJECT* a1), 0x40A280);
+FunctionPointer(void, ProcessModelNode_Try, (NJS_OBJECT* a1, int a2, float a3), 0x40A1E0);
+FunctionPointer(void, ProcessModel_NoSorting, (NJS_MODEL_SADX* model, float scale), 0x407A00);
+FunctionPointer(void, njAction_ReallyHard, (NJS_ACTION* a1, float frameNumber), 0x409FB0);
+FunctionPointer(void, njAction_Queue_407CF0_2, (NJS_ACTION *a1, float a2, int a3), 0x408380);
+FunctionPointer(void, DrawModel_Queue_407BB0, (NJS_MODEL_SADX *a1, QueuedModelFlagsB a2), 0x407BB0);
+FunctionPointer(void, DrawModel_Queue_407FC0, (NJS_MODEL_SADX* a1, int blend), 0x407FC0);
+FunctionPointer(void, DrawModel_Queue_407FC0_WithScale, (NJS_MODEL_SADX *model, QueuedModelFlagsB blend, float scale), 0x409E70);
+FunctionPointer(void, DrawModel_Queue_407CF0, (NJS_MODEL_SADX* a1, int blend), 0x407FC0);
+FunctionPointer(void, njAction_Queue_DrawModelQueue, (NJS_ACTION* a1, float a2, int a3, float a4), 0x405490);
+FunctionPointer(void, njAction_DontQueue, (NJS_ACTION *a1, float frame, float scale), 0x405450);
+FunctionPointer(void, njAction_Queue_407BB0, (NJS_ACTION *anim, float a2, int a3), 0x408350);
+FunctionPointer(void, njAction_Queue_407BB0_2, (NJS_ACTION *a1, float a2, int a3, float a4), 0x408350);
+FunctionPointer(void, DrawModel_TryReallyHard, (NJS_MODEL_SADX* a1), 0x409EF0);
 
-typedef enum
-{
-	SETFixes_Off	= 0,
-	SETFixes_Normal	= 1,
-	SETFixes_Extra	= 2,
-} SETFixes_e;
-
-extern SETFixes_e EnableSETFixes;
 extern HelperFunctions HelperFunctionsGlobal;
+extern bool ModelsLoaded_General;
+extern bool ModelsLoaded_Chao;
+extern bool ModelsLoaded_ShareObj;
+extern bool ModelsLoaded_STG00;
+extern bool ModelsLoaded_STG01;
+extern bool ModelsLoaded_STG02;
+extern bool ModelsLoaded_STG03;
+extern bool ModelsLoaded_STG04;
+extern bool ModelsLoaded_STG05;
+extern bool ModelsLoaded_STG06;
+extern bool ModelsLoaded_STG07;
+extern bool ModelsLoaded_STG08;
+extern bool ModelsLoaded_STG09;
+extern bool ModelsLoaded_STG10;
+extern bool ModelsLoaded_STG12;
+extern bool ModelsLoaded_B_CHAOS0;
+extern bool ModelsLoaded_B_CHAOS2;
+extern bool ModelsLoaded_B_CHAOS4;
+extern bool ModelsLoaded_B_CHAOS6;
+extern bool ModelsLoaded_B_CHAOS7;
+extern bool ModelsLoaded_B_EGM1;
+extern bool ModelsLoaded_B_EGM2;
+extern bool ModelsLoaded_B_EGM3;
+extern bool ModelsLoaded_B_ROBO;
+extern bool ModelsLoaded_B_E101;
+extern bool ModelsLoaded_B_E101R;
+extern bool ModelsLoaded_ADV00;
+extern bool ModelsLoaded_ADV0100;
+extern bool ModelsLoaded_ADV0130;
+extern bool ModelsLoaded_ADV02;
+extern bool ModelsLoaded_ADV03;
+extern bool ModelsLoaded_SHOOTING;
+extern bool ModelsLoaded_MINICART;
+extern bool ModelsLoaded_SBOARD;
 
+extern bool IsCameraUnderwater;
 extern int SADXWaveAnimation;
 extern int CutsceneSkipMode;
+extern int Use1999SetFiles;
 extern bool EnableSpeedFixes;
 extern bool DLLLoaded_DLCs;
 extern bool DLLLoaded_SA1Chars;
 extern bool DLLLoaded_Lantern;
 extern bool DLLLoaded_HDGUI;
 extern bool DLLLoaded_SADXFE;
+
+extern bool EnableCutsceneFix;
+extern int CutsceneSkipMode;
+extern int CutsceneFrameCounter;
+extern std::string EnableImpressFont;
+extern bool ColorizeFont;
+extern bool DisableFontSmoothing;
+extern bool EnableLSDFix;
+extern bool FPSLock;
+extern bool EnableDCRipple;
 extern bool EnableDCBranding;
 extern bool EnableEmeraldCoast;
 extern bool IamStupidAndIWantFuckedUpOcean;
@@ -61,6 +128,7 @@ extern bool EnableMysticRuins;
 extern bool EnableEggCarrier;
 extern bool EnablePast;
 extern bool DisableAllVideoStuff;
+extern bool EnableWhiteDiffuse;
 extern bool SADXWater_EmeraldCoast;
 extern bool SADXWater_StationSquare;
 extern bool SADXWater_MysticRuins;
@@ -84,51 +152,24 @@ extern bool EnableSSGarden;
 extern bool EnableMRGarden;
 extern bool EnableECGarden;
 extern bool ReplaceEggs;
+extern bool EnableLobby;
 extern int ReplaceFruits;
 extern NJS_TEXLIST texlist_sadxwtr_beach;
 extern NJS_TEXLIST texlist_sadxwtr_sewers;
 extern NJS_TEXLIST texlist_sadxwtr_waves;
 extern SecondaryEntrance BK_SSGardenStartPoint;
 extern std::string ModPath;
-
-extern LandTable **___LANDTABLEBOSSCHAOS0;
-extern NJS_ACTION **___BOSSCHAOS0_ACTIONS;
-extern NJS_OBJECT **___BOSSCHAOS0_OBJECTS;
-extern NJS_TEXLIST **___BOSSCHAOS0_TEXLISTS;
-extern NJS_TEXLIST **___ADV00_TEXLISTS;
-extern LandTable **___LANDTABLESS;
-extern NJS_OBJECT **___MILES_OBJECTS;
-extern NJS_TEXLIST **___ADV01_TEXLISTS;
-extern NJS_MODEL_SADX **___ADV01_MODELS;
-extern NJS_TEXLIST **___ADV01C_TEXLISTS;
-extern LandTable **___LANDTABLEEC;
-extern LandTable **___LANDTABLEECC;
-extern NJS_OBJECT **___ADV01C_OBJECTS;
-extern NJS_ACTION **___ADV01C_ACTIONS;
-extern NJS_ACTION **___ADV01_ACTIONS;
-extern NJS_OBJECT **___ADV01_OBJECTS;
-extern NJS_OBJECT **___ADV01EC00_OBJECTS;
-extern NJS_MODEL_SADX **___ADV01C_MODELS;
-extern NJS_TEXLIST **___ADV02_TEXLISTS;
-extern NJS_MODEL_SADX **___ADV02_MODELS;
-extern NJS_OBJECT **___ADV02_OBJECTS;
-extern NJS_OBJECT **___ADV02MR02_OBJECTS;
-extern NJS_ACTION **___ADV02_ACTIONS;
-extern LandTable **___LANDTABLEMR;
-extern NJS_TEXLIST **___ADV03_TEXLISTS;
-extern LandTable **___LANDTABLEPAST;
-extern NJS_OBJECT **___ADV03PAST01_OBJECTS;
-extern NJS_OBJECT **___ADV03PAST02_OBJECTS;
-extern NJS_OBJECT **___ADV03_OBJECTS;
+extern int CutsceneFadeValue;
+extern int CutsceneFadeMode;
+extern bool SkipPressed_Cutscene;
 
 #define ReplacePVM(a) HelperFunctionsGlobal.ReplaceFile("system\\" a ".PVM", "system\\" a "_DC.PVM")
 #define ReplacePVR(a) HelperFunctionsGlobal.ReplaceFile("system\\" a ".PVR", "system\\" a "_DC.PVR")
-#define ReplaceGeneric(a,b) HelperFunctionsGlobal.ReplaceFile("system\\" a, "system\\" b)
-#define ReplaceBIN(a,b) HelperFunctionsGlobal.ReplaceFile("system\\" a ".BIN", "system\\" b ".BIN")
-#define ReplaceBIN_DC(a) HelperFunctionsGlobal.ReplaceFile("system\\" a ".BIN", "system\\" a "_DC.BIN")
-#define AddSETFix(a) HelperFunctionsGlobal.ReplaceFile("system\\" a ".BIN", "system\\" a "_S.BIN")
-#define AddSETFix_Extra(a) HelperFunctionsGlobal.ReplaceFile("system\\" a ".BIN", "system\\" a "_E.BIN")
-#define ReplacePVMX_SADXStyleWater(a) HelperFunctionsGlobal.ReplaceFile("system\\" a ".PVM", "system\\" a "W.PVM")
+
+void ReplaceBIN(std::string src);
+void ReplaceSET(std::string src);
+void ReplaceCAM(std::string src);
+void ReplaceGeneric(std::string src, std::string dest);
 
 extern set_shader_flags* set_shader_flags_ptr;
 extern material_register* material_register_ptr;
@@ -139,6 +180,12 @@ extern set_alpha_reject* set_alpha_reject_ptr;
 extern set_blend_factor* set_blend_factor_ptr;
 extern set_diffuse_blend* set_diffuse_blend_ptr;
 extern set_specular_blend* set_specular_blend_ptr;
+
+struct __declspec(align(2)) ObjectThingC
+{
+	NJS_OBJECT *object;
+	void(__cdecl *function)(NJS_OBJECT *);
+};
 
 struct SubtitleThing
 {
@@ -169,8 +216,10 @@ struct SubtitleThing
 
 struct TextureAnimation
 {
+	int level;
+	int act;
 	NJS_MATERIAL* material;
-	char Speed;
+	int Speed;
 	bool NonSequential;
 	int Frame1;
 	int Frame2;
@@ -188,6 +237,19 @@ struct TextureAnimation
 	int Frame14;
 	int Frame15;
 	int Frame16;
+};
+
+struct UVAnimation
+{
+	int level;
+	int act;
+	NJS_TEX* uv_pointer;
+	int uv_count;
+	int timer;
+	int u_speed;
+	int v_speed;
+	int u_shift;
+	int v_shift;
 };
 
 //Level files
@@ -264,7 +326,12 @@ extern LandTableInfo *ADV02_3_Info;
 extern LandTableInfo *ADV03_0_Info;
 extern LandTableInfo *ADV03_1_Info;
 extern LandTableInfo *ADV03_2_Info;
-extern LandTableInfo *MINICART_Info;
+extern LandTableInfo *MINICART_0_Info;
+extern LandTableInfo *MINICART_1_Info;
+extern LandTableInfo *MINICART_2_Info;
+extern LandTableInfo *MINICART_3_Info;
+extern LandTableInfo *MINICART_4_Info;
+extern LandTableInfo *MINICART_5_Info;
 extern LandTableInfo *SBOARD_Info;
 extern LandTableInfo *AL_GARDEN00_Info;
 extern LandTableInfo *AL_GARDEN01_Info;
@@ -272,43 +339,14 @@ extern LandTableInfo *AL_GARDEN02_Info;
 extern LandTableInfo *AL_RACE_0_Info;
 extern LandTableInfo *AL_RACE_1_Info;
 extern TextureAnimation TextureAnimationData[];
+extern TextureAnimation TextureAnimationData_Permanent[];
+extern UVAnimation UVAnimationData[];
+extern UVAnimation UVAnimationData_Permanent[];
 
-//Level load functions
-void LoadLevelFiles_STG01();
-void LoadLevelFiles_STG02();
-void LoadLevelFiles_STG03();
-void LoadLevelFiles_STG04();
-void LoadLevelFiles_STG05();
-void LoadLevelFiles_STG06();
-void LoadLevelFiles_STG07();
-void LoadLevelFiles_STG08();
-void LoadLevelFiles_STG09();
-void LoadLevelFiles_STG10();
-void LoadLevelFiles_STG12();
-void LoadLevelFiles_B_CHAOS0();
-void LoadLevelFiles_B_CHAOS2();
-void LoadLevelFiles_B_CHAOS4();
-void LoadLevelFiles_B_CHAOS6();
-void LoadLevelFiles_B_CHAOS7();
-void LoadLevelFiles_B_EGM1();
-void LoadLevelFiles_B_EGM2();
-void LoadLevelFiles_B_EGM3();
-void LoadLevelFiles_B_ROBO();
-void LoadLevelFiles_B_E101();
-void LoadLevelFiles_B_E101_R();
-void LoadLevelFiles_ADV00();
-void LoadLevelFiles_ADV01();
-void LoadLevelFiles_ADV01C();
-void LoadLevelFiles_ADV02();
-void LoadLevelFiles_ADV03();
-void LoadLevelFiles_MINICART();
-void LoadLevelFiles_SBOARD();
-void LoadLevelFiles_Chao();
-void LoadLevelFiles_AL_RACE();
-//void LoadLevelFiles_GARDEN00();
-//void LoadLevelFiles_GARDEN01();
-//void LoadLevelFiles_GARDEN02();
+extern NJS_TEXLIST texlist_ChaoRace;
+extern NJS_TEXLIST texlist_ChaoRaceEntry;
 
+//Level unload functions
 void CheckAndUnloadLevelFiles();
 void UnloadLevelFiles_STG01();
 void UnloadLevelFiles_STG02();
@@ -340,22 +378,29 @@ void UnloadLevelFiles_ADV03();
 void UnloadLevelFiles_MINICART();
 void UnloadLevelFiles_SBOARD();
 void UnloadLevelFiles_Chao();
-void UnloadLevelFiles_AL_RACE();
+void ReinitializeDLLStuff();
 
-void FixMRBase_Apply(const IniFile *config, const HelperFunctions &helperFunctions);
-void DisableSADXWaterFog();
+//Mod Init and OnFrame functions
 void Branding_Init(const IniFile *config, const HelperFunctions &helperFunctions);
+void Videos_Init(const IniFile* config, const HelperFunctions& helperFunctions);
+void SADXStyleWater_Init(const IniFile* config, const HelperFunctions& helperFunctions);
 void Branding_OnFrame();
 void ADV00_Init();
 void ADV00_OnFrame();
-void ADV01_Init(const IniFile *config, const HelperFunctions &helperFunctions);
+void ADV01_Init();
 void ADV01_OnFrame();
+void ADV01C_Init();
+void ADV01C_OnFrame();
 void ADV02_Init();
 void ADV02_OnFrame();
 void ADV03_Init();
 void ADV03_OnFrame();
-void Bosses_Init();
-void Bosses_OnFrame();
+void Init_Global();
+void EggViper_OnFrame();
+void PerfectChaos_OnFrame();
+void EggHornet_OnFrame();
+void Zero_OnFrame();
+void E101R_OnFrame();
 void Chaos0_Init();
 void Chaos2_Init();
 void Chaos4_Init();
@@ -371,8 +416,10 @@ void EmeraldCoast_Init();
 void EmeraldCoast_OnFrame();
 void WindyValley_Init();
 void WindyValley_OnFrame();
+void ShareObj_Init();
 void TwinklePark_Init();
-void TwinklePark_OnFrame();
+//void TwinklePark_OnFrame();
+//void ShareObj_OnFrame();
 void SpeedHighway_Init();
 void SpeedHighway_OnFrame();
 void RedMountain_Init();
@@ -389,16 +436,18 @@ void FinalEgg_Init();
 void FinalEgg_OnFrame();
 void HotShelter_Init();
 void HotShelter_OnFrame();
-void Subgames_Init();
+void SkyChase_Init();
+void TwinkleCircuit_Init();
+void SandHill_Init();
+void HedgehogHammer_Init();
 //void Subgames_OnFrame();
-void ChaoGardens_Init(const IniFile *config, const HelperFunctions &helperFunctions);
+void ChaoGardens_Init();
 void ChaoGardens_OnFrame();
-void ChaoRace_Init(const IniFile *config, const HelperFunctions &helperFunctions);
+void ChaoRace_Init();
 void ChaoRace_OnFrame();
-void General_Init(const IniFile *config, const HelperFunctions &helperFunctions);
+void General_Init();
 void General_OnFrame();
 void General_OnInput();
-void Videos_Init(const IniFile *config, const HelperFunctions &helperFunctions);
 void Videos_OnFrame();
 void Videos_OnInput();
 void SkyChaseFix_Init();
@@ -406,23 +455,32 @@ void SkyChaseFix_UpdateBounds();
 void Branding_SetUpVariables();
 void SpeedFixes_Init();
 void SpeedFixes_OnFrame();
-void SADXStyleWater_Init(const IniFile *config, const HelperFunctions &helperFunctions);
 void SADXStyleWater_OnFrame();
+void FixFVFShit();
+
+//Other stuff
+void ColorizeRecapText(int a1, int a2, float a3, float a4, float a5, float a6, float a7, float a8);
+void DisplayVideoFadeout(int fadeout, int mode);
 void __cdecl EmeraldCoast_OceanDraw_SADXStyle(OceanData *o);
 void __cdecl MysticRuins_OceanDraw_SADXStyle(OceanData *o);
 void __cdecl EggCarrier_OceanDraw_SADXStyle(OceanData *o);
 void __cdecl Past_OceanDraw_SADXStyle(OceanData *o);
+void LoadBossECOceanPVM(const char *filename, NJS_TEXLIST *texlist);
+void LoadBossECOceanTexlist();
+void RenderChaoTransporterEffect_Fix(NJS_MODEL_SADX *a1, float scale);
+void DrawEventHelicopter(NJS_ACTION *a1, float a2, int a3);
+void ResizeE101RTexlist();
 
-bool ForceWhiteDiffuse1(NJS_MATERIAL* material, uint32_t flags);
-bool ForceWhiteDiffuse3(NJS_MATERIAL* material, uint32_t flags);
+//Lighting functions
+bool ForceWhiteDiffuse(NJS_MATERIAL* material, uint32_t flags);
 bool ForceWhiteDiffuse3_Night(NJS_MATERIAL* material, uint32_t flags);
 bool ForceWhiteDiffuse3Specular1(NJS_MATERIAL* material, uint32_t flags);
+bool ForceWhiteDiffuse1Specular3(NJS_MATERIAL* material, uint32_t flags);
 bool ChaosPuddleFunc(NJS_MATERIAL* material, uint32_t flags);
 bool Chaos2Function(NJS_MATERIAL* material, uint32_t flags);
 bool Chaos4NPCFunction(NJS_MATERIAL* material, uint32_t flags);
 void RemoveMaterialColors(NJS_MATERIAL* material);
 bool DisableAlphaRejection(NJS_MATERIAL* material, uint32_t flags);
-
 bool ForceDiffuse0Specular0(NJS_MATERIAL* material, uint32_t flags);
 bool ForceDiffuse0Specular1(NJS_MATERIAL* material, uint32_t flags);
 bool ForceDiffuse0Specular0or1(NJS_MATERIAL* material, uint32_t flags);
@@ -430,11 +488,36 @@ bool ForceDiffuse2Specular2(NJS_MATERIAL* material, uint32_t flags);
 bool ForceDiffuse2Specular3(NJS_MATERIAL* material, uint32_t flags);
 bool ForceDiffuse4Specular5(NJS_MATERIAL* material, uint32_t flags);
 
-void DisplayVideoFadeout(int fadeout, int mode);
-
-bool ParseCustomMaterialFlags(NJS_MATERIAL* material, uint32_t flags);
-void CheckLandtableMaterials_register(LandTable *landtable);
-void CheckLandtableMaterials_unregister(LandTable *landtable);
+//Generic functions
 void AnimateTexture(TextureAnimation *texanim);
+void AnimateUVs(UVAnimation *animation);
 void ClearTextureAnimationData();
-void AddTextureAnimation(NJS_MATERIAL* material, bool nonsequential, int speed, int frame1, int frame2, int frame3, int frame4, int frame5, int frame6, int frame7, int frame8, int frame9, int frame10, int frame11, int frame12, int frame13, int frame14, int frame15, int frame16);
+void AddTextureAnimation(int level, int act, NJS_MATERIAL* material, bool nonsequential, int speed, int frame1, int frame2, int frame3, int frame4, int frame5, int frame6, int frame7, int frame8, int frame9, int frame10, int frame11, int frame12, int frame13, int frame14, int frame15, int frame16);
+void AddTextureAnimation_Permanent(int level, int act, NJS_MATERIAL* material, bool nonsequential, int speed, int frame1, int frame2, int frame3, int frame4, int frame5, int frame6, int frame7, int frame8, int frame9, int frame10, int frame11, int frame12, int frame13, int frame14, int frame15, int frame16);
+void AddUVAnimation(int level, int act, NJS_TEX* uv, int uv_count, int timer, int u_speed, int v_speed);
+void AddUVAnimation_Permanent(int level, int act, NJS_TEX* uv, int uv_count, int timer, int u_speed, int v_speed);
+void RemoveVertexColors_Object(NJS_OBJECT *obj);
+void RemoveVertexColors_Model(NJS_MODEL_SADX *model);
+NJS_OBJECT* LoadModel(const char *ModelName, bool sort);
+void RemoveMaterialColors_Landtable(LandTable *landtable);
+void SortModel(NJS_OBJECT *model);
+void LoadModel_ReplaceMeshes(NJS_OBJECT *object, const char *ModelName);
+void AddAlphaRejectMaterial(NJS_MATERIAL *material);
+void AddWhiteDiffuseMaterial(NJS_MATERIAL *material);
+void AddWhiteDiffuseMaterial_Specular3(NJS_MATERIAL *material);
+void AddWhiteDiffuseNightMaterial(NJS_MATERIAL* material);
+void RemoveAlphaRejectMaterial(NJS_MATERIAL *material);
+void RemoveWhiteDiffuseMaterial(NJS_MATERIAL *material);
+void RemoveWhiteDiffuseMaterial_Specular3(NJS_MATERIAL *material);
+void RemoveWhiteDiffuseNightMaterial(NJS_MATERIAL* material);
+void AddBossMaterial(NJS_MATERIAL *material);
+void ForceLevelSpecular_Object(NJS_OBJECT *obj, bool recursive);
+void ForceObjectSpecular_Object(NJS_OBJECT *obj, bool recursive);
+void AddBossMaterials_Object(NJS_OBJECT *obj);
+void SwapMeshsets(NJS_OBJECT* object, int mesh1, int mesh2);
+void HideMesh_Object(NJS_OBJECT *object, int meshID);
+void HideMesh_Model(NJS_MODEL_SADX *model, int meshID);
+void ForceLightType_Object(NJS_OBJECT* obj, int light_type, bool unregister);
+void HideEntireObject(NJS_OBJECT* a1);
+void RemoveTransparency_Object(NJS_OBJECT* obj, bool recursive);
+void HideAllButOneMesh(NJS_OBJECT *obj, int meshID);
