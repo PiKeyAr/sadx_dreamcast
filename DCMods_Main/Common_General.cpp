@@ -368,6 +368,7 @@ void SonicDashTrailFix(NJS_OBJECT *a1, QueuedModelFlagsB a2)
 {
 	DrawQueueDepthBias = 2500.0f;
 	if (EnableWindyValley && CurrentLevel == LevelIDs_WindyValley && CurrentAct == 2) DrawQueueDepthBias = 3500.0f;
+	if (EnableChaos4 && CurrentLevel == LevelIDs_Chaos4) DrawQueueDepthBias = 4500.0f;
 	a1->basicdxmodel->mats->attr_texId = rand() % 2;
 	ProcessModelNode(a1, (QueuedModelFlagsB)0, 1.0f);
 	a1->basicdxmodel->mats->attr_texId = 0;
@@ -378,6 +379,7 @@ void SonicDashTrailFix2(NJS_OBJECT *a1, QueuedModelFlagsB a2)
 {
 	DrawQueueDepthBias = 2500.0f;
 	if (EnableWindyValley && CurrentLevel == LevelIDs_WindyValley && CurrentAct == 2) DrawQueueDepthBias = 3500.0f;
+	if (EnableChaos4 && CurrentLevel == LevelIDs_Chaos4) DrawQueueDepthBias = 4500.0f;
 	ProcessModelNode_A_WrapperB(a1, a2);
 	DrawQueueDepthBias = 0.0f;
 }
@@ -404,6 +406,7 @@ void __cdecl Knuckles_MaximumHeat_DrawX(NJS_VECTOR *position, float alpha)
 		}
 		njSetTexture(&KNU_EFF_TEXLIST);
 		DrawQueueDepthBias = 2000.0f;
+		if (EnableChaos4 && CurrentLevel == LevelIDs_Chaos4) DrawQueueDepthBias = 4500.0f;
 		ProcessModelNode_A_WrapperB(KNUCKLES_OBJECTS[47], QueuedModelFlagsB_SomeTextureThing);
 		DrawQueueDepthBias = 0.0f;
 		njPopMatrix(1u);
@@ -1214,7 +1217,6 @@ void CharacterShadowHook(NJS_OBJECT *a1, float a2)
 		if (CurrentCharacter == Characters_Knuckles && CharObj2Ptrs[0]->AnimationThing.Index >= 41 && CharObj2Ptrs[0]->AnimationThing.Index <= 44) DrawQueueDepthBias = -21000.0f;
 		else DrawQueueDepthBias = 1000.0f;
 	}
-	else if (EnableFinalEgg && CurrentLevel == LevelIDs_FinalEgg) DrawQueueDepthBias = 3000.0f;
 	else DrawQueueDepthBias = -27952.0f;
 	if (MissedFrames || VerifyTexList(CurrentTexList))
 	{
@@ -1460,7 +1462,7 @@ void CutsceneFadeHookForSubtitleText(NJS_ARGB *a1)
 
 void DrawBombExplosionHook(NJS_MODEL_SADX *model, QueuedModelFlagsB blend)
 {
-	DrawQueueDepthBias = 2000.0f;
+	if (!EV_MainThread_ptr && CurrentLevel != LevelIDs_EggViper) DrawQueueDepthBias = 2000.0f;
 	DrawVisibleModel_Queue(model, blend);
 	DrawQueueDepthBias = 0.0f;
 }
