@@ -1481,6 +1481,18 @@ void CharBubbleHook(NJS_SPRITE *a1, Int n, NJD_SPRITE attr)
 	DrawQueueDepthBias = 0.0f;
 }
 
+void DrawHedgehogHammerScoreboardHook(NJS_POINT3COL *a1, int texnum, NJD_DRAW n, QueuedModelFlagsB a4)
+{
+	if (EV_MainThread_ptr) DrawTriFanThing_Queue(a1, texnum, n, a4);
+	else DrawTriFanThing_Queue(a1, texnum, n, QueuedModelFlagsB_3);
+}
+
+void DrawHedgehogHammerTextHook(NJS_SPRITE *sp, Int n, NJD_SPRITE attr)
+{
+	if (EV_MainThread_ptr) njDrawSprite3D_ADV01C_C(sp, n, attr);
+	else njDrawSprite3D_Queue(sp, n, attr, QueuedModelFlagsB_3);
+}
+
 void General_Init()
 {
 	if (!ModelsLoaded_General)
@@ -1616,6 +1628,10 @@ void General_Init()
 		RemoveVertexColors_Object((NJS_OBJECT*)0x97388C); //Cop speeder
 		RemoveVertexColors_Object((NJS_OBJECT*)0x970D8C); //Spinner
 		WriteCall((void*)0x4A07D9, CharBubbleHook); //Draw bubbles behind water
+		//Hedgehog Hammer fixes
+		WriteCall((void*)0x5279E2, DrawHedgehogHammerTextHook);
+		WriteCall((void*)0x527C53, DrawHedgehogHammerScoreboardHook); //Adventure Field version
+		WriteCall((void*)0x625713, DrawHedgehogHammerScoreboardHook); //Minigame version
 		//Stupid hacks for Windy Valley 3 and other stages
 		WriteCall((void*)0x49EE10, DrawRingShadowHook);
 		WriteCall((void*)0x49EFAE, DrawScalableShadowHook);
