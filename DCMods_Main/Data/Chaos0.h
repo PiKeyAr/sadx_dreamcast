@@ -11195,7 +11195,7 @@ COL collist_00005280[] = {
 	{ { 270, 20.5f, 190 }, 43.2695f, 0, 0, &object_00014EBC, 0, 0x80000000 }, //door thing
 	{ { 270, 28.5f, 189.9f }, 38.55191f, 0, 0, &object_0001512C, 0, 0x80040000 }, //door glass
 	{ { 270, 20.5f, 190 }, 43.2695f, 0, 0, &object_00014EBC_2, 0, 0x82000000 }, //door thing transparent
-	{ { 270, 0.01f, 442 }, 59.36329f, 0, 0, &object_000071B4, 0, 0x80040000 }, //black transparent thing 1
+	{ { 270, 0.01f, 442 }, 59.36329f, 0, 0, &object_000071B4, 0, 0x80002000 }, //black transparent thing 1
 	{ { 270, -200, 340 }, 848.5281f, 0, 0, &object_0001CB54, 0, 0x80000001 }, //big transparent thing
 };
 
