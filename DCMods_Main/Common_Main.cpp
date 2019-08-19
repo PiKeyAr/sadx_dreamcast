@@ -122,6 +122,40 @@ bool ModelsLoaded_SHOOTING = false;
 bool ModelsLoaded_MINICART = false;
 bool ModelsLoaded_SBOARD = false;
 
+DataPointer(char, nullsub_ADV00, 0x4231E6);
+DataPointer(char, nullsub_ADV01, 0x4232C9);
+DataPointer(char, nullsub_ADV01C, 0x4233BB);
+DataPointer(char, nullsub_ADV02, 0x4234AD);
+DataPointer(char, nullsub_ADV03, 0x423554);
+DataPointer(char, nullsub_STG00, 0x422B2A);
+DataPointer(char, nullsub_STG01, 0x422B68);
+DataPointer(char, nullsub_STG02, 0x422BD3);
+DataPointer(char, nullsub_STG03, 0x422C3E);
+DataPointer(char, nullsub_STG04, 0x422CA9);
+DataPointer(char, nullsub_STG05, 0x422D14);
+DataPointer(char, nullsub_STG06, 0x422D84);
+DataPointer(char, nullsub_STG07, 0x422DEF);
+DataPointer(char, nullsub_STG08, 0x422E5A);
+DataPointer(char, nullsub_STG09, 0x422EE8);
+DataPointer(char, nullsub_STG10, 0x422F71);
+DataPointer(char, nullsub_STG12, 0x422FFF);
+DataPointer(char, nullsub_B_CHAOS0, 0x423088);
+DataPointer(char, nullsub_B_CHAOS2, 0x4230B7);
+DataPointer(char, nullsub_B_CHAOS4, 0x4230CD);
+DataPointer(char, nullsub_B_CHAOS6, 0x4230E3);
+DataPointer(char, nullsub_B_CHAOS7, 0x423108);
+DataPointer(char, nullsub_B_EGM1, 0x423146);
+DataPointer(char, nullsub_B_EGM2, 0x42315F);
+DataPointer(char, nullsub_B_EGM3, 0x423178);
+DataPointer(char, nullsub_B_ROBO, 0x423196);
+DataPointer(char, nullsub_B_E101, 0x4231AF);
+DataPointer(char, nullsub_B_E101R, 0x4231CD);
+DataPointer(char, nullsub_SHOOTING1, 0x4236B1);
+DataPointer(char, nullsub_SHOOTING2, 0x4236E0);
+DataPointer(char, nullsub_SBOARD, 0x42370F);
+DataPointer(char, nullsub_MINICART, 0x4235EC);
+DataPointer(char, nullsub_Chao, 0x423795);
+
 set_shader_flags* set_shader_flags_ptr;
 material_register* material_register_ptr;
 material_unregister* material_unregister_ptr;
@@ -178,6 +212,7 @@ bool EnableEggViper = true;
 bool EnableE101 = true;
 bool EnableZeroE101R = true;
 
+bool EnableHedgehogHammer = true;
 bool EnableTwinkleCircuit = true;
 bool EnableSandHill = true;
 bool EnableSkyChaseFixes = true;
@@ -372,6 +407,7 @@ extern "C"
 		EnableEggViper = config->getBool("Bosses", "EnableEggViper", true);
 		EnableE101 = config->getBool("Bosses", "EnableE101", true);
 		EnableZeroE101R = config->getBool("Bosses", "EnableZeroE101R", true);
+		EnableHedgehogHammer = config->getBool("Miscellaneous", "EnableHedgehogHammer", true);
 		EnableTwinkleCircuit = config->getBool("Miscellaneous", "EnableTwinkleCircuit", true);
 		EnableSandHill = config->getBool("Miscellaneous", "EnableSandHill", true);
 		CowgirlOn = config->getBool("Miscellaneous", "EnableCasinopolisCowgirl", true);
@@ -440,121 +476,124 @@ extern "C"
 		Init_Global(); //General stuff that runs at mod startup, some level-specific stuff there too
 		SADXStyleWater_Init(config, helperFunctions);
 		if (EnableDCBranding) Branding_Init(config, helperFunctions);
-		WriteCall((void*)0x422B2A, HedgehogHammer_Init);
-		if (EnableStationSquare)
+		if (EnableStationSquare && nullsub_ADV00 != 0x90u)
 		{
 			WriteCall((void*)0x4231E6, ADV00_Init);
 		}
 		if (EnableEggCarrier)
 		{
-			WriteCall((void*)0x4232C9, ADV01_Init);
-			WriteCall((void*)0x4233BB, ADV01C_Init);
+			if (nullsub_ADV01 != 0x90u) WriteCall((void*)0x4232C9, ADV01_Init);
+			if (nullsub_ADV01C != 0x90u) WriteCall((void*)0x4233BB, ADV01C_Init);
 		}
-		if (EnableMysticRuins)
+		if (EnableMysticRuins && nullsub_ADV02 != 0x90u)
 		{
 			WriteCall((void*)0x4234AD, ADV02_Init);
 		}
-		if (EnablePast)
+		if (EnablePast && nullsub_ADV03 != 0x90u)
 		{
 			WriteCall((void*)0x423554, ADV03_Init);
 		}
-		if (EnableEmeraldCoast)
+		if (EnableEmeraldCoast && nullsub_STG01 != 0x90u)
 		{
 			WriteCall((void*)0x422B68, EmeraldCoast_Init);
 		}
-		if (EnableWindyValley)
+		if (EnableWindyValley && nullsub_STG02 != 0x90u)
 		{
 			WriteCall((void*)0x422BD3, WindyValley_Init);
 		}
-		if (EnableTwinklePark)
+		if (EnableTwinklePark && nullsub_STG03 != 0x90u)
 		{
 			WriteCall((void*)0x422C3E, TwinklePark_Init);
 		}
-		if (EnableSpeedHighway)
+		if (EnableSpeedHighway && nullsub_STG04 != 0x90u)
 		{
 			WriteCall((void*)0x422CA9, SpeedHighway_Init);
 		}
-		if (EnableRedMountain)
+		if (EnableRedMountain && nullsub_STG05 != 0x90u)
 		{
 			WriteCall((void*)0x422D14, RedMountain_Init);
 		}
-		if (EnableSkyDeck)
+		if (EnableSkyDeck && nullsub_STG06 != 0x90u)
 		{
 			WriteCall((void*)0x422D84, SkyDeck_Init);
 		}
-		if (EnableLostWorld)
+		if (EnableLostWorld && nullsub_STG07 != 0x90u)
 		{
 			WriteCall((void*)0x422DEF, LostWorld_Init);
 		}
-		if (EnableIceCap)
+		if (EnableIceCap && nullsub_STG08 != 0x90u)
 		{
 			WriteCall((void*)0x422E5A, IceCap_Init);
 		}
-		if (EnableCasinopolis)
+		if (EnableCasinopolis && nullsub_STG09 != 0x90u)
 		{
 			WriteCall((void*)0x422EE8, Casinopolis_Init);
 		}
-		if (EnableFinalEgg)
+		if (EnableFinalEgg && nullsub_STG10 != 0x90u)
 		{
 			WriteCall((void*)0x422F71, FinalEgg_Init);
 		}
-		if (EnableHotShelter)
+		if (EnableHotShelter && nullsub_STG12 != 0x90u)
 		{
 			WriteCall((void*)0x422FFF, HotShelter_Init);
 		}
-		if (EnableChaos0)
+		if (EnableChaos0 && nullsub_B_CHAOS0 != 0x90u)
 		{
 			WriteCall((void*)0x423088, Chaos0_Init);
 		}
-		if (EnableChaos2)
+		if (EnableChaos2 && nullsub_B_CHAOS2 != 0x90u)
 		{
 			WriteCall((void*)0x4230B7, Chaos2_Init);
 		}
-		if (EnableChaos4)
+		if (EnableChaos4 && nullsub_B_CHAOS4 != 0x90u)
 		{
 			WriteCall((void*)0x4230CD, Chaos4_Init);
 		}
-		if (EnableChaos6)
+		if (EnableChaos6 && nullsub_B_CHAOS6 != 0x90u)
 		{
 			WriteCall((void*)0x4230E3, Chaos6_Init);
 		}
-		if (EnablePerfectChaos)
+		if (EnablePerfectChaos && nullsub_B_CHAOS7 != 0x90u)
 		{
 			WriteCall((void*)0x423108, PerfectChaos_Init);
 		}
-		if (EnableEggHornet)
+		if (EnableEggHornet && nullsub_B_EGM1 != 0x90u)
 		{
 			WriteCall((void*)0x423146, EggHornet_Init);
 		}
-		if (EnableEggWalker)
+		if (EnableEggWalker && nullsub_B_EGM2 != 0x90u)
 		{
 			WriteCall((void*)0x42315F, EggWalker_Init);
 		}
-		if (EnableEggViper)
+		if (EnableEggViper && nullsub_B_EGM3 != 0x90u)
 		{
 			WriteCall((void*)0x423178, EggViper_Init);
 		}
-		if (EnableE101)
+		if (EnableE101 && nullsub_B_E101 != 0x90u)
 		{
 			WriteCall((void*)0x4231AF, E101_Init);
 		}
 		if (EnableZeroE101R)
 		{
-			WriteCall((void*)0x423196, Zero_Init);
-			WriteCall((void*)0x4231CD, E101R_Init);
+			if (nullsub_B_ROBO != 0x90u) WriteCall((void*)0x423196, Zero_Init);
+			if (nullsub_B_E101R != 0x90u) WriteCall((void*)0x4231CD, E101R_Init);
 		}
 		SkyChaseFix_Init();
-		WriteCall((void*)0x4236B1, SkyChase_Init);
-		WriteCall((void*)0x4236E0, SkyChase_Init);
-		if (EnableTwinkleCircuit)
+		if (nullsub_SHOOTING1 != 0x90u) WriteCall((void*)0x4236B1, SkyChase_Init);
+		if (nullsub_SHOOTING2 != 0x90u) WriteCall((void*)0x4236E0, SkyChase_Init);
+		if (EnableHedgehogHammer && nullsub_STG00 != 0x90u)
+		{
+			WriteCall((void*)0x422B2A, HedgehogHammer_Init);
+		}
+		if (EnableTwinkleCircuit && nullsub_MINICART != 0x90u)
 		{
 			WriteCall((void*)0x4235EC, TwinkleCircuit_Init);
 		}
-		if (EnableSandHill)
+		if (EnableSandHill && nullsub_SBOARD != 0x90u)
 		{
 			WriteCall((void*)0x42370F, SandHill_Init);
 		}
-		WriteCall((void*)0x423795, ChaoGardens_Init);
+		if (nullsub_Chao != 0x90u) WriteCall((void*)0x423795, ChaoGardens_Init);
 		if (!DisableAllVideoStuff) Videos_Init(config, helperFunctions);
 		if (EnableSpeedFixes) SpeedFixes_Init();
 		delete config;
@@ -565,9 +604,11 @@ extern "C"
 		//Display Lantern Engine missing error
 		if (LanternErrorMessageTimer && (IsIngame() || GameMode == GameModes_Menu))
 		{
-			DisplayDebugString(NJM_LOCATION(4, 1), "Failed to detect the Lantern Engine mod.");
-			DisplayDebugString(NJM_LOCATION(4, 2), "Dreamcast levels will have no lighting, and alpha rejection fixes will not be applied.");
-			DisplayDebugString(NJM_LOCATION(4, 3), "Please install and enable SonicFreak94's Lantern Engine mod for correct visuals.");
+			SetDebugFontSize(10.0f * (float)VerticalResolution / 480.0f);
+			DisplayDebugString(NJM_LOCATION(2, 1), "Failed to detect the Lantern Engine mod.");
+			DisplayDebugString(NJM_LOCATION(2, 2), "Dreamcast levels will have no lighting,");
+			DisplayDebugString(NJM_LOCATION(2, 3), "and alpha rejection fixes will not be applied.");
+			DisplayDebugString(NJM_LOCATION(2, 4), "Please install and enable Lantern Engine for correct visuals.");
 			LanternErrorMessageTimer--;
 		}
 		//Animate materials and UVs

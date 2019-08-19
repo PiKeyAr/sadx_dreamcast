@@ -144,6 +144,7 @@ extern bool EnableEggWalker;
 extern bool EnableEggViper;
 extern bool EnableE101;
 extern bool EnableZeroE101R;
+extern bool EnableHedgehogHammer;
 extern bool EnableTwinkleCircuit;
 extern bool EnableSandHill;
 extern bool EnableSkyChaseFixes;
