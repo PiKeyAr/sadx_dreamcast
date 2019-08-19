@@ -52,6 +52,7 @@ FunctionPointer(void, njAction_DontQueue, (NJS_ACTION *a1, float frame, float sc
 FunctionPointer(void, njAction_Queue_407BB0, (NJS_ACTION *anim, float a2, int a3), 0x408350);
 FunctionPointer(void, njAction_Queue_407BB0_2, (NJS_ACTION *a1, float a2, int a3, float a4), 0x408350);
 FunctionPointer(void, DrawModel_TryReallyHard, (NJS_MODEL_SADX* a1), 0x409EF0);
+FunctionPointer(void, Bridge_CreateDustParticle, (NJS_VECTOR *a1, NJS_VECTOR *a2, float a3), 0x4B9820);
 
 extern HelperFunctions HelperFunctionsGlobal;
 extern bool ModelsLoaded_General;

@@ -31,7 +31,6 @@ FunctionPointer(void, sub_408530, (NJS_OBJECT *o), 0x408530);
 FunctionPointer(void, sub_408350, (NJS_ACTION *a1, float a2, int a3, float a4), 0x408350);
 FunctionPointer(void, sub_4CACF0, (NJS_VECTOR *a1, float a2), 0x4CACF0);
 FunctionPointer(void, DrawModel_407FC0, (NJS_MODEL_SADX *a1, int blend), 0x407FC0);
-FunctionPointer(void, Bridge_CreateDustParticle, (NJS_VECTOR *a1, NJS_VECTOR *a2, float a3), 0x4B9820);
 static int TornadoMode = 0;
 static float SkyTrans = 1.0f;
 static bool Windy3ColsLoaded = false;
