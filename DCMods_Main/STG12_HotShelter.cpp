@@ -465,18 +465,14 @@ void E105Animation(NJS_OBJECT *a1, NJS_MOTION *a2, float a3, float a4)
 	}
 }
 
-static void OEntotsu_Particle_r(NJS_VECTOR *a1, NJS_VECTOR *a2, float a3);
-static Trampoline OEntotsu_Particle_t(0x4B9820, 0x4B9826, OEntotsu_Particle_r);
-static void __cdecl OEntotsu_Particle_r(NJS_VECTOR *a1, NJS_VECTOR *a2, float a3)
+void OEntotsuParticleFix(NJS_VECTOR *a1, NJS_VECTOR *a2, float a3)
 {
-	auto original = reinterpret_cast<decltype(OEntotsu_Particle_r)*>(OEntotsu_Particle_t.Target());
-	if (EnableHotShelter)
+	if (EnableHotShelter && CurrentLevel == LevelIDs_HotShelter)
 	{
 		ParticleDepthOverride = -2000.0f;
-		original(a1, a2, a3);
+		Bridge_CreateDustParticle(a1, a2, a3);
 		ParticleDepthOverride = 0.0f;
 	}
-	else original(a1, a2, a3);
 }
 
 void PlayMusicHook_ReduceE105Fog(MusicIDs song)
@@ -660,6 +656,8 @@ void HotShelter_Init()
 		HideMesh_Object(OLight3_4->child, 3);
 		HideMesh_Object(OLight3_4->child, 4);
 		WriteCall((void*)0x5A2EF4, RenderOLight3);
+		//OEntotsu particle fix
+		WriteCall((void*)0x5A33C0, OEntotsuParticleFix);
 		//OBridge
 		NJS_OBJECT* OBridge = LoadModel("system\\data\\STG12\\Models\\0012B71C.sa1mdl", false);
 		*(NJS_MODEL_SADX*)0x183C594 = *OBridge->child->sibling->basicdxmodel; //OBridge moving bit
