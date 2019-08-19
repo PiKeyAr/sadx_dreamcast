@@ -422,6 +422,7 @@ extern "C"
 		ReplaceEggs = config->getBool("Chao Gardens", "ReplaceEggs", true);
 		EnableLobby = config->getBool("Chao Gardens", "EnableChaoRaceLobby", true);
 		//Autodemo mods check
+		if (GetModuleHandle(L"AutoDemo_TestLevels") != nullptr) EnableHedgehogHammer = false;
 		if (GetModuleHandle(L"AutoDemo_WindyValley") != nullptr) EnableWindyValley = false;
 		if (GetModuleHandle(L"AutoDemo_SpeedHighway") != nullptr) EnableSpeedHighway = false;
 		if (GetModuleHandle(L"AutoDemo_RedMountain") != nullptr) EnableRedMountain = false;
