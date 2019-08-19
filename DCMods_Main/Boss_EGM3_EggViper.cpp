@@ -64,6 +64,20 @@ void EggViperDust_DisplayFix(ObjectMaster *a1)
 	}
 }
 
+void EggViperExplosionFix(NJS_OBJECT *a1, QueuedModelFlagsB a2, float a3)
+{
+	DrawQueueDepthBias = 8000.0f;
+	ProcessModelNode_A_Wrapper(a1, a2, a3);
+	DrawQueueDepthBias = 0.0f;
+}
+
+void EggViperLastExplosionFix(NJS_OBJECT *a1, QueuedModelFlagsB a2, float a3)
+{
+	DrawQueueDepthBias = 8000.0f;
+	ProcessModelNode_D(a1, a2, a3);
+	DrawQueueDepthBias = 0.0f;
+}
+
 void UnloadLevelFiles_B_EGM3()
 {
 	NJS_MATERIAL *material;
@@ -109,6 +123,11 @@ void EggViper_Init()
 		WriteCall((void*)0x57E297, (void*)0x408300);
 		WriteCall((void*)0x57E35B, (void*)0x408300);
 		WriteCall((void*)0x7B596C, (void*)0x408300);
+		//Explosions sorting fix
+		WriteCall((void*)0x584F46, EggViperExplosionFix);
+		WriteCall((void*)0x584F6C, EggViperExplosionFix);
+		WriteCall((void*)0x57E0C1, EggViperLastExplosionFix);
+		WriteCall((void*)0x57E13C, EggViperLastExplosionFix);
 		EggViperDustTop = LoadModel("system\\data\\B_EGM3\\Models\\0004CD2C.sa1mdl", false); //Dust effect at the bottom of the room
 		AddUVAnimation_Permanent(LevelIDs_EggViper, 0, EggViperDustTop->basicdxmodel->meshsets[0].vertuv, 12, 0, 1, 1);
 		EggViperDustTop->basicdxmodel->mats[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
