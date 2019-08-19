@@ -636,36 +636,36 @@ extern "C"
 			}
 		}
 		if (EnableDCBranding) Branding_OnFrame();
-		if (EnableStationSquare) ADV00_OnFrame();
+		if (EnableStationSquare && nullsub_ADV00 != 0x90u) ADV00_OnFrame();
 		if (EnableEggCarrier)
 		{
-			ADV01_OnFrame();
-			ADV01C_OnFrame();
+			if (nullsub_ADV01 != 0x90u) ADV01_OnFrame();
+			if (nullsub_ADV01C != 0x90u) ADV01C_OnFrame();
 		}
-		if (EnableMysticRuins) ADV02_OnFrame();
-		if (EnablePast) ADV03_OnFrame();
-		if (EnableEggHornet) EggHornet_OnFrame();
-		if (EnableEggViper) EggViper_OnFrame();
+		if (EnableMysticRuins && nullsub_ADV02 != 0x90u) ADV02_OnFrame();
+		if (EnablePast && nullsub_ADV03 != 0x90u) ADV03_OnFrame();
+		if (EnableEggHornet && nullsub_B_EGM1 != 0x90u) EggHornet_OnFrame();
+		if (EnableEggViper && nullsub_B_EGM3 != 0x90u) EggViper_OnFrame();
 		if (EnableZeroE101R)
 		{
-			Zero_OnFrame();
-			E101R_OnFrame();
+			if (nullsub_B_ROBO != 0x90u) Zero_OnFrame();
+			if (nullsub_B_E101R != 0x90u) E101R_OnFrame();
 		}
-		if (EnablePerfectChaos) PerfectChaos_OnFrame();
-		if (EnableEmeraldCoast) EmeraldCoast_OnFrame();
-		if (EnableWindyValley) WindyValley_OnFrame();
-		//if (EnableTwinklePark) TwinklePark_OnFrame();
+		if (EnablePerfectChaos && nullsub_B_CHAOS7 != 0x90u) PerfectChaos_OnFrame();
+		if (EnableEmeraldCoast && nullsub_STG01 != 0x90u) EmeraldCoast_OnFrame();
+		if (EnableWindyValley && nullsub_STG02 != 0x90u) WindyValley_OnFrame();
+		//if (EnableTwinklePark && nullsub_STG03 != 0x90u) TwinklePark_OnFrame();
 		//if (EnableTwinklePark || EnableTwinkleCircuit) ShareObj_OnFrame();
-		if (EnableSpeedHighway) SpeedHighway_OnFrame();
-		if (EnableRedMountain) RedMountain_OnFrame();
-		if (EnableSkyDeck) SkyDeck_OnFrame();
-		if (EnableLostWorld) LostWorld_OnFrame();
-		if (EnableIceCap) IceCap_OnFrame();
-		if (EnableCasinopolis) Casinopolis_OnFrame();
-		if (EnableFinalEgg) FinalEgg_OnFrame();
-		if (EnableHotShelter) HotShelter_OnFrame();
+		if (EnableSpeedHighway && nullsub_STG04 != 0x90u) SpeedHighway_OnFrame();
+		if (EnableRedMountain && nullsub_STG05 != 0x90u) RedMountain_OnFrame();
+		if (EnableSkyDeck && nullsub_STG06 != 0x90u) SkyDeck_OnFrame();
+		if (EnableLostWorld && nullsub_STG07 != 0x90u) LostWorld_OnFrame();
+		if (EnableIceCap && nullsub_STG08 != 0x90u) IceCap_OnFrame();
+		if (EnableCasinopolis && nullsub_STG09 != 0x90u) Casinopolis_OnFrame();
+		if (EnableFinalEgg && nullsub_STG10 != 0x90u) FinalEgg_OnFrame();
+		if (EnableHotShelter && nullsub_STG12 != 0x90u) HotShelter_OnFrame();
 		//Subgames_OnFrame();
-		ChaoGardens_OnFrame();
+		if (nullsub_Chao != 0x90u) ChaoGardens_OnFrame();
 		ChaoRace_OnFrame();
 		General_OnFrame();
 		if (!DisableAllVideoStuff) Videos_OnFrame();
