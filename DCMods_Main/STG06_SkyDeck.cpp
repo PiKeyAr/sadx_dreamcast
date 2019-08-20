@@ -365,7 +365,7 @@ void __cdecl SkyDeckSharedDisplaySubFix(ObjectMaster *a1)
 void DrawDecalHook(NJS_OBJECT *a1)
 {
 	DrawQueueDepthBias = -47952.0f;
-	ProcessModelNode(a1, (QueuedModelFlagsB)0, 1.0f);
+	ProcessModelNode(a1, QueuedModelFlagsB_3, 1.0f);
 	DrawQueueDepthBias = 0.0f;
 }
 

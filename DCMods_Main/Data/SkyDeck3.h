@@ -6234,12 +6234,33 @@ extern "C" __declspec(dllexport) NJS_TEX uv_000B91AC[] = {
 	{ 253, 253 }
 };
 
-extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_000B92EC[] = {
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_000B92EC_C[] = {
 	{ NJD_MESHSET_TRIMESH | 0, 8, poly_000B8E8A, NULL, NULL, NULL, uv_000B911C, NULL },
 	{ NJD_MESHSET_TRIMESH | 1, 20, poly_000B8EE2, NULL, NULL, NULL, uv_000B91AC, NULL },
 	{ NJD_MESHSET_TRIMESH | 2, 3, poly_000B8DA4, NULL, NULL, NULL, uv_000B8FAC, NULL },
 	{ NJD_MESHSET_TRIMESH | 3, 3, poly_000B8DC2, NULL, NULL, NULL, uv_000B8FDC, NULL },
 	{ NJD_MESHSET_TRIMESH | 4, 16, poly_000B8DE0, NULL, NULL, NULL, uv_000B900C, NULL },
+	{ NJD_MESHSET_TRIMESH | 5, 1, poly_000B8E80, NULL, NULL, NULL, uv_000B910C, NULL },
+};
+
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_000B92EC[] = {
+	{ NJD_MESHSET_TRIMESH | 0, 8, poly_000B8E8A, NULL, NULL, NULL, uv_000B911C, NULL },
+	{ NJD_MESHSET_TRIMESH | 1, 20, poly_000B8EE2, NULL, NULL, NULL, uv_000B91AC, NULL },
+};
+
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_000B92EC_2[] = {
+	{ NJD_MESHSET_TRIMESH | 2, 3, poly_000B8DA4, NULL, NULL, NULL, uv_000B8FAC, NULL },
+};
+
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_000B92EC_3[] = {
+	{ NJD_MESHSET_TRIMESH | 3, 3, poly_000B8DC2, NULL, NULL, NULL, uv_000B8FDC, NULL },
+};
+
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_000B92EC_4[] = {
+	{ NJD_MESHSET_TRIMESH | 4, 16, poly_000B8DE0, NULL, NULL, NULL, uv_000B900C, NULL },
+};
+
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_000B92EC_5[] = {
 	{ NJD_MESHSET_TRIMESH | 5, 1, poly_000B8E80, NULL, NULL, NULL, uv_000B910C, NULL },
 };
 
@@ -6445,7 +6466,20 @@ extern "C" __declspec(dllexport) NJS_VECTOR normal_000B9808[] = {
 
 extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_000B9C94 = { vertex_000B937C, normal_000B9808, LengthOfArray<Sint32>(vertex_000B937C), meshlist_000B92EC, matlist_000B8D2C, LengthOfArray<Uint16>(meshlist_000B92EC), LengthOfArray<Uint16>(matlist_000B8D2C), { -280, -109.8532f, 300.015f }, 38.90146f, NULL };
 
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_000B9C94_2 = { vertex_000B937C, normal_000B9808, LengthOfArray<Sint32>(vertex_000B937C), meshlist_000B92EC_2, matlist_000B8D2C, LengthOfArray<Uint16>(meshlist_000B92EC_2), LengthOfArray<Uint16>(matlist_000B8D2C), { -280, -109.8532f, 300.015f }, 38.90146f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_000B9C94_3 = { vertex_000B937C, normal_000B9808, LengthOfArray<Sint32>(vertex_000B937C), meshlist_000B92EC_3, matlist_000B8D2C, LengthOfArray<Uint16>(meshlist_000B92EC_3), LengthOfArray<Uint16>(matlist_000B8D2C), { -280, -109.8532f, 300.015f }, 38.90146f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_000B9C94_4 = { vertex_000B937C, normal_000B9808, LengthOfArray<Sint32>(vertex_000B937C), meshlist_000B92EC_4, matlist_000B8D2C, LengthOfArray<Uint16>(meshlist_000B92EC_4), LengthOfArray<Uint16>(matlist_000B8D2C), { -280, -109.8532f, 300.015f }, 38.90146f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_000B9C94_5 = { vertex_000B937C, normal_000B9808, LengthOfArray<Sint32>(vertex_000B937C), meshlist_000B92EC_5, matlist_000B8D2C, LengthOfArray<Uint16>(meshlist_000B92EC_5), LengthOfArray<Uint16>(matlist_000B8D2C), { -280, -109.8532f, 300.015f }, 38.90146f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_000B9C94_C = { vertex_000B937C, normal_000B9808, LengthOfArray<Sint32>(vertex_000B937C), meshlist_000B92EC_C, matlist_000B8D2C, LengthOfArray<Uint16>(meshlist_000B92EC_C), LengthOfArray<Uint16>(matlist_000B8D2C), { -280, -109.8532f, 300.015f }, 38.90146f, NULL };
+
 extern "C" __declspec(dllexport) NJS_OBJECT object_000B9CBC = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_000B9C94, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
+
+extern "C" __declspec(dllexport) NJS_OBJECT object_000B9CBC_2 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_000B9C94_2, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_000B9CBC_3 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_000B9C94_3, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_000B9CBC_4 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_000B9C94_4, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_000B9CBC_5 = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_000B9C94_5, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_000B9CBC_C = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_000B9C94_C, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
+
 extern "C" __declspec(dllexport) NJS_MATERIAL matlist_000B9CF0[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 60, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
@@ -40337,6 +40371,21 @@ extern "C" __declspec(dllexport) NJS_OBJECT object_000FA294 = { NJD_EVAL_UNIT_SC
 extern "C" __declspec(dllexport) NJS_OBJECT object_000FA2C8 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_000B9C94, -120, 0, -70, 0, 0, 0, 1, 1, 1, NULL, NULL };
 extern "C" __declspec(dllexport) NJS_OBJECT object_000FA2FC = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_000B9C94, -120, 0, -531, 0, 0, 0, 1, 1, 1, NULL, NULL };
 extern "C" __declspec(dllexport) NJS_OBJECT object_000FA330 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_000B9C94, 0, 0, -600, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_000FA2C8_2 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_000B9C94_2, -120, 0, -70, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_000FA2FC_2 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_000B9C94_2, -120, 0, -531, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_000FA330_2 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_000B9C94_2, 0, 0, -600, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_000FA2C8_3 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_000B9C94_3, -120, 0, -70, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_000FA2FC_3 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_000B9C94_3, -120, 0, -531, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_000FA330_3 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_000B9C94_3, 0, 0, -600, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_000FA2C8_4 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_000B9C94_4, -120, 0, -70, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_000FA2FC_4 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_000B9C94_4, -120, 0, -531, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_000FA330_4 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_000B9C94_4, 0, 0, -600, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_000FA2C8_5 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_000B9C94_5, -120, 0, -70, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_000FA2FC_5 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_000B9C94_5, -120, 0, -531, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_000FA330_5 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_000B9C94_5, 0, 0, -600, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_000FA2C8_C = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_000B9C94_C, -120, 0, -70, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_000FA2FC_C = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_000B9C94_C, -120, 0, -531, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_000FA330_C = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_000B9C94_C, 0, 0, -600, 0, 0, 0, 1, 1, 1, NULL, NULL };
 extern "C" __declspec(dllexport) NJS_OBJECT object_000FA364 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_000B9D98, 244.5f, 1.5f, -1.5f, 0, 0, 0, 1, 1, 1, NULL, NULL };
 extern "C" __declspec(dllexport) NJS_OBJECT object_000FA398 = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_000B9D98, 211, 1.5f, -1.5f, 0, 0x8000, 0, 1, 1, 1, NULL, NULL };
 extern "C" __declspec(dllexport) NJS_OBJECT object_000FA3CC = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_000B9D98, 455.5f, 1.5f, -1.5f, 0, 0x8000, 0, 1, 1, 1, NULL, NULL };
@@ -40738,10 +40787,30 @@ extern "C" __declspec(dllexport) COL collist_000210B8[] = {
 	{ { 339.5002f, -70.5f, 372.5f }, 51.65511f, 0, 0, &object_000FA608, 0, 0xA0040001 },
 	{ { 68.5f, -70.5f, -372.5f }, 51.65511f, 0, 0, &object_000B9EC4, 0, 0xA0040001 },
 	{ { 784.75f, 316.25f, 225.625f }, 226.4338f, 0, 0, &object_000FA63C, 0, 0xA0040001 }, //Windows end
-	{ { -400, -109.8532f, 230.015f }, 39.06592f, 0, 0, &object_000FA2C8, 0, 0xC1000101 }, //Weird floor shit
-	{ { -400, -109.8532f, -230.985f }, 39.06592f, 0, 0, &object_000FA2FC, 0, 0xC1000101 },
-	{ { -280, -109.8532f, 300.015f }, 39.06592f, 0, 0, &object_000B9CBC, 0, 0xC1000101 },
-	{ { -280, -109.8532f, -299.985f }, 39.06592f, 0, 0, &object_000FA330, 0, 0xC1000101 },
+	{ { -400, -109.8532f, 230.015f }, 39.06592f, 0, 0, &object_000FA2C8_C, 0, 0x40000101 }, //Weird floor shit collision
+	{ { -400, -109.8532f, -230.985f }, 39.06592f, 0, 0, &object_000FA2FC_C, 0, 0x40000101 },
+	{ { -280, -109.8532f, 300.015f }, 39.06592f, 0, 0, &object_000B9CBC_C, 0, 0x40000101 },
+	{ { -280, -109.8532f, -299.985f }, 39.06592f, 0, 0, &object_000FA330_C, 0, 0x40000101 }, //Weird floor shit collision end
+	{ { -400, -109.8532f, 230.015f }, 39.06592f, 0, 0, &object_000FA2C8_5, 0, 0x80000000 }, //Weird floor shit transparent rocks bottom 1
+	{ { -400, -109.8532f, -230.985f }, 39.06592f, 0, 0, &object_000FA2FC_5, 0, 0x80000000 },
+	{ { -280, -109.8532f, 300.015f }, 39.06592f, 0, 0, &object_000B9CBC_5, 0, 0x80000000 },
+	{ { -280, -109.8532f, -299.985f }, 39.06592f, 0, 0, &object_000FA330_5, 0, 0x80000000 }, //Weird floor shit transparent rocks bottom 1 end
+	{ { -400, -109.8532f, 230.015f }, 39.06592f, 0, 0, &object_000FA2C8_4, 0, 0x80000000 }, //Weird floor shit transparent rocks bottom 2
+	{ { -400, -109.8532f, -230.985f }, 39.06592f, 0, 0, &object_000FA2FC_4, 0, 0x80000000 },
+	{ { -280, -109.8532f, 300.015f }, 39.06592f, 0, 0, &object_000B9CBC_4, 0, 0x80000000 },
+	{ { -280, -109.8532f, -299.985f }, 39.06592f, 0, 0, &object_000FA330_4, 0, 0x80000000 }, //Weird floor shit transparent rocks bottom 2 end
+	{ { -400, -109.8532f, 230.015f }, 39.06592f, 0, 0, &object_000FA2C8_3, 0, 0x80000000 }, //Weird floor shit transparent rocks top 1
+	{ { -400, -109.8532f, -230.985f }, 39.06592f, 0, 0, &object_000FA2FC_3, 0, 0x80000000 },
+	{ { -280, -109.8532f, 300.015f }, 39.06592f, 0, 0, &object_000B9CBC_3, 0, 0x80000000 },
+	{ { -280, -109.8532f, -299.985f }, 39.06592f, 0, 0, &object_000FA330_3, 0, 0x80000000 }, //Weird floor shit transparent rocks top 1 end
+	{ { -400, -109.8532f, 230.015f }, 39.06592f, 0, 0, &object_000FA2C8_2, 0, 0x80000000 }, //Weird floor shit transparent rocks top 2
+	{ { -400, -109.8532f, -230.985f }, 39.06592f, 0, 0, &object_000FA2FC_2, 0, 0x80000000 },
+	{ { -280, -109.8532f, 300.015f }, 39.06592f, 0, 0, &object_000B9CBC_2, 0, 0x80000000 },
+	{ { -280, -109.8532f, -299.985f }, 39.06592f, 0, 0, &object_000FA330_2, 0, 0x80000000 }, //Weird floor shit transparent rocks top 2 end
+	{ { -400, -109.8532f, 230.015f }, 39.06592f, 0, 0, &object_000FA2C8, 0, 0x80000000 }, //Weird floor shit opaque rocks
+	{ { -400, -109.8532f, -230.985f }, 39.06592f, 0, 0, &object_000FA2FC, 0, 0x80000000 },
+	{ { -280, -109.8532f, 300.015f }, 39.06592f, 0, 0, &object_000B9CBC, 0, 0x80000000 },
+	{ { -280, -109.8532f, -299.985f }, 39.06592f, 0, 0, &object_000FA330, 0, 0x80000000 }, //Weird floor shit opaque rocks end
 };
 
 extern "C" __declspec(dllexport) LandTable landtable_00023EB4 = { LengthOfArray<int16_t>(collist_000210B8), 0, 0xC, 2000, collist_000210B8, NULL, "SKYDECK03", &texlist_skydeck3, 0, 0 };
