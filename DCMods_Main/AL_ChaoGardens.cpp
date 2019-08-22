@@ -72,6 +72,8 @@ DataPointer(NJS_CNK_OBJECT, Fruit_Heart, 0x33BC574);
 DataPointer(NJS_CNK_OBJECT, Fruit_Chao, 0x33BCBC4);
 DataPointer(NJS_CNK_OBJECT, SADXHatEyes, 0x35E2BBC);
 DataPointer(NJS_CNK_MODEL, SADXChaoEggTop_Model, 0x3601484);
+DataPointer(HintText_Entry, ChaoGardenMessages_English_OriginalTextEntry, 0x8811D8);
+DataPointer(HintText_Entry*, ChaoGardenMessages_English_OriginalTextEntryPointer, 0x9BF070);
 SecondaryEntrance BK_SSGardenStartPoint;
 static int ecgardenwater = 54;
 static int vmuframe = 0;
@@ -1991,12 +1993,13 @@ void LoadChaoGardenHintMessages()
 	WriteData((HintText_Entry**)0x9BF080, (HintText_Entry*)&ChaoGardenMessages_Japanese);
 	WriteData((HintText_Entry**)0x9BF094, (HintText_Entry*)&ChaoGardenMessages_Japanese);
 	WriteData((HintText_Entry**)0x9BF0A8, (HintText_Entry*)&ChaoGardenMessages_Japanese);
-
-	WriteData((HintText_Entry**)0x9BF070, (HintText_Entry*)&ChaoGardenMessages_English);
-	WriteData((HintText_Entry**)0x9BF084, (HintText_Entry*)&ChaoGardenMessages_English);
-	WriteData((HintText_Entry**)0x9BF098, (HintText_Entry*)&ChaoGardenMessages_English);
-	WriteData((HintText_Entry**)0x9BF0AC, (HintText_Entry*)&ChaoGardenMessages_English);
-
+	if (ChaoGardenMessages_English_OriginalTextEntryPointer == &ChaoGardenMessages_English_OriginalTextEntry) //Check for translation mods
+	{
+		WriteData((HintText_Entry **)0x9BF070, (HintText_Entry*)&ChaoGardenMessages_English);
+		WriteData((HintText_Entry **)0x9BF084, (HintText_Entry*)&ChaoGardenMessages_English);
+		WriteData((HintText_Entry **)0x9BF098, (HintText_Entry*)&ChaoGardenMessages_English);
+		WriteData((HintText_Entry **)0x9BF0AC, (HintText_Entry*)&ChaoGardenMessages_English);
+	}
 	WriteData((HintText_Entry**)0x9BF074, (HintText_Entry*)&ChaoGardenMessages_French);
 	WriteData((HintText_Entry**)0x9BF088, (HintText_Entry*)&ChaoGardenMessages_French);
 	WriteData((HintText_Entry**)0x9BF09C, (HintText_Entry*)&ChaoGardenMessages_French);
