@@ -30,6 +30,9 @@ NJS_OBJECT* _0Light_Camera_Main = nullptr;
 NJS_OBJECT* _0Light_Camera_SmallLight = nullptr;
 NJS_OBJECT* _0Light_Camera_BigLight = nullptr;
 NJS_OBJECT* _0Light_Camera_Camera = nullptr;
+NJS_OBJECT* BlueLight_Camera1 = nullptr;
+NJS_OBJECT* BlueLight_Camera2 = nullptr;
+NJS_OBJECT* BlueLight_Light = nullptr;
 
 int FinalEgg2Cols[] = { -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 };
 
@@ -69,11 +72,45 @@ void DrawOSpinTubeModels(NJS_MODEL_SADX* model, float scale)
 	DrawQueueDepthBias = 0;
 }
 
-void RenderBlueLight(NJS_OBJECT* a1, QueuedModelFlagsB a2, float a3)
+DataPointer(char, dword_1AC4D98, 0x1AC4D98);
+
+void RenderBlueLight(ObjectMaster *a2)
 {
-	DrawQueueDepthBias = 4000.0f;
-	ProcessModelNode_D(a1, QueuedModelFlagsB_SomeTextureThing, a3);
-	DrawQueueDepthBias = 0.0f;
+	EntityData1 *v1; // esi
+	unsigned __int16 v2; // ax
+	unsigned __int16 v3; // si
+
+	v1 = a2->Data1;
+	if (!MissedFrames)
+	{
+		SetTextureToLevelObj();
+		njPushMatrix(0);
+		njTranslateV(0, &v1->Position);
+		ProcessModel_NoSorting(((NJS_OBJECT*)0x1A003F4)->basicdxmodel, 1.0f);
+		v2 = ((Uint16*)&v1->Object)[0];
+		if (v2)
+		{
+			njRotateY(0, v2);
+		}
+		v3 = ((Uint16*)&v1->Object)[1];
+		if (v3)
+		{
+			njRotateX(0, v3);
+		}
+		if (dword_1AC4D98) //I have no idea what this is, but it never changes and it would be terrible if it did
+		{
+			ProcessModelNode_D(BlueLight_Camera1, QueuedModelFlagsB_EnableZWrite, 1.0f);
+			ProcessModelNode_D(BlueLight_Camera2, QueuedModelFlagsB_SomeTextureThing, 1.0f);
+			ProcessModelNode_Try(BlueLight_Light, QueuedModelFlagsB_SomeTextureThing, 1.0f);
+		}
+		else
+		{
+			ProcessModelNode_AB_Wrapper(BlueLight_Camera1, 1.0f);
+			ProcessModelNode_AB_Wrapper(BlueLight_Camera2, 1.0f);
+			ProcessModelNode_AB_Wrapper(BlueLight_Light, 1.0f);
+		}
+		njPopMatrix(1u);
+	}
 }
 
 void DrawOUkishima(NJS_OBJECT* obj, float scale)
@@ -639,6 +676,23 @@ void FinalEgg_Init()
 		_0Light_Camera_BigLight->child->child->sibling->evalflags |= NJD_EVAL_HIDE;
 		AddAlphaRejectMaterial(&_0Light_Camera_BigLight->child->child->sibling->child->basicdxmodel->mats[0]);
 		WriteJump((void*)0x5BBFE0, _0Light_Camera_DisplayFix);
+		//_0BlueLight fixes
+		*(NJS_OBJECT*)0x1A003F4 = *LoadModel("system\\data\\STG10\\Models\\001B01AC.sa1mdl", false); //_0BlueLight pole
+		BlueLight_Light = LoadModel("system\\data\\STG10\\Models\\001B01AC.sa1mdl", false)->child; //_0BlueLight big light
+		BlueLight_Light->evalflags |= NJD_EVAL_HIDE;
+		BlueLight_Camera1 = LoadModel("system\\data\\STG10\\Models\\001B01AC.sa1mdl", false)->child; //_0BlueLight camera
+		BlueLight_Camera1->child->evalflags |= NJD_EVAL_HIDE;
+		HideMesh_Object(BlueLight_Camera1, 6);
+		BlueLight_Camera2 = LoadModel("system\\data\\STG10\\Models\\001B01AC.sa1mdl", false)->child; //_0BlueLight camera blue lens thing
+		BlueLight_Camera2->child->evalflags |= NJD_EVAL_HIDE;
+		HideMesh_Object(BlueLight_Camera2, 0);
+		HideMesh_Object(BlueLight_Camera2, 1);
+		HideMesh_Object(BlueLight_Camera2, 2);
+		HideMesh_Object(BlueLight_Camera2, 3);
+		HideMesh_Object(BlueLight_Camera2, 4);
+		HideMesh_Object(BlueLight_Camera2, 5);
+		AddAlphaRejectMaterial(&BlueLight_Light->child->basicdxmodel->mats[0]); //_0BlueLight
+		WriteJump((void*)0x5BBD10, RenderBlueLight);
 		*(NJS_MODEL_SADX*)0x19FBDAC = *LoadModel("system\\data\\STG10\\Models\\001ABCC8.sa1mdl", false)->basicdxmodel; //OPurs_Camera
 		AddAlphaRejectMaterial(&((NJS_MODEL_SADX*)0x19FBDAC)->mats[0]); //OPurs_Camera
 		WriteCall((void*)0x5B2636, RenderOLight2WithDepth);
@@ -669,10 +723,6 @@ void FinalEgg_Init()
 		((NJS_ACTION*)0x19D8F14)->object = LoadModel("system\\data\\STG10\\Models\\00192AD0.sa1mdl", false); //Laser
 		SwapMeshsets(((NJS_ACTION*)0x19D8F14)->object->child, 0, 1);
 		((NJS_ACTION*)0x19E14C4)->object = LoadModel("system\\data\\STG10\\Models\\001991C0.sa1mdl", false); //OSide_Arm
-		*(NJS_OBJECT*)0x1A003F4 = *LoadModel("system\\data\\STG10\\Models\\001B01AC.sa1mdl", false); //_0BlueLight main
-		*(NJS_OBJECT*)0x19FFC58 = *((NJS_OBJECT*)0x1A003F4)->child; //_0BlueLight light
-		AddAlphaRejectMaterial(&((NJS_OBJECT*)0x1A003F4)->child->child->basicdxmodel->mats[0]); //_0BlueLight
-		WriteCall((void*)0x5BBDA0, RenderBlueLight);
 		*(NJS_OBJECT*)0x1A45620 = *LoadModel("system\\data\\STG10\\Models\\001EDDA8.sa1mdl", false); //OTexture
 		*(NJS_OBJECT*)0x1A29BBC = *LoadModel("system\\data\\STG10\\Models\\001D7CE0.sa1mdl", true); //OUkishima
 		WriteCall((void*)0x5B7AEA, DrawOUkishima); //Good idea not to queue a model with transparency, huh?

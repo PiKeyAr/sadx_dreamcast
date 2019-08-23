@@ -83971,7 +83971,7 @@ extern "C" __declspec(dllexport) COL collist_000E1298[] = {
 	{ { 1732.504f, -3228.227f, -716.4261f }, 102.9587f, 0, 0, &object_001819E4, 0, 0x80000000 }, //blue decoration 1
 	{ { 1532.504f, -3228.227f, -716.4261f }, 102.9587f, 0, 0, &object_00181A18, 0, 0x80000000 }, //blue decoration 2
 	{ { 1932.504f, -3228.227f, -716.4261f }, 102.9587f, 0, 0, &object_00153850, 0, 0x80000000 }, //blue decoration 3
-	{ { 81.14233f, -3222.141f, -840.2419f }, 122.3684f, 0, 0, &object_00133A90, 0, 0xA2000001 }, //The very last platform with transparency
+	{ { 81.14233f, -3222.141f, -840.2419f }, 122.3684f, 0, 0, &object_00133A90, 0, 0xA0040001 }, //The very last platform with transparency
 };
 
 extern "C" __declspec(dllexport) GeoAnimData animlist_000E62C0[] = {
