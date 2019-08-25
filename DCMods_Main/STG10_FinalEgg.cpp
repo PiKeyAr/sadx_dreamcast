@@ -560,7 +560,6 @@ void __cdecl _0Light_Camera_DisplayFix(ObjectMaster *a1)
 		ProcessModelNode_D(_0Light_Camera_SmallLight, QueuedModelFlagsB_SomeTextureThing, 1.0);
 		//Big light
 		ProcessModelNode_Try(_0Light_Camera_BigLight, 4, 1.0);
-		//DrawQueueDepthBias = 0.0f;
 		njPopMatrix(1u);
 	}
 }

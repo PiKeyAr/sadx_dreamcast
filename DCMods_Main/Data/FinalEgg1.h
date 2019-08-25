@@ -52680,7 +52680,7 @@ extern "C" __declspec(dllexport) COL collist_00019DCC[] = {
 	{ { 2279.12f, 335.74f, -213.2853f }, 278.1149f, 0, 0, &object_000530E8_5, 0, 0xA0000001 },
 	{ { 2279.12f, 335.74f, -213.2853f }, 278.1149f, 0, 0, &object_000530E8_6, 0, 0xA0000001 },
 	{ { 2279.12f, 335.74f, -213.2853f }, 278.1149f, 0, 0, &object_000530E8, 0, 0xA0000001 },
-	{ { 1810.001f, 335.5f, -1930.001f }, 280.6964f, 0, 0, &object_00037C74_2, 0, 0xA2000001 }, //Floor in Amy's puzzle room
+	{ { 1810.001f, 335.5f, -1930.001f }, 280.6964f, 0, 0, &object_00037C74_2, 0, 0xA0040001 }, //Floor in Amy's puzzle room
 };
 
 extern "C" __declspec(dllexport) GeoAnimData animlist_0001C868[] = {
