@@ -615,9 +615,9 @@ CreditsEntry SA1Credits[] = {
 
 void GreenRect_Wrapper(float x, float y, float z, float width, float height)
 {
-	njTextureShadingMode(1);
+	if (!AssumeOIT) njTextureShadingMode(1);
 	GreenMenuRect_Draw(x, y, z, width, height);
-	njTextureShadingMode(2);
+	if (!AssumeOIT) njTextureShadingMode(2);
 }
 
 void DelayTransitionHook(int a1)
@@ -679,7 +679,7 @@ void __cdecl DrawAVA_TITLE_BACK_E_DC(float depth)
 	float v15; // ST08_4@1
 	float v16; // ST04_4@1
 	float z; // [sp+1Ch] [bp+4h]@1
-	njTextureShadingMode(1);
+	if (!AssumeOIT) njTextureShadingMode(1);
 	SetVtxColorB(0xFFFFFFFF);
 	njSetTexture(&ava_title_back_e_TEXLIST);
 	z = depth - 4.0f;
@@ -801,7 +801,7 @@ void __cdecl DrawAVA_TITLE_BACK_E_DC(float depth)
 		SetVtxColorB(0xFFFFFFFF);
 		transitionmode = 3;
 	}
-	njTextureShadingMode(2);
+	if (!AssumeOIT) njTextureShadingMode(2);
 	njSetTexture(&ava_title_e_TEXLIST);
 }
 
@@ -879,7 +879,7 @@ void DrawFuckingButton(unsigned int n, float x, float y, float z, float sx, floa
 
 void DrawFileSelectMockup(float depth_orig, bool use_scaling, int VertexColor)
 {
-	njTextureShadingMode(1);
+	if (!AssumeOIT) njTextureShadingMode(1);
 	SetVtxColorA(VertexColor);
 	float xpos;
 	float ypos;
@@ -1052,7 +1052,7 @@ void DrawFileSelectMockup(float depth_orig, bool use_scaling, int VertexColor)
 	scaleX = 1.883f;
 	scaleY = 1.0f;
 	DrawBG(0x4000008, ScreenDeltaX + xpos * BaseScaleX, ScreenDeltaY + ypos * BaseScaleY, depth, scaleX * BaseScaleX, scaleY * BaseScaleY);
-	njTextureShadingMode(2);
+	if (!AssumeOIT) njTextureShadingMode(2);
 }
 
 void DrawTitleScreen()
@@ -1088,7 +1088,7 @@ void DrawTitleScreen()
 	else is640 = false;
 	if (RipplesOn) njSetTexture(&ava_title_cmn_TEXLIST);
 	else njSetTexture(&ava_title_back_e_TEXLIST);
-	njTextureShadingMode(1);
+	if (!AssumeOIT) njTextureShadingMode(1);
 	if (!DroppedFrames)
 	{
 		if (MainMenuAccessed == false || TitleScreenFadedIntoBlack == true) SetVtxColorB(TitleBGTransparency.color); else SetVtxColorB(0xFFFFFFFF);
@@ -1334,7 +1334,7 @@ void DrawTitleScreen()
 			if (DrawOverlay == true) DrawBG(2, xpos, ypos, 1.2f, LogoScaleXT*scaleX, LogoScaleYT*scaleY); //Draw overlay
 		}
 	}
-	njTextureShadingMode(2);
+	if (!AssumeOIT) njTextureShadingMode(2);
 	//Draw black/white box if transitioning
 	if ((transitionmode >= 1 && transitionmode < 3) || transitionmode == -1)
 	{
@@ -1365,7 +1365,7 @@ void DrawPressStart()
 	float sourcepos_y = 364.0f;
 	if (transitionmode < 1)
 	{
-		njTextureShadingMode(1);
+		if (!AssumeOIT) njTextureShadingMode(1);
 		njSetTexture(&ava_gtitle0_e_TEXLIST);
 		if (startdrawn != startframe)
 		{
@@ -1380,15 +1380,15 @@ void DrawPressStart()
 			if (startframe > 128) startframe = 0;
 			startdrawn = startframe;
 		}
-		njTextureShadingMode(2);
+		if (!AssumeOIT) njTextureShadingMode(2);
 	}
 }
 
 void DrawShadow_Hook(int texnum, float x, float y, float z, float scaleX, float scaleY)
 {
-	njTextureShadingMode(1);
+	if (!AssumeOIT) njTextureShadingMode(1);
 	DrawBG(texnum, x, y, z, scaleX, scaleY);
-	njTextureShadingMode(2);
+	if (!AssumeOIT) njTextureShadingMode(2);
 }
 
 void DrawMainMenuShadow_Hook(int texnum, float x, float y, float z, float scaleX, float scaleY)
@@ -1399,16 +1399,16 @@ void DrawMainMenuShadow_Hook(int texnum, float x, float y, float z, float scaleX
 		scaleX = scaleX * 4.0f;
 		scaleY = scaleY * 4.0f;
 	}
-	njTextureShadingMode(1);
+	if (!AssumeOIT) njTextureShadingMode(1);
 	DrawBG(texnum, x, y, z, scaleX, scaleY);
-	njTextureShadingMode(2);
+	if (!AssumeOIT) njTextureShadingMode(2);
 }
 
 void DrawTexture_Hook(int that_cant_be_right, float x, float y, float z)
 {
-	njTextureShadingMode(1);
+	if (!AssumeOIT) njTextureShadingMode(1);
 	DisplayScreenTexture(that_cant_be_right, x, y, z);
-	njTextureShadingMode(2);
+	if (!AssumeOIT) njTextureShadingMode(2);
 }
 
 void DisplayScreenTexture_AlwaysTop(int that_cant_be_right, float x, float y, float z)
@@ -1466,11 +1466,11 @@ void FileIcon_Hook(int that_cant_be_right, float Texture_X, float Texture_Y, flo
 	Arrow1_Y = (Arrow1Center_Y - 64 * Arrow1Scale) - 240.0f + VerticalStretch * 240.0f;
 	Arrow2_X = (Arrow2Center_X - 64 * Arrow2Scale) - 320.0f + HorizontalStretch * 320.0f;
 	Arrow2_Y = (Arrow2Center_Y - 64 * Arrow2Scale) - 240.0f + VerticalStretch * 240.0f;
-	njTextureShadingMode(1);
+	if (!AssumeOIT) njTextureShadingMode(1);
 	DisplayScreenTexture(44, Texture_X, Texture_Y, Texture_Z);
 	DrawBG(45, Arrow1_X, Arrow1_Y, Texture_Z, Arrow1Scale, Arrow1Scale);
 	DrawBG(46, Arrow2_X, Arrow2_Y, Texture_Z, Arrow2Scale, Arrow2Scale);
-	njTextureShadingMode(2);
+	if (!AssumeOIT) njTextureShadingMode(2);
 }
 
 void DrawBG_CreditsLogo(int texnum, float x, float y, float z, float scaleX, float scaleY)
@@ -1666,9 +1666,9 @@ void DrawPauseSelectionBox_DC(int n, NJS_POINT2 *pos, NJS_POINT2 *scale)
 
 void DrawSprite_Hook(NJS_SPRITE *sp, Int n, Float pri, NJD_SPRITE attr, QueuedModelFlagsB queue_flags)
 {
-	njTextureShadingMode(1);
+	if (!AssumeOIT) njTextureShadingMode(1);
 	njDrawSprite2D_Queue(sp, n, pri, attr, queue_flags);
-	njTextureShadingMode(2);
+	if (!AssumeOIT) njTextureShadingMode(2);
 }
 
 void __cdecl BossHUDHack(void *a1)

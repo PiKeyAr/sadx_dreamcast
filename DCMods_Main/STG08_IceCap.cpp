@@ -513,31 +513,33 @@ void IceCap_Init()
 		*(NJS_OBJECT*)0x986F80 = *LoadModel("system\\data\\STG08\\Models\\001BEF20.sa1mdl", false); //ESMan
 		((NJS_OBJECT*)0x986F80)->basicdxmodel->mats[7].attrflags &= ~NJD_FLAG_USE_ALPHA; //Unnecessary alpha causing errors
 		RemoveVertexColors_Object((NJS_OBJECT*)0x9889E4); //ESMan vehicle
-		//Crystal fixes, hopefully someday
-		/*
-		stru_E773D8.basicdxmodel->mats[0].attrflags |= NJD_FLAG_USE_ALPHA;
-		stru_E773D8.basicdxmodel->mats[1].attrflags |= NJD_FLAG_USE_ALPHA;
-		//Crystal 1
-		Crystal1_1 = LoadModel("system\\data\\STG08\\Models\\00184058.sa1mdl", false);
-		HideMesh_Object(Crystal1_1, 1);
-		HideMesh_Object(Crystal1_1, 2);
-		Crystal1_2 = LoadModel("system\\data\\STG08\\Models\\00184058.sa1mdl", false);
-		HideMesh_Object(Crystal1_2, 0);
-		HideMesh_Object(Crystal1_2, 2);
-		Crystal1_3 = LoadModel("system\\data\\STG08\\Models\\00184058.sa1mdl", false);
-		HideMesh_Object(Crystal1_3, 0);
-		HideMesh_Object(Crystal1_3, 1);
-		//Crystal 2
-		Crystal2_1 = LoadModel("system\\data\\STG08\\Models\\00184918.sa1mdl", false);
-		HideMesh_Object(Crystal2_1, 1);
-		HideMesh_Object(Crystal2_1, 2);
-		Crystal2_2 = LoadModel("system\\data\\STG08\\Models\\00184918.sa1mdl", false);
-		HideMesh_Object(Crystal2_2, 0);
-		HideMesh_Object(Crystal2_2, 2);
-		Crystal2_3 = LoadModel("system\\data\\STG08\\Models\\00184918.sa1mdl", false);
-		HideMesh_Object(Crystal2_3, 0);
-		HideMesh_Object(Crystal2_3, 1);
-		WriteJump((void*)0x4EF5A0, Crystal_Display);*/
+		//Crystal fixes for OIT
+		if (AssumeOIT)
+		{
+			stru_E773D8.basicdxmodel->mats[0].attrflags |= NJD_FLAG_USE_ALPHA;
+			stru_E773D8.basicdxmodel->mats[1].attrflags |= NJD_FLAG_USE_ALPHA;
+			//Crystal 1
+			Crystal1_1 = LoadModel("system\\data\\STG08\\Models\\00184058.sa1mdl", false);
+			HideMesh_Object(Crystal1_1, 1);
+			HideMesh_Object(Crystal1_1, 2);
+			Crystal1_2 = LoadModel("system\\data\\STG08\\Models\\00184058.sa1mdl", false);
+			HideMesh_Object(Crystal1_2, 0);
+			HideMesh_Object(Crystal1_2, 2);
+			Crystal1_3 = LoadModel("system\\data\\STG08\\Models\\00184058.sa1mdl", false);
+			HideMesh_Object(Crystal1_3, 0);
+			HideMesh_Object(Crystal1_3, 1);
+			//Crystal 2
+			Crystal2_1 = LoadModel("system\\data\\STG08\\Models\\00184918.sa1mdl", false);
+			HideMesh_Object(Crystal2_1, 1);
+			HideMesh_Object(Crystal2_1, 2);
+			Crystal2_2 = LoadModel("system\\data\\STG08\\Models\\00184918.sa1mdl", false);
+			HideMesh_Object(Crystal2_2, 0);
+			HideMesh_Object(Crystal2_2, 2);
+			Crystal2_3 = LoadModel("system\\data\\STG08\\Models\\00184918.sa1mdl", false);
+			HideMesh_Object(Crystal2_3, 0);
+			HideMesh_Object(Crystal2_3, 1);
+			WriteJump((void*)0x4EF5A0, Crystal_Display);
+		}
 		WriteCall((void*)0x4EFE10, RenderSmallIcicles);
 		//Various effect fixes
 		WriteCall((void*)0x4EFEF7, RenderIcicleSpriteThing);

@@ -380,7 +380,7 @@ void SkyDeck_Init()
 	RemoveMaterialColors_Landtable(STG06_0);
 	RemoveMaterialColors_Landtable(STG06_1);
 	RemoveMaterialColors_Landtable(STG06_2);
-	if (GetModuleHandle(L"sadx-d3d11") == nullptr) DisableMetalStruts(STG06_2);
+	if (!AssumeOIT) DisableMetalStruts(STG06_2);
 	STG06_0->TexList = &texlist_skydeck1;
 	STG06_1->TexList = &texlist_skydeck2;
 	STG06_2->TexList = &texlist_skydeck3;

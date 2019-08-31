@@ -104,6 +104,7 @@
     <ClCompile Include="ADV03_Past.cpp" />
     <ClCompile Include="Common_Startup.cpp" />
     <ClCompile Include="Common_Branding.cpp" />
+    <ClCompile Include="General_OIT.cpp" />
     <ClCompile Include="STG09_Casinopolis.cpp" />
     <ClCompile Include="AL_ChaoGardens.cpp" />
     <ClCompile Include="AL_ChaoRace.cpp" />

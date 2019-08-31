@@ -100,6 +100,7 @@ extern bool DLLLoaded_SA1Chars;
 extern bool DLLLoaded_Lantern;
 extern bool DLLLoaded_HDGUI;
 extern bool DLLLoaded_SADXFE;
+extern bool AssumeOIT;
 
 extern bool EnableCutsceneFix;
 extern int CutsceneSkipMode;
@@ -383,6 +384,7 @@ void UnloadLevelFiles_Chao();
 void ReinitializeDLLStuff();
 
 //Mod Init and OnFrame functions
+void OIT_Init();
 void Branding_Init(const IniFile *config, const HelperFunctions &helperFunctions);
 void Videos_Init(const IniFile* config, const HelperFunctions& helperFunctions);
 void SADXStyleWater_Init(const IniFile* config, const HelperFunctions& helperFunctions);

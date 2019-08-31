@@ -319,7 +319,7 @@ void RLight_Display(ObjectMaster *a1)
 	v1 = a1->Data1;
 	if (!ClipSetObject(a1) && !MissedFrames)
 	{
-		Direct3D_SetZFunc(3u);
+		if (!AssumeOIT) Direct3D_SetZFunc(3u);
 		if (!SetTextureToLevelObj())
 		{
 			njSetTexture((NJS_TEXLIST *)&v1->LoopData);
@@ -347,9 +347,10 @@ void RLight_Display(ObjectMaster *a1)
 		sx = v1->Scale.x + 1.0;
 		a1b = sub_49CC70(sx, sy, a1a);
 		njScale(0, sx, sy, v5);
-		ProcessModelNode_D_WrapperB((NJS_OBJECT*)0x2031810, (QueuedModelFlagsB)0, a1b);
+		if (!AssumeOIT) ProcessModelNode_D_WrapperB((NJS_OBJECT*)0x2031810, (QueuedModelFlagsB)0, a1b);
+		else ProcessModelNode_AB_Wrapper((NJS_OBJECT*)0x2031810, a1b);
 		njPopMatrix(1u);
-		Direct3D_ResetZFunc();
+		if (!AssumeOIT) Direct3D_ResetZFunc();
 	}
 }
 

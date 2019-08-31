@@ -178,6 +178,7 @@ bool EnableLSDFix = false;
 bool FPSLock = false;
 bool EnableDCRipple = true;
 bool EnableWhiteDiffuse = true;
+bool AssumeOIT = false;
 int Use1999SetFiles = 0;
 
 bool EnableWindowTitle = true;
@@ -371,6 +372,7 @@ extern "C"
 		EnableImpressFont = config->getString("General", "EnableImpressFont", "Impress");
 		CutsceneSkipMode = config->getInt("General", "CutsceneSkipMode", 0);
 		ColorizeFont = config->getBool("General", "ColorizeFont", true);
+		AssumeOIT = config->getBool("General", "AssumeOIT", false);
 		DisableFontSmoothing = config->getBool("General", "DisableFontSmoothing", true);
 		EnableLSDFix = config->getBool("Miscellaneous", "EnableLSDFix", false);
 		EnableDCBranding = config->getBool("General", "EnableDreamcastBranding", true);
@@ -475,6 +477,7 @@ extern "C"
 		}
 		//Init functions
 		Init_Global(); //General stuff that runs at mod startup, some level-specific stuff there too
+		if (AssumeOIT) OIT_Init();
 		SADXStyleWater_Init(config, helperFunctions);
 		if (EnableDCBranding) Branding_Init(config, helperFunctions);
 		if (EnableStationSquare && nullsub_ADV00 != 0x90u)
