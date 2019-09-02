@@ -1393,7 +1393,7 @@ void DrawShadow_Hook(int texnum, float x, float y, float z, float scaleX, float 
 
 void DrawMainMenuShadow_Hook(int texnum, float x, float y, float z, float scaleX, float scaleY)
 {
-	if (DLLLoaded_HDGUI == false)
+	if (!DLLLoaded_HDGUI)
 	{
 		//This is for original shadow texture
 		scaleX = scaleX * 4.0f;
@@ -1417,7 +1417,7 @@ void DisplayScreenTexture_AlwaysTop(int that_cant_be_right, float x, float y, fl
 	Direct3D_EnableZWrite(0);
 	DisplayScreenTexture(that_cant_be_right, x, y, z);
 	Direct3D_EnableZWrite(1);
-	Direct3D_SetZFunc(3u);
+	Direct3D_ResetZFunc();
 }
 
 void ScreenFadeFix(float left, float top, float right, float bottom, float depth, int color, QueuedModelFlagsB queueflags)
@@ -1425,7 +1425,7 @@ void ScreenFadeFix(float left, float top, float right, float bottom, float depth
 	DrawRect_Queue(-50.0f, -50.0f, HorizontalResolution + 50.0f, VerticalResolution + 50.0f, 32048.0f, color, QueuedModelFlagsB_EnableZWrite);
 }
 
-void RenderShittyTextures(int texnum, float x, float y, float z, float scaleX, float scaleY)
+void DrawShittyTextures(int texnum, float x, float y, float z, float scaleX, float scaleY)
 {
 	DrawBG(texnum, x, y, z, scaleX, scaleY);
 	DoColorGradientThingMaybe(0xFF0016FF, 0xFF002EFF, 0xFF0016FF, 0xFF002EFF);
@@ -1707,6 +1707,16 @@ void FileSelect_VtxColorB_Hook(Uint32 a1)
 	else SetVtxColorB(a1);
 }
 
+void CharacterName_VtxColorB_Hook(Uint32 a1)
+{
+	if (CurrentMenuIndex == 2) SetVtxColorB(FileSelectVtxColor);
+	else
+	{
+		if (!DLLLoaded_HDGUI && a1 == 0xFFFFFFFF) a1 = 0xF0FFFFFF;
+		SetVtxColorB(a1);
+	}
+}
+
 void DrawStringHook(const char *text, float x, float y, float scale)
 {
 	SetABCTextThingColor(FileSelectVtxColor, FileSelectVtxColor, FileSelectVtxColor, FileSelectVtxColor);
@@ -1730,7 +1740,7 @@ static Trampoline SwitchMenu_t(0x505B40, 0x505B45, SwitchMenu_r);
 static void __cdecl SwitchMenu_r(int a1)
 {
 	auto original = reinterpret_cast<decltype(SwitchMenu_r)*>(SwitchMenu_t.Target());
-	if (!DisableSA1TitleScreen)
+	if (!DisableSA1TitleScreen || !EnableDCBranding)
 	{
 		//PrintDebug("Menu index: %d\n", a1);
 		PreviousMenuIndex = CurrentMenuIndex;
@@ -1744,7 +1754,7 @@ static Trampoline OptionsDisplay_t(0x509810, 0x509815, OptionsDisplay_r);
 static void __cdecl OptionsDisplay_r(ObjectMaster *a1)
 {
 	auto original = reinterpret_cast<decltype(OptionsDisplay_r)*>(OptionsDisplay_t.Target());
-	if (!DisableSA1TitleScreen)
+	if (!DisableSA1TitleScreen || !EnableDCBranding)
 	{
 		//Don't draw the options screen if the current menu has nothing to do with it
 		if (CurrentMenuIndex != 7 && CurrentMenuIndex != 2 && CurrentMenuIndex != 6 && CurrentMenuIndex != 4) return;
@@ -1772,7 +1782,7 @@ static void __cdecl TitleScreenDisplay_r(ObjectMaster *a1)
 	NJS_COLOR StartColor = { 0x00FFFFFF };
 	TitleScreenData *v1; // esi
 	auto original = reinterpret_cast<decltype(TitleScreenDisplay_r)*>(TitleScreenDisplay_t.Target());
-	if (DisableSA1TitleScreen)
+	if (DisableSA1TitleScreen || !EnableDCBranding)
 	{
 		original(a1);
 		return;
@@ -1870,7 +1880,7 @@ void Branding_Init(const IniFile *config, const HelperFunctions &helperFunctions
 	ReplacePVM("TUTOBG_KNUCKLES");
 	ReplacePVM("TUTOBG_SONIC");
 	ReplacePVM("TUTOBG_TAILS");
-	if (DLLLoaded_HDGUI == false)
+	if (!DLLLoaded_HDGUI)
 	{
 		WriteData((float**)0x00431B46, &sphe_cursol_scale); //AVA_CSR
 		WriteData((float**)0x00431B57, &sphe_cursol_scale); //AVA_CSR
@@ -2749,10 +2759,10 @@ void Branding_Init(const IniFile *config, const HelperFunctions &helperFunctions
 		ReplacePVR("T_STATIONSQUARE_E");
 	}
 	//File icon
-	if (DLLLoaded_HDGUI == false) WriteCall((void*)0x005092A1, DrawTexture_Hook); 
+	if (!DLLLoaded_HDGUI) WriteCall((void*)0x005092A1, DrawTexture_Hook); 
 	else WriteCall((void*)0x005092A1, FileIcon_Hook);
 	//Various fixes already included in HD GUI
-	if (DLLLoaded_HDGUI == false)
+	if (!DLLLoaded_HDGUI)
 	{
 		//Screen fade fixes
 		WriteData((float**)0x00433385, &f480_Fixed); //Screen fade resolution
@@ -2765,9 +2775,12 @@ void Branding_Init(const IniFile *config, const HelperFunctions &helperFunctions
 		WriteData<5>((char*)0x00503438, 0x90); //Disable "Now loading..."
 		WriteData<5>((char*)0x0050346D, 0x90); //Disable "Now loading..."
 		//Character select screen fixes
-		WriteCall((void*)0x00511AD0, RetrievePlayerSelectStuff); //Player select text in character select screen
-		WriteCall((void*)0x00511C76, RetrieveBottomThingStuff); //Bottom thing in character select screen
-		WriteCall((void*)0x00511B3B, RenderShittyTextures); //Render stuff that refuses to render properly otherwise
+		if (!AssumeOIT)
+		{
+			WriteCall((void*)0x00511AD0, RetrievePlayerSelectStuff); //Player select text in character select screen
+			WriteCall((void*)0x00511C76, RetrieveBottomThingStuff); //Bottom thing in character select screen
+			WriteCall((void*)0x00511B3B, DrawShittyTextures); //Render stuff that refuses to render properly otherwise
+		}
 		WriteCall((void*)0x00511A8B, DisplayScreenTexture_AlwaysTop); //Move the "Select your character" text to top
 		WriteData<5>((void*)0x00511C18, 0x90); //Disable ZFunc stuff to prevent character model overlap issues
 		//Shadow blending fixes
@@ -2775,7 +2788,7 @@ void Branding_Init(const IniFile *config, const HelperFunctions &helperFunctions
 		WriteCall((void*)0x00431D37, DrawShadow_Hook);
 		WriteCall((void*)0x00506EFF, DrawShadow_Hook);
 		WriteCall((void*)0x0050D8B3, DrawShadow_Hook);
-		WriteCall((void*)0x0050B584, DrawMainMenuShadow_Hook);  //Main menu shadow
+		WriteCall((void*)0x0050B584, DrawMainMenuShadow_Hook); //Main menu shadow
 		WriteCall((void*)0x0050B61A, DrawMainMenuShadow_Hook); //Main menu (trial) shadow
 		WriteCall((void*)0x00508FFD, DrawTexture_Hook); //Sound test icon
 		WriteCall((void*)0x00509130, DrawTexture_Hook); //Sonic icon background
@@ -2890,7 +2903,7 @@ void Branding_Init(const IniFile *config, const HelperFunctions &helperFunctions
 		WriteCall((void*)0x504143, FileSelect_VtxColorB_Hook); //Emblem count 1
 		WriteCall((void*)0x507454, FileSelect_VtxColorB_Hook); //Emblem count 2
 		WriteCall((void*)0x5076DC, FileSelect_VtxColorB_Hook); //Emblem count 3
-		WriteCall((void*)0x507261, FileSelect_VtxColorB_Hook); //Character name 1
+		WriteCall((void*)0x507261, CharacterName_VtxColorB_Hook); //Character name 1
 		WriteCall((void*)0x5071F2, FileSelect_VtxColorB_Hook); //Character name 2
 		WriteCall((void*)0x503E69, FileSelect_VtxColorB_Hook); //Last Adventure Field
 		WriteCall((void*)0x503F09, FileSelect_VtxColorB_Hook); //Stage Completed
@@ -2920,7 +2933,7 @@ void Branding_OnFrame()
 	if (NumberOfSaves_Current != 0) NumberOfSaves = NumberOfSaves_Current;
 	whiteoverlaydrawn = false;
 	//This game is a hardcoded piece of shit
-	if (DLLLoaded_HDGUI  == false)
+	if (!DLLLoaded_HDGUI)
 	{
 		if (TextLanguage == 3) PadManuXOffset_General = 230;
 		if (TextLanguage == 4 && GetCharacterSelection() != 4) PadManuXOffset_General = 220;
@@ -2932,7 +2945,7 @@ void Branding_OnFrame()
 	{
 		transitionmode = 3;
 	}
-	if (GameMode == GameModes_Menu && DLLLoaded_HDGUI == true)
+	if (GameMode == GameModes_Menu && DLLLoaded_HDGUI)
 	{
 		if (Options_ArrowScale > 0.5f) Options_ArrowScaleAmount = -0.02f;
 		if (Options_ArrowScale < 0.0f) Options_ArrowScaleAmount = 0.02f;
