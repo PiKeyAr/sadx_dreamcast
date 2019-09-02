@@ -129,9 +129,9 @@ void DisplayVideoFadeout(int fadeout, int mode)
 	Direct3D_SetZFunc(7u);
 	Direct3D_EnableZWrite(0);
 	if (mode == 0) njDrawTriangle2D_SomeOtherVersion((NJS_POINT2COL*)&VideoFadeoutFrame, 4, -1000.0f, NJD_TRANSPARENT | NJD_FILL);
-	else DrawRect_Queue(0.0, 0.0, HorizontalResolution, VerticalResolution, 22048.0f, fadeout << 24, QueuedModelFlagsB_EnableZWrite);
+	else DrawRect_Queue(0.0f, 0.0f, HorizontalResolution, VerticalResolution, 22048.0f, fadeout << 24, QueuedModelFlagsB_EnableZWrite);
 	Direct3D_EnableZWrite(1);
-	Direct3D_SetZFunc(3u);
+	Direct3D_ResetZFunc();
 }
 
 void DrawVideoWithSpecular(int width, int height)
