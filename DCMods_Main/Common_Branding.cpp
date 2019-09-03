@@ -2,6 +2,58 @@
 
 //TODO: Find a better solution to the file select/options issue
 
+struct FourFloats
+{
+	float x;
+	float y;
+	float scale_x;
+	float scale_y;
+};
+
+//Crap that I'll probably delete later
+NJS_TEXLIST PauseSelectionTexlist;
+FourFloats PauseSelectionBoxFloats = { 0, 0, 0, 0 };
+NJS_POINT2COL Pause_Point2Col;
+NJS_POINT2 Pause_Points[4];
+NJS_COLOR Pause_Colors[4];
+
+/*
+NJS_POINT2COL PauseSelect_Point2Col;
+NJS_POINT2 PauseSelect_Points[4];
+NJS_POINT3COL PauseSelect_Point3Col;
+NJS_POINT3 PauseSelect_Points3[4];
+NJS_COLOR PauseSelect_Colors[] = { {0xFFFF00FF}, {0xFFE2D80C}, {0xFFD18E07}, {0xFFE2D80C} };
+NJS_TEXNAME PauseGradientTexname;
+NJS_TEXLIST PauseGradientTexList;
+NJS_TEXNAME SelectionGradientTexname;
+NJS_TEXLIST SelectionGradientTexList;
+
+NJS_TEXINFO PauseGradientTexinfo = { NULL, 0 };
+Uint16 PauseBoxGradientData[] = { 952, 920, 952, 920, 855, 822, 855, 822, 952, 920, 952, 920, 855, 822, 855, 822, 757, 692, 757, 692, 627, 562, 627, 562, 757, 692, 757, 692, 627, 562, 627, 562, 952, 920, 952, 920, 855, 822, 855, 822, 952, 920, 952, 920, 855, 822, 855, 822, 757, 692, 757, 692, 627, 562, 627, 562, 757, 692, 757, 692, 627, 562, 627, 562, 465, 400, 465, 400, 334, 269, 334, 269, 465, 400, 465, 400, 334, 269, 334, 269, 204, 139, 204, 139, 74, 42, 74, 42, 204, 139, 204, 139, 74, 42, 74, 42, 465, 400, 465, 400, 334, 269, 334, 269, 465, 400, 465, 400, 334, 269, 334, 269, 204, 139, 204, 139, 74, 42, 74, 42, 204, 139, 204, 139, 74, 42, 74, 42, 952, 920, 952, 920, 855, 822, 855, 822, 952, 920, 952, 920, 855, 822, 855, 822, 757, 692, 757, 692, 627, 562, 627, 562, 757, 692, 757, 692, 627, 562, 627, 562, 952, 920, 952, 920, 855, 822, 855, 822, 952, 920, 952, 920, 855, 822, 855, 822, 757, 692, 757, 692, 627, 562, 627, 562, 757, 692, 757, 692, 627, 562, 627, 562, 465, 400, 465, 400, 334, 269, 334, 269, 465, 400, 465, 400, 334, 269, 334, 269, 204, 139, 204, 139, 74, 42, 74, 42, 204, 139, 204, 139, 74, 42, 74, 42, 465, 400, 465, 400, 334, 269, 334, 269, 465, 400, 465, 400, 334, 269, 334, 269, 204, 139, 204, 139, 74, 42, 74, 42, 204, 139, 204, 139, 74, 42, 74, 42 };
+NJS_TEXINFO SelectionGradientTexinfo = { NULL, 0 };
+Uint16 SelectionBoxGradientData[] = { 60800, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64912, 64896, 64912, 64912, 64912, 64912, 64912, 64912, 64912, 64896, 64896, 64896, 64896, 64896, 64896, 64896, 64912, 64896, 64896, 64912, 64896, 64896, 64912, 64912, 64896, 64896, 64896, 64896, 64896, 64912, 64912, 64912, 64912, 64912, 64896, 64912, 64896, 64912, 64896, 64912, 64912, 64896, 64896, 64912, 64912, 64896, 64912, 64896, 64912, 64912, 64912, 64912, 64896, 64896, 64896, 64896, 64912, 64896, 64912, 64912, 64896, 64896, 64896, 64912, 64912, 64912, 8191, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 64912, 64912, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 64912, 64912, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 64912, 64912, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 64912, 64912, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 64912, 64912, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 64928, 64928, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 64928, 64928, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 64928, 64928, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 64928, 64928, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 64928, 64928, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 64944, 64944, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 64944, 64944, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 64944, 64944, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 64944, 64944, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 64944, 64944, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 64960, 64960, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 64960, 64960, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 64960, 64960, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 64960, 64960, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 64960, 65216, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 65232, 65232, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 65232, 65232, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 65232, 65232, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 65232, 65232, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 65232, 65232, 8191, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 4095, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 61136, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232, 65232 };
+NJS_TEXANIM Whatever = { 16, 16, 0, 0, 0, 0, 255, 255, 0, 0 };
+NJS_TEXANIM Whatever2 = { 64, 32, 0, 0, 0, 0, 255, 255, 0, 0 };
+
+Sint32 __cdecl GeneratePauseGradient()
+{
+	njSetTextureInfo((NJS_TEXINFO *)&PauseGradientTexinfo, (Uint16 *)&PauseBoxGradientData, NJD_TEXFMT_RGB_565 | NJD_TEXFMT_TWIDDLED, 16, 16);
+	njSetTextureNameEx(&PauseGradientTexname, &PauseGradientTexinfo, (void *)0xD0006D39, NJD_TEXATTR_GLOBALINDEX|NJD_TEXATTR_TYPE_MEMORY);
+	PauseGradientTexList.textures = &PauseGradientTexname;
+	PauseGradientTexList.nbTexture = 1;
+	return njLoadTexture(&PauseGradientTexList);
+}
+
+Sint32 __cdecl GenerateSelectionGradient()
+{
+	njSetTextureInfo((NJS_TEXINFO *)&SelectionGradientTexinfo, (Uint16 *)&SelectionBoxGradientData, NJD_TEXFMT_ARGB_4444 | NJD_TEXFMT_RECTANGLE, 64, 32);
+	njSetTextureNameEx(&SelectionGradientTexname, &SelectionGradientTexinfo, (void *)0xD0006D3B, NJD_TEXATTR_GLOBALINDEX|NJD_TEXATTR_TYPE_MEMORY);
+	SelectionGradientTexList.textures = &SelectionGradientTexname;
+	SelectionGradientTexList.nbTexture = 1;
+	return njLoadTexture(&SelectionGradientTexList);
+}
+*/
+
 NJS_TEXNAME textures_ava_dlg_e[10];
 NJS_TEXNAME textures_ava_gtitle0_e[10];
 NJS_TEXNAME textures_ava_title_back_e[8];
@@ -41,6 +93,7 @@ FunctionPointer(void, sub_432EA0, (), 0x432EA0);
 FunctionPointer(int, CreateColorGradient, (int a1, int a2, float a3), 0x4319D0);
 FunctionPointer(int, sub_433190, (int a1, int a2, int a3, float a4), 0x433190);
 FunctionPointer(void, SetABCTextThingColor, (int a1, int a2, int a3, int a4), 0x420A70);
+FunctionPointer(void, DrawModelCallback_QueueFourFloats, (void(__cdecl* function)(FourFloats*), FourFloats* data, float depth, QueuedModelFlagsB queueflags), 0x404840);
 DataArray(int, dword_7ECA74, 0x7ECA74, 2);
 DataArray(int, dword_7ECA44, 0x7ECA44, 2);
 DataArray(char, byte_7ECA20, 0x7ECA20, 4);
@@ -78,8 +131,7 @@ DataArray(TutorialScreenItem, TutorialScreenLayout_Gamma_Page1_E, 0x2BC4A7E, 2);
 DataArray(TutorialScreenItem, TutorialScreenLayout_Gamma_Page1_J, 0x2BC4A6E, 2);
 
 //Variables
-NJS_TEXANIM PauseBar_Top = { 0x10, 0x10, 0, 0, 0, 0, 0, 0, 8, 0x20 };
-NJS_TEXANIM PauseBar_Bottom = { 0x10, 0x10, 0, 0, 0, 255, 0, 255, 8, 0x20 };
+NJS_TEXANIM PauseBarTexanim = { 16, 16, 0, 0, 0, 0, 0, 0, 8, 32 };
 
 //Resolution scaling
 static float ResolutionScaleX = 1.0f;
@@ -1497,9 +1549,7 @@ void __cdecl PauseMenu_ActuallyDrawTheThings_Flip(int n, NJS_POINT2 *pos, NJS_PO
 	float r;
 	float g;
 	float b;
-	int numpieces;
 	NJD_SPRITE spriteflags = NJD_SPRITE_ALPHA | NJD_SPRITE_COLOR;
-	float pri; // [esp+0h] [ebp-24h]
 	NJS_SPRITE _sp; // [esp+4h] [ebp-20h]
 	if (flipmode == 1) spriteflags |= NJD_SPRITE_HFLIP;
 	if (flipmode == 2) spriteflags |= NJD_SPRITE_VFLIP;
@@ -1507,52 +1557,57 @@ void __cdecl PauseMenu_ActuallyDrawTheThings_Flip(int n, NJS_POINT2 *pos, NJS_PO
 	_sp.tlist = &PauseMenu_TEXLIST;
 	_sp.p.x = pos->x;
 	_sp.p.y = pos->y;
-	_sp.p.z = -1.0001;
+	_sp.p.z = -1.0001f;
 	_sp.sx = scale->x;
 	_sp.sy = scale->y;
-	pri = -1.0001;
-	if (-1.0001 >= -3.0 && -1.0001 < 12048.0)
-	{
-		pri = -1.0001 + 22048.0;
-	}
+	Pause_Points[0].x = pos->x;
+	Pause_Points[0].y = pos->y;
+	Pause_Points[1].x = pos->x;
+	Pause_Points[1].y = pos->y + scale->y * 16;
+	Pause_Points[2].x = pos->x + scale->x * 16;
+	Pause_Points[2].y = pos->y;
+	Pause_Points[3].x = pos->x + scale->x * 16;
+	Pause_Points[3].y = pos->y + scale->y * 16;
+	Pause_Colors[0].color = 0xE60075C7;
+	Pause_Colors[1].color = 0xE6040052;
+	Pause_Colors[2].color = 0xE60075C7;
+	Pause_Colors[3].color = 0xE6040052;
+	Pause_Point2Col.p = Pause_Points;
+	Pause_Point2Col.col = Pause_Colors;
+	Pause_Point2Col.num = 0;
+	//Main box
 	if (colorize == 0)
 	{
-		numpieces = (scale->y) * 16;
-
-		for (int i = 0; i < numpieces; i++)
-		{
-			_sp.sy = 1.0f/16.0f;
-			_sp.p.y = pos->y + i;
-			_sp.tanim = &PauseMenu_TEXANIM;
-			g = 0.458f - (0.458f / numpieces)*i;
-			b = 0.78f - (0.48f / numpieces)*i;
-			SetMaterialAndSpriteColor_Float(0.9f, 0, g, b);
-			njDrawSprite2D_Queue(&_sp, n, pri, spriteflags, QueuedModelFlagsB_SomeTextureThing);
-		}
+		njSetTexture(&PauseMenu_TEXLIST);
+		Draw2DLinesMaybe_Queue((NJS_POINT2COL*)&Pause_Point2Col, 4, 22047.0f, NJD_TRANSPARENT|NJD_FILL, QueuedModelFlagsB_SomeTextureThing);
 	}
+	//Top corners
 	if (colorize == 1)
 	{
 		_sp.tanim = &PauseMenu_TEXANIM;
 		SetMaterialAndSpriteColor_Float(0.9f, 0.0f, 0.458f, 0.78f);
-		njDrawSprite2D_Queue(&_sp, n, pri, spriteflags, QueuedModelFlagsB_SomeTextureThing);
+		njDrawSprite2D_Queue(&_sp, n, 22047.0f, spriteflags, QueuedModelFlagsB_SomeTextureThing);
 	}
+	//Bottom corners
 	if (colorize == 2)
 	{
 		_sp.tanim = &PauseMenu_TEXANIM;
-		SetMaterialAndSpriteColor_Float(0.9f, 0.0f, 0, 0.3f);
-		njDrawSprite2D_Queue(&_sp, n, pri, spriteflags, QueuedModelFlagsB_SomeTextureThing);
+		SetMaterialAndSpriteColor_Float(0.9f, 0.016f, 0, 0.322f);
+		njDrawSprite2D_Queue(&_sp, n, 22047.0f, spriteflags, QueuedModelFlagsB_SomeTextureThing);
 	}
+	//Top bar
 	if (colorize == 3)
 	{
-		_sp.tanim = &PauseBar_Top;
+		_sp.tanim = &PauseBarTexanim;
 		SetMaterialAndSpriteColor_Float(0.9f, 0.0f, 0.458f, 0.78f);
-		njDrawSprite2D_Queue(&_sp, 0, pri, spriteflags, QueuedModelFlagsB_SomeTextureThing);
+		njDrawSprite2D_Queue(&_sp, 0, 22047.0f, spriteflags, QueuedModelFlagsB_SomeTextureThing);
 	}
+	//Bottom bar
 	if (colorize == 4)
 	{
-		_sp.tanim = &PauseBar_Bottom;
-		SetMaterialAndSpriteColor_Float(0.9f, 0.0f, 0, 0.3f);
-		njDrawSprite2D_Queue(&_sp, 0, pri, spriteflags, QueuedModelFlagsB_SomeTextureThing);
+		_sp.tanim = &PauseBarTexanim;
+		SetMaterialAndSpriteColor_Float(0.9f, 0.016f, 0, 0.322f);
+		njDrawSprite2D_Queue(&_sp, 0, 22047.0f, spriteflags, QueuedModelFlagsB_SomeTextureThing);
 	}
 }
 
@@ -1618,50 +1673,78 @@ void DrawPauseBox_DC(int n, NJS_POINT2 *pos, NJS_POINT2 *scale)
 	PauseMenu_ActuallyDrawTheThings_Flip(7, &tempps, &scale2, 2, 3);
 }
 
-void DrawPauseSelectionBox_DC(int n, NJS_POINT2 *pos, NJS_POINT2 *scale)
+void DrawPauseSelectionBox_Callback(FourFloats *a)
 {
-	float r;
-	float g;
-	float b;
-	int numpieces;
-
-	float pri; // [esp+0h] [ebp-24h]
-	NJS_SPRITE _sp; // [esp+4h] [ebp-20h]
-
-	_sp.tlist = &PauseMenu_TEXLIST;
-	_sp.tanim = &PauseMenu_TEXANIM;
-	_sp.p.x = pos->x;
-	_sp.p.y = pos->y;
-	_sp.p.z = -1.0001;
-	_sp.sx = scale->x;
-	_sp.sy = scale->y;
-	pri = -1.0001;
-	if (-1.0001 >= -3.0 && -1.0001 < 12048.0)
+	float ScreenScaleX;
+	float ScreenScaleY;
+	float ScreenDeltaX;
+	float ScreenDeltaY;
+	float BaseScaleX;
+	float BaseScaleY;
+	bool is640 = false;
+	//Set scaling
+	if (HorizontalResolution == 640 && VerticalResolution == 480) is640 = true;
+	else is640 = false;
+	if (is640)
 	{
-		pri = -1.0001 + 22048.0;
+		ScreenScaleX = 1.0f;
+		ScreenScaleY = 1.0f;
+		BaseScaleX = 1.0f;
+		BaseScaleY = 1.0f;
+		ScreenDeltaY = 0;
+		ScreenDeltaX = 0;
 	}
-	numpieces = 32 * scale->y;
-	for (int i = 0; i < numpieces; i++)
+	else
 	{
-		//Draw left side+top to bottom
-		if (i<3*scale->y || i>29 * scale->y)_sp.sx = scale->x*8.0f;
-		else _sp.sx = (scale->x*8.0f)/64.0f;
-		_sp.sy = 1.0f/16.0f;
-		_sp.p.x = pos->x;
-		_sp.p.y = pos->y + i;
-		_sp.tanim = &PauseMenu_TEXANIM;
-		r = 0.820f + (0.066f / (float)numpieces)*i;
-		g = 0.549f + (0.301f / (float)numpieces)*i;
-		b = 0.027f + (0.031f / (float)numpieces)*i;
-		SetMaterialAndSpriteColor_Float(1.0f, r, g, b);
-		njDrawSprite2D_Queue(&_sp, 8, pri, NJD_SPRITE_ALPHA | NJD_SPRITE_COLOR, QueuedModelFlagsB_SomeTextureThing);
-		//Draw right side
-		if (i >= 3 * scale->y && i <= 29 * scale->y)
+		ScreenScaleX = HorizontalResolution_float / 640.0f;
+		ScreenScaleY = VerticalResolution_float / 480.0f;
+		if (ScreenScaleX > ScreenScaleY)
 		{
-			_sp.p.x = pos->x + 126.0f*scale->x;
-			njDrawSprite2D_Queue(&_sp, 8, pri, NJD_SPRITE_ALPHA | NJD_SPRITE_COLOR, QueuedModelFlagsB_SomeTextureThing);
+			BaseScaleX = ScreenScaleY;
+			BaseScaleY = ScreenScaleY;
+			ScreenDeltaX = (HorizontalResolution_float - ScreenScaleY * 640.0f) / 2.0f;
+			ScreenDeltaY = (VerticalResolution_float - ScreenScaleY * 480.0f) / 2.0f;
+		}
+		else
+		{
+			BaseScaleX = ScreenScaleX;
+			BaseScaleY = ScreenScaleX;
+			ScreenDeltaX = (HorizontalResolution_float - ScreenScaleX * 640.0f) / 2.0f;
+			ScreenDeltaY = (VerticalResolution_float - ScreenScaleX * 480.0f) / 2.0f;
 		}
 	}
+	njSetTexture(&PauseMenu_TEXLIST);
+	DrawBG(2, ScreenDeltaX + a->x * BaseScaleX, ScreenDeltaY + a->y * BaseScaleY, 1.0f, BaseScaleX*a->scale_x, BaseScaleY*a->scale_y);
+}
+
+void DrawPauseSelectionBox_DC(int n, NJS_POINT2 *pos, NJS_POINT2 *scale)
+{
+	//This stuff is disabled until I find a way to properly draw a textured quad with vertex colors
+	/*
+	PauseSelect_Points[0].x = pos->x;
+	PauseSelect_Points[0].y = pos->y;
+	PauseSelect_Points[1].x = pos->x;
+	PauseSelect_Points[1].y = pos->y + scale->y * 32;
+	PauseSelect_Points[2].x = pos->x + scale->x * 128;
+	PauseSelect_Points[2].y = pos->y;
+	PauseSelect_Points[3].x = pos->x + scale->x * 128;
+	PauseSelect_Points[3].y = pos->y + scale->y * 32;
+	PauseSelect_Point2Col.p = (NJS_POINT2*)&PauseSelect_Points;
+	PauseSelect_Point2Col.col = (NJS_COLOR*)&PauseSelect_Colors;
+	PauseSelect_Point2Col.tex = (NJS_TEX*)&PauseSelectionUVs;
+	PauseSelect_Point2Col.num = 4;
+	*/
+	PauseSelectionTexlist.nbTexture = 1;
+	PauseSelectionTexlist.textures = (NJS_TEXNAME*)&CON_REGULAR_TEXNAMES[37];
+	DoColorGradientThingMaybe(0xe6d18e07, 0xe6e2d80c, 0xe6d18e07, 0xe6e2d80c);
+	PauseSelectionBoxFloats.x = pos->x;
+	PauseSelectionBoxFloats.y = pos->y;
+	PauseSelectionBoxFloats.scale_x = scale->x;
+	PauseSelectionBoxFloats.scale_y = scale->y;
+	DrawModelCallback_QueueFourFloats(DrawPauseSelectionBox_Callback, &PauseSelectionBoxFloats, 48059.0f, QueuedModelFlagsB_SomeTextureThing);
+	//Draw2DLinesMaybe_Queue((NJS_POINT2COL*)&PauseSelect_Point2Col, 4, 24000.0f, NJD_TRANSPARENT|NJD_FILL|NJD_USE_TEXTURE, QueuedModelFlagsB_SomeTextureThing);
+	//Draw3DLinesMaybe_Queue((NJS_POINT3COL*)&PauseSelect_Point3Col, 4, NJD_TRANSPARENT|NJD_FILL|NJD_USE_TEXTURE, QueuedModelFlagsB_SomeTextureThing);
+	//njDrawTriangle2D((NJS_POINT2COL*)&PauseSelect_Point2Col, 1, 1.0f, NJD_TRANSPARENT|NJD_FILL|NJD_USE_TEXTURE);
 }
 
 void DrawSprite_Hook(NJS_SPRITE *sp, Int n, Float pri, NJD_SPRITE attr, QueuedModelFlagsB queue_flags)
@@ -1852,9 +1935,9 @@ void Branding_Init(const IniFile *config, const HelperFunctions &helperFunctions
 	WriteJump((void*)0x4B62B0, BossHUDHack); //HUD hack for Knuckles/Gamma boss fight
 	Branding_SetUpVariables();
 	//Credits
-	WriteData((float*)0x006415DA, 1.5f); //EngBG X scale
-	WriteData((float*)0x006415DF, 1.5f); //EngBG Y scale
-	WriteCall((void*)0x00640ACC, DrawBG_CreditsLogo);
+	WriteData((float*)0x6415DA, 1.5f); //EngBG X scale
+	WriteData((float*)0x6415DF, 1.5f); //EngBG Y scale
+	WriteCall((void*)0x640ACC, DrawBG_CreditsLogo);
 	MainCredits.Count = 449;
 	MainCredits.Entries = (CreditsEntry*)&SA1Credits;
 	f480_Fixed = 1.0f + VerticalResolution;
@@ -1882,53 +1965,53 @@ void Branding_Init(const IniFile *config, const HelperFunctions &helperFunctions
 	ReplacePVM("TUTOBG_TAILS");
 	if (!DLLLoaded_HDGUI)
 	{
-		WriteData((float**)0x00431B46, &sphe_cursol_scale); //AVA_CSR
-		WriteData((float**)0x00431B57, &sphe_cursol_scale); //AVA_CSR
+		WriteData((float**)0x431B46, &sphe_cursol_scale); //AVA_CSR
+		WriteData((float**)0x431B57, &sphe_cursol_scale); //AVA_CSR
 		//AVA_NEW16NO fixes
-		WriteData((float*)0x005079F7, 1.125f); //sub_5079E0
-		WriteData((float*)0x005079FC, 1.125f); //sub_5079E0
-		WriteData((float*)0x00507A1F, 1.125f); //sub_5079E0
-		WriteData((float*)0x00507A24, 1.125f); //sub_5079E0
-		WriteData((float*)0x00507A4A, 1.125f); //sub_5079E0
-		WriteData((float*)0x00507A4F, 1.125f); //sub_5079E0
-		WriteData((float*)0x00507A82, 1.125f); //sub_5079E0
-		WriteData((float*)0x00507A87, 1.125f); //sub_5079E0
-		WriteData((float*)0x00507AE2, 1.125f); //sub_5079E0
-		WriteData((float*)0x00507AE7, 1.125f); //sub_5079E0
-		WriteData((float*)0x00507897, 1.125f); //sub_507880
-		WriteData((float*)0x0050789C, 1.125f); //sub_507880
-		WriteData((float*)0x005078BF, 1.125f); //sub_507880
-		WriteData((float*)0x005078C4, 1.125f); //sub_507880
-		WriteData((float*)0x005078EA, 1.125f); //sub_507880
-		WriteData((float*)0x005078EF, 1.125f); //sub_507880
-		WriteData((float*)0x00507935, 1.125f); //sub_507880
-		WriteData((float*)0x0050793A, 1.125f); //sub_507880
-		WriteData((float*)0x00507989, 1.125f); //sub_507880
-		WriteData((float*)0x0050798E, 1.125f); //sub_507880
-		WriteData((float*)0x0050AEA1, 1.125f); //sub_50AE30
-		WriteData((float*)0x0050AEA6, 1.125f); //sub_50AE30
-		WriteData((float*)0x0050AEE0, 1.125f); //sub_50AE30
-		WriteData((float*)0x0050AEE5, 1.125f); //sub_50AE30
-		WriteData((float*)0x00510DE9, 1.75f); //Sound test
-		WriteData((float*)0x00510DEE, 1.375f); //Sound test
-		WriteData((float*)0x00510E0B, 1.75f); //Sound test
-		WriteData((float*)0x00510E10, 1.375f); //Sound test
-		WriteData((float*)0x00510E32, 1.75f); //Sound test
-		WriteData((float*)0x00510E37, 1.375f); //Sound test
-		WriteData((float*)0x00510E5C, 1.75f); //Sound test
-		WriteData((float*)0x00510E61, 1.375f); //Sound test
-		WriteData((float*)0x00510E79, 1.75f); //Sound test
-		WriteData((float*)0x00510E7E, 1.375f); //Sound test
-		WriteData((float*)0x0050A058, 1.125f); //sub_50A010
-		WriteData((float*)0x0050A06A, 1.125f); //sub_50A010
-		WriteData((float*)0x0050AE0A, 1.125f); //sub_50ADE0
-		WriteData((float*)0x0050AE0F, 1.125f); //sub_50ADE0
-		WriteData((float*)0x0050AEA1, 1.125f); //sub_50AE30
-		WriteData((float*)0x0050AEA6, 1.125f); //sub_50AE30
-		WriteData((float*)0x0050AEE0, 1.125f); //sub_50AE30
-		WriteData((float*)0x0050AEE5, 1.125f); //sub_50AE30
-		WriteData((float*)0x0050AF5A, 1.125f); //sub_50AF30
-		WriteData((float*)0x0050AF5F, 1.125f); //sub_50AF30
+		WriteData((float*)0x5079F7, 1.125f); //sub_5079E0
+		WriteData((float*)0x5079FC, 1.125f); //sub_5079E0
+		WriteData((float*)0x507A1F, 1.125f); //sub_5079E0
+		WriteData((float*)0x507A24, 1.125f); //sub_5079E0
+		WriteData((float*)0x507A4A, 1.125f); //sub_5079E0
+		WriteData((float*)0x507A4F, 1.125f); //sub_5079E0
+		WriteData((float*)0x507A82, 1.125f); //sub_5079E0
+		WriteData((float*)0x507A87, 1.125f); //sub_5079E0
+		WriteData((float*)0x507AE2, 1.125f); //sub_5079E0
+		WriteData((float*)0x507AE7, 1.125f); //sub_5079E0
+		WriteData((float*)0x507897, 1.125f); //sub_507880
+		WriteData((float*)0x50789C, 1.125f); //sub_507880
+		WriteData((float*)0x5078BF, 1.125f); //sub_507880
+		WriteData((float*)0x5078C4, 1.125f); //sub_507880
+		WriteData((float*)0x5078EA, 1.125f); //sub_507880
+		WriteData((float*)0x5078EF, 1.125f); //sub_507880
+		WriteData((float*)0x507935, 1.125f); //sub_507880
+		WriteData((float*)0x50793A, 1.125f); //sub_507880
+		WriteData((float*)0x507989, 1.125f); //sub_507880
+		WriteData((float*)0x50798E, 1.125f); //sub_507880
+		WriteData((float*)0x50AEA1, 1.125f); //sub_50AE30
+		WriteData((float*)0x50AEA6, 1.125f); //sub_50AE30
+		WriteData((float*)0x50AEE0, 1.125f); //sub_50AE30
+		WriteData((float*)0x50AEE5, 1.125f); //sub_50AE30
+		WriteData((float*)0x510DE9, 1.75f); //Sound test
+		WriteData((float*)0x510DEE, 1.375f); //Sound test
+		WriteData((float*)0x510E0B, 1.75f); //Sound test
+		WriteData((float*)0x510E10, 1.375f); //Sound test
+		WriteData((float*)0x510E32, 1.75f); //Sound test
+		WriteData((float*)0x510E37, 1.375f); //Sound test
+		WriteData((float*)0x510E5C, 1.75f); //Sound test
+		WriteData((float*)0x510E61, 1.375f); //Sound test
+		WriteData((float*)0x510E79, 1.75f); //Sound test
+		WriteData((float*)0x510E7E, 1.375f); //Sound test
+		WriteData((float*)0x50A058, 1.125f); //sub_50A010
+		WriteData((float*)0x50A06A, 1.125f); //sub_50A010
+		WriteData((float*)0x50AE0A, 1.125f); //sub_50ADE0
+		WriteData((float*)0x50AE0F, 1.125f); //sub_50ADE0
+		WriteData((float*)0x50AEA1, 1.125f); //sub_50AE30
+		WriteData((float*)0x50AEA6, 1.125f); //sub_50AE30
+		WriteData((float*)0x50AEE0, 1.125f); //sub_50AE30
+		WriteData((float*)0x50AEE5, 1.125f); //sub_50AE30
+		WriteData((float*)0x50AF5A, 1.125f); //sub_50AF30
+		WriteData((float*)0x50AF5F, 1.125f); //sub_50AF30
 		WriteCall((void*)0x64393E, GreenRect_Wrapper); //Fix alpha rejection on green rectangle in tutorials
 		WriteCall((void*)0x50959A, GreenRect_Wrapper); //Fix alpha rejection on green rectangle in the options screen
 		//Tutorial stuff
@@ -1965,12 +2048,12 @@ void Branding_Init(const IniFile *config, const HelperFunctions &helperFunctions
 		ReplacePVM("TUTOMSG_TAILS_F");
 		ReplacePVM("TUTOMSG_TAILS_G");
 		ReplacePVM("TUTOMSG_TAILS_S");
-		WriteData((float**)0x0064328D, &PadManuXOffset_F);
-		WriteData((float**)0x00643295, &PadManuXOffset_General);
-		WriteData((float**)0x00643280, &PadManuXOffset_J);
-		WriteData((float**)0x006432C6, &PadManuYOffset);
-		WriteData((float**)0x006432E4, &PadManuYOffset2);
-		WriteData((float**)0x006432D4, &PadManuYMultiplier);
+		WriteData((float**)0x64328D, &PadManuXOffset_F);
+		WriteData((float**)0x643295, &PadManuXOffset_General);
+		WriteData((float**)0x643280, &PadManuXOffset_J);
+		WriteData((float**)0x6432C6, &PadManuYOffset);
+		WriteData((float**)0x6432E4, &PadManuYOffset2);
+		WriteData((float**)0x6432D4, &PadManuYMultiplier);
 		//Sonic
 		//English
 		TutoScreenSonic_E[0].BoxScaleX = 390;
@@ -1987,7 +2070,7 @@ void Branding_Init(const IniFile *config, const HelperFunctions &helperFunctions
 		TutorialScreenLayout_Sonic_Page1_E[5].TexID = 4;
 		TutorialScreenLayout_Sonic_Page1_E[5].XOffset = 136;
 		TutorialScreenLayout_Sonic_Page1_E[5].YOffset = 96;
-		WriteData((__int16*)0x02BC3AE2, (__int16)2000); //Hide an extra item in controls page (all langs)
+		WriteData((__int16*)0x2BC3AE2, (__int16)2000); //Hide an extra item in controls page (all langs)
 		//Japanese
 		TutoScreenSonic_J[0].BoxScaleX = 400;
 		TutoScreenSonic_J[0].BoxScaleY = 144;
@@ -2060,7 +2143,7 @@ void Branding_Init(const IniFile *config, const HelperFunctions &helperFunctions
 		TutoScreenTails_G[0].BoxScaleX = 380;
 		TutoScreenTails_G[0].BoxScaleY = 144;
 		TutoScreenTails_G[0].BoxX = 220;
-		WriteData((__int16*)0x02BC3E9E, (__int16)2000); //Hide an extra item in controls page
+		WriteData((__int16*)0x2BC3E9E, (__int16)2000); //Hide an extra item in controls page
 		//Spanish
 		TutoScreenTails_S[0].BoxScaleX = 370;
 		TutoScreenTails_S[0].BoxScaleY = 144;
@@ -2077,7 +2160,7 @@ void Branding_Init(const IniFile *config, const HelperFunctions &helperFunctions
 		TutoScreenKnuckles_E[5].BoxScaleY = 160;
 		TutorialScreenLayout_Knuckles_Page1_E.XOffset = 136; //Punch attack
 		TutorialScreenLayout_Knuckles_Page1_E.YOffset = 64; //Punch attack
-		WriteData<1>((char*)0x02BC4308, 0x03); //Number of items in Maximum Heat screen, remove unnecessary line
+		WriteData<1>((char*)0x2BC4308, 0x03); //Number of items in Maximum Heat screen, remove unnecessary line
 		//Japanese
 		TutoScreenKnuckles_J[0].BoxScaleX = 400;
 		TutoScreenKnuckles_J[0].BoxScaleY = 144;
@@ -2097,7 +2180,7 @@ void Branding_Init(const IniFile *config, const HelperFunctions &helperFunctions
 		TutoScreenKnuckles_G[4].BoxScaleX = 420;
 		TutoScreenKnuckles_G[4].BoxScaleY = 128;
 		TutoScreenKnuckles_G[5].BoxScaleY = 160;
-		WriteData((__int16*)0x02BC42E0, (__int16)2000); //Hide an extra item in Climbing page
+		WriteData((__int16*)0x2BC42E0, (__int16)2000); //Hide an extra item in Climbing page
 		//French
 		TutoScreenKnuckles_F[0].BoxScaleX = 430;
 		TutoScreenKnuckles_F[0].BoxScaleY = 144;
@@ -2108,9 +2191,9 @@ void Branding_Init(const IniFile *config, const HelperFunctions &helperFunctions
 		TutoScreenKnuckles_F[4].BoxX = 125;
 		TutoScreenKnuckles_F[4].BoxScaleY = 128;
 		TutoScreenKnuckles_F[5].BoxScaleY = 192;
-		WriteData((__int16*)0x02BC3E9E, (__int16)2000); //Hide an extra item in Controls page
-		WriteData((__int16*)0x02BC433A, (__int16)2000); //Hide an extra item in Maximum Heat page
-		WriteData((__int16*)0x02BC4340, (__int16)2000); //Hide an extra item in Maximum Heat page
+		WriteData((__int16*)0x2BC3E9E, (__int16)2000); //Hide an extra item in Controls page
+		WriteData((__int16*)0x2BC433A, (__int16)2000); //Hide an extra item in Maximum Heat page
+		WriteData((__int16*)0x2BC4340, (__int16)2000); //Hide an extra item in Maximum Heat page
 		//Spanish
 		TutoScreenKnuckles_S[0].BoxScaleX = 370;
 		TutoScreenKnuckles_S[0].BoxScaleY = 144;
@@ -2151,7 +2234,7 @@ void Branding_Init(const IniFile *config, const HelperFunctions &helperFunctions
 		TutoScreenAmy_G[0].BoxScaleY = 144;
 		TutoScreenAmy_G[0].BoxX = 220;
 		TutoScreenAmy_G[4].BoxScaleY = 160;
-		WriteData((__int16*)0x02BC46FA, (__int16)2000); //Hide an extra item in controls page
+		WriteData((__int16*)0x2BC46FA, (__int16)2000); //Hide an extra item in controls page
 		//French
 		TutoScreenAmy_F[0].BoxScaleX = 425;
 		TutoScreenAmy_F[0].BoxScaleY = 144;
@@ -2197,7 +2280,7 @@ void Branding_Init(const IniFile *config, const HelperFunctions &helperFunctions
 		TutoScreenBig_G[0].BoxScaleY = 144;
 		TutoScreenBig_G[0].BoxX = 205;
 		TutoScreenBig_G[4].BoxScaleY = 128;
-		WriteData((__int16*)0x02BC4E9E, (__int16)2000); //Hide an extra item in controls page
+		WriteData((__int16*)0x2BC4E9E, (__int16)2000); //Hide an extra item in controls page
 		//French
 		TutoScreenBig_F[0].BoxScaleX = 425;
 		TutoScreenBig_F[0].BoxScaleY = 144;
@@ -2246,7 +2329,7 @@ void Branding_Init(const IniFile *config, const HelperFunctions &helperFunctions
 		TutoScreenGamma_F[0].BoxX = 175;
 		TutoScreenGamma_F[1].BoxScaleY = 192;
 		TutoScreenGamma_F[4].BoxScaleY = 192;
-		WriteData((__int16*)0x02BC4AE4, (__int16)2000); //Hide an extra item in the second page
+		WriteData((__int16*)0x2BC4AE4, (__int16)2000); //Hide an extra item in the second page
 		//Spanish
 		TutoScreenGamma_S[0].BoxScaleX = 370;
 		TutoScreenGamma_S[0].BoxScaleY = 144;
@@ -2759,43 +2842,43 @@ void Branding_Init(const IniFile *config, const HelperFunctions &helperFunctions
 		ReplacePVR("T_STATIONSQUARE_E");
 	}
 	//File icon
-	if (!DLLLoaded_HDGUI) WriteCall((void*)0x005092A1, DrawTexture_Hook); 
-	else WriteCall((void*)0x005092A1, FileIcon_Hook);
+	if (!DLLLoaded_HDGUI) WriteCall((void*)0x5092A1, DrawTexture_Hook); 
+	else WriteCall((void*)0x5092A1, FileIcon_Hook);
 	//Various fixes already included in HD GUI
 	if (!DLLLoaded_HDGUI)
 	{
 		//Screen fade fixes
-		WriteData((float**)0x00433385, &f480_Fixed); //Screen fade resolution
-		WriteData((float**)0x004333A6, &f640_Fixed); //Screen fade resolution
-		WriteData((float*)0x004333A0, -1.0f); //Screen fade for tutorials
-		WriteData((float*)0x004333AE, -1.0f); //Screen fade for tutorials
-		WriteCall((void*)0x0042BF52, ScreenFadeFix);
-		WriteData<1>((char*)0x0040BE40, 0xC3); //Disable "Now saving..."
-		WriteData<5>((char*)0x0040BE0D, 0x90); //Disable "Now loading..."
-		WriteData<5>((char*)0x00503438, 0x90); //Disable "Now loading..."
-		WriteData<5>((char*)0x0050346D, 0x90); //Disable "Now loading..."
+		WriteData((float**)0x433385, &f480_Fixed); //Screen fade resolution
+		WriteData((float**)0x4333A6, &f640_Fixed); //Screen fade resolution
+		WriteData((float*)0x4333A0, -1.0f); //Screen fade for tutorials
+		WriteData((float*)0x4333AE, -1.0f); //Screen fade for tutorials
+		WriteCall((void*)0x42BF52, ScreenFadeFix);
+		WriteData<1>((char*)0x40BE40, 0xC3); //Disable "Now saving..."
+		WriteData<5>((char*)0x40BE0D, 0x90); //Disable "Now loading..."
+		WriteData<5>((char*)0x503438, 0x90); //Disable "Now loading..."
+		WriteData<5>((char*)0x50346D, 0x90); //Disable "Now loading..."
 		//Character select screen fixes
 		if (!AssumeOIT)
 		{
-			WriteCall((void*)0x00511AD0, RetrievePlayerSelectStuff); //Player select text in character select screen
-			WriteCall((void*)0x00511C76, RetrieveBottomThingStuff); //Bottom thing in character select screen
-			WriteCall((void*)0x00511B3B, DrawShittyTextures); //Render stuff that refuses to render properly otherwise
+			WriteCall((void*)0x511AD0, RetrievePlayerSelectStuff); //Player select text in character select screen
+			WriteCall((void*)0x511C76, RetrieveBottomThingStuff); //Bottom thing in character select screen
+			WriteCall((void*)0x511B3B, DrawShittyTextures); //Render stuff that refuses to render properly otherwise
 		}
-		WriteCall((void*)0x00511A8B, DisplayScreenTexture_AlwaysTop); //Move the "Select your character" text to top
-		WriteData<5>((void*)0x00511C18, 0x90); //Disable ZFunc stuff to prevent character model overlap issues
+		WriteCall((void*)0x511A8B, DisplayScreenTexture_AlwaysTop); //Move the "Select your character" text to top
+		WriteData<5>((void*)0x511C18, 0x90); //Disable ZFunc stuff to prevent character model overlap issues
 		//Shadow blending fixes
-		WriteCall((void*)0x00457F2F, DrawSprite_Hook);
-		WriteCall((void*)0x00431D37, DrawShadow_Hook);
-		WriteCall((void*)0x00506EFF, DrawShadow_Hook);
-		WriteCall((void*)0x0050D8B3, DrawShadow_Hook);
-		WriteCall((void*)0x0050B584, DrawMainMenuShadow_Hook); //Main menu shadow
-		WriteCall((void*)0x0050B61A, DrawMainMenuShadow_Hook); //Main menu (trial) shadow
-		WriteCall((void*)0x00508FFD, DrawTexture_Hook); //Sound test icon
-		WriteCall((void*)0x00509130, DrawTexture_Hook); //Sonic icon background
-		WriteCall((void*)0x00509191, DrawTexture_Hook); //Sonic icon
-		WriteCall((void*)0x00509439, DrawTexture_Hook); //Languages icon
-		WriteCall((void*)0x0050952F, DrawTexture_Hook); //Rumble icon
-		WriteCall((void*)0x0050782A, DrawTexture_Hook); //AVA_SAN triangle shadow
+		WriteCall((void*)0x457F2F, DrawSprite_Hook);
+		WriteCall((void*)0x431D37, DrawShadow_Hook);
+		WriteCall((void*)0x506EFF, DrawShadow_Hook);
+		WriteCall((void*)0x50D8B3, DrawShadow_Hook);
+		WriteCall((void*)0x50B584, DrawMainMenuShadow_Hook); //Main menu shadow
+		WriteCall((void*)0x50B61A, DrawMainMenuShadow_Hook); //Main menu (trial) shadow
+		WriteCall((void*)0x508FFD, DrawTexture_Hook); //Sound test icon
+		WriteCall((void*)0x509130, DrawTexture_Hook); //Sonic icon background
+		WriteCall((void*)0x509191, DrawTexture_Hook); //Sonic icon
+		WriteCall((void*)0x509439, DrawTexture_Hook); //Languages icon
+		WriteCall((void*)0x50952F, DrawTexture_Hook); //Rumble icon
+		WriteCall((void*)0x50782A, DrawTexture_Hook); //AVA_SAN triangle shadow
 	}
 	//Main code
 	//Kill Cream
@@ -2918,13 +3001,13 @@ void Branding_Init(const IniFile *config, const HelperFunctions &helperFunctions
 		GUIPVMIndices[6] = (int*)&MainMenuIndices;
 	}
 	//Pause box stuff
-	WriteCall((void*)0x00458232, DrawPauseSelectionBox_DC);
-	WriteCall((void*)0x004585DA, DrawPauseBox_DC);
-	WriteCall((void*)0x00459085, DrawPauseBox_DC);
-	WriteCall((void*)0x00458DBB, DrawPauseBox_DC);
-	WriteData((float*)0x00458125, 1.0f); //Selection box B
-	WriteData((float*)0x0045812A, 0.7f); //Selection box G
-	WriteData((float*)0x0045812F, 0.0f); //Selection box R
+	WriteCall((void*)0x458232, DrawPauseSelectionBox_DC);
+	WriteCall((void*)0x4585DA, DrawPauseBox_DC); //Main pause
+	WriteCall((void*)0x459085, DrawPauseBox_DC); //Camera
+	WriteCall((void*)0x458DBB, DrawPauseBox_DC); //Key remap
+	WriteData((float*)0x458125, 1.0f); //Selection box B
+	WriteData((float*)0x45812A, 0.7f); //Selection box G
+	WriteData((float*)0x45812F, 0.0f); //Selection box R
 }
 
 void Branding_OnFrame()
