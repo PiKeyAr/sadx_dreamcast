@@ -1,14 +1,11 @@
 #include "stdafx.h"
 
 FunctionPointer(void, Draw3DLines, (NJS_POINT3COL *points, int count, NJD_DRAW attr), 0x77EBA0);
+FunctionPointer(double, Calculate2DDepth, (QueuedModelFlagsB flags, float a2), 0x404290);
 
 void __cdecl DrawModelCallback_Queue_r(void(__cdecl *function)(void *), void *data, float depth, QueuedModelFlagsB queueflags)
 {
-	SetSpriteColorAndZFuncThing(queueflags);
 	function(data);
-	Direct3D_ResetZFunc();
-	Direct3D_EnableZWrite(1u);
-	ClampGlobalColorThing_Thing();
 }
 
 void __cdecl Draw3DLines_Queue_r(NJS_POINT3COL *a1, int a2, NJD_DRAW attr, QueuedModelFlagsB a4)
@@ -23,7 +20,16 @@ void __cdecl DrawTriFanThing_Queue_r(NJS_POINT3COL *a1, int texnum, NJD_DRAW n, 
 
 void __cdecl Draw2DLines_Queue_r(NJS_POINT2COL *points, int count, float depth, NJD_DRAW attr, QueuedModelFlagsB flags)
 {
-	njDrawTriangle2D(points, count, depth, attr);
+	NJS_TEXLIST *v6;
+	float _depth;
+	float new_depth;
+	_depth = depth;
+	if (depth >= -2.0f && depth < 10000.0f)
+	{
+		_depth = depth + 12048.0f;
+	}
+	new_depth = Calculate2DDepth(flags, _depth);
+	njDrawTriangle2D_SomeOtherVersion(points, count, _depth, attr);
 }
 
 void __cdecl DrawLine3D_Queue_r(NJS_POINT3COL *a1, int a2, NJD_DRAW a3, QueuedModelFlagsB a4)
@@ -43,11 +49,23 @@ void __cdecl njDrawSprite3D_Queue_r(NJS_SPRITE *sp, Int n, NJD_SPRITE attr, Queu
 
 void __cdecl njDrawSprite2D_Queue_r(NJS_SPRITE *sp, Int n, Float pri, NJD_SPRITE attr, QueuedModelFlagsB queue_flags)
 {
-	njDrawSprite2D_DrawNow(sp, n, pri, attr);
+	float pria = pri;
+	if ( pri >= -2.0f && pri < 10000.0f )
+	{
+		pria = pri + 12048.0f;
+	}
+	float v8 = Calculate2DDepth(queue_flags, pria);
+	njDrawSprite2D_DrawNow(sp, n, v8, attr);
 }
 
 void __cdecl DrawRect_Queue_r(float left, float top, float right, float bottom, float depth, int color, QueuedModelFlagsB queueflags)
 {
+	float _depth = depth;
+	if ( depth >= -2.0f && depth < 10000.0f )
+	{
+		_depth = depth + 12048.0f;
+	}
+	float new_depth = Calculate2DDepth(queueflags, _depth);
 	DrawRect_DrawNowMaybe(left, top, right, bottom, depth, color);
 }
 
@@ -55,14 +73,16 @@ void OIT_Init()
 {
 	WriteJump(DrawLine3D_Queue, DrawLine3D_Queue_r);
 	WriteJump(Draw3DLinesMaybe_Queue, Draw3DLines_Queue_r);
-	WriteJump(Draw2DLinesMaybe_Queue, Draw2DLines_Queue_r);
 	WriteJump(DrawTriFanThing_Queue, DrawTriFanThing_Queue_r);
-	WriteJump(njDrawSprite2D_Queue, njDrawSprite2D_Queue_r);
 	WriteJump(njDrawSprite3D, njDrawSprite3D_Queue_r);
-	WriteJump(DrawModelCallback_Queue, DrawModelCallback_Queue_r);
 	WriteJump(DrawModel_Queue, DrawModel_Queue_r);
-	WriteJump(DrawRect_Queue, DrawRect_Queue_r);
 	WriteJump((void*)0x407BB0, DrawModel_Queue_r);
 	WriteJump((void*)0x407CF0, DrawModel_Queue_r);
 	WriteJump((void*)0x407FC0, DrawModel_Queue_r);
+	//Callback stuff is disabled because it breaks
+	//WriteJump(DrawModelCallback_Queue, DrawModelCallback_Queue_r);
+	//2D stuff that breaks in scary ways
+	//WriteJump(Draw2DLinesMaybe_Queue, Draw2DLines_Queue_r);
+	//WriteJump(njDrawSprite2D_Queue, njDrawSprite2D_Queue_r);
+	//WriteJump(DrawRect_Queue, DrawRect_Queue_r);
 }
