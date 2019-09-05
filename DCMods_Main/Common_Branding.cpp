@@ -188,6 +188,7 @@ static float BSsY = 0;
 static float BSsZ = 0;
 
 //Ini stuff
+static bool RemoveQuitPrompt = false;
 static bool RemoveUnlockMessage = false;
 static bool RemoveMarketRingCount = false;
 static bool RemoveGameGearGames = false;
@@ -2007,6 +2008,7 @@ void Branding_Init(const IniFile *config, const HelperFunctions &helperFunctions
 	RemoveMap = config->getBool("Branding", "RemoveMap", false);
 	RemoveCamera = config->getBool("Branding", "RemoveCamera", false);
 	RemoveUnlockMessage = config->getBool("Branding", "RemoveUnlockMessage", false);
+	RemoveQuitPrompt = config->getBool("Branding", "RemoveQuitPrompt", false);
 	RipplesOn = config->getBool("Branding", "RippleEffect", true);
 	EnableTransition = config->getBool("Branding", "EnableTransition", true);
 	DisableSA1TitleScreen = config->getBool("Branding", "DisableSA1TitleScreen", false);
@@ -2019,6 +2021,7 @@ void Branding_Init(const IniFile *config, const HelperFunctions &helperFunctions
 	WriteJump((void*)0x4B62B0, BossHUDHack); //HUD hack for Knuckles/Gamma boss fight
 	if (RemoveUnlockMessage) WriteData<1>((char*)0x4B5800, 0xC3u);
 	if (RemoveMarketRingCount) WriteJump((void*)0x4297E0, DrawBlackMarketRingCount_asm); //Don't draw Black Market ring count after clearing a stage
+	if (RemoveQuitPrompt) WriteData<1>((char*)0x414F0E, 0x03u);
 	Branding_SetUpVariables();
 	//Credits
 	WriteData((float*)0x6415DA, 1.5f); //EngBG X scale
