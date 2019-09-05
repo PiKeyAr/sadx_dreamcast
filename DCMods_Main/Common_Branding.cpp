@@ -188,6 +188,12 @@ static float BSsY = 0;
 static float BSsZ = 0;
 
 //Ini stuff
+static bool RemoveUnlockMessage = false;
+static bool RemoveMarketRingCount = false;
+static bool RemoveGameGearGames = false;
+static bool RemoveSetUpPad = false;
+static bool RemoveMap = false;
+static bool RemoveCamera = false;
 static bool RipplesOn = true;
 static bool EnableTransition = true;
 static bool DisableSA1TitleScreen = false;
@@ -1908,6 +1914,78 @@ static void __cdecl LoadPVM_r(const char *filename, NJS_TEXLIST *texlist)
 }
 */
 
+static Uint8 __cdecl GetPauseDisplayOptions_r(Uint8 *a1);
+static Trampoline GetPauseDisplayOptions_t(0x4582E0, 0x4582E8, GetPauseDisplayOptions_r);
+static Uint8 __cdecl GetPauseDisplayOptions_r(Uint8 *a1)
+{
+	Uint8 options;
+	auto original = reinterpret_cast<decltype(GetPauseDisplayOptions_r)*>(GetPauseDisplayOptions_t.Target());
+	if (!EnableDCBranding)
+	{
+		return original(a1);
+	}
+	Uint8 result = original(a1);
+	options = *a1;
+	if (RemoveMap && options & PauseOptions_Map) 
+	{
+		options &= ~PauseOptions_Map;
+		result--;
+	}
+	if (RemoveCamera && options & PauseOptions_Camera) 
+	{
+		options &= ~PauseOptions_Camera;
+		result--;
+	}
+	if (RemoveSetUpPad && options & PauseOptions_Controls)
+	{
+		options &= ~PauseOptions_Controls;
+		result--;
+	}
+	//PrintDebug("Opts: %d\n", options);
+	*a1 = options;
+	return result;
+}
+
+static int __cdecl UnlockMiniGamesCollection_r();
+static Trampoline UnlockMiniGamesCollection_t(0x506460, 0x506465, UnlockMiniGamesCollection_r);
+static int __cdecl UnlockMiniGamesCollection_r()
+{
+	auto original = reinterpret_cast<decltype(UnlockMiniGamesCollection_r)*>(UnlockMiniGamesCollection_t.Target());
+	if (EnableDCBranding && RemoveGameGearGames)
+	{
+		return 0;
+	}
+	else
+	{
+		return original();
+	}
+}
+
+void __cdecl DrawBlackMarketRingCount_cdecl(ObjectMaster *a1, EntityData1 *a2, signed int a3)
+{
+	a1->Data1->Action = 12;
+	a1->Data1->CharIndex = 60;
+	return;
+}
+
+static void __declspec(naked) DrawBlackMarketRingCount_asm()
+{
+	__asm
+	{
+		push edi // int a3
+		push ebp // a2
+		push esi // a1
+
+				 // Call your __cdecl function here:
+				 call DrawBlackMarketRingCount_cdecl
+
+				 pop esi // a1
+				 pop ebp // a2
+				 pop edi // int a3
+				 retn
+	}
+}
+
 void Branding_SetUpVariables()
 {
 	//Set up variables
@@ -1923,6 +2001,12 @@ void Branding_SetUpVariables()
 void Branding_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 {
 	//Load configuration settings
+	RemoveMarketRingCount = config->getBool("Branding", "RemoveMarketRingCount", false);
+	RemoveGameGearGames = config->getBool("Branding", "RemoveGameGearGames", false);
+	RemoveSetUpPad = config->getBool("Branding", "RemoveSetUpPad", false);
+	RemoveMap = config->getBool("Branding", "RemoveMap", false);
+	RemoveCamera = config->getBool("Branding", "RemoveCamera", false);
+	RemoveUnlockMessage = config->getBool("Branding", "RemoveUnlockMessage", false);
 	RipplesOn = config->getBool("Branding", "RippleEffect", true);
 	EnableTransition = config->getBool("Branding", "EnableTransition", true);
 	DisableSA1TitleScreen = config->getBool("Branding", "DisableSA1TitleScreen", false);
@@ -1933,6 +2017,8 @@ void Branding_Init(const IniFile *config, const HelperFunctions &helperFunctions
 	LogoScaleXT = LogoScaleX;
 	LogoScaleYT = LogoScaleY;
 	WriteJump((void*)0x4B62B0, BossHUDHack); //HUD hack for Knuckles/Gamma boss fight
+	if (RemoveUnlockMessage) WriteData<1>((char*)0x4B5800, 0xC3u);
+	if (RemoveMarketRingCount) WriteJump((void*)0x4297E0, DrawBlackMarketRingCount_asm); //Don't draw Black Market ring count after clearing a stage
 	Branding_SetUpVariables();
 	//Credits
 	WriteData((float*)0x6415DA, 1.5f); //EngBG X scale
