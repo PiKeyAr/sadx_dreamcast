@@ -432,6 +432,8 @@ extern "C"
 		if (GetModuleHandle(L"AutoDemo_RedMountain") != nullptr) EnableRedMountain = false;
 		//Set window title
 		if (EnableWindowTitle) helperFunctions.SetWindowTitle("Sonic Adventure");
+		//Don't disable subtitle font filtering if HD GUI is detected
+		if (DLLLoaded_HDGUI) DisableFontFiltering = false;
 		//Another error message
 		if (EnableEmeraldCoast && GetModuleHandle(L"WaterEffect") != nullptr)
 		{
