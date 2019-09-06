@@ -100,6 +100,7 @@ DataArray(char, byte_7ECA20, 0x7ECA20, 4);
 DataPointer(CreditsList, MainCredits, 0x2BC2FD0);
 DataPointer(ObjectMaster*, CurrentMenuObjectMaster_Maybe, 0x3C5E8D0);
 DataPointer(byte, NumberOfSaves_Current, 0x03B290E0);
+DataPointer(int, QuitFromPause_Selection, 0x3B22E78);
 DataArray(NJS_TEXANIM, PauseMenu_TEXANIMs, 0x009177B8, 15);
 DataArray(PVMEntry*, GUIPVMLists, 0x10D7CB0, 5);
 //GUI texture arrays
@@ -219,6 +220,9 @@ float wins_scaleYmultiplier = 1.0f;
 //HUD
 static float HUDYOffset1 = 80.0f;
 static float HUDYOffset2 = 0.0f;
+
+//Quit prompt timer
+static int QuitSoundTimer = -1;
 
 CreditsEntry SA1Credits[] = {
 	{ 1, 0, 0, 0, "SONIC ADVENTURE STAFF" },
@@ -1964,8 +1968,7 @@ static int __cdecl UnlockMiniGamesCollection_r()
 
 void __cdecl DrawBlackMarketRingCount_cdecl(ObjectMaster *a1, EntityData1 *a2, signed int a3)
 {
-	a1->Data1->Action = 12;
-	a1->Data1->CharIndex = 60;
+	if (a1->Data1->Action == 10 && a1->Data1->CharIndex > 0) a1->Data1->CharIndex = 0;
 	return;
 }
 
@@ -1984,6 +1987,15 @@ static void __declspec(naked) DrawBlackMarketRingCount_asm()
 				 pop ebp // a2
 				 pop edi // int a3
 				 retn
+	}
+}
+
+void __cdecl MenuConfirmationPrompt_DontDisplay(void *arg_0)
+{ 
+	if (QuitSoundTimer == -1)
+	{
+		if (GameMode == GameModes_Trial || GameMode == GameModes_Adventure_Field || GameMode == GameModes_Adventure_Story) QuitSoundTimer = 30;
+		else QuitSoundTimer = 0;
 	}
 }
 
@@ -2021,7 +2033,11 @@ void Branding_Init(const IniFile *config, const HelperFunctions &helperFunctions
 	WriteJump((void*)0x4B62B0, BossHUDHack); //HUD hack for Knuckles/Gamma boss fight
 	if (RemoveUnlockMessage) WriteData<1>((char*)0x4B5800, 0xC3u);
 	if (RemoveMarketRingCount) WriteJump((void*)0x4297E0, DrawBlackMarketRingCount_asm); //Don't draw Black Market ring count after clearing a stage
-	if (RemoveQuitPrompt) WriteData<1>((char*)0x414F0E, 0x03u);
+	if (RemoveQuitPrompt)
+	{
+		WriteData<5>((char*)0x414F28, 0x90u); //Don't show subtitle
+		WriteCall((void*)0x414EE3, MenuConfirmationPrompt_DontDisplay); //Set a delay to play the sound if needed, otherwise skip the menu
+	}
 	Branding_SetUpVariables();
 	//Credits
 	WriteData((float*)0x6415DA, 1.5f); //EngBG X scale
@@ -3101,6 +3117,16 @@ void Branding_Init(const IniFile *config, const HelperFunctions &helperFunctions
 
 void Branding_OnFrame()
 {
+	//Skip pause menu confirmation prompt
+	if (RemoveQuitPrompt && QuitFromPause_Selection == 2)
+	{
+		if (QuitSoundTimer == 0)
+		{
+			QuitSoundTimer = -1;
+			QuitFromPause_Selection = 3;
+		}
+		else QuitSoundTimer--;
+	}
 	//Update the save file count for the options/file select transition
 	if (NumberOfSaves_Current != 0) NumberOfSaves = NumberOfSaves_Current;
 	whiteoverlaydrawn = false;
