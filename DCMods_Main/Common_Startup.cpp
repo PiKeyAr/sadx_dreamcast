@@ -47,7 +47,7 @@ void ComeOnChaosTimeToEat(NJS_OBJECT *a1)
 
 void FPSLockHook(int a1)
 {
-	if (a1 == 1 && CurrentLevel != LevelIDs_TwinkleCircuit) a1 = 2;
+	if (a1 == 1 && GameState != 21 && CurrentLevel != LevelIDs_TwinkleCircuit) a1 = 2;
 	DeltaTime_Multiplier(a1);
 }
 
