@@ -369,9 +369,9 @@ void SonicDashTrailFix(NJS_OBJECT *a1, QueuedModelFlagsB a2)
 	DrawQueueDepthBias = 2500.0f;
 	if (EnableWindyValley && CurrentLevel == LevelIDs_WindyValley && CurrentAct == 2) DrawQueueDepthBias = 3500.0f;
 	if (EnableChaos4 && CurrentLevel == LevelIDs_Chaos4) DrawQueueDepthBias = 4500.0f;
-	a1->basicdxmodel->mats->attr_texId = rand() % 2;
+	if (!IsGamePaused()) a1->basicdxmodel->mats->attr_texId = rand() % 2;
 	ProcessModelNode(a1, (QueuedModelFlagsB)0, 1.0f);
-	a1->basicdxmodel->mats->attr_texId = 0;
+	if (!IsGamePaused()) a1->basicdxmodel->mats->attr_texId = 0;
 	DrawQueueDepthBias = 0.0f;
 }
 
