@@ -26,6 +26,9 @@ NJS_OBJECT* ItemBoxAirModel = nullptr;
 NJS_OBJECT* ItemBoxAirModel_Resize = nullptr;
 NJS_OBJECT* ItemBoxAirModel_ResizeChild = nullptr;
 
+DataPointer(uint8_t, TextureFilterSettingForPoint_1, 0x0078B7C4);
+DataPointer(uint8_t, TextureFilterSettingForPoint_2, 0x0078B7D8);
+DataPointer(uint8_t, TextureFilterSettingForPoint_3, 0x0078B7EC);
 DataPointer(float, GammaConstantMaterialAlpha, 0x47FE0F);
 DataPointer(NJS_OBJECT, stru_8B22F4, 0x8B22F4);
 DataPointer(NJS_MATRIX, nj_unit_matrix_, 0x389D650);
@@ -73,6 +76,9 @@ int CutsceneFadeValue = 0;
 int CutsceneFadeMode = 0;
 bool SkipPressed_Cutscene = false;
 static float EmeraldScale = 1.005f;
+static uint8_t FilteringSettingBackup1 = 2;
+static uint8_t FilteringSettingBackup2 = 2;
+static uint8_t FilteringSettingBackup3 = 2;
 
 static const NJS_MATERIAL* Chaos4Materials[] = {
 	((NJS_MATERIAL*)0x0119D0FC),
@@ -362,6 +368,25 @@ void RenderEmeraldWithGlow_Ice(NJS_OBJECT *object, int flags, float scale)
 	ClampGlobalColorThing_Thing();
 	ToggleStageFog();
 	//Don't njPopMatrix because there's one right after this hook in code
+}
+
+void ForcePointSampleFiltering()
+{
+	FilteringSettingBackup1 = TextureFilterSettingForPoint_1;
+	FilteringSettingBackup2 = TextureFilterSettingForPoint_2;
+	FilteringSettingBackup3 = TextureFilterSettingForPoint_3;
+	WriteData((uint8_t*)0x0078B7C4, (uint8_t)0x01);
+	WriteData((uint8_t*)0x0078B7D8, (uint8_t)0x01);
+	WriteData((uint8_t*)0x0078B7EC, (uint8_t)0x01);
+	Direct3D_TextureFilterPoint();
+}
+
+void DisablePointSampleFiltering()
+{
+	WriteData((uint8_t*)0x0078B7C4, FilteringSettingBackup1);
+	WriteData((uint8_t*)0x0078B7D8, FilteringSettingBackup2);
+	WriteData((uint8_t*)0x0078B7EC, FilteringSettingBackup3);
+	Direct3D_TextureFilterLinear();
 }
 
 void SonicDashTrailFix(NJS_OBJECT *a1, QueuedModelFlagsB a2)
@@ -1456,8 +1481,10 @@ void CutsceneFadeHookForSubtitleBox(float left, float top, float right, float bo
 
 void CutsceneFadeHookForSubtitleText(NJS_ARGB *a1)
 {
+	if (DisableFontFiltering) ForcePointSampleFiltering();
 	float alpha = a1->a * (1.0f - CutsceneFadeValue / 255.0f);
-	SetMaterialAndSpriteColor_Float(alpha, a1->r, a1->g, a1->b);
+	if (CutsceneSkipMode == 0) SetMaterialAndSpriteColor_Float(alpha, a1->r, a1->g, a1->b);
+	else SetMaterialAndSpriteColor(a1);
 }
 
 void DrawBombExplosionHook(NJS_MODEL_SADX *model, QueuedModelFlagsB blend)
@@ -1493,16 +1520,20 @@ void DrawHedgehogHammerTextHook(NJS_SPRITE *sp, Int n, NJD_SPRITE attr)
 	else njDrawSprite3D_Queue(sp, n, attr, QueuedModelFlagsB_3);
 }
 
+void RestoreSubtitleFiltering(NJS_ARGB *a1)
+{
+	DisablePointSampleFiltering();
+	SetMaterialAndSpriteColor(a1);
+}
+
 void General_Init()
 {
 	if (!ModelsLoaded_General)
 	{
 		//Cutscene skip hooks
-		if (CutsceneSkipMode == 0)
-		{
-			WriteCall((void*)0x40D69C, CutsceneFadeHookForSubtitleBox);
-			WriteCall((void*)0x40D78A, CutsceneFadeHookForSubtitleText);
-		}
+		WriteCall((void*)0x40D69C, CutsceneFadeHookForSubtitleBox); 
+		WriteCall((void*)0x40D78A, CutsceneFadeHookForSubtitleText); //Also used to disable filtering
+		if (DisableFontFiltering) WriteCall((void*)0x40D804, RestoreSubtitleFiltering);
 		//Snow/sandboard "fixes" (SL OBJECTS)
 		RemoveVertexColors_Object(SONIC_OBJECTS[71]);
 		RemoveVertexColors_Object(MILES_OBJECTS[71]);

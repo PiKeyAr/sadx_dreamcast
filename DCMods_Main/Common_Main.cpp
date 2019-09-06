@@ -174,6 +174,7 @@ int CutsceneFrameCounter = 0;
 std::string EnableImpressFont = "Impress";
 bool ColorizeFont = true;
 bool DisableFontSmoothing = true;
+bool DisableFontFiltering = true;
 bool EnableLSDFix = false;
 bool FPSLock = false;
 bool EnableDCRipple = true;
@@ -374,6 +375,7 @@ extern "C"
 		ColorizeFont = config->getBool("General", "ColorizeFont", true);
 		AssumeOIT = config->getBool("General", "AssumeOIT", false);
 		DisableFontSmoothing = config->getBool("General", "DisableFontSmoothing", true);
+		DisableFontFiltering = config->getBool("General", "DisableFontFiltering", true);
 		EnableLSDFix = config->getBool("Miscellaneous", "EnableLSDFix", false);
 		EnableDCBranding = config->getBool("General", "EnableDreamcastBranding", true);
 		EnableSpeedFixes = config->getBool("General", "EnableSpeedFixes", true);

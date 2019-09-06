@@ -108,6 +108,7 @@ extern int CutsceneFrameCounter;
 extern std::string EnableImpressFont;
 extern bool ColorizeFont;
 extern bool DisableFontSmoothing;
+extern bool DisableFontFiltering;
 extern bool EnableLSDFix;
 extern bool FPSLock;
 extern bool EnableDCRipple;
