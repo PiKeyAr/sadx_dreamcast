@@ -74,6 +74,9 @@ DataPointer(NJS_CNK_OBJECT, SADXHatEyes, 0x35E2BBC);
 DataPointer(NJS_CNK_MODEL, SADXChaoEggTop_Model, 0x3601484);
 DataPointer(HintText_Entry, ChaoGardenMessages_English_OriginalTextEntry, 0x8811D8);
 DataPointer(HintText_Entry*, ChaoGardenMessages_English_OriginalTextEntryPointer, 0x9BF070);
+FunctionPointer(void, ChaoStatPanel_Draw, (ObjectMaster *a1), 0x738260);
+FunctionPointer(void, ChaoButtonPrompts_Draw, (ObjectMaster *a1), 0x71B210);
+
 SecondaryEntrance BK_SSGardenStartPoint;
 static int ecgardenwater = 54;
 static int vmuframe = 0;
@@ -1553,8 +1556,8 @@ void RenderChaoNormalFruit_Whatever(NJS_MODEL_SADX *a1)
 
 void RenderChaoTransporterLabel_Fix(NJS_OBJECT *a1)
 {
-	DrawQueueDepthBias = 1000.0f;
-	ProcessModelNode(a1, QueuedModelFlagsB_EnableZWrite, 1.0f);
+	DrawQueueDepthBias = -1000.0f;
+	ProcessModelNode(a1, QueuedModelFlagsB_SomeTextureThing, 1.0f);
 	DrawQueueDepthBias = 0;
 }
 
@@ -2047,6 +2050,16 @@ void PlayElevatorSound(int ID, void *a2, int a3, void *a4)
 	else PlaySound(685, a2, a3, a4);
 }
 
+void FixChaoButtonPrompts(ObjectMaster *a1)
+{
+	DrawModelCallback_QueueObjectMaster(ChaoButtonPrompts_Draw, a1, 22952.0f, QueuedModelFlagsB_SomeTextureThing);
+}
+
+void FixChaoStatPanel(ObjectMaster *a1)
+{
+	DrawModelCallback_QueueObjectMaster(ChaoStatPanel_Draw, a1, 22952.0f, QueuedModelFlagsB_SomeTextureThing);
+}
+
 void ProcessChaoGardenMaterials(LandTable *landtable, int garden)
 {
 	NJS_MATERIAL* material;
@@ -2123,6 +2136,14 @@ void ChaoGardens_Init()
 	//This stuff is done only once
 	if (!ModelsLoaded_Chao)
 	{
+		if (DisableChaoButtonPrompts)
+		{
+			WriteData<5>((void*)0x007195AE, 0x90); //Don't load SADX button prompts in SS garden
+			WriteData<5>((void*)0x00718E20, 0x90); //Don't load SADX button prompts in MR garden
+			WriteData<5>((void*)0x00719181, 0x90); //Don't load SADX button prompts in EC garden
+		}
+		else WriteData((ObjectFuncPtr*)0x0071B3D3, FixChaoButtonPrompts);
+		WriteData((ObjectFuncPtr*)0x007382A4, FixChaoStatPanel);
 		ResizeTextureList(&GARDEN00_OBJECT_TEXLIST, textures_garden00_object);
 		LoadChaoGardenHintMessages();
 		//Load models
@@ -2176,6 +2197,7 @@ void ChaoGardens_Init()
 		WriteData((NJS_OBJECT**)0x007295C0, TransporterLight_EC); //EC red
 		WriteData((NJS_OBJECT**)0x007295C9, TransporterLabel_SS); //SS blue label
 		WriteData((NJS_OBJECT**)0x007295D0, TransporterLight_SS); //SS blue
+		WriteCall((void*)0x007291B1, RenderChaoTransporterLabel_Fix); //Label transparency fix
 		WriteCall((void*)0x007291E0, RenderChaoTransporterLabel_Fix); //Label transparency fix
 		WriteCall((void*)0x00729217, RenderChaoTransporterLabel_Fix); //Label transparency fix
 		WriteData<1>((char*)0x00729576, 0x90); //Collision struct pointer
@@ -2247,7 +2269,6 @@ void ChaoGardens_Init()
 		BK_SSGardenStartPoint.YRot = SSGardenStartPoint.YRot;
 		if (EnableSSGarden)
 		{
-			WriteData<5>((void*)0x007195AE, 0x90); //Don't load SADX button prompts in SS garden
 			WriteData<5>((void*)0x0071957E, 0x90); //Disable the Sonic Team homepage prompt
 			WriteJump((void*)0x4145D0, sub_4145D0); //Elevator function
 			WriteJump((void*)0x0072AB80, LoadChaoRaceDoorX);
@@ -2314,7 +2335,6 @@ void ChaoGardens_Init()
 		{
 			ChaoGardenSky_MR_Day = LoadModel("system\\data\\AL_GARDEN02\\Models\\00013A78.sa1mdl", false);
 			ChaoGardenSky_MR_Night = LoadModel("system\\data\\AL_GARDEN02\\Models\\0001BC88.sa1mdl", false);
-			WriteData<5>((void*)0x00718E20, 0x90); //Don't load SADX button prompts in MR garden
 			WriteJump((void*)0x00718E90, LoadMRGardenX);
 			WriteJump((void*)0x0072A790, sub_72A790); //Mystic Ruins garden function 1
 			WriteJump((void*)0x0072A820, sub_72A820); //Mystic Ruins garden function 2
@@ -2365,7 +2385,6 @@ void ChaoGardens_Init()
 			ChaoGardenSky_EC_Water->basicdxmodel->mats[0].attrflags |= NJD_SA_SRC;
 			ChaoGardenSky_EC_Water->basicdxmodel->mats[0].attrflags |= NJD_DA_INV_SRC;
 			ChaoGardenSky_EC_Water->basicdxmodel->mats[0].diffuse.argb.a = 127;
-			WriteData<5>((void*)0x00719181, 0x90); //Don't load SADX button prompts in EC garden
 			WriteCall((void*)0x00729289, NameMachineTexlist);
 			WriteJump((void*)0x007191D0, LoadECGardenX);
 			WriteData((float*)0x007191BF, -12000.0f); //Draw distance
