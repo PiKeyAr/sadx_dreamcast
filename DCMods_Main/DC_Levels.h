@@ -157,6 +157,7 @@ extern bool EnableMRGarden;
 extern bool EnableECGarden;
 extern bool ReplaceEggs;
 extern bool EnableLobby;
+extern bool DisableChaoButtonPrompts;
 extern int ReplaceFruits;
 extern NJS_TEXLIST texlist_sadxwtr_beach;
 extern NJS_TEXLIST texlist_sadxwtr_sewers;
