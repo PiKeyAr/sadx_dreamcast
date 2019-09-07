@@ -1747,7 +1747,7 @@ void DrawPauseSelectionBox_DC(int n, NJS_POINT2 *pos, NJS_POINT2 *scale)
 	*/
 	PauseSelectionTexlist.nbTexture = 1;
 	PauseSelectionTexlist.textures = (NJS_TEXNAME*)&CON_REGULAR_TEXNAMES[37];
-	DoColorGradientThingMaybe(0xe6d18e07, 0xe6e2d80c, 0xe6d18e07, 0xe6e2d80c);
+	DoColorGradientThingMaybe(0xFFED9700, 0xFFFFEA00, 0xFFED9700, 0xFFFFEA00);
 	PauseSelectionBoxFloats.x = pos->x;
 	PauseSelectionBoxFloats.y = pos->y;
 	PauseSelectionBoxFloats.scale_x = scale->x;
