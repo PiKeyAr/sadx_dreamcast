@@ -426,7 +426,7 @@ extern "C"
 		ReplaceFruits = config->getInt("Chao Gardens", "ReplaceFruits", 0);
 		ReplaceEggs = config->getBool("Chao Gardens", "ReplaceEggs", true);
 		EnableLobby = config->getBool("Chao Gardens", "EnableChaoRaceLobby", true);
-		DisableChaoButtonPrompts = EnableLobby = config->getBool("Chao Gardens", "DisableChaoButtonPrompts", false);
+		DisableChaoButtonPrompts = config->getBool("Chao Gardens", "DisableChaoButtonPrompts", false);
 		//Autodemo mods check
 		if (GetModuleHandle(L"AutoDemo_TestLevels") != nullptr) EnableHedgehogHammer = false;
 		if (GetModuleHandle(L"AutoDemo_WindyValley") != nullptr) EnableWindyValley = false;
