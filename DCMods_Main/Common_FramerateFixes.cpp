@@ -85,6 +85,7 @@ short Tails_1536 = 1536;
 short HintMonitorAnimationSpeedOverride = 364;
 char LeonTimer1 = 20;
 char LeonTimer2 = 60;
+int FrameIncrement_Tails = 1; //Tails' speed on the character select screen
 
 //Emerald Coast
 char TakiSpeed = 8;
@@ -693,6 +694,7 @@ void SpeedFixes_Init()
 	WriteData((short*)0x0045DA7D, Tails_20480); //5
 	WriteData((short*)0x004612DA, Tails_819); //6
 	WriteData((short*)0x004612ED, Tails_819); //7
+	WriteData((int**)0x0045AC4C, &FrameIncrement_Tails);
 	//Emerald Coast
 	WriteData((char*)0x004FB8BE, TakiSpeed);
 	//Windy Valley
@@ -759,6 +761,7 @@ void SpeedFixes_OnFrame()
 	{
 		if (!IsGamePaused())
 		{
+			if (GameMode == 12) FrameIncrement_Tails = 2; else FrameIncrement_Tails = FrameIncrement; //Tails' speed on the character select screen
 			OFunFrame -= 0.25f;
 			if (OFunFrame < 0) OFunFrame = 19;
 			DashPanelAnimationFrame -= 0.25f;
@@ -770,6 +773,7 @@ void SpeedFixes_OnFrame()
 	{
 		if (!IsGamePaused())
 		{
+			FrameIncrement_Tails = FrameIncrement; //Tails' speed on the character select screen
 			OFunFrame += 1.0f;
 			if (OFunFrame > 19) OFunFrame = 0;
 			DashPanelAnimationFrame += 1.0f;
