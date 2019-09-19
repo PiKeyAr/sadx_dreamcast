@@ -1111,6 +1111,7 @@ void RemoveTransparency_Object(NJS_OBJECT* obj, bool recursive)
 	{
 		for (int k = 0; k < obj->basicdxmodel->nbMat; ++k)
 		{
+			material = &obj->basicdxmodel->mats[k];
 			material->diffuse.argb.a = 255;
 			if (material->attrflags & NJD_FLAG_USE_ALPHA) material->attrflags &= ~NJD_FLAG_USE_ALPHA;
 		}
