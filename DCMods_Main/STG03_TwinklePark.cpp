@@ -428,6 +428,7 @@ void TwinklePark_Init()
 		*(NJS_OBJECT*)0x27B0708 = *LoadModel("system\\data\\STG03\\Models\\000AEC6C.sa1mdl", false); //Merry-go-round floor
 		*(NJS_OBJECT*)0x27AF5EC = *LoadModel("system\\data\\STG03\\Models\\000ADBE0.sa1mdl", false); //Double door
 		*(NJS_OBJECT*)0x27C17CC = *LoadModel("system\\data\\STG03\\Models\\000BB2B4.sa1mdl", false); //OShutter
+		SwapMeshsets((NJS_OBJECT*)0x27C17CC, 3, 5); //For UV animation
 		*(NJS_OBJECT*)0x27A3F5C = *LoadModel("system\\data\\STG03\\Models\\000A6CD8.sa1mdl", false); //OFlyer
 		*(NJS_OBJECT*)0x27AFCF0 = *LoadModel("system\\data\\STG03\\Models\\000AE2BC.sa1mdl", false); //Crown
 		*(NJS_OBJECT*)0x38B119C = *LoadModel("system\\data\\STG03\\Models\\000DF3F0.sa1mdl", false); //Ship
