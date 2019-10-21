@@ -442,6 +442,7 @@ void ChaoFukidasi_Display(ObjectMaster* a1)
 			//Draw space
 			if (ChaoNameCurrentCharacter == 0x5F || ChaoNameCurrentCharacter == 0x00) njDrawSprite3D_Queue(&ChaoNameLetterSprite, 254, NJD_SPRITE_ALPHA | NJD_SPRITE_VFLIP, QueuedModelFlagsB_EnableZWrite);
 			//Draw all letters before space (because SADX is retarded)
+			else if (ChaoNameCurrentCharacter < 0) njDrawSprite3D_Queue(&ChaoNameLetterSprite, 254 + ChaoNameCurrentCharacter, NJD_SPRITE_ALPHA | NJD_SPRITE_COLOR | NJD_SPRITE_VFLIP, QueuedModelFlagsB_EnableZWrite);
 			else njDrawSprite3D_Queue(&ChaoNameLetterSprite, ChaoNameCurrentCharacter - 1, NJD_SPRITE_ALPHA | NJD_SPRITE_COLOR | NJD_SPRITE_VFLIP, QueuedModelFlagsB_EnableZWrite);
 			Sprite3DDepth_Current = 0.0f;
 			njPopMatrix(1u);
