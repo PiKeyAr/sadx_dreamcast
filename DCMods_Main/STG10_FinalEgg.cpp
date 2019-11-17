@@ -721,15 +721,15 @@ void FinalEgg_Init()
 		((NJS_ACTION*)0x1A3037C)->object = LoadModel("system\\data\\STG10\\Models\\001DD1E8.sa1mdl", false); //OFun
 		((NJS_ACTION*)0x19D8F14)->object = LoadModel("system\\data\\STG10\\Models\\00192AD0.sa1mdl", false); //Laser
 		SwapMeshsets(((NJS_ACTION*)0x19D8F14)->object->child, 0, 1);
-		((NJS_ACTION*)0x19E14C4)->object = LoadModel("system\\data\\STG10\\Models\\001991C0.sa1mdl", false); //OSide_Arm
+		LoadModel_ReplaceMeshes(((NJS_ACTION*)0x19E14C4)->object, "system\\data\\STG10\\Models\\001991C0.sa1mdl"); //OSide_Arm
+		LoadModel_ReplaceMeshes((NJS_OBJECT*)0x19DF364, "system\\data\\STG10\\Models\\00197C30.sa1mdl"); //OSide_Arm broken 1
+		LoadModel_ReplaceMeshes((NJS_OBJECT*)0x19DE2AC, "system\\data\\STG10\\Models\\00197030.sa1mdl"); //OSide_Arm broken 2
+		LoadModel_ReplaceMeshes((NJS_OBJECT*)0x19DE6CC, "system\\data\\STG10\\Models\\0019735C.sa1mdl"); //OSide_Arm broken 3
+		LoadModel_ReplaceMeshes((NJS_OBJECT*)0x19DEAEC, "system\\data\\STG10\\Models\\00197688.sa1mdl"); //OSide_Arm broken 4
 		*(NJS_OBJECT*)0x1A45620 = *LoadModel("system\\data\\STG10\\Models\\001EDDA8.sa1mdl", false); //OTexture
 		*(NJS_OBJECT*)0x1A29BBC = *LoadModel("system\\data\\STG10\\Models\\001D7CE0.sa1mdl", true); //OUkishima
 		WriteCall((void*)0x5B7AEA, DrawOUkishima); //Good idea not to queue a model with transparency, huh?
-		*(NJS_OBJECT*)0x19DF364 = *LoadModel("system\\data\\STG10\\Models\\00197C30.sa1mdl", false); //OSide_Arm broken 1
-		*(NJS_OBJECT*)0x19DE2AC = *LoadModel("system\\data\\STG10\\Models\\00197030.sa1mdl", false); //OSide_Arm broken 2
-		*(NJS_OBJECT*)0x19DE6CC = *LoadModel("system\\data\\STG10\\Models\\0019735C.sa1mdl", false); //OSide_Arm broken 3
-		*(NJS_OBJECT*)0x19DEAEC = *LoadModel("system\\data\\STG10\\Models\\00197688.sa1mdl", false); //OSide_Arm broken 4
-		*(NJS_OBJECT*)0x19D228C = *LoadModel("system\\data\\STG10\\Models\\0018E284.sa1mdl", false); //OConvStop
+		LoadModel_ReplaceMeshes((NJS_OBJECT*)0x19D228C, "system\\data\\STG10\\Models\\0018E284.sa1mdl"); //OConvStop
 		NJS_OBJECT* OPinLampObject = LoadModel("system\\data\\STG10\\Models\\0021D560.sa1mdl", false); 
 		((NJS_OBJECT*)0x1C2A588)->basicdxmodel = OPinLampObject->basicdxmodel; //OPinLamp
 		((NJS_OBJECT*)0x1C2A588)->child->basicdxmodel = OPinLampObject->child->basicdxmodel; //OPinLamp
