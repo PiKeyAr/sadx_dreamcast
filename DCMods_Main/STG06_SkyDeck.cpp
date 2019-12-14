@@ -671,12 +671,15 @@ void SkyDeck_OnFrame()
 	if (CurrentLevel == LevelIDs_SkyDeck)
 	{
 		//Reset COL flags in Act 2 after the wing breaks off
-		if (GameState == 3 || GameState == 4 || GameState == 7 || GameState == 21)
-			for (int i = 0; i < GeoLists[49]->COLCount; i++)
-			{
-				if (GeoLists[49]->Col[i].anonymous_6 & 4)
-					GeoLists[49]->Col[i].Flags |= ColFlags_Solid;
-			}
+		if (CurrentAct == 1 && STG06_2_Info != nullptr)
+		{
+			if (GameState == 3 || GameState == 4 || GameState == 7 || GameState == 21)
+				for (int i = 0; i < GeoLists[49]->COLCount; i++)
+				{
+					if (GeoLists[49]->Col[i].anonymous_6 & 4)
+						GeoLists[49]->Col[i].Flags |= ColFlags_Solid;
+				}
+		}
 		//Cloud UVs and stuff
 		if (!IsGamePaused())
 		{
