@@ -172,7 +172,7 @@ static float LogoScaleY = 1.0f;
 static float LogoScaleXT = 1.0f;
 static float LogoScaleYT = 1.0f;
 static Uint32 FileSelectVtxColor = 0xFFFFFFFF;
-static int NumberOfSaves = 0;
+static char NumberOfSaves = 0;
 
 //Options
 static float Options_ArrowScale = 0.0f;
@@ -676,6 +676,31 @@ CreditsEntry SA1Credits[] = {
 { 7, -1, 0, 0, "SEGA ENTERPRISES,LTD." }
 };
 
+
+char FindSaveFilesLite()
+{
+	HANDLE handle; // edi MAPDST
+	struct _WIN32_FIND_DATAA fileSearchData; // [esp+18h] [ebp-250h]
+	_WIN32_FIND_DATAA _FindFileData; // [esp-140h] [ebp-3A8h]
+
+	handle = FindFirstFileA("./SAVEDATA/SonicDX01.snc", &fileSearchData);
+	if (handle == (HANDLE)-1)
+	{
+		return 0;
+	}
+	handle = FindFirstFileA("./SAVEDATA/SonicDX02.snc", &fileSearchData);
+	if (handle == (HANDLE)-1)
+	{
+		return 1;
+	}
+	handle = FindFirstFileA("./SAVEDATA/SonicDX03.snc", &fileSearchData);
+	if (handle == (HANDLE)-1)
+	{
+		return 2;
+	}
+	else return 3;
+}
+
 void GreenRect_Wrapper(float x, float y, float z, float width, float height)
 {
 	if (!AssumeOIT) njTextureShadingMode(1);
@@ -852,7 +877,7 @@ void __cdecl DrawAVA_TITLE_BACK_E_DC(float depth)
 	DrawBG(texturenumber, xpos, ypos, z, scaleX, scaleY);
 	//Draw logo overlay
 	texturenumber = 2;
-	if (DrawOverlay == true) DrawBG(texturenumber, xpos, ypos, z, scaleX, scaleY);
+	if (DrawOverlay) DrawBG(texturenumber, xpos, ypos, z, scaleX, scaleY);
 	//Draw white overlay
 	if (!whiteoverlaydrawn)
 	{
@@ -1142,7 +1167,7 @@ void DrawTitleScreen()
 		if (BlackFadeout.argb.a >= 32) BlackFadeout.argb.a -= 32;
 	}
 	//Draw file select screen mockup
-	if (TitleScreenFadedIntoBlack == false && MainMenuAccessed == false && transitionmode != -1)
+	if (!TitleScreenFadedIntoBlack && !MainMenuAccessed && transitionmode != -1)
 	{
 		DrawFileSelectMockup(5800.0f, true, 0xFFFFFFFF);
 	}
@@ -1154,13 +1179,13 @@ void DrawTitleScreen()
 	if (!AssumeOIT) njTextureShadingMode(1);
 	if (!DroppedFrames)
 	{
-		if (MainMenuAccessed == false || TitleScreenFadedIntoBlack == true) SetVtxColorB(TitleBGTransparency.color); else SetVtxColorB(0xFFFFFFFF);
+		if (!MainMenuAccessed || TitleScreenFadedIntoBlack) SetVtxColorB(TitleBGTransparency.color); else SetVtxColorB(0xFFFFFFFF);
 		if (titledrawn != titleframe)
 		{
 			if (titleframe > 22) titleframe = 0;
-			if (RipplesOn == false) texturenumber = 0; else texturenumber = titleframe * 8;
+			if (!RipplesOn) texturenumber = 0; else texturenumber = titleframe * 8;
 			//Set scaling
-			if (is640 == true)
+			if (is640)
 			{
 				scaleX = 1.0f;
 				scaleY = 1.0f;
@@ -1230,7 +1255,7 @@ void DrawTitleScreen()
 		njSetTexture(&ava_gtitle0_e_TEXLIST);
 		if (logoframe > 128) logoframe = 0;
 		//Draw logo
-		if (MainMenuAccessed == false || TitleScreenFadedIntoBlack == true) SetVtxColorB(TitleBGTransparency.color);
+		if (!MainMenuAccessed || TitleScreenFadedIntoBlack) SetVtxColorB(TitleBGTransparency.color);
 		else SetVtxColorB(0xFFFFFFFF);
 		if (SA1LogoMode < 2)
 		{
@@ -1261,7 +1286,7 @@ void DrawTitleScreen()
 		DrawBG(texturenumber, xpos, ypos, 1.2f, scaleX, scaleY);
 		//Draw logo overlay
 		texturenumber = 2;
-		if (DrawOverlay == true) DrawBG(texturenumber, xpos, ypos, 1.2f, scaleX, scaleY);
+		if (DrawOverlay) DrawBG(texturenumber, xpos, ypos, 1.2f, scaleX, scaleY);
 		//Sonic Team logo fade-in
 		if (transitionmode == 0)
 		{
@@ -1273,7 +1298,7 @@ void DrawTitleScreen()
 			if (SonicTeamAlpha >= 0) SonicTeamAlpha -= 32;
 			else SonicTeamAlpha = 0;
 		}
-		if (EnableTransition == false)
+		if (!EnableTransition)
 		{
 			SonicTeamAlpha = TitleBGTransparency.argb.a;
 		}
@@ -1391,10 +1416,10 @@ void DrawTitleScreen()
 		}
 		texturenumber = 0;
 		SetVtxColorB(TitleBGTransparency.color);
-		if (EnableTransition == true && LogoScaleXT > 1.02f)
+		if (EnableTransition && LogoScaleXT > 1.02f)
 		{
 			DrawBG(texturenumber, xpos, ypos, 1.2f, LogoScaleXT*scaleX, LogoScaleYT*scaleY);
-			if (DrawOverlay == true) DrawBG(2, xpos, ypos, 1.2f, LogoScaleXT*scaleX, LogoScaleYT*scaleY); //Draw overlay
+			if (DrawOverlay) DrawBG(2, xpos, ypos, 1.2f, LogoScaleXT*scaleX, LogoScaleYT*scaleY); //Draw overlay
 		}
 	}
 	if (!AssumeOIT) njTextureShadingMode(2);
@@ -1409,7 +1434,7 @@ void DrawTitleScreen()
 		if (TitleBackOverlayColor.argb.a >= 8) TitleBackOverlayColor.argb.a -= 8;
 		else TitleBackOverlayColor.argb.a = 0;
 	}
-	if (MainMenuAccessed == true && TitleScreenFadedIntoBlack == false)
+	if (MainMenuAccessed && !TitleScreenFadedIntoBlack)
 	{
 		njSetTexture(&ava_title_back_e_TEXLIST);
 		SetVtxColorB(TitleBackOverlayColor.color);
@@ -2004,7 +2029,7 @@ void Branding_SetUpVariables()
 	//Set up variables
 	HorizontalResolution_float = static_cast<float>(HorizontalResolution);
 	VerticalResolution_float = static_cast<float>(VerticalResolution);
-	if (RipplesOn == true) ResolutionScaleX = 1.05f*(HorizontalResolution_float / 640.0f);
+	if (RipplesOn) ResolutionScaleX = 1.05f*(HorizontalResolution_float / 640.0f);
 	else ResolutionScaleX = HorizontalResolution_float / 640.0f;
 	ResolutionScaleY = VerticalResolution_float / 480.0f;
 	ResolutionDeltaX = (HorizontalResolution_float - ResolutionScaleY * 640.0f) / 2.0f;
@@ -2987,11 +3012,12 @@ void Branding_Init(const IniFile *config, const HelperFunctions &helperFunctions
 	}
 	//Main code
 	//Kill Cream
-	if (RemoveCream == true) WriteData<1>((void*)0x6353A0, 0xC3u);
+	if (RemoveCream) WriteData<1>((void*)0x6353A0, 0xC3u);
 	//Title screen stuff
-	if (DisableSA1TitleScreen == false)
+	if (!DisableSA1TitleScreen)
 	{
-		NumberOfSaves = FindSaveFiles();
+		NumberOfSaves = FindSaveFilesLite();
+		PrintDebug("Number of saves: %d\n", NumberOfSaves);
 		TitleBackOverlayColor.color = 0x99FFFFFF;
 		//Disable native PVMs
 		//AVA_GTITLE_0_E texlist is always 10 textures
@@ -3149,7 +3175,7 @@ void Branding_OnFrame()
 		if (Options_ArrowScale < 0.0f) Options_ArrowScaleAmount = 0.02f;
 		Options_ArrowScale = Options_ArrowScale + Options_ArrowScaleAmount;
 	}
-	if (DisableSA1TitleScreen == false && GameState == 21)
+	if (!DisableSA1TitleScreen && GameState == 21)
 	{
 		if (titleframe == titledrawn) titleframe++;
 		if (logoframe == logodrawn) logoframe++;
