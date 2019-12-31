@@ -2,7 +2,7 @@
 
 NJS_TEXNAME textures_chaos4_object[6];
 
-NJS_TEXNAME textures_chaos4[13];
+NJS_TEXNAME textures_chaos4[14];
 NJS_TEXLIST texlist_chaos4 = { arrayptrandlength(textures_chaos4) };
 
 //#include "Chaos4.h"
@@ -20,29 +20,17 @@ FunctionPointer(void, sub_407CF0, (NJS_MODEL_SADX *a1, QueuedModelFlagsB a2), 0x
 
 static int Chaos4Water = 0;
 
-void Chaos4Skybox(ObjectMaster *o1)
+void Chaos4CleanWater_Display(ObjectMaster* o1)
 {
-	float WaterTrans;
 	float xshift = -145.92953f;
 	float zshift = -27.3004f;
 	NJS_VECTOR a1;
 	NJS_VECTOR a2;
-	//Swamp animation
-	if (Chaos4Water > 13) Chaos4Water = 0;
-	Chaos4CleanWater->basicdxmodel->mats[0].attr_texId = Chaos4Water;
-	if (FramerateSetting < 2 && FrameCounter % 2 == 0 || FramerateSetting >= 2) Chaos4Water++;
-	if (!MissedFrames)
+	//Swamp water
+	if (Chaos4NumaTransparency > -1.0f && !MissedFrames)
 	{
-		//Skybox
-		njSetTexture(&CHAOS4_OBJECT_TEXLIST);
-		j_ClampGlobalColorThing_Thing();
-		njPushMatrix(0);
-		sub_408530((NJS_OBJECT*)0x11C2C20);
-		njPopMatrix(1u);
-		//Swamp water
-		njSetTexture(&CHAOS4_NUMA_TEXLIST);
-		WaterTrans = 153.0f*(1.0f + Chaos4NumaTransparency);
-		Chaos4CleanWater->basicdxmodel->mats[0].diffuse.argb.a = (int)WaterTrans;
+		njSetTexture((NJS_TEXLIST*)0x11C6D4C); //Specific texture that SADX gets from the NUMA texlist
+		Chaos4CleanWater->basicdxmodel->mats[0].diffuse.argb.a = (int)(153.0f * (1.0f + Chaos4NumaTransparency));
 		njPushMatrix(0);
 		if (Camera_Data1->Position.y <= 0) DrawQueueDepthBias = -17900.0f;
 		if (Camera_Data1->Position.y > 0)
@@ -52,12 +40,12 @@ void Chaos4Skybox(ObjectMaster *o1)
 			//Camera above water and Chaos below water - move to front
 			else DrawQueueDepthBias = 8000.0f;
 		}
-		if (Chaos4NumaTransparency > -1.0f) ProcessModelNode_D_WrapperB(Chaos4CleanWater, 0, 1.0f);
+		ProcessModelNode_D_WrapperB(Chaos4CleanWater, 0, 1.0f);
 		njPopMatrix(1u);
 		DrawQueueDepthBias = 0.0f;
 	}
 	//Waterfall effect
-	if (!IsGamePaused())
+	if (GameState == 15)
 	{
 		int v40;
 		a2 = { 0, 0, 0 };
@@ -70,17 +58,17 @@ void Chaos4Skybox(ObjectMaster *o1)
 			a1.z = -280.0f;
 			a1.x += xshift;
 			a1.z += zshift;
-			sub_4B9540(&a1, (NJS_VECTOR *)&a2, 1.5);
+			sub_4B9540(&a1, (NJS_VECTOR*)&a2, 1.5f);
 			a1.x = 12.3f;
 			a1.z = -275.0f;
 			a1.x += xshift;
 			a1.z += zshift;
-			sub_4B9540(&a1, (NJS_VECTOR *)&a2, 1.5);
+			sub_4B9540(&a1, (NJS_VECTOR*)&a2, 1.5f);
 			a1.x = 15.3f;
 			a1.z = -270.0f;
 			a1.x += xshift;
 			a1.z += zshift;
-			sub_4B9540(&a1, (NJS_VECTOR *)&a2, 1.5);
+			sub_4B9540(&a1, (NJS_VECTOR*)&a2, 1.5f);
 			v40 = FrameCounter2;
 		}
 		if ((v40 & 3) == 1)
@@ -89,17 +77,17 @@ void Chaos4Skybox(ObjectMaster *o1)
 			a1.z = -267.0f;
 			a1.x += xshift;
 			a1.z += zshift;
-			sub_4B9540(&a1, (NJS_VECTOR *)&a2, 1.5);
+			sub_4B9540(&a1, (NJS_VECTOR*)&a2, 1.5f);
 			a1.x = 31.3f;
 			a1.z = -268.5f;
 			a1.x += xshift;
 			a1.z += zshift;
-			sub_4B9540(&a1, (NJS_VECTOR *)&a2, 1.5);
+			sub_4B9540(&a1, (NJS_VECTOR*)&a2, 1.5f);
 			a1.x = 37.3f;
 			a1.z = -269.5f;
 			a1.x += xshift;
 			a1.z += zshift;
-			sub_4B9540(&a1, (NJS_VECTOR *)&a2, 1.5);
+			sub_4B9540(&a1, (NJS_VECTOR*)&a2, 1.5f);
 			v40 = FrameCounter2;
 		}
 		if ((v40 & 3) == 2)
@@ -108,17 +96,17 @@ void Chaos4Skybox(ObjectMaster *o1)
 			a1.z = -270.0f;
 			a1.x += xshift;
 			a1.z += zshift;
-			sub_4B9540(&a1, (NJS_VECTOR *)&a2, 1.5);
+			sub_4B9540(&a1, (NJS_VECTOR*)&a2, 1.5f);
 			a1.x = 42.5f;
 			a1.z = -275.0f;
 			a1.x += xshift;
 			a1.z += zshift;
-			sub_4B9540(&a1, (NJS_VECTOR *)&a2, 1.5);
+			sub_4B9540(&a1, (NJS_VECTOR*)&a2, 1.5f);
 			a1.x = 48.3f;
 			a1.z = -280.0f;
 			a1.x += xshift;
 			a1.z += zshift;
-			sub_4B9540(&a1, (NJS_VECTOR *)&a2, 1.5);
+			sub_4B9540(&a1, (NJS_VECTOR*)&a2, 1.5f);
 		}
 		SetParticleDepthOverride(0.0f);
 	}
@@ -345,7 +333,7 @@ void Chaos4_Init()
 		*(NJS_OBJECT*)0x11C4B90 = *LoadModel("SYSTEM\\data\\B_CHAOS4\\Models\\000425F8.sa1mdl", false); //Chaos 4 swamp water
 		Chaos4CleanWater = LoadModel("SYSTEM\\data\\B_CHAOS4\\Models\\0004476C.sa1mdl", false); //Chaos 4 swamp water
 		WriteData<1>((char*)0x00555B3F, 0x08); //Chaos 4 bubble blending mode SA_SRC instead of SA_ONE
-		WriteJump((void*)0x550D10, Chaos4Skybox);
+		WriteJump((void*)0x552F80, Chaos4CleanWater_Display);
 		*(NJS_OBJECT*)0x11E3240 = *LoadModel("SYSTEM\\data\\B_CHAOS4\\Models\\0003E6CC.sa1mdl", false); //Lilypad
 		//Chaos 4
 		RemoveVertexColors_Object((NJS_OBJECT*)0x11A652C); //Chaos4 alt model

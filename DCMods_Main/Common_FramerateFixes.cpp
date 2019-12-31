@@ -618,6 +618,8 @@ void SpeedFixes_Init()
 	WriteData((float**)0x004BA4A7, &InvincibilitySpeed);
 	//Character bubbles
 	WriteData((int**)0x004A26B3, &MissedFrames_Half);
+	//Chaos 4 clean water
+	WriteData((int**)0x005533CB, &MissedFrames_Half);
 	//Ice Cap avalanche snow sprites
 	WriteData((float**)0x4EB391, &AvalancheMultiplier);
 	WriteData((float**)0x4EB3B6, &AvalancheMultiplier);
