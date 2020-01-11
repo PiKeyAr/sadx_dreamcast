@@ -1526,6 +1526,20 @@ void RestoreSubtitleFiltering(NJS_ARGB *a1)
 	SetMaterialAndSpriteColor(a1);
 }
 
+void DrawGammaDamageSprite(int n)
+{
+	Direct3D_EnableZWrite(0);
+	Direct3D_SetZFunc(7u);
+	njDrawSprite3D_DrawNow((NJS_SPRITE*)0x3033144, n, NJD_SPRITE_ALPHA | NJD_SPRITE_SCALE | NJD_SPRITE_COLOR | NJD_SPRITE_ANGLE);
+	Direct3D_EnableZWrite(1u);
+	Direct3D_SetZFunc(1u);
+}
+
+void GammaDamageSpriteFix(NJS_SPRITE* a1, Int n, NJD_SPRITE attr)
+{
+	DrawModelCallback_QueueInt(DrawGammaDamageSprite, n, 20000.0f, (QueuedModelFlagsB)0);
+}
+
 void General_Init()
 {
 	if (!ModelsLoaded_General)
@@ -1709,6 +1723,8 @@ void General_Init()
 		E102_OBJECTS[5]->basicdxmodel->mats[0].attr_texId = 10;
 		E102_OBJECTS[5]->basicdxmodel->mats[0].attrflags |= NJD_FLAG_USE_TEXTURE;
 		E102_OBJECTS[6] = E102_OBJECTS[5];
+		//Make the electric sparks render above Gamma's body in post-fight cutscenes
+		WriteCall((void*)0x6F2D96, GammaDamageSpriteFix);
 		//Chaos 1 materials
 		RemoveVertexColors_Object((NJS_OBJECT*)0x38DD9BC); //Chaos puddle 1
 		RemoveVertexColors_Object((NJS_OBJECT*)0x2D6962C); //Chaos puddle 2
