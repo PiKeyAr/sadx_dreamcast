@@ -2092,6 +2092,18 @@ void ProcessChaoGardenMaterials(LandTable *landtable, int garden)
 	}
 }
 
+static void SSMRGardenWater_r();
+static Trampoline SSMRGardenWater_t(0x728E20, 0x728E28, SSMRGardenWater_r);
+static void __cdecl SSMRGardenWater_r()
+{
+	auto original = reinterpret_cast<decltype(SSMRGardenWater_r)*>(SSMRGardenWater_t.Target());
+	//Render SADX water in SS garden if Dreamcast SS garden is disabled
+	if (!EnableSSGarden && GetCurrentChaoStage() == 4) original();
+	//Render SADX water in MR garden if Dreamcast MR garden is disabled
+	else if (!EnableMRGarden && GetCurrentChaoStage() == 6) original();
+	else return;
+}
+
 void UnloadLevelFiles_Chao()
 {
 	delete AL_GARDEN00_Info;
