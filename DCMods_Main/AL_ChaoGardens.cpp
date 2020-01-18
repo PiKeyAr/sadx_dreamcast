@@ -2092,16 +2092,55 @@ void ProcessChaoGardenMaterials(LandTable *landtable, int garden)
 	}
 }
 
-static void SSMRGardenWater_r();
-static Trampoline SSMRGardenWater_t(0x728E20, 0x728E28, SSMRGardenWater_r);
-static void __cdecl SSMRGardenWater_r()
+void ChaoGardenSSMRWater_Display_()
 {
-	auto original = reinterpret_cast<decltype(SSMRGardenWater_r)*>(SSMRGardenWater_t.Target());
-	//Render SADX water in SS garden if Dreamcast SS garden is disabled
-	if (!EnableSSGarden && GetCurrentChaoStage() == 4) original();
-	//Render SADX water in MR garden if Dreamcast MR garden is disabled
-	else if (!EnableMRGarden && GetCurrentChaoStage() == 6) original();
-	else return;
+	float v0; // ST18_4
+	Float v1; // ST10_4
+	Float v2; // ST08_4
+	Float v3; // ST18_4
+	unsigned int v4; // esi
+	//Stop right there if DC gardens are enabled
+	if (GetCurrentChaoStage() == 4 && EnableSSGarden) return;
+	else if (GetCurrentChaoStage() == 6 && EnableMRGarden) return;
+	Direct3D_SetZFunc(3u);
+	Direct3D_EnableZWrite(0);
+	njColorBlendingMode(0, NJD_COLOR_BLENDING_SRCALPHA);
+	njColorBlendingMode(NJD_DESTINATION_COLOR, NJD_COLOR_BLENDING_ONE);
+	if (GetCurrentChaoStage() == 4)
+	{
+		njSetTexture(&Garden00SSObj_TEXLIST);
+		njSetTextureNum(0xBu);
+	}
+	else
+	{
+		njSetTexture(TEXLIST_ChaoGardenMR);
+		njSetTextureNum(0x2Bu);
+	}
+	SetOceanAlphaModeAndFVF(1);
+	njPushMatrix(0);
+	v0 = njSin(FrameCounterUnpaused << 6) * OceanDataArray[0].Offset.y;
+	v1 = OceanDataArray[0].Position.z + v0;
+	v2 = OceanDataArray[0].Position.x + v0;
+	njTranslate(0, v2, OceanDataArray[0].Position.y, v1);
+	njPushMatrix(0);
+	v3 = v0 * 0.5;
+	njTranslate(0, v3, -1.0, v3);
+	v4 = 0;
+	if (OceanDataArray[0].PlaneCount)
+	{
+		do
+		{
+			Direct3D_DrawFVF_H(
+				OceanGarbageArray[35 * (unsigned __int8)OceanDataArray[0].VBuffIndex].points,
+				4 * (unsigned __int8)OceanDataArray[0].PrimitiveCount);
+			njTranslate(0, OceanDataArray[0].Offset.x, 0.0, 0.0);
+			++v4;
+		} while (v4 < (unsigned __int8)OceanDataArray[0].PlaneCount);
+	}
+	njPopMatrix(1u);
+	njPopMatrix(1u);
+	Direct3D_ResetZFunc();
+	Direct3D_EnableZWrite(1u);
 }
 
 void UnloadLevelFiles_Chao()
@@ -2158,6 +2197,7 @@ void ChaoGardens_Init()
 		WriteData((ObjectFuncPtr*)0x007382A4, FixChaoStatPanel);
 		ResizeTextureList(&GARDEN00_OBJECT_TEXLIST, textures_garden00_object);
 		LoadChaoGardenHintMessages();
+		WriteJump((void*)0x728E20, ChaoGardenSSMRWater_Display_); //Ocean/water function for DX water in SS and MR gardens
 		//Load models
 		ChaoGardenTransporterEffect = LoadModel("system\\data\\AL_MAIN\\Models\\00180744.sa1mdl", false);
 		ChaoFruit_Chaonut = LoadModel("system\\data\\AL_MAIN\\Models\\0017D068.sa1mdl", false);
