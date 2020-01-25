@@ -243,6 +243,7 @@ bool DLLLoaded_DX11 = false;
 bool EnableSpeedFixes = true;
 
 int LanternErrorMessageTimer = 0;
+int PauseHideErrorMessageTimer = 0;
 
 std::string ModPath = "";
 
@@ -325,6 +326,7 @@ extern "C"
 		DLLLoaded_SADXFE = (GetModuleHandle(L"sadx-fixed-edition") != nullptr);
 		//Error messages
 		if (!DLLLoaded_Lantern) LanternErrorMessageTimer = 600;
+		if (GetModuleHandle(L"pause-hide") != nullptr) PauseHideErrorMessageTimer = 600;
 		if (DLLLoaded_Lantern && set_alpha_reject_ptr == nullptr)
 		{
 			MessageBox(WindowHandle,
@@ -612,15 +614,26 @@ extern "C"
 		
 	__declspec(dllexport) void __cdecl OnFrame()
 	{
-		//Display Lantern Engine missing error
+		//Display error messages
 		if (LanternErrorMessageTimer && (IsIngame() || GameMode == GameModes_Menu))
 		{
+			
 			SetDebugFontSize(10.0f * (float)VerticalResolution / 480.0f);
 			DisplayDebugString(NJM_LOCATION(2, 1), "Failed to detect the Lantern Engine mod.");
 			DisplayDebugString(NJM_LOCATION(2, 2), "Dreamcast levels will have no lighting,");
 			DisplayDebugString(NJM_LOCATION(2, 3), "and alpha rejection fixes will not be applied.");
 			DisplayDebugString(NJM_LOCATION(2, 4), "Please install and enable Lantern Engine for correct visuals.");
 			LanternErrorMessageTimer--;
+		}
+		if (PauseHideErrorMessageTimer && (IsIngame() || GameMode == GameModes_Menu))
+		{
+			SetDebugFontSize(10.0f * (float)VerticalResolution / 480.0f);
+			DisplayDebugString(NJM_LOCATION(2, 6), "The Pause Hide mod interferes with");
+			DisplayDebugString(NJM_LOCATION(2, 7), "some options in Dreamcast Conversion.");
+			DisplayDebugString(NJM_LOCATION(2, 8), "Dreamcast Conversion already includes");
+			DisplayDebugString(NJM_LOCATION(2, 9), "the functionality of the Pause Hide mod.");
+			DisplayDebugString(NJM_LOCATION(2, 10), "Please disable or remove it.");
+			PauseHideErrorMessageTimer--;
 		}
 		//Animate materials and UVs
 		if (!IsGamePaused() && Camera_Data1)

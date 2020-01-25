@@ -1950,6 +1950,13 @@ static Uint8 __cdecl GetPauseDisplayOptions_r(Uint8 *a1)
 {
 	Uint8 options;
 	auto original = reinterpret_cast<decltype(GetPauseDisplayOptions_r)*>(GetPauseDisplayOptions_t.Target());
+	//Pause Hide by SF94
+	if ((ControllerPointers[0]->HeldButtons & (Buttons_X | Buttons_Y)) == (Buttons_X | Buttons_Y))
+	{
+		*a1 = 0;
+		return 0;
+	}
+	//Other stuff
 	if (!EnableDCBranding)
 	{
 		return original(a1);
