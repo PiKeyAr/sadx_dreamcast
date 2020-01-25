@@ -160,6 +160,13 @@ void DrawTornado2WithQueue(NJS_OBJECT* obj, float scale)
 	DrawModel_Queue_407FC0(obj->basicdxmodel, QueuedModelFlagsB_EnableZWrite);
 }
 
+void LightFix(NJS_MODEL_SADX* model, QueuedModelFlagsB blend, float scale)
+{
+	DrawQueueDepthBias = 1000.0f;
+	DrawModel_QueueVisible(model, blend, scale);
+	DrawQueueDepthBias = 0.0f;
+}
+
 void ParseEC00Materials(bool remove)
 {
 	Uint32 materialflags;
@@ -358,6 +365,7 @@ void ADV01_Init()
 		}
 		//Code fixes
 		WriteData<5>((void*)0x5244D6, 0x90); //Disable light flickering
+		WriteCall((void*)0x524509, LightFix); //Make light render of top of glass
 		WriteCall((void*)0x522B49, DrawTornado2WithQueue);
 		WriteCall((void*)0x51F637, ODoseiFix);
 		WriteCall((void*)0x51F669, ODoseiFix);
