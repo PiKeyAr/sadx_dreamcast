@@ -90,6 +90,10 @@ extern bool ModelsLoaded_SHOOTING;
 extern bool ModelsLoaded_MINICART;
 extern bool ModelsLoaded_SBOARD;
 
+extern bool RemoveSetUpPad;
+extern bool RemoveMap;
+extern bool RemoveCamera;
+
 extern bool IsCameraUnderwater;
 extern int SADXWaveAnimation;
 extern int CutsceneSkipMode;

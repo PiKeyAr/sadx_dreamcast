@@ -182,6 +182,10 @@ bool EnableWhiteDiffuse = true;
 bool AssumeOIT = false;
 int Use1999SetFiles = 0;
 
+bool RemoveSetUpPad = false;
+bool RemoveMap = false;
+bool RemoveCamera = false;
+
 bool EnableWindowTitle = true;
 bool EnableDCBranding = true;
 bool EnableEmeraldCoast = true;
@@ -326,7 +330,6 @@ extern "C"
 		DLLLoaded_SADXFE = (GetModuleHandle(L"sadx-fixed-edition") != nullptr);
 		//Error messages
 		if (!DLLLoaded_Lantern) LanternErrorMessageTimer = 600;
-		if (GetModuleHandle(L"pause-hide") != nullptr) PauseHideErrorMessageTimer = 600;
 		if (DLLLoaded_Lantern && set_alpha_reject_ptr == nullptr)
 		{
 			MessageBox(WindowHandle,
@@ -381,6 +384,13 @@ extern "C"
 		DisableFontSmoothing = config->getBool("General", "DisableFontSmoothing", true);
 		DisableFontFiltering = config->getBool("General", "DisableFontFiltering", true);
 		EnableLSDFix = config->getBool("Miscellaneous", "EnableLSDFix", false);
+		RemoveSetUpPad = config->getBool("Branding", "RemoveSetUpPad", false);
+		RemoveMap = config->getBool("Branding", "RemoveMap", false);
+		RemoveCamera = config->getBool("Branding", "RemoveCamera", false);
+		if (GetModuleHandle(L"pause-hide") != nullptr)
+		{
+			if (RemoveMap || RemoveCamera || RemoveSetUpPad) PauseHideErrorMessageTimer = 600;
+		}
 		EnableDCBranding = config->getBool("General", "EnableDreamcastBranding", true);
 		EnableSpeedFixes = config->getBool("General", "EnableSpeedFixes", true);
 		EnableWindowTitle = config->getBool("General", "EnableWindowTitle", true);

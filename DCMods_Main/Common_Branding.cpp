@@ -193,9 +193,6 @@ static bool RemoveQuitPrompt = false;
 static bool RemoveUnlockMessage = false;
 static bool RemoveMarketRingCount = false;
 static bool RemoveGameGearGames = false;
-static bool RemoveSetUpPad = false;
-static bool RemoveMap = false;
-static bool RemoveCamera = false;
 static bool RipplesOn = true;
 static bool EnableTransition = true;
 static bool DisableSA1TitleScreen = false;
@@ -2048,9 +2045,6 @@ void Branding_Init(const IniFile *config, const HelperFunctions &helperFunctions
 	//Load configuration settings
 	RemoveMarketRingCount = config->getBool("Branding", "RemoveMarketRingCount", false);
 	RemoveGameGearGames = config->getBool("Branding", "RemoveGameGearGames", false);
-	RemoveSetUpPad = config->getBool("Branding", "RemoveSetUpPad", false);
-	RemoveMap = config->getBool("Branding", "RemoveMap", false);
-	RemoveCamera = config->getBool("Branding", "RemoveCamera", false);
 	RemoveUnlockMessage = config->getBool("Branding", "RemoveUnlockMessage", false);
 	RemoveQuitPrompt = config->getBool("Branding", "RemoveQuitPrompt", false);
 	RipplesOn = config->getBool("Branding", "RippleEffect", true);
