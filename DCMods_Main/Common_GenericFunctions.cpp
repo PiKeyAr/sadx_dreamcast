@@ -827,7 +827,6 @@ void LoadModel_ReplaceMeshes(NJS_OBJECT *object, const char *ModelName)
 
 void SwapMeshsets(NJS_OBJECT* object, int mesh1, int mesh2)
 {
-	NJS_MESHSET_SADX TempMeshset = { NJD_MESHSET_TRIMESH | 0, 0, NULL, NULL, NULL, NULL, NULL, NULL };
 	//Save mesh 1 data to a temporary meshset
 	TempMeshset.attrs = object->basicdxmodel->meshsets[mesh1].attrs;
 	TempMeshset.buffer = object->basicdxmodel->meshsets[mesh1].buffer;
