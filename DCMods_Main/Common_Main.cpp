@@ -245,6 +245,7 @@ bool DLLLoaded_DLCs = false;
 bool DLLLoaded_SADXFE = false;
 bool DLLLoaded_DX11 = false;
 bool EnableSpeedFixes = true;
+bool SuppressWarnings = false;
 
 int LanternErrorMessageTimer = 0;
 int PauseHideErrorMessageTimer = 0;
@@ -374,6 +375,7 @@ extern "C"
 		//Config stuff
 		const IniFile *const config = new IniFile(s_config_ini);
 		//Read config stuff
+		SuppressWarnings = config->getBool("General", "SuppressWarnings", false);
 		FPSLock = config->getBool("General", "FPSLock", false);
 		EnableDCRipple = config->getBool("General", "EnableDreamcastWaterRipple", true);
 		EnableCutsceneFix = config->getBool("General", "EnableCutsceneFix", true);
@@ -625,7 +627,7 @@ extern "C"
 	__declspec(dllexport) void __cdecl OnFrame()
 	{
 		//Display error messages
-		if (LanternErrorMessageTimer && (IsIngame() || GameMode == GameModes_Menu))
+		if (!SuppressWarnings && LanternErrorMessageTimer && (IsIngame() || GameMode == GameModes_Menu))
 		{
 			
 			SetDebugFontSize(10.0f * (float)VerticalResolution / 480.0f);
@@ -635,7 +637,7 @@ extern "C"
 			DisplayDebugString(NJM_LOCATION(2, 4), "Please install and enable Lantern Engine for correct visuals.");
 			LanternErrorMessageTimer--;
 		}
-		if (PauseHideErrorMessageTimer && (IsIngame() || GameMode == GameModes_Menu))
+		if (!SuppressWarnings && PauseHideErrorMessageTimer && (IsIngame() || GameMode == GameModes_Menu))
 		{
 			SetDebugFontSize(10.0f * (float)VerticalResolution / 480.0f);
 			DisplayDebugString(NJM_LOCATION(2, 6), "The Pause Hide mod interferes with");
