@@ -1901,7 +1901,6 @@ static void __cdecl TitleScreenDisplay_r(ObjectMaster *a1)
 	if (DisableSA1TitleScreen || !EnableDCBranding)
 	{
 		original(a1);
-		return;
 	}
 	else
 	{
