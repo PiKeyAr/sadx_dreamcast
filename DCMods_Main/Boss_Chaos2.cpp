@@ -88,7 +88,7 @@ void Chaos2_Init()
 		WriteCall((void*)0x54CFC9, Chaos2Ball); //Hand attack
 		WriteCall((void*)0x54DA8A, Chaos2Action); //Main model
 		WriteCall((void*)0x54D928, Chaos2Ball); //Puddle
-		WriteCall((void*)0x54F5AC, Chaos2Ball); //Small puddles
+		//WriteCall((void*)0x54F5AC, Chaos2Ball); //Small puddles - disabled because it runs out of memory for late_alloca
 		WriteCall((void*)0x54F5DF, Chaos2Ball); //Small ball attack
 		RemoveVertexColors_Object((NJS_OBJECT*)0x114B918); //Chaos2 (alt)
 		RemoveVertexColors_Object((NJS_OBJECT*)0x11339EC); //Chaos2 small ball
