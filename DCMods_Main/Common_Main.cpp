@@ -179,6 +179,7 @@ bool EnableLSDFix = false;
 bool FPSLock = false;
 bool EnableDCRipple = true;
 bool EnableWhiteDiffuse = true;
+bool RestoreHumpAnimations = true;
 bool AssumeOIT = false;
 int Use1999SetFiles = 0;
 
@@ -282,15 +283,47 @@ static const wchar_t *const OldModDLLs[] = {
 	L"MRFinalEggFix"
 };
 
+//List of initialization functions that touch stuff in the DLLs that I'm replacing (I'm so tired of this shit)
+int DLLFunctionsArray[] = {
+	3,4,5,6,7,8,9,
+	10,11,12,13,14,15,16,
+	49,
+	82,83,84,85,86,87,88,
+	90,91,92,93,94,95,96,97,98,99,
+	100,101,103,104,105,106,107,109,
+	110,111,112,113,114,115,116,117,118,119,
+	120,121,122,123,124,125,126,127,128,129,
+	130,131,132,133,134,
+	143,144,145,146,147,
+	152,153,154,155,156,157,158,159,
+	160,161,162,163,164,165,166,167,168,169,
+	170,171,172,173,174,
+	181,182,186,
+	214,215,216,217,218,219,
+	220,
+	336,337,338,339,340,341,
+	350,351,
+	383,
+	432,
+};
+
+void RestoreHumpAnimations_apply()
+{
+	SonicAnimData[37].AnimationSpeed = 0.45f;
+	TailsAnimData[62].AnimationSpeed = 0.45f;
+	KnucklesAnimData[74].AnimationSpeed = 0.75f;
+	AmyAnimData[47].AnimationSpeed = 0.20f;
+}
+
 void ReinitializeDLLStuff()
 {
 	int result;
 	int (**v1)(void);
-	for (int i = 3; i < 528; i++)
+	for (int i = 0; i < LengthOfArray(DLLFunctionsArray); i++)
 	{
-		//PrintDebug("Init function: %d\n", i);
-		v1 = (int (**)(void))&InitializationFunctions[i];
-		if (v1 && i != 179) result = (*v1)();
+		//PrintDebug("Init function: %d\n", DLLFunctionsArray[i]);
+		v1 = (int (**)(void))&InitializationFunctions[DLLFunctionsArray[i]];
+		result = (*v1)();
 	}
 }
 
@@ -301,6 +334,7 @@ static void __cdecl LoadLevelFiles_r()
 {
 	auto original = reinterpret_cast<decltype(LoadLevelFiles_r)*>(LoadLevelFiles_t.Target());
 	CheckAndUnloadLevelFiles();
+	if (RestoreHumpAnimations) RestoreHumpAnimations_apply();
 	original();
 }
 
@@ -377,6 +411,7 @@ extern "C"
 		//Read config stuff
 		SuppressWarnings = config->getBool("General", "SuppressWarnings", false);
 		FPSLock = config->getBool("General", "FPSLock", false);
+		RestoreHumpAnimations = config->getBool("General", "RestoreHumpAnimations", true);
 		EnableDCRipple = config->getBool("General", "EnableDreamcastWaterRipple", true);
 		EnableCutsceneFix = config->getBool("General", "EnableCutsceneFix", true);
 		EnableImpressFont = config->getString("General", "EnableImpressFont", "Impress");
@@ -629,7 +664,6 @@ extern "C"
 		//Display error messages
 		if (!SuppressWarnings && LanternErrorMessageTimer && (IsIngame() || GameMode == GameModes_Menu))
 		{
-			
 			SetDebugFontSize(10.0f * (float)VerticalResolution / 480.0f);
 			DisplayDebugString(NJM_LOCATION(2, 1), "Failed to detect the Lantern Engine mod.");
 			DisplayDebugString(NJM_LOCATION(2, 2), "Dreamcast levels will have no lighting,");

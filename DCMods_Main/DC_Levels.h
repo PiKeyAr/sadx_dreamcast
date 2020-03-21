@@ -29,6 +29,8 @@ DataPointer(NJS_VECTOR, DrawQueueDistanceVector3, 0x900858);
 DataPointer(NJS_VECTOR, DrawQueueDistanceVector4, 0x900864);
 DataArray(LandTable*, LandTableArray, 0x97DBE8, 193);
 DataArray(int **, InitializationFunctions, 0x892004, 538);
+DataArray(AnimData, KnucklesAnimData, 0x3C532A0, 114);
+DataArray(AnimData, AmyAnimData, 0x3C54880, 101);
 FunctionPointer(void, Cutscene_ResetTransition, (), 0x436550);
 FunctionPointer(void, Cutscene_WaitForInput, (int a1), 0x4314D0);
 FunctionPointer(void, DrawModelCallback_QueueModel, (void(__cdecl* function)(NJS_MODEL_SADX*), NJS_MODEL_SADX* data, float depth, QueuedModelFlagsB queueflags), 0x404840);
