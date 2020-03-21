@@ -699,6 +699,9 @@ void ADV02_Init()
 		WriteData((float*)0x006D1CF6, 14.52f); //Y after cutscene
 		WriteData((int*)0x006D1D13, 0); //X rotation after cutscene
 		WriteData((int*)0x006D1D1D, 0); //Z rotation after cutscene
+		WriteData((float*)0x6BA1EC, 200.5f); //Fix Tails' position in "The time has come at last"
+		WriteData((float*)0x6BA24E, 200.5f); //Fix Tails' position in "The time has come at last"
+		WriteData((float*)0x6BA326, 200.5f); //Fix Tails' position in "The time has come at last"
 		//Enable MR light direction adjustment code
 		WriteData<6>((char*)0x00412536, 0x90u);
 		WriteData<6>((char*)0x00412544, 0x90u);
