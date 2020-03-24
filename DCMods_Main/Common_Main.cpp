@@ -316,8 +316,6 @@ void RestoreHumpAnimations_apply()
 	AmyAnimData[47].AnimationSpeed = 0.25f; //Half the original value because it looks stupid
 }
 
-DataPointer(NJS_OBJECT**, RedEmeraldPointer, 0x11032B4);
-
 void ReinitializeDLLStuff()
 {
 	int result;
@@ -328,8 +326,16 @@ void ReinitializeDLLStuff()
 		v1 = (int (**)(void))&InitializationFunctions[DLLFunctionsArray[i]];
 		result = (*v1)();
 	}
-	WriteData((NJS_TEXLIST**)0x11032B0, ADV02_TEXLISTS[21]); //from sub_7D3000 (MR NPC texlist)
-	RedEmeraldPointer = &ADV02_OBJECTS[107]; //from sub_7D3000 (emerald)
+	//From sub_7D3000/InitializationFunctions[102]
+	WriteData((NJS_TEXLIST**)0x11032B0, ADV02_TEXLISTS[21]); 
+	//From InitCharacterUpgrades/InitializationFunctions[50]
+	RhythmBadgeUpgrade = ADV03_OBJECTS[31];
+	ShovelClawUpgrade = ADV02_OBJECTS[116];
+	LongHammer = ADV01C_OBJECTS[49];
+	WarriorFeatherUpgrade = ADV01C_OBJECTS[49]; //should be AMY_OBJECTS[35] but set to this in original code for some reason
+	JetBoosterUpgrade = ADV01C_OBJECTS[41];
+	LaserBlasterUpgrade = ADV01C_OBJECTS[42];
+	LifeBeltUpgrade = ADV02_OBJECTS[115];
 }
 
 //The most important trampoline
