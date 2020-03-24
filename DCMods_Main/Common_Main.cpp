@@ -309,11 +309,14 @@ int DLLFunctionsArray[] = {
 
 void RestoreHumpAnimations_apply()
 {
-	SonicAnimData[37].AnimationSpeed = 0.45f;
-	TailsAnimData[62].AnimationSpeed = 0.45f;
-	KnucklesAnimData[74].AnimationSpeed = 0.75f;
-	AmyAnimData[47].AnimationSpeed = 0.20f;
+	SonicAnimData[37].AnimationSpeed = 0.5f;
+	TailsAnimData[62].AnimationSpeed = 0.5f;
+	KnucklesAnimData[74].AnimationSpeed = 1.0f;
+	KnucklesAnimData[24].AnimationSpeed = 1.0f; //Fix wrong speed for Knuckles' push animation (same value as pull animation)
+	AmyAnimData[47].AnimationSpeed = 0.25f; //Half the original value because it looks stupid
 }
+
+DataPointer(NJS_OBJECT**, RedEmeraldPointer, 0x11032B4);
 
 void ReinitializeDLLStuff()
 {
@@ -325,6 +328,8 @@ void ReinitializeDLLStuff()
 		v1 = (int (**)(void))&InitializationFunctions[DLLFunctionsArray[i]];
 		result = (*v1)();
 	}
+	WriteData((NJS_TEXLIST**)0x11032B0, ADV02_TEXLISTS[21]); //from sub_7D3000 (MR NPC texlist)
+	RedEmeraldPointer = &ADV02_OBJECTS[107]; //from sub_7D3000 (emerald)
 }
 
 //The most important trampoline
