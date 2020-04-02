@@ -544,11 +544,11 @@ void Init_Global()
 		}
 		else
 		{
-			ReplaceGeneric("CAM0100E", "CAM0100E_R");
-			ReplaceGeneric("CAM0100S", "CAM0100S_R");
-			ReplaceGeneric("CAM0101S", "CAM0101S_R");
-			ReplaceGeneric("CAM0102S", "CAM0102S_R");
-			ReplaceGeneric("CAM0102B", "CAM0102B_R");
+			ReplaceGeneric("CAM0100E.BIN", "CAM0100E_R.BIN");
+			ReplaceGeneric("CAM0100S.BIN", "CAM0100S_R.BIN");
+			ReplaceGeneric("CAM0101S.BIN", "CAM0101S_R.BIN");
+			ReplaceGeneric("CAM0102S.BIN", "CAM0102S_R.BIN");
+			ReplaceGeneric("CAM0102B.BIN", "CAM0102B_R.BIN");
 		}
 		ReplaceSET("SET0100E");
 		ReplaceSET("SET0100S");
