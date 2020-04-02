@@ -10,6 +10,29 @@ struct FourFloats
 	float scale_y;
 };
 
+struct DemoData
+{
+	__int16 level;
+	__int16 act;
+	__int16 character;
+	__int16 cutscene;
+};
+
+DemoData SA1DemoArray[] = {
+	{ 29, 2, 0, 27 },
+	{ 4, 0, 0, -1 },
+	{ 33, 0, 0, 13 },
+	{ 8, 2, 2, -1 },
+	{ 33, 0, 0, 40 },
+	{ 5, 2, 3, -1 },
+	{ 26, 1, 0, 18 },
+	{ 12, 0, 5, -1 },
+	{ 32, 1, 6, 183 },
+	{ 2, 0, 6, -1 },
+	{ 1, 2, 7, 212 },
+	{ 1, 2, 7, -1 },
+};
+
 //Crap that I'll probably delete later
 NJS_TEXLIST PauseSelectionTexlist;
 FourFloats PauseSelectionBoxFloats = { 0, 0, 0, 0 };
@@ -101,6 +124,7 @@ DataPointer(CreditsList, MainCredits, 0x2BC2FD0);
 DataPointer(ObjectMaster*, CurrentMenuObjectMaster_Maybe, 0x3C5E8D0);
 DataPointer(byte, NumberOfSaves_Current, 0x03B290E0);
 DataPointer(int, QuitFromPause_Selection, 0x3B22E78);
+DataPointer(DemoData, FirstDemo, 0x913AE0);
 DataArray(NJS_TEXANIM, PauseMenu_TEXANIMs, 0x009177B8, 15);
 DataArray(PVMEntry*, GUIPVMLists, 0x10D7CB0, 5);
 //GUI texture arrays
@@ -200,6 +224,7 @@ static bool DrawOverlay = true;
 static bool RemoveCream = true;
 static bool HUDTweak = true;
 static int SA1LogoMode = 0;
+static int RestoreDemos = 3;
 
 //Tutorial stuff
 float PadManuXOffset_F = 175.0f;
@@ -2050,6 +2075,7 @@ void Branding_Init(const IniFile *config, const HelperFunctions &helperFunctions
 	EnableTransition = config->getBool("Branding", "EnableTransition", true);
 	DisableSA1TitleScreen = config->getBool("Branding", "DisableSA1TitleScreen", false);
 	DrawOverlay = config->getBool("Branding", "DrawOverlay", true);
+	RestoreDemos = config->getInt("Branding", "RestoreDemos", 3);
 	RemoveCream = config->getBool("Branding", "RemoveCream", true);
 	HUDTweak = config->getBool("Branding", "HUDTweak", true);
 	SA1LogoMode = config->getInt("Branding", "SA1LogoMode", 0);
@@ -2064,6 +2090,15 @@ void Branding_Init(const IniFile *config, const HelperFunctions &helperFunctions
 		WriteCall((void*)0x414EE3, MenuConfirmationPrompt_DontDisplay); //Set a delay to play the sound if needed, otherwise skip the menu
 	}
 	Branding_SetUpVariables();
+	//Restore SA1 demos if the original demo array hasn't been altered
+	if (RestoreDemos && FirstDemo.level == 29 && FirstDemo.cutscene == 27)
+	{
+		WriteData((__int16**)0x42C82A, &SA1DemoArray->act);
+		WriteData((__int16**)0x42C833, &SA1DemoArray->character);
+		WriteData((__int16**)0x42C83C, &SA1DemoArray->level);
+		WriteData((__int16**)0x42C844, &SA1DemoArray->cutscene);
+		WriteData<1>((char*)0x42C8A3, 0x0Cu); //12 demos instead of 6
+	}
 	//Credits
 	WriteData((float*)0x6415DA, 1.5f); //EngBG X scale
 	WriteData((float*)0x6415DF, 1.5f); //EngBG Y scale
@@ -3139,10 +3174,44 @@ void Branding_Init(const IniFile *config, const HelperFunctions &helperFunctions
 	WriteData((float*)0x458125, 1.0f); //Selection box B
 	WriteData((float*)0x45812A, 0.7f); //Selection box G
 	WriteData((float*)0x45812F, 0.0f); //Selection box R
+	//Demos
+	if (RestoreDemos == 1)
+	{
+		ReplaceGeneric("K_AMY.BIN", "K_AMY_DC.BIN");
+		ReplaceGeneric("K_BIG.BIN", "K_BIG_DC.BIN");
+		ReplaceGeneric("K_BIG_PAL.BIN", "K_BIG_PAL_DC.BIN");
+		ReplaceGeneric("K_E102.BIN", "K_E102_DC.BIN");
+		ReplaceGeneric("K_KNUCK.BIN", "K_KNUCK_DC.BIN");
+		ReplaceGeneric("K_MILES.BIN", "K_MILES_DC.BIN");
+		ReplaceGeneric("K_SONIC.BIN", "K_SONIC_DC.BIN");
+		ReplaceGeneric("K_SONIC_PAL.BIN", "K_SONIC_PAL_DC.BIN");
+	}
+	else if (RestoreDemos == 2)
+	{
+		ReplaceGeneric("K_AMY.BIN", "K_AMY_JP.BIN");
+		ReplaceGeneric("K_BIG.BIN", "K_BIG_JP.BIN");
+		ReplaceGeneric("K_E102.BIN", "K_E102_JP.BIN");
+		ReplaceGeneric("K_KNUCK.BIN", "K_KNUCK_JP.BIN");
+		ReplaceGeneric("K_MILES.BIN", "K_MILES_JP.BIN");
+		ReplaceGeneric("K_SONIC.BIN", "K_SONIC_JP.BIN");
+	}
+	else if (RestoreDemos == 3)
+	{
+		ReplaceGeneric("K_AMY.BIN", "K_AMY_GC.BIN");
+		ReplaceGeneric("K_BIG.BIN", "K_BIG_GC.BIN");
+		ReplaceGeneric("K_BIG_PAL.BIN", "K_BIG_PAL_GC.BIN");
+		ReplaceGeneric("K_E102.BIN", "K_E102_GC.BIN");
+		ReplaceGeneric("K_KNUCK.BIN", "K_KNUCK_GC.BIN");
+		ReplaceGeneric("K_MILES.BIN", "K_MILES_GC.BIN");
+		ReplaceGeneric("K_SONIC.BIN", "K_SONIC_GC.BIN");
+		ReplaceGeneric("K_SONIC_PAL.BIN", "K_SONIC_PAL_GC.BIN");
+	}
 }
 
 void Branding_OnFrame()
 {
+	//Demo player
+	if (ControlMode == 1 && Demo_Enabled && Demo_Cutscene == -1) DemoFrame++;
 	//Skip pause menu confirmation prompt
 	if (RemoveQuitPrompt && QuitFromPause_Selection == 2)
 	{
