@@ -223,6 +223,7 @@ static bool DisableSA1TitleScreen = false;
 static bool DrawOverlay = true;
 static bool RemoveCream = true;
 static bool HUDTweak = true;
+bool DemosDone = false;
 static int SA1LogoMode = 0;
 static int RestoreDemos = 3;
 
@@ -2064,6 +2065,21 @@ void Branding_SetUpVariables()
 	ResolutionDeltaY = (VerticalResolution_float - ResolutionScaleY * 480.0f) / 2.0f;
 }
 
+void CheckAndRestoreDemos()
+{
+	if ((GetModuleHandle(L"sadx-input-mod") != nullptr && DemoFramePointer == &DemoFrame) || FirstDemo.level != 29 || FirstDemo.cutscene != 27)
+	{
+		DemosDone = true; 
+		return;
+	}
+	WriteData((__int16**)0x42C82A, &SA1DemoArray->act);
+	WriteData((__int16**)0x42C833, &SA1DemoArray->character);
+	WriteData((__int16**)0x42C83C, &SA1DemoArray->level);
+	WriteData((__int16**)0x42C844, &SA1DemoArray->cutscene);
+	WriteData<1>((char*)0x42C8A3, 0x0Cu); //12 demos instead of 6
+	DemosDone = true;
+}
+
 void Branding_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 {
 	//Load configuration settings
@@ -2090,15 +2106,6 @@ void Branding_Init(const IniFile *config, const HelperFunctions &helperFunctions
 		WriteCall((void*)0x414EE3, MenuConfirmationPrompt_DontDisplay); //Set a delay to play the sound if needed, otherwise skip the menu
 	}
 	Branding_SetUpVariables();
-	//Restore SA1 demos if the original demo array hasn't been altered
-	if (RestoreDemos && FirstDemo.level == 29 && FirstDemo.cutscene == 27)
-	{
-		WriteData((__int16**)0x42C82A, &SA1DemoArray->act);
-		WriteData((__int16**)0x42C833, &SA1DemoArray->character);
-		WriteData((__int16**)0x42C83C, &SA1DemoArray->level);
-		WriteData((__int16**)0x42C844, &SA1DemoArray->cutscene);
-		WriteData<1>((char*)0x42C8A3, 0x0Cu); //12 demos instead of 6
-	}
 	//Credits
 	WriteData((float*)0x6415DA, 1.5f); //EngBG X scale
 	WriteData((float*)0x6415DF, 1.5f); //EngBG Y scale
@@ -3210,6 +3217,7 @@ void Branding_Init(const IniFile *config, const HelperFunctions &helperFunctions
 
 void Branding_OnFrame()
 {
+	if (GameMode != 0 && !DemosDone) CheckAndRestoreDemos();
 	//Demo player
 	if (ControlMode == 1 && Demo_Enabled && Demo_Cutscene == -1) DemoFrame++;
 	//Skip pause menu confirmation prompt

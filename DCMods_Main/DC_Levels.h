@@ -22,6 +22,7 @@ DataPointer(int, ControlMode, 0x3B2C474);
 DataPointer(int, Demo_Enabled, 0x3B2C474);
 DataPointer(int, Demo_Cutscene, 0x3B2A2E8);
 DataPointer(__int16, DemoFrame, 0x3B2C464);
+DataPointer(__int16*, DemoFramePointer, 0x42F0A8);
 DataPointer(float, EnvMap1, 0x038A5DD0);
 DataPointer(float, EnvMap2, 0x038A5DE4);
 DataPointer(float, EnvMap3, 0x038A5E00);
