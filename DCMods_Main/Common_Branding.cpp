@@ -3219,7 +3219,7 @@ void Branding_OnFrame()
 {
 	if (GameMode != 0 && !DemosDone) CheckAndRestoreDemos();
 	//Demo player
-	if (ControlMode == 1 && Demo_Enabled && Demo_Cutscene == -1) DemoFrame++;
+	if (GameState == 15 && ControlMode == 1 && Demo_Enabled && Demo_Cutscene == -1) DemoFrame++;
 	//Skip pause menu confirmation prompt
 	if (RemoveQuitPrompt && QuitFromPause_Selection == 2)
 	{
