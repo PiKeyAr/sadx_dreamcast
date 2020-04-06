@@ -54,7 +54,7 @@ void FPSLockHook(int a1)
 void InputHookForCutscenes()
 {
 	sub_4014B0();
-	if (CutsceneFadeMode == 1) ControllerPointers[0]->PressedButtons |= Buttons_C;
+	if (CutsceneFadeMode == 1) ControllerPointers[0]->PressedButtons |= Buttons_Down;
 }
 
 void FixCutsceneTransition()
@@ -268,7 +268,7 @@ void Init_Global()
 	//Cancel cutscenes with C button
 	if (CutsceneSkipMode != 3)
 	{
-		WriteData<1>((char*)0x431520, 0x01);
+		WriteData<1>((char*)0x431520, 0x20); //Use D-Pad Down instead of A or Start
 		if (CutsceneSkipMode != 2) WriteCall((void*)0x4314F9, InputHookForCutscenes);
 	}
 	//Fix for cutscene transitions

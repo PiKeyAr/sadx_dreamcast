@@ -108,7 +108,7 @@ void InputHookForVideos()
 {
 	if (VideoPlayMode == 3)
 	{
-		ControllerPointers[0]->PressedButtons |= Buttons_C;
+		ControllerPointers[0]->PressedButtons |= Buttons_Down;
 		VideoPlayMode = 0;
 	}
 	sub_40EFE0();
@@ -227,7 +227,7 @@ void Videos_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 	WriteData<1>((char*)0x512D30, 0xC3u); //Don't fade out videos SADX style
 	WriteCall((void*)0x0051330A, DrawVideoWithSpecular); //DisplayVideoFrame call
 	WriteCall((void*)0x00513271, InputHookForVideos); //Wait to cancel videos
-	WriteData<1>((char*)0x005132B9, 0x01); //Wait for Button_C instead of Button_A or Button_Start
+	WriteData<1>((char*)0x005132B9, 0x20); //Wait for D-Pad Down instead of Button_A or Button_Start
 	if (ColorizeVideos == true)
 	{
 		DefaultVideoColor.r = 0.6627450980392157f;
