@@ -2067,7 +2067,7 @@ void Branding_SetUpVariables()
 
 void CheckAndRestoreDemos()
 {
-	if ((GetModuleHandle(L"sadx-input-mod") != nullptr && DemoFramePointer == &DemoFrame) || FirstDemo.level != 29 || FirstDemo.cutscene != 27)
+	if (FirstDemo.level != 29 || FirstDemo.cutscene != 27)
 	{
 		DemosDone = true; 
 		return;
