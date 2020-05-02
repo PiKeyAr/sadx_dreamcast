@@ -100,7 +100,7 @@ extern bool ModelsLoaded_SBOARD;
 extern bool RemoveSetUpPad;
 extern bool RemoveMap;
 extern bool RemoveCamera;
-
+extern bool FixHeldObjects;
 extern bool IsCameraUnderwater;
 extern int SADXWaveAnimation;
 extern int CutsceneSkipMode;

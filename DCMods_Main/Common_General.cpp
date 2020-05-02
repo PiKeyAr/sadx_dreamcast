@@ -56,6 +56,7 @@ FunctionPointer(float, CalculateEnemyYCoordinate, (float x, float y, float z, Ro
 
 ObjectThingC ItemBoxAirResizeThing = { (NJS_OBJECT*)0, sub_4BFF90 };
 
+double holddelta = 1000.0f;
 float LSDMinimumCheck1 = 8.0f;
 float LSDMinimumSet1 = 9.0f;
 float LSDMinimumCheck2 = 4.0f;
@@ -1544,6 +1545,7 @@ void General_Init()
 {
 	if (!ModelsLoaded_General)
 	{
+		if (FixHeldObjects) WriteData((double**)0x44232A, &holddelta); //Fix held objects
 		//Cutscene skip hooks
 		WriteCall((void*)0x40D69C, CutsceneFadeHookForSubtitleBox); 
 		WriteCall((void*)0x40D78A, CutsceneFadeHookForSubtitleText); //Also used to disable filtering
