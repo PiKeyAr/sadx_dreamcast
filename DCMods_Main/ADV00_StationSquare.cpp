@@ -248,6 +248,11 @@ void OMSakuFix(NJS_OBJECT *a1, float scale)
 	ProcessModelNode(a1, QueuedModelFlagsB_EnableZWrite, scale);
 }
 
+void OOfficeBarricade_Fix(NJS_MODEL_SADX* a1, float scale)
+{
+	DrawModel_Queue(a1, QueuedModelFlagsB_EnableZWrite);
+}
+
 void __fastcall EggWalkerCarsFix(NJS_MATRIX_PTR m, const NJS_VECTOR *v)
 {
 	njTranslate(0, v->x, -2.65f, v->z);
@@ -732,6 +737,11 @@ void ADV00_Init()
 		WriteCall((void*)0x63072B, BurgerShopManHook);
 		*(NJS_MODEL_SADX*)0x2ACBB80 = *LoadModel("system\\data\\ADV00\\Models\\0017F588.sa1mdl", false)->basicdxmodel; //OPoolChair
 		*(NJS_MODEL_SADX*)0x2AC95BC = *LoadModel("system\\data\\ADV00\\Models\\0017D568.sa1mdl", false)->basicdxmodel; //Fire hydrant
+		WriteCall((void*)0x6372D4, OOfficeBarricade_Fix); //Fix office barricade rendering (same problem as OMSaku)
+		WriteCall((void*)0x6372F8, OOfficeBarricade_Fix); //Fix office barricade rendering (same problem as OMSaku)
+		WriteCall((void*)0x63731C, OOfficeBarricade_Fix); //Fix office barricade rendering (same problem as OMSaku)
+		*(NJS_OBJECT*)0x2AD7ED4 = *LoadModel("system\\data\\ADV00\\Models\\00189DC0.sa1mdl", false); //OOfficeBarricade
+		AddAlphaRejectMaterial(&((NJS_OBJECT*)0x2AD7ED4)->child->basicdxmodel->mats[0]);  //OOfficeBarricade shadow
 		*(NJS_OBJECT*)0x2AC9F10 = *LoadModel("system\\data\\ADV00\\Models\\0017DDE8.sa1mdl", false); //OGaitou (street light)
 		*(NJS_OBJECT*)0x2AEA9F8 = *LoadModel("system\\data\\ADV00\\Models\\00197228.sa1mdl", false); //OS1Dnto
 		((NJS_OBJECT*)0x2AEA9F8)->basicdxmodel->mats[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT; //OS1Dnto doesn't ignore lighting on DC even though the model does
