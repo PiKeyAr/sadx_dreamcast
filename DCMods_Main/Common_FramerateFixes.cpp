@@ -515,7 +515,11 @@ void IceKeySS_Display(ObjectMaster *obj)
 			*(float *)&v1->Object = v4;
 		}
 		njPushMatrix(0);
-		njTranslateV(0, &v1->Position);
+		if (FixHeldObjects)
+		{
+			njTranslate(0, v1->Position.x, v1->Position.y - 2.5f, v1->Position.z);
+		}
+		else njTranslateV(0, &v1->Position);
 		v2 = v1->Rotation.y;
 		if (v2)
 		{

@@ -35,7 +35,9 @@ DataPointer(NJS_MATRIX, nj_unit_matrix_, 0x389D650);
 DataPointer(NJS_ACTION*, Tornado2Pointer, 0x6B9527);
 DataPointer(NJS_ACTION, Tornado2ChangeAction, 0x32ECE0C);
 DataPointer(NJS_ACTION, Tornado2TransformationAction, 0x28988FC);
+DataArray(ObjectMaster*, LocksArray, 0x3C63284, 5);
 
+FunctionPointer(void, njAction_Queue_407CF0_Scale, (NJS_ACTION* a1, float a2, int a3, float a4), 0x4083F0);
 FunctionPointer(void, BarrierChild, (ObjectMaster *a1), 0x4BA1E0);
 FunctionPointer(void, sub_4083D0, (NJS_ACTION *a1, float a2, int a3), 0x4083D0);
 FunctionPointer(EntityData1*, sub_4B9430, (NJS_VECTOR *a1, NJS_VECTOR *a2, float a3), 0x4B9430);
@@ -53,9 +55,28 @@ FunctionPointer(void, AnimationCallback_C, (NJS_ACTION *a1, float a2, QueuedMode
 FunctionPointer(void, DrawObjectWithMotion_407BB0, (NJS_OBJECT *a1, NJS_MOTION *a2, float framenumber, QueuedModelFlagsB a4, float scale), 0x4082D0);
 FunctionPointer(void, DrawObjectWithMotion_407FC0, (NJS_OBJECT *a1, NJS_MOTION *a2, float framenumber, QueuedModelFlagsB a4, float scale), 0x408300);
 FunctionPointer(float, CalculateEnemyYCoordinate, (float x, float y, float z, Rotation3 *rotation), 0x49E920);
+FunctionPointer(void, ProcessModelNode_NoScaling, (NJS_OBJECT* a1), 0x408530);
 
 ObjectThingC ItemBoxAirResizeThing = { (NJS_OBJECT*)0, sub_4BFF90 };
 
+float hsdistance = -2.0f;
+float HeldOffset_Sonic_1 = 0.0f; //3.7
+float HeldOffset_Sonic_2 = 0.0f; //2.7
+float HeldOffset_Sonic_3 = 0.0f; //1.7
+float HeldOffset_Sonic_4 = 0.0f; //1.0
+float HeldOffset_Tails_1 = -0.5f; //3.3
+float HeldOffset_Tails_2 = 0.0f; //2.2
+float HeldOffset_Tails_3 = 0.0f; //1.7
+float HeldOffset_Tails_4 = 0.0f; //1.0
+float HeldOffset_Knuckles_1 = 0.0f; //1.5
+float HeldOffset_Knuckles_2 = 0.0f; //1.2
+float HeldOffset_Knuckles_3 = 0.0f; //2.7
+float HeldOffset_Knuckles_4 = 0.0f; //0.0
+float HeldOffset_Big = 0.0f; //2.0
+float mrdistance = 2.6f; //0.1
+float mrdistance2 = 9.5f; //7.0
+float Chaos6FreezerOffset = 1.25f;
+float SampleSOffset = 0.0f;
 double holddelta = 1000.0f;
 float LSDMinimumCheck1 = 8.0f;
 float LSDMinimumSet1 = 9.0f;
@@ -283,6 +304,114 @@ void GetEmeraldGlow(ObjectMaster* a1)
 	EmeraldGlowPosition.x = Data1->Position.x;
 	EmeraldGlowPosition.y = Data1->Position.y + 10;
 	EmeraldGlowPosition.z = Data1->Position.z;
+}
+
+static void BurgerStatueMain_r(ObjectMaster* a1);
+static Trampoline BurgerStatueMain_t(0x630780, 0x630785, BurgerStatueMain_r);
+static void __cdecl BurgerStatueMain_r(ObjectMaster* a1)
+{
+	auto original = reinterpret_cast<decltype(BurgerStatueMain_r)*>(BurgerStatueMain_t.Target());
+	if (FixHeldObjects)
+	{
+		if (a1->Data1->Status & 0x1000)
+		{
+			a1->Data1->CharID = 1;
+		}
+		if (!(a1->Data1->Status & 0x1)) a1->Data1->CharIndex++;
+		else a1->Data1->CharIndex = 0;
+		if (a1->Data1->CharIndex > 100) a1->Data1->CharIndex = 10;
+		//PrintDebug("Status: %04X, char: %d\n", a1->Data1->Status, a1->Data1->CharIndex);
+		original(a1);
+	}
+	else original(a1);
+}
+
+static void MissionStatueMain_r(ObjectMaster* a1);
+static Trampoline MissionStatueMain_t(0x593510, 0x593515, MissionStatueMain_r);
+static void __cdecl MissionStatueMain_r(ObjectMaster* a1)
+{
+	auto original = reinterpret_cast<decltype(MissionStatueMain_r)*>(MissionStatueMain_t.Target());
+	if (FixHeldObjects)
+	{
+		if (a1->Data1->Status & 0x1000)
+		{
+			a1->Data1->CharID = 1;
+		}
+		if (!(a1->Data1->Status & 0x1)) a1->Data1->CharIndex++;
+		else a1->Data1->CharIndex = 0;
+		if (a1->Data1->CharIndex > 100) a1->Data1->CharIndex = 10;
+		original(a1);
+	}
+	else original(a1);
+}
+
+void __cdecl MissionStatue_DisplayFix(ObjectMaster* a1)
+{
+	EntityData1* v1; // esi
+	Angle v2; // eax
+	float YDist; // ST04_4
+	float v4; // ST04_4
+
+	v1 = a1->Data1;
+	if (GetCharacterObject(0)->MainSub)
+	{
+		njPushMatrix(0);
+		njSetTexture(&mi_3dasu_TEXLIST);
+		if (!v1->CharID) YDist = v1->Position.y + *(float*)&v1->LoopData;
+		else YDist = v1->Position.y + *(float*)&v1->LoopData - 2.1f;
+		njTranslate(0, v1->Position.x, YDist, v1->Position.z);
+		v2 = v1->Rotation.y;
+		if (v2)
+		{
+			njRotateY(0, (unsigned __int16)v2);
+		}
+		ProcessModelNode_NoScaling((NJS_OBJECT*)0x016F5EA0);
+		if (v1->CharIndex < 8 && !(v1->Status & 0x1000))
+		{
+			SetTextureToCommon();
+			v4 = 0.1 - *(float*)&v1->LoopData;
+			njTranslate(0, 0.0f, v4, 0.0f);
+			ProcessModelNode_A_WrapperC(&ShadowBlob_Model, 1.0);
+		}
+		njPopMatrix(1u);
+	}
+}
+
+void __cdecl BurgerShopStatue_DisplayFix(ObjectMaster* a2)
+{
+	EntityData1* v1; // esi
+	float YDist; // ST18_4
+	Angle v3; // eax
+	float v4; // ST18_4
+
+	v1 = a2->Data1;
+	if (GetCharacterObject(0)->MainSub)
+	{
+		njPushMatrix(0);
+		njSetTexture(ADV00_TEXLISTS[6]);
+		if (!v1->CharID) YDist = v1->Position.y + *(float*)&v1->LoopData;
+		else YDist = v1->Position.y + *(float*)&v1->LoopData - 2.1f;
+		njTranslate(0, v1->Position.x, YDist, v1->Position.z);
+		v3 = v1->Rotation.y;
+		if (v3)
+		{
+			njRotateY(0, (unsigned __int16)v3);
+		}
+		njControl3D_Backup();
+		njControl3D(NJD_CONTROL_3D_CONSTANT_MATERIAL);
+		SetMaterialAndSpriteColor_Float(1.0, 1.0, 1.0, 1.0);
+		njAction_QueueObject(MODEL_SS_PEOPLE_OBJECTS[12], *(NJS_MOTION**)(MODEL_SS_PEOPLE_MOTIONS + 76), 0.0);
+		ClampGlobalColorThing_Thing();
+		njControl3D_Restore();
+		if (v1->CharIndex < 8 && !(v1->Status & 0x1000))
+		{
+			SetTextureToCommon();
+			v4 = 0.1f - *(float*)&v1->LoopData;
+			njTranslate(0, 0.0f, v4, 0.0f);
+			ProcessModelNode_A_WrapperC(&ShadowBlob_Model, 1.0);
+		}
+		njPopMatrix(1u);
+	}
 }
 
 static void GoalEmerald_Windy_Display_r(ObjectMaster* a1);
@@ -1541,11 +1670,121 @@ void GammaDamageSpriteFix(NJS_SPRITE* a1, Int n, NJD_SPRITE attr)
 	DrawModelCallback_QueueInt(DrawGammaDamageSprite, n, 20000.0f, (QueuedModelFlagsB)0);
 }
 
+static void HandKey_Display_r(ObjectMaster* a1);
+static Trampoline HandKey_Display_t(0x532240, 0x532245, HandKey_Display_r);
+static void __cdecl HandKey_Display_r(ObjectMaster* a1)
+{
+	auto original = reinterpret_cast<decltype(HandKey_Display_r)*>(HandKey_Display_t.Target());
+	ObjectMaster* lock = LocksArray[a1->Data1->Index];
+	NJS_VECTOR* pos_lock = nullptr;
+	NJS_VECTOR* pos_key = &a1->Data1->Position;
+	if (FixHeldObjects)
+	{
+		if (lock) pos_lock = &lock->Data1->Position;
+		if (pos_lock && pos_key->x == pos_lock->x && pos_key->z == pos_lock->z)
+		{
+			if (pos_key->y < pos_lock->y + 2.5f) pos_key->y = pos_lock->y + 2.5f;
+		}
+		original(a1);
+	}
+	//else 
+	original(a1);
+}
+
+void __fastcall njTranslateVHacc(NJS_MATRIX_PTR m, const NJS_VECTOR* v)
+{
+	njTranslate(m, v->x, v->y - 2.5f, v->z);
+}
+
+int njTranslateVCalls[] = {
+	0x6361D8, //Eggs
+	0x532273, //OHandKey
+	0x45BD5D, //Tails' snowboard
+	0x45BCB6, //Tails' snowboard
+	0x49425D, //Sonic's snowboard
+	0x4941B6, //Sonic's snowboard
+	0x526020, //OKurotama
+	0x535406, //OKillSwitch
+	0x536902, //OEggStand
+	0x59A8E3, //OBoxSwitch
+	0x635F82, //ChaoCard
+	0x636702, //OKeyblock
+	0x6377E1, //KartPass
+	0x63BF24, //OCard
+	0x637E0A, //Ice Key
+};
+
 void General_Init()
 {
 	if (!ModelsLoaded_General)
 	{
-		if (FixHeldObjects) WriteData((double**)0x44232A, &holddelta); //Fix held objects
+		//Fixes for held objects
+		if (FixHeldObjects)
+		{
+			WriteData((double**)0x44232A, &holddelta); //Z offset check when putting objects down
+			//WriteData((float*)0x49D867, 0.0f); //Doesn't do shit
+			WriteData((float*)0x49D902, 0.0f); //Y offset after being put down
+			WriteData((float*)0x49D957, 0.01f); //Y speed after hitting ceiling
+			WriteData((float**)0x53C96E, &mrdistance); //Wind/Ice/Statue key distance check
+			WriteData((float**)0x53C919, &mrdistance2); //Wind/Ice/Statue key rotation check
+			WriteData((float**)0x59A93B, &hsdistance); //Cube puzzle distance check
+			WriteData((float**)0x7AC559, &SampleSOffset); //SampleS
+			WriteData((float**)0x55BBEA, &Chaos6FreezerOffset); //Chaos 6 freezer
+			//Hook njTranslate calls to add a vertical offset for all objects involved
+			for (int i = 0; i < LengthOfArray(njTranslateVCalls); i++)
+			{
+				WriteCall((void*)njTranslateVCalls[i], njTranslateVHacc);
+			}
+			WriteJump((void*)0x630690, BurgerShopStatue_DisplayFix); //Statue shadow/Y position fix
+			WriteJump((void*)0x593410, MissionStatue_DisplayFix); //Statue shadow/Y position fix
+			//Collision adjustments
+			WriteData((float**)0x49577F, &HeldOffset_Sonic_1);
+			WriteData((float**)0x495777, &HeldOffset_Sonic_2);
+			WriteData((float**)0x495787, &HeldOffset_Sonic_3);
+			WriteData((float**)0x49578F, &HeldOffset_Sonic_4);
+			WriteData((float**)0x45D5F5, &HeldOffset_Tails_1);
+			WriteData((float**)0x45D5ED, &HeldOffset_Tails_2);
+			WriteData((float**)0x45D5FD, &HeldOffset_Tails_3);
+			WriteData((float**)0x45D605, &HeldOffset_Tails_4);
+			WriteData((float**)0x477892, &HeldOffset_Knuckles_1);
+			WriteData((float**)0x4778A2, &HeldOffset_Knuckles_2);
+			WriteData((float**)0x47789A, &HeldOffset_Knuckles_3);
+			WriteData((float**)0x4778AA, &HeldOffset_Knuckles_4);
+			WriteData((float**)0x48E250, &HeldOffset_Big);
+			FakeEgg_Collision[0].center.y = 0.0f;
+			FakeEgg_Collision[1].center.y = -0.5f;
+			OHandKey_Collision[0].center.y = 0.0f;
+			OHandKey_Collision[1].center.y = 0.0f;
+			OHandKey_Collision[1].a = 1.0f;
+			OKurotama_Collision[0].center.y = 0.0f;
+			OKurotama_Collision[1].center.y = -0.5f;
+			OKillSwitch_Collision[0].center.y = 0.0f;
+			OKillSwitch_Collision[1].center.y = -2.2f;
+			OEggStand_Collision[0].center.y = 0.0f;
+			OEggStand_Collision[1].center.y = 0.0f;
+			OBoxSwitch_Collision[0].center.y = 0.5f;
+			OBoxSwitch_Collision[1].center.y = 0.5f;
+			ChaoCard_Collision[0].center.y = 0.0f;
+			ChaoCard_Collision[1].center.x = -1.0f;
+			ChaoCard_Collision[1].center.y = 0.0f;
+			OKeyBlock_Collision[0].center.y = 0.0f;
+			OKeyBlock_Collision[1].center.y = 0.0f;
+			OKeyBlock_Collision[1].a = 0.0f;
+			OKartPass_Collision[0].center.y = 0.0f;
+			OKartPass_Collision[0].center.x = -1.0f;
+			OKartPass_Collision[1].center.y = 0.0f;
+			OCard_Collision[0].center.y = 0.0f;
+			OCard_Collision[0].center.x = -1.0f;
+			OCard_Collision[1].center.y = 0.0f;
+			IceKey_Collision[0].center.y = 0.0f;
+			IceKey_Collision[1].center.y = 0.0f;
+			IceKey_Collision[1].a = 1.0f;
+			Chaos6Freezer_Collision[0].center.y = 0.0f;
+			Chaos6Freezer_Collision[1].a = 1.0f;
+			ChaoAnimal_Collision[0].center.y = 1.0f;
+			ChaoFruit_Collision[0].center.y = 1.0f;
+			KikiBomb_Collision[1].a = 2.8f; //Z offset after putting down		
+		}
 		//Cutscene skip hooks
 		WriteCall((void*)0x40D69C, CutsceneFadeHookForSubtitleBox); 
 		WriteCall((void*)0x40D78A, CutsceneFadeHookForSubtitleText); //Also used to disable filtering

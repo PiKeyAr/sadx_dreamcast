@@ -4,6 +4,23 @@
 #include <stdio.h>
 #include <string>
 
+struct CollisionData_
+{
+	char kind;
+	char form;
+	char push;
+	char damage;
+	unsigned int attr;
+	NJS_POINT3 center;
+	float a;
+	float b;
+	float c;
+	float d;
+	int angx;
+	int angy;
+	int angz;
+};
+
 class IniFile;
 #define NJD_CUSTOMFLAG_UVANIM3		(BIT_0)
 #define NJD_CUSTOMFLAG_UVANIM4		(BIT_1)
@@ -36,6 +53,23 @@ DataArray(LandTable*, LandTableArray, 0x97DBE8, 193);
 DataArray(int **, InitializationFunctions, 0x892004, 538);
 DataArray(AnimData, KnucklesAnimData, 0x3C532A0, 114);
 DataArray(AnimData, AmyAnimData, 0x3C54880, 101);
+DataArray(CollisionData_, FakeEgg_Collision, 0x2BBF088, 3);
+DataArray(CollisionData_, OHandKey_Collision, 0x111C610, 2);
+DataArray(CollisionData_, OKurotama_Collision, 0x1101F10, 9);
+DataArray(CollisionData_, OKillSwitch_Collision, 0x111CA78, 2);
+DataArray(CollisionData_, OEggStand_Collision, 0x111D420, 2);
+DataArray(CollisionData_, OBoxSwitch_Collision, 0x17D0A88, 2);
+DataArray(CollisionData_, ChaoCard_Collision, 0x2BBF020, 2);
+DataArray(CollisionData_, OKeyBlock_Collision, 0x2BBF178, 2);
+DataArray(CollisionData_, OKeyBlock_CollisionB_1, 0x2BBF118, 1);
+DataArray(CollisionData_, OKeyBlock_CollisionB_2, 0x2BBF148, 1);	
+DataArray(CollisionData_, ChaoAnimal_Collision, 0x885198, 3);
+DataArray(CollisionData_, ChaoFruit_Collision, 0x885268, 6);
+DataArray(CollisionData_, OKartPass_Collision, 0x2BBF3F0, 2);
+DataArray(CollisionData_, OCard_Collision, 0x2BC0748, 2);
+DataArray(CollisionData_, IceKey_Collision, 0x2BBF4C8, 2);
+DataArray(CollisionData_, KikiBomb_Collision, 0x96CA18, 4);
+DataArray(CollisionData_, Chaos6Freezer_Collision, 0x1386AC8, 3);
 FunctionPointer(void, Cutscene_ResetTransition, (), 0x436550);
 FunctionPointer(void, Cutscene_WaitForInput, (int a1), 0x4314D0);
 FunctionPointer(void, DrawModelCallback_QueueModel, (void(__cdecl* function)(NJS_MODEL_SADX*), NJS_MODEL_SADX* data, float depth, QueuedModelFlagsB queueflags), 0x404840);
