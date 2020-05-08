@@ -314,6 +314,12 @@ void RestoreHumpAnimations_apply()
 	KnucklesAnimData[74].AnimationSpeed = 1.0f;
 	KnucklesAnimData[24].AnimationSpeed = 1.0f; //Fix wrong speed for Knuckles' push animation (same value as pull animation)
 	AmyAnimData[47].AnimationSpeed = 0.25f; //Half the original value because it looks stupid
+	WriteData<1>((char*)0x45C08B, 0x50u); //Correct animation index for Tails' "jump while holding something"
+	TailsAnimData[80].Animation = MILES_ACTIONS[21]; //Tails jumping while holding something
+	TailsAnimData[80].AnimationSpeed = 0.5f;
+	TailsAnimData[81].Animation = MILES_ACTIONS[22]; //Tails transition jumping while holding something
+	TailsAnimData[81].AnimationSpeed = 0.5f;
+	TailsAnimData[82].Animation = MILES_ACTIONS[23]; //Tails falling while holding something
 }
 
 void ReinitializeDLLStuff()
