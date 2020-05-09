@@ -59,6 +59,8 @@ FunctionPointer(void, ProcessModelNode_NoScaling, (NJS_OBJECT* a1), 0x408530);
 
 ObjectThingC ItemBoxAirResizeThing = { (NJS_OBJECT*)0, sub_4BFF90 };
 
+float SnowboardOffset1 = 2.72f;
+float SnowboardOffset2 = -2.72f;
 float hsdistance = -2.0f;
 float HeldOffset_Sonic_1 = 0.0f; //3.7
 float HeldOffset_Sonic_2 = 0.0f; //2.7
@@ -1699,10 +1701,6 @@ void __fastcall njTranslateVHacc(NJS_MATRIX_PTR m, const NJS_VECTOR* v)
 int njTranslateVCalls[] = {
 	0x6361D8, //Eggs
 	0x532273, //OHandKey
-	0x45BD5D, //Tails' snowboard
-	0x45BCB6, //Tails' snowboard
-	0x49425D, //Sonic's snowboard
-	0x4941B6, //Sonic's snowboard
 	0x526020, //OKurotama
 	0x535406, //OKillSwitch
 	0x536902, //OEggStand
@@ -1721,6 +1719,10 @@ void General_Init()
 		//Fixes for held objects
 		if (FixHeldObjects)
 		{
+			WriteData((float**)0x495975, &SnowboardOffset1); //Sonic
+			WriteData((float**)0x45E56D, &SnowboardOffset1); //Tails
+			WriteData((float**)0x495989, &SnowboardOffset2); //Sonic
+			WriteData((float**)0x45E581, &SnowboardOffset2); //Tails
 			WriteData((double**)0x44232A, &holddelta); //Z offset check when putting objects down
 			//WriteData((float*)0x49D867, 0.0f); //Doesn't do shit
 			WriteData((float*)0x49D902, 0.0f); //Y offset after being put down
