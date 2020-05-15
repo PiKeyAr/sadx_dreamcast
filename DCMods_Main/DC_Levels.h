@@ -21,6 +21,47 @@ struct CollisionData_
 	int angz;
 };
 
+struct BUBBLE
+{
+	char mode;
+	char flag;
+	char id;
+	char timer;
+	char posnum;
+	float size;
+	float scale_x;
+	float swing;
+	int spiral;
+	int spiral_add;
+	NJS_POINT3* spline;
+	float t;
+	float tadd;
+	float tmax;
+};
+
+struct BUBBLE_LIST
+{
+	__int16 id;
+	char num;
+	NJS_POINT3* pos;
+};
+
+struct BUBBLE_TABLE
+{
+	unsigned __int16 objnum;
+	NJS_POINT3 pos;
+	int ang[3];
+};
+
+struct BUBBLE_DATA
+{
+	char object_num;
+	char spline_num;
+	BUBBLE_LIST* list;
+	BUBBLE_TABLE* tbl;
+	float scl;
+};
+
 class IniFile;
 #define NJD_CUSTOMFLAG_UVANIM3		(BIT_0)
 #define NJD_CUSTOMFLAG_UVANIM4		(BIT_1)
@@ -31,6 +72,12 @@ class IniFile;
 #define NJD_CUSTOMFLAG_RESERVED		(BIT_6)
 #define NJD_CUSTOMFLAG_NO_REJECT	(BIT_7)
 
+DataPointer(BUBBLE_LIST*, ChaosBubbleEffect_BubbleList, 0x3D0DC00);
+DataPointer(float, min_fluctuation, 0x3D0DB90);
+DataPointer(NJS_SPRITE, ChaosBubbleEffect_Sprite, 0x3D0DB9C);
+DataPointer(NJS_ARGB, ChaosBubbleEffect_Color, 0x38E200C);
+DataPointer(NJS_MATRIX_PTR, bubble_matrix, 0x3D0DB88);
+DataPointer(ObjectMaster, ChaosBubbleEffect_ObjectMaster, 0x3D0DB94);
 DataPointer(int, FramerateSetting_Config, 0x0089295C);
 DataPointer(int, FramerateSetting, 0x0389D7DC);
 DataPointer(int, DroppedFrames, 0x03B1117C);
@@ -49,6 +96,8 @@ DataPointer(NJS_VECTOR, DrawQueueDistanceVector1, 0x900840);
 DataPointer(NJS_VECTOR, DrawQueueDistanceVector2, 0x90084C);
 DataPointer(NJS_VECTOR, DrawQueueDistanceVector3, 0x900858);
 DataPointer(NJS_VECTOR, DrawQueueDistanceVector4, 0x900864);
+DataArray(float, ChaosBubbleEffect_ScaleOffsets, 0x38E2020, 16);
+DataArray(char, ChaosBubbleEffect_StateArray, 0x3D0DBC0, 64);
 DataArray(LandTable*, LandTableArray, 0x97DBE8, 193);
 DataArray(int **, InitializationFunctions, 0x892004, 538);
 DataArray(AnimData, KnucklesAnimData, 0x3C532A0, 114);

@@ -1712,6 +1712,102 @@ int njTranslateVCalls[] = {
 	0x637E0A, //Ice Key
 };
 
+void __cdecl actBubble(ObjectMaster* a1)
+{
+	BUBBLE* v1; // esi
+	short bubble_id; // edi
+	int spline_id;
+	float ampl; // ST1C_4
+	float spiral_sine; // ST1C_4
+	float spiral_cosine; // st7
+	float scale_change; // st6
+	float scale_swing; // [esp+1Ch] [ebp+4h]
+	float f3;
+	float f8;
+	float f7;
+	NJS_VECTOR v; // [esp+Ch] [ebp-Ch]
+	float tmax; // [esp+1Ch] [ebp+4h]
+	v1 = (BUBBLE*)a1->UnknownB_ptr;
+	bubble_id = ChaosBubbleEffect_BubbleList[v1->id].id;
+	switch (v1->mode)
+	{
+	case 0:
+		v1->t = 0.15f * 0.000030517578f * (float)rand() - 0.5f;
+		ampl = fabs(v1->spline[ChaosBubbleEffect_BubbleList[v1->id].num - 1].x + v1->spline[ChaosBubbleEffect_BubbleList[v1->id].num - 1].y - v1->spline[0].y - v1->spline[0].x);
+		v1->tadd = ((0.18f * 0.000030517578f * (float)rand() + 0.08f) / ampl) * min_fluctuation;
+		tmax = ChaosBubbleEffect_BubbleList[v1->id].num;
+		v1->timer = 15;
+		v1->tmax = tmax + 1.25f;
+		v1->spiral_add = (int)(182.0f * 30.0f * (0.8f * 0.000030517578f * (float)rand() + 0.2f));
+		v1->swing = (float)rand() * 0.000030517578f * 0.1f + 0.05f;
+		v1->size = ChaosBubbleEffect_ScaleOffsets[int(rand() * 0.000030517578f * 16.0f)];
+		v1->scale_x = 0.1f;
+		v1->mode = 1;
+		goto swing;
+	case 1:
+	swing:
+		v1->timer -= 1;
+		v1->t += v1->tadd;
+		v1->scale_x = v1->scale_x + 0.06f;
+		if (!v1->timer)
+		{
+			v1->mode = 2;
+		}
+		goto render;
+	case 2:
+		v1->t += v1->tadd;
+		if (v1->t >= v1->tmax)
+		{
+			v1->timer = 8;
+			v1->mode = 3;
+		}
+		v1->spiral += v1->spiral_add;
+		v1->scale_x = 0.85f;
+		goto render;
+	case 3:
+		v1->timer--;
+		v1->scale_x -= 0.1125f;
+		if (v1->timer)
+		{
+			goto render;
+		}
+		CheckThingButThenDeleteObject(a1);
+		break;
+	default:
+	render:
+		if (!MissedFrames && !((_DWORD)ChaosBubbleEffect_ObjectMaster.Next[1].MainSub & 4) && !ChaosBubbleEffect_StateArray[bubble_id])
+		{
+			spline_id = (int)(v1->t + 0.5f);
+			f8 = v1->t - (float)spline_id;
+			f7 = 1.0f - f8;
+			f3 = f8 * f8;
+			f7 = f7 * f8 + 0.5f;
+			f8 = 0.5f * f3;
+			f3 = 0.5f * f7 * f7;
+			scale_swing = v1->swing * v1->scale_x;
+			spiral_sine = njSin(v1->spiral * 0.598175f);
+			spiral_cosine = njCos((double)v1->spiral * 0.598175f);
+			v.x = v1->spline[spline_id].x * f8 + v1->spline[spline_id].x * f3 + v1->spline[spline_id + 1].x * f7 + spiral_sine * scale_swing;
+			v.y = v1->spline[spline_id].y * f8 + v1->spline[spline_id].y * f3 + v1->spline[spline_id + 1].y * f7;
+			v.z = v1->spline[spline_id].z * f8 + v1->spline[spline_id].z * f3 + v1->spline[spline_id + 1].z * f7 + spiral_cosine * scale_swing;
+			scale_change = min_fluctuation * v1->size;
+			ChaosBubbleEffect_Sprite.sx = (spiral_sine * 0.3f + v1->scale_x)* scale_change;
+			ChaosBubbleEffect_Sprite.sy = (spiral_cosine * 0.3f + v1->scale_x) * scale_change;
+			njColorBlendingMode(0, NJD_COLOR_BLENDING_SRCALPHA);
+			njColorBlendingMode(NJD_DESTINATION_COLOR, NJD_COLOR_BLENDING_INVSRCALPHA);
+			SetMaterialAndSpriteColor(&ChaosBubbleEffect_Color);
+			njPushMatrix(bubble_matrix + 16 * ChaosBubbleEffect_BubbleList[v1->id].id);
+			njTranslateV(0, &v);
+			njDrawSprite3D_Queue(&ChaosBubbleEffect_Sprite,	0, NJD_SPRITE_ALPHA | NJD_SPRITE_SCALE | NJD_SPRITE_COLOR, QueuedModelFlagsB_SomeTextureThing);
+			njPopMatrix(1u);
+			ClampGlobalColorThing_Thing();
+			njColorBlendingMode(0, NJD_COLOR_BLENDING_SRCALPHA);
+			njColorBlendingMode(NJD_DESTINATION_COLOR, NJD_COLOR_BLENDING_INVSRCALPHA);
+		}
+		break;
+	}
+}
+
 void General_Init()
 {
 	if (!ModelsLoaded_General)
@@ -1787,6 +1883,8 @@ void General_Init()
 			ChaoFruit_Collision[0].center.y = 1.0f;
 			KikiBomb_Collision[1].a = 2.8f; //Z offset after putting down		
 		}
+		//Chaos bubbles fix
+		//WriteJump((void*)0x7ADD30, actBubble);
 		//Cutscene skip hooks
 		WriteCall((void*)0x40D69C, CutsceneFadeHookForSubtitleBox); 
 		WriteCall((void*)0x40D78A, CutsceneFadeHookForSubtitleText); //Also used to disable filtering
