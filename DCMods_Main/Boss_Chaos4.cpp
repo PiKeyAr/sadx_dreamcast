@@ -160,24 +160,6 @@ void UnloadLevelFiles_B_CHAOS4()
 	B_CHAOS4_Info = nullptr;
 }
 
-void Chaos4BubblesHook(NJS_SPRITE *sp, Int n, NJD_SPRITE attr, QueuedModelFlagsB zfunc_type)
-{
-	if (CurrentLevel == LevelIDs_Chaos4)
-	{
-		//Camera below water - Chaos above water
-		if (Camera_Data1->Position.y <= 0) DrawQueueDepthBias = 7500.0f;
-		if (Camera_Data1->Position.y > 0)
-		{
-			//Camera above water and Chaos above water - Chaos above water
-			if (ChaosPosition.y >= 15) DrawQueueDepthBias = 7500.0f;
-			//Camera above water and Chaos below water - Chaos below water
-			else DrawQueueDepthBias = -20500.0f;
-		}
-		njDrawSprite3D_Queue(sp, n, attr, zfunc_type);
-	}
-	else njDrawSprite3D_Queue(sp, n, attr, zfunc_type);
-}
-
 void Chaos4BrainHook(NJS_SPRITE *sp, Int n, NJD_SPRITE attr, QueuedModelFlagsB zfunc_type)
 {
 	if (CurrentLevel == LevelIDs_Chaos4)
@@ -326,7 +308,6 @@ void Chaos4_Init()
 		WriteData<10>((char*)0x555AB1, 0x90u); //Disable depth bias setting for balls attack
 		WriteCall((void*)0x555096, Chaos4Ball);
 		WriteJump((void*)0x553F60, Chaos4_Lilypad_Display);
-		WriteCall((void*)0x7AE00A, Chaos4BubblesHook);
 		WriteCall((void*)0x7ADC1E, Chaos4BrainHook);
 		WriteCall((void*)0x553380, Chaos4NumaFix);
 		WriteCall((void*)0x552918, Chaos4_Transform); //Chaos' model formed from balls

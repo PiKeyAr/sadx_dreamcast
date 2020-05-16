@@ -81,7 +81,7 @@ void Chaos2_Init()
 		WriteCall((void*)0x54DFCC, ChandelierFix);
 		WriteCall((void*)0x54E13C, ChandLightFix);
 		((NJS_OBJECT*)0x117EB1C)->basicdxmodel->mats[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		WriteCall((void*)0x0054AC30, FixChaos2Columns);
+		WriteCall((void*)0x54AC30, FixChaos2Columns);
 		WriteCall((void*)0x54D991, Chaos2Ball); //Ball bouncing
 		WriteCall((void*)0x54C5E7, Chaos2_Transform); //Ball transforming
 		WriteCall((void*)0x54F496, Chaos2Ball); //Chaos transformation model
