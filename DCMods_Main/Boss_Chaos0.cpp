@@ -136,6 +136,11 @@ void UnloadLevelFiles_B_CHAOS0()
 	B_CHAOS0_Info = nullptr;
 }
 
+void Chaos0Action(NJS_ACTION* a1, float frameNumber)
+{
+	njAction_Queue_407FC0(a1, frameNumber, (QueuedModelFlagsB)0);
+}
+
 void Chaos0_Init()
 {
 	B_CHAOS0_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\B_CHAOS0\\0.sa1lvl"));
@@ -147,6 +152,7 @@ void Chaos0_Init()
 	ParseChaos0Materials(B_CHAOS0, false);
 	if (!ModelsLoaded_B_CHAOS0)
 	{
+		WriteCall((void*)0x54858A, Chaos0Action); //Main model
 		WriteData<1>((char*)0x54932B, 0x08); //Police car lights blending mode
 		WriteData<1>((char*)0x7AD16D, 0x08); //Chaos 0 puddle mark blending mode
 		WriteData<1>((char*)0x548470, 0i8); //Chaos 0 puddle queued flags I guess
