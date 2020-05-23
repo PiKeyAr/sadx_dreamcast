@@ -1839,6 +1839,8 @@ void General_Init()
 {
 	if (!ModelsLoaded_General)
 	{
+		//Disable GrabButton setting in Control
+		if (RestoreYButton) WriteData<5>((char*)0x40FDEA, 0x90u);
 		//Fixes for held objects
 		if (FixHeldObjects)
 		{
@@ -2344,6 +2346,8 @@ void General_Init()
 
 void General_OnFrame()
 {
+	//Use Y button as intended in stages
+	if (RestoreYButton && !IsLevelChaoGarden()) GrabButtons = (Buttons)(Buttons_B | Buttons_X | Buttons_Y);
 	//This is stupid but I need to disable Gamma's chest fix on the character select screen or when he dies because it breaks there
 	if (GammaConstantMaterialAlpha != 1.0f && ((!AssumeOIT && GameMode == GameModes_Menu) || (CurrentCharacter == Characters_Gamma && EntityData1Ptrs[0] && EntityData1Ptrs[0]->Action == 51)))
 	{

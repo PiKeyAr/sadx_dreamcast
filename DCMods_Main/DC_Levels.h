@@ -184,6 +184,7 @@ extern bool RemoveSetUpPad;
 extern bool RemoveMap;
 extern bool RemoveCamera;
 extern bool FixHeldObjects;
+extern bool RestoreYButton;
 extern bool IsCameraUnderwater;
 extern int SADXWaveAnimation;
 extern int CutsceneSkipMode;

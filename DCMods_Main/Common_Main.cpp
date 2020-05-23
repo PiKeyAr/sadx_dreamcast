@@ -183,6 +183,7 @@ bool RestoreHumpAnimations = true;
 bool AssumeOIT = false;
 int Use1999SetFiles = 0;
 bool FixHeldObjects = true;
+bool RestoreYButton = true;
 bool RemoveSetUpPad = false;
 bool RemoveMap = false;
 bool RemoveCamera = false;
@@ -485,6 +486,7 @@ extern "C"
 		CowgirlOn = config->getBool("Miscellaneous", "EnableCasinopolisCowgirl", true);
 		Use1999SetFiles = config->getInt("Miscellaneous", "Use1999SetFiles", 0);
 		FixHeldObjects = config->getBool("Miscellaneous", "FixHeldObjects", true);
+		RestoreYButton = config->getBool("Miscellaneous", "RestoreYButton", true);
 		IamStupidAndIWantFuckedUpOcean = config->getBool("Miscellaneous", "RevertEmeraldCoastDrawDistance", false);
 		EnableSkyChaseEnemyModels = config->getBool("Miscellaneous", "EnableSkyChaseEnemyModels", true);
 		EnableWhiteDiffuse = config->getBool("Miscellaneous", "EnableWhiteDiffuse", true);
