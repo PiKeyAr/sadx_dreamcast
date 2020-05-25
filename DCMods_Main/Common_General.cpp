@@ -63,6 +63,7 @@ ObjectThingC ItemBoxAirResizeThing = { (NJS_OBJECT*)0, sub_4BFF90 };
 float SnowboardOffset1 = 2.72f;
 float SnowboardOffset2 = -2.72f;
 float hsdistance = -2.0f;
+float ssdistance = 3.5f;
 float HeldOffset_Sonic_1 = 0.0f; //3.7
 float HeldOffset_Sonic_2 = 0.0f; //2.7
 float HeldOffset_Sonic_3 = 0.0f; //1.7
@@ -1854,7 +1855,8 @@ void General_Init()
 			WriteData((float*)0x49D957, 0.01f); //Y speed after hitting ceiling
 			WriteData((float**)0x53C96E, &mrdistance); //Wind/Ice/Statue key distance check
 			WriteData((float**)0x53C919, &mrdistance2); //Wind/Ice/Statue key rotation check
-			WriteData((float**)0x59A93B, &hsdistance); //Cube puzzle distance check
+			WriteData((float**)0x59A93B, &hsdistance); //Hot Shelter cube puzzle distance check
+			WriteData((float**)0x6367CE, &ssdistance); //Station Square cube puzzle distance check
 			WriteData((float**)0x7AC559, &SampleSOffset); //SampleS
 			WriteData((float**)0x55BBEA, &Chaos6FreezerOffset); //Chaos 6 freezer
 			//Hook njTranslate calls to add a vertical offset for all objects involved
@@ -1894,7 +1896,7 @@ void General_Init()
 			ChaoCard_Collision[0].center.y = 0.0f;
 			ChaoCard_Collision[1].center.x = -1.0f;
 			ChaoCard_Collision[1].center.y = 0.0f;
-			OKeyBlock_Collision[0].center.y = 0.0f;
+			OKeyBlock_Collision[0].center.y = 2.0f;
 			OKeyBlock_Collision[1].center.y = 0.0f;
 			OKeyBlock_Collision[1].a = 0.0f;
 			OKartPass_Collision[0].center.y = 0.0f;

@@ -258,6 +258,11 @@ void __fastcall EggWalkerCarsFix(NJS_MATRIX_PTR m, const NJS_VECTOR *v)
 	njTranslate(0, v->x, -2.65f, v->z);
 }
 
+void BigPuzzleFix(NJS_OBJECT* obj, float scale)
+{
+	ProcessModelNode(obj, QueuedModelFlagsB_SomeTextureThing, 1.0f);
+}
+
 void OWakuseiFix(NJS_MODEL_SADX *model, QueuedModelFlagsB blend, float scale)
 {
 	if (EV_MainThread_ptr) DrawQueueDepthBias = 9000.0f;
@@ -766,6 +771,7 @@ void ADV00_Init()
 		*(NJS_OBJECT*)0x2AF8400 = *LoadModel("system\\data\\ADV00\\Models\\001A17C4.sa1mdl", false); //Blue Car
 		*(NJS_OBJECT*)0x2AFBA64 = *LoadModel("system\\data\\ADV00\\Models\\001A4268.sa1mdl", false); //Taxi
 		*(NJS_OBJECT*)0x2AD362C = *LoadModel("system\\data\\ADV00\\Models\\00185A20.sa1mdl", false); //OWakusei
+		WriteCall((void*)0x6366C1, BigPuzzleFix);
 		WriteCall((void*)0x63951A, OWakuseiFix);
 		WriteCall((void*)0x639584, OWakuseiFix);
 		*(NJS_OBJECT*)0x2AB6900 = *LoadModel("system\\data\\ADV00\\Models\\0016C3FC.sa1mdl", false); //Twinkle Park elevator
