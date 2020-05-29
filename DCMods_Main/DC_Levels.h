@@ -196,6 +196,7 @@ extern bool DLLLoaded_Lantern;
 extern bool DLLLoaded_HDGUI;
 extern bool DLLLoaded_SADXFE;
 extern bool AssumeOIT;
+extern bool BigBeltFix;
 
 extern bool EnableCutsceneFix;
 extern int CutsceneSkipMode;

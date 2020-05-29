@@ -248,6 +248,7 @@ bool DLLLoaded_SADXFE = false;
 bool DLLLoaded_DX11 = false;
 bool EnableSpeedFixes = true;
 bool SuppressWarnings = false;
+bool BigBeltFix = false;
 
 int LanternErrorMessageTimer = 0;
 int PauseHideErrorMessageTimer = 0;
@@ -439,6 +440,7 @@ extern "C"
 		DisableFontSmoothing = config->getBool("General", "DisableFontSmoothing", true);
 		DisableFontFiltering = config->getBool("General", "DisableFontFiltering", true);
 		EnableLSDFix = config->getBool("Miscellaneous", "EnableLSDFix", false);
+		BigBeltFix = config->getBool("Miscellaneous", "BigBeltFix", false);
 		RemoveSetUpPad = config->getBool("Branding", "RemoveSetUpPad", false);
 		RemoveMap = config->getBool("Branding", "RemoveMap", false);
 		RemoveCamera = config->getBool("Branding", "RemoveCamera", false);

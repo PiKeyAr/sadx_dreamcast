@@ -1836,6 +1836,13 @@ void __cdecl actBubble(ObjectMaster* a1)
 	}
 }
 
+void BigDisplayFix(NJS_ACTION* action, float frame, float scale)
+{
+	DrawQueueDepthBias = -52952.0f;
+	DisplayAnimationFrame(action, frame, (QueuedModelFlagsB)1, scale, (void(__cdecl*)(NJS_MODEL_SADX*, int, int))DrawModel_Queue);
+	DrawQueueDepthBias = 0.0f;
+}
+
 void General_Init()
 {
 	if (!ModelsLoaded_General)
@@ -1929,6 +1936,8 @@ void General_Init()
 		WriteCall((void*)0x6F37DC, CaptureBeamFix);
 		//Big's fishing thing fix
 		WriteCall((void*)0x46C547, BigFishingThingFix);
+		//Big's belt buckle fix
+		if (BigBeltFix) WriteCall((void*)0x48BA29, BigDisplayFix);
 		//Metal Sonic afterimage fix
 		WriteJump(MetalSonic_AfterImage_Display, MetalSonic_AfterImage_Display_Fixed);
 		//Character shadow fix (lame)
