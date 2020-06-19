@@ -2080,6 +2080,12 @@ void CheckAndRestoreDemos()
 	DemosDone = true;
 }
 
+void DrawChnamBShit(Uint8 index)
+{
+	Direct3D_SetZFunc(index);
+	Direct3D_EnableZWrite(1);
+}
+
 void Branding_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 {
 	//Load configuration settings
@@ -3035,6 +3041,7 @@ void Branding_Init(const IniFile *config, const HelperFunctions &helperFunctions
 			WriteCall((void*)0x511AD0, RetrievePlayerSelectStuff); //Player select text in character select screen
 			WriteCall((void*)0x511C76, RetrieveBottomThingStuff); //Bottom thing in character select screen
 			WriteCall((void*)0x511B3B, DrawShittyTextures); //Render stuff that refuses to render properly otherwise
+			WriteCall((void*)0x511E47, DrawChnamBShit); //Fix disappearing character name after loading a different save
 		}
 		WriteCall((void*)0x511A8B, DisplayScreenTexture_AlwaysTop); //Move the "Select your character" text to top
 		WriteData<5>((void*)0x511C18, 0x90); //Disable ZFunc stuff to prevent character model overlap issues
