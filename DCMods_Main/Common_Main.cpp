@@ -87,6 +87,7 @@ LandTableInfo *AL_GARDEN02_Info = nullptr;
 LandTableInfo *AL_RACE_0_Info = nullptr;
 LandTableInfo *AL_RACE_1_Info = nullptr;
 
+bool UIScale = false;
 bool ModelsLoaded_General = false;
 bool ModelsLoaded_ShareObj = false;
 bool ModelsLoaded_Chao = false;
@@ -155,6 +156,7 @@ DataPointer(char, nullsub_SHOOTING2, 0x4236E0);
 DataPointer(char, nullsub_SBOARD, 0x42370F);
 DataPointer(char, nullsub_MINICART, 0x4235EC);
 DataPointer(char, nullsub_Chao, 0x423795);
+DataPointer(float*, HorizontalStretchPointer, 0x51285E);
 
 set_shader_flags* set_shader_flags_ptr;
 material_register* material_register_ptr;
@@ -366,6 +368,7 @@ extern "C"
 		ModPath = std::string(path);
 		//Set up function pointers for Lantern API
 		HMODULE LanternDLL = GetModuleHandle(L"sadx-dc-lighting");
+		if (HorizontalStretchPointer != &HorizontalStretch) UIScale = true; else UIScale = false;
 		set_shader_flags_ptr = (void(*)(uint32_t, bool))GetProcAddress(LanternDLL, "set_shader_flags");
 		material_register_ptr = (void(*)(const NJS_MATERIAL *const *materials, size_t length, lantern_material_cb callback))GetProcAddress(LanternDLL, "material_register");
 		material_unregister_ptr = (void(*)(const NJS_MATERIAL *const *materials, size_t length, lantern_material_cb callback))GetProcAddress(LanternDLL, "material_unregister");

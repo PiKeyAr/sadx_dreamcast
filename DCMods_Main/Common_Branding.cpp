@@ -1022,28 +1022,35 @@ void DrawFileSelectMockup(float depth_orig, bool use_scaling, int VertexColor)
 	}
 	else
 	{
-		ScreenScaleX = HorizontalResolution_float / 640.0f;
-		ScreenScaleY = VerticalResolution_float / 480.0f;
-		if (ScreenScaleX > ScreenScaleY)
-		{
-			BaseScaleX = ScreenScaleY;
-			BaseScaleY = ScreenScaleY;
-			ScreenDeltaX = (HorizontalResolution_float - ScreenScaleY * 640.0f) / 2.0f;
-			ScreenDeltaY = (VerticalResolution_float - ScreenScaleY * 480.0f) / 2.0f;
-		}
-		else
-		{
-			BaseScaleX = ScreenScaleX;
-			BaseScaleY = ScreenScaleX;
-			ScreenDeltaX = (HorizontalResolution_float - ScreenScaleX * 640.0f) / 2.0f;
-			ScreenDeltaY = (VerticalResolution_float - ScreenScaleX * 480.0f) / 2.0f;
-		}
+			ScreenScaleX = HorizontalResolution_float / 640.0f;
+			ScreenScaleY = VerticalResolution_float / 480.0f;
+			if (ScreenScaleX > ScreenScaleY)
+			{
+				BaseScaleX = ScreenScaleY;
+				BaseScaleY = ScreenScaleY;
+				ScreenDeltaX = (HorizontalResolution_float - ScreenScaleY * 640.0f) / 2.0f;
+				ScreenDeltaY = (VerticalResolution_float - ScreenScaleY * 480.0f) / 2.0f;
+			}
+			else
+			{
+				BaseScaleX = ScreenScaleX;
+				BaseScaleY = ScreenScaleX;
+				ScreenDeltaX = (HorizontalResolution_float - ScreenScaleX * 640.0f) / 2.0f;
+				ScreenDeltaY = (VerticalResolution_float - ScreenScaleX * 480.0f) / 2.0f;
+			}
 	}
 	//AVA_BACK
 	DrawTiledBG_AVA_BACK(depth_orig - 2.0f);
+	if (!UIScale)
+	{
+		BaseScaleX = 1.0f;
+		BaseScaleY = 1.0f;
+		ScreenDeltaX = (HorizontalResolution_float - 640.0f)/2.0f;
+		ScreenDeltaY = (VerticalResolution_float - 480.0f)/2.0f;
+	}
 	//Green rectangle (scaled by the Mod Loader so I don't need to fix the coordinates)
-	//Draw the green rect when:
-	GreenRect_Wrapper(0, 38, depth_orig - 10.0f, 564.0f, 41.0f);
+	if (UIScale) GreenRect_Wrapper(0, 38, depth_orig - 10.0f, 564.0f, 41.0f);
+	else GreenRect_Wrapper(ScreenDeltaX, ScreenDeltaY+38, depth_orig - 10.0f, 564.0f, 41.0f);
 	//"Select a file" texture
 	njSetTexture(&ava_vmssel_e_TEXLIST);
 	xpos = 42;
@@ -1742,7 +1749,7 @@ void DrawPauseSelectionBox_Callback(FourFloats *a)
 	float BaseScaleY;
 	bool is640 = false;
 	//Set scaling
-	if (HorizontalResolution == 640 && VerticalResolution == 480) is640 = true;
+	if (!UIScale || (HorizontalResolution == 640 && VerticalResolution == 480)) is640 = true;
 	else is640 = false;
 	if (is640)
 	{
