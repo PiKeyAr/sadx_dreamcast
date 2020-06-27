@@ -2,6 +2,8 @@
 
 //TODO: Find a better solution to the file select/options issue
 
+NJS_TEXNAME TitleTexname[11];
+
 struct FourFloats
 {
 	float x;
@@ -77,6 +79,7 @@ Sint32 __cdecl GenerateSelectionGradient()
 }
 */
 
+NJS_TEXNAME textures_ava_title[11];
 NJS_TEXNAME textures_ava_dlg_e[10];
 NJS_TEXNAME textures_ava_gtitle0_e[10];
 NJS_TEXNAME textures_ava_title_back_e[8];
@@ -2588,6 +2591,7 @@ void Branding_Init(const IniFile *config, const HelperFunctions &helperFunctions
 		ReplacePVM("AVA_DLG");
 		ReplacePVM("AVA_DLG_E");
 		ResizeTextureList(&ava_dlg_e_TEXLIST, textures_ava_dlg_e);
+		ResizeTextureList(&ava_title_e_TEXLIST, textures_ava_title);
 		ReplacePVM("AVA_EMBLEM");
 		ReplacePVM("AVA_EMBLEMVIEW");
 		ReplacePVM("AVA_EMBLEMVIEW_E");
