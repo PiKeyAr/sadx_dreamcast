@@ -117,6 +117,7 @@ FunctionPointer(int, CreateColorGradient, (int a1, int a2, float a3), 0x4319D0);
 FunctionPointer(int, sub_433190, (int a1, int a2, int a3, float a4), 0x433190);
 FunctionPointer(void, SetABCTextThingColor, (int a1, int a2, int a3, int a4), 0x420A70);
 FunctionPointer(void, DrawModelCallback_QueueFourFloats, (void(__cdecl* function)(FourFloats*), FourFloats* data, float depth, QueuedModelFlagsB queueflags), 0x404840);
+FunctionPointer(void, StopMusicAndLoadNextMenu, (int a1), 0x505B40);
 DataArray(int, dword_7ECA74, 0x7ECA74, 2);
 DataArray(int, dword_7ECA44, 0x7ECA44, 2);
 DataArray(char, byte_7ECA20, 0x7ECA20, 4);
@@ -213,6 +214,7 @@ static float BSsY = 0;
 static float BSsZ = 0;
 
 //Ini stuff
+static bool RemoveMissionMode = false;
 static bool RemoveQuitPrompt = false;
 static bool RemoveUnlockMessage = false;
 static bool RemoveMarketRingCount = false;
@@ -2093,6 +2095,24 @@ void DrawChnamBShit(Uint8 index)
 	Direct3D_EnableZWrite(1);
 }
 
+void Draw2DSpriteHook(NJS_SPRITE* sp, Int n, Float pri, NJD_SPRITE attr, QueuedModelFlagsB queue_flags)
+{
+	//Dunno why it crashes when the sprite is queued but it doesn't if it's not queued
+	Direct3D_EnableZWrite(0);
+	njDrawSprite2D_DrawNow(sp, n, pri, attr);
+	Direct3D_EnableZWrite(1);
+}
+
+void InetDemoHook(int a1)
+{
+	StopMusicAndLoadNextMenu(11);
+}
+
+bool UnlockMissionMode()
+{
+	return true;
+}
+
 void Branding_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 {
 	//Load configuration settings
@@ -2105,6 +2125,7 @@ void Branding_Init(const IniFile *config, const HelperFunctions &helperFunctions
 	DisableSA1TitleScreen = config->getBool("Branding", "DisableSA1TitleScreen", false);
 	DrawOverlay = config->getBool("Branding", "DrawOverlay", true);
 	RestoreDemos = config->getInt("Branding", "RestoreDemos", 3);
+	RemoveMissionMode = config->getBool("Branding", "RemoveMissionMode", false);
 	RemoveCream = config->getBool("Branding", "RemoveCream", true);
 	HUDTweak = config->getBool("Branding", "HUDTweak", true);
 	SA1LogoMode = config->getInt("Branding", "SA1LogoMode", 0);
@@ -2117,6 +2138,15 @@ void Branding_Init(const IniFile *config, const HelperFunctions &helperFunctions
 	{
 		WriteData<5>((char*)0x414F28, 0x90u); //Don't show subtitle
 		WriteCall((void*)0x414EE3, MenuConfirmationPrompt_DontDisplay); //Set a delay to play the sound if needed, otherwise skip the menu
+	}
+	if (RemoveMissionMode)
+	{
+		WriteJump((void*)0x506410, UnlockMissionMode); //Mission Mode menu item always enabled
+		WriteData<1>((char*)0x007EE050, 0x0A); //Replace Mission texture ID with Internet
+		WriteData<1>((char*)0x007EE098, 0x0A); //Replace Mission texture ID with Internet
+		WriteCall((void*)0x50C740, Draw2DSpriteHook);
+		WriteCall((void*)0x50C590, Draw2DSpriteHook);
+		WriteCall((void*)0x50B7A8, InetDemoHook); //Load InetDemo instead of Mission Mode
 	}
 	Branding_SetUpVariables();
 	//Credits
