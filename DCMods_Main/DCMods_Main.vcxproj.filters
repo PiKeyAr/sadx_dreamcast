@@ -527,5 +527,8 @@
     <ClInclude Include="Data\ADV00_Motions.h">
       <Filter>Header Files\Levels\StationSquare</Filter>
     </ClInclude>
+    <ClInclude Include="Data\TitleScreen.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

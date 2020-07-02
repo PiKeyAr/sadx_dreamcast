@@ -4,6 +4,9 @@
 #include <stdio.h>
 #include <string>
 
+#define SQUARE(x) (x)*(x) 
+#define PYTHAGORAS(x,y) sqrt(SQUARE(x) + SQUARE(y))
+
 struct CollisionData_
 {
 	char kind;
@@ -62,6 +65,116 @@ struct BUBBLE_DATA
 	float scl;
 };
 
+
+enum AdvaStatEnum
+{
+	ADVA_STAT_REQWAIT = 0x0,
+	ADVA_STAT_FADEIN = 0x1,
+	ADVA_STAT_KEEP = 0x2,
+	ADVA_STAT_FADEOUT = 0x3,
+	ADVA_STAT_MAX = 0x4,
+};
+
+enum AdvaModeEnum
+{
+	ADVA_MODE_NONE = 0x0,
+	ADVA_MODE_CHAR_SEL = 0x1,
+	ADVA_MODE_FILE_SEL = 0x2,
+	ADVA_MODE_TRIALACT_SEL = 0x3,
+	ADVA_MODE_SND_TEST = 0x4,
+	ADVA_MODE_TITLE_NEW = 0x5,
+	ADVA_MODE_TITLE_MENU = 0x6,
+	ADVA_MODE_OPTION_SEL = 0x7,
+	ADVA_MODE_EXPLAIN = 0x8,
+	ADVA_MODE_MINIGAME_SEL = 0x9,
+	ADVA_MODE_EMBLEMVIEW = 0xA,
+	ADVA_MODE_INETDEMO = 0xB,
+	ADVA_MODE_TVSETTING = 0xC,
+	ADVA_MODE_PUTI = 0xD,
+	ADVA_MODE_TITLE_MENU_SUB = 0xE,
+	ADVA_MODE_TITLE_MENU_LB = 0xF,
+	ADVA_MODE_UN_TRIAL_GAME = 0x10,
+	ADVA_MODE_UN_LEAD_BORADS = 0x11,
+	ADVA_MODE_UN_ACHIVEMENT = 0x12,
+	ADVA_MODE_OPTION_MENU_SUB = 0x13,
+	ADVA_MODE_HOW_TO_PLAY = 0x14,
+	ADVA_MODE_HOW_TO_PLAY2 = 0x15,
+	ADVA_MODE_LB_MENU = 0x16,
+	ADVA_MODE_OP_CREDITS = 0x17,
+	ADVA_MODE_VANISH = 0x18,
+	ADVA_MODE_END = 0x19,
+	ADVA_MODE_END2 = 0x1A,
+	ADVA_MODE_MAX = 0x1B,
+};
+
+enum TitleNewSbMdEnum
+{
+	TITLENEW_SMD_STAY = 0x0,
+	TITLENEW_SMD_ALERT = 0x1,
+	TITLENEW_SMD_STAY_MAIN = 0x2,
+	TITLENEW_SMD_NWAIT = 0x3,
+	TITLENEW_SMD_MAX = 0x4,
+};
+
+enum TitleMenuSbMdEnum
+{
+	TITLEMENU_SMD_STAY = 0x0,
+	TITLEMENU_SMD_DECIDE = 0x1,
+	TITLEMENU_SMD_STAY_S = 0x2,
+	TITLEMENU_SMD_TO_DEMO = 0x3,
+	TITLEMENU_SMD_TO_DEMO2 = 0x4,
+	TITLEMENU_SMD_TO_MAINMENU = 0x5,
+	TITLEMENU_SMD_NWAIT = 0x6,
+	TITLEMENU_SMD_MAX = 0x7,
+};
+
+enum TitleMenuEnum
+{
+	OPTION_MENU_HOW2PLAY = 0x0,
+	OPTION_MENU_CONTROLS = 0x1,
+	OPTION_MENU_OPTIONS = 0x2,
+	OPTION_MENU_CREDITS = 0x3,
+	OPTION_MENU_BACK = 0x4,
+	OPTION_MENU_MAX = 0x5,
+};
+
+struct __declspec(align(4)) TitleNewWk
+{
+	AdvaStatEnum Stat;
+	AdvaModeEnum PrevMode;
+	AdvaModeEnum NextMode;
+	float BaseZ;
+	float T;
+	unsigned int BaseCol;
+	TitleNewSbMdEnum SubMode;
+	ObjectMaster* AlertTsk;
+	char VMStatAll;
+	int titletimer;
+	unsigned int titleblinktimer;
+	ObjectMaster* CamTskPtr;
+	unsigned int wavetimer;
+	unsigned int logotimer;
+	int bBgmEnabled;
+	unsigned int movetimer;
+	float kumotimer;
+	char kumoindex;
+};
+
+struct __declspec(align(2)) TitleMenuWk
+{
+	AdvaStatEnum Stat;
+	AdvaModeEnum PrevMode;
+	AdvaModeEnum NextMode;
+	AdvaModeEnum NextModeSub;
+	float BaseZ;
+	float T;
+	unsigned int BaseCol;
+	TitleMenuSbMdEnum SubMode;
+	TitleMenuEnum SelMenu;
+	__int16 Cnt;
+	char WakeFlg;
+};
+
 class IniFile;
 #define NJD_CUSTOMFLAG_UVANIM3		(BIT_0)
 #define NJD_CUSTOMFLAG_UVANIM4		(BIT_1)
@@ -72,6 +185,8 @@ class IniFile;
 #define NJD_CUSTOMFLAG_RESERVED		(BIT_6)
 #define NJD_CUSTOMFLAG_NO_REJECT	(BIT_7)
 
+DataPointer(int, f_shadow, 0x3B2C5E4);
+DataPointer(NJS_MATRIX, MatrixStack_, 0x03A7CF48);
 DataPointer(BUBBLE_LIST*, ChaosBubbleEffect_BubbleList, 0x3D0DC00);
 DataPointer(float, min_fluctuation, 0x3D0DB90);
 DataPointer(NJS_SPRITE, ChaosBubbleEffect_Sprite, 0x3D0DB9C);
@@ -130,6 +245,7 @@ FunctionPointer(void, DrawModelCallback_QueueFloat, (void(__cdecl* function)(flo
 FunctionPointer(void, ProcessModel_407BB0, (NJS_MODEL_SADX *model, QueuedModelFlagsB blend, float radius_scale), 0x4094D0);
 FunctionPointer(void, ProcessModelNode_TryReallyHard_2, (NJS_OBJECT* a1), 0x40A280);
 FunctionPointer(void, ProcessModelNode_Try, (NJS_OBJECT* a1, int a2, float a3), 0x40A1E0);
+FunctionPointer(int, ProcessModelNode_NoQueueScale, (NJS_OBJECT* a1), 0x4034B0);
 FunctionPointer(void, ProcessModel_NoSorting, (NJS_MODEL_SADX* model, float scale), 0x407A00);
 FunctionPointer(void, njAction_ReallyHard, (NJS_ACTION* a1, float frameNumber), 0x409FB0);
 FunctionPointer(void, njAction_Queue_407CF0_2, (NJS_ACTION *a1, float a2, int a3), 0x408380);

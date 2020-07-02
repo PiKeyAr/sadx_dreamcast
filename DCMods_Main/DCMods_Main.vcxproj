@@ -221,6 +221,7 @@
     <ClInclude Include="Data\SS04_Hotel.h" />
     <ClInclude Include="Data\SS05_Twinkle.h" />
     <ClInclude Include="Data\SSGarden.h" />
+    <ClInclude Include="Data\TitleScreen.h" />
     <ClInclude Include="Data\Twinkle1.h" />
     <ClInclude Include="Data\Twinkle2.h" />
     <ClInclude Include="Data\Twinkle3.h" />
