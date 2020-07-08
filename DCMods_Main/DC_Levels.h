@@ -7,6 +7,41 @@
 #define SQUARE(x) (x)*(x) 
 #define PYTHAGORAS(x,y) sqrt(SQUARE(x) + SQUARE(y))
 
+//Nullsub calls for other mods to hook
+DataPointer(Uint8, nullsub_ADV00, 0x4231E6);
+DataPointer(Uint8, nullsub_ADV01, 0x4232C9);
+DataPointer(Uint8, nullsub_ADV01C, 0x4233BB);
+DataPointer(Uint8, nullsub_ADV02, 0x4234AD);
+DataPointer(Uint8, nullsub_ADV03, 0x423554);
+DataPointer(Uint8, nullsub_STG00, 0x422B2A);
+DataPointer(Uint8, nullsub_STG01, 0x422B68);
+DataPointer(Uint8, nullsub_STG02, 0x422BD3);
+DataPointer(Uint8, nullsub_STG03, 0x422C3E);
+DataPointer(Uint8, nullsub_STG04, 0x422CA9);
+DataPointer(Uint8, nullsub_STG05, 0x422D14);
+DataPointer(Uint8, nullsub_STG06, 0x422D84);
+DataPointer(Uint8, nullsub_STG07, 0x422DEF);
+DataPointer(Uint8, nullsub_STG08, 0x422E5A);
+DataPointer(Uint8, nullsub_STG09, 0x422EE8);
+DataPointer(Uint8, nullsub_STG10, 0x422F71);
+DataPointer(Uint8, nullsub_STG12, 0x422FFF);
+DataPointer(Uint8, nullsub_B_CHAOS0, 0x423088);
+DataPointer(Uint8, nullsub_B_CHAOS2, 0x4230B7);
+DataPointer(Uint8, nullsub_B_CHAOS4, 0x4230CD);
+DataPointer(Uint8, nullsub_B_CHAOS6, 0x4230E3);
+DataPointer(Uint8, nullsub_B_CHAOS7, 0x423108);
+DataPointer(Uint8, nullsub_B_EGM1, 0x423146);
+DataPointer(Uint8, nullsub_B_EGM2, 0x42315F);
+DataPointer(Uint8, nullsub_B_EGM3, 0x423178);
+DataPointer(Uint8, nullsub_B_ROBO, 0x423196);
+DataPointer(Uint8, nullsub_B_E101, 0x4231AF);
+DataPointer(Uint8, nullsub_B_E101R, 0x4231CD);
+DataPointer(Uint8, nullsub_SHOOTING1, 0x4236B1);
+DataPointer(Uint8, nullsub_SHOOTING2, 0x4236E0);
+DataPointer(Uint8, nullsub_SBOARD, 0x42370F);
+DataPointer(Uint8, nullsub_MINICART, 0x4235EC);
+DataPointer(Uint8, nullsub_Chao, 0x423795);
+
 struct CollisionData_
 {
 	char kind;

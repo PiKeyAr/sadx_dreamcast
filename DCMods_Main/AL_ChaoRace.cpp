@@ -518,72 +518,76 @@ static void __cdecl Chao_Display_r(ObjectMaster *a1);
 static Trampoline Chao_Display_t(0x7204B0, 0x7204B5, Chao_Display_r);
 static void __cdecl Chao_Display_r(ObjectMaster *a1)
 {
-	ChaoData1* data1 = (ChaoData1*)a1->Data1;
-	int ChaoAnimationWhatever = data1->MotionTable[4];
-	//All this stuff should only happen during Chao Race
-	if (CurrentChaoStage == 1)
+	auto original = reinterpret_cast<decltype(Chao_Display_r)*>(Chao_Display_t.Target());
+	if (nullsub_Chao != 0x90u)
 	{
-		//Generate Chao name if it's not on the first track (which would be the player's Chao)
-		if (ChaoRaceTimer < 50)
+		ChaoData1* data1 = (ChaoData1*)a1->Data1;
+		int ChaoAnimationWhatever = data1->MotionTable[4];
+		//All this stuff should only happen during Chao Race
+		if (CurrentChaoStage == 1)
 		{
-			if (a1->Data1->Index != 7) GenerateRaceChaoName(a1);
-		}
-		float ChaoX = data1->entity.Position.x;
-		float ChaoY = data1->entity.Position.y;
-		float ChaoZ = data1->entity.Position.z;
-		float CameraX = Camera_Data1->Position.x;
-		float CameraY = Camera_Data1->Position.y;
-		float CameraZ = Camera_Data1->Position.z;
-		float x_c = CameraX - ChaoX;
-		float y_c = CameraY - ChaoY;
-		float z_c = CameraZ - ChaoZ;
-		float x_a = RedArrowX - ChaoX;
-		float y_a = RedArrowY - ChaoY;
-		float z_a = RedArrowZ - ChaoZ;
-		float dist_cam = sqrt(x_c * x_c + y_c * y_c + z_c * z_c);
-		float dist_arrow = sqrt(x_a * x_a + y_a * y_a + z_a * z_a);
-		//PrintDebug("Index: %d, Distance cam: %f, Distance arrow: %f, CharIndex: %d, CharID: %d\n", data1->entity.Index, dist_cam, dist_arrow, data1->entity.CharIndex, data1->entity.CharID);
-		//Assign the winner a permanent name badge
-		if (!ChaoRaceEnded && ChaoAnimationWhatever == -17)
-		{
-			ChaoRaceEnded = true;
-			ChaoRaceTimer = 0;
-			data1->entity.CharID = 80;
-			data1->entity.CharIndex = 2;
-		}
-		//Disable the nameplate if too far from the arrow/camera
-		if ((dist_arrow >= 8.5f || dist_cam >= 45.0f) && ChaoAnimationWhatever != -17)
-		{
-			data1->entity.CharIndex = 0;
-			data1->entity.CharID = 0;
-		}
-		//Disable the nameplate if playing the win animation but another Chao reached the end first
-		if (data1->entity.CharIndex != 2 && ChaoRaceEnded && ChaoAnimationWhatever == -17)
-		{
-			data1->entity.CharIndex = 0;
-			data1->entity.CharID = 0;
-		}
-		//Trigger the nameplate when the red arrow's coordinates roughly match the Chao's
-		if (data1->entity.CharIndex != 2 && ChaoAnimationWhatever != -17 && dist_cam < 45.0f)
-		{
-			if (dist_arrow < 8.5f)
+			//Generate Chao name if it's not on the first track (which would be the player's Chao)
+			if (ChaoRaceTimer < 50)
 			{
-				if (!data1->entity.CharIndex)
+				if (a1->Data1->Index != 7) GenerateRaceChaoName(a1);
+			}
+			float ChaoX = data1->entity.Position.x;
+			float ChaoY = data1->entity.Position.y;
+			float ChaoZ = data1->entity.Position.z;
+			float CameraX = Camera_Data1->Position.x;
+			float CameraY = Camera_Data1->Position.y;
+			float CameraZ = Camera_Data1->Position.z;
+			float x_c = CameraX - ChaoX;
+			float y_c = CameraY - ChaoY;
+			float z_c = CameraZ - ChaoZ;
+			float x_a = RedArrowX - ChaoX;
+			float y_a = RedArrowY - ChaoY;
+			float z_a = RedArrowZ - ChaoZ;
+			float dist_cam = sqrt(x_c * x_c + y_c * y_c + z_c * z_c);
+			float dist_arrow = sqrt(x_a * x_a + y_a * y_a + z_a * z_a);
+			//PrintDebug("Index: %d, Distance cam: %f, Distance arrow: %f, CharIndex: %d, CharID: %d\n", data1->entity.Index, dist_cam, dist_arrow, data1->entity.CharIndex, data1->entity.CharID);
+			//Assign the winner a permanent name badge
+			if (!ChaoRaceEnded && ChaoAnimationWhatever == -17)
+			{
+				ChaoRaceEnded = true;
+				ChaoRaceTimer = 0;
+				data1->entity.CharID = 80;
+				data1->entity.CharIndex = 2;
+			}
+			//Disable the nameplate if too far from the arrow/camera
+			if ((dist_arrow >= 8.5f || dist_cam >= 45.0f) && ChaoAnimationWhatever != -17)
+			{
+				data1->entity.CharIndex = 0;
+				data1->entity.CharID = 0;
+			}
+			//Disable the nameplate if playing the win animation but another Chao reached the end first
+			if (data1->entity.CharIndex != 2 && ChaoRaceEnded && ChaoAnimationWhatever == -17)
+			{
+				data1->entity.CharIndex = 0;
+				data1->entity.CharID = 0;
+			}
+			//Trigger the nameplate when the red arrow's coordinates roughly match the Chao's
+			if (data1->entity.CharIndex != 2 && ChaoAnimationWhatever != -17 && dist_cam < 45.0f)
+			{
+				if (dist_arrow < 8.5f)
 				{
-					data1->entity.CharIndex = 1;
-					data1->entity.CharID = 100;
+					if (!data1->entity.CharIndex)
+					{
+						data1->entity.CharIndex = 1;
+						data1->entity.CharID = 100;
+					}
+				}
+				else
+				{
+					data1->entity.CharID = 0;
+					data1->entity.CharIndex = 0;
 				}
 			}
-			else
-			{
-				data1->entity.CharID = 0;
-				data1->entity.CharIndex = 0;
-			}
+			ChaoFukidasi_Display(a1);
 		}
-		ChaoFukidasi_Display(a1);
+		original(a1);
 	}
-	auto original = reinterpret_cast<decltype(Chao_Display_r)*>(Chao_Display_t.Target());
-	original(a1);
+	else original(a1);
 }
 
 //Chao Race double shadow fix
@@ -592,7 +596,11 @@ static Trampoline ChaoShadowFix_t(0x73EF60, 0x73EF65, ChaoShadowFix_r);
 static void __cdecl ChaoShadowFix_r(ObjectMaster *a1, float a2, float a3, float a4)
 {
 	auto original = reinterpret_cast<decltype(ChaoShadowFix_r)*>(ChaoShadowFix_t.Target());
-	if (CurrentChaoStage != SADXChaoStage_Race) original(a1, a2, a3, a4);
+	if (nullsub_Chao != 0x90u)
+	{
+		if (CurrentChaoStage != SADXChaoStage_Race) original(a1, a2, a3, a4);
+	}
+	else original(a1, a2, a3, a4);
 }
 
 //Entry
