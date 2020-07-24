@@ -139,6 +139,12 @@ DataArray(TutorialScreenItem, TutorialScreenLayout_BigPage5_E, 0x2BC4F46, 6);
 DataArray(TutorialScreenItem, TutorialScreenLayout_Gamma_Page1_E, 0x2BC4A7E, 2);
 DataArray(TutorialScreenItem, TutorialScreenLayout_Gamma_Page1_J, 0x2BC4A6E, 2);
 
+//Now Saving
+static int saveprogress = 12;
+const char* NowSavingString[] = {"N", "O", "W", " ", "S", "A", "V", "I", "N", "G"};
+DataPointer(int, LoadingOrWhatever, 0x3B28114);
+DataPointer(byte, SavePending, 0x3ABDF79);
+
 //Variables
 NJS_TEXANIM PauseBarTexanim = { 16, 16, 0, 0, 0, 0, 0, 0, 8, 32 };
 
@@ -201,6 +207,7 @@ static bool DisableSA1TitleScreen = false;
 static bool DrawOverlay = true;
 static bool RemoveCream = true;
 static bool HUDTweak = true;
+static bool DrawNowSaving = true;
 bool DemosDone = false;
 static int SA1LogoMode = 0;
 static int RestoreDemos = 3;
@@ -2049,6 +2056,42 @@ bool UnlockMissionMode()
 	return true;
 }
 
+void NowSaving()
+{
+	if (!SavePending)
+	{
+		SavePending = 1;
+		saveprogress = -3;
+	}
+	/*
+	//This stuff is disabled because it draws a blank screen when "Now saving" is supposed to appear, which isn't how SA1 does it
+	if (LoadingOrWhatever == 1)
+	{
+		DisableFog();
+		DrawRect_DrawNowMaybe(0.0, 0.0, HorizontalStretch * 640.0f, VerticalStretch * 480.0f, -1.0, 0xFF000000);
+		LoadingOrWhatever = 3;
+	}
+	if (!get_byte_3B280A8())
+	{
+		set_byte_3B280A8_1();
+		late_alloca_reset();
+		QueueDrawingState = 1;
+	}
+	*/
+}
+
+void NowSaving_Display()
+{
+	unsigned short FontSize = unsigned short((16 * ((float)VerticalResolution / 480.0f)));
+	float totalcount = (float)HorizontalResolution / FontSize;
+	SetDebugFontSize(FontSize);
+	for (int i = 0; i < 10; i++)
+	{
+		if (saveprogress >= i) SetDebugFontColor(0xFF5A97E2); else SetDebugFontColor(0xFFE2E2E2);
+		DisplayDebugString(NJM_LOCATION((int)totalcount - 13 + i, 2), NowSavingString[i]);
+	}
+}
+
 void Branding_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 {
 	//Load configuration settings
@@ -2061,7 +2104,9 @@ void Branding_Init(const IniFile *config, const HelperFunctions &helperFunctions
 	RemoveMissionMode = config->getBool("Branding", "RemoveMissionMode", false);
 	RemoveCream = config->getBool("Branding", "RemoveCream", true);
 	HUDTweak = config->getBool("Branding", "HUDTweak", true);
+	DrawNowSaving = config->getBool("Branding", "DrawNowSaving", true);
 	SA1LogoMode = config->getInt("Branding", "SA1LogoMode", 0);
+	if (DrawNowSaving) WriteJump((void*)0x40BE40, NowSaving);
 	LogoScaleXT = LogoScaleX;
 	LogoScaleYT = LogoScaleY;
 	WriteJump((void*)0x4B62B0, BossHUDHack); //HUD hack for Knuckles/Gamma boss fight
@@ -3002,7 +3047,6 @@ void Branding_Init(const IniFile *config, const HelperFunctions &helperFunctions
 		WriteData((float*)0x4333A0, -1.0f); //Screen fade for tutorials
 		WriteData((float*)0x4333AE, -1.0f); //Screen fade for tutorials
 		WriteCall((void*)0x42BF52, ScreenFadeFix);
-		WriteData<1>((char*)0x40BE40, 0xC3); //Disable "Now saving..."
 		WriteData<5>((char*)0x40BE0D, 0x90); //Disable "Now loading..."
 		WriteData<5>((char*)0x503438, 0x90); //Disable "Now loading..."
 		WriteData<5>((char*)0x50346D, 0x90); //Disable "Now loading..."
@@ -3164,6 +3208,11 @@ void Branding_Init(const IniFile *config, const HelperFunctions &helperFunctions
 
 void Branding_OnFrame()
 {
+	if (DrawNowSaving && saveprogress < 12)
+	{
+		NowSaving_Display();
+		if (FrameCounter % 6 * FramerateSetting == 0) saveprogress++;
+	}
 	if (GameMode != 0 && !DemosDone) CheckAndRestoreDemos();
 	//Demo player
 	if (GameState == 15 && ControlMode == 1 && Demo_Enabled && Demo_Cutscene == -1) DemoFrame++;

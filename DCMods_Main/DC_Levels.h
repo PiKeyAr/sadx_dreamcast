@@ -724,6 +724,8 @@ void LoadBossECOceanTexlist();
 void RenderChaoTransporterEffect_Fix(NJS_MODEL_SADX *a1, float scale);
 void DrawEventHelicopter(NJS_ACTION *a1, float a2, int a3);
 void ResizeE101RTexlist();
+void DrawDebugText_NoFiltering(NJS_POINT2* points, float scale);
+void RestoreSubtitleFiltering(NJS_ARGB* a1);
 
 //Lighting functions
 bool ForceWhiteDiffuse(NJS_MATERIAL* material, uint32_t flags);
