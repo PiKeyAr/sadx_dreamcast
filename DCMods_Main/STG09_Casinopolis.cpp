@@ -49,7 +49,6 @@ NJS_OBJECT* IdeyaCap4_3 = nullptr;
 
 static float GearFrame = 0;
 static float SonicWhiteBlendFactor = 0.0f;
-static int LoopDelay = 0;
 static int CowgirlDelay = 0;
 static int RotationAngle1 = 0;
 static int RotationAngle2 = 0;
@@ -120,61 +119,18 @@ static void __cdecl OTikeiAnim_Main_r(ObjectMaster* a1)
 	}
 }
 
-void __cdecl Loop_DisplayF(ObjectMaster *a1)
+static void Loop_Main_r(ObjectMaster* a1);
+static Trampoline Loop_Main_t(0x5D5F50, 0x5D5F56, Loop_Main_r);
+static void __cdecl Loop_Main_r(ObjectMaster* a1)
 {
-	EntityData1 *v1; // esi@1
-	Angle v2; // eax@2
-	Angle v3; // eax@4
-	Angle v4; // eax@6
-	Angle v5; // edi@8
-	double v6; // st7@9
-	float v7; // [sp+8h] [bp+4h]@9
+	EntityData1* v1; // edi
 	v1 = a1->Data1;
-	if (!MissedFrames)
+	auto original = reinterpret_cast<decltype(Loop_Main_r)*>(Loop_Main_t.Target());
+	if (v1->CollisionInfo->Flags & 1 && *(float*)&v1->CharIndex > 38)
 	{
-		njColorBlendingMode(0, NJD_COLOR_BLENDING_SRCALPHA);
-		njColorBlendingMode(NJD_DESTINATION_COLOR, NJD_COLOR_BLENDING_INVSRCALPHA);
-		njSetTexture((NJS_TEXLIST*)0x1D8B384 + 1);
-		njPushMatrix(0);
-		njTranslateV(0, &v1->Position);
-		v2 = v1->Rotation.z;
-		if (IsPlayerInsideSphere(&v1->Position, 10.0f))
-		{
-			if (LoopDelay <= 0)
-			{
-				PlaySound(239, 0, 0, 0);
-				LoopDelay = 5;
-			}
-		}
-		if (v2)
-		{
-			njRotateZ(0, (unsigned __int16)v2);
-		}
-		v3 = v1->Rotation.x;
-		if (v3)
-		{
-			njRotateX(0, (unsigned __int16)v3);
-		}
-		v4 = v1->Rotation.y;
-		if (v4)
-		{
-			njRotateY(0, (unsigned __int16)v4);
-		}
-		v5 = 0;
-		do
-		{
-			v7 = njSin(v5) * *(float *)&v1->CharIndex;
-			v6 = njCos(v5) * *(float *)&v1->CharIndex;
-			((NJS_SPRITE*)0x3C75098)->p.x = v7;
-			((NJS_SPRITE*)0x3C75098)->p.z = 0;
-			((NJS_SPRITE*)0x3C75098)->p.y = v6;
-			njDrawSprite3D((NJS_SPRITE*)0x3C75098, v1->Action, NJD_SPRITE_ALPHA | NJD_SPRITE_SCALE);
-			v5 += 4096;
-		} while (v5 < 0x10000);
-		njPopMatrix(1u);
-		njColorBlendingMode(0, NJD_COLOR_BLENDING_SRCALPHA);
-		njColorBlendingMode(NJD_DESTINATION_COLOR, NJD_COLOR_BLENDING_ONE);
+		PlaySound(239, 0, 0, 0);
 	}
+	original(a1);
 }
 
 void __cdecl Cowgirl_Display(ObjectMaster *a1)
@@ -970,7 +926,6 @@ void Casinopolis_Init()
 		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x01E5E39C)->basicdxmodel->mats[1]);
 		WriteCall((void*)0x5DDBE4, RenderLightA); //OLightA
 		WriteCall((void*)0x5CE630, OSlxDisplayNew); //OSlX lights
-		WriteJump((void*)0x5D5E50, Loop_DisplayF); //Add sound to rings
 		//Fixed gears
 		WriteCall((void*)0x5D09C7, FixedGear1);
 		WriteJump((void*)0x5D3A90, FixedGear2); //Gears main
@@ -1235,11 +1190,6 @@ void Casinopolis_OnFrame()
 	//Other things
 	if (CurrentLevel == LevelIDs_Casinopolis && !IsGamePaused())
 	{
-		//Loop sound
-		if (CurrentAct == 3)
-		{
-			if (LoopDelay > 0) LoopDelay = LoopDelay - FramerateSetting;
-		}
 		//Knuckles stuff
 		if (CurrentAct == 0 && CurrentCharacter == 3)
 		{
