@@ -3210,8 +3210,9 @@ void Branding_OnFrame()
 {
 	if (DrawNowSaving && saveprogress < 12)
 	{
-		NowSaving_Display();
 		if (FrameCounter % 6 * FramerateSetting == 0) saveprogress++;
+		if (GameMode != GameModes_Menu && GameState != 15 && EV_MainThread_ptr == NULL) return;
+		NowSaving_Display();
 	}
 	if (GameMode != 0 && !DemosDone) CheckAndRestoreDemos();
 	//Demo player
