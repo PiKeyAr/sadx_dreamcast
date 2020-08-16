@@ -6,9 +6,9 @@ Dreamcast Conversion is a mod for Sonic Adventure DX PC that brings back Dreamca
 
 To install Dreamcast Conversion you can use SADX Mod Installer that sets up SADX Mod Loader and downloads the latest versions of mods automatically. The installer can also convert the Steam version of SADX to the 2004 version, which supports the Mod Loader. 
 
-**SADX Mod Installer:** http://www.moddb.com/mods/sadx-dreamcast-conversion/news/new-mod-installer-now-available1
+**SADX Mod Installer:** https://sadxmodinstaller.unreliable.network
 
-Alternatively you can download Dreamcast Conversion for manual install from the ModDB homepage linked above, or get the latest AppVeyor development build from the link below.
+Alternatively you can download Dreamcast Conversion for manual installation from its ModDB homepage, or get the latest AppVeyor development build from the link below.
 
 WARNING: The development builds may be unstable.
 
