@@ -221,6 +221,8 @@ class IniFile;
 #define NJD_CUSTOMFLAG_NO_REJECT	(BIT_7)
 
 DataPointer(int, f_shadow, 0x3B2C5E4);
+DataPointer(NJS_ARGB, nj_constant_material_, 0x3D0F7F0);
+DataPointer(NJS_MATRIX, nj_unit_matrix_, 0x389D650);
 DataPointer(NJS_MATRIX, MatrixStack_, 0x03A7CF48);
 DataPointer(BUBBLE_LIST*, ChaosBubbleEffect_BubbleList, 0x3D0DC00);
 DataPointer(float, min_fluctuation, 0x3D0DB90);
@@ -269,6 +271,7 @@ DataArray(CollisionData_, OCard_Collision, 0x2BC0748, 2);
 DataArray(CollisionData_, IceKey_Collision, 0x2BBF4C8, 2);
 DataArray(CollisionData_, KikiBomb_Collision, 0x96CA18, 4);
 DataArray(CollisionData_, Chaos6Freezer_Collision, 0x1386AC8, 3);
+FunctionPointer(double, Calculate2DDepth, (QueuedModelFlagsB flags, float a2), 0x404290);
 FunctionPointer(void, Cutscene_ResetTransition, (), 0x436550);
 FunctionPointer(void, Cutscene_WaitForInput, (int a1), 0x4314D0);
 FunctionPointer(void, DrawModelCallback_QueueModel, (void(__cdecl* function)(NJS_MODEL_SADX*), NJS_MODEL_SADX* data, float depth, QueuedModelFlagsB queueflags), 0x404840);
@@ -745,6 +748,11 @@ bool ForceDiffuse2Specular3(NJS_MATERIAL* material, uint32_t flags);
 bool ForceDiffuse4Specular5(NJS_MATERIAL* material, uint32_t flags);
 
 //Generic functions
+void BackupDebugFontSettings();
+void RestoreDebugFontSettings();
+void SetHudColorAndTextureNum_Italic(int n, NJS_COLOR color);
+void njDrawQuadTexture_Italic(NJS_QUAD_TEXTURE* points, float scale);
+void njDrawSprite2D_Queue_Point(NJS_SPRITE* sp, Int n, Float pri, NJD_SPRITE attr, QueuedModelFlagsB queue_flags);
 void AnimateTexture(TextureAnimation *texanim);
 void AnimateUVs(UVAnimation *animation);
 void ClearTextureAnimationData();

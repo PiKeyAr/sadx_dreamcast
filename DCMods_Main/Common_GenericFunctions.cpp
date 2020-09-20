@@ -1,6 +1,234 @@
 #include "stdafx.h"
 #include "GenericData.h"
 
+void BackupDebugFontSettings()
+{
+	DebugFontColorBK = DebugFontColor;
+	DebugFontSizeBK = DebugFontSize;
+}
+
+void RestoreDebugFontSettings()
+{
+	DebugFontColor = DebugFontColorBK;
+	DebugFontSize = DebugFontSizeBK;
+}
+
+void njDrawQuadTexture_Italic(NJS_QUAD_TEXTURE* points, float scale)
+{
+	double widthmaybe; // st7
+	Float base_x; // ecx
+	Float v4; // edx
+	double v5; // st7
+	Float v6; // ecx
+	double v7; // st7
+	double v8; // st7
+	NJS_QUAD_TEXTURE_EX _points; // [esp+0h] [ebp-40h]
+
+	widthmaybe = points->x2 - points->x1;
+	base_x = points->x1;
+	_points.y = points->y1;
+	v4 = points->u1;
+	_points.vx1 = widthmaybe;
+	_points.x = base_x;
+	v5 = points->y2 - points->y1;
+	_points.u = v4;
+	_points.z = scale;
+	v6 = points->v1;
+	_points.vy2 = v5;
+	v7 = points->u2 - points->u1;
+	_points.vy1 = 0.0;
+	_points.vx2 = 0.0;
+	_points.v = v6;
+	_points.vu1 = v7;
+	_points.vv1 = 0.0;
+	v8 = points->v2;
+	_points.vu2 = 0.0;
+	_points.vv2 = v8 - points->v1;
+	if (DebugFontItalic) _points.vx2 -= (_points.vx1 / 2.5f); //this line does the italics
+	Direct3D_DrawQuad(&_points);
+}
+
+void SetHudColorAndTextureNum_Italic(int n, NJS_COLOR color)
+{
+	NJS_COLOR c;
+	c.argb.r = color.argb.r;
+	c.argb.g = color.argb.g;
+	c.argb.b = color.argb.b;
+	if (color.argb.a < 15)
+	{
+		if (color.argb.a & 0x1) DebugFontItalic = true;
+		c.argb.a = 255;
+		SetHudColorAndTextureNum(n, c);
+	}
+	else
+	{
+		DebugFontItalic = false;
+		SetHudColorAndTextureNum(n, color);
+	}
+}
+
+void __cdecl njDrawSprite2D_DrawNow_Point(NJS_SPRITE* sp, Int n, Float pri, NJD_SPRITE attr)
+{
+	NJS_TEXLIST* texlist; // ecx
+	NJS_TEXANIM* texanim; // esi
+	double _cx; // st7
+	double cy; // st6
+	float sy; // ST14_4
+	float v9; // ST2C_4
+	double v10; // st7
+	float v11; // ST30_4
+	double v12; // st7
+	double v13; // st7
+	float v14; // eax
+	float v15; // ecx
+	NJS_COLOR v16; // edi
+	NJS_COLOR color_; // ST20_4
+	int texid; // esi
+	float result_x; // [esp+4h] [ebp-74h]
+	float v20; // [esp+8h] [ebp-70h]
+	float result_y; // [esp+Ch] [ebp-6Ch]
+	float u1; // [esp+10h] [ebp-68h]
+	float v1; // [esp+14h] [ebp-64h]
+	float u2; // [esp+18h] [ebp-60h]
+	float v2; // [esp+1Ch] [ebp-5Ch]
+	float v26; // [esp+28h] [ebp-50h]
+	NJS_VECTOR vs; // [esp+2Ch] [ebp-4Ch]
+	NJS_QUAD_TEXTURE_EX points; // [esp+38h] [ebp-40h]
+
+	if (sp)
+	{
+		texlist = sp->tlist;
+		if (texlist)
+		{
+			Direct3D_SetTexList(texlist);
+			texanim = &sp->tanim[n];
+			u1 = (double)texanim->u1 * 0.0039215689f;
+			v1 = (double)texanim->v1 * 0.0039215689f;
+			u2 = (double)texanim->u2 * 0.0039215689f;
+			v2 = (double)texanim->v2 * 0.0039215689f;
+			_cx = (double)-texanim->cx;
+			cy = (double)-texanim->cy;
+			sy = (double)texanim->sy + cy;
+			result_x = _cx * sp->sx;
+			v26 = ((double)texanim->sx + _cx) * sp->sx;
+			result_y = cy * sp->sy;
+			v20 = sy * sp->sy;
+			if (attr & NJD_SPRITE_ANGLE)
+			{
+				njPushMatrix(nj_unit_matrix_);
+				njRotateZ(0, sp->ang);
+				vs.x = result_x;
+				vs.y = result_y;
+				vs.z = 0.0;
+				njCalcVector(0, &vs, &vs);
+				points.x = vs.x + sp->p.x;
+				v9 = vs.x;
+				v10 = vs.y + sp->p.y;
+				v11 = vs.y;
+				vs.y = result_y;
+				points.y = v10;
+				vs.x = v26;
+				vs.z = 0.0;
+				points.z = -1.0 / pri;
+				njCalcVector(0, &vs, &vs);
+				points.vx1 = vs.x - v9;
+				vs.x = result_x;
+				v12 = vs.y;
+				vs.y = v20;
+				vs.z = 0.0;
+				points.vy1 = v12 - v11;
+				njCalcVector(0, &vs, &vs);
+				points.vx2 = vs.x - v9;
+				points.vy2 = vs.y - v11;
+				njPopMatrixEx();
+			}
+			else
+			{
+				points.vy1 = 0.0;
+				v13 = result_x + sp->p.x;
+				points.vx2 = 0.0;
+				points.x = v13;
+				points.y = result_y + sp->p.y;
+				points.z = -1.0 / pri;
+				points.vx1 = v26 - result_x;
+				points.vy2 = v20 - result_y;
+			}
+			if (attr & NJD_SPRITE_HFLIP)
+			{
+				v14 = u2;
+				u2 = u1;
+				u1 = v14;
+			}
+			if (attr & NJD_SPRITE_VFLIP)
+			{
+				v15 = v2;
+				v2 = v1;
+				v1 = v15;
+			}
+			points.u = u1;
+			points.vu1 = u2 - u1;
+			points.v = v1;
+			points.vv1 = 0.0;
+			points.vu2 = 0.0;
+			points.vv2 = v2 - v1;
+			if (attr & NJD_SPRITE_COLOR)
+			{
+				color_.argb.b = (unsigned __int64)(nj_constant_material_.b * 255.0);
+				color_.argb.g = (unsigned __int64)(nj_constant_material_.g * 255.0);
+				color_.argb.r = (unsigned __int64)(nj_constant_material_.r * 255.0);
+				color_.argb.a = (unsigned __int64)(nj_constant_material_.a * 255.0);
+				v16.color = color_.color;
+			}
+			else
+			{
+				v16.color = -1;
+			}
+			Direct3D_EnableHudAlpha((attr & NJD_SPRITE_ALPHA) == NJD_SPRITE_ALPHA);
+			Direct3D_TextureFilterPoint();
+			texid = texanim->texid;
+			CurrentHUDColor = v16.color;
+			Direct3D_SetTextureNum(texid);
+			Direct3D_DrawQuad(&points);
+			Direct3D_TextureFilterLinear();
+		}
+	}
+}
+
+void njDrawSprite2D_Queue_Point(NJS_SPRITE* sp, Int n, Float pri, NJD_SPRITE attr, QueuedModelFlagsB queue_flags)
+{
+	QueuedModelSprite* v5; // eax
+	QueuedModelSprite* v6; // ebx
+	Float pria; // [esp+0h] [ebp-4h]
+	Float v8; // [esp+10h] [ebp+Ch]
+
+	if (!MissedFrames && (unsigned int)sp >= 0x100000 && !VerifyTexList(sp->tlist))
+	{
+		pria = pri;
+		if (pri >= -2.0 && pri < 10000.0)
+		{
+			pria = pri + 12048.0;
+		}
+		v5 = (QueuedModelSprite*)AllocateQueuedModel(n, 0x98, QueuedModelType_Sprite2D, queue_flags);
+		v6 = v5;
+		if (v5)
+		{
+			v5->SpritePri = pria;
+			v5->SpriteFlags = attr;
+			memcpy(&v5->Sprite, sp, sizeof(v5->Sprite));
+			njGetMatrix(v5->Transform);
+			AddToQueue(&v6->Node, pria, 1);
+		}
+		else
+		{
+			v8 = Calculate2DDepth(queue_flags, pria);
+			njDrawSprite2D_DrawNow_Point(sp, n, v8, attr);
+			Direct3D_ResetZFunc();
+			Direct3D_EnableZWrite(1u);
+			ClampGlobalColorThing_Thing();
+		}
+	}
+}
+
 void ReplaceGeneric(std::string src, std::string dest)
 {
 	std::string fullsrc = "system\\" + src;

@@ -476,12 +476,6 @@ extern "C"
 		if (GetModuleHandle(L"AutoDemo_RedMountain") != nullptr) EnableRedMountain = false;
 		//Set window title
 		if (EnableWindowTitle) helperFunctions.SetWindowTitle("Sonic Adventure");
-		//Font filtering stuff
-		if (DisableFontFiltering)
-		{
-			WriteCall((void*)0x793BCC, DrawDebugText_NoFiltering);
-			WriteCall((void*)0x40D804, RestoreSubtitleFiltering);
-		}
 		//Another error message
 		if (EnableEmeraldCoast && GetModuleHandle(L"WaterEffect") != nullptr)
 		{
@@ -660,22 +654,28 @@ extern "C"
 		//Display error messages
 		if (!SuppressWarnings && LanternErrorMessageTimer && (IsIngame() || GameMode == GameModes_Menu))
 		{
+			BackupDebugFontSettings();
 			SetDebugFontSize(10.0f * (float)VerticalResolution / 480.0f);
+			SetDebugFontColor(0xFFBFBFBF);
 			DisplayDebugString(NJM_LOCATION(2, 1), "Failed to detect the Lantern Engine mod.");
 			DisplayDebugString(NJM_LOCATION(2, 2), "Dreamcast levels will have no lighting,");
 			DisplayDebugString(NJM_LOCATION(2, 3), "and alpha rejection fixes will not be applied.");
 			DisplayDebugString(NJM_LOCATION(2, 4), "Please install and enable Lantern Engine for correct visuals.");
 			LanternErrorMessageTimer--;
+			RestoreDebugFontSettings();
 		}
 		if (!SuppressWarnings && PauseHideErrorMessageTimer && (IsIngame() || GameMode == GameModes_Menu))
 		{
+			BackupDebugFontSettings();
 			SetDebugFontSize(10.0f * (float)VerticalResolution / 480.0f);
+			SetDebugFontColor(0xFFBFBFBF);
 			DisplayDebugString(NJM_LOCATION(2, 6), "The Pause Hide mod interferes with");
 			DisplayDebugString(NJM_LOCATION(2, 7), "some options in Dreamcast Conversion.");
 			DisplayDebugString(NJM_LOCATION(2, 8), "Dreamcast Conversion already includes");
 			DisplayDebugString(NJM_LOCATION(2, 9), "the functionality of the Pause Hide mod.");
 			DisplayDebugString(NJM_LOCATION(2, 10), "Please disable or remove it.");
 			PauseHideErrorMessageTimer--;
+			RestoreDebugFontSettings();
 		}
 		//Animate materials and UVs
 		if (!IsGamePaused() && Camera_Data1)

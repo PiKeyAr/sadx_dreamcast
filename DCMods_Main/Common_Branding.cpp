@@ -92,7 +92,6 @@ struct TitleScreenData
 DataPointer(NJS_CAMERA, View, 0x3AAD0A0);
 FunctionPointer(void, njSetCamera_, (NJS_CAMERA* matrix), 0x781250);
 FunctionPointer(void, sub_433410, (ObjectMaster* a1), 0x433410);
-DataPointer(NJS_MATRIX, nj_unit_matrix_, 0x389D650);
 FunctionPointer(ObjectMaster*, sub_510390, (int a1), 0x510390);
 FunctionPointer(void, sub_505B40, (int a1), 0x505B40);
 FunctionPointer(void, sub_432EA0, (), 0x432EA0);
@@ -2087,7 +2086,7 @@ void NowSaving_Display()
 	SetDebugFontSize(FontSize);
 	for (int i = 0; i < 10; i++)
 	{
-		if (saveprogress >= i) SetDebugFontColor(0xFF5A97E2); else SetDebugFontColor(0xFFE2E2E2);
+		if (saveprogress >= i) SetDebugFontColor(0x015A97E2); else SetDebugFontColor(0x01E2E2E2); //Set alpha to 1 to italicize
 		DisplayDebugString(NJM_LOCATION((int)totalcount - 13 + i, 2), NowSavingString[i]);
 	}
 }
@@ -2106,7 +2105,15 @@ void Branding_Init(const IniFile *config, const HelperFunctions &helperFunctions
 	HUDTweak = config->getBool("Branding", "HUDTweak", true);
 	DrawNowSaving = config->getBool("Branding", "DrawNowSaving", true);
 	SA1LogoMode = config->getInt("Branding", "SA1LogoMode", 0);
-	if (DrawNowSaving) WriteJump((void*)0x40BE40, NowSaving);
+	if (DrawNowSaving)
+	{
+		WriteJump((void*)0x40BE40, NowSaving);
+		if (!DLLLoaded_DLCs)
+		{
+			WriteCall((void*)0x793D06, SetHudColorAndTextureNum_Italic);
+			WriteCall((void*)0x793BCC, njDrawQuadTexture_Italic);
+		}
+	}
 	LogoScaleXT = LogoScaleX;
 	LogoScaleYT = LogoScaleY;
 	WriteJump((void*)0x4B62B0, BossHUDHack); //HUD hack for Knuckles/Gamma boss fight

@@ -1,7 +1,6 @@
 #include "stdafx.h"
 
 FunctionPointer(void, Draw3DLines, (NJS_POINT3COL *points, int count, NJD_DRAW attr), 0x77EBA0);
-FunctionPointer(double, Calculate2DDepth, (QueuedModelFlagsB flags, float a2), 0x404290);
 
 void __cdecl DrawModelCallback_Queue_r(void(__cdecl *function)(void *), void *data, float depth, QueuedModelFlagsB queueflags)
 {

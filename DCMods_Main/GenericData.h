@@ -3,6 +3,10 @@
 #pragma warning(push)
 #pragma warning(disable: 4267 4838)
 
+NJS_COLOR DebugFontColorBK;
+float DebugFontSizeBK;
+bool DebugFontItalic = false;
+
 NJS_MATERIAL DeadMaterial[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 0, 0, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_DA_INV_SRC | NJD_SA_SRC }
 };

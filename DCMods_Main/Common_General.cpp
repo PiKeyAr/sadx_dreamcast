@@ -31,7 +31,6 @@ DataPointer(uint8_t, TextureFilterSettingForPoint_2, 0x0078B7D8);
 DataPointer(uint8_t, TextureFilterSettingForPoint_3, 0x0078B7EC);
 DataPointer(float, GammaConstantMaterialAlpha, 0x47FE0F);
 DataPointer(NJS_OBJECT, stru_8B22F4, 0x8B22F4);
-DataPointer(NJS_MATRIX, nj_unit_matrix_, 0x389D650);
 DataPointer(NJS_ACTION*, Tornado2Pointer, 0x6B9527);
 DataPointer(NJS_ACTION, Tornado2ChangeAction, 0x32ECE0C);
 DataPointer(NJS_ACTION, Tornado2TransformationAction, 0x28988FC);
@@ -502,25 +501,6 @@ void RenderEmeraldWithGlow_Ice(NJS_OBJECT *object, int flags, float scale)
 	ClampGlobalColorThing_Thing();
 	ToggleStageFog();
 	//Don't njPopMatrix because there's one right after this hook in code
-}
-
-void ForcePointSampleFiltering()
-{
-	FilteringSettingBackup1 = TextureFilterSettingForPoint_1;
-	FilteringSettingBackup2 = TextureFilterSettingForPoint_2;
-	FilteringSettingBackup3 = TextureFilterSettingForPoint_3;
-	WriteData((uint8_t*)0x0078B7C4, (uint8_t)0x01);
-	WriteData((uint8_t*)0x0078B7D8, (uint8_t)0x01);
-	WriteData((uint8_t*)0x0078B7EC, (uint8_t)0x01);
-	Direct3D_TextureFilterPoint();
-}
-
-void DisablePointSampleFiltering()
-{
-	WriteData((uint8_t*)0x0078B7C4, FilteringSettingBackup1);
-	WriteData((uint8_t*)0x0078B7D8, FilteringSettingBackup2);
-	WriteData((uint8_t*)0x0078B7EC, FilteringSettingBackup3);
-	Direct3D_TextureFilterLinear();
 }
 
 void SonicDashTrailFix(NJS_OBJECT *a1, QueuedModelFlagsB a2)
@@ -1615,7 +1595,6 @@ void CutsceneFadeHookForSubtitleBox(float left, float top, float right, float bo
 
 void CutsceneFadeHookForSubtitleText(NJS_ARGB *a1)
 {
-	if (DisableFontFiltering && !DLLLoaded_HDGUI) ForcePointSampleFiltering();
 	float alpha = a1->a * (1.0f - CutsceneFadeValue / 255.0f);
 	if (CutsceneSkipMode == 0) SetMaterialAndSpriteColor_Float(alpha, a1->r, a1->g, a1->b);
 	else SetMaterialAndSpriteColor(a1);
@@ -1652,27 +1631,6 @@ void DrawHedgehogHammerTextHook(NJS_SPRITE *sp, Int n, NJD_SPRITE attr)
 {
 	if (EV_MainThread_ptr) njDrawSprite3D_ADV01C_C(sp, n, attr);
 	else njDrawSprite3D_Queue(sp, n, attr, QueuedModelFlagsB_3);
-}
-
-void RestoreSubtitleFiltering(NJS_ARGB *a1)
-{
-	if (DisableFontFiltering && !DLLLoaded_HDGUI) DisablePointSampleFiltering();
-	SetMaterialAndSpriteColor(a1);
-}
-
-void DrawDebugText_NoFiltering(NJS_POINT2* points, float scale)
-{
-	uint8_t Backup1 = TextureFilterSettingForPoint_1;
-	uint8_t Backup2 = TextureFilterSettingForPoint_2;
-	uint8_t Backup3 = TextureFilterSettingForPoint_3;
-	WriteData((uint8_t*)0x0078B7C4, (uint8_t)0x01);
-	WriteData((uint8_t*)0x0078B7D8, (uint8_t)0x01);
-	WriteData((uint8_t*)0x0078B7EC, (uint8_t)0x01);
-	Direct3D_TextureFilterPoint();
-	DrawRectPoints(points, scale);
-	WriteData((uint8_t*)0x0078B7C4, Backup1);
-	WriteData((uint8_t*)0x0078B7D8, Backup2);
-	WriteData((uint8_t*)0x0078B7EC, Backup3);
 }
 
 void DrawGammaDamageSprite(int n)
@@ -1940,7 +1898,8 @@ void General_Init()
 		WriteJump((void*)0x7ADD30, actBubble);
 		//Cutscene skip hooks
 		WriteCall((void*)0x40D69C, CutsceneFadeHookForSubtitleBox); 
-		WriteCall((void*)0x40D78A, CutsceneFadeHookForSubtitleText); //Also used to disable filtering
+		WriteCall((void*)0x40D78A, CutsceneFadeHookForSubtitleText);
+		if (DisableFontFiltering) WriteCall((void*)0x40D7DA, njDrawSprite2D_Queue_Point);
 		//Snow/sandboard "fixes" (SL OBJECTS)
 		RemoveVertexColors_Object(SONIC_OBJECTS[71]);
 		RemoveVertexColors_Object(MILES_OBJECTS[71]);
