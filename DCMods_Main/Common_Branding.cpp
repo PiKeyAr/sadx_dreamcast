@@ -2087,7 +2087,7 @@ void NowSaving_Display()
 	for (int i = 0; i < 10; i++)
 	{
 		if (saveprogress >= i) SetDebugFontColor(0x015A97E2); else SetDebugFontColor(0x01E2E2E2); //Set alpha to 1 to italicize
-		DisplayDebugString(NJM_LOCATION((int)totalcount - 13 + i, 2), NowSavingString[i]);
+		DisplayDebugString(NJM_LOCATION((int)totalcount - 13 + i, 3), NowSavingString[i]);
 	}
 }
 
