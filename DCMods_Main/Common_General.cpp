@@ -1899,7 +1899,7 @@ void General_Init()
 		//Cutscene skip hooks
 		WriteCall((void*)0x40D69C, CutsceneFadeHookForSubtitleBox); 
 		WriteCall((void*)0x40D78A, CutsceneFadeHookForSubtitleText);
-		if (DisableFontFiltering) WriteCall((void*)0x40D7DA, njDrawSprite2D_Queue_Point);
+		if (DisableFontFiltering && !DLLLoaded_HDGUI) WriteCall((void*)0x40D7DA, njDrawSprite2D_Queue_Point);
 		//Snow/sandboard "fixes" (SL OBJECTS)
 		RemoveVertexColors_Object(SONIC_OBJECTS[71]);
 		RemoveVertexColors_Object(MILES_OBJECTS[71]);
