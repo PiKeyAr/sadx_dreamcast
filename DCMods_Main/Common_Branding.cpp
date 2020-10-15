@@ -55,10 +55,19 @@ NJS_POINT2 Pause_Points[4];
 NJS_COLOR Pause_Colors[4];
 
 NJS_TEXNAME textures_ava_title[11];
+NJS_TEXLIST texlist_ava_title = {arrayptrandlength(textures_ava_title)};
+
 NJS_TEXNAME textures_ava_dlg_e[10];
+NJS_TEXLIST texlist_ava_dlg_e = {arrayptrandlength(textures_ava_dlg_e)};
+
 NJS_TEXNAME textures_ava_gtitle0_640[42]; //Original DC GTITLE textures for 640x480 (AVA_TITLE_CMN_SMALL texlist)
+NJS_TEXLIST texlist_ava_gtitle0_640 = {arrayptrandlength(textures_ava_gtitle0_640)};
+
 NJS_TEXNAME textures_title_back_640[24]; //Original DC TITLE textures for 640x480 (AVA_TITLE_BACK texlist)
+NJS_TEXLIST texlist_title_back_640 = {arrayptrandlength(textures_title_back_640)};
+
 NJS_TEXNAME textures_ava_gtitle0_e_dc_hd[19]; //Custom HD textures (AVA_GTITLE0_E texlist)
+NJS_TEXLIST texlist_ava_gtitle0_e_dc_hd = {arrayptrandlength(textures_ava_gtitle0_e_dc_hd)};
 
 struct TutorialScreenItem
 {
@@ -2572,8 +2581,8 @@ void Branding_Init(const IniFile *config, const HelperFunctions &helperFunctions
 		ReplacePVM("AVA_CSR");
 		ReplacePVM("AVA_DLG");
 		ReplacePVM("AVA_DLG_E");
-		ResizeTextureList(&ava_dlg_e_TEXLIST, textures_ava_dlg_e);
-		ResizeTextureList(&ava_title_e_TEXLIST, textures_ava_title);
+		ava_dlg_e_TEXLIST = texlist_ava_dlg_e;
+		ava_title_e_TEXLIST, texlist_ava_title;
 		ReplacePVM("AVA_EMBLEM");
 		ReplacePVM("AVA_EMBLEMVIEW");
 		ReplacePVM("AVA_EMBLEMVIEW_E");
@@ -3095,21 +3104,21 @@ void Branding_Init(const IniFile *config, const HelperFunctions &helperFunctions
 		//PrintDebug("Number of saves: %d\n", NumberOfSaves);
 		TitleBackOverlayColor.color = 0x99FFFFFF;
 		//Title screen textures for HD
-		ResizeTextureList(&ava_gtitle0_e_TEXLIST, textures_ava_gtitle0_e_dc_hd);
+		ava_gtitle0_e_TEXLIST = texlist_ava_gtitle0_e_dc_hd;
 		GUITextures_Japanese[17].Name = "AVA_GTITLE0_DC_HD.PVM";
 		GUITextures_English[17].Name = "AVA_GTITLE0_DC_HD.PVM";
 		GUITextures_French[17].Name = "AVA_GTITLE0_DC_HD.PVM";
 		GUITextures_German[17].Name = "AVA_GTITLE0_DC_HD.PVM";
 		GUITextures_Spanish[17].Name = "AVA_GTITLE0_DC_HD.PVM";
 		//Title screen textures for 640x480
-		ResizeTextureList(&ava_title_cmn_small_TEXLIST, textures_ava_gtitle0_640);
+		ava_title_cmn_small_TEXLIST = texlist_ava_gtitle0_640;
 		GUITextures_Japanese[29].Name = "AVA_GTITLE0_DC.PVM";
 		GUITextures_English[29].Name = "AVA_GTITLE0_DC.PVM";
 		GUITextures_French[29].Name = "AVA_GTITLE0_DC.PVM";
 		GUITextures_German[29].Name = "AVA_GTITLE0_DC.PVM";
 		GUITextures_Spanish[29].Name = "AVA_GTITLE0_DC.PVM";
 		//Main menu textures for 640x480
-		ResizeTextureList(&ava_title_back_e_TEXLIST, textures_title_back_640);
+		ava_title_back_e_TEXLIST = texlist_title_back_640;
 		GUITextures_Japanese[20].Name = "AVA_TITLE_BACK_DC.PVM";
 		GUITextures_English[20].Name = "AVA_TITLE_BACK_DC.PVM";
 		GUITextures_French[20].Name = "AVA_TITLE_BACK_DC.PVM";

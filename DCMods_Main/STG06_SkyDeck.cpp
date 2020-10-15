@@ -1,6 +1,7 @@
 #include "stdafx.h"
 
 NJS_TEXNAME textures_obj_skydeck[213];
+NJS_TEXLIST texlist_obj_skydeck = {arrayptrandlength(textures_obj_skydeck)};
 
 NJS_TEXNAME textures_skydeck1[76];
 NJS_TEXLIST texlist_skydeck1 = { arrayptrandlength(textures_skydeck1) };
@@ -391,10 +392,10 @@ void SkyDeck_Init()
 	((LandTable*)0x022369A0)->Col = STG06_1->Col;
 	if (!ModelsLoaded_STG06)
 	{
-		ResizeTextureList(&SKYDECK01_TEXLIST, textures_skydeck1);
-		ResizeTextureList(&SKYDECK02_TEXLIST, textures_skydeck2);
-		ResizeTextureList(&SKYDECK03_TEXLIST, textures_skydeck3);
-		ResizeTextureList(&OBJ_SKYDECK_TEXLIST, textures_obj_skydeck);
+		SKYDECK01_TEXLIST = texlist_skydeck1;
+		SKYDECK02_TEXLIST = texlist_skydeck2;
+		SKYDECK03_TEXLIST = texlist_skydeck3;
+		OBJ_SKYDECK_TEXLIST = texlist_obj_skydeck;
 		WriteJump((void*)0x5EF870, SkyDeckSharedDisplaySubFix); //Fix jerky animation for some objects (mostly unused)
 		//Skybox transparency
 		SkyDeckSkyboxModel_Normal.basicdxmodel->nbMeshset = 2; //Disable the annoying sky mesh

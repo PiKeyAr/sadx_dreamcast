@@ -26,6 +26,9 @@ NJS_OBJECT* ItemBoxAirModel = nullptr;
 NJS_OBJECT* ItemBoxAirModel_Resize = nullptr;
 NJS_OBJECT* ItemBoxAirModel_ResizeChild = nullptr;
 
+NJS_TEXNAME textures_goma[5];
+NJS_TEXLIST texlist_goma = {arrayptrandlength(textures_goma)};
+
 DataPointer(uint8_t, TextureFilterSettingForPoint_1, 0x0078B7C4);
 DataPointer(uint8_t, TextureFilterSettingForPoint_2, 0x0078B7D8);
 DataPointer(uint8_t, TextureFilterSettingForPoint_3, 0x0078B7EC);
@@ -2261,7 +2264,7 @@ void General_Init()
 		WriteCall((void*)0x4D769B, QueueAnimals); //Queue animal models because they have transparency
 		WriteCall((void*)0x73F726, QueueChaoAnimals1); //Also queue Chao animals
 		WriteCall((void*)0x73F742, QueueChaoAnimals2); //Also queue Chao animals
-		ResizeTextureList((NJS_TEXLIST*)0x92ACE4, 5); //GOMA texlist
+		*(NJS_TEXLIST*)0x92ACE4 = texlist_goma; //GOMA texlist
 		//Load SA1 animal models and replace their models/animations in Action Stages
 		NJS_OBJECT* SA1Animal_Goma = LoadModel("system\\data\\1st_read\\Models\\00157760.sa1mdl", false);
 		Action_Goma.object = SA1Animal_Goma;

@@ -11,14 +11,14 @@ static bool HotShelterColsLoaded = false;
 static Angle E105Angle = 0;
 SETObjData setdata_hs = {};
 
-NJS_TEXNAME textures_shelter1[78];
-NJS_TEXLIST texlist_hotshelter1 = { arrayptrandlength(textures_shelter1) };
+NJS_TEXNAME textures_hotshelter1[78];
+NJS_TEXLIST texlist_hotshelter1 = { arrayptrandlength(textures_hotshelter1) };
 
-NJS_TEXNAME textures_shelter2[156];
-NJS_TEXLIST texlist_hotshelter2 = { arrayptrandlength(textures_shelter2) };
+NJS_TEXNAME textures_hotshelter2[156];
+NJS_TEXLIST texlist_hotshelter2 = { arrayptrandlength(textures_hotshelter2) };
 
-NJS_TEXNAME textures_shelter3[121];
-NJS_TEXLIST texlist_hotshelter3 = { arrayptrandlength(textures_shelter3) };
+NJS_TEXNAME textures_hotshelter3[121];
+NJS_TEXLIST texlist_hotshelter3 = { arrayptrandlength(textures_hotshelter3) };
 
 /*
 #include "HotShelter1.h"
@@ -580,9 +580,9 @@ void HotShelter_Init()
 	WriteData((LandTable**)0x97DB90, STG12_2);
 	if (!ModelsLoaded_STG12)
 	{
-		ResizeTextureList(&HOTSHELTER1_TEXLIST, textures_shelter1);
-		ResizeTextureList(&HOTSHELTER2_TEXLIST, textures_shelter2);
-		ResizeTextureList(&HOTSHELTER3_TEXLIST, textures_shelter3);
+		HOTSHELTER1_TEXLIST = texlist_hotshelter1;
+		HOTSHELTER2_TEXLIST = texlist_hotshelter2;
+		HOTSHELTER3_TEXLIST = texlist_hotshelter3;
 		//Code fixes
 		WriteData((float*)0x005AB2F0, -1000.0f); //Four glass things in drainage room (depth bias)
 		WriteCall((void*)0x5A93BF, njDrawSprite3D_TheyForgotToClampAgain);

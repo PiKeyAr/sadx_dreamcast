@@ -3,6 +3,7 @@
 #include "HintMessages.h"
 
 NJS_TEXNAME textures_garden00_object[16];
+NJS_TEXLIST texlist_garden00_object = {arrayptrandlength(textures_garden00_object)};
 
 NJS_TEXNAME textures_ecgarden[79];
 NJS_TEXLIST texlist_ecgarden = { arrayptrandlength(textures_ecgarden) };
@@ -2195,7 +2196,7 @@ void ChaoGardens_Init()
 		}
 		else WriteData((ObjectFuncPtr*)0x0071B3D3, FixChaoButtonPrompts);
 		WriteData((ObjectFuncPtr*)0x007382A4, FixChaoStatPanel);
-		ResizeTextureList(&GARDEN00_OBJECT_TEXLIST, textures_garden00_object);
+		GARDEN00_OBJECT_TEXLIST = texlist_garden00_object;
 		LoadChaoGardenHintMessages();
 		WriteJump((void*)0x728E20, ChaoGardenSSMRWater_Display_); //Ocean/water function for DX water in SS and MR gardens
 		//Load models

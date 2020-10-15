@@ -1,6 +1,7 @@
 #include "stdafx.h"
 
 NJS_TEXNAME textures_beachsea[10];
+NJS_TEXLIST texlist_beachsea = {arrayptrandlength(textures_beachsea)};
 
 NJS_TEXNAME textures_ecoast1[97];
 NJS_TEXLIST texlist_ecoast1 = { arrayptrandlength(textures_ecoast1) };
@@ -672,10 +673,10 @@ void EmeraldCoast_Init()
 	ParseEmeraldCoastColFlagsAndMaterials(STG01_2, 2);
 	if (!ModelsLoaded_STG01)
 	{
-		ResizeTextureList((NJS_TEXLIST*)0x010C0508, textures_beachsea); //BEACH_SEA
-		ResizeTextureList(&BEACH01_TEXLIST, textures_ecoast1);
-		ResizeTextureList(&BEACH02_TEXLIST, textures_ecoast2);
-		ResizeTextureList(&BEACH03_TEXLIST, textures_ecoast3);
+		*(NJS_TEXLIST*)0x010C0508 = texlist_beachsea; //BEACH_SEA
+		BEACH01_TEXLIST = texlist_ecoast1;
+		BEACH02_TEXLIST = texlist_ecoast2;
+		BEACH03_TEXLIST = texlist_ecoast3;
 		if (Use1999SetFiles > 0)
 		{
 			WriteData((float**)0x4D46C8, &WallCollisionNerf);

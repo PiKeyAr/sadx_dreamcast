@@ -5,8 +5,13 @@
 //TODO: OS1Dnto shouldn't ignore lighting (use object specular) - this'll have to wait until soft particles are implemented in sadx-dc-lighting
 
 NJS_TEXNAME textures_sscar[22];
+NJS_TEXLIST texlist_sscar = {arrayptrandlength(textures_sscar)};
+
 NJS_TEXNAME textures_sstrain[31];
+NJS_TEXLIST texlist_sstrain = {arrayptrandlength(textures_sstrain)};
+
 NJS_TEXNAME textures_obj_ss[177];
+NJS_TEXLIST texlist_obj_ss = {arrayptrandlength(textures_obj_ss)};
 
 NJS_TEXNAME textures_advss00[220];
 NJS_TEXLIST texlist_advss00 = { arrayptrandlength(textures_advss00) };
@@ -674,9 +679,9 @@ void ADV00_Init()
 	//This is done only once
 	if (!ModelsLoaded_ADV00)
 	{
-		ResizeTextureList((NJS_TEXLIST*)0x2AEE920, textures_sscar); //SSCAR 
-		ResizeTextureList((NJS_TEXLIST*)0x2AD9F58, textures_sstrain); //SS_TRAIN
-		ResizeTextureList(&OBJ_SS_TEXLIST, textures_obj_ss);
+		*(NJS_TEXLIST*)0x2AEE920 = texlist_sscar; //SSCAR 
+		*(NJS_TEXLIST*)0x2AD9F58 = texlist_sstrain; //SS_TRAIN
+		OBJ_SS_TEXLIST = texlist_obj_ss;
 		WriteCall((void*)0x62EC3C, SSOceanCallback); //Render SS ocean separately (both normal and SADX water)
 		if (!SADXWater_StationSquare) 
 		{

@@ -3,16 +3,19 @@
 //TODO: The weird behavior of the light on conveyour belt
 
 NJS_TEXNAME textures_hwcar[16];
+NJS_TEXLIST texlist_hwcar = {arrayptrandlength(textures_hwcar)};
+
 NJS_TEXNAME textures_obj_highway[118];
+NJS_TEXLIST texlist_obj_highway = {arrayptrandlength(textures_obj_highway)};
 
 NJS_TEXNAME textures_highway1[89];
-NJS_TEXLIST texlist_hw1 = { arrayptrandlength(textures_highway1) };
+NJS_TEXLIST texlist_highway1 = { arrayptrandlength(textures_highway1) };
 
 NJS_TEXNAME textures_highway2[32];
-NJS_TEXLIST texlist_hw2 = { arrayptrandlength(textures_highway2) };
+NJS_TEXLIST texlist_highway2 = { arrayptrandlength(textures_highway2) };
 
 NJS_TEXNAME textures_highway3[107];
-NJS_TEXLIST texlist_hw3 = { arrayptrandlength(textures_highway3) };
+NJS_TEXLIST texlist_highway3 = { arrayptrandlength(textures_highway3) };
 
 NJS_OBJECT *ConeBase = nullptr;
 NJS_OBJECT *ConeTop = nullptr;
@@ -225,7 +228,7 @@ void Highway3Cols_Display(ObjectMaster *a1)
 				sphere.z = GeoLists[34]->Col[Highway3Cols[i]].Center.z;
 				if (radius != 0 && IsPlayerInsideSphere(&sphere, radius))
 				{
-					njSetTexture(&texlist_hw3);
+					njSetTexture(&texlist_highway3);
 					njPushMatrix(0);
 					njTranslate(0, 0, 0, 0);
 					if (GeoLists[34]->Col[Highway3Cols[i]].Flags & 0x01000000) DrawQueueDepthBias = 3000.0f;
@@ -391,19 +394,19 @@ void SpeedHighway_Init()
 	RemoveMaterialColors_Landtable(STG04_2);
 	ProcessMaterials_SpeedHighway(STG04_0);
 	ProcessMaterials_SpeedHighway(STG04_2);
-	STG04_0->TexList = &texlist_hw1;
-	STG04_1->TexList = &texlist_hw2;
-	STG04_2->TexList = &texlist_hw3;
+	STG04_0->TexList = &texlist_highway1;
+	STG04_1->TexList = &texlist_highway2;
+	STG04_2->TexList = &texlist_highway3;
 	WriteData((LandTable**)0x97DA88, STG04_0);
 	WriteData((LandTable**)0x97DA8C, STG04_1);
 	WriteData((LandTable**)0x97DA90, STG04_2);
 	if (!ModelsLoaded_STG04)
 	{
-		ResizeTextureList(&HIGHWAY_CAR_TEXLIST, textures_hwcar);
-		ResizeTextureList(&OBJ_HIGHWAY_TEXLIST, textures_obj_highway);
-		ResizeTextureList(&HIGHWAY01_TEXLIST, textures_highway1);
-		ResizeTextureList(&HIGHWAY02_TEXLIST, textures_highway2);
-		ResizeTextureList(&HIGHWAY03_TEXLIST, textures_highway3);
+		HIGHWAY_CAR_TEXLIST = texlist_hwcar;
+		OBJ_HIGHWAY_TEXLIST = texlist_obj_highway;
+		HIGHWAY01_TEXLIST = texlist_highway1;
+		HIGHWAY02_TEXLIST = texlist_highway2;
+		HIGHWAY03_TEXLIST = texlist_highway3;
 		//Fountain fixes
 		WriteCall((void*)0x0061BAA0, FountainPart1);
 		WriteCall((void*)0x0061BAF1, FountainPart2);

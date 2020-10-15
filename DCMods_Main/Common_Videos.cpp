@@ -24,7 +24,9 @@ NJS_COLOR VideoFrame_Colors[4];
 NJS_COLOR VideoFadeout_Colors[4];
 NJD_DRAW VideoFrame_Attr = 0x62;
 FunctionPointer(void, sub_40EFE0, (), 0x40EFE0);
+
 NJS_TEXNAME textures_SEGALOGO_E[6];
+NJS_TEXLIST texlist_SEGALOGO_E = {arrayptrandlength(textures_SEGALOGO_E)};
 
 VideoData VideoDataArray[] = {
 	{ "system\\intro.mpg", 0, 6420, 640, 448 },
@@ -200,7 +202,7 @@ void Videos_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 		{
 			ReplacePVM("SEGALOGO");
 			WriteCall((void*)0x42C756, LoadSegalogoPVM);
-			ResizeTextureList(&SEGALOGO_E_TEXLIST, textures_SEGALOGO_E);
+			SEGALOGO_E_TEXLIST = texlist_SEGALOGO_E;
 		}
 	}
 	else if (SonicTeamLogo_String == "Static")
@@ -213,7 +215,7 @@ void Videos_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 		{
 			ReplacePVM("SEGALOGO");
 			WriteCall((void*)0x42C756, LoadSegalogoPVM);
-			ResizeTextureList(&SEGALOGO_E_TEXLIST, textures_SEGALOGO_E);
+			SEGALOGO_E_TEXLIST = texlist_SEGALOGO_E;
 		}
 	}
 	//Fix EC crash cutscene fadeout

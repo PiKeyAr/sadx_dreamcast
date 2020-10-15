@@ -6,11 +6,14 @@
 FunctionPointer(void, sub_4014B0, (), 0x4014B0);
 
 NJS_TEXNAME textures_obj_regular[100];
+NJS_TEXLIST texlist_obj_regular = {arrayptrandlength(textures_obj_regular)};
+
 NJS_TEXNAME textures_e101r_tikei[76];
+NJS_TEXLIST texlist_e101r_tikei = {arrayptrandlength(textures_e101r_tikei)};
 
 void ResizeE101RTexlist()
 {
-	ResizeTextureList((NJS_TEXLIST*)0x16B460C, textures_e101r_tikei);
+	*(NJS_TEXLIST*)0x16B460C = texlist_e101r_tikei;
 }
 
 void LoadBossECOceanPVM(const char *filename, NJS_TEXLIST *texlist)
@@ -86,7 +89,7 @@ void Init_Global()
 	if (DLLLoaded_HDGUI == false)
 	{
 		ReplacePVM("OBJ_REGULAR");
-		ResizeTextureList(&OBJ_REGULAR_TEXLIST, textures_obj_regular); //Added DC ripple texture
+		OBJ_REGULAR_TEXLIST = texlist_obj_regular; //Added DC ripple texture
 	}
 	ReplacePVR("AL_BARRIA");
 	ReplacePVR("AM_SEA124_8");

@@ -69,7 +69,7 @@ void Chaos2_Init()
 	LandTableArray[8] = B_CHAOS2; //Chaos 2
 	if (!ModelsLoaded_B_CHAOS2)
 	{
-		ResizeTextureList((NJS_TEXLIST*)0x117C76C, textures_chaos2);
+		*(NJS_TEXLIST*)0x117C76C = texlist_chaos2;
 		*(NJS_MODEL_SADX*)0x11863C0 = *LoadModel("system\\data\\B_CHAOS2\\Models\\0006CD68.sa1mdl", false)->basicdxmodel; //Column
 		*(NJS_OBJECT*)0x11835B4 = *LoadModel("system\\data\\B_CHAOS2\\Models\\0006812C.sa1mdl", false); //Table
 		((NJS_OBJECT*)0x11835B4)->basicdxmodel->mats[1].attrflags &= ~NJD_FLAG_USE_ALPHA; //This doesn't use alpha anyway

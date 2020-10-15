@@ -140,8 +140,8 @@ void Chaos6_Init()
 	LandTableArray[25] = B_CHAOS6_1; //Chaos 6K
 	if (!ModelsLoaded_B_CHAOS6)
 	{
-		ResizeTextureList((NJS_TEXLIST*)0x121FF28, textures_chaos6s);
-		ResizeTextureList((NJS_TEXLIST*)0x11F04A0, textures_chaos6k);
+		*(NJS_TEXLIST*)0x121FF28 = texlist_chaos6s;
+		*(NJS_TEXLIST*)0x11F04A0 = texlist_chaos6k;
 		//Main model stuff
 		RemoveVertexColors_Object((NJS_OBJECT*)0x1272FF4);
 		Chaos6Main_OpaqueOnly = LoadModel("system\\data\\B_CHAOS6\\Models\\DX\\00E72FF4.sa1mdl", false);

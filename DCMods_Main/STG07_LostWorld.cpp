@@ -1,6 +1,7 @@
 #include "stdafx.h"
 
 NJS_TEXNAME textures_obj_ruin[127];
+NJS_TEXLIST texlist_obj_ruin = {arrayptrandlength(textures_obj_ruin)};
 
 NJS_TEXNAME textures_lw1[58];
 NJS_TEXLIST texlist_lw1 = { arrayptrandlength(textures_lw1) };
@@ -447,10 +448,10 @@ void LostWorld_Init()
 	WriteData((LandTable**)0x97DAF0, STG07_2);
 	if (!ModelsLoaded_STG07)
 	{
-		ResizeTextureList(&RUIN01_TEXLIST, textures_lw1);
-		ResizeTextureList(&RUIN02_TEXLIST, textures_lw2);
-		ResizeTextureList(&RUIN03_TEXLIST, textures_lw3);
-		ResizeTextureList(&OBJ_RUIN_TEXLIST, textures_obj_ruin);
+		RUIN01_TEXLIST = texlist_lw1;
+		RUIN02_TEXLIST = texlist_lw2;
+		RUIN03_TEXLIST = texlist_lw3;
+		OBJ_RUIN_TEXLIST = texlist_obj_ruin;
 		//SA1 J spike behavior by supercoolsonic
 		if (Use1999SetFiles == 2) WriteJump((signed int*)0x5EA7A0, JapaneseSpikes);
 		//Improve clip distance for some platforms in the snake room

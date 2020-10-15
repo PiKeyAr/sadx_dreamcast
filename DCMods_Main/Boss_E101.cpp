@@ -20,7 +20,7 @@ void E101_Init()
 	LandTableArray[72] = B_E101;
 	if (!ModelsLoaded_B_E101)
 	{
-		ResizeTextureList((NJS_TEXLIST*)0x14FBFB4, textures_e101);
+		*(NJS_TEXLIST*)0x14FBFB4 = texlist_e101;
 		FixFVFShit();
 		RemoveVertexColors_Object((NJS_OBJECT*)0x14DE020); //E101 boss model
 		RemoveVertexColors_Object((NJS_OBJECT*)0x14DEC5C); //E101 rocket

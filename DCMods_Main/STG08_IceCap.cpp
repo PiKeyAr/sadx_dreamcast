@@ -1,6 +1,7 @@
 #include "stdafx.h"
 
 NJS_TEXNAME textures_obj_icecap[100];
+NJS_TEXLIST texlist_obj_icecap = {arrayptrandlength(textures_obj_icecap)};
 
 NJS_TEXNAME textures_icecap1[34];
 NJS_TEXLIST texlist_icecap1 = { arrayptrandlength(textures_icecap1) };
@@ -491,10 +492,10 @@ void IceCap_Init()
 	WriteData((LandTable**)0x97DB14, STG08_3);
 	if (!ModelsLoaded_STG08)
 	{
-		ResizeTextureList(&ICECAP01_TEXLIST, textures_icecap1);
-		ResizeTextureList(&ICECAP02_TEXLIST, textures_icecap2);
-		ResizeTextureList(&ICECAP03_TEXLIST, textures_icecap3);
-		ResizeTextureList(&OBJ_ICECAP_TEXLIST, textures_obj_icecap);
+		ICECAP01_TEXLIST = texlist_icecap1;
+		ICECAP02_TEXLIST = texlist_icecap2;
+		ICECAP03_TEXLIST = texlist_icecap3;
+		OBJ_ICECAP_TEXLIST = texlist_obj_icecap;
 		WriteJump((void*)0x4E91C0, Obj_Icecap_DoColFlagThings_a); //Weird COL flag function
 		//Objects
 		*(NJS_OBJECT*)0xE60F54 = *LoadModel("system\\data\\STG08\\Models\\001702F4.sa1mdl", false); //OSaku01

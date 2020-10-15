@@ -1,6 +1,7 @@
 #include "stdafx.h"
 
 NJS_TEXNAME textures_chaos4_object[6];
+NJS_TEXLIST texlist_chaos4_object = {arrayptrandlength(textures_chaos4_object)};
 
 NJS_TEXNAME textures_chaos4[14];
 NJS_TEXLIST texlist_chaos4 = { arrayptrandlength(textures_chaos4) };
@@ -300,8 +301,8 @@ void Chaos4_Init()
 	}
 	if (!ModelsLoaded_B_CHAOS4)
 	{
-		ResizeTextureList((NJS_TEXLIST*)0x118FF08, textures_chaos4);
-		ResizeTextureList(&CHAOS4_OBJECT_TEXLIST, textures_chaos4_object);
+		*(NJS_TEXLIST*)0x118FF08 = texlist_chaos4;
+		CHAOS4_OBJECT_TEXLIST = texlist_chaos4_object;
 		WriteData<1>((char*)0x00555A42, NJD_COLOR_BLENDING_INVSRCALPHA);
 		WriteCall((void*)0x5528ED, Chaos4Action); //Main model
 		WriteData<10>((char*)0x55507D, 0x90u); //Disable depth bias setting for balls
