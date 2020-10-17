@@ -2126,6 +2126,7 @@ void Branding_Init(const IniFile *config, const HelperFunctions &helperFunctions
 	LogoScaleXT = LogoScaleX;
 	LogoScaleYT = LogoScaleY;
 	WriteJump((void*)0x4B62B0, BossHUDHack); //HUD hack for Knuckles/Gamma boss fight
+	WriteData((float*)0x004B63AD, 10000.0f); //Depth for boss HUD
 	if (RemoveUnlockMessage) WriteData<1>((char*)0x4B5800, 0xC3u);
 	if (RemoveMarketRingCount) WriteJump((void*)0x4297E0, DrawBlackMarketRingCount_asm); //Don't draw Black Market ring count after clearing a stage
 	if (RemoveQuitPrompt)

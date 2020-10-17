@@ -1,7 +1,8 @@
 #include "stdafx.h"
+//TODO: OPirates dynamic collision
 
 NJS_TEXNAME textures_obj_twinkle[96];
-NJS_TEXLIST texlist_obj_twinkle = {arrayptrandlength(textures_obj_twinkle)};
+NJS_TEXLIST texlist_obj_twinkle = { arrayptrandlength(textures_obj_twinkle) };
 
 NJS_TEXNAME textures_twinkle1[35];
 NJS_TEXLIST texlist_twinkle1 = { arrayptrandlength(textures_twinkle1) };
@@ -142,6 +143,7 @@ void __cdecl DrawPirateShipShit(ObjectMaster *a1)
 	EntityData1 *v1; // esi
 	Angle v2; // edi
 	Angle v4; // eax
+	void* v3;
 	int v5; // ebp
 	int v6; // ebp
 	int v7; // ebp
