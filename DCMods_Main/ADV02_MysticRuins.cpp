@@ -746,7 +746,7 @@ void ADV02_Init()
 		MROBJ_TEXLISTS[0].TexList = &texlist_mrobj; //MROBJ
 		ADV02_TEXLISTS[21] = &texlist_mrobj; //MROBJ
 		ADV02_TEXLISTS[4] = &texlist_mrtrain;
-		*(NJS_OBJECT*)0x1108A18 = *LoadModel("system\\data\\ADV02\\Models\\00226468.sa1mdl", false); //TANKEN
+		*(NJS_OBJECT*)0x1108A4C = *LoadModel("system\\data\\ADV02\\Models\\0022649C.sa1mdl", false); //TANKEN
 		*(NJS_OBJECT*)0x110CF34 = *LoadModel("system\\data\\ADV02\\Models\\00229334.sa1mdl", false); //TANKEN 2
 		*(NJS_OBJECT*)0x11112CC = *LoadModel("system\\data\\ADV02\\Models\\0022DDA4.sa1mdl", false); //TANKEN 3
 		//Palm trees near Tails' house

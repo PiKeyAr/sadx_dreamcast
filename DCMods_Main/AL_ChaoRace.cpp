@@ -3578,7 +3578,7 @@ void LoadObjects_Race()
 		ent->Position.y = 60;
 		ent->Position.z = 97.08f;
 		ent->Scale.x = 50;
-		ent->Scale.z = 200;
+		ent->Scale.z = 200; //0 soon
 	}
 	obj = LoadObject((LoadObj)2, 3, OF5); // FLAG
 	obj->SETData.SETData = &setdata_race;
