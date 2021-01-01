@@ -1836,7 +1836,7 @@ static Trampoline SwitchMenu_t(0x505B40, 0x505B45, SwitchMenu_r);
 static void __cdecl SwitchMenu_r(int a1)
 {
 	auto original = reinterpret_cast<decltype(SwitchMenu_r)*>(SwitchMenu_t.Target());
-	if (!DisableSA1TitleScreen || !EnableDCBranding)
+	if (!DisableSA1TitleScreen && EnableDCBranding)
 	{
 		//PrintDebug("Menu index: %d\n", a1);
 		PreviousMenuIndex = CurrentMenuIndex;
@@ -1850,7 +1850,7 @@ static Trampoline OptionsDisplay_t(0x509810, 0x509815, OptionsDisplay_r);
 static void __cdecl OptionsDisplay_r(ObjectMaster *a1)
 {
 	auto original = reinterpret_cast<decltype(OptionsDisplay_r)*>(OptionsDisplay_t.Target());
-	if (!DisableSA1TitleScreen || !EnableDCBranding)
+	if (!DisableSA1TitleScreen && EnableDCBranding)
 	{
 		//Don't draw the options screen if the current menu has nothing to do with it
 		if (CurrentMenuIndex != 7 && CurrentMenuIndex != 2 && CurrentMenuIndex != 6 && CurrentMenuIndex != 4) return;
