@@ -11,6 +11,7 @@ static int VideoFadeMode = 1;
 static int VideoPlayMode = 0;
 static int VideoFadeValue = 255;
 static bool SkipPressed = false;
+static bool DLLLoaded_HDVideos = false;
 static bool AreYouEvenPlayingVideos = false;
 static int GameModePrevious = -1;
 
@@ -151,7 +152,7 @@ void DrawVideoWithSpecular(int width, int height)
 		centering = ((480.0f - (float)height_new) / 2.0f)*((float)VerticalResolution / 480.0f);
 	}
 	//Display the video frame
-	DisplayVideoFrame(width_new, 480);
+	DisplayVideoFrame(width_new, max(480, height_new));
 	//Display the specular
 	if (ColorizeVideos == true)
 	{
@@ -189,6 +190,7 @@ void LoadSegalogoPVM(const char *filename, NJS_TEXLIST *texlist)
 
 void Videos_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 {
+	DLLLoaded_HDVideos = (GetModuleHandle(L"sadx-hd-videos") != nullptr);
 	//Load configuration settings
 	ColorizeVideos = config->getBool("Videos", "ColorizeVideos", true);
 	SA1Intro = config->getBool("Videos", "EnableSA1Intro", true);
@@ -293,6 +295,18 @@ void Videos_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 			VideoDataArray[9].NumFrames = 300;
 			VideoDataArray[9].Width = 640;
 			VideoDataArray[9].Height = 480;
+		}
+	}
+}
+
+void OnInitEnd_Videos()
+{
+	if (DLLLoaded_HDVideos)
+	{
+		for (int i = 0; i < LengthOfArray(VideoDataArray); i++)
+		{
+			VideoDataArray[i].Width = Videos[0].Width;
+			VideoDataArray[i].Height = Videos[0].Height;
 		}
 	}
 }

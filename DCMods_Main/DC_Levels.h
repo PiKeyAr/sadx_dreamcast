@@ -785,3 +785,4 @@ void ForceLightType_Object(NJS_OBJECT* obj, int light_type, bool unregister);
 void HideEntireObject(NJS_OBJECT* a1);
 void RemoveTransparency_Object(NJS_OBJECT* obj, bool recursive);
 void HideAllButOneMesh(NJS_OBJECT *obj, int meshID);
+void OnInitEnd_Videos();

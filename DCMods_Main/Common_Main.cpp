@@ -649,6 +649,11 @@ extern "C"
 		delete config;
 	}
 		
+	__declspec(dllexport) void __cdecl OnInitEnd()
+	{
+		OnInitEnd_Videos();
+	}
+
 	__declspec(dllexport) void __cdecl OnFrame()
 	{
 		//Display error messages
