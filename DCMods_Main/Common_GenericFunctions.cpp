@@ -683,92 +683,89 @@ void RemoveMaterialColors(NJS_MATERIAL* material)
 
 bool ForceWhiteDiffuse(NJS_MATERIAL* material, uint32_t flags)
 {
-	int diffuseindex = 3;
-	if (CurrentLevel == LevelIDs_SpeedHighway || CurrentLevel == LevelIDs_RedMountain || (CurrentLevel == LevelIDs_IceCap && CurrentAct < 1) || CurrentLevel == LevelIDs_Casinopolis || (CurrentLevel == LevelIDs_FinalEgg && CurrentAct == 2) || CurrentLevel == LevelIDs_HotShelter || CurrentLevel==LevelIDs_EggViper || (CurrentLevel == LevelIDs_EggCarrierInside && CurrentAct == 1)) diffuseindex = 1;
-	if ((CurrentLevel == LevelIDs_IceCap && CurrentAct >= 1) || (CurrentLevel == LevelIDs_FinalEgg && CurrentAct == 0)) diffuseindex = 5;
-	if (CurrentLevel == LevelIDs_FinalEgg && CurrentAct == 1) diffuseindex = 1;
-	set_diffuse_ptr(diffuseindex, false);
+	diffuse_override(true);
+	diffuse_override_rgb(1, 1, 1);
 	return true;
 }
 
 bool DisableAlphaRejection(NJS_MATERIAL* material, uint32_t flags)
 {
-	set_alpha_reject_ptr(0.0f, false);
+	set_alpha_reject(0.0f, false);
 	return true;
 }
 
 bool ForceWhiteDiffuse3_Night(NJS_MATERIAL* material, uint32_t flags)
 {
-	if (GetTimeOfDay() == 2) set_diffuse_ptr(3, false); else set_diffuse_ptr(0, false);
+	if (GetTimeOfDay() == 2) set_diffuse(3, false); else set_diffuse(0, false);
 	return true;
 }
 
 bool ForceWhiteDiffuse3Specular1(NJS_MATERIAL* material, uint32_t flags)
 {
-	set_diffuse_ptr(3, false);
-	set_specular_ptr(1, false);
+	set_diffuse(3, false);
+	set_specular(1, false);
 	return true;
 }
 
 bool ForceWhiteDiffuse1Specular3(NJS_MATERIAL* material, uint32_t flags)
 {
-	set_diffuse_ptr(1, false);
-	set_specular_ptr(3, false);
+	set_diffuse(1, false);
+	set_specular(3, false);
 	return true;
 }
 
 bool ForceDiffuse2Specular2(NJS_MATERIAL* material, uint32_t flags)
 {
-	set_diffuse_ptr(2, false);
-	set_specular_ptr(2, false);
+	set_diffuse(2, false);
+	set_specular(2, false);
 	return true;
 }
 
 bool ForceDiffuse2Specular3(NJS_MATERIAL* material, uint32_t flags)
 {
-	set_diffuse_ptr(2, false);
-	set_specular_ptr(3, false);
+	set_diffuse(2, false);
+	set_specular(3, false);
 	return true;
 }
 
 bool ForceDiffuse0Specular1(NJS_MATERIAL* material, uint32_t flags)
 {
-	set_diffuse_ptr(0, false);
-	set_specular_ptr(1, false);
+	set_diffuse(0, false);
+	set_specular(1, false);
 	return true;
 }
 
 bool ForceDiffuse0Specular0(NJS_MATERIAL* material, uint32_t flags)
 {
-	set_diffuse_ptr(0, false);
-	set_specular_ptr(0, false);
+	set_diffuse(0, false);
+	set_specular(0, false);
 	return true;
 }
 
 bool ForceSpecular3(NJS_MATERIAL* material, uint32_t flags)
 {
-	set_specular_ptr(3, false);
+	set_specular(3, false);
 	return true;
 }
 
 bool ForceDiffuse0Specular0or1(NJS_MATERIAL* material, uint32_t flags)
 {
-	set_diffuse_ptr(0, false);
-	if (material->attrflags & NJD_FLAG_IGNORE_SPECULAR) set_specular_ptr(0, false); else set_specular_ptr(1, false);
+	set_diffuse(0, false);
+	if (material->attrflags & NJD_FLAG_IGNORE_SPECULAR) set_specular(0, false); else set_specular(1, false);
 	return true;
 }
 
 bool ForceDiffuse4Specular4(NJS_MATERIAL* material, uint32_t flags)
 {
-	set_diffuse_ptr(4, false);
-	set_specular_ptr(4, false);
+	set_diffuse(4, false);
+	set_specular(4, false);
 	return true;
 }
 
 bool ForceDiffuse4Specular5(NJS_MATERIAL* material, uint32_t flags)
 {
-	set_diffuse_ptr(4, false);
-	set_specular_ptr(5, false);
+	set_diffuse(4, false);
+	set_specular(5, false);
 	return true;
 }
 
@@ -776,13 +773,13 @@ bool Chaos4NPCFunction(NJS_MATERIAL* material, uint32_t flags)
 {
 	if (CurrentLevel == LevelIDs_EggCarrierOutside)
 	{
-		set_diffuse_ptr(2, false);
-		set_specular_ptr(3, false);
+		set_diffuse(2, false);
+		set_specular(3, false);
 	}
 	else
 	{
-		set_diffuse_ptr(0, false);
-		set_specular_ptr(1, false);
+		set_diffuse(0, false);
+		set_specular(1, false);
 	}
 	return true;
 }
@@ -791,13 +788,13 @@ bool ChaosPuddleFunc(NJS_MATERIAL* material, uint32_t flags)
 {
 	if (CurrentLevel == 18 || CurrentLevel == 16 || CurrentLevel == 19)
 	{
-		set_diffuse_ptr(4, false);
-		set_specular_ptr(5, false);
+		set_diffuse(4, false);
+		set_specular(5, false);
 	}
 	else
 	{
-		set_diffuse_ptr(0, false);
-		set_specular_ptr(1, false);
+		set_diffuse(0, false);
+		set_specular(1, false);
 	}
 	return true;
 }
@@ -806,13 +803,13 @@ bool Chaos2Function(NJS_MATERIAL* material, uint32_t flags)
 {
 	if (CurrentLevel == 16)
 	{
-		set_diffuse_ptr(4, false);
-		set_specular_ptr(5, false);
+		set_diffuse(4, false);
+		set_specular(5, false);
 	}
 	else
 	{
-		set_diffuse_ptr(2, false);
-		set_specular_ptr(3, false);
+		set_diffuse(2, false);
+		set_specular(3, false);
 	}
 	return true;
 }
@@ -871,7 +868,7 @@ void AddAlphaRejectMaterial(NJS_MATERIAL *material)
 	if (DLLLoaded_Lantern)
 	{
 		TemporaryMaterialArray[0] = material;
-		material_register_ptr(TemporaryMaterialArray, 1, DisableAlphaRejection);
+		material_register(TemporaryMaterialArray, 1, DisableAlphaRejection);
 	}
 }
 
@@ -880,7 +877,7 @@ void AddWhiteDiffuseMaterial(NJS_MATERIAL *material)
 	if (DLLLoaded_Lantern && EnableWhiteDiffuse)
 	{
 		TemporaryMaterialArray[0] = material;
-		material_register_ptr(TemporaryMaterialArray, 1, ForceWhiteDiffuse);
+		material_register(TemporaryMaterialArray, 1, ForceWhiteDiffuse);
 	}
 }
 
@@ -889,8 +886,8 @@ void AddWhiteDiffuseMaterial_Specular3(NJS_MATERIAL *material)
 	if (DLLLoaded_Lantern)
 	{
 		TemporaryMaterialArray[0] = material;
-		if (EnableWhiteDiffuse) material_register_ptr(TemporaryMaterialArray, 1, ForceWhiteDiffuse1Specular3);
-		else material_register_ptr(TemporaryMaterialArray, 1, ForceSpecular3);
+		if (EnableWhiteDiffuse) material_register(TemporaryMaterialArray, 1, ForceWhiteDiffuse1Specular3);
+		else material_register(TemporaryMaterialArray, 1, ForceSpecular3);
 	}
 }
 
@@ -899,7 +896,7 @@ void AddWhiteDiffuseNightMaterial(NJS_MATERIAL* material)
 	if (DLLLoaded_Lantern && EnableWhiteDiffuse)
 	{
 		TemporaryMaterialArray[0] = material;
-		material_register_ptr(TemporaryMaterialArray, 1, ForceWhiteDiffuse3_Night);
+		material_register(TemporaryMaterialArray, 1, ForceWhiteDiffuse3_Night);
 	}
 }
 
@@ -908,7 +905,7 @@ void RemoveWhiteDiffuseNightMaterial(NJS_MATERIAL* material)
 	if (DLLLoaded_Lantern && EnableWhiteDiffuse)
 	{
 		TemporaryMaterialArray[0] = material;
-		material_unregister_ptr(TemporaryMaterialArray, 1, ForceWhiteDiffuse3_Night);
+		material_unregister(TemporaryMaterialArray, 1, ForceWhiteDiffuse3_Night);
 	}
 }
 
@@ -917,7 +914,7 @@ void AddBossMaterial(NJS_MATERIAL *material)
 	if (DLLLoaded_Lantern)
 	{
 		TemporaryMaterialArray[0] = material;
-		material_register_ptr(TemporaryMaterialArray, 1, ForceDiffuse4Specular5);
+		material_register(TemporaryMaterialArray, 1, ForceDiffuse4Specular5);
 	}
 }
 
@@ -939,7 +936,7 @@ void RemoveAlphaRejectMaterial(NJS_MATERIAL *material)
 	if (DLLLoaded_Lantern)
 	{
 		TemporaryMaterialArray[0] = material;
-		material_unregister_ptr(TemporaryMaterialArray, 1, DisableAlphaRejection);
+		material_unregister(TemporaryMaterialArray, 1, DisableAlphaRejection);
 	}
 }
 
@@ -948,7 +945,7 @@ void RemoveWhiteDiffuseMaterial(NJS_MATERIAL *material)
 	if (DLLLoaded_Lantern && EnableWhiteDiffuse)
 	{
 		TemporaryMaterialArray[0] = material;
-		material_unregister_ptr(TemporaryMaterialArray, 1, ForceWhiteDiffuse);
+		material_unregister(TemporaryMaterialArray, 1, ForceWhiteDiffuse);
 	}
 }
 
@@ -957,8 +954,8 @@ void RemoveWhiteDiffuseMaterial_Specular3(NJS_MATERIAL *material)
 	if (DLLLoaded_Lantern)
 	{
 		TemporaryMaterialArray[0] = material;
-		if (EnableWhiteDiffuse) material_unregister_ptr(TemporaryMaterialArray, 1, ForceWhiteDiffuse1Specular3);
-		else material_unregister_ptr(TemporaryMaterialArray, 1, ForceSpecular3);
+		if (EnableWhiteDiffuse) material_unregister(TemporaryMaterialArray, 1, ForceWhiteDiffuse1Specular3);
+		else material_unregister(TemporaryMaterialArray, 1, ForceSpecular3);
 	}
 }
 
@@ -1262,38 +1259,38 @@ void RegisterLanternMaterial(NJS_MATERIAL* material, int diffuse, int specular, 
 	if (!DLLLoaded_Lantern) return;
 	if (diffuse == 0 && specular == 0)
 	{
-		if (!unregister) material_register_ptr(TemporaryMaterialArray, 1, ForceDiffuse0Specular0);
-		else material_unregister_ptr(TemporaryMaterialArray, 1, ForceDiffuse0Specular0);
+		if (!unregister) material_register(TemporaryMaterialArray, 1, ForceDiffuse0Specular0);
+		else material_unregister(TemporaryMaterialArray, 1, ForceDiffuse0Specular0);
 		return;
 	}
 	if (diffuse == 0 && specular == 1)
 	{
-		if (!unregister) material_register_ptr(TemporaryMaterialArray, 1, ForceDiffuse0Specular1);
-		else material_unregister_ptr(TemporaryMaterialArray, 1, ForceDiffuse0Specular1);
+		if (!unregister) material_register(TemporaryMaterialArray, 1, ForceDiffuse0Specular1);
+		else material_unregister(TemporaryMaterialArray, 1, ForceDiffuse0Specular1);
 		return;
 	}
 	if (diffuse == 2 && specular == 2)
 	{
-		if (!unregister) material_register_ptr(TemporaryMaterialArray, 1, ForceDiffuse2Specular2);
-		else material_unregister_ptr(TemporaryMaterialArray, 1, ForceDiffuse2Specular2);
+		if (!unregister) material_register(TemporaryMaterialArray, 1, ForceDiffuse2Specular2);
+		else material_unregister(TemporaryMaterialArray, 1, ForceDiffuse2Specular2);
 		return;
 	}
 	if (diffuse == 2 && specular == 3)
 	{
-		if (!unregister) material_register_ptr(TemporaryMaterialArray, 1, ForceDiffuse2Specular3);
-		else material_unregister_ptr(TemporaryMaterialArray, 1, ForceDiffuse2Specular3);
+		if (!unregister) material_register(TemporaryMaterialArray, 1, ForceDiffuse2Specular3);
+		else material_unregister(TemporaryMaterialArray, 1, ForceDiffuse2Specular3);
 		return;
 	}
 	if (diffuse == 4 && specular == 4)
 	{
-		if (!unregister) material_register_ptr(TemporaryMaterialArray, 1, ForceDiffuse4Specular4);
-		else material_unregister_ptr(TemporaryMaterialArray, 1, ForceDiffuse4Specular4);
+		if (!unregister) material_register(TemporaryMaterialArray, 1, ForceDiffuse4Specular4);
+		else material_unregister(TemporaryMaterialArray, 1, ForceDiffuse4Specular4);
 		return;
 	}
 	if (diffuse == 4 && specular == 5)
 	{
-		if (!unregister) material_register_ptr(TemporaryMaterialArray, 1, ForceDiffuse4Specular5);
-		else material_unregister_ptr(TemporaryMaterialArray, 1, ForceDiffuse4Specular5);
+		if (!unregister) material_register(TemporaryMaterialArray, 1, ForceDiffuse4Specular5);
+		else material_unregister(TemporaryMaterialArray, 1, ForceDiffuse4Specular5);
 		return;
 	}
 }

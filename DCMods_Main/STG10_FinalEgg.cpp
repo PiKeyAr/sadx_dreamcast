@@ -440,11 +440,10 @@ void Elevator2Hook(NJS_OBJECT *obj, float scale)
 	DrawQueueDepthBias = 0.0f;
 }
 
-static void SkyBox_FinalEgg_Load_r(ObjectMaster *a1);
-static Trampoline SkyBox_FinalEgg_Load_t(0x5ADFE0, 0x5ADFE9, SkyBox_FinalEgg_Load_r);
+static Trampoline* SkyBox_FinalEgg_Load_t = nullptr;
 static void __cdecl SkyBox_FinalEgg_Load_r(ObjectMaster *a1)
 {
-	auto original = reinterpret_cast<decltype(SkyBox_FinalEgg_Load_r)*>(SkyBox_FinalEgg_Load_t.Target());
+	const auto original = TARGET_DYNAMIC(SkyBox_FinalEgg_Load);
 	original(a1);
 	if (EnableFinalEgg && !Act2GlassLoaded) LoadGlass();
 }
@@ -587,6 +586,7 @@ void FinalEgg_Init()
 	WriteData((LandTable**)0x97DB50, STG10_2); //Act 3
 	if (!ModelsLoaded_STG10)
 	{
+		SkyBox_FinalEgg_Load_t = new Trampoline(0x5ADFE0, 0x5ADFE9, SkyBox_FinalEgg_Load_r);
 		*(NJS_TEXLIST*)0x1B98518 = texlist_finalegg1;
 		*(NJS_TEXLIST*)0x1A60488 = texlist_finalegg2;
 		*(NJS_TEXLIST*)0x1AC5780 = texlist_finalegg3;

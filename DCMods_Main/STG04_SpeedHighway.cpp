@@ -133,11 +133,10 @@ void SetCopSpeederEffectAlpha(float a, float r, float g, float b)
 	SetMaterialAndSpriteColor_Float(a-0.1f, 1.0f, 1.0f, 0.95f);
 }
 
-static void __cdecl FountainDisplay_r(ObjectMaster *a1);
-static Trampoline FountainDisplay_t(0x61BA10, 0x61BA15, FountainDisplay_r);
+static Trampoline* FountainDisplay_t = nullptr;
 static void __cdecl FountainDisplay_r(ObjectMaster *a1)
 {
-	auto original = reinterpret_cast<decltype(FountainDisplay_r)*>(FountainDisplay_t.Target());
+	const auto original = TARGET_DYNAMIC(FountainDisplay);
 	if (EnableSpeedHighway && HW3FountainMesh != nullptr)
 	{
 		if (!MissedFrames)
@@ -285,11 +284,10 @@ void LoadHighway3Cols()
 	Highway3ColsLoaded = true;
 }
 
-static void SkyBox_Highway_Load_r(ObjectMaster *a1);
-static Trampoline SkyBox_Highway_Load_t(0x610A70, 0x610A7B, SkyBox_Highway_Load_r);
+static Trampoline* SkyBox_Highway_Load_t = nullptr;
 static void __cdecl SkyBox_Highway_Load_r(ObjectMaster *a1)
 {
-	auto original = reinterpret_cast<decltype(SkyBox_Highway_Load_r)*>(SkyBox_Highway_Load_t.Target());
+	const auto original = TARGET_DYNAMIC(SkyBox_Highway_Load);
 	original(a1);
 	if (EnableSpeedHighway && !Highway3ColsLoaded) LoadHighway3Cols();
 }
@@ -402,6 +400,8 @@ void SpeedHighway_Init()
 	WriteData((LandTable**)0x97DA90, STG04_2);
 	if (!ModelsLoaded_STG04)
 	{
+		SkyBox_Highway_Load_t = new Trampoline(0x610A70, 0x610A7B, SkyBox_Highway_Load_r);
+		FountainDisplay_t = new Trampoline(0x61BA10, 0x61BA15, FountainDisplay_r);
 		HIGHWAY_CAR_TEXLIST = texlist_hwcar;
 		OBJ_HIGHWAY_TEXLIST = texlist_obj_highway;
 		HIGHWAY01_TEXLIST = texlist_highway1;
@@ -453,8 +453,8 @@ void SpeedHighway_Init()
 		WriteCall((void*)0x00614122, RocketSprite);
 		if (DLLLoaded_Lantern)
 		{
-			material_register_ptr(WhiteDiffuse_Highway, LengthOfArray(WhiteDiffuse_Highway), &ForceWhiteDiffuse);
-			material_register_ptr(DisableAlphaRejection_SpeedHighway, LengthOfArray(DisableAlphaRejection_SpeedHighway), &DisableAlphaRejection);
+			material_register(WhiteDiffuse_Highway, LengthOfArray(WhiteDiffuse_Highway), &ForceWhiteDiffuse);
+			material_register(DisableAlphaRejection_SpeedHighway, LengthOfArray(DisableAlphaRejection_SpeedHighway), &DisableAlphaRejection);
 		}
 		WriteCall((void*)0x61AF66, OCraneFix); //Was it really necessary to queue a non-transparent model??
 		//Helicopter light

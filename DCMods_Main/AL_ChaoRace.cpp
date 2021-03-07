@@ -514,11 +514,10 @@ void __cdecl GenerateRaceChaoName(ObjectMaster *a1)
 	}
 }
 
-static void __cdecl Chao_Display_r(ObjectMaster *a1);
-static Trampoline Chao_Display_t(0x7204B0, 0x7204B5, Chao_Display_r);
+static Trampoline* Chao_Display_t = nullptr;
 static void __cdecl Chao_Display_r(ObjectMaster *a1)
 {
-	auto original = reinterpret_cast<decltype(Chao_Display_r)*>(Chao_Display_t.Target());
+	const auto original = TARGET_DYNAMIC(Chao_Display);
 	if (nullsub_Chao != 0x90u)
 	{
 		ChaoData1* data1 = (ChaoData1*)a1->Data1;
@@ -591,11 +590,10 @@ static void __cdecl Chao_Display_r(ObjectMaster *a1)
 }
 
 //Chao Race double shadow fix
-static void __cdecl ChaoShadowFix_r(ObjectMaster *a1, float a2, float a3, float a4);
-static Trampoline ChaoShadowFix_t(0x73EF60, 0x73EF65, ChaoShadowFix_r);
+static Trampoline* ChaoShadowFix_t = nullptr;
 static void __cdecl ChaoShadowFix_r(ObjectMaster *a1, float a2, float a3, float a4)
 {
-	auto original = reinterpret_cast<decltype(ChaoShadowFix_r)*>(ChaoShadowFix_t.Target());
+	const auto original = TARGET_DYNAMIC(ChaoShadowFix);
 	if (nullsub_Chao != 0x90u)
 	{
 		if (CurrentChaoStage != SADXChaoStage_Race) original(a1, a2, a3, a4);
@@ -4020,6 +4018,8 @@ void RemovePositionRotation_Object(NJS_OBJECT *object)
 
 void ChaoRace_Init()
 {
+	Chao_Display_t = new Trampoline(0x7204B0, 0x7204B5, Chao_Display_r);
+	ChaoShadowFix_t = new Trampoline(0x73EF60, 0x73EF65, ChaoShadowFix_r);
 	//Load models
 	OBJ_AL_RACE_TEXLISTS[1].Name = "BG_AL_RACE02";
 	OBJ_AL_RACE_TEXLISTS[1].TexList = &texlist_chaoracebg;

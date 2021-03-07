@@ -1831,11 +1831,10 @@ void MainMenuVtxColorHook(Uint32 a1)
 	else SetVtxColorA(a1);
 }
 
-static void __cdecl SwitchMenu_r(int a1);
-static Trampoline SwitchMenu_t(0x505B40, 0x505B45, SwitchMenu_r);
+static Trampoline* SwitchMenu_t = nullptr;
 static void __cdecl SwitchMenu_r(int a1)
 {
-	auto original = reinterpret_cast<decltype(SwitchMenu_r)*>(SwitchMenu_t.Target());
+	const auto original = TARGET_DYNAMIC(SwitchMenu);
 	if (!DisableSA1TitleScreen && EnableDCBranding)
 	{
 		//PrintDebug("Menu index: %d\n", a1);
@@ -1845,11 +1844,10 @@ static void __cdecl SwitchMenu_r(int a1)
 	original(a1);
 }
 
-static void __cdecl OptionsDisplay_r(ObjectMaster *a1);
-static Trampoline OptionsDisplay_t(0x509810, 0x509815, OptionsDisplay_r);
+static Trampoline* OptionsDisplay_t = nullptr;
 static void __cdecl OptionsDisplay_r(ObjectMaster *a1)
 {
-	auto original = reinterpret_cast<decltype(OptionsDisplay_r)*>(OptionsDisplay_t.Target());
+	const auto original = TARGET_DYNAMIC(OptionsDisplay);
 	if (!DisableSA1TitleScreen && EnableDCBranding)
 	{
 		//Don't draw the options screen if the current menu has nothing to do with it
@@ -1871,22 +1869,20 @@ static void __cdecl OptionsDisplay_r(ObjectMaster *a1)
 	else original(a1);
 }
 
-static void __cdecl TitleScreenLoad_r(int a1);
-static Trampoline TitleScreenLoad_t(0x510390, 0x510396, TitleScreenLoad_r);
+static Trampoline* TitleScreenLoad_t = nullptr;
 static void __cdecl TitleScreenLoad_r(int a1)
 {
-	auto original = reinterpret_cast<decltype(TitleScreenLoad_r)*>(TitleScreenLoad_t.Target());
+	const auto original = TARGET_DYNAMIC(TitleScreenLoad);
 	if (RipplesOn) UpdateTransform = true;
 	original(a1);
 }
 
-static void __cdecl TitleScreenDisplay_r(ObjectMaster *a1);
-static Trampoline TitleScreenDisplay_t(0x510350, 0x510355, TitleScreenDisplay_r);
+static Trampoline* TitleScreenDisplay_t = nullptr;
 static void __cdecl TitleScreenDisplay_r(ObjectMaster *a1)
 {
 	NJS_COLOR StartColor = { 0x00FFFFFF };
 	TitleNewWk*v1; // esi
-	auto original = reinterpret_cast<decltype(TitleScreenDisplay_r)*>(TitleScreenDisplay_t.Target());
+	const auto original = TARGET_DYNAMIC(TitleScreenDisplay);
 	if (DisableSA1TitleScreen || !EnableDCBranding)
 	{
 		original(a1);
@@ -1918,12 +1914,11 @@ static void __cdecl TitleScreenDisplay_r(ObjectMaster *a1)
 	}
 }
 
-static Uint8 __cdecl GetPauseDisplayOptions_r(Uint8 *a1);
-static Trampoline GetPauseDisplayOptions_t(0x4582E0, 0x4582E8, GetPauseDisplayOptions_r);
+static Trampoline* GetPauseDisplayOptions_t = nullptr;
 static Uint8 __cdecl GetPauseDisplayOptions_r(Uint8 *a1)
 {
 	Uint8 options;
-	auto original = reinterpret_cast<decltype(GetPauseDisplayOptions_r)*>(GetPauseDisplayOptions_t.Target());
+	const auto original = TARGET_DYNAMIC(GetPauseDisplayOptions);
 	//Pause Hide by SF94
 	if ((ControllerPointers[0]->HeldButtons & (Buttons_X | Buttons_Y)) == (Buttons_X | Buttons_Y))
 	{
@@ -1957,11 +1952,10 @@ static Uint8 __cdecl GetPauseDisplayOptions_r(Uint8 *a1)
 	return result;
 }
 
-static int __cdecl UnlockMiniGamesCollection_r();
-static Trampoline UnlockMiniGamesCollection_t(0x506460, 0x506465, UnlockMiniGamesCollection_r);
+static Trampoline* UnlockMiniGamesCollection_t = nullptr;
 static int __cdecl UnlockMiniGamesCollection_r()
 {
-	auto original = reinterpret_cast<decltype(UnlockMiniGamesCollection_r)*>(UnlockMiniGamesCollection_t.Target());
+	const auto original = TARGET_DYNAMIC(UnlockMiniGamesCollection);
 	if (EnableDCBranding && RemoveGameGearGames)
 	{
 		return 0;
@@ -2090,6 +2084,7 @@ void NowSaving()
 
 void NowSaving_Display()
 {
+	if (GameMode == GameModes_Trial) return;
 	unsigned short FontSize = unsigned short((16 * ((float)VerticalResolution / 480.0f)));
 	float totalcount = (float)HorizontalResolution / FontSize;
 	SetDebugFontSize(FontSize);
@@ -2144,6 +2139,12 @@ void Branding_Init(const IniFile *config, const HelperFunctions &helperFunctions
 		WriteCall((void*)0x50B7A8, InetDemoHook); //Load InetDemo instead of Mission Mode
 	}
 	Branding_SetUpVariables();
+	SwitchMenu_t = new Trampoline(0x505B40, 0x505B45, SwitchMenu_r);
+	OptionsDisplay_t = new Trampoline(0x509810, 0x509815, OptionsDisplay_r);
+	TitleScreenLoad_t = new Trampoline(0x510390, 0x510396, TitleScreenLoad_r);
+	TitleScreenDisplay_t = new Trampoline(0x510350, 0x510355, TitleScreenDisplay_r);
+	GetPauseDisplayOptions_t = new Trampoline(0x4582E0, 0x4582E8, GetPauseDisplayOptions_r);
+	UnlockMiniGamesCollection_t = new Trampoline(0x506460, 0x506465, UnlockMiniGamesCollection_r);
 	//Credits
 	WriteData((float*)0x6415DA, 1.5f); //EngBG X scale
 	WriteData((float*)0x6415DF, 1.5f); //EngBG Y scale

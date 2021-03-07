@@ -470,7 +470,6 @@ void Init_Global()
 		ReplacePVM("EC_EGGLIFT");
 		ReplacePVM("EC_TARAI");
 		ReplacePVM("PVME101FACTORY");
-		ReplaceBIN("PL_W1B");
 	}
 	if (EnableMysticRuins)
 	{
@@ -633,8 +632,6 @@ void Init_Global()
 		ReplacePVM("HIGHWAY_CAR");
 		ReplacePVM("OBJ_HIGHWAY");
 		ReplacePVM("OBJ_HIGHWAY2");
-		ReplaceBIN("PL_40B");
-		ReplaceBIN("PL_41B");
 	}
 	if (EnableRedMountain)
 	{
@@ -655,7 +652,6 @@ void Init_Global()
 		ReplacePVM("MOUNTAIN_STEAM");
 		ReplacePVM("OBJ_MOUNTAIN");
 		ReplacePVM("YOUGAN_ANIM");
-		ReplaceBIN("PL_51B");
 		WriteData<1>((char*)0x600700, 0xC3u); //Disable SetClip_RedMountain
 	}
 	if (EnableSkyDeck)
@@ -739,7 +735,6 @@ void Init_Global()
 		ReplacePVM("OBJ_CASINO8");
 		ReplacePVM("OBJ_CASINO9");
 		ReplacePVM("OBJ_CASINO_E");
-		ReplaceBIN("PL_90B");
 	}
 	if (EnableFinalEgg)
 	{
@@ -761,7 +756,6 @@ void Init_Global()
 		ReplacePVM("FINALEGG3");
 		ReplacePVM("FINALEGG4");
 		ReplacePVM("OBJ_FINALEGG");
-		ReplaceBIN("PL_A2B");
 	}
 	if (EnableHotShelter)
 	{
@@ -882,7 +876,6 @@ void Init_Global()
 		ReplacePVM("EGM3CHIKEI");
 		ReplacePVM("EGM3MDL");
 		ReplacePVM("EGM3SPR");
-		ReplaceBIN("PL_M0B");
 	}
 	if (EnableE101)
 	{
@@ -952,7 +945,6 @@ void Init_Global()
 		ReplacePVM("MINI_CART05");
 		ReplacePVM("MINI_CART06");
 		if (!DLLLoaded_HDGUI) ReplacePVM("OBJ_MINI_CART");
-		ReplaceBIN("PL_Z0B");
 	}
 	if (EnableSandHill)
 	{

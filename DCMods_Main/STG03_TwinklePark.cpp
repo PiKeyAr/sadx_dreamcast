@@ -129,11 +129,10 @@ void LoadMirrors()
 	MirrorsLoaded = true;
 }
 
-static void SkyBox_TwinklePark_Load_r(ObjectMaster *a1);
-static Trampoline SkyBox_TwinklePark_Load_t(0x61D570, 0x61D57B, SkyBox_TwinklePark_Load_r);
+static Trampoline* SkyBox_TwinklePark_Load_t = nullptr;
 static void __cdecl SkyBox_TwinklePark_Load_r(ObjectMaster *a1)
 {
-	auto original = reinterpret_cast<decltype(SkyBox_TwinklePark_Load_r)*>(SkyBox_TwinklePark_Load_t.Target());
+	const auto original = TARGET_DYNAMIC(SkyBox_TwinklePark_Load);
 	original(a1);
 	if (EnableTwinklePark && !MirrorsLoaded) LoadMirrors();
 }
@@ -400,6 +399,7 @@ void TwinklePark_Init()
 	ParseTwinkleParkMaterials(STG03_1);
 	if (!ModelsLoaded_STG03)
 	{
+		SkyBox_TwinklePark_Load_t = new Trampoline(0x61D570, 0x61D57B, SkyBox_TwinklePark_Load_r);
 		OBJ_TWINKLE_TEXLIST = texlist_obj_twinkle;
 		TWINKLE01_TEXLIST = texlist_twinkle1;
 		TWINKLE02_TEXLIST = texlist_twinkle2;
@@ -501,7 +501,7 @@ void TwinklePark_Init()
 		//Lantern stuff
 		if (DLLLoaded_Lantern)
 		{
-			material_register_ptr(WhiteDiffuse_Twinkle, LengthOfArray(WhiteDiffuse_Twinkle), &ForceWhiteDiffuse);
+			material_register(WhiteDiffuse_Twinkle, LengthOfArray(WhiteDiffuse_Twinkle), &ForceWhiteDiffuse);
 		}
 	}
 	if (!ModelsLoaded_ShareObj) ShareObj_Init();

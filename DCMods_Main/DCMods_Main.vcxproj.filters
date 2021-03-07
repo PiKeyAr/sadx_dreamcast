@@ -404,9 +404,6 @@
     <ClInclude Include="Data\ECGarden.h">
       <Filter>Header Files\Levels\Chao</Filter>
     </ClInclude>
-    <ClInclude Include="Lantern\lanternapi.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Data\ChaoObjects_Race.h">
       <Filter>Header Files\Levels\Chao</Filter>
     </ClInclude>
