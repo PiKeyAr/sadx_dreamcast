@@ -391,6 +391,10 @@ void TwinklePark_Init()
 	STG03_0->TexList = &texlist_twinkle1;
 	STG03_1->TexList = &texlist_twinkle2;
 	STG03_2->TexList = &texlist_twinkle3;
+	for (int i = 0; i < STG03_1->COLCount; i++)
+	{
+		STG03_1->Col[i].anonymous_6 = 0; // Remove block bit flags that cause pop-in
+	}
 	WriteData((LandTable**)0x97DA68, STG03_0);
 	WriteData((LandTable**)0x97DA6C, STG03_1);
 	WriteData((LandTable**)0x97DA70, STG03_2);
