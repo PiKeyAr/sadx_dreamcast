@@ -2308,12 +2308,12 @@ void ChaoGardens_Init()
 		WriteCall((void*)0x00729DE9, NameMachineTexlist);
 		WriteData<5>((void*)0x00729EBB, 0x90); //Kill SADX Name Machine screen thing
 		WriteJump((void*)0x00729F40, LoadChaoNameMachineX);
-		NameMachineCollision[0].origin.z = 5;
+		NameMachineCollision[0].center.z = 5;
 		for (int i = 1; i < 9; i++)
 		{
-			NameMachineCollision[i].scale.x = 0;
-			NameMachineCollision[i].scale.y = 0;
-			NameMachineCollision[i].scale.z = 0;
+			NameMachineCollision[i].a = 0;
+			NameMachineCollision[i].b = 0;
+			NameMachineCollision[i].c = 0;
 		}
 		//Station Square garden stuff
 		BK_SSGardenStartPoint.Position.x = SSGardenStartPoint.Position.x;

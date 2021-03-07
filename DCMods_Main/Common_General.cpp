@@ -576,7 +576,7 @@ void __cdecl Knuckles_MaximumHeatSprite_Draw(ObjectMaster *sx)
 			sxa = (v1[13] - v1[12]) * v1[3] + v1[12];
 			a = (v1[2] - v1[4]) * v1[3] + v1[4];
 			SetMaterialAndSpriteColor_Float(a, 1.0, 1.0, 1.0);
-			pos = v2->CollisionInfo->CollisionArray->origin;
+			pos = v2->CollisionInfo->CollisionArray->center;
 			pos.x = entity->Position.x;
 			pos.y = entity->Position.y + 5.0f;
 			pos.z = entity->Position.z;

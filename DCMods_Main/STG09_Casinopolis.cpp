@@ -127,7 +127,7 @@ static void __cdecl Loop_Main_r(ObjectMaster* a1)
 	EntityData1* v1; // edi
 	v1 = a1->Data1;
 	auto original = reinterpret_cast<decltype(Loop_Main_r)*>(Loop_Main_t.Target());
-	if (v1->CollisionInfo->Flags & 1 && *(float*)&v1->CharIndex > 38)
+	if (v1->CollisionInfo->flag & 1 && *(float*)&v1->CharIndex > 38)
 	{
 		PlaySound(239, 0, 0, 0);
 	}
@@ -957,15 +957,15 @@ void Casinopolis_Init()
 			AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E5B870)->child->sibling->sibling->sibling->sibling->child->basicdxmodel->meshsets[7].vertuv, 4, 16, 100, 0);
 			AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E5B870)->child->sibling->sibling->sibling->sibling->child->basicdxmodel->meshsets[11].vertuv, 30, 16, 100, 0);
 			AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E5B870)->child->sibling->sibling->sibling->sibling->sibling->basicdxmodel->meshsets[0].vertuv, 10, 16, 65, 0);
-			CollisionData_NeonK[0].scale.y = CollisionData_NeonK[0].scale.y * 6;
-			CollisionData_NeonK[1].scale.y = CollisionData_NeonK[1].scale.y * 6;
-			CollisionData_NeonK[2].scale.y = CollisionData_NeonK[2].scale.y * 6;
-			CollisionData_NeonK[0].origin.y = CollisionData_NeonK[0].origin.y + 20;
-			CollisionData_NeonK[1].origin.y = CollisionData_NeonK[1].origin.y + 20;
-			CollisionData_NeonK[2].origin.y = CollisionData_NeonK[2].origin.y + 20;
-			CollisionData_NeonK[0].origin.z = CollisionData_NeonK[0].origin.z - 14;
-			CollisionData_NeonK[1].origin.z = CollisionData_NeonK[1].origin.z - 14;
-			CollisionData_NeonK[2].origin.z = CollisionData_NeonK[2].origin.z - 14;
+			CollisionData_NeonK[0].b = CollisionData_NeonK[0].b * 6;
+			CollisionData_NeonK[1].b = CollisionData_NeonK[1].b * 6;
+			CollisionData_NeonK[2].b = CollisionData_NeonK[2].b * 6;
+			CollisionData_NeonK[0].center.y = CollisionData_NeonK[0].center.y + 20;
+			CollisionData_NeonK[1].center.y = CollisionData_NeonK[1].center.y + 20;
+			CollisionData_NeonK[2].center.y = CollisionData_NeonK[2].center.y + 20;
+			CollisionData_NeonK[0].center.z = CollisionData_NeonK[0].center.z - 14;
+			CollisionData_NeonK[1].center.z = CollisionData_NeonK[1].center.z - 14;
+			CollisionData_NeonK[2].center.z = CollisionData_NeonK[2].center.z - 14;
 			WriteJump(ONeonk, Cowgirl_Load);
 		}
 		else
