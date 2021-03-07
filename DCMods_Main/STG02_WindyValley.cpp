@@ -42,6 +42,78 @@ void RetrieveWindy1SkyTransparency(float a, float r, float g, float b)
 	SkyTrans = a;
 }
 
+
+void __cdecl Windy3Cols_Display(ObjectMaster* a1)
+{
+	NJS_MATRIX a2;
+	NJS_VECTOR pos = {0, 0, 0};
+	if (CurrentAct == 2 && !MissedFrames)
+	{
+		for (int i = 0; i < LengthOfArray(Windy3Cols); i++)
+		{
+			if (Windy3Cols[i] != -1)
+			{
+				njSetTexture(&texlist_windy3);
+				njPushMatrix(0);
+				njTranslate(0, 0, 0, 0);
+				ProcessModelNode_D_WrapperB(GeoLists[18]->Col[Windy3Cols[i]].Model, QueuedModelFlagsB_EnableZWrite, 1.0f);
+				njPopMatrix(1u);
+			}
+		}
+	}
+}
+
+void Windy3Cols_Delete(ObjectMaster* a1)
+{
+	Windy3ColsLoaded = false;
+	CheckThingButThenDeleteObject(a1);
+}
+
+void Windy3Cols_Main(ObjectMaster* a1)
+{
+	if (CurrentLevel == LevelIDs_WindyValley)
+	{
+		if (CurrentAct == 2) Windy3Cols_Display(a1);
+	}
+	else Windy3Cols_Delete(a1);
+}
+
+void Windy3Cols_Load(ObjectMaster* a1)
+{
+	a1->MainSub = (void(__cdecl*)(ObjectMaster*))Windy3Cols_Main;
+	a1->DisplaySub = (void(__cdecl*)(ObjectMaster*))Windy3Cols_Display;
+	a1->DeleteSub = (void(__cdecl*)(ObjectMaster*))Windy3Cols_Delete;
+}
+
+void LoadWindy3Cols()
+{
+	ObjectMaster* obj;
+	EntityData1* ent;
+	ObjectFunc(OF0, Windy3Cols_Load);
+	setdata_wv.Distance = 612800.0f;
+	obj = LoadObject((LoadObj)2, 3, OF0);
+	obj->SETData.SETData = &setdata_wv;
+	if (obj)
+	{
+		ent = obj->Data1;
+		ent->Position.x = 0;
+		ent->Position.y = 0;
+		ent->Position.z = 0;
+		ent->Rotation.x = 0;
+		ent->Rotation.y = 0;
+		ent->Rotation.z = 0;
+	}
+	Windy3ColsLoaded = true;
+}
+
+static Trampoline* SkyBox_Windy_Load_t = nullptr;
+static void __cdecl SkyBox_Windy_Load_r(ObjectMaster* a1)
+{
+	const auto original = TARGET_DYNAMIC(SkyBox_Windy_Load);
+	original(a1);
+	if (EnableWindyValley && !Windy3ColsLoaded) LoadWindy3Cols();
+}
+
 void RenderWindy1Sky()
 {
 	SetMaterialAndSpriteColor_Float(SkyTrans, 1.0f, 1.0f, 1.0f);
@@ -187,6 +259,7 @@ void WindyValley_Init()
 	ParseWindyColFlags(STG02_2);
 	if (!ModelsLoaded_STG02)
 	{
+		SkyBox_Windy_Load_t = new Trampoline(0x4DDBF0, 0x4DDBFB, SkyBox_Windy_Load_r);
 		WINDY01_TEXLIST = texlist_windy1;
 		WINDY02_TEXLIST = texlist_windy2;
 		WINDY03_TEXLIST = texlist_windy3;
@@ -361,78 +434,6 @@ void WindyValley_Init()
 		ModelsLoaded_STG02 = true;
 	}
 };
-
-void __cdecl Windy3Cols_Display(ObjectMaster *a1)
-{
-	NJS_MATRIX a2;
-	NJS_VECTOR pos = { 0, 0, 0 };
-	if (CurrentAct == 2 && !MissedFrames)
-	{
-		for (int i = 0; i < LengthOfArray(Windy3Cols); i++)
-		{
-			if (Windy3Cols[i] != -1)
-			{
-				njSetTexture(&texlist_windy3);
-				njPushMatrix(0);
-				njTranslate(0,0,0,0);
-				ProcessModelNode_D_WrapperB(GeoLists[18]->Col[Windy3Cols[i]].Model, QueuedModelFlagsB_EnableZWrite,1.0f);
-				njPopMatrix(1u);
-			}
-		}
-	}
-}
-
-void Windy3Cols_Delete(ObjectMaster *a1)
-{
-	Windy3ColsLoaded = false;
-	CheckThingButThenDeleteObject(a1);
-}
-
-void Windy3Cols_Main(ObjectMaster *a1)
-{
-	if (CurrentLevel == LevelIDs_WindyValley)
-	{
-		if (CurrentAct == 2) Windy3Cols_Display(a1);
-	}
-	else Windy3Cols_Delete(a1);
-}
-
-void Windy3Cols_Load(ObjectMaster *a1)
-{
-	a1->MainSub = (void(__cdecl *)(ObjectMaster *))Windy3Cols_Main;
-	a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Windy3Cols_Display;
-	a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))Windy3Cols_Delete;
-}
-
-void LoadWindy3Cols()
-{
-	ObjectMaster *obj;
-	EntityData1 *ent;
-	ObjectFunc(OF0, Windy3Cols_Load);
-	setdata_wv.Distance = 612800.0f;
-	obj = LoadObject((LoadObj)2, 3, OF0);
-	obj->SETData.SETData = &setdata_wv;
-	if (obj)
-	{
-		ent = obj->Data1;
-		ent->Position.x = 0;
-		ent->Position.y = 0;
-		ent->Position.z = 0;
-		ent->Rotation.x = 0;
-		ent->Rotation.y = 0;
-		ent->Rotation.z = 0;
-	}
-	Windy3ColsLoaded = true;
-}
-
-static void SkyBox_Windy_Load_r(ObjectMaster *a1);
-static Trampoline SkyBox_Windy_Load_t(0x4DDBF0, 0x4DDBFB, SkyBox_Windy_Load_r);
-static void __cdecl SkyBox_Windy_Load_r(ObjectMaster *a1)
-{
-	auto original = reinterpret_cast<decltype(SkyBox_Windy_Load_r)*>(SkyBox_Windy_Load_t.Target());
-	original(a1);
-	if (EnableWindyValley && !Windy3ColsLoaded) LoadWindy3Cols();
-}
 
 void WindyValley_OnFrame()
 {

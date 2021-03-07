@@ -778,8 +778,8 @@ void EmeraldCoast_Init()
 		WriteCall((void*)0x00502F9A, WhaleSplash);
 		if (DLLLoaded_Lantern)
 		{
-			material_register_ptr(LevelSpecular_STG01, LengthOfArray(LevelSpecular_STG01), &ForceDiffuse0Specular0);
-			material_register_ptr(ObjectSpecular_STG01, LengthOfArray(ObjectSpecular_STG01), &ForceDiffuse0Specular1);
+			material_register(LevelSpecular_STG01, LengthOfArray(LevelSpecular_STG01), &ForceDiffuse0Specular0);
+			material_register(ObjectSpecular_STG01, LengthOfArray(ObjectSpecular_STG01), &ForceDiffuse0Specular1);
 		}
 		WriteData<2>((void*)0x004F8A9A, 0x90); //Disable water animation in Act 1
 		WriteData<2>((char*)0x004F7816, 0xFF); //Disable water animation in Act 2

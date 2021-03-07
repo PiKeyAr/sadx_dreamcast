@@ -599,10 +599,10 @@ void ADV02_Init()
 	ADV02_1->TexList = &texlist_mr01;
 	ADV02_2->TexList = &texlist_mr02;
 	ADV02_3->TexList = &texlist_mr03;
-	LANDTABLEMR[0] = ADV02_0;
-	LANDTABLEMR[1] = ADV02_1;
-	LANDTABLEMR[2] = ADV02_2;
-	LANDTABLEMR[3] = ADV02_3;
+	*LANDTABLEMR[0] = *ADV02_0;
+	*LANDTABLEMR[1] = *ADV02_1;
+	*LANDTABLEMR[2] = *ADV02_2;
+	*LANDTABLEMR[3] = *ADV02_3;
 	LandTableArray[144] = ADV02_0;
 	LandTableArray[145] = ADV02_1;
 	LandTableArray[146] = ADV02_2;
@@ -739,13 +739,13 @@ void ADV02_Init()
 			MR3DrawDist[i].Maximum = -16000.0f;
 			MR4DrawDist[i].Maximum = -4000.0f;
 		}
-		ADV02_TEXLISTS[38] = &texlist_mr00;
-		ADV02_TEXLISTS[39] = &texlist_mr01;
-		ADV02_TEXLISTS[40] = &texlist_mr02;
-		ADV02_TEXLISTS[41] = &texlist_mr03;
-		MROBJ_TEXLISTS[0].TexList = &texlist_mrobj; //MROBJ
-		ADV02_TEXLISTS[21] = &texlist_mrobj; //MROBJ
-		ADV02_TEXLISTS[4] = &texlist_mrtrain;
+		*ADV02_TEXLISTS[38] = texlist_mr00;
+		*ADV02_TEXLISTS[39] = texlist_mr01;
+		*ADV02_TEXLISTS[40] = texlist_mr02;
+		*ADV02_TEXLISTS[41] = texlist_mr03;
+		*MROBJ_TEXLISTS[0].TexList = texlist_mrobj; //MROBJ
+		*ADV02_TEXLISTS[21] = texlist_mrobj; //MROBJ
+		*ADV02_TEXLISTS[4] = texlist_mrtrain;
 		*(NJS_OBJECT*)0x1108A4C = *LoadModel("system\\data\\ADV02\\Models\\0022649C.sa1mdl", false); //TANKEN
 		*(NJS_OBJECT*)0x110CF34 = *LoadModel("system\\data\\ADV02\\Models\\00229334.sa1mdl", false); //TANKEN 2
 		*(NJS_OBJECT*)0x11112CC = *LoadModel("system\\data\\ADV02\\Models\\0022DDA4.sa1mdl", false); //TANKEN 3
@@ -758,9 +758,9 @@ void ADV02_Init()
 		AddWhiteDiffuseMaterial(&ADV02_OBJECTS[67]->child->sibling->sibling->sibling->child->basicdxmodel->mats[1]);
 		AddWhiteDiffuseMaterial(&ADV02_OBJECTS[67]->child->sibling->sibling->sibling->sibling->child->basicdxmodel->mats[1]);
 		AddWhiteDiffuseMaterial(&ADV02_OBJECTS[67]->child->sibling->sibling->sibling->sibling->sibling->child->basicdxmodel->mats[1]);
-		ADV02_OBJECTS[84] = LoadModel("system\\data\\ADV02\\Models\\001F6A04.sa1mdl", true); //Windows and the light above the door of Tails' house
+		*ADV02_OBJECTS[84] = *LoadModel("system\\data\\ADV02\\Models\\001F6A04.sa1mdl", true); //Windows and the light above the door of Tails' house
 		ForceLevelSpecular_Object(ADV02_OBJECTS[84], false);
-		ADV02_OBJECTS[85] = LoadModel("system\\data\\ADV02\\Models\\001F764C.sa1mdl", true); //Same as above but lit up
+		*ADV02_OBJECTS[85] = *LoadModel("system\\data\\ADV02\\Models\\001F764C.sa1mdl", true); //Same as above but lit up
 		AddWhiteDiffuseMaterial(&ADV02_OBJECTS[85]->basicdxmodel->mats[4]);
 		ForceLevelSpecular_Object(ADV02_OBJECTS[85], false);
 		//Material fixes
@@ -779,8 +779,8 @@ void ADV02_Init()
 		ADV02_OBJECTS[90]->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_IGNORE_SPECULAR; //Palm trees
 		ADV02_OBJECTS[91]->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_IGNORE_SPECULAR; //Palm trees
 		//Ice Cap door fix
-		ADV02_OBJECTS[23] = LoadModel("system\\data\\ADV02\\Models\\001BACAC.sa1mdl", false); //Ice Cap door full
-		ADV02_OBJECTS[25] = LoadModel("system\\data\\ADV02\\Models\\001B9854.sa1mdl", false); //Ice Cap door 1 (with snowflake)
+		*ADV02_OBJECTS[23] = *LoadModel("system\\data\\ADV02\\Models\\001BACAC.sa1mdl", false); //Ice Cap door full
+		*ADV02_OBJECTS[25] = *LoadModel("system\\data\\ADV02\\Models\\001B9854.sa1mdl", false); //Ice Cap door 1 (with snowflake)
 		HideMesh_Object(ADV02_OBJECTS[25], 0);
 		HideMesh_Object(ADV02_OBJECTS[25], 2);
 		IceCapDoorSnowflake = LoadModel("system\\data\\ADV02\\Models\\001B9854.sa1mdl", false);
@@ -793,54 +793,53 @@ void ADV02_Init()
 		//Other objects
 		MROcean = LoadModel("system\\data\\ADV02\\Models\\0005FEE0.sa1mdl", false);
 		AddTextureAnimation_Permanent(33, 0, &MROcean->basicdxmodel->mats[0], false, 5, 130, 139, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1);
-		ADV02_OBJECTS[26] = LoadModel("system\\data\\ADV02\\Models\\001B9D9C.sa1mdl", false); //Ice Cap door 2
-		ADV02_OBJECTS[86] = LoadModel("system\\data\\ADV02\\Models\\001BF00C.sa1mdl", false); //Ice Cap lock
-		ADV02_OBJECTS[76] = LoadModel("system\\data\\ADV02\\Models\\001BCA10.sa1mdl", false); //Wind Stone
+		*ADV02_OBJECTS[26] = *LoadModel("system\\data\\ADV02\\Models\\001B9D9C.sa1mdl", false); //Ice Cap door 2
+		*ADV02_OBJECTS[86] = *LoadModel("system\\data\\ADV02\\Models\\001BF00C.sa1mdl", false); //Ice Cap lock
+		*ADV02_OBJECTS[76] = *LoadModel("system\\data\\ADV02\\Models\\001BCA10.sa1mdl", false); //Wind Stone
 		ForceLevelSpecular_Object(ADV02_OBJECTS[76], false); //Wind Stone
-		ADV02_ACTIONS[28]->object = ADV02_OBJECTS[76]; //Wind Stone
-		ADV02_OBJECTS[88] = LoadModel("system\\data\\ADV02\\Models\\001BBA04.sa1mdl", false); //Ice Stone
+		*ADV02_ACTIONS[28]->object = *ADV02_OBJECTS[76]; //Wind Stone
+		*ADV02_OBJECTS[88] = *LoadModel("system\\data\\ADV02\\Models\\001BBA04.sa1mdl", false); //Ice Stone
 		ForceLevelSpecular_Object(ADV02_OBJECTS[88], false); //Ice Stone
-		ADV02_ACTIONS[29]->object = ADV02_OBJECTS[88]; //Ice Stone
-		ADV02_OBJECTS[64] = LoadModel("system\\data\\ADV02\\Models\\001E87F0.sa1mdl", false); //Angel Island rock
-		ADV02_OBJECTS[68] = LoadModel("system\\data\\ADV02\\Models\\002145D4.sa1mdl", false); //That thing that pushes the Chao Egg out
-		ADV02_OBJECTS[100] = LoadModel("system\\data\\ADV02\\Models\\001F41C0.sa1mdl", false); //Grass
-		ADV02_ACTIONS[32]->object = ADV02_OBJECTS[100]; //Rustling grass
-		ADV02_OBJECTS[20] = LoadModel("system\\data\\ADV02\\Models\\001B5F40.sa1mdl", false); //Torokko 
-		ADV02_ACTIONS[11]->object = ADV02_OBJECTS[20]; //Torokko
-		ADV02_ACTIONS[18]->object = LoadModel("system\\data\\ADV02\\Models\\001D76AC.sa1mdl", false); //Wall in Tails' house
-		ADV02_OBJECTS[61] = LoadModel("system\\data\\ADV02\\Models\\001B1A98.sa1mdl", false); //OIslandDoor
-		ADV02_OBJECTS[60] = LoadModel("system\\data\\ADV02\\Models\\001B0FE0.sa1mdl", false); //OIslandDoor right
+		*ADV02_ACTIONS[29]->object = *ADV02_OBJECTS[88]; //Ice Stone
+		*ADV02_OBJECTS[64] = *LoadModel("system\\data\\ADV02\\Models\\001E87F0.sa1mdl", false); //Angel Island rock
+		*ADV02_OBJECTS[68] = *LoadModel("system\\data\\ADV02\\Models\\002145D4.sa1mdl", false); //That thing that pushes the Chao Egg out
+		*ADV02_OBJECTS[100] = *LoadModel("system\\data\\ADV02\\Models\\001F41C0.sa1mdl", false); //Grass
+		*ADV02_ACTIONS[32]->object = *ADV02_OBJECTS[100]; //Rustling grass
+		*ADV02_OBJECTS[20] = *LoadModel("system\\data\\ADV02\\Models\\001B5F40.sa1mdl", false); //Torokko 
+		*ADV02_ACTIONS[11]->object = *ADV02_OBJECTS[20]; //Torokko
+		*ADV02_ACTIONS[18]->object = *LoadModel("system\\data\\ADV02\\Models\\001D76AC.sa1mdl", false); //Wall in Tails' house
+		*ADV02_OBJECTS[61] = *LoadModel("system\\data\\ADV02\\Models\\001B1A98.sa1mdl", false); //OIslandDoor
+		*ADV02_OBJECTS[60] = *LoadModel("system\\data\\ADV02\\Models\\001B0FE0.sa1mdl", false); //OIslandDoor right
 		ADV02_OBJECTS[60]->pos[2] = 0.05f;
-		ADV02_OBJECTS[59] = LoadModel("system\\data\\ADV02\\Models\\001B1648.sa1mdl", false); //OIslandDoor left
+		*ADV02_OBJECTS[59] = *LoadModel("system\\data\\ADV02\\Models\\001B1648.sa1mdl", false); //OIslandDoor left
 		ADV02_OBJECTS[59]->pos[2] = 0.05f;
-		ADV02_OBJECTS[39] = LoadModel("system\\data\\ADV02\\Models\\001AF63C.sa1mdl", false); //Monkey cage (full)
-		ADV02_OBJECTS[38] = LoadModel("system\\data\\ADV02\\Models\\001AF0B0.sa1mdl", false); //Monkey cage (bottom)
-		ADV02_OBJECTS[42] = LoadModel("system\\data\\ADV02\\Models\\001AE9B0.sa1mdl", false); //Monkey cage (bottom)
-		ADV02_OBJECTS[43] = LoadModel("system\\data\\ADV02\\Models\\001AE70C.sa1mdl", false); //Monkey cage (bottom)
-		ADV02_OBJECTS[10] = LoadModel("system\\data\\ADV02\\Models\\001A79D0.sa1mdl", false); //Item stand
-		ADV02_OBJECTS[12] = LoadModel("system\\data\\ADV02\\Models\\001A7370.sa1mdl", false); //Item stand
-		ADV02_OBJECTS[13] = LoadModel("system\\data\\ADV02\\Models\\001A6B1C.sa1mdl", false); //Item stand
-		ADV02_OBJECTS[96] = LoadModel("system\\data\\ADV02\\Models\\001BD918.sa1mdl", false); //OHandKey gold
-		ADV02_OBJECTS[97] = LoadModel("system\\data\\ADV02\\Models\\001BE56C.sa1mdl", false); //OHandKey silver
-		ADV02_OBJECTS[55] = LoadModel("system\\data\\ADV02\\Models\\001A9178.sa1mdl", false); //ODigPlace1
-		ADV02_ACTIONS[16]->object = ADV02_OBJECTS[55];
-		ADV02_OBJECTS[103] = LoadModel("system\\data\\ADV02\\Models\\001C76EC.sa1mdl", false); //Master Emerald (complete)
-		ADV02_OBJECTS[71] = LoadModel("system\\data\\ADV02\\Models\\001D6AC8.sa1mdl", false); //The gate for Tails' Tornado
-		ADV02_OBJECTS[69] = ADV02_OBJECTS[71]->child;
-		ADV02_OBJECTS[70] = ADV02_OBJECTS[71]->child->sibling;
-		ADV02_OBJECTS[72] = ADV02_OBJECTS[71]->child->sibling->sibling; //I have no idea why it's set up this way
-		ADV02_MODELS[15] = LoadModel("system\\data\\ADV02\\Models\\002043D0.sa1mdl", false)->basicdxmodel; //Master Emerald glow
-		ADV02_ACTIONS[10]->object = LoadModel("system\\data\\ADV02\\Models\\00201C18.sa1mdl", false); //Train
+		*ADV02_OBJECTS[39] = *LoadModel("system\\data\\ADV02\\Models\\001AF63C.sa1mdl", false); //Monkey cage (full)
+		*ADV02_OBJECTS[38] = *LoadModel("system\\data\\ADV02\\Models\\001AF0B0.sa1mdl", false); //Monkey cage (bottom)
+		*ADV02_OBJECTS[42] = *LoadModel("system\\data\\ADV02\\Models\\001AE9B0.sa1mdl", false); //Monkey cage (bottom)
+		*ADV02_OBJECTS[43] = *LoadModel("system\\data\\ADV02\\Models\\001AE70C.sa1mdl", false); //Monkey cage (bottom)
+		*ADV02_OBJECTS[10] = *LoadModel("system\\data\\ADV02\\Models\\001A79D0.sa1mdl", false); //Item stand
+		*ADV02_OBJECTS[12] = *LoadModel("system\\data\\ADV02\\Models\\001A7370.sa1mdl", false); //Item stand
+		*ADV02_OBJECTS[13] = *LoadModel("system\\data\\ADV02\\Models\\001A6B1C.sa1mdl", false); //Item stand
+		*ADV02_OBJECTS[96] = *LoadModel("system\\data\\ADV02\\Models\\001BD918.sa1mdl", false); //OHandKey gold
+		*ADV02_OBJECTS[97] = *LoadModel("system\\data\\ADV02\\Models\\001BE56C.sa1mdl", false); //OHandKey silver
+		*ADV02_OBJECTS[55] = *LoadModel("system\\data\\ADV02\\Models\\001A9178.sa1mdl", false); //ODigPlace1
+		*ADV02_ACTIONS[16]->object = *ADV02_OBJECTS[55];
+		*ADV02_OBJECTS[103] = *LoadModel("system\\data\\ADV02\\Models\\001C76EC.sa1mdl", false); //Master Emerald (complete)
+		*ADV02_OBJECTS[71] = *LoadModel("system\\data\\ADV02\\Models\\001D6AC8.sa1mdl", false); //The gate for Tails' Tornado
+		*ADV02_OBJECTS[69] = *ADV02_OBJECTS[71]->child;
+		*ADV02_OBJECTS[70] = *ADV02_OBJECTS[71]->child->sibling;
+		*ADV02_OBJECTS[72] = *ADV02_OBJECTS[71]->child->sibling->sibling; //I have no idea why it's set up this way
+		*ADV02_MODELS[15] = *LoadModel("system\\data\\ADV02\\Models\\002043D0.sa1mdl", false)->basicdxmodel; //Master Emerald glow
+		*ADV02_ACTIONS[10]->object = *LoadModel("system\\data\\ADV02\\Models\\00201C18.sa1mdl", false); //Train
 		AddWhiteDiffuseMaterial(&ADV02_ACTIONS[10]->object->child->sibling->sibling->sibling->basicdxmodel->mats[9]);
-		ADV02_ACTIONS[21]->object = LoadModel("system\\data\\ADV02\\Models\\001DDBFC.sa1mdl", false); //Plane platform
-		ADV02_ACTIONS[9]->object = LoadModel("system\\data\\ADV02\\Models\\001B2D5C.sa1mdl", false); //Final Egg base door
-		ADV02_ACTIONS[17]->object = LoadModel("system\\data\\ADV02\\Models\\001CCFBC.sa1mdl", false); //OHiddenGate
-		ADV02_MODELS[9] = LoadModel("system\\data\\ADV02\\Models\\001CDEF0.sa1mdl", false)->basicdxmodel; //OHiddenGate button
+		*ADV02_ACTIONS[21]->object = *LoadModel("system\\data\\ADV02\\Models\\001DDBFC.sa1mdl", false); //Plane platform
+		*ADV02_ACTIONS[9]->object = *LoadModel("system\\data\\ADV02\\Models\\001B2D5C.sa1mdl", false); //Final Egg base door
+		*ADV02_ACTIONS[17]->object = *LoadModel("system\\data\\ADV02\\Models\\001CCFBC.sa1mdl", false); //OHiddenGate
+		*ADV02_MODELS[9] = *LoadModel("system\\data\\ADV02\\Models\\001CDEF0.sa1mdl", false)->basicdxmodel; //OHiddenGate button
 		AddWhiteDiffuseMaterial(&ADV02_MODELS[9]->mats[2]);
 		NJS_OBJECT* SandSwitch = LoadModel("system\\data\\ADV02\\Models\\001B42DC.sa1mdl", false);
-		ADV02_MODELS[12] = SandSwitch->child->basicdxmodel; //OSandSwitch
-		ADV02_MODELS[13] = SandSwitch->basicdxmodel; //OSandSwitch
-		ReinitializeDLLStuff();
+		*ADV02_MODELS[12] = *SandSwitch->child->basicdxmodel; //OSandSwitch
+		*ADV02_MODELS[13] = *SandSwitch->basicdxmodel; //OSandSwitch
 		ModelsLoaded_ADV02 = true;
 	}
 }

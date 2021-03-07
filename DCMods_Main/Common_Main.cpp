@@ -122,18 +122,9 @@ bool ModelsLoaded_ADV03 = false;
 bool ModelsLoaded_SHOOTING = false;
 bool ModelsLoaded_MINICART = false;
 bool ModelsLoaded_SBOARD = false;
+bool InitError = false;
 
 DataPointer(float*, HorizontalStretchPointer, 0x51285E);
-
-set_shader_flags* set_shader_flags_ptr;
-material_register* material_register_ptr;
-material_unregister* material_unregister_ptr;
-set_diffuse* set_diffuse_ptr;
-set_specular* set_specular_ptr;
-set_alpha_reject* set_alpha_reject_ptr;
-set_blend_factor* set_blend_factor_ptr;
-set_diffuse_blend* set_diffuse_blend_ptr;
-set_specular_blend* set_specular_blend_ptr;
 
 HelperFunctions HelperFunctionsGlobal;
 
@@ -293,34 +284,11 @@ void RestoreHumpAnimations_apply()
 	TailsAnimData[82].Animation = MILES_ACTIONS[23]; //Tails falling while holding something
 }
 
-void ReinitializeDLLStuff()
-{
-	int result;
-	int (**v1)(void);
-	for (int i = 0; i < LengthOfArray(DLLFunctionsArray); i++)
-	{
-		//PrintDebug("Init function: %d\n", DLLFunctionsArray[i]);
-		v1 = (int (**)(void))&InitializationFunctions[DLLFunctionsArray[i]];
-		result = (*v1)();
-	}
-	//From sub_7D3000/InitializationFunctions[102]
-	WriteData((NJS_TEXLIST**)0x11032B0, ADV02_TEXLISTS[21]); 
-	//From InitCharacterUpgrades/InitializationFunctions[50]
-	RhythmBadgeUpgrade = ADV03_OBJECTS[31];
-	ShovelClawUpgrade = ADV02_OBJECTS[116];
-	LongHammer = ADV01C_OBJECTS[49];
-	WarriorFeatherUpgrade = ADV01C_OBJECTS[49]; //should be AMY_OBJECTS[35] but set to this in original code for some reason
-	JetBoosterUpgrade = ADV01C_OBJECTS[41];
-	LaserBlasterUpgrade = ADV01C_OBJECTS[42];
-	LifeBeltUpgrade = ADV02_OBJECTS[115];
-}
-
 //The most important trampoline
-static void LoadLevelFiles_r();
-static Trampoline LoadLevelFiles_t(0x422AD0, 0x422AD8, LoadLevelFiles_r);
+static Trampoline* LoadLevelFiles_t = nullptr;
 static void __cdecl LoadLevelFiles_r()
 {
-	auto original = reinterpret_cast<decltype(LoadLevelFiles_r)*>(LoadLevelFiles_t.Target());
+	const auto original = TARGET_DYNAMIC(LoadLevelFiles);
 	CheckAndUnloadLevelFiles();
 	if (RestoreHumpAnimations) RestoreHumpAnimations_apply();
 	original();
@@ -330,21 +298,6 @@ extern "C"
 {
 	__declspec(dllexport) void __cdecl Init(const char *path, const HelperFunctions &helperFunctions)
 	{
-		HelperFunctionsGlobal = helperFunctions;
-		//Global mod path
-		ModPath = std::string(path);
-		//Set up function pointers for Lantern API
-		HMODULE LanternDLL = GetModuleHandle(L"sadx-dc-lighting");
-		if (HorizontalStretchPointer != &HorizontalStretch) UIScale = true; else UIScale = false;
-		set_shader_flags_ptr = (void(*)(uint32_t, bool))GetProcAddress(LanternDLL, "set_shader_flags");
-		material_register_ptr = (void(*)(const NJS_MATERIAL *const *materials, size_t length, lantern_material_cb callback))GetProcAddress(LanternDLL, "material_register");
-		material_unregister_ptr = (void(*)(const NJS_MATERIAL *const *materials, size_t length, lantern_material_cb callback))GetProcAddress(LanternDLL, "material_unregister");
-		set_diffuse_ptr = (void(*)(int32_t, bool))GetProcAddress(LanternDLL, "set_diffuse");
-		set_specular_ptr = (void(*)(int32_t, bool))GetProcAddress(LanternDLL, "set_specular");
-		set_alpha_reject_ptr = (void(*)(float, bool))GetProcAddress(LanternDLL, "set_alpha_reject");
-		set_blend_factor_ptr = (void(*)(float))GetProcAddress(LanternDLL, "set_blend_factor");
-		set_diffuse_blend_ptr = (void(*)(int32_t, int32_t))GetProcAddress(LanternDLL, "set_diffuse_blend");
-		set_specular_blend_ptr = (void(*)(int32_t, int32_t))GetProcAddress(LanternDLL, "set_specular_blend");
 		//Check which DLLs are loaded
 		DLLLoaded_DX11 = (GetModuleHandle(L"sadx-d3d11") != nullptr);
 		DLLLoaded_HDGUI = (GetModuleHandle(L"HD_GUI") != nullptr);
@@ -352,21 +305,26 @@ extern "C"
 		DLLLoaded_Lantern = (GetModuleHandle(L"sadx-dc-lighting") != nullptr);
 		DLLLoaded_DLCs = (GetModuleHandle(L"DLCs_Main") != nullptr);
 		DLLLoaded_SADXFE = (GetModuleHandle(L"sadx-fixed-edition") != nullptr);
+		HelperFunctionsGlobal = helperFunctions;
+		//Global mod path
+		ModPath = std::string(path);
+		HMODULE LanternDLL = GetModuleHandle(L"sadx-dc-lighting");
+		if (HorizontalStretchPointer != &HorizontalStretch) UIScale = true; else UIScale = false;
 		//Error messages
 		if (!DLLLoaded_Lantern) LanternErrorMessageTimer = 600;
-		if (DLLLoaded_Lantern && set_alpha_reject_ptr == nullptr)
+		if (DLLLoaded_Lantern && GetProcAddress(LanternDLL, "palette_from_mix") == nullptr)
 		{
 			MessageBox(WindowHandle,
-				L"Please update the Lantern Engine mod. Dreamcast Conversion requires Lantern Engine 1.4.4 or newer.",
+				L"Please update the Lantern Engine mod. Dreamcast Conversion requires Lantern Engine 1.4.6 or newer.",
 				L"DC Conversion error: Lantern Engine out of date", MB_OK | MB_ICONERROR);
-			return;
+			InitError = true;
 		}
 		if (helperFunctions.Version < 7)
 		{
 			MessageBox(WindowHandle,
 				L"Please update SADX Mod Loader. Dreamcast Conversion requires API version 7 or newer.",
 				L"DC Conversion error: Mod Loader out of date", MB_OK | MB_ICONERROR);
-			return;
+			InitError = true;
 		}
 		//Check for old mod DLLs
 		std::wstring OldModsMessage = L"Old/incompatible mods detected!\n\n"
@@ -391,8 +349,10 @@ extern "C"
 			MessageBox(WindowHandle, OldModsMessage.c_str(),
 				L"DC Conversion error: incompatible mods detected",
 				MB_OK | MB_ICONERROR);
-			return;
+			InitError = true;
 		}
+		if (InitError) return;
+		LoadLevelFiles_t = new Trampoline(0x422AD0, 0x422AD8, LoadLevelFiles_r);
 		const std::string s_path(path);
 		const std::string s_config_ini(s_path + "\\config.ini");
 		//Config stuff
@@ -651,11 +611,13 @@ extern "C"
 		
 	__declspec(dllexport) void __cdecl OnInitEnd()
 	{
+		if (InitError) return;
 		OnInitEnd_Videos();
 	}
 
 	__declspec(dllexport) void __cdecl OnFrame()
 	{
+		if (InitError) return;
 		//Display error messages
 		if (!SuppressWarnings && LanternErrorMessageTimer && (IsIngame() || GameMode == GameModes_Menu))
 		{
@@ -745,12 +707,14 @@ extern "C"
 
 	__declspec(dllexport) void __cdecl OnInput()
 	{
+		if (InitError) return;
 		if (!DisableAllVideoStuff) Videos_OnInput();
 		if (CutsceneSkipMode != 3) General_OnInput();
 	}
 
 	__declspec(dllexport) void __cdecl OnRenderDeviceReset()
 	{
+		if (InitError) return;
 		SkyChaseFix_UpdateBounds();
 		Branding_SetUpVariables();
 	}
