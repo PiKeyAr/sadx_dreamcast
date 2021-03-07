@@ -2042,7 +2042,7 @@ void General_Init()
 		WriteCall((void*)0x49EFAE, DrawScalableShadowHook);
 		WriteCall((void*)0x4A1827, SpindashChargeLinesHook);
 		WriteCall((void*)0x4A1E55, SpindashChargeSpriteHook);
-		//Replace hint monitor modelF
+		//Replace hint monitor model
 		HintMonitorModel = LoadModel("system\\data\\1st_read\\Models\\001AD358.sa1mdl", false);
 		HideMesh_Object(HintMonitorModel, 10); //Hide screen (rendered separately in DX)
 		HintMonitorModel->basicdxmodel->mats[8].attrflags &= ~NJD_FLAG_USE_ALPHA;

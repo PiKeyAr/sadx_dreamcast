@@ -594,23 +594,28 @@ void DashPanelFix(NJS_ACTION* action, Float frame)
 	njAction(action, DashPanelAnimationFrame);
 }
 
+static bool TrampolinesLoaded = false;
 void SpeedFixes_Init()
 {
 	//Trampolines
-	AmyHammerEffect_t = new Trampoline(0x4C5BC0, 0x4C5BC9, AmyHammerEffect_r);
-	OHae_Main_t = new Trampoline(0x5C8B40, 0x5C8B48, OHae_Main_r);
-	OWsr2_Main_t = new Trampoline(0x5C93F0, 0x5C93F9, OWsr2_Main_r);
-	Fishies_Main_t = new Trampoline(0x4FC9C0, 0x4FC9C8, Fishies_Main_r);
-	Fuse_t = new Trampoline(0x4CE830, 0x4CE837, Fuse_r);
-	PBJackPot_Main_t = new Trampoline(0x5E12C0, 0x5E12C7, PBJackPot_Main_r);
-	OFire_t = new Trampoline(0x5E82F0, 0x5E82F5, OFire_r);
-	UpgradeSparks_t = new Trampoline(0x4BAF10, 0x4BAF15, UpgradeSparks_r);
-	Chaos0RainThing_t = new Trampoline(0x546140, 0x546146, Chaos0RainThing_r);
-	EggHornetJetThing_t = new Trampoline(0x572620, 0x572628, EggHornetJetThing_r);
-	Bubbles_t = new Trampoline(0x7A88B0, 0x7A88B5, Bubbles_r);
-	OLamp_Display_t = new Trampoline(0x606610, 0x606617, OLamp_Display_r);
-	ZeroSparksMain_t = new Trampoline(0x58B640, 0x58B645, ZeroSparksMain_r);
-	ZeroFVFShit_Main_t = new Trampoline(0x58C590, 0x58C597, ZeroFVFShit_Main_r);
+	if (!TrampolinesLoaded)
+	{
+		AmyHammerEffect_t = new Trampoline(0x4C5BC0, 0x4C5BC9, AmyHammerEffect_r);
+		OHae_Main_t = new Trampoline(0x5C8B40, 0x5C8B48, OHae_Main_r);
+		OWsr2_Main_t = new Trampoline(0x5C93F0, 0x5C93F9, OWsr2_Main_r);
+		Fishies_Main_t = new Trampoline(0x4FC9C0, 0x4FC9C8, Fishies_Main_r);
+		Fuse_t = new Trampoline(0x4CE830, 0x4CE837, Fuse_r);
+		PBJackPot_Main_t = new Trampoline(0x5E12C0, 0x5E12C7, PBJackPot_Main_r);
+		OFire_t = new Trampoline(0x5E82F0, 0x5E82F5, OFire_r);
+		UpgradeSparks_t = new Trampoline(0x4BAF10, 0x4BAF15, UpgradeSparks_r);
+		Chaos0RainThing_t = new Trampoline(0x546140, 0x546146, Chaos0RainThing_r);
+		EggHornetJetThing_t = new Trampoline(0x572620, 0x572628, EggHornetJetThing_r);
+		Bubbles_t = new Trampoline(0x7A88B0, 0x7A88B5, Bubbles_r);
+		OLamp_Display_t = new Trampoline(0x606610, 0x606617, OLamp_Display_r);
+		ZeroSparksMain_t = new Trampoline(0x58B640, 0x58B645, ZeroSparksMain_r);
+		ZeroFVFShit_Main_t = new Trampoline(0x58C590, 0x58C597, ZeroFVFShit_Main_r);
+		TrampolinesLoaded = true;
+	}
 	//Big ring flashing HUD
 	WriteData((float**)0x0046CE9B, &BigHudFix_float);
 	WriteData((short*)0x0046CE6B, RingCountFlashSpeed);

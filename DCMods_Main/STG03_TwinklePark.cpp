@@ -1,5 +1,4 @@
 #include "stdafx.h"
-//TODO: OPirates dynamic collision
 
 NJS_TEXNAME textures_obj_twinkle[96];
 NJS_TEXLIST texlist_obj_twinkle = { arrayptrandlength(textures_obj_twinkle) };
@@ -169,7 +168,7 @@ void __cdecl DrawPirateShipShit(ObjectMaster *a1)
 		v4 = v1->Rotation.y;
 		if (v4)
 		{
-			njRotateY(0, v4);
+			njRotateY(0, -v4);
 		}
 		DrawModel(v1->Object->basicdxmodel);
 		//2
@@ -177,7 +176,7 @@ void __cdecl DrawPirateShipShit(ObjectMaster *a1)
 		njTranslate(0, v1->Object->child->pos[0], v1->Object->child->pos[1], v1->Object->child->pos[2]);
 		if (v2)
 		{
-			njRotateZ(0, -v2);
+			njRotateZ(0, v2);
 		}
 		DrawModel(v1->Object->child->basicdxmodel);
 		//3 
@@ -185,7 +184,7 @@ void __cdecl DrawPirateShipShit(ObjectMaster *a1)
 		njTranslate(0, v1->Object->child->child->pos[0], v1->Object->child->child->pos[1], v1->Object->child->child->pos[2]);
 		if (v2)
 		{
-			njRotateZ(0, v2);
+			njRotateZ(0, -v2);
 		}
 		DrawModel(v1->Object->child->child->basicdxmodel);
 		njPopMatrix(1u);
@@ -195,7 +194,7 @@ void __cdecl DrawPirateShipShit(ObjectMaster *a1)
 		njTranslate(0, v1->Object->child->sibling->pos[0], v1->Object->child->sibling->pos[1], v1->Object->child->sibling->pos[2]);
 		if (v2)
 		{
-			njRotateZ(0, -v2);
+			njRotateZ(0, v2);
 		}
 		DrawModel(v1->Object->child->sibling->basicdxmodel);
 		njPopMatrix(1u);
