@@ -327,10 +327,11 @@ void AddHotShelterTransparentThing(int colnumber, int act)
 	PrintDebug("Error adding COL %d, array size exceeded!\n", colnumber);
 }
 
-static Trampoline* SkyBox_HotShelter_Load_t = nullptr;
+static void SkyBox_HotShelter_Load_r(ObjectMaster* a1);
+static Trampoline SkyBox_HotShelter_Load_t(0x59A2A0, 0x59A2A9, SkyBox_HotShelter_Load_r);
 static void __cdecl SkyBox_HotShelter_Load_r(ObjectMaster* a1)
 {
-	const auto original = TARGET_DYNAMIC(SkyBox_HotShelter_Load);
+	auto original = reinterpret_cast<decltype(SkyBox_HotShelter_Load_r)*>(SkyBox_HotShelter_Load_t.Target());
 	original(a1);
 	if (EnableHotShelter && !HotShelterColsLoaded) LoadHotShelterCols();
 }
@@ -579,7 +580,6 @@ void HotShelter_Init()
 	WriteData((LandTable**)0x97DB90, STG12_2);
 	if (!ModelsLoaded_STG12)
 	{
-		SkyBox_HotShelter_Load_t = new Trampoline(0x59A2A0, 0x59A2A9, SkyBox_HotShelter_Load_r);
 		HOTSHELTER1_TEXLIST = texlist_hotshelter1;
 		HOTSHELTER2_TEXLIST = texlist_hotshelter2;
 		HOTSHELTER3_TEXLIST = texlist_hotshelter3;

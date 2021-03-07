@@ -186,10 +186,11 @@ void LoadPastCols()
 	PastColsLoaded = true;
 }
 
-static Trampoline* SkyBox_Past_Load_t = nullptr;
+static void SkyBox_Past_Load_r(ObjectMaster* a1);
+static Trampoline SkyBox_Past_Load_t(0x542030, 0x542036, SkyBox_Past_Load_r);
 static void __cdecl SkyBox_Past_Load_r(ObjectMaster* a1)
 {
-	const auto original = TARGET_DYNAMIC(SkyBox_Past_Load);
+	auto original = reinterpret_cast<decltype(SkyBox_Past_Load_r)*>(SkyBox_Past_Load_t.Target());
 	original(a1);
 	if (EnablePast && !PastColsLoaded) LoadPastCols();
 }
@@ -438,9 +439,9 @@ void ADV03_Init()
 	LandTableArray[152] = ADV03_0;
 	LandTableArray[153] = ADV03_1;
 	LandTableArray[154] = ADV03_2;
-	*LANDTABLEPAST[0] = *ADV03_0;
-	*LANDTABLEPAST[1] = *ADV03_1;
-	*LANDTABLEPAST[2] = *ADV03_2;
+	LANDTABLEPAST[0] = ADV03_0;
+	LANDTABLEPAST[1] = ADV03_1;
+	LANDTABLEPAST[2] = ADV03_2;
 	ParsePastMaterials();
 	ForceLightType_Object(PastChaoModel_2, 2, false);
 	ForceLightType_Object(PastChaoModel_7, 2, false);
@@ -450,11 +451,10 @@ void ADV03_Init()
 	//This is done only once
 	if (!ModelsLoaded_ADV03)
 	{
-		SkyBox_Past_Load_t = new Trampoline(0x542030, 0x542036, SkyBox_Past_Load_r);
 		//Texlists
-		*ADV03_TEXLISTS[4] = texlist_past00;
-		*ADV03_TEXLISTS[5] = texlist_past01;
-		*ADV03_TEXLISTS[6] = texlist_past02;
+		ADV03_TEXLISTS[4] = &texlist_past00;
+		ADV03_TEXLISTS[5] = &texlist_past01;
+		ADV03_TEXLISTS[6] = &texlist_past02;
 		//SADX water
 		WriteJump((void*)0x542850, Past_OceanDraw_r);
 		//Make stairs objects in Past Act 1 appear sooner
@@ -516,7 +516,7 @@ void ADV03_Init()
 		WriteCall((void*)0x6A1DFA, AllocateEventChao_2);
 		WriteCall((void*)0x6A2A09, AllocateEventChao_2);
 		//Palm fixes
-		*ADV03_ACTIONS[10]->object = *LoadModel("system\\data\\ADV03\\Models\\00012DA8.sa1mdl", false); //Palm in Act 3
+		ADV03_ACTIONS[10]->object = LoadModel("system\\data\\ADV03\\Models\\00012DA8.sa1mdl", false); //Palm in Act 3
 		ADV03_ACTIONS[10]->object->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_USE_ALPHA; //Hide DA_ONE stuff
 		HideMesh_Object(ADV03_ACTIONS[10]->object, 0); //Hide DA_ONE stuff
 		HideMesh_Object(ADV03_ACTIONS[10]->object, 1); //Hide transparent stuff
@@ -524,7 +524,7 @@ void ADV03_Init()
 		HideMesh_Object(PalmBottom, 2);
 		PalmBottom->evalflags |= NJD_EVAL_BREAK;
 		PalmBottom->child = NULL;
-		*ADV03_OBJECTS[9] = *LoadModel("system\\data\\ADV03\\Models\\0001503C.sa1mdl", false); //Palm in Act 2
+		ADV03_OBJECTS[9] = LoadModel("system\\data\\ADV03\\Models\\0001503C.sa1mdl", false); //Palm in Act 2
 		ADV03_OBJECTS[9]->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_USE_ALPHA; //Hide DA_ONE stuff
 		HideMesh_Object(ADV03_OBJECTS[9], 0); //Hide DA_ONE stuff
 		HideMesh_Object(ADV03_OBJECTS[9], 1); //Hide transparent stuff
@@ -546,9 +546,9 @@ void ADV03_Init()
 		WriteData((float*)0x0068BA8F, 86.0f); //Ripple 3 Y
 		WriteData((float*)0x0068BA8A, 52.42f); //Ripple 3 Z
 		//Other objects
-		*ADV03_ACTIONS[9]->object = *LoadModel("system\\data\\ADV03\\Models\\0000F864.sa1mdl", false); //OTree 0
-		*ADV03_OBJECTS[16] = *LoadModel("system\\data\\ADV03\\Models\\0001EDDC.sa1mdl", false); //Tree 16
-		*ADV03_OBJECTS[17] = *LoadModel("system\\data\\ADV03\\Models\\0001EDDC.sa1mdl", false); //Tree 17 (low LOD model in SADX)
+		ADV03_ACTIONS[9]->object = LoadModel("system\\data\\ADV03\\Models\\0000F864.sa1mdl", false); //OTree 0
+		ADV03_OBJECTS[16] = LoadModel("system\\data\\ADV03\\Models\\0001EDDC.sa1mdl", false); //Tree 16
+		ADV03_OBJECTS[17] = LoadModel("system\\data\\ADV03\\Models\\0001EDDC.sa1mdl", false); //Tree 17 (low LOD model in SADX)
 		HideMesh_Object(ADV03_OBJECTS[16], 2);
 		HideMesh_Object(ADV03_OBJECTS[17], 2);
 		TreeShadow = LoadModel("system\\data\\ADV03\\Models\\0001EDDC.sa1mdl", false);
@@ -556,13 +556,13 @@ void ADV03_Init()
 		HideMesh_Object(TreeShadow, 1);
 		WriteCall((void*)0x5455A9, FixTreeShadowFlickering1);
 		WriteCall((void*)0x54557C, FixTreeShadowFlickering2);
-		*ADV03_OBJECTS[15] = *LoadModel("system\\data\\ADV03\\Models\\00027158.sa1mdl", false); //Small tree shadow
-		*ADV03_OBJECTS[13] = *LoadModel("system\\data\\ADV03\\Models\\00016CA0.sa1mdl", false); //OWell
-		*ADV03_OBJECTS[18] = *LoadModel("system\\data\\ADV03\\Models\\00027054.sa1mdl", false); //Well shadow
-		*ADV03_OBJECTS[21] = *LoadModel("system\\data\\ADV03\\Models\\0001D774.sa1mdl", false); //OPyStairs
-		*ADV03_OBJECTS[20] = *LoadModel("system\\data\\ADV03\\Models\\0001E498.sa1mdl", false); //OBigStairs
-		*ADV03_OBJECTS[19] = *LoadModel("system\\data\\ADV03\\Models\\0001E59C.sa1mdl", false); //OBigStairs low LOD
-		*ADV03_OBJECTS[22] = *LoadModel("system\\data\\ADV03\\Models\\0001D878.sa1mdl", false); //OPyStairs low LOD
+		ADV03_OBJECTS[15] = LoadModel("system\\data\\ADV03\\Models\\00027158.sa1mdl", false); //Small tree shadow
+		ADV03_OBJECTS[13] = LoadModel("system\\data\\ADV03\\Models\\00016CA0.sa1mdl", false); //OWell
+		ADV03_OBJECTS[18] = LoadModel("system\\data\\ADV03\\Models\\00027054.sa1mdl", false); //Well shadow
+		ADV03_OBJECTS[21] = LoadModel("system\\data\\ADV03\\Models\\0001D774.sa1mdl", false); //OPyStairs
+		ADV03_OBJECTS[20] = LoadModel("system\\data\\ADV03\\Models\\0001E498.sa1mdl", false); //OBigStairs
+		ADV03_OBJECTS[19] = LoadModel("system\\data\\ADV03\\Models\\0001E59C.sa1mdl", false); //OBigStairs low LOD
+		ADV03_OBJECTS[22] = LoadModel("system\\data\\ADV03\\Models\\0001D878.sa1mdl", false); //OPyStairs low LOD
 		//Fog data
 		for (int i = 0; i < 3; i++)
 		{
@@ -576,6 +576,7 @@ void ADV03_Init()
 			DrawDist_Past2[i].Maximum = -16000.0f;
 			DrawDist_Past3[i].Maximum = -16000.0f;
 		}
+		ReinitializeDLLStuff();
 		ModelsLoaded_ADV03 = true;
 	}
 }

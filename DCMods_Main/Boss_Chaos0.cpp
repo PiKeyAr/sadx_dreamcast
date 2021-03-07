@@ -49,11 +49,12 @@ void DrawChaos0Spotlight(ObjectMaster *a1)
 	}
 }
 
-static Trampoline* OPato0_Display_t = nullptr;
+static void OPato0_Display_r(ObjectMaster *a1);
+static Trampoline OPato0_Display_t(0x549600, 0x549605, OPato0_Display_r);
 static void __cdecl OPato0_Display_r(ObjectMaster *a1)
 {
 	float nbFrames = BOSSCHAOS0_ACTIONS[18]->motion->nbFrame - 1.0f;
-	const auto original = TARGET_DYNAMIC(OPato0_Display);
+	auto original = reinterpret_cast<decltype(OPato0_Display_r)*>(OPato0_Display_t.Target());
 	if (a1->Data1->Scale.x >= nbFrames) a1->Data1->Scale.x -= nbFrames; //Animation stutter fix
 	original(a1);
 	if (EnableChaos0)
@@ -147,19 +148,18 @@ void Chaos0_Init()
 	RemoveMaterialColors_Landtable(B_CHAOS0);
 	B_CHAOS0->TexList = &texlist_chaos0;
 	LandTableArray[0] = B_CHAOS0;
-	*LANDTABLEBOSSCHAOS0[0] = *B_CHAOS0;
+	LANDTABLEBOSSCHAOS0[0] = B_CHAOS0;
 	ParseChaos0Materials(B_CHAOS0, false);
 	if (!ModelsLoaded_B_CHAOS0)
 	{
-		OPato0_Display_t = new Trampoline(0x549600, 0x549605, OPato0_Display_r);
 		WriteCall((void*)0x54858A, Chaos0Action); //Main model
 		WriteData<1>((char*)0x54932B, 0x08); //Police car lights blending mode
 		WriteData<1>((char*)0x7AD16D, 0x08); //Chaos 0 puddle mark blending mode
 		WriteData<1>((char*)0x548470, 0i8); //Chaos 0 puddle queued flags I guess
 		WriteCall((void*)0x54847B, Chaos0PuddleFix);
 		WriteJump((void*)0x6E9B00, ComeOneYaBigDrip); //Alterating transparency in the cutscene after Chaos 0
-		*BOSSCHAOS0_TEXLISTS[2] = texlist_chaos0;
-		*BOSSCHAOS0_TEXLISTS[3] = chaos0_object;
+		BOSSCHAOS0_TEXLISTS[2] = &texlist_chaos0;
+		BOSSCHAOS0_TEXLISTS[3] = &chaos0_object;
 		RemoveVertexColors_Object((NJS_OBJECT*)0x2C66B78); //Cutscene model
 		RemoveVertexColors_Object(BOSSCHAOS0_OBJECTS[0]);
 		RemoveVertexColors_Object(BOSSCHAOS0_OBJECTS[5]);
@@ -183,7 +183,7 @@ void Chaos0_Init()
 		RemoveVertexColors_Object((NJS_OBJECT*)0x337B794); //SS policemen
 		RemoveVertexColors_Object((NJS_OBJECT*)0x339889C); //Bullets fired at Chaos
 		//Helicopter
-		*BOSSCHAOS0_ACTIONS[17]->object = *LoadModel("system\\data\\B_CHAOS0\\Models\\0005825C.sa1mdl", false);
+		BOSSCHAOS0_ACTIONS[17]->object = LoadModel("system\\data\\B_CHAOS0\\Models\\0005825C.sa1mdl", false);
 		//UV-less stuff fix
 		BOSSCHAOS0_ACTIONS[17]->object->child->child->child->basicdxmodel->mats[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
 		//Add white diffuse on opaque things
@@ -206,7 +206,7 @@ void Chaos0_Init()
 		C0HelicopterLight2->child->sibling->sibling->sibling->sibling->child->child->evalflags &= ~NJD_EVAL_HIDE; //Unhide the light
 		WriteCall((void*)0x5498F6, DrawChaos0HelicopterWithLight);
 		//Police car
-		*BOSSCHAOS0_ACTIONS[18]->object = *LoadModel("system\\data\\B_CHAOS0\\Models\\0005D234.sa1mdl", false);
+		BOSSCHAOS0_ACTIONS[18]->object = LoadModel("system\\data\\B_CHAOS0\\Models\\0005D234.sa1mdl", false);
 		AddWhiteDiffuseMaterial(&BOSSCHAOS0_ACTIONS[18]->object->child->sibling->sibling->sibling->sibling->sibling->sibling->sibling->sibling->basicdxmodel->mats[1]);
 		BOSSCHAOS0_ACTIONS[18]->object->child->sibling->sibling->sibling->sibling->sibling->sibling->sibling->sibling->evalflags |= NJD_EVAL_HIDE;
 		BOSSCHAOS0_ACTIONS[18]->object->child->sibling->sibling->sibling->sibling->sibling->sibling->evalflags |= NJD_EVAL_HIDE;
@@ -217,5 +217,6 @@ void Chaos0_Init()
 		WriteData((float*)0x00549797, 0.12f); //Camera-based car light sprite scale
 		WriteData((float*)0x005497A1, 0.12f); //Camera-based car light sprite scale
 		ModelsLoaded_B_CHAOS0 = true;
+		ReinitializeDLLStuff();
 	}
 }

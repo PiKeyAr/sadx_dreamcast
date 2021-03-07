@@ -162,7 +162,7 @@ void EggViper_OnFrame()
 		{
 			EggViper_blendfactor = 0;
 			EggViper_EffectMode = 0;
-			set_shader_flags(ShaderFlags_Blend, false);
+			set_shader_flags_ptr(ShaderFlags_Blend, false);
 		}
 		if (GameMode == GameModes_Menu || GameMode == GameModes_CharSel)
 		{
@@ -172,7 +172,7 @@ void EggViper_OnFrame()
 			EggViper_EffectMode = 0;
 			EggViper_blendfactor = 0;
 			EggViper_blenddirection = 1;
-			set_shader_flags(ShaderFlags_Blend, false);
+			set_shader_flags_ptr(ShaderFlags_Blend, false);
 			EggViperByteThing = 0;
 		}
 		if (CurrentLevel == LevelIDs_EggViper)
@@ -186,8 +186,6 @@ void EggViper_OnFrame()
 				EggViper_blendfactor = 0;
 				EggViper_blenddirection = 1;
 				EggViperByteThing = 0;
-				palette_from_mix(5, 0, 255, 0, 0, false, false);
-				palette_from_mix(6, 0, 2, 255, 255, false, true);
 			}
 			if (EggViperHitCount == 7) EggViperHitCount_Old = 7;
 			//activate a brief flash
@@ -237,7 +235,7 @@ void EggViper_OnFrame()
 				{
 					EggViper_blendfactor = 0;
 					EggViper_EffectMode = 0;
-					set_shader_flags(ShaderFlags_Blend, false);
+					set_shader_flags_ptr(ShaderFlags_Blend, false);
 				}
 			}
 			//longer flash
@@ -250,7 +248,7 @@ void EggViper_OnFrame()
 				{
 					EggViper_blendfactor = 0;
 					EggViper_EffectMode = 0;
-					set_shader_flags(ShaderFlags_Blend, false);
+					set_shader_flags_ptr(ShaderFlags_Blend, false);
 				}
 			}
 			//permanent flash
@@ -284,11 +282,11 @@ void EggViper_OnFrame()
 					EggViper_blendfactor = 0.0f;
 					EggViper_blenddirection = 1;
 					EggViper_EffectMode = 0;
-					set_blend_factor(0);
+					set_blend_factor_ptr(0);
 				}
 				if (EggViper_blendfactor >= EggViper_blendfactor_max)
 				{
-					set_diffuse_blend(0, 3);
+					set_diffuse_blend_ptr(0, 3);
 					EggViper_blenddirection = -1;
 					if (EggViper_blendfactor_max < 1.0f)
 					{
@@ -298,7 +296,7 @@ void EggViper_OnFrame()
 				if (EggViper_blendfactor <= EggViper_blendfactor_min)
 				{
 					EggViper_blenddirection = 1;
-					set_diffuse_blend(0, 6);
+					set_diffuse_blend_ptr(0, 6);
 				}
 				if (GameState != 16)
 				{
@@ -311,14 +309,14 @@ void EggViper_OnFrame()
 			//general stuff
 			if (EggViper_EffectMode != 0)
 			{
-				set_shader_flags(ShaderFlags_Blend, true);
-				if (EggViper_EffectMode != 5) set_diffuse_blend(0, 5);
-				set_specular_blend(0, 0);
-				set_blend_factor(EggViper_blendfactor);
+				set_shader_flags_ptr(ShaderFlags_Blend, true);
+				if (EggViper_EffectMode != 5) set_diffuse_blend_ptr(0, 5);
+				set_specular_blend_ptr(0, 0);
+				set_blend_factor_ptr(EggViper_blendfactor);
 			}
 			else
 			{
-				set_shader_flags(ShaderFlags_Blend, false);
+				set_shader_flags_ptr(ShaderFlags_Blend, false);
 			}
 		}
 	}

@@ -629,8 +629,8 @@ void SkyChase_Init()
 			//Lighting
 			if (DLLLoaded_Lantern)
 			{
-				material_register(ObjectBaseAndSpecular_Subgames, LengthOfArray(ObjectBaseAndSpecular_Subgames), &ForceDiffuse0Specular1);
-				material_register(LevelSpecular_Subgames, LengthOfArray(LevelSpecular_Subgames), &ForceDiffuse0Specular0);
+				material_register_ptr(ObjectBaseAndSpecular_Subgames, LengthOfArray(ObjectBaseAndSpecular_Subgames), &ForceDiffuse0Specular1);
+				material_register_ptr(LevelSpecular_Subgames, LengthOfArray(LevelSpecular_Subgames), &ForceDiffuse0Specular0);
 			}
 		}
 		for (int i = 0; i < 3; i++)
@@ -677,7 +677,7 @@ void TwinkleCircuit_Init()
 	{
 		if (DLLLoaded_Lantern)
 		{
-			material_register(WhiteDiffuse_Subgames, LengthOfArray(WhiteDiffuse_Subgames), &ForceWhiteDiffuse);
+			material_register_ptr(WhiteDiffuse_Subgames, LengthOfArray(WhiteDiffuse_Subgames), &ForceWhiteDiffuse);
 		}
 		ModelsLoaded_MINICART = true;
 	}

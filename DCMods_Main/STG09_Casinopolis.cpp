@@ -47,10 +47,7 @@ NJS_OBJECT* IdeyaCap3_3 = nullptr;
 NJS_OBJECT* IdeyaCap4_1 = nullptr;
 NJS_OBJECT* IdeyaCap4_2 = nullptr;
 NJS_OBJECT* IdeyaCap4_3 = nullptr;
-NJS_OBJECT* CowgirlModel = nullptr;
-NJS_MODEL_SADX* CowgirlGlass = nullptr;
 
-static NJS_VECTOR CowGirlDynColPos;
 static float GearFrame = 0;
 static float SonicWhiteBlendFactor = 0.0f;
 static int CowgirlDelay = 0;
@@ -58,10 +55,6 @@ static int RotationAngle1 = 0;
 static int RotationAngle2 = 0;
 static int SoundPlayed = 0;
 static bool WhiteSonic = false;
-static bool CasinoPaletteGenerated = false;
-static Trampoline* OTikeiAnim_Load_t = nullptr;
-static Trampoline* OTikeiAnim_Main_t = nullptr;
-static Trampoline* Loop_Main_t = nullptr;
 
 FunctionPointer(void, sub_5DD900, (int a1, int a2), 0x5DD900);
 FunctionPointer(void, sub_5DD920, (ObjectMaster *a1, int a2), 0x5DD920);
@@ -103,18 +96,23 @@ void RenderCasinoBackgroundWater(ObjectMaster* a1)
 	}
 }
 
+static void OTikeiAnim_Load_r(ObjectMaster* a1);
+static Trampoline OTikeiAnim_Load_t(0x5CB160, 0x5CB165, OTikeiAnim_Load_r);
 static void __cdecl OTikeiAnim_Load_r(ObjectMaster* a1)
 {
 	EntityData1* v1; // edi
 	v1 = a1->Data1;
-	const auto original = TARGET_DYNAMIC(OTikeiAnim_Load);
+	auto original = reinterpret_cast<decltype(OTikeiAnim_Load_r)*>(OTikeiAnim_Load_t.Target());
 	original(a1);
 	if (EnableCasinopolis) a1->DisplaySub = RenderCasinoBackgroundWater;
+
 }
 
+static void OTikeiAnim_Main_r(ObjectMaster* a1);
+static Trampoline OTikeiAnim_Main_t(0x5CB0A0, 0x5CB0A6, OTikeiAnim_Main_r);
 static void __cdecl OTikeiAnim_Main_r(ObjectMaster* a1)
 {
-	const auto original = TARGET_DYNAMIC(OTikeiAnim_Main);
+	auto original = reinterpret_cast<decltype(OTikeiAnim_Main_r)*>(OTikeiAnim_Main_t.Target());
 	original(a1);
 	if (EnableCasinopolis && CurrentAct == 0)
 	{
@@ -122,11 +120,13 @@ static void __cdecl OTikeiAnim_Main_r(ObjectMaster* a1)
 	}
 }
 
+static void Loop_Main_r(ObjectMaster* a1);
+static Trampoline Loop_Main_t(0x5D5F50, 0x5D5F56, Loop_Main_r);
 static void __cdecl Loop_Main_r(ObjectMaster* a1)
 {
 	EntityData1* v1; // edi
 	v1 = a1->Data1;
-	const auto original = TARGET_DYNAMIC(Loop_Main);
+	auto original = reinterpret_cast<decltype(Loop_Main_r)*>(Loop_Main_t.Target());
 	if (v1->CollisionInfo->Flags & 1 && *(float*)&v1->CharIndex > 38)
 	{
 		PlaySound(239, 0, 0, 0);
@@ -134,50 +134,9 @@ static void __cdecl Loop_Main_r(ObjectMaster* a1)
 	original(a1);
 }
 
-void Cowgirl_AddDynCol(ObjectMaster* obj, NJS_OBJECT* object) {
-	EntityData1* original = obj->Data1;
-	NJS_OBJECT* col = ObjectArray_GetFreeObject();
-
-	col->scl[0] = 1;
-	col->scl[1] = 1;
-	col->scl[2] = 1;
-
-	col->basicdxmodel = object->basicdxmodel;
-
-	obj->Data1->Object = col;
-
-	DynamicCOL_Add((ColFlags)0x8000001, obj, col); // Moving Collision flag
-}
-
-void Cowgirl_MoveDynCol(NJS_OBJECT* dyncol, Float frame) {
-	dyncol->pos[0] = CowGirlDynColPos.x;
-	dyncol->pos[1] = CowGirlDynColPos.y;
-	dyncol->pos[2] = CowGirlDynColPos.z;
-
-	// Approximating the rotation
-
-	if (frame > 15.0f) {
-		frame = fabs(frame - 30.0f);
-	}
-
-	dyncol->ang[2] = static_cast<Angle>(55.0f * frame);
-	dyncol->ang[1] = 0xC00;
-}
-
-void __cdecl CowGirl_DisplayPart(NJS_MODEL_SADX* model, int a2, int a3) 
-{
-	ProcessModel_407CF0(model, a2, a3);
-	// If the model is the glass, retrieve its position
-	if (model == CowgirlGlass)
-	{
-		ProjectToWorldSpace();
-		njGetTranslation((NJS_MATRIX_PTR)&WorldMatrix, &CowGirlDynColPos);
-	}
-}
-
 void __cdecl Cowgirl_Display(ObjectMaster *a1)
 {
-	EntityData1 *data; // esi@1
+	EntityData1 *v1; // esi@1
 	int cowgirlthing;
 	char v2; // al@3
 	Angle v3; // eax@5
@@ -187,83 +146,54 @@ void __cdecl Cowgirl_Display(ObjectMaster *a1)
 	NJS_OBJECT *v7; // edi@9
 	Sint16 v8; // ax@9
 	NJS_VECTOR distance_vector;
-	data = a1->Data1;
-	if (IsVisible(&data->Position, 280.0f)) {
+	v1 = a1->Data1;
+	if (!ClipObject(a1, 640010.0) && IsVisible(&v1->Position, 280.0))
+	{
 		njSetTexture(&OBJ_CASINO9_TEXLIST);
-		njPushMatrixEx();
-		njTranslateEx(&data->Position);
-		njRotateEx((Angle*)&data->Rotation, 0);
+		njPushMatrix(0);
+		njTranslateV(0, &v1->Position);
+		njRotateXYZ(0, v1->Rotation.x, v1->Rotation.y, v1->Rotation.z);
 		DrawQueueDepthBias = 4000.0f;
-		DisplayAnimationFrame((NJS_ACTION*)0x1E5C414, data->Scale.x, (QueuedModelFlagsB)0, 0.0f, CowGirl_DisplayPart);
+		njAction_ReallyHard((NJS_ACTION*)0x1E5C414, *(float*)&a1->Data1->CharIndex);
 		DrawQueueDepthBias = 0;
-		njPopMatrixEx();
+		njPopMatrix(1u);
 	}
 }
 
-void Cowgirl_Main(ObjectMaster* obj)
+void Cowgirl_Main(ObjectMaster* a1)
 {
-	if (!ClipObject(obj, 640010.0)) {
-		EntityData1* data = obj->Data1;
-		EntityData1* entity = nullptr;
-
-		data->Scale.x += 0.1f;
-
-		if (data->Scale.x > 29.0f) {
-			data->Scale.x = 0;
+	EntityData1 *v1 = a1->Data1;
+	float CowgirlFrame = *(float*)&v1->CharIndex + 0.1f;
+	if (CowgirlFrame > 29) CowgirlFrame = 0;
+	*(float*)&a1->Data1->CharIndex = CowgirlFrame;
+	Cowgirl_Display(a1);
+	AddToCollisionList(v1);
+	//Cowgirl action
+	if (CowgirlDelay < 100) CowgirlDelay++;
+	if (CowgirlDelay >= 100 && EntityData1Ptrs[0] != nullptr && EntityData1Ptrs[0]->Status & Status_Attack)
+	{
+		if (IsPlayerInsideSphere(&Cowgirl1, 180.0f) || IsPlayerInsideSphere(&Cowgirl2, 180.0f))
+		{
+			PlaySound(278, 0, 0, 0);
+			CowgirlDelay = 0;
 		}
-
-		// CowGirl sound
-		if (data->Action == 0) {
-			if (entity = GetCollidingEntityA(data), entity&& entity->Status& Status_Attack) {
-				PlaySound(278, 0, 0, 0);
-				data->Action = 1;
-			}
-		}
-		else {
-			if (++data->Index >= 100) {
-				data->Index = 0;
-				data->Action = 0;
-			}
-		}
-
-		// Detect if the player is on the object's dynamic collision
-		for (int i = 0; i < 4; ++i) {
-			CharObj2* co2 = CharObj2Ptrs[i];
-
-			if (co2 && co2->field_6C == obj) {
-				// Move the player by the difference between the old position and the new position.
-
-				NJS_VECTOR pos = CowGirlDynColPos;
-
-				pos.x -= data->Object->pos[0];
-				pos.y -= data->Object->pos[1];
-				pos.z -= data->Object->pos[2];
-
-				njAddVector(&EntityData1Ptrs[i]->Position, &pos);
-			}
-		}
-
-		Cowgirl_MoveDynCol(data->Object, data->Scale.x);
-		obj->DisplaySub(obj);
-		AddToCollisionList(data);
 	}
 }
 
-void Cowgirl_Delete(ObjectMaster *obj)
+void Cowgirl_Delete(ObjectMaster *a1)
 {
-	DynamicCOL_Remove(obj, obj->Data1->Object);
+	CheckThingButThenDeleteObject(a1);
 }
 
-void Cowgirl_Load(ObjectMaster* obj)
+void Cowgirl_Load(ObjectMaster* a1)
 {
 	//Hardcoded position and rotation to match SA1 JP
-	obj->Data1->Position = { 311.62f, 0.0f, 338.93f };
-	obj->Data1->Rotation = { 0, 0x1E00, 0 };
-	Collision_Init(obj, CollisionData_NeonK, 3, 4u);
-	obj->DisplaySub = (void(__cdecl*)(ObjectMaster*))Cowgirl_Display;
-	obj->MainSub = (void(__cdecl*)(ObjectMaster*))Cowgirl_Main;
-	obj->DeleteSub = (void(__cdecl*)(ObjectMaster*))Cowgirl_Delete;
-	Cowgirl_AddDynCol(obj, (NJS_OBJECT*)0x1E5340C);
+	a1->Data1->Position = { 311.62f, 0.0f, 338.93f };
+	a1->Data1->Rotation = { 0, 0x1E00, 0 };
+	Collision_Init(a1, CollisionData_NeonK, 3, 4u);
+	a1->DisplaySub = (void(__cdecl*)(ObjectMaster*))Cowgirl_Display;
+	a1->MainSub = (void(__cdecl*)(ObjectMaster*))Cowgirl_Main;
+	a1->DeleteSub = (void(__cdecl*)(ObjectMaster*))Cowgirl_Delete;
 }
 
 void __cdecl sub_5D0560(ObjectMaster *obj)
@@ -917,7 +847,6 @@ void SetUpIdeyaCapModels(NJS_OBJECT* Object1, NJS_OBJECT* Object2, NJS_OBJECT* O
 
 void Casinopolis_Init()
 {
-	CasinoPaletteGenerated = false;
 	NJS_MATERIAL* material;
 	STG09_0_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG09\\0.sa1lvl"));
 	STG09_1_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG09\\1.sa1lvl"));
@@ -943,9 +872,6 @@ void Casinopolis_Init()
 	ParseCasMaterials(STG09_1, 1);
 	if (!ModelsLoaded_STG09)
 	{
-		OTikeiAnim_Load_t = new Trampoline(0x5CB160, 0x5CB165, OTikeiAnim_Load_r);
-		OTikeiAnim_Main_t = new Trampoline(0x5CB0A0, 0x5CB0A6, OTikeiAnim_Main_r);
-		Loop_Main_t = new Trampoline(0x5D5F50, 0x5D5F56, Loop_Main_r);
 		CASINO01_TEXLIST = texlist_casino1;
 		CASINO02_TEXLIST = texlist_casino2;
 		CASINO03_TEXLIST = texlist_casino3;
@@ -1015,9 +941,7 @@ void Casinopolis_Init()
 		WriteData((int*)0x1E77E58, 128); //Gear rotation speed
 		if (CowgirlOn)
 		{
-			CowgirlModel = LoadModel("system\\data\\STG09\\Models\\001D7FE0.sa1mdl", false);
-			CowgirlGlass = CowgirlModel->child->sibling->sibling->sibling->sibling->child->basicdxmodel;
-			*(NJS_OBJECT*)0x1E5B870 = *CowgirlModel;
+			*(NJS_OBJECT*)0x1E5B870 = *LoadModel("system\\data\\STG09\\Models\\001D7FE0.sa1mdl", false);
 			AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E5B870)->basicdxmodel->meshsets[1].vertuv, 92, 16, 100, 0);
 			AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E5B870)->basicdxmodel->meshsets[7].vertuv, 130, 16, 100, 0);
 			AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E5B870)->basicdxmodel->meshsets[8].vertuv, 32, 16, 100, 0);
@@ -1229,10 +1153,10 @@ void Casinopolis_OnFrame()
 		if (WhiteSonic && (InsideMachine == 0 || CurrentLevel != LevelIDs_Casinopolis || CurrentAct != 0 || GameMode == GameModes_Menu || GameState == 3 || GameState == 4 || GameState == 7 || GameState == 21))
 		{
 			WhiteSonic = false;
-			set_blend_factor(0.0f);
-			set_specular_blend(2, -1);
-			set_specular_blend(3, -1);
-			set_shader_flags(ShaderFlags_Blend, false);
+			set_blend_factor_ptr(0.0f);
+			set_specular_blend_ptr(2, -1);
+			set_specular_blend_ptr(3, -1);
+			set_shader_flags_ptr(ShaderFlags_Blend, false);
 			SonicWhiteBlendFactor = 0;
 			//Restore OTeleport UVs
 			for (int i = 0; i < 14; i++)
@@ -1243,19 +1167,13 @@ void Casinopolis_OnFrame()
 		}
 		if (CurrentLevel == LevelIDs_Casinopolis && CurrentAct == 0 && !IsGamePaused())
 		{
-			//Generate palette
-			if (!CasinoPaletteGenerated)
-			{
-				palette_from_rgb(4, 255, 255, 255, true, true);
-				CasinoPaletteGenerated = true;
-			}
 			//Make Sonic white
 			if (!WhiteSonic && InsideMachine != 0)
 			{
 				WhiteSonic = true;
-				set_shader_flags(ShaderFlags_Blend, true);
-				set_specular_blend(2, 4);
-				set_specular_blend(3, 4);
+				set_shader_flags_ptr(ShaderFlags_Blend, true);
+				set_specular_blend_ptr(2, 4);
+				set_specular_blend_ptr(3, 4);
 			}
 			if (WhiteSonic && SonicWhiteBlendFactor <= 0.75f)
 			{
@@ -1265,7 +1183,7 @@ void Casinopolis_OnFrame()
 					((NJS_MESHSET_SADX*)0x1E45F1C)->vertuv[i].v += 16 * min(1, FramerateSetting); //uv_01A45EE4
 					((NJS_MESHSET_SADX*)0x1E46124)->vertuv[i].v += 16 * min(1, FramerateSetting); //uv_01A460EC
 				}
-				set_blend_factor(SonicWhiteBlendFactor);
+				set_blend_factor_ptr(SonicWhiteBlendFactor);
 				SonicWhiteBlendFactor += (0.01f * FramerateSetting);
 			}
 		}

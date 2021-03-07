@@ -254,7 +254,6 @@ DataArray(LandTable*, LandTableArray, 0x97DBE8, 193);
 DataArray(int **, InitializationFunctions, 0x892004, 538);
 DataArray(AnimData, KnucklesAnimData, 0x3C532A0, 114);
 DataArray(AnimData, AmyAnimData, 0x3C54880, 101);
-DataArray(CollisionData_, BurgerMan_Collision, 0x2BBE5B8, 12);
 DataArray(CollisionData_, FakeEgg_Collision, 0x2BBF088, 3);
 DataArray(CollisionData_, OHandKey_Collision, 0x111C610, 2);
 DataArray(CollisionData_, OKurotama_Collision, 0x1101F10, 9);
@@ -282,7 +281,6 @@ FunctionPointer(void, DrawModelCallback_QueueInt, (void(__cdecl* function)(int),
 FunctionPointer(void, DrawModelCallback_QueueOceanData, (void(__cdecl* function)(OceanData*), OceanData* data, float depth, QueuedModelFlagsB queueflags), 0x404840);
 FunctionPointer(void, DrawModelCallback_QueueFloat, (void(__cdecl* function)(float), float data, float depth, QueuedModelFlagsB queueflags), 0x404840);
 FunctionPointer(void, ProcessModel_407BB0, (NJS_MODEL_SADX *model, QueuedModelFlagsB blend, float radius_scale), 0x4094D0);
-FunctionPointer(void, ProcessModel_407CF0, (NJS_MODEL_SADX* model, int a2, int a3), 0x407CF0);
 FunctionPointer(void, ProcessModelNode_TryReallyHard_2, (NJS_OBJECT* a1), 0x40A280);
 FunctionPointer(void, ProcessModelNode_Try, (NJS_OBJECT* a1, int a2, float a3), 0x40A1E0);
 FunctionPointer(int, ProcessModelNode_NoQueueScale, (NJS_OBJECT* a1), 0x4034B0);
@@ -428,6 +426,16 @@ void ReplaceBIN(std::string src);
 void ReplaceSET(std::string src);
 void ReplaceCAM(std::string src);
 void ReplaceGeneric(std::string src, std::string dest);
+
+extern set_shader_flags* set_shader_flags_ptr;
+extern material_register* material_register_ptr;
+extern material_unregister* material_unregister_ptr;
+extern set_diffuse* set_diffuse_ptr;
+extern set_specular* set_specular_ptr;
+extern set_alpha_reject* set_alpha_reject_ptr;
+extern set_blend_factor* set_blend_factor_ptr;
+extern set_diffuse_blend* set_diffuse_blend_ptr;
+extern set_specular_blend* set_specular_blend_ptr;
 
 struct __declspec(align(2)) ObjectThingC
 {

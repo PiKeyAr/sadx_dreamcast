@@ -312,10 +312,11 @@ void GetEmeraldGlow(ObjectMaster* a1)
 	EmeraldGlowPosition.z = Data1->Position.z;
 }
 
-static Trampoline* BurgerStatueMain_t = nullptr;
+static void BurgerStatueMain_r(ObjectMaster* a1);
+static Trampoline BurgerStatueMain_t(0x630780, 0x630785, BurgerStatueMain_r);
 static void __cdecl BurgerStatueMain_r(ObjectMaster* a1)
 {
-	const auto original = TARGET_DYNAMIC(BurgerStatueMain);
+	auto original = reinterpret_cast<decltype(BurgerStatueMain_r)*>(BurgerStatueMain_t.Target());
 	if (FixHeldObjects)
 	{
 		if (a1->Data1->Status & 0x1000)
@@ -330,11 +331,12 @@ static void __cdecl BurgerStatueMain_r(ObjectMaster* a1)
 	}
 	else original(a1);
 }
-	
-static Trampoline* MissionStatueMain_t = nullptr;
+
+static void MissionStatueMain_r(ObjectMaster* a1);
+static Trampoline MissionStatueMain_t(0x593510, 0x593515, MissionStatueMain_r);
 static void __cdecl MissionStatueMain_r(ObjectMaster* a1)
 {
-	const auto original = TARGET_DYNAMIC(MissionStatueMain);
+	auto original = reinterpret_cast<decltype(MissionStatueMain_r)*>(MissionStatueMain_t.Target());
 	if (FixHeldObjects)
 	{
 		if (a1->Data1->Status & 0x1000)
@@ -418,26 +420,29 @@ void __cdecl BurgerShopStatue_DisplayFix(ObjectMaster* a2)
 	}
 }
 
-static Trampoline* GoalEmerald_Windy_Display_t = nullptr;
+static void GoalEmerald_Windy_Display_r(ObjectMaster* a1);
+static Trampoline GoalEmerald_Windy_Display_t(0x4DF3B0, 0x4DF3B6, GoalEmerald_Windy_Display_r);
 static void __cdecl GoalEmerald_Windy_Display_r(ObjectMaster* a1)
 {
-	const auto original = TARGET_DYNAMIC(GoalEmerald_Windy_Display);
+	auto original = reinterpret_cast<decltype(GoalEmerald_Windy_Display_r)*>(GoalEmerald_Windy_Display_t.Target());
 	GetEmeraldGlow(a1);
 	original(a1);
 }
 
-static Trampoline* GoalEmerald_Ice_Display_t = nullptr;
+static void GoalEmerald_Ice_Display_r(ObjectMaster* a1);
+static Trampoline GoalEmerald_Ice_Display_t(0x4ECFA0, 0x4ECFA6, GoalEmerald_Ice_Display_r);
 static void __cdecl GoalEmerald_Ice_Display_r(ObjectMaster* a1)
 {
-	const auto original = TARGET_DYNAMIC(GoalEmerald_Ice_Display);
+	auto original = reinterpret_cast<decltype(GoalEmerald_Ice_Display_r)*>(GoalEmerald_Ice_Display_t.Target());
 	GetEmeraldGlow(a1);
 	original(a1);
 }
 
-static Trampoline* GoalEmerald_Casino_Display_t = nullptr;
+static void GoalEmerald_Casino_Display_r(ObjectMaster* a1);
+static Trampoline GoalEmerald_Casino_Display_t(0x5DD0A0, 0x5DD0A6, GoalEmerald_Casino_Display_r);
 static void __cdecl GoalEmerald_Casino_Display_r(ObjectMaster* a1)
 {
-	const auto original = TARGET_DYNAMIC(GoalEmerald_Casino_Display);
+	auto original = reinterpret_cast<decltype(GoalEmerald_Casino_Display_r)*>(GoalEmerald_Casino_Display_t.Target());
 	GetEmeraldGlow(a1);
 	original(a1);
 }
@@ -834,10 +839,11 @@ float CalculateEnemyYCoordinate_Wrapper(float x, float y, float z, Rotation3 *ro
 }
 
 //This one is used exclusively by the Sweep badnik
-static Trampoline* CalculateEnemyYCoordinate_Sweep_t = nullptr;
+static double CalculateEnemyYCoordinate_Sweep_r(float x, float y, float z, Rotation3 *rotation);
+static Trampoline CalculateEnemyYCoordinate_Sweep_t(0x49EAD0, 0x49EAD7, CalculateEnemyYCoordinate_Sweep_r);
 static double __cdecl CalculateEnemyYCoordinate_Sweep_r(float x, float y, float z, Rotation3 *rotation)
 {
-	const auto original = TARGET_DYNAMIC(CalculateEnemyYCoordinate_Sweep);
+	auto original = reinterpret_cast<decltype(CalculateEnemyYCoordinate_Sweep_r)*>(CalculateEnemyYCoordinate_Sweep_t.Target());
 	float result = 	original(x, y, z, rotation);
 	if (result == -1000000.0f) 
 	{
@@ -978,28 +984,31 @@ void ColorizeRecapText(int a1, int a2, float a3, float a4, float a5, float a6, f
 	sub_6424A0(a1, 0xFFF8F8F8, a3, a4, a5, a6, a7, a8);
 }
 
-static Trampoline* DisplayTitleCard_t = nullptr;
+static Sint32 DisplayTitleCard_r();
+static Trampoline DisplayTitleCard_t(0x47E170, 0x47E175, DisplayTitleCard_r);
 static Sint32 __cdecl DisplayTitleCard_r()
 {
-	const auto original = TARGET_DYNAMIC(DisplayTitleCard);
+	auto original = reinterpret_cast<decltype(DisplayTitleCard_r)*>(DisplayTitleCard_t.Target());
 	CutsceneFadeMode = 0;
 	CutsceneFadeValue = 0;
 	SkipPressed_Cutscene = false;
 	return original();
 }
 
-static Trampoline* CameraB_Display_t = nullptr;
+static void CameraB_Display_r();
+static Trampoline CameraB_Display_t(0x436CD0, 0x436CD6, CameraB_Display_r);
 static void __cdecl CameraB_Display_r()
 {
-	const auto original = TARGET_DYNAMIC(CameraB_Display);
+	auto original = reinterpret_cast<decltype(CameraB_Display_r)*>(CameraB_Display_t.Target());
 	IsCameraUnderwater = false;
 	original();
 }
 
-static Trampoline* SetGlobalPoint2Col_Colors_t = nullptr;
+static void SetGlobalPoint2Col_Colors_r(Uint32 one, Uint32 two, Uint32 threefour);
+static Trampoline SetGlobalPoint2Col_Colors_t(0x402F10, 0x402F18, SetGlobalPoint2Col_Colors_r);
 static void __cdecl SetGlobalPoint2Col_Colors_r(Uint32 one, Uint32 two, Uint32 threefour)
 {
-	const auto original = TARGET_DYNAMIC(SetGlobalPoint2Col_Colors);
+	auto original = reinterpret_cast<decltype(SetGlobalPoint2Col_Colors_r)*>(SetGlobalPoint2Col_Colors_t.Target());
 	if (ScreenFade_Alpha < 200 || ScreenFade_Color.color == 0xFFFFFFFF)
 	{
 		original(one, two, threefour);
@@ -1641,10 +1650,11 @@ void GammaDamageSpriteFix(NJS_SPRITE* a1, Int n, NJD_SPRITE attr)
 	DrawModelCallback_QueueInt(DrawGammaDamageSprite, n, 20000.0f, (QueuedModelFlagsB)0);
 }
 
-static Trampoline* HandKey_Display_t = nullptr;
+static void HandKey_Display_r(ObjectMaster* a1);
+static Trampoline HandKey_Display_t(0x532240, 0x532245, HandKey_Display_r);
 static void __cdecl HandKey_Display_r(ObjectMaster* a1)
 {
-	const auto original = TARGET_DYNAMIC(HandKey_Display);
+	auto original = reinterpret_cast<decltype(HandKey_Display_r)*>(HandKey_Display_t.Target());
 	ObjectMaster* lock = LocksArray[a1->Data1->Index];
 	NJS_VECTOR* pos_lock = nullptr;
 	NJS_VECTOR* pos_key = &a1->Data1->Position;
@@ -1813,17 +1823,6 @@ void General_Init()
 {
 	if (!ModelsLoaded_General)
 	{
-		//Trampolines
-		BurgerStatueMain_t = new Trampoline(0x630780, 0x630785, BurgerStatueMain_r);
-		MissionStatueMain_t = new Trampoline(0x593510, 0x593515, MissionStatueMain_r);
-		GoalEmerald_Windy_Display_t = new Trampoline(0x4DF3B0, 0x4DF3B6, GoalEmerald_Windy_Display_r);
-		GoalEmerald_Ice_Display_t = new Trampoline(0x4ECFA0, 0x4ECFA6, GoalEmerald_Ice_Display_r);
-		GoalEmerald_Casino_Display_t = new Trampoline(0x5DD0A0, 0x5DD0A6, GoalEmerald_Casino_Display_r);
-		CalculateEnemyYCoordinate_Sweep_t = new Trampoline(0x49EAD0, 0x49EAD7, CalculateEnemyYCoordinate_Sweep_r);
-		DisplayTitleCard_t = new Trampoline(0x47E170, 0x47E175, DisplayTitleCard_r);
-		CameraB_Display_t = new Trampoline(0x436CD0, 0x436CD6, CameraB_Display_r);
-		SetGlobalPoint2Col_Colors_t = new Trampoline(0x402F10, 0x402F18, SetGlobalPoint2Col_Colors_r);
-		HandKey_Display_t = new Trampoline(0x532240, 0x532245, HandKey_Display_r);
 		//Disable GrabButton setting in Control
 		if (RestoreYButton) WriteData<5>((char*)0x40FDEA, 0x90u);
 		//Fixes for held objects
@@ -1864,8 +1863,6 @@ void General_Init()
 			WriteData((float**)0x47789A, &HeldOffset_Knuckles_3);
 			WriteData((float**)0x4778AA, &HeldOffset_Knuckles_4);
 			WriteData((float**)0x48E250, &HeldOffset_Big);
-			BurgerMan_Collision[0].center.y = 0.0f;
-			BurgerMan_Collision[1].center.y = 0.0f;
 			FakeEgg_Collision[0].center.y = 0.0f;
 			FakeEgg_Collision[1].center.y = -0.5f;
 			OHandKey_Collision[0].center.y = 0.0f;
@@ -2042,13 +2039,9 @@ void General_Init()
 		WriteCall((void*)0x49EFAE, DrawScalableShadowHook);
 		WriteCall((void*)0x4A1827, SpindashChargeLinesHook);
 		WriteCall((void*)0x4A1E55, SpindashChargeSpriteHook);
-		//Replace hint monitor modelF
+		//Replace hint monitor model
 		HintMonitorModel = LoadModel("system\\data\\1st_read\\Models\\001AD358.sa1mdl", false);
 		HideMesh_Object(HintMonitorModel, 10); //Hide screen (rendered separately in DX)
-		HintMonitorModel->basicdxmodel->mats[8].attrflags &= ~NJD_FLAG_USE_ALPHA;
-		HintMonitorModel->basicdxmodel->mats[11].attrflags &= ~NJD_FLAG_USE_ALPHA;
-		HintMonitorModel->basicdxmodel->mats[14].attrflags &= ~NJD_FLAG_USE_ALPHA;
-		HintMonitorModel->basicdxmodel->mats[15].attrflags &= ~NJD_FLAG_USE_ALPHA;
 		WriteCall((void*)0x7A9509, RenderHintMonitor_Main);
 		WriteCall((void*)0x7A957F, SetHintMonitorTransparency);
 		//Fix frogs lol
@@ -2086,7 +2079,7 @@ void General_Init()
 		//Gamma's projectile fix. I have no idea why this works, but ok I guess
 		E102_OBJECTS[5]->basicdxmodel->mats[0].attr_texId = 10;
 		E102_OBJECTS[5]->basicdxmodel->mats[0].attrflags |= NJD_FLAG_USE_TEXTURE;
-		*E102_OBJECTS[6] = *E102_OBJECTS[5];
+		E102_OBJECTS[6] = E102_OBJECTS[5];
 		//Make the electric sparks render above Gamma's body in post-fight cutscenes
 		WriteCall((void*)0x6F2D96, GammaDamageSpriteFix);
 		//Chaos 1 materials
@@ -2257,8 +2250,8 @@ void General_Init()
 			AddAlphaRejectMaterial((NJS_MATERIAL*)0x8B2F80); //Invincibility ball
 			AddAlphaRejectMaterial((NJS_MATERIAL*)0x8B26E4); //Magnetic barrier
 			AddAlphaRejectMaterial((NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x7C334)); //Emerald shards (cutscene)
-			material_register(WhiteDiffuse_General, LengthOfArray(WhiteDiffuse_General), &ForceWhiteDiffuse);
-			material_register(WhiteDiffuseSecondCharSpecular, LengthOfArray(WhiteDiffuseSecondCharSpecular), &ForceWhiteDiffuse1Specular3);
+			material_register_ptr(WhiteDiffuse_General, LengthOfArray(WhiteDiffuse_General), &ForceWhiteDiffuse);
+			material_register_ptr(WhiteDiffuseSecondCharSpecular, LengthOfArray(WhiteDiffuseSecondCharSpecular), &ForceWhiteDiffuse1Specular3);
 		}
 		RemoveVertexColors_Object((NJS_OBJECT*)0x31AB49C); //Birdie in "Zero holding Amy" cutscenes
 		RemoveVertexColors_Object((NJS_OBJECT*)0x31A72D8); //Zero holding Amy
@@ -2504,7 +2497,7 @@ void General_OnFrame()
 	//Chaos 4 lighting in cutscenes
 	if (DLLLoaded_Lantern)
 	{
-		material_register(Chaos4Materials, LengthOfArray(Chaos4Materials), &Chaos4NPCFunction);
+		material_register_ptr(Chaos4Materials, LengthOfArray(Chaos4Materials), &Chaos4NPCFunction);
 	}
 }
 

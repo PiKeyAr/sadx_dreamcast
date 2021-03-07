@@ -228,10 +228,11 @@ void RenderSmallCloud(NJS_OBJECT *a1, QueuedModelFlagsB a2, float a3)
 	DrawQueueDepthBias = 0.0f;
 }
 
-static Trampoline* TheyForgotToClampAgain_t = nullptr;
+static void TheyForgotToClampAgain_r(ObjectMaster *a1);
+static Trampoline TheyForgotToClampAgain_t(0x4AA540, 0x4AA547, TheyForgotToClampAgain_r);
 static void __cdecl TheyForgotToClampAgain_r(ObjectMaster *a1)
 {
-	const auto original = TARGET_DYNAMIC(TheyForgotToClampAgain);
+	auto original = reinterpret_cast<decltype(TheyForgotToClampAgain_r)*>(TheyForgotToClampAgain_t.Target());
 	original(a1);
 	if (EnableSkyDeck) ClampGlobalColorThing_Thing();
 }
@@ -391,7 +392,6 @@ void SkyDeck_Init()
 	((LandTable*)0x022369A0)->Col = STG06_1->Col;
 	if (!ModelsLoaded_STG06)
 	{
-		TheyForgotToClampAgain_t = new Trampoline(0x4AA540, 0x4AA547, TheyForgotToClampAgain_r);
 		SKYDECK01_TEXLIST = texlist_skydeck1;
 		SKYDECK02_TEXLIST = texlist_skydeck2;
 		SKYDECK03_TEXLIST = texlist_skydeck3;

@@ -241,10 +241,11 @@ void __cdecl Chaos4_Lilypad_Display(ObjectMaster *a2)
 	}
 }
 
-static Trampoline* Chaos4Balls_t = nullptr;
+static void Chaos4Balls_r(ObjectMaster *a1);
+static Trampoline Chaos4Balls_t(0x554FF0, 0x554FF5, Chaos4Balls_r);
 static void __cdecl Chaos4Balls_r(ObjectMaster *a1)
 {
-	const auto original = TARGET_DYNAMIC(Chaos4Balls);
+	auto original = reinterpret_cast<decltype(Chaos4Balls_r)*>(Chaos4Balls_t.Target());
 	EntityData1 *v1 = a1->Data1;
 	if (EnableChaos4)
 	{
@@ -256,10 +257,11 @@ static void __cdecl Chaos4Balls_r(ObjectMaster *a1)
 	original(a1);
 }
 
-static Trampoline* Chaos4BallsAttack_t;
+static void Chaos4BallsAttack_r(ObjectMaster *a1);
+static Trampoline Chaos4BallsAttack_t(0x555A10, 0x555A15, Chaos4BallsAttack_r);
 static void __cdecl Chaos4BallsAttack_r(ObjectMaster *a1)
 {
-	const auto original = TARGET_DYNAMIC(Chaos4BallsAttack);
+	auto original = reinterpret_cast<decltype(Chaos4BallsAttack_r)*>(Chaos4BallsAttack_t.Target());
 	EntityData1 *v1 = a1->Data1;
 	if (EnableChaos4)
 	{
@@ -299,8 +301,6 @@ void Chaos4_Init()
 	}
 	if (!ModelsLoaded_B_CHAOS4)
 	{
-		Chaos4Balls_t = new Trampoline(0x554FF0, 0x554FF5, Chaos4Balls_r);
-		Chaos4BallsAttack_t = new Trampoline(0x555A10, 0x555A15, Chaos4BallsAttack_r);
 		*(NJS_TEXLIST*)0x118FF08 = texlist_chaos4;
 		CHAOS4_OBJECT_TEXLIST = texlist_chaos4_object;
 		WriteData<1>((char*)0x00555A42, NJD_COLOR_BLENDING_INVSRCALPHA);

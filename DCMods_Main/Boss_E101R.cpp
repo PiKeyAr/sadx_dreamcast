@@ -16,10 +16,11 @@ static int e101rsea_dc = 4;
 
 NJS_OBJECT *E101RBossOcean = nullptr;
 
-static Trampoline* E101RHurtExplosion_t = nullptr;
+static void E101RHurtExplosion_r(void *a1);
+static Trampoline E101RHurtExplosion_t(0x4CC880, 0x4CC886, E101RHurtExplosion_r);
 static void __cdecl E101RHurtExplosion_r(void *a1)
 {
-	const auto original = TARGET_DYNAMIC(E101RHurtExplosion);
+	auto original = reinterpret_cast<decltype(E101RHurtExplosion_r)*>(E101RHurtExplosion_t.Target());
 	if (EnableZeroE101R || EnableE101) DrawModelCallback_Queue(original, a1, 22048.0f, QueuedModelFlagsB_SomeTextureThing);
 	else original(a1);
 }
@@ -170,7 +171,6 @@ void E101R_Init()
 	LandTableArray[80] = B_E101_R;
 	if (!ModelsLoaded_B_E101R)
 	{
-		E101RHurtExplosion_t = new Trampoline(0x4CC880, 0x4CC886, E101RHurtExplosion_r);
 		if (!ModelsLoaded_B_ROBO) ResizeE101RTexlist();
 		FixFVFShit();
 		WriteCall((void*)0x570DB1, RenderE101R_Rocket);

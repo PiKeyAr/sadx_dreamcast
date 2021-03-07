@@ -138,10 +138,11 @@ float DistanceMultiplier_1 = 0.5f;
 float DistanceMultiplier_4 = 2.0f;
 float DistanceMultiplier_8 = 4.0f;
 
-static Trampoline* AmyHammerEffect_t = nullptr;
+static void __cdecl AmyHammerEffect_r(ObjectMaster *a1);
+static Trampoline AmyHammerEffect_t(0x4C5BC0, 0x4C5BC9, AmyHammerEffect_r);
 static void __cdecl AmyHammerEffect_r(ObjectMaster *a1)
 {
-	const auto original = TARGET_DYNAMIC(AmyHammerEffect);
+	auto original = reinterpret_cast<decltype(AmyHammerEffect_r)*>(AmyHammerEffect_t.Target());
 	if (EnableSpeedFixes)
 	{
 		if (FramerateSetting >= 2 || FrameCounter % 2 == 0) original(a1);
@@ -149,10 +150,11 @@ static void __cdecl AmyHammerEffect_r(ObjectMaster *a1)
 	else original(a1);
 }
 
-static Trampoline* OHae_Main_t = nullptr;
+static void __cdecl OHae_Main_r(ObjectMaster *a1);
+static Trampoline OHae_Main_t(0x5C8B40, 0x5C8B48, OHae_Main_r);
 static void __cdecl OHae_Main_r(ObjectMaster *a1)
 {
-	const auto original = TARGET_DYNAMIC(OHae_Main);
+	auto original = reinterpret_cast<decltype(OHae_Main_r)*>(OHae_Main_t.Target());
 	if (EnableSpeedFixes)
 	{
 		if (FramerateSetting >= 2 || FrameCounter % 2 == 0) original(a1);
@@ -161,10 +163,11 @@ static void __cdecl OHae_Main_r(ObjectMaster *a1)
 	else original(a1);
 }
 
-static Trampoline* OWsr2_Main_t = nullptr;
+static void __cdecl OWsr2_Main_r(ObjectMaster *a1);
+static Trampoline OWsr2_Main_t(0x5C93F0, 0x5C93F9, OWsr2_Main_r);
 static void __cdecl OWsr2_Main_r(ObjectMaster *a1)
 {
-	const auto original = TARGET_DYNAMIC(OWsr2_Main);
+	auto original = reinterpret_cast<decltype(OWsr2_Main_r)*>(OWsr2_Main_t.Target());
 	if (EnableSpeedFixes)
 	{
 		if (FramerateSetting >= 2 || FrameCounter % 2 == 0) original(a1);
@@ -287,10 +290,11 @@ void __cdecl Fuse_Fixed(ObjectMaster *a1)
 	}
 }
 
-static Trampoline* Fishies_Main_t = nullptr;
+static void __cdecl Fishies_Main_r(ObjectMaster *a1);
+static Trampoline Fishies_Main_t(0x4FC9C0, 0x4FC9C8, Fishies_Main_r);
 static void __cdecl Fishies_Main_r(ObjectMaster *a1)
 {
-	const auto original = TARGET_DYNAMIC(Fishies_Main);
+	auto original = reinterpret_cast<decltype(Fishies_Main_r)*>(Fishies_Main_t.Target());
 	if (EnableSpeedFixes)
 	{
 		if (FramerateSetting >= 2 || FrameCounter % 2 == 0) original(a1);
@@ -299,18 +303,20 @@ static void __cdecl Fishies_Main_r(ObjectMaster *a1)
 	else original(a1);
 }
 
-static Trampoline* Fuse_t = nullptr;
+static void __cdecl Fuse_r(ObjectMaster *a1);
+static Trampoline Fuse_t(0x4CE830, 0x4CE837, Fuse_r);
 static void __cdecl Fuse_r(ObjectMaster *a1)
 {
-	const auto original = TARGET_DYNAMIC(Fuse);
+	auto original = reinterpret_cast<decltype(Fuse_r)*>(Fuse_t.Target());
 	if (EnableSpeedFixes) Fuse_Fixed(a1);
 	else original(a1);
 }
 
-static Trampoline* PBJackPot_Main_t = nullptr;
+static void __cdecl PBJackPot_Main_r(ObjectMaster *a1);
+static Trampoline PBJackPot_Main_t(0x5E12C0, 0x5E12C7, PBJackPot_Main_r);
 static void __cdecl PBJackPot_Main_r(ObjectMaster *a1)
 {
-	const auto original = TARGET_DYNAMIC(PBJackPot_Main);
+	auto original = reinterpret_cast<decltype(PBJackPot_Main_r)*>(PBJackPot_Main_t.Target());
 	if (EnableSpeedFixes)
 	{
 		if (FramerateSetting >= 2 || FrameCounter % 2 == 0) original(a1);
@@ -323,10 +329,11 @@ static void __cdecl PBJackPot_Main_r(ObjectMaster *a1)
 	else original(a1);
 }
 
-static Trampoline* OFire_t = nullptr;
+static void __cdecl OFire_r(ObjectMaster *a1);
+static Trampoline OFire_t(0x5E82F0, 0x5E82F5, OFire_r);
 static void __cdecl OFire_r(ObjectMaster *a1)
 {
-	const auto original = TARGET_DYNAMIC(OFire);
+	auto original = reinterpret_cast<decltype(OFire_r)*>(OFire_t.Target());
 	if (EnableSpeedFixes)
 	{
 		if (FramerateSetting >= 2 || FrameCounter % 2 == 0) original(a1);
@@ -341,14 +348,15 @@ int GetFrameCounter_Half()
 	else return FrameCounter;
 }
 
-static Trampoline* UpgradeSparks_t = nullptr;
+static void __cdecl UpgradeSparks_r(ObjectMaster *a1);
+static Trampoline UpgradeSparks_t(0x4BAF10, 0x4BAF15, UpgradeSparks_r);
 static void __cdecl UpgradeSparks_r(ObjectMaster *a1)
 {
 	EntityData1 *v1; // eax
 	double v2; // st7
 	v1 = a1->Data1;
 	v2 = v1->Scale.z;
-	const auto original = TARGET_DYNAMIC(UpgradeSparks);
+	auto original = reinterpret_cast<decltype(UpgradeSparks_r)*>(UpgradeSparks_t.Target());
 	if (EnableSpeedFixes)
 	{
 		if (FramerateSetting >= 2 || FrameCounter % 2 == 0) original(a1);
@@ -385,13 +393,14 @@ void RenderMainUpgradeModel(NJS_OBJECT *a1, QueuedModelFlagsB a2, float a3)
 	DrawQueueDepthBias = 0;
 }
 
-static Trampoline* Chaos0RainThing_t = nullptr;
+static void __cdecl Chaos0RainThing_r(ObjectMaster *a1);
+static Trampoline Chaos0RainThing_t(0x546140, 0x546146, Chaos0RainThing_r);
 static void __cdecl Chaos0RainThing_r(ObjectMaster *a1)
 {
 	EntityData1 *v2; // esi
 	double v3; // st7
 	v2 = a1->Data1;
-	const auto original = TARGET_DYNAMIC(Chaos0RainThing);
+	auto original = reinterpret_cast<decltype(Chaos0RainThing_r)*>(Chaos0RainThing_t.Target());
 	if (EnableSpeedFixes)
 	{
 		if (FramerateSetting >= 2 || FrameCounter % 2 == 0) original(a1);
@@ -408,10 +417,11 @@ static void __cdecl Chaos0RainThing_r(ObjectMaster *a1)
 	else original(a1);
 }
 
-static Trampoline* EggHornetJetThing_t = nullptr;
+static int __fastcall EggHornetJetThing_r(int a1);
+static Trampoline EggHornetJetThing_t(0x572620, 0x572628, EggHornetJetThing_r);
 static int __fastcall EggHornetJetThing_r(int a1)
 {
-	const auto original = TARGET_DYNAMIC(EggHornetJetThing);
+	auto original = reinterpret_cast<decltype(EggHornetJetThing_r)*>(EggHornetJetThing_t.Target());
 	if (EnableSpeedFixes)
 	{
 		if (FramerateSetting >= 2 || FrameCounter % 2 == 0) return original(a1);
@@ -472,13 +482,14 @@ void Bubbles_Display(ObjectMaster *a1)
 	}
 }
 
-static Trampoline* Bubbles_t = nullptr;
+static void __cdecl Bubbles_r(ObjectMaster *a1);
+static Trampoline Bubbles_t(0x7A88B0, 0x7A88B5, Bubbles_r);
 static void __cdecl Bubbles_r(ObjectMaster *a1)
 {
 	EntityData1 *v2; // esi
 	double v3; // st7
 	v2 = a1->Data1;
-	const auto original = TARGET_DYNAMIC(Bubbles);
+	auto original = reinterpret_cast<decltype(Bubbles_r)*>(Bubbles_t.Target());
 	if (EnableSpeedFixes)
 	{
 		if (FramerateSetting >= 2 || FrameCounter % 2 == 0) original(a1);
@@ -534,7 +545,8 @@ void BigHudFix(SomeSpriteThing *a1)
 		else DrawHudCharacter(a1);
 }
 
-static Trampoline* OLamp_Display_t = nullptr;
+static void __cdecl OLamp_Display_r(ObjectMaster *a1);
+static Trampoline OLamp_Display_t(0x606610, 0x606617, OLamp_Display_r);
 static void __cdecl OLamp_Display_r(ObjectMaster *a1)
 {
 	EntityData1 *v1; // esi
@@ -543,7 +555,7 @@ static void __cdecl OLamp_Display_r(ObjectMaster *a1)
 	double v6; // st7
 	__int16 v5; // ax
 	NJS_OBJECT obj;
-	const auto original = TARGET_DYNAMIC(OLamp_Display);
+	auto original = reinterpret_cast<decltype(OLamp_Display_r)*>(OLamp_Display_t.Target());
 	if (EnableSpeedFixes)
 	{
 		if (FramerateSetting >= 2 || FrameCounter % 2 == 0) original(a1);
@@ -559,10 +571,11 @@ static void __cdecl OLamp_Display_r(ObjectMaster *a1)
 	else original(a1);
 }
 
-static Trampoline* ZeroSparksMain_t = nullptr;
+static void ZeroSparksMain_r(ObjectMaster *a1);
+static Trampoline ZeroSparksMain_t(0x58B640, 0x58B645, ZeroSparksMain_r);
 static void __cdecl ZeroSparksMain_r(ObjectMaster *a1)
 {
-	const auto original = TARGET_DYNAMIC(ZeroSparksMain);
+	auto original = reinterpret_cast<decltype(ZeroSparksMain_r)*>(ZeroSparksMain_t.Target());
 	if (EnableSpeedFixes)
 	{
 		if (FramerateSetting > 2 || (FramerateSetting < 2 && FrameCounter % 2 == 0)) original(a1);
@@ -571,10 +584,11 @@ static void __cdecl ZeroSparksMain_r(ObjectMaster *a1)
 	else ZeroSparks_Display(a1);
 }
 
-static Trampoline* ZeroFVFShit_Main_t = nullptr;
+static void ZeroFVFShit_Main_r(ObjectMaster *a1);
+static Trampoline ZeroFVFShit_Main_t(0x58C590, 0x58C597, ZeroFVFShit_Main_r);
 static void __cdecl ZeroFVFShit_Main_r(ObjectMaster *a1)
 {
-	const auto original = TARGET_DYNAMIC(ZeroFVFShit_Main);
+	auto original = reinterpret_cast<decltype(ZeroFVFShit_Main_r)*>(ZeroFVFShit_Main_t.Target());
 	if (EnableSpeedFixes && (FramerateSetting > 2 || (FramerateSetting < 2 && FrameCounter % 2 == 0))) a1->Data1->InvulnerableTime++;
 	original(a1);
 }
@@ -596,21 +610,6 @@ void DashPanelFix(NJS_ACTION* action, Float frame)
 
 void SpeedFixes_Init()
 {
-	//Trampolines
-	AmyHammerEffect_t = new Trampoline(0x4C5BC0, 0x4C5BC9, AmyHammerEffect_r);
-	OHae_Main_t = new Trampoline(0x5C8B40, 0x5C8B48, OHae_Main_r);
-	OWsr2_Main_t = new Trampoline(0x5C93F0, 0x5C93F9, OWsr2_Main_r);
-	Fishies_Main_t = new Trampoline(0x4FC9C0, 0x4FC9C8, Fishies_Main_r);
-	Fuse_t = new Trampoline(0x4CE830, 0x4CE837, Fuse_r);
-	PBJackPot_Main_t = new Trampoline(0x5E12C0, 0x5E12C7, PBJackPot_Main_r);
-	OFire_t = new Trampoline(0x5E82F0, 0x5E82F5, OFire_r);
-	UpgradeSparks_t = new Trampoline(0x4BAF10, 0x4BAF15, UpgradeSparks_r);
-	Chaos0RainThing_t = new Trampoline(0x546140, 0x546146, Chaos0RainThing_r);
-	EggHornetJetThing_t = new Trampoline(0x572620, 0x572628, EggHornetJetThing_r);
-	Bubbles_t = new Trampoline(0x7A88B0, 0x7A88B5, Bubbles_r);
-	OLamp_Display_t = new Trampoline(0x606610, 0x606617, OLamp_Display_r);
-	ZeroSparksMain_t = new Trampoline(0x58B640, 0x58B645, ZeroSparksMain_r);
-	ZeroFVFShit_Main_t = new Trampoline(0x58C590, 0x58C597, ZeroFVFShit_Main_r);
 	//Big ring flashing HUD
 	WriteData((float**)0x0046CE9B, &BigHudFix_float);
 	WriteData((short*)0x0046CE6B, RingCountFlashSpeed);

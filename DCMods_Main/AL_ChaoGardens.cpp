@@ -2484,6 +2484,7 @@ void ChaoGardens_Init()
 			ChaoTreeSpawns[1].e.z = -65.27f;  //Palm tree 5
 		}
 		ChaoRace_Init();
+		ReinitializeDLLStuff();
 		ModelsLoaded_Chao = true;
 	}
 }

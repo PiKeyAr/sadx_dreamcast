@@ -212,10 +212,11 @@ void RenderOfficeDoor_Child(NJS_MODEL_SADX *a1, float scale)
 	DrawModel_Queue(a1, QueuedModelFlagsB_EnableZWrite);
 }
 
-static Trampoline* SSCar_Display_t = nullptr;
+static void SSCar_Display_r(ObjectMaster* a1);
+static Trampoline SSCar_Display_t(0x6325D0, 0x6325D5, SSCar_Display_r);
 static void __cdecl SSCar_Display_r(ObjectMaster* a1)
 {
-	const auto original = TARGET_DYNAMIC(SSCar_Display);
+	auto original = reinterpret_cast<decltype(SSCar_Display_r)*>(SSCar_Display_t.Target());
 	EntityData2* Data2 = (EntityData2*)a1->Data2;
 	//Animation frame fix
 	if (EnableStationSquare && Data2->field_38 > 7) Data2->field_38 = 0;
@@ -635,7 +636,7 @@ void ADV00_Init()
 	LandTable* ADV00_2 = ADV00_2_Info->getlandtable(); // &landtable_000C21F0; // 
 	LandTable* ADV00_3 = ADV00_3_Info->getlandtable(); // &landtable_000DCEBC; // 
 	LandTable* ADV00_4 = ADV00_4_Info->getlandtable(); // &landtable_00135A90; // 
-	LandTable* ADV00_5 = ADV00_5_Info->getlandtable(); // &landtable_001573CC; //
+	LandTable* ADV00_5 = ADV00_5_Info->getlandtable(); // &landtable_001573CC; // 
 	RemoveMaterialColors_Landtable(ADV00_0);
 	RemoveMaterialColors_Landtable(ADV00_1);
 	RemoveMaterialColors_Landtable(ADV00_2);
@@ -666,19 +667,18 @@ void ADV00_Init()
 	LandTableArray[107] = ADV00_3;
 	LandTableArray[108] = ADV00_4;
 	LandTableArray[109] = ADV00_5;
-	*LANDTABLESS[0] = *ADV00_0;
-	*LANDTABLESS[1] = *ADV00_1;
-	*LANDTABLESS[2] = *ADV00_2;
-	*LANDTABLESS[3] = *ADV00_3;
-	*LANDTABLESS[4] = *ADV00_4;
-	*LANDTABLESS[5] = *ADV00_5;
+	LANDTABLESS[0] = ADV00_0;
+	LANDTABLESS[1] = ADV00_1;
+	LANDTABLESS[2] = ADV00_2;
+	LANDTABLESS[3] = ADV00_3;
+	LANDTABLESS[4] = ADV00_4;
+	LANDTABLESS[5] = ADV00_5;
 	ParseSSColFlags();
 	ParseSSMaterials(false);
 	PreviousTimeOfDay = -1;
 	//This is done only once
 	if (!ModelsLoaded_ADV00)
 	{
-		SSCar_Display_t = new Trampoline(0x6325D0, 0x6325D5, SSCar_Display_r);
 		*(NJS_TEXLIST*)0x2AEE920 = texlist_sscar; //SSCAR 
 		*(NJS_TEXLIST*)0x2AD9F58 = texlist_sstrain; //SS_TRAIN
 		OBJ_SS_TEXLIST = texlist_obj_ss;
@@ -687,12 +687,12 @@ void ADV00_Init()
 		{
 			WriteData<5>((char*)0x62EC52, 0x90u); //Don't call the ocean rendering function twice
 		}
-		*ADV00_TEXLISTS[0] = texlist_advss00;
-		*ADV00_TEXLISTS[1] = texlist_advss01;
-		*ADV00_TEXLISTS[2] = texlist_advss02;
-		*ADV00_TEXLISTS[3] = texlist_advss03;
-		*ADV00_TEXLISTS[4] = texlist_advss04;
-		*ADV00_TEXLISTS[5] = texlist_advss05;
+		ADV00_TEXLISTS[0] = &texlist_advss00;
+		ADV00_TEXLISTS[1] = &texlist_advss01;
+		ADV00_TEXLISTS[2] = &texlist_advss02;
+		ADV00_TEXLISTS[3] = &texlist_advss03;
+		ADV00_TEXLISTS[4] = &texlist_advss04;
+		ADV00_TEXLISTS[5] = &texlist_advss05;
 		StationSquareCarTextureIDs[5] = 7; //Not an actual car surface texture but it's like that in SA1 too
 		WriteCall((void*)0x63EECF, SouvenirShopDoor_Depth);
 		WriteCall((void*)0x636DE9, RenderOfficeDoor);
@@ -909,6 +909,7 @@ void ADV00_Init()
 			StationSquare6Fog[i].Layer = -12000.0f;
 			StationSquare6DrawDist[i].Maximum = -600.0f;
 		}
+		ReinitializeDLLStuff();
 		ModelsLoaded_ADV00 = true;
 	}
 }
