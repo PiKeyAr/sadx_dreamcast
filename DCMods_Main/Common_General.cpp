@@ -404,7 +404,7 @@ void __cdecl BurgerShopStatue_DisplayFix(ObjectMaster* a2)
 		njControl3D_Backup();
 		njControl3D(NJD_CONTROL_3D_CONSTANT_MATERIAL);
 		SetMaterialAndSpriteColor_Float(1.0, 1.0, 1.0, 1.0);
-		njAction_QueueObject(MODEL_SS_PEOPLE_OBJECTS[12], *(NJS_MOTION**)(MODEL_SS_PEOPLE_MOTIONS + 76), 0.0);
+		njAction_QueueObject(MODEL_SS_PEOPLE_OBJECTS[12], MODEL_SS_PEOPLE_MOTIONS[19], 0.0f);
 		ClampGlobalColorThing_Thing();
 		njControl3D_Restore();
 		if (v1->CharIndex < 8 && !(v1->Status & 0x1000))
