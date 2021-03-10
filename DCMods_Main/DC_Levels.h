@@ -243,6 +243,7 @@ DataArray(CollisionData_, Chaos6Freezer_Collision, 0x1386AC8, 3);
 FunctionPointer(double, Calculate2DDepth, (QueuedModelFlagsB flags, float a2), 0x404290);
 FunctionPointer(void, Cutscene_ResetTransition, (), 0x436550);
 FunctionPointer(void, Cutscene_WaitForInput, (int a1), 0x4314D0);
+FunctionPointer(void, DrawModelCallback_QueueNothing, (void(__cdecl* function)(), float depth, QueuedModelFlagsB queueflags), 0x404840);
 FunctionPointer(void, DrawModelCallback_QueueModel, (void(__cdecl* function)(NJS_MODEL_SADX*), NJS_MODEL_SADX* data, float depth, QueuedModelFlagsB queueflags), 0x404840);
 FunctionPointer(void, DrawModelCallback_QueueObject, (void(__cdecl* function)(NJS_OBJECT*), NJS_OBJECT* data, float depth, QueuedModelFlagsB queueflags), 0x404840);
 FunctionPointer(void, DrawModelCallback_QueueObjectMaster, (void(__cdecl* function)(ObjectMaster*), ObjectMaster* data, float depth, QueuedModelFlagsB queueflags), 0x404840);
@@ -716,8 +717,8 @@ void njDrawSprite2D_Queue_Point(NJS_SPRITE* sp, Int n, Float pri, NJD_SPRITE att
 void AnimateTexture(TextureAnimation *texanim);
 void AnimateUVs(UVAnimation *animation);
 void ClearTextureAnimationData();
-void AddTextureAnimation(int level, int act, NJS_MATERIAL* material, bool nonsequential, int speed, int frame1, int frame2, int frame3, int frame4, int frame5, int frame6, int frame7, int frame8, int frame9, int frame10, int frame11, int frame12, int frame13, int frame14, int frame15, int frame16);
-void AddTextureAnimation_Permanent(int level, int act, NJS_MATERIAL* material, bool nonsequential, int speed, int frame1, int frame2, int frame3, int frame4, int frame5, int frame6, int frame7, int frame8, int frame9, int frame10, int frame11, int frame12, int frame13, int frame14, int frame15, int frame16);
+void AddTextureAnimation(int level, int act, NJS_MATERIAL* material, bool nonsequential, int speed, int frame1, int frame2, int frame3 = -1, int frame4 = -1, int frame5 = -1, int frame6 = -1, int frame7 = -1, int frame8 = -1, int frame9 = -1, int frame10 = -1, int frame11 = -1, int frame12 = -1, int frame13 = -1, int frame14 = -1, int frame15 = -1, int frame16 = -1);
+void AddTextureAnimation_Permanent(int level, int act, NJS_MATERIAL* material, bool nonsequential, int speed, int frame1, int frame2, int frame3 = -1, int frame4 = -1, int frame5 = -1, int frame6 = -1, int frame7 = -1, int frame8 = -1, int frame9 = -1, int frame10 = -1, int frame11 = -1, int frame12 = -1, int frame13 = -1, int frame14 = -1, int frame15 = -1, int frame16 = -1);
 void AddUVAnimation(int level, int act, NJS_TEX* uv, int uv_count, int timer, int u_speed, int v_speed);
 void AddUVAnimation_Permanent(int level, int act, NJS_TEX* uv, int uv_count, int timer, int u_speed, int v_speed);
 void RemoveVertexColors_Object(NJS_OBJECT *obj);
