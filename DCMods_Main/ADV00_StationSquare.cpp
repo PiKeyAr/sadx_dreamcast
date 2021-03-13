@@ -527,16 +527,36 @@ void SwitchLighting_TimeOfDay(int act)
 	Uint32 materialflags;
 	int texid;
 	LandTable* landtable;
+	
 	Sint8 TimeOfDay = GetTimeOfDay();
-	if (act == 0) landtable = LANDTABLESS[0];
-	else if (act == 1) landtable = LANDTABLESS[1];
-	else if (act == 2) landtable = LANDTABLESS[2];
-	else if (act == 3) landtable = LANDTABLESS[3];
-	else if (act == 4) landtable = LANDTABLESS[4];
-	else landtable = LANDTABLESS[5];
+	switch (act)
+	{
+	case 1:
+		landtable = LANDTABLESS[1];
+		break;
+	case 2:
+		landtable = LANDTABLESS[2];
+		break;
+	case 3:
+		landtable = LANDTABLESS[3];
+		break;
+	case 4:
+		landtable = LANDTABLESS[4];
+		break;
+	case 5:
+		landtable = LANDTABLESS[5];
+	case 0:
+	default:
+		landtable = LANDTABLESS[0];
+		break;
+	}
+	
 	// OGaitou "fix"
-	if (TimeOfDay != 2) ((NJS_OBJECT*)0x2AC9F10)->child->sibling->basicdxmodel->mats[0].attrflags = 0x9421A500;
-	else ((NJS_OBJECT*)0x2AC9F10)->child->sibling->basicdxmodel->mats[0].attrflags = 0x9621A500;
+	if (TimeOfDay != 2) 
+		((NJS_OBJECT*)0x2AC9F10)->child->sibling->basicdxmodel->mats[0].attrflags = 0x9421A500;
+	else 
+		((NJS_OBJECT*)0x2AC9F10)->child->sibling->basicdxmodel->mats[0].attrflags = 0x9621A500;
+
 	for (int j = 0; j < landtable->COLCount; j++)
 	{
 		for (int k = 0; k < landtable->Col[j].Model->basicdxmodel->nbMat; ++k)

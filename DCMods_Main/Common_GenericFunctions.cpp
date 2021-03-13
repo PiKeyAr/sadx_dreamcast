@@ -1450,11 +1450,16 @@ void land_DrawObject_New(NJS_OBJECT* a1, _OBJ_LANDENTRY* a2)
 
 	// Disable Z Write
 	if (flags & SurfaceFlags_NoZWrite)
-		queueFlags = 0; // Regular
+	{
+		if (flags & SurfaceFlags_Watefall)
+			queueFlags = QueuedModelFlagsB_3;
+		else
+			queueFlags = 0; // Regular flag
+	}
 
 	// Alternative queue flags
 	else if (flags & SurfaceFlags_Watefall)
-		queueFlags = 4; // SomeTextureThing
+		queueFlags = QueuedModelFlagsB_SomeTextureThing;
 
 	// Draw with callback
 	if (a2->zWidth != 0)
