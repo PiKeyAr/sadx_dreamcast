@@ -48808,8 +48808,8 @@ extern "C" __declspec(dllexport) COL collist_000DA99C[] = {
 	{ { 4.602696f, 56, 1440.988f }, 44.75768f, 0, 0, &object_00134CA8, 0, 0xC0000001 },
 	{ { -34.75202f, 56, 1460.666f }, 44.75768f, 0, 0, &object_00134CDC, 0, 0xC0000001 },
 	{ { 152.3689f, 20.5f, 1055.52f }, 27.34206f, 0, 0, &object_001222E8_2, 0, 0x80000000 }, //Newspapers
-	{ { 682.9835f, 66.46802f, 1299.016f }, 35.25409f, 0, 0, &object_0011935C_2, 0, 0x89000000 }, //Windows in secret area
-	{ { 683, -31.5f, 1349 }, 26.87006f, 0, 0, &object_00117660, 0, 0xA9040000 }, //Underwater thing
+	{ { 682.9835f, 66.46802f, 1299.016f }, 35.25409f, 5000.0f, 0, &object_0011935C_2, 0, 0x80000000 }, //Windows in secret area
+	{ { 683, -31.5f, 1349 }, 26.87006f, -12000.0f, 0, &object_00117660, 0, 0x81000000 }, //Underwater thing
 	{ { 683, 5.718987f, 1349 }, 15.38035f, 0, 0, &object_001177E8, 0, 0x80000000 }, //Ceiling light in the sewers
 	{ { -0.686898f, -2.5f, 1664.888f }, 203.471f, 0, 0, &object_001870BC_DX, 0, 0x00000001 }, //DX asphalt 1
 	{ { 212.4902f, -2.5f, 1555.488f }, 190.0104f, 0, 0, &object_00188500_DX, 0, 0x00000001 }, //DX asphalt 2
@@ -48837,20 +48837,20 @@ extern "C" __declspec(dllexport) COL collist_000DA99C[] = {
 	{ { 457.8635f, -39.14253f, 1736.436f }, 141.2818f, 0, 0, &object_00123F14, 0, 0x80040000 }, //Seashore bit
 	{ { 870.5f, -25, 2005.5f }, 512.3165f, 0, 0, &object_001235EC_2, 0, 0x80040000 }, //Seashore 1
 	{ { 112.3754f, -22.5f, 1842 }, 391.2533f, 0, 0, &object_000E7CA8_2, 0, 0xC0100101 }, //Seashore 2
-	{ { 898.5f, -14.62535f, 1966.875f }, 464.1407f, 0, 0, &object_00123AEC, 0, 0x88040000 }, //Sea waves 1
-	{ { 78.32019f, -18.125f, 1808.923f }, 345.4697f, 0, 0, &object_001226E4, 0, 0x88040000 }, //Sea waves 2
+	{ { 898.5f, -14.62535f, 1966.875f }, 464.1407f, 0, -5500.0f, &object_00123AEC, 0, 0x80040000 }, //Sea waves 1
+	{ { 78.32019f, -18.125f, 1808.923f }, 345.4697f, 0, -5500.0f, &object_001226E4, 0, 0x80040000 }, //Sea waves 2
 	{ { 673.3333f, -18.5f, 1415 }, 338.9731f, 0, 0, &object_001340E0, 0, 0x80000002 }, //Sewers water
-	{ { 220, -18.5f, 4420 }, 3946.758f, 0, 0, &object_00114E50, 0, 0x88000000 }, //Sea
-	{ { 679, 187.5f, 1771.5f }, 86.63862f, 0, 0, &object_0012A1A8_2, 0, 0x89000000 }, //Twinkle top transparent
-	{ { 676.3814f, 27.5f, 1771.5f }, 147.0324f, 0, 0, &object_00125C08_2, 0, 0x88040000 }, //Twinkle bottom transparent
-	{ { 400.1259f, 66, 1547 }, 38.39181f, 0, 0, &object_001266EC_2, 0, 0x89000000 }, //Glass 1
-	{ { 483.9287f, 66, 1709.625f }, 124.5781f, 0, 0, &object_00128350_2, 0, 0x89000000 }, //Glass 2
-	{ { 400.0001f, 66, 1606.5f }, 42.19535f, 0, 0, &object_00101948_2, 0, 0x89000000 }, //Glass 3
+	{ { 220, -18.5f, 4420 }, 3946.758f, 0, -6000.0f, &object_00114E50, 0, 0x81000002 }, //Sea
+	{ { 679, 187.5f, 1771.5f }, 86.63862f, 5000.0f, 0, &object_0012A1A8_2, 0, 0x80000000 }, //Twinkle top transparent
+	{ { 676.3814f, 27.5f, 1771.5f }, 147.0324f, 0, -6000.0f, &object_00125C08_2, 0, 0x80000000 }, //Twinkle bottom transparent
+	{ { 400.1259f, 66, 1547 }, 38.39181f, 5000.0f, 0, &object_001266EC_2, 0, 0x81000000 }, //Glass 1
+	{ { 483.9287f, 66, 1709.625f }, 124.5781f, 5000.0f, 0, &object_00128350_2, 0, 0x81000000 }, //Glass 2
+	{ { 400.0001f, 66, 1606.5f }, 42.19535f, 5000.0f, 0, &object_00101948_2, 0, 0x81000000 }, //Glass 3
 	{ { 256.7499f, 35, 1046.5f }, 86.19102f, 0, 0, &object_000E3C90_2, 0, 0xC2001001 }, //Roof tops transparent
-	{ { 220, -17.29691f, 4420 }, 3947.758f, 0, 0, &SADXWaterCollision, 0, 2 }, //SADX water (the invisible part)
+	{ { 220, -17.29691f, 4420 }, 3947.758f, 0, 0, &SADXWaterCollision, 0, 0x400000}, //SADX water (the invisible part)
 	{ { 220, -50.71019f, 4420 }, 3947.758f, 0, 0, &SADXSeaBottom, 0, 0x00000000 }, //SADX water (sea bottom)
 };
 
-extern "C" __declspec(dllexport) LandTable landtable_000DCEBC = { LengthOfArray<int16_t>(collist_000DA99C), 0, 0xC, 1500, collist_000DA99C, NULL, "ADVSS03", (NJS_TEXLIST *)&texlist_advss03, 0, 0 };
+extern "C" __declspec(dllexport) LandTable landtable_000DCEBC = { LengthOfArray<int16_t>(collist_000DA99C), 0, 0xC, 0, 1500, collist_000DA99C, NULL, "ADVSS03", (NJS_TEXLIST *)&texlist_advss03, 0, 0 };
 
 #pragma warning(pop)

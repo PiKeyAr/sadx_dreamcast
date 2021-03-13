@@ -46002,6 +46002,6 @@ extern "C" __declspec(dllexport) COL collist_00013220[] = {
 	{ { 444.4f, 24.67667f, 959.7599f }, 54.56951f, 0, 0, &object_00019E74_2, 0, 0x80001001 }, //red-yellow roof top
 };
 
-extern "C" __declspec(dllexport) LandTable landtable_000157F4 = { LengthOfArray<int16_t>(collist_00013220), 0, 0xC, 1500, collist_00013220, NULL, "ADVSS00", (NJS_TEXLIST *)&texlist_advss00, 0, 0 };
+extern "C" __declspec(dllexport) LandTable landtable_000157F4 = { LengthOfArray<int16_t>(collist_00013220), 0, 0xC, 0, 1500, collist_00013220, NULL, "ADVSS00", (NJS_TEXLIST *)&texlist_advss00, 0, 0 };
 
 #pragma warning(pop)

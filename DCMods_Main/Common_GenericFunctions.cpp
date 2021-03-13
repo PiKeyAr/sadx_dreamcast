@@ -1425,6 +1425,8 @@ static inline void land_DrawObjectOriginal(NJS_OBJECT* a1, _OBJ_LANDENTRY* a2)
 }
 
 // Landtable draw hook
+// This uses the normally unused "Y width" and "Z width" COL item fields to manipulate depth.
+// The Z width value is used as depth for the callback function.
 void land_DrawObject_New(NJS_OBJECT* a1, _OBJ_LANDENTRY* a2)
 {
 	NJS_MODEL_SADX* v2; // esi
@@ -1438,46 +1440,53 @@ void land_DrawObject_New(NJS_OBJECT* a1, _OBJ_LANDENTRY* a2)
 		land_DrawObjectOriginal(a1, a2);
 		return;
 	}
-	PrintDebug("lelNormal");
+
 	v2 = a1->basicdxmodel;
+	if (!IsVisible(&v2->center, v2->r))
+		return;
+		
 	flags = a2->slAttribute;
-	if (IsVisible(&v2->center, v2->r))
+	int queueFlags = QueuedModelFlagsB_EnableZWrite;
+
+	// Disable Z Write
+	if (flags & SurfaceFlags_NoZWrite)
+		queueFlags = 0; // Regular
+
+	// Alternative queue flags
+	else if (flags & SurfaceFlags_Watefall)
+		queueFlags = 4; // SomeTextureThing
+
+	// Draw with callback
+	if (a2->zWidth != 0)
 	{
-		int queueFlags = QueuedModelFlagsB_EnableZWrite;
-
-		// Disable Z Write
-		if (flags & SurfaceFlags_NoZWrite)
-			queueFlags &= ~QueuedModelFlagsB_EnableZWrite;
-
-		// Draw with callback
-		if (a2->zWidth != 0)
-		{
-			DrawModelCallback_QueueModel(DrawLandtableCallback, v2, a2->zWidth, (QueuedModelFlagsB)queueFlags);
-			return;
-		}
-
-		// Set depth
-		DrawQueueDepthBias = a2->yWidth;
-
-		// Draw by Mesh
-		if (flags & SurfaceFlags_DrawByMesh)
-		{
-			late_DrawModelClipMesh(v2, queueFlags, 1.0f);
-			DrawQueueDepthBias = 0.0;
-			return;
-		}
-
-		// Draw regular transparent
-		else if (flags & SurfaceFlags_Watefall)
-		{
-			late_DrawModelClip(v2, queueFlags, 1.0f);
-			DrawQueueDepthBias = 0.0;
-			return;
-		}
-
-		// Draw opaque
-		else if (!(flags & SurfaceFlags_LowDepth))
-			dsDrawModel_S(v2);
+		DrawModelCallback_QueueModel(DrawLandtableCallback, v2, a2->zWidth, (QueuedModelFlagsB)queueFlags);
+		return;
 	}
-	else return;
+
+	// Set depth
+	DrawQueueDepthBias = a2->yWidth;
+
+	// Draw by Mesh
+	if (flags & SurfaceFlags_DrawByMesh)
+	{
+		late_DrawModelClipMesh(v2, queueFlags, 1.0f);
+		DrawQueueDepthBias = 0.0;
+		return;
+	}
+
+	// Draw regular transparent (early)
+	else if (flags & SurfaceFlags_LowDepth)
+	{
+		ds_DrawModelClip(v2, 1.0f);
+		DrawQueueDepthBias = 0.0;
+		return;
+	}
+
+	// Draw regular transparent (late)
+	else
+	{
+		late_DrawModelClip(v2, queueFlags, 1.0f);
+		DrawQueueDepthBias = 0.0;
+		return;
+	}
 }

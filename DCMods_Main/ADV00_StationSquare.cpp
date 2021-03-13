@@ -34,8 +34,6 @@ NJS_TEXNAME textures_advss05[33];
 NJS_TEXLIST texlist_advss05 = { arrayptrandlength(textures_advss05) };
 
 // Model pointers
-NJS_OBJECT* SS03SeaModel = nullptr;
-NJS_OBJECT* SS04SeaModel = nullptr;
 NJS_OBJECT* BurgerShopMan = nullptr;
 NJS_OBJECT* PoliceCarModel_LightsOnly = nullptr;
 NJS_OBJECT* Parasol_1 = nullptr;
@@ -44,9 +42,6 @@ NJS_OBJECT* Parasol_3 = nullptr;
 NJS_OBJECT* Parasol_4 = nullptr;
 NJS_OBJECT* EVHelicopterLight1 = nullptr;
 NJS_OBJECT* EVHelicopterLight2 = nullptr;
-
-// List of COL item IDs to render separately
-std::vector<int> SS03cols;
 
 /*
 #include "SS00_CityHall.h"
@@ -74,93 +69,11 @@ int __cdecl CheckIfCameraIsInHotel_Lol()
 	return 0;
 }
 
-void __cdecl RenderStationSquareOcean(OceanData *x)
-{
-	if (DroppedFrames) return;
-	switch (CurrentAct)
-	{
-	case 3:
-		if (SS03SeaModel == nullptr) return;
-		njSetTexture(&texlist_advss03);
-		njPushMatrix(0);
-		njTranslate(0, 0, 0, 0);
-		Direct3D_SetZFunc(1u);
-		Direct3D_EnableZWrite(0);
-		ProcessModelNode_AB_Wrapper(SS03SeaModel, 1.0f);
-		Direct3D_SetZFunc(1u);
-		Direct3D_EnableZWrite(1u);
-		njPopMatrix(1u);
-		break;
-	case 4:
-		if (SS04SeaModel == nullptr) return;
-		njSetTexture(&texlist_advss04);
-		njPushMatrix(0);
-		njTranslate(0, 0, 0, 0);
-		ProcessModelNode_AB_Wrapper(SS04SeaModel, 1.0f);
-		njPopMatrix(1u);
-		break;
-	default:
-		break;
-	}
-}
-
-// Render separate COL items (callback)
-void RenderSS03Cols_1()
-{
-	if (!DroppedFrames && CurrentAct == 3 && ADV00_3_Info)
-	{
-		njSetTexture(&texlist_advss03);
-		njPushMatrix(0);
-		njTranslate(0, 0, 0, 0);
-		for (int i : SS03cols)
-			if (!(LANDTABLESS[3]->Col[i].Flags & 0x1000000)) 
-				ProcessModelNode_AB_Wrapper(LANDTABLESS[3]->Col[i].Model, 3.0f);
-		njPopMatrix(1u);
-	}
-}
-
-// Render separate COL items (regular)
-void RenderSS03Cols_2()
-{
-	if (DroppedFrames) return;
-	if (CurrentAct == 3 && ADV00_3_Info)
-	{
-
-		njSetTexture(&texlist_advss03);
-		njPushMatrix(0);
-		njTranslate(0, 0, 0, 0);
-		for (int i : SS03cols)
-		{
-			// Glass, Twinkle top etc.
-			if (LANDTABLESS[3]->Col[i].Flags & 0x1000000 && LANDTABLESS[3]->Col[i].Flags != 0xA9040000)
-			{
-				DrawQueueDepthBias = 5000.0f;
-				ProcessModelNode(LANDTABLESS[3]->Col[i].Model, (QueuedModelFlagsB)0, 1.0f);
-				DrawQueueDepthBias = 0.0f;
-			}
-			// Shadow thing in the sewers
-			else if (LANDTABLESS[3]->Col[i].Flags == 0xA9040000)
-			{
-				DrawQueueDepthBias = -12000.0f;
-				ProcessModelNode(LANDTABLESS[3]->Col[i].Model, (QueuedModelFlagsB)0, 1.0f);
-				DrawQueueDepthBias = 0.0f;
-			}
-		}
-		njPopMatrix(1u);
-	}
-}
-
 // Replace the original ocean draw callback
 void SSOceanCallback(void(__cdecl *function)(OceanData *), OceanData *data, float depth, QueuedModelFlagsB queueflags)
 {
 	if (SADXWater_StationSquare) 
 		DrawModelCallback_QueueOceanData(StationSquare_OceanDraw, data, depth, queueflags);
-	else
-		DrawModelCallback_QueueOceanData(RenderStationSquareOcean, data, depth, queueflags);
-	// Callback
-	DrawModelCallback_QueueNothing(RenderSS03Cols_1, -6000.0f, (QueuedModelFlagsB)0);
-	// Regular
-	RenderSS03Cols_2();
 }
 
 void FixPoliceCar(NJS_ACTION *a1, float a2, int a3)
@@ -305,29 +218,12 @@ void ParseSSColFlags()
 	for (int j = 0; j < landtable->COLCount; j++)
 	{
 		colflags = landtable->Col[j].Flags;
-		// Add SA1 sea model for the callback
-		if (!SADXWater_StationSquare)
+		if (SADXWater_StationSquare)
 		{
-			if (colflags == 0x88000000)
-			{
-				SS03SeaModel = landtable->Col[j].Model;
-				landtable->Col[j].Flags &= ~ColFlags_Visible;
-			}
-		}
-		else
-		{
-			// Hide SA1 sea
-			if (colflags == 0x88000000) landtable->Col[j].Flags &= ~ColFlags_Visible;
 			// Show SADX sea bottom
 			if (colflags == 0) landtable->Col[j].Flags = 0x80000000;
-			// Hide SA1 sewers water
+			// Hide SA1 water
 			if ((colflags & ColFlags_Visible) && (colflags & ColFlags_Water)) landtable->Col[j].Flags = 0x00000002;
-		}
-		// Add sea waves and other COL items for the callback
-		if (colflags == 0x88040000 || colflags == 0x89000000)
-		{
-			landtable->Col[j].Flags &= ~ColFlags_Visible;
-			SS03cols.push_back(j);
 		}
 	}
 	// Hotel area
@@ -335,16 +231,11 @@ void ParseSSColFlags()
 	for (int j = 0; j < landtable->COLCount; j++)
 	{
 		colflags = landtable->Col[j].Flags;
-		// Add SA1 sea model for the callback
-		if (!SADXWater_StationSquare)
-		{
-			if (colflags & 0x8000000) SS04SeaModel = landtable->Col[j].Model;
-		}
-		else
+		if (SADXWater_StationSquare)
 		{
 			// Show SADX sea bottom
 			if (colflags == 0) landtable->Col[j].Flags = 0x80000000;
-			// Hide SA1 pool water
+			// Hide SA1 water
 			if ((colflags & ColFlags_Visible) && (colflags & ColFlags_Water)) landtable->Col[j].Flags &= ~ColFlags_Visible;
 		}
 	}
@@ -467,31 +358,52 @@ void SwitchLighting_Act0(NJS_MATERIAL* material, Sint8 TimeOfDay)
 	switch (TimeOfDay)
 	{
 	case 0:
-		if (texid == 207 || texid == 206) material->attr_texId = 124;
-		if (texid == 209 || texid == 208) material->attr_texId = 145;
-		if (texid == 211 || texid == 210) material->attr_texId = 69;
-		if (texid == 213 || texid == 212) material->attr_texId = 184;
-		if (texid == 215 || texid == 214) material->attr_texId = 36;
-		if (texid == 217 || texid == 216) material->attr_texId = 39;
-		if (texid == 219 || texid == 218) material->attr_texId = 185;
+		if (texid == 207 || texid == 206) 
+			material->attr_texId = 124;
+		if (texid == 209 || texid == 208) 
+			material->attr_texId = 145;
+		if (texid == 211 || texid == 210) 
+			material->attr_texId = 69;
+		if (texid == 213 || texid == 212) 
+			material->attr_texId = 184;
+		if (texid == 215 || texid == 214) 
+			material->attr_texId = 36;
+		if (texid == 217 || texid == 216) 
+			material->attr_texId = 39;
+		if (texid == 219 || texid == 218) 
+			material->attr_texId = 185;
 		break;
 	case 1:
-		if (texid == 124 || texid == 207) material->attr_texId = 206;
-		if (texid == 145 || texid == 209) material->attr_texId = 208;
-		if (texid == 69 || texid == 211) material->attr_texId = 210;
-		if (texid == 184 || texid == 213) material->attr_texId = 212;
-		if (texid == 36 || texid == 215) material->attr_texId = 214;
-		if (texid == 39 || texid == 217) material->attr_texId = 216;
-		if (texid == 185 || texid == 219) material->attr_texId = 218;
+		if (texid == 124 || texid == 207) 
+			material->attr_texId = 206;
+		if (texid == 145 || texid == 209) 
+			material->attr_texId = 208;
+		if (texid == 69 || texid == 211) 
+			material->attr_texId = 210;
+		if (texid == 184 || texid == 213) 
+			material->attr_texId = 212;
+		if (texid == 36 || texid == 215) 
+			material->attr_texId = 214;
+		if (texid == 39 || texid == 217) 
+			material->attr_texId = 216;
+		if (texid == 185 || texid == 219) 
+			material->attr_texId = 218;
 		break;
 	case 2:
-		if (texid == 124 || texid == 206) material->attr_texId = 207;
-		if (texid == 145 || texid == 208) material->attr_texId = 209;
-		if (texid == 69 || texid == 210) material->attr_texId = 211;
-		if (texid == 184 || texid == 212) material->attr_texId = 213;
-		if (texid == 36 || texid == 214) material->attr_texId = 215;
-		if (texid == 39 || texid == 216) material->attr_texId = 217;
-		if (texid == 185 || texid == 218) material->attr_texId = 219;
+		if (texid == 124 || texid == 206) 
+			material->attr_texId = 207;
+		if (texid == 145 || texid == 208) 
+			material->attr_texId = 209;
+		if (texid == 69 || texid == 210) 
+			material->attr_texId = 211;
+		if (texid == 184 || texid == 212) 
+			material->attr_texId = 213;
+		if (texid == 36 || texid == 214) 
+			material->attr_texId = 215;
+		if (texid == 39 || texid == 216) 
+			material->attr_texId = 217;
+		if (texid == 185 || texid == 218) 
+			material->attr_texId = 219;
 		break;
 	default:
 		break;
@@ -504,13 +416,16 @@ void SwitchLighting_Act1(NJS_MATERIAL* material, Sint8 TimeOfDay)
 	switch (TimeOfDay)
 	{
 	case 0:
-		if (texid == 265 || texid == 264) material->attr_texId = 240;
+		if (texid == 265 || texid == 264) 
+			material->attr_texId = 240;
 		break; 
 	case 1:
-		if (texid == 240 || texid == 265) material->attr_texId = 264;
+		if (texid == 240 || texid == 265) 
+			material->attr_texId = 264;
 		break;
 	case 2:
-		if (texid == 240 || texid == 264) material->attr_texId = 265;
+		if (texid == 240 || texid == 264) 
+			material->attr_texId = 265;
 		break;
 	default:
 		break;
@@ -523,22 +438,34 @@ void SwitchLighting_Act3(NJS_MATERIAL* material, Sint8 TimeOfDay)
 	switch (TimeOfDay)
 	{
 	case 0:
-		if (texid == 258 || texid == 259) material->attr_texId = 60;
-		if (texid == 262 || texid == 263) material->attr_texId = 89;
-		if (texid == 260 || texid == 261) material->attr_texId = 94;
-		if (texid == 256 || texid == 257) material->attr_texId = 165;
+		if (texid == 258 || texid == 259) 
+			material->attr_texId = 60;
+		if (texid == 262 || texid == 263) 
+			material->attr_texId = 89;
+		if (texid == 260 || texid == 261) 
+			material->attr_texId = 94;
+		if (texid == 256 || texid == 257) 
+			material->attr_texId = 165;
 		break;
 	case 1:
-		if (texid == 60 || texid == 259) material->attr_texId = 258;
-		if (texid == 89 || texid == 263) material->attr_texId = 262;
-		if (texid == 94 || texid == 261) material->attr_texId = 260;
-		if (texid == 165 || texid == 257) material->attr_texId = 256;
+		if (texid == 60 || texid == 259) 
+			material->attr_texId = 258;
+		if (texid == 89 || texid == 263) 
+			material->attr_texId = 262;
+		if (texid == 94 || texid == 261) 
+			material->attr_texId = 260;
+		if (texid == 165 || texid == 257) 
+			material->attr_texId = 256;
 		break;
 	case 2:
-		if (texid == 60 || texid == 258) material->attr_texId = 259;
-		if (texid == 89 || texid == 262) material->attr_texId = 263;
-		if (texid == 94 || texid == 260) material->attr_texId = 261;
-		if (texid == 165 || texid == 256) material->attr_texId = 257;
+		if (texid == 60 || texid == 258) 
+			material->attr_texId = 259;
+		if (texid == 89 || texid == 262) 
+			material->attr_texId = 263;
+		if (texid == 94 || texid == 260) 
+			material->attr_texId = 261;
+		if (texid == 165 || texid == 256) 
+			material->attr_texId = 257;
 		break;
 	default:
 		break;
@@ -551,16 +478,22 @@ void SwitchLighting_Act4(NJS_MATERIAL* material, Sint8 TimeOfDay)
 	switch (TimeOfDay)
 	{
 	case 0:
-		if (texid == 116 || texid == 118) material->attr_texId = 69;
-		if (texid == 115 || texid == 117) material->attr_texId = 70;
+		if (texid == 116 || texid == 118) 
+			material->attr_texId = 69;
+		if (texid == 115 || texid == 117) 
+			material->attr_texId = 70;
 		break;
 	case 1:
-		if (texid == 69 || texid == 118) material->attr_texId = 116;
-		if (texid == 70 || texid == 117) material->attr_texId = 115;
+		if (texid == 69 || texid == 118)
+			material->attr_texId = 116;
+		if (texid == 70 || texid == 117) 
+			material->attr_texId = 115;
 		break;
 	case 2:
-		if (texid == 69 || texid == 116) material->attr_texId = 118;
-		if (texid == 70 || texid == 115) material->attr_texId = 117;
+		if (texid == 69 || texid == 116) 
+			material->attr_texId = 118;
+		if (texid == 70 || texid == 115) 
+			material->attr_texId = 117;
 		break;
 	default:
 		break;
@@ -577,12 +510,14 @@ void AddOrRemoveIgnoreLightFlag_TimeOfDay(NJS_MATERIAL* material)
 		// Add the Ignore Light flag at night
 		if (TimeOfDay == 2)
 		{
-			if (!(materialflags & NJD_FLAG_IGNORE_LIGHT)) material->attrflags |= NJD_FLAG_IGNORE_LIGHT;
+			if (!(materialflags & NJD_FLAG_IGNORE_LIGHT)) 
+				material->attrflags |= NJD_FLAG_IGNORE_LIGHT;
 		}
 		// Remove the Ignore Light flag at other times of day
 		else
 		{
-			if (materialflags & NJD_FLAG_IGNORE_LIGHT) material->attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+			if (materialflags & NJD_FLAG_IGNORE_LIGHT) 
+				material->attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
 		}
 	}
 }
@@ -652,10 +587,7 @@ void SwitchLighting_TimeOfDay(int act)
 
 void UnloadLevelFiles_ADV00()
 {
-	SS03cols.clear();
 	ParseSSMaterials(true);
-	SS03SeaModel = nullptr;
-	SS04SeaModel = nullptr;
 	delete ADV00_0_Info;
 	delete ADV00_1_Info;
 	delete ADV00_2_Info;
@@ -732,7 +664,7 @@ void ADV00_Init()
 		*(NJS_TEXLIST*)0x2AEE920 = texlist_sscar; // SSCAR 
 		*(NJS_TEXLIST*)0x2AD9F58 = texlist_sstrain; // SS_TRAIN
 		OBJ_SS_TEXLIST = texlist_obj_ss;
-		WriteCall((void*)0x62EC3C, SSOceanCallback); // Render SS ocean separately (both normal and SADX water)
+		WriteCall((void*)0x62EC3C, SSOceanCallback); // Render SS ocean (SADX water only)
 		if (!SADXWater_StationSquare)
 			WriteData<5>((char*)0x62EC52, 0x90u); // Don't call the ocean rendering function twice
 		*ADV00_TEXLISTS[0] = texlist_advss00;
