@@ -1,6 +1,6 @@
 #include "stdafx.h"
 
-//TODO: The weird behavior of the light on conveyour belt
+// TODO: The weird behavior of the light on conveyour belt
 
 NJS_TEXNAME textures_hwcar[16];
 NJS_TEXLIST texlist_hwcar = {arrayptrandlength(textures_hwcar)};
@@ -32,7 +32,7 @@ NJS_OBJECT *Antenna = nullptr;
 NJS_OBJECT *FlySt1 = nullptr;
 NJS_OBJECT *FlySt2 = nullptr;
 NJS_OBJECT *MissileLogo = nullptr;
-NJS_OBJECT *HW3FountainMesh = nullptr; //This unloads when the level unloads
+NJS_OBJECT *HW3FountainMesh = nullptr; // This unloads when the level unloads
 
 /*
 #include "Highway1.h"
@@ -40,7 +40,7 @@ NJS_OBJECT *HW3FountainMesh = nullptr; //This unloads when the level unloads
 #include "Highway3.h"
 */
 
-int Highway3Cols[] = { -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,  -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 };
+std::vector<int> Highway3Cols;
 static bool Highway3ColsLoaded = false;
 static int shwwater = 0;
 SETObjData setdata_hw = {};
@@ -78,13 +78,13 @@ void FountainPart3(NJS_MODEL_SADX *a1, int a2, float a3)
 }
 
 NJS_MATERIAL* DisableAlphaRejection_SpeedHighway[] = {
-	((NJS_MATERIAL*)0x02696920), //OLmpa
-	((NJS_MATERIAL*)0x026877CC), //OLamp 1
-	((NJS_MATERIAL*)0x026878D8), //OLamp 2
+	((NJS_MATERIAL*)0x02696920), // OLmpa
+	((NJS_MATERIAL*)0x026877CC), // OLamp 1
+	((NJS_MATERIAL*)0x026878D8), // OLamp 2
 };
 
 NJS_MATERIAL* WhiteDiffuse_Highway[] = {
-	//Cop speeder
+	// Cop speeder
 	((NJS_MATERIAL*)0x00971AA0),
 	((NJS_MATERIAL*)0x00971AB4),
 	((NJS_MATERIAL*)0x00971AF0),
@@ -177,10 +177,7 @@ void RemoveMaterials_SpeedHighway(LandTable *landtable)
 void UnloadLevelFiles_STG04()
 {
 	if (DLLLoaded_Lantern) RemoveMaterials_SpeedHighway(STG04_0_Info->getlandtable());
-	for (int i = 0; i < LengthOfArray(Highway3Cols); i++)
-	{
-		Highway3Cols[i] = -1;
-	}
+	Highway3Cols.clear();
 	HW3FountainMesh = nullptr;
 	delete STG04_0_Info;
 	delete STG04_1_Info;
@@ -190,52 +187,35 @@ void UnloadLevelFiles_STG04()
 	STG04_2_Info = nullptr;
 }
 
-void AddHighway3TransparentThing(int colnumber)
-{
-	for (int i = 0; i < LengthOfArray(Highway3Cols); i++)
-	{
-		if (Highway3Cols[i] == colnumber) return;
-		else if (Highway3Cols[i] == -1)
-		{
-			Highway3Cols[i] = colnumber;
-			//PrintDebug("Added COl: %d\n", colnumber);
-			return;
-		}
-	}
-}
-
 void OCraneFix(NJS_MODEL_SADX *a1, int a2, float a3)
 {
 	DrawModel(a1);
 }
 
-void Highway3Cols_Display(ObjectMaster *a1)
+void Highway3Cols_Display(ObjectMaster* a1)
 {
-	NJS_VECTOR sphere = { 0, 0, 0 };
+	NJS_VECTOR sphere = {0, 0, 0};
 	float radius = 0.0f;
 	if (!MissedFrames && CurrentAct == 2)
 	{
-		for (int i = 0; i < LengthOfArray(Highway3Cols); i++)
+		for (int i : Highway3Cols)
 		{
-			if (Highway3Cols[i] != -1)
+			//PrintDebug("Trying COl: %d\n", Highway3Cols[i]);
+			radius = 2500.0f + GeoLists[34]->Col[Highway3Cols[i]].Radius;
+			//PrintDebug("Radius: %f", radius);
+			sphere.x = GeoLists[34]->Col[Highway3Cols[i]].Center.x;
+			sphere.y = GeoLists[34]->Col[Highway3Cols[i]].Center.y;
+			sphere.z = GeoLists[34]->Col[Highway3Cols[i]].Center.z;
+			if (radius != 0 && IsPlayerInsideSphere(&sphere, radius))
 			{
-				//PrintDebug("Trying COl: %d\n", Highway3Cols[i]);
-				radius = 2500.0f + GeoLists[34]->Col[Highway3Cols[i]].Radius;
-				//PrintDebug("Radius: %f", radius);
-				sphere.x = GeoLists[34]->Col[Highway3Cols[i]].Center.x;
-				sphere.y = GeoLists[34]->Col[Highway3Cols[i]].Center.y;
-				sphere.z = GeoLists[34]->Col[Highway3Cols[i]].Center.z;
-				if (radius != 0 && IsPlayerInsideSphere(&sphere, radius))
-				{
-					njSetTexture(&texlist_highway3);
-					njPushMatrix(0);
-					njTranslate(0, 0, 0, 0);
-					if (GeoLists[34]->Col[Highway3Cols[i]].Flags & 0x01000000) DrawQueueDepthBias = 3000.0f;
-					else DrawQueueDepthBias = -1000.0f;
-					ProcessModelNode_D(GeoLists[34]->Col[Highway3Cols[i]].Model, 1, 1.0f);
-					njPopMatrix(1u);
-					DrawQueueDepthBias = 0;
-				}
+				njSetTexture(&texlist_highway3);
+				njPushMatrix(0);
+				njTranslate(0, 0, 0, 0);
+				if (GeoLists[34]->Col[Highway3Cols[i]].Flags & 0x01000000) DrawQueueDepthBias = 3000.0f;
+				else DrawQueueDepthBias = -1000.0f;
+				ProcessModelNode_D(GeoLists[34]->Col[Highway3Cols[i]].Model, 1, 1.0f);
+				njPopMatrix(1u);
+				DrawQueueDepthBias = 0;
 			}
 		}
 	}
@@ -303,7 +283,7 @@ void ProcessMaterials_SpeedHighway(LandTable *landtable)
 		if (colflags & 0x08000000)
 		{
 			if (landtable->Col[j].Flags & ColFlags_Visible)landtable->Col[j].Flags &= ~ColFlags_Visible;
-			AddHighway3TransparentThing(j);
+			Highway3Cols.push_back(j);
 		}
 		if (colflags == 0x00000002)
 		{
@@ -407,58 +387,58 @@ void SpeedHighway_Init()
 		HIGHWAY01_TEXLIST = texlist_highway1;
 		HIGHWAY02_TEXLIST = texlist_highway2;
 		HIGHWAY03_TEXLIST = texlist_highway3;
-		//Fountain fixes
+		// Fountain fixes
 		WriteCall((void*)0x0061BAA0, FountainPart1);
 		WriteCall((void*)0x0061BAF1, FountainPart2);
 		WriteCall((void*)0x0061BB31, FountainPart3);
-		FountainBottom = LoadModel("system\\data\\STG04\\Models\\00134B34.sa1mdl", false); //Fountain bottom
+		FountainBottom = LoadModel("system\\data\\STG04\\Models\\00134B34.sa1mdl", false); // Fountain bottom
 		FountainBottom->basicdxmodel->mats[0].attr_texId = 25;
 		WriteData((NJS_OBJECT**)0x0061BC4C, FountainBottom);
-		FountainSide = LoadModel("system\\data\\STG04\\Models\\001350C8.sa1mdl", false); //Fountain side
+		FountainSide = LoadModel("system\\data\\STG04\\Models\\001350C8.sa1mdl", false); // Fountain side
 		FountainSide->basicdxmodel->mats[0].attr_texId = 25;
 		WriteData((NJS_OBJECT**)0x026B3150, FountainSide);
-		//Fountain animation enhancement
+		// Fountain animation enhancement
 		TexLists_Level[11]->PVMList = (PVMEntry*)& SpeedHighway3Textures_list;
 		TexLists_Level[11]->NumTextures = LengthOfArray(SpeedHighway3Textures_list);
-		*(NJS_OBJECT*)0x0266403C = *LoadModel("system\\data\\STG04\\Models\\00136320.sa1mdl", false); //OJamer
+		*(NJS_OBJECT*)0x0266403C = *LoadModel("system\\data\\STG04\\Models\\00136320.sa1mdl", false); // OJamer
 		((NJS_OBJECT*)0x0266403C)->basicdxmodel->mats[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
 		((NJS_OBJECT*)0x0266403C)->basicdxmodel->mats[2].attrflags |= NJD_FLAG_IGNORE_LIGHT;
 		((NJS_OBJECT*)0x0266403C)->basicdxmodel->mats[4].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		WriteData((NJS_TEXNAME**)0x26B2968, (NJS_TEXNAME*)0x2670590); //OJamer texture list 1
-		WriteData((NJS_TEXNAME**)0x26B2960, (NJS_TEXNAME*)0x2670554); //OJamer texture list 2
-		*(NJS_OBJECT*)0x026919C0 = *LoadModel("system\\data\\STG04\\Models\\0015D440.sa1mdl", false); //Antenna model
+		WriteData((NJS_TEXNAME**)0x26B2968, (NJS_TEXNAME*)0x2670590); // OJamer texture list 1
+		WriteData((NJS_TEXNAME**)0x26B2960, (NJS_TEXNAME*)0x2670554); // OJamer texture list 2
+		*(NJS_OBJECT*)0x026919C0 = *LoadModel("system\\data\\STG04\\Models\\0015D440.sa1mdl", false); // Antenna model
 		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x026919C0)->basicdxmodel->mats[4]);
 		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x026919C0)->basicdxmodel->mats[5]);
-		HideMesh_Object(((NJS_OBJECT*)0x026919C0), 3); //Hide DA_ONE thing
-		Antenna = LoadModel("system\\data\\STG04\\Models\\0015D440.sa1mdl", false); //Antenna model
-		HideMesh_Object(Antenna, 0); //Hide all but the DA_ONE thing
-		HideMesh_Object(Antenna, 1); //Hide all but the DA_ONE thing
-		HideMesh_Object(Antenna, 2); //Hide all but the DA_ONE thing
-		HideMesh_Object(Antenna, 4); //Hide all but the DA_ONE thing
-		HideMesh_Object(Antenna, 5); //Hide all but the DA_ONE thing
+		HideMesh_Object(((NJS_OBJECT*)0x026919C0), 3); // Hide DA_ONE thing
+		Antenna = LoadModel("system\\data\\STG04\\Models\\0015D440.sa1mdl", false); // Antenna model
+		HideMesh_Object(Antenna, 0); // Hide all but the DA_ONE thing
+		HideMesh_Object(Antenna, 1); // Hide all but the DA_ONE thing
+		HideMesh_Object(Antenna, 2); // Hide all but the DA_ONE thing
+		HideMesh_Object(Antenna, 4); // Hide all but the DA_ONE thing
+		HideMesh_Object(Antenna, 5); // Hide all but the DA_ONE thing
 		WriteCall((void*)0x00615D60, AntennaModel);
-		WriteData<1>((char*)0x004B19E2, 0x08); //Cop speeder effect blending
+		WriteData<1>((char*)0x004B19E2, 0x08); // Cop speeder effect blending
 		WriteCall((void*)0x4B1C6F, SetCopSpeederEffectAlpha);
 		WriteCall((void*)0x615577, OLmpaFix);
 		WriteCall((void*)0x61632E, OLampFix);
 		WriteCall((void*)0x6163AB, OLampFix);
-		//Fix light sprites in various objects
-		((NJS_MATERIAL*)0x02696920)->diffuse.color = 0xFFFFFFFF; //OLmpa
-		WriteData<1>((char*)0x00615DBB, 0x8); //Antenna sprite blending SA_SRC
-		WriteData((float**)0x00615DA0, (float*)0x7DCB10); //Antenna sprite maximum brightness 1.0 instead of 0.5
-		WriteData((float**)0x00616625, (float*)0x7DCC98); //GCLight sprite maximum brightness 0.5 instead of 0.8
-		WriteData((float**)0x0061662B, (float*)0x7DCB5C); //Prevent inversion of the GCLight sprite alpha sign
+		// Fix light sprites in various objects
+		((NJS_MATERIAL*)0x02696920)->diffuse.color = 0xFFFFFFFF; // OLmpa
+		WriteData<1>((char*)0x00615DBB, 0x8); // Antenna sprite blending SA_SRC
+		WriteData((float**)0x00615DA0, (float*)0x7DCB10); // Antenna sprite maximum brightness 1.0 instead of 0.5
+		WriteData((float**)0x00616625, (float*)0x7DCC98); // GCLight sprite maximum brightness 0.5 instead of 0.8
+		WriteData((float**)0x0061662B, (float*)0x7DCB5C); // Prevent inversion of the GCLight sprite alpha sign
 		WriteCall((void*)0x00615DB5, AntennaSprite);
-		WriteCall((void*)0x00616649, AntennaSprite); //This works for GCLight too
+		WriteCall((void*)0x00616649, AntennaSprite); // This works for GCLight too
 		WriteCall((void*)0x00614122, RocketSprite);
 		if (DLLLoaded_Lantern)
 		{
 			material_register(WhiteDiffuse_Highway, LengthOfArray(WhiteDiffuse_Highway), &ForceWhiteDiffuse);
 			material_register(DisableAlphaRejection_SpeedHighway, LengthOfArray(DisableAlphaRejection_SpeedHighway), &DisableAlphaRejection);
 		}
-		WriteCall((void*)0x61AF66, OCraneFix); //Was it really necessary to queue a non-transparent model??
-		//Helicopter light
-		HelicopterLight1 = LoadModel("system\\data\\STG04\\Models\\00159588.sa1mdl", false); //Helicopter light (edited model)
+		WriteCall((void*)0x61AF66, OCraneFix); // Was it really necessary to queue a non-transparent model??
+		// Helicopter light
+		HelicopterLight1 = LoadModel("system\\data\\STG04\\Models\\00159588.sa1mdl", false); // Helicopter light (edited model)
 		HelicopterLight2 = HelicopterLight1->child;
 		HelicopterLight3 = HelicopterLight1->child->child;
 		HelicopterLight4 = HelicopterLight1->child->child->child;
@@ -470,7 +450,7 @@ void SpeedHighway_Init()
 		AddAlphaRejectMaterial(&HelicopterLight3->basicdxmodel->mats[0]);
 		WriteCall((void*)0x61378E, HelicopterLight);
 		((NJS_MATERIAL*)0x0268C98C)->diffuse.color = 0xB2B2B2B2;
-		//NBox1 specular
+		// NBox1 specular
 		((NJS_MATERIAL*)0x0267F418)->attrflags |= NJD_FLAG_IGNORE_SPECULAR;
 		((NJS_MATERIAL*)0x0267F42C)->attrflags |= NJD_FLAG_IGNORE_SPECULAR;
 		((NJS_MATERIAL*)0x0267F440)->attrflags |= NJD_FLAG_IGNORE_SPECULAR;
@@ -487,7 +467,7 @@ void SpeedHighway_Init()
 		((NJS_MATERIAL*)0x0267FE34)->attrflags |= NJD_FLAG_IGNORE_SPECULAR;
 		((NJS_MATERIAL*)0x0267FE48)->attrflags |= NJD_FLAG_IGNORE_SPECULAR;
 		((NJS_MATERIAL*)0x0267FE5C)->attrflags |= NJD_FLAG_IGNORE_SPECULAR;
-		//Nbox2 specular
+		// Nbox2 specular
 		((NJS_MATERIAL*)0x02680788)->attrflags &= ~NJD_FLAG_IGNORE_SPECULAR;
 		((NJS_MATERIAL*)0x0268079C)->attrflags &= ~NJD_FLAG_IGNORE_SPECULAR;
 		((NJS_MATERIAL*)0x026807B0)->attrflags &= ~NJD_FLAG_IGNORE_SPECULAR;
@@ -502,22 +482,22 @@ void SpeedHighway_Init()
 		((NJS_MATERIAL*)0x02681308)->attrflags &= ~NJD_FLAG_IGNORE_SPECULAR;
 		((NJS_MATERIAL*)0x0268131C)->attrflags &= ~NJD_FLAG_IGNORE_SPECULAR;
 		((NJS_MATERIAL*)0x02681330)->attrflags &= ~NJD_FLAG_IGNORE_SPECULAR;
-		ConeBase = LoadModel("system\\data\\STG04\\Models\\001554A8.sa1mdl", false); //Cone
+		ConeBase = LoadModel("system\\data\\STG04\\Models\\001554A8.sa1mdl", false); // Cone
 		HideMesh_Object(ConeBase, 0);
 		AddWhiteDiffuseMaterial(&ConeBase->basicdxmodel->mats[1]);
-		ConeTop = LoadModel("system\\data\\STG04\\Models\\001554A8.sa1mdl", false); //Cone
+		ConeTop = LoadModel("system\\data\\STG04\\Models\\001554A8.sa1mdl", false); // Cone
 		HideMesh_Object(ConeTop, 1);
 		WriteCall((void*)0x6165E5, ConeModel);
 		WriteCall((void*)0x616733, ConeSprite);
-		*(NJS_OBJECT*)0x0267497C = *LoadModel("system\\data\\STG04\\Models\\001434F4.sa1mdl", false); //Platform
-		*(NJS_OBJECT*)0x02687284 = *LoadModel("system\\data\\STG04\\Models\\00154480.sa1mdl", true); //Small plant in Act 3
-		FlySt1 = LoadModel("system\\data\\STG04\\Models\\00142D48.sa1mdl", false); //Platform2
+		*(NJS_OBJECT*)0x0267497C = *LoadModel("system\\data\\STG04\\Models\\001434F4.sa1mdl", false); // Platform
+		*(NJS_OBJECT*)0x02687284 = *LoadModel("system\\data\\STG04\\Models\\00154480.sa1mdl", true); // Small plant in Act 3
+		FlySt1 = LoadModel("system\\data\\STG04\\Models\\00142D48.sa1mdl", false); // Platform2
 		HideMesh_Object(FlySt1, 6);
 		AddAlphaRejectMaterial(&FlySt1->child->basicdxmodel->mats[0]);
 		AddAlphaRejectMaterial(&FlySt1->child->sibling->basicdxmodel->mats[0]);
 		AddAlphaRejectMaterial(&FlySt1->child->sibling->sibling->basicdxmodel->mats[0]);
 		AddAlphaRejectMaterial(&FlySt1->child->sibling->sibling->sibling->basicdxmodel->mats[0]);
-		FlySt2 = LoadModel("system\\data\\STG04\\Models\\00142D48.sa1mdl", false); //Platform2
+		FlySt2 = LoadModel("system\\data\\STG04\\Models\\00142D48.sa1mdl", false); // Platform2
 		HideMesh_Object(FlySt2, 0);
 		HideMesh_Object(FlySt2, 1);
 		HideMesh_Object(FlySt2, 2);
@@ -526,9 +506,9 @@ void SpeedHighway_Init()
 		HideMesh_Object(FlySt2, 5);
 		((NJS_ACTION*)0x02674424)->object = FlySt1;
 		WriteCall((void*)0x617FCA, FlyStFix);
-		*(NJS_OBJECT*)0x02679ECC = *LoadModel("system\\data\\STG04\\Models\\00148880.sa1mdl", false); //Platform (Tails)
-		*(NJS_OBJECT*)0x026A0008 = *LoadModel("system\\data\\STG04\\Models\\0016B6FC.sa1mdl", false); //Missile (Tails)
-		HideMesh_Object(((NJS_OBJECT*)0x026A0008), 6); //Hide Eggman logo
+		*(NJS_OBJECT*)0x02679ECC = *LoadModel("system\\data\\STG04\\Models\\00148880.sa1mdl", false); // Platform (Tails)
+		*(NJS_OBJECT*)0x026A0008 = *LoadModel("system\\data\\STG04\\Models\\0016B6FC.sa1mdl", false); // Missile (Tails)
+		HideMesh_Object(((NJS_OBJECT*)0x026A0008), 6); // Hide Eggman logo
 		MissileLogo = LoadModel("system\\data\\STG04\\Models\\0016B6FC.sa1mdl", false);
 		HideMesh_Object(MissileLogo, 0);
 		HideMesh_Object(MissileLogo, 1);
@@ -538,42 +518,42 @@ void SpeedHighway_Init()
 		HideMesh_Object(MissileLogo, 5);
 		AddAlphaRejectMaterial(&MissileLogo->basicdxmodel->mats[6]);
 		WriteCall((void*)0x613FD6, MissileFix);
-		*(NJS_OBJECT*)0x0267225C = *LoadModel("system\\data\\STG04\\Models\\00140EA4.sa1mdl", false); //OCrane
-		*(NJS_OBJECT*)0x02690DCC = *LoadModel("system\\data\\STG04\\Models\\0015C898.sa1mdl", true); //Escalator2
+		*(NJS_OBJECT*)0x0267225C = *LoadModel("system\\data\\STG04\\Models\\00140EA4.sa1mdl", false); // OCrane
+		*(NJS_OBJECT*)0x02690DCC = *LoadModel("system\\data\\STG04\\Models\\0015C898.sa1mdl", true); // Escalator2
 		((NJS_OBJECT*)0x02690DCC)->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_IGNORE_SPECULAR;
 		((NJS_OBJECT*)0x02690DCC)->basicdxmodel->mats[1].attrflags &= ~NJD_FLAG_IGNORE_SPECULAR;
 		((NJS_OBJECT*)0x02690DCC)->basicdxmodel->mats[3].attrflags &= ~NJD_FLAG_IGNORE_SPECULAR;
 		((NJS_OBJECT*)0x02690DCC)->basicdxmodel->mats[5].attrflags &= ~NJD_FLAG_IGNORE_SPECULAR;
 		((NJS_OBJECT*)0x02690DCC)->basicdxmodel->mats[6].attrflags &= ~NJD_FLAG_IGNORE_SPECULAR;
 		((NJS_OBJECT*)0x02690DCC)->basicdxmodel->mats[7].attrflags &= ~NJD_FLAG_IGNORE_SPECULAR;
-		*(NJS_OBJECT*)0x0268F054 = *LoadModel("system\\data\\STG04\\Models\\0015B100.sa1mdl", true); //Escalator1
-		*(NJS_MODEL_SADX*)0x02696630 = *LoadModel("system\\data\\STG04\\Models\\00161F84.sa1mdl", true)->basicdxmodel; //Clock tower
-		*(NJS_OBJECT*)0x026777D4 = *LoadModel("system\\data\\STG04\\Models\\00146254.sa1mdl", true); //container B top broken 1
-		*(NJS_OBJECT*)0x02677288 = *LoadModel("system\\data\\STG04\\Models\\00145D34.sa1mdl", true); //container B top broken 2
-		WriteData<1>((void*)0x00619545, 1); //blending mode for poster
-		WriteData<1>((void*)0x0061A8EA, 0); //blending mode for glass
-		WriteData<1>((void*)0x0061A951, 0); //blending mode for glass 3
-		((NJS_TEXLIST*)0x26B2B90)->textures = (NJS_TEXNAME*)0x26705CC; //Texlists for posters
-		((NJS_TEXLIST*)0x26B2B98)->textures = (NJS_TEXNAME*)0x26705F0; //Texlists for posters
-		((NJS_TEXLIST*)0x26B2BA0)->textures = (NJS_TEXNAME*)0x2670614; //Texlists for posters
-		((NJS_TEXLIST*)0x26B2BA8)->textures = (NJS_TEXNAME*)0x2670638; //Texlists for posters
-		((NJS_TEXLIST*)0x26B2BB0)->textures = (NJS_TEXNAME*)0x267065C; //Texlists for posters
-		((NJS_OBJECT*)0x02671A20)->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_USE_ALPHA; //O Crane platform alpha fix
-		((NJS_OBJECT*)0x02671A20)->basicdxmodel->mats[2].attrflags |= NJD_FLAG_IGNORE_SPECULAR; //O Crane platform specular fix
+		*(NJS_OBJECT*)0x0268F054 = *LoadModel("system\\data\\STG04\\Models\\0015B100.sa1mdl", true); // Escalator1
+		*(NJS_MODEL_SADX*)0x02696630 = *LoadModel("system\\data\\STG04\\Models\\00161F84.sa1mdl", true)->basicdxmodel; // Clock tower
+		*(NJS_OBJECT*)0x026777D4 = *LoadModel("system\\data\\STG04\\Models\\00146254.sa1mdl", true); // container B top broken 1
+		*(NJS_OBJECT*)0x02677288 = *LoadModel("system\\data\\STG04\\Models\\00145D34.sa1mdl", true); // container B top broken 2
+		WriteData<1>((void*)0x00619545, 1); // blending mode for poster
+		WriteData<1>((void*)0x0061A8EA, 0); // blending mode for glass
+		WriteData<1>((void*)0x0061A951, 0); // blending mode for glass 3
+		((NJS_TEXLIST*)0x26B2B90)->textures = (NJS_TEXNAME*)0x26705CC; // Texlists for posters
+		((NJS_TEXLIST*)0x26B2B98)->textures = (NJS_TEXNAME*)0x26705F0; // Texlists for posters
+		((NJS_TEXLIST*)0x26B2BA0)->textures = (NJS_TEXNAME*)0x2670614; // Texlists for posters
+		((NJS_TEXLIST*)0x26B2BA8)->textures = (NJS_TEXNAME*)0x2670638; // Texlists for posters
+		((NJS_TEXLIST*)0x26B2BB0)->textures = (NJS_TEXNAME*)0x267065C; // Texlists for posters
+		((NJS_OBJECT*)0x02671A20)->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_USE_ALPHA; // O Crane platform alpha fix
+		((NJS_OBJECT*)0x02671A20)->basicdxmodel->mats[2].attrflags |= NJD_FLAG_IGNORE_SPECULAR; // O Crane platform specular fix
 		RemoveVertexColors_Object((NJS_OBJECT*)0x02671A20);
-		*(NJS_OBJECT*)0x0267DC14 = *LoadModel("system\\data\\STG04\\Models\\0014B12C.sa1mdl", false); //Turnasi part 1
-		*(NJS_OBJECT*)0x0267D3B4 = *LoadModel("system\\data\\STG04\\Models\\0014ABC8.sa1mdl", false); //Turnasi part 2
+		*(NJS_OBJECT*)0x0267DC14 = *LoadModel("system\\data\\STG04\\Models\\0014B12C.sa1mdl", false); // Turnasi part 1
+		*(NJS_OBJECT*)0x0267D3B4 = *LoadModel("system\\data\\STG04\\Models\\0014ABC8.sa1mdl", false); // Turnasi part 2
 		((NJS_OBJECT*)0x0267D3B4)->basicdxmodel->mats[0].attrflags |= NJD_FLAG_IGNORE_SPECULAR;
 		((NJS_OBJECT*)0x0267D3B4)->basicdxmodel->mats[1].attrflags |= NJD_FLAG_IGNORE_SPECULAR;
 		((NJS_OBJECT*)0x0267D3B4)->basicdxmodel->mats[2].attrflags |= NJD_FLAG_IGNORE_SPECULAR;
-		*(NJS_OBJECT*)0x0267C7AC = *LoadModel("system\\data\\STG04\\Models\\0014A5B0.sa1mdl", false); //Turnasi part 3
-		*(NJS_OBJECT*)0x0268C058 = *LoadModel("system\\data\\STG04\\Models\\00158720.sa1mdl", false); //SH Helicopter
-		*(NJS_OBJECT*)0x0266D90C = *LoadModel("system\\data\\STG04\\Models\\0013D068.sa1mdl", true); //SH Bus
-		*(NJS_OBJECT*)0x0266B484 = *LoadModel("system\\data\\STG04\\Models\\0013B15C.sa1mdl", true); //SH Red Car
-		*(NJS_OBJECT*)0x026682B8 = *LoadModel("system\\data\\STG04\\Models\\0013949C.sa1mdl", true); //SH Blue Car
-		*(NJS_OBJECT*)0x0266FC8C = *LoadModel("system\\data\\STG04\\Models\\0013E9CC.sa1mdl", true); //SH Yellow Car
-		*(NJS_MODEL_SADX*)0x0267A1A0 = *LoadModel("system\\data\\STG04\\Models\\00148B4C.sa1mdl", false)->basicdxmodel; //SH Glass
-		//Glass fragments
+		*(NJS_OBJECT*)0x0267C7AC = *LoadModel("system\\data\\STG04\\Models\\0014A5B0.sa1mdl", false); // Turnasi part 3
+		*(NJS_OBJECT*)0x0268C058 = *LoadModel("system\\data\\STG04\\Models\\00158720.sa1mdl", false); // SH Helicopter
+		*(NJS_OBJECT*)0x0266D90C = *LoadModel("system\\data\\STG04\\Models\\0013D068.sa1mdl", true); // SH Bus
+		*(NJS_OBJECT*)0x0266B484 = *LoadModel("system\\data\\STG04\\Models\\0013B15C.sa1mdl", true); // SH Red Car
+		*(NJS_OBJECT*)0x026682B8 = *LoadModel("system\\data\\STG04\\Models\\0013949C.sa1mdl", true); // SH Blue Car
+		*(NJS_OBJECT*)0x0266FC8C = *LoadModel("system\\data\\STG04\\Models\\0013E9CC.sa1mdl", true); // SH Yellow Car
+		*(NJS_MODEL_SADX*)0x0267A1A0 = *LoadModel("system\\data\\STG04\\Models\\00148B4C.sa1mdl", false)->basicdxmodel; // SH Glass
+		// Glass fragments
 		*(NJS_OBJECT*)0x02679FDC = *LoadModel("system\\data\\STG04\\Models\\00148984.sa1mdl", false);
 		*(NJS_OBJECT*)0x0267A2DC = *LoadModel("system\\data\\STG04\\Models\\00148C50.sa1mdl", false);
 		*(NJS_OBJECT*)0x0267A410 = *LoadModel("system\\data\\STG04\\Models\\00148D54.sa1mdl", false);
@@ -594,31 +574,31 @@ void SpeedHighway_Init()
 		Fountain3 = LoadModel("system\\data\\STG04\\Models\\0013547C.sa1mdl", false);
 		Fountain3->basicdxmodel->mats[0].attr_texId = 25;
 		Fountain3->basicdxmodel->mats[1].attr_texId = 25;
-		RemoveVertexColors_Object((NJS_OBJECT*)0x2697888); //Bell
-		RemoveVertexColors_Object((NJS_OBJECT*)0x2682CF4); //ONeon1
-		RemoveVertexColors_Object((NJS_OBJECT*)0x2683024); //ONeon2
-		RemoveVertexColors_Object((NJS_OBJECT*)0x2683434); //ONeon3
-		RemoveVertexColors_Object((NJS_OBJECT*)0x26838F4); //ONeon4
-		RemoveVertexColors_Object((NJS_OBJECT*)0x2683AD4); //OPoster0
-		RemoveVertexColors_Object((NJS_OBJECT*)0x2683E94); //OPoster1
-		RemoveVertexColors_Object((NJS_OBJECT*)0x2683CB4); //OPoster2
-		RemoveVertexColors_Object((NJS_OBJECT*)0x2674658); //OSignB light thing
-		RemoveVertexColors_Object((NJS_OBJECT*)0x26785FC); //OTankA variation 1
-		RemoveVertexColors_Object((NJS_OBJECT*)0x267890C); //OTankA variation 2
-		RemoveVertexColors_Object((NJS_OBJECT*)0x267943C); //OTankA variation 3
-		RemoveVertexColors_Object((NJS_OBJECT*)0x2679A94); //OTankA variation 4
-		RemoveVertexColors_Object((NJS_OBJECT*)0x2676A4C); //OTankA variation 5
-		RemoveVertexColors_Object((NJS_OBJECT*)0x2677010); //OTankA variation 6
-		RemoveVertexColors_Object((NJS_OBJECT*)0x2677FE4); //OTankA variation 7
-		RemoveVertexColors_Object((NJS_OBJECT*)0x26751EC); //OTankA variation 8
-		RemoveVertexColors_Object((NJS_OBJECT*)0x26755B0); //OTankA variation 9
-		RemoveVertexColors_Object((NJS_OBJECT*)0x2676514); //OTankA variation 10
-		RemoveVertexColors_Object((NJS_OBJECT*)0x2678AFC); //OTankA variation 11
-		RemoveVertexColors_Object((NJS_OBJECT*)0x26777D4); //container B top broken 1
-		RemoveVertexColors_Object((NJS_OBJECT*)0x2677288); //container B top broken 2
-		RemoveVertexColors_Object((NJS_OBJECT*)0x2675730); //container B top broken 3
-		RemoveVertexColors_Object((NJS_OBJECT*)0x2677A4C); //container B top broken 4
-		RemoveVertexColors_Object((NJS_OBJECT*)0x26774B8); //container B top broken 5
+		RemoveVertexColors_Object((NJS_OBJECT*)0x2697888); // Bell
+		RemoveVertexColors_Object((NJS_OBJECT*)0x2682CF4); // ONeon1
+		RemoveVertexColors_Object((NJS_OBJECT*)0x2683024); // ONeon2
+		RemoveVertexColors_Object((NJS_OBJECT*)0x2683434); // ONeon3
+		RemoveVertexColors_Object((NJS_OBJECT*)0x26838F4); // ONeon4
+		RemoveVertexColors_Object((NJS_OBJECT*)0x2683AD4); // OPoster0
+		RemoveVertexColors_Object((NJS_OBJECT*)0x2683E94); // OPoster1
+		RemoveVertexColors_Object((NJS_OBJECT*)0x2683CB4); // OPoster2
+		RemoveVertexColors_Object((NJS_OBJECT*)0x2674658); // OSignB light thing
+		RemoveVertexColors_Object((NJS_OBJECT*)0x26785FC); // OTankA variation 1
+		RemoveVertexColors_Object((NJS_OBJECT*)0x267890C); // OTankA variation 2
+		RemoveVertexColors_Object((NJS_OBJECT*)0x267943C); // OTankA variation 3
+		RemoveVertexColors_Object((NJS_OBJECT*)0x2679A94); // OTankA variation 4
+		RemoveVertexColors_Object((NJS_OBJECT*)0x2676A4C); // OTankA variation 5
+		RemoveVertexColors_Object((NJS_OBJECT*)0x2677010); // OTankA variation 6
+		RemoveVertexColors_Object((NJS_OBJECT*)0x2677FE4); // OTankA variation 7
+		RemoveVertexColors_Object((NJS_OBJECT*)0x26751EC); // OTankA variation 8
+		RemoveVertexColors_Object((NJS_OBJECT*)0x26755B0); // OTankA variation 9
+		RemoveVertexColors_Object((NJS_OBJECT*)0x2676514); // OTankA variation 10
+		RemoveVertexColors_Object((NJS_OBJECT*)0x2678AFC); // OTankA variation 11
+		RemoveVertexColors_Object((NJS_OBJECT*)0x26777D4); // container B top broken 1
+		RemoveVertexColors_Object((NJS_OBJECT*)0x2677288); // container B top broken 2
+		RemoveVertexColors_Object((NJS_OBJECT*)0x2675730); // container B top broken 3
+		RemoveVertexColors_Object((NJS_OBJECT*)0x2677A4C); // container B top broken 4
+		RemoveVertexColors_Object((NJS_OBJECT*)0x26774B8); // container B top broken 5
 		for (int i = 0; i < 3; i++)
 		{
 			SpeedHighway1Fog[i].Layer = 2000.0f;

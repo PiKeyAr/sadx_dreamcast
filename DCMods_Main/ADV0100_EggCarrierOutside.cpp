@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "EggCarrier_Motions.h"
 
+// Texlists
 NJS_TEXNAME textures_obj_ec00[206];
 NJS_TEXLIST texlist_obj_ec00 = {arrayptrandlength(textures_obj_ec00)};
 
@@ -53,6 +54,7 @@ DataArray(PVMEntry, EggCarrierObjectTexlist_Sea, 0x10F34A8, 6);
 
 NJS_OBJECT* EggCarrierSeaModel = nullptr;
 
+// Function from the DLL
 void sub_10001050(NJS_OBJECT* a1)
 {
 	NJS_MODEL_SADX* v1; // edx@1
@@ -181,7 +183,7 @@ void ParseEC00Materials(bool remove)
 		for (int k = 0; k < landtable->Col[j].Model->basicdxmodel->nbMat; ++k)
 		{
 			materialflags = landtable->Col[j].Model->basicdxmodel->mats[k].attrflags;
-			//White diffuse
+			// White diffuse
 			if (materialflags & NJD_CUSTOMFLAG_WHITE)
 			{
 				material = (NJS_MATERIAL*)& landtable->Col[j].Model->basicdxmodel->mats[k];
@@ -196,7 +198,7 @@ void ParseEC00Materials(bool remove)
 		for (int k = 0; k < landtable->Col[j].Model->basicdxmodel->nbMat; ++k)
 		{
 			materialflags = landtable->Col[j].Model->basicdxmodel->mats[k].attrflags;
-			//White diffuse
+			// White diffuse
 			if (materialflags & NJD_CUSTOMFLAG_WHITE)
 			{
 				material = (NJS_MATERIAL*)& landtable->Col[j].Model->basicdxmodel->mats[k];
@@ -211,7 +213,7 @@ void ParseEC00Materials(bool remove)
 		for (int k = 0; k < landtable->Col[j].Model->basicdxmodel->nbMat; ++k)
 		{
 			materialflags = landtable->Col[j].Model->basicdxmodel->mats[k].attrflags;
-			//White diffuse
+			// White diffuse
 			if (materialflags & NJD_CUSTOMFLAG_WHITE)
 			{
 				material = (NJS_MATERIAL*)& landtable->Col[j].Model->basicdxmodel->mats[k];
@@ -223,7 +225,7 @@ void ParseEC00Materials(bool remove)
 	landtable = LANDTABLEEC0[3];
 	for (int j = 0; j < landtable->COLCount; j++)
 	{
-		//White diffuse for landtable animation
+		// White diffuse for landtable animation
 		if (!remove)
 		{
 			AddWhiteDiffuseMaterial(&LANDTABLEEC0[3]->AnimData[LANDTABLEEC0[3]->AnimCount - 1].Model->basicdxmodel->mats[1]);
@@ -249,7 +251,7 @@ void ParseEC00Materials(bool remove)
 		for (int k = 0; k < landtable->Col[j].Model->basicdxmodel->nbMat; ++k)
 		{
 			materialflags = landtable->Col[j].Model->basicdxmodel->mats[k].attrflags;
-			//White diffuse
+			// White diffuse
 			if (materialflags & NJD_CUSTOMFLAG_WHITE)
 			{
 				material = (NJS_MATERIAL*)& landtable->Col[j].Model->basicdxmodel->mats[k];
@@ -264,7 +266,7 @@ void ParseEC00Materials(bool remove)
 		for (int k = 0; k < landtable->Col[j].Model->basicdxmodel->nbMat; ++k)
 		{
 			materialflags = landtable->Col[j].Model->basicdxmodel->mats[k].attrflags;
-			//White diffuse
+			// White diffuse
 			if (materialflags & NJD_CUSTOMFLAG_WHITE)
 			{
 				material = (NJS_MATERIAL*)& landtable->Col[j].Model->basicdxmodel->mats[k];
@@ -279,7 +281,7 @@ void ParseEC00Materials(bool remove)
 		for (int k = 0; k < landtable->Col[j].Model->basicdxmodel->nbMat; ++k)
 		{
 			materialflags = landtable->Col[j].Model->basicdxmodel->mats[k].attrflags;
-			//White diffuse
+			// White diffuse
 			if (materialflags & NJD_CUSTOMFLAG_WHITE)
 			{
 				material = (NJS_MATERIAL*)& landtable->Col[j].Model->basicdxmodel->mats[k];
@@ -309,7 +311,7 @@ void UnloadLevelFiles_ADV01()
 
 void ADV01_Init()
 {
-	//This is done every time the function is called
+	// This is done every time the function is called
 	ADV01_0_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV0100\\0.sa1lvl"));
 	ADV01_1_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV0100\\1.sa1lvl"));
 	ADV01_2_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV0100\\2.sa1lvl"));
@@ -359,106 +361,106 @@ void ADV01_Init()
 		if (!SADXWater_EggCarrier)
 		{
 			EggCarrierSeaModel = LoadModel("system\\data\\ADV0100\\Models\\001C0478.sa1mdl", false);
-			AddTextureAnimation_Permanent(29, 0, &EggCarrierSeaModel->basicdxmodel->mats[0], false, 4, 4, 13, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1);
-			AddTextureAnimation_Permanent(29, 1, &EggCarrierSeaModel->basicdxmodel->mats[0], false, 4, 4, 13, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1);
-			AddTextureAnimation_Permanent(29, 2, &EggCarrierSeaModel->basicdxmodel->mats[0], false, 4, 4, 13, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1);
+			AddTextureAnimation_Permanent(29, 0, &EggCarrierSeaModel->basicdxmodel->mats[0], false, 4, 4, 13);
+			AddTextureAnimation_Permanent(29, 1, &EggCarrierSeaModel->basicdxmodel->mats[0], false, 4, 4, 13);
+			AddTextureAnimation_Permanent(29, 2, &EggCarrierSeaModel->basicdxmodel->mats[0], false, 4, 4, 13);
 			WriteJump((void*)0x51C440, EggCarrierSea);
 		}
-		//Code fixes
-		WriteData<5>((void*)0x5244D6, 0x90); //Disable light flickering
-		WriteCall((void*)0x524509, LightFix); //Make light render of top of glass
+		// Code fixes
+		WriteData<5>((void*)0x5244D6, 0x90); // Disable light flickering
+		WriteCall((void*)0x524509, LightFix); // Make light render of top of glass
 		WriteCall((void*)0x522B49, DrawTornado2WithQueue);
 		WriteCall((void*)0x51F637, ODoseiFix);
 		WriteCall((void*)0x51F669, ODoseiFix);
 		WriteCall((void*)0x51EB2C, OLivingLightFix);
 		WriteJump((void*)0x51B210, EggCarrierSkyBox_Top);
 		WriteJump((void*)0x51B3B0, EggCarrierSkyBox_Bottom);
-		//Swap EC skybox draw calls to render the outer part last in Acts 1/2
+		// Swap EC skybox draw calls to render the outer part last in Acts 1/2
 		WriteCall((void*)0x51B717, EggCarrierSkyBox_Bottom);
 		WriteCall((void*)0x51B71F, EggCarrierSkyBox_Top);
-		WriteCall((void*)0x51B76F, EggCarrierSkyBox_Bottom); //Transformation cutscene
-		WriteCall((void*)0x51B77A, EggCarrierSkyBox_Top); //Transformation cutscene
-		//Fix Sonic jumps in "Come back here" cutscene
-		WriteData((float*)0x6D5227, 2.0f); //Sonic's speed before the first jump
-		WriteData((float*)0x6D5371, -420.0f); //Sonic's X position before the last jump
-		//Fix camera in Amy-Gamma prison cutscene
-		WriteData((float*)0x6A4EBE, -134.0f); //X1
-		WriteData((float*)0x6A4EB9, 15.0f); //Y1
-		WriteData((float*)0x6A4EB4, 54.0f); //Z1
-		WriteData((float*)0x6A4F41, -143.85f); //X2
-		WriteData((float*)0x6A4F3C, 15.93f); //Y2
-		WriteData((float*)0x6A4F37, 80.25f); //Z2
-		//Fix camera in Gamma-Amy prison cutscene
-		WriteData((float*)0x678C48, -134.0f); //X1
-		WriteData((float*)0x678C43, 15.0f); //Y1
-		WriteData((float*)0x678C3E, 54.0f); //Z1
-		WriteData((float*)0x678CCB, -143.85f); //X2
-		WriteData((float*)0x678CC6, 15.93f); //Y2
-		WriteData((float*)0x678CC1, 80.25f); //Z2
-		//Material fixes
-		AddAlphaRejectMaterial((NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01MODELS") + 0x209B6C)); //Rotating lights outside
-		AddAlphaRejectMaterial((NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01MODELS") + 0x1F7A58)); //Monorail sign (outside)
-		RemoveVertexColors_Model(ADV01_MODELS[13]); //Slot machine
-		RemoveVertexColors_Object(ADV01_OBJECTS[11]); //Books 1
-		RemoveVertexColors_Object(ADV01_OBJECTS[12]); //Books 2
-		RemoveVertexColors_Object((NJS_OBJECT*)0x10FEF74); //Eggman in Eggmobile NPC model (Egg Carrier)
-		//Fix materials on elevator buttons
+		WriteCall((void*)0x51B76F, EggCarrierSkyBox_Bottom); // Transformation cutscene
+		WriteCall((void*)0x51B77A, EggCarrierSkyBox_Top); // Transformation cutscene
+		// Fix Sonic jumps in "Come back here" cutscene
+		WriteData((float*)0x6D5227, 2.0f); // Sonic's speed before the first jump
+		WriteData((float*)0x6D5371, -420.0f); // Sonic's X position before the last jump
+		// Fix camera in Amy-Gamma prison cutscene
+		WriteData((float*)0x6A4EBE, -134.0f); // X1
+		WriteData((float*)0x6A4EB9, 15.0f); // Y1
+		WriteData((float*)0x6A4EB4, 54.0f); // Z1
+		WriteData((float*)0x6A4F41, -143.85f); // X2
+		WriteData((float*)0x6A4F3C, 15.93f); // Y2
+		WriteData((float*)0x6A4F37, 80.25f); // Z2
+		// Fix camera in Gamma-Amy prison cutscene
+		WriteData((float*)0x678C48, -134.0f); // X1
+		WriteData((float*)0x678C43, 15.0f); // Y1
+		WriteData((float*)0x678C3E, 54.0f); // Z1
+		WriteData((float*)0x678CCB, -143.85f); // X2
+		WriteData((float*)0x678CC6, 15.93f); // Y2
+		WriteData((float*)0x678CC1, 80.25f); // Z2
+		// Material fixes
+		AddAlphaRejectMaterial((NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01MODELS") + 0x209B6C)); // Rotating lights outside
+		AddAlphaRejectMaterial((NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01MODELS") + 0x1F7A58)); // Monorail sign (outside)
+		RemoveVertexColors_Model(ADV01_MODELS[13]); // Slot machine
+		RemoveVertexColors_Object(ADV01_OBJECTS[11]); // Books 1
+		RemoveVertexColors_Object(ADV01_OBJECTS[12]); // Books 2
+		RemoveVertexColors_Object((NJS_OBJECT*)0x10FEF74); // Eggman in Eggmobile NPC model (Egg Carrier)
+		// Fix materials on elevator buttons
 		WriteData((float*)0x51E818, 1.0f);
 		WriteData((float*)0x51E81D, 1.0f);
 		WriteData((float*)0x51E88F, 1.0f);
 		WriteData((float*)0x51E894, 1.0f);
 		WriteJump((char*)GetProcAddress(GetModuleHandle(L"ADV01MODELS"), "SetClip_EC00"), SetClip_EggCarrier);
 		WriteJump((char*)GetProcAddress(GetModuleHandle(L"ADV01MODELS"), "SetClip_EC01"), SetClip_EggCarrier);
-		WriteData<5>((void*)0x51BB8C, 0x90); //Don't disable fog in EC transformation cutscene
-		//Model replacements
-		NJS_OBJECT* EggChair = LoadModel("system\\data\\ADV0100\\Models\\0019795C.sa1mdl", false); //OEggChair
+		WriteData<5>((void*)0x51BB8C, 0x90); // Don't disable fog in EC transformation cutscene
+		// Model replacements
+		NJS_OBJECT* EggChair = LoadModel("system\\data\\ADV0100\\Models\\0019795C.sa1mdl", false); // OEggChair
 		*ADV01_ACTIONS[2]->object = *EggChair;
-		*ADV01_ACTIONS[2]->motion = _197dbc; //OEggChair
+		*ADV01_ACTIONS[2]->motion = _197dbc; // OEggChair
 		*ADV01_OBJECTS[21] = *EggChair->child->child;
 		*ADV01_OBJECTS[22] = *EggChair->child->child->sibling->sibling->sibling;
 		*ADV01_OBJECTS[23] = *EggChair->child->child->sibling->sibling->sibling->sibling;
 		*ADV01_OBJECTS[24] = *EggChair->child->child->sibling->sibling->sibling->sibling->sibling;
-		*ADV01_ACTIONS[6]->object = *LoadModel("system\\data\\ADV0100\\Models\\0016991C.sa1mdl", false); //OSkyDeck
+		*ADV01_ACTIONS[6]->object = *LoadModel("system\\data\\ADV0100\\Models\\0016991C.sa1mdl", false); // OSkyDeck
 		NJS_OBJECT* ECTransform = LoadModel("system\\data\\ADV0100\\Models\\00209538.sa1mdl", false);
-		*ADV01_ACTIONS[7]->object = *ECTransform; //EC transform
-		*ADV01_OBJECTS[64] = *ECTransform; //EC transform
-		*ADV01_OBJECTS[0] = *LoadModel("system\\data\\ADV0100\\Models\\00182160.sa1mdl", false); //SideLift
-		*ADV01_OBJECTS[1] = *LoadModel("system\\data\\ADV0100\\Models\\00181DBC.sa1mdl", false); //SideLift
-		*ADV01_OBJECTS[2] = *LoadModel("system\\data\\ADV0100\\Models\\00181684.sa1mdl", false); //SideLift
-		*ADV01_ACTIONS[3]->object = *LoadModel("system\\data\\ADV0100\\Models\\0019A490.sa1mdl", false); //OGunSight
-		*ADV01_OBJECTS[6] = *LoadModel("system\\data\\ADV0100\\Models\\001AA1A8.sa1mdl", false); //OBChair
-		*ADV01_OBJECTS[8] = *LoadModel("system\\data\\ADV0100\\Models\\001A01A0.sa1mdl", false); //OEggmanBed
+		*ADV01_ACTIONS[7]->object = *ECTransform; // EC transform
+		*ADV01_OBJECTS[64] = *ECTransform; // EC transform
+		*ADV01_OBJECTS[0] = *LoadModel("system\\data\\ADV0100\\Models\\00182160.sa1mdl", false); // SideLift
+		*ADV01_OBJECTS[1] = *LoadModel("system\\data\\ADV0100\\Models\\00181DBC.sa1mdl", false); // SideLift
+		*ADV01_OBJECTS[2] = *LoadModel("system\\data\\ADV0100\\Models\\00181684.sa1mdl", false); // SideLift
+		*ADV01_ACTIONS[3]->object = *LoadModel("system\\data\\ADV0100\\Models\\0019A490.sa1mdl", false); // OGunSight
+		*ADV01_OBJECTS[6] = *LoadModel("system\\data\\ADV0100\\Models\\001AA1A8.sa1mdl", false); // OBChair
+		*ADV01_OBJECTS[8] = *LoadModel("system\\data\\ADV0100\\Models\\001A01A0.sa1mdl", false); // OEggmanBed
 		*ADV01_OBJECTS[29] = *ADV01_ACTIONS[3]->object;
-		*ADV01_OBJECTS[55] = *LoadModel("system\\data\\ADV0100\\Models\\0017D82C.sa1mdl", false); //OSLight
-		*ADV01_OBJECTS[56] = *ADV01_OBJECTS[55]->child; //OSLight
-		*ADV01_OBJECTS[57] = *ADV01_OBJECTS[55]->child->child; //OSLight
+		*ADV01_OBJECTS[55] = *LoadModel("system\\data\\ADV0100\\Models\\0017D82C.sa1mdl", false); // OSLight
+		*ADV01_OBJECTS[56] = *ADV01_OBJECTS[55]->child; // OSLight
+		*ADV01_OBJECTS[57] = *ADV01_OBJECTS[55]->child->child; // OSLight
 		AddWhiteDiffuseMaterial(&ADV01_OBJECTS[55]->child->child->basicdxmodel->mats[3]);
 		AddWhiteDiffuseMaterial(&ADV01_OBJECTS[55]->child->child->basicdxmodel->mats[4]);
 		AddWhiteDiffuseMaterial(&ADV01_OBJECTS[55]->child->child->basicdxmodel->mats[5]);
 		AddWhiteDiffuseMaterial(&ADV01_OBJECTS[55]->child->child->basicdxmodel->mats[6]);
 		AddWhiteDiffuseMaterial(&ADV01_OBJECTS[55]->child->child->basicdxmodel->mats[7]);
-		*ADV01_OBJECTS[58] = *LoadModel("system\\data\\ADV0100\\Models\\0017BFE4.sa1mdl", false); //OSLight
-		*ADV01_OBJECTS[61] = *LoadModel("system\\data\\ADV0100\\Models\\001B4794.sa1mdl", false); //OTornado2
+		*ADV01_OBJECTS[58] = *LoadModel("system\\data\\ADV0100\\Models\\0017BFE4.sa1mdl", false); // OSLight
+		*ADV01_OBJECTS[61] = *LoadModel("system\\data\\ADV0100\\Models\\001B4794.sa1mdl", false); // OTornado2
 		AddWhiteDiffuseMaterial(&ADV01_OBJECTS[61]->basicdxmodel->mats[24]);
 		AddWhiteDiffuseMaterial(&ADV01_OBJECTS[61]->basicdxmodel->mats[25]);
 		SwapMeshsets(ADV01_OBJECTS[61], 0, 22);
 		NJS_OBJECT* SomeStupidThing = LoadModel("system\\data\\ADV0100\\Models\\00178BC4.sa1mdl", false);
-		*ADV01_ACTIONS[0]->object = *SomeStupidThing; //This thing is stupid
-		*ADV01_OBJECTS[5] = *SomeStupidThing; //This thing is stupid
-		*ADV01_OBJECTS[13] = *LoadModel("system\\data\\ADV0100\\Models\\001A85F0.sa1mdl", false); //OParasol
-		*ADV01_OBJECTS[27] = *LoadModel("system\\data\\ADV0100\\Models\\001782D4.sa1mdl", false); //Door top
+		*ADV01_ACTIONS[0]->object = *SomeStupidThing; // This thing is stupid
+		*ADV01_OBJECTS[5] = *SomeStupidThing; // This thing is stupid
+		*ADV01_OBJECTS[13] = *LoadModel("system\\data\\ADV0100\\Models\\001A85F0.sa1mdl", false); // OParasol
+		*ADV01_OBJECTS[27] = *LoadModel("system\\data\\ADV0100\\Models\\001782D4.sa1mdl", false); // Door top
 		NJS_OBJECT* Taihou = LoadModel("system\\data\\ADV0100\\Models\\0017FDB4.sa1mdl", false);
-		*ADV01_OBJECTS[14]->basicdxmodel = *Taihou->basicdxmodel; //OTaihou (Cannon)
-		*ADV01_OBJECTS[14]->child->basicdxmodel = *Taihou->child->basicdxmodel; //OTaihou (Cannon)
-		*ADV01_OBJECTS[14]->child->child->basicdxmodel = *Taihou->child->child->basicdxmodel; //OTaihou (Cannon)
-		*ADV01_OBJECTS[14]->child->child->sibling->basicdxmodel = *Taihou->child->child->sibling->basicdxmodel; //OTaihou (Cannon)
-		*ADV01_OBJECTS[28] = *LoadModel("system\\data\\ADV0100\\Models\\001777B4.sa1mdl", false); //Door 2
-		*ADV01_OBJECTS[18] = *LoadModel("system\\data\\ADV0100\\Models\\00189EA0.sa1mdl", false); //Eggcap
-		*ADV01_OBJECTS[19] = *LoadModel("system\\data\\ADV0100\\Models\\001760A0.sa1mdl", false); //Egglift
-		*ADV01_OBJECTS[34] = *LoadModel("system\\data\\ADV0100\\Models\\00189090.sa1mdl", false); //OMast
-		ADV01_OBJECTS[51]->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT; //Pool water
-		ADV01_OBJECTS[51]->basicdxmodel->mats[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT; //Pool water
-		ADV01_OBJECTS[51]->basicdxmodel->mats[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT; //Pool water
+		*ADV01_OBJECTS[14]->basicdxmodel = *Taihou->basicdxmodel; // OTaihou (Cannon)
+		*ADV01_OBJECTS[14]->child->basicdxmodel = *Taihou->child->basicdxmodel; // OTaihou (Cannon)
+		*ADV01_OBJECTS[14]->child->child->basicdxmodel = *Taihou->child->child->basicdxmodel; // OTaihou (Cannon)
+		*ADV01_OBJECTS[14]->child->child->sibling->basicdxmodel = *Taihou->child->child->sibling->basicdxmodel; // OTaihou (Cannon)
+		*ADV01_OBJECTS[28] = *LoadModel("system\\data\\ADV0100\\Models\\001777B4.sa1mdl", false); // Door 2
+		*ADV01_OBJECTS[18] = *LoadModel("system\\data\\ADV0100\\Models\\00189EA0.sa1mdl", false); // Eggcap
+		*ADV01_OBJECTS[19] = *LoadModel("system\\data\\ADV0100\\Models\\001760A0.sa1mdl", false); // Egglift
+		*ADV01_OBJECTS[34] = *LoadModel("system\\data\\ADV0100\\Models\\00189090.sa1mdl", false); // OMast
+		ADV01_OBJECTS[51]->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT; // Pool water
+		ADV01_OBJECTS[51]->basicdxmodel->mats[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT; // Pool water
+		ADV01_OBJECTS[51]->basicdxmodel->mats[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT; // Pool water
 		NJS_OBJECT* MonorailFront = LoadModel("system\\data\\ADV0100\\Models\\00170498.sa1mdl", false);
 		*ADV01_OBJECTS[69]->basicdxmodel = *MonorailFront->basicdxmodel;
 		*ADV01_OBJECTS[69]->child->basicdxmodel = *MonorailFront->child->basicdxmodel;
@@ -500,7 +502,7 @@ void ADV01_Init()
 
 void ADV01_OnFrame()
 {
-	//This dirty hack is needed to prevent the DX collision object from interfering with Gamma's hover animation in cutscenes
+	// This dirty hack is needed to prevent the DX collision object from interfering with Gamma's hover animation in cutscenes
 	if (CurrentLevel == LevelIDs_EggCarrierOutside && CurrentAct == 2)
 	{
 		if (ADV01_2_Info)

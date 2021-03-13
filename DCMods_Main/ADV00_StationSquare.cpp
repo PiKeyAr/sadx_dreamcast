@@ -131,14 +131,14 @@ void RenderSS03Cols_2()
 		njTranslate(0, 0, 0, 0);
 		for (int i : SS03cols)
 		{
-			//Glass, Twinkle top etc.
+			// Glass, Twinkle top etc.
 			if (LANDTABLESS[3]->Col[i].Flags & 0x1000000 && LANDTABLESS[3]->Col[i].Flags != 0xA9040000)
 			{
 				DrawQueueDepthBias = 5000.0f;
 				ProcessModelNode(LANDTABLESS[3]->Col[i].Model, (QueuedModelFlagsB)0, 1.0f);
 				DrawQueueDepthBias = 0.0f;
 			}
-			//Shadow thing in the sewers
+			// Shadow thing in the sewers
 			else if (LANDTABLESS[3]->Col[i].Flags == 0xA9040000)
 			{
 				DrawQueueDepthBias = -12000.0f;

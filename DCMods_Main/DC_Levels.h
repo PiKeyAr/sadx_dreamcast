@@ -747,3 +747,4 @@ void HideEntireObject(NJS_OBJECT* a1);
 void RemoveTransparency_Object(NJS_OBJECT* obj, bool recursive);
 void HideAllButOneMesh(NJS_OBJECT *obj, int meshID);
 void OnInitEnd_Videos();
+void land_DrawObject_New(NJS_OBJECT* a1, _OBJ_LANDENTRY* a2);

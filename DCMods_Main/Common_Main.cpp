@@ -1,6 +1,6 @@
 #include "stdafx.h"
 
-//Level files
+// Level files
 LandTableInfo *STG00_0_Info = nullptr;
 LandTableInfo *STG01_0_Info = nullptr;
 LandTableInfo *STG01_1_Info = nullptr;
@@ -245,46 +245,23 @@ static const wchar_t *const OldModDLLs[] = {
 	L"MRFinalEggFix"
 };
 
-//List of initialization functions that touch stuff in the DLLs that I'm replacing (I'm so tired of this shit)
-int DLLFunctionsArray[] = {
-	3,4,5,6,7,8,9,
-	10,11,12,13,14,15,16,
-	49,
-	82,83,84,85,86,87,88,
-	90,91,92,93,94,95,96,97,98,99,
-	100,101,103,104,105,106,107,109,
-	110,111,112,113,114,115,116,117,118,119,
-	120,121,122,123,124,125,126,127,128,129,
-	130,131,132,133,134,
-	143,144,145,146,147,
-	152,153,154,155,156,157,158,159,
-	160,161,162,163,164,165,166,167,168,169,
-	170,171,172,173,174,
-	181,182,186,
-	214,215,216,217,218,219,
-	220,
-	336,337,338,339,340,341,
-	350,351,
-	383,
-	432,
-};
 
 void RestoreHumpAnimations_apply()
 {
 	SonicAnimData[37].AnimationSpeed = 0.5f;
 	TailsAnimData[62].AnimationSpeed = 0.5f;
 	KnucklesAnimData[74].AnimationSpeed = 1.0f;
-	KnucklesAnimData[24].AnimationSpeed = 1.0f; //Fix wrong speed for Knuckles' push animation (same value as pull animation)
-	AmyAnimData[47].AnimationSpeed = 0.25f; //Half the original value because it looks stupid
-	WriteData<1>((char*)0x45C08B, 0x50u); //Correct animation index for Tails' "jump while holding something"
-	TailsAnimData[80].Animation = MILES_ACTIONS[21]; //Tails jumping while holding something
+	KnucklesAnimData[24].AnimationSpeed = 1.0f; // Fix wrong speed for Knuckles' push animation (same value as pull animation)
+	AmyAnimData[47].AnimationSpeed = 0.25f; // Half the original value because it looks stupid
+	WriteData<1>((char*)0x45C08B, 0x50u); // Correct animation index for Tails' "jump while holding something"
+	TailsAnimData[80].Animation = MILES_ACTIONS[21]; // Tails jumping while holding something
 	TailsAnimData[80].AnimationSpeed = 0.5f;
-	TailsAnimData[81].Animation = MILES_ACTIONS[22]; //Tails transition jumping while holding something
+	TailsAnimData[81].Animation = MILES_ACTIONS[22]; // Tails transition jumping while holding something
 	TailsAnimData[81].AnimationSpeed = 0.5f;
-	TailsAnimData[82].Animation = MILES_ACTIONS[23]; //Tails falling while holding something
+	TailsAnimData[82].Animation = MILES_ACTIONS[23]; // Tails falling while holding something
 }
 
-//The most important trampoline
+// The most important trampoline
 static Trampoline* LoadLevelFiles_t = nullptr;
 static void __cdecl LoadLevelFiles_r()
 {
@@ -294,11 +271,27 @@ static void __cdecl LoadLevelFiles_r()
 	original();
 }
 
+static void __declspec(naked) land_DrawObjectHacc()
+{
+	__asm
+	{
+		push[esp + 04h] // a2
+		push edi // a1
+
+		// Call your __cdecl function here:
+		call land_DrawObject_New
+
+		pop edi // a1
+		add esp, 4 // a2
+		retn
+	}
+}
+
 extern "C"
 {
 	__declspec(dllexport) void __cdecl Init(const char *path, const HelperFunctions &helperFunctions)
 	{
-		//Check which DLLs are loaded
+		// Check which DLLs are loaded
 		DLLLoaded_DX11 = (GetModuleHandle(L"sadx-d3d11") != nullptr);
 		DLLLoaded_HDGUI = (GetModuleHandle(L"HD_GUI") != nullptr);
 		DLLLoaded_SA1Chars = (GetModuleHandle(L"SA1_Chars") != nullptr);
@@ -306,11 +299,11 @@ extern "C"
 		DLLLoaded_DLCs = (GetModuleHandle(L"DLCs_Main") != nullptr);
 		DLLLoaded_SADXFE = (GetModuleHandle(L"sadx-fixed-edition") != nullptr);
 		HelperFunctionsGlobal = helperFunctions;
-		//Global mod path
+		// Global mod path
 		ModPath = std::string(path);
 		HMODULE LanternDLL = GetModuleHandle(L"sadx-dc-lighting");
 		if (HorizontalStretchPointer != &HorizontalStretch) UIScale = true; else UIScale = false;
-		//Error messages
+		// Error messages
 		if (!DLLLoaded_Lantern) LanternErrorMessageTimer = 600;
 		if (DLLLoaded_Lantern && GetProcAddress(LanternDLL, "palette_from_mix") == nullptr)
 		{
@@ -326,7 +319,7 @@ extern "C"
 				L"DC Conversion error: Mod Loader out of date", MB_OK | MB_ICONERROR);
 			InitError = true;
 		}
-		//Check for old mod DLLs
+		// Check for old mod DLLs
 		std::wstring OldModsMessage = L"Old/incompatible mods detected!\n\n"
 			L"The following mods are outdated and will cause "
 			L"problems if you leave them enabled. These mods are "
@@ -338,7 +331,7 @@ extern "C"
 		{
 			if (GetModuleHandle(OldModDLLs[i]) != nullptr)
 			{
-				//Found a known incompatible mod
+				// Found a known incompatible mod
 				OldModsMessage += OldModDLLs[i];
 				OldModsMessage += '\n';
 				OldModsFound = true;
@@ -355,9 +348,9 @@ extern "C"
 		LoadLevelFiles_t = new Trampoline(0x422AD0, 0x422AD8, LoadLevelFiles_r);
 		const std::string s_path(path);
 		const std::string s_config_ini(s_path + "\\config.ini");
-		//Config stuff
+		// Config stuff
 		const IniFile *const config = new IniFile(s_config_ini);
-		//Read config stuff
+		// Read config stuff
 		SuppressWarnings = config->getBool("General", "SuppressWarnings", false);
 		FPSLock = config->getBool("General", "FPSLock", false);
 		RestoreHumpAnimations = config->getBool("General", "RestoreHumpAnimations", true);
@@ -429,14 +422,14 @@ extern "C"
 		ReplaceEggs = config->getBool("Chao Gardens", "ReplaceEggs", true);
 		EnableLobby = config->getBool("Chao Gardens", "EnableChaoRaceLobby", true);
 		DisableChaoButtonPrompts = config->getBool("Chao Gardens", "DisableChaoButtonPrompts", false);
-		//Autodemo mods check
+		// Autodemo mods check
 		if (GetModuleHandle(L"AutoDemo_TestLevels") != nullptr) EnableHedgehogHammer = false;
 		if (GetModuleHandle(L"AutoDemo_WindyValley") != nullptr) EnableWindyValley = false;
 		if (GetModuleHandle(L"AutoDemo_SpeedHighway") != nullptr) EnableSpeedHighway = false;
 		if (GetModuleHandle(L"AutoDemo_RedMountain") != nullptr) EnableRedMountain = false;
-		//Set window title
+		// Set window title
 		if (EnableWindowTitle) helperFunctions.SetWindowTitle("Sonic Adventure");
-		//Another error message
+		// Another error message
 		if (EnableEmeraldCoast && GetModuleHandle(L"WaterEffect") != nullptr)
 		{
 			EnableEmeraldCoast = false;
@@ -450,39 +443,41 @@ extern "C"
 				L"DC Conversion error: incompatible mod detected",
 				MB_OK | MB_ICONERROR);
 		}
-		//Disable font smoothing
+		// Disable font smoothing
 		if (DisableFontSmoothing)
 		{
-			//Probably better than making the whole texture ARGB1555
+			// Probably better than making the whole texture ARGB1555
 			WriteData<1>((char*)0x40DA0B, 0x00);
 			WriteData<1>((char*)0x40DA0C, 0x00);
 			WriteData<1>((char*)0x40DA12, 0x00);
 		}
-		//Enable Impress font
+		// Enable Impress font
 		if (EnableImpressFont == "Impress")
 		{
 			ReplaceGeneric("FONTDATA1.BIN", "FONTDATA1_I.BIN");
 		}
-		//Enable Comic Sans font (experimental)
+		// Enable Comic Sans font (experimental)
 		else if (EnableImpressFont == "ComicSans")
 		{
 			ReplaceGeneric("FONTDATA1.BIN", "FONTDATA1_C.BIN");
 		}
 		if (ColorizeFont)
 		{
-			//Subtitles (ARGB from 0 to F: CEEF)
+			// Subtitles (ARGB from 0 to F: CEEF)
 			WriteData<1>((char*)0x40E28D, 0xEF);
 			WriteData<1>((char*)0x40E28E, 0xCE);
-			//Pause menu text (ARGB from 00 to FF: BFEFEFFF)
+			// Pause menu text (ARGB from 00 to FF: BFEFEFFF)
 			WriteData<1>((char*)0x40E541, 0xFF);
 			WriteData<1>((char*)0x40E542, 0xEF);
 			WriteData<1>((char*)0x40E543, 0xEF);
 			WriteData<1>((char*)0x40E544, 0xBF);
-			//Recap screen (just FF F8 F8 F8)
+			// Recap screen (just FF F8 F8 F8)
 			WriteCall((void*)0x6428AD, ColorizeRecapText);
 		}
-		//Init functions
-		Init_Global(); //General stuff that runs at mod startup, some level-specific stuff there too
+		// Init functions
+		Init_Global(); // General stuff that runs at mod startup, some level-specific stuff there too
+		WriteCall((void*)0x43A757, land_DrawObjectHacc);
+		WriteCall((void*)0x43A7CD, land_DrawObjectHacc);
 		if (AssumeOIT) OIT_Init();
 		SADXStyleWater_Init(config, helperFunctions);
 		if (EnableDCBranding) Branding_Init(config, helperFunctions);
@@ -618,7 +613,7 @@ extern "C"
 	__declspec(dllexport) void __cdecl OnFrame()
 	{
 		if (InitError) return;
-		//Display error messages
+		// Display error messages
 		if (!SuppressWarnings && LanternErrorMessageTimer && (IsIngame() || GameMode == GameModes_Menu))
 		{
 			BackupDebugFontSettings();
@@ -644,7 +639,7 @@ extern "C"
 			PauseHideErrorMessageTimer--;
 			RestoreDebugFontSettings();
 		}
-		//Animate materials and UVs
+		// Animate materials and UVs
 		if (!IsGamePaused() && Camera_Data1)
 		{
 			for (int i = 0; i < 128; ++i)
