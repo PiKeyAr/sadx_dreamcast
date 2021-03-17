@@ -28,8 +28,8 @@ void njDrawQuadTexture_Italic(NJS_QUAD_TEXTURE* points, float scale)
 	base_x = points->x1;
 	_points.y = points->y1;
 	v4 = points->u1;
-	_points.vx1 = widthmaybe + DebugFontItalic * 4.0f; //width
-	_points.x = base_x + DebugFontItalic * 4.0f; //offset for accuracy
+	_points.vx1 = widthmaybe + DebugFontItalic * 4.0f; // Width
+	_points.x = base_x + DebugFontItalic * 4.0f; // Offset for accuracy
 	v5 = points->y2 - points->y1;
 	_points.u = v4;
 	_points.z = scale;
@@ -342,11 +342,11 @@ void AnimateTexture(TextureAnimation *texanim)
 	//PrintDebug("Animation: level %d, act %d, original %d, final %d\n", texanim->level, texanim->act, texanim->Frame1, texanim->Frame2);
 	int framenumber;
 	int actualspeed = 1;
-	//Calculate animation speed if in 30 or 15 FPS mode
+	// Calculate animation speed if in 30 or 15 FPS mode
 	if (FramerateSetting > 1 && texanim->Speed > 1) actualspeed = texanim->Speed / 2; else actualspeed = texanim->Speed;
 	if (texanim->material && FrameCounter % actualspeed == 0)
 	{
-		//Deal with non-sequential animations manually
+		// Deal with non-sequential animations manually
 		if (texanim->NonSequential)
 		{
 			if (texanim->material->attr_texId == texanim->Frame1)
@@ -447,12 +447,12 @@ void AnimateTexture(TextureAnimation *texanim)
 		nonseq_done:
 			return;
 		}
-		//Animate automatically if sequential
+		// Animate automatically if sequential
 		else
 		{
 			framenumber = texanim->material->attr_texId;
 			framenumber++;
-			//Reset if reached end of animation or incorrect initial frame
+			// Reset if reached end of animation or incorrect initial frame
 			if (framenumber > texanim->Frame2 || framenumber < texanim->Frame1) framenumber = texanim->Frame1;
 			texanim->material->attr_texId = framenumber;
 			//PrintDebug("Framenumber: %d\n", framenumber);
@@ -465,14 +465,14 @@ void AnimateUVs(UVAnimation *animation)
 	if (CurrentAct == animation->act || animation->act == -1)
 	{
 		int actualtimer = 1;
-		//Calculate animation speed if in 30 or 15 FPS mode
+		// Calculate animation speed if in 30 or 15 FPS mode
 		if (FramerateSetting > 1 && animation->timer > 1) actualtimer = animation->timer / 2; else actualtimer = animation->timer;
 		if (actualtimer == 0) actualtimer = 1;
 		if (animation->uv_pointer && animation->uv_count && FrameCounter % actualtimer == 0)
 		{
 			animation->v_shift += animation->v_speed;
 			animation->u_shift += animation->u_speed;
-			//Limit V +
+			// Limit V +
 			if (animation->v_shift > 510)
 			{
 				animation->v_shift -= 510;
@@ -481,7 +481,7 @@ void AnimateUVs(UVAnimation *animation)
 					animation->uv_pointer[i].v -= 510;
 				}
 			}
-			//Limit V -
+			// Limit V -
 			if (animation->v_shift < -510)
 			{
 				animation->v_shift += 510;
@@ -490,7 +490,7 @@ void AnimateUVs(UVAnimation *animation)
 					animation->uv_pointer[i].v += 510;
 				}
 			}
-			//Limit U +
+			// Limit U +
 			if (animation->u_shift > 510)
 			{
 				animation->u_shift -= 510;
@@ -499,7 +499,7 @@ void AnimateUVs(UVAnimation *animation)
 					animation->uv_pointer[i].u -= 510;
 				}
 			}
-			//Limit U -
+			// Limit U -
 			if (animation->u_shift < -510)
 			{
 				animation->u_shift += 510;
@@ -508,7 +508,7 @@ void AnimateUVs(UVAnimation *animation)
 					animation->uv_pointer[i].u += 510;
 				}
 			}
-			//Add U and V
+			// Add U and V
 			for (int i = 0; i < animation->uv_count; i++)
 			{
 				animation->uv_pointer[i].v += animation->v_speed;
@@ -962,9 +962,9 @@ void RemoveWhiteDiffuseMaterial_Specular3(NJS_MATERIAL *material)
 void CheckModelForWhiteDiffuse(NJS_MODEL_SADX *model, int ignorelightmaterial)
 {
 	Uint32 materialflags;
-	if (model->mats[model->meshsets[0].type_matId & ~0xC000].attrflags & NJD_FLAG_USE_ENV) return; //First mesh
-	if (model->mats[ignorelightmaterial + 1].attrflags & NJD_FLAG_USE_ENV) return; //Material after the white diffuse one
-	if (model->mats[ignorelightmaterial + 1].attrflags & NJD_FLAG_IGNORE_SPECULAR) return; //Material after the white diffuse one
+	if (model->mats[model->meshsets[0].type_matId & ~0xC000].attrflags & NJD_FLAG_USE_ENV) return; // First mesh
+	if (model->mats[ignorelightmaterial + 1].attrflags & NJD_FLAG_USE_ENV) return; // Material after the white diffuse one
+	if (model->mats[ignorelightmaterial + 1].attrflags & NJD_FLAG_IGNORE_SPECULAR) return; // Material after the white diffuse one
 	for (int q = ignorelightmaterial + 1; q < model->nbMat; ++q)
 	{
 		materialflags = model->mats[q].attrflags;
@@ -982,7 +982,7 @@ void ProcessMaterials_Object(NJS_OBJECT *obj)
 	Uint32 materialflags;
 	bool ignorelight = false;
 	bool ignorespecular = false;
-	//Check meshsets and remove vertex colors, if any
+	// Check meshsets and remove vertex colors, if any
 	if (obj->basicdxmodel)
 	{
 		for (int k = 0; k < obj->basicdxmodel->nbMeshset; ++k)
@@ -992,7 +992,7 @@ void ProcessMaterials_Object(NJS_OBJECT *obj)
 				obj->basicdxmodel->meshsets[k].vertcolor = nullptr;
 			}
 		}
-		//Check the first material for NJD_FLAG_IGNORE_SPECULAR and adjust the rest of the materials accordingly
+		// Check the first material for NJD_FLAG_IGNORE_SPECULAR and adjust the rest of the materials accordingly
 		if (obj->basicdxmodel->mats[0].attrflags & NJD_FLAG_IGNORE_SPECULAR) ignorespecular = true; else ignorespecular = false;
 		for (int k = 1; k < obj->basicdxmodel->nbMat; ++k)
 		{
@@ -1006,22 +1006,22 @@ void ProcessMaterials_Object(NJS_OBJECT *obj)
 				if ((materialflags & NJD_FLAG_IGNORE_SPECULAR)) obj->basicdxmodel->mats[k].attrflags &= ~NJD_FLAG_IGNORE_SPECULAR;
 			}
 		}
-		//Check materials
+		// Check materials
 		for (int k = 0; k < obj->basicdxmodel->nbMat; ++k)
 		{
-			//Remove material colors
+			// Remove material colors
 			obj->basicdxmodel->mats[k].diffuse.argb.r = 0xFF;
 			obj->basicdxmodel->mats[k].diffuse.argb.g = 0xFF;
 			obj->basicdxmodel->mats[k].diffuse.argb.b = 0xFF;
 			materialflags = obj->basicdxmodel->mats[k].attrflags;
-			//Check for alpha rejection flag
+			// Check for alpha rejection flag
 			if (materialflags & NJD_CUSTOMFLAG_NO_REJECT)
 			{
 				AddAlphaRejectMaterial((NJS_MATERIAL*)&obj->basicdxmodel->mats[obj->basicdxmodel->meshsets[k].type_matId & ~0xC000]);
 			}
 		}
 	}
-	//Process materials of child and sibling models as well
+	// Process materials of child and sibling models as well
 	if (obj->child != nullptr) ProcessMaterials_Object(obj->child);
 	if (obj->sibling != nullptr) ProcessMaterials_Object(obj->sibling);
 }
@@ -1052,7 +1052,7 @@ void LoadModel_ReplaceMeshes(NJS_OBJECT *object, const char *ModelName)
 
 void SwapMeshsets(NJS_OBJECT* object, int mesh1, int mesh2)
 {
-	//Save mesh 1 data to a temporary meshset
+	// Save mesh 1 data to a temporary meshset
 	TempMeshset.attrs = object->basicdxmodel->meshsets[mesh1].attrs;
 	TempMeshset.buffer = object->basicdxmodel->meshsets[mesh1].buffer;
 	TempMeshset.meshes = object->basicdxmodel->meshsets[mesh1].meshes;
@@ -1061,7 +1061,7 @@ void SwapMeshsets(NJS_OBJECT* object, int mesh1, int mesh2)
 	TempMeshset.type_matId = object->basicdxmodel->meshsets[mesh1].type_matId;
 	TempMeshset.vertcolor = object->basicdxmodel->meshsets[mesh1].vertcolor;
 	TempMeshset.vertuv = object->basicdxmodel->meshsets[mesh1].vertuv;
-	//Replace mesh 1 data with mesh 2 data
+	// Replace mesh 1 data with mesh 2 data
 	object->basicdxmodel->meshsets[mesh1].attrs = object->basicdxmodel->meshsets[mesh2].attrs;
 	object->basicdxmodel->meshsets[mesh1].buffer = object->basicdxmodel->meshsets[mesh2].buffer;
 	object->basicdxmodel->meshsets[mesh1].meshes = object->basicdxmodel->meshsets[mesh2].meshes;
@@ -1070,7 +1070,7 @@ void SwapMeshsets(NJS_OBJECT* object, int mesh1, int mesh2)
 	object->basicdxmodel->meshsets[mesh1].type_matId = object->basicdxmodel->meshsets[mesh2].type_matId;
 	object->basicdxmodel->meshsets[mesh1].vertcolor = object->basicdxmodel->meshsets[mesh2].vertcolor;
 	object->basicdxmodel->meshsets[mesh1].vertuv = object->basicdxmodel->meshsets[mesh2].vertuv;
-	//Replace mesh 2 data with saved mesh 1 data
+	// Replace mesh 2 data with saved mesh 1 data
 	object->basicdxmodel->meshsets[mesh2].attrs = TempMeshset.attrs;
 	object->basicdxmodel->meshsets[mesh2].buffer = TempMeshset.buffer;
 	object->basicdxmodel->meshsets[mesh2].meshes = TempMeshset.meshes;
@@ -1087,18 +1087,18 @@ void SortModel(NJS_OBJECT *object)
 	if (DebugSorting) PrintDebug("\nSorting model\n");
 	int tempcounter_transparent = 0;
 	int tempcounter_opaque = 0;
-	//Prepare the arrays
+	// Prepare the arrays
 	for (int k = 0; k < 16; ++k)
 	{
 		OpaqueMeshes[k] = -1;
 		TransparentMeshes[k] = -1;
 	}
-	//Iterate through meshsets
+	// Iterate through meshsets
 	if (object->basicdxmodel)
 	{
 		for (int k = 0; k < object->basicdxmodel->nbMeshset; ++k)
 		{
-			//Scan for transparent materials
+			// Scan for transparent materials
 			if (object->basicdxmodel->mats[object->basicdxmodel->meshsets[k].type_matId & ~0xC000].attrflags & NJD_FLAG_USE_ALPHA)
 			{
 				tempmaterialarray_transparent[tempcounter_transparent].attrflags = object->basicdxmodel->mats[object->basicdxmodel->meshsets[k].type_matId & ~0xC000].attrflags;
@@ -1118,7 +1118,7 @@ void SortModel(NJS_OBJECT *object)
 				tempcounter_transparent++;
 				if (DebugSorting) PrintDebug("Added transparent mesh: %d\n", k);
 			}
-			//Scan for opaque materials
+			// Scan for opaque materials
 			else
 			{
 				tempmaterialarray_opaque[tempcounter_opaque].attrflags = object->basicdxmodel->mats[object->basicdxmodel->meshsets[k].type_matId & ~0xC000].attrflags;
@@ -1139,7 +1139,7 @@ void SortModel(NJS_OBJECT *object)
 				if (DebugSorting) PrintDebug("Added opaque mesh: %d\n", k);
 			}
 		}
-		//Now sort the model by listing opaque materials first
+		// Now sort the model by listing opaque materials first
 		for (int k = 0; k < tempcounter_opaque; ++k)
 		{
 			if (OpaqueMeshes[k] != -1)
@@ -1160,7 +1160,7 @@ void SortModel(NJS_OBJECT *object)
 				if (DebugSorting) PrintDebug("Opaque meshset ID %d added\n", k);
 			}
 		}
-		//Continue sorting by adding transparent materials
+		// Continue sorting by adding transparent materials
 		for (int q = 0; q < tempcounter_transparent; ++q)
 		{
 			if (TransparentMeshes[q] != -1)
@@ -1198,7 +1198,7 @@ void SortModel(NJS_OBJECT *object)
 				PrintDebug("Sorting complete\n\n");
 			}
 		}
-		//Also sort child and sibling objects
+		// Also sort child and sibling objects
 	}
 	if (object->child != nullptr) SortModel(object->child);
 	if (object->sibling != nullptr) SortModel(object->sibling);

@@ -528,7 +528,7 @@ NJS_TEXLIST **__cdecl SetUpPastTexlists_2()
 
 void SADXStyleWater_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 {
-	//Emerald Coast
+	// Emerald Coast
 	if (SADXWater_EmeraldCoast && EnableEmeraldCoast)
 	{
 		WriteJump(EmeraldCoast_OceanDraw, EmeraldCoast_OceanDraw_SADXStyle);
@@ -539,7 +539,7 @@ void SADXStyleWater_Init(const IniFile *config, const HelperFunctions &helperFun
 		TexLists_Level[2]->PVMList = (PVMEntry*)&EmeraldCoast3Textures_list;
 		TexLists_Level[2]->NumTextures = LengthOfArray(EmeraldCoast3Textures_list);
 	}
-	//Station Square
+	// Station Square
 	if (SADXWater_StationSquare && EnableStationSquare)
 	{
 		WriteJump(StationSquare_OceanDraw, StationSquare_OceanDraw_SADXStyle);
@@ -549,7 +549,7 @@ void SADXStyleWater_Init(const IniFile *config, const HelperFunctions &helperFun
 		TexLists_Level[37]->PVMList = (PVMEntry*)&StationSquare5Textures_list;
 		TexLists_Level[37]->NumTextures = LengthOfArray(StationSquare5Textures_list);
 	}
-	//Mystic Ruins
+	// Mystic Ruins
 	if (SADXWater_MysticRuins && EnableMysticRuins)
 	{
 		WriteJump((void*)0x7C5040, SetUpMRTexlists);
@@ -557,7 +557,7 @@ void SADXStyleWater_Init(const IniFile *config, const HelperFunctions &helperFun
 		TexLists_Level[39]->PVMList = (PVMEntry*)&MysticRuins1Textures_list;
 		TexLists_Level[39]->NumTextures = 4;
 	}
-	//Egg Carrier
+	// Egg Carrier
 	if (SADXWater_EggCarrier && EnableEggCarrier)
 	{
 		WriteJump((void*)0x7D2C50, SetUpECTexlists_1);
@@ -571,7 +571,7 @@ void SADXStyleWater_Init(const IniFile *config, const HelperFunctions &helperFun
 		TexLists_Level[48]->PVMList = (PVMEntry*)&EggCarrierOutside3Textures_list;
 		TexLists_Level[48]->NumTextures = LengthOfArray(EggCarrierOutside3Textures_list);
 	}
-	//Past
+	// Past
 	if (SADXWater_Past && EnablePast)
 	{
 		WriteJump((void*)0x7C5150, SetUpPastTexlists_1);
@@ -585,7 +585,7 @@ void SADXStyleWater_Init(const IniFile *config, const HelperFunctions &helperFun
 
 void SADXStyleWater_OnFrame()
 {
-	//Runs only when the game isn't paused
+	// Runs only when the game isn't paused
 	if ((FramerateSetting < 2 && FrameCounter % 4 == 0) || (FramerateSetting == 2 && FrameCounter % 2 == 0) || FramerateSetting > 2)
 	{
 		SADXWaveAnimation++;

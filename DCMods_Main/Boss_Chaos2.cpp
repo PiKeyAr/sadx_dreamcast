@@ -1,6 +1,6 @@
 #include "stdafx.h"
 
-//TODO: Chaos 2 ball right after being attacked should use object light type
+// TODO: Chaos 2 ball right after being attacked should use object light type
 
 NJS_TEXNAME textures_chaos2[15];
 NJS_TEXLIST texlist_chaos2 = { arrayptrandlength(textures_chaos2) };
@@ -66,34 +66,34 @@ void Chaos2_Init()
 	LandTable* B_CHAOS2 = B_CHAOS2_Info->getlandtable();
 	RemoveMaterialColors_Landtable(B_CHAOS2);
 	B_CHAOS2->TexList = &texlist_chaos2;
-	LandTableArray[8] = B_CHAOS2; //Chaos 2
+	LandTableArray[8] = B_CHAOS2; // Chaos 2
 	if (!ModelsLoaded_B_CHAOS2)
 	{
 		*(NJS_TEXLIST*)0x117C76C = texlist_chaos2;
-		*(NJS_MODEL_SADX*)0x11863C0 = *LoadModel("system\\data\\B_CHAOS2\\Models\\0006CD68.sa1mdl", false)->basicdxmodel; //Column
-		*(NJS_OBJECT*)0x11835B4 = *LoadModel("system\\data\\B_CHAOS2\\Models\\0006812C.sa1mdl", false); //Table
-		((NJS_OBJECT*)0x11835B4)->basicdxmodel->mats[1].attrflags &= ~NJD_FLAG_USE_ALPHA; //This doesn't use alpha anyway
-		*(NJS_MODEL_SADX*)0x1183690 = *LoadModel("system\\data\\B_CHAOS2\\Models\\0006822C.sa1mdl", false)->basicdxmodel; //Transparent thing on table
+		*(NJS_MODEL_SADX*)0x11863C0 = *LoadModel("system\\data\\B_CHAOS2\\Models\\0006CD68.sa1mdl", false)->basicdxmodel; // Column
+		*(NJS_OBJECT*)0x11835B4 = *LoadModel("system\\data\\B_CHAOS2\\Models\\0006812C.sa1mdl", false); // Table
+		((NJS_OBJECT*)0x11835B4)->basicdxmodel->mats[1].attrflags &= ~NJD_FLAG_USE_ALPHA; // This doesn't use alpha anyway
+		*(NJS_MODEL_SADX*)0x1183690 = *LoadModel("system\\data\\B_CHAOS2\\Models\\0006822C.sa1mdl", false)->basicdxmodel; // Transparent thing on table
 		WriteCall((void*)0x54E3FE, Chaos2TableTopFix);
-		*(NJS_OBJECT*)0x117E86C = *LoadModel("system\\data\\B_CHAOS2\\Models\\0006A160.sa1mdl", false); //Chandelier
-		*(NJS_OBJECT*)0x117EB1C = *LoadModel("system\\data\\B_CHAOS2\\Models\\0006A400.sa1mdl", false); //Chandelier floor light
+		*(NJS_OBJECT*)0x117E86C = *LoadModel("system\\data\\B_CHAOS2\\Models\\0006A160.sa1mdl", false); // Chandelier
+		*(NJS_OBJECT*)0x117EB1C = *LoadModel("system\\data\\B_CHAOS2\\Models\\0006A400.sa1mdl", false); // Chandelier floor light
 		AddAlphaRejectMaterial(&((NJS_OBJECT*)0x117EB1C)->basicdxmodel->mats[0]);
 		WriteCall((void*)0x54DFCC, ChandelierFix);
 		WriteCall((void*)0x54E13C, ChandLightFix);
 		((NJS_OBJECT*)0x117EB1C)->basicdxmodel->mats[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
 		WriteCall((void*)0x54AC30, FixChaos2Columns);
-		WriteCall((void*)0x54D991, Chaos2Ball); //Ball bouncing
-		WriteCall((void*)0x54C5E7, Chaos2_Transform); //Ball transforming
-		WriteCall((void*)0x54F496, Chaos2Ball); //Chaos transformation model
-		WriteCall((void*)0x54CFC9, Chaos2Ball); //Hand attack
-		WriteCall((void*)0x54DA8A, Chaos2Action); //Main model
-		WriteCall((void*)0x54D928, Chaos2Ball); //Puddle
-		//WriteCall((void*)0x54F5AC, Chaos2Ball); //Small puddles - disabled because it runs out of memory for late_alloca
-		WriteCall((void*)0x54F5DF, Chaos2Ball); //Small ball attack
-		RemoveVertexColors_Object((NJS_OBJECT*)0x114B918); //Chaos2 (alt)
-		RemoveVertexColors_Object((NJS_OBJECT*)0x11339EC); //Chaos2 small ball
-		RemoveVertexColors_Object((NJS_OBJECT*)0x1139274); //Chaos2 ball
-		RemoveVertexColors_Object((NJS_OBJECT*)0x113F81C); //Chaos2 ball 2
+		WriteCall((void*)0x54D991, Chaos2Ball); // Ball bouncing
+		WriteCall((void*)0x54C5E7, Chaos2_Transform); // Ball transforming
+		WriteCall((void*)0x54F496, Chaos2Ball); // Chaos transformation model
+		WriteCall((void*)0x54CFC9, Chaos2Ball); // Hand attack
+		WriteCall((void*)0x54DA8A, Chaos2Action); // Main model
+		WriteCall((void*)0x54D928, Chaos2Ball); // Puddle
+		//WriteCall((void*)0x54F5AC, Chaos2Ball); // Small puddles - disabled because it runs out of memory for late_alloca
+		WriteCall((void*)0x54F5DF, Chaos2Ball); // Small ball attack
+		RemoveVertexColors_Object((NJS_OBJECT*)0x114B918); // Chaos2 (alt)
+		RemoveVertexColors_Object((NJS_OBJECT*)0x11339EC); // Chaos2 small ball
+		RemoveVertexColors_Object((NJS_OBJECT*)0x1139274); // Chaos2 ball
+		RemoveVertexColors_Object((NJS_OBJECT*)0x113F81C); // Chaos2 ball 2
 		for (int i = 0; i < 3; i++)
 		{
 			Chaos2Fog[i].Color = 0xFF000000;

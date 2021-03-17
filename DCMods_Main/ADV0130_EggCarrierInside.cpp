@@ -309,19 +309,19 @@ void ADV01C_Init()
 		*ADV01C_OBJECTS[7]->child = *TaraiButton_Transparent->child;
 		*ADV01C_MODELS[27] = *TaraiButton_Transparent->child->basicdxmodel;
 		*ADV01C_OBJECTS[8] = *LoadModel("system\\data\\ADV0130\\Models\\000D243C.sa1mdl", false); //Tarai
-		//Monorail front
+		// Monorail front
 		NJS_OBJECT* MonorailFirstCar = LoadModel("system\\data\\ADV0130\\Models\\000B24D8.sa1mdl", false);
 		*ADV01C_OBJECTS[43]->basicdxmodel = *MonorailFirstCar->basicdxmodel;
 		*ADV01C_OBJECTS[43]->child->basicdxmodel = *MonorailFirstCar->child->basicdxmodel;
 		*ADV01C_OBJECTS[43]->child->child->basicdxmodel = *MonorailFirstCar->child->child->basicdxmodel;
 		*ADV01C_OBJECTS[43]->child->sibling->basicdxmodel = *MonorailFirstCar->child->sibling->basicdxmodel;
 		AddAlphaRejectMaterial(&ADV01C_OBJECTS[43]->child->sibling->basicdxmodel->mats[0]);
-		//Monorail back
+		// Monorail back
 		NJS_OBJECT* MonorailOtherCars = LoadModel("system\\data\\ADV0130\\Models\\000B64DC.sa1mdl", false);
 		*ADV01C_OBJECTS[44]->basicdxmodel = *MonorailOtherCars->basicdxmodel;
 		*ADV01C_OBJECTS[44]->child->basicdxmodel = *MonorailOtherCars->child->basicdxmodel;
 		*ADV01C_OBJECTS[44]->child->child->basicdxmodel = *MonorailOtherCars->child->child->basicdxmodel;
-		//Other objects
+		// Other objects
 		*ADV01C_OBJECTS[29] = *LoadModel("system\\data\\ADV0130\\Models\\000ADCD8.sa1mdl", false); // Monorail station
 		*ADV01C_ACTIONS[6]->object = *LoadModel("system\\data\\ADV0130\\Models\\000BAF48.sa1mdl", false); // Door
 		NJS_OBJECT* EggLift = LoadModel("system\\data\\ADV0130\\Models\\000B8CD4.sa1mdl", false); // OEggLift

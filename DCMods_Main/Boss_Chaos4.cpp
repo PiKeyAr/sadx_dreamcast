@@ -24,25 +24,25 @@ void Chaos4CleanWater_Display(ObjectMaster* o1)
 	float zshift = -27.3004f;
 	NJS_VECTOR a1;
 	NJS_VECTOR a2;
-	//Swamp water
+	// Swamp water
 	if (Chaos4NumaTransparency > -1.0f && !MissedFrames)
 	{
-		njSetTexture((NJS_TEXLIST*)0x11C6D4C); //Specific texture that SADX gets from the NUMA texlist
+		njSetTexture((NJS_TEXLIST*)0x11C6D4C); // Specific texture that SADX gets from the NUMA texlist
 		Chaos4CleanWater->basicdxmodel->mats[0].diffuse.argb.a = (int)(153.0f * (1.0f + Chaos4NumaTransparency));
 		njPushMatrix(0);
 		if (Camera_Data1->Position.y <= 0) DrawQueueDepthBias = -17900.0f;
 		if (Camera_Data1->Position.y > 0)
 		{
-			//Camera above water and Chaos above water - move to back
+			// Camera above water and Chaos above water - move to back
 			if (ChaosPosition.y >= 15) DrawQueueDepthBias = -17900.0f;
-			//Camera above water and Chaos below water - move to front
+			// Camera above water and Chaos below water - move to front
 			else DrawQueueDepthBias = 8000.0f;
 		}
 		late_DrawObjectClipMesh(Chaos4CleanWater, 0, 1.0f);
 		njPopMatrix(1u);
 		DrawQueueDepthBias = 0.0f;
 	}
-	//Waterfall effect
+	// Waterfall effect
 	if (GameState == 15)
 	{
 		int v40;
@@ -162,13 +162,13 @@ void Chaos4BrainHook(NJS_SPRITE *sp, Int n, NJD_SPRITE attr, QueuedModelFlagsB z
 {
 	if (CurrentLevel == LevelIDs_Chaos4)
 	{
-		//Camera below water - Chaos above water
+		// Camera below water - Chaos above water
 		if (Camera_Data1->Position.y <= 0) DrawQueueDepthBias = 8500.0f;
 		if (Camera_Data1->Position.y > 0)
 		{
-			//Camera above water and Chaos above water - Chaos above water
+			// Camera above water and Chaos above water - Chaos above water
 			if (ChaosPosition.y >= 15) DrawQueueDepthBias = 8500.0f;
-			//Camera above water and Chaos below water - Chaos below water
+			// Camera above water and Chaos below water - Chaos below water
 			else DrawQueueDepthBias = -19500.0f;
 		}
 		njDrawSprite3D_Queue(sp, n, attr, zfunc_type);
@@ -178,13 +178,13 @@ void Chaos4BrainHook(NJS_SPRITE *sp, Int n, NJD_SPRITE attr, QueuedModelFlagsB z
 
 void Chaos4Action(NJS_ACTION *a1, float frameNumber)
 {
-	//Camera below water - Chaos above water
+	// Camera below water - Chaos above water
 	if (Camera_Data1->Position.y <= 0) DrawQueueDepthBias = 8000.0f;
 	if (Camera_Data1->Position.y > 0)
 	{
-		//Camera above water and Chaos above water - Chaos above water
+		// Camera above water and Chaos above water - Chaos above water
 		if (ChaosPosition.y >= 15) DrawQueueDepthBias = 8000.0f;
-		//Camera above water and Chaos below water - Chaos below water
+		// Camera above water and Chaos below water - Chaos below water
 		else DrawQueueDepthBias = -20000.0f;
 	}
 	//PrintDebug("Bias: %f\n", DrawQueueDepthBias);
@@ -245,9 +245,9 @@ static void __cdecl Chaos4Balls_r(ObjectMaster *a1)
 	EntityData1 *v1 = a1->Data1;
 	if (EnableChaos4)
 	{
-		//Chaos above water
+		// Chaos above water
 		if (v1->Position.y >= 10) DrawQueueDepthBias = 8500.0f;
-		//Chaos below water
+		// Chaos below water
 		else DrawQueueDepthBias = -28500.0f;
 	}
 	original(a1);
@@ -260,9 +260,9 @@ static void __cdecl Chaos4BallsAttack_r(ObjectMaster *a1)
 	EntityData1 *v1 = a1->Data1;
 	if (EnableChaos4)
 	{
-		//Chaos above water
+		// Chaos above water
 		if (v1->Position.y >= 10) DrawQueueDepthBias = 8500.0f;
-		//Chaos below water
+		// Chaos below water
 		else DrawQueueDepthBias = -28500.0f;
 	}
 	original(a1);
@@ -301,31 +301,31 @@ void Chaos4_Init()
 		*(NJS_TEXLIST*)0x118FF08 = texlist_chaos4;
 		CHAOS4_OBJECT_TEXLIST = texlist_chaos4_object;
 		WriteData<1>((char*)0x00555A42, NJD_COLOR_BLENDING_INVSRCALPHA);
-		WriteCall((void*)0x5528ED, Chaos4Action); //Main model
-		WriteData<10>((char*)0x55507D, 0x90u); //Disable depth bias setting for balls
-		WriteData<10>((char*)0x555AB1, 0x90u); //Disable depth bias setting for balls attack
+		WriteCall((void*)0x5528ED, Chaos4Action); // Main model
+		WriteData<10>((char*)0x55507D, 0x90u); // Disable depth bias setting for balls
+		WriteData<10>((char*)0x555AB1, 0x90u); // Disable depth bias setting for balls attack
 		WriteCall((void*)0x555096, Chaos4Ball);
 		WriteJump((void*)0x553F60, Chaos4_Lilypad_Display);
 		WriteCall((void*)0x7ADC1E, Chaos4BrainHook);
 		WriteCall((void*)0x553380, Chaos4NumaFix);
-		WriteCall((void*)0x552918, Chaos4_Transform); //Chaos' model formed from balls
-		*(NJS_OBJECT*)0x11C4B90 = *LoadModel("SYSTEM\\data\\B_CHAOS4\\Models\\000425F8.sa1mdl", false); //Chaos 4 swamp water
-		Chaos4CleanWater = LoadModel("SYSTEM\\data\\B_CHAOS4\\Models\\0004476C.sa1mdl", false); //Chaos 4 swamp water
-		WriteData<1>((char*)0x00555B3F, 0x08); //Chaos 4 bubble blending mode SA_SRC instead of SA_ONE
+		WriteCall((void*)0x552918, Chaos4_Transform); // Chaos' model formed from balls
+		*(NJS_OBJECT*)0x11C4B90 = *LoadModel("SYSTEM\\data\\B_CHAOS4\\Models\\000425F8.sa1mdl", false); // Chaos 4 swamp water
+		Chaos4CleanWater = LoadModel("SYSTEM\\data\\B_CHAOS4\\Models\\0004476C.sa1mdl", false); // Chaos 4 swamp water
+		WriteData<1>((char*)0x00555B3F, 0x08); // Chaos 4 bubble blending mode SA_SRC instead of SA_ONE
 		WriteJump((void*)0x552F80, Chaos4CleanWater_Display);
-		*(NJS_OBJECT*)0x11E3240 = *LoadModel("SYSTEM\\data\\B_CHAOS4\\Models\\0003E6CC.sa1mdl", false); //Lilypad
-		//Chaos 4
-		RemoveVertexColors_Object((NJS_OBJECT*)0x11A652C); //Chaos4 alt model
-		RemoveVertexColors_Object((NJS_OBJECT*)0x11A11C8); //Chaos4 hand attack
-		RemoveVertexColors_Object((NJS_OBJECT*)0x11C1C24); //Chaos4 broken into balls
-		RemoveVertexColors_Object((NJS_OBJECT*)0x11EC85C); //Chaos4 ball attack
-		RemoveVertexColors_Object((NJS_OBJECT*)0x11BFFF4); //Chaos4 wave attack 1
-		RemoveVertexColors_Object((NJS_OBJECT*)0x11C077C); //Chaos4 wave attack 2
-		RemoveVertexColors_Object((NJS_OBJECT*)0x11C0F04); //Chaos4 wave attack 3
-		WriteJump((void*)0x556420, Chaos4Kama); //Chaos 4 attack effect fix
+		*(NJS_OBJECT*)0x11E3240 = *LoadModel("SYSTEM\\data\\B_CHAOS4\\Models\\0003E6CC.sa1mdl", false); // Lilypad
+		// Chaos 4
+		RemoveVertexColors_Object((NJS_OBJECT*)0x11A652C); // Chaos4 alt model
+		RemoveVertexColors_Object((NJS_OBJECT*)0x11A11C8); // Chaos4 hand attack
+		RemoveVertexColors_Object((NJS_OBJECT*)0x11C1C24); // Chaos4 broken into balls
+		RemoveVertexColors_Object((NJS_OBJECT*)0x11EC85C); // Chaos4 ball attack
+		RemoveVertexColors_Object((NJS_OBJECT*)0x11BFFF4); // Chaos4 wave attack 1
+		RemoveVertexColors_Object((NJS_OBJECT*)0x11C077C); // Chaos4 wave attack 2
+		RemoveVertexColors_Object((NJS_OBJECT*)0x11C0F04); // Chaos4 wave attack 3
+		WriteJump((void*)0x556420, Chaos4Kama); // Chaos 4 attack effect fix
 		WriteCall((void*)0x55667C, Chaos4KamaWave);
-		WriteCall((void*)0x5539E6, SetMaterial_Chaos4Wave); //Make Chaos 4 wave visible
-		((NJS_MATERIAL*)0x11C7BEC)->attr_texId = 0; //Fix Chaos 4 wave texture ID
+		WriteCall((void*)0x5539E6, SetMaterial_Chaos4Wave); // Make Chaos 4 wave visible
+		((NJS_MATERIAL*)0x11C7BEC)->attr_texId = 0; // Fix Chaos 4 wave texture ID
 		for (int i = 0; i < 3; i++)
 		{
 			Chaos4Fog[i].Color = 0xFF000000;

@@ -41,7 +41,7 @@ DataArray(SkyboxScale, SkyboxScale_SkyChase1, 0x027D6CE0, 3);
 DataArray(DrawDistance, DrawDist_SkyChase1, 0x027D6D58, 3);
 
 static const NJS_MATERIAL* LevelSpecular_Subgames[] = {
-	//Tornado 2 transformation cutscene
+	// Tornado 2 transformation cutscene
 	((NJS_MATERIAL*)0x0285F230),
 	((NJS_MATERIAL*)0x0285F028),
 	((NJS_MATERIAL*)0x0285EC58),
@@ -111,7 +111,7 @@ static const NJS_MATERIAL* LevelSpecular_Subgames[] = {
 };
 
 static const NJS_MATERIAL* WhiteDiffuse_Subgames[] = {
-	//Start and goal robot (Twinkle Circuit)
+	// Start and goal robot (Twinkle Circuit)
 	((NJS_MATERIAL*)0x009CC010),
 	((NJS_MATERIAL*)0x009CC024),
 	((NJS_MATERIAL*)0x009CC038),
@@ -123,7 +123,7 @@ static const NJS_MATERIAL* WhiteDiffuse_Subgames[] = {
 };
 
 static const NJS_MATERIAL* ObjectBaseAndSpecular_Subgames[] = {
-	//Tornado 2 transformation cutscene
+	// Tornado 2 transformation cutscene
 	((NJS_MATERIAL*)0x028634D8),
 	((NJS_MATERIAL*)0x028634EC),
 	((NJS_MATERIAL*)0x02863500),
@@ -232,7 +232,7 @@ static const NJS_MATERIAL* ObjectBaseAndSpecular_Subgames[] = {
 	((NJS_MATERIAL*)0x02857474),
 	((NJS_MATERIAL*)0x02857268),
 	((NJS_MATERIAL*)0x028570A4),
-	//Tornado model 1
+	// Tornado model 1
 	((NJS_MATERIAL*)0x028ADD58),
 	((NJS_MATERIAL*)0x028ADD6C),
 	((NJS_MATERIAL*)0x028ADD80),
@@ -275,7 +275,7 @@ static const NJS_MATERIAL* ObjectBaseAndSpecular_Subgames[] = {
 	((NJS_MATERIAL*)0x028AE064),
 	((NJS_MATERIAL*)0x028AD118),
 	((NJS_MATERIAL*)0x028AD12C),
-	//Tornado 1 hit
+	// Tornado 1 hit
 	((NJS_MATERIAL*)0x0291DAB0),
 	((NJS_MATERIAL*)0x0291DAC4),
 	((NJS_MATERIAL*)0x0291DAD8),
@@ -371,14 +371,14 @@ static const NJS_MATERIAL* ObjectBaseAndSpecular_Subgames[] = {
 	((NJS_MATERIAL*)0x0291D2E0),
 	((NJS_MATERIAL*)0x0290BDF8),
 	((NJS_MATERIAL*)0x0290BE0C),
-	//Tornado 1 hit Sonic shoes
+	// Tornado 1 hit Sonic shoes
 	((NJS_MATERIAL*)0x02916B10),
 	((NJS_MATERIAL*)0x02916504),
 	((NJS_MATERIAL*)0x02916518),
 	((NJS_MATERIAL*)0x02917F68),
 	((NJS_MATERIAL*)0x0291796C),
 	((NJS_MATERIAL*)0x02917980),
-	//Tornado model 2
+	// Tornado model 2
 	((NJS_MATERIAL*)0x027E8AA0),
 	((NJS_MATERIAL*)0x027E8AB4),
 	((NJS_MATERIAL*)0x027E8AC8),
@@ -415,7 +415,7 @@ static const NJS_MATERIAL* ObjectBaseAndSpecular_Subgames[] = {
 	((NJS_MATERIAL*)0x027D809C),
 	((NJS_MATERIAL*)0x027D80B0),
 	((NJS_MATERIAL*)0x027D80C4),
-	//Tornado 2 transformed
+	// Tornado 2 transformed
 	((NJS_MATERIAL*)0x027F8CB8),
 	((NJS_MATERIAL*)0x027F8CCC),
 	((NJS_MATERIAL*)0x027F8CE0),
@@ -540,7 +540,7 @@ void __cdecl SkyChaseBeam1_Display_Fix(ObjectMaster *a1)
 	njPushMatrix(0);
 	njTranslate(0, 0.0, 0.0, 0.0);
 	njSetTexture(&SHOOTING1_TEXLIST);
-	//Draw normally after the camera angle changes, but before that just draw on top of everything
+	// Draw normally after the camera angle changes, but before that just draw on top of everything
 	if (*(float *)&v1->CharIndex >= 440.0f) late_ActionClipEx((NJS_ACTION*)0x28E596C, *(float *)& v1->CharIndex, 4, 1.0);
 	else DrawModelCallback_QueueFloat(DrawBeam_Lol, *(float *)&v1->CharIndex, 30000.0f, QueuedModelFlagsB_SomeTextureThing);
 	njPopMatrix(1u);
@@ -558,7 +558,7 @@ void HedgehogHammer_Init()
 	RemoveMaterialColors_Landtable(STG00_0);
 	STG00_0->TexList = &texlist_hhammer;
 	WriteData((LandTable**)0x97DA08, STG00_0);
-	//No models to load here but using the same pattern for the sake of consistency
+	// No models to load here but using the same pattern for the sake of consistency
 	if (!ModelsLoaded_ADV00)
 	{
 		for (int i = 0; i < 3; i++)
@@ -572,18 +572,18 @@ void HedgehogHammer_Init()
 
 void SkyChase_Init()
 {
-	//This stuff is done only once
+	// This stuff is done only once
 	if (!ModelsLoaded_SHOOTING)
 	{
-		//Other Sky Chase fixes
-		RemoveVertexColors_Object((NJS_OBJECT*)0x293A1BC); //Rocket
-		RemoveVertexColors_Object((NJS_OBJECT*)0x299734C); //Hodai rocket
-		RemoveVertexColors_Object((NJS_OBJECT*)0x298B938); //Arm
-		RemoveVertexColors_Object((NJS_OBJECT*)0x293D95C); //Renzako
-		RemoveVertexColors_Object((NJS_OBJECT*)0x2947130); //Zako1 1
-		RemoveVertexColors_Object((NJS_OBJECT*)0x294457C); //Zako1 2
-		RemoveVertexColors_Object((NJS_OBJECT*)0x028DFD34); //Sky materials in Act 1
-		RemoveVertexColors_Object((NJS_OBJECT*)0x028175F4); //Sky materials in Act 1
+		// Other Sky Chase fixes
+		RemoveVertexColors_Object((NJS_OBJECT*)0x293A1BC); // Rocket
+		RemoveVertexColors_Object((NJS_OBJECT*)0x299734C); // Hodai rocket
+		RemoveVertexColors_Object((NJS_OBJECT*)0x298B938); // Arm
+		RemoveVertexColors_Object((NJS_OBJECT*)0x293D95C); // Renzako
+		RemoveVertexColors_Object((NJS_OBJECT*)0x2947130); // Zako1 1
+		RemoveVertexColors_Object((NJS_OBJECT*)0x294457C); // Zako1 2
+		RemoveVertexColors_Object((NJS_OBJECT*)0x028DFD34); // Sky materials in Act 1
+		RemoveVertexColors_Object((NJS_OBJECT*)0x028175F4); // Sky materials in Act 1
 		SkyboxScale_SkyChase1->Far.x = 4.0f;
 		SkyboxScale_SkyChase1->Far.y = 4.0f;
 		SkyboxScale_SkyChase1->Far.z = 4.0f;
@@ -593,24 +593,24 @@ void SkyChase_Init()
 		SkyboxScale_SkyChase1->Normal.x = 4.0f;
 		SkyboxScale_SkyChase1->Normal.y = 4.0f;
 		SkyboxScale_SkyChase1->Normal.z = 4.0f;
-		WriteCall((void*)0x0062BF35, FixSky1); //Sky piece 1 (act 1)
+		WriteCall((void*)0x0062BF35, FixSky1); // Sky piece 1 (act 1)
 		((NJS_OBJECT*)0x28DFD34)->basicdxmodel->mats[0].attrflags |= NJD_FLAG_USE_ALPHA;
 		((NJS_OBJECT*)0x28175F4)->basicdxmodel->mats[0].attrflags |= NJD_FLAG_USE_ALPHA;
-		WriteCall((void*)0x0062C01D, FixSky2); //Sky piece 2 (act 1)
-		WriteCall((void*)0x0062C161, DrawSkyChaseSkybox); //Skybox rendering function for both acts
-		//Tornado hit specular
+		WriteCall((void*)0x0062C01D, FixSky2); // Sky piece 2 (act 1)
+		WriteCall((void*)0x0062C161, DrawSkyChaseSkybox); // Skybox rendering function for both acts
+		// Tornado hit specular
 		((NJS_OBJECT*)0x02916F9C)->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_IGNORE_SPECULAR;
 		((NJS_OBJECT*)0x02916ADC)->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_IGNORE_SPECULAR;
 		((NJS_OBJECT*)0x02918404)->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_IGNORE_SPECULAR;
 		((NJS_OBJECT*)0x02917F34)->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_IGNORE_SPECULAR;
-		WriteData((char*)0x0062751B, 0x00, 1); //Force Tornado light type
-		WriteData((char*)0x0062AC1F, 0x00, 1); //Force Tornado light type (transformation cutscene)
+		WriteData((char*)0x0062751B, 0x00, 1); // Force Tornado light type
+		WriteData((char*)0x0062AC1F, 0x00, 1); // Force Tornado light type (transformation cutscene)
 		if (EnableSkyChaseEnemyModels)
 		{
-			//Egg Carrier model
+			// Egg Carrier model
 			NJS_OBJECT* EggCarrierModel = LoadModel("system\\data\\SHOOTING\\Models\\0003FA40.sa1mdl", false);
 			*(NJS_OBJECT*)0x02982F44 = *EggCarrierModel;
-			//Oh gee... This is gonna be long
+			// Oh gee... This is gonna be long
 			AddObjectWhiteDiffuseMaterials_Range(EggCarrierModel->child->sibling->sibling->sibling, 75, 102);
 			AddObjectWhiteDiffuseMaterials_Range(EggCarrierModel->child->sibling->sibling->sibling->sibling, 19, 96);
 			AddObjectWhiteDiffuseMaterials_Range(EggCarrierModel->child->sibling->sibling->sibling->sibling->sibling, 37, 105);
@@ -618,15 +618,15 @@ void SkyChase_Init()
 			ForceLevelSpecular_Object(EggCarrierModel->child->sibling->sibling->sibling, false);
 			ForceLevelSpecular_Object(EggCarrierModel->child->sibling->sibling->sibling->sibling->sibling->sibling->sibling, false);
 			ForceLevelSpecular_Object(EggCarrierModel->child->sibling->sibling->sibling->sibling->sibling->sibling->sibling->sibling, false);
-			//Other objects
-			*(NJS_OBJECT*)0x298A894 = *LoadModel("system\\data\\SHOOTING\\Models\\00047110.sa1mdl", false); //Hodai
-			*(NJS_OBJECT*)0x2941B2C = *LoadModel("system\\data\\SHOOTING\\Models\\0001342C.sa1mdl", false); //Kirai
-			*(NJS_OBJECT*)0x028E2C88 = *LoadModel("system\\data\\SHOOTING\\Models\\0009153C.sa1mdl", false); //Beam in Act 1
-			*(NJS_OBJECT*)0x0298E7D0 = *LoadModel("system\\data\\SHOOTING\\Models\\0004AEE0.sa1mdl", false); //Beam in Act 2
-			((NJS_ACTION*)0x28E596C)->object = (NJS_OBJECT*)0x028E2C88; //Beam in Act 1
-			((NJS_ACTION*)0x2996C74)->object = (NJS_OBJECT*)0x0298E7D0; //Beam in Act 2
-			WriteJump((void*)0x62A8C0, SkyChaseBeam1_Display_Fix); //Make the beam in Act 1 render above the clouds
-			//Lighting
+			// Other objects
+			*(NJS_OBJECT*)0x298A894 = *LoadModel("system\\data\\SHOOTING\\Models\\00047110.sa1mdl", false); // Hodai
+			*(NJS_OBJECT*)0x2941B2C = *LoadModel("system\\data\\SHOOTING\\Models\\0001342C.sa1mdl", false); // Kirai
+			*(NJS_OBJECT*)0x028E2C88 = *LoadModel("system\\data\\SHOOTING\\Models\\0009153C.sa1mdl", false); // Beam in Act 1
+			*(NJS_OBJECT*)0x0298E7D0 = *LoadModel("system\\data\\SHOOTING\\Models\\0004AEE0.sa1mdl", false); // Beam in Act 2
+			((NJS_ACTION*)0x28E596C)->object = (NJS_OBJECT*)0x028E2C88; // Beam in Act 1
+			((NJS_ACTION*)0x2996C74)->object = (NJS_OBJECT*)0x0298E7D0; // Beam in Act 2
+			WriteJump((void*)0x62A8C0, SkyChaseBeam1_Display_Fix); // Make the beam in Act 1 render above the clouds
+			// Lighting
 			if (DLLLoaded_Lantern)
 			{
 				material_register(ObjectBaseAndSpecular_Subgames, LengthOfArray(ObjectBaseAndSpecular_Subgames), &ForceDiffuse0Specular1);
@@ -686,32 +686,32 @@ void TwinkleCircuit_Init()
 
 void SandHill_Init()
 {
-	//This stuff is done every time the function is called
+	// This stuff is done every time the function is called
 	SBOARD_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\SBOARD\\0.sa1lvl"));
 	LandTable* SBOARD = SBOARD_Info->getlandtable();
 	RemoveMaterialColors_Landtable(SBOARD);
 	SBOARD->TexList = &texlist_sandhill;
-	LandTableArray[184] = SBOARD; //Sand Hill
-	LandTableArray[185] = SBOARD; //Sand Hill duplicate
-	//This stuff is done only once
+	LandTableArray[184] = SBOARD; // Sand Hill
+	LandTableArray[185] = SBOARD; // Sand Hill duplicate
+	// This stuff is done only once
 	if (!ModelsLoaded_SBOARD)
 	{
-		//Models
-		*(NJS_OBJECT*)0x017424DC = *LoadModel("system\\data\\SBOARD\\Models\\0006EA40.sa1mdl", false); //Sand Hill ramp
-		//Clear material colors
-		RemoveVertexColors_Object((NJS_OBJECT*)0x1741A9C); //RockyHead
-		RemoveVertexColors_Object((NJS_OBJECT*)0x174DED0); //Rock
-		RemoveVertexColors_Object((NJS_OBJECT*)0x174D76C); //SnakeStatue
-		RemoveVertexColors_Object((NJS_OBJECT*)0x174E974); //PillarS
-		RemoveVertexColors_Object((NJS_OBJECT*)0x174C148); //PillarM
-		RemoveVertexColors_Object((NJS_OBJECT*)0x174AF94); //PillarL
-		RemoveVertexColors_Object((NJS_OBJECT*)0x174EAC8); //BigCactusA
-		RemoveVertexColors_Object((NJS_OBJECT*)0x1744D24); //BigCactusB
-		RemoveVertexColors_Object((NJS_OBJECT*)0x1745A38); //BigCactusC
-		RemoveVertexColors_Object((NJS_OBJECT*)0x1749E44); //Sand worm tail
-		RemoveVertexColors_Object((NJS_OBJECT*)0x17499DC); //Sand worm body
-		RemoveVertexColors_Object((NJS_OBJECT*)0x17495AC); //Sand worm head
-		//Fog color
+		// Models
+		*(NJS_OBJECT*)0x017424DC = *LoadModel("system\\data\\SBOARD\\Models\\0006EA40.sa1mdl", false); // Sand Hill ramp
+		// Clear material colors
+		RemoveVertexColors_Object((NJS_OBJECT*)0x1741A9C); // RockyHead
+		RemoveVertexColors_Object((NJS_OBJECT*)0x174DED0); // Rock
+		RemoveVertexColors_Object((NJS_OBJECT*)0x174D76C); // SnakeStatue
+		RemoveVertexColors_Object((NJS_OBJECT*)0x174E974); // PillarS
+		RemoveVertexColors_Object((NJS_OBJECT*)0x174C148); // PillarM
+		RemoveVertexColors_Object((NJS_OBJECT*)0x174AF94); // PillarL
+		RemoveVertexColors_Object((NJS_OBJECT*)0x174EAC8); // BigCactusA
+		RemoveVertexColors_Object((NJS_OBJECT*)0x1744D24); // BigCactusB
+		RemoveVertexColors_Object((NJS_OBJECT*)0x1745A38); // BigCactusC
+		RemoveVertexColors_Object((NJS_OBJECT*)0x1749E44); // Sand worm tail
+		RemoveVertexColors_Object((NJS_OBJECT*)0x17499DC); // Sand worm body
+		RemoveVertexColors_Object((NJS_OBJECT*)0x17495AC); // Sand worm head
+		// Fog color
 		for (int i = 0; i < 3; i++)
 		{
 			FogData_SandHill[i].Color = 0xFFE0E0B0;

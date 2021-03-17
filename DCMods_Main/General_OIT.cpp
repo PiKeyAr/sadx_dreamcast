@@ -78,9 +78,9 @@ void OIT_Init()
 	WriteJump((void*)0x407BB0, lateDrawModel_r);
 	WriteJump((void*)0x407CF0, lateDrawModel_r);
 	WriteJump((void*)0x407FC0, lateDrawModel_r);
-	//Callback stuff is disabled because it breaks
+	// Callback stuff is disabled because it breaks
 	//WriteJump(DrawModelCallback_Queue, DrawModelCallback_Queue_r);
-	//2D stuff that breaks in scary ways
+	// 2D stuff that breaks in scary ways
 	//WriteJump(Draw2DLinesMaybe_Queue, Draw2DLines_Queue_r);
 	//WriteJump(njDrawSprite2D_Queue, njDrawSprite2D_Queue_r);
 	//WriteJump(DrawRect_Queue, DrawRect_Queue_r);

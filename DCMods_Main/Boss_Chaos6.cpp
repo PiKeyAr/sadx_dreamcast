@@ -134,39 +134,39 @@ void Chaos6_Init()
 	RemoveMaterialColors_Landtable(B_CHAOS6_1);
 	B_CHAOS6_0->TexList = &texlist_chaos6s;
 	B_CHAOS6_1->TexList = &texlist_chaos6k;
-	LandTableArray[24] = B_CHAOS6_0; //Chaos 6S
-	LandTableArray[25] = B_CHAOS6_1; //Chaos 6K
+	LandTableArray[24] = B_CHAOS6_0; // Chaos 6S
+	LandTableArray[25] = B_CHAOS6_1; // Chaos 6K
 	if (!ModelsLoaded_B_CHAOS6)
 	{
 		*(NJS_TEXLIST*)0x121FF28 = texlist_chaos6s;
 		*(NJS_TEXLIST*)0x11F04A0 = texlist_chaos6k;
-		//Main model stuff
+		// Main model stuff
 		RemoveVertexColors_Object((NJS_OBJECT*)0x1272FF4);
 		Chaos6Main_OpaqueOnly = LoadModel("system\\data\\B_CHAOS6\\Models\\DX\\00E72FF4.sa1mdl", false);
 		AddBossMaterials_Object(Chaos6Main_OpaqueOnly);
 		HideOpaqueParts((NJS_OBJECT*)0x1272FF4);
 		HideTransparentParts(Chaos6Main_OpaqueOnly);
-		//Other models
-		RemoveVertexColors_Object((NJS_OBJECT*)0x1257754); //Chaos 6 Eggmobile
-		RemoveVertexColors_Object((NJS_OBJECT*)0x12545AC); //Chaos 6 Eggman
-		RemoveVertexColors_Object((NJS_OBJECT*)0x12941B0); //Chaos 6 transformed
-		RemoveVertexColors_Object((NJS_OBJECT*)0x1262B54); //Chaos 6 frozen
-		RemoveVertexColors_Object((NJS_OBJECT*)0x128A6DC); //Chaos 6 transforming
-		RemoveVertexColors_Object((NJS_OBJECT*)0x13802D4); //Ice brick 1
-		RemoveVertexColors_Object((NJS_OBJECT*)0x1380724); //Ice brick 2
-		RemoveVertexColors_Object((NJS_OBJECT*)0x1380B74); //Ice brick 3
-		RemoveVertexColors_Object((NJS_OBJECT*)0x1380F7C); //Ice brick 4
-		RemoveVertexColors_Object((NJS_OBJECT*)0x13812D0); //Ice brick 5
-		RemoveVertexColors_Object((NJS_OBJECT*)0x138154C); //Ice brick 6
-		RemoveVertexColors_Object((NJS_OBJECT*)0x1381690); //Ice brick 7
-		RemoveVertexColors_Object((NJS_OBJECT*)0x1383D54); //Freezer
-		WriteCall((void*)0x558FFC, Chaos6Action); //Chaos 6 main model rendering
+		// Other models
+		RemoveVertexColors_Object((NJS_OBJECT*)0x1257754); // Chaos 6 Eggmobile
+		RemoveVertexColors_Object((NJS_OBJECT*)0x12545AC); // Chaos 6 Eggman
+		RemoveVertexColors_Object((NJS_OBJECT*)0x12941B0); // Chaos 6 transformed
+		RemoveVertexColors_Object((NJS_OBJECT*)0x1262B54); // Chaos 6 frozen
+		RemoveVertexColors_Object((NJS_OBJECT*)0x128A6DC); // Chaos 6 transforming
+		RemoveVertexColors_Object((NJS_OBJECT*)0x13802D4); // Ice brick 1
+		RemoveVertexColors_Object((NJS_OBJECT*)0x1380724); // Ice brick 2
+		RemoveVertexColors_Object((NJS_OBJECT*)0x1380B74); // Ice brick 3
+		RemoveVertexColors_Object((NJS_OBJECT*)0x1380F7C); // Ice brick 4
+		RemoveVertexColors_Object((NJS_OBJECT*)0x13812D0); // Ice brick 5
+		RemoveVertexColors_Object((NJS_OBJECT*)0x138154C); // Ice brick 6
+		RemoveVertexColors_Object((NJS_OBJECT*)0x1381690); // Ice brick 7
+		RemoveVertexColors_Object((NJS_OBJECT*)0x1383D54); // Freezer
+		WriteCall((void*)0x558FFC, Chaos6Action); // Chaos 6 main model rendering
 		WriteCall((void*)0x55BCF4, njDrawSprite3D_Queue_TheyForgotToClamp);
 		WriteJump((void*)0x556FD0, Chaos6SkyboxBottom);
 		WriteJump((void*)0x556F20, Chaos6SkyboxMain);
-		((NJS_ACTION*)0x134C56C)->motion = &Chaos6Animation3; //Fix flickering parts in Chaos 6' walking animation
-		WriteData<1>((char*)0x556E40, 0xC3u); //Disable SetClip_Chaos6S
-		WriteData<1>((char*)0x556D60, 0xC3u); //Disable SetClip_Chaos6K
+		((NJS_ACTION*)0x134C56C)->motion = &Chaos6Animation3; // Fix flickering parts in Chaos 6' walking animation
+		WriteData<1>((char*)0x556E40, 0xC3u); // Disable SetClip_Chaos6S
+		WriteData<1>((char*)0x556D60, 0xC3u); // Disable SetClip_Chaos6K
 		for (int i = 0; i < 3; i++)
 		{
 			Chaos6SFog[i].Distance = 12000.0f;

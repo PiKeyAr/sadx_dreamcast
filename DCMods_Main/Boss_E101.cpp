@@ -22,9 +22,9 @@ void E101_Init()
 	{
 		*(NJS_TEXLIST*)0x14FBFB4 = texlist_e101;
 		FixFVFShit();
-		RemoveVertexColors_Object((NJS_OBJECT*)0x14DE020); //E101 boss model
-		RemoveVertexColors_Object((NJS_OBJECT*)0x14DEC5C); //E101 rocket
-		//E101 rocket (SL object)
+		RemoveVertexColors_Object((NJS_OBJECT*)0x14DE020); // E101 boss model
+		RemoveVertexColors_Object((NJS_OBJECT*)0x14DEC5C); // E101 rocket
+		// E101 rocket (SL object)
 		((NJS_MATERIAL*)0x014DE5D0)->attrflags |= NJD_FLAG_IGNORE_LIGHT;
 		((NJS_MATERIAL*)0x014DE5E4)->attrflags |= NJD_FLAG_IGNORE_LIGHT;
 		((NJS_MATERIAL*)0x014DE5F8)->attrflags |= NJD_FLAG_IGNORE_LIGHT;

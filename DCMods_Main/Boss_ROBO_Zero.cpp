@@ -5,8 +5,8 @@ DataArray(DrawDistance, DrawDist_Zero, 0x016B4D98, 3);
 
 //#include "Zero.h"
 
-FunctionPointer(void, ZeroBarriers_Display, (void *a1), 0x58F470); //Bariers_Display
-FunctionPointer(void, ZeroAttack_Display, (void *a1), 0x58C500); //FVFShit_Display
+FunctionPointer(void, ZeroBarriers_Display, (void *a1), 0x58F470); // Bariers_Display
+FunctionPointer(void, ZeroAttack_Display, (void *a1), 0x58C500); // FVFShit_Display
 FunctionPointer(void, CreateFireParticle, (NJS_VECTOR *a1, float a2), 0x4CACF0);
 
 static bool ZeroBarriers_FadeOut = false;
@@ -61,7 +61,7 @@ void UnloadLevelFiles_B_ROBO()
 
 void __cdecl ZeroOceanHook(OceanData *a1)
 {
-	//Ocean stuff
+	// Ocean stuff
 	if (!SADXWater_EggCarrier)
 	{
 		if (!MissedFrames)
@@ -93,17 +93,17 @@ void Zero_Init()
 	{
 		if (!ModelsLoaded_B_E101R) ResizeE101RTexlist();
 		WriteCall((void*)0x58C7E4, DrawShadow_ERobo_Fix);
-		WriteData<1>((char*)0x5850F0, 0xC3u); //Disable SetClip_ZERO
+		WriteData<1>((char*)0x5850F0, 0xC3u); // Disable SetClip_ZERO
 		WriteCall((void*)0x585448, LoadBossECOceanPVM);
-		WriteData((float*)0x58752C, 0.8f); //Zero constant material alpha
-		//Effect fixes
-		WriteCall((void*)0x58B580, ZeroBarrier_SetOnFireHook); //Hook to tell when to fade out barrier effect
+		WriteData((float*)0x58752C, 0.8f); // Zero constant material alpha
+		// Effect fixes
+		WriteCall((void*)0x58B580, ZeroBarrier_SetOnFireHook); // Hook to tell when to fade out barrier effect
 		WriteCall((void*)0x58B61D, RenderZeroSparks);
 		WriteCall((void*)0x58BC56, Zero_FVFShit);
 		WriteJump((void*)0x58C721, ZeroFVF_Show);
 		WriteJump((void*)0x58F798, ZeroBarriers_Show);
-		WriteJump(Zero_OceanDraw, ZeroOceanHook); //Ocean callback replacement
-		//Ocean model
+		WriteJump(Zero_OceanDraw, ZeroOceanHook); // Ocean callback replacement
+		// Ocean model
 		if (!SADXWater_EggCarrier)
 		{
 			ZeroBossOcean = LoadModel("system\\data\\B_ROBO\\Models\\0002DBBC.sa1mdl", false);
@@ -123,14 +123,14 @@ void Zero_Init()
 
 void Zero_OnFrame()
 {
-	//Ocean animation
+	// Ocean animation
 	if (!IsGamePaused() && CurrentLevel == LevelIDs_Zero)
 	{
 		if (FramerateSetting < 2 && FrameCounter % 4 == 0 || FramerateSetting >= 2) zerosea_dc++;
 		if (zerosea_dc > 13) zerosea_dc = 4;
 		if (ZeroBossOcean != nullptr) ZeroBossOcean->basicdxmodel->mats[0].attr_texId = zerosea_dc;
 	}
-	//Barriers
+	// Barriers
 	if (ZeroBarriers_FadeOut)
 	{
 		if (BarrierColor.argb.a > 5)

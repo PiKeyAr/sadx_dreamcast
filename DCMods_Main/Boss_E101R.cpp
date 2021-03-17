@@ -174,20 +174,20 @@ void E101R_Init()
 		if (!ModelsLoaded_B_ROBO) ResizeE101RTexlist();
 		FixFVFShit();
 		WriteCall((void*)0x570DB1, RenderE101R_Rocket);
-		//E-101R fixes
+		// E-101R fixes
 		ShadowBlob_Model.basicdxmodel->mats[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
 		WriteCall((void*)0x005709CA, E101R_ArmsHook);
-		WriteData<1>((char*)0x00568D20, 0xC3u); //E101R clip function
-		WriteCall((void*)0x0057069D, E101R_AfterImageMaterial); //E101R afterimage
-		WriteCall((void*)0x00570784, E101R_AfterImageConstantAttr); //E101R afterimage
+		WriteData<1>((char*)0x00568D20, 0xC3u); // E101R clip function
+		WriteCall((void*)0x0057069D, E101R_AfterImageMaterial); // E101R afterimage
+		WriteCall((void*)0x00570784, E101R_AfterImageConstantAttr); // E101R afterimage
 		WriteCall((void*)0x0057072A, E101R_AfterImageQueue);
-		WriteCall((void*)0x0056B07D, E101REffect_Orange); //Set arm effect to orange and render
-		WriteCall((void*)0x0056B096, E101REffect_Blue); //Set arm effect to blue and render
-		WriteCall((void*)0x0057098A, E101RRenderAfterEffect); //After effect on E101R's arms
+		WriteCall((void*)0x0056B07D, E101REffect_Orange); // Set arm effect to orange and render
+		WriteCall((void*)0x0056B096, E101REffect_Blue); // Set arm effect to blue and render
+		WriteCall((void*)0x0057098A, E101RRenderAfterEffect); // After effect on E101R's arms
 		WriteCall((void*)0x00570952, E101R_AfterImageArmConstantAttr);
 		WriteCall((void*)0x569078, LoadBossECOceanPVM);
 		WriteJump(E101Mk2_OceanDraw, E101ROceanHook);
-		//Ocean model
+		// Ocean model
 		if (!SADXWater_EggCarrier)
 		{
 			E101RBossOcean = LoadModel("system\\data\\B_E101_R\\Models\\00007C50.sa1mdl", false);
@@ -207,7 +207,7 @@ void E101R_Init()
 
 void E101R_OnFrame()
 {
-	//Ocean animation
+	// Ocean animation
 	if (!IsGamePaused() && CurrentLevel == LevelIDs_E101R)
 	{
 		if (FramerateSetting < 2 && FrameCounter % 4 == 0 || FramerateSetting >= 2) e101rsea_dc++;

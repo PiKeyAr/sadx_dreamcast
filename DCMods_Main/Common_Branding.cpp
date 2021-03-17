@@ -1,7 +1,7 @@
 #include "stdafx.h"
 //#include "TitleScreen.h"
 
-//TODO: Find a better solution to the file select/options issue
+// TODO: Find a better solution to the file select/options issue
 
 float kj_fWaveTitleOfsBaseX = 0.0f;
 float kj_fWaveTitleOfsBaseY;
@@ -10,14 +10,14 @@ float kj_fWaveTitleWaveHeight = 4.3f;
 float kj_fWaveTitleWaveRad = 4.0f;
 float kj_fWaveTitleWaveSpd = 0.033f;
 int kj_xWaveTitleWaveRot = 1024;
-int kj_dWaveTitleTime = 3; //2
+int kj_dWaveTitleTime = 3; // 2
 int kj_xWaveTitleFlactRot = 50;
 unsigned int r30;
 float f30;
 float f1, f2, f3;
 NJS_OBJECT* TitleScreenModel;
 
-struct FourFloats //For pause selection box
+struct FourFloats // For pause selection box
 {
 	float x;
 	float y;
@@ -60,13 +60,13 @@ NJS_TEXLIST texlist_ava_title = {arrayptrandlength(textures_ava_title)};
 NJS_TEXNAME textures_ava_dlg_e[10];
 NJS_TEXLIST texlist_ava_dlg_e = {arrayptrandlength(textures_ava_dlg_e)};
 
-NJS_TEXNAME textures_ava_gtitle0_640[42]; //Original DC GTITLE textures for 640x480 (AVA_TITLE_CMN_SMALL texlist)
+NJS_TEXNAME textures_ava_gtitle0_640[42]; // Original DC GTITLE textures for 640x480 (AVA_TITLE_CMN_SMALL texlist)
 NJS_TEXLIST texlist_ava_gtitle0_640 = {arrayptrandlength(textures_ava_gtitle0_640)};
 
-NJS_TEXNAME textures_title_back_640[24]; //Original DC TITLE textures for 640x480 (AVA_TITLE_BACK texlist)
+NJS_TEXNAME textures_title_back_640[24]; // Original DC TITLE textures for 640x480 (AVA_TITLE_BACK texlist)
 NJS_TEXLIST texlist_title_back_640 = {arrayptrandlength(textures_title_back_640)};
 
-NJS_TEXNAME textures_ava_gtitle0_e_dc_hd[19]; //Custom HD textures (AVA_GTITLE0_E texlist)
+NJS_TEXNAME textures_ava_gtitle0_e_dc_hd[19]; // Custom HD textures (AVA_GTITLE0_E texlist)
 NJS_TEXLIST texlist_ava_gtitle0_e_dc_hd = {arrayptrandlength(textures_ava_gtitle0_e_dc_hd)};
 
 struct TutorialScreenItem
@@ -97,7 +97,7 @@ struct TitleScreenData
 	char field_3C[36];
 };
 
-//Various pointers
+// Various pointers
 DataPointer(NJS_CAMERA, View, 0x3AAD0A0);
 FunctionPointer(void, njSetCamera_, (NJS_CAMERA* matrix), 0x781250);
 FunctionPointer(void, sub_433410, (ObjectMaster* a1), 0x433410);
@@ -118,7 +118,7 @@ DataPointer(byte, NumberOfSaves_Current, 0x03B290E0);
 DataPointer(int, QuitFromPause_Selection, 0x3B22E78);
 DataPointer(DemoData, FirstDemo, 0x913AE0);
 DataArray(NJS_TEXANIM, PauseMenu_TEXANIMs, 0x009177B8, 15);
-//GUI texture arrays
+// GUI texture arrays
 DataArray(PVMEntry*, GUIPVMLists, 0x10D7CB0, 5);
 DataArray(PVMEntry, GUITextures_Japanese, 0x007EECF0, 30);
 DataArray(PVMEntry, GUITextures_English, 0x007EEDE0, 30);
@@ -127,7 +127,7 @@ DataArray(PVMEntry, GUITextures_Spanish, 0x007EEFC0, 30);
 DataArray(PVMEntry, GUITextures_German, 0x007EF0B0, 30);
 DataArray(int*, GUIPVMIndices, 0x10D7CC4, 14);
 
-//Tutorial screen items
+// Tutorial screen items
 DataArray(TutorialScreenItem, TutorialScreenLayout_Sonic_Page1_E, 0x02BC3ACE, 6);
 DataArray(TutorialScreenItem, TutorialScreenLayout_Sonic_Page1_J, 0x02BC3A8E, 5);
 DataArray(TutorialScreenItem, TutorialScreenLayout_SharedTailsKnucklesPage1_E, 0x2BC3E90, 4);
@@ -147,16 +147,16 @@ DataArray(TutorialScreenItem, TutorialScreenLayout_BigPage5_E, 0x2BC4F46, 6);
 DataArray(TutorialScreenItem, TutorialScreenLayout_Gamma_Page1_E, 0x2BC4A7E, 2);
 DataArray(TutorialScreenItem, TutorialScreenLayout_Gamma_Page1_J, 0x2BC4A6E, 2);
 
-//Now Saving
+// Now Saving
 static int saveprogress = 12;
 const char* NowSavingString[] = {"N", "O", "W", " ", "S", "A", "V", "I", "N", "G"};
 DataPointer(int, LoadingOrWhatever, 0x3B28114);
 DataPointer(byte, SavePending, 0x3ABDF79);
 
-//Variables
+// Variables
 NJS_TEXANIM PauseBarTexanim = { 16, 16, 0, 0, 0, 0, 0, 0, 8, 32 };
 
-//Resolution scaling
+// Resolution scaling
 static float ResolutionScaleX = 1.0f;
 static float ResolutionScaleY = 1.0f;
 static float mainscale = 1.0f;
@@ -164,9 +164,9 @@ static float subscale = 1.0f;
 static float f480_Fixed = 0;
 static float f640_Fixed = 0;
 
-//PVM IDs for menus
-int TitleScreenIndices[] = { 17, 29, 0, 1, 10, 13, 7, 30 }; //0, 1, 10, 13, 7 from the file select screen, 29 is SMALL, removed 18 AVA_TITLE_CMN
-int MainMenuIndices[] = { 19, 20, 1, 10, 17, 29, 30 }; //17 is needed to draw the logo (GTITLE0), 29 is SMALL, 20 is TITLE_BACK
+// PVM IDs for menus
+int TitleScreenIndices[] = { 17, 29, 0, 1, 10, 13, 7, 30 }; // 0, 1, 10, 13, 7 from the file select screen, 29 is SMALL, removed 18 AVA_TITLE_CMN
+int MainMenuIndices[] = { 19, 20, 1, 10, 17, 29, 30 }; // 17 is needed to draw the logo (GTITLE0), 29 is SMALL, 20 is TITLE_BACK
 
 NJS_COLOR TitleBackOverlayColor;
 static NJS_COLOR TitleBGTransparency;
@@ -189,11 +189,11 @@ static Uint32 FileSelectVtxColor = 0xFFFFFFFF;
 static char NumberOfSaves = 0;
 static bool is640 = false;
 
-//Options
+// Options
 static float Options_ArrowScale = 0.0f;
 static float Options_ArrowScaleAmount = 0.1f;
 
-//Crap textures
+// Crap textures
 static int PSInt = 0;
 static float PSsX = 0;
 static float PSsY = 0;
@@ -203,7 +203,7 @@ static float BSsX = 0;
 static float BSsY = 0;
 static float BSsZ = 0;
 
-//Ini stuff
+// Ini stuff
 static bool RemoveMissionMode = false;
 static bool RemoveQuitPrompt = false;
 static bool RemoveUnlockMessage = false;
@@ -220,7 +220,7 @@ bool DemosDone = false;
 static int SA1LogoMode = 0;
 static int RestoreDemos = 3;
 
-//Tutorial stuff
+// Tutorial stuff
 float PadManuXOffset_F = 175.0f;
 float PadManuXOffset_General = 220.0f;
 float PadManuXOffset_J = 200.0f;
@@ -228,20 +228,20 @@ float PadManuYOffset = 136.0f;
 float PadManuYOffset2 = 105.0f;
 float PadManuYMultiplier = 1.0f;
 
-//PVM accuracy stuff
+// PVM accuracy stuff
 float sphe_cursol_scale = 1.0f;
 float wins_scaleXmultiplier = 3.96900012f;
 float wins_scaleYmultiplier = 1.0f;
 
-//HUD
+// HUD
 static float HUDYOffset1 = 80.0f;
 static float HUDYOffset2 = 0.0f;
 
-//Quit prompt timer
+// Quit prompt timer
 static int QuitSoundTimer = -1;
 
 CreditsEntry SA1Credits[] = {
-	{ 1, 0, 0, 0, "SONIC ADVENTURE STAFF" },
+{ 1, 0, 0, 0, "SONIC ADVENTURE STAFF" },
 { 3, -1, 0, 0, " " },
 { 2, -1, 0, 0, "Executive producers" },
 { 3, -1, 0, 0, "Hayao Nakayama" },
@@ -249,7 +249,7 @@ CreditsEntry SA1Credits[] = {
 { 2, -1, 0, 0, "Project management" },
 { 3, -1, 0, 0, "Syuji Utsumi" },
 { 3, -1, 0, 0, "Youji Ishii" },
-{ 0, 0, 0, 0, "" }, //MAIN
+{ 0, 0, 0, 0, "" }, // MAIN
 { 2, -1, 0, 0, "Producer" },
 { 3, -1, 0, 0, "Yuji Naka" },
 { 2, -1, 0, 0, "Director" },
@@ -276,7 +276,7 @@ CreditsEntry SA1Credits[] = {
 { 2, -1, 0, 0, "Character motion designers" },
 { 3, -1, 0, 0, "Yuji Uekawa" },
 { 3, -1, 0, 0, "Akikazu Mizuno" },
-{ 0, 1, 0, 0, "" }, //FIELD STAFF
+{ 0, 1, 0, 0, "" }, // FIELD STAFF
 { 2, -1, 0, 0, "Field designers" },
 { 3, -1, 0, 0, "Takao Miyoshi" },
 { 3, -1, 0, 0, "Shiro Maekawa" },
@@ -334,7 +334,7 @@ CreditsEntry SA1Credits[] = {
 { 3, -1, 0, 0, "Maki Kaneko" },
 { 2, -1, 0, 0, "Visual effects support" },
 { 3, -1, 0, 0, "Naoko Hamada" },
-{ 0, 2, 0, 0, "" }, //ENEMY STAFF
+{ 0, 2, 0, 0, "" }, // ENEMY STAFF
 { 2, -1, 0, 0, "\"CHAOS\" game designers" },
 { 3, -1, 0, 0, "Takashi Iizuka" },
 { 3, -1, 0, 0, "Norihito Kato" },
@@ -363,7 +363,7 @@ CreditsEntry SA1Credits[] = {
 { 3, -1, 0, 0, "Takehiko Akabane" },
 { 3, -1, 0, 0, "Haruo Nakano" },
 { 3, -1, 0, 0, "Yuichi Ide" },
-{ 0, 3, 0, 0, "" }, //A-LIFE SYSTEM STAFF
+{ 0, 3, 0, 0, "" }, // A-LIFE SYSTEM STAFF
 { 2, -1, 0, 0, "A-LIFE system designers" },
 { 3, -1, 0, 0, "Shiro Maekawa" },
 { 3, -1, 0, 0, "Daisuke Mori" },
@@ -383,7 +383,7 @@ CreditsEntry SA1Credits[] = {
 { 3, -1, 0, 0, "Shiro Maekawa" },
 { 2, -1, 0, 0, "Visual memory programmer" },
 { 3, -1, 0, 0, "Jun Fukushima" },
-{ 0, 4, 0, 0, "" }, //STORY EVENT STAFF
+{ 0, 4, 0, 0, "" }, // STORY EVENT STAFF
 { 2, -1, 0, 0, "Story event director" },
 { 3, -1, 0, 0, "Akinori Nishiyama" },
 { 2, -1, 0, 0, "Story event coordinator" },
@@ -414,7 +414,7 @@ CreditsEntry SA1Credits[] = {
 { 3, -1, 0, 0, "Toshihiro Ito" },
 { 3, -1, 0, 0, "Toshiyuki Takamatsu" },
 { 3, -1, 0, 0, "Satsuki Nagano" },
-{ 0, 5, 0, 0, "" }, //CG MOVIE STAFF
+{ 0, 5, 0, 0, "" }, // CG MOVIE STAFF
 { 2, -1, 0, 0, "CG movie producer" },
 { 3, -1, 0, 0, "Naoto Ohshima" },
 { 2, -1, 0, 0, "CG movie director" },
@@ -437,7 +437,7 @@ CreditsEntry SA1Credits[] = {
 { 3, -1, 0, 0, "Maruni Studio, Tokyo, Japan" },
 { 2, -1, 0, 0, "MA engineer" },
 { 3, -1, 0, 0, "Koji Ito (Maruni Studio)" },
-{ 0, 6, 0, 0, "" }, //COORDINATORS
+{ 0, 6, 0, 0, "" }, // COORDINATORS
 { 2, -1, 0, 0, "Program coordinator" },
 { 3, -1, 0, 0, "Takahiro Hamano" },
 { 2, -1, 0, 0, "Camera system programmer" },
@@ -452,7 +452,7 @@ CreditsEntry SA1Credits[] = {
 { 3, -1, 0, 0, "Minoru Matsuura" },
 { 3, -1, 0, 0, "Atsushi Seimiya" },
 { 3, -1, 0, 0, "Chie Yoshida" },
-{ 0, 7, 0, 0, "" }, //SOUND STAFF
+{ 0, 7, 0, 0, "" }, // SOUND STAFF
 { 2, -1, 0, 0, "Executive sound coordinator" },
 { 3, -1, 0, 0, "Yukifumi Makino" },
 { 2, -1, 0, 0, "Lead music composer" },
@@ -494,7 +494,7 @@ CreditsEntry SA1Credits[] = {
 { 2, -1, 0, 0, "Mastering engineers" },
 { 3, -1, 0, 0, "Scott Hull (Master Disk Studio)" },
 { 3, -1, 0, 0, "Isao Kikuchi (WARNER MUSIC JAPAN)" },
-{ 0, 8, 0, 0, "" }, //Musicians
+{ 0, 8, 0, 0, "" }, // Musicians
 { 2, -1, 0, 0, "Vocals" },
 { 3, -1, 0, 0, "Johnny Gioeli" },
 { 3, -1, 0, 0, "Tony Harnell" },
@@ -535,7 +535,7 @@ CreditsEntry SA1Credits[] = {
 { 3, -1, 0, 0, "Tadashi Jyokagi" },
 { 2, -1, 0, 0, "Lyrics translation" },
 { 3, -1, 0, 0, "Takahiro Fukada" },
-{ 0, 9, 0, 0, "" }, //JAPANESE VOICE
+{ 0, 9, 0, 0, "" }, // JAPANESE VOICE
 { 2, -1, 0, 0, "Japanese character voices" },
 { 3, -1, 0, 0, "Junichi Kanemaru" },
 { 3, -1, 0, 0, "Kazuki Hayashi" },
@@ -555,7 +555,7 @@ CreditsEntry SA1Credits[] = {
 { 3, -1, 0, 0, "(TOHOKUSHINSHA)" },
 { 2, -1, 0, 0, "Recording" },
 { 3, -1, 0, 0, "OMNIBUS JAPAN" },
-{ 0, 10, 0, 0, "" }, //ENGLISH VOICE
+{ 0, 10, 0, 0, "" }, // ENGLISH VOICE
 { 2, -1, 0, 0, "English character voices" },
 { 3, -1, 0, 0, "Ryan Drummond" },
 { 3, -1, 0, 0, "Corey Bringas" },
@@ -571,7 +571,7 @@ CreditsEntry SA1Credits[] = {
 { 2, -1, 0, 0, "Recording Studio" },
 { 3, -1, 0, 0, "Lightspan, San Diego, CA." },
 { 3, -1, 0, 0, "Audio Banks, Santa Monica, CA." },
-{ 0, 11, 0, 0, "" }, //LOCALIZATION
+{ 0, 11, 0, 0, "" }, // LOCALIZATION
 { 2, -1, 0, 0, "Localization staff" },
 { 3, -1, 0, 0, "Keith Palmer (SOA)" },
 { 3, -1, 0, 0, "Osamu Shibamiya (SOA)" },
@@ -706,7 +706,7 @@ void DrawTitle_New(TitleNewWk* tnk)
 	f30 = (njSin(r30 * kj_xWaveTitleFlactRot + 7.0f) + 1.0f) * 0.15f + 0.7f;
 	if (tnk->Stat == 1) tnk->logotimer = 0;
 	else if (tnk->logotimer < 70) tnk->logotimer++;
-	//Set scaling
+	// Set scaling
 	if (ResolutionScaleX > ResolutionScaleY) scale = ResolutionScaleX / ResolutionScaleY;
 	else if (ResolutionScaleX < ResolutionScaleY) scale = ResolutionScaleY / ResolutionScaleX;
 	else scale = 1.0f;
@@ -726,7 +726,7 @@ void DrawTitle_New(TitleNewWk* tnk)
 		njTranslate(NULL, kj_fWaveTitleOfsBaseX, kj_fWaveTitleOfsBaseY, kj_fWaveTitleOfsBaseZ);
 		njScale(NULL, kj_fWaveTitleSclBaseX, kj_fWaveTitleSclBaseY, 1.0f);
 		njRotateX(NULL, 0x4000);
-		//Distort vertices
+		// Distort vertices
 		for (int i = 0; i < 1071; i++)
 		{
 			f1 = PYTHAGORAS(point_hamon_null1_grid1[i].x, point_hamon_null1_grid1[i].z);
@@ -758,50 +758,50 @@ void DrawTitle_New(TitleNewWk* tnk)
 		RestoreConstantAttr();
 		njControl3D_Restore();
 	}
-	//If ripples are disabled, draw it in 2D
+	// If ripples are disabled, draw it in 2D
 	else
 	{
 		if (is640)
 		{
-			if (SA1LogoMode == 2) //Static
+			if (SA1LogoMode == 2) // Static
 			{
-				if (!TextLanguage) texture_id = 15; //Japanese
-				else texture_id = 22; //English
+				if (!TextLanguage) texture_id = 15; // Japanese
+				else texture_id = 22; // English
 			}
-			else if (SA1LogoMode == 3) texture_id = 29; //Limited
+			else if (SA1LogoMode == 3) texture_id = 29; // Limited
 			else texture_id = 0;
 		}
 		else texture_id = 0;
 		if (!MainMenuAccessed || TitleScreenFadedIntoBlack) SetVtxColorB(TitleBGTransparency.color); else SetVtxColorB(0xFFFFFFFF);
-		//1
+		// 1
 		xpos = ((float)HorizontalResolution / 2.0f) - 320 * scale * mainscale;
 		ypos = ((float)VerticalResolution / 2.0f) - 240 * scale * mainscale;
 		DrawBG(texture_id, xpos, ypos, z, scale * mainscale, scale * mainscale);
-		//2
+		// 2
 		xpos = ((float)HorizontalResolution / 2.0f) - 320 * scale * mainscale;
 		ypos = ((float)VerticalResolution / 2.0f) + 16 * scale * mainscale;
 		DrawBG(texture_id + 1, xpos, ypos, z, scale * mainscale, scale * mainscale);
-		//3
+		// 3
 		xpos = ((float)HorizontalResolution / 2.0f) - 64 * scale * mainscale;
 		ypos = ((float)VerticalResolution / 2.0f) - 240 * scale * mainscale;
 		DrawBG(texture_id + 2, xpos, ypos, z, scale * mainscale, scale * mainscale);
-		//4
+		// 4
 		xpos = ((float)HorizontalResolution / 2.0f) - 64 * scale * mainscale;
 		ypos = ((float)VerticalResolution / 2.0f) + 16 * scale * mainscale;
 		DrawBG(texture_id + 3, xpos, ypos, z, scale * mainscale, scale * mainscale);
-		//5
+		// 5
 		xpos = ((float)HorizontalResolution / 2.0f) + 192 * scale * mainscale;
 		ypos = ((float)VerticalResolution / 2.0f) - 240 * scale * mainscale;
 		DrawBG(texture_id + 4, xpos, ypos, z, scale * mainscale, scale * mainscale);
-		//6
+		// 6
 		xpos = ((float)HorizontalResolution / 2.0f) + 192 * scale * mainscale;
 		ypos = ((float)VerticalResolution / 2.0f) - 112 * scale * mainscale;
 		DrawBG(texture_id + 5, xpos, ypos, z, scale * mainscale, scale * mainscale);
-		//7
+		// 7
 		xpos = ((float)HorizontalResolution / 2.0f) + 192 * scale * mainscale;
 		ypos = ((float)VerticalResolution / 2.0f) + 16 * scale * mainscale;
 		DrawBG(texture_id + 6, xpos, ypos, z, scale * mainscale, scale * mainscale);
-		//8 (always fixed at 7)
+		// 8 (always fixed at 7)
 		xpos = ((float)HorizontalResolution / 2.0f) + 192 * scale * mainscale;
 		ypos = ((float)VerticalResolution / 2.0f) + 144 * scale * mainscale;
 		DrawBG(7, xpos, ypos, z, scale * mainscale, scale * mainscale);
@@ -841,7 +841,7 @@ void GreenRect_Wrapper(float x, float y, float z, float width, float height)
 
 void DelayTransitionHook(int a1)
 {
-	//Fade into black
+	// Fade into black
 	TitleScreenFadedIntoBlack = true;
 	transitionmode = 1;
 	sub_505B40(a1);
@@ -849,7 +849,7 @@ void DelayTransitionHook(int a1)
 
 int __cdecl PlayStartSound_EnableTransition()
 {
-	//Crossfade
+	// Crossfade
 	TitleScreenFadedIntoBlack = false;
 	EnableFileSelectScreenFade = false;
 	transitionmode = 1;
@@ -859,7 +859,7 @@ int __cdecl PlayStartSound_EnableTransition()
 
 int __cdecl PlayReturnSound_EnableTransition()
 {
-	//Crossfade back
+	// Crossfade back
 	PlaySound(3, 0, 0, 0);
 	transitionmode = 3;
 	EnableFileSelectScreenFade = false;
@@ -878,7 +878,7 @@ void __cdecl DrawAVA_TITLE_BACK_E_DC(float depth)
 	EnableFileSelectScreenFade = true;
 	if (!AssumeOIT) njTextureShadingMode(1);
 	SetVtxColorB(0xFFFFFFFF);
-	//Set texture
+	// Set texture
 	if (!is640) njSetTexture(&ava_gtitle0_e_TEXLIST); 
 	else
 	{
@@ -886,68 +886,68 @@ void __cdecl DrawAVA_TITLE_BACK_E_DC(float depth)
 		else
 		{
 			njSetTexture(&ava_title_back_e_TEXLIST);
-			if (SA1LogoMode == 2) //JP/US static
+			if (SA1LogoMode == 2) // JP/US static
 			{
 				if (!TextLanguage) texture_id = 8;
 				else texture_id = 0;
 			}
-			else if (SA1LogoMode == 3) texture_id = 16; //Limited
+			else if (SA1LogoMode == 3) texture_id = 16; // Limited
 		}
 	}
-	//Set scaling
+	// Set scaling
 	if (ResolutionScaleX == ResolutionScaleY) scale = 1.0f;
 	else if (ResolutionScaleX > ResolutionScaleY) scale = ResolutionScaleX / ResolutionScaleY;
 	else scale = ResolutionScaleY / ResolutionScaleX;
 	if (!MissedFrames)
 	{
-		//Draw background
-		//1
+		// Draw background
+		// 1
 		xpos = ((float)HorizontalResolution / 2.0f) - 320 * scale * mainscale;
 		ypos = ((float)VerticalResolution / 2.0f) - 240 * scale * mainscale;
 		DrawBG(texture_id, xpos, ypos, z, scale* mainscale, scale* mainscale);
-		//2
+		// 2
 		xpos = ((float)HorizontalResolution / 2.0f) - 320 * scale * mainscale;
 		ypos = ((float)VerticalResolution / 2.0f) + 16 * scale * mainscale;
 		DrawBG(texture_id + 1, xpos, ypos, z, scale * mainscale, scale * mainscale);
-		//3
+		// 3
 		xpos = ((float)HorizontalResolution / 2.0f) - 64 * scale * mainscale;
 		ypos = ((float)VerticalResolution / 2.0f) - 240 * scale * mainscale;
 		DrawBG(texture_id + 2, xpos, ypos, z, scale * mainscale, scale * mainscale);
-		//4
+		// 4
 		xpos = ((float)HorizontalResolution / 2.0f) - 64 * scale * mainscale;
 		ypos = ((float)VerticalResolution / 2.0f) + 16 * scale * mainscale;
 		DrawBG(texture_id + 3, xpos, ypos, z, scale * mainscale, scale * mainscale);
-		//5
+		// 5
 		xpos = ((float)HorizontalResolution / 2.0f) + 192 * scale * mainscale;
 		ypos = ((float)VerticalResolution / 2.0f) - 240 * scale * mainscale;
 		DrawBG(texture_id + 4, xpos, ypos, z, scale * mainscale, scale * mainscale);
-		//6
+		// 6
 		xpos = ((float)HorizontalResolution / 2.0f) + 192 * scale * mainscale;
 		ypos = ((float)VerticalResolution / 2.0f) - 112 * scale * mainscale;
 		DrawBG(texture_id + 5, xpos, ypos, z, scale * mainscale, scale * mainscale);
-		//7
+		// 7
 		xpos = ((float)HorizontalResolution / 2.0f) + 192 * scale * mainscale;
 		ypos = ((float)VerticalResolution / 2.0f) + 16 * scale * mainscale;
 		DrawBG(texture_id + 6, xpos, ypos, z, scale * mainscale, scale * mainscale);
-		//8 (fixed at 7)
+		// 8 (fixed at 7)
 		xpos = ((float)HorizontalResolution / 2.0f) + 192 * scale * mainscale;
 		ypos = ((float)VerticalResolution / 2.0f) + 144 * scale * mainscale;
 		DrawBG(7, xpos, ypos, z, scale * mainscale, scale * mainscale);
-		if (!(is640 && SA1LogoMode >= 2)) //Don't draw in static modes at 640x480
+		if (!(is640 && SA1LogoMode >= 2)) // Don't draw in static modes at 640x480
 		{
-			//Draw logo
+			// Draw logo
 			xpos = ((float)HorizontalResolution / 2.0f) - 256 * mainscale;
 			if (!TextLanguage || SA1LogoMode < 2 || SA1LogoMode == 3) ypos = ((float)VerticalResolution / 2.0f) - 130 * mainscale;
 			else ypos = ((float)VerticalResolution / 2.0f) - 100 * mainscale;
-			//Draw logo shadow
+			// Draw logo shadow
 			if (!AssumeOIT) njTextureShadingMode(1);
 			if (!is640)	DrawBG(13, xpos, ypos, z, mainscale, mainscale);
-			//Draw the actual logo
-			if (!is640 && DrawOverlay) DrawBG(15, xpos, ypos, z, mainscale, mainscale); //Left part with highlight
-			else DrawBG(9, xpos, ypos, z, mainscale, mainscale); //Left part without highlight
-			DrawBG(10, xpos + 256 * mainscale, ypos, z, mainscale, mainscale); //Right part
+			// Draw the actual logo
+			if (!is640 && DrawOverlay) DrawBG(15, xpos, ypos, z, mainscale, mainscale); // Left part with highlight
+			else DrawBG(9, xpos, ypos, z, mainscale, mainscale); // Left part without highlight
+			DrawBG(10, xpos + 256 * mainscale, ypos, z, mainscale, mainscale); // Right part
 		}
-		//Draw white overlay
+		// Draw white overlay
 		if (!whiteoverlaydrawn)
 		{
 			if (!is640 || SA1LogoMode < 2)
@@ -1056,7 +1056,7 @@ void DrawFileSelectMockup(float depth_orig, bool use_scaling, int VertexColor)
 	float ScreenDeltaY;
 	float BaseScaleX;
 	float BaseScaleY;
-	//Set scaling
+	// Set scaling
 	if (is640 || !use_scaling || !UIScale)
 	{
 		ScreenScaleX = 1.0f;
@@ -1085,7 +1085,7 @@ void DrawFileSelectMockup(float depth_orig, bool use_scaling, int VertexColor)
 				ScreenDeltaY = ((float)VerticalResolution - ScreenScaleX * 480.0f) / 2.0f;
 			}
 	}
-	//AVA_BACK
+	// AVA_BACK
 	DrawTiledBG_AVA_BACK(depth_orig - 2.0f);
 	if (!UIScale)
 	{
@@ -1094,22 +1094,22 @@ void DrawFileSelectMockup(float depth_orig, bool use_scaling, int VertexColor)
 		ScreenDeltaX = ((float)HorizontalResolution - 640.0f)/2.0f;
 		ScreenDeltaY = ((float)VerticalResolution - 480.0f)/2.0f;
 	}
-	//Green rectangle (scaled by the Mod Loader so I don't need to fix the coordinates)
+	// Green rectangle (scaled by the Mod Loader so I don't need to fix the coordinates)
 	if (UIScale) GreenRect_Wrapper(0, 38, depth_orig - 10.0f, 564.0f, 41.0f);
 	else GreenRect_Wrapper(ScreenDeltaX, ScreenDeltaY+38, depth_orig - 10.0f, 564.0f, 41.0f);
-	//"Select a file" texture
+	// "Select a file" texture
 	njSetTexture(&ava_vmssel_e_TEXLIST);
 	xpos = 42;
 	ypos = 46;
 	DrawBG(8, ScreenDeltaX + xpos * BaseScaleX, ScreenDeltaY + ypos * BaseScaleY, depth_orig - 14.0f, BaseScaleX, BaseScaleY);
-	//File select window
+	// File select window
 	SetVtxColorB(0x78004FFFu);
 	xpos = 47;
 	ypos = 84;
 	width = 200;
 	height = 340;
 	DrawFuckingFileSelectWindows(ScreenDeltaX + xpos * BaseScaleX, ScreenDeltaY + ypos * BaseScaleY, depth_orig-6.0f, width * BaseScaleX, height * BaseScaleY, BaseScaleX, BaseScaleY);
-	//File buttons
+	// File buttons
 	scaleX = 0.69999999f;
 	scaleY = 0.69999999f;
 	xpos = 147.0f;
@@ -1121,7 +1121,7 @@ void DrawFileSelectMockup(float depth_orig, bool use_scaling, int VertexColor)
 	if (NumberOfSaves >= 2) DrawFuckingButton(0xFF12B4FF, ScreenDeltaX + xpos * BaseScaleX, ScreenDeltaY + ypos * BaseScaleY, depth_orig-6.0f, BaseScaleX * scaleX, BaseScaleY * scaleY);
 	ypos = 345;
 	if (NumberOfSaves >= 3) DrawFuckingButton(0xFF12B4FF, ScreenDeltaX + xpos * BaseScaleX, ScreenDeltaY + ypos * BaseScaleY, depth_orig-6.0f, BaseScaleX * scaleX, BaseScaleY * scaleY);
-	//Right side
+	// Right side
 	DoColorGradientThingMaybe(0x7812B4FFu, 0x7812B4FFu, 0x7812B4FFu, 0x7812B4FFu);
 	xpos = 268;
 	ypos = 78;
@@ -1129,11 +1129,11 @@ void DrawFileSelectMockup(float depth_orig, bool use_scaling, int VertexColor)
 	height = 360;
 	DrawFuckingFileSelectWindows(ScreenDeltaX + xpos * BaseScaleX, ScreenDeltaY + ypos * BaseScaleY, depth_orig-4.0f, width * BaseScaleX, height * BaseScaleY, BaseScaleX, BaseScaleY);
 	njSetTexture(&ava_filesel_e_TEXLIST);
-	//Yellow thing
+	// Yellow thing
 	int *v4 = dword_7ECA74;
 	do
 	{
-		//Top left corner
+		// Top left corner
 		xpos = 268;
 		ypos = 78;
 		scaleX = 0.78125f;
@@ -1142,16 +1142,16 @@ void DrawFileSelectMockup(float depth_orig, bool use_scaling, int VertexColor)
 		DoColorGradientThingMaybe(v4[0], v5, v4[0], v5);
 		depth = depth_orig + (*((float *)v4 - 1));
 		DrawBG(*((unsigned __int8 *)v4 + 8), ScreenDeltaX + xpos * BaseScaleX, ScreenDeltaY + ypos * BaseScaleY, depth, BaseScaleX * scaleX, BaseScaleY * scaleY);
-		//Top right corner
+		// Top right corner
 		xpos = 588;
 		DrawBG(*((unsigned __int8 *)v4 + 8) | 0x82000000, ScreenDeltaX + xpos * BaseScaleX, ScreenDeltaY + ypos * BaseScaleY, depth, BaseScaleX * scaleX, BaseScaleY * scaleY); 
-		//Top horizonal bar
+		// Top horizonal bar
 		xpos = 293;
 		ypos = 78;
 		width = 270;
 		height = 25;
 		DisplayScreenTextureCenter(*((unsigned __int8 *)v4 + 9), ScreenDeltaX + xpos * BaseScaleX, ScreenDeltaY + ypos * BaseScaleY, depth, BaseScaleX * width, BaseScaleY * height); 
-		//Left vertical bar
+		// Left vertical bar
 		int v15 = CreateColorGradient(v4[0], v4[1], 0.93055558);
 		DoColorGradientThingMaybe(v5, v15, v5, v15);
 		xpos = 268;
@@ -1159,18 +1159,18 @@ void DrawFileSelectMockup(float depth_orig, bool use_scaling, int VertexColor)
 		width = 25;
 		height = 310;
 		DisplayScreenTextureCenter(*((unsigned __int8 *)v4 + 10), ScreenDeltaX + xpos * BaseScaleX, ScreenDeltaY + ypos * BaseScaleY, depth, BaseScaleX * width, BaseScaleY * height); 
-		//Right vertical bar
+		// Right vertical bar
 		xpos = 588;
 		DisplayScreenTextureCenter(*((unsigned __int8 *)v4 + 10) | 0x82000000, ScreenDeltaX + xpos * BaseScaleX, ScreenDeltaY + ypos * BaseScaleY, depth, BaseScaleX * width, BaseScaleY * height);
-		//Bottom left corner
+		// Bottom left corner
 		DoColorGradientThingMaybe(v15, v4[1], v15, v4[1]);
 		xpos = 268;
 		ypos = 438;
 		DrawBG(*((unsigned __int8 *)v4 + 8) | 0x46000000, ScreenDeltaX + xpos * BaseScaleX, ScreenDeltaY + ypos * BaseScaleY, depth, BaseScaleX * scaleX, BaseScaleY * scaleY);
-		//Bottom right corner
+		// Bottom right corner
 		xpos = 588;
 		DrawBG(*((unsigned __int8 *)v4 + 8) | 0xC8000000, ScreenDeltaX + xpos * BaseScaleX, ScreenDeltaY + ypos * BaseScaleY, depth, BaseScaleX * scaleX, BaseScaleY * scaleY);
-		//Bottom horizontal bar
+		// Bottom horizontal bar
 		xpos = 293;
 		ypos = 413;
 		width = 270;
@@ -1179,7 +1179,7 @@ void DrawFileSelectMockup(float depth_orig, bool use_scaling, int VertexColor)
 		v4 -= 6;
 	} 
 	while (v4 >= dword_7ECA44);
-	//Right pane
+	// Right pane
 	njSetTexture(&ava_filesel_e_TEXLIST);
 	SetVtxColorB(0xFFFFFFFF);
 	int inc_count = 0;
@@ -1207,7 +1207,7 @@ void DrawFileSelectMockup(float depth_orig, bool use_scaling, int VertexColor)
 		counter = ++inc_count;
 	} 
 	while (inc_count < 4);
-	//Oval thing
+	// Oval thing
 	njSetTexture(&ava_filesel_e_TEXLIST);
 	SetVtxColorB(0xFFFFFFFF);
 	depth = depth_orig-5.0f;
@@ -1241,47 +1241,47 @@ void UpdateTransform_Apply()
 
 void DrawTitleScreen(TitleNewWk* tnk)
 {
-	//Variables for logo/background
+	// Variables for logo/background
 	float xpos;
 	float ypos;
 	float scalefactor;
 	char texture_id = 11;
-	//Transition modes:
-	//0 - title screen loaded
-	//1 - fading out
-	//2 - outside of title screen
-	//3 - fading in
+	// Transition modes:
+	// 0 - title screen loaded
+	// 1 - fading out
+	// 2 - outside of title screen
+	// 3 - fading in
 	if (transitionmode == 0)
 	{
 		TitleBGTransparency.argb.a = 255;
 		if (BlackFadeout.argb.a >= 32) BlackFadeout.argb.a -= 32;
 	}
-	//Draw file select screen mockup
+	// Draw file select screen mockup
 	if (!TitleScreenFadedIntoBlack && !MainMenuAccessed && transitionmode != -1)
 	{
 		DrawFileSelectMockup(5800.0f, true, 0xFFFFFFFF);
 	}
-	//Draw title BG
+	// Draw title BG
 	DrawTitle_New(tnk);
 	if (!is640) njSetTexture(&ava_gtitle0_e_TEXLIST); else njSetTexture(&ava_title_cmn_small_TEXLIST);
 	if (!MissedFrames)
 	{
-		if (!(is640 && SA1LogoMode >= 2)) //Don't draw in static modes at 640x480
+		if (!(is640 && SA1LogoMode >= 2)) // Don't draw in static modes at 640x480
 		{
-			//Set up logo
+			// Set up logo
 			if (!MainMenuAccessed || TitleScreenFadedIntoBlack) SetVtxColorB(TitleBGTransparency.color);
 			else SetVtxColorB(0xFFFFFFFF);
 			xpos = ((float)HorizontalResolution / 2.0f) - 256 * mainscale;
 			if (!TextLanguage || SA1LogoMode < 2 || SA1LogoMode == 3) ypos = ((float)VerticalResolution / 2.0f) - 130 * mainscale;
 			else ypos = ((float)VerticalResolution / 2.0f) - 100 * mainscale;
-			//Draw logo shadow
+			// Draw logo shadow
 			if (!AssumeOIT) njTextureShadingMode(1);
 			if (!is640) DrawBG(13, xpos, ypos, 1.2f, mainscale, mainscale);
-			//Draw logo
-			if (!is640 && DrawOverlay) DrawBG(15, xpos, ypos, 1.2f, mainscale, mainscale); //Left part with highlight
-			else DrawBG(9, xpos, ypos, 1.2f, mainscale, mainscale); //Left part without highlight
-			DrawBG(10, xpos + 256 * mainscale, ypos, 1.2f, mainscale, mainscale); //Right part
-			//Sonic Team logo fade-in
+			// Draw logo
+			if (!is640 && DrawOverlay) DrawBG(15, xpos, ypos, 1.2f, mainscale, mainscale); // Left part with highlight
+			else DrawBG(9, xpos, ypos, 1.2f, mainscale, mainscale); // Left part without highlight
+			DrawBG(10, xpos + 256 * mainscale, ypos, 1.2f, mainscale, mainscale); // Right part
+			// Sonic Team logo fade-in
 			if (transitionmode == 0)
 			{
 				if (SonicTeamAlpha <= 247) SonicTeamAlpha += 4;
@@ -1301,42 +1301,42 @@ void DrawTitleScreen(TitleNewWk* tnk)
 			if (SonicTeamTransparency.argb.a > 0)
 			{
 				SetVtxColorB(SonicTeamTransparency.color);
-				//Draw Sonic Team logo
+				// Draw Sonic Team logo
 				DrawBG(14, (HorizontalResolution / 2.0f) - 32 * mainscale, (VerticalResolution / 2.0f) - 207.0f * mainscale, 1.2f, mainscale, mainscale);
-				//Copyright text for 640x480
+				// Copyright text for 640x480
 				if (is640)
 				{
-					if (SA1LogoMode == 0) texture_id = 11; //US/EU animated
-					else if (SA1LogoMode == 1) //International
+					if (SA1LogoMode == 0) texture_id = 11; // US/EU animated
+					else if (SA1LogoMode == 1) // International
 					{
-						if (!TextLanguage) texture_id = 39; //Japanese
-						else texture_id = 36; //English
+						if (!TextLanguage) texture_id = 39; // Japanese
+						else texture_id = 36; // English
 					}
 					DrawBG(texture_id, (HorizontalResolution / 2.0f) - 192 * mainscale, (VerticalResolution / 2.0f) + 60 * mainscale, 1.2f, mainscale, mainscale);
 					DrawBG(texture_id + 1, (HorizontalResolution / 2.0f) - 64 * mainscale, (VerticalResolution / 2.0f) + 60 * mainscale, 1.2f, mainscale, mainscale);
 					DrawBG(texture_id + 2, (HorizontalResolution / 2.0f) + 64 * mainscale, (VerticalResolution / 2.0f) + 60 * mainscale, 1.2f, mainscale, mainscale);
 				}
-				//Copyright text for bigger resolutions
+				// Copyright text for bigger resolutions
 				else
 				{
-					//English
+					// English
 					if (TextLanguage)
 					{
-						//US/EU animated or static
+						// US/EU animated or static
 						if (SA1LogoMode == 0 || SA1LogoMode == 2) DrawBG(11, (HorizontalResolution / 2.0f) - 256 * mainscale, (VerticalResolution / 2.0f) + 60 * mainscale, 1.2f, mainscale, mainscale);
-						//International
+						// International
 						else if (SA1LogoMode == 1) DrawBG(12, (HorizontalResolution / 2.0f) - 256 * mainscale, (VerticalResolution / 2.0f) + 60 * mainscale, 1.2f, mainscale, mainscale);
-						//Limited
+						// Limited
 						else if (SA1LogoMode == 3) DrawBG(18, (HorizontalResolution / 2.0f) - 256 * mainscale, (VerticalResolution / 2.0f) + 60 * mainscale, 1.2f, mainscale, mainscale);
 					}
-					//Japanese
+					// Japanese
 					else
 					{
-						//US/EU animated or static
+						// US/EU animated or static
 						if (SA1LogoMode == 0 || SA1LogoMode == 2) DrawBG(16, (HorizontalResolution / 2.0f) - 256 * mainscale, (VerticalResolution / 2.0f) + 60 * mainscale, 1.2f, mainscale, mainscale);
-						//International
+						// International
 						else if (SA1LogoMode == 1) DrawBG(17, (HorizontalResolution / 2.0f) - 256 * mainscale, (VerticalResolution / 2.0f) + 60 * mainscale, 1.2f, mainscale, mainscale);
-						//Limited
+						// Limited
 						else if (SA1LogoMode == 3) DrawBG(18, (HorizontalResolution / 2.0f) - 256 * mainscale, (VerticalResolution / 2.0f) + 60 * mainscale, 1.2f, mainscale, mainscale);
 					}
 				}
@@ -1344,11 +1344,11 @@ void DrawTitleScreen(TitleNewWk* tnk)
 		}
 		if (transitionmode != 0)
 		{
-			//Fade out
+			// Fade out
 			if (transitionmode == 1)
 			{
 				{
-					//Fade out in progress
+					// Fade out in progress
 					if (TitleBGTransparency.argb.a >= 32)
 					{
 						TitleBGTransparency.argb.a -= 32;
@@ -1364,7 +1364,7 @@ void DrawTitleScreen(TitleNewWk* tnk)
 						}
 						//PrintDebug("Fade: %d\n", BlackFadeout.argb.a);
 					}
-					//Fade out complete
+					// Fade out complete
 					else
 					{
 						transitionmode = 2;
@@ -1376,7 +1376,7 @@ void DrawTitleScreen(TitleNewWk* tnk)
 					}
 				}
 			}
-			//Fade back in
+			// Fade back in
 			if (transitionmode == 3)
 			{
 				if (TitleBGTransparency.argb.a <= 223)
@@ -1414,7 +1414,7 @@ void DrawTitleScreen(TitleNewWk* tnk)
 					LogoScaleYT = LogoScaleY;
 				}
 			}
-			//Draw logo transition
+			// Draw logo transition
 			if (is640)
 			{
 				xpos = (640.0f - LogoScaleXT * 502.0f) / 2.0f;
@@ -1433,7 +1433,7 @@ void DrawTitleScreen(TitleNewWk* tnk)
 			}
 		}
 		if (!AssumeOIT) njTextureShadingMode(2);
-		//Draw black/white box if transitioning
+		// Draw black/white box if transitioning
 		if ((transitionmode >= 1 && transitionmode < 3) || transitionmode == -1)
 		{
 			if (TitleBackOverlayColor.argb.a < 160) TitleBackOverlayColor.argb.a += 8;
@@ -1481,7 +1481,7 @@ void DrawMainMenuShadow_Hook(int texnum, float x, float y, float z, float scaleX
 {
 	if (!DLLLoaded_HDGUI)
 	{
-		//This is for original shadow texture
+		// This is for original shadow texture
 		scaleX = scaleX * 4.0f;
 		scaleY = scaleY * 4.0f;
 	}
@@ -1609,34 +1609,34 @@ void __cdecl PauseMenu_ActuallyDrawTheThings_Flip(int n, NJS_POINT2 *pos, NJS_PO
 	Pause_Point2Col.p = Pause_Points;
 	Pause_Point2Col.col = Pause_Colors;
 	Pause_Point2Col.num = 0;
-	//Main box
+	// Main box
 	if (colorize == 0)
 	{
 		njSetTexture(&PauseMenu_TEXLIST);
 		Draw2DLinesMaybe_Queue((NJS_POINT2COL*)&Pause_Point2Col, 4, 22047.0f, NJD_TRANSPARENT|NJD_FILL, QueuedModelFlagsB_SomeTextureThing);
 	}
-	//Top corners
+	// Top corners
 	if (colorize == 1)
 	{
 		_sp.tanim = &PauseMenu_TEXANIM;
 		SetMaterialAndSpriteColor_Float(0.9f, 0.0f, 0.458f, 0.78f);
 		njDrawSprite2D_Queue(&_sp, n, 22047.0f, spriteflags, QueuedModelFlagsB_SomeTextureThing);
 	}
-	//Bottom corners
+	// Bottom corners
 	if (colorize == 2)
 	{
 		_sp.tanim = &PauseMenu_TEXANIM;
 		SetMaterialAndSpriteColor_Float(0.9f, 0.016f, 0, 0.322f);
 		njDrawSprite2D_Queue(&_sp, n, 22047.0f, spriteflags, QueuedModelFlagsB_SomeTextureThing);
 	}
-	//Top bar
+	// Top bar
 	if (colorize == 3)
 	{
 		_sp.tanim = &PauseBarTexanim;
 		SetMaterialAndSpriteColor_Float(0.9f, 0.0f, 0.458f, 0.78f);
 		njDrawSprite2D_Queue(&_sp, 0, 22047.0f, spriteflags, QueuedModelFlagsB_SomeTextureThing);
 	}
-	//Bottom bar
+	// Bottom bar
 	if (colorize == 4)
 	{
 		_sp.tanim = &PauseBarTexanim;
@@ -1655,51 +1655,51 @@ void DrawPauseBox_DC(int n, NJS_POINT2 *pos, NJS_POINT2 *scale)
 	newpos.x = pos->x;
 	newpos.y = pos->y + 12.0f;
 	NJS_POINT2 scale2;
-	//Main
+	// Main
 	PauseMenu_ActuallyDrawTheThings_Flip(8, &newpos, &scaleorig, 0, 0);
-	//Top left to right
+	// Top left to right
 	tempps.x = newpos.x;
 	tempps.y = newpos.y - 16;
 	scale2.x = scale->x;
 	scale2.y = 1.0f;
 	PauseMenu_ActuallyDrawTheThings_Flip(8, &tempps, &scale2, 3, 0);
-	//Top left
+	// Top left
 	tempps.x = newpos.x - 16;
 	tempps.y = newpos.y - 16;
 	scale2.x = 1.0f;
 	scale2.y = 1.0f;
 	PauseMenu_ActuallyDrawTheThings_Flip(7, &tempps, &scale2, 1, 0);
-	//Top right
+	// Top right
 	tempps.x = newpos.x + scale->x*16.0f;
 	tempps.y = newpos.y - 16;
 	scale2.x = 1.0f;
 	scale2.y = 1.0f;
 	PauseMenu_ActuallyDrawTheThings_Flip(7, &tempps, &scale2, 1, 1);
-	//Bottom left to right
+	// Bottom left to right
 	tempps.x = newpos.x;
 	tempps.y = newpos.y + scaleorig.y * 16;
 	scale2.x = scale->x;
 	scale2.y = 1.0f;
 	PauseMenu_ActuallyDrawTheThings_Flip(8, &tempps, &scale2, 4, 0);
-	//Top to bottom left
+	// Top to bottom left
 	tempps.x = newpos.x - 16;
 	tempps.y = newpos.y;
 	scale2.x = 1.0f;
 	scale2.y = scaleorig.y;
 	PauseMenu_ActuallyDrawTheThings_Flip(8, &tempps, &scale2, 0, 0);
-	//Top to bottom right
+	// Top to bottom right
 	tempps.x = newpos.x + scale->x*16.0f;
 	tempps.y = newpos.y;
 	scale2.x = 1.0f;
 	scale2.y = scaleorig.y;
 	PauseMenu_ActuallyDrawTheThings_Flip(8, &tempps, &scale2, 0, 0);
-	//Bottom left
+	// Bottom left
 	tempps.x = newpos.x - 16;
 	tempps.y = newpos.y + scaleorig.y * 16.0f;
 	scale2.x = 1.0f;
 	scale2.y = 1.0f;
 	PauseMenu_ActuallyDrawTheThings_Flip(7, &tempps, &scale2, 2, 2);
-	//Bottom right
+	// Bottom right
 	tempps.x = newpos.x + scale->x*16.0f;
 	tempps.y = newpos.y + scaleorig.y * 16.0f;
 	scale2.x = 1.0f;
@@ -1715,7 +1715,7 @@ void DrawPauseSelectionBox_Callback(FourFloats *a)
 	float ScreenDeltaY;
 	float BaseScaleX;
 	float BaseScaleY;
-	//Set scaling
+	// Set scaling
 	if (is640 || !UIScale)
 	{
 		ScreenScaleX = 1.0f;
@@ -1778,7 +1778,7 @@ void __cdecl BossHUDHack(void *a1)
 	njColorBlendingMode(NJD_DESTINATION_COLOR, NJD_COLOR_BLENDING_INVSRCALPHA);
 	x = ((float)HorizontalResolution/640.0f) * *(float *)a1;
 	y = (*((float *)a1 + 1) - 20.0f) * ((float)VerticalResolution / 480.0f);
-	scale = ((float)VerticalResolution / 480.0f); //1x for original PVM
+	scale = ((float)VerticalResolution / 480.0f); // 1x for original PVM
 	if (DLLLoaded_HDGUI) scale = scale / 4.0f;
 	DrawBG(*((_DWORD *)a1 + 3), x, y, *((float *)a1 + 2), scale, scale);
 }
@@ -1821,7 +1821,7 @@ void DrawStringHook(const char *text, float x, float y, float scale)
 
 void FileSelectGreenRectHook(float x, float y, float z, float width, float height)
 {
-	//Avoid drawing the green rectangle in the transition between file select and options because it draws on top of everything for whatever reason
+	// Avoid drawing the green rectangle in the transition between file select and options because it draws on top of everything for whatever reason
 	if (FileSelectVtxColor == 0xFFFFFFFF || (CurrentMenuIndex != 7 && CurrentMenuIndex != 2) || (CurrentMenuIndex == 2 && PreviousMenuIndex != 7)) GreenRect_Wrapper(x, y, z, width, height);
 }
 
@@ -1850,17 +1850,17 @@ static void __cdecl OptionsDisplay_r(ObjectMaster *a1)
 	const auto original = TARGET_DYNAMIC(OptionsDisplay);
 	if (!DisableSA1TitleScreen && EnableDCBranding)
 	{
-		//Don't draw the options screen if the current menu has nothing to do with it
+		// Don't draw the options screen if the current menu has nothing to do with it
 		if (CurrentMenuIndex != 7 && CurrentMenuIndex != 2 && CurrentMenuIndex != 6 && CurrentMenuIndex != 4) return;
-		//Dont' draw the options screen if the file select overlay obscures it completely
+		// Dont' draw the options screen if the file select overlay obscures it completely
 		if (FileSelectVtxColor == 0xFFFFFFFF) return;
-		//Draw file select overlay when going from options to file select
+		// Draw file select overlay when going from options to file select
 		if (CurrentMenuIndex == 7 && PreviousMenuIndex == 2)
 		{
 			DrawFileSelectMockup(5800.0f, true, 0xFFFFFFFF);
 		}
 		original(a1);
-		//Draw file select overlay when going from file select to options
+		// Draw file select overlay when going from file select to options
 		if (CurrentMenuIndex == 2 && PreviousMenuIndex == 7)
 		{
 			DrawFileSelectMockup(1000.0f, true, FileSelectVtxColor);
@@ -1900,7 +1900,7 @@ static void __cdecl TitleScreenDisplay_r(ObjectMaster *a1)
 				else if (!TitleScreenFadedIntoBlack && PreviousMenuIndex == 6) SetVtxColorA(0xFFFFFFFF);
 				else SetVtxColorA(v1->BaseCol);
 				DrawTitleScreen(v1);
-				//Draw Press Start
+				// Draw Press Start
 				unsigned char PressStartTransparency = v1->titleblinktimer;
 				if ((v1->titleblinktimer & 0x1FFu) >= 0x100)
 				{
@@ -1919,13 +1919,13 @@ static Uint8 __cdecl GetPauseDisplayOptions_r(Uint8 *a1)
 {
 	Uint8 options;
 	const auto original = TARGET_DYNAMIC(GetPauseDisplayOptions);
-	//Pause Hide by SF94
+	// Pause Hide by SF94
 	if ((ControllerPointers[0]->HeldButtons & (Buttons_X | Buttons_Y)) == (Buttons_X | Buttons_Y))
 	{
 		*a1 = 0;
 		return 0;
 	}
-	//Other stuff
+	// Other stuff
 	if (!EnableDCBranding)
 	{
 		return original(a1);
@@ -2030,7 +2030,7 @@ void CheckAndRestoreDemos()
 	WriteData((__int16**)0x42C833, &SA1DemoArray->character);
 	WriteData((__int16**)0x42C83C, &SA1DemoArray->level);
 	WriteData((__int16**)0x42C844, &SA1DemoArray->cutscene);
-	WriteData<1>((char*)0x42C8A3, 0x0Cu); //12 demos instead of 6
+	WriteData<1>((char*)0x42C8A3, 0x0Cu); // 12 demos instead of 6
 	DemosDone = true;
 }
 
@@ -2042,7 +2042,7 @@ void DrawChnamBShit(Uint8 index)
 
 void Draw2DSpriteHook(NJS_SPRITE* sp, Int n, Float pri, NJD_SPRITE attr, QueuedModelFlagsB queue_flags)
 {
-	//Dunno why it crashes when the sprite is queued but it doesn't if it's not queued
+	// Dunno why it crashes when the sprite is queued but it doesn't if it's not queued
 	Direct3D_EnableZWrite(0);
 	njDrawSprite2D_DrawNow(sp, n, pri, attr);
 	Direct3D_EnableZWrite(1);
@@ -2066,7 +2066,7 @@ void NowSaving()
 		saveprogress = -3;
 	}
 	/*
-	//This stuff is disabled because it draws a blank screen when "Now saving" is supposed to appear, which isn't how SA1 does it
+	// This stuff is disabled because it draws a blank screen when "Now saving" is supposed to appear, which isn't how SA1 does it
 	if (LoadingOrWhatever == 1)
 	{
 		DisableFog();
@@ -2090,14 +2090,14 @@ void NowSaving_Display()
 	SetDebugFontSize(FontSize);
 	for (int i = 0; i < 10; i++)
 	{
-		if (saveprogress >= i) SetDebugFontColor(0x015A97E2); else SetDebugFontColor(0x01E2E2E2); //Set alpha to 1 to italicize
+		if (saveprogress >= i) SetDebugFontColor(0x015A97E2); else SetDebugFontColor(0x01E2E2E2); // Set alpha to 1 to italicize
 		DisplayDebugString(NJM_LOCATION((int)totalcount - 13 + i, 3), NowSavingString[i]);
 	}
 }
 
 void Branding_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 {
-	//Load configuration settings
+	// Load configuration settings
 	RemoveMarketRingCount = config->getBool("Branding", "RemoveMarketRingCount", false);
 	RemoveGameGearGames = config->getBool("Branding", "RemoveGameGearGames", false);
 	RemoveUnlockMessage = config->getBool("Branding", "RemoveUnlockMessage", false);
@@ -2120,23 +2120,23 @@ void Branding_Init(const IniFile *config, const HelperFunctions &helperFunctions
 	}
 	LogoScaleXT = LogoScaleX;
 	LogoScaleYT = LogoScaleY;
-	WriteJump((void*)0x4B62B0, BossHUDHack); //HUD hack for Knuckles/Gamma boss fight
-	WriteData((float*)0x004B63AD, 10000.0f); //Depth for boss HUD
+	WriteJump((void*)0x4B62B0, BossHUDHack); // HUD hack for Knuckles/Gamma boss fight
+	WriteData((float*)0x004B63AD, 10000.0f); // Depth for boss HUD
 	if (RemoveUnlockMessage) WriteData<1>((char*)0x4B5800, 0xC3u);
-	if (RemoveMarketRingCount) WriteJump((void*)0x4297E0, DrawBlackMarketRingCount_asm); //Don't draw Black Market ring count after clearing a stage
+	if (RemoveMarketRingCount) WriteJump((void*)0x4297E0, DrawBlackMarketRingCount_asm); // Don't draw Black Market ring count after clearing a stage
 	if (RemoveQuitPrompt)
 	{
-		WriteData<5>((char*)0x414F28, 0x90u); //Don't show subtitle
-		WriteCall((void*)0x414EE3, MenuConfirmationPrompt_DontDisplay); //Set a delay to play the sound if needed, otherwise skip the menu
+		WriteData<5>((char*)0x414F28, 0x90u); // Don't show subtitle
+		WriteCall((void*)0x414EE3, MenuConfirmationPrompt_DontDisplay); // Set a delay to play the sound if needed, otherwise skip the menu
 	}
 	if (RemoveMissionMode)
 	{
-		WriteJump((void*)0x506410, UnlockMissionMode); //Mission Mode menu item always enabled
-		WriteData<1>((char*)0x007EE050, 0x0A); //Replace Mission texture ID with Internet
-		WriteData<1>((char*)0x007EE098, 0x0A); //Replace Mission texture ID with Internet
+		WriteJump((void*)0x506410, UnlockMissionMode); // Mission Mode menu item always enabled
+		WriteData<1>((char*)0x007EE050, 0x0A); // Replace Mission texture ID with Internet
+		WriteData<1>((char*)0x007EE098, 0x0A); // Replace Mission texture ID with Internet
 		WriteCall((void*)0x50C740, Draw2DSpriteHook);
 		WriteCall((void*)0x50C590, Draw2DSpriteHook);
-		WriteCall((void*)0x50B7A8, InetDemoHook); //Load InetDemo instead of Mission Mode
+		WriteCall((void*)0x50B7A8, InetDemoHook); // Load InetDemo instead of Mission Mode
 	}
 	Branding_SetUpVariables();
 	SwitchMenu_t = new Trampoline(0x505B40, 0x505B45, SwitchMenu_r);
@@ -2145,22 +2145,22 @@ void Branding_Init(const IniFile *config, const HelperFunctions &helperFunctions
 	TitleScreenDisplay_t = new Trampoline(0x510350, 0x510355, TitleScreenDisplay_r);
 	GetPauseDisplayOptions_t = new Trampoline(0x4582E0, 0x4582E8, GetPauseDisplayOptions_r);
 	UnlockMiniGamesCollection_t = new Trampoline(0x506460, 0x506465, UnlockMiniGamesCollection_r);
-	//Credits
-	WriteData((float*)0x6415DA, 1.5f); //EngBG X scale
-	WriteData((float*)0x6415DF, 1.5f); //EngBG Y scale
+	// Credits
+	WriteData((float*)0x6415DA, 1.5f); // EngBG X scale
+	WriteData((float*)0x6415DF, 1.5f); // EngBG Y scale
 	WriteCall((void*)0x640ACC, DrawBG_CreditsLogo);
 	MainCredits.Count = 449;
 	MainCredits.Entries = (CreditsEntry*)&SA1Credits;
 	f480_Fixed = 1.0f + VerticalResolution;
 	f640_Fixed = 1.0f + HorizontalResolution;
-	//HUD position
+	// HUD position
 	if (HUDTweak)
 	{
 		WriteData((float**)0x425E51, &HUDYOffset1);
 		WriteData((float**)0x425EA4, &HUDYOffset2);
 		((NJS_SPRITE*)0x91312C)->p.y = 49.0f;
 	}
-	//Set PVM names
+	// Set PVM names
 	ReplacePVM("ENDBG_LAST_AMY");
 	ReplacePVM("ENDBG_LAST_BIG");
 	ReplacePVM("ENDBG_LAST_E102");
@@ -2176,57 +2176,57 @@ void Branding_Init(const IniFile *config, const HelperFunctions &helperFunctions
 	ReplacePVM("TUTOBG_TAILS");
 	if (!DLLLoaded_HDGUI)
 	{
-		WriteData((float**)0x431B46, &sphe_cursol_scale); //AVA_CSR
-		WriteData((float**)0x431B57, &sphe_cursol_scale); //AVA_CSR
-		//AVA_NEW16NO fixes
-		WriteData((float*)0x5079F7, 1.125f); //sub_5079E0
-		WriteData((float*)0x5079FC, 1.125f); //sub_5079E0
-		WriteData((float*)0x507A1F, 1.125f); //sub_5079E0
-		WriteData((float*)0x507A24, 1.125f); //sub_5079E0
-		WriteData((float*)0x507A4A, 1.125f); //sub_5079E0
-		WriteData((float*)0x507A4F, 1.125f); //sub_5079E0
-		WriteData((float*)0x507A82, 1.125f); //sub_5079E0
-		WriteData((float*)0x507A87, 1.125f); //sub_5079E0
-		WriteData((float*)0x507AE2, 1.125f); //sub_5079E0
-		WriteData((float*)0x507AE7, 1.125f); //sub_5079E0
-		WriteData((float*)0x507897, 1.125f); //sub_507880
-		WriteData((float*)0x50789C, 1.125f); //sub_507880
-		WriteData((float*)0x5078BF, 1.125f); //sub_507880
-		WriteData((float*)0x5078C4, 1.125f); //sub_507880
-		WriteData((float*)0x5078EA, 1.125f); //sub_507880
-		WriteData((float*)0x5078EF, 1.125f); //sub_507880
-		WriteData((float*)0x507935, 1.125f); //sub_507880
-		WriteData((float*)0x50793A, 1.125f); //sub_507880
-		WriteData((float*)0x507989, 1.125f); //sub_507880
-		WriteData((float*)0x50798E, 1.125f); //sub_507880
-		WriteData((float*)0x50AEA1, 1.125f); //sub_50AE30
-		WriteData((float*)0x50AEA6, 1.125f); //sub_50AE30
-		WriteData((float*)0x50AEE0, 1.125f); //sub_50AE30
-		WriteData((float*)0x50AEE5, 1.125f); //sub_50AE30
-		WriteData((float*)0x510DE9, 1.75f); //Sound test
-		WriteData((float*)0x510DEE, 1.375f); //Sound test
-		WriteData((float*)0x510E0B, 1.75f); //Sound test
-		WriteData((float*)0x510E10, 1.375f); //Sound test
-		WriteData((float*)0x510E32, 1.75f); //Sound test
-		WriteData((float*)0x510E37, 1.375f); //Sound test
-		WriteData((float*)0x510E5C, 1.75f); //Sound test
-		WriteData((float*)0x510E61, 1.375f); //Sound test
-		WriteData((float*)0x510E79, 1.75f); //Sound test
-		WriteData((float*)0x510E7E, 1.375f); //Sound test
-		WriteData((float*)0x50A058, 1.125f); //sub_50A010
-		WriteData((float*)0x50A06A, 1.125f); //sub_50A010
-		WriteData((float*)0x50AE0A, 1.125f); //sub_50ADE0
-		WriteData((float*)0x50AE0F, 1.125f); //sub_50ADE0
-		WriteData((float*)0x50AEA1, 1.125f); //sub_50AE30
-		WriteData((float*)0x50AEA6, 1.125f); //sub_50AE30
-		WriteData((float*)0x50AEE0, 1.125f); //sub_50AE30
-		WriteData((float*)0x50AEE5, 1.125f); //sub_50AE30
-		WriteData((float*)0x50AF5A, 1.125f); //sub_50AF30
-		WriteData((float*)0x50AF5F, 1.125f); //sub_50AF30
-		WriteCall((void*)0x64393E, GreenRect_Wrapper); //Fix alpha rejection on green rectangle in tutorials
-		WriteCall((void*)0x50959A, GreenRect_Wrapper); //Fix alpha rejection on green rectangle in the options screen
-		//Tutorial stuff
-		//PVMs
+		WriteData((float**)0x431B46, &sphe_cursol_scale); // AVA_CSR
+		WriteData((float**)0x431B57, &sphe_cursol_scale); // AVA_CSR
+		// AVA_NEW16NO fixes
+		WriteData((float*)0x5079F7, 1.125f); // sub_5079E0
+		WriteData((float*)0x5079FC, 1.125f); // sub_5079E0
+		WriteData((float*)0x507A1F, 1.125f); // sub_5079E0
+		WriteData((float*)0x507A24, 1.125f); // sub_5079E0
+		WriteData((float*)0x507A4A, 1.125f); // sub_5079E0
+		WriteData((float*)0x507A4F, 1.125f); // sub_5079E0
+		WriteData((float*)0x507A82, 1.125f); // sub_5079E0
+		WriteData((float*)0x507A87, 1.125f); // sub_5079E0
+		WriteData((float*)0x507AE2, 1.125f); // sub_5079E0
+		WriteData((float*)0x507AE7, 1.125f); // sub_5079E0
+		WriteData((float*)0x507897, 1.125f); // sub_507880
+		WriteData((float*)0x50789C, 1.125f); // sub_507880
+		WriteData((float*)0x5078BF, 1.125f); // sub_507880
+		WriteData((float*)0x5078C4, 1.125f); // sub_507880
+		WriteData((float*)0x5078EA, 1.125f); // sub_507880
+		WriteData((float*)0x5078EF, 1.125f); // sub_507880
+		WriteData((float*)0x507935, 1.125f); // sub_507880
+		WriteData((float*)0x50793A, 1.125f); // sub_507880
+		WriteData((float*)0x507989, 1.125f); // sub_507880
+		WriteData((float*)0x50798E, 1.125f); // sub_507880
+		WriteData((float*)0x50AEA1, 1.125f); // sub_50AE30
+		WriteData((float*)0x50AEA6, 1.125f); // sub_50AE30
+		WriteData((float*)0x50AEE0, 1.125f); // sub_50AE30
+		WriteData((float*)0x50AEE5, 1.125f); // sub_50AE30
+		WriteData((float*)0x510DE9, 1.75f); // Sound test
+		WriteData((float*)0x510DEE, 1.375f); // Sound test
+		WriteData((float*)0x510E0B, 1.75f); // Sound test
+		WriteData((float*)0x510E10, 1.375f); // Sound test
+		WriteData((float*)0x510E32, 1.75f); // Sound test
+		WriteData((float*)0x510E37, 1.375f); // Sound test
+		WriteData((float*)0x510E5C, 1.75f); // Sound test
+		WriteData((float*)0x510E61, 1.375f); // Sound test
+		WriteData((float*)0x510E79, 1.75f); // Sound test
+		WriteData((float*)0x510E7E, 1.375f); // Sound test
+		WriteData((float*)0x50A058, 1.125f); // sub_50A010
+		WriteData((float*)0x50A06A, 1.125f); // sub_50A010
+		WriteData((float*)0x50AE0A, 1.125f); // sub_50ADE0
+		WriteData((float*)0x50AE0F, 1.125f); // sub_50ADE0
+		WriteData((float*)0x50AEA1, 1.125f); // sub_50AE30
+		WriteData((float*)0x50AEA6, 1.125f); // sub_50AE30
+		WriteData((float*)0x50AEE0, 1.125f); // sub_50AE30
+		WriteData((float*)0x50AEE5, 1.125f); // sub_50AE30
+		WriteData((float*)0x50AF5A, 1.125f); // sub_50AF30
+		WriteData((float*)0x50AF5F, 1.125f); // sub_50AF30
+		WriteCall((void*)0x64393E, GreenRect_Wrapper); // Fix alpha rejection on green rectangle in tutorials
+		WriteCall((void*)0x50959A, GreenRect_Wrapper); // Fix alpha rejection on green rectangle in the options screen
+		// Tutorial stuff
+		// PVMs
 		ReplacePVM("TUTO_CMN");
 		ReplacePVM("TUTO_CMN_E");
 		ReplacePVM("TUTOMSG_AMY_E");
@@ -2265,87 +2265,87 @@ void Branding_Init(const IniFile *config, const HelperFunctions &helperFunctions
 		WriteData((float**)0x6432C6, &PadManuYOffset);
 		WriteData((float**)0x6432E4, &PadManuYOffset2);
 		WriteData((float**)0x6432D4, &PadManuYMultiplier);
-		//Sonic
-		//English
+		// Sonic
+		// English
 		TutoScreenSonic_E[0].BoxScaleX = 390;
 		TutoScreenSonic_E[0].BoxScaleY = 144;
 		TutoScreenSonic_E[0].BoxX = 210;
 		TutoScreenSonic_E[4].BoxScaleY = 160;
-		TutorialScreenLayout_Sonic_Page1_E[1].XOffset = 136; //Rotate camera
-		TutorialScreenLayout_Sonic_Page1_E[1].YOffset = 0; //Rotate camera
-		TutorialScreenLayout_Sonic_Page1_E[2].XOffset = 136; //Maneuver character
-		TutorialScreenLayout_Sonic_Page1_E[2].YOffset = 24; //Maneuver character
-		TutorialScreenLayout_Sonic_Page1_E[4].XOffset = 136; //A button
-		TutorialScreenLayout_Sonic_Page1_E[4].YOffset = 64; //A button
+		TutorialScreenLayout_Sonic_Page1_E[1].XOffset = 136; // Rotate camera
+		TutorialScreenLayout_Sonic_Page1_E[1].YOffset = 0; // Rotate camera
+		TutorialScreenLayout_Sonic_Page1_E[2].XOffset = 136; // Maneuver character
+		TutorialScreenLayout_Sonic_Page1_E[2].YOffset = 24; // Maneuver character
+		TutorialScreenLayout_Sonic_Page1_E[4].XOffset = 136; // A button
+		TutorialScreenLayout_Sonic_Page1_E[4].YOffset = 64; // A button
 		TutorialScreenLayout_Sonic_Page1_E[4].TexID = 3;
 		TutorialScreenLayout_Sonic_Page1_E[5].TexID = 4;
 		TutorialScreenLayout_Sonic_Page1_E[5].XOffset = 136;
 		TutorialScreenLayout_Sonic_Page1_E[5].YOffset = 96;
-		WriteData((__int16*)0x2BC3AE2, (__int16)2000); //Hide an extra item in controls page (all langs)
-		//Japanese
+		WriteData((__int16*)0x2BC3AE2, (__int16)2000); // Hide an extra item in controls page (all langs)
+		// Japanese
 		TutoScreenSonic_J[0].BoxScaleX = 400;
 		TutoScreenSonic_J[0].BoxScaleY = 144;
 		TutoScreenSonic_J[0].BoxX = 200;
 		TutoScreenSonic_J[4].BoxScaleY = 160;
-		TutorialScreenLayout_Sonic_Page1_J[1].XOffset = 136; //Rotate camera
-		TutorialScreenLayout_Sonic_Page1_J[1].YOffset = 0; //Rotate camera
-		TutorialScreenLayout_Sonic_Page1_J[2].XOffset = 136; //Maneuver character
-		TutorialScreenLayout_Sonic_Page1_J[2].YOffset = 24; //Maneuver character
-		TutorialScreenLayout_Sonic_Page1_J[3].XOffset = 136; //A button
-		TutorialScreenLayout_Sonic_Page1_J[3].YOffset = 64; //A button
+		TutorialScreenLayout_Sonic_Page1_J[1].XOffset = 136; // Rotate camera
+		TutorialScreenLayout_Sonic_Page1_J[1].YOffset = 0; // Rotate camera
+		TutorialScreenLayout_Sonic_Page1_J[2].XOffset = 136; // Maneuver character
+		TutorialScreenLayout_Sonic_Page1_J[2].YOffset = 24; // Maneuver character
+		TutorialScreenLayout_Sonic_Page1_J[3].XOffset = 136; // A button
+		TutorialScreenLayout_Sonic_Page1_J[3].YOffset = 64; // A button
 		TutorialScreenLayout_Sonic_Page1_J[3].TexID = 3;
 		TutorialScreenLayout_Sonic_Page1_J[4].TexID = 4;
 		TutorialScreenLayout_Sonic_Page1_J[4].XOffset = 136;
 		TutorialScreenLayout_Sonic_Page1_J[4].YOffset = 96;
-		//German
+		// German
 		TutoScreenSonic_G[0].BoxScaleX = 380;
 		TutoScreenSonic_G[0].BoxScaleY = 144;
 		TutoScreenSonic_G[0].BoxX = 220;
 		TutoScreenSonic_G[3].BoxScaleY = 160;
 		TutoScreenSonic_G[4].BoxScaleY = 160;
-		//French
+		// French
 		TutoScreenSonic_F[4].BoxScaleY = 192;
 		TutoScreenSonic_F[0].BoxScaleX = 425;
 		TutoScreenSonic_F[0].BoxScaleY = 144;
 		TutoScreenSonic_F[0].BoxX = 175;
-		//Spanish
+		// Spanish
 		TutoScreenSonic_S[0].BoxScaleX = 370;
 		TutoScreenSonic_S[0].BoxScaleY = 144;
 		TutoScreenSonic_S[0].BoxX = 230;
 		TutoScreenSonic_S[4].BoxScaleY = 192;
-		//Tails
-		//English
+		// Tails
+		// English
 		TutoScreenTails_E[0].BoxScaleX = 390;
 		TutoScreenTails_E[0].BoxScaleY = 144;
 		TutoScreenTails_E[0].BoxX = 210;
 		TutoScreenTails_E[4].BoxScaleY = 160;
-		TutorialScreenLayout_SharedTailsKnucklesPage1_E[0].XOffset = 136; //Rotate camera
-		TutorialScreenLayout_SharedTailsKnucklesPage1_E[0].YOffset = 0; //Rotate camera
-		TutorialScreenLayout_SharedTailsKnucklesPage1_E[1].XOffset = 136; //Maneuver character
-		TutorialScreenLayout_SharedTailsKnucklesPage1_E[1].YOffset = 24; //Maneuver character
-		TutorialScreenLayout_SharedTailsKnucklesPage1_E[3].XOffset = 136; //A button
-		TutorialScreenLayout_SharedTailsKnucklesPage1_E[3].YOffset = 96; //A button
-		TutorialScreenLayout_Tails_Page1_E.XOffset = 136; //Tail attack
-		TutorialScreenLayout_Tails_Page1_E.YOffset = 64; //Tail attack
-		//Japanese
+		TutorialScreenLayout_SharedTailsKnucklesPage1_E[0].XOffset = 136; // Rotate camera
+		TutorialScreenLayout_SharedTailsKnucklesPage1_E[0].YOffset = 0; // Rotate camera
+		TutorialScreenLayout_SharedTailsKnucklesPage1_E[1].XOffset = 136; // Maneuver character
+		TutorialScreenLayout_SharedTailsKnucklesPage1_E[1].YOffset = 24; // Maneuver character
+		TutorialScreenLayout_SharedTailsKnucklesPage1_E[3].XOffset = 136; // A button
+		TutorialScreenLayout_SharedTailsKnucklesPage1_E[3].YOffset = 96; // A button
+		TutorialScreenLayout_Tails_Page1_E.XOffset = 136; // Tail attack
+		TutorialScreenLayout_Tails_Page1_E.YOffset = 64; // Tail attack
+		// Japanese
 		TutoScreenTails_J[0].BoxScaleX = 400;
 		TutoScreenTails_J[0].BoxScaleY = 144;
 		TutoScreenTails_J[0].BoxX = 200;
 		TutoScreenTails_J[4].BoxScaleY = 160;
-		TutorialScreenLayout_SharedTailsKnucklesPage1_J[0].XOffset = 136; //Rotate camera
-		TutorialScreenLayout_SharedTailsKnucklesPage1_J[0].YOffset = 0; //Rotate camera
-		TutorialScreenLayout_SharedTailsKnucklesPage1_J[1].XOffset = 136; //Maneuver character
-		TutorialScreenLayout_SharedTailsKnucklesPage1_J[1].YOffset = 24; //Maneuver character
-		TutorialScreenLayout_SharedTailsKnucklesPage1_J[2].XOffset = 136; //A button
-		TutorialScreenLayout_SharedTailsKnucklesPage1_J[2].YOffset = 96; //A button
-		TutorialScreenLayout_Tails_Page1_J.XOffset = 136; //Tail attack
-		TutorialScreenLayout_Tails_Page1_J.YOffset = 64; //Tail attack
-		//French
+		TutorialScreenLayout_SharedTailsKnucklesPage1_J[0].XOffset = 136; // Rotate camera
+		TutorialScreenLayout_SharedTailsKnucklesPage1_J[0].YOffset = 0; // Rotate camera
+		TutorialScreenLayout_SharedTailsKnucklesPage1_J[1].XOffset = 136; // Maneuver character
+		TutorialScreenLayout_SharedTailsKnucklesPage1_J[1].YOffset = 24; // Maneuver character
+		TutorialScreenLayout_SharedTailsKnucklesPage1_J[2].XOffset = 136; // A button
+		TutorialScreenLayout_SharedTailsKnucklesPage1_J[2].YOffset = 96; // A button
+		TutorialScreenLayout_Tails_Page1_J.XOffset = 136; // Tail attack
+		TutorialScreenLayout_Tails_Page1_J.YOffset = 64; // Tail attack
+		// French
 		TutoScreenTails_F[4].BoxScaleY = 192;
 		TutoScreenTails_F[0].BoxScaleX = 425;
 		TutoScreenTails_F[0].BoxScaleY = 144;
 		TutoScreenTails_F[0].BoxX = 175;
-		//German
+		// German
 		TutoScreenTails_G[0].BoxScaleX = 390;
 		TutoScreenTails_G[0].BoxScaleY = 144;
 		TutoScreenTails_G[0].BoxX = 210;
@@ -2354,14 +2354,14 @@ void Branding_Init(const IniFile *config, const HelperFunctions &helperFunctions
 		TutoScreenTails_G[0].BoxScaleX = 380;
 		TutoScreenTails_G[0].BoxScaleY = 144;
 		TutoScreenTails_G[0].BoxX = 220;
-		WriteData((__int16*)0x2BC3E9E, (__int16)2000); //Hide an extra item in controls page
-		//Spanish
+		WriteData((__int16*)0x2BC3E9E, (__int16)2000); // Hide an extra item in controls page
+		// Spanish
 		TutoScreenTails_S[0].BoxScaleX = 370;
 		TutoScreenTails_S[0].BoxScaleY = 144;
 		TutoScreenTails_S[0].BoxX = 230;
 		TutoScreenTails_S[4].BoxScaleY = 192;
-		//Knuckles
-		//English
+		// Knuckles
+		// English
 		TutoScreenKnuckles_E[0].BoxScaleX = 390;
 		TutoScreenKnuckles_E[0].BoxScaleY = 144;
 		TutoScreenKnuckles_E[0].BoxX = 210;
@@ -2369,10 +2369,10 @@ void Branding_Init(const IniFile *config, const HelperFunctions &helperFunctions
 		TutoScreenKnuckles_E[4].BoxScaleY = 128;
 		TutoScreenKnuckles_E[4].BoxScaleX = 425;
 		TutoScreenKnuckles_E[5].BoxScaleY = 160;
-		TutorialScreenLayout_Knuckles_Page1_E.XOffset = 136; //Punch attack
-		TutorialScreenLayout_Knuckles_Page1_E.YOffset = 64; //Punch attack
-		WriteData<1>((char*)0x2BC4308, 0x03); //Number of items in Maximum Heat screen, remove unnecessary line
-		//Japanese
+		TutorialScreenLayout_Knuckles_Page1_E.XOffset = 136; // Punch attack
+		TutorialScreenLayout_Knuckles_Page1_E.YOffset = 64; // Punch attack
+		WriteData<1>((char*)0x2BC4308, 0x03); // Number of items in Maximum Heat screen, remove unnecessary line
+		// Japanese
 		TutoScreenKnuckles_J[0].BoxScaleX = 400;
 		TutoScreenKnuckles_J[0].BoxScaleY = 144;
 		TutoScreenKnuckles_J[0].BoxX = 200;
@@ -2380,9 +2380,9 @@ void Branding_Init(const IniFile *config, const HelperFunctions &helperFunctions
 		TutoScreenKnuckles_J[4].BoxScaleY = 128;
 		TutoScreenKnuckles_J[4].BoxScaleX = 425;
 		TutoScreenKnuckles_J[5].BoxScaleY = 160;
-		TutorialScreenLayout_Knuckles_Page1_J.XOffset = 136; //Punch attack
-		TutorialScreenLayout_Knuckles_Page1_J.YOffset = 64; //Punch attack
-		//German
+		TutorialScreenLayout_Knuckles_Page1_J.XOffset = 136; // Punch attack
+		TutorialScreenLayout_Knuckles_Page1_J.YOffset = 64; // Punch attack
+		// German
 		TutoScreenKnuckles_G[0].BoxScaleX = 380;
 		TutoScreenKnuckles_G[0].BoxScaleY = 144;
 		TutoScreenKnuckles_G[0].BoxX = 220;
@@ -2391,8 +2391,8 @@ void Branding_Init(const IniFile *config, const HelperFunctions &helperFunctions
 		TutoScreenKnuckles_G[4].BoxScaleX = 420;
 		TutoScreenKnuckles_G[4].BoxScaleY = 128;
 		TutoScreenKnuckles_G[5].BoxScaleY = 160;
-		WriteData((__int16*)0x2BC42E0, (__int16)2000); //Hide an extra item in Climbing page
-		//French
+		WriteData((__int16*)0x2BC42E0, (__int16)2000); // Hide an extra item in Climbing page
+		// French
 		TutoScreenKnuckles_F[0].BoxScaleX = 430;
 		TutoScreenKnuckles_F[0].BoxScaleY = 144;
 		TutoScreenKnuckles_F[0].BoxX = 170;
@@ -2402,10 +2402,10 @@ void Branding_Init(const IniFile *config, const HelperFunctions &helperFunctions
 		TutoScreenKnuckles_F[4].BoxX = 125;
 		TutoScreenKnuckles_F[4].BoxScaleY = 128;
 		TutoScreenKnuckles_F[5].BoxScaleY = 192;
-		WriteData((__int16*)0x2BC3E9E, (__int16)2000); //Hide an extra item in Controls page
-		WriteData((__int16*)0x2BC433A, (__int16)2000); //Hide an extra item in Maximum Heat page
-		WriteData((__int16*)0x2BC4340, (__int16)2000); //Hide an extra item in Maximum Heat page
-		//Spanish
+		WriteData((__int16*)0x2BC3E9E, (__int16)2000); // Hide an extra item in Controls page
+		WriteData((__int16*)0x2BC433A, (__int16)2000); // Hide an extra item in Maximum Heat page
+		WriteData((__int16*)0x2BC4340, (__int16)2000); // Hide an extra item in Maximum Heat page
+		// Spanish
 		TutoScreenKnuckles_S[0].BoxScaleX = 370;
 		TutoScreenKnuckles_S[0].BoxScaleY = 144;
 		TutoScreenKnuckles_S[0].BoxX = 230;
@@ -2413,93 +2413,93 @@ void Branding_Init(const IniFile *config, const HelperFunctions &helperFunctions
 		TutoScreenKnuckles_S[4].BoxX = 190;
 		TutoScreenKnuckles_S[4].BoxScaleY = 128;
 		TutoScreenKnuckles_S[5].BoxScaleY = 192;
-		//Amy
-		//English
+		// Amy
+		// English
 		TutoScreenAmy_E[0].BoxScaleX = 390;
 		TutoScreenAmy_E[0].BoxScaleY = 144;
 		TutoScreenAmy_E[0].BoxX = 210;
 		TutoScreenAmy_E[4].BoxScaleY = 160;
-		TutorialScreenLayout_AmyGamma_Page1_E[1].XOffset = 136; //Rotate camera
-		TutorialScreenLayout_AmyGamma_Page1_E[1].YOffset = 0; //Rotate camera
-		TutorialScreenLayout_AmyGamma_Page1_E[2].XOffset = 136; //Maneuver character
-		TutorialScreenLayout_AmyGamma_Page1_E[2].YOffset = 24; //Maneuver character
-		TutorialScreenLayout_Amy_Page1_E[0].XOffset = 136; //A
-		TutorialScreenLayout_Amy_Page1_E[0].YOffset = 96; //A
-		TutorialScreenLayout_Amy_Page1_E[1].XOffset = 136; //B
-		TutorialScreenLayout_Amy_Page1_E[1].YOffset = 64; //B
-		//Japanese
+		TutorialScreenLayout_AmyGamma_Page1_E[1].XOffset = 136; // Rotate camera
+		TutorialScreenLayout_AmyGamma_Page1_E[1].YOffset = 0; // Rotate camera
+		TutorialScreenLayout_AmyGamma_Page1_E[2].XOffset = 136; // Maneuver character
+		TutorialScreenLayout_AmyGamma_Page1_E[2].YOffset = 24; // Maneuver character
+		TutorialScreenLayout_Amy_Page1_E[0].XOffset = 136; // A
+		TutorialScreenLayout_Amy_Page1_E[0].YOffset = 96; // A
+		TutorialScreenLayout_Amy_Page1_E[1].XOffset = 136; // B
+		TutorialScreenLayout_Amy_Page1_E[1].YOffset = 64; // B
+		// Japanese
 		TutoScreenAmy_J[0].BoxScaleX = 400;
 		TutoScreenAmy_J[0].BoxScaleY = 144;
 		TutoScreenAmy_J[0].BoxX = 200;
 		TutoScreenAmy_J[4].BoxScaleY = 160;
-		TutorialScreenLayout_AmyGamma_Page1_J[1].XOffset = 136; //Rotate camera
-		TutorialScreenLayout_AmyGamma_Page1_J[1].YOffset = 0; //Rotate camera
-		TutorialScreenLayout_AmyGamma_Page1_J[2].XOffset = 136; //Maneuver character
-		TutorialScreenLayout_AmyGamma_Page1_J[2].YOffset = 24; //Maneuver character
-		TutorialScreenLayout_Amy_Page1_J[0].XOffset = 136; //A
-		TutorialScreenLayout_Amy_Page1_J[0].YOffset = 96; //A
-		TutorialScreenLayout_Amy_Page1_J[1].XOffset = 136; //B
-		TutorialScreenLayout_Amy_Page1_J[1].YOffset = 64; //B
-		//German
+		TutorialScreenLayout_AmyGamma_Page1_J[1].XOffset = 136; // Rotate camera
+		TutorialScreenLayout_AmyGamma_Page1_J[1].YOffset = 0; // Rotate camera
+		TutorialScreenLayout_AmyGamma_Page1_J[2].XOffset = 136; // Maneuver character
+		TutorialScreenLayout_AmyGamma_Page1_J[2].YOffset = 24; // Maneuver character
+		TutorialScreenLayout_Amy_Page1_J[0].XOffset = 136; // A
+		TutorialScreenLayout_Amy_Page1_J[0].YOffset = 96; // A
+		TutorialScreenLayout_Amy_Page1_J[1].XOffset = 136; // B
+		TutorialScreenLayout_Amy_Page1_J[1].YOffset = 64; // B
+		// German
 		TutoScreenAmy_G[0].BoxScaleX = 380;
 		TutoScreenAmy_G[0].BoxScaleY = 144;
 		TutoScreenAmy_G[0].BoxX = 220;
 		TutoScreenAmy_G[4].BoxScaleY = 160;
-		WriteData((__int16*)0x2BC46FA, (__int16)2000); //Hide an extra item in controls page
-		//French
+		WriteData((__int16*)0x2BC46FA, (__int16)2000); // Hide an extra item in controls page
+		// French
 		TutoScreenAmy_F[0].BoxScaleX = 425;
 		TutoScreenAmy_F[0].BoxScaleY = 144;
 		TutoScreenAmy_F[0].BoxX = 175;
 		TutoScreenAmy_F[4].BoxScaleY = 192;
-		//Spanish
+		// Spanish
 		TutoScreenAmy_S[0].BoxScaleX = 370;
 		TutoScreenAmy_S[0].BoxScaleY = 144;
 		TutoScreenAmy_S[0].BoxX = 230;
 		TutoScreenAmy_S[4].BoxScaleY = 192;
-		//Big
-		//English
+		// Big
+		// English
 		TutoScreenBig_E[0].BoxScaleX = 390;
 		TutoScreenBig_E[0].BoxScaleY = 144;
 		TutoScreenBig_E[0].BoxX = 210;
 		TutoScreenBig_E[4].BoxScaleY = 128;
 		TutoScreenBig_E[7].BoxScaleX = 420;
 		TutoScreenBig_E[7].BoxX = 180;
-		TutorialScreenLayout_BigPage1_E[1].XOffset = 136; //Rotate camera
-		TutorialScreenLayout_BigPage1_E[1].YOffset = 0; //Rotate camera
-		TutorialScreenLayout_BigPage1_E[2].XOffset = 136; //Maneuver character
-		TutorialScreenLayout_BigPage1_E[2].YOffset = 24; //Maneuver character
-		TutorialScreenLayout_BigPage1Part2_E[0].XOffset = 136; //A
-		TutorialScreenLayout_BigPage1Part2_E[0].YOffset = 96; //A
-		TutorialScreenLayout_BigPage1Part2_E[1].XOffset = 136; //B
-		TutorialScreenLayout_BigPage1Part2_E[1].YOffset = 64; //B
-		TutorialScreenLayout_BigPage5_E[2].TexID = 32; //Hide "Tugging the rod"
-		TutorialScreenLayout_BigPage5_E[3].YOffset = 64; //Move A up
-		TutorialScreenLayout_BigPage5_E[4].YOffset = 96; //Move B up
-		//Japanese
+		TutorialScreenLayout_BigPage1_E[1].XOffset = 136; // Rotate camera
+		TutorialScreenLayout_BigPage1_E[1].YOffset = 0; // Rotate camera
+		TutorialScreenLayout_BigPage1_E[2].XOffset = 136; // Maneuver character
+		TutorialScreenLayout_BigPage1_E[2].YOffset = 24; // Maneuver character
+		TutorialScreenLayout_BigPage1Part2_E[0].XOffset = 136; // A
+		TutorialScreenLayout_BigPage1Part2_E[0].YOffset = 96; // A
+		TutorialScreenLayout_BigPage1Part2_E[1].XOffset = 136; // B
+		TutorialScreenLayout_BigPage1Part2_E[1].YOffset = 64; // B
+		TutorialScreenLayout_BigPage5_E[2].TexID = 32; // Hide "Tugging the rod"
+		TutorialScreenLayout_BigPage5_E[3].YOffset = 64; // Move A up
+		TutorialScreenLayout_BigPage5_E[4].YOffset = 96; // Move B up
+		// Japanese
 		TutoScreenBig_J[0].BoxScaleX = 400;
 		TutoScreenBig_J[0].BoxScaleY = 144;
 		TutoScreenBig_J[0].BoxX = 200;
 		TutoScreenBig_J[4].BoxScaleY = 160;
 		TutoScreenBig_J[7].BoxScaleX = 400;
 		TutoScreenBig_J[7].BoxX = 200;
-		TutorialScreenLayout_BigPage1Part2_J[0].XOffset = 136; //A
-		TutorialScreenLayout_BigPage1Part2_J[0].YOffset = 96; //A
-		TutorialScreenLayout_BigPage1Part2_J[1].XOffset = 136; //B
-		TutorialScreenLayout_BigPage1Part2_J[1].YOffset = 64; //B
-		//German
+		TutorialScreenLayout_BigPage1Part2_J[0].XOffset = 136; // A
+		TutorialScreenLayout_BigPage1Part2_J[0].YOffset = 96; // A
+		TutorialScreenLayout_BigPage1Part2_J[1].XOffset = 136; // B
+		TutorialScreenLayout_BigPage1Part2_J[1].YOffset = 64; // B
+		// German
 		TutoScreenBig_G[0].BoxScaleX = 395;
 		TutoScreenBig_G[0].BoxScaleY = 144;
 		TutoScreenBig_G[0].BoxX = 205;
 		TutoScreenBig_G[4].BoxScaleY = 128;
-		WriteData((__int16*)0x2BC4E9E, (__int16)2000); //Hide an extra item in controls page
-		//French
+		WriteData((__int16*)0x2BC4E9E, (__int16)2000); // Hide an extra item in controls page
+		// French
 		TutoScreenBig_F[0].BoxScaleX = 425;
 		TutoScreenBig_F[0].BoxScaleY = 144;
 		TutoScreenBig_F[0].BoxX = 175;
 		TutoScreenBig_F[4].BoxScaleY = 128;
 		TutoScreenBig_F[7].BoxScaleX = 445;
 		TutoScreenBig_F[7].BoxX = 155;
-		//Spanish
+		// Spanish
 		TutoScreenBig_S[0].BoxScaleX = 370;
 		TutoScreenBig_S[0].BoxScaleY = 144;
 		TutoScreenBig_S[0].BoxX = 230;
@@ -2510,38 +2510,38 @@ void Branding_Init(const IniFile *config, const HelperFunctions &helperFunctions
 		TutoScreenBig_S[7].BoxX = 180;
 		TutoScreenBig_S[7].BoxScaleX = 475;
 		TutoScreenBig_S[7].BoxX = 125;
-		//Gamma
-		//English
+		// Gamma
+		// English
 		TutoScreenGamma_E[0].BoxScaleX = 390;
 		TutoScreenGamma_E[0].BoxScaleY = 144;
 		TutoScreenGamma_E[0].BoxX = 210;
 		TutoScreenGamma_E[4].BoxScaleY = 160;
-		TutorialScreenLayout_Gamma_Page1_E[0].XOffset = 136; //A
-		TutorialScreenLayout_Gamma_Page1_E[0].YOffset = 96; //A
-		TutorialScreenLayout_Gamma_Page1_E[1].XOffset = 136; //B
-		TutorialScreenLayout_Gamma_Page1_E[1].YOffset = 64; //B
-		//Japanese
+		TutorialScreenLayout_Gamma_Page1_E[0].XOffset = 136; // A
+		TutorialScreenLayout_Gamma_Page1_E[0].YOffset = 96; // A
+		TutorialScreenLayout_Gamma_Page1_E[1].XOffset = 136; // B
+		TutorialScreenLayout_Gamma_Page1_E[1].YOffset = 64; // B
+		// Japanese
 		TutoScreenGamma_J[0].BoxScaleX = 400;
 		TutoScreenGamma_J[0].BoxScaleY = 144;
 		TutoScreenGamma_J[0].BoxX = 200;
 		TutoScreenGamma_J[4].BoxScaleY = 160;
-		TutorialScreenLayout_Gamma_Page1_J[0].XOffset = 136; //A
-		TutorialScreenLayout_Gamma_Page1_J[0].YOffset = 96; //A
-		TutorialScreenLayout_Gamma_Page1_J[1].XOffset = 136; //B
-		TutorialScreenLayout_Gamma_Page1_J[1].YOffset = 64; //B
-		//German
+		TutorialScreenLayout_Gamma_Page1_J[0].XOffset = 136; // A
+		TutorialScreenLayout_Gamma_Page1_J[0].YOffset = 96; // A
+		TutorialScreenLayout_Gamma_Page1_J[1].XOffset = 136; // B
+		TutorialScreenLayout_Gamma_Page1_J[1].YOffset = 64; // B
+		// German
 		TutoScreenGamma_G[4].BoxScaleY = 160;
 		TutoScreenGamma_G[0].BoxScaleX = 380;
 		TutoScreenGamma_G[0].BoxScaleY = 144;
 		TutoScreenGamma_G[0].BoxX = 220;
-		//French
+		// French
 		TutoScreenGamma_F[0].BoxScaleX = 425;
 		TutoScreenGamma_F[0].BoxScaleY = 144;
 		TutoScreenGamma_F[0].BoxX = 175;
 		TutoScreenGamma_F[1].BoxScaleY = 192;
 		TutoScreenGamma_F[4].BoxScaleY = 192;
-		WriteData((__int16*)0x2BC4AE4, (__int16)2000); //Hide an extra item in the second page
-		//Spanish
+		WriteData((__int16*)0x2BC4AE4, (__int16)2000); // Hide an extra item in the second page
+		// Spanish
 		TutoScreenGamma_S[0].BoxScaleX = 370;
 		TutoScreenGamma_S[0].BoxScaleY = 144;
 		TutoScreenGamma_S[0].BoxX = 230;
@@ -3053,95 +3053,95 @@ void Branding_Init(const IniFile *config, const HelperFunctions &helperFunctions
 		ReplacePVR("T_STATIONSQUARE");
 		ReplacePVR("T_STATIONSQUARE_E");
 	}
-	//File icon
+	// File icon
 	if (!DLLLoaded_HDGUI) WriteCall((void*)0x5092A1, DrawTexture_Hook); 
 	else WriteCall((void*)0x5092A1, FileIcon_Hook);
-	//Various fixes already included in HD GUI
+	// Various fixes already included in HD GUI
 	if (!DLLLoaded_HDGUI)
 	{
-		//Screen fade fixes
-		WriteData((float**)0x433385, &f480_Fixed); //Screen fade resolution
-		WriteData((float**)0x4333A6, &f640_Fixed); //Screen fade resolution
-		WriteData((float*)0x4333A0, -1.0f); //Screen fade for tutorials
-		WriteData((float*)0x4333AE, -1.0f); //Screen fade for tutorials
+		// Screen fade fixes
+		WriteData((float**)0x433385, &f480_Fixed); // Screen fade resolution
+		WriteData((float**)0x4333A6, &f640_Fixed); // Screen fade resolution
+		WriteData((float*)0x4333A0, -1.0f); // Screen fade for tutorials
+		WriteData((float*)0x4333AE, -1.0f); // Screen fade for tutorials
 		WriteCall((void*)0x42BF52, ScreenFadeFix);
-		WriteData<5>((char*)0x40BE0D, 0x90); //Disable "Now loading..."
-		WriteData<5>((char*)0x503438, 0x90); //Disable "Now loading..."
-		WriteData<5>((char*)0x50346D, 0x90); //Disable "Now loading..."
-		//Character select screen fixes
+		WriteData<5>((char*)0x40BE0D, 0x90); // Disable "Now loading..."
+		WriteData<5>((char*)0x503438, 0x90); // Disable "Now loading..."
+		WriteData<5>((char*)0x50346D, 0x90); // Disable "Now loading..."
+		// Character select screen fixes
 		if (!AssumeOIT)
 		{
-			WriteCall((void*)0x511AD0, RetrievePlayerSelectStuff); //Player select text in character select screen
-			WriteCall((void*)0x511C76, RetrieveBottomThingStuff); //Bottom thing in character select screen
-			WriteCall((void*)0x511B3B, DrawShittyTextures); //Render stuff that refuses to render properly otherwise
-			WriteCall((void*)0x511E47, DrawChnamBShit); //Fix disappearing character name after loading a different save
+			WriteCall((void*)0x511AD0, RetrievePlayerSelectStuff); // Player select text in character select screen
+			WriteCall((void*)0x511C76, RetrieveBottomThingStuff); // Bottom thing in character select screen
+			WriteCall((void*)0x511B3B, DrawShittyTextures); // Render stuff that refuses to render properly otherwise
+			WriteCall((void*)0x511E47, DrawChnamBShit); // Fix disappearing character name after loading a different save
 		}
-		WriteCall((void*)0x511A8B, DisplayScreenTexture_AlwaysTop); //Move the "Select your character" text to top
-		WriteData<5>((void*)0x511C18, 0x90); //Disable ZFunc stuff to prevent character model overlap issues
-		//Shadow blending fixes
+		WriteCall((void*)0x511A8B, DisplayScreenTexture_AlwaysTop); // Move the "Select your character" text to top
+		WriteData<5>((void*)0x511C18, 0x90); // Disable ZFunc stuff to prevent character model overlap issues
+		// Shadow blending fixes
 		WriteCall((void*)0x457F2F, DrawSprite_Hook);
 		WriteCall((void*)0x431D37, DrawShadow_Hook);
 		WriteCall((void*)0x506EFF, DrawShadow_Hook);
 		WriteCall((void*)0x50D8B3, DrawShadow_Hook);
-		WriteCall((void*)0x50B584, DrawMainMenuShadow_Hook); //Main menu shadow
-		WriteCall((void*)0x50B61A, DrawMainMenuShadow_Hook); //Main menu (trial) shadow
-		WriteCall((void*)0x508FFD, DrawTexture_Hook); //Sound test icon
-		WriteCall((void*)0x509130, DrawTexture_Hook); //Sonic icon background
-		WriteCall((void*)0x509191, DrawTexture_Hook); //Sonic icon
-		WriteCall((void*)0x509439, DrawTexture_Hook); //Languages icon
-		WriteCall((void*)0x50952F, DrawTexture_Hook); //Rumble icon
-		WriteCall((void*)0x50782A, DrawTexture_Hook); //AVA_SAN triangle shadow
+		WriteCall((void*)0x50B584, DrawMainMenuShadow_Hook); // Main menu shadow
+		WriteCall((void*)0x50B61A, DrawMainMenuShadow_Hook); // Main menu (trial) shadow
+		WriteCall((void*)0x508FFD, DrawTexture_Hook); // Sound test icon
+		WriteCall((void*)0x509130, DrawTexture_Hook); // Sonic icon background
+		WriteCall((void*)0x509191, DrawTexture_Hook); // Sonic icon
+		WriteCall((void*)0x509439, DrawTexture_Hook); // Languages icon
+		WriteCall((void*)0x50952F, DrawTexture_Hook); // Rumble icon
+		WriteCall((void*)0x50782A, DrawTexture_Hook); // AVA_SAN triangle shadow
 	}
-	//Main code
-	//Kill Cream
+	// Main code
+	// Kill Cream
 	if (RemoveCream)
 	{
 		WriteData<1>((void*)0x635610, 0xC3u);
 	}
-	//Title screen stuff
+	// Title screen stuff
 	if (!DisableSA1TitleScreen)
 	{
 		TitleScreenModel = LoadModel("system\\data\\Other\\0005EB54.sa1mdl", false);
 		NumberOfSaves = FindSaveFilesLite();
 		//PrintDebug("Number of saves: %d\n", NumberOfSaves);
 		TitleBackOverlayColor.color = 0x99FFFFFF;
-		//Title screen textures for HD
+		// Title screen textures for HD
 		ava_gtitle0_e_TEXLIST = texlist_ava_gtitle0_e_dc_hd;
 		GUITextures_Japanese[17].Name = "AVA_GTITLE0_DC_HD.PVM";
 		GUITextures_English[17].Name = "AVA_GTITLE0_DC_HD.PVM";
 		GUITextures_French[17].Name = "AVA_GTITLE0_DC_HD.PVM";
 		GUITextures_German[17].Name = "AVA_GTITLE0_DC_HD.PVM";
 		GUITextures_Spanish[17].Name = "AVA_GTITLE0_DC_HD.PVM";
-		//Title screen textures for 640x480
+		// Title screen textures for 640x480
 		ava_title_cmn_small_TEXLIST = texlist_ava_gtitle0_640;
 		GUITextures_Japanese[29].Name = "AVA_GTITLE0_DC.PVM";
 		GUITextures_English[29].Name = "AVA_GTITLE0_DC.PVM";
 		GUITextures_French[29].Name = "AVA_GTITLE0_DC.PVM";
 		GUITextures_German[29].Name = "AVA_GTITLE0_DC.PVM";
 		GUITextures_Spanish[29].Name = "AVA_GTITLE0_DC.PVM";
-		//Main menu textures for 640x480
+		// Main menu textures for 640x480
 		ava_title_back_e_TEXLIST = texlist_title_back_640;
 		GUITextures_Japanese[20].Name = "AVA_TITLE_BACK_DC.PVM";
 		GUITextures_English[20].Name = "AVA_TITLE_BACK_DC.PVM";
 		GUITextures_French[20].Name = "AVA_TITLE_BACK_DC.PVM";
 		GUITextures_German[20].Name = "AVA_TITLE_BACK_DC.PVM";
 		GUITextures_Spanish[20].Name = "AVA_TITLE_BACK_DC.PVM";	
-		//Title screen modes
-		if (SA1LogoMode < 2) //Animated US/EU and International
+		// Title screen modes
+		if (SA1LogoMode < 2) // Animated US/EU and International
 		{
 			DrawOverlay = true;
 			RipplesOn = true;
 			EnableTransition = true;
 		}
-		else //Static JP/US and Limited
+		else // Static JP/US and Limited
 		{
 			DrawOverlay = false;
 			RipplesOn = false;
 			EnableTransition = false;
 		}
-		//Main menu background
+		// Main menu background
 		WriteJump((void*)0x50BA90, DrawAVA_TITLE_BACK_E_DC);
-		//Various transition stuff
+		// Various transition stuff
 		BlackFadeout.color = 0x00000000;
 		TitleBGTransparency.argb.r = 255;
 		TitleBGTransparency.argb.g = 255;
@@ -3159,38 +3159,38 @@ void Branding_Init(const IniFile *config, const HelperFunctions &helperFunctions
 		WriteCall((void*)0x503DD8, PlayReturnSound_EnableTransition);
 		WriteCall((void*)0x50E386, PlayStartSound_EnableTransition);
 		WriteCall((void*)0x50E3E2, DelayTransitionHook);
-		//Transitions and other fixes
+		// Transitions and other fixes
 		WriteCall((void*)0x504F9C, FileSelectGreenRectHook);
 		WriteCall((void*)0x504C38, DrawStringHook);
 		WriteCall((void*)0x504D2C, DrawStringHook);
 		WriteCall((void*)0x504B5F, DrawStringHook);
-		WriteCall((void*)0x5077D1, FileSelect_VtxColorB_Hook); //AVA_SAN
-		WriteCall((void*)0x504830, FileSelect_VtxColorB_Hook); //Character spheres
-		WriteCall((void*)0x504143, FileSelect_VtxColorB_Hook); //Emblem count 1
-		WriteCall((void*)0x507454, FileSelect_VtxColorB_Hook); //Emblem count 2
-		WriteCall((void*)0x5076DC, FileSelect_VtxColorB_Hook); //Emblem count 3
-		WriteCall((void*)0x507261, CharacterName_VtxColorB_Hook); //Character name 1
-		WriteCall((void*)0x5071F2, FileSelect_VtxColorB_Hook); //Character name 2
-		WriteCall((void*)0x503E69, FileSelect_VtxColorB_Hook); //Last Adventure Field
-		WriteCall((void*)0x503F09, FileSelect_VtxColorB_Hook); //Stage Completed
-		WriteCall((void*)0x50400B, FileSelect_VtxColorB_Hook); //Play Time 1
-		WriteCall((void*)0x507454, FileSelect_VtxColorB_Hook); //Play Time 2
+		WriteCall((void*)0x5077D1, FileSelect_VtxColorB_Hook); // AVA_SAN
+		WriteCall((void*)0x504830, FileSelect_VtxColorB_Hook); // Character spheres
+		WriteCall((void*)0x504143, FileSelect_VtxColorB_Hook); // Emblem count 1
+		WriteCall((void*)0x507454, FileSelect_VtxColorB_Hook); // Emblem count 2
+		WriteCall((void*)0x5076DC, FileSelect_VtxColorB_Hook); // Emblem count 3
+		WriteCall((void*)0x507261, CharacterName_VtxColorB_Hook); // Character name 1
+		WriteCall((void*)0x5071F2, FileSelect_VtxColorB_Hook); // Character name 2
+		WriteCall((void*)0x503E69, FileSelect_VtxColorB_Hook); // Last Adventure Field
+		WriteCall((void*)0x503F09, FileSelect_VtxColorB_Hook); // Stage Completed
+		WriteCall((void*)0x50400B, FileSelect_VtxColorB_Hook); // Play Time 1
+		WriteCall((void*)0x507454, FileSelect_VtxColorB_Hook); // Play Time 2
 		WriteCall((void*)0x50557D, FileSelect_AVA_BACK_Hook);
-		WriteCall((void*)0x50558D, FileSelectVtxColorHook); //FileSelect_Display
-		WriteCall((void*)0x50BCC8, MainMenuVtxColorHook); //MainMenu_Display
-		//PVM indices to load in different menus
+		WriteCall((void*)0x50558D, FileSelectVtxColorHook); // FileSelect_Display
+		WriteCall((void*)0x50BCC8, MainMenuVtxColorHook); // MainMenu_Display
+		// PVM indices to load in different menus
 		GUIPVMIndices[5] = (int*)&TitleScreenIndices;
 		GUIPVMIndices[6] = (int*)&MainMenuIndices;
 	}
-	//Pause box stuff
+	// Pause box stuff
 	WriteCall((void*)0x458232, DrawPauseSelectionBox_DC);
-	WriteCall((void*)0x4585DA, DrawPauseBox_DC); //Main pause
-	WriteCall((void*)0x459085, DrawPauseBox_DC); //Camera
-	WriteCall((void*)0x458DBB, DrawPauseBox_DC); //Key remap
-	WriteData((float*)0x458125, 1.0f); //Selection box B
-	WriteData((float*)0x45812A, 0.7f); //Selection box G
-	WriteData((float*)0x45812F, 0.0f); //Selection box R
-	//Demos
+	WriteCall((void*)0x4585DA, DrawPauseBox_DC); // Main pause
+	WriteCall((void*)0x459085, DrawPauseBox_DC); // Camera
+	WriteCall((void*)0x458DBB, DrawPauseBox_DC); // Key remap
+	WriteData((float*)0x458125, 1.0f); // Selection box B
+	WriteData((float*)0x45812A, 0.7f); // Selection box G
+	WriteData((float*)0x45812F, 0.0f); // Selection box R
+	// Demos
 	if (RestoreDemos == 1)
 	{
 		ReplaceGeneric("K_AMY.BIN", "K_AMY_DC.BIN");
@@ -3233,9 +3233,9 @@ void Branding_OnFrame()
 		NowSaving_Display();
 	}
 	if (GameMode != 0 && !DemosDone) CheckAndRestoreDemos();
-	//Demo player
+	// Demo player
 	if (GameState == 15 && ControlMode == 1 && Demo_Enabled && Demo_Cutscene == -1) DemoFrame++;
-	//Skip pause menu confirmation prompt
+	// Skip pause menu confirmation prompt
 	if (RemoveQuitPrompt && QuitFromPause_Selection == 2)
 	{
 		if (QuitSoundTimer == 0)
@@ -3245,10 +3245,10 @@ void Branding_OnFrame()
 		}
 		else QuitSoundTimer--;
 	}
-	//Update the save file count for the options/file select transition
+	// Update the save file count for the options/file select transition
 	if (NumberOfSaves_Current != 0) NumberOfSaves = NumberOfSaves_Current;
 	whiteoverlaydrawn = false;
-	//This game is a hardcoded piece of shit
+	// This game is a hardcoded piece of shit
 	if (!DLLLoaded_HDGUI)
 	{
 		if (TextLanguage == 3) PadManuXOffset_General = 230;

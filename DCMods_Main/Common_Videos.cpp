@@ -66,15 +66,15 @@ char* VideoNumbersArray[] = {
 	VideoList9,
 };
 
-//Video functions
+// Video functions
 
 void InitVideoFrameStuff()
 {
-	//Variables
+	// Variables
 	VideoPlayMode = 0;
 	VideoFadeMode = 1;
 	VideoFadeValue = 255;
-	//Specular frame
+	// Specular frame
 	VideoFrame_Points[1] = { 0, (float)VerticalResolution };
 	VideoFrame_Points[2] = { (float)HorizontalResolution, 0 };
 	VideoFrame_Points[3] = { (float)HorizontalResolution, (float)VerticalResolution };
@@ -86,7 +86,7 @@ void InitVideoFrameStuff()
 	VideoFrame_Point2Col.col = (NJS_COLOR*)&VideoFrame_Colors;
 	VideoFrame_Point2Col.tex = 0;
 	VideoFrame_Point2Col.num = 4;
-	//Fadeout
+	// Fadeout
 	VideoFadeout_Colors[0].color = 0x00000000;
 	VideoFadeout_Colors[1].color = 0x00000000;
 	VideoFadeout_Colors[2].color = 0x00000000;
@@ -97,9 +97,9 @@ void AdjustVideoFrame()
 {
 	int height_new;
 	float centering = 0.0f;
-	//Get proper width/height from the array because SADX gets confused for some reason
+	// Get proper width/height from the array because SADX gets confused for some reason
 	height_new = VideoDataArray[CurrentVideoNumber].Height;
-	//If playing the logo or SA1 intro, adjust the center of the video frame
+	// If playing the logo or SA1 intro, adjust the center of the video frame
 	if (height_new < 480.0f)
 	{
 		centering = (480.0f - (float)height_new) / 2.0f;
@@ -139,21 +139,21 @@ void DisplayVideoFadeout(int fadeout, int mode)
 
 void DrawVideoWithSpecular(int width, int height)
 {
-	//Variables
+	// Variables
 	int width_new;
 	int height_new;
 	float centering = 0.0f;
-	//Get proper width/height from the array because SADX gets confused for some reason
+	// Get proper width/height from the array because SADX gets confused for some reason
 	width_new = VideoDataArray[CurrentVideoNumber].Width;
 	height_new = VideoDataArray[CurrentVideoNumber].Height;
-	//If playing the logo or SA1 intro, adjust the center of the video frame
+	// If playing the logo or SA1 intro, adjust the center of the video frame
 	if (height_new < 480.0f)
 	{
 		centering = ((480.0f - (float)height_new) / 2.0f)*((float)VerticalResolution / 480.0f);
 	}
-	//Display the video frame
+	// Display the video frame
 	DisplayVideoFrame(width_new, max(480, height_new));
-	//Display the specular
+	// Display the specular
 	if (ColorizeVideos == true)
 	{
 		njColorBlendingMode(0, NJD_COLOR_BLENDING_SRCALPHA);
@@ -166,7 +166,7 @@ void DrawVideoWithSpecular(int width, int height)
 		njColorBlendingMode(0, NJD_COLOR_BLENDING_SRCALPHA);
 		njColorBlendingMode(NJD_DESTINATION_COLOR, NJD_COLOR_BLENDING_INVSRCALPHA);
 	}
-	//Display the fadeout frame
+	// Display the fadeout frame
 	if (CurrentVideoFrame > VideoDataArray[CurrentVideoNumber].NumFrames) VideoFadeMode = 2;
 	if (VideoFadeMode == 1)
 	{
@@ -191,15 +191,15 @@ void LoadSegalogoPVM(const char *filename, NJS_TEXLIST *texlist)
 void Videos_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 {
 	DLLLoaded_HDVideos = (GetModuleHandle(L"sadx-hd-videos") != nullptr);
-	//Load configuration settings
+	// Load configuration settings
 	ColorizeVideos = config->getBool("Videos", "ColorizeVideos", true);
 	SA1Intro = config->getBool("Videos", "EnableSA1Intro", true);
-	//Set Sonic Team logo mode
+	// Set Sonic Team logo mode
 	const std::string SonicTeamLogo_String = config->getString("Videos", "SonicTeamLogoMode", "Animated");
 	if (SonicTeamLogo_String == "Animated")
 	{
 		SonicTeamLogoMode = 0;
-		//Use original DC PVM if possible
+		// Use original DC PVM if possible
 		if (!DLLLoaded_HDGUI)
 		{
 			ReplacePVM("SEGALOGO");
@@ -212,7 +212,7 @@ void Videos_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 	else if (SonicTeamLogo_String == "Off")
 	{
 		SonicTeamLogoMode = 2;
-		//Use original DC PVM if possible
+		// Use original DC PVM if possible
 		if (!DLLLoaded_HDGUI)
 		{
 			ReplacePVM("SEGALOGO");
@@ -220,18 +220,18 @@ void Videos_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 			SEGALOGO_E_TEXLIST = texlist_SEGALOGO_E;
 		}
 	}
-	//Fix EC crash cutscene fadeout
+	// Fix EC crash cutscene fadeout
 	WriteData((float*)0x10F1D44, (float)HorizontalResolution);
 	WriteData((float*)0x10F1D54, (float)HorizontalResolution);
 	WriteData((float*)0x10F1D48, (float)HorizontalResolution);
 	WriteData((float*)0x10F1D50, (float)HorizontalResolution);
-	//Video stuff
+	// Video stuff
 	InitVideoFrameStuff();
-	WriteCall((void*)0x00513A88, AdjustVideoFrame); //Center video frame vertically if playing Sonic Team logo/SA1 intro
-	WriteData<1>((char*)0x512D30, 0xC3u); //Don't fade out videos SADX style
-	WriteCall((void*)0x0051330A, DrawVideoWithSpecular); //DisplayVideoFrame call
-	WriteCall((void*)0x00513271, InputHookForVideos); //Wait to cancel videos
-	WriteData<1>((char*)0x005132B9, 0x20); //Wait for D-Pad Down instead of Button_A or Button_Start
+	WriteCall((void*)0x00513A88, AdjustVideoFrame); // Center video frame vertically if playing Sonic Team logo/SA1 intro
+	WriteData<1>((char*)0x512D30, 0xC3u); // Don't fade out videos SADX style
+	WriteCall((void*)0x0051330A, DrawVideoWithSpecular); // DisplayVideoFrame call
+	WriteCall((void*)0x00513271, InputHookForVideos); // Wait to cancel videos
+	WriteData<1>((char*)0x005132B9, 0x20); // Wait for D-Pad Down instead of Button_A or Button_Start
 	if (ColorizeVideos == true)
 	{
 		DefaultVideoColor.r = 0.6627450980392157f;
@@ -249,8 +249,8 @@ void Videos_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 	{
 		VideoList0[0] = 0;
 	}
-	if (SonicTeamLogoMode != 1) WriteData<1>((void*)0x0042CCF3, 0x0F); //Disable the SADX Sonic Team logo
-	//Check for untouched SA1 videos
+	if (SonicTeamLogoMode != 1) WriteData<1>((void*)0x0042CCF3, 0x0F); // Disable the SADX Sonic Team logo
+	// Check for untouched SA1 videos
 	if (SA1Intro == true)
 	{
 		if (Exists(helperFunctions.GetReplaceablePath("system\\SAH448_6.MPG")))
@@ -313,11 +313,11 @@ void OnInitEnd_Videos()
 
 void Videos_OnFrame()
 {
-	//Check if the game has video stuff loaded
+	// Check if the game has video stuff loaded
 	if (CurrentVideoNumber >= 0 && CurrentVideoNumber <= 9) AreYouEvenPlayingVideos = true; else AreYouEvenPlayingVideos = false;
 	if (GameModePrevious != GameMode)
 	{
-		//Check if the player has skipped the Sonic Team logo; if not, play the intro
+		// Check if the player has skipped the Sonic Team logo; if not, play the intro
 		if (SonicTeamLogoMode == 0 && GameModePrevious == 8 && VideoPlayMode == 0)
 		{
 			if (SkipPressed == false)
@@ -329,7 +329,7 @@ void Videos_OnFrame()
 				VideoFadeValue = 255;
 			}
 		}
-		//Reset various things when not in video mode
+		// Reset various things when not in video mode
 		if (GameMode != GameModes_CharSel && GameMode != GameModes_Movie)
 		{
 			SkipPressed = false;
@@ -343,7 +343,7 @@ void Videos_OnFrame()
 		}
 		GameModePrevious = GameMode;
 	}
-	//Reset fadeouts in story mode
+	// Reset fadeouts in story mode
 	if (GameMode != GameModes_Movie && GameModePrevious == GameMode && AreYouEvenPlayingVideos == false)
 	{
 		SkipPressed = false;
@@ -356,7 +356,7 @@ void Videos_OnFrame()
 
 void Videos_OnInput()
 {
-	//Input hook for videos
+	// Input hook for videos
 	if (CurrentVideoNumber >= 0 && CurrentVideoNumber <= 9 && GameMode != GameModes_Logo && GameMode != GameModes_CharSel)
 	{
 		if (SkipPressed == false && ControllerPointers[0]->PressedButtons & (Buttons_Start | Buttons_A))
