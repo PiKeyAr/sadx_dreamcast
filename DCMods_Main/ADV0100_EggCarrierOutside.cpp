@@ -32,9 +32,7 @@ NJS_TEXLIST texlist_ec05 = { arrayptrandlength(textures_ec05) };
 #include "ADV0100_5.h"
 */
 
-FunctionPointer(void, sub_409FB0, (NJS_ACTION* a1, float frameNumber), 0x409FB0);
 FunctionPointer(void, sub_6F4570, (ObjectMaster* a1), 0x6F4570);
-FunctionPointer(void, sub_407A00, (NJS_MODEL_SADX* model, float scale), 0x407A00);
 DataPointer(ObjectMaster*, dword_3C85138, 0x3C85138);
 DataArray(PVMEntry, stru_10F34A8, 0x10F34A8, 6);
 DataArray(PVMEntry, stru_1101360, 0x1101360, 2);
@@ -147,7 +145,7 @@ void EggCarrierSea()
 void ODoseiFix(NJS_MODEL_SADX* model, float scale)
 {
 	SetMaterialAndSpriteColor_Float(1.0f, 1.0f, 1.0f, 1.0f);
-	sub_407A00(model, scale);
+	ds_DrawModelClip(model, scale);
 	ClampGlobalColorThing_Thing();
 }
 

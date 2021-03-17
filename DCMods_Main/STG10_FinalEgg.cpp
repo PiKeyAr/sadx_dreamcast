@@ -41,10 +41,6 @@ DataPointer(NJS_ACTION, off_1A1F944, 0x1A1F944);
 DataArray(FogData, FinalEgg1Fog, 0x019C8FF0, 3);
 DataArray(FogData, FinalEgg2Fog, 0x019C9020, 3);
 DataArray(FogData, FinalEgg3Fog, 0x019C9050, 3);
-FunctionPointer(void, sub_4094D0, (NJS_MODEL_SADX *model, char blend, float radius_scale), 0x4094D0);
-FunctionPointer(void, sub_408530, (NJS_OBJECT*), 0x408530);
-FunctionPointer(void, sub_407A00, (NJS_MODEL_SADX *model, float a2), 0x407A00);
-FunctionPointer(void, sub_405450, (NJS_ACTION *a1, float frame, float scale), 0x405450);
 FunctionPointer(void, sub_5ADCF0, (), 0x5ADCF0);
 
 static bool Act2GlassLoaded = false;
@@ -216,11 +212,11 @@ void __cdecl OStandLight_Display_F(ObjectMaster *a1)
 			njRotateY(0, (unsigned __int16)v2);
 		}
 		// Render the main object model
-		sub_407A00(((NJS_OBJECT*)0x1C28C78)->basicdxmodel, 1.0f);
+		ds_DrawModelClip(((NJS_OBJECT*)0x1C28C78)->basicdxmodel, 1.0f);
 		// Render the light part without the beam
 		njTranslate(0, ((NJS_OBJECT*)0x1C28C78)->child->pos[0], ((NJS_OBJECT*)0x1C28C78)->child->pos[1], ((NJS_OBJECT*)0x1C28C78)->child->pos[2]);
 		njRotateXYZ(0, ((NJS_OBJECT*)0x1C28C78)->child->ang[0] + *(Sint32 *)&v1->CharIndex, ((NJS_OBJECT*)0x1C28C78)->child->ang[1], ((NJS_OBJECT*)0x1C28C78)->child->ang[2]);
-		sub_4094D0(((NJS_OBJECT*)0x1C28C78)->child->basicdxmodel, 1, 1.0f);
+		late_DrawModelClipEx(((NJS_OBJECT*)0x1C28C78)->child->basicdxmodel, 1, 1.0f);
 		// Rotate and render the beam
 		njRotateX(0, v1->Rotation.x);
 		auto BaseRotation = atan2(Camera_Data1->Position.x - v1->Position.x, Camera_Data1->Position.y - v1->Position.y);
@@ -238,7 +234,7 @@ void __cdecl OStandLight_Display_F(ObjectMaster *a1)
 		PrintDebug("DeltaZ: %f\n", deltaz);
 		if (CurrentAct == 0) njRotateZ(0, NJM_RAD_ANG(BaseRotation));
 		else njRotateZ(0, NJM_RAD_ANG(-BaseRotation));*/
-		sub_4094D0(OStandLight_Light->child->basicdxmodel, 4, 1.0f);
+		late_DrawModelClipEx(OStandLight_Light->child->basicdxmodel, 4, 1.0f);
 		njPopMatrix(1u);
 	}
 }
@@ -301,7 +297,7 @@ void SetGachaponEnvMaps1(NJS_MODEL_SADX* model, float scale)
 	EnvMap2 = 1.0f;
 	EnvMap3 = 0.5f;
 	EnvMap4 = 0.5f;
-	sub_407A00(model, scale);
+	ds_DrawModelClip(model, scale);
 	EnvMap1 = 0.5f;
 	EnvMap2 = 0.5f;
 	EnvMap3 = 0.5f;

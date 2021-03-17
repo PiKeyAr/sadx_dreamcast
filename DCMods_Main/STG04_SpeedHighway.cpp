@@ -45,10 +45,7 @@ static bool Highway3ColsLoaded = false;
 static int shwwater = 0;
 SETObjData setdata_hw = {};
 
-FunctionPointer(void, sub_409E70, (NJS_MODEL_SADX *a1, int a2, float a3), 0x409E70);
 FunctionPointer(long double, sub_49CC70, (float a1, float a2, float a3), 0x49CC70);
-FunctionPointer(void, sub_408530, (NJS_OBJECT *obj), 0x408530);
-FunctionPointer(void, sub_407FC0, (NJS_MODEL_SADX *a1, int blend), 0x407FC0);
 
 DataArray(FogData, SpeedHighway1Fog, 0x024CA4E4, 3);
 DataArray(FogData, SpeedHighway2Fog, 0x024CA514, 3);
@@ -62,19 +59,19 @@ PVMEntry SpeedHighway3Textures_list[] = {
 void FountainPart1(NJS_MODEL_SADX *a1, int a2, float a3)
 {
 	DrawQueueDepthBias = 3000.0f;
-	sub_409E70(Fountain1->basicdxmodel, 0, a3);
+	late_DrawModelClipMesh(Fountain1->basicdxmodel, 0, a3);
 }
 
 void FountainPart2(NJS_MODEL_SADX *a1, int a2, float a3)
 {
 	DrawQueueDepthBias = 3050.0f;
-	sub_409E70(Fountain2->basicdxmodel, 0, a3);
+	late_DrawModelClipMesh(Fountain2->basicdxmodel, 0, a3);
 }
 
 void FountainPart3(NJS_MODEL_SADX *a1, int a2, float a3)
 {
 	DrawQueueDepthBias = 3060.0f;
-	sub_409E70(Fountain3->basicdxmodel, 0, a3);
+	late_DrawModelClipMesh(Fountain3->basicdxmodel, 0, a3);
 }
 
 NJS_MATERIAL* DisableAlphaRejection_SpeedHighway[] = {
@@ -99,7 +96,7 @@ void RocketSprite(float a, float r, float g, float b)
 
 void AntennaModel(NJS_OBJECT *obj)
 {
-	sub_408530(obj);
+	dsDrawObject(obj);
 	lateDrawObject(Antenna, (QueuedModelFlagsB)0, 1.0f);
 }
 

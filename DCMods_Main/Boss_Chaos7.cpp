@@ -166,58 +166,58 @@ void PerfectChaos_Init()
 	if (!ModelsLoaded_B_CHAOS7)
 	{
 		*(NJS_TEXLIST*)0x1494FBC = texlist_chaos7;
-		RemoveVertexColors_Object((NJS_OBJECT*)0x139757C); //Main model
-		RemoveVertexColors_Object((NJS_OBJECT*)0x13A27F0); //Sinking/rising
+		RemoveVertexColors_Object((NJS_OBJECT*)0x139757C); // Main model
+		RemoveVertexColors_Object((NJS_OBJECT*)0x13A27F0); // Sinking/rising
 		WriteCall((void*)0x56463B, PerfectChaosWaterfallHook);
-		//Tornado around Perfect Chaos
-		WriteCall((void*)0x562303, TornadoFunc); //Perfect Chaos tornado fade-in
-		//Tornado attack fix
+		// Tornado around Perfect Chaos
+		WriteCall((void*)0x562303, TornadoFunc); // Perfect Chaos tornado fade-in
+		// Tornado attack fix
 		WriteCall((void*)0x566673, Chaos7TornadoAttackHook);
-		TornadoAttack1 = LoadModel("system\\data\\B_CHAOS7\\Models\\000E16E8.sa1mdl", false); //Tornado attack
-		TornadoAttack2 = LoadModel("system\\data\\B_CHAOS7\\Models\\000E16E8.sa1mdl", false); //Tornado attack
-		TornadoAttack3 = LoadModel("system\\data\\B_CHAOS7\\Models\\000E16E8.sa1mdl", false); //Tornado attack
-		//1 is just the middle layer
+		TornadoAttack1 = LoadModel("system\\data\\B_CHAOS7\\Models\\000E16E8.sa1mdl", false); // Tornado attack
+		TornadoAttack2 = LoadModel("system\\data\\B_CHAOS7\\Models\\000E16E8.sa1mdl", false); // Tornado attack
+		TornadoAttack3 = LoadModel("system\\data\\B_CHAOS7\\Models\\000E16E8.sa1mdl", false); // Tornado attack
+		// 1 is just the middle layer
 		HideMesh_Object(TornadoAttack1, 0);
 		HideMesh_Object(TornadoAttack1->child, 0);
 		HideMesh_Object(TornadoAttack1->child, 1);
 		HideMesh_Object(TornadoAttack1->child->sibling->sibling, 0);
-		//2 is just the top layer
+		// 2 is just the top layer
 		HideMesh_Object(TornadoAttack2, 0);
 		HideMesh_Object(TornadoAttack2->child->sibling, 0);
 		HideMesh_Object(TornadoAttack2->child->sibling, 1);
 		HideMesh_Object(TornadoAttack2->child->sibling->sibling, 0);
-		//3 is just the front layer
+		// 3 is just the front layer
 		HideMesh_Object(TornadoAttack3, 0);
 		HideMesh_Object(TornadoAttack3->child, 0);
 		HideMesh_Object(TornadoAttack3->child, 1);
 		HideMesh_Object(TornadoAttack3->child->sibling, 0);
 		HideMesh_Object(TornadoAttack3->child->sibling, 1);
-		//Perfect Chaos breath fix
+		// Perfect Chaos breath fix
 		WriteData((float*)0x566A03, 1.0f);
 		WriteCall((void*)0x5660BE, PerfectChaosBreathFix2);
-		//Egg Carrier 2 crash in Perfect Chaos cutscene
-		WriteData((float*)0x65D8D1, 837.418f); //X1
-		WriteData((float*)0x65D8CC, 412.38f); //Y1
-		WriteData((float*)0x65D8C7, -406.796f); //Z1
-		WriteData((int*)0x65D8E3, 65238); //XA1
-		WriteData((int*)0x65D8DE, 29421); //YA1
-		WriteData((float*)0x65D8FC, 1148.37f); //X2
-		WriteData((float*)0x65D8F7, 423.5f); //Y2
-		WriteData((float*)0x65D8F2, -325.65f); //Z2
-		WriteData((int*)0x65D912, 64083); //XA2
-		WriteData((int*)0x65D90D, 28705); //YA2
-		//Perfect Chaos damage functions
+		// Egg Carrier 2 crash in Perfect Chaos cutscene
+		WriteData((float*)0x65D8D1, 837.418f); // X1
+		WriteData((float*)0x65D8CC, 412.38f); // Y1
+		WriteData((float*)0x65D8C7, -406.796f); // Z1
+		WriteData((int*)0x65D8E3, 65238); // XA1
+		WriteData((int*)0x65D8DE, 29421); // YA1
+		WriteData((float*)0x65D8FC, 1148.37f); // X2
+		WriteData((float*)0x65D8F7, 423.5f); // Y2 
+		WriteData((float*)0x65D8F2, -325.65f); // Z2
+		WriteData((int*)0x65D912, 64083); // XA2
+		WriteData((int*)0x65D90D, 28705); // YA2
+		// Perfect Chaos damage functions
 		WriteJump((void*)0x5632F0, Chaos7Explosion_DisplayX);
 		WriteJump((void*)0x5633C0, Chaos7Damage_DisplayX);
-		//Perfect Chaos misc
-		((NJS_OBJECT*)0x248B1B4)->basicdxmodel->mats[2].attrflags &= ~NJD_FLAG_IGNORE_SPECULAR; //Egg Carrier 2
-		//Objects
-		*(NJS_OBJECT*)0x142C740 = *LoadModel("system\\data\\B_CHAOS7\\Models\\0006B410.sa1mdl", false); //ORoad0
-		*(NJS_OBJECT*)0x1455C0C = *LoadModel("system\\data\\B_CHAOS7\\Models\\000938C4.sa1mdl", false); //ORoad1
-		*(NJS_OBJECT*)0x1458A58 = *LoadModel("system\\data\\B_CHAOS7\\Models\\00095598.sa1mdl", false); //ORoad2
-		*(NJS_OBJECT*)0x145B4AC = *LoadModel("system\\data\\B_CHAOS7\\Models\\00096FC8.sa1mdl", false); //ORoad3
-		*(NJS_OBJECT*)0x145D000 = *LoadModel("system\\data\\B_CHAOS7\\Models\\000981B8.sa1mdl", false); //ORoad4
-		//Remove material colors in cars and other objects
+		// Perfect Chaos misc
+		((NJS_OBJECT*)0x248B1B4)->basicdxmodel->mats[2].attrflags &= ~NJD_FLAG_IGNORE_SPECULAR; // Egg Carrier 2
+		// Objects
+		*(NJS_OBJECT*)0x142C740 = *LoadModel("system\\data\\B_CHAOS7\\Models\\0006B410.sa1mdl", false); // ORoad0
+		*(NJS_OBJECT*)0x1455C0C = *LoadModel("system\\data\\B_CHAOS7\\Models\\000938C4.sa1mdl", false); // ORoad1
+		*(NJS_OBJECT*)0x1458A58 = *LoadModel("system\\data\\B_CHAOS7\\Models\\00095598.sa1mdl", false); // ORoad2
+		*(NJS_OBJECT*)0x145B4AC = *LoadModel("system\\data\\B_CHAOS7\\Models\\00096FC8.sa1mdl", false); // ORoad3
+		*(NJS_OBJECT*)0x145D000 = *LoadModel("system\\data\\B_CHAOS7\\Models\\000981B8.sa1mdl", false); // ORoad4
+		// Remove material colors in cars and other objects
 		RemoveVertexColors_Object((NJS_OBJECT*)0x142F08C);
 		RemoveVertexColors_Object((NJS_OBJECT*)0x14319AC);
 		RemoveVertexColors_Object((NJS_OBJECT*)0x14342F4);
@@ -254,7 +254,7 @@ void PerfectChaos_Init()
 		RemoveVertexColors_Object((NJS_OBJECT*)0x144CFE4);
 		RemoveVertexColors_Object((NJS_OBJECT*)0x144D208);
 		RemoveVertexColors_Object((NJS_OBJECT*)0x144D340);
-		//Breath
+		// Breath
 		RemoveVertexColors_Object((NJS_OBJECT*)0x13A4034);
 		RemoveVertexColors_Object((NJS_OBJECT*)0x14D5530);
 		for (int i = 0; i < 3; i++)
@@ -271,7 +271,7 @@ void PerfectChaos_Init()
 
 void PerfectChaos_OnFrame()
 {
-	//Super stupid hax to make Perfect Chaos' tornadoes fade in
+	// Super stupid hax to make Perfect Chaos' tornadoes fade in
 	if (EnablePerfectChaos)
 	{
 		if (byte_3C5A7ED != 11)

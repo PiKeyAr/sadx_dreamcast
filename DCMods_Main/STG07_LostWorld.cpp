@@ -29,7 +29,6 @@ DataArray(FogData, LostWorld2Fog, 0x01E79ADC, 3);
 DataArray(FogData, LostWorld3Fog, 0x01E79B0C, 3);
 DataArray(char, AokiSwitchByteArray, 0x3C7ED8C, 32);
 FunctionPointer(long double, sub_49CC70, (float a1, float a2, float a3), 0x49CC70);
-FunctionPointer(void, sub_407A00, (NJS_MODEL_SADX *model, float scale), 0x407A00);
 FunctionPointer(void, AllocateLWSpikeParticle, (NJS_VECTOR *a1, NJS_VECTOR *a2, float a3), 0x4B9820);
 FunctionPointer(void, ResetEntityStatus, (EntityData1 *a1, int a2), 0x49CE60);
 FunctionPointer(void, LostWorldSpikes_Display, (ObjectMaster *a1), 0x5EA720);
@@ -253,7 +252,7 @@ void __cdecl AokiSwitch_Display(ObjectMaster *a1)
 			{
 				njRotateY(0, v2);
 			}
-			sub_407A00(AokiSwitchModel_Base->basicdxmodel, 1.0f);
+			ds_DrawModelClip(AokiSwitchModel_Base->basicdxmodel, 1.0f);
 			if (AokiSwitchByteArray[((signed __int16 *)&a1->Data1->Object)[1]] & 1)
 			{
 				njTranslate(0, 0.0f, 0.0f, 0.0f);
@@ -262,12 +261,12 @@ void __cdecl AokiSwitch_Display(ObjectMaster *a1)
 			{
 				njTranslate(0, 0.0f, 0.6f, 0.0f);
 			}
-			sub_407A00(AokiSwitchModel_Child1->basicdxmodel, 1.0f);
+			ds_DrawModelClip(AokiSwitchModel_Child1->basicdxmodel, 1.0f);
 			v3 = ((Uint8 *)&v1->CharIndex)[1];
 			float alpha = v3 * 0.00392f;
 			njControl3D(NJD_CONTROL_3D_CONSTANT_MATERIAL);
 			SetMaterialAndSpriteColor_Float(alpha, alpha, alpha, alpha);
-			sub_407A00(AokiSwitchModel_Child2->basicdxmodel, 1.0f);
+			ds_DrawModelClip(AokiSwitchModel_Child2->basicdxmodel, 1.0f);
 			lateDrawModel(AokiSwitchModel_Child3->basicdxmodel, QueuedModelFlagsB_EnableZWrite);
 			ClampGlobalColorThing_Thing();
 			njControl3D_Remove(NJD_CONTROL_3D_CONSTANT_MATERIAL);

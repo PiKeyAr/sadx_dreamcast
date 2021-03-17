@@ -19,8 +19,6 @@ DataArray(NJS_VECTOR, SkyBoxScale_Chaos6K, 0x011EF064, 3);
 DataArray(DrawDistance, DrawDist_Chaso6S, 0x011EF0B8, 3);
 DataArray(DrawDistance, DrawDist_Chaso6K, 0x011EF0D0, 3);
 
-FunctionPointer(void, njAction_TryReallyHard, (NJS_ACTION *a1, float frameNumber), 0x409FB0);
-
 void __cdecl Chaos6SkyboxBottom(EntityData1 *a1)
 {
 	Sint16 v1; // cx
@@ -87,7 +85,7 @@ void Chaos6Action(NJS_ACTION *a1, float frameNumber)
 		Chaos6Actions_OpaqueOnly.object = Chaos6Main_OpaqueOnly;
 		if (Chaos6Actions_OpaqueOnly.object) njAction(&Chaos6Actions_OpaqueOnly, frameNumber);
 	}
-	njAction_TryReallyHard(a1, frameNumber);
+	CHAOS_Action(a1, frameNumber);
 }
 
 void njDrawSprite3D_Queue_TheyForgotToClamp(NJS_SPRITE *sp, Int n, NJD_SPRITE attr, QueuedModelFlagsB zfunc_type)

@@ -103,7 +103,6 @@ FunctionPointer(void, RenderSADXChaoEgg_2, (NJS_CNK_OBJECT *a1, int a2), 0x78AF4
 FunctionPointer(char, sub_436210, (int(__cdecl *a1)(int), char a2, char a3), 0x436210);
 FunctionPointer(int, sub_72A6C0, (int a1), 0x72A6C0);
 FunctionPointer(void, SetChaoLandTableX, (LandTable *geo), 0x43A4C0);
-FunctionPointer(void, sub_408530, (NJS_OBJECT *a1), 0x408530);
 FunctionPointer(void, sub_715700, (int a1), 0x715700);
 FunctionPointer(ObjectMaster*, sub_715730, (int a1, int a2), 0x715730);
 FunctionPointer(void, sub_745A20, (NJS_TEX*, int), 0x745A20);
@@ -1152,28 +1151,28 @@ void RenderSA1ChaoFruits_Object(NJS_CNK_OBJECT *a1)
 		njSetTexture(&CHAO_OBJECT_TEXLIST);
 		njTranslate(0, 0, 0, 0);
 		njScale(0, 0.7f, 0.7f, 0.7f);
-		sub_408530(ChaoFruit_Chaonut); //Chaonut
+		dsDrawObject(ChaoFruit_Chaonut); //Chaonut
 	}
 	else if (a1 == &Fruit_Hero)
 	{
 		njSetTexture(&CHAO_OBJECT_TEXLIST);
 		njTranslate(0, 0, 1.0f, 0);
 		njScale(0, 0.7f, 0.7f, 0.7f);
-		sub_408530(ChaoFruit_Starnut); //Starnut
+		dsDrawObject(ChaoFruit_Starnut); //Starnut
 	}
 	else if (a1 == &Fruit_Dark)
 	{
 		njSetTexture(&CHAO_OBJECT_TEXLIST);
 		njTranslate(0, 0, 0, 0);
 		njScale(0, 0.7f, 0.7f, 0.7f);
-		sub_408530(ChaoFruit_Hastnut); //Hastnut
+		dsDrawObject(ChaoFruit_Hastnut); //Hastnut
 	}
 	else if (a1 == &Fruit_Heart)
 	{
 		njSetTexture(&CHAO_OBJECT_TEXLIST);
 		njTranslate(0, 0, 0, 0);
 		njScale(0, 0.7f, 0.7f, 0.7f);
-		sub_408530(ChaoFruit_Lifenut); //Lifenut
+		dsDrawObject(ChaoFruit_Lifenut); //Lifenut
 	}
 	else
 	{
@@ -1189,28 +1188,28 @@ void RenderSA1ChaoFruits_Model(NJS_CNK_MODEL *a1)
 		njSetTexture(&CHAO_OBJECT_TEXLIST);
 		njTranslate(0, 0, 0, 0);
 		njScale(0, 0.5f, 0.5f, 0.5f);
-		sub_408530(ChaoFruit_Chaonut); //Chaonut
+		dsDrawObject(ChaoFruit_Chaonut); //Chaonut
 	}
 	else if (a1 == Fruit_Hero.chunkmodel)
 	{
 		njSetTexture(&CHAO_OBJECT_TEXLIST);
 		njTranslate(0, 0, 0, 0);
 		njScale(0, 0.5f, 0.5f, 0.5f);
-		sub_408530(ChaoFruit_Starnut); //Starnut
+		dsDrawObject(ChaoFruit_Starnut); //Starnut
 	}
 	else if (a1 == Fruit_Dark.chunkmodel)
 	{
 		njSetTexture(&CHAO_OBJECT_TEXLIST);
 		njTranslate(0, 0, 0, 0);
 		njScale(0, 0.5f, 0.5f, 0.5f);
-		sub_408530(ChaoFruit_Hastnut); //Hastnut
+		dsDrawObject(ChaoFruit_Hastnut); //Hastnut
 	}
 	else if (a1 == Fruit_Heart.chunkmodel)
 	{
 		njSetTexture(&CHAO_OBJECT_TEXLIST);
 		njTranslate(0, 0, 0, 0);
 		njScale(0, 0.5f, 0.5f, 0.5f);
-		sub_408530(ChaoFruit_Lifenut); //Lifenut
+		dsDrawObject(ChaoFruit_Lifenut); //Lifenut
 	}
 	else
 	{
@@ -1226,28 +1225,28 @@ void RenderSA1ChaoFruits_Model_BlackMarket(NJS_CNK_MODEL *a1)
 		njSetTexture(&CHAO_OBJECT_TEXLIST);
 		njTranslate(0, 0, -0.7f, 0);
 		njScale(0, 0.5f, 0.5f, 0.5f);
-		sub_408530(ChaoFruit_Chaonut); //Chaonut
+		dsDrawObject(ChaoFruit_Chaonut); //Chaonut
 	}
 	else if (a1 == Fruit_Hero.chunkmodel)
 	{
 		njSetTexture(&CHAO_OBJECT_TEXLIST);
 		njTranslate(0, 0, 0.8f, 0);
 		njScale(0, 0.5f, 0.5f, 0.5f);
-		sub_408530(ChaoFruit_Starnut); //Starnut
+		dsDrawObject(ChaoFruit_Starnut); //Starnut
 	}
 	else if (a1 == Fruit_Dark.chunkmodel)
 	{
 		njSetTexture(&CHAO_OBJECT_TEXLIST);
 		njTranslate(0, 0, 0, 0);
 		njScale(0, 0.5f, 0.5f, 0.5f);
-		sub_408530(ChaoFruit_Hastnut); //Hastnut
+		dsDrawObject(ChaoFruit_Hastnut); //Hastnut
 	}
 	else if (a1 == Fruit_Heart.chunkmodel)
 	{
 		njSetTexture(&CHAO_OBJECT_TEXLIST);
 		njTranslate(0, 0, -0.3f, 0);
 		njScale(0, 0.5f, 0.5f, 0.5f);
-		sub_408530(ChaoFruit_Lifenut); //Lifenut
+		dsDrawObject(ChaoFruit_Lifenut); //Lifenut
 	}
 	else 
 	{ 
@@ -1442,7 +1441,7 @@ void RenderChaoNormalFruitWithScale()
 {
 	njScale(0, 0.7f, 0.7f, 0.7f);
 	njSetTexture(&CHAO_OBJECT_TEXLIST);
-	sub_408530(ChaoFruit_Normal_Ripe);
+	dsDrawObject(ChaoFruit_Normal_Ripe);
 }
 
 void SetChaoObjectTexlist()
@@ -1520,10 +1519,10 @@ void __cdecl RenderChaoTreeWithFruit(ChaoTreeEntityData1 *a1, NJS_OBJECT *a2)
 			njScale(0, sx, sx, sx);
 			njTranslateEx(&v);
 			njSetTexture(&CHAO_OBJECT_TEXLIST);
-			if (sx < 0.5f) sub_408530(ChaoFruit_Normal_25);
-			if (sx >= 0.5f && sx < 0.75f) sub_408530(ChaoFruit_Normal_50);
-			if (sx >= 0.75f  && sx < 1.0f) sub_408530(ChaoFruit_Normal_75);
-			if (sx >= 1.0f) sub_408530(ChaoFruit_Normal_Ripe);
+			if (sx < 0.5f) dsDrawObject(ChaoFruit_Normal_25);
+			if (sx >= 0.5f && sx < 0.75f) dsDrawObject(ChaoFruit_Normal_50);
+			if (sx >= 0.75f  && sx < 1.0f) dsDrawObject(ChaoFruit_Normal_75);
+			if (sx >= 1.0f) dsDrawObject(ChaoFruit_Normal_Ripe);
 			goto LABEL_18;
 		}
 		if ((unsigned int)(unsigned __int64)(njSin(*(_DWORD *)&a1->gap4C[120] + dword_33B87B4[*(_DWORD *)&a1->gap4C[128]])

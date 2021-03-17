@@ -26,11 +26,7 @@ DataPointer(ObjectMaster*, TornadoObjectMaster, 0x03C5B32C);
 DataPointer(float, CurrentFogLayer, 0x03ABDC60);
 DataPointer(NJS_VECTOR, CurrentSkybox, 0x03ABDC94);
 DataPointer(NJS_BGRA, CurrentFogColorX, 0x03ABDC68);
-FunctionPointer(void, sub_409E70, (NJS_MODEL_SADX *a1, int a2, float a3), 0x409E70);
-FunctionPointer(void, sub_408530, (NJS_OBJECT *o), 0x408530);
-FunctionPointer(void, sub_408350, (NJS_ACTION *a1, float a2, int a3, float a4), 0x408350);
 FunctionPointer(void, sub_4CACF0, (NJS_VECTOR *a1, float a2), 0x4CACF0);
-FunctionPointer(void, DrawModel_407FC0, (NJS_MODEL_SADX *a1, int blend), 0x407FC0);
 static int TornadoMode = 0;
 static float SkyTrans = 1.0f;
 static bool Windy3ColsLoaded = false;
@@ -142,7 +138,7 @@ void UnloadLevelFiles_STG02()
 
 void OHasieFix(NJS_MODEL_SADX *model, float scale)
 {
-	DrawModel_407FC0(model, (QueuedModelFlagsB)0);
+	DrawModelMesh(model, (QueuedModelFlagsB)0);
 }
 
 void ParseWindyColFlags(LandTable *landtable)
@@ -255,10 +251,10 @@ void WindyValley_Init()
 		((NJS_MATERIAL*)0x00C1C468)->attr_texId &= ~NJD_FLAG_IGNORE_SPECULAR;
 		((NJS_MATERIAL*)0x00C1C47C)->attr_texId &= ~NJD_FLAG_IGNORE_SPECULAR;
 		WriteData<1>((void*)0x4DD120, 0xC3); // Disable some fog thing
-		WriteCall((void*)0x004E1E35, sub_409E70); // Wind gate rendering function
-		WriteCall((void*)0x004E1E9A, sub_409E70); // Wind gate rendering function
-		WriteCall((void*)0x004E1F08, sub_409E70); // Wind gate rendering function
-		WriteCall((void*)0x004E1F77, sub_409E70); // Wind gate rendering function
+		WriteCall((void*)0x004E1E35, late_DrawModelClipMesh); // Wind gate rendering function
+		WriteCall((void*)0x004E1E9A, late_DrawModelClipMesh); // Wind gate rendering function
+		WriteCall((void*)0x004E1F08, late_DrawModelClipMesh); // Wind gate rendering function
+		WriteCall((void*)0x004E1F77, late_DrawModelClipMesh); // Wind gate rendering function
 		WriteCall((void**)0x4E126F, OHasieFix);
 		WriteCall((void**)0x4E12D2, OHasieFix);
 		WriteCall((void**)0x4E133E, OHasieFix);

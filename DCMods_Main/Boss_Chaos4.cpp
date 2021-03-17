@@ -14,10 +14,7 @@ DataPointer(float, Chaos4NumaTransparency, 0x3C688D4);
 DataArray(FogData, Chaos4Fog, 0x0118FA00, 3);
 DataArray(PVMEntry, CHAOS4_OBJECT_TEXLISTS, 0x118FDB0, 18);
 
-FunctionPointer(void, sub_408530, (NJS_OBJECT *o), 0x408530);
-FunctionPointer(void, sub_40A1E0, (NJS_OBJECT *a1, int a2, float a3), 0x40A1E0);
 FunctionPointer(void, sub_4B9540, (NJS_VECTOR *position, NJS_VECTOR *scale_v, float scale), 0x4B9540);
-FunctionPointer(void, sub_407CF0, (NJS_MODEL_SADX *a1, QueuedModelFlagsB a2), 0x407CF0);
 
 static int Chaos4Water = 0;
 
@@ -123,8 +120,8 @@ void __cdecl Chaos4Kama(ObjectMaster *a1)
 		njSetTexture(&CHAOS4_KAMA_TEXLIST);
 		njPushMatrix(0);
 		njTranslateV(0, &v1->Position);
-		DisplayAnimationFrame((NJS_ACTION*)0x11C117C, *(float *)&v1->LoopData, QueuedModelFlagsB_SomeTextureThing, 0.0f, (void(__cdecl *)(NJS_MODEL_SADX *, int, int))sub_407CF0);
-		DisplayAnimationFrame((NJS_ACTION*)0x11C13CC, *(float *)&v1->LoopData, QueuedModelFlagsB_SomeTextureThing, 0.0f, (void(__cdecl *)(NJS_MODEL_SADX *, int, int))sub_407CF0);
+		DisplayAnimationFrame((NJS_ACTION*)0x11C117C, *(float *)&v1->LoopData, QueuedModelFlagsB_SomeTextureThing, 0.0f, (void(__cdecl *)(NJS_MODEL_SADX *, int, int))DrawModelMS);
+		DisplayAnimationFrame((NJS_ACTION*)0x11C13CC, *(float *)&v1->LoopData, QueuedModelFlagsB_SomeTextureThing, 0.0f, (void(__cdecl *)(NJS_MODEL_SADX *, int, int))DrawModelMS);
 		njPopMatrix(1u);
 	}
 }
@@ -235,7 +232,7 @@ void __cdecl Chaos4_Lilypad_Display(ObjectMaster *a2)
 		}
 		if (v1->Position.y < 10.0f) DrawQueueDepthBias = -17952.0f;
 		else DrawQueueDepthBias = 20;
-		sub_40A1E0((NJS_OBJECT*)0x11E3240, 1, 1.0f);
+		late_DrawObjectClipMS((NJS_OBJECT*)0x11E3240, 1, 1.0f);
 		DrawQueueDepthBias = 0.0f;
 		njPopMatrix(1u);
 	}

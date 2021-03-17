@@ -32,9 +32,7 @@ std::vector<int> HotShelterCols_Act3;
 DataPointer(float, E105HitCounter, 0x03C58158);
 DataPointer(float, CurrentFogDist, 0x03ABDC64);
 DataPointer(float, CurrentFogLayer, 0x03ABDC60);
-FunctionPointer(void, sub_405370, (NJS_OBJECT* a1, NJS_MOTION* a2, float a3, float a4), 0x405370);
 FunctionPointer(void, sub_4B9540, (NJS_VECTOR* position, NJS_VECTOR* scale_v, float scale), 0x4B9540);
-FunctionPointer(void, sub_408530, (NJS_OBJECT* a1), 0x408530);
 static bool ReduceHotShelterFog = false;
 static bool HotShelterColsLoaded = false;
 static Angle E105Angle = 0;
@@ -387,7 +385,7 @@ void KowareSuisou_Display_Fixed(ObjectMaster* a1)
 			njRotateY(0, v2);
 		}
 		// Top
-		sub_408530((NJS_OBJECT*)0x182A778);
+		dsDrawObject((NJS_OBJECT*)0x182A778);
 		DrawQueueDepthBias = 3000.0f;
 		if (v1->Action)
 		{
@@ -419,7 +417,7 @@ void RenderOLight3(NJS_OBJECT* a1, QueuedModelFlagsB a2, float a3)
 
 void E105Animation(NJS_OBJECT *a1, NJS_MOTION *a2, float a3, float a4)
 {
-	sub_405370(a1, a2, a3, a4);
+	dsDrawMotionClip(a1, a2, a3, a4);
 	if (!MissedFrames && GameState != 16 && E105HitCounter > 0)
 	{
 		E105Angle = (E105Angle + 1024 * FramerateSetting) % 65535;

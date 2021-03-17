@@ -36,7 +36,6 @@ NJS_OBJECT* PalmBottom2 = nullptr;
 NJS_OBJECT* TreeShadow = nullptr;
 
 FunctionPointer(void, AllocateEventObject, (ObjectMaster *a1, NJS_ACTION *a2, NJS_TEXLIST *a3, float a4, char a5, char a6), 0x42FE00);
-FunctionPointer(void, sub_408350, (NJS_ACTION *a1, float a2, int a3, float a4), 0x408350);
 FunctionPointer(void, sub_6EEFF0, (NJS_OBJECT *a1), 0x6EEFF0);
 FunctionPointer(void, sub_4187D0, (EntityData1 *a1), 0x4187D0);
 DataArray(DrawDistance, DrawDist_Past1, 0x0111E540, 3);
@@ -55,7 +54,7 @@ SETObjData setdata_past = {};
 
 void RenderPalm2(NJS_ACTION *a1, float a2, int a3, float a4)
 {
-	sub_408350(a1, a2, a3, a4);
+	late_ActionClipEx(a1, a2, a3, a4);
 	DrawQueueDepthBias = -49000.0f;
 	DrawObjectClipMesh(PalmBottom, (QueuedModelFlagsB)0, 1.0f);
 	DrawQueueDepthBias = 0.0f;

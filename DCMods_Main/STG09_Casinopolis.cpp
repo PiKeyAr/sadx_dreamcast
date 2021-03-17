@@ -67,10 +67,6 @@ FunctionPointer(void, sub_5DD900, (int a1, int a2), 0x5DD900);
 FunctionPointer(void, sub_5DD920, (ObjectMaster *a1, int a2), 0x5DD920);
 FunctionPointer(void, sub_5D04C0, (ObjectMaster *a1), 0x5D04C0);
 FunctionPointer(Sint32, sub_5C09D0, (int a1), 0x5C09D0);
-FunctionPointer(void, sub_405450, (NJS_ACTION *a1, float frame, float scale), 0x405450);
-FunctionPointer(void, sub_407A00, (NJS_MODEL_SADX *model, float a2), 0x407A00);
-FunctionPointer(void, sub_405370, (NJS_OBJECT *a1, NJS_MOTION *a2, float animframe, float scale), 0x405370);
-FunctionPointer(void, sub_408300, (NJS_OBJECT *a1, NJS_MOTION *a2, float animframe, float scale), 0x408300);
 
 NJS_VECTOR Cowgirl1 = { 457.6972f, 45.06788f, 390 };
 NJS_VECTOR Cowgirl2 = { 340.3949f, 51.20071f, 480 };
@@ -503,7 +499,7 @@ void __cdecl TutuA_Display(ObjectMaster *a2) //OTutuA
 		{
 			njRotateY(0, v2);
 		}
-		sub_407A00((NJS_MODEL_SADX*)0x1DF2570, 1.0f);
+		ds_DrawModelClip((NJS_MODEL_SADX*)0x1DF2570, 1.0f);
 		v3 = ((unsigned short *)&v1->LoopData)[0];
 		if (v1->Rotation.y != v3)
 		{
@@ -530,7 +526,7 @@ void __cdecl TutuB_Display(ObjectMaster *a2) //TutuB
 		{
 			njRotateY(0, v2);
 		}
-		sub_407A00((NJS_MODEL_SADX*)0x1DF2B60, 1.0f);
+		ds_DrawModelClip((NJS_MODEL_SADX*)0x1DF2B60, 1.0f);
 		v3 = ((unsigned short *)&v1->LoopData)[0];
 		if (v1->Rotation.y != v3)
 		{
@@ -557,7 +553,7 @@ void __cdecl TutuC_Display(ObjectMaster *a2) //TutuC
 		{
 			njRotateY(0, v2);
 		}
-		sub_407A00((NJS_MODEL_SADX*)0x1DF3160, 1.0f);
+		ds_DrawModelClip((NJS_MODEL_SADX*)0x1DF3160, 1.0f);
 		v3 = ((unsigned short *)&v1->LoopData)[0];
 		if (v1->Rotation.y != v3)
 		{
@@ -670,7 +666,7 @@ void OSlxDisplayNew(NJS_ACTION *a1, float a2, int a3, int a4)
 	OSlX_BaseAction.motion = a1->motion;
 	OSlX_BaseAction.object = OSlX_Base;
 	//Render main animation
-	sub_405450(&OSlX_BaseAction, a2, a4);
+	ds_ActionClip(&OSlX_BaseAction, a2, a4);
 	//Render light
 	DrawQueueDepthBias = 8000.0f;
 	late_ActionMesh(a1, a2, (QueuedModelFlagsB)0);
@@ -703,7 +699,7 @@ void RenderOKBCText(NJS_ACTION *a1, float frame, float scale)
 
 void RenderNeonK(NJS_MODEL_SADX *model, float scale)
 {
-	sub_407A00(model, scale);
+	ds_DrawModelClip(model, scale);
 	DrawQueueDepthBias = 1000.0f;
 	lateDrawModel(NeonK_Text->child->basicdxmodel, (QueuedModelFlagsB)0);
 	DrawQueueDepthBias = 1500.0f;
@@ -849,11 +845,11 @@ void IdeyaCapFix(NJS_OBJECT *a1, NJS_MOTION *a2, float animframe, float scale)
 		Object3 = IdeyaCap4_3;
 	}
 	//Process non-transparent parts
-	sub_405370(Object1, a2, animframe, scale);
+	dsDrawMotionClip(Object1, a2, animframe, scale);
 	DrawQueueDepthBias = 2000.0f;
 	//Process transparent parts
-	sub_408300(Object2, a2, animframe, scale);
-	sub_408300(Object3, a2, animframe, scale);
+	late_DrawMotionClipMesh(Object2, a2, animframe, 0, scale);
+	late_DrawMotionClipMesh(Object3, a2, animframe, 0, scale);
 	DrawQueueDepthBias = 0.0f;
 }
 

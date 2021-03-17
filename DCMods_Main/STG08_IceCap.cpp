@@ -32,7 +32,6 @@ DataArray(FogData, IceCap4Fog, 0x00C67F30, 3);
 DataArray(DrawDistance, DrawDist_IceCap1, 0x00C67E40, 3);
 DataArray(DrawDistance, DrawDist_IceCap2, 0x00C67E58, 3);
 DataArray(DrawDistance, DrawDist_IceCap3, 0x00C67E70, 3);
-FunctionPointer(void, sub_405450, (NJS_ACTION *a1, float frame, float scale), 0x405450);
 
 NJS_OBJECT* Crystal1_1 = nullptr;
 NJS_OBJECT* Crystal1_2 = nullptr;

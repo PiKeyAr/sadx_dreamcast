@@ -51,10 +51,8 @@ FunctionPointer(void, CreateFireParticle, (NJS_VECTOR *a1, NJS_VECTOR *a2, float
 FunctionPointer(void, FireSprite, (ObjectMaster *a1), 0x5E81E0);
 FunctionPointer(void, DrawSparkSprite, (ObjectMaster *a1), 0x4BAE50);
 FunctionPointer(void, Chaos0_Raindrop_Display, (ObjectMaster *a1), 0x546090);
-FunctionPointer(void, sub_4083F0, (NJS_ACTION *a1, float a2, int a3, float a4), 0x4083F0);
 FunctionPointer(void, DrawHudCharacter, (SomeSpriteThing *a1), 0x427BB0);
 FunctionPointer(void, ZeroSparks_Display, (ObjectMaster *a1), 0x58B5B0);
-FunctionPointer(void, sub_408300, (NJS_OBJECT* a1, NJS_MOTION* a2, float a3, int a4, float a5), 0x408300);
 
 //Main
 static int FramerateSettingOld = 0;
@@ -518,7 +516,7 @@ void IceKeySS_Display(ObjectMaster *obj)
 		action = *(NJS_ACTION **)&v1->CharIndex;
 		if (CharObj2Ptrs[0]->UnderwaterTime) DrawQueueDepthBias = -25000.0f;
 		else  DrawQueueDepthBias = 5000.0f;
-		sub_4083F0(action, *(float *)&v1->Object, 0, 1.0f);
+		late_ActionClipMesh(action, *(float *)&v1->Object, 0, 1.0f);
 		DrawQueueDepthBias = 0.0f;
 		njPopMatrix(1u);
 	}
@@ -586,7 +584,7 @@ void OFunAnimationOverride(NJS_ACTION* a1, float frame, float scale)
 
 void OTankHAnimationOverride(NJS_OBJECT* a1, NJS_MOTION* a2, float a3, int a4, float a5)
 {
-	sub_408300(a1, a2, OFunFrame, a4, a5);
+	late_DrawMotionClipMesh(a1, a2, OFunFrame, a4, a5);
 }
 
 void DashPanelFix(NJS_ACTION* action, Float frame)

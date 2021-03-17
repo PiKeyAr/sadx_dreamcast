@@ -40,23 +40,15 @@ DataPointer(NJS_ACTION, Tornado2TransformationAction, 0x28988FC);
 DataArray(ObjectMaster*, LocksArray, 0x3C63284, 5);
 DataPointer(NJS_VECTOR, Chaos4Position, 0x3C5A358);
 
-FunctionPointer(void, njAction_Queue_407CF0_Scale, (NJS_ACTION* a1, float a2, int a3, float a4), 0x4083F0);
 FunctionPointer(void, BarrierChild, (ObjectMaster *a1), 0x4BA1E0);
-FunctionPointer(void, sub_4083D0, (NJS_ACTION *a1, float a2, int a3), 0x4083D0);
 FunctionPointer(EntityData1*, sub_4B9430, (NJS_VECTOR *a1, NJS_VECTOR *a2, float a3), 0x4B9430);
 FunctionPointer(void, sub_40EFE0, (), 0x40EFE0);
 FunctionPointer(double, sub_49EAD0, (float a1, float a2, float a3, int a4), 0x49EAD0);
 FunctionPointer(float, sub_49E920, (float x, float y, float z, Rotation3 *rotation), 0x49E920);
 FunctionPointer(SubtitleThing *, sub_6424A0, (int a1, int a2, float a3, float a4, float a5, float a6, float a7, float a8), 0x6424A0);
-FunctionPointer(void, sub_409E70, (NJS_MODEL_SADX *a1, int a2, float a3), 0x409E70);
 FunctionPointer(void, Cutscene_MoveCharacterAtoB, (ObjectMaster *a1, float a2, float a3, float a4, float a5, float a6, float a7, signed int a8), 0x6EC2B0);
-FunctionPointer(void, sub_4094D0, (NJS_MODEL_SADX *model, QueuedModelFlagsB blend, float radius_scale), 0x4094D0);
-FunctionPointer(void, sub_4053A0, (NJS_OBJECT *a1, NJS_MOTION *a2, float frame, int flags, float scale), 0x4053A0);
-FunctionPointer(void, sub_407CF0, (NJS_MODEL_SADX *a1, QueuedModelFlagsB a2), 0x407CF0);
 FunctionPointer(void, sub_4BFF90, (NJS_OBJECT* a1), 0x4BFF90);
 FunctionPointer(void, AnimationCallback_C, (NJS_ACTION *a1, float a2, QueuedModelFlagsB a3), 0x4084B0);
-FunctionPointer(void, DrawObjectWithMotion_407BB0, (NJS_OBJECT *a1, NJS_MOTION *a2, float framenumber, QueuedModelFlagsB a4, float scale), 0x4082D0);
-FunctionPointer(void, DrawObjectWithMotion_407FC0, (NJS_OBJECT *a1, NJS_MOTION *a2, float framenumber, QueuedModelFlagsB a4, float scale), 0x408300);
 FunctionPointer(float, CalculateEnemyYCoordinate, (float x, float y, float z, Rotation3 *rotation), 0x49E920);
 
 ObjectThingC ItemBoxAirResizeThing = { (NJS_OBJECT*)0, sub_4BFF90 };
@@ -691,17 +683,17 @@ void __cdecl Sonic_DisplayLightDashModelX(EntityData1 *data1, CharObj2 **data2_p
 		//Main
 		SetMaterialAndSpriteColor_Float(1.0f, 0, 0.06f + (64 - v5) / 880.0f, 1.0f);
 		DrawQueueDepthBias = basedepth;
-		sub_4083D0(&v8, data2->AnimationThing.Frame, 0);
+		late_ActionMesh(&v8, data2->AnimationThing.Frame, 0);
 		//Outer 1
 		njScale(0, 1.05f, 1.05f, 1.05f);
 		SetMaterialAndSpriteColor_Float(1.0f, 0.0245f, (64 - v5) / 1050.0f, 1.0f);
 		DrawQueueDepthBias = basedepth + 300.0f;
-		sub_4083D0(&v8, data2->AnimationThing.Frame, 0);
+		late_ActionMesh(&v8, data2->AnimationThing.Frame, 0);
 		//Outer 2
 		njScale(0, 1.05f, 1.05f, 1.05f);
 		SetMaterialAndSpriteColor_Float(1.0f, 0.024f, (64 - v5) / 2000.0f, 0.15f);
 		DrawQueueDepthBias = basedepth + 600.0f;
-		sub_4083D0(&v8, data2->AnimationThing.Frame, 0);
+		late_ActionMesh(&v8, data2->AnimationThing.Frame, 0);
 		njColorBlendingMode(0, NJD_COLOR_BLENDING_SRCALPHA);
 		njColorBlendingMode(NJD_DESTINATION_COLOR, NJD_COLOR_BLENDING_INVSRCALPHA);
 		njPopMatrixEx();
@@ -1109,7 +1101,7 @@ void __cdecl RenderInvincibilityLines(NJS_MODEL_SADX *a1)
 
 void RenderHintMonitor_Main(NJS_MODEL_SADX *a1, int a2, float a3)
 {
-	sub_409E70(HintMonitorModel->basicdxmodel, a2, a3);
+	late_DrawModelClipMesh(HintMonitorModel->basicdxmodel, a2, a3);
 }
 
 void SetHintMonitorTransparency(NJS_ARGB *a1)
@@ -1194,7 +1186,7 @@ void __cdecl ItemBoxAirDrawFunction_Normal(NJS_OBJECT *a1, ObjectThingC *a2)
 				if (IsCameraUnderwater) DrawQueueDepthBias = -13000.0f; 
 				else if (CurrentLevel == LevelIDs_HotShelter && CurrentAct == 0 && EntityData1Ptrs[0]->Position.x < 1050) DrawQueueDepthBias = -1000.0f; 
 				else DrawQueueDepthBias = 3000.0f;
-				sub_4094D0(v2->basicdxmodel, (QueuedModelFlagsB)0, a3);
+				late_DrawModelClipEx(v2->basicdxmodel, (QueuedModelFlagsB)0, a3);
 				DrawQueueDepthBias = 0.0f;
 			}
 		}
@@ -1253,14 +1245,14 @@ void DrawAfterImageFixed(int a1, CharObj2 *a2)
 			{
 				njSetTexture(&METALSONIC_TEXLIST);
 				if (CharObj2Ptrs[0]->UnderwaterTime) DrawQueueDepthBias = -35000.0f; else DrawQueueDepthBias = 5000.0f;
-				sub_4053A0(SONIC_OBJECTS[68], SONIC_MOTIONS[1], a2->AnimationThing.Frame, 0, 0);
+				late_DrawMotionClip(SONIC_OBJECTS[68], SONIC_MOTIONS[1], a2->AnimationThing.Frame, 0, 0);
 				DrawQueueDepthBias = 0;
 			}
 			else
 			{
 				njSetTexture(&METALSONIC_TEXLIST);
 				if (CharObj2Ptrs[0]->UnderwaterTime) DrawQueueDepthBias = -35000.0f; else DrawQueueDepthBias = 5000.0f;
-				sub_4053A0(SONIC_OBJECTS[68], (*(NJS_ACTION **)((char *)&a2->AnimationThing.AnimData->Animation + v5))->motion, a2->AnimationThing.Frame, 0, 0);
+				late_DrawMotionClip(SONIC_OBJECTS[68], (*(NJS_ACTION **)((char *)&a2->AnimationThing.AnimData->Animation + v5))->motion, a2->AnimationThing.Frame, 0, 0);
 				DrawQueueDepthBias = 0;
 			}
 		}
@@ -1268,14 +1260,14 @@ void DrawAfterImageFixed(int a1, CharObj2 *a2)
 		{
 			njSetTexture(&METALSONIC_TEXLIST);
 			if (CharObj2Ptrs[0]->UnderwaterTime) DrawQueueDepthBias = -35000.0f; else DrawQueueDepthBias = 5000.0f;
-			sub_4053A0(SONIC_OBJECTS[69], (*(NJS_ACTION **)((char *)&a2->AnimationThing.AnimData->Animation + v5))->motion,	a2->AnimationThing.Frame, 0, 0);
+			late_DrawMotionClip(SONIC_OBJECTS[69], (*(NJS_ACTION **)((char *)&a2->AnimationThing.AnimData->Animation + v5))->motion,	a2->AnimationThing.Frame, 0, 0);
 			DrawQueueDepthBias = 0;
 		}
 		else if (v3 == SONIC_OBJECTS[67])
 		{
 			njSetTexture(&METALSONIC_TEXLIST);
 			if (CharObj2Ptrs[0]->UnderwaterTime) DrawQueueDepthBias = -35000.0f; else DrawQueueDepthBias = 5000.0f;
-			sub_4053A0(SONIC_OBJECTS[70], (*(NJS_ACTION **)((char *)&a2->AnimationThing.AnimData->Animation + v5))->motion,	a2->AnimationThing.Frame, 0, 0);
+			late_DrawMotionClip(SONIC_OBJECTS[70], (*(NJS_ACTION **)((char *)&a2->AnimationThing.AnimData->Animation + v5))->motion,	a2->AnimationThing.Frame, 0, 0);
 			DrawQueueDepthBias = 0;
 		}
 		else
@@ -1576,7 +1568,7 @@ void QueueChaoAnimals1(NJS_ACTION *a1, float a2)
 void QueueChaoAnimals2(NJS_OBJECT *a1, NJS_MOTION *a2, float a3)
 {
 	DrawQueueDepthBias = -20000.0f;
-	DrawObjectWithMotion_407BB0(a1, a2, a3, QueuedModelFlagsB_EnableZWrite, 1.0f);
+	late_DrawMotionClipEx(a1, a2, a3, QueuedModelFlagsB_EnableZWrite, 1.0f);
 	DrawQueueDepthBias = 0.0f;
 }
 

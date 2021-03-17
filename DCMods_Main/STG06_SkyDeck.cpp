@@ -52,11 +52,7 @@ DataArray(SkyboxScale, SkyDeck3SkyboxScale, 0x02039FE0, 3);
 DataArray(DrawDistance, SkyDeck1DrawDist, 0x0203A04C, 3);
 DataArray(DrawDistance, SkyDeck2DrawDist, 0x0203A064, 3);
 DataArray(DrawDistance, SkyDeck3DrawDist, 0x0203A07C, 3);
-FunctionPointer(void, sub_408530, (NJS_OBJECT *a1), 0x408530);
-FunctionPointer(void, sub_407A00, (NJS_MODEL_SADX *model, float scale), 0x407A00);
 FunctionPointer(void, sub_5ED790, (ObjectMaster *a1, NJS_OBJECT *a2), 0x5ED790);
-FunctionPointer(void, sub_408300, (NJS_OBJECT *a1, NJS_MOTION *a2, float a3, QueuedModelFlagsB a4, float a5), 0x408300);
-FunctionPointer(void, DrawObjectWithMotion_407BB0, (NJS_OBJECT *a1, NJS_MOTION *a2, float framenumber, int a4, int a5), 0x4082D0);
 
 void DisableMetalStruts(LandTable* landtable)
 {
@@ -147,7 +143,7 @@ void SkyDeckSky_new(ObjectMaster *_this)
 			}
 			njSetTexture(&OBJ_SKYDECK_TEXLIST);
 			njScaleEx(&Skybox_Scale);
-			sub_408530(v2);
+			dsDrawObject(v2);
 			njScale(0, 1.0f, 1.0f, 1.0f);
 			v3 = 1.0f - fabs(Camera_Data1->Position.y - (SkyDeck_SkyPosition.y - 1350.0f)) * 0.025f;
 			if (v3 >= 0.05f)
@@ -346,7 +342,7 @@ void __cdecl SkyDeckSharedDisplaySubFix(ObjectMaster *a1)
 				v11 = SkyDeckSharedMotionLengthArray[v8];
 				if (v9 > v11 - 1.0f) v9 = 0;
 				v2->Scale.z = v9;
-				DrawObjectWithMotion_407BB0(v3, v10, v9, 1, v2->Scale.x);
+				late_DrawMotionClipEx(v3, v10, v9, 1, v2->Scale.x);
 			}
 			else
 			{

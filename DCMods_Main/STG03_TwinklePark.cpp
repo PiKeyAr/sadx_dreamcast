@@ -26,9 +26,6 @@ FunctionPointer(void, sub_61D4E0, (ObjectMaster *a1), 0x61D4E0);
 FunctionPointer(void, sub_61D1F0, (ObjectMaster *a1), 0x61D1F0);
 FunctionPointer(void, sub_4BA5D0, (NJS_OBJECT *a1, ObjectThingC *a2), 0x4BA5D0);
 FunctionPointer(void, sub_4BA710, (NJS_OBJECT *a1, ObjectThingC *a2), 0x4BA710);
-FunctionPointer(void, sub_408530, (NJS_OBJECT *a1), 0x408530);
-FunctionPointer(void, sub_405450, (NJS_ACTION *a1, float frame, float scale), 0x405450);
-FunctionPointer(void, sub_407FC0, (NJS_MODEL_SADX *a1, int blend), 0x407FC0);
 
 NJS_OBJECT *PirateShipStars = nullptr;
 NJS_OBJECT CartGlass = { NJD_EVAL_BREAK | NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL, NULL, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
@@ -227,7 +224,7 @@ void CartFunction(NJS_OBJECT *a1, ObjectThingC *a2)
 
 void RenderCatapult(NJS_ACTION *a1, float frame, float scale)
 {
-	sub_405450(a1, frame, scale);
+	ds_ActionClip(a1, frame, scale);
 	DrawQueueDepthBias = -17000.0f;
 	lateDrawObject(OCatapultFloor, QueuedModelFlagsB_EnableZWrite, 1.0f);
 	DrawQueueDepthBias = 0.0f;
@@ -302,7 +299,7 @@ void __cdecl FlowerBedFix(NJS_OBJECT *a1, QueuedModelFlagsB a2, float a3)
 {
 	if (a1 == (NJS_OBJECT*)0x27B6170 || a1 == (NJS_OBJECT*)0x27B80C4 || a1 == (NJS_OBJECT*)0x27BAC54 || a1 == (NJS_OBJECT*)0x27B6A58 || a1 == (NJS_OBJECT*)0x27B972C || a1 == (NJS_OBJECT*)0x27BC1C4)
 	{
-		sub_407FC0(a1->basicdxmodel, (QueuedModelFlagsB)1);
+		DrawModelMesh(a1->basicdxmodel, (QueuedModelFlagsB)1);
 	}
 	else late_DrawObjectClipEx(a1, a2, a3);
 }
@@ -329,7 +326,7 @@ void FixShittyLightObjects_Pause(NJS_OBJECT *object)
 		lateDrawObject(OPole_Pole, QueuedModelFlagsB_SomeTextureThing, 1.0f);
 		lateDrawObject(object->child, QueuedModelFlagsB_SomeTextureThing, 1.0f);
 	}
-	else sub_408530(object);
+	else dsDrawObject(object);
 }
 
 void RenderOPanel_Main(NJS_OBJECT *a1, QueuedModelFlagsB a2)

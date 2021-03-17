@@ -41,10 +41,7 @@ DataArray(FogData, EggCarrierInside3Fog, 0x01100C78, 3);
 DataArray(FogData, EggCarrierInside4Fog, 0x01100CA8, 3);
 DataArray(FogData, EggCarrierInside5Fog, 0x01100CD8, 3);
 DataArray(FogData, EggCarrierInside6Fog, 0x01100D08, 3);
-FunctionPointer(void, sub_409FB0, (NJS_ACTION* a1, float frameNumber), 0x409FB0);
 FunctionPointer(void, sub_6F4570, (ObjectMaster* a1), 0x6F4570);
-FunctionPointer(void, sub_407A00, (NJS_MODEL_SADX* model, float scale), 0x407A00);
-FunctionPointer(void, sub_409450, (NJS_MODEL_SADX* a1, int a2), 0x409450);
 
 void __cdecl ECDoorBarrier1X(ObjectMaster *a1)
 {
@@ -159,11 +156,11 @@ void OTarai_Child_Display(ObjectMaster* a1)
 		{
 			njRotateY(0, v2);
 		}
-		//Draw the letter
+		// Draw the letter
 		DrawModelCallback_QueueInt(RenderTaraiButtonLetter, TaraiButtons[byte_3C6293C[v1->Index]], -27000.0f, QueuedModelFlagsB_SomeTextureThing);
-		//Render the opaque part of the button
+		// Render the opaque part of the button
 		DrawModel(TaraiButton_OpaqueOnly->basicdxmodel);
-		//Create and the button (transparent)
+		// Create and the button (transparent)
 		v3 = (NJS_MODEL_SADX*)late_alloca(44);
 		v4 = (NJS_MATERIAL*)late_alloca(60);
 		if (v3)
@@ -182,7 +179,7 @@ void OTarai_Child_Display(ObjectMaster* a1)
 				{
 					v4->attr_texId = 2;
 				}
-				sub_409450(v3, 4);
+				late_DrawModelEx(v3, 4);
 			}
 		}
 		njPopMatrix(1u);
@@ -265,40 +262,40 @@ void ADV01C_Init()
 		*ADV01C_TEXLISTS[18] = texlist_ec33;
 		*ADV01C_TEXLISTS[19] = texlist_ec34;
 		*ADV01C_TEXLISTS[20] = texlist_ec35;
-		//Chao transporter fix
+		// Chao transporter fix
 		RemoveVertexColors_Model(ADV01C_MODELS[32]);
-		WriteCall((void*)0x526369, RenderChaoTransporterEffect_Fix); //Transporter effect fix
-		WriteCall((void*)0x525D39, OReservoirFix); //Fix water in Gamma's upgrade room
-		//Door barrier fixes (Gamma's story)
+		WriteCall((void*)0x526369, RenderChaoTransporterEffect_Fix); // Transporter effect fix
+		WriteCall((void*)0x525D39, OReservoirFix); // Fix water in Gamma's upgrade room
+		// Door barrier fixes (Gamma's story)
 		WriteJump((void*)0x52B2E0, ECDoorBarrier1X);
 		WriteJump((void*)0x52B250, ECDoorBarrier2_asm);
-		//Fix camera in Amy-Gamma prison cutscene
-		WriteData((float*)0x006A4EBE, -134.0f); //X1
-		WriteData((float*)0x006A4EB9, 15.0f); //Y1
-		WriteData((float*)0x006A4EB4, 54.0f); //Z1
-		WriteData((float*)0x006A4F41, -143.85f); //X2
-		WriteData((float*)0x006A4F3C, 15.93f); //Y2
-		WriteData((float*)0x006A4F37, 80.25f); //Z2
-		//Fix camera in Gamma-Amy prison cutscene
-		WriteData((float*)0x00678C48, -134.0f); //X1
-		WriteData((float*)0x00678C43, 15.0f); //Y1
-		WriteData((float*)0x00678C3E, 54.0f); //Z1
-		WriteData((float*)0x00678CCB, -143.85f); //X2
-		WriteData((float*)0x00678CC6, 15.93f); //Y2
-		WriteData((float*)0x00678CC1, 80.25f); //Z2
-		//Material fixes
-		AddAlphaRejectMaterial((NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01CMODELS") + 0x000ED480)); //Monorail sign (inside)
-		AddWhiteDiffuseMaterial((NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01CMODELS") + 0x00110B04)); //OHammerSW
+		// Fix camera in Amy-Gamma prison cutscene
+		WriteData((float*)0x006A4EBE, -134.0f); // X1
+		WriteData((float*)0x006A4EB9, 15.0f); // Y1
+		WriteData((float*)0x006A4EB4, 54.0f); // Z1
+		WriteData((float*)0x006A4F41, -143.85f); // X2
+		WriteData((float*)0x006A4F3C, 15.93f); // Y2
+		WriteData((float*)0x006A4F37, 80.25f); // Z2
+		// Fix camera in Gamma-Amy prison cutscene
+		WriteData((float*)0x00678C48, -134.0f); // X1
+		WriteData((float*)0x00678C43, 15.0f); // Y1
+		WriteData((float*)0x00678C3E, 54.0f); // Z1
+		WriteData((float*)0x00678CCB, -143.85f); // X2
+		WriteData((float*)0x00678CC6, 15.93f); // Y2
+		WriteData((float*)0x00678CC1, 80.25f); // Z2
+		// Material fixes
+		AddAlphaRejectMaterial((NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01CMODELS") + 0x000ED480)); // Monorail sign (inside)
+		AddWhiteDiffuseMaterial((NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV01CMODELS") + 0x00110B04)); // O HammerSW
 		if (DLLLoaded_Lantern)
 		{
-			WriteCall((void*)0x006F4577, TurnLightsOff); //Turn the lights off in Gamma's Froggy Hunt cutscene
-			WriteCall((void*)0x006F4620, TurnLightsOn); //Turn the lights on in Gamma's Froggy Hunt cutscene
+			WriteCall((void*)0x006F4577, TurnLightsOff); // Turn the lights off in Gamma's Froggy Hunt cutscene
+			WriteCall((void*)0x006F4620, TurnLightsOn); // Turn the lights on in Gamma's Froggy Hunt cutscene
 		}
-		RemoveVertexColors_Object(ADV01C_OBJECTS[0]); //Hedhehog Hammer targets
-		RemoveVertexColors_Object(ADV01C_OBJECTS[1]); //Hedhehog Hammer targets
-		RemoveVertexColors_Object(ADV01C_OBJECTS[2]); //Hedhehog Hammer targets
-		RemoveVertexColors_Object((NJS_OBJECT*)0x31045B8); //Projectors in Gamma's cutscene
-		//Tarai fix
+		RemoveVertexColors_Object(ADV01C_OBJECTS[0]); // Hedhehog Hammer targets
+		RemoveVertexColors_Object(ADV01C_OBJECTS[1]); // Hedhehog Hammer targets
+		RemoveVertexColors_Object(ADV01C_OBJECTS[2]); // Hedhehog Hammer targets
+		RemoveVertexColors_Object((NJS_OBJECT*)0x31045B8); // Projectors in Gamma's cutscene
+		// Tarai fix
 		TaraiButton_Transparent = LoadModel("system\\data\\ADV0130\\Models\\000D16F4.sa1mdl", false);
 		TaraiButton_OpaqueOnly = LoadModel("system\\data\\ADV0130\\Models\\000D16F4.sa1mdl", false);
 		HideMesh_Object(TaraiButton_OpaqueOnly, 0);
@@ -325,9 +322,9 @@ void ADV01C_Init()
 		*ADV01C_OBJECTS[44]->child->basicdxmodel = *MonorailOtherCars->child->basicdxmodel;
 		*ADV01C_OBJECTS[44]->child->child->basicdxmodel = *MonorailOtherCars->child->child->basicdxmodel;
 		//Other objects
-		*ADV01C_OBJECTS[29] = *LoadModel("system\\data\\ADV0130\\Models\\000ADCD8.sa1mdl", false); //Monorail station
-		*ADV01C_ACTIONS[6]->object = *LoadModel("system\\data\\ADV0130\\Models\\000BAF48.sa1mdl", false); //Door
-		NJS_OBJECT* EggLift = LoadModel("system\\data\\ADV0130\\Models\\000B8CD4.sa1mdl", false); //OEggLift
+		*ADV01C_OBJECTS[29] = *LoadModel("system\\data\\ADV0130\\Models\\000ADCD8.sa1mdl", false); // Monorail station
+		*ADV01C_ACTIONS[6]->object = *LoadModel("system\\data\\ADV0130\\Models\\000BAF48.sa1mdl", false); // Door
+		NJS_OBJECT* EggLift = LoadModel("system\\data\\ADV0130\\Models\\000B8CD4.sa1mdl", false); // OEggLift
 		*ADV01C_OBJECTS[23] = *EggLift;
 		*ADV01C_ACTIONS[7]->object = *EggLift;
 		for (int i = 0; i < 3; i++)
