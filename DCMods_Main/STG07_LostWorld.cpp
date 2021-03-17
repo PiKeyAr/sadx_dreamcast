@@ -268,7 +268,7 @@ void __cdecl AokiSwitch_Display(ObjectMaster *a1)
 			njControl3D(NJD_CONTROL_3D_CONSTANT_MATERIAL);
 			SetMaterialAndSpriteColor_Float(alpha, alpha, alpha, alpha);
 			sub_407A00(AokiSwitchModel_Child2->basicdxmodel, 1.0f);
-			DrawModel_Queue(AokiSwitchModel_Child3->basicdxmodel, QueuedModelFlagsB_EnableZWrite);
+			lateDrawModel(AokiSwitchModel_Child3->basicdxmodel, QueuedModelFlagsB_EnableZWrite);
 			ClampGlobalColorThing_Thing();
 			njControl3D_Remove(NJD_CONTROL_3D_CONSTANT_MATERIAL);
 			njPopMatrix(1u);
@@ -285,14 +285,14 @@ void RenderTPanel(NJS_MODEL_SADX *model, QueuedModelFlagsB blend, float scale)
 void RenderTPanelTriangle(NJS_MODEL_SADX *model, QueuedModelFlagsB blend, float scale)
 {
 	DrawQueueDepthBias = -40000.0f;
-	DrawModel_QueueVisible(model, QueuedModelFlagsB_EnableZWrite, scale);
+	late_DrawModelClip(model, QueuedModelFlagsB_EnableZWrite, scale);
 	DrawQueueDepthBias = 0.0f;
 }
 
 void RenderTPanelLight(NJS_MODEL_SADX *model, QueuedModelFlagsB blend, float scale)
 {	
 	DrawQueueDepthBias = -20000.0f;
-	DrawModel_QueueVisible(model, QueuedModelFlagsB_SomeTextureThing, scale);
+	late_DrawModelClip(model, QueuedModelFlagsB_SomeTextureThing, scale);
 	DrawQueueDepthBias = 0.0f;
 }
 
@@ -348,8 +348,8 @@ void RLight_Display(ObjectMaster *a1)
 		sx = v1->Scale.x + 1.0;
 		a1b = sub_49CC70(sx, sy, a1a);
 		njScale(0, sx, sy, v5);
-		if (!AssumeOIT) ProcessModelNode_D_WrapperB((NJS_OBJECT*)0x2031810, (QueuedModelFlagsB)0, a1b);
-		else ProcessModelNode_AB_Wrapper((NJS_OBJECT*)0x2031810, a1b);
+		if (!AssumeOIT) late_DrawObjectClipMesh((NJS_OBJECT*)0x2031810, (QueuedModelFlagsB)0, a1b);
+		else ds_DrawObjectClip((NJS_OBJECT*)0x2031810, a1b);
 		njPopMatrix(1u);
 		if (!AssumeOIT) Direct3D_ResetZFunc();
 	}

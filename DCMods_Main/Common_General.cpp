@@ -58,7 +58,6 @@ FunctionPointer(void, AnimationCallback_C, (NJS_ACTION *a1, float a2, QueuedMode
 FunctionPointer(void, DrawObjectWithMotion_407BB0, (NJS_OBJECT *a1, NJS_MOTION *a2, float framenumber, QueuedModelFlagsB a4, float scale), 0x4082D0);
 FunctionPointer(void, DrawObjectWithMotion_407FC0, (NJS_OBJECT *a1, NJS_MOTION *a2, float framenumber, QueuedModelFlagsB a4, float scale), 0x408300);
 FunctionPointer(float, CalculateEnemyYCoordinate, (float x, float y, float z, Rotation3 *rotation), 0x49E920);
-FunctionPointer(void, ProcessModelNode_NoScaling, (NJS_OBJECT* a1), 0x408530);
 
 ObjectThingC ItemBoxAirResizeThing = { (NJS_OBJECT*)0, sub_4BFF90 };
 
@@ -369,13 +368,13 @@ void __cdecl MissionStatue_DisplayFix(ObjectMaster* a1)
 		{
 			njRotateY(0, (unsigned __int16)v2);
 		}
-		ProcessModelNode_NoScaling((NJS_OBJECT*)0x016F5EA0);
+		dsDrawObject((NJS_OBJECT*)0x016F5EA0);
 		if (v1->CharIndex < 8 && !(v1->Status & 0x1000))
 		{
 			SetTextureToCommon();
 			v4 = 0.1 - *(float*)&v1->LoopData;
 			njTranslate(0, 0.0f, v4, 0.0f);
-			ProcessModelNode_A_WrapperC(&ShadowBlob_Model, 1.0);
+			late_DrawShadowObject(&ShadowBlob_Model, 1.0);
 		}
 		njPopMatrix(1u);
 	}
@@ -412,7 +411,7 @@ void __cdecl BurgerShopStatue_DisplayFix(ObjectMaster* a2)
 			SetTextureToCommon();
 			v4 = 0.1f - *(float*)&v1->LoopData;
 			njTranslate(0, 0.0f, v4, 0.0f);
-			ProcessModelNode_A_WrapperC(&ShadowBlob_Model, 1.0);
+			late_DrawShadowObject(&ShadowBlob_Model, 1.0);
 		}
 		njPopMatrix(1u);
 	}
@@ -445,7 +444,7 @@ static void __cdecl GoalEmerald_Casino_Display_r(ObjectMaster* a1)
 void RenderEmeraldWithGlow_Windy(NJS_OBJECT *object, int flags)
 {
 	//Do the emerald itself first
-	ProcessModelNode_D_Wrapper(object, flags);
+	late_DrawObjectMesh(object, flags);
 	njPopMatrix(1u);
 	if (EmeraldGlowAlpha >= 360) EmeraldGlowDirection = false;
 	if (EmeraldGlowAlpha <= 128) EmeraldGlowDirection = true;
@@ -474,7 +473,7 @@ void RenderEmeraldWithGlow_Windy(NJS_OBJECT *object, int flags)
 void RenderEmeraldWithGlow_Ice(NJS_OBJECT *object, int flags, float scale)
 {
 	//Do the emerald itself first
-	ProcessModelNode_D_Wrapper(object, flags);
+	late_DrawObjectMesh(object, flags);
 	njPopMatrix(1u);
 	if (EmeraldGlowAlpha >= 360) EmeraldGlowDirection = false;
 	if (EmeraldGlowAlpha <= 128) EmeraldGlowDirection = true;
@@ -507,7 +506,7 @@ void SonicDashTrailFix(NJS_OBJECT *a1, QueuedModelFlagsB a2)
 	if (EnableWindyValley && CurrentLevel == LevelIDs_WindyValley && CurrentAct == 2) DrawQueueDepthBias = 3500.0f;
 	if (EnableChaos4 && CurrentLevel == LevelIDs_Chaos4) DrawQueueDepthBias = 4500.0f;
 	if (!IsGamePaused()) a1->basicdxmodel->mats->attr_texId = rand() % 2;
-	ProcessModelNode(a1, (QueuedModelFlagsB)0, 1.0f);
+	lateDrawObject(a1, (QueuedModelFlagsB)0, 1.0f);
 	if (!IsGamePaused()) a1->basicdxmodel->mats->attr_texId = 0;
 	DrawQueueDepthBias = 0.0f;
 }
@@ -517,7 +516,7 @@ void SonicDashTrailFix2(NJS_OBJECT *a1, QueuedModelFlagsB a2)
 	DrawQueueDepthBias = 2500.0f;
 	if (EnableWindyValley && CurrentLevel == LevelIDs_WindyValley && CurrentAct == 2) DrawQueueDepthBias = 3500.0f;
 	if (EnableChaos4 && CurrentLevel == LevelIDs_Chaos4) DrawQueueDepthBias = 4500.0f;
-	ProcessModelNode_A_WrapperB(a1, a2);
+	late_DrawObject(a1, a2);
 	DrawQueueDepthBias = 0.0f;
 }
 
@@ -544,7 +543,7 @@ void __cdecl Knuckles_MaximumHeat_DrawX(NJS_VECTOR *position, float alpha)
 		njSetTexture(&KNU_EFF_TEXLIST);
 		DrawQueueDepthBias = 2000.0f;
 		if (EnableChaos4 && CurrentLevel == LevelIDs_Chaos4) DrawQueueDepthBias = 4500.0f;
-		ProcessModelNode_A_WrapperB(KNUCKLES_OBJECTS[47], QueuedModelFlagsB_SomeTextureThing);
+		late_DrawObject(KNUCKLES_OBJECTS[47], QueuedModelFlagsB_SomeTextureThing);
 		DrawQueueDepthBias = 0.0f;
 		njPopMatrix(1u);
 		ClampGlobalColorThing_Thing();
@@ -615,7 +614,7 @@ void KnucklesPunch_RetrieveAlpha(float a, float r, float g, float b)
 void KnucklesPunch_Render(NJS_OBJECT *a1, QueuedModelFlagsB a2)
 {
 	a1->basicdxmodel->mats[0].diffuse.argb.a = alphathing * 255;
-	ProcessModelNode_A_WrapperB(a1, a2);
+	late_DrawObject(a1, a2);
 }
 
 void MagneticBarrierLightning(NJS_POINT3COL *a1, int a2, NJD_DRAW attr, QueuedModelFlagsB a4)
@@ -639,7 +638,7 @@ int __cdecl RenderBarrierModels(NJS_MODEL_SADX *a1)
 {
 	if ((unsigned __int16)(CurrentAct | (CurrentLevel << 8)) >> 8 == 3 && CurrentAct == 2) DrawQueueDepthBias = 0; else DrawQueueDepthBias = 20048.0f;
 	if (EnableSpeedHighway && CurrentLevel == LevelIDs_SpeedHighway && CurrentAct == 2) DrawQueueDepthBias = 500.0f;
-	DrawVisibleModel_Queue(a1, (QueuedModelFlagsB)0);
+	late_DrawModel(a1, (QueuedModelFlagsB)0);
 	DrawQueueDepthBias = 0;
 	return 0;
 }
@@ -649,7 +648,7 @@ void SuperSonicAuraHook(NJS_OBJECT *a1, QueuedModelFlagsB a2)
 	//Same deal as the barriers basically
 	if ((unsigned __int16)(CurrentAct | (CurrentLevel << 8)) >> 8 == 3 && CurrentAct == 2) DrawQueueDepthBias = 0; else DrawQueueDepthBias = 20048.0f;
 	if (EnableSpeedHighway && CurrentLevel == LevelIDs_SpeedHighway && CurrentAct == 2) DrawQueueDepthBias = 500.0f;
-	ProcessModelNode_A_WrapperB(a1, a2);
+	late_DrawObject(a1, a2);
 	DrawQueueDepthBias = 0;
 }
 
@@ -777,7 +776,7 @@ void __cdecl FixedRipple_Normal(ObjectMaster *a2)
 		g = *(float *)&v1->CharIndex;
 		SetMaterialAndSpriteColor_Float(g, g, g, g);
 		DrawQueueDepthBias = 2000.0f;
-		ProcessModelNode(&stru_8B22F4, (QueuedModelFlagsB)0, v1->Scale.x);
+		lateDrawObject(&stru_8B22F4, (QueuedModelFlagsB)0, v1->Scale.x);
 		DrawQueueDepthBias = 0.0;
 		ClampGlobalColorThing_Thing();
 		njColorBlendingMode(0, NJD_COLOR_BLENDING_SRCALPHA);
@@ -812,7 +811,7 @@ void __cdecl FixedRipple_Bubble(ObjectMaster *a2)
 		njColorBlendingMode(0, NJD_COLOR_BLENDING_SRCALPHA);
 		njColorBlendingMode(NJD_DESTINATION_COLOR, NJD_COLOR_BLENDING_ONE);
 		DrawQueueDepthBias = 2000.0f;
-		ProcessModelNode(&stru_8B22F4, (QueuedModelFlagsB)0, v1[2].z);
+		lateDrawObject(&stru_8B22F4, (QueuedModelFlagsB)0, v1[2].z);
 		DrawQueueDepthBias = 0.0;
 		ClampGlobalColorThing_Thing();
 		njColorBlendingMode(0, NJD_COLOR_BLENDING_SRCALPHA);
@@ -909,7 +908,7 @@ void __cdecl ItemBox_Display_Unknown_Rotate(ObjectMaster* _this)
 				if (IsCameraUnderwater) DrawQueueDepthBias = -10000.0f; 
 				else if (CurrentLevel == LevelIDs_HotShelter && CurrentAct == 0 && EntityData1Ptrs[0]->Position.x < 1050) DrawQueueDepthBias = -1000.0f; 
 				else DrawQueueDepthBias = 8000.0f;
-				DrawModel_Queue(&ItemBox_Capsule_MODEL, (QueuedModelFlagsB)0);
+				lateDrawModel(&ItemBox_Capsule_MODEL, (QueuedModelFlagsB)0);
 				DrawQueueDepthBias = 0.0f;
 				DrawModel(&ItemBox_Top_MODEL);
 			}
@@ -964,7 +963,7 @@ void __cdecl ItemBox_Display_Rotate(ObjectMaster* _this)
 				if (IsCameraUnderwater) DrawQueueDepthBias = -10000.0f; 
 				else if (CurrentLevel == LevelIDs_HotShelter && CurrentAct == 0 && EntityData1Ptrs[0]->Position.x < 1050) DrawQueueDepthBias = -1000.0f; 
 				else DrawQueueDepthBias = 8000.0f;
-				DrawModel_Queue(&ItemBox_Capsule_MODEL, (QueuedModelFlagsB)0);
+				lateDrawModel(&ItemBox_Capsule_MODEL, (QueuedModelFlagsB)0);
 				DrawQueueDepthBias = 0.0f;
 				DrawModel(&ItemBox_Top_MODEL);
 			}
@@ -1104,7 +1103,7 @@ void __cdecl RenderInvincibilityLines(NJS_MODEL_SADX *a1)
 		v1 = 0.0f;
 	}
 	DrawQueueDepthBias = v1;
-	DrawVisibleModel_Queue(a1, (QueuedModelFlagsB)0);
+	late_DrawModel(a1, (QueuedModelFlagsB)0);
 	DrawQueueDepthBias = 0.0f;
 }
 
@@ -1120,7 +1119,7 @@ void SetHintMonitorTransparency(NJS_ARGB *a1)
 
 void DrawNPCShadowFix(NJS_MODEL_SADX *a1)
 {
-	DrawModel_Queue(a1, QueuedModelFlagsB_EnableZWrite);
+	lateDrawModel(a1, QueuedModelFlagsB_EnableZWrite);
 }
 
 void ECGammaCutsceneFix(ObjectMaster *a1, NJS_ACTION *a2, NJS_TEXLIST *a3, float a4, char a5, char a6)
@@ -1357,7 +1356,7 @@ void CharacterShadowHook(NJS_OBJECT *a1, float a2)
 	}
 	else
 	{
-		ProcessModelNode(a1, (QueuedModelFlagsB)6, a2);
+		lateDrawObject(a1, (QueuedModelFlagsB)6, a2);
 		DrawQueueDepthBias = v2;
 	}
 }
@@ -1365,7 +1364,7 @@ void CharacterShadowHook(NJS_OBJECT *a1, float a2)
 void DrawCutsceneZeroShadow(NJS_OBJECT *object, float scale)
 {
 	DrawQueueDepthBias = 2000.0f;
-	ProcessModelNode(object, QueuedModelFlagsB_SomeTextureThing, scale);
+	lateDrawObject(object, QueuedModelFlagsB_SomeTextureThing, scale);
 	DrawQueueDepthBias = 0.0f;
 }
 
@@ -1377,7 +1376,7 @@ void DrawScalableShadowHook(NJS_OBJECT *a1, float a2)
 	if (EnableWindyValley && CurrentLevel == LevelIDs_WindyValley && CurrentAct == 2)
 	{
 		DrawQueueDepthBias = 2600.0f;
-		ProcessModelNode(a1, (QueuedModelFlagsB)6, a2);
+		lateDrawObject(a1, (QueuedModelFlagsB)6, a2);
 	}
 	else
 	{
@@ -1387,9 +1386,9 @@ void DrawScalableShadowHook(NJS_OBJECT *a1, float a2)
 		}
 		else
 		{
-			ProcessModelNode(a1, (QueuedModelFlagsB)6, a2);
+			lateDrawObject(a1, (QueuedModelFlagsB)6, a2);
 		}
-		ProcessModelNode_A_WrapperC(a1, a2);
+		late_DrawShadowObject(a1, a2);
 	}
 	DrawQueueDepthBias = v2;
 }
@@ -1406,28 +1405,28 @@ void DrawRingShadowHook(NJS_MODEL_SADX *a1, float a2)
 		DrawQueueDepthBias = 3000.0f;
 	}
 	else DrawQueueDepthBias = -27952.0f;
-	DrawModel_QueueVisible(a1, (QueuedModelFlagsB)6, a2);
+	late_DrawModelClip(a1, (QueuedModelFlagsB)6, a2);
 	DrawQueueDepthBias = v2;
 }
 
 void RenderEmeraldShard_A(NJS_OBJECT *a1, QueuedModelFlagsB a2, float a3)
 {
 	DrawQueueDepthBias = 2000.0f;
-	ProcessModelNode_D(EmeraldPieceModel, (QueuedModelFlagsB)1, a3);
+	DrawObjectClipMesh(EmeraldPieceModel, (QueuedModelFlagsB)1, a3);
 	DrawQueueDepthBias = 0.0f;
 }
 
 void RenderEmeraldShard_B(NJS_OBJECT *a1, QueuedModelFlagsB a2)
 {
 	DrawQueueDepthBias = 1500.0f;
-	ProcessModelNode_D(EmeraldPieceOutline, (QueuedModelFlagsB)0, 1.0f);
+	DrawObjectClipMesh(EmeraldPieceOutline, (QueuedModelFlagsB)0, 1.0f);
 	DrawQueueDepthBias = 0.0f;
 }
 
 void RenderEmeraldShard_C(NJS_OBJECT *a1)
 {
 	DrawQueueDepthBias = 1500.0f;
-	ProcessModelNode_D(EmeraldPieceOutline, (QueuedModelFlagsB)0, 1.0f);
+	DrawObjectClipMesh(EmeraldPieceOutline, (QueuedModelFlagsB)0, 1.0f);
 	DrawQueueDepthBias = 0.0f;
 }
 
@@ -1438,26 +1437,26 @@ void SetEmeraldShardColor(float a, float r, float g, float b)
 
 void SonicFrozenCubeFix(NJS_OBJECT *a1)
 {
-	ProcessModelNode_D(a1, 0, 1.0f);
+	DrawObjectClipMesh(a1, 0, 1.0f);
 }
 
 void AnimalBubbleHook(NJS_OBJECT* a1, QueuedModelFlagsB a2)
 {
 	DrawQueueDepthBias = 4000.0f;
-	ProcessModelNode(a1, (QueuedModelFlagsB)0, 1.0f);
+	lateDrawObject(a1, (QueuedModelFlagsB)0, 1.0f);
 	DrawQueueDepthBias = 0.0f;
 }
 
 void BigFishingThingFix(NJS_OBJECT* a1)
 {
-	ProcessModelNode(a1, (QueuedModelFlagsB)0, 1.0f);
+	lateDrawObject(a1, (QueuedModelFlagsB)0, 1.0f);
 }
 
 void RenderItemBoxIcon(NJS_MODEL_SADX* a1)
 {
 	if (IsCameraUnderwater) DrawQueueDepthBias = -15000.0f;
 	else if (CurrentLevel == LevelIDs_HotShelter && CurrentAct == 0 && EntityData1Ptrs[0]->Position.x < 1050) DrawQueueDepthBias = -2000.0f; 
-	DrawModel_Queue(a1, QueuedModelFlagsB_EnableZWrite);
+	lateDrawModel(a1, QueuedModelFlagsB_EnableZWrite);
 	DrawQueueDepthBias = 0.0f;
 }
 
@@ -1479,14 +1478,14 @@ void SpindashChargeSpriteHook(NJS_SPRITE *sp, Int n, NJD_SPRITE attr, QueuedMode
 
 void RenderChaosPuddle_Last(NJS_OBJECT *a1)
 {
-	ProcessModelNode_D(a1, (QueuedModelFlagsB)0, 1.0f);
+	DrawObjectClipMesh(a1, (QueuedModelFlagsB)0, 1.0f);
 }
 
 void CutsceneAnimationHook1(NJS_ACTION *a1, float a2, QueuedModelFlagsB a3)
 {
 	//Event helicopter
 	if (CurrentTexList == &EV_HELI_TEXLIST) DrawEventHelicopter(a1, a2, a3);
-	else njAction_Queue_407FC0(a1, a2, a3);
+	else late_ActionMesh(a1, a2, a3);
 }
 
 void CutsceneAnimationHook2(NJS_ACTION *anim, float a2, QueuedModelFlagsB a3)
@@ -1494,24 +1493,24 @@ void CutsceneAnimationHook2(NJS_ACTION *anim, float a2, QueuedModelFlagsB a3)
 	//Chaos emeralds
 	if (CurrentTexList == &M_EM_BLUE_TEXLIST || CurrentTexList == &M_EM_GREEN_TEXLIST || CurrentTexList == &M_EM_WHITE_TEXLIST || CurrentTexList == &M_EM_PURPLE_TEXLIST || CurrentTexList == &M_EM_SKY_TEXLIST || CurrentTexList == &M_EM_YELLOW_TEXLIST || CurrentTexList == &M_EM_RED_TEXLIST || CurrentTexList == &M_EM_BLACK_TEXLIST)
 	{
-		njAction_Queue_407FC0(anim, a2, a3);
+		late_ActionMesh(anim, a2, a3);
 	}
 	//Event Tornado 2
 	if (anim->object == Tornado2Pointer->object)
 	{
-		njAction_Queue_407FC0(anim, a2, a3);
+		late_ActionMesh(anim, a2, a3);
 	}
-	else njAction_Queue_407BB0(anim, a2, a3);
+	else late_ActionEx(anim, a2, a3);
 }
 
 void RenderEggCarrier0NPC(NJS_ACTION* action, Float frame)
 {
-	if (action == (NJS_ACTION*)0x11A86D4) njAction_ReallyHard(action, frame); //Chaos 4
+	if (action == (NJS_ACTION*)0x11A86D4) CHAOS_Action(action, frame); //Chaos 4
 	else if (action->object == E102_OBJECTS[0])
 	{
 		njControl3D_Remove(NJD_CONTROL_3D_CONSTANT_MATERIAL);
 		njControl3D_Add(NJD_CONTROL_3D_ENABLE_ALPHA);
-		njAction_Queue_407BB0(action, frame, QueuedModelFlagsB_EnableZWrite);
+		late_ActionEx(action, frame, QueuedModelFlagsB_EnableZWrite);
 	}
 	else njAction(action, frame);
 }
@@ -1522,7 +1521,7 @@ void RenderEggCarrier3NPC(NJS_ACTION* action, Float frame)
 	{
 		njControl3D_Remove(NJD_CONTROL_3D_CONSTANT_MATERIAL);
 		njControl3D_Add(NJD_CONTROL_3D_ENABLE_ALPHA);
-		njAction_Queue_407BB0(action, frame, QueuedModelFlagsB_EnableZWrite);
+		late_ActionEx(action, frame, QueuedModelFlagsB_EnableZWrite);
 	}
 	else njAction(action, frame);
 }
@@ -1532,16 +1531,16 @@ void GeoAnimFix(NJS_ACTION* a1, float a2, QueuedModelFlagsB a3, float a4)
 	if (EnableMysticRuins && CurrentLevel == LevelIDs_MysticRuins && CurrentAct == 2)
 	{
 		DrawQueueDepthBias = -20952.0f;
-		njAction_Queue_407FC0(a1, a2, 1);
+		late_ActionMesh(a1, a2, 1);
 		DrawQueueDepthBias = 0.0f;
 	}
 	else if (EnableFinalEgg && CurrentLevel == LevelIDs_FinalEgg && CurrentAct == 2)
 	{
 		DrawQueueDepthBias = -47952.0f;
-		njAction_Queue_407BB0_2(a1, a2, a3, a4);
+		late_ActionClipEx(a1, a2, a3, a4);
 		DrawQueueDepthBias = 0.0f;
 	}
-	else njAction_Queue_407BB0_2(a1, a2, a3, a4);
+	else late_ActionClipEx(a1, a2, a3, a4);
 }
 
 void CaptureBeamFix(NJS_OBJECT *a1, QueuedModelFlagsB a2, float a3)
@@ -1554,10 +1553,10 @@ void CaptureBeamFix(NJS_OBJECT *a1, QueuedModelFlagsB a2, float a3)
 	if (CutsceneID == 9 || CutsceneID == 11 | CutsceneID == 53 || CutsceneID == 57 || CutsceneID == 139)
 	{
 		DrawQueueDepthBias = 8000.0f;
-		ProcessModelNode_D_WrapperB(a1, a2, a3);
+		late_DrawObjectClipMesh(a1, a2, a3);
 		DrawQueueDepthBias = 0.0f;
 	}
-	else ProcessModelNode_A_Wrapper(a1, a2, a3);
+	else late_DrawObjectClip(a1, a2, a3);
 }
 
 void QueueAnimals(NJS_ACTION *action, Float frame)
@@ -1597,7 +1596,7 @@ void CutsceneFadeHookForSubtitleText(NJS_ARGB *a1)
 void DrawBombExplosionHook(NJS_MODEL_SADX *model, QueuedModelFlagsB blend)
 {
 	if (!EV_MainThread_ptr && CurrentLevel != LevelIDs_EggViper) DrawQueueDepthBias = 2000.0f;
-	DrawVisibleModel_Queue(model, blend);
+	late_DrawModel(model, blend);
 	DrawQueueDepthBias = 0.0f;
 }
 
@@ -1805,8 +1804,71 @@ void __cdecl actBubble(ObjectMaster* a1)
 void BigDisplayFix(NJS_ACTION* action, float frame, float scale)
 {
 	DrawQueueDepthBias = -52952.0f;
-	DisplayAnimationFrame(action, frame, (QueuedModelFlagsB)1, scale, (void(__cdecl*)(NJS_MODEL_SADX*, int, int))DrawModel_Queue);
+	DisplayAnimationFrame(action, frame, (QueuedModelFlagsB)1, scale, (void(__cdecl*)(NJS_MODEL_SADX*, int, int))lateDrawModel);
 	DrawQueueDepthBias = 0.0f;
+}
+
+void __cdecl AnimateLandtableHook()
+{
+	GeoAnimData* v0; // esi
+	NJS_TEXLIST* v1; // ecx
+	int animCount; // edi
+	NJS_ACTION** v3; // esi
+
+	if (!MissedFrames && (CurrentLandTable->Attrs & LandTableFlags_Animation) != 0)
+	{
+		v0 = CurrentLandTable->AnimData;
+		v1 = v0->TexList;
+		animCount = CurrentLandTable->AnimCount;
+		if (v1)
+		{
+			njSetTexture(v1);
+		}
+		else
+		{
+			njSetTexture(CurrentLandTable->TexList);
+		}
+		if (ClipLevel >= 1)
+		{
+			if (animCount > 0)
+			{
+				v3 = &v0->Animation;
+				do
+				{
+					late_DrawObjectClipEx((*v3)->object, (QueuedModelFlagsB)0, 1.0);
+					v3 += 6;
+					--animCount;
+				}         while (animCount);
+			}
+		}
+		else if (animCount > 0)
+		{
+			for (int i = 0; i < animCount; i++)
+			{
+				if (EnableMysticRuins && CurrentLevel == LevelIDs_MysticRuins && CurrentAct == 2)
+				{
+					//PrintDebug("%d", i);
+					DrawQueueDepthBias = -20000.0f;
+					if (i == 0)
+						late_ActionClipMS(v0[i].Animation, v0[i].Frame, 1, 1.0f);
+					else
+					{
+						DrawQueueDepthBias = -19000.0f;
+						late_ActionClipMesh(v0[i].Animation, v0[i].Frame, 0, 1.0f);
+					}
+					DrawQueueDepthBias = 0.0f;
+				}
+				else if (EnableFinalEgg && CurrentLevel == LevelIDs_FinalEgg && CurrentAct == 2)
+				{
+					DrawQueueDepthBias = -47952.0f;
+					late_ActionClipEx(v0[i].Animation, v0[i].Frame, 0, 1.0);
+					DrawQueueDepthBias = 0.0f;
+				}
+				else
+					late_ActionClipEx(v0[i].Animation, v0[i].Frame, 0, 1.0);
+			}
+		}
+	}
 }
 
 void General_Init()
@@ -1928,7 +1990,7 @@ void General_Init()
 		//Cutscene stuff
 		WriteCall((void*)0x4181FD, CutsceneAnimationHook1);
 		WriteCall((void*)0x418214, CutsceneAnimationHook2);
-		WriteCall((void*)0x43A85F, GeoAnimFix); //Landtable animation hook
+		WriteJump((void*)0x43A810, AnimateLandtableHook); //Landtable animation hook
 		//DirLight data... Someday
 		/*
 		//Replace SADX DirLight data with SA1 DirLight data

@@ -36,7 +36,7 @@ void __cdecl DrawLine3D_Queue_r(NJS_POINT3COL *a1, int a2, NJD_DRAW a3, QueuedMo
 	njDrawLine3D(a1, a2, a3);
 }
 
-void __cdecl DrawModel_Queue_r(NJS_MODEL_SADX *a1, QueuedModelFlagsB a2)
+void __cdecl lateDrawModel_r(NJS_MODEL_SADX *a1, QueuedModelFlagsB a2)
 {
 	DrawModel(a1);
 }
@@ -74,10 +74,10 @@ void OIT_Init()
 	WriteJump(Draw3DLinesMaybe_Queue, Draw3DLines_Queue_r);
 	WriteJump(DrawTriFanThing_Queue, DrawTriFanThing_Queue_r);
 	WriteJump(njDrawSprite3D, njDrawSprite3D_Queue_r);
-	WriteJump(DrawModel_Queue, DrawModel_Queue_r);
-	WriteJump((void*)0x407BB0, DrawModel_Queue_r);
-	WriteJump((void*)0x407CF0, DrawModel_Queue_r);
-	WriteJump((void*)0x407FC0, DrawModel_Queue_r);
+	WriteJump(lateDrawModel, lateDrawModel_r);
+	WriteJump((void*)0x407BB0, lateDrawModel_r);
+	WriteJump((void*)0x407CF0, lateDrawModel_r);
+	WriteJump((void*)0x407FC0, lateDrawModel_r);
 	//Callback stuff is disabled because it breaks
 	//WriteJump(DrawModelCallback_Queue, DrawModelCallback_Queue_r);
 	//2D stuff that breaks in scary ways

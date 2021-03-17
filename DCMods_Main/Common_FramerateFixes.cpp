@@ -381,7 +381,7 @@ void RenderUpgradeSparks(NJS_SPRITE *sp, Int n, NJD_SPRITE attr, QueuedModelFlag
 void RenderMainUpgradeModel(NJS_OBJECT *a1, QueuedModelFlagsB a2, float a3)
 {
 	DrawQueueDepthBias = 1000.0f;
-	ProcessModelNode(a1, a2, a3);
+	lateDrawObject(a1, a2, a3);
 	DrawQueueDepthBias = 0;
 }
 

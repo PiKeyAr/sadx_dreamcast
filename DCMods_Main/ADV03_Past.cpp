@@ -51,129 +51,21 @@ static int ocean_act2 = 59;
 static int water_act1 = 59;
 static int water_act2 = 59;
 static float PastStairsDistanceFix = 2000.0f;
-static bool PastColsLoaded = false;
 SETObjData setdata_past = {};
-
-// Lists
-std::vector<int> PastAct2Cols;
-std::vector<int> PastAct3Cols;
-
-void PastCols_Display(ObjectMaster* a1)
-{
-	NJS_VECTOR sphere = {0, 0, 0};
-	float radius = 0.0f;
-	if (!MissedFrames && CurrentAct == 1)
-	{
-		for (int i : PastAct2Cols)
-		{
-			//PrintDebug("Trying COl: %d\n", i);
-			radius = 2500.0f + LANDTABLEPAST[1]->Col[i].Radius;
-			//PrintDebug("Radius: %f", radius);
-			sphere.x = LANDTABLEPAST[1]->Col[i].Center.x;
-			sphere.y = LANDTABLEPAST[1]->Col[i].Center.y;
-			sphere.z = LANDTABLEPAST[1]->Col[i].Center.z;
-			if (radius != 0 && IsPlayerInsideSphere(&sphere, radius))
-			{
-				njSetTexture(&texlist_past01);
-				njPushMatrix(0);
-				njTranslate(0, 0, 0, 0);
-				if (LANDTABLEPAST[1]->Col[i].Flags & 0x01000000) DrawQueueDepthBias = 3000.0f;
-				else DrawQueueDepthBias = -49000.0f;
-				ProcessModelNode_D(LANDTABLEPAST[1]->Col[i].Model, 4, 1.0f);
-				njPopMatrix(1u);
-				DrawQueueDepthBias = 0;
-			}
-		}
-	}
-	if (!MissedFrames && CurrentAct == 2)
-	{
-		for (int i : PastAct3Cols)
-		{
-			//PrintDebug("Trying COl: %d\n", i);
-			radius = 2500.0f + LANDTABLEPAST[2]->Col[i].Radius;
-			//PrintDebug("Radius: %f", radius);
-			sphere.x = LANDTABLEPAST[2]->Col[i].Center.x;
-			sphere.y = LANDTABLEPAST[2]->Col[i].Center.y;
-			sphere.z = LANDTABLEPAST[2]->Col[i].Center.z;
-			if (radius != 0 && IsPlayerInsideSphere(&sphere, radius))
-			{
-				njSetTexture(&texlist_past02);
-				njPushMatrix(0);
-				njTranslate(0, 0, 0, 0);
-				if (LANDTABLEPAST[2]->Col[i].Flags & 0x01000000) DrawQueueDepthBias = 3000.0f;
-				else DrawQueueDepthBias = -49000.0f;
-				ProcessModelNode_D(LANDTABLEPAST[2]->Col[i].Model, 4, 1.0f);
-				njPopMatrix(1u);
-				DrawQueueDepthBias = 0;
-			}
-		}
-	}
-}
-
-void PastCols_Delete(ObjectMaster* a1)
-{
-	PastColsLoaded = false;
-	CheckThingButThenDeleteObject(a1);
-}
-
-void PastCols_Main(ObjectMaster* a1)
-{
-	if (CurrentLevel == LevelIDs_Past)
-	{
-		if (CurrentAct > 0) PastCols_Display(a1);
-	}
-	else PastCols_Delete(a1);
-}
-
-void PastCols_Load(ObjectMaster* a1)
-{
-	a1->MainSub = (void(__cdecl*)(ObjectMaster*))PastCols_Main;
-	a1->DisplaySub = (void(__cdecl*)(ObjectMaster*))PastCols_Display;
-	a1->DeleteSub = (void(__cdecl*)(ObjectMaster*))PastCols_Delete;
-}
-
-void LoadPastCols()
-{
-	ObjectMaster* obj;
-	EntityData1* ent;
-	ObjectFunc(OF0, PastCols_Load);
-	setdata_past.Distance = 612800.0f;
-	obj = LoadObject((LoadObj)2, 3, OF0);
-	obj->SETData.SETData = &setdata_past;
-	if (obj)
-	{
-		ent = obj->Data1;
-		ent->Position.x = 0;
-		ent->Position.y = 0;
-		ent->Position.z = 0;
-		ent->Rotation.x = 0;
-		ent->Rotation.y = 0;
-		ent->Rotation.z = 0;
-	}
-	PastColsLoaded = true;
-}
-
-static Trampoline* SkyBox_Past_Load_t = nullptr;
-static void __cdecl SkyBox_Past_Load_r(ObjectMaster* a1)
-{
-	const auto original = TARGET_DYNAMIC(SkyBox_Past_Load);
-	original(a1);
-	if (EnablePast && !PastColsLoaded) LoadPastCols();
-}
 
 void RenderPalm2(NJS_ACTION *a1, float a2, int a3, float a4)
 {
 	sub_408350(a1, a2, a3, a4);
 	DrawQueueDepthBias = -49000.0f;
-	ProcessModelNode_D(PalmBottom, (QueuedModelFlagsB)0, 1.0f);
+	DrawObjectClipMesh(PalmBottom, (QueuedModelFlagsB)0, 1.0f);
 	DrawQueueDepthBias = 0.0f;
 }
 
 void RenderPalm1(NJS_OBJECT *a1, QueuedModelFlagsB a2, float a3)
 {
-	ProcessModelNode_C_VerifyTexList(a1, a2, a3);
+	late_DrawObjectClipEx(a1, a2, a3);
 	DrawQueueDepthBias = -49000.0f;
-	ProcessModelNode_D(PalmBottom2, (QueuedModelFlagsB)0, 1.0f);
+	DrawObjectClipMesh(PalmBottom2, (QueuedModelFlagsB)0, 1.0f);
 	DrawQueueDepthBias = 0.0f;
 }
 
@@ -225,22 +117,22 @@ void AllocateEventChao_10(ObjectMaster *a1, NJS_ACTION *a2, NJS_TEXLIST *a3, flo
 
 void FixTreeShadowFlickering1(NJS_OBJECT *a1, QueuedModelFlagsB a2, float a3)
 {
-	ProcessModelNode_C_VerifyTexList(a1, a2, a3);
+	late_DrawObjectClipEx(a1, a2, a3);
 	if (TreeShadow)
 	{
 		DrawQueueDepthBias = -27000.0f;
-		DrawModel_Queue(TreeShadow->basicdxmodel, (QueuedModelFlagsB)4);
+		lateDrawModel(TreeShadow->basicdxmodel, (QueuedModelFlagsB)4);
 		DrawQueueDepthBias = 0.0f;
 	}
 }
 
 void FixTreeShadowFlickering2(NJS_OBJECT *a1, QueuedModelFlagsB a2, float a3)
 {
-	ProcessModelNode_D_WrapperB(a1, a2, a3);
+	late_DrawObjectClipMesh(a1, a2, a3);
 	if (TreeShadow)
 	{
 		DrawQueueDepthBias = -27000.0f;
-		DrawModel_Queue(TreeShadow->basicdxmodel, (QueuedModelFlagsB)4);
+		lateDrawModel(TreeShadow->basicdxmodel, (QueuedModelFlagsB)4);
 		DrawQueueDepthBias = 0.0f;
 	}
 }
@@ -254,25 +146,15 @@ void ParsePastMaterials()
 	int texid;
 	LandTable *landtable;
 	landtable = LANDTABLEPAST[1];
+	// SADX water
+	if (SADXWater_Past)
+		landtable->Col[0].Flags = 0;
 	for (int j = 0; j < landtable->COLCount; j++)
 	{
-		// Reflections
-		if (landtable->Col[j].Flags & 0x8000000)
-		{
-			if (landtable->Col[j].Flags & ColFlags_Visible) 
-				landtable->Col[j].Flags &= ~ColFlags_Visible;
-			PastAct2Cols.push_back(j);
-		}
 		for (int k = 0; k < landtable->Col[j].Model->basicdxmodel->nbMat; ++k)
 		{
 			material = (NJS_MATERIAL*)&landtable->Col[j].Model->basicdxmodel->mats[k];
 			materialflags = material->attrflags;
-			// SADX water
-			if (SADXWater_Past)
-			{
-				colflags = landtable->Col[j].Flags;
-				if (colflags == 0x88000020) landtable->Col[j].Flags = 0;
-			}
 			// Texanim 1
 			if (material->attr_texId == 6 || (material->attr_texId >= 73 && material->attr_texId <= 82))
 			{
@@ -294,21 +176,11 @@ void ParsePastMaterials()
 		}
 	}
 	landtable = LANDTABLEPAST[2];
+	// SADX water
+	if (SADXWater_Past)
+		landtable->Col[0].Flags = 0;
 	for (int j = 0; j < landtable->COLCount; j++)
 	{
-		// Reflections
-		if (landtable->Col[j].Flags & 0x8000000)
-		{
-			if (landtable->Col[j].Flags & ColFlags_Visible) 
-				landtable->Col[j].Flags &= ~ColFlags_Visible;
-			PastAct3Cols.push_back(j);
-		}
-		// SADX water
-		if (SADXWater_Past)
-		{
-			colflags = landtable->Col[j].Flags;
-			if (colflags == 0x88000020) landtable->Col[j].Flags = 0;
-		}
 		for (int k = 0; k < landtable->Col[j].Model->basicdxmodel->nbMat; ++k)
 		{
 			material = (NJS_MATERIAL*)&landtable->Col[j].Model->basicdxmodel->mats[k];
@@ -337,8 +209,6 @@ void ParsePastMaterials()
 
 void UnloadLevelFiles_ADV03()
 {
-	PastAct2Cols.clear();
-	PastAct3Cols.clear();
 	if (PastChaoModel_2) ForceLightType_Object(PastChaoModel_2, 2, true);
 	if (PastChaoModel_7) ForceLightType_Object(PastChaoModel_7, 2, true);
 	if (PastChaoModel_8) ForceLightType_Object(PastChaoModel_8, 2, true);
@@ -415,7 +285,6 @@ void ADV03_Init()
 	// This is done only once
 	if (!ModelsLoaded_ADV03)
 	{
-		SkyBox_Past_Load_t = new Trampoline(0x542030, 0x542036, SkyBox_Past_Load_r);
 		// Texlists
 		*ADV03_TEXLISTS[4] = texlist_past00;
 		*ADV03_TEXLISTS[5] = texlist_past01;

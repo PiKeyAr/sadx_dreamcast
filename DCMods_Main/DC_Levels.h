@@ -250,23 +250,6 @@ FunctionPointer(void, DrawModelCallback_QueueObjectMaster, (void(__cdecl* functi
 FunctionPointer(void, DrawModelCallback_QueueInt, (void(__cdecl* function)(int), int data, float depth, QueuedModelFlagsB queueflags), 0x404840);
 FunctionPointer(void, DrawModelCallback_QueueOceanData, (void(__cdecl* function)(OceanData*), OceanData* data, float depth, QueuedModelFlagsB queueflags), 0x404840);
 FunctionPointer(void, DrawModelCallback_QueueFloat, (void(__cdecl* function)(float), float data, float depth, QueuedModelFlagsB queueflags), 0x404840);
-FunctionPointer(void, ProcessModel_407BB0, (NJS_MODEL_SADX *model, QueuedModelFlagsB blend, float radius_scale), 0x4094D0);
-FunctionPointer(void, ProcessModel_407CF0, (NJS_MODEL_SADX* model, int a2, int a3), 0x407CF0);
-FunctionPointer(void, ProcessModelNode_TryReallyHard_2, (NJS_OBJECT* a1), 0x40A280);
-FunctionPointer(void, ProcessModelNode_Try, (NJS_OBJECT* a1, int a2, float a3), 0x40A1E0);
-FunctionPointer(int, ProcessModelNode_NoQueueScale, (NJS_OBJECT* a1), 0x4034B0);
-FunctionPointer(void, ProcessModel_NoSorting, (NJS_MODEL_SADX* model, float scale), 0x407A00);
-FunctionPointer(void, njAction_ReallyHard, (NJS_ACTION* a1, float frameNumber), 0x409FB0);
-FunctionPointer(void, njAction_Queue_407CF0_2, (NJS_ACTION *a1, float a2, int a3), 0x408380);
-FunctionPointer(void, DrawModel_Queue_407BB0, (NJS_MODEL_SADX *a1, QueuedModelFlagsB a2), 0x407BB0);
-FunctionPointer(void, DrawModel_Queue_407FC0, (NJS_MODEL_SADX* a1, int blend), 0x407FC0);
-FunctionPointer(void, DrawModel_Queue_407FC0_WithScale, (NJS_MODEL_SADX *model, QueuedModelFlagsB blend, float scale), 0x409E70);
-FunctionPointer(void, DrawModel_Queue_407CF0, (NJS_MODEL_SADX* a1, int blend), 0x407FC0);
-FunctionPointer(void, njAction_Queue_DrawModelQueue, (NJS_ACTION* a1, float a2, int a3, float a4), 0x405490);
-FunctionPointer(void, njAction_DontQueue, (NJS_ACTION *a1, float frame, float scale), 0x405450);
-FunctionPointer(void, njAction_Queue_407BB0, (NJS_ACTION *anim, float a2, int a3), 0x408350);
-FunctionPointer(void, njAction_Queue_407BB0_2, (NJS_ACTION *a1, float a2, int a3, float a4), 0x408350);
-FunctionPointer(void, DrawModel_TryReallyHard, (NJS_MODEL_SADX* a1), 0x409EF0);
 FunctionPointer(void, Bridge_CreateDustParticle, (NJS_VECTOR *a1, NJS_VECTOR *a2, float a3), 0x4B9820);
 
 extern HelperFunctions HelperFunctionsGlobal;

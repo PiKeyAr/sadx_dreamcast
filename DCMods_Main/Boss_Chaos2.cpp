@@ -13,7 +13,7 @@ DataArray(FogData, Chaos2Fog, 0x01120638, 3);
 void FixChaos2Columns(NJS_OBJECT *a1, QueuedModelFlagsB a2, float a3)
 {
 	DrawQueueDepthBias = 8000.0f;
-	ProcessModelNode_A_Wrapper(a1, (QueuedModelFlagsB)0, a3);
+	late_DrawObjectClip(a1, (QueuedModelFlagsB)0, a3);
 	DrawQueueDepthBias = 0;
 }
 
@@ -25,30 +25,30 @@ void UnloadLevelFiles_B_CHAOS2()
 
 void Chaos2Ball(NJS_OBJECT *object)
 {
-	ProcessModelNode_D_Wrapper(object, (QueuedModelFlagsB)0);
+	late_DrawObjectMesh(object, (QueuedModelFlagsB)0);
 }
 
 void Chaos2_Transform(NJS_OBJECT *object)
 {
 	DrawQueueDepthBias = -17000.0f;
-	ProcessModelNode_D_Wrapper(object, (QueuedModelFlagsB)0);
+	late_DrawObjectMesh(object, (QueuedModelFlagsB)0);
 	DrawQueueDepthBias = 0;
 }
 
 void Chaos2Action(NJS_ACTION *a1, float frameNumber)
 {
-	njAction_Queue_407FC0(a1, frameNumber, (QueuedModelFlagsB)0);
+	late_ActionMesh(a1, frameNumber, (QueuedModelFlagsB)0);
 }
 
 void ChandelierFix(NJS_OBJECT *a1, QueuedModelFlagsB a2, float a3)
 {
-	ProcessModelNode_D_Wrapper(a1, (QueuedModelFlagsB)1);
+	late_DrawObjectMesh(a1, (QueuedModelFlagsB)1);
 }
 
 void Chaos2TableTopFix(NJS_MODEL_SADX *model, float scale)
 {
 	DrawQueueDepthBias = -20000.0f;
-	DrawModel_Queue(model, QueuedModelFlagsB_EnableZWrite);
+	lateDrawModel(model, QueuedModelFlagsB_EnableZWrite);
 	DrawQueueDepthBias = 0.0f;
 }
 
@@ -56,7 +56,7 @@ void ChandLightFix(NJS_OBJECT *a1, QueuedModelFlagsB a2)
 {
 	SetMaterialAndSpriteColor_Float(0.65f, 0.6f, 0.6f, 0.6f);
 	DrawQueueDepthBias = -18000.0f;
-	ProcessModelNode(a1, QueuedModelFlagsB_SomeTextureThing, 1.0f);
+	lateDrawObject(a1, QueuedModelFlagsB_SomeTextureThing, 1.0f);
 	DrawQueueDepthBias = 0.0f;
 }
 

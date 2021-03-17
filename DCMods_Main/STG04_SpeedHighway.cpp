@@ -100,7 +100,7 @@ void RocketSprite(float a, float r, float g, float b)
 void AntennaModel(NJS_OBJECT *obj)
 {
 	sub_408530(obj);
-	ProcessModelNode(Antenna, (QueuedModelFlagsB)0, 1.0f);
+	lateDrawObject(Antenna, (QueuedModelFlagsB)0, 1.0f);
 }
 
 void AntennaSprite(NJS_ARGB *a1)
@@ -143,7 +143,7 @@ static void __cdecl FountainDisplay_r(ObjectMaster *a1)
 		{
 			njSetTexture((NJS_TEXLIST*)0x10F30A0);
 			njPushMatrix(0);
-			ProcessModelNode(HW3FountainMesh, QueuedModelFlagsB_SomeTextureThing, 1.0f);
+			lateDrawObject(HW3FountainMesh, QueuedModelFlagsB_SomeTextureThing, 1.0f);
 			njPopMatrix(1u);
 		}
 	}
@@ -213,7 +213,7 @@ void Highway3Cols_Display(ObjectMaster* a1)
 				njTranslate(0, 0, 0, 0);
 				if (GeoLists[34]->Col[Highway3Cols[i]].Flags & 0x01000000) DrawQueueDepthBias = 3000.0f;
 				else DrawQueueDepthBias = -1000.0f;
-				ProcessModelNode_D(GeoLists[34]->Col[Highway3Cols[i]].Model, 1, 1.0f);
+				DrawObjectClipMesh(GeoLists[34]->Col[Highway3Cols[i]].Model, 1, 1.0f);
 				njPopMatrix(1u);
 				DrawQueueDepthBias = 0;
 			}
@@ -320,43 +320,43 @@ void ConeModel(NJS_OBJECT *a1, QueuedModelFlagsB a2)
 {
 	DrawQueueDepthBias = 2000.0f;
 	DrawModel(ConeBase->basicdxmodel);
-	DrawModel_Queue(ConeTop->basicdxmodel, (QueuedModelFlagsB)0);
+	lateDrawModel(ConeTop->basicdxmodel, (QueuedModelFlagsB)0);
 	DrawQueueDepthBias = 0.0f;
 }
 
 void OLmpaFix(NJS_MODEL_SADX *model, QueuedModelFlagsB blend)
 {
 	DrawQueueDepthBias = 3000.0f;
-	DrawVisibleModel_Queue(model, blend);
+	late_DrawModel(model, blend);
 	DrawQueueDepthBias = 0.0f;
 }
 
 void OLampFix(NJS_MODEL_SADX *model, QueuedModelFlagsB blend, float scale)
 {
 	DrawQueueDepthBias = 3000.0f;
-	DrawModel_QueueVisible(model, blend, scale);
+	late_DrawModelClip(model, blend, scale);
 	DrawQueueDepthBias = 0.0f;
 }
 
 void HelicopterLight(NJS_OBJECT *a1, QueuedModelFlagsB a2)
 {
-	ProcessModelNode_A_WrapperB(HelicopterLight1, QueuedModelFlagsB_EnableZWrite);
-	ProcessModelNode_A_WrapperB(HelicopterLight2, QueuedModelFlagsB_EnableZWrite);
-	ProcessModelNode_A_WrapperB(HelicopterLight3, QueuedModelFlagsB_SomeTextureThing);
-	ProcessModelNode_A_WrapperB(HelicopterLight4, QueuedModelFlagsB_SomeTextureThing);
+	late_DrawObject(HelicopterLight1, QueuedModelFlagsB_EnableZWrite);
+	late_DrawObject(HelicopterLight2, QueuedModelFlagsB_EnableZWrite);
+	late_DrawObject(HelicopterLight3, QueuedModelFlagsB_SomeTextureThing);
+	late_DrawObject(HelicopterLight4, QueuedModelFlagsB_SomeTextureThing);
 }
 
 void FlyStFix(NJS_ACTION *action, Float frame)
 {
 	njAction(action, frame);
-	ProcessModelNode(FlySt2, QueuedModelFlagsB_EnableZWrite, 1.0f);
+	lateDrawObject(FlySt2, QueuedModelFlagsB_EnableZWrite, 1.0f);
 }
 
 void MissileFix(NJS_OBJECT *obj)
 {
-	ProcessModelNode_AB_Wrapper(obj, 1.0f);
+	ds_DrawObjectClip(obj, 1.0f);
 	njTranslate(0, -0.5f, 0, 0);
-	ProcessModelNode(MissileLogo, QueuedModelFlagsB_EnableZWrite, 1.0f);
+	lateDrawObject(MissileLogo, QueuedModelFlagsB_EnableZWrite, 1.0f);
 }
 
 void SpeedHighway_Init()

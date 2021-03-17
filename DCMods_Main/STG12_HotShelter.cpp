@@ -86,7 +86,7 @@ void OLight1_Display(ObjectMaster *a1)
 				SetMaterialAndSpriteColor_Float(1.0f, 1.0f, 1.0f, 1.0f);
 			}
 			if (v1->Position.x > 1050) DrawQueueDepthBias = -48000.0f;
-			ProcessModelNode_D_WrapperB((NJS_OBJECT*)0x1828BD4, (QueuedModelFlagsB)0, 1.0f);
+			late_DrawObjectClipMesh((NJS_OBJECT*)0x1828BD4, (QueuedModelFlagsB)0, 1.0f);
 			njPopMatrix(1u);
 			ClampGlobalColorThing_Thing();
 			njControl3D_Restore();
@@ -97,7 +97,7 @@ void OLight1_Display(ObjectMaster *a1)
 		{
 			DrawModel(((NJS_OBJECT*)0x1829068)->basicdxmodel);
 			DrawQueueDepthBias = -20000.0f;
-			ProcessModelNode((NJS_OBJECT*)0x1828BD4, (QueuedModelFlagsB)0, 1.0f);
+			lateDrawObject((NJS_OBJECT*)0x1828BD4, (QueuedModelFlagsB)0, 1.0f);
 			njPopMatrix(1u);
 			DrawQueueDepthBias = 0.0f;
 		}
@@ -127,13 +127,13 @@ void HotShelterCols_Display(ObjectMaster* a1)
 				// General
 				if (!(GeoLists[96]->Col[i].Flags & 0x40000))
 				{
-					ProcessModelNode(GeoLists[96]->Col[i].Model, QueuedModelFlagsB_SomeTextureThing, 1.0f);
+					lateDrawObject(GeoLists[96]->Col[i].Model, QueuedModelFlagsB_SomeTextureThing, 1.0f);
 				}
 				// Ladder thing in the drainage room
 				else
 				{
 					DrawQueueDepthBias = -27000.0f;
-					ProcessModelNode_D(GeoLists[96]->Col[i].Model, QueuedModelFlagsB_EnableZWrite, 1.0f);
+					DrawObjectClipMesh(GeoLists[96]->Col[i].Model, QueuedModelFlagsB_EnableZWrite, 1.0f);
 				}
 				njPopMatrix(1u);
 				DrawQueueDepthBias = 0;
@@ -159,7 +159,7 @@ void HotShelterCols_Display(ObjectMaster* a1)
 				if (!(GeoLists[97]->Col[i].Flags & 0x08000000))
 				{
 					DrawQueueDepthBias = -3000.0f;
-					ProcessModelNode(GeoLists[97]->Col[i].Model, (QueuedModelFlagsB)1, 1.0f);
+					lateDrawObject(GeoLists[97]->Col[i].Model, (QueuedModelFlagsB)1, 1.0f);
 					njPopMatrix(1u);
 					DrawQueueDepthBias = 0;
 				}
@@ -167,7 +167,7 @@ void HotShelterCols_Display(ObjectMaster* a1)
 				else if ((GeoLists[97]->Col[i].Flags & 0x1000000) && (GeoLists[97]->Col[i].Flags & 0x40000))
 				{
 					DrawQueueDepthBias = -1000.0f;
-					ProcessModelNode(GeoLists[97]->Col[i].Model, (QueuedModelFlagsB)1, 1.0f);
+					lateDrawObject(GeoLists[97]->Col[i].Model, (QueuedModelFlagsB)1, 1.0f);
 					njPopMatrix(1u);
 					DrawQueueDepthBias = 0;
 				}
@@ -175,7 +175,7 @@ void HotShelterCols_Display(ObjectMaster* a1)
 				else if (GeoLists[97]->Col[i].Flags & 0x1000000)
 				{
 					DrawQueueDepthBias = -1000.0f;
-					ProcessModelNode_D(GeoLists[97]->Col[i].Model, 0, 1.0f);
+					DrawObjectClipMesh(GeoLists[97]->Col[i].Model, 0, 1.0f);
 					njPopMatrix(1u);
 					DrawQueueDepthBias = 0;
 				}
@@ -183,7 +183,7 @@ void HotShelterCols_Display(ObjectMaster* a1)
 				else if (GeoLists[97]->Col[i].Flags & 0x40000)
 				{
 					DrawQueueDepthBias = -10000.0f;
-					ProcessModelNode_D(GeoLists[97]->Col[i].Model, 0, 1.0f);
+					DrawObjectClipMesh(GeoLists[97]->Col[i].Model, 0, 1.0f);
 					njPopMatrix(1u);
 					DrawQueueDepthBias = 0;
 				}
@@ -191,7 +191,7 @@ void HotShelterCols_Display(ObjectMaster* a1)
 				else
 				{
 					DrawQueueDepthBias = -15000.0;
-					ProcessModelNode_D(GeoLists[97]->Col[i].Model, 0, 1.0f);
+					DrawObjectClipMesh(GeoLists[97]->Col[i].Model, 0, 1.0f);
 					njPopMatrix(1u);
 					DrawQueueDepthBias = 0;
 				}
@@ -217,7 +217,7 @@ void HotShelterCols_Display(ObjectMaster* a1)
 				if (GeoLists[98]->Col[i].Flags & 0x01000000)
 				{
 					DrawQueueDepthBias = -1000.0f;
-					ProcessModelNode_D(GeoLists[98]->Col[i].Model, 0, 1.0f);
+					DrawObjectClipMesh(GeoLists[98]->Col[i].Model, 0, 1.0f);
 					njPopMatrix(1u);
 					DrawQueueDepthBias = 0;
 				}
@@ -225,7 +225,7 @@ void HotShelterCols_Display(ObjectMaster* a1)
 				else
 				{
 					DrawQueueDepthBias = -15000.0;
-					ProcessModelNode_D(GeoLists[98]->Col[i].Model, 0, 1.0f);
+					DrawObjectClipMesh(GeoLists[98]->Col[i].Model, 0, 1.0f);
 					njPopMatrix(1u);
 					DrawQueueDepthBias = 0;
 				}
@@ -306,7 +306,7 @@ static void __cdecl SkyBox_HotShelter_Load_r(ObjectMaster* a1)
 void RenderWaterThing(NJS_OBJECT *a1, QueuedModelFlagsB a2, float a3)
 {
 	DrawQueueDepthBias = 2000.0f;
-	ProcessModelNode(a1, (QueuedModelFlagsB)0, a3);
+	lateDrawObject(a1, (QueuedModelFlagsB)0, a3);
 	DrawQueueDepthBias = 0;
 }
 
@@ -325,23 +325,23 @@ void RenderSuimen(NJS_OBJECT *a1, QueuedModelFlagsB a2, float a3)
 {
 	SetMaterialAndSpriteColor_Float(0.0f, 0.5f, 0.5f, 0.5f);
 	//DrawQueueDepthBias = 000.0f;
-	ProcessModelNode_A_Wrapper(a1, a2, a3);
+	late_DrawObjectClip(a1, a2, a3);
 	//DrawQueueDepthBias = 0.0f;
 	ClampGlobalColorThing_Thing();
 }
 
 void RenderOHikari(NJS_OBJECT *a1, QueuedModelFlagsB a2, float a3)
 {
-	ProcessModelNode_C_VerifyTexList(a1, a2, a3);
+	late_DrawObjectClipEx(a1, a2, a3);
 	DrawQueueDepthBias = 1000.0f;
-	ProcessModelNode(OEfHikari_Light, QueuedModelFlagsB_SomeTextureThing, 1.0f);
+	lateDrawObject(OEfHikari_Light, QueuedModelFlagsB_SomeTextureThing, 1.0f);
 	DrawQueueDepthBias = 0.0f;
 }
 
 void RenderFourWaterThings(NJS_OBJECT* a1, QueuedModelFlagsB a2, float a3)
 {
 	DrawQueueDepthBias = -4000.0f;
-	ProcessModelNode_A_Wrapper(a1, a2, a3);
+	late_DrawObjectClip(a1, a2, a3);
 	DrawQueueDepthBias = 0.0f;
 }
 
@@ -376,7 +376,7 @@ void KowareSuisou_Display_Fixed(ObjectMaster* a1)
 		}
 		DrawQueueDepthBias = 2900.0f;
 		// Thing in the middle
-		njAction_Queue_407FC0((NJS_ACTION*)0x186DEF8, *(float*)& v1->CharIndex, (QueuedModelFlagsB)0);
+		late_ActionMesh((NJS_ACTION*)0x186DEF8, *(float*)& v1->CharIndex, (QueuedModelFlagsB)0);
 		njPopMatrix(1u);
 
 		njPushMatrix(0);
@@ -392,12 +392,12 @@ void KowareSuisou_Display_Fixed(ObjectMaster* a1)
 		if (v1->Action)
 		{
 			// Broken glass
-			ProcessModelNode_D((NJS_OBJECT*)0x182C38C, (QueuedModelFlagsB)0, 1.0f);
+			DrawObjectClipMesh((NJS_OBJECT*)0x182C38C, (QueuedModelFlagsB)0, 1.0f);
 		}
 		else
 		{
 			// Glass
-			ProcessModelNode_D((NJS_OBJECT*)0x1829844, (QueuedModelFlagsB)4, 1.0f);
+			DrawObjectClipMesh((NJS_OBJECT*)0x1829844, (QueuedModelFlagsB)4, 1.0f);
 		}
 		njPopMatrix(1u);
 	}
@@ -405,16 +405,16 @@ void KowareSuisou_Display_Fixed(ObjectMaster* a1)
 
 void RenderRoboTVBrokenGlass(NJS_MODEL_SADX* model, QueuedModelFlagsB blend, float scale)
 {
-	DrawModel_Queue(BrokenGlass->basicdxmodel, (QueuedModelFlagsB)0);
-	DrawModel_Queue(model, (QueuedModelFlagsB)0);
+	lateDrawModel(BrokenGlass->basicdxmodel, (QueuedModelFlagsB)0);
+	lateDrawModel(model, (QueuedModelFlagsB)0);
 }
 
 void RenderOLight3(NJS_OBJECT* a1, QueuedModelFlagsB a2, float a3)
 {
-	ProcessModelNode_C_VerifyTexList(OLight3_1, a2, a3);
-	ProcessModelNode_C_VerifyTexList(OLight3_2, a2, a3);
-	ProcessModelNode(OLight3_3, (QueuedModelFlagsB)0, a3);
-	ProcessModelNode(OLight3_4, (QueuedModelFlagsB)0, a3);
+	late_DrawObjectClipEx(OLight3_1, a2, a3);
+	late_DrawObjectClipEx(OLight3_2, a2, a3);
+	lateDrawObject(OLight3_3, (QueuedModelFlagsB)0, a3);
+	lateDrawObject(OLight3_4, (QueuedModelFlagsB)0, a3);
 }
 
 void E105Animation(NJS_OBJECT *a1, NJS_MOTION *a2, float a3, float a4)

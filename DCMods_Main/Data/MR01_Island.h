@@ -35498,6 +35498,6 @@ extern "C" __declspec(dllexport) COL collist_0009C92C[] = {
 	{ { -1065.364f, 26.37857f, 252.8119f }, 210.3958f, 0, 0, &object_000A3BF4, 0, 0xA0000002 }, //Pool water surface
 };
 
-extern "C" __declspec(dllexport) LandTable landtable_0009E7B0 = { LengthOfArray<int16_t>(collist_0009C92C), 0, 8, 0, collist_0009C92C, NULL, "ADV_MR01", &texlist_mr01, 0, 0 };
+extern "C" __declspec(dllexport) LandTable landtable_0009E7B0 = { LengthOfArray<int16_t>(collist_0009C92C), 0, 8, 0, 0, collist_0009C92C, NULL, "ADV_MR01", &texlist_mr01, 0, 0 };
 
 #pragma warning(pop)

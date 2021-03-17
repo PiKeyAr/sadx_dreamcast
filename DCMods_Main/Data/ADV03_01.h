@@ -22605,7 +22605,7 @@ extern "C" __declspec(dllexport) NJS_OBJECT object_00097658 = { NJD_EVAL_UNIT_SC
 extern "C" __declspec(dllexport) NJS_OBJECT object_0009768C = { NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0009368C, 892.9288f, -59.28561f, 2034.455f, 0x16C, 0, 0, 1, 1, 1, NULL, NULL };
 
 extern "C" __declspec(dllexport) COL collist_0006735C[] = {
-	{ { -545.4837f, -220, 999.9899f }, 2876.595f, 0, 0, &object_0006E5BC, 0, 0x88000020 }, //Ocean
+	{ { -545.4837f, -220, 999.9899f }, 2876.595f, -49000.0f, 0, &object_0006E5BC, 0, 0x80000020 }, //Ocean
 	{ { -3780.139f, 1836.382f, -1715.595f }, 3065.147f, 0, 0, &object_0007741C, 0, 0x80000020 }, //Mountain
 	{ { -3124.018f, 267, -594.889f }, 2155.521f, 0, 0, &object_000763B8, 0, 0x80000020 }, //Ice rocks in front of the mountain
 	{ { 1118.845f, 22.99869f, 2404.496f }, 1018.771f, 0, 0, &object_0006F3F0, 0, 0x80000020 }, //Background rocks (no alpha)
@@ -22807,20 +22807,20 @@ extern "C" __declspec(dllexport) COL collist_0006735C[] = {
 	{ { 519.2986f, 144.5998f, -269.7307f }, 734.4481f, 0, 0, &object_00073C2C, 0, 0x80000020 }, //Bottom grass 2
 	{ { 112.7029f, -49.79767f, 1701.08f }, 478.5961f, 0, 0, &object_0006C15C, 0, 0x80000020 }, //Bottom grass 3
 	{ { 0, -106.5f, 0 }, 436.7061f, 0, 0, &object_00091F0C, 0, 0x80000000 }, //Green thing
-	{ { -152.5f, -35.5f, -152.5f }, 37.08352f, 0, 0, &object_0009741C, 0, 0x88000000 }, //Pillar reflections bottom
-	{ { -215, -35.5f, -0.00019f }, 37.08352f, 0, 0, &object_00097450, 0, 0x88000000 }, //Pillar reflections bottom
-	{ { -152.5f, -35.5f, 152.5f }, 37.08352f, 0, 0, &object_00097484, 0, 0x88000000 }, //Pillar reflections bottom
-	{ { 152.5f, -35.5f, 152.5f }, 37.08352f, 0, 0, &object_000974B8, 0, 0x88000000 }, //Pillar reflections bottom
-	{ { 215, -35.5f, -0.00019f }, 37.08352f, 0, 0, &object_000974EC, 0, 0x88000000 }, //Pillar reflections bottom
-	{ { 152.5f, -35.5f, -152.5f }, 37.08352f, 0, 0, &object_00097520, 0, 0x88000000 }, //Pillar reflections bottom
-	{ { -0.00019f, -35.5f, -215 }, 37.08352f, 0, 0, &object_00090520, 0, 0x88000000 }, //Pillar reflections bottom
-	{ { -86.25f, 61.5f, 0.00008578999f }, 26.04443f, 0, 0, &object_000975F0, 0, 0x88000000 }, //Pillar reflections top
-	{ { 86.25f, 61.5f, -0.000015f }, 26.04443f, 0, 0, &object_00097554, 0, 0x88000000 }, //Pillar reflections top
-	{ { 43.12494f, 61.5f, -74.69472f }, 26.04443f, 0, 0, &object_00097588, 0, 0x88000000 }, //Pillar reflections top
-	{ { -43.125f, 61.5f, -74.69469f }, 26.04443f, 0, 0, &object_000975BC, 0, 0x88000000 }, //Pillar reflections top
-	{ { -43.12495f, 61.5f, 74.69471f }, 26.04443f, 0, 0, &object_00097624, 0, 0x88000000 }, //Pillar reflections top
-	{ { 43.125f, 61.5f, 74.69469f }, 26.04443f, 0, 0, &object_0009210C, 0, 0x88000000 }, //Pillar reflections top
-	{ { 0, -25.5f, 0.0000075f }, 240.111f, 0, 0, &object_0008FFE8, 0, 0x88000000 }, //WTF is this thing?
+	{ { -152.5f, -35.5f, -152.5f }, 37.08352f, -49000.0, 0, &object_0009741C, 0, 0x81000000 }, //Pillar reflections bottom
+	{ { -215, -35.5f, -0.00019f }, 37.08352f, -49000.0, 0, &object_00097450, 0, 0x81000000 }, //Pillar reflections bottom
+	{ { -152.5f, -35.5f, 152.5f }, 37.08352f, -49000.0, 0, &object_00097484, 0, 0x81000000 }, //Pillar reflections bottom
+	{ { 152.5f, -35.5f, 152.5f }, 37.08352f, -49000.0, 0, &object_000974B8, 0, 0x81000000 }, //Pillar reflections bottom
+	{ { 215, -35.5f, -0.00019f }, 37.08352f, -49000.0, 0, &object_000974EC, 0, 0x81000000 }, //Pillar reflections bottom
+	{ { 152.5f, -35.5f, -152.5f }, 37.08352f, -49000.0, 0, &object_00097520, 0, 0x81000000 }, //Pillar reflections bottom
+	{ { -0.00019f, -35.5f, -215 }, 37.08352f, -49000.0, 0, &object_00090520, 0, 0x81000000 }, //Pillar reflections bottom
+	{ { -86.25f, 61.5f, 0.00008578999f }, 26.04443f, -49000.0, 0, &object_000975F0, 0, 0x81000000 }, //Pillar reflections top
+	{ { 86.25f, 61.5f, -0.000015f }, 26.04443f, -49000.0, 0, &object_00097554, 0, 0x81000000 }, //Pillar reflections top
+	{ { 43.12494f, 61.5f, -74.69472f }, 26.04443f, -49000.0, 0, &object_00097588, 0, 0x81000000 }, //Pillar reflections top
+	{ { -43.125f, 61.5f, -74.69469f }, 26.04443f, -49000.0, 0, &object_000975BC, 0, 0x81000000 }, //Pillar reflections top
+	{ { -43.12495f, 61.5f, 74.69471f }, 26.04443f, -49000.0, 0, &object_00097624, 0, 0x81000000 }, //Pillar reflections top
+	{ { 43.125f, 61.5f, 74.69469f }, 26.04443f, -49000.0, 0, &object_0009210C, 0, 0x81000000 }, //Pillar reflections top
+	{ { 0, -25.5f, 0.0000075f }, 240.111f, -49000.0, 0, &object_0008FFE8, 0, 0x80000000 }, //WTF is this thing?
 	{ { 0, 1, 0 }, 395.6269f, 0, 0, &object_0008B2E0_2, 0, 0xA0040001 }, //Floor transparent
 	{ { 0, 65.25f, 0 }, 171.0811f, 0, 0, &object_0007F7DC_2, 0, 0xC0040001 }, //Middle thing floor transparent
 	{ { 0, -0.25f, 0 }, 381.8376f, 0, 0, &object_0009609C, 0, 0xA0000002 }, //Water bottom
@@ -22830,6 +22830,6 @@ extern "C" __declspec(dllexport) COL collist_0006735C[] = {
 	{ { -0.0005249f, 57.9475f, -0.0004909f }, 200.0426f, 0, 0, &object_00094498, 0, 0x80000000 }, //Water grass mid
 };
 
-extern "C" __declspec(dllexport) LandTable landtable_0000029C = { LengthOfArray<int16_t>(collist_0006735C), 0, 8, 0, collist_0006735C, NULL, "PAST01", &texlist_past01, 0, 0 };
+extern "C" __declspec(dllexport) LandTable landtable_0000029C = { LengthOfArray<int16_t>(collist_0006735C), 0, 8, 0, 0, collist_0006735C, NULL, "PAST01", &texlist_past01, 0, 0 };
 
 #pragma warning(pop)

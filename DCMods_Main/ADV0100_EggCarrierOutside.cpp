@@ -93,7 +93,7 @@ void __cdecl EggCarrierSkyBox_Top(EntityData1* a1, float a2)
 		njTranslate(0, Camera_Data1->Position.x, a2, Camera_Data1->Position.z);
 		njScaleV(0, &Skybox_Scale);
 		v2 = VectorMaxAbs(&Skybox_Scale);
-		ProcessModelNode_AB_Wrapper(ADV01_OBJECTS[65], v2);
+		ds_DrawObjectClip(ADV01_OBJECTS[65], v2);
 		njScale(0, 1.0, 1.0, 1.0);
 		njPopMatrix(1u);
 		ToggleStageFog();
@@ -123,7 +123,7 @@ void __cdecl EggCarrierSkyBox_Bottom(EntityData1* a1, float a2)
 	njScale(0, 3.0, 1.0, 3.0);
 	njScaleV(0, &Skybox_Scale);
 	v5 = VectorMaxAbs(&Skybox_Scale);
-	ProcessModelNode_AB_Wrapper(v2, v5);
+	ds_DrawObjectClip(v2, v5);
 	njScale(0, 1.0, 1.0, 1.0);
 	njColorBlendingMode(0, NJD_COLOR_BLENDING_SRCALPHA);
 	njColorBlendingMode(NJD_DESTINATION_COLOR, NJD_COLOR_BLENDING_INVSRCALPHA);
@@ -139,7 +139,7 @@ void EggCarrierSea()
 		njSetTexture(&EC_SEA_TEXLIST);
 		njPushMatrix(0);
 		njTranslate(0, Camera_Data1->Position.x, 0, Camera_Data1->Position.z);
-		ProcessModelNode_A_Wrapper(EggCarrierSeaModel, QueuedModelFlagsB_3, 1.0f);
+		late_DrawObjectClip(EggCarrierSeaModel, QueuedModelFlagsB_3, 1.0f);
 		njPopMatrix(1u);
 	}
 }
@@ -154,19 +154,19 @@ void ODoseiFix(NJS_MODEL_SADX* model, float scale)
 void OLivingLightFix(NJS_OBJECT* a1, int blend_mode, float scale)
 {
 	SetMaterialAndSpriteColor_Float(1.0f, 1.0f, 1.0f, 1.0f);
-	ProcessModelNode_D_WrapperB(a1, blend_mode, scale);
+	late_DrawObjectClipMesh(a1, blend_mode, scale);
 	ClampGlobalColorThing_Thing();
 }
 
 void DrawTornado2WithQueue(NJS_OBJECT* obj, float scale)
 {
-	DrawModel_Queue_407FC0(obj->basicdxmodel, QueuedModelFlagsB_EnableZWrite);
+	DrawModelMesh(obj->basicdxmodel, QueuedModelFlagsB_EnableZWrite);
 }
 
 void LightFix(NJS_MODEL_SADX* model, QueuedModelFlagsB blend, float scale)
 {
 	DrawQueueDepthBias = 1000.0f;
-	DrawModel_QueueVisible(model, blend, scale);
+	late_DrawModelClip(model, blend, scale);
 	DrawQueueDepthBias = 0.0f;
 }
 

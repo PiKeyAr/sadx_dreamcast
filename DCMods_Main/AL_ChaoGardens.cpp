@@ -181,8 +181,8 @@ void MRGardenSkybox_Display(ObjectMaster *a1)
 	njTranslate(0, Camera_Data1->Position.x, 0, Camera_Data1->Position.z);
 	njScale(0, 1.0f, 1.0f, 1.0f);
 	DrawQueueDepthBias = -47000;
-	if (GetTimeOfDay() == 0) ProcessModelNode(ChaoGardenSky_MR_Day, QueuedModelFlagsB_EnableZWrite, 1.0f);
-	else ProcessModelNode(ChaoGardenSky_MR_Night, QueuedModelFlagsB_EnableZWrite, 1.0f);
+	if (GetTimeOfDay() == 0) lateDrawObject(ChaoGardenSky_MR_Day, QueuedModelFlagsB_EnableZWrite, 1.0f);
+	else lateDrawObject(ChaoGardenSky_MR_Night, QueuedModelFlagsB_EnableZWrite, 1.0f);
 	njPopMatrix(1u);
 	DrawQueueDepthBias = 0;
 	ToggleStageFog();
@@ -1283,13 +1283,13 @@ void __cdecl ECGardenWater_Display(ObjectMaster *a1)
 		njPushMatrix(0);
 		njTranslate(0, 0, 0, 0);
 		njScale(0, 1.0f, 1.0f, 1.0f);
-		ProcessModelNode_AB_Wrapper(ChaoGardenSky_EC_Sky, 1.0f);
+		ds_DrawObjectClip(ChaoGardenSky_EC_Sky, 1.0f);
 		njPopMatrix(1u);
 		//Water
 		njSetTexture((NJS_TEXLIST*)&texlist_ecgarden);
 		njPushMatrix(0);
 		njTranslate(0, 0, -415.8f, 0);
-		ProcessModelNode_A_Wrapper(ChaoGardenSky_EC_Water, QueuedModelFlagsB_3, 1.0f); //Water
+		late_DrawObjectClip(ChaoGardenSky_EC_Water, QueuedModelFlagsB_3, 1.0f); //Water
 		njPopMatrix(1u);
 		ToggleStageFog();
 	}
@@ -1558,7 +1558,7 @@ void RenderChaoNormalFruit_Whatever(NJS_MODEL_SADX *a1)
 void RenderChaoTransporterLabel_Fix(NJS_OBJECT *a1)
 {
 	DrawQueueDepthBias = -1000.0f;
-	ProcessModelNode(a1, QueuedModelFlagsB_SomeTextureThing, 1.0f);
+	lateDrawObject(a1, QueuedModelFlagsB_SomeTextureThing, 1.0f);
 	DrawQueueDepthBias = 0;
 }
 
@@ -1568,25 +1568,25 @@ void ChaoEggHook_BlackMarket(NJS_CNK_MODEL *a1, int a2)
 	if (a2 == SADXEggColour_Black_TwoTone)
 	{
 		njSetTexture(&CHAO_TEXLIST);
-		ProcessModelNode(ChaoEgg_BlackTwoTone, QueuedModelFlagsB_EnableZWrite, 1.0f);
+		lateDrawObject(ChaoEgg_BlackTwoTone, QueuedModelFlagsB_EnableZWrite, 1.0f);
 	}
 	//Generic egg
 	else if (a2 == SADXEggColour_Normal)
 	{
 		njSetTexture(&CHAO_TEXLIST);
-		ProcessModelNode(ChaoEgg_Normal, QueuedModelFlagsB_EnableZWrite, 1.0f);
+		lateDrawObject(ChaoEgg_Normal, QueuedModelFlagsB_EnableZWrite, 1.0f);
 	}
 	//Gold egg
 	else if (a2 == SADXEggColour_YellowJewel)
 	{
 		njSetTexture(&CHAO_TEXLIST);
-		ProcessModelNode(ChaoEgg_Gold, QueuedModelFlagsB_EnableZWrite, 1.0f);
+		lateDrawObject(ChaoEgg_Gold, QueuedModelFlagsB_EnableZWrite, 1.0f);
 	}
 	//Silver egg
 	else if (a2 == SADXEggColour_WhiteJewel)
 	{
 		njSetTexture(&CHAO_TEXLIST);
-		ProcessModelNode(ChaoEgg_Silver, QueuedModelFlagsB_EnableZWrite, 1.0f);
+		lateDrawObject(ChaoEgg_Silver, QueuedModelFlagsB_EnableZWrite, 1.0f);
 	}
 	else GetChaoHatModel(a1, a2);
 }
@@ -1601,7 +1601,7 @@ void __cdecl RenderChaoEgg_DC_1(NJS_CNK_OBJECT *a1, int a2)
 		{
 			njScale(0, 0.9f, 0.9f, 0.9f);
 			njSetTexture(&CHAO_TEXLIST);
-			ProcessModelNode(ChaoEgg_BlackTwoTone, QueuedModelFlagsB_EnableZWrite, 1.0f);
+			lateDrawObject(ChaoEgg_BlackTwoTone, QueuedModelFlagsB_EnableZWrite, 1.0f);
 			return;
 		}
 		//Generic egg
@@ -1609,7 +1609,7 @@ void __cdecl RenderChaoEgg_DC_1(NJS_CNK_OBJECT *a1, int a2)
 		{
 			njScale(0, 0.9f, 0.9f, 0.9f);
 			njSetTexture(&CHAO_TEXLIST);
-			ProcessModelNode(ChaoEgg_Normal, QueuedModelFlagsB_EnableZWrite, 1.0f);
+			lateDrawObject(ChaoEgg_Normal, QueuedModelFlagsB_EnableZWrite, 1.0f);
 			return;
 		}
 		//Gold egg
@@ -1617,7 +1617,7 @@ void __cdecl RenderChaoEgg_DC_1(NJS_CNK_OBJECT *a1, int a2)
 		{
 			njScale(0, 0.9f, 0.9f, 0.9f);
 			njSetTexture(&CHAO_TEXLIST);
-			ProcessModelNode(ChaoEgg_Gold, QueuedModelFlagsB_EnableZWrite, 1.0f);
+			lateDrawObject(ChaoEgg_Gold, QueuedModelFlagsB_EnableZWrite, 1.0f);
 			return;
 		}
 		//Silver egg
@@ -1625,7 +1625,7 @@ void __cdecl RenderChaoEgg_DC_1(NJS_CNK_OBJECT *a1, int a2)
 		{
 			njScale(0, 0.9f, 0.9f, 0.9f);
 			njSetTexture(&CHAO_TEXLIST);
-			ProcessModelNode(ChaoEgg_Silver, QueuedModelFlagsB_EnableZWrite, 1.0f);
+			lateDrawObject(ChaoEgg_Silver, QueuedModelFlagsB_EnableZWrite, 1.0f);
 			return;
 		}
 		else goto SADXShit;
@@ -1637,7 +1637,7 @@ void __cdecl RenderChaoEgg_DC_1(NJS_CNK_OBJECT *a1, int a2)
 		{
 			njScale(0, 0.9f, 0.9f, 0.9f);
 			njSetTexture(&CHAO_TEXLIST);
-			ProcessModelNode(ChaoEgg_Broken_BlackTwoTone, QueuedModelFlagsB_EnableZWrite, 1.0f);
+			lateDrawObject(ChaoEgg_Broken_BlackTwoTone, QueuedModelFlagsB_EnableZWrite, 1.0f);
 			return;
 		}
 		//Generic egg
@@ -1645,7 +1645,7 @@ void __cdecl RenderChaoEgg_DC_1(NJS_CNK_OBJECT *a1, int a2)
 		{
 			njScale(0, 0.9f, 0.9f, 0.9f);
 			njSetTexture(&CHAO_TEXLIST);
-			ProcessModelNode(ChaoEgg_Broken_Normal, QueuedModelFlagsB_EnableZWrite, 1.0f);
+			lateDrawObject(ChaoEgg_Broken_Normal, QueuedModelFlagsB_EnableZWrite, 1.0f);
 			return;
 		}
 		//Gold egg
@@ -1653,7 +1653,7 @@ void __cdecl RenderChaoEgg_DC_1(NJS_CNK_OBJECT *a1, int a2)
 		{
 			njScale(0, 0.9f, 0.9f, 0.9f);
 			njSetTexture(&CHAO_TEXLIST);
-			ProcessModelNode(ChaoEgg_Broken_Gold, QueuedModelFlagsB_EnableZWrite, 1.0f);
+			lateDrawObject(ChaoEgg_Broken_Gold, QueuedModelFlagsB_EnableZWrite, 1.0f);
 			return;
 		}
 		//Silver egg
@@ -1661,7 +1661,7 @@ void __cdecl RenderChaoEgg_DC_1(NJS_CNK_OBJECT *a1, int a2)
 		{
 			njScale(0, 0.9f, 0.9f, 0.9f);
 			njSetTexture(&CHAO_TEXLIST);
-			ProcessModelNode(ChaoEgg_Broken_Silver, QueuedModelFlagsB_EnableZWrite, 1.0f);
+			lateDrawObject(ChaoEgg_Broken_Silver, QueuedModelFlagsB_EnableZWrite, 1.0f);
 			return;
 		}
 		else goto SADXShit;
@@ -1673,7 +1673,7 @@ void __cdecl RenderChaoEgg_DC_1(NJS_CNK_OBJECT *a1, int a2)
 		{
 			njScale(0, 0.9f, 0.9f, 0.9f);
 			njSetTexture(&CHAO_TEXLIST);
-			ProcessModelNode(ChaoEgg_Broken_BlackTwoTone->child, QueuedModelFlagsB_EnableZWrite, 1.0f);
+			lateDrawObject(ChaoEgg_Broken_BlackTwoTone->child, QueuedModelFlagsB_EnableZWrite, 1.0f);
 			return;
 		}
 		//Generic egg
@@ -1681,7 +1681,7 @@ void __cdecl RenderChaoEgg_DC_1(NJS_CNK_OBJECT *a1, int a2)
 		{
 			njScale(0, 0.9f, 0.9f, 0.9f);
 			njSetTexture(&CHAO_TEXLIST);
-			ProcessModelNode(ChaoEgg_Broken_Normal->child, QueuedModelFlagsB_EnableZWrite, 1.0f);
+			lateDrawObject(ChaoEgg_Broken_Normal->child, QueuedModelFlagsB_EnableZWrite, 1.0f);
 			return;
 		}
 		//Gold egg
@@ -1689,7 +1689,7 @@ void __cdecl RenderChaoEgg_DC_1(NJS_CNK_OBJECT *a1, int a2)
 		{
 			njScale(0, 0.9f, 0.9f, 0.9f);
 			njSetTexture(&CHAO_TEXLIST);
-			ProcessModelNode(ChaoEgg_Broken_Gold->child, QueuedModelFlagsB_EnableZWrite, 1.0f);
+			lateDrawObject(ChaoEgg_Broken_Gold->child, QueuedModelFlagsB_EnableZWrite, 1.0f);
 			return;
 		}
 		//Silver egg
@@ -1697,7 +1697,7 @@ void __cdecl RenderChaoEgg_DC_1(NJS_CNK_OBJECT *a1, int a2)
 		{
 			njScale(0, 0.9f, 0.9f, 0.9f);
 			njSetTexture(&CHAO_TEXLIST);
-			ProcessModelNode(ChaoEgg_Broken_Silver->child, QueuedModelFlagsB_EnableZWrite, 1.0f);
+			lateDrawObject(ChaoEgg_Broken_Silver->child, QueuedModelFlagsB_EnableZWrite, 1.0f);
 			return;
 		}
 		else goto SADXShit;
@@ -1729,7 +1729,7 @@ void __cdecl RenderChaoEgg_DC_2(NJS_CNK_OBJECT *a1, int a2, int *a3, float a4)
 		{
 			njScale(0, 0.9f, 0.9f, 0.9f);
 			njSetTexture(&CHAO_TEXLIST);
-			ProcessModelNode(ChaoEgg_BlackTwoTone, QueuedModelFlagsB_EnableZWrite, 1.0f);
+			lateDrawObject(ChaoEgg_BlackTwoTone, QueuedModelFlagsB_EnableZWrite, 1.0f);
 			return;
 		}
 		//Generic egg
@@ -1737,7 +1737,7 @@ void __cdecl RenderChaoEgg_DC_2(NJS_CNK_OBJECT *a1, int a2, int *a3, float a4)
 		{
 			njScale(0, 0.9f, 0.9f, 0.9f);
 			njSetTexture(&CHAO_TEXLIST);
-			ProcessModelNode(ChaoEgg_Normal, QueuedModelFlagsB_EnableZWrite, 1.0f);
+			lateDrawObject(ChaoEgg_Normal, QueuedModelFlagsB_EnableZWrite, 1.0f);
 			return;
 		}
 		//Gold egg
@@ -1745,7 +1745,7 @@ void __cdecl RenderChaoEgg_DC_2(NJS_CNK_OBJECT *a1, int a2, int *a3, float a4)
 		{
 			njScale(0, 0.9f, 0.9f, 0.9f);
 			njSetTexture(&CHAO_TEXLIST);
-			ProcessModelNode(ChaoEgg_Gold, QueuedModelFlagsB_EnableZWrite, 1.0f);
+			lateDrawObject(ChaoEgg_Gold, QueuedModelFlagsB_EnableZWrite, 1.0f);
 			return;
 		}
 		//Silver egg
@@ -1753,7 +1753,7 @@ void __cdecl RenderChaoEgg_DC_2(NJS_CNK_OBJECT *a1, int a2, int *a3, float a4)
 		{
 			njScale(0, 0.9f, 0.9f, 0.9f);
 			njSetTexture(&CHAO_TEXLIST);
-			ProcessModelNode(ChaoEgg_Silver, QueuedModelFlagsB_EnableZWrite, 1.0f);
+			lateDrawObject(ChaoEgg_Silver, QueuedModelFlagsB_EnableZWrite, 1.0f);
 			return;
 		}
 		else goto SADXShit;
@@ -1765,7 +1765,7 @@ void __cdecl RenderChaoEgg_DC_2(NJS_CNK_OBJECT *a1, int a2, int *a3, float a4)
 		{
 			njScale(0, 0.9f, 0.9f, 0.9f);
 			njSetTexture(&CHAO_TEXLIST);
-			ProcessModelNode(ChaoEgg_Broken_BlackTwoTone, QueuedModelFlagsB_EnableZWrite, 1.0f);
+			lateDrawObject(ChaoEgg_Broken_BlackTwoTone, QueuedModelFlagsB_EnableZWrite, 1.0f);
 			return;
 		}
 		//Generic egg
@@ -1773,7 +1773,7 @@ void __cdecl RenderChaoEgg_DC_2(NJS_CNK_OBJECT *a1, int a2, int *a3, float a4)
 		{
 			njScale(0, 0.9f, 0.9f, 0.9f);
 			njSetTexture(&CHAO_TEXLIST);
-			ProcessModelNode(ChaoEgg_Broken_Normal, QueuedModelFlagsB_EnableZWrite, 1.0f);
+			lateDrawObject(ChaoEgg_Broken_Normal, QueuedModelFlagsB_EnableZWrite, 1.0f);
 			return;
 		}
 		//Gold egg
@@ -1781,7 +1781,7 @@ void __cdecl RenderChaoEgg_DC_2(NJS_CNK_OBJECT *a1, int a2, int *a3, float a4)
 		{
 			njScale(0, 0.9f, 0.9f, 0.9f);
 			njSetTexture(&CHAO_TEXLIST);
-			ProcessModelNode(ChaoEgg_Broken_Gold, QueuedModelFlagsB_EnableZWrite, 1.0f);
+			lateDrawObject(ChaoEgg_Broken_Gold, QueuedModelFlagsB_EnableZWrite, 1.0f);
 			return;
 		}
 		//Silver egg
@@ -1789,7 +1789,7 @@ void __cdecl RenderChaoEgg_DC_2(NJS_CNK_OBJECT *a1, int a2, int *a3, float a4)
 		{
 			njScale(0, 0.9f, 0.9f, 0.9f);
 			njSetTexture(&CHAO_TEXLIST);
-			ProcessModelNode(ChaoEgg_Broken_Silver, QueuedModelFlagsB_EnableZWrite, 1.0f);
+			lateDrawObject(ChaoEgg_Broken_Silver, QueuedModelFlagsB_EnableZWrite, 1.0f);
 			return;
 		}
 		else goto SADXShit;
@@ -1801,7 +1801,7 @@ void __cdecl RenderChaoEgg_DC_2(NJS_CNK_OBJECT *a1, int a2, int *a3, float a4)
 		{
 			njScale(0, 0.9f, 0.9f, 0.9f);
 			njSetTexture(&CHAO_TEXLIST);
-			ProcessModelNode(ChaoEgg_Broken_BlackTwoTone->child, QueuedModelFlagsB_EnableZWrite, 1.0f);
+			lateDrawObject(ChaoEgg_Broken_BlackTwoTone->child, QueuedModelFlagsB_EnableZWrite, 1.0f);
 			return;
 		}
 		//Generic egg
@@ -1809,7 +1809,7 @@ void __cdecl RenderChaoEgg_DC_2(NJS_CNK_OBJECT *a1, int a2, int *a3, float a4)
 		{
 			njScale(0, 0.9f, 0.9f, 0.9f);
 			njSetTexture(&CHAO_TEXLIST);
-			ProcessModelNode(ChaoEgg_Broken_Normal->child, QueuedModelFlagsB_EnableZWrite, 1.0f);
+			lateDrawObject(ChaoEgg_Broken_Normal->child, QueuedModelFlagsB_EnableZWrite, 1.0f);
 			return;
 		}
 		//Gold egg
@@ -1817,7 +1817,7 @@ void __cdecl RenderChaoEgg_DC_2(NJS_CNK_OBJECT *a1, int a2, int *a3, float a4)
 		{
 			njScale(0, 0.9f, 0.9f, 0.9f);
 			njSetTexture(&CHAO_TEXLIST);
-			ProcessModelNode(ChaoEgg_Broken_Gold->child, QueuedModelFlagsB_EnableZWrite, 1.0f);
+			lateDrawObject(ChaoEgg_Broken_Gold->child, QueuedModelFlagsB_EnableZWrite, 1.0f);
 			return;
 		}
 		//Silver egg
@@ -1825,7 +1825,7 @@ void __cdecl RenderChaoEgg_DC_2(NJS_CNK_OBJECT *a1, int a2, int *a3, float a4)
 		{
 			njScale(0, 0.9f, 0.9f, 0.9f);
 			njSetTexture(&CHAO_TEXLIST);
-			ProcessModelNode(ChaoEgg_Broken_Silver->child, QueuedModelFlagsB_EnableZWrite, 1.0f);
+			lateDrawObject(ChaoEgg_Broken_Silver->child, QueuedModelFlagsB_EnableZWrite, 1.0f);
 			return;
 		}
 		else goto SADXShit;
@@ -1931,7 +1931,7 @@ void ChaoGardenTransporterEffect_Display(ObjectMaster *a2)
 		sy = sx;
 	}
 	DrawQueueDepthBias = 3000.0f;
-	DrawModel_Queue_407FC0(ChaoGardenTransporterEffect->basicdxmodel, QueuedModelFlagsB_SomeTextureThing);
+	DrawModelMesh(ChaoGardenTransporterEffect->basicdxmodel, QueuedModelFlagsB_SomeTextureThing);
 	DrawQueueDepthBias = 0;
 	njPopMatrix(1u);
 	RemoveConstantAttr(0, NJD_FLAG_USE_ALPHA);

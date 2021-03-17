@@ -69,23 +69,23 @@ void Mirror_Display(ObjectMaster* a1)
 		njScale(0, 1.0f, 1.0f, 1.0f);
 		njRotateXYZ(0, 0, 0, 0);
 		DrawQueueDepthBias = 6000.0f;
-		ProcessModelNode(Mirrors[0], (QueuedModelFlagsB)0, 1.0f); // far right
-		ProcessModelNode(Mirrors[1], (QueuedModelFlagsB)0, 1.0f); // far left
-		ProcessModelNode(Mirrors[2], (QueuedModelFlagsB)0, 1.0f); // far right 2
-		ProcessModelNode(Mirrors[3], (QueuedModelFlagsB)0, 1.0f); // far left 2
+		lateDrawObject(Mirrors[0], (QueuedModelFlagsB)0, 1.0f); // far right
+		lateDrawObject(Mirrors[1], (QueuedModelFlagsB)0, 1.0f); // far left
+		lateDrawObject(Mirrors[2], (QueuedModelFlagsB)0, 1.0f); // far right 2
+		lateDrawObject(Mirrors[3], (QueuedModelFlagsB)0, 1.0f); // far left 2
 		DrawQueueDepthBias = 5000.0f;
-		ProcessModelNode(Mirrors[4], (QueuedModelFlagsB)0, 1.0f); // mid right
-		ProcessModelNode(Mirrors[5], (QueuedModelFlagsB)0, 1.0f); // mid left 
-		ProcessModelNode(Mirrors[6], (QueuedModelFlagsB)0, 1.0f); // mid right 2
-		ProcessModelNode(Mirrors[7], (QueuedModelFlagsB)0, 1.0f); // mid left 2
+		lateDrawObject(Mirrors[4], (QueuedModelFlagsB)0, 1.0f); // mid right
+		lateDrawObject(Mirrors[5], (QueuedModelFlagsB)0, 1.0f); // mid left 
+		lateDrawObject(Mirrors[6], (QueuedModelFlagsB)0, 1.0f); // mid right 2
+		lateDrawObject(Mirrors[7], (QueuedModelFlagsB)0, 1.0f); // mid left 2
 		DrawQueueDepthBias = 4000.0f;
-		ProcessModelNode(Mirrors[8], (QueuedModelFlagsB)0, 1.0f); // end right
-		ProcessModelNode(Mirrors[9], (QueuedModelFlagsB)0, 1.0f); // end left
-		ProcessModelNode(Mirrors[10], (QueuedModelFlagsB)0, 1.0f); // end right 2
-		ProcessModelNode(Mirrors[11], (QueuedModelFlagsB)0, 1.0f); // end left 2
+		lateDrawObject(Mirrors[8], (QueuedModelFlagsB)0, 1.0f); // end right
+		lateDrawObject(Mirrors[9], (QueuedModelFlagsB)0, 1.0f); // end left
+		lateDrawObject(Mirrors[10], (QueuedModelFlagsB)0, 1.0f); // end right 2
+		lateDrawObject(Mirrors[11], (QueuedModelFlagsB)0, 1.0f); // end left 2
 		DrawQueueDepthBias = 3000.0f;
-		ProcessModelNode(Mirrors[12], (QueuedModelFlagsB)0, 1.0f); // end 1
-		ProcessModelNode(Mirrors[13], (QueuedModelFlagsB)0, 1.0f); // end 2
+		lateDrawObject(Mirrors[12], (QueuedModelFlagsB)0, 1.0f); // end 1
+		lateDrawObject(Mirrors[13], (QueuedModelFlagsB)0, 1.0f); // end 2
 		njPopMatrix(1u);
 		DrawQueueDepthBias = 0;
 	}
@@ -213,7 +213,7 @@ void __cdecl DrawPirateShipShit(ObjectMaster *a1)
 		njTranslateV(0, &v1->Position);
 		njRotateXYZ(0, 0, v1->Rotation.y, 0);
 		if (CharObj2Ptrs[0]->UnderwaterTime) DrawQueueDepthBias = -28000.0f; else DrawQueueDepthBias = 0.0f;
-		ProcessModelNode(PirateShipStars, QueuedModelFlagsB_EnableZWrite, 1.0f);
+		lateDrawObject(PirateShipStars, QueuedModelFlagsB_EnableZWrite, 1.0f);
 		DrawQueueDepthBias = 0.0f;
 		njPopMatrix(1u);
 	}
@@ -222,14 +222,14 @@ void __cdecl DrawPirateShipShit(ObjectMaster *a1)
 void CartFunction(NJS_OBJECT *a1, ObjectThingC *a2)
 {
 	sub_4BA5D0(a1, a2);
-	if (a1 == (NJS_OBJECT*)0x038BAAA4) ProcessModelNode(&CartGlass, (QueuedModelFlagsB)0, 1.0f);
+	if (a1 == (NJS_OBJECT*)0x038BAAA4) lateDrawObject(&CartGlass, (QueuedModelFlagsB)0, 1.0f);
 }
 
 void RenderCatapult(NJS_ACTION *a1, float frame, float scale)
 {
 	sub_405450(a1, frame, scale);
 	DrawQueueDepthBias = -17000.0f;
-	ProcessModelNode(OCatapultFloor, QueuedModelFlagsB_EnableZWrite, 1.0f);
+	lateDrawObject(OCatapultFloor, QueuedModelFlagsB_EnableZWrite, 1.0f);
 	DrawQueueDepthBias = 0.0f;
 }
 
@@ -292,7 +292,7 @@ void __cdecl DrawObjectFromObjectMaster(ObjectMaster *a2)
 		}
 		SetTextureToLevelObj();
 		DrawQueueDepthBias = -47952.0f;
-		ProcessModelNode_AB_Wrapper(v1->Object, 1.0f);
+		ds_DrawObjectClip(v1->Object, 1.0f);
 		DrawQueueDepthBias = 0.0f;
 		njPopMatrix(1u);
 	}
@@ -304,13 +304,13 @@ void __cdecl FlowerBedFix(NJS_OBJECT *a1, QueuedModelFlagsB a2, float a3)
 	{
 		sub_407FC0(a1->basicdxmodel, (QueuedModelFlagsB)1);
 	}
-	else ProcessModelNode_C_VerifyTexList(a1, a2, a3);
+	else late_DrawObjectClipEx(a1, a2, a3);
 }
 
 void FixArchLight(NJS_MODEL_SADX *model)
 {
 	DrawModel(model);
-	DrawVisibleModel_Queue(ArchLightLight->basicdxmodel, QueuedModelFlagsB_SomeTextureThing);
+	late_DrawModel(ArchLightLight->basicdxmodel, QueuedModelFlagsB_SomeTextureThing);
 }
 
 void FixShittyLightObjects_Pause(NJS_OBJECT *object)
@@ -319,43 +319,43 @@ void FixShittyLightObjects_Pause(NJS_OBJECT *object)
 	if (object == (NJS_OBJECT*)0x38C02C4)
 	{
 		DrawModel(object->basicdxmodel);
-		ProcessModelNode(ArchLightLight, QueuedModelFlagsB_SomeTextureThing, 1.0f);
-		ProcessModelNode(object->child, QueuedModelFlagsB_SomeTextureThing, 1.0f);
+		lateDrawObject(ArchLightLight, QueuedModelFlagsB_SomeTextureThing, 1.0f);
+		lateDrawObject(object->child, QueuedModelFlagsB_SomeTextureThing, 1.0f);
 	}
 	// Pole
 	if (object == (NJS_OBJECT*)0x38C28A8)
 	{
 		DrawModel(object->basicdxmodel);
-		ProcessModelNode(OPole_Pole, QueuedModelFlagsB_SomeTextureThing, 1.0f);
-		ProcessModelNode(object->child, QueuedModelFlagsB_SomeTextureThing, 1.0f);
+		lateDrawObject(OPole_Pole, QueuedModelFlagsB_SomeTextureThing, 1.0f);
+		lateDrawObject(object->child, QueuedModelFlagsB_SomeTextureThing, 1.0f);
 	}
 	else sub_408530(object);
 }
 
 void RenderOPanel_Main(NJS_OBJECT *a1, QueuedModelFlagsB a2)
 {
-	ProcessModelNode_AB_Wrapper(a1, 1.0f);
+	ds_DrawObjectClip(a1, 1.0f);
 }
 
 void RenderOPanel_Transparent(NJS_OBJECT *a1, QueuedModelFlagsB a2, float a3)
 {
-	ProcessModelNode(OPanelPanel, QueuedModelFlagsB_SomeTextureThing, 1.0f);
+	lateDrawObject(OPanelPanel, QueuedModelFlagsB_SomeTextureThing, 1.0f);
 }
 
 void ORocketFix1(NJS_MODEL_SADX *a1)
 {
-	DrawVisibleModel_Queue(a1, QueuedModelFlagsB_SomeTextureThing);
+	late_DrawModel(a1, QueuedModelFlagsB_SomeTextureThing);
 }
 
 void OPoleFix1(NJS_MODEL_SADX *a1)
 {
 	DrawModel(OPole_Main->basicdxmodel);
-	DrawVisibleModel_Queue(OPole_Pole->basicdxmodel, QueuedModelFlagsB_SomeTextureThing);
+	late_DrawModel(OPole_Pole->basicdxmodel, QueuedModelFlagsB_SomeTextureThing);
 }
 
 void OPoleFix2(NJS_MODEL_SADX *model, QueuedModelFlagsB blend)
 {
-	DrawVisibleModel_Queue(OPole_Main->child->basicdxmodel, blend);
+	late_DrawModel(OPole_Main->child->basicdxmodel, blend);
 }
 
 void TwinklePark_Init()

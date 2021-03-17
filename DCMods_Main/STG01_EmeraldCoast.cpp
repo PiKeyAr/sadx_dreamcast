@@ -96,7 +96,7 @@ void __cdecl Obj_EC23Water_DisplayX(ObjectMaster *a1)
 			uvSTG01_00CC0530[2].u = uvSTG01_00CC0530_d[2].u + OceanUVShift1 % 255;
 			uvSTG01_00CC0530[3].u = uvSTG01_00CC0530_d[3].u + OceanUVShift1 % 255;*/
 			if (CurrentAct == 1) DrawQueueDepthBias = -25952.0f; else DrawQueueDepthBias = -7000.0f;
-			ProcessModelNode_A_Wrapper(LowPolyOcean, QueuedModelFlagsB_SomeTextureThing, 1.0f);
+			late_DrawObjectClip(LowPolyOcean, QueuedModelFlagsB_SomeTextureThing, 1.0f);
 			DrawQueueDepthBias = 0;
 			njPopMatrix(1u);
 		}
@@ -109,7 +109,7 @@ void __cdecl Obj_EC23Water_DisplayX(ObjectMaster *a1)
 			DrawQueueDepthBias = 1000.0f;
 			for (int j : Act2WaterCols)
 			{
-				ProcessModelNode_A_Wrapper(GeoLists[9]->Col[j].Model, QueuedModelFlagsB_SomeTextureThing, 1.0f);
+				late_DrawObjectClip(GeoLists[9]->Col[j].Model, QueuedModelFlagsB_SomeTextureThing, 1.0f);
 			}
 			DrawQueueDepthBias = 0;
 			njPopMatrix(1u);
@@ -123,7 +123,7 @@ void __cdecl Obj_EC23Water_DisplayX(ObjectMaster *a1)
 			DrawQueueDepthBias = -4000.0f;
 			for (int j : Act3WaterCols)
 			{
-				ProcessModelNode_A_Wrapper(GeoLists[10]->Col[j].Model, QueuedModelFlagsB_SomeTextureThing, 1.0f);
+				late_DrawObjectClip(GeoLists[10]->Col[j].Model, QueuedModelFlagsB_SomeTextureThing, 1.0f);
 			}
 			DrawQueueDepthBias = 0;
 			njPopMatrix(1u);
@@ -140,7 +140,7 @@ void __cdecl Obj_EC23Water_DisplayX(ObjectMaster *a1)
 			DrawQueueDepthBias = -4000.0f;
 			for (int j : Act3WaterCols)
 			{
-				 ProcessModelNode_A_Wrapper(GeoLists[10]->Col[j].Model, QueuedModelFlagsB_SomeTextureThing, 1.0f);
+				 late_DrawObjectClip(GeoLists[10]->Col[j].Model, QueuedModelFlagsB_SomeTextureThing, 1.0f);
 			}
 			DrawQueueDepthBias = 0;
 			njPopMatrix(1u);
@@ -151,9 +151,9 @@ void __cdecl Obj_EC23Water_DisplayX(ObjectMaster *a1)
 			njSetTexture((NJS_TEXLIST*)&texlist_sadxwtr_beach);
 			njPushMatrix(0);
 			njTranslate(0, 0, 0, 0);
-			ProcessModelNode_AB_Wrapper(BigDeco1, 1.0f);
-			ProcessModelNode_AB_Wrapper(BigDeco2, 1.0f);
-			ProcessModelNode_AB_Wrapper(BigDeco3, 1.0f);
+			ds_DrawObjectClip(BigDeco1, 1.0f);
+			ds_DrawObjectClip(BigDeco2, 1.0f);
+			ds_DrawObjectClip(BigDeco3, 1.0f);
 			njPopMatrix(1u);
 		}
 		// Draw main water
@@ -241,7 +241,7 @@ void __cdecl Obj_EC1Water_DisplayX(ObjectMaster *a1)
 				uvSTG01_00CC0530[3].u = uvSTG01_00CC0530_d[3].u + OceanUVShift1;
 				*/
 				DrawQueueDepthBias = -19952.0f;
-				ProcessModelNode_A_Wrapper(LowPolyOcean, QueuedModelFlagsB_SomeTextureThing, 1.0f);
+				late_DrawObjectClip(LowPolyOcean, QueuedModelFlagsB_SomeTextureThing, 1.0f);
 				njPopMatrix(1u);
 				DrawQueueDepthBias = 0;
 			}
@@ -301,108 +301,108 @@ void __cdecl Obj_EC1Water_DisplayX(ObjectMaster *a1)
 			njTranslate(0, v1->Position.x, EC1OceanYShift, v1->Position.z);
 			DrawQueueDepthBias = -19952.0f;
 			EC1OceanYShift = -1.5f;
-			if (EffectActive) ProcessModelNode_D_Wrapper((NJS_OBJECT*)0x010C03FC, 1.0f);
-			else ProcessModelNode_A_Wrapper((NJS_OBJECT*)0x010C03FC, QueuedModelFlagsB_SomeTextureThing, 1.0f);
+			if (EffectActive) late_DrawObjectMesh((NJS_OBJECT*)0x010C03FC, 1.0f);
+			else late_DrawObjectClip((NJS_OBJECT*)0x010C03FC, QueuedModelFlagsB_SomeTextureThing, 1.0f);
 			njPopMatrix(1u);
 
 			njPushMatrix(0);
 			njTranslate(0, v1->Position.x - 2000, EC1OceanYShift, v1->Position.z);
-			ProcessModelNode_A_Wrapper(HighPolyOcean_Static, QueuedModelFlagsB_3, 1.0f);
+			late_DrawObjectClip(HighPolyOcean_Static, QueuedModelFlagsB_3, 1.0f);
 			njPopMatrix(1u);
 
 			njPushMatrix(0);
 			njTranslate(0, v1->Position.x - 2000, EC1OceanYShift, v1->Position.z + 1000);
-			ProcessModelNode_A_Wrapper(HighPolyOcean_Static, QueuedModelFlagsB_3, 1.0f);
+			late_DrawObjectClip(HighPolyOcean_Static, QueuedModelFlagsB_3, 1.0f);
 			njPopMatrix(1u);
 
 			njPushMatrix(0);
 			njTranslate(0, v1->Position.x - 2000, EC1OceanYShift, v1->Position.z - 1000);
-			ProcessModelNode_A_Wrapper(HighPolyOcean_Static, QueuedModelFlagsB_3, 1.0f);
+			late_DrawObjectClip(HighPolyOcean_Static, QueuedModelFlagsB_3, 1.0f);
 			njPopMatrix(1u);
 
 			njPushMatrix(0);
 			njTranslate(0, v1->Position.x, EC1OceanYShift, v1->Position.z - 2000);
-			ProcessModelNode_A_Wrapper(HighPolyOcean_Static, QueuedModelFlagsB_3, 1.0f);
+			late_DrawObjectClip(HighPolyOcean_Static, QueuedModelFlagsB_3, 1.0f);
 			njPopMatrix(1u);
 
 			njPushMatrix(0);
 			njTranslate(0, v1->Position.x - 1000, EC1OceanYShift, v1->Position.z - 2000);
-			ProcessModelNode_A_Wrapper(HighPolyOcean_Static, QueuedModelFlagsB_3, 1.0f);
+			late_DrawObjectClip(HighPolyOcean_Static, QueuedModelFlagsB_3, 1.0f);
 			njPopMatrix(1u);
 
 			njPushMatrix(0);
 			njTranslate(0, v1->Position.x + 1000, EC1OceanYShift, v1->Position.z - 2000);
-			ProcessModelNode_A_Wrapper(HighPolyOcean_Static, QueuedModelFlagsB_3, 1.0f);
+			late_DrawObjectClip(HighPolyOcean_Static, QueuedModelFlagsB_3, 1.0f);
 			njPopMatrix(1u);
 
 			njPushMatrix(0);
 			njTranslate(0, v1->Position.x + 1000, EC1OceanYShift, v1->Position.z);
-			ProcessModelNode_A_Wrapper(HighPolyOcean_Static, QueuedModelFlagsB_3, 1.0f);
+			late_DrawObjectClip(HighPolyOcean_Static, QueuedModelFlagsB_3, 1.0f);
 			njPopMatrix(1u);
 
 			njPushMatrix(0);
 			njTranslate(0, v1->Position.x + 2000, EC1OceanYShift, v1->Position.z);
-			ProcessModelNode_A_Wrapper(HighPolyOcean_Static, QueuedModelFlagsB_3, 1.0f);
+			late_DrawObjectClip(HighPolyOcean_Static, QueuedModelFlagsB_3, 1.0f);
 			njPopMatrix(1u);
 
 			njPushMatrix(0);
 			njTranslate(0, v1->Position.x + 2000, EC1OceanYShift, v1->Position.z + 1000);
-			ProcessModelNode_A_Wrapper(HighPolyOcean_Static, QueuedModelFlagsB_3, 1.0f);
+			late_DrawObjectClip(HighPolyOcean_Static, QueuedModelFlagsB_3, 1.0f);
 			njPopMatrix(1u);
 
 			njPushMatrix(0);
 			njTranslate(0, v1->Position.x + 2000, EC1OceanYShift, v1->Position.z - 1000);
-			ProcessModelNode_A_Wrapper(HighPolyOcean_Static, QueuedModelFlagsB_3, 1.0f);
+			late_DrawObjectClip(HighPolyOcean_Static, QueuedModelFlagsB_3, 1.0f);
 			njPopMatrix(1u);
 
 			njPushMatrix(0);
 			njTranslate(0, v1->Position.x, EC1OceanYShift, v1->Position.z + 2000);
-			ProcessModelNode_A_Wrapper(HighPolyOcean_Static, QueuedModelFlagsB_3, 1.0f);
+			late_DrawObjectClip(HighPolyOcean_Static, QueuedModelFlagsB_3, 1.0f);
 			njPopMatrix(1u);
 
 			njPushMatrix(0);
 			njTranslate(0, v1->Position.x + 1000, EC1OceanYShift, v1->Position.z + 2000);
-			ProcessModelNode_A_Wrapper(HighPolyOcean_Static, QueuedModelFlagsB_3, 1.0f);
+			late_DrawObjectClip(HighPolyOcean_Static, QueuedModelFlagsB_3, 1.0f);
 			njPopMatrix(1u);
 
 			njPushMatrix(0);
 			njTranslate(0, v1->Position.x - 1000, EC1OceanYShift, v1->Position.z + 2000);
-			ProcessModelNode_A_Wrapper(HighPolyOcean_Static, QueuedModelFlagsB_3, 1.0f);
+			late_DrawObjectClip(HighPolyOcean_Static, QueuedModelFlagsB_3, 1.0f);
 			njPopMatrix(1u);
 
 			njPushMatrix(0);
 			njTranslate(0, v1->Position.x - 1000, EC1OceanYShift, v1->Position.z);
-			ProcessModelNode_A_Wrapper(HighPolyOcean_Static, QueuedModelFlagsB_3, 1.0f);
+			late_DrawObjectClip(HighPolyOcean_Static, QueuedModelFlagsB_3, 1.0f);
 			njPopMatrix(1u);
 
 			njPushMatrix(0);
 			njTranslate(0, v1->Position.x, EC1OceanYShift, v1->Position.z + 1000);
-			ProcessModelNode_A_Wrapper(HighPolyOcean_Static, QueuedModelFlagsB_3, 1.0f);
+			late_DrawObjectClip(HighPolyOcean_Static, QueuedModelFlagsB_3, 1.0f);
 			njPopMatrix(1u);
 
 			njPushMatrix(0);
 			njTranslate(0, v1->Position.x, EC1OceanYShift, v1->Position.z - 1000);
-			ProcessModelNode_A_Wrapper(HighPolyOcean_Static, QueuedModelFlagsB_3, 1.0f);
+			late_DrawObjectClip(HighPolyOcean_Static, QueuedModelFlagsB_3, 1.0f);
 			njPopMatrix(1u);
 
 			njPushMatrix(0);
 			njTranslate(0, v1->Position.x + 1000, EC1OceanYShift, v1->Position.z + 1000);
-			ProcessModelNode_A_Wrapper(HighPolyOcean_Static, QueuedModelFlagsB_3, 1.0f);
+			late_DrawObjectClip(HighPolyOcean_Static, QueuedModelFlagsB_3, 1.0f);
 			njPopMatrix(1u);
 
 			njPushMatrix(0);
 			njTranslate(0, v1->Position.x + 1000, EC1OceanYShift, v1->Position.z - 1000);
-			ProcessModelNode_A_Wrapper(HighPolyOcean_Static, QueuedModelFlagsB_3, 1.0f);
+			late_DrawObjectClip(HighPolyOcean_Static, QueuedModelFlagsB_3, 1.0f);
 			njPopMatrix(1u);
 
 			njPushMatrix(0);
 			njTranslate(0, v1->Position.x - 1000, EC1OceanYShift, v1->Position.z + 1000);
-			ProcessModelNode_A_Wrapper(HighPolyOcean_Static, QueuedModelFlagsB_3, 1.0f);
+			late_DrawObjectClip(HighPolyOcean_Static, QueuedModelFlagsB_3, 1.0f);
 			njPopMatrix(1u);
 
 			njPushMatrix(0);
 			njTranslate(0, v1->Position.x - 1000, EC1OceanYShift, v1->Position.z - 1000);
-			ProcessModelNode_A_Wrapper(HighPolyOcean_Static, QueuedModelFlagsB_3, 1.0f);
+			late_DrawObjectClip(HighPolyOcean_Static, QueuedModelFlagsB_3, 1.0f);
 			njPopMatrix(1u);
 			DrawQueueDepthBias = 0;
 		}
@@ -495,21 +495,21 @@ NJS_MATERIAL* LevelSpecular_STG01[] = {
 void WhaleSplash(NJS_OBJECT *a1)
 {
 	DrawQueueDepthBias = 8000.0f;
-	ProcessModelNode(a1, (QueuedModelFlagsB)0, 1.0f);
+	lateDrawObject(a1, (QueuedModelFlagsB)0, 1.0f);
 }
 
 void PalmFix1(NJS_OBJECT *a1, QueuedModelFlagsB a2, float a3)
 {
 	if (IsCameraUnderwater)	DrawQueueDepthBias = -18952.0f;
-	if (a1 == (NJS_OBJECT*)0x109D5FC) ProcessModelNode_D_WrapperB(a1, a2, a3); // OGrasC
-	else ProcessModelNode_C_VerifyTexList(a1, a2, a3);
+	if (a1 == (NJS_OBJECT*)0x109D5FC) late_DrawObjectClipMesh(a1, a2, a3); // OGrasC
+	else late_DrawObjectClipEx(a1, a2, a3);
 	if (IsCameraUnderwater) DrawQueueDepthBias = 0.0f;
 }
 
 void PalmFix2(NJS_MODEL_SADX *model, QueuedModelFlagsB blend, float scale)
 {
 	if (IsCameraUnderwater)	DrawQueueDepthBias = -18952.0f;
-	DrawModel_QueueVisible(model, blend, scale);
+	late_DrawModelClip(model, blend, scale);
 	if (IsCameraUnderwater)	DrawQueueDepthBias = 0.0f;
 }
 

@@ -96,7 +96,7 @@ void __cdecl SkyDeck_QueueDrawQ(NJS_OBJECT *obj, NJS_TEX *uv, int uvSTG06_count,
 					memcpy(v6, uv, 4 * uvSTG06_count);
 					v5->vertuv = v6;
 					DrawQueueDepthBias = depth;
-					ProcessModelNode_A_WrapperB(obj, (QueuedModelFlagsB)0);
+					late_DrawObject(obj, (QueuedModelFlagsB)0);
 					DrawQueueDepthBias = 0.0f;
 				}
 			}
@@ -224,7 +224,7 @@ void SkyDeckSky_new(ObjectMaster *_this)
 void RenderSmallCloud(NJS_OBJECT *a1, QueuedModelFlagsB a2, float a3)
 {
 	DrawQueueDepthBias = -6000.0f;
-	ProcessModelNode_A_Wrapper(a1, a2, a3);
+	late_DrawObjectClip(a1, a2, a3);
 	DrawQueueDepthBias = 0.0f;
 }
 
@@ -269,12 +269,12 @@ static void __cdecl SkyDeckShockwave3_r(ObjectMaster *a1)
 
 void FixHangA(NJS_OBJECT *obj, float scale)
 {
-	ProcessModelNode(obj, QueuedModelFlagsB_EnableZWrite, scale);
+	lateDrawObject(obj, QueuedModelFlagsB_EnableZWrite, scale);
 }
 
 void RenderCrane(NJS_OBJECT* obj, float scale)
 {
-	ProcessModelNode_D(obj, QueuedModelFlagsB_EnableZWrite, scale);
+	DrawObjectClipMesh(obj, QueuedModelFlagsB_EnableZWrite, scale);
 }
 
 void UnloadLevelFiles_STG06()
@@ -350,7 +350,7 @@ void __cdecl SkyDeckSharedDisplaySubFix(ObjectMaster *a1)
 			}
 			else
 			{
-				ProcessModelNode_C_VerifyTexList(v3, QueuedModelFlagsB_EnableZWrite, v2->Scale.x);
+				late_DrawObjectClipEx(v3, QueuedModelFlagsB_EnableZWrite, v2->Scale.x);
 			}
 			if ( v2->Scale.x != 1.0f )
 			{
@@ -365,7 +365,7 @@ void __cdecl SkyDeckSharedDisplaySubFix(ObjectMaster *a1)
 void DrawDecalHook(NJS_OBJECT *a1)
 {
 	DrawQueueDepthBias = -47952.0f;
-	ProcessModelNode(a1, QueuedModelFlagsB_3, 1.0f);
+	lateDrawObject(a1, QueuedModelFlagsB_3, 1.0f);
 	DrawQueueDepthBias = 0.0f;
 }
 

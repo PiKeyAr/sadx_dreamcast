@@ -64,7 +64,7 @@ void __cdecl ECDoorBarrier1X(ObjectMaster *a1)
 			{
 				njRotateY(0, (unsigned __int16)v2);
 			}
-			ProcessModelNode((NJS_OBJECT*)ADV01C_OBJECTS[21], QueuedModelFlagsB_SomeTextureThing, 1.0f);
+			lateDrawObject((NJS_OBJECT*)ADV01C_OBJECTS[21], QueuedModelFlagsB_SomeTextureThing, 1.0f);
 			njPopMatrix(1u);
 		}
 	}
@@ -84,7 +84,7 @@ void __cdecl ECDoorBarrier2X(int a1, EntityData1 *a2)
 		{
 			njRotateY(0, (unsigned __int16)v2);
 		}
-		ProcessModelNode((NJS_OBJECT*)ADV01C_OBJECTS[21], QueuedModelFlagsB_SomeTextureThing, 1.0f);
+		lateDrawObject((NJS_OBJECT*)ADV01C_OBJECTS[21], QueuedModelFlagsB_SomeTextureThing, 1.0f);
 		njPopMatrix(1u);
 	}
 }
@@ -192,14 +192,14 @@ void OTarai_Child_Display(ObjectMaster* a1)
 void RenderChaoTransporterEffect_Fix(NJS_MODEL_SADX *a1, float scale)
 {
 	DrawQueueDepthBias = 2000.0f;
-	DrawModel_Queue_407FC0(a1, QueuedModelFlagsB_SomeTextureThing);
+	DrawModelMesh(a1, QueuedModelFlagsB_SomeTextureThing);
 	DrawQueueDepthBias = 0;
 }
 
 void OReservoirFix(NJS_OBJECT *obj, float scale)
 {
 	DrawQueueDepthBias = 20000.0f;
-	ProcessModelNode(obj, (QueuedModelFlagsB)0, scale);
+	lateDrawObject(obj, (QueuedModelFlagsB)0, scale);
 	DrawQueueDepthBias = 0.0f;
 }
 

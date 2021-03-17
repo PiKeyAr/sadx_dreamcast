@@ -79,34 +79,34 @@ void SSOceanCallback(void(__cdecl *function)(OceanData *), OceanData *data, floa
 void FixPoliceCar(NJS_ACTION *a1, float a2, int a3)
 {
 	// Draw the car animation without transparent parts
-	njAction_DontQueue(a1, a2, a3);
+	ds_ActionClip(a1, a2, a3);
 	// Draw the transparent parts separately if this is the police car
 	if (a1->object == ((NJS_OBJECT*)0x2AF4FC0))
 	{
 		DrawQueueDepthBias = 1000.0f;
-		ProcessModelNode(PoliceCarModel_LightsOnly, (QueuedModelFlagsB)0, 1.0f);
+		lateDrawObject(PoliceCarModel_LightsOnly, (QueuedModelFlagsB)0, 1.0f);
 		DrawQueueDepthBias = 0.0f;
 	}
 }
 
 void RenderPoliceCarBarricade(NJS_OBJECT *obj, float scale)
 {
-	ProcessModelNode_AB_Wrapper(obj, scale);
+	ds_DrawObjectClip(obj, scale);
 	DrawQueueDepthBias = 1000.0f;
-	ProcessModelNode(PoliceCarModel_LightsOnly, (QueuedModelFlagsB)0, scale);
+	lateDrawObject(PoliceCarModel_LightsOnly, (QueuedModelFlagsB)0, scale);
 	DrawQueueDepthBias = 0.0f;
 }
 
 void RenderOfficeDoor(NJS_MODEL_SADX *a1, float scale)
 {
 	DrawQueueDepthBias = -2000.0f;
-	DrawModel_Queue(a1, QueuedModelFlagsB_EnableZWrite);
+	lateDrawModel(a1, QueuedModelFlagsB_EnableZWrite);
 }
 
 void RenderOfficeDoor_Child(NJS_MODEL_SADX *a1, float scale)
 {
 	DrawQueueDepthBias = -3000.0f;
-	DrawModel_Queue(a1, QueuedModelFlagsB_EnableZWrite);
+	lateDrawModel(a1, QueuedModelFlagsB_EnableZWrite);
 }
 
 static Trampoline* SSCar_Display_t = nullptr;
@@ -121,13 +121,13 @@ static void __cdecl SSCar_Display_r(ObjectMaster* a1)
 
 void RenderParasol(NJS_MODEL_SADX *a1, int a2, float a3)
 {
-	ProcessModelNode(Parasol_1, QueuedModelFlagsB_EnableZWrite, 1.0f); // Main model
+	lateDrawObject(Parasol_1, QueuedModelFlagsB_EnableZWrite, 1.0f); // Main model
 	DrawQueueDepthBias = 1000.0f;
-	ProcessModelNode(Parasol_2, QueuedModelFlagsB_EnableZWrite, 1.0f); // Chair transparency
+	lateDrawObject(Parasol_2, QueuedModelFlagsB_EnableZWrite, 1.0f); // Chair transparency
 	DrawQueueDepthBias = 1100.0f;
-	ProcessModelNode(Parasol_4, QueuedModelFlagsB_EnableZWrite, 1.0f); // Glass
+	lateDrawObject(Parasol_4, QueuedModelFlagsB_EnableZWrite, 1.0f); // Glass
 	DrawQueueDepthBias = 1200.0f;
-	ProcessModelNode(Parasol_3, QueuedModelFlagsB_EnableZWrite, 1.0f); // Parasol
+	lateDrawObject(Parasol_3, QueuedModelFlagsB_EnableZWrite, 1.0f); // Parasol
 	DrawQueueDepthBias = 0.0f;
 }
 
@@ -148,12 +148,12 @@ void DelaySettingTimeOfDay(Sint8 time)
 
 void OMSakuFix(NJS_OBJECT *a1, float scale)
 {
-	ProcessModelNode(a1, QueuedModelFlagsB_EnableZWrite, scale);
+	lateDrawObject(a1, QueuedModelFlagsB_EnableZWrite, scale);
 }
 
 void OOfficeBarricade_Fix(NJS_MODEL_SADX* a1, float scale)
 {
-	DrawModel_Queue(a1, QueuedModelFlagsB_EnableZWrite);
+	lateDrawModel(a1, QueuedModelFlagsB_EnableZWrite);
 }
 
 // Put the cars slightly above ground in Egg Walker so that they land correctly and don't fall through
@@ -164,13 +164,13 @@ void __fastcall EggWalkerCarsFix(NJS_MATRIX_PTR m, const NJS_VECTOR *v)
 
 void BigPuzzleFix(NJS_OBJECT* obj, float scale)
 {
-	ProcessModelNode(obj, QueuedModelFlagsB_SomeTextureThing, 1.0f);
+	lateDrawObject(obj, QueuedModelFlagsB_SomeTextureThing, 1.0f);
 }
 
 void OWakuseiFix(NJS_MODEL_SADX *model, QueuedModelFlagsB blend, float scale)
 {
 	if (EV_MainThread_ptr) DrawQueueDepthBias = 9000.0f;
-	DrawModel_QueueVisible(model, blend, scale);
+	late_DrawModelClip(model, blend, scale);
 	if (EV_MainThread_ptr) DrawQueueDepthBias = 0.0f;
 }
 
@@ -179,17 +179,17 @@ void DrawEventHelicopter(NJS_ACTION *a1, float a2, int a3)
 	NJS_ACTION Light1Action = {EVHelicopterLight1, a1->motion};
 	NJS_ACTION Light2Action = {EVHelicopterLight2, a1->motion};
 	// Draw the helicopter
-	njAction_Queue_407BB0_2(a1, a2, 1, 0);
+	late_ActionClipEx(a1, a2, 1, 0);
 	// Draw the light cover
-	njAction_Queue_407BB0_2(&Light1Action, a2, 1, 1.0f);
+	late_ActionClipEx(&Light1Action, a2, 1, 1.0f);
 	// Draw the light
-	njAction_Queue_407BB0_2(&Light2Action, a2, a3, 1.0f);
+	late_ActionClipEx(&Light2Action, a2, a3, 1.0f);
 }
 
 void SouvenirShopDoor_Depth(NJS_ACTION* a1, float a2, int a3, float a4)
 {
 	DrawQueueDepthBias = 3000.0f;
-	njAction_Queue_407BB0_2(a1, a2, a3, a4);
+	late_ActionClipEx(a1, a2, a3, a4);
 	DrawQueueDepthBias = 0.0f;
 }
 

@@ -43,7 +43,7 @@ void __cdecl Chaos6SkyboxBottom(EntityData1 *a1)
 		njTranslate(0, Camera_Data1->Position.x, 0, Camera_Data1->Position.z);
 		njScale(0, 3.0, 1.0, 3.0);
 		DrawQueueDepthBias = -32000.0f;
-		ProcessModelNode((NJS_OBJECT*)0x11EDF38, QueuedModelFlagsB_SomeTextureThing, 3.0f);
+		lateDrawObject((NJS_OBJECT*)0x11EDF38, QueuedModelFlagsB_SomeTextureThing, 3.0f);
 		DrawQueueDepthBias = 0;
 		njColorBlendingMode(0, NJD_COLOR_BLENDING_SRCALPHA);
 		njColorBlendingMode(NJD_DESTINATION_COLOR, NJD_COLOR_BLENDING_INVSRCALPHA);
@@ -63,7 +63,7 @@ void __cdecl Chaos6SkyboxMain()
 		njRotateY(0, 57344);
 		njScaleV(0, &Skybox_Scale);
 		DrawQueueDepthBias = -30000.0f;
-		ProcessModelNode((NJS_OBJECT*)0x11EEED8, QueuedModelFlagsB_SomeTextureThing, 3.0f);
+		lateDrawObject((NJS_OBJECT*)0x11EEED8, QueuedModelFlagsB_SomeTextureThing, 3.0f);
 		DrawQueueDepthBias = 0;
 		njPopMatrix(1u);
 		ToggleStageFog();

@@ -109,9 +109,9 @@ void SetCloudColor(NJS_ARGB *a1)
 
 void FixPropellerThing(NJS_MODEL_SADX *model, QueuedModelFlagsB blend, float scale)
 {
-	ProcessModel_NoSorting(model, scale);
+	ds_DrawModelClip(model, scale);
 	if (CurrentAct != 1) DrawQueueDepthBias = 2000.0f; else DrawQueueDepthBias = 0.0f;
-	DrawModel_Queue_407FC0(PropellerGlass, QueuedModelFlagsB_EnableZWrite); //Should have been 0, but that doesn't look good
+	DrawModelMesh(PropellerGlass, QueuedModelFlagsB_EnableZWrite); //Should have been 0, but that doesn't look good
 	DrawQueueDepthBias = 0.0f;
 }
 

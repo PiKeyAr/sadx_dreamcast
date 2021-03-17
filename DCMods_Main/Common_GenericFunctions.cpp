@@ -1372,7 +1372,7 @@ enum SurfaceFlags
 
 	SurfaceFlags_Dig = 0x00000100,
 	SurfaceFlags_Unknown5 = 0x00000200, // ???
-	SurfaceFlags_Watefall = 0x00000400, // Force alpha sorting; Disable Z Write when used together with Water; Force disable Z write in all levels except Lost World 2
+	SurfaceFlags_Waterfall = 0x00000400, // Force alpha sorting; Disable Z Write when used together with Water; Force disable Z write in all levels except Lost World 2
 	SurfaceFlags_Unknown7 = 0x00000800, // ??? Unused?
 
 	SurfaceFlags_NoClimb = 0x00001000,
@@ -1401,15 +1401,20 @@ enum SurfaceFlags
 	SurfaceFlags_Visible = 0x80000000,
 };
 
-void DrawLandtableCallback(NJS_MODEL_SADX* model)
+void DrawLandtableCallback_NoZWrite(NJS_MODEL_SADX* model)
 {
 	if (DroppedFrames) return;
-	Direct3D_SetZFunc(1u);
 	Direct3D_EnableZWrite(0);
 	dsDrawModel(model);
-	Direct3D_SetZFunc(1u);
 	Direct3D_EnableZWrite(1u);
 }
+
+void DrawLandtableCallback_ZWrite(NJS_MODEL_SADX* model)
+{
+	if (DroppedFrames) return;
+	dsDrawModel(model);
+}
+
 
 // void __usercall(NJS_OBJECT *a1@<edi>, COL *a2)
 static const void* const land_DrawObjectPtr = (void*)0x43A570;
@@ -1448,26 +1453,29 @@ void land_DrawObject_New(NJS_OBJECT* a1, _OBJ_LANDENTRY* a2)
 	flags = a2->slAttribute;
 	int queueFlags = QueuedModelFlagsB_EnableZWrite;
 
+	// Draw with callback
+	if (a2->zWidth != 0)
+	{
+		if (flags & SurfaceFlags_Waterfall) // Disable Z Write for the callback function
+			DrawModelCallback_QueueModel(DrawLandtableCallback_NoZWrite, v2, a2->zWidth, (QueuedModelFlagsB)queueFlags);
+		else
+			DrawModelCallback_QueueModel(DrawLandtableCallback_ZWrite, v2, a2->zWidth, (QueuedModelFlagsB)queueFlags);
+		return;
+	}
+
 	// Disable Z Write
 	if (flags & SurfaceFlags_NoZWrite)
 	{
-		if (flags & SurfaceFlags_Watefall)
+		if (flags & SurfaceFlags_Waterfall)
 			queueFlags = QueuedModelFlagsB_3;
 		else
 			queueFlags = 0; // Regular flag
 	}
 
 	// Alternative queue flags
-	else if (flags & SurfaceFlags_Watefall)
+	else if (flags & SurfaceFlags_Waterfall)
 		queueFlags = QueuedModelFlagsB_SomeTextureThing;
-
-	// Draw with callback
-	if (a2->zWidth != 0)
-	{
-		DrawModelCallback_QueueModel(DrawLandtableCallback, v2, a2->zWidth, (QueuedModelFlagsB)queueFlags);
-		return;
-	}
-
+	
 	// Set depth
 	DrawQueueDepthBias = a2->yWidth;
 

@@ -68,8 +68,8 @@ static void __cdecl OPato0_Display_r(ObjectMaster *a1)
 void FixChaos0Car(NJS_ACTION *a1, float frame, float scale)
 {
 	DisplayAnimationFrame(a1, frame, (QueuedModelFlagsB)0, scale, (void(__cdecl *)(NJS_MODEL_SADX *, int, int))DrawModelThing);
-	DrawModel_Queue(a1->object->child->sibling->sibling->sibling->sibling->sibling->sibling->sibling->sibling->basicdxmodel, (QueuedModelFlagsB)0); //Top lights
-	DrawModel_Queue(a1->object->child->sibling->sibling->sibling->sibling->sibling->sibling->basicdxmodel, QueuedModelFlagsB_EnableZWrite); //Front lights
+	lateDrawModel(a1->object->child->sibling->sibling->sibling->sibling->sibling->sibling->sibling->sibling->basicdxmodel, (QueuedModelFlagsB)0); //Top lights
+	lateDrawModel(a1->object->child->sibling->sibling->sibling->sibling->sibling->sibling->basicdxmodel, QueuedModelFlagsB_EnableZWrite); //Front lights
 }
 
 void __cdecl ComeOneYaBigDrip()
@@ -86,13 +86,13 @@ void __cdecl ComeOneYaBigDrip()
 	njPushMatrix(0);
 	njTranslateV(0, &v0->Position);
 	njScaleV(0, &v0->Scale);
-	ProcessModelNode_D(&Chaos_Puddle_Model, (QueuedModelFlagsB)0, 1.0f);
+	DrawObjectClipMesh(&Chaos_Puddle_Model, (QueuedModelFlagsB)0, 1.0f);
 	njPopMatrix(1u);
 }
 
 void Chaos0PuddleFix(NJS_OBJECT* a1)
 {
-	ProcessModelNode_D(a1, (QueuedModelFlagsB)0, 1.0f);
+	DrawObjectClipMesh(a1, (QueuedModelFlagsB)0, 1.0f);
 }
 
 void DrawChaos0HelicopterWithLight(NJS_ACTION *a1, float a2, int a3, float a4)
@@ -104,11 +104,11 @@ void DrawChaos0HelicopterWithLight(NJS_ACTION *a1, float a2, int a3, float a4)
 	Light1Action.object = C0HelicopterLight1;
 	Light2Action.object = C0HelicopterLight2;
 	//Draw the helicopter
-	njAction_Queue_407BB0_2(a1, a2, 1, a4);
+	late_ActionClipEx(a1, a2, 1, a4);
 	//Draw the light cover
-	njAction_Queue_407BB0_2(&Light1Action, a2, 1, a4);
+	late_ActionClipEx(&Light1Action, a2, 1, a4);
 	//Draw the light
-	njAction_Queue_407BB0_2(&Light2Action, a2, a3, a4);
+	late_ActionClipEx(&Light2Action, a2, a3, a4);
 }
 
 void ParseChaos0Materials(LandTable *landtable, bool remove)
@@ -137,7 +137,7 @@ void UnloadLevelFiles_B_CHAOS0()
 
 void Chaos0Action(NJS_ACTION* a1, float frameNumber)
 {
-	njAction_Queue_407FC0(a1, frameNumber, (QueuedModelFlagsB)0);
+	late_ActionMesh(a1, frameNumber, (QueuedModelFlagsB)0);
 }
 
 void Chaos0_Init()

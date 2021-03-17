@@ -54,10 +54,10 @@ void EggViperDust_DisplayFix(ObjectMaster *a1)
 		njPushMatrix(0);
 		njTranslate(0, 0.0, -170.0, 0.0);
 		DrawQueueDepthBias = 100.0f;
-		ProcessModelNode(EggViperDustBottom, QueuedModelFlagsB_SomeTextureThing, 1.0f);
+		lateDrawObject(EggViperDustBottom, QueuedModelFlagsB_SomeTextureThing, 1.0f);
 		njTranslate(0, 0, 10, 0);
 		DrawQueueDepthBias = 200.0f;
-		ProcessModelNode(EggViperDustTop, QueuedModelFlagsB_SomeTextureThing, 1.0f);
+		lateDrawObject(EggViperDustTop, QueuedModelFlagsB_SomeTextureThing, 1.0f);
 		njPopMatrix(1u);
 		ToggleStageFog();
 		RestoreConstantAttr();
@@ -67,14 +67,14 @@ void EggViperDust_DisplayFix(ObjectMaster *a1)
 void EggViperExplosionFix(NJS_OBJECT *a1, QueuedModelFlagsB a2, float a3)
 {
 	DrawQueueDepthBias = 8000.0f;
-	ProcessModelNode_A_Wrapper(a1, a2, a3);
+	late_DrawObjectClip(a1, a2, a3);
 	DrawQueueDepthBias = 0.0f;
 }
 
 void EggViperLastExplosionFix(NJS_OBJECT *a1, QueuedModelFlagsB a2, float a3)
 {
 	DrawQueueDepthBias = 8000.0f;
-	ProcessModelNode_D(a1, a2, a3);
+	DrawObjectClipMesh(a1, a2, a3);
 	DrawQueueDepthBias = 0.0f;
 }
 

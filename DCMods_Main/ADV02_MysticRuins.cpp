@@ -59,10 +59,9 @@ NJS_OBJECT* IceCapDoorSnowflakeWall = nullptr;
 NJS_OBJECT* IceCapDoorSnowflake = nullptr;
 
 // Lists
-std::vector<int> MRWaterObjects;
-std::vector<int> MRJungleObjectAnimations_Propeller;
-std::vector<int> MRJungleObjectAnimations_Lantern;
-std::vector<int> MRJungleObjectsCallback;
+NJS_OBJECT* MRJungle_Propeller;
+NJS_OBJECT* MRJungle_Propeller2;
+NJS_OBJECT* MRJungle_LanternTop;
 
 // Render Mystic Ruins ocean
 void __cdecl MRWater_Display(void(__cdecl *function)(void *), void *data, float depth, QueuedModelFlagsB queueflags)
@@ -80,18 +79,10 @@ void __cdecl MRWater_Display(void(__cdecl *function)(void *), void *data, float 
 			njPushMatrix(0);
 			njTranslate(0, 0, 0, 0);
 			DrawQueueDepthBias = -47952.0f;
-			if (MROcean) ProcessModelNode_AB_Wrapper(MROcean, 1.0f);
+			if (MROcean) ds_DrawObjectClip(MROcean, 1.0f);
 			DrawQueueDepthBias = 0.0f;
 			njPopMatrix(1u);
 			ToggleStageFog();
-		}
-		for (int i : MRWaterObjects)
-		{
-			njSetTexture(&texlist_mr00);
-			njPushMatrix(0);
-			njTranslate(0, 0, 0, 0);
-			ProcessModelNode_A_Wrapper(LANDTABLEMR[0]->Col[i].Model, QueuedModelFlagsB_3, 1.0f);
-			njPopMatrix(1u);
 		}
 	}
 }
@@ -144,9 +135,9 @@ void OFinalEgg_DisplayFix(ObjectMaster *a1)
 		njRotateY(0, (unsigned __int16)v1);
 	}
 	// Render the animation without the lights
-	njAction_Queue_407BB0(&OFinalEggOpaqueAction, v2->Scale.x, QueuedModelFlagsB_EnableZWrite);
+	late_ActionEx(&OFinalEggOpaqueAction, v2->Scale.x, QueuedModelFlagsB_EnableZWrite);
 	// Render the transparent part of the animation without the lights
-	DrawModel_Queue_407FC0(OFinalEggModel_Transparent->child->basicdxmodel, QueuedModelFlagsB_SomeTextureThing);
+	DrawModelMesh(OFinalEggModel_Transparent->child->basicdxmodel, QueuedModelFlagsB_SomeTextureThing);
 	// Render the FinalWay car
 	Direct3D_SetNearFarPlanes(-1.0f, -6000.0f);
 	DrawQueueDepthBias = -20000.0f;
@@ -156,9 +147,9 @@ void OFinalEgg_DisplayFix(ObjectMaster *a1)
 	DrawQueueDepthBias = -1000.0f;
 	njAction_Queue(&OFinalWayMainAction, v2->Scale.y, QueuedModelFlagsB_EnableZWrite);
 	// Render the lights
-	njAction_Queue_407FC0(&OFinalEggLightsAction, v2->Scale.x, 0);
+	late_ActionMesh(&OFinalEggLightsAction, v2->Scale.x, 0);
 	// Render the EfHikari thing
-	DrawModel_Queue_407CF0(OFinalEggModel_Opaque->child->sibling->sibling->basicdxmodel, QueuedModelFlagsB_3);
+	DrawModelMesh(OFinalEggModel_Opaque->child->sibling->sibling->basicdxmodel, QueuedModelFlagsB_3);
 	njPopMatrix(1u);
 	ToggleStageFog();
 	Direct3D_SetNearFarPlanes(LevelDrawDistance.Minimum, LevelDrawDistance.Maximum);
@@ -179,7 +170,7 @@ void MasterEmeraldFix(NJS_OBJECT* obj, float scale)
 {
 	if (!(EV_MainThread_ptr && CutsceneID == 128)) 
 		DrawQueueDepthBias = 2000.0f;
-	ProcessModelNode_D_WrapperB(obj, 1, 1.0f);
+	late_DrawObjectClipMesh(obj, 1, 1.0f);
 	DrawQueueDepthBias = 0.0f;
 }
 
@@ -197,7 +188,7 @@ void DrawMasterEmeraldGlow(NJS_MODEL_SADX* model, QueuedModelFlagsB blend, float
 {
 	if (!(EV_MainThread_ptr && CutsceneID == 128)) 
 		DrawQueueDepthBias = 4000.0f;
-	DrawModel_QueueVisible(model, blend, scale);
+	late_DrawModelClip(model, blend, scale);
 	DrawQueueDepthBias = 0.0f;
 }
 
@@ -210,31 +201,11 @@ void EmeraldShardGlow_GetColor(float a, float r, float g, float b)
 	SetMaterialAndSpriteColor_Float(1.0f, 0.78f, 0.78f, 0.78f);
 }
 
-// Draw jungle objects using a callback
-void __cdecl MRJungleCallback_Simple(void* a1)
-{
-	NJS_OBJECT* v2;
-	NJS_MATRIX a2; // [esp+0h] [ebp-40h]
-	njSetTexture(ADV02_TEXLISTS[40]);
-	for (int i : MRJungleObjectsCallback)
-	{
-		v2 = LANDTABLEMR[2]->Col[i].Model;
-		if (v2)
-		{
-			njGetMatrix(a2);
-			njTranslateEx((NJS_VECTOR*)v2->pos);
-			njRotateXYZ(0, v2->ang[0], v2->ang[1], v2->ang[2]);
-			DrawModel(v2->basicdxmodel);
-			njSetMatrix(0, a2);
-		}
-	}
-}
-
 void RenderEmeraldShard(NJS_OBJECT *a1, int blend_mode, float scale)
 {
 	SetMaterialAndSpriteColor_Float(0.78f, 0.78f, 0.78f, 0.78f);
 	DrawQueueDepthBias = -4000.0f;
-	ProcessModelNode_D_WrapperB(a1, 1, scale);
+	late_DrawObjectClipMesh(a1, 1, scale);
 	DrawQueueDepthBias = 0.0f;
 }
 
@@ -252,7 +223,7 @@ void RenderEmeraldShardGlow(NJS_MODEL_SADX *a1, int a2, float a3)
 				{
 					SetMaterialAndSpriteColor(&EmeraldShardGlowColor);
 					DrawQueueDepthBias = -2000.0f;
-					DrawModel_Queue_407FC0(a1, (QueuedModelFlagsB)0);
+					DrawModelMesh(a1, (QueuedModelFlagsB)0);
 					DrawQueueDepthBias = 0.0f;
 				}
 			}
@@ -274,7 +245,7 @@ void RenderEmeraldShardGlow_Final(NJS_MODEL_SADX *a1, int a2, float a3)
 				{
 					SetMaterialAndSpriteColor(&EmeraldShardGlowColor);
 					DrawQueueDepthBias = 6000.0f;
-					DrawModel_Queue_407FC0(a1, (QueuedModelFlagsB)0);
+					DrawModelMesh(a1, (QueuedModelFlagsB)0);
 					DrawQueueDepthBias = 0.0f;
 				}
 			}
@@ -291,7 +262,7 @@ void RustlingGrassDepthFix1(NJS_ACTION *a1, float a2, int a3, float a4)
 {
 	if (EV_MainThread_ptr != nullptr) 
 		DrawQueueDepthBias = -27000.0f;
-	njAction_Queue_407BB0_2(a1, a2, a3, a4);
+	late_ActionClipEx(a1, a2, a3, a4);
 	DrawQueueDepthBias = 0.0f;
 }
 
@@ -299,42 +270,21 @@ void RustlingGrassDepthFix2(NJS_OBJECT *a1, QueuedModelFlagsB a2, float a3)
 {
 	if (EV_MainThread_ptr != nullptr) 
 		DrawQueueDepthBias = -27000.0f;
-	ProcessModelNode_C_VerifyTexList(a1, a2, a3);
+	late_DrawObjectClipEx(a1, a2, a3);
 	DrawQueueDepthBias = 0.0f;
 }
 
 void ParseMRColFlags()
 {
-	int colflags;
-	LandTable *landtable;
-	// Station area
-	landtable = LANDTABLEMR[0];
-	for (int j = 0; j < landtable->COLCount; j++)
-	{
-		colflags = landtable->Col[j].Flags;
-		if (colflags == 0x08000000) 
-			MRWaterObjects.push_back(j);
-	}
 	// Jungle area
-	landtable = LANDTABLEMR[2];
+	LandTable* landtable = LANDTABLEMR[2];
 	for (int j = 0; j < landtable->COLCount; j++)
 	{
-		colflags = landtable->Col[j].Flags;
-		if (colflags == 0x88001000 || colflags == 0x88000400) 
-			MRJungleObjectAnimations_Lantern.push_back(j);
-		else if (colflags == 0x88000000) 
-			MRJungleObjectAnimations_Propeller.push_back(j);
-		else if (colflags == 0) 
-			MRJungleObjectsCallback.push_back(j);
+		if (landtable->Col[j].Radius == 19.45961f)
+			MRJungle_LanternTop = landtable->Col[j].Model;
 	}
-	// Add models for MR jungle callback
-	ADV02MR02_OBJECTS[118] = LANDTABLEMR[2]->Col[MRJungleObjectsCallback[0]].Model;
-	ADV02MR02_OBJECTS[119] = LANDTABLEMR[2]->Col[MRJungleObjectsCallback[1]].Model;
-	ADV02MR02_OBJECTS[135] = LANDTABLEMR[2]->Col[MRJungleObjectsCallback[2]].Model;
-	ADV02MR02_OBJECTS[136] = LANDTABLEMR[2]->Col[MRJungleObjectsCallback[3]].Model;
-	ADV02MR02_OBJECTS[137] = LANDTABLEMR[2]->Col[MRJungleObjectsCallback[4]].Model;
-	ADV02MR02_OBJECTS[138] = LANDTABLEMR[2]->Col[MRJungleObjectsCallback[5]].Model;
-	ADV02MR02_OBJECTS[139] = LANDTABLEMR[2]->Col[MRJungleObjectsCallback[6]].Model;
+	MRJungle_Propeller = landtable->AnimData->Model->child->sibling->sibling->sibling;	
+	MRJungle_Propeller2 = landtable->AnimData->Model->child->sibling->sibling;
 }
 
 void RemoveMRMaterials(int act)
@@ -415,6 +365,13 @@ void ParseMRMaterials()
 	}
 	// Jungle
 	landtable = LANDTABLEMR[2];
+	// Lantern white diffuse
+	AddWhiteDiffuseMaterial(&landtable->AnimData[0].Model->child->basicdxmodel->mats[0]);
+	AddWhiteDiffuseMaterial(&landtable->AnimData[0].Model->child->basicdxmodel->mats[1]);
+	AddWhiteDiffuseMaterial(&landtable->AnimData[0].Model->child->basicdxmodel->mats[2]);
+	AddWhiteDiffuseMaterial(&landtable->AnimData[0].Model->child->basicdxmodel->mats[3]);
+	AddWhiteDiffuseMaterial(&landtable->AnimData[0].Model->child->basicdxmodel->mats[4]);
+	AddWhiteDiffuseMaterial(&landtable->AnimData[0].Model->child->basicdxmodel->mats[5]);
 	for (int j = 0; j < landtable->COLCount; j++)
 	{
 		for (int k = 0; k < landtable->Col[j].Model->basicdxmodel->nbMat; ++k)
@@ -493,10 +450,9 @@ void ParseMRMaterials()
 void UnloadLevelFiles_ADV02()
 {
 	// Clear all pointers and arrays
-	MRWaterObjects.clear();
-	MRJungleObjectAnimations_Propeller.clear();
-	MRJungleObjectAnimations_Lantern.clear();
-	MRJungleObjectsCallback.clear();
+	MRJungle_Propeller = nullptr;
+	MRJungle_Propeller2 = nullptr;
+	MRJungle_LanternTop = nullptr;
 	// Unregister white diffuse
 	RemoveMRMaterials(0);
 	RemoveMRMaterials(1);
@@ -506,6 +462,12 @@ void UnloadLevelFiles_ADV02()
 	RemoveWhiteDiffuseMaterial(&LANDTABLEMR[3]->AnimData[1].Model->basicdxmodel->mats[1]); // Metal Sonic in tube
 	RemoveWhiteDiffuseMaterial(&LANDTABLEMR[3]->AnimData[1].Model->basicdxmodel->mats[2]); // Metal Sonic in tube
 	RemoveWhiteDiffuseMaterial(&LANDTABLEMR[3]->AnimData[1].Model->basicdxmodel->mats[3]); // Metal Sonic in tube
+	RemoveWhiteDiffuseMaterial(&LANDTABLEMR[2]->AnimData[0].Model->child->basicdxmodel->mats[0]); // Lantern in jungle
+	RemoveWhiteDiffuseMaterial(&LANDTABLEMR[2]->AnimData[0].Model->child->basicdxmodel->mats[1]); // Lantern in jungle
+	RemoveWhiteDiffuseMaterial(&LANDTABLEMR[2]->AnimData[0].Model->child->basicdxmodel->mats[2]); // Lantern in jungle
+	RemoveWhiteDiffuseMaterial(&LANDTABLEMR[2]->AnimData[0].Model->child->basicdxmodel->mats[3]); // Lantern in jungle
+	RemoveWhiteDiffuseMaterial(&LANDTABLEMR[2]->AnimData[0].Model->child->basicdxmodel->mats[4]); // Lantern in jungle
+	RemoveWhiteDiffuseMaterial(&LANDTABLEMR[2]->AnimData[0].Model->child->basicdxmodel->mats[5]); // Lantern in jungle
 	// Finish
 	delete ADV02_0_Info;
 	delete ADV02_1_Info;
@@ -520,14 +482,20 @@ void UnloadLevelFiles_ADV02()
 void IceCapDoorFix(NJS_MODEL_SADX *a1, QueuedModelFlagsB a2, float a3)
 {
 	// Draw the solid stuff underneath the wall
-	DrawModel_Queue_407FC0_WithScale(a1, a2, a3);
+	late_DrawModelClipMesh(a1, a2, a3);
 	DrawQueueDepthBias = -27000.0f;
 	// Draw the snowflake
-	DrawModel_Queue_407FC0_WithScale(IceCapDoorSnowflake->basicdxmodel, a2, a3);
+	late_DrawModelClipMesh(IceCapDoorSnowflake->basicdxmodel, a2, a3);
 	DrawQueueDepthBias = -20000.0f;
 	// Draw the icy surface
-	DrawModel_Queue_407FC0_WithScale(IceCapDoorSnowflakeWall->basicdxmodel, a2, a3);
+	late_DrawModelClipMesh(IceCapDoorSnowflakeWall->basicdxmodel, a2, a3);
 	DrawQueueDepthBias = 0.0f;
+}
+
+void OTreeFix(NJS_OBJECT* a1, QueuedModelFlagsB a2, float a3)
+{
+	DrawQueueDepthBias = -25000.0f;
+	late_DrawObjectClipEx(a1, a2, a3);
 }
 
 void ADV02_Init()
@@ -563,7 +531,8 @@ void ADV02_Init()
 	// This is done only once
 	if (!ModelsLoaded_ADV02)
 	{
-		WriteJump((void*)0x52F800, MRJungleCallback_Simple); // To prevent crashes when MR isn't loaded
+		WriteCall((void*)0x538896, OTreeFix); // OTree depth
+		WriteData<5>((void*)0x52FC73, 0x90u); // Disable MR jungle callback
 		WriteCall((void*)0x53816F, RustlingGrassDepthFix1); // Rustling grass depth bias for Knuckles' cutscene
 		WriteCall((void*)0x53818F, RustlingGrassDepthFix2); // Rustling grass depth bias for Knuckles' cutscene
 		// MR base stuff
@@ -817,26 +786,12 @@ void ADV02_OnFrame()
 				AmyMissionCollision = false;
 			}
 		}
-		if (!IsGamePaused())
+		// Animate rotating stuff in MR Jungle
+		if (!IsGamePaused() && CurrentAct == 2 && ADV02_2_Info)
 		{
-			// Animate rotating stuff in MR Jungle
-			if (CurrentAct == 2 && ADV02_2_Info)
-			{
-				for (int q : MRJungleObjectAnimations_Propeller)
-				{
-					if (q != -1)
-					{
-						LANDTABLEMR[2]->Col[q].Model->ang[0] = (LANDTABLEMR[2]->Col[q].Model->ang[0] + (512 * FramerateSetting)) % 65535;
-					}
-				}
-				for (int q : MRJungleObjectAnimations_Lantern)
-				{
-					if (q != -1)
-					{
-						LANDTABLEMR[2]->Col[q].Model->ang[1] = (LANDTABLEMR[2]->Col[q].Model->ang[1] + (256 * FramerateSetting)) % 65535;
-					}
-				}
-			}
+			MRJungle_Propeller->ang[0] += (0x444 * FramerateSetting) % 65535;
+			MRJungle_Propeller2->ang[0] += (0x222 * FramerateSetting) % 65535;
+			MRJungle_LanternTop->ang[1] += (0x111 * FramerateSetting) % 65535;
 		}
 		// Prevent dynamic direction from being adjusted in Eggman's base
 		if (CurrentAct == 3)

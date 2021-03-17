@@ -88,7 +88,7 @@ void E101R_AfterImageQueue(NJS_ACTION *anim, float a2, int a3)
 void E101R_ArmsHook(NJS_OBJECT *a1, QueuedModelFlagsB a2)
 {
 	DrawQueueDepthBias = 2000.0f;
-	ProcessModelNode(a1, a2, GlobalModelNodeScale);
+	lateDrawObject(a1, a2, GlobalModelNodeScale);
 	DrawQueueDepthBias = 0;
 }
 
@@ -104,7 +104,7 @@ void E101R_FVFShit(FVFStruct_H_B *a1, signed int count, int a3)
 void E101R_DrawExplosion(NJS_OBJECT *a1, QueuedModelFlagsB a2)
 {
 	DrawQueueDepthBias = 20000.0f;
-	ProcessModelNode_A_WrapperB(a1, QueuedModelFlagsB_SomeTextureThing);
+	late_DrawObject(a1, QueuedModelFlagsB_SomeTextureThing);
 	DrawQueueDepthBias = 0.0f;
 }
 
@@ -118,7 +118,7 @@ void __cdecl E101ROceanHook(OceanData *a1)
 			njSetTexture(&EC_SEA_TEXLIST);
 			njPushMatrix(0);
 			njTranslate(0, Camera_Data1->Position.x, 0, Camera_Data1->Position.z);
-			ProcessModelNode(E101RBossOcean, QueuedModelFlagsB_EnableZWrite, 1.0f);
+			lateDrawObject(E101RBossOcean, QueuedModelFlagsB_EnableZWrite, 1.0f);
 			njPopMatrix(1u);
 		}
 	}

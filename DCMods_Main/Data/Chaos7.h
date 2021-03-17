@@ -32238,11 +32238,11 @@ COL collist_000200BC[] = {
 	{ { -894.4942f, 685.5546f, -10241.3f }, 1046.215f, 0, 0, &object_00063BF8, 0, 0x80000000 },
 	{ { 1176.369f, 775.0673f, -5461.935f }, 1116.663f, 0, 0, &object_00063C2C, 0, 0x80000000 },
 	{ { -1361.592f, 691.6057f, -8212.576f }, 1046.215f, 0, 0, &object_00063C60, 0, 0x80000000 },
-	{ { 2530, -200, -4750 }, 10606.6f, 0, 0, &object_000348E4, 0, 0x08000020 }, //Some water stuff
-	{ { 2530, -160, -4750 }, 10606.6f, 0, 0, &object_00034644, 0, 0x08000020 }, //Some water stuff
-	{ { 2530, -90, -4750 }, 10606.6f, 0, 0, &object_000343A4, 0, 0x08000020 }, //Some water stuff	
+	{ { 2530, -200, -4750 }, 10606.6f, -49952.0f, 0, &object_000348E4, 0, 0x81000020 }, //Underwater effect
+	{ { 2530, -160, -4750 }, 10606.6f, -48952.0f, 0, &object_00034644, 0, 0x81000020 }, //Underwater effect
+	{ { 2530, -90, -4750 }, 10606.6f, -47952.0f, 0, &object_000343A4, 0, 0x81000020 }, //Underwater effect
 };
 
-extern "C" __declspec(dllexport) LandTable landtable_00001214 = { LengthOfArray(collist_000200BC), 0, 0xC, 3000, collist_000200BC, NULL, "LM_CHAOS7_0", &texlist_chaos7, 0, 0 };
+extern "C" __declspec(dllexport) LandTable landtable_00001214 = { LengthOfArray(collist_000200BC), 0, 0xC, 0, 3000, collist_000200BC, NULL, "LM_CHAOS7_0", &texlist_chaos7, 0, 0 };
 
 #pragma warning(pop)

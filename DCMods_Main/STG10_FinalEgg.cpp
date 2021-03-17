@@ -69,7 +69,7 @@ PVMEntry FinalEggObjectTextures[] = {
 void DrawOSpinTubeModels(NJS_MODEL_SADX* model, float scale)
 {
 	DrawQueueDepthBias = 2000.0f;
-	DrawModel_Queue_407FC0(model, QueuedModelFlagsB_EnableZWrite);
+	DrawModelMesh(model, QueuedModelFlagsB_EnableZWrite);
 	DrawQueueDepthBias = 0;
 }
 
@@ -87,7 +87,7 @@ void RenderBlueLight(ObjectMaster *a2)
 		SetTextureToLevelObj();
 		njPushMatrix(0);
 		njTranslateV(0, &v1->Position);
-		ProcessModel_NoSorting(((NJS_OBJECT*)0x1A003F4)->basicdxmodel, 1.0f);
+		ds_DrawModelClip(((NJS_OBJECT*)0x1A003F4)->basicdxmodel, 1.0f);
 		v2 = ((Uint16*)&v1->Object)[0];
 		if (v2)
 		{
@@ -100,15 +100,15 @@ void RenderBlueLight(ObjectMaster *a2)
 		}
 		if (dword_1AC4D98) // I have no idea what this is, but it never changes and it would be terrible if it did
 		{
-			ProcessModelNode_D(BlueLight_Camera1, QueuedModelFlagsB_EnableZWrite, 1.0f);
-			ProcessModelNode_D(BlueLight_Camera2, QueuedModelFlagsB_SomeTextureThing, 1.0f);
-			ProcessModelNode_Try(BlueLight_Light, QueuedModelFlagsB_SomeTextureThing, 1.0f);
+			DrawObjectClipMesh(BlueLight_Camera1, QueuedModelFlagsB_EnableZWrite, 1.0f);
+			DrawObjectClipMesh(BlueLight_Camera2, QueuedModelFlagsB_SomeTextureThing, 1.0f);
+			late_DrawObjectClipMS(BlueLight_Light, QueuedModelFlagsB_SomeTextureThing, 1.0f);
 		}
 		else
 		{
-			ProcessModelNode_AB_Wrapper(BlueLight_Camera1, 1.0f);
-			ProcessModelNode_AB_Wrapper(BlueLight_Camera2, 1.0f);
-			ProcessModelNode_AB_Wrapper(BlueLight_Light, 1.0f);
+			ds_DrawObjectClip(BlueLight_Camera1, 1.0f);
+			ds_DrawObjectClip(BlueLight_Camera2, 1.0f);
+			ds_DrawObjectClip(BlueLight_Light, 1.0f);
 		}
 		njPopMatrix(1u);
 	}
@@ -116,7 +116,7 @@ void RenderBlueLight(ObjectMaster *a2)
 
 void DrawOUkishima(NJS_OBJECT* obj, float scale)
 {
-	ProcessModelNode_D(obj, QueuedModelFlagsB_EnableZWrite, scale);
+	DrawObjectClipMesh(obj, QueuedModelFlagsB_EnableZWrite, scale);
 }
 
 void __cdecl OTatekan_Display(ObjectMaster *a1)
@@ -144,7 +144,7 @@ void __cdecl OTatekan_Display(ObjectMaster *a1)
 		{
 			njRotateY(0, (unsigned __int16)v3);
 		}
-		ProcessModelNode_AB_Wrapper((NJS_OBJECT*)0x1A45500, 1.0f); // Bottom
+		ds_DrawObjectClip((NJS_OBJECT*)0x1A45500, 1.0f); // Bottom
 		njPopMatrix(1u);
 		njPushMatrix(0);
 		YDist = v1->Scale.y * 22.0;
@@ -154,13 +154,13 @@ void __cdecl OTatekan_Display(ObjectMaster *a1)
 		{
 			njRotateY(0, (unsigned __int16)v5);
 		}
-		ProcessModelNode_AB_Wrapper((NJS_OBJECT*)0x1A44A40, 1.0f); // Top
+		ds_DrawObjectClip((NJS_OBJECT*)0x1A44A40, 1.0f); // Top
 		njPopMatrix(1u);
 		njPushMatrix(0);
 		njTranslate(0, 0.0f, 4.0f, 0.0f);
 		njScale(0, 1.0f, v1->Scale.y, 1.0f);
 		DrawQueueDepthBias = -20000.0f;
-		ProcessModelNode((NJS_OBJECT*)0x01A4425C, (QueuedModelFlagsB)0, v1->Scale.y); // Pivot
+		lateDrawObject((NJS_OBJECT*)0x01A4425C, (QueuedModelFlagsB)0, v1->Scale.y); // Pivot
 		if (v1->Scale.y >= 1.0f)
 		{
 			scale = v1->Scale.y;
@@ -171,7 +171,7 @@ void __cdecl OTatekan_Display(ObjectMaster *a1)
 		}
 		njSetTexture(&texlist_cylinder);
 		DrawQueueDepthBias = -18000.0f;
-		ProcessModelNode((NJS_OBJECT*)0x01A4583C, (QueuedModelFlagsB)0, scale); // Glass
+		lateDrawObject((NJS_OBJECT*)0x01A4583C, (QueuedModelFlagsB)0, scale); // Glass
 		DrawQueueDepthBias = 0.0f;
 		njPopMatrix(1u);
 		njPopMatrix(1u);
@@ -285,7 +285,7 @@ void __cdecl OTexture_Display(ObjectMaster *a1)
 		njScaleV(0, v2);
 		DrawQueueDepthBias = -47952.0f;
 		a3 = VectorMaxAbs(v2);
-		ProcessModelNode_A_Wrapper((NJS_OBJECT*)0x1A45620, (QueuedModelFlagsB)0, a3);
+		late_DrawObjectClip((NJS_OBJECT*)0x1A45620, (QueuedModelFlagsB)0, a3);
 		DrawQueueDepthBias = 0;
 		njPopMatrix(1u);
 		ClampGlobalColorThing_Thing();
@@ -362,7 +362,7 @@ void FinalEgg2Cols_Display(ObjectMaster* a1)
 						DrawQueueDepthBias = -15000.0f;
 					}
 				}
-				ProcessModelNode_D(GeoLists[81]->Col[i].Model, 0, 1.0f);
+				DrawObjectClipMesh(GeoLists[81]->Col[i].Model, 0, 1.0f);
 				njPopMatrix(1u);
 				DrawQueueDepthBias = 0;
 			}
@@ -409,16 +409,16 @@ void LoadGlass()
 
 void RenderOLight2WithDepth(NJS_OBJECT* a1, int a2, float a3)
 {
-	ProcessModelNode_AB_Wrapper(a1, a3);
+	ds_DrawObjectClip(a1, a3);
 	DrawQueueDepthBias = 4000.0f;
-	ProcessModelNode_Try(OLight2_Light, QueuedModelFlagsB_SomeTextureThing, a3);
+	late_DrawObjectClipMS(OLight2_Light, QueuedModelFlagsB_SomeTextureThing, a3);
 	DrawQueueDepthBias = 0.0f;
 }
 
 void Elevator2Hook(NJS_OBJECT *obj, float scale)
 {
 	DrawQueueDepthBias = -10000.0f;
-	ProcessModelNode(obj, QueuedModelFlagsB_EnableZWrite, scale);
+	lateDrawObject(obj, QueuedModelFlagsB_EnableZWrite, scale);
 	DrawQueueDepthBias = 0.0f;
 }
 
@@ -433,7 +433,7 @@ static void __cdecl SkyBox_FinalEgg_Load_r(ObjectMaster *a1)
 void GachaponExplosionFix(NJS_MODEL_SADX *a1)
 {
 	DrawQueueDepthBias = 10000.0f;
-	DrawModel_Queue(a1, QueuedModelFlagsB_SomeTextureThing);
+	lateDrawModel(a1, QueuedModelFlagsB_SomeTextureThing);
 	DrawQueueDepthBias = 0;
 }
 
@@ -513,18 +513,18 @@ void __cdecl _0Light_Camera_DisplayFix(ObjectMaster *a1)
 			njRotateX(0, v3);
 		}
 		// Main model
-		ProcessModelNode_AB_Wrapper(_0Light_Camera_Main->child, 1.0f);
+		ds_DrawObjectClip(_0Light_Camera_Main->child, 1.0f);
 		// Calculate draw bias depending on distance
 		//if (GetPlayerDistance(v1, 0) * 0.1f < 1500.0f) DrawQueueDepthBias = 2000.0f;
 		//else
 		//DrawQueueDepthBias = 800.0f;
 		//PrintDebug("Ass: %f\n", GetPlayerDistance(v1, 0)* 0.1f);
 		// Camera stuff
-		ProcessModelNode_D(_0Light_Camera_Camera, QueuedModelFlagsB_SomeTextureThing, 1.0);
+		DrawObjectClipMesh(_0Light_Camera_Camera, QueuedModelFlagsB_SomeTextureThing, 1.0);
 		// Small light
-		ProcessModelNode_D(_0Light_Camera_SmallLight, QueuedModelFlagsB_SomeTextureThing, 1.0);
+		DrawObjectClipMesh(_0Light_Camera_SmallLight, QueuedModelFlagsB_SomeTextureThing, 1.0);
 		// Big light
-		ProcessModelNode_Try(_0Light_Camera_BigLight, 4, 1.0);
+		late_DrawObjectClipMS(_0Light_Camera_BigLight, 4, 1.0);
 		njPopMatrix(1u);
 	}
 }

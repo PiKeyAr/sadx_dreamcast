@@ -21,12 +21,6 @@ DataPointer(NJS_ARGB, stru_1494124, 0x1494124);
 DataPointer(unsigned char, byte_3C5A7EF, 0x3C5A7EF);
 DataPointer(unsigned char, byte_3C5A7ED, 0x3C5A7ED);
 
-FunctionPointer(void, sub_408530, (NJS_OBJECT *a1), 0x408530);
-FunctionPointer(void, njAction_TryReallyHard, (NJS_ACTION *a1, float frameNumber), 0x409FB0);
-FunctionPointer(void, sub_407CF0, (NJS_MODEL_SADX *a1, QueuedModelFlagsB a2), 0x407CF0);
-
-NJS_OBJECT* Chaos7UnderwaterPieces[] = { nullptr, nullptr, nullptr };
-
 static float TornadoAlpha = 1.0f;
 static int TornadoTrigger = 0;
 
@@ -75,7 +69,7 @@ void __cdecl TornadoFunc()
 	SetMaterialAndSpriteColor(&nj_constant_material_temp);
 	if (!(((NJS_OBJECT*)0x13A6E8C)->evalflags & NJD_EVAL_HIDE))
 	{
-		ProcessModelNode_TryReallyHard_2((NJS_OBJECT*)0x13A6E8C);
+		CHAOS_DrawObject((NJS_OBJECT*)0x13A6E8C);
 	}
 }
 
@@ -127,29 +121,13 @@ void __cdecl Chaos7Damage_DisplayX(ObjectMaster *a1)
 
 void PerfectChaosWaterfallHook(NJS_OBJECT *a1, QueuedModelFlagsB a2, float a3)
 {
-	ProcessModelNode_D(a1, (QueuedModelFlagsB)0, a3);
+	DrawObjectClipMesh(a1, (QueuedModelFlagsB)0, a3);
 }
 
 void UnloadLevelFiles_B_CHAOS7()
 {
-	Chaos7UnderwaterPieces[0] = nullptr;
-	Chaos7UnderwaterPieces[1] = nullptr;
-	Chaos7UnderwaterPieces[2] = nullptr;
 	delete B_CHAOS7_Info;
 	B_CHAOS7_Info = nullptr;
-}
-
-void Chaos7WaterHook(NJS_OBJECT *object)
-{
-	sub_408530(object); //Skybox
-	njSetTexture(&texlist_chaos7);
-	DrawQueueDepthBias = -49952.0f;
-	ProcessModelNode(Chaos7UnderwaterPieces[0], QueuedModelFlagsB_SomeTextureThing, 1.0f);
-	DrawQueueDepthBias = -48952.0f;
-	ProcessModelNode(Chaos7UnderwaterPieces[1], QueuedModelFlagsB_SomeTextureThing, 1.0f);
-	DrawQueueDepthBias = -47952.0f;
-	ProcessModelNode(Chaos7UnderwaterPieces[2], QueuedModelFlagsB_SomeTextureThing, 1.0f);
-	SetTextureToLevelObj();
 }
 
 void Chaos7TornadoAttackHook(NJS_ACTION *a1, float a2, int a3, int a4)
@@ -164,18 +142,18 @@ void Chaos7TornadoAttackHook(NJS_ACTION *a1, float a2, int a3, int a4)
 	action2.object = TornadoAttack2;
 	action3.object = TornadoAttack3;
 	DrawQueueDepthBias = 2000.0f;
-	njAction_TryReallyHard(&action1, a2);
+	CHAOS_Action(&action1, a2);
 	DrawQueueDepthBias = 3000.0f;
-	njAction_TryReallyHard(&action2, a2);
+	CHAOS_Action(&action2, a2);
 	DrawQueueDepthBias = 4000.0f;
-	njAction_TryReallyHard(&action3, a2);
+	CHAOS_Action(&action3, a2);
 	DrawQueueDepthBias = 0.0f;
 }
 
 void PerfectChaosBreathFix2(NJS_OBJECT *a1, float scale)
 {
 	DrawQueueDepthBias = 50.0f;
-	ProcessModelNode_A_Wrapper(a1, (QueuedModelFlagsB)0, scale);
+	late_DrawObjectClip(a1, (QueuedModelFlagsB)0, scale);
 }
 
 void PerfectChaos_Init()
@@ -183,15 +161,6 @@ void PerfectChaos_Init()
 	B_CHAOS7_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\B_CHAOS7\\0.sa1lvl"));
 	LandTable* B_CHAOS7 = B_CHAOS7_Info->getlandtable(); //&landtable_00001214;
 	RemoveMaterialColors_Landtable(B_CHAOS7);
-	for (int j = 0; j < B_CHAOS7->COLCount; j++)
-	{
-		if (B_CHAOS7->Col[j].Flags & 0x8000000)
-		{
-			if (Chaos7UnderwaterPieces[0] == nullptr) Chaos7UnderwaterPieces[0] = B_CHAOS7->Col[j].Model;
-			else if (Chaos7UnderwaterPieces[1] == nullptr) Chaos7UnderwaterPieces[1] = B_CHAOS7->Col[j].Model;
-			else if (Chaos7UnderwaterPieces[2] == nullptr) Chaos7UnderwaterPieces[2] = B_CHAOS7->Col[j].Model;
-		}
-	}
 	B_CHAOS7->TexList = &texlist_chaos7;
 	LandTableArray[32] = B_CHAOS7;
 	if (!ModelsLoaded_B_CHAOS7)
@@ -241,7 +210,6 @@ void PerfectChaos_Init()
 		WriteJump((void*)0x5632F0, Chaos7Explosion_DisplayX);
 		WriteJump((void*)0x5633C0, Chaos7Damage_DisplayX);
 		//Perfect Chaos misc
-		WriteCall((void*)0x55DC0C, Chaos7WaterHook);
 		((NJS_OBJECT*)0x248B1B4)->basicdxmodel->mats[2].attrflags &= ~NJD_FLAG_IGNORE_SPECULAR; //Egg Carrier 2
 		//Objects
 		*(NJS_OBJECT*)0x142C740 = *LoadModel("system\\data\\B_CHAOS7\\Models\\0006B410.sa1mdl", false); //ORoad0

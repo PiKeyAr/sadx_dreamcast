@@ -62444,10 +62444,10 @@ extern "C" __declspec(dllexport) COL collist_00015E60[] = {
 	{ { 441.1162f, 138.273f, 198.8783f }, 126.2519f, 0, 0, &object_00076BB0, 0, 0x86040000 }, //Trees 6
 	{ { 88.92593f, 84.71622f, 562.91f }, 126.2519f, 0, 0, &object_00065328, 0, 0x86040000 }, //Trees 2
 	{ { -59.50221f, 116.0126f, 557.1809f }, 150.1226f, 0, 0, &object_00064B8C, 0, 0x86040000 }, //Trees 1
-	{ { 1187.889f, -413.2884f, 673.5183f }, 903.1257f, 0, 0, &object_000534DC, 0, 0x08000000 }, //Waves 1
-	{ { -63.33233f, -411.4669f, 1024.211f }, 635.5662f, 0, 0, &object_000538B0, 0, 0x08000000 }, //Waves 2
-	{ { 721.5953f, -415.7866f, 2063.492f }, 382.067f, 0, 0, &object_00059734, 0, 0x08000000 }, //Waves 3
-	{ { 301.6799f, -414.4693f, 1955.185f }, 307.0809f, 0, 0, &object_000599DC, 0, 0x08000000 }, //Waves 4
+	{ { 1187.889f, -413.2884f, 673.5183f }, 903.1257f, -6000.0f, 0, &object_000534DC, 0, 0x81000000 }, //Waves 1
+	{ { -63.33233f, -411.4669f, 1024.211f }, 635.5662f, -6000.0f, 0, &object_000538B0, 0, 0x81000000 }, //Waves 2
+	{ { 721.5953f, -415.7866f, 2063.492f }, 382.067f, -6000.0f, 0, &object_00059734, 0, 0x81000000 }, //Waves 3
+	{ { 301.6799f, -414.4693f, 1955.185f }, 307.0809f, -6000.0f, 0, &object_000599DC, 0, 0x81000000 }, //Waves 4
 };
 
 extern "C" __declspec(dllexport) GeoAnimData animlist_00017918[] = {
@@ -62455,6 +62455,6 @@ extern "C" __declspec(dllexport) GeoAnimData animlist_00017918[] = {
 	{ 0, 0.6f, 60, &object_0008056C, &action_animation_00076994, (NJS_TEXLIST *)0 },
 	{ 0, 0.6f, 60, &object_0008FF54, &action_animation_00084F7C, (NJS_TEXLIST *)0 }
 };
-extern "C" __declspec(dllexport) LandTable landtable_00017960 = { LengthOfArray<int16_t>(collist_00015E60), LengthOfArray<int16_t>(animlist_00017918), 0xD, 1500, collist_00015E60, animlist_00017918, "ADV_MR00", (NJS_TEXLIST *)&texlist_mr00, 0, 0 };
+extern "C" __declspec(dllexport) LandTable landtable_00017960 = { LengthOfArray<int16_t>(collist_00015E60), LengthOfArray<int16_t>(animlist_00017918), 0xD, 0, 1500, collist_00015E60, animlist_00017918, "ADV_MR00", (NJS_TEXLIST *)&texlist_mr00, 0, 0 };
 
 #pragma warning(pop)

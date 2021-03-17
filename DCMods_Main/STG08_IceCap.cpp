@@ -71,7 +71,7 @@ void RenderSnowboardEffect(ObjectMaster *a1)
 	}
 	njScale(0, XScalea, XScalea, XScalea);
 	DrawQueueDepthBias = 2000.0f;
-	ProcessModelNode((NJS_OBJECT*)0xE43544, QueuedModelFlagsB_EnableZWrite, XScalea);
+	lateDrawObject((NJS_OBJECT*)0xE43544, QueuedModelFlagsB_EnableZWrite, XScalea);
 	DrawQueueDepthBias = 0.0f;
 	njPopMatrix(1u);
 }
@@ -79,14 +79,14 @@ void RenderSnowboardEffect(ObjectMaster *a1)
 void RenderSmallIcicles(NJS_OBJECT *a1, QueuedModelFlagsB blend_mode, float scale)
 {
 	DrawQueueDepthBias = 15000.0f;
-	ProcessModelNode(a1, QueuedModelFlagsB_SomeTextureThing, scale);
+	lateDrawObject(a1, QueuedModelFlagsB_SomeTextureThing, scale);
 	DrawQueueDepthBias = 0;
 }
 
 void RenderIcicleSpriteThing(NJS_OBJECT *a1, QueuedModelFlagsB blend_mode, float scale)
 {
 	DrawQueueDepthBias = -1000.0f;
-	ProcessModelNode(a1, blend_mode, scale);
+	lateDrawObject(a1, blend_mode, scale);
 	DrawQueueDepthBias = 0;
 }
 
@@ -153,7 +153,7 @@ void DrawCrystal1(ObjectMaster *a1)
 		}
 		//1
 		DrawQueueDepthBias = 1000.0f;
-		ProcessModelNode_D(Crystal1_2, (QueuedModelFlagsB)1, 1.0f);
+		DrawObjectClipMesh(Crystal1_2, (QueuedModelFlagsB)1, 1.0f);
 		njPopMatrix(1u);
 		//2
 		njPushMatrix(0);
@@ -173,7 +173,7 @@ void DrawCrystal1(ObjectMaster *a1)
 		{
 			njRotateY(0, (unsigned __int16)v4);
 		}
-		ProcessModelNode_D(Crystal1_1, QueuedModelFlagsB_EnableZWrite, 1.0f);
+		DrawObjectClipMesh(Crystal1_1, QueuedModelFlagsB_EnableZWrite, 1.0f);
 		njPopMatrix(1u);
 		//3
 		njPushMatrix(0);
@@ -194,7 +194,7 @@ void DrawCrystal1(ObjectMaster *a1)
 			njRotateY(0, (unsigned __int16)v4);
 		}
 		DrawQueueDepthBias = 2000.0f;
-		ProcessModelNode_D(Crystal1_3, QueuedModelFlagsB_EnableZWrite, 1.0f);
+		DrawObjectClipMesh(Crystal1_3, QueuedModelFlagsB_EnableZWrite, 1.0f);
 		njPopMatrix(1u);
 		DrawQueueDepthBias = 0;
 	}
@@ -230,7 +230,7 @@ void DrawCrystal2(ObjectMaster *a1)
 		}
 		//1
 		DrawQueueDepthBias = 1000.0f;
-		ProcessModelNode_D(Crystal2_2, QueuedModelFlagsB_EnableZWrite, 1.0f);
+		DrawObjectClipMesh(Crystal2_2, QueuedModelFlagsB_EnableZWrite, 1.0f);
 		njPopMatrix(1u);
 		//2
 		njPushMatrix(0);
@@ -251,7 +251,7 @@ void DrawCrystal2(ObjectMaster *a1)
 			njRotateY(0, (unsigned __int16)v4);
 		}
 		DrawQueueDepthBias = 2000.0f;
-		ProcessModelNode_D(Crystal2_1, QueuedModelFlagsB_EnableZWrite, 1.0f);
+		DrawObjectClipMesh(Crystal2_1, QueuedModelFlagsB_EnableZWrite, 1.0f);
 		njPopMatrix(1u);
 		//3
 		njPushMatrix(0);
@@ -272,7 +272,7 @@ void DrawCrystal2(ObjectMaster *a1)
 			njRotateY(0, (unsigned __int16)v4);
 		}
 		DrawQueueDepthBias = 3000.0f;
-		ProcessModelNode_D(Crystal2_3, QueuedModelFlagsB_EnableZWrite, 1.0f);
+		DrawObjectClipMesh(Crystal2_3, QueuedModelFlagsB_EnableZWrite, 1.0f);
 		njPopMatrix(1u);
 		DrawQueueDepthBias = 0;
 	}
@@ -306,7 +306,7 @@ void DrawCrystal3(ObjectMaster *a1)
 		{
 			njRotateY(0, v4);
 		}
-		ProcessModelNode_D(&stru_E773D8, (QueuedModelFlagsB)1, 1.0f);
+		DrawObjectClipMesh(&stru_E773D8, (QueuedModelFlagsB)1, 1.0f);
 		njPopMatrix(1u);
 	}
 }
@@ -463,7 +463,7 @@ void UnloadLevelFiles_STG08()
 void RenderBigIcicleWithDepth(NJS_OBJECT* a1, int blend_mode, float scale)
 {
 	DrawQueueDepthBias = 3000.0f;
-	ProcessModelNode_D_WrapperB(a1, blend_mode, scale);
+	late_DrawObjectClipMesh(a1, blend_mode, scale);
 	DrawQueueDepthBias = 0.0f;
 }
 

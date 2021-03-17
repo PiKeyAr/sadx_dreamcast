@@ -97,7 +97,7 @@ void RenderCasinoBackgroundWater(ObjectMaster* a1)
 		njPushMatrix(0);
 		njTranslate(0, 0, 0, 0);
 		DrawQueueDepthBias = -47960.0f;
-		ProcessModelNode(TikeiAnim_WaterAroundShip, QueuedModelFlagsB_SomeTextureThing, 1.0f);
+		lateDrawObject(TikeiAnim_WaterAroundShip, QueuedModelFlagsB_SomeTextureThing, 1.0f);
 		DrawQueueDepthBias = 0.0f;
 		njPopMatrix(1u);
 	}
@@ -166,7 +166,7 @@ void Cowgirl_MoveDynCol(NJS_OBJECT* dyncol, Float frame) {
 
 void __cdecl CowGirl_DisplayPart(NJS_MODEL_SADX* model, int a2, int a3) 
 {
-	ProcessModel_407CF0(model, a2, a3);
+	DrawModelMS(model, a2);
 	// If the model is the glass, retrieve its position
 	if (model == CowgirlGlass)
 	{
@@ -509,7 +509,7 @@ void __cdecl TutuA_Display(ObjectMaster *a2) //OTutuA
 		{
 			njRotateY(0, (unsigned __int16)(v1->Rotation.y - v3));
 		}
-		ProcessModelNode_AB_Wrapper((NJS_OBJECT*)0x1DF230C, 1.0f);
+		ds_DrawObjectClip((NJS_OBJECT*)0x1DF230C, 1.0f);
 		njPopMatrix(1u);
 	}
 }
@@ -536,7 +536,7 @@ void __cdecl TutuB_Display(ObjectMaster *a2) //TutuB
 		{
 			njRotateY(0, (unsigned __int16)(v1->Rotation.y - v3));
 		}
-		ProcessModelNode_AB_Wrapper((NJS_OBJECT*)0x1DF2908, 1.0f);
+		ds_DrawObjectClip((NJS_OBJECT*)0x1DF2908, 1.0f);
 		njPopMatrix(1u);
 	}
 }
@@ -563,7 +563,7 @@ void __cdecl TutuC_Display(ObjectMaster *a2) //TutuC
 		{
 			njRotateY(0, (unsigned __int16)(v1->Rotation.y - v3));
 		}
-		ProcessModelNode_AB_Wrapper((NJS_OBJECT*)0x1DF2EF8, 1.0f);
+		ds_DrawObjectClip((NJS_OBJECT*)0x1DF2EF8, 1.0f);
 		njPopMatrix(1u);
 	}
 }
@@ -583,7 +583,7 @@ void __cdecl FixedGear2(int a2)
 		njTranslateV(0, &v1->Position);
 		njRotateY(0, v2);
 		sub_5C09D0(12);
-		ProcessModelNode_AB_Wrapper((NJS_OBJECT*)0x1DF198C, 1.0);
+		ds_DrawObjectClip((NJS_OBJECT*)0x1DF198C, 1.0);
 		v3 = v1->Rotation.y;
 		v1->Rotation.y = (v3 + GearRotationDirection*-128) % 65535;
 		njPopMatrix(1u);
@@ -619,9 +619,9 @@ void __cdecl OLhtr_Display(ObjectMaster *a1)
 		{
 			njRotateY(0, (unsigned __int16)v4);
 		}
-		ProcessModelNode_AB_Wrapper((NJS_OBJECT*)0x01E5E7BC, 1.0f);
-		if (v1->Action == 0) ProcessModelNode_A_Wrapper(OLhtr_Dark, QueuedModelFlagsB_SomeTextureThing, 1.0f);
-		else ProcessModelNode_A_Wrapper(OLhtr_Bright, QueuedModelFlagsB_SomeTextureThing, 1.0f);
+		ds_DrawObjectClip((NJS_OBJECT*)0x01E5E7BC, 1.0f);
+		if (v1->Action == 0) late_DrawObjectClip(OLhtr_Dark, QueuedModelFlagsB_SomeTextureThing, 1.0f);
+		else late_DrawObjectClip(OLhtr_Bright, QueuedModelFlagsB_SomeTextureThing, 1.0f);
 		njPopMatrix(1u);
 		sub_5DD920((ObjectMaster*)0x1E75DE0, 2);
 	}
@@ -656,9 +656,9 @@ void __cdecl OLhtg_Display(ObjectMaster *a1)
 		{
 			njRotateY(0, (unsigned __int16)v4);
 		}
-		ProcessModelNode_AB_Wrapper((NJS_OBJECT*)0x1E5EC4C, 1.0f);
-		if (v1->Action == 1) ProcessModelNode_A_Wrapper(OLhtg_Bright, QueuedModelFlagsB_SomeTextureThing, 1.0f);
-		else ProcessModelNode_A_Wrapper(OLhtg_Dark, QueuedModelFlagsB_SomeTextureThing, 1.0f);
+		ds_DrawObjectClip((NJS_OBJECT*)0x1E5EC4C, 1.0f);
+		if (v1->Action == 1) late_DrawObjectClip(OLhtg_Bright, QueuedModelFlagsB_SomeTextureThing, 1.0f);
+		else late_DrawObjectClip(OLhtg_Dark, QueuedModelFlagsB_SomeTextureThing, 1.0f);
 		njPopMatrix(1u);
 		sub_5DD920((ObjectMaster*)0x1E75DC8, 2);
 	}
@@ -673,14 +673,14 @@ void OSlxDisplayNew(NJS_ACTION *a1, float a2, int a3, int a4)
 	sub_405450(&OSlX_BaseAction, a2, a4);
 	//Render light
 	DrawQueueDepthBias = 8000.0f;
-	njAction_Queue_407FC0(a1, a2, (QueuedModelFlagsB)0);
+	late_ActionMesh(a1, a2, (QueuedModelFlagsB)0);
 	DrawQueueDepthBias = 0;
 }
 
 void RenderLightA(NJS_OBJECT *a1, QueuedModelFlagsB a2, float a3)
 {
 	DrawQueueDepthBias = 8000.0f;
-	ProcessModelNode(a1, (QueuedModelFlagsB)4, a3);
+	lateDrawObject(a1, (QueuedModelFlagsB)4, a3);
 	DrawQueueDepthBias = 0;
 }
 
@@ -688,16 +688,16 @@ void RenderOKBSText(NJS_OBJECT *obj, float scale)
 {
 	DrawModel(obj->basicdxmodel);
 	DrawQueueDepthBias = 1000.0f;
-	ProcessModelNode(obj->child, QueuedModelFlagsB_SomeTextureThing, 1.0f);
+	lateDrawObject(obj->child, QueuedModelFlagsB_SomeTextureThing, 1.0f);
 	DrawQueueDepthBias = 0;
 }
 
 void RenderOKBCText(NJS_ACTION *a1, float frame, float scale)
 {
 	DrawQueueDepthBias = 1000.0f;
-	njAction_Queue_407FC0(a1, frame, scale);
+	late_ActionMesh(a1, frame, scale);
 	DrawQueueDepthBias = 2000.0f;
-	ProcessModelNode_D(a1->object->child->sibling->sibling->sibling->sibling, QueuedModelFlagsB_SomeTextureThing, 1.0f);
+	DrawObjectClipMesh(a1->object->child->sibling->sibling->sibling->sibling, QueuedModelFlagsB_SomeTextureThing, 1.0f);
 	DrawQueueDepthBias = 0;
 }
 
@@ -705,23 +705,23 @@ void RenderNeonK(NJS_MODEL_SADX *model, float scale)
 {
 	sub_407A00(model, scale);
 	DrawQueueDepthBias = 1000.0f;
-	DrawModel_Queue(NeonK_Text->child->basicdxmodel, (QueuedModelFlagsB)0);
+	lateDrawModel(NeonK_Text->child->basicdxmodel, (QueuedModelFlagsB)0);
 	DrawQueueDepthBias = 1500.0f;
-	DrawModel_Queue(NeonK_Text->basicdxmodel, (QueuedModelFlagsB)0);
+	lateDrawModel(NeonK_Text->basicdxmodel, (QueuedModelFlagsB)0);
 	DrawQueueDepthBias = 0;
 }
 
 void JackPotFix1(NJS_MODEL_SADX *a1)
 {
 	DrawQueueDepthBias = 10000.0f;
-	DrawModel_Queue(a1, QueuedModelFlagsB_SomeTextureThing);
+	lateDrawModel(a1, QueuedModelFlagsB_SomeTextureThing);
 	DrawQueueDepthBias = 0;
 }
 
 void JackPotFix2(NJS_MODEL_SADX *a1)
 {
 	DrawQueueDepthBias = 20000.0f;
-	DrawModel_Queue(a1, QueuedModelFlagsB_SomeTextureThing);
+	lateDrawModel(a1, QueuedModelFlagsB_SomeTextureThing);
 	DrawQueueDepthBias = 0;
 }
 
@@ -859,7 +859,7 @@ void IdeyaCapFix(NJS_OBJECT *a1, NJS_MOTION *a2, float animframe, float scale)
 
 void TDenkiFix(NJS_OBJECT* a1, QueuedModelFlagsB a2, float a3)
 {
-	ProcessModelNode_A_Wrapper(a1, (QueuedModelFlagsB)0, 1.0f);
+	late_DrawObjectClip(a1, (QueuedModelFlagsB)0, 1.0f);
 }
 
 void MizuAFix(void(__cdecl* function)(ObjectMaster*), ObjectMaster* data, float depth, QueuedModelFlagsB queueflags)
@@ -880,14 +880,14 @@ void ODentoFix(NJS_OBJECT* obj, float scale)
 {
 	if (obj == (NJS_OBJECT*)0x1E5E1E0)
 	{
-		ProcessModelNode_AB_Wrapper(ODento_1, scale);
+		ds_DrawObjectClip(ODento_1, scale);
 		DrawQueueDepthBias = 4000.0f;
-		ProcessModelNode_A_Wrapper(ODento_2, QueuedModelFlagsB_EnableZWrite, scale);
+		late_DrawObjectClip(ODento_2, QueuedModelFlagsB_EnableZWrite, scale);
 		DrawQueueDepthBias = 6000.0f;
-		ProcessModelNode_A_Wrapper(ODento_3, QueuedModelFlagsB_SomeTextureThing, scale);
+		late_DrawObjectClip(ODento_3, QueuedModelFlagsB_SomeTextureThing, scale);
 		DrawQueueDepthBias = 0.0f;
 	}
-	else ProcessModelNode_AB_Wrapper(obj, scale);
+	else ds_DrawObjectClip(obj, scale);
 }
 
 void SetUpIdeyaCapModels(NJS_OBJECT* Object1, NJS_OBJECT* Object2, NJS_OBJECT* Object3)

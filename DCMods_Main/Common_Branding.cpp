@@ -752,7 +752,7 @@ void DrawTitle_New(TitleNewWk* tnk)
 			SetMaterialAndSpriteColor_Float((float)TitleBGTransparency.argb.a / 255.0f, (float)TitleBGTransparency.argb.a / 255.0f, (float)TitleBGTransparency.argb.a / 255.0f, (float)TitleBGTransparency.argb.a / 255.0f);
 		else
 			SetMaterialAndSpriteColor_Float(1.0f, 1.0f, 1.0f, 1.0f);
-		ProcessModelNode_NoQueueScale(TitleScreenModel);
+		DrawObject(TitleScreenModel);
 		ClampGlobalColorThing_Thing();
 		njPopMatrix(1u);
 		RestoreConstantAttr();

@@ -41,7 +41,7 @@ void Chaos4CleanWater_Display(ObjectMaster* o1)
 			//Camera above water and Chaos below water - move to front
 			else DrawQueueDepthBias = 8000.0f;
 		}
-		ProcessModelNode_D_WrapperB(Chaos4CleanWater, 0, 1.0f);
+		late_DrawObjectClipMesh(Chaos4CleanWater, 0, 1.0f);
 		njPopMatrix(1u);
 		DrawQueueDepthBias = 0.0f;
 	}
@@ -132,7 +132,7 @@ void __cdecl Chaos4Kama(ObjectMaster *a1)
 void Chaos4KamaWave(NJS_OBJECT *a1, QueuedModelFlagsB a2, float a3)
 {
 	DrawQueueDepthBias = 12000.0f;
-	ProcessModelNode(a1, a2, a3);
+	lateDrawObject(a1, a2, a3);
 	DrawQueueDepthBias = 0.0f;
 }
 
@@ -197,12 +197,12 @@ void Chaos4Action(NJS_ACTION *a1, float frameNumber)
 
 void Chaos4NumaFix(NJS_OBJECT *a1, int blend_mode, float scale)
 {
-	ProcessModelNode_D_WrapperB(a1, 0, scale);
+	late_DrawObjectClipMesh(a1, 0, scale);
 }
 
 void Chaos4Ball(NJS_OBJECT *a1, QueuedModelFlagsB a2, float a3)
 {
-	ProcessModelNode_D_Wrapper(a1, 0);
+	late_DrawObjectMesh(a1, 0);
 }
 
 void __cdecl Chaos4_Lilypad_Display(ObjectMaster *a2)
@@ -274,7 +274,7 @@ static void __cdecl Chaos4BallsAttack_r(ObjectMaster *a1)
 void Chaos4_Transform(NJS_OBJECT *object)
 {
 	DrawQueueDepthBias = -17000.0f;
-	ProcessModelNode_D_Wrapper(object, (QueuedModelFlagsB)0);
+	late_DrawObjectMesh(object, (QueuedModelFlagsB)0);
 	DrawQueueDepthBias = 0;
 }
 

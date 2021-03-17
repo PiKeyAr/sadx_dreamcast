@@ -451,12 +451,12 @@ void FixSky1(NJS_OBJECT* a1, float scale)
 	if (CurrentLevel == LevelIDs_SkyChase1)
 	{
 		DrawQueueDepthBias = -46000.0f;
-		ProcessModelNode_C(a1, (QueuedModelFlagsB)0, scale);
+		DrawObjectClipEx(a1, (QueuedModelFlagsB)0, scale);
 	}
 	else
 	{
 		DrawQueueDepthBias = -40000.0f;
-		ProcessModelNode_C(a1, (QueuedModelFlagsB)0, scale);
+		DrawObjectClipEx(a1, (QueuedModelFlagsB)0, scale);
 	}
 	DrawQueueDepthBias = 0;
 }
@@ -466,12 +466,12 @@ void FixSky2(NJS_OBJECT* a1, float scale)
 	if (CurrentLevel == LevelIDs_SkyChase1)
 	{
 		DrawQueueDepthBias = -44000.0f;
-		ProcessModelNode_C(a1, (QueuedModelFlagsB)0, scale);
+		DrawObjectClipEx(a1, (QueuedModelFlagsB)0, scale);
 	}
 	else
 	{
 		DrawQueueDepthBias = -25000.0f;
-		ProcessModelNode_C(a1, (QueuedModelFlagsB)0, scale);
+		DrawObjectClipEx(a1, (QueuedModelFlagsB)0, scale);
 	}
 	DrawQueueDepthBias = 0;
 }
@@ -479,7 +479,7 @@ void FixSky2(NJS_OBJECT* a1, float scale)
 void DrawSkyChaseSkybox(NJS_OBJECT* a1, float scale)
 {
 	DrawQueueDepthBias = -40000.0f;
-	ProcessModelNode_C(a1, QueuedModelFlagsB_EnableZWrite, scale);
+	DrawObjectClipEx(a1, QueuedModelFlagsB_EnableZWrite, scale);
 	DrawQueueDepthBias = 0;
 }
 
@@ -535,19 +535,19 @@ void __cdecl SkyChaseBeam1_Display_Fix(ObjectMaster *a1)
 	njTranslate(0, 0.0, 0.0, 0.0);
 	njSetTexture(&SHOOTING0_TEXLIST);
 	njAction((NJS_ACTION*)0x290A414, *(Float *)&v1->CharIndex);
-	njAction_Queue_407BB0((NJS_ACTION*)0x2985984, *(float *)&v1->CharIndex, 4);
+	late_ActionEx((NJS_ACTION*)0x2985984, *(float *)&v1->CharIndex, 4);
 	njPopMatrix(1u);
 	njPushMatrix(0);
 	njTranslate(0, 0.0, 0.0, 0.0);
 	njSetTexture(&SHOOTING1_TEXLIST);
 	//Draw normally after the camera angle changes, but before that just draw on top of everything
-	if (*(float *)&v1->CharIndex >= 440.0f) njAction_Queue_407BB0_2((NJS_ACTION*)0x28E596C, *(float *)& v1->CharIndex, 4, 1.0);
+	if (*(float *)&v1->CharIndex >= 440.0f) late_ActionClipEx((NJS_ACTION*)0x28E596C, *(float *)& v1->CharIndex, 4, 1.0);
 	else DrawModelCallback_QueueFloat(DrawBeam_Lol, *(float *)&v1->CharIndex, 30000.0f, QueuedModelFlagsB_SomeTextureThing);
 	njPopMatrix(1u);
 	njPushMatrix(0);
 	njTranslate(0, 0.0, -648.09998, -3698.0);
 	njSetTexture(&SHOOTING0_TEXLIST);
-	njAction_Queue_407BB0_2((NJS_ACTION*)0x290761C, *(float *)&v1->CharIndex, 4, 1.0);
+	late_ActionClipEx((NJS_ACTION*)0x290761C, *(float *)&v1->CharIndex, 4, 1.0);
 	njPopMatrix(1u);
 }
 

@@ -613,7 +613,7 @@ void ChaoCheerHologram_Main(ObjectMaster *a1)
 	njRotateY(0, v1->Rotation.y);
 	njScale(0, 1.0f, 1.0f, 1.0f);
 	DrawQueueDepthBias = 2000.0f;
-	ProcessModelNode(&cheer_hologram, QueuedModelFlagsB_SomeTextureThing, 1.0f);
+	lateDrawObject(&cheer_hologram, QueuedModelFlagsB_SomeTextureThing, 1.0f);
 	njPopMatrix(1u);
 	DrawQueueDepthBias = 0;
 }
@@ -635,7 +635,7 @@ void ChaoLetters_Main(ObjectMaster *a1)
 	njRotateY(0, v1->Rotation.y);
 	njScale(0, 1.0f, 1.0f, 1.0f);
 	DrawQueueDepthBias = 2000.0f;
-	ProcessModelNode(ChaoRaceLetters, QueuedModelFlagsB_SomeTextureThing, 1.0f);
+	lateDrawObject(ChaoRaceLetters, QueuedModelFlagsB_SomeTextureThing, 1.0f);
 	njPopMatrix(1u);
 	DrawQueueDepthBias = 0;
 }
@@ -728,28 +728,28 @@ void ChaoNumbers_Display(ObjectMaster *a1)
 	switch (ObjectIndex)
 	{
 	case 0:
-		ProcessModelNode(ChaoRaceNumber0, QueuedModelFlagsB_EnableZWrite, 1.0f);
+		lateDrawObject(ChaoRaceNumber0, QueuedModelFlagsB_EnableZWrite, 1.0f);
 		break;
 	case 1:
-		ProcessModelNode(ChaoRaceNumber1, QueuedModelFlagsB_EnableZWrite, 1.0f);
+		lateDrawObject(ChaoRaceNumber1, QueuedModelFlagsB_EnableZWrite, 1.0f);
 		break;
 	case 2:
-		ProcessModelNode(ChaoRaceNumber2, QueuedModelFlagsB_EnableZWrite, 1.0f);
+		lateDrawObject(ChaoRaceNumber2, QueuedModelFlagsB_EnableZWrite, 1.0f);
 		break;
 	case 3:
-		ProcessModelNode(ChaoRaceNumber3, QueuedModelFlagsB_EnableZWrite, 1.0f);
+		lateDrawObject(ChaoRaceNumber3, QueuedModelFlagsB_EnableZWrite, 1.0f);
 		break;
 	case 4:
-		ProcessModelNode(ChaoRaceNumber4, QueuedModelFlagsB_EnableZWrite, 1.0f);
+		lateDrawObject(ChaoRaceNumber4, QueuedModelFlagsB_EnableZWrite, 1.0f);
 		break;
 	case 5:
-		ProcessModelNode(ChaoRaceNumber5, QueuedModelFlagsB_EnableZWrite, 1.0f);
+		lateDrawObject(ChaoRaceNumber5, QueuedModelFlagsB_EnableZWrite, 1.0f);
 		break;
 	case 6:
-		ProcessModelNode(ChaoRaceNumber6, QueuedModelFlagsB_EnableZWrite, 1.0f);
+		lateDrawObject(ChaoRaceNumber6, QueuedModelFlagsB_EnableZWrite, 1.0f);
 		break;
 	case 7:
-		ProcessModelNode(ChaoRaceNumber7, QueuedModelFlagsB_EnableZWrite, 1.0f);
+		lateDrawObject(ChaoRaceNumber7, QueuedModelFlagsB_EnableZWrite, 1.0f);
 		break;
 	}
 	njPopMatrix(1u);
@@ -952,8 +952,8 @@ void ChaoRaceWaterfall_Display(ObjectMaster *a1)
 	njRotateXYZ(0, v1->Rotation.x, v1->Rotation.y, v1->Rotation.z);
 	njScale(0, 1.0f, 1.0f, 1.0f);
 	DrawQueueDepthBias = 2000.0f;
-	if (ObjectIndex) ProcessModelNode(ChaoRaceWaterfall1, (QueuedModelFlagsB)0, 1.0f);
-	else ProcessModelNode(ChaoRaceWaterfall2, (QueuedModelFlagsB)0, 1.0f);
+	if (ObjectIndex) lateDrawObject(ChaoRaceWaterfall1, (QueuedModelFlagsB)0, 1.0f);
+	else lateDrawObject(ChaoRaceWaterfall2, (QueuedModelFlagsB)0, 1.0f);
 	njPopMatrix(1u);
 	DrawQueueDepthBias = 0;
 }
@@ -983,8 +983,8 @@ void ChaoRaceSkybox_Display(ObjectMaster *a1)
 	njRotateY(0, v1->Rotation.y);
 	njScale(0, 1.0f, 1.0f, 1.0f);
 	DrawQueueDepthBias = -47000;
-	ProcessModelNode(ChaoRaceSkyboxBottom, QueuedModelFlagsB_EnableZWrite, 1.0f); //Bottom thing
-	ProcessModelNode(ChaoRaceSkyboxMain, QueuedModelFlagsB_EnableZWrite, 1.0f); //Sky
+	lateDrawObject(ChaoRaceSkyboxBottom, QueuedModelFlagsB_EnableZWrite, 1.0f); //Bottom thing
+	lateDrawObject(ChaoRaceSkyboxMain, QueuedModelFlagsB_EnableZWrite, 1.0f); //Sky
 	njPopMatrix(1u);
 	DrawQueueDepthBias = 0;
 }
@@ -1010,8 +1010,8 @@ void ChaoRaceStartMark_Display(ObjectMaster *a1)
 	njTranslateV(0, &v1->Position);
 	njScale(0, 1.0f, 1.0f, 1.0f);
 	DrawQueueDepthBias = -47000;
-	ProcessModelNode(ChaoRaceStartMark1, QueuedModelFlagsB_EnableZWrite, 1.0f); //Thing 1
-	ProcessModelNode(ChaoRaceStartMark2, QueuedModelFlagsB_EnableZWrite, 1.0f); //Thing 2
+	lateDrawObject(ChaoRaceStartMark1, QueuedModelFlagsB_EnableZWrite, 1.0f); //Thing 1
+	lateDrawObject(ChaoRaceStartMark2, QueuedModelFlagsB_EnableZWrite, 1.0f); //Thing 2
 	njPopMatrix(1u);
 	DrawQueueDepthBias = 0;
 }
@@ -1038,7 +1038,7 @@ void ChaoRaceCracker_Display(ObjectMaster *a1)
 	njRotateZYX(0, v1->Rotation.x, v1->Rotation.y, v1->Rotation.z);
 	njScale(0, 1.0f, 1.0f, 1.0f);
 	DrawQueueDepthBias = -37000;
-	ProcessModelNode(ChaoRaceCracker, QueuedModelFlagsB_EnableZWrite, 1.0f);
+	lateDrawObject(ChaoRaceCracker, QueuedModelFlagsB_EnableZWrite, 1.0f);
 	njPopMatrix(1u);
 	DrawQueueDepthBias = 0;
 }
@@ -3886,7 +3886,7 @@ ObjectMaster *__cdecl sub_71BF20()
 void RenderChaoRaceLetters_Fix(NJS_OBJECT *a1)
 {
 	DrawQueueDepthBias = 2000.0f;
-	ProcessModelNode(a1, QueuedModelFlagsB_SomeTextureThing, 1.0f);
+	lateDrawObject(a1, QueuedModelFlagsB_SomeTextureThing, 1.0f);
 	DrawQueueDepthBias = 0;
 }
 
@@ -3978,7 +3978,7 @@ void RenderChaoBall()
 {
 	njSetTexture(&CHAO_TEXLIST);
 	njScale(0, 1.5f, 1.5f, 1.5f);
-	ProcessModelNode_AB_Wrapper(ChaoRaceBall, 1.5f);
+	ds_DrawObjectClip(ChaoRaceBall, 1.5f);
 }
 
 void __cdecl LoadChaoRaceX()

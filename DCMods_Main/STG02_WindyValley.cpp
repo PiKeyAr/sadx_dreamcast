@@ -54,7 +54,7 @@ void __cdecl Windy3Cols_Display(ObjectMaster* a1)
 			njSetTexture(&texlist_windy3);
 			njPushMatrix(0);
 			njTranslate(0, 0, 0, 0);
-			ProcessModelNode_D_WrapperB(GeoLists[18]->Col[Windy3Cols[i]].Model, QueuedModelFlagsB_EnableZWrite, 1.0f);
+			late_DrawObjectClipMesh(GeoLists[18]->Col[Windy3Cols[i]].Model, QueuedModelFlagsB_EnableZWrite, 1.0f);
 			njPopMatrix(1u);
 		}
 	}
@@ -115,17 +115,17 @@ void RenderWindy1Sky()
 {
 	SetMaterialAndSpriteColor_Float(SkyTrans, 1.0f, 1.0f, 1.0f);
 	DrawQueueDepthBias = -30000.0f;
-	ProcessModelNode((NJS_OBJECT*)0xC05E10, (QueuedModelFlagsB)0, 1.0f); // Main
+	lateDrawObject((NJS_OBJECT*)0xC05E10, (QueuedModelFlagsB)0, 1.0f); // Main
 	DrawQueueDepthBias = -28000.0f;
-	ProcessModelNode((NJS_OBJECT*)0xC06450, (QueuedModelFlagsB)0, 1.0f); // Bottom non-trans
+	lateDrawObject((NJS_OBJECT*)0xC06450, (QueuedModelFlagsB)0, 1.0f); // Bottom non-trans
 	SetMaterialAndSpriteColor_Float(SkyTrans* 0.6f, 1.0f, 1.0f, 1.0f);
 	DrawQueueDepthBias = -25000.0f;
-	ProcessModelNode((NJS_OBJECT*)0xC0655C, (QueuedModelFlagsB)0, 1.0f); // Bottom trans
+	lateDrawObject((NJS_OBJECT*)0xC0655C, (QueuedModelFlagsB)0, 1.0f); // Bottom trans
 	DrawQueueDepthBias = -20000.0f;
 	SetMaterialAndSpriteColor_Float(SkyTrans, 1.0f, 1.0f, 1.0f);
-	ProcessModelNode((NJS_OBJECT*)0xC06344, (QueuedModelFlagsB)0, 1.0f); // Cloud 1
+	lateDrawObject((NJS_OBJECT*)0xC06344, (QueuedModelFlagsB)0, 1.0f); // Cloud 1
 	DrawQueueDepthBias = -18000.0f;
-	ProcessModelNode((NJS_OBJECT*)0xC06A94, (QueuedModelFlagsB)0, 1.0f); // Cloud 2
+	lateDrawObject((NJS_OBJECT*)0xC06A94, (QueuedModelFlagsB)0, 1.0f); // Cloud 2
 	DrawQueueDepthBias = 0;
 }
 
@@ -162,7 +162,7 @@ void ParseWindyColFlags(LandTable *landtable)
 void DrawTransparentBrokenBlocks(NJS_MODEL_SADX *model, QueuedModelFlagsB blend)
 {
 	DrawQueueDepthBias = 5000.0f;
-	DrawModel_Queue(model, blend);
+	lateDrawModel(model, blend);
 	DrawQueueDepthBias = 0.0f;
 }
 
@@ -199,7 +199,7 @@ void __cdecl OTanpopo_Child_Display(ObjectMaster *a1)
 			{
 				njRotateY(0, (unsigned __int16)v6);
 			}
-			ProcessModelNode_A_Wrapper((NJS_OBJECT*)0x00C1DBFC, QueuedModelFlagsB_SomeTextureThing, 1.0f);
+			late_DrawObjectClip((NJS_OBJECT*)0x00C1DBFC, QueuedModelFlagsB_SomeTextureThing, 1.0f);
 			njPopMatrix(1u);
 		}
 	}
@@ -215,7 +215,7 @@ void OTuriBr2_Particle(NJS_VECTOR *a1, NJS_VECTOR *a2, float a3)
 void OHaneAFix(NJS_MODEL_SADX *model, QueuedModelFlagsB blend, float scale)
 {
 	DrawQueueDepthBias = -5000.0f;
-	ProcessModel_407BB0(model, blend, scale);
+	late_DrawModelClipEx(model, blend, scale);
 	DrawQueueDepthBias = 0.0f;
 }
 

@@ -34,7 +34,7 @@ void ZeroBarrier_SetOnFireHook(NJS_VECTOR *a1, float a2)
 void RenderZeroSparks(NJS_OBJECT *a1, QueuedModelFlagsB a2, float a3)
 {
 	njScale(0, 0.85f, 0.85f, 0.85f);
-	ProcessModelNode_C_VerifyTexList(a1, (QueuedModelFlagsB)4, a3);
+	late_DrawObjectClipEx(a1, (QueuedModelFlagsB)4, a3);
 }
 
 void Zero_FVFShit(FVFStruct_H_B *a1, signed int count, int a3)
@@ -70,7 +70,7 @@ void __cdecl ZeroOceanHook(OceanData *a1)
 			njSetTexture(&EC_SEA_TEXLIST);
 			njPushMatrix(0);
 			njTranslate(0, Camera_Data1->Position.x, 0, Camera_Data1->Position.z);
-			ProcessModelNode(ZeroBossOcean, QueuedModelFlagsB_EnableZWrite, 1.0f);
+			lateDrawObject(ZeroBossOcean, QueuedModelFlagsB_EnableZWrite, 1.0f);
 			njPopMatrix(1u);
 		}
 	}
@@ -79,7 +79,7 @@ void __cdecl ZeroOceanHook(OceanData *a1)
 
 void DrawShadow_ERobo_Fix(NJS_OBJECT *a1)
 {
-	ProcessModelNode(a1, QueuedModelFlagsB_SomeTextureThing, 1.0f);
+	lateDrawObject(a1, QueuedModelFlagsB_SomeTextureThing, 1.0f);
 }
 
 void Zero_Init()

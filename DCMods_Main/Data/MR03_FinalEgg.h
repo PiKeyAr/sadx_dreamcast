@@ -20964,8 +20964,8 @@ extern "C" __declspec(dllexport) COL collist_0016BCA0[] = {
 	{ { -0.1595615f, 0.370537f, -1.264305f }, 259.0269f, 0, 0, &object_0017E36C_2, 0, 0xA0040001 }, //Floor transparent part
 	{ { -43.05433f, 108.7656f, 0 }, 136.3867f, 0, 0, &object_0017F1A8, 0, 0xC0040001 }, //Floor (top)
 	{ { 1.222631f, 121.538f, -0.2614175f }, 98.91264f, 0, 0, &object_0016FBC4_2, 0, 0x80000000 }, //Glass on top floor
-	{ { -84.3727f, 128.456f, 109.4151f }, 33.80555f, 0, 0, &object_00176720, 0, 0x82000000 }, //Glass tube for Silver Sonic
-	{ { -83.76335f, 128.456f, -113.7573f }, 33.80555f, 0, 0, &object_00181D08, 0, 0x82000000 }, //Glass tube for Metal Sonic
+	{ { -84.3727f, 128.456f, 109.4151f }, 33.80555f, 0, -17000, &object_00176720, 0, 0x81000400 }, //Glass tube for Silver Sonic
+	{ { -83.76335f, 128.456f, -113.7573f }, 33.80555f, 0, -17000, &object_00181D08, 0, 0x81000400 }, //Glass tube for Metal Sonic
 };
 
 extern "C" __declspec(dllexport) GeoAnimData animlist_0016D6C8[] = {
@@ -20974,6 +20974,6 @@ extern "C" __declspec(dllexport) GeoAnimData animlist_0016D6C8[] = {
 	{ 0, 0.2f, 60, &object_00199494, &action_animation_0002D980, (NJS_TEXLIST *)0 }
 };
 
-extern "C" __declspec(dllexport) LandTable landtable_0000019C = { LengthOfArray<int16_t>(collist_0016BCA0), LengthOfArray<int16_t>(animlist_0016D6C8), 9, 0, collist_0016BCA0, animlist_0016D6C8, "ADV_MR03", &texlist_mr03, 0, 0 };
+extern "C" __declspec(dllexport) LandTable landtable_0000019C = { LengthOfArray<int16_t>(collist_0016BCA0), LengthOfArray<int16_t>(animlist_0016D6C8), 9, 0, 0, collist_0016BCA0, animlist_0016D6C8, "ADV_MR03", &texlist_mr03, 0, 0 };
 
 #pragma warning(pop)

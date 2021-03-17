@@ -32,7 +32,7 @@ void __cdecl EHWater_Display(void(__cdecl *function)(void *), void *data, float 
 		njPushMatrix(0);
 		njTranslate(0, 0, 0, 0);
 		DrawQueueDepthBias = -47952.0f;
-		ProcessModelNode_AB_Wrapper(LandTableArray[40]->Col[EHOcean].Model, 1.0f);
+		ds_DrawObjectClip(LandTableArray[40]->Col[EHOcean].Model, 1.0f);
 		DrawQueueDepthBias = 0.0f;
 		njPopMatrix(1u);
 		ToggleStageFog();
@@ -44,7 +44,7 @@ void __cdecl EHWater_Display(void(__cdecl *function)(void *), void *data, float 
 			njSetTexture(&texlist_egm1land);
 			njPushMatrix(0);
 			njTranslate(0, 0, 0, 0);
-			ProcessModelNode_A_Wrapper(LandTableArray[40]->Col[i].Model, QueuedModelFlagsB_3, 1.0f);
+			late_DrawObjectClip(LandTableArray[40]->Col[i].Model, QueuedModelFlagsB_3, 1.0f);
 			njPopMatrix(1u);
 		}
 	}
