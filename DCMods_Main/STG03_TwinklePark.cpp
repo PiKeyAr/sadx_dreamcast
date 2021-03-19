@@ -34,11 +34,9 @@ NJS_OBJECT *OPanelPanel = nullptr;
 NJS_OBJECT *OPole_Main = nullptr;
 NJS_OBJECT *OPole_Pole = nullptr;
 NJS_OBJECT *OCatapultFloor = nullptr;
-std::vector<NJS_OBJECT*> Mirrors;
 
 SETObjData setdata_tp = {};
 static int PoleUVIncrease = 0;
-static bool MirrorsLoaded = false;
 
 NJS_TEXNAME textures_tpobjects[97];
 
@@ -47,91 +45,6 @@ NJS_MATERIAL* WhiteDiffuse_Twinkle[] = {
 	((NJS_MATERIAL*)0x038AE590),
 	((NJS_MATERIAL*)0x038AE5A4),
 };
-
-void Mirror_Delete(ObjectMaster *a1)
-{
-	MirrorsLoaded = false;
-	CheckThingButThenDeleteObject(a1);
-}
-
-void Mirror_Display(ObjectMaster* a1)
-{
-	EntityData1* v1;
-	v1 = a1->Data1;
-	if (CurrentAct == 2 && !DroppedFrames)
-	{
-		njSetTexture(&texlist_twinkle3);
-		njPushMatrix(0);
-		njTranslateV(0, &v1->Position);
-		njScale(0, 1.0f, 1.0f, 1.0f);
-		njRotateXYZ(0, 0, 0, 0);
-		DrawQueueDepthBias = 6000.0f;
-		lateDrawObject(Mirrors[0], (QueuedModelFlagsB)0, 1.0f); // far right
-		lateDrawObject(Mirrors[1], (QueuedModelFlagsB)0, 1.0f); // far left
-		lateDrawObject(Mirrors[2], (QueuedModelFlagsB)0, 1.0f); // far right 2
-		lateDrawObject(Mirrors[3], (QueuedModelFlagsB)0, 1.0f); // far left 2
-		DrawQueueDepthBias = 5000.0f;
-		lateDrawObject(Mirrors[4], (QueuedModelFlagsB)0, 1.0f); // mid right
-		lateDrawObject(Mirrors[5], (QueuedModelFlagsB)0, 1.0f); // mid left 
-		lateDrawObject(Mirrors[6], (QueuedModelFlagsB)0, 1.0f); // mid right 2
-		lateDrawObject(Mirrors[7], (QueuedModelFlagsB)0, 1.0f); // mid left 2
-		DrawQueueDepthBias = 4000.0f;
-		lateDrawObject(Mirrors[8], (QueuedModelFlagsB)0, 1.0f); // end right
-		lateDrawObject(Mirrors[9], (QueuedModelFlagsB)0, 1.0f); // end left
-		lateDrawObject(Mirrors[10], (QueuedModelFlagsB)0, 1.0f); // end right 2
-		lateDrawObject(Mirrors[11], (QueuedModelFlagsB)0, 1.0f); // end left 2
-		DrawQueueDepthBias = 3000.0f;
-		lateDrawObject(Mirrors[12], (QueuedModelFlagsB)0, 1.0f); // end 1
-		lateDrawObject(Mirrors[13], (QueuedModelFlagsB)0, 1.0f); // end 2
-		njPopMatrix(1u);
-		DrawQueueDepthBias = 0;
-	}
-}
-
-void Mirror_Main(ObjectMaster *a1)
-{
-	if (CurrentLevel == 3)
-	{
-		if (CurrentAct == 2) Mirror_Display(a1);
-	}
-	else Mirror_Delete(a1);
-}
-
-void Mirror_Load(ObjectMaster *a1)
-{
-	a1->MainSub = (void(__cdecl *)(ObjectMaster *))Mirror_Main;
-	a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Mirror_Display;
-	a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))Mirror_Delete;
-}
-
-void LoadMirrors()
-{
-	ObjectMaster *obj;
-	EntityData1 *ent;
-	ObjectFunc(OF0, Mirror_Load);
-	setdata_tp.Distance = 612800.0f;
-	obj = LoadObject((LoadObj)2, 3, OF0);
-	obj->SETData.SETData = &setdata_tp;
-	if (obj)
-	{
-		ent = obj->Data1;
-		ent->Position.x = 0;
-		ent->Position.y = 0;
-		ent->Position.z = 0;
-		ent->Rotation.x = 0;
-		ent->Rotation.y = 0;
-		ent->Rotation.z = 0;
-	}
-	MirrorsLoaded = true;
-}
-
-static Trampoline* SkyBox_TwinklePark_Load_t = nullptr;
-static void __cdecl SkyBox_TwinklePark_Load_r(ObjectMaster *a1)
-{
-	const auto original = TARGET_DYNAMIC(SkyBox_TwinklePark_Load);
-	original(a1);
-	if (EnableTwinklePark && !MirrorsLoaded) LoadMirrors();
-}
 
 void __cdecl DrawPirateShipShit(ObjectMaster *a1)
 {
@@ -232,27 +145,12 @@ void RenderCatapult(NJS_ACTION *a1, float frame, float scale)
 
 void UnloadLevelFiles_STG03()
 {
-	Mirrors.clear();
 	delete STG03_0_Info;
 	delete STG03_1_Info;
 	delete STG03_2_Info;
 	STG03_0_Info = nullptr;
 	STG03_1_Info = nullptr;
 	STG03_2_Info = nullptr;
-}
-
-void LoadTwinkleParkMirrors(LandTable *landtable)
-{
-	int colflags;
-	for (int j = 0; j < landtable->COLCount; j++)
-	{
-			colflags = landtable->Col[j].Flags;
-			if (colflags & 0x8000000)
-			{
-				landtable->Col[j].Flags &= ~ColFlags_Visible;
-				Mirrors.push_back(landtable->Col[j].Model);
-			}
-	}
 }
 
 void ParseTwinkleParkMaterials(LandTable *landtable)
@@ -376,11 +274,9 @@ void TwinklePark_Init()
 	WriteData((LandTable**)0x97DA68, STG03_0);
 	WriteData((LandTable**)0x97DA6C, STG03_1);
 	WriteData((LandTable**)0x97DA70, STG03_2);
-	LoadTwinkleParkMirrors(STG03_2);
 	ParseTwinkleParkMaterials(STG03_1);
 	if (!ModelsLoaded_STG03)
 	{
-		SkyBox_TwinklePark_Load_t = new Trampoline(0x61D570, 0x61D57B, SkyBox_TwinklePark_Load_r);
 		OBJ_TWINKLE_TEXLIST = texlist_obj_twinkle;
 		TWINKLE01_TEXLIST = texlist_twinkle1;
 		TWINKLE02_TEXLIST = texlist_twinkle2;
