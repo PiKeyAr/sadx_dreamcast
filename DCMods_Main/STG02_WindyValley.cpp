@@ -9,8 +9,6 @@ NJS_TEXLIST texlist_windy2 = { arrayptrandlength(textures_windy2) };
 NJS_TEXNAME textures_windy3[28];
 NJS_TEXLIST texlist_windy3 = { arrayptrandlength(textures_windy3) };
 
-std::vector<int> Windy3Cols;
-
 /*
 #include "Windy1.h"
 #include "Windy2.h"
@@ -29,82 +27,11 @@ DataPointer(NJS_BGRA, CurrentFogColorX, 0x03ABDC68);
 FunctionPointer(void, sub_4CACF0, (NJS_VECTOR *a1, float a2), 0x4CACF0);
 static int TornadoMode = 0;
 static float SkyTrans = 1.0f;
-static bool Windy3ColsLoaded = false;
-SETObjData setdata_wv = {};
 NJS_VECTOR TornadoSpawnPosition = { 3254, -421, -1665 };
 
 void RetrieveWindy1SkyTransparency(float a, float r, float g, float b)
 {
 	SkyTrans = a;
-}
-
-
-void __cdecl Windy3Cols_Display(ObjectMaster* a1)
-{
-	NJS_MATRIX a2;
-	NJS_VECTOR pos = {0, 0, 0};
-	if (CurrentAct == 2 && !MissedFrames)
-	{
-		for (int i : Windy3Cols)
-		{
-			njSetTexture(&texlist_windy3);
-			njPushMatrix(0);
-			njTranslate(0, 0, 0, 0);
-			late_DrawObjectClipMesh(GeoLists[18]->Col[Windy3Cols[i]].Model, QueuedModelFlagsB_EnableZWrite, 1.0f);
-			njPopMatrix(1u);
-		}
-	}
-}
-
-void Windy3Cols_Delete(ObjectMaster* a1)
-{
-	Windy3ColsLoaded = false;
-	CheckThingButThenDeleteObject(a1);
-}
-
-void Windy3Cols_Main(ObjectMaster* a1)
-{
-	if (CurrentLevel == LevelIDs_WindyValley)
-	{
-		if (CurrentAct == 2) Windy3Cols_Display(a1);
-	}
-	else Windy3Cols_Delete(a1);
-}
-
-void Windy3Cols_Load(ObjectMaster* a1)
-{
-	a1->MainSub = (void(__cdecl*)(ObjectMaster*))Windy3Cols_Main;
-	a1->DisplaySub = (void(__cdecl*)(ObjectMaster*))Windy3Cols_Display;
-	a1->DeleteSub = (void(__cdecl*)(ObjectMaster*))Windy3Cols_Delete;
-}
-
-void LoadWindy3Cols()
-{
-	ObjectMaster* obj;
-	EntityData1* ent;
-	ObjectFunc(OF0, Windy3Cols_Load);
-	setdata_wv.Distance = 612800.0f;
-	obj = LoadObject((LoadObj)2, 3, OF0);
-	obj->SETData.SETData = &setdata_wv;
-	if (obj)
-	{
-		ent = obj->Data1;
-		ent->Position.x = 0;
-		ent->Position.y = 0;
-		ent->Position.z = 0;
-		ent->Rotation.x = 0;
-		ent->Rotation.y = 0;
-		ent->Rotation.z = 0;
-	}
-	Windy3ColsLoaded = true;
-}
-
-static Trampoline* SkyBox_Windy_Load_t = nullptr;
-static void __cdecl SkyBox_Windy_Load_r(ObjectMaster* a1)
-{
-	const auto original = TARGET_DYNAMIC(SkyBox_Windy_Load);
-	original(a1);
-	if (EnableWindyValley && !Windy3ColsLoaded) LoadWindy3Cols();
 }
 
 void RenderWindy1Sky()
@@ -127,7 +54,6 @@ void RenderWindy1Sky()
 
 void UnloadLevelFiles_STG02()
 {
-	Windy3Cols.clear();
 	delete STG02_0_Info;
 	delete STG02_1_Info;
 	delete STG02_2_Info;
@@ -139,20 +65,6 @@ void UnloadLevelFiles_STG02()
 void OHasieFix(NJS_MODEL_SADX *model, float scale)
 {
 	DrawModelMesh(model, (QueuedModelFlagsB)0);
-}
-
-void ParseWindyColFlags(LandTable *landtable)
-{
-	int colflags;
-	for (int j = 0; j < landtable->COLCount; j++)
-	{
-		colflags = landtable->Col[j].Flags;
-		if (colflags == 0x88000000)
-		{
-			if (landtable->Col[j].Flags & ColFlags_Visible) landtable->Col[j].Flags &= ~ColFlags_Visible;
-			Windy3Cols.push_back(j);
-		}
-	}
 }
 
 void DrawTransparentBrokenBlocks(NJS_MODEL_SADX *model, QueuedModelFlagsB blend)
@@ -232,10 +144,8 @@ void WindyValley_Init()
 	WriteData((LandTable**)0x97DA48, STG02_0); // Act 1
 	WriteData((LandTable**)0x97DA4C, STG02_1); // Act 2
 	WriteData((LandTable**)0x97DA50, STG02_2); // Act 3
-	ParseWindyColFlags(STG02_2);
 	if (!ModelsLoaded_STG02)
 	{
-		SkyBox_Windy_Load_t = new Trampoline(0x4DDBF0, 0x4DDBFB, SkyBox_Windy_Load_r);
 		WINDY01_TEXLIST = texlist_windy1;
 		WINDY02_TEXLIST = texlist_windy2;
 		WINDY03_TEXLIST = texlist_windy3;

@@ -54705,6 +54705,6 @@ extern "C" __declspec(dllexport) COL collist_0007D6C0[] = {
 	{ { 5909.696f, 465, 775.1996f }, 86.16847f, 0, 0, &object_0005BBF4_2, 0, 0x86040000 }, //Lighthouse thing transparent
 };
 
-extern "C" __declspec(dllexport) LandTable landtable_00081554 = { LengthOfArray<int16_t>(collist_0007D6C0), 0, 0xC, 1800, collist_0007D6C0, NULL, "BEACH01", &texlist_ecoast1, 0, 0 };
+extern "C" __declspec(dllexport) LandTable landtable_00081554 = { LengthOfArray<int16_t>(collist_0007D6C0), 0, 0xC, 0, 1800, collist_0007D6C0, NULL, "BEACH01", &texlist_ecoast1, 0, 0 };
 
 #pragma warning(pop)

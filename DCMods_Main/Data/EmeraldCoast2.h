@@ -45111,22 +45111,22 @@ extern "C" __declspec(dllexport) COL collist_000DD600[] = {
 	{ { 1448.783f, 97, -1193.838f }, 249.7668f, 0, 0, &object_000DB548, 0, 0x80000000 },
 	{ { 4065.295f, 157, -2847.135f }, 97.36153f, 0, 0, &object_000DB57C, 0, 0x80000000 },
 	{ { 4065.295f, 37, -2847.135f }, 97.36153f, 0, 0, &object_000DB5B0, 0, 0x80000000 },
-	{ { -215, 540, -2027 }, 197.9899f, 0, 0, &object_000DB5E4, 0, 0xA8000002 }, //hidden when SADX water is enabled
-	{ { 494, 540, -907 }, 197.9899f, 0, 0, &object_000DB618, 0, 0x28000002 }, //rendered separately
-	{ { 774, 540, -907 }, 197.9899f, 0, 0, &object_000DB64C, 0, 0x28000002 }, //rendered separately
-	{ { 1054, 540, -907 }, 197.9899f, 0, 0, &object_000DB680, 0, 0x28000002 }, //rendered separately
-	{ { 494, 540, -627 }, 197.9899f, 0, 0, &object_000DB6B4, 0, 0x28000002 }, //rendered separately
-	{ { 774, 540, -627 }, 197.9899f, 0, 0, &object_000DB6E8, 0, 0x28000002 }, //rendered separately
-	{ { 1054, 540, -627 }, 197.9899f, 0, 0, &object_000DB71C, 0, 0x28000002 }, //rendered separately
-	{ { 65, 540, -2027 }, 197.9899f, 0, 0, &object_000DB750, 0, 0xA8000002 }, //hidden when SADX water is enabled
-	{ { -495, 540, -1747 }, 197.9899f, 0, 0, &object_000DB784, 0, 0xA8000002 }, //hidden when SADX water is enabled
-	{ { -215, 540, -1747 }, 197.9899f, 0, 0, &object_000DB7B8, 0, 0xA8000002 }, //hidden when SADX water is enabled
-	{ { 65, 540, -1747 }, 197.9899f, 0, 0, &object_000DB7EC, 0, 0xA8000002 }, //hidden when SADX water is enabled
-	{ { -215, 540, -1467 }, 197.9899f, 0, 0, &object_000DB820, 0, 0xA8000002 }, //hidden when SADX water is enabled
-	{ { 65, 540, -1467 }, 197.9899f, 0, 0, &object_000DB854, 0, 0xA8000002 }, //hidden when SADX water is enabled
-	{ { 345, 540, -1467 }, 197.9899f, 0, 0, &object_000DB888, 0, 0xA8000002 }, //hidden when SADX water is enabled
-	{ { 345, 540, -1187 }, 197.9899f, 0, 0, &object_000DB8BC, 0, 0xA8000002 }, //hidden when SADX water is enabled
-	{ { 344.9998f, 540, -1747.001f }, 197.9899f, 0, 0, &object_000DB8F0, 0, 0xA8000002 }, //hidden when SADX water is enabled
+	{ { -215, 540, -2027 }, 197.9899f, 0, 0, &object_000DB5E4, 0, 0xA0000002 }, //hidden when SADX water is enabled
+	{ { 494, 540, -907 }, 197.9899f, 1000.0f, 0, &object_000DB618, 0, 0x80000402 }, //rendered separately, also hidden when SADX water is enabled
+	{ { 774, 540, -907 }, 197.9899f, 1000.0f, 0, &object_000DB64C, 0, 0x80000402 }, //rendered separately, also hidden when SADX water is enabled
+	{ { 1054, 540, -907 }, 197.9899f, 1000.0f, 0, &object_000DB680, 0, 0x80000402 }, //rendered separately, also hidden when SADX water is enabled
+	{ { 494, 540, -627 }, 197.9899f, 1000.0f, 0, &object_000DB6B4, 0, 0x80000402 }, //rendered separately, also hidden when SADX water is enabled
+	{ { 774, 540, -627 }, 197.9899f, 1000.0f, 0, &object_000DB6E8, 0, 0x80000402 }, //rendered separately, also hidden when SADX water is enabled
+	{ { 1054, 540, -627 }, 197.9899f, 1000.0f, 0, &object_000DB71C, 0, 0x80000402 }, //rendered separately, also hidden when SADX water is enabled
+	{ { 65, 540, -2027 }, 197.9899f, 0, 0, &object_000DB750, 0, 0xA0000002 }, //hidden when SADX water is enabled
+	{ { -495, 540, -1747 }, 197.9899f, 0, 0, &object_000DB784, 0, 0xA0000002 }, //hidden when SADX water is enabled
+	{ { -215, 540, -1747 }, 197.9899f, 0, 0, &object_000DB7B8, 0, 0xA0000002 }, //hidden when SADX water is enabled
+	{ { 65, 540, -1747 }, 197.9899f, 0, 0, &object_000DB7EC, 0, 0xA0000002 }, //hidden when SADX water is enabled
+	{ { -215, 540, -1467 }, 197.9899f, 0, 0, &object_000DB820, 0, 0xA0000002 }, //hidden when SADX water is enabled
+	{ { 65, 540, -1467 }, 197.9899f, 0, 0, &object_000DB854, 0, 0xA0000002 }, //hidden when SADX water is enabled
+	{ { 345, 540, -1467 }, 197.9899f, 0, 0, &object_000DB888, 0, 0xA0000002 }, //hidden when SADX water is enabled
+	{ { 345, 540, -1187 }, 197.9899f, 0, 0, &object_000DB8BC, 0, 0xA0000002 }, //hidden when SADX water is enabled
+	{ { 344.9998f, 540, -1747.001f }, 197.9899f, 0, 0, &object_000DB8F0, 0, 0xA0000002 }, //hidden when SADX water is enabled
 	{ { -983.0002f, 1138.5f, -2895.508f }, 42.10477f, 0, 0, &object_000DBB70, 0, 0xC0000001 },
 	{ { 733.0347f, 519.903f, -839.9638f }, 388.7592f, 0, 0, &object_000DC9A8, 0, 0x80000000 },
 	{ { 5744.025f, 42, -2644.944f }, 298.6369f, 0, 0, &object_00083908, 0, 0x20200001 },
@@ -45140,6 +45140,6 @@ extern "C" __declspec(dllexport) COL collist_000DD600[] = {
 	{ { 3132.331f, 75, -1408.95f }, 177.637f, 0, 0, &object_000DD5CC, 0, 0xA0000001 }
 };
 
-extern "C" __declspec(dllexport) LandTable landtable_000DEB60 = { LengthOfArray<int16_t>(collist_000DD600), 0, 0xC, 2000, collist_000DD600, NULL, "BEACH02", &texlist_ecoast2, 0, 0 };
+extern "C" __declspec(dllexport) LandTable landtable_000DEB60 = { LengthOfArray<int16_t>(collist_000DD600), 0, 0xC, 0, 2000, collist_000DD600, NULL, "BEACH02", &texlist_ecoast2, 0, 0 };
 
 #pragma warning(pop)

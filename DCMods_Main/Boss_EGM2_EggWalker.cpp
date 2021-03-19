@@ -16,8 +16,7 @@ void UnloadLevelFiles_B_EGM2()
 
 void SetEggWalkerFireColor(NJS_ARGB *a1a)
 {
-	if (a1a->r < 0) SetMaterialAndSpriteColor_Float(0, 0, 0, 0);
-	else SetMaterialAndSpriteColor_Float(a1a->a, a1a->r, a1a->g, a1a->b);
+	SetMaterialAndSpriteColor_Float(max(0, a1a->a), max(0, a1a->r), max(0, a1a->g), max(0, a1a->b));
 }
 
 void EggWalker_Init()

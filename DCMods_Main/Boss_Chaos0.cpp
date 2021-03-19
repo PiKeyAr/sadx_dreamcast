@@ -67,7 +67,7 @@ static void __cdecl OPato0_Display_r(ObjectMaster *a1)
 
 void FixChaos0Car(NJS_ACTION *a1, float frame, float scale)
 {
-	DisplayAnimationFrame(a1, frame, (QueuedModelFlagsB)0, scale, (void(__cdecl *)(NJS_MODEL_SADX *, int, int))DrawModelThing);
+	DrawAction(a1, frame, (QueuedModelFlagsB)0, scale, (void(__cdecl *)(NJS_MODEL_SADX *, int, int))DrawModelThing);
 	lateDrawModel(a1->object->child->sibling->sibling->sibling->sibling->sibling->sibling->sibling->sibling->basicdxmodel, (QueuedModelFlagsB)0); // Top lights
 	lateDrawModel(a1->object->child->sibling->sibling->sibling->sibling->sibling->sibling->basicdxmodel, QueuedModelFlagsB_EnableZWrite); // Front lights
 }

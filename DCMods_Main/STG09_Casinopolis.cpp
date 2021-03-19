@@ -190,7 +190,7 @@ void __cdecl Cowgirl_Display(ObjectMaster *a1)
 		njTranslateEx(&data->Position);
 		njRotateEx((Angle*)&data->Rotation, 0);
 		DrawQueueDepthBias = 4000.0f;
-		DisplayAnimationFrame((NJS_ACTION*)0x1E5C414, data->Scale.x, (QueuedModelFlagsB)0, 0.0f, CowGirl_DisplayPart);
+		DrawAction((NJS_ACTION*)0x1E5C414, data->Scale.x, (QueuedModelFlagsB)0, 0.0f, CowGirl_DisplayPart);
 		DrawQueueDepthBias = 0;
 		njPopMatrixEx();
 	}

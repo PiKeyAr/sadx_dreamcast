@@ -1796,7 +1796,7 @@ void __cdecl actBubble(ObjectMaster* a1)
 void BigDisplayFix(NJS_ACTION* action, float frame, float scale)
 {
 	DrawQueueDepthBias = -52952.0f;
-	DisplayAnimationFrame(action, frame, (QueuedModelFlagsB)1, scale, (void(__cdecl*)(NJS_MODEL_SADX*, int, int))lateDrawModel);
+	DrawAction(action, frame, (QueuedModelFlagsB)1, scale, (void(__cdecl*)(NJS_MODEL_SADX*, int, int))lateDrawModel);
 	DrawQueueDepthBias = 0.0f;
 }
 

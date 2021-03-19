@@ -120,8 +120,8 @@ void __cdecl Chaos4Kama(ObjectMaster *a1)
 		njSetTexture(&CHAOS4_KAMA_TEXLIST);
 		njPushMatrix(0);
 		njTranslateV(0, &v1->Position);
-		DisplayAnimationFrame((NJS_ACTION*)0x11C117C, *(float *)&v1->LoopData, QueuedModelFlagsB_SomeTextureThing, 0.0f, (void(__cdecl *)(NJS_MODEL_SADX *, int, int))DrawModelMS);
-		DisplayAnimationFrame((NJS_ACTION*)0x11C13CC, *(float *)&v1->LoopData, QueuedModelFlagsB_SomeTextureThing, 0.0f, (void(__cdecl *)(NJS_MODEL_SADX *, int, int))DrawModelMS);
+		DrawAction((NJS_ACTION*)0x11C117C, *(float *)&v1->LoopData, QueuedModelFlagsB_SomeTextureThing, 0.0f, (void(__cdecl *)(NJS_MODEL_SADX *, int, int))DrawModelMS);
+		DrawAction((NJS_ACTION*)0x11C13CC, *(float *)&v1->LoopData, QueuedModelFlagsB_SomeTextureThing, 0.0f, (void(__cdecl *)(NJS_MODEL_SADX *, int, int))DrawModelMS);
 		njPopMatrix(1u);
 	}
 }

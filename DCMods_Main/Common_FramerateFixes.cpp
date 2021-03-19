@@ -579,7 +579,7 @@ static void __cdecl ZeroFVFShit_Main_r(ObjectMaster *a1)
 
 void OFunAnimationOverride(NJS_ACTION* a1, float frame, float scale)
 {
-	DisplayAnimationFrame(a1, OFunFrame, (QueuedModelFlagsB)0, scale, (void(__cdecl*)(NJS_MODEL_SADX*, int, int))DrawModelThing);
+	DrawAction(a1, OFunFrame, (QueuedModelFlagsB)0, scale, (void(__cdecl*)(NJS_MODEL_SADX*, int, int))DrawModelThing);
 }
 
 void OTankHAnimationOverride(NJS_OBJECT* a1, NJS_MOTION* a2, float a3, int a4, float a5)

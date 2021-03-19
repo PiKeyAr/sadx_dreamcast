@@ -11,7 +11,6 @@ FunctionPointer(void, CreateFireParticle, (NJS_VECTOR *a1, float a2), 0x4CACF0);
 
 static bool ZeroBarriers_FadeOut = false;
 static bool ZeroBarriers_FadeIn = false;
-static int zerosea_dc = 4;
 static NJS_COLOR BarrierColor = { 0x00000000 };
 NJS_OBJECT *ZeroBossOcean = nullptr;
 
@@ -110,6 +109,7 @@ void Zero_Init()
 			ZeroBossOcean->basicdxmodel->mats[0].attr_texId = 4;
 			ZeroBossOcean->basicdxmodel->mats[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
 			ZeroBossOcean->basicdxmodel->mats[0].diffuse.color = 0x7FB2B2B2;
+			AddTextureAnimation_Permanent(23, 0, &ZeroBossOcean->basicdxmodel->mats[0], false, 4, 4, 13);
 		}
 		for (int i = 0; i < 3; i++)
 		{
@@ -123,13 +123,6 @@ void Zero_Init()
 
 void Zero_OnFrame()
 {
-	// Ocean animation
-	if (!IsGamePaused() && CurrentLevel == LevelIDs_Zero)
-	{
-		if (FramerateSetting < 2 && FrameCounter % 4 == 0 || FramerateSetting >= 2) zerosea_dc++;
-		if (zerosea_dc > 13) zerosea_dc = 4;
-		if (ZeroBossOcean != nullptr) ZeroBossOcean->basicdxmodel->mats[0].attr_texId = zerosea_dc;
-	}
 	// Barriers
 	if (ZeroBarriers_FadeOut)
 	{

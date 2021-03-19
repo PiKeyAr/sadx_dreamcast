@@ -1358,49 +1358,6 @@ void HideAllButOneMesh(NJS_OBJECT *obj, int meshID)
 	}
 }
 
-enum SurfaceFlags
-{
-	SurfaceFlags_Solid = 0x00000001,
-	SurfaceFlags_Water = 0x00000002, // Water with transparency sorting
-	SurfaceFlags_NoFriction = 0x00000004,
-	SurfaceFlags_NoAccel = 0x00000008,
-
-	SurfaceFlags_LowAccel = 0x00000010,
-	SurfaceFlags_UseSkyDrawDist = 0x00000020,
-	SurfaceFlags_NoLandingA = 0x00000040, // ??? Used, unknown
-	SurfaceFlags_IncAccel = 0x00000080,
-
-	SurfaceFlags_Dig = 0x00000100,
-	SurfaceFlags_Unknown5 = 0x00000200, // ???
-	SurfaceFlags_Waterfall = 0x00000400, // Force alpha sorting; Disable Z Write when used together with Water; Force disable Z write in all levels except Lost World 2
-	SurfaceFlags_Unknown7 = 0x00000800, // ??? Unused?
-
-	SurfaceFlags_NoClimb = 0x00001000,
-	SurfaceFlags_Chaos0Land = 0x00002000, // Makes COL items invisible when Chaos jumps up pole
-	SurfaceFlags_Stairs = 0x00004000,
-	SurfaceFlags_Unknown10 = 0x00008000, // ???
-
-	SurfaceFlags_Hurt = 0x00010000,
-	SurfaceFlags_Accelerate = 0x00020000,
-	SurfaceFlags_LowDepth = 0x00040000, // Set lowest depth (-37952)
-	SurfaceFlags_Unknown13 = 0x00080000, // ???
-
-	SurfaceFlags_Footprints = 0x00100000,
-	SurfaceFlags_NoLandingB = 0x00200000, // ???
-	SurfaceFlags_WaterNoAlpha = 0x00400000, // Water (physics only)
-	SurfaceFlags_RotateGravity = 0x00800000, // Calls the function "RotateByGravity"
-
-	SurfaceFlags_NoZWrite = 0x01000000, // Sets QueuedModelFlagsB_SomeTextureThing when enabled, QueuedModelFlagsB_EnableZWrite otherwise
-	SurfaceFlags_DrawByMesh = 0x02000000,
-	SurfaceFlags_UvManipulation = 0x04000000,
-	SurfaceFlags_DynamicCollision = 0x08000000, // Something for dynamic collision
-
-	SurfaceFlags_UseRotation = 0x10000000,
-	SurfaceFlags_Unknown22 = 0x20000000, // ??? Something related to scale
-	SurfaceFlags_Unknown23 = 0x40000000, // ??? Something related to scale
-	SurfaceFlags_Visible = 0x80000000,
-};
-
 void DrawLandtableCallback_NoZWrite(NJS_MODEL_SADX* model)
 {
 	if (DroppedFrames) return;

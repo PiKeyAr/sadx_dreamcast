@@ -13,18 +13,15 @@ NJS_TEXNAME textures_ecoast3[94];
 NJS_TEXLIST texlist_ecoast3 = { arrayptrandlength(textures_ecoast3) };
 
 // Model pointers
-NJS_OBJECT *BigDeco1 = nullptr;
-NJS_OBJECT *BigDeco2 = nullptr;
-NJS_OBJECT *BigDeco3 = nullptr;
-NJS_OBJECT *LowPolyOcean = nullptr;
-NJS_OBJECT *HighPolyOcean_Static = nullptr;
-NJS_OBJECT *HighPolyOcean_Dynamic = nullptr;
-NJS_TEX *HighPolyOceanUVs_Dynamic = nullptr;
-NJS_TEX *HighPolyOceanUVs_Static = nullptr;
-NJS_TEX *LowPolyOceanUVs = nullptr;
-
-std::vector<int> Act2WaterCols;
-std::vector<int> Act3WaterCols;
+NJS_OBJECT* BigDeco1 = nullptr;
+NJS_OBJECT* BigDeco2 = nullptr;
+NJS_OBJECT* BigDeco3 = nullptr;
+NJS_OBJECT* LowPolyOcean = nullptr;
+NJS_OBJECT* HighPolyOcean_Static = nullptr;
+NJS_OBJECT* HighPolyOcean_Dynamic = nullptr;
+NJS_TEX* HighPolyOceanUVs_Dynamic = nullptr;
+NJS_TEX* HighPolyOceanUVs_Static = nullptr;
+NJS_TEX* LowPolyOceanUVs = nullptr;
 
 DataArray(NJS_TEX, uvSTG01_00CC0530_d, 0x10C0530, 4); // Static ocean default UVs
 DataArray(NJS_TEX, uvSTG01_00CBB000_d, 0x10BB000, 1300); // Dynamic ocean default UVs
@@ -36,21 +33,11 @@ DataPointer(char, DolphinsActivated, 0x3C5E444);
 #include "EmeraldCoast3.h"
 */
 
-static int anim1 = 82;
-static int anim2 = 67;
-static int anim3 = 42;
-static int anim4 = 71;
-static int anim5 = 50;
-static int anim6 = 65;
-static int anim7 = 57;
-static int anim8 = 80;
 static float float1 = 0.02f;
 static float float2 = 66.0f;
-static int SkyboxHidden = 0;
-static int beachsea_water = 0;
-static int inside_secret_area = 0;
-static int water_anim = 17;
-static bool lilocean = false;
+static bool SkyboxHidden = false;
+static bool InsideSecretArea = false;
+static bool LilOcean = false;
 static float WallCollisionNerf = 0.0f;
 
 static NJS_VECTOR oldpos{ 0,0,0 };
@@ -81,10 +68,11 @@ void __cdecl Obj_EC23Water_DisplayX(ObjectMaster *a1)
 	double z; // st6
 	v1 = a1->Data1;
 	int OceanUVShift1;
+	// Draw SA1 ocean
 	if (!SADXWater_EmeraldCoast)
 	{
 		// Acts 2 and 3
-		if (!DroppedFrames && (inside_secret_area == 0 || EV_MainThread_ptr != nullptr))
+		if (!DroppedFrames && (!InsideSecretArea || EV_MainThread_ptr != nullptr))
 		{
 			njSetTexture((NJS_TEXLIST*)0x010C0508); // BEACH_SEA
 			njPushMatrix(0);
@@ -100,51 +88,10 @@ void __cdecl Obj_EC23Water_DisplayX(ObjectMaster *a1)
 			DrawQueueDepthBias = 0;
 			njPopMatrix(1u);
 		}
-		// Act 2 only
-		if (CurrentAct == 1 && !DroppedFrames)
-		{
-			njSetTexture((NJS_TEXLIST*)&texlist_ecoast2);
-			njPushMatrix(0);
-			njTranslate(0, 0, 0, 0);
-			DrawQueueDepthBias = 1000.0f;
-			for (int j : Act2WaterCols)
-			{
-				late_DrawObjectClip(GeoLists[9]->Col[j].Model, QueuedModelFlagsB_SomeTextureThing, 1.0f);
-			}
-			DrawQueueDepthBias = 0;
-			njPopMatrix(1u);
-		}
-		// Act 3 only (both SA1 and SADX water)
-		if (CurrentAct == 2 && !DroppedFrames)
-		{
-			njSetTexture((NJS_TEXLIST*)&texlist_ecoast3);
-			njPushMatrix(0);
-			njTranslate(0, 0, 0, 0);
-			DrawQueueDepthBias = -4000.0f;
-			for (int j : Act3WaterCols)
-			{
-				late_DrawObjectClip(GeoLists[10]->Col[j].Model, QueuedModelFlagsB_SomeTextureThing, 1.0f);
-			}
-			DrawQueueDepthBias = 0;
-			njPopMatrix(1u);
-		}
 	}
+	// Draw SADX ocean
 	else
 	{
-		// Act 3 only (both SA1 and SADX water)
-		if (CurrentAct == 2 && !DroppedFrames)
-		{
-			njSetTexture((NJS_TEXLIST*)&texlist_ecoast3);
-			njPushMatrix(0);
-			njTranslate(0, 0, 0, 0);
-			DrawQueueDepthBias = -4000.0f;
-			for (int j : Act3WaterCols)
-			{
-				 late_DrawObjectClip(GeoLists[10]->Col[j].Model, QueuedModelFlagsB_SomeTextureThing, 1.0f);
-			}
-			DrawQueueDepthBias = 0;
-			njPopMatrix(1u);
-		}
 		// Draw decorations in Big's level
 		if (CurrentAct == 2 && BigDeco1 && BigDeco2 && BigDeco3)
 		{
@@ -157,7 +104,7 @@ void __cdecl Obj_EC23Water_DisplayX(ObjectMaster *a1)
 			njPopMatrix(1u);
 		}
 		// Draw main water
-		if (inside_secret_area == 0 || EV_MainThread_ptr != nullptr)
+		if (!InsideSecretArea || EV_MainThread_ptr != nullptr)
 		{
 			DisableFog();
 			if (CurrentAct == 2)
@@ -211,15 +158,15 @@ void __cdecl Obj_EC1Water_DisplayX(ObjectMaster *a1)
 	{
 		if (entity->Position.x>1800)
 		{
-			lilocean = true;
+			LilOcean = true;
 			WriteData((float**)0x00501824, &flt_7E00DC);
 			WriteData((float**)0x00501849, &flt_7E00DC);
 			WriteData((float**)0x00501832, &flt_7DF1B0);
 			WriteData((float**)0x0050185B, &flt_7DF1B0);
 		}
-		if (entity->Position.x < 1400) lilocean = false;
+		if (entity->Position.x < 1400) LilOcean = false;
 	}
-	if (!lilocean)
+	if (!LilOcean)
 	{
 		if (!SADXWater_EmeraldCoast)
 		{
@@ -515,8 +462,6 @@ void PalmFix2(NJS_MODEL_SADX *model, QueuedModelFlagsB blend, float scale)
 
 void UnloadLevelFiles_STG01()
 {
-	Act2WaterCols.clear();
-	Act3WaterCols.clear();
 	delete STG01_0_Info;
 	delete STG01_1_Info;
 	delete STG01_2_Info;
@@ -560,11 +505,9 @@ void ParseEmeraldCoastColFlagsAndMaterials(LandTable *landtable, int act)
 		for (int j = 0; j < landtable->COLCount; j++)
 		{
 			colflags = landtable->Col[j].Flags;
-			if (colflags == 0x28000002)
-			{
-				Act2WaterCols.push_back(j);
-			}
-			if (colflags == 0xA8000002 && SADXWater_EmeraldCoast) landtable->Col[j].Flags = 0x20000002;
+			// Hide pool meshes if using SADX water
+			if (SADXWater_EmeraldCoast && (colflags == 0xA0000002 || colflags == 0x80000402))
+				landtable->Col[j].Flags = 0x20000002;
 			for (int k = 0; k < landtable->Col[j].Model->basicdxmodel->nbMat; ++k)
 			{
 				material = (NJS_MATERIAL*)&landtable->Col[j].Model->basicdxmodel->mats[k];
@@ -610,7 +553,6 @@ void ParseEmeraldCoastColFlagsAndMaterials(LandTable *landtable, int act)
 				if (material->attr_texId >= 50 && material->attr_texId <= 64)
 				{
 					AddTextureAnimation(1, 2, material, false, 4, 50, 64);
-					Act3WaterCols.push_back(j);
 					if (landtable->Col[j].Flags & ColFlags_Visible) landtable->Col[j].Flags &= ~ColFlags_Visible;
 				}
 				// Texanim 3
@@ -799,15 +741,15 @@ void EmeraldCoast_OnFrame()
 		{
 			if (CurrentAct == 2 && Camera_Data1 != nullptr)
 			{
-				if (Camera_Data1->Position.y < 50 && SkyboxHidden == 0)
+				if (!SkyboxHidden && Camera_Data1->Position.y < 50)
 				{
 					((NJS_OBJECT *)0x103B37C)->evalflags |= NJD_EVAL_HIDE;
-					SkyboxHidden = 1;
+					SkyboxHidden = true;
 				}
-				if (Camera_Data1->Position.y >= 50 && SkyboxHidden == 1)
+				if (SkyboxHidden && Camera_Data1->Position.y >= 50)
 				{
 					((NJS_OBJECT *)0x103B37C)->evalflags &= ~NJD_EVAL_HIDE;
-					SkyboxHidden = 0;
+					SkyboxHidden = false;
 				}
 			}
 		}
@@ -832,21 +774,21 @@ void EmeraldCoast_OnFrame()
 		{
 			if (GameState == 3 || GameState == 4 || GameState == 7 || GameState == 21)
 			{
-				inside_secret_area = 0;
+				InsideSecretArea = false;
 				CurrentFogToggle = 0;
 			}
 			if (Camera_Data1 != nullptr && Camera_Data1->Position.z > 2000)
 			{
-				inside_secret_area = 1;
+				InsideSecretArea = true;
 				CurrentFogToggle = 1;
-				if (CurrentFogLayer < -21) CurrentFogLayer = CurrentFogLayer + 20;
+				if (CurrentFogLayer < -21) CurrentFogLayer += 20;
 			}
 			else
 			{
-				if (CurrentFogLayer > -1200) CurrentFogLayer = CurrentFogLayer - 20;
+				if (CurrentFogLayer > -1200) CurrentFogLayer -= 20;
 				if (CurrentFogLayer <= -1200 && CurrentFogToggle == 1)
 				{
-					inside_secret_area = 0;
+					InsideSecretArea = false;
 					CurrentFogToggle = 0;
 				}
 			}

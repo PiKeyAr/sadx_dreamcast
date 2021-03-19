@@ -117,7 +117,7 @@ void DrawCrystal0(ObjectMaster *a1)
 		{
 			njRotateY(0, (unsigned __int16)v4);
 		}
-		DisplayAnimationFrame(&stru_E758E4, *(float *)&v1->LoopData, (QueuedModelFlagsB)0, 0, (void (__cdecl *)(NJS_MODEL_SADX *, int, int))DrawModelThing);
+		DrawAction(&stru_E758E4, *(float *)&v1->LoopData, (QueuedModelFlagsB)0, 0, (void (__cdecl *)(NJS_MODEL_SADX *, int, int))DrawModelThing);
 		njPopMatrix(1u);
 	}
 }

@@ -195,7 +195,7 @@
     <ClCompile Include="stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Common_Main.cpp">
+    <ClCompile Include="mod.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="General_OIT.cpp">

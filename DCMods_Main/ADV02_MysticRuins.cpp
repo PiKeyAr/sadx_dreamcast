@@ -159,6 +159,10 @@ void OFinalEgg_DisplayFix(ObjectMaster *a1)
 // Set transparency for the glow that shows up when you put Gold/Silver statues in place
 void SetBlockEntryMaterialColor(float a, float r, float g, float b)
 {
+	a = min(a, 1.0f);
+	r = min(r, 1.0f);
+	g = min(g, 1.0f);
+	b = min(b, 1.0f);
 	ADV02_OBJECTS[50]->basicdxmodel->mats[0].diffuse.argb.a = max(0, min(255, 255 + r * 255));
 	ADV02_OBJECTS[50]->basicdxmodel->mats[0].diffuse.argb.r = max(0, min(255, 255 + r * 255));
 	ADV02_OBJECTS[50]->basicdxmodel->mats[0].diffuse.argb.g = max(0, min(255, 255 + g * 255));

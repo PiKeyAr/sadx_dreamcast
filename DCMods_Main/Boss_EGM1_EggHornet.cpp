@@ -15,8 +15,7 @@ static int EggHornet_Rotation = 0;
 static int EggHornet_RotationDirection = 1;
 static bool EggHornet_RotationEnabled = false;
 
-int EHOcean = -1;
-std::vector<int> EHWaterObjects;
+NJS_OBJECT* EHOcean = nullptr;
 
 void __cdecl EHWater_Display(void(__cdecl *function)(void *), void *data, float depth, QueuedModelFlagsB queueflags)
 {
@@ -24,7 +23,7 @@ void __cdecl EHWater_Display(void(__cdecl *function)(void *), void *data, float 
 	{
 		DrawModelCallback_Queue((void(__cdecl *)(void *))MysticRuins_OceanDraw, OceanDataArray, -7952.0f, QueuedModelFlagsB_EnableZWrite);
 	}
-	else if (EHOcean != -1)
+	else if (EHOcean)
 	{
 		ClampGlobalColorThing_Thing();
 		DisableFog();
@@ -32,27 +31,16 @@ void __cdecl EHWater_Display(void(__cdecl *function)(void *), void *data, float 
 		njPushMatrix(0);
 		njTranslate(0, 0, 0, 0);
 		DrawQueueDepthBias = -47952.0f;
-		ds_DrawObjectClip(LandTableArray[40]->Col[EHOcean].Model, 1.0f);
+		ds_DrawObjectClip(EHOcean, 1.0f);
 		DrawQueueDepthBias = 0.0f;
 		njPopMatrix(1u);
 		ToggleStageFog();
-	}
-	for (int i: EHWaterObjects)
-	{
-		if (EHWaterObjects[i] != -1)
-		{
-			njSetTexture(&texlist_egm1land);
-			njPushMatrix(0);
-			njTranslate(0, 0, 0, 0);
-			late_DrawObjectClip(LandTableArray[40]->Col[i].Model, QueuedModelFlagsB_3, 1.0f);
-			njPopMatrix(1u);
-		}
 	}
 }
 
 void UnloadLevelFiles_B_EGM1()
 {
-	EHWaterObjects.clear();
+	EHOcean = nullptr;
 	LandTable *B_EGM1 = B_EGM1_Info->getlandtable();
 	NJS_MATERIAL *material;
 	// Also unregister white diffuse in the level
@@ -93,7 +81,6 @@ void EggHornet_RotationDisable(ObjectMaster *a1)
 
 void EggHornet_Init()
 {
-	Uint32 materialflags;
 	NJS_MATERIAL* material;
 	B_EGM1_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\B_EGM1\\0.sa1lvl"));
 	LandTable* B_EGM1 = B_EGM1_Info->getlandtable(); //&landtable_00000128;
@@ -118,18 +105,11 @@ void EggHornet_Init()
 				AddWhiteDiffuseMaterial(material);
 			}
 		}
-		// Check COL flags
-		if (B_EGM1->Col[j].Flags & 0x8000000)
+		// Disable SA1 ocean if SADX water is enabled
+		if (B_EGM1->Col[j].Flags & SurfaceFlags_Water)
 		{
-			if (B_EGM1->Col[j].Flags & ColFlags_Visible) B_EGM1->Col[j].Flags &= ~ColFlags_Visible;
-			if (B_EGM1->Col[j].Flags & 0x2)
-			{
-				EHOcean = j;
-			}
-			else
-			{
-				EHWaterObjects.push_back(j);
-			}
+			if (B_EGM1->Col[j].Flags & SurfaceFlags_Visible) B_EGM1->Col[j].Flags &= ~SurfaceFlags_Visible;
+			EHOcean = B_EGM1->Col[j].Model;
 		}
 	}
 	if (!ModelsLoaded_B_EGM1)
