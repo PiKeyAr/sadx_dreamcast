@@ -18,11 +18,6 @@ NJS_OBJECT* OLight3_2 = nullptr;
 NJS_OBJECT* OLight3_3 = nullptr;
 NJS_OBJECT* OLight3_4 = nullptr;
 
-// Lists
-std::vector<int> HotShelterCols_Act1;
-std::vector<int> HotShelterCols_Act2;
-std::vector<int> HotShelterCols_Act3;
-
 /*
 #include "HotShelter1.h"
 #include "HotShelter2.h"
@@ -32,7 +27,6 @@ std::vector<int> HotShelterCols_Act3;
 DataPointer(float, E105HitCounter, 0x03C58158);
 DataPointer(float, CurrentFogDist, 0x03ABDC64);
 DataPointer(float, CurrentFogLayer, 0x03ABDC60);
-FunctionPointer(void, sub_4B9540, (NJS_VECTOR* position, NJS_VECTOR* scale_v, float scale), 0x4B9540);
 static bool ReduceHotShelterFog = false;
 static bool HotShelterColsLoaded = false;
 static Angle E105Angle = 0;
@@ -42,7 +36,6 @@ void OLight1_Display(ObjectMaster *a1)
 {
 	EntityData1* v1; // esi
 	Angle v2; // eax
-	double v3; // st6
 	bool IsUnderwater = true;
 	v1 = a1->Data1;
 	// Underwater check lol
@@ -100,205 +93,6 @@ void OLight1_Display(ObjectMaster *a1)
 			DrawQueueDepthBias = 0.0f;
 		}
 	}
-}
-
-void HotShelterCols_Display(ObjectMaster* a1)
-{
-	NJS_VECTOR sphere = {0, 0, 0};
-	float radius = 0.0f;
-	if (!MissedFrames && CurrentAct == 0)
-	{
-		for (int i : HotShelterCols_Act1)
-		{
-			//PrintDebug("Trying COl: %d\n", HotShelterCols[i]);
-			radius = 2500.0f + GeoLists[96]->Col[i].Radius;
-			sphere.x = GeoLists[96]->Col[i].Center.x;
-			sphere.y = GeoLists[96]->Col[i].Center.y;
-			sphere.z = GeoLists[96]->Col[i].Center.z;
-			if (radius != 0 && IsPlayerInsideSphere(&sphere, radius))
-			{
-				//PrintDebug("Radius: %f\n", radius);
-				njSetTexture(&texlist_hotshelter1);
-				njPushMatrix(0);
-				njTranslate(0, 0, 0, 0);
-				DrawQueueDepthBias = -1000.0f;
-				// General
-				if (!(GeoLists[96]->Col[i].Flags & 0x40000))
-				{
-					lateDrawObject(GeoLists[96]->Col[i].Model, QueuedModelFlagsB_SomeTextureThing, 1.0f);
-				}
-				// Ladder thing in the drainage room
-				else
-				{
-					DrawQueueDepthBias = -27000.0f;
-					DrawObjectClipMesh(GeoLists[96]->Col[i].Model, QueuedModelFlagsB_EnableZWrite, 1.0f);
-				}
-				njPopMatrix(1u);
-				DrawQueueDepthBias = 0;
-			}
-		}
-	}
-	if (!MissedFrames && CurrentAct == 1)
-	{
-		for (int i : HotShelterCols_Act2)
-		{
-			//PrintDebug("Trying COl: %d\n", HotShelterCols_Act2[i]);
-			radius = 2500.0f + GeoLists[97]->Col[i].Radius;
-			sphere.x = GeoLists[97]->Col[i].Center.x;
-			sphere.y = GeoLists[97]->Col[i].Center.y;
-			sphere.z = GeoLists[97]->Col[i].Center.z;
-			if (radius != 0 && IsPlayerInsideSphere(&sphere, radius))
-			{
-				//PrintDebug("Radius: %f\n", radius);
-				njSetTexture(&texlist_hotshelter2);
-				njPushMatrix(0);
-				njTranslate(0, 0, 0, 0);
-				// Fence objects with texture 129 that weren't added with the COL flag or texture 136
-				if (!(GeoLists[97]->Col[i].Flags & 0x08000000))
-				{
-					DrawQueueDepthBias = -3000.0f;
-					lateDrawObject(GeoLists[97]->Col[i].Model, (QueuedModelFlagsB)1, 1.0f);
-					njPopMatrix(1u);
-					DrawQueueDepthBias = 0;
-				}
-				// Glass surface
-				else if ((GeoLists[97]->Col[i].Flags & 0x1000000) && (GeoLists[97]->Col[i].Flags & 0x40000))
-				{
-					DrawQueueDepthBias = -1000.0f;
-					lateDrawObject(GeoLists[97]->Col[i].Model, (QueuedModelFlagsB)1, 1.0f);
-					njPopMatrix(1u);
-					DrawQueueDepthBias = 0;
-				}
-				// Fence objects in the gear area
-				else if (GeoLists[97]->Col[i].Flags & 0x1000000)
-				{
-					DrawQueueDepthBias = -1000.0f;
-					DrawObjectClipMesh(GeoLists[97]->Col[i].Model, 0, 1.0f);
-					njPopMatrix(1u);
-					DrawQueueDepthBias = 0;
-				}
-				// Lights under the glass surface
-				else if (GeoLists[97]->Col[i].Flags & 0x40000)
-				{
-					DrawQueueDepthBias = -10000.0f;
-					DrawObjectClipMesh(GeoLists[97]->Col[i].Model, 0, 1.0f);
-					njPopMatrix(1u);
-					DrawQueueDepthBias = 0;
-				}
-				// Generic
-				else
-				{
-					DrawQueueDepthBias = -15000.0;
-					DrawObjectClipMesh(GeoLists[97]->Col[i].Model, 0, 1.0f);
-					njPopMatrix(1u);
-					DrawQueueDepthBias = 0;
-				}
-			}
-		}
-	}
-	if (!MissedFrames && CurrentAct == 2)
-	{
-		for (int i : HotShelterCols_Act3)
-		{
-			//PrintDebug("Trying COl: %d\n", HotShelterCols[i]);
-			radius = 2500.0f + GeoLists[98]->Col[i].Radius;
-			sphere.x = GeoLists[98]->Col[i].Center.x;
-			sphere.y = GeoLists[98]->Col[i].Center.y;
-			sphere.z = GeoLists[98]->Col[i].Center.z;
-			if (radius != 0 && IsPlayerInsideSphere(&sphere, radius))
-			{
-				//PrintDebug("Radius: %f\n", radius);
-				njSetTexture(&texlist_hotshelter3);
-				njPushMatrix(0);
-				njTranslate(0, 0, 0, 0);
-				// Fence objects in the gear area
-				if (GeoLists[98]->Col[i].Flags & 0x01000000)
-				{
-					DrawQueueDepthBias = -1000.0f;
-					DrawObjectClipMesh(GeoLists[98]->Col[i].Model, 0, 1.0f);
-					njPopMatrix(1u);
-					DrawQueueDepthBias = 0;
-				}
-				// Generic
-				else
-				{
-					DrawQueueDepthBias = -15000.0;
-					DrawObjectClipMesh(GeoLists[98]->Col[i].Model, 0, 1.0f);
-					njPopMatrix(1u);
-					DrawQueueDepthBias = 0;
-				}
-			}
-		}
-	}
-}
-
-void HotShelterCols_Delete(ObjectMaster* a1)
-{
-	HotShelterColsLoaded = false;
-	CheckThingButThenDeleteObject(a1);
-}
-
-void HotShelterCols_Main(ObjectMaster* a1)
-{
-	if (CurrentLevel == LevelIDs_HotShelter)
-	{
-		HotShelterCols_Display(a1);
-	}
-	else HotShelterCols_Delete(a1);
-}
-
-void HotShelterCols_Load(ObjectMaster* a1)
-{
-	a1->MainSub = (void(__cdecl*)(ObjectMaster*))HotShelterCols_Main;
-	a1->DisplaySub = (void(__cdecl*)(ObjectMaster*))HotShelterCols_Display;
-	a1->DeleteSub = (void(__cdecl*)(ObjectMaster*))HotShelterCols_Delete;
-}
-
-void LoadHotShelterCols()
-{
-	ObjectMaster* obj;
-	EntityData1* ent;
-	ObjectFunc(OF0, HotShelterCols_Load);
-	setdata_hs.Distance = 612800.0f;
-	obj = LoadObject((LoadObj)2, 3, OF0);
-	obj->SETData.SETData = &setdata_hs;
-	if (obj)
-	{
-		ent = obj->Data1;
-		ent->Position.x = 0;
-		ent->Position.y = 0;
-		ent->Position.z = 0;
-		ent->Rotation.x = 0;
-		ent->Rotation.y = 0;
-		ent->Rotation.z = 0;
-	}
-	HotShelterColsLoaded = true;
-}
-
-void AddHotShelterTransparentThing(int colnumber, int act)
-{
-	switch (act)
-	{
-	case 0:
-		HotShelterCols_Act1.push_back(colnumber);
-		break;
-	case 1:
-		HotShelterCols_Act2.push_back(colnumber);
-		break;
-	case 2:
-		HotShelterCols_Act3.push_back(colnumber);
-		break;
-	default:
-		break;
-	}
-}
-
-static Trampoline* SkyBox_HotShelter_Load_t = nullptr;
-static void __cdecl SkyBox_HotShelter_Load_r(ObjectMaster* a1)
-{
-	const auto original = TARGET_DYNAMIC(SkyBox_HotShelter_Load);
-	original(a1);
-	if (EnableHotShelter && !HotShelterColsLoaded) LoadHotShelterCols();
 }
 
 void RenderWaterThing(NJS_OBJECT *a1, QueuedModelFlagsB a2, float a3)
@@ -448,18 +242,9 @@ void PlayMusicHook_ReduceE105Fog(MusicIDs song)
 
 void ParseHotShelterMaterials(LandTable* landtable, int act, bool remove)
 {
-	Uint32 materialflags;
 	NJS_MATERIAL* material;
 	for (int j = 0; j < landtable->COLCount; j++)
 	{
-		if (!remove && landtable->Col[j].Flags & 0x08000000)
-		{
-			if (landtable->Col[j].Flags & ColFlags_Visible)
-			{
-				landtable->Col[j].Flags &= ~ColFlags_Visible;
-				AddHotShelterTransparentThing(j, act);
-			}
-		}
 		for (int k = 0; k < landtable->Col[j].Model->basicdxmodel->nbMat; ++k)
 		{
 			material = (NJS_MATERIAL*)& landtable->Col[j].Model->basicdxmodel->mats[k];
@@ -483,21 +268,14 @@ void ParseHotShelterMaterials(LandTable* landtable, int act, bool remove)
 				if (remove) RemoveAlphaRejectMaterial(material);
 				else AddAlphaRejectMaterial(material);
 			}
-			if (!remove && act == 1 && material->attr_texId == 129 && !(landtable->Col[j].Flags & 0x8000000))
+			if (act == 1)
 			{
-				if (landtable->Col[j].Flags & ColFlags_Visible)
+				if (!remove && act == 1 && (material->attr_texId == 129 || material->attr_texId == 136)) // Fences outside the gears area
 				{
-					landtable->Col[j].Flags &= ~ColFlags_Visible;
-					AddHotShelterTransparentThing(j, 1);
-				}
-			}
-			if (!remove && (material->attr_texId == 136) && !(landtable->Col[j].Flags & 0x8000000))
-			{
-				if (landtable->Col[j].Flags & ColFlags_Visible)
-				{
-					landtable->Col[j].Flags &= ~ColFlags_Visible;
-					landtable->Col[j].Flags |= 0x8000000;
-					AddHotShelterTransparentThing(j, 1);
+					if (landtable->Col[j].Flags & ColFlags_Visible && landtable->Col[j].widthY == 0)
+					{
+						landtable->Col[j].widthY = -3000.0f;
+					}
 				}
 			}
 		}
@@ -509,9 +287,6 @@ void UnloadLevelFiles_STG12()
 	ParseHotShelterMaterials(STG12_0_Info->getlandtable(), 0, true);
 	ParseHotShelterMaterials(STG12_1_Info->getlandtable(), 1, true);
 	ParseHotShelterMaterials(STG12_2_Info->getlandtable(), 2, true);
-	HotShelterCols_Act1.clear();
-	HotShelterCols_Act2.clear();
-	HotShelterCols_Act3.clear();
 	delete STG12_0_Info;
 	delete STG12_1_Info;
 	delete STG12_2_Info;
@@ -542,7 +317,6 @@ void HotShelter_Init()
 	WriteData((LandTable**)0x97DB90, STG12_2);
 	if (!ModelsLoaded_STG12)
 	{
-		SkyBox_HotShelter_Load_t = new Trampoline(0x59A2A0, 0x59A2A9, SkyBox_HotShelter_Load_r);
 		HOTSHELTER1_TEXLIST = texlist_hotshelter1;
 		HOTSHELTER2_TEXLIST = texlist_hotshelter2;
 		HOTSHELTER3_TEXLIST = texlist_hotshelter3;

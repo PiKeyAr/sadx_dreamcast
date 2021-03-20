@@ -18,9 +18,9 @@ NJS_TEXLIST texlist_mountain3 = { arrayptrandlength(textures_mountain3) };
 #include "Mountain3.h"
 */
 
-NJS_OBJECT *RMCloudTop = nullptr;
-NJS_OBJECT *RMCloudBottom = nullptr;
-NJS_MODEL_SADX *PropellerGlass = nullptr;
+NJS_OBJECT* RMCloudTop = nullptr;
+NJS_OBJECT* RMCloudBottom = nullptr;
+NJS_MODEL_SADX* PropellerGlass = nullptr;
 
 DataPointer(float, CurrentDrawDistance, 0x03ABDC74);
 DataPointer(float, RMCloudSonic_TopY, 0x006011B2);

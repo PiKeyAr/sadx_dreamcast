@@ -683,7 +683,7 @@ extern "C"
 		if (EnableWindyValley && nullsub_STG02 != 0x90u) WindyValley_OnFrame();
 		//if (EnableTwinklePark && nullsub_STG03 != 0x90u) TwinklePark_OnFrame();
 		//if (EnableTwinklePark || EnableTwinkleCircuit) ShareObj_OnFrame();
-		if (EnableSpeedHighway && nullsub_STG04 != 0x90u) SpeedHighway_OnFrame();
+		//if (EnableSpeedHighway && nullsub_STG04 != 0x90u) SpeedHighway_OnFrame();
 		if (EnableRedMountain && nullsub_STG05 != 0x90u) RedMountain_OnFrame();
 		if (EnableSkyDeck && nullsub_STG06 != 0x90u) SkyDeck_OnFrame();
 		if (EnableLostWorld && nullsub_STG07 != 0x90u) LostWorld_OnFrame();

@@ -17,33 +17,28 @@ NJS_TEXLIST texlist_highway2 = { arrayptrandlength(textures_highway2) };
 NJS_TEXNAME textures_highway3[107];
 NJS_TEXLIST texlist_highway3 = { arrayptrandlength(textures_highway3) };
 
-NJS_OBJECT *ConeBase = nullptr;
-NJS_OBJECT *ConeTop = nullptr;
-NJS_OBJECT *FountainBottom = nullptr;
-NJS_OBJECT *FountainSide = nullptr;
-NJS_OBJECT *Fountain1 = nullptr;
-NJS_OBJECT *Fountain2 = nullptr;
-NJS_OBJECT *Fountain3 = nullptr;
-NJS_OBJECT *HelicopterLight1 = nullptr;
-NJS_OBJECT *HelicopterLight2 = nullptr;
-NJS_OBJECT *HelicopterLight3 = nullptr;
-NJS_OBJECT *HelicopterLight4 = nullptr;
-NJS_OBJECT *Antenna = nullptr;
-NJS_OBJECT *FlySt1 = nullptr;
-NJS_OBJECT *FlySt2 = nullptr;
-NJS_OBJECT *MissileLogo = nullptr;
-NJS_OBJECT *HW3FountainMesh = nullptr; // This unloads when the level unloads
+NJS_OBJECT* ConeBase = nullptr;
+NJS_OBJECT* ConeTop = nullptr;
+NJS_OBJECT* FountainBottom = nullptr;
+NJS_OBJECT* FountainSide = nullptr;
+NJS_OBJECT* Fountain1 = nullptr;
+NJS_OBJECT* Fountain2 = nullptr;
+NJS_OBJECT* Fountain3 = nullptr;
+NJS_OBJECT* HelicopterLight1 = nullptr;
+NJS_OBJECT* HelicopterLight2 = nullptr;
+NJS_OBJECT* HelicopterLight3 = nullptr;
+NJS_OBJECT* HelicopterLight4 = nullptr;
+NJS_OBJECT* Antenna = nullptr;
+NJS_OBJECT* FlySt1 = nullptr;
+NJS_OBJECT* FlySt2 = nullptr;
+NJS_OBJECT* MissileLogo = nullptr;
+NJS_OBJECT* HW3FountainMesh = nullptr; // This unloads when the level unloads
 
 /*
 #include "Highway1.h"
 #include "Highway2.h"
 #include "Highway3.h"
 */
-
-std::vector<int> Highway3Cols;
-static bool Highway3ColsLoaded = false;
-static int shwwater = 0;
-SETObjData setdata_hw = {};
 
 FunctionPointer(long double, sub_49CC70, (float a1, float a2, float a3), 0x49CC70);
 
@@ -174,7 +169,6 @@ void RemoveMaterials_SpeedHighway(LandTable *landtable)
 void UnloadLevelFiles_STG04()
 {
 	if (DLLLoaded_Lantern) RemoveMaterials_SpeedHighway(STG04_0_Info->getlandtable());
-	Highway3Cols.clear();
 	HW3FountainMesh = nullptr;
 	delete STG04_0_Info;
 	delete STG04_1_Info;
@@ -189,86 +183,6 @@ void OCraneFix(NJS_MODEL_SADX *a1, int a2, float a3)
 	DrawModel(a1);
 }
 
-void Highway3Cols_Display(ObjectMaster* a1)
-{
-	NJS_VECTOR sphere = {0, 0, 0};
-	float radius = 0.0f;
-	if (!MissedFrames && CurrentAct == 2)
-	{
-		for (int i : Highway3Cols)
-		{
-			//PrintDebug("Trying COl: %d\n", Highway3Cols[i]);
-			radius = 2500.0f + GeoLists[34]->Col[Highway3Cols[i]].Radius;
-			//PrintDebug("Radius: %f", radius);
-			sphere.x = GeoLists[34]->Col[Highway3Cols[i]].Center.x;
-			sphere.y = GeoLists[34]->Col[Highway3Cols[i]].Center.y;
-			sphere.z = GeoLists[34]->Col[Highway3Cols[i]].Center.z;
-			if (radius != 0 && IsPlayerInsideSphere(&sphere, radius))
-			{
-				njSetTexture(&texlist_highway3);
-				njPushMatrix(0);
-				njTranslate(0, 0, 0, 0);
-				if (GeoLists[34]->Col[Highway3Cols[i]].Flags & 0x01000000) DrawQueueDepthBias = 3000.0f;
-				else DrawQueueDepthBias = -1000.0f;
-				DrawObjectClipMesh(GeoLists[34]->Col[Highway3Cols[i]].Model, 1, 1.0f);
-				njPopMatrix(1u);
-				DrawQueueDepthBias = 0;
-			}
-		}
-	}
-}
-
-void Highway3Cols_Delete(ObjectMaster *a1)
-{
-	Highway3ColsLoaded = false;
-	CheckThingButThenDeleteObject(a1);
-}
-
-void Highway3Cols_Main(ObjectMaster *a1)
-{
-	if (CurrentLevel == LevelIDs_SpeedHighway)
-	{
-		if (CurrentAct == 2) Highway3Cols_Display(a1);
-	}
-	else Highway3Cols_Delete(a1);
-}
-
-void Highway3Cols_Load(ObjectMaster *a1)
-{
-	a1->MainSub = (void(__cdecl *)(ObjectMaster *))Highway3Cols_Main;
-	a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))Highway3Cols_Display;
-	a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))Highway3Cols_Delete;
-}
-
-void LoadHighway3Cols()
-{
-	ObjectMaster *obj;
-	EntityData1 *ent;
-	ObjectFunc(OF0, Highway3Cols_Load);
-	setdata_hw.Distance = 612800.0f;
-	obj = LoadObject((LoadObj)2, 3, OF0);
-	obj->SETData.SETData = &setdata_hw;
-	if (obj)
-	{
-		ent = obj->Data1;
-		ent->Position.x = 0;
-		ent->Position.y = 0;
-		ent->Position.z = 0;
-		ent->Rotation.x = 0;
-		ent->Rotation.y = 0;
-		ent->Rotation.z = 0;
-	}
-	Highway3ColsLoaded = true;
-}
-
-static Trampoline* SkyBox_Highway_Load_t = nullptr;
-static void __cdecl SkyBox_Highway_Load_r(ObjectMaster *a1)
-{
-	const auto original = TARGET_DYNAMIC(SkyBox_Highway_Load);
-	original(a1);
-	if (EnableSpeedHighway && !Highway3ColsLoaded) LoadHighway3Cols();
-}
-
 void ProcessMaterials_SpeedHighway(LandTable *landtable)
 {
 	Uint32 materialflags;
@@ -277,14 +191,11 @@ void ProcessMaterials_SpeedHighway(LandTable *landtable)
 	for (int j = 0; j < landtable->COLCount; j++)
 	{
 		colflags = landtable->Col[j].Flags;
-		if (colflags & 0x08000000)
+		if (colflags == 0x80000002)
 		{
-			if (landtable->Col[j].Flags & ColFlags_Visible)landtable->Col[j].Flags &= ~ColFlags_Visible;
-			Highway3Cols.push_back(j);
-		}
-		if (colflags == 0x00000002)
-		{
+			landtable->Col[j].Flags = 0x00000002;
 			HW3FountainMesh = landtable->Col[j].Model;
+			AddTextureAnimation_Permanent(4, 2, &HW3FountainMesh->basicdxmodel->mats[0], false, 4, 0, 13);
 		}
 		if (DLLLoaded_Lantern)
 		{
@@ -377,7 +288,6 @@ void SpeedHighway_Init()
 	WriteData((LandTable**)0x97DA90, STG04_2);
 	if (!ModelsLoaded_STG04)
 	{
-		SkyBox_Highway_Load_t = new Trampoline(0x610A70, 0x610A7B, SkyBox_Highway_Load_r);
 		FountainDisplay_t = new Trampoline(0x61BA10, 0x61BA15, FountainDisplay_r);
 		HIGHWAY_CAR_TEXLIST = texlist_hwcar;
 		OBJ_HIGHWAY_TEXLIST = texlist_obj_highway;
@@ -609,18 +519,5 @@ void SpeedHighway_Init()
 			SpeedHighway2Fog[i].Color = 0xFF300020;
 		}
 		ModelsLoaded_STG04 = true;
-	}
-}
-
-void SpeedHighway_OnFrame()
-{
-	if (CurrentLevel == LevelIDs_SpeedHighway)
-	{
-		if (CurrentAct == 2 && !IsGamePaused())
-		{
-			if ((FramerateSetting < 2 && FrameCounterUnpaused % 4 == 0) || (FramerateSetting >= 2 && FrameCounterUnpaused % 2 == 0)) shwwater++;
-			if (shwwater > 13) shwwater = 0;
-			if (HW3FountainMesh) HW3FountainMesh->basicdxmodel->mats[0].attr_texId = shwwater;
-		}
 	}
 }

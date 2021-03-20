@@ -65163,6 +65163,6 @@ COL collist_000144B0[] = {
 	{ { 5526.481f, -1739.032f, 6459.643f }, 396.2065f, 0, 0, &object_0007DDC4_2, 0, 0xC2800001 }, //big corridor
 };
 
-extern "C" __declspec(dllexport) LandTable landtable_0001853C = { LengthOfArray(collist_000144B0), 0, 0xC, 2400, collist_000144B0, NULL, "HIGHWAY01", &texlist_hw1, 0, 0 };
+extern "C" __declspec(dllexport) LandTable landtable_0001853C = { LengthOfArray(collist_000144B0), 0, 0xC, 0, 2400, collist_000144B0, NULL, "HIGHWAY01", &texlist_highway1, 0, 0 };
 
 #pragma warning(pop)

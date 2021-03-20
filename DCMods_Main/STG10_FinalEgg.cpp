@@ -35,17 +35,11 @@ NJS_OBJECT* BlueLight_Camera1 = nullptr;
 NJS_OBJECT* BlueLight_Camera2 = nullptr;
 NJS_OBJECT* BlueLight_Light = nullptr;
 
-std::vector<int> FinalEgg2Cols;
-
 DataPointer(NJS_ACTION, off_1A1F944, 0x1A1F944);
+DataPointer(char, dword_1AC4D98, 0x1AC4D98);
 DataArray(FogData, FinalEgg1Fog, 0x019C8FF0, 3);
 DataArray(FogData, FinalEgg2Fog, 0x019C9020, 3);
 DataArray(FogData, FinalEgg3Fog, 0x019C9050, 3);
-FunctionPointer(void, sub_5ADCF0, (), 0x5ADCF0);
-
-static bool Act2GlassLoaded = false;
-static int cylinderframe = 0;
-SETObjData setdata_fe = {};
 
 PVMEntry FinalEggObjectTextures[] = {
 	{ "OBJ_FINALEGG", (TexList *)0x19CC1C0 },
@@ -68,8 +62,6 @@ void DrawOSpinTubeModels(NJS_MODEL_SADX* model, float scale)
 	DrawModelMesh(model, QueuedModelFlagsB_EnableZWrite);
 	DrawQueueDepthBias = 0;
 }
-
-DataPointer(char, dword_1AC4D98, 0x1AC4D98);
 
 void RenderBlueLight(ObjectMaster *a2)
 {
@@ -115,27 +107,28 @@ void DrawOUkishima(NJS_OBJECT* obj, float scale)
 	DrawObjectClipMesh(obj, QueuedModelFlagsB_EnableZWrite, scale);
 }
 
-void __cdecl OTatekan_Display(ObjectMaster *a1)
+void __cdecl OTatekan_Display(task *a1)
 {
-	EntityData1 *v1; // esi@1
+	taskwk *v1; // esi@1
 	int v2; // eax@2
 	int v3; // eax@4
 	float YDist; // ST04_4@6
 	int v5; // eax@6
 	float scale; // [sp+10h] [bp+4h]@9
-	v1 = a1->Data1;
+	v1 = a1->twp;
 	if (!DroppedFrames)
 	{
+		((NJS_OBJECT*)0x1A4583C)->basicdxmodel->mats->attr_texId = (Uint8)v1->btimer % 256;
 		SetTextureToLevelObj();
 		njPushMatrix(0);
-		njTranslateV(0, &v1->Position);
-		v2 = v1->Rotation.y;
+		njTranslateV(0, &v1->pos);
+		v2 = v1->ang.y;
 		if (v2)
 		{
 			njRotateY(0, (unsigned __int16)v2);
 		}
 		njPushMatrix(0);
-		v3 = v1->Rotation.x;
+		v3 = v1->ang.x;
 		if (v3)
 		{
 			njRotateY(0, (unsigned __int16)v3);
@@ -143,9 +136,9 @@ void __cdecl OTatekan_Display(ObjectMaster *a1)
 		ds_DrawObjectClip((NJS_OBJECT*)0x1A45500, 1.0f); // Bottom
 		njPopMatrix(1u);
 		njPushMatrix(0);
-		YDist = v1->Scale.y * 22.0;
+		YDist = v1->scl.y * 22.0f;
 		njTranslate(0, 0.0, YDist, 0.0);
-		v5 = v1->Rotation.z;
+		v5 = v1->ang.z;
 		if (v5)
 		{
 			njRotateY(0, (unsigned __int16)v5);
@@ -154,12 +147,12 @@ void __cdecl OTatekan_Display(ObjectMaster *a1)
 		njPopMatrix(1u);
 		njPushMatrix(0);
 		njTranslate(0, 0.0f, 4.0f, 0.0f);
-		njScale(0, 1.0f, v1->Scale.y, 1.0f);
+		njScale(0, 1.0f, v1->scl.y, 1.0f);
 		DrawQueueDepthBias = -20000.0f;
-		lateDrawObject((NJS_OBJECT*)0x01A4425C, (QueuedModelFlagsB)0, v1->Scale.y); // Pivot
-		if (v1->Scale.y >= 1.0f)
+		lateDrawObject((NJS_OBJECT*)0x01A4425C, (QueuedModelFlagsB)0, v1->scl.y); // Pivot
+		if (v1->scl.y >= 1.0f)
 		{
-			scale = v1->Scale.y;
+			scale = v1->scl.y;
 		}
 		else
 		{
@@ -171,6 +164,8 @@ void __cdecl OTatekan_Display(ObjectMaster *a1)
 		DrawQueueDepthBias = 0.0f;
 		njPopMatrix(1u);
 		njPopMatrix(1u);
+		if (!IsGamePaused())
+			v1->btimer += (FrameCounter % 2 == 0 || FramerateSetting >= 2);
 	}
 }
 
@@ -261,23 +256,24 @@ void __cdecl OStandLight_F(ObjectMaster *a1)
 }
 
 // O Texture
-void __cdecl OTexture_Display(ObjectMaster *a1)
+void __cdecl OTexture_Display(task *a1)
 {
-	EntityData1 *v1; // esi@1
+	taskwk *v1; // esi@1
 	NJS_VECTOR *v2; // esi@2
 	float a3; // ST24_4@2
-	v1 = a1->Data1;
+	v1 = a1->twp;
 	if (!DroppedFrames)
 	{
+		((NJS_OBJECT*)0x1A45620)->basicdxmodel->mats->attr_texId = (Uint8)v1->btimer % 256;
 		BackupConstantAttr();
 		AddConstantAttr(0, NJD_FLAG_USE_ALPHA);
 		njColorBlendingMode(0, NJD_COLOR_BLENDING_SRCALPHA);
 		njColorBlendingMode(NJD_DESTINATION_COLOR, NJD_COLOR_BLENDING_ONE);
 		njPushMatrix(0);
 		njSetTexture(&texlist_cylinder);
-		njTranslateV(0, &v1->Position);
-		njRotateXYZ(0, v1->Rotation.x, v1->Rotation.y, v1->Rotation.z);
-		v2 = &v1->Scale;
+		njTranslateV(0, &v1->pos);
+		njRotateXYZ(0, v1->ang.x, v1->ang.y, v1->ang.z);
+		v2 = &v1->scl;
 		njScaleV(0, v2);
 		DrawQueueDepthBias = -47952.0f;
 		a3 = VectorMaxAbs(v2);
@@ -288,6 +284,8 @@ void __cdecl OTexture_Display(ObjectMaster *a1)
 		njColorBlendingMode(0, NJD_COLOR_BLENDING_SRCALPHA);
 		njColorBlendingMode(NJD_DESTINATION_COLOR, NJD_COLOR_BLENDING_INVSRCALPHA);
 		RestoreConstantAttr();
+		if (!IsGamePaused())
+			v1->btimer += (FrameCounter % 2 == 0 || FramerateSetting >= 2);
 	}
 }
 
@@ -317,92 +315,6 @@ void __cdecl SetGachaponEnvMaps2(NJS_ACTION* action, float frame, float scale)
 	EnvMap4 = 0.5f;
 }
 
-void Glass_Delete(ObjectMaster *a1)
-{
-	Act2GlassLoaded = false;
-	CheckThingButThenDeleteObject(a1);
-}
-
-void FinalEgg2Cols_Display(ObjectMaster* a1)
-{
-	NJS_VECTOR sphere = {0, 0, 0};
-	float radius = 0.0f;
-	if (!MissedFrames && CurrentAct == 1)
-	{
-		for (int i : FinalEgg2Cols)
-		{
-			//PrintDebug("Trying COl: %d\n", i);
-			radius = 2500.0f + GeoLists[81]->Col[i].Radius;
-			sphere.x = GeoLists[81]->Col[i].Center.x;
-			sphere.y = GeoLists[81]->Col[i].Center.y;
-			sphere.z = GeoLists[81]->Col[i].Center.z;
-			if (radius != 0 && IsPlayerInsideSphere(&sphere, radius))
-			{
-				//PrintDebug("Radius: %f\n", radius);
-				njSetTexture(&texlist_finalegg2);
-				njPushMatrix(0);
-				njTranslate(0, 0, 0, 0);
-				if (GeoLists[81]->Col[i].Flags == 0x09040001) DrawQueueDepthBias = 0.0f;
-				else if (GeoLists[81]->Col[i].Flags & 0x01000000) DrawQueueDepthBias = 4500.0f;
-				else if (GeoLists[81]->Col[i].Flags & 0x00040000) DrawQueueDepthBias = 1000.0f;
-				else
-				{
-					if (IsPlayerInsideSphere(&DepthSphere1, 200.0f) || IsPlayerInsideSphere(&DepthSphere2, 200.0f))
-					{
-						//PrintDebug("Insode\n");
-						DrawQueueDepthBias = -47000.0f;
-					}
-					else
-					{
-						//PrintDebug("Outsode\n");
-						DrawQueueDepthBias = -15000.0f;
-					}
-				}
-				DrawObjectClipMesh(GeoLists[81]->Col[i].Model, 0, 1.0f);
-				njPopMatrix(1u);
-				DrawQueueDepthBias = 0;
-			}
-		}
-	}
-}
-
-void Glass_Main(ObjectMaster *a1)
-{
-	if (CurrentLevel == LevelIDs_FinalEgg)
-	{
-		if (CurrentAct == 1) FinalEgg2Cols_Display(a1);
-	}
-	else Glass_Delete(a1);
-}
-
-void Glass_Load(ObjectMaster *a1)
-{
-	a1->MainSub = (void(__cdecl *)(ObjectMaster *))Glass_Main;
-	a1->DisplaySub = (void(__cdecl *)(ObjectMaster *))FinalEgg2Cols_Display;
-	a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))Glass_Delete;
-}
-
-void LoadGlass()
-{
-	ObjectMaster *obj;
-	EntityData1 *ent;
-	ObjectFunc(OF0, Glass_Load);
-	setdata_fe.Distance = 612800.0f;
-	obj = LoadObject((LoadObj)2, 3, OF0);
-	obj->SETData.SETData = &setdata_fe;
-	if (obj)
-	{
-		ent = obj->Data1;
-		ent->Position.x = 0;
-		ent->Position.y = 0;
-		ent->Position.z = 0;
-		ent->Rotation.x = 0;
-		ent->Rotation.y = 0;
-		ent->Rotation.z = 0;
-	}
-	Act2GlassLoaded = true;
-}
-
 void RenderOLight2WithDepth(NJS_OBJECT* a1, int a2, float a3)
 {
 	ds_DrawObjectClip(a1, a3);
@@ -418,14 +330,6 @@ void Elevator2Hook(NJS_OBJECT *obj, float scale)
 	DrawQueueDepthBias = 0.0f;
 }
 
-static Trampoline* SkyBox_FinalEgg_Load_t = nullptr;
-static void __cdecl SkyBox_FinalEgg_Load_r(ObjectMaster *a1)
-{
-	const auto original = TARGET_DYNAMIC(SkyBox_FinalEgg_Load);
-	original(a1);
-	if (EnableFinalEgg && !Act2GlassLoaded) LoadGlass();
-}
-
 void GachaponExplosionFix(NJS_MODEL_SADX *a1)
 {
 	DrawQueueDepthBias = 10000.0f;
@@ -435,15 +339,9 @@ void GachaponExplosionFix(NJS_MODEL_SADX *a1)
 
 void ParseFinalEggMaterials(LandTable* landtable, int act, bool remove)
 {
-	Uint32 materialflags;
 	NJS_MATERIAL* material;
 	for (int j = 0; j < landtable->COLCount; j++)
 	{
-		if (!remove && landtable->Col[j].Flags & 0x8000000)
-		{
-			if (landtable->Col[j].Flags & ColFlags_Visible) landtable->Col[j].Flags &= ~ColFlags_Visible;
-			FinalEgg2Cols.push_back(j);
-		}
 		for (int k = 0; k < landtable->Col[j].Model->basicdxmodel->nbMat; ++k)
 		{
 			material = (NJS_MATERIAL*)& landtable->Col[j].Model->basicdxmodel->mats[k];
@@ -463,8 +361,10 @@ void ParseFinalEggMaterials(LandTable* landtable, int act, bool remove)
 	if (act == 0)
 	{
 		// Thing under the floor in Amy's puzzle room
-		if (!remove) AddAlphaRejectMaterial(&landtable->AnimData[21].Model->child->basicdxmodel->mats[1]); 
-		else RemoveAlphaRejectMaterial(&landtable->AnimData[21].Model->child->basicdxmodel->mats[1]);
+		if (!remove) 
+			AddAlphaRejectMaterial(&landtable->AnimData[21].Model->child->basicdxmodel->mats[1]); 
+		else 
+			RemoveAlphaRejectMaterial(&landtable->AnimData[21].Model->child->basicdxmodel->mats[1]);
 	}
 }
 
@@ -473,7 +373,6 @@ void UnloadLevelFiles_STG10()
 	ParseFinalEggMaterials(STG10_0_Info->getlandtable(), 0, true);
 	ParseFinalEggMaterials(STG10_1_Info->getlandtable(), 1, true);
 	ParseFinalEggMaterials(STG10_2_Info->getlandtable(), 2, true);
-	FinalEgg2Cols.clear();
 	delete STG10_0_Info;
 	delete STG10_1_Info;
 	delete STG10_2_Info;
@@ -487,7 +386,6 @@ void __cdecl _0Light_Camera_DisplayFix(ObjectMaster *a1)
 	EntityData1 *v1; // esi
 	unsigned __int16 v2; // ax
 	unsigned __int16 v3; // si
-	NJS_VECTOR a2;
 	v1 = a1->Data1;
 	if ( !MissedFrames )
 	{
@@ -547,7 +445,6 @@ void FinalEgg_Init()
 	WriteData((LandTable**)0x97DB50, STG10_2); // Act 3
 	if (!ModelsLoaded_STG10)
 	{
-		SkyBox_FinalEgg_Load_t = new Trampoline(0x5ADFE0, 0x5ADFE9, SkyBox_FinalEgg_Load_r);
 		*(NJS_TEXLIST*)0x1B98518 = texlist_finalegg1;
 		*(NJS_TEXLIST*)0x1A60488 = texlist_finalegg2;
 		*(NJS_TEXLIST*)0x1AC5780 = texlist_finalegg3;
@@ -799,9 +696,5 @@ void FinalEgg_OnFrame()
 				}
 			}
 		}
-		if (FramerateSetting < 2 && FrameCounter % 2 == 0 || FramerateSetting >= 2) cylinderframe++;
-		if (cylinderframe > 255) cylinderframe = 0;
-		((NJS_OBJECT*)0x1A4583C)->basicdxmodel->mats[0].attr_texId = cylinderframe;
-		((NJS_OBJECT*)0x1A45620)->basicdxmodel->mats->attr_texId = cylinderframe;
 	}
 }

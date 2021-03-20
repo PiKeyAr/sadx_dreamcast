@@ -397,7 +397,10 @@ extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_000533CC = { vertex_00053
 extern "C" __declspec(dllexport) NJS_OBJECT object_000533F4 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_000533CC, 99.99995f, 104.925f, -1260, 0, 0, 0, 1, 1, 1, NULL, NULL };
 extern "C" __declspec(dllexport) NJS_MATERIAL matlist_00053428[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 129, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_DA_INV_SRC | NJD_SA_SRC },
-	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 7, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
+	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 7, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
+};
+
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_00053428_2[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 129, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
@@ -429,8 +432,11 @@ extern "C" __declspec(dllexport) NJS_TEX uv_000534A4[] = {
 };
 
 extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_000534B4[] = {
-	{ NJD_MESHSET_TRIMESH | 2, 1, poly_00053478, NULL, NULL, NULL, uv_000534A4, NULL },
 	{ NJD_MESHSET_TRIMESH | 1, 2, poly_00053464, NULL, NULL, NULL, uv_00053484, NULL }
+};
+
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_000534B4_2[] = {
+	{ NJD_MESHSET_TRIMESH | 0, 1, poly_00053478, NULL, NULL, NULL, uv_000534A4, NULL }
 };
 
 extern "C" __declspec(dllexport) NJS_VECTOR vertex_000534E4[] = {
@@ -457,7 +463,12 @@ extern "C" __declspec(dllexport) NJS_VECTOR normal_00053544[] = {
 
 extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_000535A4 = { vertex_000534E4, normal_00053544, LengthOfArray<Sint32>(vertex_000534E4), meshlist_000534B4, matlist_00053428, LengthOfArray<Uint16>(meshlist_000534B4), LengthOfArray<Uint16>(matlist_00053428), { -59.84607f, -11.89905f, 73.30602f }, 84.04803f, NULL };
 
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_000535A4_2 = {vertex_000534E4, normal_00053544, LengthOfArray<Sint32>(vertex_000534E4), meshlist_000534B4_2, matlist_00053428_2, LengthOfArray<Uint16>(meshlist_000534B4_2), LengthOfArray<Uint16>(matlist_00053428_2), { -59.84607f, -11.89905f, 73.30602f }, 84.04803f, NULL};
+
 extern "C" __declspec(dllexport) NJS_OBJECT object_000535CC = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_000535A4, 7.999938f, 104.925f, -1410, 0, 0, 0, 1, 1, 1, NULL, NULL };
+
+extern "C" __declspec(dllexport) NJS_OBJECT object_000535CC_2 = {NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_000535A4_2, 7.999938f, 104.925f, -1410, 0, 0, 0, 1, 1, 1, NULL, NULL};
+
 extern "C" __declspec(dllexport) NJS_MATERIAL matlist_00053600[] = {
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 129, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_DA_INV_SRC | NJD_SA_SRC },
 	{ { 0xFFFFFFFF }, { 0xFFFFFFFF }, 11, 129, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
@@ -44769,19 +44780,20 @@ extern "C" __declspec(dllexport) COL collist_0004CDDC[] = {
 	{ { 659.0861f, 133.5655f, -2537.644f }, 15.34494f, 0, 0, &object_000A79DC, 0, 0xE0000001 }, //Lights under glass floor 5 (opaque part)
 	{ { 431.7003f, 133.5655f, -2604.777f }, 15.34494f, 0, 0, &object_000A7A10, 0, 0xE0000001 }, //Lights under glass floor 6 (opaque part)
 	{ { 539.9999f, 150, -2605 }, 261.3126f, 0, 0, &object_000A4AB8, 0, 0xA0000001 }, //Glass floor opaque part
-	{ { -51.84613f, 93.02594f, -1336.694f }, 84.04818f, 0, 0, &object_000535CC, 0, 0xA9000001 }, //Fence in the gears area 1
-	{ { -190, 92.99998f, -1045 }, 76.48538f, 0, 0, &object_00052F3C, 0, 0xA9000001 }, //Fence in the gears area 2
-	{ { -91.00094f, 93.02594f, -1172 }, 92.0374f, 0, 0, &object_00052B54, 0, 0xC9000001 }, //Fence in the gears area 3
-	{ { 34.99996f, 92.92498f, -1125 }, 47.67338f, 0, 0, &object_00053198, 0, 0xC9000001 }, //Fence in the gears area 4
-	{ { 41.00986f, 92.92498f, -1294.694f }, 126.0664f, 0, 0, &object_000533F4, 0, 0xA9000001 }, //Fence in the gears area 5
-	{ { 125.0002f, 92.9407f, -1040 }, 95.12509f, 0, 0, &object_00053A24, 0, 0xA9000001 }, //Fence in the gears area 6
-	{ { 431.7003f, 133.5655f, -2542.697f }, 15.34494f, 0, 0, &object_0007DE3C_2, 0, 0xE8040001 }, //Lights under glass floor 1
-	{ { 431.7003f, 133.5655f, -2665.412f }, 15.34494f, 0, 0, &object_000A7940_2, 0, 0xE8040001 }, //Lights under glass floor 2
-	{ { 658.3643f, 133.5655f, -2665.412f }, 15.34494f, 0, 0, &object_000A7974_2, 0, 0xE8040001 }, //Lights under glass floor 3
-	{ { 659.0861f, 133.5655f, -2604.777f }, 15.34494f, 0, 0, &object_000A79A8_2, 0, 0xE8040001 }, //Lights under glass floor 4
-	{ { 659.0861f, 133.5655f, -2537.644f }, 15.34494f, 0, 0, &object_000A79DC_2, 0, 0xE8040001 }, //Lights under glass floor 5
-	{ { 431.7003f, 133.5655f, -2604.777f }, 15.34494f, 0, 0, &object_000A7A10_2, 0, 0xE8040001 }, //Lights under glass floor 6
-	{ { 539.9999f, 150, -2605 }, 261.3126f, 0, 0, &object_000A4AB8_2, 0, 0xA9040001 }, //Glass floor
+	{ { -51.84613f, 93.02594f, -1336.694f }, 84.04818f, 0, 0, &object_000535CC, 0, 0xA0000001 },
+	{ { -51.84613f, 93.02594f, -1336.694f }, 84.04818f, -1000.0f, 0, &object_000535CC_2, 0, 0xA3000001}, //Fence in the gears area 1
+	{ { -190, 92.99998f, -1045 }, 76.48538f, -1000.0f, 0, &object_00052F3C, 0, 0xA3000001 }, //Fence in the gears area 2
+	{ { -91.00094f, 93.02594f, -1172 }, 92.0374f, -1000.0f, 0, &object_00052B54, 0, 0xC3000001 }, //Fence in the gears area 3
+	{ { 34.99996f, 92.92498f, -1125 }, 47.67338f, -1000.0f, 0, &object_00053198, 0, 0xC3000001 }, //Fence in the gears area 4
+	{ { 41.00986f, 92.92498f, -1294.694f }, 126.0664f, -1000.0f, 0, &object_000533F4, 0, 0xA3000001 }, //Fence in the gears area 5
+	{ { 125.0002f, 92.9407f, -1040 }, 95.12509f, -1000.0f, 0, &object_00053A24, 0, 0xA3000001 }, //Fence in the gears area 6
+	{ { 431.7003f, 133.5655f, -2542.697f }, 15.34494f, -10000.0f, 0, &object_0007DE3C_2, 0, 0xE1000401 }, //Lights under glass floor 1
+	{ { 431.7003f, 133.5655f, -2665.412f }, 15.34494f, -10000.0f, 0, &object_000A7940_2, 0, 0xE1000401 }, //Lights under glass floor 2
+	{ { 658.3643f, 133.5655f, -2665.412f }, 15.34494f, -10000.0f, 0, &object_000A7974_2, 0, 0xE1000401 }, //Lights under glass floor 3
+	{ { 659.0861f, 133.5655f, -2604.777f }, 15.34494f, -10000.0f, 0, &object_000A79A8_2, 0, 0xE1000401 }, //Lights under glass floor 4
+	{ { 659.0861f, 133.5655f, -2537.644f }, 15.34494f, -10000.0f, 0, &object_000A79DC_2, 0, 0xE1000401 }, //Lights under glass floor 5
+	{ { 431.7003f, 133.5655f, -2604.777f }, 15.34494f, -10000.0f, 0, &object_000A7A10_2, 0, 0xE1000401 }, //Lights under glass floor 6
+	{ { 539.9999f, 150, -2605 }, 261.3126f, -1000.0f, 0, &object_000A4AB8_2, 0, 0xA0000001 }, //Glass floor
 	{ { 540.8624f, 271.6986f, -2603.641f }, 124.2111f, 0, 0, &object_000751C8_2, 0, 0xC0000001 }, //Glass thing on top of the puzzle room
 	{ { 884.496f, 309.0977f, -3469.619f }, 126.397f, 0, 0, &object_00096368, 0, 0x80000000 }, //Green wall decoration
 	{ { 1032.823f, 312.3949f, -3616.59f }, 128.1129f, 0, 0, &object_000964A8, 0, 0x80000000 }, //Green wall decoration 2
@@ -44799,6 +44811,6 @@ extern "C" __declspec(dllexport) GeoAnimData animlist_000526BC[] = {
 	{ 0, 1, 27, &object_000AD330, &action_animation_0005ADF0, (NJS_TEXLIST*)0 }
 };
 
-extern "C" __declspec(dllexport) LandTable landtable_0005277C = { LengthOfArray(collist_0004CDDC), LengthOfArray(animlist_000526BC), 0xD, 650, collist_0004CDDC, animlist_000526BC, "HOTSHELTER2", &texlist_hotshelter2, 0, 0 };
+extern "C" __declspec(dllexport) LandTable landtable_0005277C = { LengthOfArray(collist_0004CDDC), LengthOfArray(animlist_000526BC), 0xD, 0, 650, collist_0004CDDC, animlist_000526BC, "HOTSHELTER2", &texlist_hotshelter2, 0, 0 };
 
 #pragma warning(pop)

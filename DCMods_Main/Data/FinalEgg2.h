@@ -5592,6 +5592,12 @@ extern "C" __declspec(dllexport) NJS_MATERIAL matlist_00090A78[] = {
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 15, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_FLAG_DOUBLE_SIDE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_00090A78_2[] = {
+	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 16, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_CLAMP_V | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_FLAG_DOUBLE_SIDE | NJD_DA_INV_SRC | NJD_SA_SRC },
+	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 11, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_FLAG_DOUBLE_SIDE | NJD_DA_INV_SRC | NJD_SA_SRC },
+	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 15, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_ALPHA | NJD_FLAG_USE_TEXTURE | NJD_FLAG_DOUBLE_SIDE | NJD_DA_INV_SRC | NJD_SA_SRC }
+};
+
 extern "C" __declspec(dllexport) Sint16 poly_00090ADC[] = {
 	3, 52, 1, 86,
 	8, 1, 83, 86, 82, 85, 81, 84, 50,
@@ -5812,9 +5818,9 @@ extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00090EE4[] = {
 };
 
 extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00090EE4_2[] = {
-	{ NJD_MESHSET_TRIMESH | 2, 1, poly_00090BDA, NULL, NULL, NULL, uv_00090E14, NULL },
-	{ NJD_MESHSET_TRIMESH | 3, 1, poly_00090BE8, NULL, NULL, NULL, uv_00090E2C, NULL },
-	{ NJD_MESHSET_TRIMESH | 4, 3, poly_00090C2E, NULL, NULL, NULL, uv_00090EB4, NULL }
+	{ NJD_MESHSET_TRIMESH | 0, 1, poly_00090BDA, NULL, NULL, NULL, uv_00090E14, NULL },
+	{ NJD_MESHSET_TRIMESH | 1, 1, poly_00090BE8, NULL, NULL, NULL, uv_00090E2C, NULL },
+	{ NJD_MESHSET_TRIMESH | 2, 3, poly_00090C2E, NULL, NULL, NULL, uv_00090EB4, NULL }
 };
 
 extern "C" __declspec(dllexport) NJS_VECTOR vertex_00090F5C[] = {
@@ -5998,7 +6004,7 @@ extern "C" __declspec(dllexport) NJS_VECTOR normal_00091370[] = {
 };
 
 extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00091784 = { vertex_00090F5C, normal_00091370, LengthOfArray(vertex_00090F5C), meshlist_00090EE4, matlist_00090A78, LengthOfArray(meshlist_00090EE4), LengthOfArray(matlist_00090A78),{ -3.474487f, -66.04515f, 45.19934f }, 343.4064f, NULL };
-extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00091784_2 = { vertex_00090F5C, normal_00091370, LengthOfArray(vertex_00090F5C), meshlist_00090EE4_2, matlist_00090A78, LengthOfArray(meshlist_00090EE4_2), LengthOfArray(matlist_00090A78),{ -3.474487f, -66.04515f, 45.19934f }, 343.4064f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00091784_2 = { vertex_00090F5C, normal_00091370, LengthOfArray(vertex_00090F5C), meshlist_00090EE4_2, matlist_00090A78_2, LengthOfArray(meshlist_00090EE4_2), LengthOfArray(matlist_00090A78_2),{ -3.474487f, -66.04515f, 45.19934f }, 343.4064f, NULL };
 
 extern "C" __declspec(dllexport) NJS_OBJECT object_000917AC = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00091784, 1060, -1551.742f, -850, 0, 0, 0, 1, 1, 1, NULL, NULL };
 extern "C" __declspec(dllexport) NJS_OBJECT object_000917AC_2 = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00091784_2, 1060, -1551.742f, -850, 0, 0, 0, 1, 1, 1, NULL, NULL };
@@ -46334,36 +46340,36 @@ extern "C" __declspec(dllexport) COL collist_00081980[] = {
 	{ { 1060, -1899.276f, -850 }, 652.5098f, 0, 0, &object_00092F38, 0, 0x80040001 }, //wall 3
 	{ { 903.4501f, -1179.76f, -693.45f }, 326.697f, 0, 0, &object_0009B66C, 0, 0x80040001 }, //wall 4
 	{ { 903.45f, -1179.76f, -1009.25f }, 327.9994f, 0, 0, &object_0009BAEC, 0, 0x80040001 }, //wall 5
-	{ { 1123.898f, -397.8847f, -1225.007f }, 179.4316f, 0, 0, &object_0009AF50_2, 0, 0xC8000001 }, //tube stuff
-	{ { 789.3957f, -260.7296f, -1057.122f }, 62.28091f, 0, 0, &object_000B04E0_2, 0, 0x88000000 }, //tube with pin lamps
-	{ { 706.7178f, -161.3856f, -751.0459f }, 99.36771f, 0, 0, &object_000B1E94_2, 0, 0x88000000 }, //tube with pin lamps
-	{ { 958.3759f, -87.13013f, -509.684f }, 80.01184f, 0, 0, &object_000AE018_2, 0, 0x88000000 }, //tube with pin lamps
-	{ { 1401.569f, 11.44946f, -866.9642f }, 70.10052f, 0, 0, &object_000AACD0_2, 0, 0x88000000 },
-	{ { 1282.065f, -69.96628f, -581.0759f }, 78.19864f, 0, 0, &object_000B31DC_2, 0, 0x88000000 },
-	{ { 1342.829f, 142.1752f, -925.7741f }, 59.51405f, 0, 0, &object_000D2198_2, 0, 0x88000000 },
-	{ { 900.1686f, 531.3334f, -1151.572f }, 57.94705f, 0, 0, &object_000D283C_2, 0, 0x88000000 },
-	{ { 1201.404f, 462.3232f, -1151.81f }, 81.62984f, 0, 0, &object_000DBAF8_2, 0, 0x88000000 },
-	{ { 1369.241f, 396.5991f, -876.2318f }, 70.44154f, 0, 0, &object_000D74E4_2, 0, 0x88000000 },
-	{ { 955.9448f, 321.1237f, -551.0061f }, 90.05664f, 0, 0, &object_000D550C_2, 0, 0x88000000 },
-	{ { 740.5762f, 314.2644f, -830.7147f }, 94.50082f, 0, 0, &object_000D8E64_2, 0, 0x88000000 },
-	{ { 872.1034f, 242.646f, -1140.052f }, 75.36243f, 0, 0, &object_000DA190_2, 0, 0x88000000 },
-	{ { 1184.553f, 193.1262f, -1169.009f }, 67.284f, 0, 0, &object_000D3B94_2, 0, 0x88000000 },
-	{ { 922.9879f, 108.2217f, -1152.871f }, 76.3732f, 0, 0, &object_000AF178_2, 0, 0x88000000 },
-	{ { 1250.928f, 81.33245f, -1133.239f }, 79.27186f, 0, 0, &object_000AC664_2, 0, 0x88000000 }, //tube stuff end
+	{ { 1123.898f, -397.8847f, -1225.007f }, 179.4316f, 0.0001f, 0, &object_0009AF50_2, 0, 0xC0000001 }, //tube stuff
+	{ { 789.3957f, -260.7296f, -1057.122f }, 62.28091f, 0.0001f, 0, &object_000B04E0_2, 0, 0x80000000 }, //tube with pin lamps
+	{ { 706.7178f, -161.3856f, -751.0459f }, 99.36771f, 0.0001f, 0, &object_000B1E94_2, 0, 0x80000000 }, //tube with pin lamps
+	{ { 958.3759f, -87.13013f, -509.684f }, 80.01184f, 0.0001f, 0, &object_000AE018_2, 0, 0x80000000 }, //tube with pin lamps
+	{ { 1401.569f, 11.44946f, -866.9642f }, 70.10052f, 0.0001f, 0, &object_000AACD0_2, 0, 0x80000000 },
+	{ { 1282.065f, -69.96628f, -581.0759f }, 78.19864f, 0.0001f, 0, &object_000B31DC_2, 0, 0x80000000 },
+	{ { 1342.829f, 142.1752f, -925.7741f }, 59.51405f, 0.0001f, 0, &object_000D2198_2, 0, 0x80000000 },
+	{ { 900.1686f, 531.3334f, -1151.572f }, 57.94705f, 0.0001f, 0, &object_000D283C_2, 0, 0x80000000 },
+	{ { 1201.404f, 462.3232f, -1151.81f }, 81.62984f, 0.0001f, 0, &object_000DBAF8_2, 0, 0x80000000 },
+	{ { 1369.241f, 396.5991f, -876.2318f }, 70.44154f, 0.0001f, 0, &object_000D74E4_2, 0, 0x80000000 },
+	{ { 955.9448f, 321.1237f, -551.0061f }, 90.05664f, 0.0001f, 0, &object_000D550C_2, 0, 0x80000000 },
+	{ { 740.5762f, 314.2644f, -830.7147f }, 94.50082f, 0.0001f, 0, &object_000D8E64_2, 0, 0x80000000 },
+	{ { 872.1034f, 242.646f, -1140.052f }, 75.36243f, 0.0001f, 0, &object_000DA190_2, 0, 0x80000000 },
+	{ { 1184.553f, 193.1262f, -1169.009f }, 67.284f, 0.0001f, 0, &object_000D3B94_2, 0, 0x80000000 },
+	{ { 922.9879f, 108.2217f, -1152.871f }, 76.3732f, 0.0001f, 0, &object_000AF178_2, 0, 0x80000000 },
+	{ { 1250.928f, 81.33245f, -1133.239f }, 79.27186f, 0.0001f, 0, &object_000AC664_2, 0, 0x80000000 }, //tube stuff end
 	{ { 1056.526f, -1617.787f, -804.8006f }, 343.419f, 0, 0, &object_000917AC, 0, 0xA0000001 },
 	{ { 1059.992f, -1835.8f, -849.9955f }, 168.0316f, 0, 0, &object_000BDC90, 0, 0x80000000 },
-	{ { 1059.987f, -1019.301f, -849.9924f }, 254.3315f, 0, 0, &object_000E017C, 0, 0x88000000 }, //Tube thing 4
-	{ { 1059.987f, -1124.801f, -849.9924f }, 254.3315f, 0, 0, &object_000E01B0, 0, 0x88000000 }, //Tube thing 3
-	{ { 1059.987f, -1230.301f, -849.9924f }, 254.3315f, 0, 0, &object_000E01E4, 0, 0x88000000 }, //Tube thing 2
-	{ { 1059.987f, -908.301f, -849.9924f }, 255.5289f, 0, 0, &object_000B7544, 0, 0x88000000 }, //Tube thing 4 (top)
-	{ { 1059.987f, -1335.801f, -849.9924f }, 254.3315f, 0, 0, &object_000B8FA0, 0, 0x88000000 }, //Tube thing 1
-	{ { 995.3222f, -355.0974f, -650.7584f }, 70.6865f, 0, 0, &object_000B9E54_2, 0, 0x89000000 }, //elevator glass
-	{ { 996.3504f, -463.3272f, -639.0367f }, 69.24775f, 0, 0, &object_000C1350, 0, 0x88040001 }, //vertical tube 1
-	{ { 996.3504f, -585.5854f, -639.0367f }, 67.22473f, 0, 0, &object_000C0E68, 0, 0x88040001 }, //vertical tube 2
-	{ { 993.7653f, -702.2927f, -636.814f }, 68.61455f, 0, 0, &object_000C1A48, 0, 0x88040001 },  //vertical tube 3
-	{ { 1060, -781.45f, -850.0001f }, 348.4782f, 0, 0, &object_00089114_2, 0, 0x89040001 }, //big glass inner layer
-	{ { 900.7501f, -830, -850.0001f }, 372.6965f, 0, 0, &object_00087F80_2, 0, 0x89040001 }, //big glass outer layer
-	{ { 1219.243f, -785.0252f, -850.0001f }, 361.985f, 0, 0, &object_00085D08_2, 0, 0x88040001 }, //big glass outer layer part 2
+	{ { 1059.987f, -1019.301f, -849.9924f }, 254.3315f, 0.0001f, 0, &object_000E017C, 0, 0x80000000 }, //Tube thing 4
+	{ { 1059.987f, -1124.801f, -849.9924f }, 254.3315f, 0.0001f, 0, &object_000E01B0, 0, 0x80000000 }, //Tube thing 3
+	{ { 1059.987f, -1230.301f, -849.9924f }, 254.3315f, 0.0001f, 0, &object_000E01E4, 0, 0x80000000 }, //Tube thing 2
+	{ { 1059.987f, -908.301f, -849.9924f }, 255.5289f, 0.0001f, 0, &object_000B7544, 0, 0x80000000 }, //Tube thing 4 (top)
+	{ { 1059.987f, -1335.801f, -849.9924f }, 254.3315f, 0.0001f, 0, &object_000B8FA0, 0, 0x80000000 }, //Tube thing 1
+	{ { 995.3222f, -355.0974f, -650.7584f }, 70.6865f, 0.0001f, 0, &object_000B9E54_2, 0, 0x81000000 }, //elevator glass
+	{ { 996.3504f, -463.3272f, -639.0367f }, 69.24775f, 0.0001f, 0, &object_000C1350, 0, 0x80000001 }, //vertical tube 1
+	{ { 996.3504f, -585.5854f, -639.0367f }, 67.22473f, 0.0001f, 0, &object_000C0E68, 0, 0x80000001 }, //vertical tube 2
+	{ { 993.7653f, -702.2927f, -636.814f }, 68.61455f, 0.0001f, 0, &object_000C1A48, 0, 0x80000001 },  //vertical tube 3
+	{ { 1060, -781.45f, -850.0001f }, 348.4782f, 0.0001f, 0, &object_00089114_2, 0, 0x81000401 }, //big glass inner layer
+	{ { 900.7501f, -830, -850.0001f }, 372.6965f, 0.0001f, 0, &object_00087F80_2, 0, 0x81000401 }, //big glass outer layer
+	{ { 1219.243f, -785.0252f, -850.0001f }, 361.985f, 1000.0f, 0, &object_00085D08_2, 0, 0x80000001 }, //big glass outer layer part 2
 	{ { 1120.431f, -2095.545f, -850.0001f }, 605.6641f, 0, 0, &object_000BB9A4, 0, 0x82000000 }, //Pillars for elevator
 	{ { 1001.216f, -2095.545f, -850.0001f }, 605.6641f, 0, 0, &object_000E02B4, 0, 0x82000000 }, //Pillars for elevator
 	{ { 1013.343f, -1560, -614.5788f }, 141.2099f, 0, 0, &object_0009EE34, 0, 0xC2000041 }, //Pillars at the very bottom
@@ -46381,9 +46387,9 @@ extern "C" __declspec(dllexport) COL collist_00081980[] = {
 	{ { 1060, -277.75f, -850 }, 347.401f, 0, 0, &object_000DFDA0, 0, 0xC2000041 },
 	{ { 1060, 429.25f, -850.0001f }, 322.7502f, 0, 0, &object_000A3034_2, 0, 0xC2000041 }, //Top section with X
 	{ { 1060, 328.25f, -850.0001f }, 322.7502f, 0, 0, &object_000A70BC_2, 0, 0xC2000041 }, //Top section with red grating
-	{ { 1060, -505, -850.0001f }, 357.5779f, 0, 0, &object_0008A700_2, 0, 0x82000001 }, //Midsection with transparency
+	{ { 1060, -505, -850.0001f }, 357.5779f, -17952.0f, 0, &object_0008A700_2, 0, 0x80000001 }, //Midsection with transparency
 	{ { 1060, 101, -849.9999f }, 360.9029f, 0, 0, &object_000C42CC_2, 0, 0xC2000001 }, //Midsection with grating whatever and a cylinder behind it
-	{ { 1056.526f, -1617.787f, -804.8006f }, 343.419f, 0, 0, &object_000917AC_2, 0, 0x82000001 }, //Platform at the bottom
+	{ { 1056.526f, -1617.787f, -804.8006f }, 343.419f, 0.0001f, 0, &object_000917AC_2, 0, 0x80000001 }, //Platform at the bottom
 };
 
 extern "C" __declspec(dllexport) GeoAnimData animlist_00083C84[] = {
@@ -46392,6 +46398,6 @@ extern "C" __declspec(dllexport) GeoAnimData animlist_00083C84[] = {
 	{ 0, 1, 200, &object_0005CEC0, &action_animation_0005CF34, (NJS_TEXLIST *)0 }
 };
 
-extern "C" __declspec(dllexport) LandTable landtable_00083CCC = { LengthOfArray(collist_00081980), LengthOfArray(animlist_00083C84), 0xD, 600, collist_00081980, animlist_00083C84, "FINALEGG2", (NJS_TEXLIST *)&texlist_finalegg2, 0, 0 };
+extern "C" __declspec(dllexport) LandTable landtable_00083CCC = { LengthOfArray(collist_00081980), LengthOfArray(animlist_00083C84), 0xD, 0, 600, collist_00081980, animlist_00083C84, "FINALEGG2", (NJS_TEXLIST *)&texlist_finalegg2, 0, 0 };
 
 #pragma warning(pop)

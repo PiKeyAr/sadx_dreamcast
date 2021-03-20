@@ -44748,26 +44748,26 @@ extern "C" __declspec(dllexport) COL collist_000AD36C[] = {
 	{ { -135.0804f, 233.75f, -3621.108f }, 218.2782f, 0, 0, &object_00101AF8, 0, 0xC0000001 },
 	{ { -738, 270, -3615 }, 146.0959f, 0, 0, &object_000BA44C, 0, 0x80000001 },
 	{ { -967.5004f, 114.75f, -1809.999f }, 147.2035f, 0, 0, &object_000F1E80, 0, 0xA0000001 }, //Another green glass wall
-	{ { -1170, 120.4014f, -1409.317f }, 201.0158f, 0, 0, &object_000F1458, 0, 0xC0000001 }, //Green glass cover
-	{ { -738, 270, -3615 }, 146.0959f, 0, 0, &object_000BA44C_2, 0, 0xC1000001 }, //Green transparent thing that has lights inside
-	{ { 125.0002f, 92.9407f, -1040 }, 95.12509f, 0, 0, &object_000D4548_2, 0, 0xA9000001 }, //fence
-	{ { -190, 92.99998f, -1045 }, 76.48538f, 0, 0, &object_000D4FC0_2, 0, 0xA9000001 }, //fence
-	{ { -91.00094f, 93.02594f, -1172 }, 92.0374f, 0, 0, &object_000D53A8_2, 0, 0xA9000001 }, //fence
-	{ { 34.99996f, 92.92498f, -1125 }, 47.67338f, 0, 0, &object_000D4BD8_2, 0, 0xA9000001 }, //fence
-	{ { 41.00986f, 92.92498f, -1294.694f }, 126.0664f, 0, 0, &object_000D497C_2, 0, 0xA9000001 }, //fence
-	{ { -51.84613f, 93.02594f, -1336.694f }, 84.04818f, 0, 0, &object_000D4720_2, 0, 0xA9000001 }, //fence
+	{ { -1170, 120.4014f, -1409.317f }, 201.0158f, 0, 0, &object_000F1458, 0, 0xC0040001 }, //Green glass cover
+	{ { -738, 270, -3615 }, 146.0959f, -1000.0f, 0, &object_000BA44C_2, 0, 0xC3000001 }, //Green transparent thing that has lights inside
+	{ { 125.0002f, 92.9407f, -1040 }, 95.12509f, -1000.0f, 0, &object_000D4548_2, 0, 0xA3000001 }, //fence
+	{ { -190, 92.99998f, -1045 }, 76.48538f, -1000.0f, 0, &object_000D4FC0_2, 0, 0xA3000001 }, //fence
+	{ { -91.00094f, 93.02594f, -1172 }, 92.0374f, -1000.0f, 0, &object_000D53A8_2, 0, 0xA3000001 }, //fence
+	{ { 34.99996f, 92.92498f, -1125 }, 47.67338f, -1000.0f, 0, &object_000D4BD8_2, 0, 0xA3000001 }, //fence
+	{ { 41.00986f, 92.92498f, -1294.694f }, 126.0664f, -1000.0f, 0, &object_000D497C_2, 0, 0xA3000001 }, //fence
+	{ { -51.84613f, 93.02594f, -1336.694f }, 84.04818f, -1000.0f, 0, &object_000D4720_2, 0, 0xA3000001 }, //fence
 	{ { -1580.784f, 122, -1469.216f }, 245.516f, 0, 0, &object_000F4D40_2, 0, 0x80000001 }, //Purple glass 1
 	{ { -1580.784f, 122, -1750 }, 245.0672f, 0, 0, &object_000F5E58_2, 0, 0x80000001 }, //Purple glass 2
 	{ { -780.022f, 354.7859f, -2392.5f }, 256.2882f, 0, 0, &object_000F0860, 0, 0xA0000001 }, //Floor with green transparent things in crane room
 	{ { -868, 199.3147f, -2182.5f }, 28.35489f, 0, 0, &object_000D7D74, 0, 0xC0000001 }, //Square green glass platform in crane room
 	{ { -693, 282.3147f, -2288.5f }, 28.35489f, 0, 0, &object_000D7ADC, 0, 0xC0000001 }, //Same as above
-	{ { -781.0939f, 438.941f, -2215.844f }, 141.9417f, 0, 0, &object_001010D0, 0, 0xC8040001 }, //Stuff above in the same room
-	{ { -781.0939f, 498.941f, -2215.844f }, 141.9417f, 0, 0, &object_00101104, 0, 0xC8040001 }, //Stuff above in the same room
-	{ { -781.0939f, 498.941f, -2314.844f }, 141.9417f, 0, 0, &object_00101138, 0, 0xC8040001 }, //Stuff above in the same room
-	{ { -781.0939f, 498.941f, -2418.844f }, 141.9417f, 0, 0, &object_0010116C, 0, 0xC8040001 }, //Stuff above in the same room
-	{ { -781.0939f, 498.941f, -2526.844f }, 141.9417f, 0, 0, &object_000D65F4, 0, 0xC8040001 }, //Stuff above in the same room
-	{ { -707.9482f, 3124.238f, -3258.844f }, 142.4205f, 0, 0, &object_000D5F4C, 0, 0xA8000001 }, //Pillar upon arrival
-	{ { -987.9482f, 3124.238f, -3258.844f }, 142.4205f, 0, 0, &object_000D62A0, 0, 0xA8000001 }, //Pillar upon arrival
+	{ { -781.0939f, 438.941f, -2215.844f }, 141.9417f, -15000.0, 0, &object_001010D0, 0, 0xC1000001 }, //Stuff above in the same room
+	{ { -781.0939f, 498.941f, -2215.844f }, 141.9417f, -15000.0, 0, &object_00101104, 0, 0xC1000001 }, //Stuff above in the same room
+	{ { -781.0939f, 498.941f, -2314.844f }, 141.9417f, -15000.0, 0, &object_00101138, 0, 0xC1000001 }, //Stuff above in the same room
+	{ { -781.0939f, 498.941f, -2418.844f }, 141.9417f, -15000.0, 0, &object_0010116C, 0, 0xC1000001 }, //Stuff above in the same room
+	{ { -781.0939f, 498.941f, -2526.844f }, 141.9417f, -15000.0, 0, &object_000D65F4, 0, 0xC1000001 }, //Stuff above in the same room
+	{ { -707.9482f, 3124.238f, -3258.844f }, 142.4205f, -15000.0, 0, &object_000D5F4C, 0, 0xA1000001 }, //Pillar upon arrival
+	{ { -987.9482f, 3124.238f, -3258.844f }, 142.4205f, -15000.0, 0, &object_000D62A0, 0, 0xA1000001 }, //Pillar upon arrival
 	{ { 0, 272.5459f, -3613 }, 495.6438f, 0, 0, &object_000E0B4C_2, 0, 0x80040000 }, //Neon lights in E105 room
 };
 
@@ -44780,6 +44780,6 @@ extern "C" __declspec(dllexport) GeoAnimData animlist_000B0D14[] = {
 	{ 0, 1, 27, &object_0005C538, &action_animation_0005C72C, (NJS_TEXLIST *)0 }
 };
 
-extern "C" __declspec(dllexport) LandTable landtable_000B0DA4 = { LengthOfArray(collist_000AD36C), LengthOfArray(animlist_000B0D14), 0xD, 650, collist_000AD36C, animlist_000B0D14, "HOTSHELTER3", &texlist_hotshelter3, 0, 0 };
+extern "C" __declspec(dllexport) LandTable landtable_000B0DA4 = { LengthOfArray(collist_000AD36C), LengthOfArray(animlist_000B0D14), 0xD, 0, 650, collist_000AD36C, animlist_000B0D14, "HOTSHELTER3", &texlist_hotshelter3, 0, 0 };
 
 #pragma warning(pop)

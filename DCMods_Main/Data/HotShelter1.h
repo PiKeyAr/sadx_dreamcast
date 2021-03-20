@@ -44,7 +44,7 @@ extern "C" __declspec(dllexport) NJS_VECTOR normal_000197CC[] = {
 
 extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00019814 = { vertex_00019784, normal_000197CC, LengthOfArray(vertex_00019784), meshlist_0001976C, matlist_00019730, LengthOfArray(meshlist_0001976C), LengthOfArray(matlist_00019730),{ 417.5f, 0, -650 }, 124.1219f, NULL };
 
-extern "C" __declspec(dllexport) extern "C" __declspec(dllexport) NJS_OBJECT object_0001983C = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00019814, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT object_0001983C = { NJD_EVAL_UNIT_POS | NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00019814, 0, 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
 extern "C" __declspec(dllexport) NJS_MATERIAL matlist_00019870[] = {
 	{ { 0xFFB2B2B2 },{ 0xFFFFFFFF }, 11, 41, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_FLIP_U | NJD_FLAG_IGNORE_SPECULAR | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC },
@@ -25863,18 +25863,18 @@ extern "C" __declspec(dllexport) COL collist_00018020[] = {
 	{ { -37, 13.27896f, -125 }, 15.75852f, 0, 0, &object_0004ACC0, 0, 0xE0000001 },
 	{ { -37, 14.6893f, -165 }, 16.96395f, 0, 0, &object_0004ACF4, 0, 0xE0000001 },
 	{ { -175.1959f, 75, -500 }, 329.0017f, 0, 0, &object_000236E0, 0, 0x80040001 },
-	{ { 643, -57.50011f, -649.9999f }, 40.38873f, 0, 0, &object_00028A90, 0, 0xC8040001 }, //Ladder in the drainage room
-	{ { 120, 38, -700 }, 68, 0, 0, &object_000318FC, 0, 0x88000000 },//green glass things from here
-	{ { 240, 38, -700 }, 68, 0, 0, &object_00031A00, 0, 0x88000000 },
-	{ { 0, 38, -700 }, 68, 0, 0, &object_00031B04, 0, 0x88000000 },
-	{ { -60, 38, -600 }, 124.1934f, 0, 0, &object_00031410, 0, 0x88000000 },
-	{ { -230, 38, -500 }, 116.2927f, 0, 0, &object_000316B8, 0, 0x88000000 },
-	{ { -260, 37.99999f, -438.2683f }, 185.8551f, 0, 0, &object_000312D0, 0, 0x88000000 },
-	{ { -60, 38, -400 }, 124.1934f, 0, 0, &object_000317F8, 0, 0x88000000 },
-	{ { 1680, 32.5f, -689.9999f }, 221.7124f, 0, 0, &object_0002E894, 0, 0x88040001 }, //Grate thing
-	{ { 1680, 32.5f, -609.9999f }, 221.7121f, 0, 0, &object_0002EA4C, 0, 0x88040001 }, //Grate thing
-	{ { 1200, 32.5f, -609.9999f }, 221.7121f, 0, 0, &object_0002EC04, 0, 0x88040001 }, //Grate thing
-	{ { 1200, 32.5f, -689.9999f }, 221.7124f, 0, 0, &object_0002EDBC, 0, 0x88040001 }, //Grate thing
+	{ { 643, -57.50011f, -649.9999f }, 40.38873f, -27000.0f, 0, &object_00028A90, 0, 0xC2000001 }, //Ladder in the drainage room
+	{ { 120, 38, -700 }, 68, -1000.0f, 0, &object_000318FC, 0, 0x81000400 }, //Green glass things from here
+	{ { 240, 38, -700 }, 68, -1000.0f, 0, &object_00031A00, 0, 0x81000400 },
+	{ { 0, 38, -700 }, 68, -1000.0f, 0, &object_00031B04, 0, 0x81000400 },
+	{ { -60, 38, -600 }, 124.1934f, -1000.0f, 0, &object_00031410, 0, 0x81000400 },
+	{ { -230, 38, -500 }, 116.2927f, -1000.0f, 0, &object_000316B8, 0, 0x81000400 },
+	{ { -260, 37.99999f, -438.2683f }, 185.8551f, -1000.0f, 0, &object_000312D0, 0, 0x81000400 },
+	{ { -60, 38, -400 }, 124.1934f, -1000.0f, 0, &object_000317F8, 0, 0x81000400 },
+	{ { 1680, 32.5f, -689.9999f }, 221.7124f, -27000.0f, 0, &object_0002E894, 0, 0x80000001 }, //Grate thing
+	{ { 1680, 32.5f, -609.9999f }, 221.7121f, -27000.0f, 0, &object_0002EA4C, 0, 0x80000001 }, //Grate thing
+	{ { 1200, 32.5f, -609.9999f }, 221.7121f, -27000.0f, 0, &object_0002EC04, 0, 0x80000001 }, //Grate thing
+	{ { 1200, 32.5f, -689.9999f }, 221.7124f, -27000.0f, 0, &object_0002EDBC, 0, 0x80000001 }, //Grate thing
 	{ { 750, 139.8324f, -650 }, 260.3053f, 0, 0, &object_00033044, 0, 0x80040000 }, //Green light thing
 };
 
@@ -25884,6 +25884,6 @@ extern "C" __declspec(dllexport) GeoAnimData animlist_000196C4[] = {
 	{ 0, 1, 30, &object_0003347C, &action_animation_000336A0, (NJS_TEXLIST *)0 }
 };
 
-extern "C" __declspec(dllexport) LandTable landtable_0001970C = { LengthOfArray(collist_00018020), LengthOfArray(animlist_000196C4), 0xD, 450, collist_00018020, animlist_000196C4, "HOTSHELTER1", &texlist_hotshelter1, 0, 0 };
+extern "C" __declspec(dllexport) LandTable landtable_0001970C = { LengthOfArray(collist_00018020), LengthOfArray(animlist_000196C4), 0xD, 0, 450, collist_00018020, animlist_000196C4, "HOTSHELTER1", &texlist_hotshelter1, 0, 0 };
 
 #pragma warning(pop)

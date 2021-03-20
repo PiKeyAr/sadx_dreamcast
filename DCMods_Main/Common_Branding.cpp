@@ -17,6 +17,8 @@ float f30;
 float f1, f2, f3;
 NJS_OBJECT* TitleScreenModel;
 
+DataPointer(char, MenuSelection, 0x3B2A2FA);
+
 struct FourFloats // For pause selection box
 {
 	float x;
@@ -2084,7 +2086,7 @@ void NowSaving()
 
 void NowSaving_Display()
 {
-	if (GameMode == GameModes_Trial) return;
+	if (GameMode == GameModes_Trial || MenuSelection == 1) return;
 	unsigned short FontSize = unsigned short((16 * ((float)VerticalResolution / 480.0f)));
 	float totalcount = (float)HorizontalResolution / FontSize;
 	SetDebugFontSize(FontSize);

@@ -84031,6 +84031,6 @@ extern "C" __declspec(dllexport) GeoAnimData animlist_000E62C0[] = {
 	{ 0, 1, 30, &object_000A22A0, &action_animation_000A2304, (NJS_TEXLIST *)0 }
 };
 
-extern "C" __declspec(dllexport) LandTable landtable_000E67D0 = { LengthOfArray(collist_000E1298), LengthOfArray(animlist_000E62C0), 0xD, 600, collist_000E1298, animlist_000E62C0, "FINALEGG3", (NJS_TEXLIST *)&texlist_finalegg3, 0, 0 };
+extern "C" __declspec(dllexport) LandTable landtable_000E67D0 = { LengthOfArray(collist_000E1298), LengthOfArray(animlist_000E62C0), 0xD, 0, 600, collist_000E1298, animlist_000E62C0, "FINALEGG3", (NJS_TEXLIST *)&texlist_finalegg3, 0, 0 };
 
 #pragma warning(pop)

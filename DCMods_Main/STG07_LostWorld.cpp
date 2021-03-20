@@ -392,36 +392,32 @@ void UnloadLevelFiles_STG07()
 	STG07_2_Info = nullptr;
 }
 
-void ParseLWMaterials(LandTable *landtable, int act)
+void ParseLWMaterials(LandTable* landtable, int act)
 {
 	Uint32 materialflags;
-	NJS_MATERIAL *material;
-	if (act == 0)
+	NJS_MATERIAL* material;
+	for (int j = 0; j < landtable->COLCount; j++)
 	{
-		for (int j = 0; j < landtable->COLCount; j++)
+		for (int k = 0; k < landtable->Col[j].Model->basicdxmodel->nbMat; ++k)
 		{
-			for (int k = 0; k < landtable->Col[j].Model->basicdxmodel->nbMat; ++k)
+			material = (NJS_MATERIAL*)&landtable->Col[j].Model->basicdxmodel->mats[k];
+			switch (act)
 			{
-				material = (NJS_MATERIAL*)&landtable->Col[j].Model->basicdxmodel->mats[k];
-				if (material->attr_texId >=44 && material->attr_texId <=57)
+			case 0:
+				if (material->attr_texId >= 44 && material->attr_texId <= 57)
 				{
 					AddTextureAnimation(7, 0, material, false, 1, 44, 57, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 				}
-			}
-		}
-	}
-	if (act == 1)
-	{
-		for (int j = 0; j < landtable->COLCount; j++)
-		{
-			for (int k = 0; k < landtable->Col[j].Model->basicdxmodel->nbMat; ++k)
-			{
-				material = (NJS_MATERIAL*)&landtable->Col[j].Model->basicdxmodel->mats[k];
+				break;
+			case 1:
 				if (material->attr_texId >= 81 && material->attr_texId <= 94)
 				{
 					AddTextureAnimation(7, 1, material, false, 1, 81, 94, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 				}
 				else if (landtable->Col[j].Flags & ColFlags_Water && material->attr_texId == 44) AddTextureAnimation(7, 1, material, false, 1, 81, 94, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+				break;
+			default:
+				break;
 			}
 		}
 	}
