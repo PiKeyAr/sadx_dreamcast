@@ -98,6 +98,7 @@ struct TitleScreenData
 };
 
 //Various pointers
+DataPointer(char, MenuSelection, 0x3B2A2FA);
 DataPointer(NJS_CAMERA, View, 0x3AAD0A0);
 FunctionPointer(void, njSetCamera_, (NJS_CAMERA* matrix), 0x781250);
 FunctionPointer(void, sub_433410, (ObjectMaster* a1), 0x433410);
@@ -2084,13 +2085,13 @@ void NowSaving()
 
 void NowSaving_Display()
 {
-	if (GameMode == GameModes_Trial) return;
+	if (GameMode == GameModes_Trial || MenuSelection == 1) return;
 	unsigned short FontSize = unsigned short((16 * ((float)VerticalResolution / 480.0f)));
 	float totalcount = (float)HorizontalResolution / FontSize;
 	SetDebugFontSize(FontSize);
 	for (int i = 0; i < 10; i++)
 	{
-		if (saveprogress >= i) SetDebugFontColor(0x015A97E2); else SetDebugFontColor(0x01E2E2E2); //Set alpha to 1 to italicize
+		if (saveprogress >= i) SetDebugFontColor(0x015A97E2); else SetDebugFontColor(0x01E2E2E2); // Set alpha to 1 to italicize
 		DisplayDebugString(NJM_LOCATION((int)totalcount - 13 + i, 3), NowSavingString[i]);
 	}
 }
