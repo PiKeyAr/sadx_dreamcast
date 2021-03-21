@@ -523,7 +523,7 @@ static void __cdecl Chao_Display_r(ObjectMaster *a1)
 		ChaoData1* data1 = (ChaoData1*)a1->Data1;
 		int ChaoAnimationWhatever = data1->MotionTable[4];
 		// All this stuff should only happen during Chao Race
-		if (CurrentChaoStage == 1)
+		if (CurrentChaoStage == SADXChaoStage_Race)
 		{
 			// Generate Chao name if it's not on the first track (which would be the player's Chao)
 			if (ChaoRaceTimer < 50)
@@ -4093,7 +4093,7 @@ void ChaoRace_Init()
 void ChaoRace_OnFrame()
 {
 	// Chao Race Entry
-	if (CurrentChaoStage == 2 && !IsGamePaused() && EnableLobby)
+	if (CurrentChaoStage == SADXChaoStage_RaceEntry && !IsGamePaused() && EnableLobby)
 	{
 		if (SkipSA1Entry)
 		{
@@ -4151,7 +4151,7 @@ void ChaoRace_OnFrame()
 		}
 	}
 	// Chao Race
-	if (AL_RACE_1_Info && CurrentChaoStage == 1 && !IsGamePaused())
+	if (AL_RACE_1_Info && CurrentChaoStage == SADXChaoStage_Race && !IsGamePaused())
 	{
 		if (!ChaoRaceEnded) ChaoRaceTimer += FramerateSetting;
 		// Winning the race (not jewel)
@@ -4164,7 +4164,7 @@ void ChaoRace_OnFrame()
 			}
 		}
 	}
-	if (CurrentChaoStage != 1)
+	if (CurrentChaoStage != SADXChaoStage_Race)
 	{
 		ChaoRaceTimer = 0;
 		ChaoRaceEnded = false;

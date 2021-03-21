@@ -20,7 +20,7 @@ static Trampoline* E101RHurtExplosion_t = nullptr;
 static void __cdecl E101RHurtExplosion_r(void *a1)
 {
 	const auto original = TARGET_DYNAMIC(E101RHurtExplosion);
-	if (EnableZeroE101R || EnableE101) DrawModelCallback_Queue(original, a1, 22048.0f, QueuedModelFlagsB_SomeTextureThing);
+	if (EnabledLevels[LevelIDs_Zero] || EnabledLevels[LevelIDs_E101]) DrawModelCallback_Queue(original, a1, 22048.0f, QueuedModelFlagsB_SomeTextureThing);
 	else original(a1);
 }
 

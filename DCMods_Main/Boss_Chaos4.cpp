@@ -243,7 +243,7 @@ static void __cdecl Chaos4Balls_r(ObjectMaster *a1)
 {
 	const auto original = TARGET_DYNAMIC(Chaos4Balls);
 	EntityData1 *v1 = a1->Data1;
-	if (EnableChaos4)
+	if (EnabledLevels[LevelIDs_Chaos4])
 	{
 		// Chaos above water
 		if (v1->Position.y >= 10) DrawQueueDepthBias = 8500.0f;
@@ -258,7 +258,7 @@ static void __cdecl Chaos4BallsAttack_r(ObjectMaster *a1)
 {
 	const auto original = TARGET_DYNAMIC(Chaos4BallsAttack);
 	EntityData1 *v1 = a1->Data1;
-	if (EnableChaos4)
+	if (EnabledLevels[LevelIDs_Chaos4])
 	{
 		// Chaos above water
 		if (v1->Position.y >= 10) DrawQueueDepthBias = 8500.0f;

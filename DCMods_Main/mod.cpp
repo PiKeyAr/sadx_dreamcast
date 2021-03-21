@@ -150,45 +150,16 @@ bool RemoveCamera = false;
 
 bool EnableWindowTitle = true;
 bool EnableDCBranding = true;
-bool EnableEmeraldCoast = true;
+
 bool IamStupidAndIWantFuckedUpOcean = false;
-bool EnableWindyValley = true;
-bool EnableTwinklePark = true;
-bool EnableSpeedHighway = true;
-bool EnableRedMountain = true;
-bool EnableSkyDeck = true;
-bool EnableLostWorld = true; 
-bool EnableIceCap = true;
-bool EnableCasinopolis = true;
 bool CowgirlOn = true;
-bool EnableFinalEgg = true;
-bool EnableHotShelter = true;
-bool EnableStationSquare = true;
-bool EnableMysticRuins = true;
-bool EnableEggCarrier = true;
-bool EnablePast = true;
 bool DisableAllVideoStuff = true;
 
-bool EnableChaos0 = true;
-bool EnableChaos2 = true;
-bool EnableChaos4 = true;
-bool EnableChaos6 = true;
-bool EnablePerfectChaos = true;
-bool EnableEggHornet = true;
-bool EnableEggWalker = true;
-bool EnableEggViper = true;
-bool EnableE101 = true;
-bool EnableZeroE101R = true;
+bool EnabledLevels[43];
 
-bool EnableHedgehogHammer = true;
-bool EnableTwinkleCircuit = true;
-bool EnableSandHill = true;
 bool EnableSkyChaseFixes = true;
 bool EnableSkyChaseEnemyModels = true;
 
-bool EnableSSGarden = true;
-bool EnableMRGarden = true;
-bool EnableECGarden = true;
 bool ReplaceEggs = true;
 int ReplaceFruits = 0;
 bool EnableLobby = true;
@@ -374,65 +345,65 @@ extern "C"
 		EnableDCBranding = config->getBool("General", "EnableDreamcastBranding", true);
 		EnableSpeedFixes = config->getBool("General", "EnableSpeedFixes", true);
 		EnableWindowTitle = config->getBool("General", "EnableWindowTitle", true);
-		EnableEmeraldCoast = config->getBool("Levels", "EnableEmeraldCoast", true);
-		EnableWindyValley = config->getBool("Levels", "EnableWindyValley", true);
-		EnableTwinklePark = config->getBool("Levels", "EnableTwinklePark", true);
-		EnableSpeedHighway = config->getBool("Levels", "EnableSpeedHighway", true);
-		EnableRedMountain = config->getBool("Levels", "EnableRedMountain", true);
-		EnableSkyDeck = config->getBool("Levels", "EnableSkyDeck", true);
-		EnableLostWorld = config->getBool("Levels", "EnableLostWorld", true);
-		EnableIceCap = config->getBool("Levels", "EnableIceCap", true);
-		EnableCasinopolis = config->getBool("Levels", "EnableCasinopolis", true);
-		EnableFinalEgg = config->getBool("Levels", "EnableFinalEgg", true);
-		EnableHotShelter = config->getBool("Levels", "EnableHotShelter", true);
-		EnableStationSquare = config->getBool("Levels", "EnableStationSquare", true);
-		EnableMysticRuins = config->getBool("Levels", "EnableMysticRuins", true);
-		EnableEggCarrier = config->getBool("Levels", "EnableEggCarrier", true);
-		EnablePast = config->getBool("Levels", "EnablePast", true);
+		EnabledLevels[LevelIDs_EmeraldCoast] = config->getBool("Levels", "EnabledLevels[LevelIDs_EmeraldCoast]", true);
+		EnabledLevels[LevelIDs_WindyValley] = config->getBool("Levels", "EnabledLevels[LevelIDs_WindyValley]", true);
+		EnabledLevels[LevelIDs_TwinklePark] = config->getBool("Levels", "EnabledLevels[LevelIDs_TwinklePark]", true);
+		EnabledLevels[LevelIDs_SpeedHighway] = config->getBool("Levels", "EnabledLevels[LevelIDs_SpeedHighway]", true);
+		EnabledLevels[LevelIDs_RedMountain] = config->getBool("Levels", "EnabledLevels[LevelIDs_RedMountain]", true);
+		EnabledLevels[LevelIDs_SkyDeck] = config->getBool("Levels", "EnabledLevels[LevelIDs_SkyDeck]", true);
+		EnabledLevels[LevelIDs_LostWorld] = config->getBool("Levels", "EnabledLevels[LevelIDs_LostWorld]", true);
+		EnabledLevels[LevelIDs_IceCap] = config->getBool("Levels", "EnabledLevels[LevelIDs_IceCap]", true);
+		EnabledLevels[LevelIDs_Casinopolis] = config->getBool("Levels", "EnabledLevels[LevelIDs_Casinopolis]", true);
+		EnabledLevels[LevelIDs_FinalEgg] = config->getBool("Levels", "EnabledLevels[LevelIDs_FinalEgg]", true);
+		EnabledLevels[LevelIDs_HotShelter] = config->getBool("Levels", "EnabledLevels[LevelIDs_HotShelter]", true);
+		EnabledLevels[LevelIDs_StationSquare] = config->getBool("Levels", "EnabledLevels[LevelIDs_StationSquare]", true);
+		EnabledLevels[LevelIDs_MysticRuins] = config->getBool("Levels", "EnabledLevels[LevelIDs_MysticRuins]", true);
+		EnabledLevels[LevelIDs_EggCarrierOutside] = EnabledLevels[LevelIDs_EggCarrierInside] = config->getBool("Levels", "EnabledLevels[LevelIDs_EggCarrierOutside]", true);
+		EnabledLevels[LevelIDs_Past] = config->getBool("Levels", "EnabledLevels[LevelIDs_Past]", true);
 		DisableAllVideoStuff = config->getBool("Videos", "DisableAllVideoStuff", false);
 		SADXWater_EmeraldCoast = config->getBool("SADX Style Water", "EmeraldCoast", false);
 		SADXWater_StationSquare = config->getBool("SADX Style Water", "StationSquare", false);
 		SADXWater_MysticRuins = config->getBool("SADX Style Water", "MysticRuins", false);
 		SADXWater_EggCarrier = config->getBool("SADX Style Water", "EggCarrier", false);
 		SADXWater_Past = config->getBool("SADX Style Water", "Past", false);
-		EnableChaos0 = config->getBool("Bosses", "EnableChaos0", true);
-		EnableChaos2 = config->getBool("Bosses", "EnableChaos2", true);
-		EnableChaos4 = config->getBool("Bosses", "EnableChaos4", true);
-		EnableChaos6 = config->getBool("Bosses", "EnableChaos6", true);
-		EnablePerfectChaos = config->getBool("Bosses", "EnablePerfectChaos", true);
-		EnableEggHornet = config->getBool("Bosses", "EnableEggHornet", true);
-		EnableEggWalker = config->getBool("Bosses", "EnableEggWalker", true);
-		EnableEggViper = config->getBool("Bosses", "EnableEggViper", true);
-		EnableE101 = config->getBool("Bosses", "EnableE101", true);
-		EnableZeroE101R = config->getBool("Bosses", "EnableZeroE101R", true);
-		EnableHedgehogHammer = config->getBool("Miscellaneous", "EnableHedgehogHammer", true);
-		EnableTwinkleCircuit = config->getBool("Miscellaneous", "EnableTwinkleCircuit", true);
-		EnableSandHill = config->getBool("Miscellaneous", "EnableSandHill", true);
-		CowgirlOn = config->getBool("Miscellaneous", "EnableCasinopolisCowgirl", true);
+		EnabledLevels[LevelIDs_Chaos0] = config->getBool("Bosses", "EnabledLevels[LevelIDs_Chaos0]", true);
+		EnabledLevels[LevelIDs_Chaos2] = config->getBool("Bosses", "EnabledLevels[LevelIDs_Chaos2]", true);
+		EnabledLevels[LevelIDs_Chaos4] = config->getBool("Bosses", "EnabledLevels[LevelIDs_Chaos4]", true);
+		EnabledLevels[LevelIDs_Chaos6] = config->getBool("Bosses", "EnabledLevels[LevelIDs_Chaos6]", true);
+		EnabledLevels[LevelIDs_PerfectChaos] = config->getBool("Bosses", "EnabledLevels[LevelIDs_PerfectChaos]", true);
+		EnabledLevels[LevelIDs_EggHornet] = config->getBool("Bosses", "EnabledLevels[LevelIDs_EggHornet]", true);
+		EnabledLevels[LevelIDs_EggWalker] = config->getBool("Bosses", "EnabledLevels[LevelIDs_EggWalker]", true);
+		EnabledLevels[LevelIDs_EggViper] = config->getBool("Bosses", "EnabledLevels[LevelIDs_EggViper]", true);
+		EnabledLevels[LevelIDs_E101] = config->getBool("Bosses", "EnabledLevels[LevelIDs_E101]", true);
+		EnabledLevels[LevelIDs_Zero] = EnabledLevels[LevelIDs_E101R] = config->getBool("Bosses", "EnabledLevels[LevelIDs_Zero]", true);
+		EnabledLevels[LevelIDs_HedgehogHammer] = config->getBool("Miscellaneous", "EnabledLevels[LevelIDs_HedgehogHammer]", true);
+		EnabledLevels[LevelIDs_TwinkleCircuit] = config->getBool("Miscellaneous", "EnabledLevels[LevelIDs_TwinkleCircuit]", true);
+		EnabledLevels[LevelIDs_SandHill] = config->getBool("Miscellaneous", "EnabledLevels[LevelIDs_SandHill]", true);
+		CowgirlOn = config->getBool("Miscellaneous", "EnabledLevels[LevelIDs_Casinopolis]Cowgirl", true);
 		Use1999SetFiles = config->getInt("Miscellaneous", "Use1999SetFiles", 0);
 		FixHeldObjects = config->getBool("Miscellaneous", "FixHeldObjects", true);
 		RestoreYButton = config->getBool("Miscellaneous", "RestoreYButton", true);
 		IamStupidAndIWantFuckedUpOcean = config->getBool("Miscellaneous", "RevertEmeraldCoastDrawDistance", false);
 		EnableSkyChaseEnemyModels = config->getBool("Miscellaneous", "EnableSkyChaseEnemyModels", true);
 		EnableWhiteDiffuse = config->getBool("Miscellaneous", "EnableWhiteDiffuse", true);
-		EnableSSGarden = config->getBool("Chao Gardens", "EnableStationSquareGarden", true);
-		EnableMRGarden = config->getBool("Chao Gardens", "EnableMysticRuinsGarden", true);
-		EnableECGarden = config->getBool("Chao Gardens", "EnableEggCarrierGarden", true);
+		EnabledLevels[LevelIDs_SSGarden] = config->getBool("Chao Gardens", "EnabledLevels[LevelIDs_StationSquare]Garden", true);
+		EnabledLevels[LevelIDs_MRGarden] = config->getBool("Chao Gardens", "EnabledLevels[LevelIDs_MysticRuins]Garden", true);
+		EnabledLevels[LevelIDs_ECGarden] = config->getBool("Chao Gardens", "EnabledLevels[LevelIDs_EggCarrierOutside]Garden", true);
 		ReplaceFruits = config->getInt("Chao Gardens", "ReplaceFruits", 0);
 		ReplaceEggs = config->getBool("Chao Gardens", "ReplaceEggs", true);
 		EnableLobby = config->getBool("Chao Gardens", "EnableChaoRaceLobby", true);
 		DisableChaoButtonPrompts = config->getBool("Chao Gardens", "DisableChaoButtonPrompts", false);
 		// Autodemo mods check
-		if (GetModuleHandle(L"AutoDemo_TestLevels") != nullptr) EnableHedgehogHammer = false;
-		if (GetModuleHandle(L"AutoDemo_WindyValley") != nullptr) EnableWindyValley = false;
-		if (GetModuleHandle(L"AutoDemo_SpeedHighway") != nullptr) EnableSpeedHighway = false;
-		if (GetModuleHandle(L"AutoDemo_RedMountain") != nullptr) EnableRedMountain = false;
+		if (GetModuleHandle(L"AutoDemo_TestLevels") != nullptr) EnabledLevels[LevelIDs_HedgehogHammer] = false;
+		if (GetModuleHandle(L"AutoDemo_WindyValley") != nullptr) EnabledLevels[LevelIDs_WindyValley] = false;
+		if (GetModuleHandle(L"AutoDemo_SpeedHighway") != nullptr) EnabledLevels[LevelIDs_SpeedHighway] = false;
+		if (GetModuleHandle(L"AutoDemo_RedMountain") != nullptr) EnabledLevels[LevelIDs_RedMountain] = false;
 		// Set window title
 		if (EnableWindowTitle) helperFunctions.SetWindowTitle("Sonic Adventure");
 		// Another error message
-		if (EnableEmeraldCoast && GetModuleHandle(L"WaterEffect") != nullptr)
+		if (EnabledLevels[LevelIDs_EmeraldCoast] && GetModuleHandle(L"WaterEffect") != nullptr)
 		{
-			EnableEmeraldCoast = false;
+			EnabledLevels[LevelIDs_EmeraldCoast] = false;
 			MessageBox(WindowHandle,
 				L"The Enhanced Emerald Coast mod is not "
 				L"compatible with Dreamcast Emerald Coast. Please "
@@ -481,104 +452,104 @@ extern "C"
 		if (AssumeOIT) OIT_Init();
 		SADXStyleWater_Init(config, helperFunctions);
 		if (EnableDCBranding) Branding_Init(config, helperFunctions);
-		if (EnableStationSquare && nullsub_ADV00 != 0x90u)
+		if (EnabledLevels[LevelIDs_StationSquare] && nullsub_ADV00 != 0x90u)
 		{
 			WriteCall((void*)0x4231E6, ADV00_Init);
 		}
-		if (EnableEggCarrier)
+		if (EnabledLevels[LevelIDs_EggCarrierOutside])
 		{
 			if (nullsub_ADV01 != 0x90u) WriteCall((void*)0x4232C9, ADV01_Init);
 			if (nullsub_ADV01C != 0x90u) WriteCall((void*)0x4233BB, ADV01C_Init);
 		}
-		if (EnableMysticRuins && nullsub_ADV02 != 0x90u)
+		if (EnabledLevels[LevelIDs_MysticRuins] && nullsub_ADV02 != 0x90u)
 		{
 			WriteCall((void*)0x4234AD, ADV02_Init);
 		}
-		if (EnablePast && nullsub_ADV03 != 0x90u)
+		if (EnabledLevels[LevelIDs_Past] && nullsub_ADV03 != 0x90u)
 		{
 			WriteCall((void*)0x423554, ADV03_Init);
 		}
-		if (EnableEmeraldCoast && nullsub_STG01 != 0x90u)
+		if (EnabledLevels[LevelIDs_EmeraldCoast] && nullsub_STG01 != 0x90u)
 		{
 			WriteCall((void*)0x422B68, EmeraldCoast_Init);
 		}
-		if (EnableWindyValley && nullsub_STG02 != 0x90u)
+		if (EnabledLevels[LevelIDs_WindyValley] && nullsub_STG02 != 0x90u)
 		{
 			WriteCall((void*)0x422BD3, WindyValley_Init);
 		}
-		if (EnableTwinklePark && nullsub_STG03 != 0x90u)
+		if (EnabledLevels[LevelIDs_TwinklePark] && nullsub_STG03 != 0x90u)
 		{
 			WriteCall((void*)0x422C3E, TwinklePark_Init);
 		}
-		if (EnableSpeedHighway && nullsub_STG04 != 0x90u)
+		if (EnabledLevels[LevelIDs_SpeedHighway] && nullsub_STG04 != 0x90u)
 		{
 			WriteCall((void*)0x422CA9, SpeedHighway_Init);
 		}
-		if (EnableRedMountain && nullsub_STG05 != 0x90u)
+		if (EnabledLevels[LevelIDs_RedMountain] && nullsub_STG05 != 0x90u)
 		{
 			WriteCall((void*)0x422D14, RedMountain_Init);
 		}
-		if (EnableSkyDeck && nullsub_STG06 != 0x90u)
+		if (EnabledLevels[LevelIDs_SkyDeck] && nullsub_STG06 != 0x90u)
 		{
 			WriteCall((void*)0x422D84, SkyDeck_Init);
 		}
-		if (EnableLostWorld && nullsub_STG07 != 0x90u)
+		if (EnabledLevels[LevelIDs_LostWorld] && nullsub_STG07 != 0x90u)
 		{
 			WriteCall((void*)0x422DEF, LostWorld_Init);
 		}
-		if (EnableIceCap && nullsub_STG08 != 0x90u)
+		if (EnabledLevels[LevelIDs_IceCap] && nullsub_STG08 != 0x90u)
 		{
 			WriteCall((void*)0x422E5A, IceCap_Init);
 		}
-		if (EnableCasinopolis && nullsub_STG09 != 0x90u)
+		if (EnabledLevels[LevelIDs_Casinopolis] && nullsub_STG09 != 0x90u)
 		{
 			WriteCall((void*)0x422EE8, Casinopolis_Init);
 		}
-		if (EnableFinalEgg && nullsub_STG10 != 0x90u)
+		if (EnabledLevels[LevelIDs_FinalEgg] && nullsub_STG10 != 0x90u)
 		{
 			WriteCall((void*)0x422F71, FinalEgg_Init);
 		}
-		if (EnableHotShelter && nullsub_STG12 != 0x90u)
+		if (EnabledLevels[LevelIDs_HotShelter] && nullsub_STG12 != 0x90u)
 		{
 			WriteCall((void*)0x422FFF, HotShelter_Init);
 		}
-		if (EnableChaos0 && nullsub_B_CHAOS0 != 0x90u)
+		if (EnabledLevels[LevelIDs_Chaos0] && nullsub_B_CHAOS0 != 0x90u)
 		{
 			WriteCall((void*)0x423088, Chaos0_Init);
 		}
-		if (EnableChaos2 && nullsub_B_CHAOS2 != 0x90u)
+		if (EnabledLevels[LevelIDs_Chaos2] && nullsub_B_CHAOS2 != 0x90u)
 		{
 			WriteCall((void*)0x4230B7, Chaos2_Init);
 		}
-		if (EnableChaos4 && nullsub_B_CHAOS4 != 0x90u)
+		if (EnabledLevels[LevelIDs_Chaos4] && nullsub_B_CHAOS4 != 0x90u)
 		{
 			WriteCall((void*)0x4230CD, Chaos4_Init);
 		}
-		if (EnableChaos6 && nullsub_B_CHAOS6 != 0x90u)
+		if (EnabledLevels[LevelIDs_Chaos6] && nullsub_B_CHAOS6 != 0x90u)
 		{
 			WriteCall((void*)0x4230E3, Chaos6_Init);
 		}
-		if (EnablePerfectChaos && nullsub_B_CHAOS7 != 0x90u)
+		if (EnabledLevels[LevelIDs_PerfectChaos] && nullsub_B_CHAOS7 != 0x90u)
 		{
 			WriteCall((void*)0x423108, PerfectChaos_Init);
 		}
-		if (EnableEggHornet && nullsub_B_EGM1 != 0x90u)
+		if (EnabledLevels[LevelIDs_EggHornet] && nullsub_B_EGM1 != 0x90u)
 		{
 			WriteCall((void*)0x423146, EggHornet_Init);
 		}
-		if (EnableEggWalker && nullsub_B_EGM2 != 0x90u)
+		if (EnabledLevels[LevelIDs_EggWalker] && nullsub_B_EGM2 != 0x90u)
 		{
 			WriteCall((void*)0x42315F, EggWalker_Init);
 		}
-		if (EnableEggViper && nullsub_B_EGM3 != 0x90u)
+		if (EnabledLevels[LevelIDs_EggViper] && nullsub_B_EGM3 != 0x90u)
 		{
 			WriteCall((void*)0x423178, EggViper_Init);
 		}
-		if (EnableE101 && nullsub_B_E101 != 0x90u)
+		if (EnabledLevels[LevelIDs_E101] && nullsub_B_E101 != 0x90u)
 		{
 			WriteCall((void*)0x4231AF, E101_Init);
 		}
-		if (EnableZeroE101R)
+		if (EnabledLevels[LevelIDs_Zero])
 		{
 			if (nullsub_B_ROBO != 0x90u) WriteCall((void*)0x423196, Zero_Init);
 			if (nullsub_B_E101R != 0x90u) WriteCall((void*)0x4231CD, E101R_Init);
@@ -586,15 +557,15 @@ extern "C"
 		SkyChaseFix_Init();
 		if (nullsub_SHOOTING1 != 0x90u) WriteCall((void*)0x4236B1, SkyChase_Init);
 		if (nullsub_SHOOTING2 != 0x90u) WriteCall((void*)0x4236E0, SkyChase_Init);
-		if (EnableHedgehogHammer && nullsub_STG00 != 0x90u)
+		if (EnabledLevels[LevelIDs_HedgehogHammer] && nullsub_STG00 != 0x90u)
 		{
 			WriteCall((void*)0x422B2A, HedgehogHammer_Init);
 		}
-		if (EnableTwinkleCircuit && nullsub_MINICART != 0x90u)
+		if (EnabledLevels[LevelIDs_TwinkleCircuit] && nullsub_MINICART != 0x90u)
 		{
 			WriteCall((void*)0x4235EC, TwinkleCircuit_Init);
 		}
-		if (EnableSandHill && nullsub_SBOARD != 0x90u)
+		if (EnabledLevels[LevelIDs_SandHill] && nullsub_SBOARD != 0x90u)
 		{
 			WriteCall((void*)0x42370F, SandHill_Init);
 		}
@@ -642,55 +613,65 @@ extern "C"
 		// Animate materials and UVs
 		if (!IsGamePaused() && Camera_Data1)
 		{
+			int levelid = -1;
+			int actid = 0;
+			switch (CurrentChaoStage)
+			{
+			case SADXChaoStage_Race:
+				levelid = LevelIDs_ChaoRace;
+				break;
+			case SADXChaoStage_StationSquare:
+				levelid = LevelIDs_SSGarden;
+				break;
+			case SADXChaoStage_EggCarrier:
+				levelid = LevelIDs_ECGarden;
+				break;
+			case SADXChaoStage_MysticRuins:
+				levelid = LevelIDs_MRGarden;
+				break;
+			case -1:
+			default:
+				levelid = CurrentLevel;
+				actid = CurrentAct;
+				break;
+			}
 			for (int i = 0; i < 128; ++i)
 			{
-				if (CurrentChaoStage != 0xFFFFFFFF)
-				{
-					if (TextureAnimationData[i].level == LevelIDs_ECGarden && CurrentChaoStage == SADXChaoStage_EggCarrier) AnimateTexture(&TextureAnimationData[i]);
-					if (TextureAnimationData[i].level == LevelIDs_SSGarden && CurrentChaoStage == SADXChaoStage_StationSquare) AnimateTexture(&TextureAnimationData[i]);
-					if (TextureAnimationData[i].level == LevelIDs_MRGarden && CurrentChaoStage == SADXChaoStage_MysticRuins) AnimateTexture(&TextureAnimationData[i]);
-					if (TextureAnimationData[i].level == LevelIDs_ChaoRace && CurrentChaoStage == SADXChaoStage_Race) AnimateTexture(&TextureAnimationData[i]);
-					if (UVAnimationData[i].level == LevelIDs_MRGarden && CurrentChaoStage == SADXChaoStage_MysticRuins) AnimateUVs(&UVAnimationData[i]);
-					if (UVAnimationData_Permanent[i].level == LevelIDs_ChaoRace && CurrentChaoStage == SADXChaoStage_Race) AnimateUVs(&UVAnimationData_Permanent[i]);
-				}
-				else
-				{
-					if (UVAnimationData_Permanent[i].level == CurrentLevel && (UVAnimationData_Permanent[i].act == CurrentAct || UVAnimationData_Permanent[i].act == -1)) AnimateUVs(&UVAnimationData_Permanent[i]);
-					if (UVAnimationData[i].level == CurrentLevel && UVAnimationData[i].act == CurrentAct) AnimateUVs(&UVAnimationData[i]);
-					if (TextureAnimationData[i].level == CurrentLevel && TextureAnimationData[i].act == CurrentAct) AnimateTexture(&TextureAnimationData[i]);
-					if (TextureAnimationData_Permanent[i].level == CurrentLevel && TextureAnimationData_Permanent[i].act == CurrentAct) AnimateTexture(&TextureAnimationData_Permanent[i]);
-				}
+				if (UVAnimationData_Permanent[i].level == levelid && (UVAnimationData_Permanent[i].act == actid || UVAnimationData_Permanent[i].act == -1)) AnimateUVs(&UVAnimationData_Permanent[i]);
+				if (UVAnimationData[i].level == levelid && UVAnimationData[i].act == actid) AnimateUVs(&UVAnimationData[i]);
+				if (TextureAnimationData[i].level == levelid && TextureAnimationData[i].act == actid) AnimateTexture(&TextureAnimationData[i]);
+				if (TextureAnimationData_Permanent[i].level == levelid && TextureAnimationData_Permanent[i].act == actid) AnimateTexture(&TextureAnimationData_Permanent[i]);
 			}
 		}
 		if (EnableDCBranding) Branding_OnFrame();
-		if (EnableStationSquare && nullsub_ADV00 != 0x90u) ADV00_OnFrame();
-		if (EnableEggCarrier)
+		if (EnabledLevels[LevelIDs_StationSquare] && nullsub_ADV00 != 0x90u) ADV00_OnFrame();
+		if (EnabledLevels[LevelIDs_EggCarrierOutside])
 		{
 			if (nullsub_ADV01 != 0x90u) ADV01_OnFrame();
 			if (nullsub_ADV01C != 0x90u) ADV01C_OnFrame();
 		}
-		if (EnableMysticRuins && nullsub_ADV02 != 0x90u) ADV02_OnFrame();
-		if (EnablePast && nullsub_ADV03 != 0x90u) ADV03_OnFrame();
-		if (EnableEggHornet && nullsub_B_EGM1 != 0x90u) EggHornet_OnFrame();
-		if (EnableEggViper && nullsub_B_EGM3 != 0x90u) EggViper_OnFrame();
-		if (EnableZeroE101R)
+		if (EnabledLevels[LevelIDs_MysticRuins] && nullsub_ADV02 != 0x90u) ADV02_OnFrame();
+		if (EnabledLevels[LevelIDs_Past] && nullsub_ADV03 != 0x90u) ADV03_OnFrame();
+		if (EnabledLevels[LevelIDs_EggHornet] && nullsub_B_EGM1 != 0x90u) EggHornet_OnFrame();
+		if (EnabledLevels[LevelIDs_EggViper] && nullsub_B_EGM3 != 0x90u) EggViper_OnFrame();
+		if (EnabledLevels[LevelIDs_Zero])
 		{
 			if (nullsub_B_ROBO != 0x90u) Zero_OnFrame();
 			if (nullsub_B_E101R != 0x90u) E101R_OnFrame();
 		}
-		if (EnablePerfectChaos && nullsub_B_CHAOS7 != 0x90u) PerfectChaos_OnFrame();
-		if (EnableEmeraldCoast && nullsub_STG01 != 0x90u) EmeraldCoast_OnFrame();
-		if (EnableWindyValley && nullsub_STG02 != 0x90u) WindyValley_OnFrame();
-		//if (EnableTwinklePark && nullsub_STG03 != 0x90u) TwinklePark_OnFrame();
-		//if (EnableTwinklePark || EnableTwinkleCircuit) ShareObj_OnFrame();
-		//if (EnableSpeedHighway && nullsub_STG04 != 0x90u) SpeedHighway_OnFrame();
-		if (EnableRedMountain && nullsub_STG05 != 0x90u) RedMountain_OnFrame();
-		if (EnableSkyDeck && nullsub_STG06 != 0x90u) SkyDeck_OnFrame();
-		if (EnableLostWorld && nullsub_STG07 != 0x90u) LostWorld_OnFrame();
-		if (EnableIceCap && nullsub_STG08 != 0x90u) IceCap_OnFrame();
-		if (EnableCasinopolis && nullsub_STG09 != 0x90u) Casinopolis_OnFrame();
-		if (EnableFinalEgg && nullsub_STG10 != 0x90u) FinalEgg_OnFrame();
-		if (EnableHotShelter && nullsub_STG12 != 0x90u) HotShelter_OnFrame();
+		if (EnabledLevels[LevelIDs_PerfectChaos] && nullsub_B_CHAOS7 != 0x90u) PerfectChaos_OnFrame();
+		if (EnabledLevels[LevelIDs_EmeraldCoast] && nullsub_STG01 != 0x90u) EmeraldCoast_OnFrame();
+		if (EnabledLevels[LevelIDs_WindyValley] && nullsub_STG02 != 0x90u) WindyValley_OnFrame();
+		//if (EnabledLevels[LevelIDs_TwinklePark] && nullsub_STG03 != 0x90u) TwinklePark_OnFrame();
+		//if (EnabledLevels[LevelIDs_TwinklePark] || EnabledLevels[LevelIDs_TwinkleCircuit]) ShareObj_OnFrame();
+		//if (EnabledLevels[LevelIDs_SpeedHighway] && nullsub_STG04 != 0x90u) SpeedHighway_OnFrame();
+		if (EnabledLevels[LevelIDs_RedMountain] && nullsub_STG05 != 0x90u) RedMountain_OnFrame();
+		if (EnabledLevels[LevelIDs_SkyDeck] && nullsub_STG06 != 0x90u) SkyDeck_OnFrame();
+		if (EnabledLevels[LevelIDs_LostWorld] && nullsub_STG07 != 0x90u) LostWorld_OnFrame();
+		if (EnabledLevels[LevelIDs_IceCap] && nullsub_STG08 != 0x90u) IceCap_OnFrame();
+		if (EnabledLevels[LevelIDs_Casinopolis] && nullsub_STG09 != 0x90u) Casinopolis_OnFrame();
+		if (EnabledLevels[LevelIDs_FinalEgg] && nullsub_STG10 != 0x90u) FinalEgg_OnFrame();
+		if (EnabledLevels[LevelIDs_HotShelter] && nullsub_STG12 != 0x90u) HotShelter_OnFrame();
 		//Subgames_OnFrame();
 		if (nullsub_Chao != 0x90u) ChaoGardens_OnFrame();
 		if (nullsub_Chao != 0x90u) ChaoRace_OnFrame();

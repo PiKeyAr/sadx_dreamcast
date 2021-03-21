@@ -229,7 +229,7 @@ static void __cdecl TheyForgotToClampAgain_r(ObjectMaster *a1)
 {
 	const auto original = TARGET_DYNAMIC(TheyForgotToClampAgain);
 	original(a1);
-	if (EnableSkyDeck) ClampGlobalColorThing_Thing();
+	if (EnabledLevels[LevelIDs_SkyDeck]) ClampGlobalColorThing_Thing();
 }
 
 /*
@@ -239,7 +239,7 @@ static Trampoline SkyDeckShockwave2_t(0x5FF370, 0x5FF378, SkyDeckShockwave2_r);
 static void __cdecl SkyDeckShockwave2_r(ObjectMaster *a1)
 {
 	auto original = reinterpret_cast<decltype(SkyDeckShockwave2_r)*>(SkyDeckShockwave2_t.Target());
-	if (EnableSkyDeck)
+	if (EnabledLevels[LevelIDs_SkyDeck])
 	{
 		DrawQueueDepthBias = 4000.0f;
 		original(a1);
@@ -253,7 +253,7 @@ static Trampoline SkyDeckShockwave3_t(0x5FD860, 0x5FD867, SkyDeckShockwave3_r);
 static void __cdecl SkyDeckShockwave3_r(ObjectMaster *a1)
 {
 	auto original = reinterpret_cast<decltype(SkyDeckShockwave3_r)*>(SkyDeckShockwave3_t.Target());
-	if (EnableSkyDeck)
+	if (EnabledLevels[LevelIDs_SkyDeck])
 	{
 		DrawQueueDepthBias = 4000.0f;
 		original(a1);

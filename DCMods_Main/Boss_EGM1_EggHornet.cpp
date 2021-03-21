@@ -70,12 +70,12 @@ static void __cdecl EggHornetRotationObject_r(ObjectMaster *a1)
 {
 	const auto original = TARGET_DYNAMIC(EggHornetRotationObject);
 	original(a1);
-	if (EnableEggHornet) EggHornet_RotationEnabled = true;
+	if (EnabledLevels[LevelIDs_EggHornet]) EggHornet_RotationEnabled = true;
 }
 
 void EggHornet_RotationDisable(ObjectMaster *a1)
 {
-	if (EnableEggHornet) EggHornet_RotationEnabled = false;
+	if (EnabledLevels[LevelIDs_EggHornet]) EggHornet_RotationEnabled = false;
 	CheckThingButThenDeleteObject(a1);
 }
 
@@ -181,7 +181,7 @@ void EggHornet_Init()
 void EggHornet_OnFrame()
 {
 	// Egg Hornet rotation
-	if (EnableEggHornet && CurrentLevel == LevelIDs_EggHornet && !IsGamePaused())
+	if (EnabledLevels[LevelIDs_EggHornet] && CurrentLevel == LevelIDs_EggHornet && !IsGamePaused())
 	{
 		if (GameState == 3 || GameState == 4 || GameState == 7 || GameState == 21)
 		{

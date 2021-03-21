@@ -105,14 +105,14 @@ static void __cdecl OTikeiAnim_Load_r(ObjectMaster* a1)
 	v1 = a1->Data1;
 	const auto original = TARGET_DYNAMIC(OTikeiAnim_Load);
 	original(a1);
-	if (EnableCasinopolis) a1->DisplaySub = RenderCasinoBackgroundWater;
+	if (EnabledLevels[LevelIDs_Casinopolis]) a1->DisplaySub = RenderCasinoBackgroundWater;
 }
 
 static void __cdecl OTikeiAnim_Main_r(ObjectMaster* a1)
 {
 	const auto original = TARGET_DYNAMIC(OTikeiAnim_Main);
 	original(a1);
-	if (EnableCasinopolis && CurrentAct == 0)
+	if (EnabledLevels[LevelIDs_Casinopolis] && CurrentAct == 0)
 	{
 		RenderCasinoBackgroundWater(a1);
 	}

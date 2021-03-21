@@ -226,7 +226,7 @@ void E105Animation(NJS_OBJECT *a1, NJS_MOTION *a2, float a3, float a4)
 
 void OEntotsuParticleFix(NJS_VECTOR *a1, NJS_VECTOR *a2, float a3)
 {
-	if (EnableHotShelter && CurrentLevel == LevelIDs_HotShelter)
+	if (EnabledLevels[LevelIDs_HotShelter] && CurrentLevel == LevelIDs_HotShelter)
 	{
 		ParticleDepthOverride = -2000.0f;
 		Bridge_CreateDustParticle(a1, a2, a3);

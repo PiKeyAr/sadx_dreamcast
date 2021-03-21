@@ -322,7 +322,7 @@ void Init_Global()
 	((NJS_MATERIAL*)0x038D936C)->exponent = 11; // Chaos 0/2/6 puddle
 	ICM0001_3_TEXLISTS[0].Name = "ICM0001_5"; // Higher quality background in Sonic story
 	// Stage-specific stuff
-	if (EnableStationSquare)
+	if (EnabledLevels[LevelIDs_StationSquare])
 	{
 		ReplaceSET("SETSS00A");
 		ReplaceSET("SETSS00B");
@@ -386,7 +386,7 @@ void Init_Global()
 		ReplacePVR("SS_NIGHTSKYB");
 		ReplacePVR("SS_YUSKAY_MINI");
 	}
-	if (EnableEggCarrier)
+	if (EnabledLevels[LevelIDs_EggCarrierOutside])
 	{
 		// Outside
 		ReplaceSET("SETEC00S");
@@ -471,7 +471,7 @@ void Init_Global()
 		ReplacePVM("EC_TARAI");
 		ReplacePVM("PVME101FACTORY");
 	}
-	if (EnableMysticRuins)
+	if (EnabledLevels[LevelIDs_MysticRuins])
 	{
 		ReplaceSET("SETMR00A");
 		ReplaceSET("SETMR00B");
@@ -514,7 +514,7 @@ void Init_Global()
 		ReplaceBIN("SL_X1B"); // Evening light direction override
 		ReplaceBIN("SL_X2B"); // Night light direction override
 	}
-	if (EnablePast)
+	if (EnabledLevels[LevelIDs_Past])
 	{
 		ReplaceCAM("CAMPAST00S");
 		ReplaceCAM("CAMPAST01S");
@@ -534,7 +534,7 @@ void Init_Global()
 		ReplacePVM("KNUCKLES_DEBU");
 		ReplacePVM("KNUCKLES_LONG");
 	}
-	if (EnableEmeraldCoast)
+	if (EnabledLevels[LevelIDs_EmeraldCoast])
 	{
 		if (!IamStupidAndIWantFuckedUpOcean)
 		{
@@ -566,7 +566,7 @@ void Init_Global()
 		ReplacePVM("BEACH_SEA");
 		WriteData<1>((char*)0x4F68E0, 0xC3u); // Disable SetClip_ECoast1
 	}
-	if (EnableWindyValley)
+	if (EnabledLevels[LevelIDs_WindyValley])
 	{
 		ReplaceSET("SET0200S");
 		ReplaceSET("SET0200E");
@@ -586,7 +586,7 @@ void Init_Global()
 		ReplacePVM("WINDY_BACK2");
 		ReplacePVM("WINDY_BACK3");
 	}
-	if (EnableTwinklePark)
+	if (EnabledLevels[LevelIDs_TwinklePark])
 	{
 		ReplaceCAM("CAM0300S");
 		ReplaceCAM("CAM0301A");
@@ -605,12 +605,12 @@ void Init_Global()
 		ReplacePVM("TWINKLE02");
 		ReplacePVM("TWINKLE03");
 	}
-	if (EnableTwinklePark || EnableTwinkleCircuit)
+	if (EnabledLevels[LevelIDs_TwinklePark] || EnabledLevels[LevelIDs_TwinkleCircuit])
 	{
 		ReplacePVM("BG_SHAREOBJ");
 		ReplacePVM("OBJ_SHAREOBJ");
 	}
-	if (EnableSpeedHighway)
+	if (EnabledLevels[LevelIDs_SpeedHighway])
 	{
 		ReplaceCAM("CAM0400M");
 		ReplaceCAM("CAM0400S");
@@ -633,7 +633,7 @@ void Init_Global()
 		ReplacePVM("OBJ_HIGHWAY");
 		ReplacePVM("OBJ_HIGHWAY2");
 	}
-	if (EnableRedMountain)
+	if (EnabledLevels[LevelIDs_RedMountain])
 	{
 		ReplaceCAM("CAM0500S");
 		ReplaceCAM("CAM0501E");
@@ -654,7 +654,7 @@ void Init_Global()
 		ReplacePVM("YOUGAN_ANIM");
 		WriteData<1>((char*)0x600700, 0xC3u); // Disable SetClip_RedMountain
 	}
-	if (EnableSkyDeck)
+	if (EnabledLevels[LevelIDs_SkyDeck])
 	{
 		ReplaceSET("SET0600M");
 		ReplaceSET("SET0600S");
@@ -674,7 +674,7 @@ void Init_Global()
 		ReplacePVM("SKYDECK02");
 		ReplacePVM("SKYDECK03");
 	}
-	if (EnableLostWorld)
+	if (EnabledLevels[LevelIDs_LostWorld])
 	{
 		ReplaceCAM("CAM0700S");
 		ReplaceCAM("CAM0701K");
@@ -691,7 +691,7 @@ void Init_Global()
 		ReplacePVM("OBJ_RUIN");
 		ReplacePVM("OBJ_RUIN2");
 	}
-	if (EnableIceCap)
+	if (EnabledLevels[LevelIDs_IceCap])
 	{
 		ReplaceCAM("CAM0800S");
 		ReplaceCAM("CAM0801S");
@@ -712,7 +712,7 @@ void Init_Global()
 		ReplacePVR("MTX_BOARD0");
 		ReplacePVR("SB_BOARD1");
 	}
-	if (EnableCasinopolis)
+	if (EnabledLevels[LevelIDs_Casinopolis])
 	{
 		ReplaceCAM("CAM0900K");
 		ReplaceCAM("CAM0900S");
@@ -736,7 +736,7 @@ void Init_Global()
 		ReplacePVM("OBJ_CASINO9");
 		ReplacePVM("OBJ_CASINO_E");
 	}
-	if (EnableFinalEgg)
+	if (EnabledLevels[LevelIDs_FinalEgg])
 	{
 		ReplaceCAM("CAM1000A");
 		ReplaceCAM("CAM1000S");
@@ -757,7 +757,7 @@ void Init_Global()
 		ReplacePVM("FINALEGG4");
 		ReplacePVM("OBJ_FINALEGG");
 	}
-	if (EnableHotShelter)
+	if (EnabledLevels[LevelIDs_HotShelter])
 	{
 		ReplaceSET("SET1200A");
 		ReplaceSET("SET1200B");
@@ -783,7 +783,7 @@ void Init_Global()
 		ReplacePVM("SHELTER_COLUMN");
 		ReplacePVM("SHELTER_SUIMEN");
 	}
-	if (EnableChaos0)
+	if (EnabledLevels[LevelIDs_Chaos0])
 	{
 		ReplaceSET("SET1500S");
 		ReplacePVM("LM_CHAOS0");
@@ -792,7 +792,7 @@ void Init_Global()
 		ReplacePVM("CHAOS0_OBJECT");
 		ReplacePVM("EV_CHAOS0_MANJU");
 	}
-	if (EnableChaos2)
+	if (EnabledLevels[LevelIDs_Chaos2])
 	{
 		ReplaceSET("SET1600S");
 		ReplacePVM("CHAOS2");
@@ -801,7 +801,7 @@ void Init_Global()
 		ReplacePVM("CHAOS2_EFFECT");
 		ReplacePVM("CHAOS2_OBJECT");
 	}
-	if (EnableChaos4)
+	if (EnabledLevels[LevelIDs_Chaos4])
 	{
 		ReplaceSET("SET1700S");
 		ReplacePVM("CHAOS4_COMMON");
@@ -813,7 +813,7 @@ void Init_Global()
 		ReplacePVM("CHAOS4_TIKEI");
 		ReplacePVM("CHAOS4_WAVE");
 	}
-	if (EnableChaos6)
+	if (EnabledLevels[LevelIDs_Chaos6])
 	{
 		ReplaceSET("SET1800B");
 		ReplaceSET("SET1800S");
@@ -827,7 +827,7 @@ void Init_Global()
 		ReplacePVM("CHAOS6_EISEI");
 		ReplacePVM("CHAOS6_OBJECT");
 	}
-	if (EnablePerfectChaos)
+	if (EnabledLevels[LevelIDs_PerfectChaos])
 	{
 		ReplaceSET("SET1900S");
 		ReplaceCAM("CAM1900S");
@@ -842,7 +842,7 @@ void Init_Global()
 		ReplacePVM("LM_CHAOS7_0");
 		ReplacePVM("OBJ_CHAOS7");
 	}
-	if (EnableEggHornet)
+	if (EnabledLevels[LevelIDs_EggHornet])
 	{
 		ReplaceSET("SETEGM1S");
 		ReplacePVM("EGM1");
@@ -855,7 +855,7 @@ void Init_Global()
 		ReplacePVM("EGM1SORA");
 		ReplacePVM("EGM1TSUCHI");
 	}
-	if (EnableEggWalker)
+	if (EnabledLevels[LevelIDs_EggWalker])
 	{
 		ReplaceSET("SETEGM2S");
 		ReplacePVM("EGM2");
@@ -870,20 +870,20 @@ void Init_Global()
 		ReplacePVM("EGM2_SKY");
 		ReplacePVM("EGM2_TIKEI");
 	}
-	if (EnableEggViper)
+	if (EnabledLevels[LevelIDs_EggViper])
 	{
 		ReplaceSET("SETEGM3S");
 		ReplacePVM("EGM3CHIKEI");
 		ReplacePVM("EGM3MDL");
 		ReplacePVM("EGM3SPR");
 	}
-	if (EnableE101)
+	if (EnabledLevels[LevelIDs_E101])
 	{
 		ReplaceSET("SETE101E");
 		ReplacePVM("E101");
 		ReplacePVM("E101_TIKEI");
 	}
-	if (EnableZeroE101R)
+	if (EnabledLevels[LevelIDs_Zero])
 	{
 		// Zero
 		ReplaceSET("SETZEROA");
@@ -905,13 +905,13 @@ void Init_Global()
 	ReplacePVM("CHAO_HYOUJI_G");
 	ReplacePVM("CHAO_HYOUJI_S");
 	ReplacePVM("EC_ALIFE");
-	if (EnableSSGarden)
+	if (EnabledLevels[LevelIDs_SSGarden])
 	{
 		ReplacePVM("GARDEN00");
 		ReplaceCAM("SETMI3900M");
 		ReplacePVM("GARDEN00_OBJECT");
 	}
-	if (EnableMRGarden)
+	if (EnabledLevels[LevelIDs_MRGarden])
 	{
 		ReplacePVM("GARDEN_MR_SKY_HIRU");
 		ReplacePVM("GARDEN_MR_SKY_YORU");
@@ -919,12 +919,12 @@ void Init_Global()
 		ReplacePVM("GARDEN02");
 		ReplacePVM("GARDEN02_OBJECT");
 	}
-	if (EnableECGarden)
+	if (EnabledLevels[LevelIDs_ECGarden])
 	{
 		ReplacePVM("GARDEN01");
 		ReplacePVM("GARDEN01_SKY");
 	}
-	if (EnableTwinkleCircuit)
+	if (EnabledLevels[LevelIDs_TwinkleCircuit])
 	{
 		ReplaceSET("SETMCART00S");
 		ReplaceSET("SETMCART01S");
@@ -946,7 +946,7 @@ void Init_Global()
 		ReplacePVM("MINI_CART06");
 		if (!DLLLoaded_HDGUI) ReplacePVM("OBJ_MINI_CART");
 	}
-	if (EnableSandHill)
+	if (EnabledLevels[LevelIDs_SandHill])
 	{
 		ReplaceCAM("CAMSBOARD00S");
 		ReplaceCAM("CAMSBOARD01S");

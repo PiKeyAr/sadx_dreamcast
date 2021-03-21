@@ -1362,7 +1362,7 @@ void __cdecl LoadMRGardenX()
 // Elevator
 void __cdecl sub_4145D0(unsigned __int8 a1, unsigned __int8 a2)
 {
-	if (CurrentChaoStage == 4)
+	if (CurrentChaoStage == SADXChaoStage_StationSquare)
 	{
 		SetLevelEntrance(4);
 		sub_715730(26, 4);
@@ -1380,7 +1380,7 @@ void __cdecl sub_4145D0(unsigned __int8 a1, unsigned __int8 a2)
 
 void __cdecl SetElevatorTexlist()
 {
-	if (CurrentChaoStage == 4)
+	if (CurrentChaoStage == SADXChaoStage_StationSquare)
 	{
 		njSetTexture((NJS_TEXLIST*)0x02AA4BF8); // OBJ_SS
 	}
@@ -1398,16 +1398,16 @@ void __cdecl LoadChaoNameMachineX(NJS_VECTOR *position, int yrotation)
 	EntityData1 *ent; // eax@1
 	ObjectMaster *obj;
 	ent = LoadObject(LoadObj_Data1, 2, Chao_Name_Machine_Load)->Data1;
-	if (CurrentChaoStage == 4)
+	switch (CurrentChaoStage)
 	{
+	case SADXChaoStage_StationSquare:
 		ent->Position.x = 178.03f;
 		ent->Position.y = 8.56f;
 		ent->Position.z = -128.44f;
 		ent->Rotation.y = 0xD7B8;
-	}
-	if (CurrentChaoStage == 5)
-	{
-		if (EnableECGarden)
+		break;
+	case SADXChaoStage_EggCarrier:
+		if (EnabledLevels[LevelIDs_ECGarden])
 		{
 			ent->Position.x = 131.67f;
 			ent->Position.y = 2.6f;
@@ -1425,15 +1425,17 @@ void __cdecl LoadChaoNameMachineX(NJS_VECTOR *position, int yrotation)
 			ent->Rotation.y = 0xAFD6;
 			ent->Rotation.z = 0xFFDE;
 		}
-	}
-	if (CurrentChaoStage == 6)
-	{
+		break;
+	case SADXChaoStage_MysticRuins:
 		ent->Position.x = 239.4137f;
 		ent->Position.y = 15.10273f;
 		ent->Position.z = -45.98477f;
 		ent->Rotation.x = 0xFFDC;
 		ent->Rotation.y = 0xC1A8;
 		ent->Rotation.z = 0xFFF2;
+		break;
+	default:
+		break;
 	}
 }
 
@@ -2100,13 +2102,13 @@ void ChaoGardenSSMRWater_Display_()
 	Float v3; // ST18_4
 	unsigned int v4; // esi
 	// Stop right there if DC gardens are enabled
-	if (GetCurrentChaoStage() == 4 && EnableSSGarden) return;
-	else if (GetCurrentChaoStage() == 6 && EnableMRGarden) return;
+	if (CurrentChaoStage == SADXChaoStage_StationSquare && EnabledLevels[LevelIDs_SSGarden]) return;
+	else if (CurrentChaoStage == SADXChaoStage_MysticRuins && EnabledLevels[LevelIDs_MRGarden]) return;
 	Direct3D_SetZFunc(3u);
 	Direct3D_EnableZWrite(0);
 	njColorBlendingMode(0, NJD_COLOR_BLENDING_SRCALPHA);
 	njColorBlendingMode(NJD_DESTINATION_COLOR, NJD_COLOR_BLENDING_ONE);
-	if (GetCurrentChaoStage() == 4)
+	if (CurrentChaoStage == SADXChaoStage_StationSquare)
 	{
 		njSetTexture(&Garden00SSObj_TEXLIST);
 		njSetTextureNum(0xBu);
@@ -2319,7 +2321,7 @@ void ChaoGardens_Init()
 		BK_SSGardenStartPoint.Position.y = SSGardenStartPoint.Position.y;
 		BK_SSGardenStartPoint.Position.z = SSGardenStartPoint.Position.z;
 		BK_SSGardenStartPoint.YRot = SSGardenStartPoint.YRot;
-		if (EnableSSGarden)
+		if (EnabledLevels[LevelIDs_SSGarden])
 		{
 			WriteData<5>((void*)0x0071957E, 0x90); // Disable the Sonic Team homepage prompt
 			WriteJump((void*)0x4145D0, sub_4145D0); // Elevator function
@@ -2383,7 +2385,7 @@ void ChaoGardens_Init()
 			WriteData((float*)0x00719496, -1000.0f); // Kill hintbox
 		}
 		// Mystic Ruins garden stuff
-		if (EnableMRGarden)
+		if (EnabledLevels[LevelIDs_MRGarden])
 		{
 			ChaoGardenSky_MR_Day = LoadModel("system\\data\\AL_GARDEN02\\Models\\00013A78.sa1mdl");
 			ChaoGardenSky_MR_Night = LoadModel("system\\data\\AL_GARDEN02\\Models\\0001BC88.sa1mdl");
@@ -2428,7 +2430,7 @@ void ChaoGardens_Init()
 			ChaoTreeSpawns[2].e.z = -47.53315f;  // Palm tree 5
 		}
 		// Egg Carrier garden stuff
-		if (EnableECGarden)
+		if (EnabledLevels[LevelIDs_ECGarden])
 		{
 			ChaoGardenSky_EC_Sky = LoadModel("system\\data\\AL_GARDEN01\\Models\\000105E4.sa1mdl"); // Modified model with different UVs
 			ChaoGardenSky_EC_Water = LoadModel("system\\data\\AL_GARDEN01\\Models\\0000F01C.sa1mdl");
@@ -2490,7 +2492,7 @@ void ChaoGardens_Init()
 void ChaoGardens_OnFrame()
 {
 	// All gardens VMU
-	if (CurrentChaoStage >= 4 && CurrentChaoStage <= 6)
+	if (CurrentChaoStage >= SADXChaoStage_StationSquare && CurrentChaoStage <= SADXChaoStage_MysticRuins)
 	{
 		if (!IsGamePaused())
 		{
@@ -2500,7 +2502,7 @@ void ChaoGardens_OnFrame()
 		}
 	}
 	// Station Square garden
-	if (AL_GARDEN00_Info && CurrentChaoStage == 4 && !IsGamePaused() && EnableSSGarden)
+	if (AL_GARDEN00_Info && CurrentChaoStage == SADXChaoStage_StationSquare && !IsGamePaused() && EnabledLevels[LevelIDs_SSGarden])
 	{
 		auto entity = EntityData1Ptrs[0];
 		if (entity != nullptr)
@@ -2512,7 +2514,7 @@ void ChaoGardens_OnFrame()
 		}
 	}
 	// Egg Carrier garden
-	if (AL_GARDEN01_Info && CurrentChaoStage == 5 && !IsGamePaused() && EnableECGarden)
+	if (AL_GARDEN01_Info && CurrentChaoStage == SADXChaoStage_EggCarrier && !IsGamePaused() && EnabledLevels[LevelIDs_ECGarden])
 	{
 		if (ecgardenwater > 63) ecgardenwater = 54;
 		ChaoGardenSky_EC_Water->basicdxmodel->mats[0].attr_texId = ecgardenwater;

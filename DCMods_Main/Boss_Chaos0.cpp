@@ -56,7 +56,7 @@ static void __cdecl OPato0_Display_r(ObjectMaster *a1)
 	const auto original = TARGET_DYNAMIC(OPato0_Display);
 	if (a1->Data1->Scale.x >= nbFrames) a1->Data1->Scale.x -= nbFrames; // Animation stutter fix
 	original(a1);
-	if (EnableChaos0)
+	if (EnabledLevels[LevelIDs_Chaos0])
 	{
 		if (LANDTABLEBOSSCHAOS0[0]->Col[4].Flags & ColFlags_Visible)
 		{

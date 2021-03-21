@@ -272,7 +272,7 @@ void PerfectChaos_Init()
 void PerfectChaos_OnFrame()
 {
 	// Super stupid hax to make Perfect Chaos' tornadoes fade in
-	if (EnablePerfectChaos)
+	if (EnabledLevels[LevelIDs_PerfectChaos])
 	{
 		if (byte_3C5A7ED != 11)
 		{

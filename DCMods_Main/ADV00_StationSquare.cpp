@@ -115,7 +115,7 @@ static void __cdecl SSCar_Display_r(ObjectMaster* a1)
 	const auto original = TARGET_DYNAMIC(SSCar_Display);
 	EntityData2* Data2 = (EntityData2*)a1->Data2;
 	// Fix animation frame going out of range
-	if (EnableStationSquare && Data2->field_38 > 7) Data2->field_38 = 0;
+	if (EnabledLevels[LevelIDs_StationSquare] && Data2->field_38 > 7) Data2->field_38 = 0;
 	original(a1);
 }
 

@@ -45,6 +45,7 @@ FunctionPointer(long double, sub_49CC70, (float a1, float a2, float a3), 0x49CC7
 DataArray(FogData, SpeedHighway1Fog, 0x024CA4E4, 3);
 DataArray(FogData, SpeedHighway2Fog, 0x024CA514, 3);
 DataArray(FogData, SpeedHighway3Fog, 0x024CA544, 3);
+DataPointer(CCL_INFO, ConeCollision, 0x26B2518);
 
 PVMEntry SpeedHighway3Textures_list[] = {
 	{ "HIGHWAY03", (TexList *)&HIGHWAY03_TEXLIST },
@@ -129,7 +130,7 @@ static Trampoline* FountainDisplay_t = nullptr;
 static void __cdecl FountainDisplay_r(ObjectMaster *a1)
 {
 	const auto original = TARGET_DYNAMIC(FountainDisplay);
-	if (EnableSpeedHighway && HW3FountainMesh != nullptr)
+	if (EnabledLevels[LevelIDs_SpeedHighway] && HW3FountainMesh != nullptr)
 	{
 		if (!MissedFrames)
 		{

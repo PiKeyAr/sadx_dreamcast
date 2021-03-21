@@ -1272,6 +1272,34 @@ void land_DrawObject_New(NJS_OBJECT* a1, _OBJ_LANDENTRY* a2)
 	unsigned __int8 v5; // c0
 	unsigned __int8 v6; // c2
 
+	// Call the original function if the level is disabled
+	int levelid = -1;
+	switch (CurrentChaoStage)
+	{
+	case SADXChaoStage_Race:
+		levelid = LevelIDs_ChaoRace;
+		break;
+	case SADXChaoStage_StationSquare:
+		levelid = LevelIDs_SSGarden;
+		break;
+	case SADXChaoStage_EggCarrier:
+		levelid = LevelIDs_ECGarden;
+		break;
+	case SADXChaoStage_MysticRuins:
+		levelid = LevelIDs_MRGarden;
+		break;
+	case -1:
+	default:
+		levelid = CurrentLevel;
+		break;
+	}
+
+	if (!EnabledLevels[levelid])
+	{
+		land_DrawObjectOriginal(a1, a2);
+		return;
+	}
+
 	// Call the original function if no additional depth data is found
 	if (a2->yWidth == 0 && a2->zWidth == 0)
 	{
