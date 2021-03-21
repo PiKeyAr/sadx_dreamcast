@@ -380,6 +380,7 @@ void TwinklePark_Init()
 		{
 			material_register(WhiteDiffuse_Twinkle, LengthOfArray(WhiteDiffuse_Twinkle), &ForceWhiteDiffuse);
 		}
+		ModelsLoaded_STG03 = true;
 	}
 	if (!ModelsLoaded_ShareObj) ShareObj_Init();
 }

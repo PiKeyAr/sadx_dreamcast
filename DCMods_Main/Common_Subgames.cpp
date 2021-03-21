@@ -559,14 +559,14 @@ void HedgehogHammer_Init()
 	STG00_0->TexList = &texlist_hhammer;
 	WriteData((LandTable**)0x97DA08, STG00_0);
 	// No models to load here but using the same pattern for the sake of consistency
-	if (!ModelsLoaded_ADV00)
+	if (!ModelsLoaded_STG00)
 	{
 		for (int i = 0; i < 3; i++)
 		{
 			FogData_HedgehogHammer[i].Distance = 16000.0f;
 			FogData_HedgehogHammer[i].Layer = 5000.0f;
 		}
-		ModelsLoaded_ADV00 = true;
+		ModelsLoaded_STG00 = true;
 	}
 }
 
