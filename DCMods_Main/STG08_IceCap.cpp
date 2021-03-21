@@ -497,20 +497,20 @@ void IceCap_Init()
 		OBJ_ICECAP_TEXLIST = texlist_obj_icecap;
 		WriteJump((void*)0x4E91C0, Obj_Icecap_DoColFlagThings_a); // Weird COL flag function
 		// Objects
-		*(NJS_OBJECT*)0xE60F54 = *LoadModel("system\\data\\STG08\\Models\\001702F4.sa1mdl", false); // OSaku01
-		*(NJS_OBJECT*)0xE61BBC = *LoadModel("system\\data\\STG08\\Models\\001713F0.sa1mdl", false); // OSaku01b
-		*(NJS_OBJECT*)0xE6261C = *LoadModel("system\\data\\STG08\\Models\\00170B20.sa1mdl", false); // OSaku02
-		*(NJS_OBJECT*)0xE63444 = *LoadModel("system\\data\\STG08\\Models\\0016F968.sa1mdl", false); // OSaku02b
-		*(NJS_OBJECT*)0xE7B20C = *LoadModel("system\\data\\STG08\\Models\\00188C0C.sa1mdl", false); // OFutaL
-		*(NJS_OBJECT*)0xE7E11C = *LoadModel("system\\data\\STG08\\Models\\0018B1E4.sa1mdl", false); // OFutaL broken
-		*(NJS_OBJECT*)0xE537D8 = *LoadModel("system\\data\\STG08\\Models\\00162694.sa1mdl", false); // Icicle inner part
-		*(NJS_OBJECT*)0xE6E0E0 = *LoadModel("system\\data\\STG08\\Models\\0017BD64.sa1mdl", false); // MizuIwa B
-		*(NJS_OBJECT*)0xE6E694 = *LoadModel("system\\data\\STG08\\Models\\0017C308.sa1mdl", false); // MizuIwa C
-		*(NJS_OBJECT*)0xE52FCC = *LoadModel("system\\data\\STG08\\Models\\00161838.sa1mdl", false); // OIceJmp
-		*(NJS_OBJECT*)0xE6FECC = *LoadModel("system\\data\\STG08\\Models\\0017DAD8.sa1mdl", false); // Giant icicle
+		*(NJS_OBJECT*)0xE60F54 = *LoadModel("system\\data\\STG08\\Models\\001702F4.sa1mdl"); // OSaku01
+		*(NJS_OBJECT*)0xE61BBC = *LoadModel("system\\data\\STG08\\Models\\001713F0.sa1mdl"); // OSaku01b
+		*(NJS_OBJECT*)0xE6261C = *LoadModel("system\\data\\STG08\\Models\\00170B20.sa1mdl"); // OSaku02
+		*(NJS_OBJECT*)0xE63444 = *LoadModel("system\\data\\STG08\\Models\\0016F968.sa1mdl"); // OSaku02b
+		*(NJS_OBJECT*)0xE7B20C = *LoadModel("system\\data\\STG08\\Models\\00188C0C.sa1mdl"); // OFutaL
+		*(NJS_OBJECT*)0xE7E11C = *LoadModel("system\\data\\STG08\\Models\\0018B1E4.sa1mdl"); // OFutaL broken
+		*(NJS_OBJECT*)0xE537D8 = *LoadModel("system\\data\\STG08\\Models\\00162694.sa1mdl"); // Icicle inner part
+		*(NJS_OBJECT*)0xE6E0E0 = *LoadModel("system\\data\\STG08\\Models\\0017BD64.sa1mdl"); // MizuIwa B
+		*(NJS_OBJECT*)0xE6E694 = *LoadModel("system\\data\\STG08\\Models\\0017C308.sa1mdl"); // MizuIwa C
+		*(NJS_OBJECT*)0xE52FCC = *LoadModel("system\\data\\STG08\\Models\\00161838.sa1mdl"); // OIceJmp
+		*(NJS_OBJECT*)0xE6FECC = *LoadModel("system\\data\\STG08\\Models\\0017DAD8.sa1mdl"); // Giant icicle
 		SwapMeshsets((NJS_OBJECT*)0xE6FECC, 0, 1); // For better looks of the meshes
 		WriteCall((void*)0x4EFE72, RenderBigIcicleWithDepth);
-		*(NJS_OBJECT*)0x986F80 = *LoadModel("system\\data\\STG08\\Models\\001BEF20.sa1mdl", false); // ESMan
+		*(NJS_OBJECT*)0x986F80 = *LoadModel("system\\data\\STG08\\Models\\001BEF20.sa1mdl"); // ESMan
 		((NJS_OBJECT*)0x986F80)->basicdxmodel->mats[7].attrflags &= ~NJD_FLAG_USE_ALPHA; // Unnecessary alpha causing errors
 		RemoveVertexColors_Object((NJS_OBJECT*)0x9889E4); // ESMan vehicle
 		// Crystal fixes for OIT
@@ -519,23 +519,23 @@ void IceCap_Init()
 			stru_E773D8.basicdxmodel->mats[0].attrflags |= NJD_FLAG_USE_ALPHA;
 			stru_E773D8.basicdxmodel->mats[1].attrflags |= NJD_FLAG_USE_ALPHA;
 			// Crystal 1
-			Crystal1_1 = LoadModel("system\\data\\STG08\\Models\\00184058.sa1mdl", false);
+			Crystal1_1 = LoadModel("system\\data\\STG08\\Models\\00184058.sa1mdl");
 			HideMesh_Object(Crystal1_1, 1);
 			HideMesh_Object(Crystal1_1, 2);
-			Crystal1_2 = LoadModel("system\\data\\STG08\\Models\\00184058.sa1mdl", false);
+			Crystal1_2 = LoadModel("system\\data\\STG08\\Models\\00184058.sa1mdl");
 			HideMesh_Object(Crystal1_2, 0);
 			HideMesh_Object(Crystal1_2, 2);
-			Crystal1_3 = LoadModel("system\\data\\STG08\\Models\\00184058.sa1mdl", false);
+			Crystal1_3 = LoadModel("system\\data\\STG08\\Models\\00184058.sa1mdl");
 			HideMesh_Object(Crystal1_3, 0);
 			HideMesh_Object(Crystal1_3, 1);
 			// Crystal 2
-			Crystal2_1 = LoadModel("system\\data\\STG08\\Models\\00184918.sa1mdl", false);
+			Crystal2_1 = LoadModel("system\\data\\STG08\\Models\\00184918.sa1mdl");
 			HideMesh_Object(Crystal2_1, 1);
 			HideMesh_Object(Crystal2_1, 2);
-			Crystal2_2 = LoadModel("system\\data\\STG08\\Models\\00184918.sa1mdl", false);
+			Crystal2_2 = LoadModel("system\\data\\STG08\\Models\\00184918.sa1mdl");
 			HideMesh_Object(Crystal2_2, 0);
 			HideMesh_Object(Crystal2_2, 2);
-			Crystal2_3 = LoadModel("system\\data\\STG08\\Models\\00184918.sa1mdl", false);
+			Crystal2_3 = LoadModel("system\\data\\STG08\\Models\\00184918.sa1mdl");
 			HideMesh_Object(Crystal2_3, 0);
 			HideMesh_Object(Crystal2_3, 1);
 			WriteJump((void*)0x4EF5A0, Crystal_Display);

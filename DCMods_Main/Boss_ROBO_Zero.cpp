@@ -105,7 +105,7 @@ void Zero_Init()
 		// Ocean model
 		if (!SADXWater_EggCarrier)
 		{
-			ZeroBossOcean = LoadModel("system\\data\\B_ROBO\\Models\\0002DBBC.sa1mdl", false);
+			ZeroBossOcean = LoadModel("system\\data\\B_ROBO\\Models\\0002DBBC.sa1mdl");
 			ZeroBossOcean->basicdxmodel->mats[0].attr_texId = 4;
 			ZeroBossOcean->basicdxmodel->mats[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
 			ZeroBossOcean->basicdxmodel->mats[0].diffuse.color = 0x7FB2B2B2;

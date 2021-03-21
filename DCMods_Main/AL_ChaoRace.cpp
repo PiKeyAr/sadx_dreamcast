@@ -4023,40 +4023,40 @@ void ChaoRace_Init()
 	// Load models
 	OBJ_AL_RACE_TEXLISTS[1].Name = "BG_AL_RACE02";
 	OBJ_AL_RACE_TEXLISTS[1].TexList = &texlist_chaoracebg;
-	ChaoRaceSlidingDoors = LoadModel("system\\data\\AL_RACE\\Models\\00049C28.sa1mdl", false);
-	ChaoRaceNumber0 = LoadModel("system\\data\\AL_RACE\\Models\\0004E7BC.sa1mdl", false);
+	ChaoRaceSlidingDoors = LoadModel("system\\data\\AL_RACE\\Models\\00049C28.sa1mdl");
+	ChaoRaceNumber0 = LoadModel("system\\data\\AL_RACE\\Models\\0004E7BC.sa1mdl");
 	RemovePositionRotation_Object(ChaoRaceNumber0);
-	ChaoRaceNumber1 = LoadModel("system\\data\\AL_RACE\\Models\\0004E8C0.sa1mdl", false);
+	ChaoRaceNumber1 = LoadModel("system\\data\\AL_RACE\\Models\\0004E8C0.sa1mdl");
 	RemovePositionRotation_Object(ChaoRaceNumber1);
-	ChaoRaceNumber2 = LoadModel("system\\data\\AL_RACE\\Models\\0004E9C4.sa1mdl", false);
+	ChaoRaceNumber2 = LoadModel("system\\data\\AL_RACE\\Models\\0004E9C4.sa1mdl");
 	RemovePositionRotation_Object(ChaoRaceNumber2);
-	ChaoRaceNumber3 = LoadModel("system\\data\\AL_RACE\\Models\\0004EAC8.sa1mdl", false);
+	ChaoRaceNumber3 = LoadModel("system\\data\\AL_RACE\\Models\\0004EAC8.sa1mdl");
 	RemovePositionRotation_Object(ChaoRaceNumber3);
-	ChaoRaceNumber4 = LoadModel("system\\data\\AL_RACE\\Models\\0004EBCC.sa1mdl", false);
+	ChaoRaceNumber4 = LoadModel("system\\data\\AL_RACE\\Models\\0004EBCC.sa1mdl");
 	RemovePositionRotation_Object(ChaoRaceNumber4);
-	ChaoRaceNumber5 = LoadModel("system\\data\\AL_RACE\\Models\\0004ECD0.sa1mdl", false);
+	ChaoRaceNumber5 = LoadModel("system\\data\\AL_RACE\\Models\\0004ECD0.sa1mdl");
 	RemovePositionRotation_Object(ChaoRaceNumber5);
-	ChaoRaceNumber6 = LoadModel("system\\data\\AL_RACE\\Models\\0004EDD4.sa1mdl", false);
+	ChaoRaceNumber6 = LoadModel("system\\data\\AL_RACE\\Models\\0004EDD4.sa1mdl");
 	RemovePositionRotation_Object(ChaoRaceNumber6);
-	ChaoRaceNumber7 = LoadModel("system\\data\\AL_RACE\\Models\\0004EED8.sa1mdl", false);
+	ChaoRaceNumber7 = LoadModel("system\\data\\AL_RACE\\Models\\0004EED8.sa1mdl");
 	RemovePositionRotation_Object(ChaoRaceNumber7);
-	ChaoRaceLetters = LoadModel("system\\data\\AL_RACE\\Models\\00048224.sa1mdl", false);
+	ChaoRaceLetters = LoadModel("system\\data\\AL_RACE\\Models\\00048224.sa1mdl");
 	RemovePositionRotation_Object(ChaoRaceLetters);
-	ChaoRaceWaterfall1 = LoadModel("system\\data\\AL_RACE\\Models\\00046254.sa1mdl", false);
+	ChaoRaceWaterfall1 = LoadModel("system\\data\\AL_RACE\\Models\\00046254.sa1mdl");
 	RemovePositionRotation_Object(ChaoRaceWaterfall1);
 	ChaoRaceWaterfall1->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_CLAMP_V;
 	AddUVAnimation_Permanent(LevelIDs_ChaoRace, 0, ChaoRaceWaterfall1->basicdxmodel->meshsets[0].vertuv, 48, 0, 0, -6);
-	ChaoRaceWaterfall2 = LoadModel("system\\data\\AL_RACE\\Models\\00045EB4.sa1mdl", false);
+	ChaoRaceWaterfall2 = LoadModel("system\\data\\AL_RACE\\Models\\00045EB4.sa1mdl");
 	RemovePositionRotation_Object(ChaoRaceWaterfall2);
 	ChaoRaceWaterfall2->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_CLAMP_V;
 	AddUVAnimation_Permanent(LevelIDs_ChaoRace, 0, ChaoRaceWaterfall2->basicdxmodel->meshsets[0].vertuv, 80, 0, 0, -6);
-	ChaoRaceSkyboxBottom = LoadModel("system\\data\\AL_RACE\\Models\\0002A888.sa1mdl", false);
+	ChaoRaceSkyboxBottom = LoadModel("system\\data\\AL_RACE\\Models\\0002A888.sa1mdl");
 	ChaoRaceSkyboxBottom->basicdxmodel->mats[0].attr_texId = 0;
-	ChaoRaceSkyboxMain = LoadModel("system\\data\\AL_RACE\\Models\\0001C628.sa1mdl", false);
-	ChaoRaceStartMark1 = LoadModel("system\\data\\AL_RACE\\Models\\000445A0.sa1mdl", false);
-	ChaoRaceStartMark2 = LoadModel("system\\data\\AL_RACE\\Models\\000459E4.sa1mdl", false);
-	ChaoRaceCracker = LoadModel("system\\data\\AL_RACE\\Models\\00046364.sa1mdl", false);
-	ChaoRaceBall = LoadModel("system\\data\\AL_MAIN\\Models\\0014B2C0.sa1mdl", false); // This is in AL_MAIN
+	ChaoRaceSkyboxMain = LoadModel("system\\data\\AL_RACE\\Models\\0001C628.sa1mdl");
+	ChaoRaceStartMark1 = LoadModel("system\\data\\AL_RACE\\Models\\000445A0.sa1mdl");
+	ChaoRaceStartMark2 = LoadModel("system\\data\\AL_RACE\\Models\\000459E4.sa1mdl");
+	ChaoRaceCracker = LoadModel("system\\data\\AL_RACE\\Models\\00046364.sa1mdl");
+	ChaoRaceBall = LoadModel("system\\data\\AL_MAIN\\Models\\0014B2C0.sa1mdl"); // This is in AL_MAIN
 	// Chao Race Entry
 	if (EnableLobby)
 	{

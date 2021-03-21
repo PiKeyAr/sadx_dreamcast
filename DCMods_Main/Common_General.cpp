@@ -2071,9 +2071,9 @@ void General_Init()
 		WriteCall((void*)0x596C7C, SGeneHook); // Fishes
 		RemoveVertexColors_Model((NJS_MODEL_SADX*)0x8B966C); // Capsule
 		RemoveVertexColors_Model((NJS_MODEL_SADX*)0x8BA2AC); // Capsule
-		*(NJS_OBJECT*)0x96F3F0 = *LoadModel("system\\data\\1ST_READ\\Models\\005B8C04.sa1mdl", false); // Unidus spinning part
+		*(NJS_OBJECT*)0x96F3F0 = *LoadModel("system\\data\\1ST_READ\\Models\\005B8C04.sa1mdl"); // Unidus spinning part
 		((NJS_OBJECT*)0x96F3F0)->basicdxmodel->mats[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		*(NJS_OBJECT*)0x954D28 = *LoadModel("system\\data\\1ST_READ\\Models\\005A2DDC.sa1mdl", false); // Leon eyes
+		*(NJS_OBJECT*)0x954D28 = *LoadModel("system\\data\\1ST_READ\\Models\\005A2DDC.sa1mdl"); // Leon eyes
 		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x954D28)->child->basicdxmodel->mats[1]);
 		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x954D28)->child->basicdxmodel->mats[2]);
 		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x954D28)->child->sibling->sibling->sibling->sibling->basicdxmodel->mats[1]);
@@ -2097,7 +2097,7 @@ void General_Init()
 		WriteCall((void*)0x4A1827, SpindashChargeLinesHook);
 		WriteCall((void*)0x4A1E55, SpindashChargeSpriteHook);
 		// Replace hint monitor model
-		HintMonitorModel = LoadModel("system\\data\\1st_read\\Models\\001AD358.sa1mdl", false);
+		HintMonitorModel = LoadModel("system\\data\\1st_read\\Models\\001AD358.sa1mdl");
 		HideMesh_Object(HintMonitorModel, 10); // Hide screen (rendered separately in DX)
 		HintMonitorModel->basicdxmodel->mats[8].attrflags &= ~NJD_FLAG_USE_ALPHA;
 		HintMonitorModel->basicdxmodel->mats[11].attrflags &= ~NJD_FLAG_USE_ALPHA;
@@ -2106,9 +2106,9 @@ void General_Init()
 		WriteCall((void*)0x7A9509, RenderHintMonitor_Main);
 		WriteCall((void*)0x7A957F, SetHintMonitorTransparency);
 		// Fix frogs lol
-		*(NJS_OBJECT*)0x30CB4F8 = *LoadModel("system\\data\\Other\\02CCB4F8.sa1mdl", false);
-		*(NJS_OBJECT*)0x30CDB28 = *LoadModel("system\\data\\Other\\02CCDB28.sa1mdl", false);
-		*(NJS_OBJECT*)0x30D0160 = *LoadModel("system\\data\\Other\\02CD0160.sa1mdl", false);
+		*(NJS_OBJECT*)0x30CB4F8 = *LoadModel("system\\data\\Other\\02CCB4F8.sa1mdl");
+		*(NJS_OBJECT*)0x30CDB28 = *LoadModel("system\\data\\Other\\02CCDB28.sa1mdl");
+		*(NJS_OBJECT*)0x30D0160 = *LoadModel("system\\data\\Other\\02CD0160.sa1mdl");
 		// Leon fixes
 		WriteData((float**)0x4CD75A, &_nj_screen_.w); // From SADXFE
 		WriteData((float**)0x4CD77C, &_nj_screen_.h); // From SADXFE
@@ -2148,14 +2148,14 @@ void General_Init()
 		RemoveVertexColors_Object((NJS_OBJECT*)0x2D6962C); // Chaos puddle 2
 		RemoveVertexColors_Object((NJS_OBJECT*)0x3185D2C); // Chaos 1
 		// Gamma's dynamite
-		*(NJS_OBJECT*)0x8C9C4C = *LoadModel("system\\data\\1ST_READ\\Models\\001AAD68.sa1mdl", false);
+		*(NJS_OBJECT*)0x8C9C4C = *LoadModel("system\\data\\1ST_READ\\Models\\001AAD68.sa1mdl");
 		((NJS_OBJECT*)0x8C9C4C)->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_USE_ALPHA; // I think it's supposed to be transparent but it looks like that on DC so...
 		((NJS_OBJECT*)0x8C9C4C)->basicdxmodel->mats[1].attrflags &= ~NJD_FLAG_USE_ALPHA; // But this one is totally unnecessary either way
 		ForceObjectSpecular_Object((NJS_OBJECT*)0x8C9C4C, false);
 		// Item box fixes
 		WriteCall((void*)0x4C0066, RenderItemBoxIcon);
-		ItemBoxAirModel = LoadModel("system\\data\\1ST_READ\\Models\\001AC4F4.sa1mdl", false);
-		ItemBoxAirModel_Resize = LoadModel("system\\data\\1ST_READ\\Models\\001AC4F4.sa1mdl", false);
+		ItemBoxAirModel = LoadModel("system\\data\\1ST_READ\\Models\\001AC4F4.sa1mdl");
+		ItemBoxAirModel_Resize = LoadModel("system\\data\\1ST_READ\\Models\\001AC4F4.sa1mdl");
 		ItemBoxAirModel_Resize->basicdxmodel->mats[0].attrflags |= NJD_FLAG_USE_ALPHA;
 		ItemBoxAirModel_Resize->basicdxmodel->mats[1].attrflags |= NJD_FLAG_USE_ALPHA;
 		ItemBoxAirModel_Resize->basicdxmodel->mats[2].attrflags |= NJD_FLAG_USE_ALPHA;
@@ -2169,22 +2169,22 @@ void General_Init()
 		WriteJump(ItemBox_Display_Unknown, ItemBox_Display_Unknown_Rotate);
 		WriteJump(ItemBox_Display, ItemBox_Display_Rotate);
 		LoadModel_ReplaceMeshes((NJS_OBJECT*)0x8C908C, "system\\data\\1ST_READ\\Models\\001AA1E0.sa1mdl"); // Checkpoint
-		*(NJS_OBJECT*)0x8B54C4 = *LoadModel("system\\data\\1ST_READ\\Models\\00197E20.sa1mdl", false)->child->child; // Spring static
-		*(NJS_OBJECT*)0x8B603C = *LoadModel("system\\data\\1ST_READ\\Models\\00197E20.sa1mdl", false)->child->child; // Spring touched
-		*(NJS_OBJECT*)0x8BFEF4 = *LoadModel("system\\data\\1ST_READ\\Models\\001A12A4.sa1mdl", false); // Rocket platform
-		*(NJS_MODEL_SADX*)0x8BE168 = *LoadModel("system\\data\\1ST_READ\\Models\\0019F5F4.sa1mdl", false)->basicdxmodel; // Balloon
+		*(NJS_OBJECT*)0x8B54C4 = *LoadModel("system\\data\\1ST_READ\\Models\\00197E20.sa1mdl")->child->child; // Spring static
+		*(NJS_OBJECT*)0x8B603C = *LoadModel("system\\data\\1ST_READ\\Models\\00197E20.sa1mdl")->child->child; // Spring touched
+		*(NJS_OBJECT*)0x8BFEF4 = *LoadModel("system\\data\\1ST_READ\\Models\\001A12A4.sa1mdl"); // Rocket platform
+		*(NJS_MODEL_SADX*)0x8BE168 = *LoadModel("system\\data\\1ST_READ\\Models\\0019F5F4.sa1mdl")->basicdxmodel; // Balloon
 		if (!AssumeOIT) 
 		{
 			((NJS_MODEL_SADX*)0x8BE168)->mats[0].attrflags &= ~NJD_FLAG_USE_ALPHA;
 			((NJS_MODEL_SADX*)0x8BE168)->mats[1].attrflags &= ~NJD_FLAG_USE_ALPHA;
 		}
-		*(NJS_MODEL_SADX*)0x8C6624 = *LoadModel("system\\data\\1ST_READ\\Models\\001A7A78.sa1mdl", false)->child->basicdxmodel; // Spring H
-		*(NJS_MODEL_SADX*)0x8C5D5C = *LoadModel("system\\data\\1ST_READ\\Models\\001A6F9C.sa1mdl", false)->basicdxmodel; // Star panel
-		*(NJS_MODEL_SADX*)0x8BBD84 = *LoadModel("system\\data\\1ST_READ\\Models\\0019D2C0.sa1mdl", false)->basicdxmodel; // Switch (pressed)
-		*(NJS_MODEL_SADX*)0x989384 = *LoadModel("system\\data\\1ST_READ\\Models\\0019D2C0.sa1mdl", false)->basicdxmodel; // Switch (unpressed)
+		*(NJS_MODEL_SADX*)0x8C6624 = *LoadModel("system\\data\\1ST_READ\\Models\\001A7A78.sa1mdl")->child->basicdxmodel; // Spring H
+		*(NJS_MODEL_SADX*)0x8C5D5C = *LoadModel("system\\data\\1ST_READ\\Models\\001A6F9C.sa1mdl")->basicdxmodel; // Star panel
+		*(NJS_MODEL_SADX*)0x8BBD84 = *LoadModel("system\\data\\1ST_READ\\Models\\0019D2C0.sa1mdl")->basicdxmodel; // Switch (pressed)
+		*(NJS_MODEL_SADX*)0x989384 = *LoadModel("system\\data\\1ST_READ\\Models\\0019D2C0.sa1mdl")->basicdxmodel; // Switch (unpressed)
 		((NJS_MODEL_SADX*)0x989384)->meshsets[4].vertcolor = SwitchDark_vcolor2;
 		((NJS_MODEL_SADX*)0x989384)->meshsets[3].vertcolor = SwitchDark_vcolor1;
-		((NJS_ACTION*)0x8B8BC4)->object = LoadModel("system\\data\\1ST_READ\\Models\\0019A118.sa1mdl", false); // Dash panel
+		((NJS_ACTION*)0x8B8BC4)->object = LoadModel("system\\data\\1ST_READ\\Models\\0019A118.sa1mdl"); // Dash panel
 		// Light Speed Dash distance fix
 		if (EnableLSDFix)
 		{
@@ -2203,7 +2203,7 @@ void General_Init()
 		// Ripples
 		if (EnableDCRipple)
 		{
-			*(NJS_OBJECT*)0x8B22F4 = *LoadModel("system\\data\\1st_read\\Models\\00193A44.sa1mdl", false);
+			*(NJS_OBJECT*)0x8B22F4 = *LoadModel("system\\data\\1st_read\\Models\\00193A44.sa1mdl");
 			((NJS_OBJECT*)0x8B22F4)->basicdxmodel->mats[0].attr_texId = 99;
 			WriteJump((void*)0x4B9290, FixedRipple_Normal);
 			WriteJump((void*)0x7A81A0, FixedRipple_Bubble);
@@ -2212,13 +2212,13 @@ void General_Init()
 		// Water splash particle
 		WriteCall((void*)0x49F1C0, FixWaterSplash);
 		// Some emerald shard "fixes"
-		EmeraldPieceModel = LoadModel("system\\data\\1st_read\\Models\\0019BC48.sa1mdl", false);
+		EmeraldPieceModel = LoadModel("system\\data\\1st_read\\Models\\0019BC48.sa1mdl");
 		if (GetModuleHandle(L"sadx-d3d11") == nullptr)
 		{
 			EmeraldPieceModel->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_USE_ALPHA;
 			EmeraldPieceModel->basicdxmodel->mats[0].diffuse.color = 0xFFB2B2B2;
 		}
-		EmeraldPieceOutline = LoadModel("system\\data\\1st_read\\Models\\0019BC48.sa1mdl", false);
+		EmeraldPieceOutline = LoadModel("system\\data\\1st_read\\Models\\0019BC48.sa1mdl");
 		EmeraldPieceOutline->basicdxmodel->mats[0].attrflags &= ~NJD_DA_INV_SRC;
 		EmeraldPieceOutline->basicdxmodel->mats[0].attrflags |= NJD_DA_ONE;
 		EmeraldPieceOutline->basicdxmodel->mats[0].diffuse.color = 0x00000000;
@@ -2320,74 +2320,74 @@ void General_Init()
 		RemoveVertexColors_Object((NJS_OBJECT*)0x319C3EC); // Amy held by Zero
 		RemoveVertexColors_Object((NJS_OBJECT*)0x33144B0); // Egg Walker cutscene
 		WriteCall((void*)0x4D7718, AnimalBubbleHook); // Animal bubble blending mode + depth
-		*(NJS_OBJECT*)0x2F67B78 = *LoadModel("system\\data\\Other\\00006C38.sa1mdl", false); // Tornado 2 crashed
+		*(NJS_OBJECT*)0x2F67B78 = *LoadModel("system\\data\\Other\\00006C38.sa1mdl"); // Tornado 2 crashed
 		// Animals
 		WriteCall((void*)0x4D769B, QueueAnimals); // Queue animal models because they have transparency
 		WriteCall((void*)0x73F726, QueueChaoAnimals1); // Also queue Chao animals
 		WriteCall((void*)0x73F742, QueueChaoAnimals2); // Also queue Chao animals
 		*(NJS_TEXLIST*)0x92ACE4 = texlist_goma; // GOMA texlist
 		// Load SA1 animal models and replace their models/animations in Action Stages
-		NJS_OBJECT* SA1Animal_Goma = LoadModel("system\\data\\1st_read\\Models\\00157760.sa1mdl", false);
+		NJS_OBJECT* SA1Animal_Goma = LoadModel("system\\data\\1st_read\\Models\\00157760.sa1mdl");
 		Action_Goma.object = SA1Animal_Goma;
 		Action_Goma.motion = &_158830;
-		NJS_OBJECT* SA1Animal_Pen = LoadModel("system\\data\\1st_read\\Models\\00159F2C.sa1mdl", false);
+		NJS_OBJECT* SA1Animal_Pen = LoadModel("system\\data\\1st_read\\Models\\00159F2C.sa1mdl");
 		Action_Pen.object = SA1Animal_Pen;
 		Action_Pen.motion = &_15B72C;
-		NJS_OBJECT* SA1Animal_Tuba = LoadModel("system\\data\\1st_read\\Models\\0015CD8C.sa1mdl", false);
+		NJS_OBJECT* SA1Animal_Tuba = LoadModel("system\\data\\1st_read\\Models\\0015CD8C.sa1mdl");
 		Action_Tuba.object = SA1Animal_Tuba;
 		Action_Tuba.motion = &_15DD6C;
-		NJS_OBJECT* SA1Animal_Kuja = LoadModel("system\\data\\1st_read\\Models\\0015F348.sa1mdl", false);
+		NJS_OBJECT* SA1Animal_Kuja = LoadModel("system\\data\\1st_read\\Models\\0015F348.sa1mdl");
 		Action_Kuja.object = SA1Animal_Kuja;
 		Action_Kuja.motion = &_160688;
-		NJS_OBJECT* SA1Animal_Oum = LoadModel("system\\data\\1st_read\\Models\\00161CFC.sa1mdl", false);
+		NJS_OBJECT* SA1Animal_Oum = LoadModel("system\\data\\1st_read\\Models\\00161CFC.sa1mdl");
 		Action_Oum.object = SA1Animal_Oum;
 		Action_Oum.motion = &_162EBC;
-		NJS_OBJECT* SA1Animal_Koar = LoadModel("system\\data\\1st_read\\Models\\00164470.sa1mdl", false);
+		NJS_OBJECT* SA1Animal_Koar = LoadModel("system\\data\\1st_read\\Models\\00164470.sa1mdl");
 		Action_Koar.object = SA1Animal_Koar;
 		Action_Koar.motion = &_165C70;
-		NJS_OBJECT* SA1Animal_Wara = LoadModel("system\\data\\1st_read\\Models\\001674B8.sa1mdl", false);
+		NJS_OBJECT* SA1Animal_Wara = LoadModel("system\\data\\1st_read\\Models\\001674B8.sa1mdl");
 		Action_Wara.object = SA1Animal_Wara;
 		Action_Wara.motion = &_169078;
-		NJS_OBJECT* SA1Animal_Banb = LoadModel("system\\data\\1st_read\\Models\\0016A648.sa1mdl", false);
+		NJS_OBJECT* SA1Animal_Banb = LoadModel("system\\data\\1st_read\\Models\\0016A648.sa1mdl");
 		Action_Banb.object = SA1Animal_Banb;
 		Action_Banb.motion = &_16BC68;
-		NJS_OBJECT* SA1Animal_Usa = LoadModel("system\\data\\1st_read\\Models\\0016D218.sa1mdl", false);
+		NJS_OBJECT* SA1Animal_Usa = LoadModel("system\\data\\1st_read\\Models\\0016D218.sa1mdl");
 		Action_Usa.object = SA1Animal_Usa;
 		Action_Usa.motion = &_16EA18;
-		NJS_OBJECT* SA1Animal_Mogu = LoadModel("system\\data\\1st_read\\Models\\0016FD28.sa1mdl", false);
+		NJS_OBJECT* SA1Animal_Mogu = LoadModel("system\\data\\1st_read\\Models\\0016FD28.sa1mdl");
 		Action_Mogu.object = SA1Animal_Mogu;
 		Action_Mogu.motion = &_170DF8;
-		NJS_OBJECT* SA1Animal_Zou = LoadModel("system\\data\\1st_read\\Models\\001724E0.sa1mdl", false);
+		NJS_OBJECT* SA1Animal_Zou = LoadModel("system\\data\\1st_read\\Models\\001724E0.sa1mdl");
 		Action_Zou.object = SA1Animal_Zou;
 		Action_Zou.motion = &_174000;
-		NJS_OBJECT* SA1Animal_Lion = LoadModel("system\\data\\1st_read\\Models\\0017579C.sa1mdl", false);
+		NJS_OBJECT* SA1Animal_Lion = LoadModel("system\\data\\1st_read\\Models\\0017579C.sa1mdl");
 		Action_Lion.object = SA1Animal_Lion;
 		Action_Lion.motion = &_17725C;
-		NJS_OBJECT* SA1Animal_Gori = LoadModel("system\\data\\1st_read\\Models\\00178190.sa1mdl", false);
+		NJS_OBJECT* SA1Animal_Gori = LoadModel("system\\data\\1st_read\\Models\\00178190.sa1mdl");
 		Action_Gori.object = SA1Animal_Gori;
 		Action_Gori.motion = &_178FE0;
-		NJS_OBJECT* SA1Animal_Suka = LoadModel("system\\data\\1st_read\\Models\\0017A37C.sa1mdl", false);
+		NJS_OBJECT* SA1Animal_Suka = LoadModel("system\\data\\1st_read\\Models\\0017A37C.sa1mdl");
 		Action_Suka.object = SA1Animal_Suka;
 		Action_Suka.motion = &_17B5DC;
-		NJS_OBJECT* SA1Animal_Rako = LoadModel("system\\data\\1st_read\\Models\\0017CDE0.sa1mdl", false);
+		NJS_OBJECT* SA1Animal_Rako = LoadModel("system\\data\\1st_read\\Models\\0017CDE0.sa1mdl");
 		Action_Rako.object = SA1Animal_Rako;
 		Action_Rako.motion = &_17E5E0;
 		// Replace DX animal models with edited DC models that have matching model hierarchy (for Chao Garden animations)
-		*(NJS_OBJECT*)0x944FD4 = *LoadModel("system\\data\\1st_read\\Models\\DX\\00544FD4.sa1mdl", false); // Gori
-		*(NJS_OBJECT*)0x934AE0 = *LoadModel("system\\data\\1st_read\\Models\\DX\\00534AE0.sa1mdl", false); // Koar
-		*(NJS_OBJECT*)0x92C40C = *LoadModel("system\\data\\1st_read\\Models\\DX\\0052C40C.sa1mdl", false); // Pen
-		*(NJS_OBJECT*)0x92A2D0 = *LoadModel("system\\data\\1st_read\\Models\\DX\\0052A2D0.sa1mdl", false); // Goma
-		*(NJS_OBJECT*)0x949104 = *LoadModel("system\\data\\1st_read\\Models\\DX\\00549104.sa1mdl", false); // Rako
-		*(NJS_OBJECT*)0x9308DC = *LoadModel("system\\data\\1st_read\\Models\\DX\\005308DC.sa1mdl", false); // Kuja
-		*(NJS_OBJECT*)0x92EA0C = *LoadModel("system\\data\\1st_read\\Models\\DX\\0052EA0C.sa1mdl", false); // Tuba
-		*(NJS_OBJECT*)0x932ADC = *LoadModel("system\\data\\1st_read\\Models\\DX\\00532ADC.sa1mdl", false); // Oum
-		*(NJS_OBJECT*)0x939B2C = *LoadModel("system\\data\\1st_read\\Models\\DX\\00539B2C.sa1mdl", false); // Banb
-		*(NJS_OBJECT*)0x93BFE4 = *LoadModel("system\\data\\1st_read\\Models\\DX\\0053BFE4.sa1mdl", false); // Usa
-		*(NJS_OBJECT*)0x93723C = *LoadModel("system\\data\\1st_read\\Models\\DX\\0053723C.sa1mdl", false); // Wara
-		*(NJS_OBJECT*)0x942F90 = *LoadModel("system\\data\\1st_read\\Models\\DX\\00542F90.sa1mdl", false); // Lion
-		*(NJS_OBJECT*)0x94043C = *LoadModel("system\\data\\1st_read\\Models\\DX\\0054043C.sa1mdl", false); // Zou
-		*(NJS_OBJECT*)0x93E2B8 = *LoadModel("system\\data\\1st_read\\Models\\DX\\0053E2B8.sa1mdl", false); // Mogu
-		*(NJS_OBJECT*)0x946D4C = *LoadModel("system\\data\\1st_read\\Models\\DX\\00546D4C.sa1mdl", false); // Suka blyat
+		*(NJS_OBJECT*)0x944FD4 = *LoadModel("system\\data\\1st_read\\Models\\DX\\00544FD4.sa1mdl"); // Gori
+		*(NJS_OBJECT*)0x934AE0 = *LoadModel("system\\data\\1st_read\\Models\\DX\\00534AE0.sa1mdl"); // Koar
+		*(NJS_OBJECT*)0x92C40C = *LoadModel("system\\data\\1st_read\\Models\\DX\\0052C40C.sa1mdl"); // Pen
+		*(NJS_OBJECT*)0x92A2D0 = *LoadModel("system\\data\\1st_read\\Models\\DX\\0052A2D0.sa1mdl"); // Goma
+		*(NJS_OBJECT*)0x949104 = *LoadModel("system\\data\\1st_read\\Models\\DX\\00549104.sa1mdl"); // Rako
+		*(NJS_OBJECT*)0x9308DC = *LoadModel("system\\data\\1st_read\\Models\\DX\\005308DC.sa1mdl"); // Kuja
+		*(NJS_OBJECT*)0x92EA0C = *LoadModel("system\\data\\1st_read\\Models\\DX\\0052EA0C.sa1mdl"); // Tuba
+		*(NJS_OBJECT*)0x932ADC = *LoadModel("system\\data\\1st_read\\Models\\DX\\00532ADC.sa1mdl"); // Oum
+		*(NJS_OBJECT*)0x939B2C = *LoadModel("system\\data\\1st_read\\Models\\DX\\00539B2C.sa1mdl"); // Banb
+		*(NJS_OBJECT*)0x93BFE4 = *LoadModel("system\\data\\1st_read\\Models\\DX\\0053BFE4.sa1mdl"); // Usa
+		*(NJS_OBJECT*)0x93723C = *LoadModel("system\\data\\1st_read\\Models\\DX\\0053723C.sa1mdl"); // Wara
+		*(NJS_OBJECT*)0x942F90 = *LoadModel("system\\data\\1st_read\\Models\\DX\\00542F90.sa1mdl"); // Lion
+		*(NJS_OBJECT*)0x94043C = *LoadModel("system\\data\\1st_read\\Models\\DX\\0054043C.sa1mdl"); // Zou
+		*(NJS_OBJECT*)0x93E2B8 = *LoadModel("system\\data\\1st_read\\Models\\DX\\0053E2B8.sa1mdl"); // Mogu
+		*(NJS_OBJECT*)0x946D4C = *LoadModel("system\\data\\1st_read\\Models\\DX\\00546D4C.sa1mdl"); // Suka blyat
 		ModelsLoaded_General = true;
 	}
 }

@@ -288,8 +288,8 @@ void TwinklePark_Init()
 		RemoveVertexColors_Object((NJS_OBJECT*)0x27B1374); // OCandle1
 		RemoveVertexColors_Object((NJS_OBJECT*)0x27B1FB4); // OCandle2
 		// Pirate ship fixes
-		*(NJS_OBJECT*)0x27AC44C = *LoadModel("system\\data\\STG03\\Models\\000AB6DC.sa1mdl", false); // Pirate ship
-		PirateShipStars = LoadModel("system\\data\\STG03\\Models\\000AB6DC.sa1mdl", false); // Pirate ship stars mesh
+		*(NJS_OBJECT*)0x27AC44C = *LoadModel("system\\data\\STG03\\Models\\000AB6DC.sa1mdl"); // Pirate ship
+		PirateShipStars = LoadModel("system\\data\\STG03\\Models\\000AB6DC.sa1mdl"); // Pirate ship stars mesh
 		PirateShipStars->child = NULL;
 		PirateShipStars->evalflags |= NJD_EVAL_BREAK;
 		HideMesh_Object(PirateShipStars, 0);
@@ -302,49 +302,49 @@ void TwinklePark_Init()
 		HideMesh_Object(((NJS_OBJECT*)0x27AC44C), 5);
 		WriteJump((void*)0x620BC0, DrawPirateShipShit);
 		// Models
-		*(NJS_OBJECT*)0x27A3358 = *LoadModel("system\\data\\STG03\\Models\\000A6584.sa1mdl", false); // Fence (merged meshes 0+1 and made it trimesh instead of MESHSET_N)
+		*(NJS_OBJECT*)0x27A3358 = *LoadModel("system\\data\\STG03\\Models\\000A6584.sa1mdl"); // Fence (merged meshes 0+1 and made it trimesh instead of MESHSET_N)
 		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x27A3358)->basicdxmodel->mats[1]);
 		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x27A3358)->basicdxmodel->mats[2]);
-		*(NJS_OBJECT*)0x27B0708 = *LoadModel("system\\data\\STG03\\Models\\000AEC6C.sa1mdl", false); // Merry-go-round floor
-		*(NJS_OBJECT*)0x27AF5EC = *LoadModel("system\\data\\STG03\\Models\\000ADBE0.sa1mdl", false); // Double door
-		*(NJS_OBJECT*)0x27C17CC = *LoadModel("system\\data\\STG03\\Models\\000BB2B4.sa1mdl", false); // OShutter
+		*(NJS_OBJECT*)0x27B0708 = *LoadModel("system\\data\\STG03\\Models\\000AEC6C.sa1mdl"); // Merry-go-round floor
+		*(NJS_OBJECT*)0x27AF5EC = *LoadModel("system\\data\\STG03\\Models\\000ADBE0.sa1mdl"); // Double door
+		*(NJS_OBJECT*)0x27C17CC = *LoadModel("system\\data\\STG03\\Models\\000BB2B4.sa1mdl"); // OShutter
 		SwapMeshsets((NJS_OBJECT*)0x27C17CC, 3, 5); // For UV animation
-		*(NJS_OBJECT*)0x27A3F5C = *LoadModel("system\\data\\STG03\\Models\\000A6CD8.sa1mdl", false); // OFlyer
-		*(NJS_OBJECT*)0x27AFCF0 = *LoadModel("system\\data\\STG03\\Models\\000AE2BC.sa1mdl", false); // Crown
-		*(NJS_OBJECT*)0x38B119C = *LoadModel("system\\data\\STG03\\Models\\000DF3F0.sa1mdl", false); // Ship
-		*(NJS_OBJECT*)0x27AE4F4 = *LoadModel("system\\data\\STG03\\Models\\000AD08C.sa1mdl", false); // Merry-go-round (swapped materials/meshsets 0 and 2 for compatibility with DX animation code)
-		*(NJS_OBJECT*)0x27BEA34 = *LoadModel("system\\data\\STG03\\Models\\000B95A0.sa1mdl", false); // Horsies
-		*(NJS_OBJECT*)0x27AD86C = *LoadModel("system\\data\\STG03\\Models\\000AC45C.sa1mdl", false); // Bowling door
-		*(NJS_OBJECT*)0x27A67B4 = *LoadModel("system\\data\\STG03\\Models\\000A8D60.sa1mdl", false); // OBowWindow
-		*(NJS_OBJECT*)0x27B23E4 = *LoadModel("system\\data\\STG03\\Models\\000B0818.sa1mdl", false); // Trap door
-		*(NJS_OBJECT*)0x27B2DE4 = *LoadModel("system\\data\\STG03\\Models\\000B0A9C.sa1mdl", false); // ODoor
-		*(NJS_OBJECT*)0x27B5884 = *LoadModel("system\\data\\STG03\\Models\\000B2A40.sa1mdl", false); // O Foothold
-		*(NJS_OBJECT*)0x27B6170 = *LoadModel("system\\data\\STG03\\Models\\000B34C8.sa1mdl", false); // Yellow flower pot (wall)
-		*(NJS_OBJECT*)0x27B80C4 = *LoadModel("system\\data\\STG03\\Models\\000B4F1C.sa1mdl", false); // Yellow flower pot
-		*(NJS_OBJECT*)0x27BAC54 = *LoadModel("system\\data\\STG03\\Models\\000B6CF8.sa1mdl", false); // Yellow flower bed
-		*(NJS_OBJECT*)0x27B6A58 = *LoadModel("system\\data\\STG03\\Models\\000B3F50.sa1mdl", false); // Pink flower pot (wall)
-		*(NJS_OBJECT*)0x27B972C = *LoadModel("system\\data\\STG03\\Models\\000B5EE8.sa1mdl", false); // Pink flower pot
-		*(NJS_OBJECT*)0x27BC1C4 = *LoadModel("system\\data\\STG03\\Models\\000B7B08.sa1mdl", false); // Pink flower bed
-		*(NJS_OBJECT*)0x27BF9DC = *LoadModel("system\\data\\STG03\\Models\\000B9E98.sa1mdl", false); // Spinning roof
-		*(NJS_OBJECT*)0x27BCD7C = *LoadModel("system\\data\\STG03\\Models\\000B812C.sa1mdl", false); // Lilypad
-		*(NJS_OBJECT*)0x27C05FC = *LoadModel("system\\data\\STG03\\Models\\000BA81C.sa1mdl", false); // Monitor in Act 1 (meshes 4 and 5 swapped for UV code compatibility)
-		*(NJS_OBJECT*)0x27B3DB8 = *LoadModel("system\\data\\STG03\\Models\\000B13A8.sa1mdl", false); // Bowling pin
-		*(NJS_OBJECT*)0x38E50C4 = *LoadModel("system\\data\\STG03\\Models\\000C6264.sa1mdl", false); // Buyon feet
-		*(NJS_OBJECT*)0x38E3584 = *LoadModel("system\\data\\STG03\\Models\\000C47C8.sa1mdl", false); // Buyon head
-		*(NJS_OBJECT*)0x38E3B2C = *LoadModel("system\\data\\STG03\\Models\\000C4D60.sa1mdl", false); // Buyon body
-		*(NJS_OBJECT*)0x27A247C = *LoadModel("system\\data\\STG03\\Models\\000A56D0.sa1mdl", false); // Rollercoaster
-		((NJS_ACTION*)0x27C295C)->object = LoadModel("system\\data\\STG03\\Models\\000A7A7C.sa1mdl", false); // Flag 1
-		((NJS_ACTION*)0x27C26B4)->object = LoadModel("system\\data\\STG03\\Models\\000A7640.sa1mdl", false); // Flag 2
-		((NJS_ACTION*)0x27C2EA4)->object = LoadModel("system\\data\\STG03\\Models\\000A89E4.sa1mdl", false); // OFlagWLamp
-		*(NJS_OBJECT*)0x27A0560 = *LoadModel("system\\data\\STG03\\Models\\000A3DD0.sa1mdl", false); // OFlagWLamp light
+		*(NJS_OBJECT*)0x27A3F5C = *LoadModel("system\\data\\STG03\\Models\\000A6CD8.sa1mdl"); // OFlyer
+		*(NJS_OBJECT*)0x27AFCF0 = *LoadModel("system\\data\\STG03\\Models\\000AE2BC.sa1mdl"); // Crown
+		*(NJS_OBJECT*)0x38B119C = *LoadModel("system\\data\\STG03\\Models\\000DF3F0.sa1mdl"); // Ship
+		*(NJS_OBJECT*)0x27AE4F4 = *LoadModel("system\\data\\STG03\\Models\\000AD08C.sa1mdl"); // Merry-go-round (swapped materials/meshsets 0 and 2 for compatibility with DX animation code)
+		*(NJS_OBJECT*)0x27BEA34 = *LoadModel("system\\data\\STG03\\Models\\000B95A0.sa1mdl"); // Horsies
+		*(NJS_OBJECT*)0x27AD86C = *LoadModel("system\\data\\STG03\\Models\\000AC45C.sa1mdl"); // Bowling door
+		*(NJS_OBJECT*)0x27A67B4 = *LoadModel("system\\data\\STG03\\Models\\000A8D60.sa1mdl"); // OBowWindow
+		*(NJS_OBJECT*)0x27B23E4 = *LoadModel("system\\data\\STG03\\Models\\000B0818.sa1mdl"); // Trap door
+		*(NJS_OBJECT*)0x27B2DE4 = *LoadModel("system\\data\\STG03\\Models\\000B0A9C.sa1mdl"); // ODoor
+		*(NJS_OBJECT*)0x27B5884 = *LoadModel("system\\data\\STG03\\Models\\000B2A40.sa1mdl"); // O Foothold
+		*(NJS_OBJECT*)0x27B6170 = *LoadModel("system\\data\\STG03\\Models\\000B34C8.sa1mdl"); // Yellow flower pot (wall)
+		*(NJS_OBJECT*)0x27B80C4 = *LoadModel("system\\data\\STG03\\Models\\000B4F1C.sa1mdl"); // Yellow flower pot
+		*(NJS_OBJECT*)0x27BAC54 = *LoadModel("system\\data\\STG03\\Models\\000B6CF8.sa1mdl"); // Yellow flower bed
+		*(NJS_OBJECT*)0x27B6A58 = *LoadModel("system\\data\\STG03\\Models\\000B3F50.sa1mdl"); // Pink flower pot (wall)
+		*(NJS_OBJECT*)0x27B972C = *LoadModel("system\\data\\STG03\\Models\\000B5EE8.sa1mdl"); // Pink flower pot
+		*(NJS_OBJECT*)0x27BC1C4 = *LoadModel("system\\data\\STG03\\Models\\000B7B08.sa1mdl"); // Pink flower bed
+		*(NJS_OBJECT*)0x27BF9DC = *LoadModel("system\\data\\STG03\\Models\\000B9E98.sa1mdl"); // Spinning roof
+		*(NJS_OBJECT*)0x27BCD7C = *LoadModel("system\\data\\STG03\\Models\\000B812C.sa1mdl"); // Lilypad
+		*(NJS_OBJECT*)0x27C05FC = *LoadModel("system\\data\\STG03\\Models\\000BA81C.sa1mdl"); // Monitor in Act 1 (meshes 4 and 5 swapped for UV code compatibility)
+		*(NJS_OBJECT*)0x27B3DB8 = *LoadModel("system\\data\\STG03\\Models\\000B13A8.sa1mdl"); // Bowling pin
+		*(NJS_OBJECT*)0x38E50C4 = *LoadModel("system\\data\\STG03\\Models\\000C6264.sa1mdl"); // Buyon feet
+		*(NJS_OBJECT*)0x38E3584 = *LoadModel("system\\data\\STG03\\Models\\000C47C8.sa1mdl"); // Buyon head
+		*(NJS_OBJECT*)0x38E3B2C = *LoadModel("system\\data\\STG03\\Models\\000C4D60.sa1mdl"); // Buyon body
+		*(NJS_OBJECT*)0x27A247C = *LoadModel("system\\data\\STG03\\Models\\000A56D0.sa1mdl"); // Rollercoaster
+		((NJS_ACTION*)0x27C295C)->object = LoadModel("system\\data\\STG03\\Models\\000A7A7C.sa1mdl"); // Flag 1
+		((NJS_ACTION*)0x27C26B4)->object = LoadModel("system\\data\\STG03\\Models\\000A7640.sa1mdl"); // Flag 2
+		((NJS_ACTION*)0x27C2EA4)->object = LoadModel("system\\data\\STG03\\Models\\000A89E4.sa1mdl"); // OFlagWLamp
+		*(NJS_OBJECT*)0x27A0560 = *LoadModel("system\\data\\STG03\\Models\\000A3DD0.sa1mdl"); // OFlagWLamp light
 		AddAlphaRejectMaterial(&((NJS_OBJECT*)0x27A0560)->basicdxmodel->mats[0]);
-		*(NJS_OBJECT*)0x27B49AC = *LoadModel("system\\data\\STG03\\Models\\000B1DEC.sa1mdl", false); // OLamp
+		*(NJS_OBJECT*)0x27B49AC = *LoadModel("system\\data\\STG03\\Models\\000B1DEC.sa1mdl"); // OLamp
 		AddAlphaRejectMaterial(&((NJS_OBJECT*)0x27B49AC)->child->basicdxmodel->mats[0]);
 		AddAlphaRejectMaterial(&((NJS_OBJECT*)0x27B49AC)->child->sibling->basicdxmodel->mats[0]);
 		// Bowling fixes
-		*(NJS_OBJECT*)0x27A0454 = *LoadModel("system\\data\\STG03\\Models\\000A3CCC.sa1mdl", false); // Bowling catapult
+		*(NJS_OBJECT*)0x27A0454 = *LoadModel("system\\data\\STG03\\Models\\000A3CCC.sa1mdl"); // Bowling catapult
 		HideMesh_Object(((NJS_OBJECT*)0x27A0454), 0); // Disable transparent floor
-		OCatapultFloor = LoadModel("system\\data\\STG03\\Models\\000A3CCC.sa1mdl", false); // Bowling catapult (floor)
+		OCatapultFloor = LoadModel("system\\data\\STG03\\Models\\000A3CCC.sa1mdl"); // Bowling catapult (floor)
 		HideMesh_Object(OCatapultFloor, 1);
 		HideMesh_Object(OCatapultFloor, 2);
 		HideMesh_Object(OCatapultFloor, 3);
@@ -352,12 +352,12 @@ void TwinklePark_Init()
 		OCatapultFloor->child = NULL;
 		WriteCall((void*)0x621FE5, RenderCatapult); // Bowling catapult fix
 		// Barrel stuff
-		*(NJS_OBJECT*)0x279D364 = *LoadModel("system\\data\\STG03\\Models\\000A0E58.sa1mdl", true); // Barrel
-		*(NJS_OBJECT*)0x279D6AC = *LoadModel("system\\data\\STG03\\Models\\000A1064.sa1mdl", false); // Barrel (destroyed) part 1
-		*(NJS_OBJECT*)0x279D7F4 = *LoadModel("system\\data\\STG03\\Models\\000A11A4.sa1mdl", false); // Barrel (destroyed) part 2
-		*(NJS_OBJECT*)0x279D900 = *LoadModel("system\\data\\STG03\\Models\\000A12A8.sa1mdl", false); // Barrel (destroyed) part 3
-		*(NJS_OBJECT*)0x279DA28 = *LoadModel("system\\data\\STG03\\Models\\000A13C8.sa1mdl", false); // Barrel (destroyed) part 4
-		*(NJS_OBJECT*)0x279DB14 = *LoadModel("system\\data\\STG03\\Models\\000A14AC.sa1mdl", false); // Barrel (destroyed) part 5
+		*(NJS_OBJECT*)0x279D364 = *LoadModel("system\\data\\STG03\\Models\\000A0E58.sa1mdl"); // Barrel
+		*(NJS_OBJECT*)0x279D6AC = *LoadModel("system\\data\\STG03\\Models\\000A1064.sa1mdl"); // Barrel (destroyed) part 1
+		*(NJS_OBJECT*)0x279D7F4 = *LoadModel("system\\data\\STG03\\Models\\000A11A4.sa1mdl"); // Barrel (destroyed) part 2
+		*(NJS_OBJECT*)0x279D900 = *LoadModel("system\\data\\STG03\\Models\\000A12A8.sa1mdl"); // Barrel (destroyed) part 3
+		*(NJS_OBJECT*)0x279DA28 = *LoadModel("system\\data\\STG03\\Models\\000A13C8.sa1mdl"); // Barrel (destroyed) part 4
+		*(NJS_OBJECT*)0x279DB14 = *LoadModel("system\\data\\STG03\\Models\\000A14AC.sa1mdl"); // Barrel (destroyed) part 5
 		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x279D364)->basicdxmodel->mats[1]);
 		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x279D364)->basicdxmodel->mats[2]);
 		// Fog and draw distance
@@ -389,14 +389,14 @@ void ShareObj_Init()
 	if (!ModelsLoaded_ShareObj)
 	{
 		// OLight1 fixes
-		*(NJS_OBJECT*)0x38C3A9C = *LoadModel("system\\data\\STG03\\Models\\000F1228.sa1mdl", true); // OLight1
+		*(NJS_OBJECT*)0x38C3A9C = *LoadModel("system\\data\\STG03\\Models\\000F1228.sa1mdl"); // OLight1
 		HideMesh_Object(((NJS_OBJECT*)0x38C3A9C), 7); // Disable transparent part
 		((NJS_OBJECT*)0x38C3A9C)->basicdxmodel->mats[7].attrflags &= ~NJD_FLAG_USE_ALPHA; // Disable transparent part
 		((NJS_OBJECT*)0x38C3A9C)->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_IGNORE_SPECULAR;
 		((NJS_OBJECT*)0x38C3A9C)->basicdxmodel->mats[1].attrflags &= ~NJD_FLAG_IGNORE_SPECULAR;
 		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x38C3A9C)->basicdxmodel->mats[0]);
 		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x38C3A9C)->basicdxmodel->mats[1]);
-		*(NJS_OBJECT*)0x38C3A68 = *LoadModel("system\\data\\STG03\\Models\\000F1228.sa1mdl", false); // OLight1 (transparent)
+		*(NJS_OBJECT*)0x38C3A68 = *LoadModel("system\\data\\STG03\\Models\\000F1228.sa1mdl"); // OLight1 (transparent)
 		HideMesh_Object(((NJS_OBJECT*)0x38C3A68), 1); // Disable opaque part
 		HideMesh_Object(((NJS_OBJECT*)0x38C3A68), 2); // Disable opaque part
 		HideMesh_Object(((NJS_OBJECT*)0x38C3A68), 3); // Disable opaque part
@@ -444,7 +444,7 @@ void ShareObj_Init()
 		RemoveVertexColors_Model((NJS_MODEL_SADX*)0x38AB1F0); // 31
 		LoadModel_ReplaceMeshes((NJS_OBJECT*)0x038BAAA4, "system\\data\\STG03\\Models\\000EAB28.sa1mdl");
 		HideMesh_Object(((NJS_OBJECT*)0x038BAAA4)->child, 1);
-		CartGlass.basicdxmodel = LoadModel("system\\data\\STG03\\Models\\000EAB28.sa1mdl", false)->child->basicdxmodel;
+		CartGlass.basicdxmodel = LoadModel("system\\data\\STG03\\Models\\000EAB28.sa1mdl")->child->basicdxmodel;
 		HideMesh_Object(&CartGlass, 0);
 		HideMesh_Object(&CartGlass, 2);
 		HideMesh_Object(&CartGlass, 3);
@@ -455,10 +455,10 @@ void ShareObj_Init()
 		RemoveVertexColors_Object((NJS_OBJECT*)0x038AB250); // Cart 3
 		RemoveVertexColors_Object((NJS_OBJECT*)0x038A9130); // Cart 4
 		// ArchLight fixes
-		*(NJS_OBJECT*)0x38BFA74 = *LoadModel("system\\data\\STG03\\Models\\000ED90C.sa1mdl", false); // Arch
-		*(NJS_OBJECT*)0x38C02C4 = *LoadModel("system\\data\\STG03\\Models\\000EE138.sa1mdl", false); // Arch supporter
+		*(NJS_OBJECT*)0x38BFA74 = *LoadModel("system\\data\\STG03\\Models\\000ED90C.sa1mdl"); // Arch
+		*(NJS_OBJECT*)0x38C02C4 = *LoadModel("system\\data\\STG03\\Models\\000EE138.sa1mdl"); // Arch supporter
 		HideMesh_Object(((NJS_OBJECT*)0x38C02C4), 2); // Disable transparent parts
-		ArchLightLight = LoadModel("system\\data\\STG03\\Models\\000EE138.sa1mdl", false); // Arch supporter (transparent)
+		ArchLightLight = LoadModel("system\\data\\STG03\\Models\\000EE138.sa1mdl"); // Arch supporter (transparent)
 		ArchLightLight->evalflags |= NJD_EVAL_BREAK;
 		ArchLightLight->child = NULL;
 		HideMesh_Object(ArchLightLight, 0); // Disable opaque parts
@@ -467,18 +467,18 @@ void ShareObj_Init()
 		WriteCall((void*)0x0079C5FD, FixArchLight);
 		WriteCall((void*)0x0079C36A, FixShittyLightObjects_Pause);
 		// Other models
-		*(NJS_OBJECT*)0x38BE5F4 = *LoadModel("system\\data\\STG03\\Models\\000EC4E0.sa1mdl", false); // Dash pad
-		*(NJS_OBJECT*)0x38C07CC = *LoadModel("system\\data\\STG03\\Models\\000EE618.sa1mdl", false); // Jump pad
-		*(NJS_OBJECT*)0x38C5B3C = *LoadModel("system\\data\\STG03\\Models\\000F3170.sa1mdl", false); // OCartStopper
+		*(NJS_OBJECT*)0x38BE5F4 = *LoadModel("system\\data\\STG03\\Models\\000EC4E0.sa1mdl"); // Dash pad
+		*(NJS_OBJECT*)0x38C07CC = *LoadModel("system\\data\\STG03\\Models\\000EE618.sa1mdl"); // Jump pad
+		*(NJS_OBJECT*)0x38C5B3C = *LoadModel("system\\data\\STG03\\Models\\000F3170.sa1mdl"); // OCartStopper
 		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x38C5B3C)->basicdxmodel->mats[2]);
 		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x38C5B3C)->basicdxmodel->mats[8]);
-		*(NJS_OBJECT*)0x38BE2B4 = *LoadModel("system\\data\\STG03\\Models\\000EC1B4.sa1mdl", false); // OPlanet with rings
+		*(NJS_OBJECT*)0x38BE2B4 = *LoadModel("system\\data\\STG03\\Models\\000EC1B4.sa1mdl"); // OPlanet with rings
 		// OPanel fix
-		*(NJS_OBJECT*)0x38C214C = *LoadModel("system\\data\\STG03\\Models\\000EFF38.sa1mdl", false); // OPanel (opaque)
+		*(NJS_OBJECT*)0x38C214C = *LoadModel("system\\data\\STG03\\Models\\000EFF38.sa1mdl"); // OPanel (opaque)
 		HideMesh_Object(((NJS_OBJECT*)0x38C214C), 1);
 		HideMesh_Object(((NJS_OBJECT*)0x38C214C), 4);
 		HideMesh_Object(((NJS_OBJECT*)0x38C214C), 6);
-		OPanelPanel = LoadModel("system\\data\\STG03\\Models\\000EFF38.sa1mdl", false); // OPanel (transparent)
+		OPanelPanel = LoadModel("system\\data\\STG03\\Models\\000EFF38.sa1mdl"); // OPanel (transparent)
 		HideMesh_Object(OPanelPanel, 0);
 		HideMesh_Object(OPanelPanel, 2);
 		HideMesh_Object(OPanelPanel, 3);
@@ -488,12 +488,12 @@ void ShareObj_Init()
 		WriteCall((void*)0x79DB94, RenderOPanel_Main);
 		WriteCall((void*)0x79DBA4, RenderOPanel_Transparent);
 		// OPole fix
-		OPole_Main = LoadModel("system\\data\\STG03\\Models\\000F066C.sa1mdl", false); // OPole model (opaque + light child object)
+		OPole_Main = LoadModel("system\\data\\STG03\\Models\\000F066C.sa1mdl"); // OPole model (opaque + light child object)
 		AddWhiteDiffuseMaterial(&OPole_Main->basicdxmodel->mats[3]);
 		HideMesh_Object(OPole_Main, 1);
 		HideMesh_Object(OPole_Main, 2);
 		HideMesh_Object(OPole_Main, 4);
-		OPole_Pole = LoadModel("system\\data\\STG03\\Models\\000F066C.sa1mdl", false); // OPole model (transparent)
+		OPole_Pole = LoadModel("system\\data\\STG03\\Models\\000F066C.sa1mdl"); // OPole model (transparent)
 		HideMesh_Object(OPole_Pole, 0);
 		HideMesh_Object(OPole_Pole, 3);
 		OPole_Pole->evalflags |= NJD_EVAL_BREAK;

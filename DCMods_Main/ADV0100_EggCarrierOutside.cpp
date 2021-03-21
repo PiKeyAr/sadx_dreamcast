@@ -358,7 +358,7 @@ void ADV01_Init()
 		*ADV01_TEXLISTS[5] = texlist_ec05;
 		if (!SADXWater_EggCarrier)
 		{
-			EggCarrierSeaModel = LoadModel("system\\data\\ADV0100\\Models\\001C0478.sa1mdl", false);
+			EggCarrierSeaModel = LoadModel("system\\data\\ADV0100\\Models\\001C0478.sa1mdl");
 			AddTextureAnimation_Permanent(29, 0, &EggCarrierSeaModel->basicdxmodel->mats[0], false, 4, 4, 13);
 			AddTextureAnimation_Permanent(29, 1, &EggCarrierSeaModel->basicdxmodel->mats[0], false, 4, 4, 13);
 			AddTextureAnimation_Permanent(29, 2, &EggCarrierSeaModel->basicdxmodel->mats[0], false, 4, 4, 13);
@@ -411,25 +411,25 @@ void ADV01_Init()
 		WriteJump((char*)GetProcAddress(GetModuleHandle(L"ADV01MODELS"), "SetClip_EC01"), SetClip_EggCarrier);
 		WriteData<5>((void*)0x51BB8C, 0x90); // Don't disable fog in EC transformation cutscene
 		// Model replacements
-		NJS_OBJECT* EggChair = LoadModel("system\\data\\ADV0100\\Models\\0019795C.sa1mdl", false); // OEggChair
+		NJS_OBJECT* EggChair = LoadModel("system\\data\\ADV0100\\Models\\0019795C.sa1mdl"); // OEggChair
 		*ADV01_ACTIONS[2]->object = *EggChair;
 		*ADV01_ACTIONS[2]->motion = _197dbc; // OEggChair
 		*ADV01_OBJECTS[21] = *EggChair->child->child;
 		*ADV01_OBJECTS[22] = *EggChair->child->child->sibling->sibling->sibling;
 		*ADV01_OBJECTS[23] = *EggChair->child->child->sibling->sibling->sibling->sibling;
 		*ADV01_OBJECTS[24] = *EggChair->child->child->sibling->sibling->sibling->sibling->sibling;
-		*ADV01_ACTIONS[6]->object = *LoadModel("system\\data\\ADV0100\\Models\\0016991C.sa1mdl", false); // OSkyDeck
-		NJS_OBJECT* ECTransform = LoadModel("system\\data\\ADV0100\\Models\\00209538.sa1mdl", false);
+		*ADV01_ACTIONS[6]->object = *LoadModel("system\\data\\ADV0100\\Models\\0016991C.sa1mdl"); // OSkyDeck
+		NJS_OBJECT* ECTransform = LoadModel("system\\data\\ADV0100\\Models\\00209538.sa1mdl");
 		*ADV01_ACTIONS[7]->object = *ECTransform; // EC transform
 		*ADV01_OBJECTS[64] = *ECTransform; // EC transform
-		*ADV01_OBJECTS[0] = *LoadModel("system\\data\\ADV0100\\Models\\00182160.sa1mdl", false); // SideLift
-		*ADV01_OBJECTS[1] = *LoadModel("system\\data\\ADV0100\\Models\\00181DBC.sa1mdl", false); // SideLift
-		*ADV01_OBJECTS[2] = *LoadModel("system\\data\\ADV0100\\Models\\00181684.sa1mdl", false); // SideLift
-		*ADV01_ACTIONS[3]->object = *LoadModel("system\\data\\ADV0100\\Models\\0019A490.sa1mdl", false); // OGunSight
-		*ADV01_OBJECTS[6] = *LoadModel("system\\data\\ADV0100\\Models\\001AA1A8.sa1mdl", false); // OBChair
-		*ADV01_OBJECTS[8] = *LoadModel("system\\data\\ADV0100\\Models\\001A01A0.sa1mdl", false); // OEggmanBed
+		*ADV01_OBJECTS[0] = *LoadModel("system\\data\\ADV0100\\Models\\00182160.sa1mdl"); // SideLift
+		*ADV01_OBJECTS[1] = *LoadModel("system\\data\\ADV0100\\Models\\00181DBC.sa1mdl"); // SideLift
+		*ADV01_OBJECTS[2] = *LoadModel("system\\data\\ADV0100\\Models\\00181684.sa1mdl"); // SideLift
+		*ADV01_ACTIONS[3]->object = *LoadModel("system\\data\\ADV0100\\Models\\0019A490.sa1mdl"); // OGunSight
+		*ADV01_OBJECTS[6] = *LoadModel("system\\data\\ADV0100\\Models\\001AA1A8.sa1mdl"); // OBChair
+		*ADV01_OBJECTS[8] = *LoadModel("system\\data\\ADV0100\\Models\\001A01A0.sa1mdl"); // OEggmanBed
 		*ADV01_OBJECTS[29] = *ADV01_ACTIONS[3]->object;
-		*ADV01_OBJECTS[55] = *LoadModel("system\\data\\ADV0100\\Models\\0017D82C.sa1mdl", false); // OSLight
+		*ADV01_OBJECTS[55] = *LoadModel("system\\data\\ADV0100\\Models\\0017D82C.sa1mdl"); // OSLight
 		*ADV01_OBJECTS[56] = *ADV01_OBJECTS[55]->child; // OSLight
 		*ADV01_OBJECTS[57] = *ADV01_OBJECTS[55]->child->child; // OSLight
 		AddWhiteDiffuseMaterial(&ADV01_OBJECTS[55]->child->child->basicdxmodel->mats[3]);
@@ -437,35 +437,35 @@ void ADV01_Init()
 		AddWhiteDiffuseMaterial(&ADV01_OBJECTS[55]->child->child->basicdxmodel->mats[5]);
 		AddWhiteDiffuseMaterial(&ADV01_OBJECTS[55]->child->child->basicdxmodel->mats[6]);
 		AddWhiteDiffuseMaterial(&ADV01_OBJECTS[55]->child->child->basicdxmodel->mats[7]);
-		*ADV01_OBJECTS[58] = *LoadModel("system\\data\\ADV0100\\Models\\0017BFE4.sa1mdl", false); // OSLight
-		*ADV01_OBJECTS[61] = *LoadModel("system\\data\\ADV0100\\Models\\001B4794.sa1mdl", false); // OTornado2
+		*ADV01_OBJECTS[58] = *LoadModel("system\\data\\ADV0100\\Models\\0017BFE4.sa1mdl"); // OSLight
+		*ADV01_OBJECTS[61] = *LoadModel("system\\data\\ADV0100\\Models\\001B4794.sa1mdl"); // OTornado2
 		AddWhiteDiffuseMaterial(&ADV01_OBJECTS[61]->basicdxmodel->mats[24]);
 		AddWhiteDiffuseMaterial(&ADV01_OBJECTS[61]->basicdxmodel->mats[25]);
 		SwapMeshsets(ADV01_OBJECTS[61], 0, 22);
-		NJS_OBJECT* SomeStupidThing = LoadModel("system\\data\\ADV0100\\Models\\00178BC4.sa1mdl", false);
+		NJS_OBJECT* SomeStupidThing = LoadModel("system\\data\\ADV0100\\Models\\00178BC4.sa1mdl");
 		*ADV01_ACTIONS[0]->object = *SomeStupidThing; // This thing is stupid
 		*ADV01_OBJECTS[5] = *SomeStupidThing; // This thing is stupid
-		*ADV01_OBJECTS[13] = *LoadModel("system\\data\\ADV0100\\Models\\001A85F0.sa1mdl", false); // OParasol
-		*ADV01_OBJECTS[27] = *LoadModel("system\\data\\ADV0100\\Models\\001782D4.sa1mdl", false); // Door top
-		NJS_OBJECT* Taihou = LoadModel("system\\data\\ADV0100\\Models\\0017FDB4.sa1mdl", false);
+		*ADV01_OBJECTS[13] = *LoadModel("system\\data\\ADV0100\\Models\\001A85F0.sa1mdl"); // OParasol
+		*ADV01_OBJECTS[27] = *LoadModel("system\\data\\ADV0100\\Models\\001782D4.sa1mdl"); // Door top
+		NJS_OBJECT* Taihou = LoadModel("system\\data\\ADV0100\\Models\\0017FDB4.sa1mdl");
 		*ADV01_OBJECTS[14]->basicdxmodel = *Taihou->basicdxmodel; // OTaihou (Cannon)
 		*ADV01_OBJECTS[14]->child->basicdxmodel = *Taihou->child->basicdxmodel; // OTaihou (Cannon)
 		*ADV01_OBJECTS[14]->child->child->basicdxmodel = *Taihou->child->child->basicdxmodel; // OTaihou (Cannon)
 		*ADV01_OBJECTS[14]->child->child->sibling->basicdxmodel = *Taihou->child->child->sibling->basicdxmodel; // OTaihou (Cannon)
-		*ADV01_OBJECTS[28] = *LoadModel("system\\data\\ADV0100\\Models\\001777B4.sa1mdl", false); // Door 2
-		*ADV01_OBJECTS[18] = *LoadModel("system\\data\\ADV0100\\Models\\00189EA0.sa1mdl", false); // Eggcap
-		*ADV01_OBJECTS[19] = *LoadModel("system\\data\\ADV0100\\Models\\001760A0.sa1mdl", false); // Egglift
-		*ADV01_OBJECTS[34] = *LoadModel("system\\data\\ADV0100\\Models\\00189090.sa1mdl", false); // OMast
+		*ADV01_OBJECTS[28] = *LoadModel("system\\data\\ADV0100\\Models\\001777B4.sa1mdl"); // Door 2
+		*ADV01_OBJECTS[18] = *LoadModel("system\\data\\ADV0100\\Models\\00189EA0.sa1mdl"); // Eggcap
+		*ADV01_OBJECTS[19] = *LoadModel("system\\data\\ADV0100\\Models\\001760A0.sa1mdl"); // Egglift
+		*ADV01_OBJECTS[34] = *LoadModel("system\\data\\ADV0100\\Models\\00189090.sa1mdl"); // OMast
 		ADV01_OBJECTS[51]->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT; // Pool water
 		ADV01_OBJECTS[51]->basicdxmodel->mats[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT; // Pool water
 		ADV01_OBJECTS[51]->basicdxmodel->mats[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT; // Pool water
-		NJS_OBJECT* MonorailFront = LoadModel("system\\data\\ADV0100\\Models\\00170498.sa1mdl", false);
+		NJS_OBJECT* MonorailFront = LoadModel("system\\data\\ADV0100\\Models\\00170498.sa1mdl");
 		*ADV01_OBJECTS[69]->basicdxmodel = *MonorailFront->basicdxmodel;
 		*ADV01_OBJECTS[69]->child->basicdxmodel = *MonorailFront->child->basicdxmodel;
 		*ADV01_OBJECTS[69]->child->child->basicdxmodel = *MonorailFront->child->child->basicdxmodel;
 		*ADV01_OBJECTS[69]->child->sibling->basicdxmodel = *MonorailFront->child->sibling->basicdxmodel;
 		AddAlphaRejectMaterial(&ADV01_OBJECTS[69]->child->sibling->basicdxmodel->mats[0]);
-		NJS_OBJECT* MonorailBack = LoadModel("system\\data\\ADV0100\\Models\\00170498.sa1mdl", false);
+		NJS_OBJECT* MonorailBack = LoadModel("system\\data\\ADV0100\\Models\\00170498.sa1mdl");
 		*ADV01_OBJECTS[70]->basicdxmodel = *MonorailBack->basicdxmodel;
 		*ADV01_OBJECTS[70]->child->basicdxmodel = *MonorailBack->child->basicdxmodel;
 		*ADV01_OBJECTS[70]->child->child->basicdxmodel = *MonorailBack->child->child->basicdxmodel;

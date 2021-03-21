@@ -3103,7 +3103,7 @@ void Branding_Init(const IniFile *config, const HelperFunctions &helperFunctions
 	// Title screen stuff
 	if (!DisableSA1TitleScreen)
 	{
-		TitleScreenModel = LoadModel("system\\data\\Other\\0005EB54.sa1mdl", false);
+		TitleScreenModel = LoadModel("system\\data\\Other\\0005EB54.sa1mdl");
 		NumberOfSaves = FindSaveFilesLite();
 		//PrintDebug("Number of saves: %d\n", NumberOfSaves);
 		TitleBackOverlayColor.color = 0x99FFFFFF;

@@ -2199,50 +2199,50 @@ void ChaoGardens_Init()
 		LoadChaoGardenHintMessages();
 		WriteJump((void*)0x728E20, ChaoGardenSSMRWater_Display_); // Ocean/water function for DX water in SS and MR gardens
 		// Load models
-		ChaoGardenTransporterEffect = LoadModel("system\\data\\AL_MAIN\\Models\\00180744.sa1mdl", false);
-		ChaoFruit_Chaonut = LoadModel("system\\data\\AL_MAIN\\Models\\0017D068.sa1mdl", false);
-		ChaoFruit_Starnut = LoadModel("system\\data\\AL_MAIN\\Models\\0017D55C.sa1mdl", false);
-		ChaoFruit_Hastnut = LoadModel("system\\data\\AL_MAIN\\Models\\0017DA88.sa1mdl", false);
-		ChaoFruit_Lifenut = LoadModel("system\\data\\AL_MAIN\\Models\\0017F384.sa1mdl", false);
-		ChaoFruit_Normal_25 = LoadModel("system\\data\\AL_MAIN\\Models\\0017C72C.sa1mdl", false);
+		ChaoGardenTransporterEffect = LoadModel("system\\data\\AL_MAIN\\Models\\00180744.sa1mdl");
+		ChaoFruit_Chaonut = LoadModel("system\\data\\AL_MAIN\\Models\\0017D068.sa1mdl");
+		ChaoFruit_Starnut = LoadModel("system\\data\\AL_MAIN\\Models\\0017D55C.sa1mdl");
+		ChaoFruit_Hastnut = LoadModel("system\\data\\AL_MAIN\\Models\\0017DA88.sa1mdl");
+		ChaoFruit_Lifenut = LoadModel("system\\data\\AL_MAIN\\Models\\0017F384.sa1mdl");
+		ChaoFruit_Normal_25 = LoadModel("system\\data\\AL_MAIN\\Models\\0017C72C.sa1mdl");
 		ChaoFruit_Normal_25->pos[0] = 0;
 		ChaoFruit_Normal_25->pos[1] = 0;
 		ChaoFruit_Normal_25->pos[2] = 0;
-		ChaoFruit_Normal_50 = LoadModel("system\\data\\AL_MAIN\\Models\\0017C3F4.sa1mdl", false);
+		ChaoFruit_Normal_50 = LoadModel("system\\data\\AL_MAIN\\Models\\0017C3F4.sa1mdl");
 		ChaoFruit_Normal_50->pos[0] = 0;
 		ChaoFruit_Normal_50->pos[1] = 0;
 		ChaoFruit_Normal_50->pos[2] = 0;
-		ChaoFruit_Normal_75 = LoadModel("system\\data\\AL_MAIN\\Models\\0017CA64.sa1mdl", false);
+		ChaoFruit_Normal_75 = LoadModel("system\\data\\AL_MAIN\\Models\\0017CA64.sa1mdl");
 		ChaoFruit_Normal_75->pos[0] = 0;
 		ChaoFruit_Normal_75->pos[1] = 0;
 		ChaoFruit_Normal_75->pos[2] = 0;
-		ChaoFruit_Normal_Ripe = LoadModel("system\\data\\AL_MAIN\\Models\\0017C0BC.sa1mdl", false);
+		ChaoFruit_Normal_Ripe = LoadModel("system\\data\\AL_MAIN\\Models\\0017C0BC.sa1mdl");
 		ChaoFruit_Normal_Ripe->pos[0] = 0;
 		ChaoFruit_Normal_Ripe->pos[1] = 0;
 		ChaoFruit_Normal_Ripe->pos[2] = 0;
-		ChaoEgg_BlackTwoTone = LoadModel("system\\data\\AL_MAIN\\Models\\00149CB8.sa1mdl", false);
-		ChaoEgg_Normal = LoadModel("system\\data\\AL_MAIN\\Models\\00146E90.sa1mdl", false);
-		ChaoEgg_Gold = LoadModel("system\\data\\AL_MAIN\\Models\\00147E18.sa1mdl", false);
-		ChaoEgg_Silver = LoadModel("system\\data\\AL_MAIN\\Models\\00148D60.sa1mdl", false);
-		ChaoEgg_Broken_BlackTwoTone = LoadModel("system\\data\\AL_MAIN\\Models\\0014A540.sa1mdl", false);
-		ChaoEgg_Broken_Normal = LoadModel("system\\data\\AL_MAIN\\Models\\00147718.sa1mdl", false); // Added child object (egg shell bottom) like in other 3 models
-		ChaoEgg_Broken_Gold = LoadModel("system\\data\\AL_MAIN\\Models\\00148660.sa1mdl", false);
-		ChaoEgg_Broken_Silver = LoadModel("system\\data\\AL_MAIN\\Models\\001495A8.sa1mdl", false);
-		ChaoTree = LoadModel("system\\data\\AL_MAIN\\Models\\0017BB20.sa1mdl", false);
-		ChaoVMU = LoadModel("system\\data\\AL_MAIN\\Models\\001834CC.sa1mdl", false);
+		ChaoEgg_BlackTwoTone = LoadModel("system\\data\\AL_MAIN\\Models\\00149CB8.sa1mdl");
+		ChaoEgg_Normal = LoadModel("system\\data\\AL_MAIN\\Models\\00146E90.sa1mdl");
+		ChaoEgg_Gold = LoadModel("system\\data\\AL_MAIN\\Models\\00147E18.sa1mdl");
+		ChaoEgg_Silver = LoadModel("system\\data\\AL_MAIN\\Models\\00148D60.sa1mdl");
+		ChaoEgg_Broken_BlackTwoTone = LoadModel("system\\data\\AL_MAIN\\Models\\0014A540.sa1mdl");
+		ChaoEgg_Broken_Normal = LoadModel("system\\data\\AL_MAIN\\Models\\00147718.sa1mdl"); // Added child object (egg shell bottom) like in other 3 models
+		ChaoEgg_Broken_Gold = LoadModel("system\\data\\AL_MAIN\\Models\\00148660.sa1mdl");
+		ChaoEgg_Broken_Silver = LoadModel("system\\data\\AL_MAIN\\Models\\001495A8.sa1mdl");
+		ChaoTree = LoadModel("system\\data\\AL_MAIN\\Models\\0017BB20.sa1mdl");
+		ChaoVMU = LoadModel("system\\data\\AL_MAIN\\Models\\001834CC.sa1mdl");
 		ChaoVMU->child->sibling->basicdxmodel->nbMeshset = 0; // Disable the button because it needs to be excluded from collision
 		SwapMeshsets(ChaoVMU->child, 0, 3);
-		ChaoVMUButton.basicdxmodel = LoadModel("system\\data\\AL_MAIN\\Models\\001834CC.sa1mdl", false)->child->sibling->basicdxmodel; // Button model
+		ChaoVMUButton.basicdxmodel = LoadModel("system\\data\\AL_MAIN\\Models\\001834CC.sa1mdl")->child->sibling->basicdxmodel; // Button model
 		// Garden transporters stuff
 		WriteData((NJS_TEXLIST**)0x07290FB, &CHAO_OBJECT_TEXLIST);
-		*(NJS_OBJECT*)0x036065B4 = *LoadModel("system\\data\\AL_MAIN\\Models\\00182198.sa1mdl", false); // EC garden to EC transporter
-		*(NJS_OBJECT*)0x03604540 = *LoadModel("system\\data\\AL_MAIN\\Models\\00180454.sa1mdl", true); // All other transporters
-		NJS_OBJECT* TransporterLabel_MR = LoadModel("system\\data\\AL_MAIN\\Models\\00181010.sa1mdl", false);
-		NJS_OBJECT* TransporterLight_MR = LoadModel("system\\data\\AL_MAIN\\Models\\00181178.sa1mdl", false);
-		NJS_OBJECT* TransporterLabel_EC = LoadModel("system\\data\\AL_MAIN\\Models\\00180DA4.sa1mdl", false);
-		NJS_OBJECT* TransporterLight_EC = LoadModel("system\\data\\AL_MAIN\\Models\\00180F0C.sa1mdl", false);
-		NJS_OBJECT* TransporterLabel_SS = LoadModel("system\\data\\AL_MAIN\\Models\\00180B38.sa1mdl", false);
-		NJS_OBJECT* TransporterLight_SS = LoadModel("system\\data\\AL_MAIN\\Models\\00180CA0.sa1mdl", false);
+		*(NJS_OBJECT*)0x036065B4 = *LoadModel("system\\data\\AL_MAIN\\Models\\00182198.sa1mdl"); // EC garden to EC transporter
+		*(NJS_OBJECT*)0x03604540 = *LoadModel("system\\data\\AL_MAIN\\Models\\00180454.sa1mdl"); // All other transporters
+		NJS_OBJECT* TransporterLabel_MR = LoadModel("system\\data\\AL_MAIN\\Models\\00181010.sa1mdl");
+		NJS_OBJECT* TransporterLight_MR = LoadModel("system\\data\\AL_MAIN\\Models\\00181178.sa1mdl");
+		NJS_OBJECT* TransporterLabel_EC = LoadModel("system\\data\\AL_MAIN\\Models\\00180DA4.sa1mdl");
+		NJS_OBJECT* TransporterLight_EC = LoadModel("system\\data\\AL_MAIN\\Models\\00180F0C.sa1mdl");
+		NJS_OBJECT* TransporterLabel_SS = LoadModel("system\\data\\AL_MAIN\\Models\\00180B38.sa1mdl");
+		NJS_OBJECT* TransporterLight_SS = LoadModel("system\\data\\AL_MAIN\\Models\\00180CA0.sa1mdl");
 		WriteData((NJS_OBJECT**)0x007295A9, TransporterLabel_MR); // MR green label
 		WriteData((NJS_OBJECT**)0x007295B0, TransporterLight_MR); // MR green
 		WriteData((NJS_OBJECT**)0x007295B9, TransporterLabel_EC); // EC red label
@@ -2330,7 +2330,7 @@ void ChaoGardens_Init()
 			WriteCall((void*)0x639038, PlayElevatorSound);
 			WriteCall((void*)0x6390B2, PlayElevatorSound);
 			WriteData<5>((void*)0x007195A3, 0x90); // SADX SS Garden Exit
-			*(NJS_OBJECT*)0x0340C5A4 = *LoadModel("system\\data\\AL_GARDEN00\\Models\\00012A2C.sa1mdl", false); // Chao Race door
+			*(NJS_OBJECT*)0x0340C5A4 = *LoadModel("system\\data\\AL_GARDEN00\\Models\\00012A2C.sa1mdl"); // Chao Race door
 			*(NJS_MOTION*)0x0340D978 = _12ADC; // Chao Race door animation
 			WriteData<1>((void*)0x00719265, 0x7D); // Exit 1
 			WriteData<1>((void*)0x00719264, 0xF2); // Exit 2
@@ -2385,8 +2385,8 @@ void ChaoGardens_Init()
 		// Mystic Ruins garden stuff
 		if (EnableMRGarden)
 		{
-			ChaoGardenSky_MR_Day = LoadModel("system\\data\\AL_GARDEN02\\Models\\00013A78.sa1mdl", false);
-			ChaoGardenSky_MR_Night = LoadModel("system\\data\\AL_GARDEN02\\Models\\0001BC88.sa1mdl", false);
+			ChaoGardenSky_MR_Day = LoadModel("system\\data\\AL_GARDEN02\\Models\\00013A78.sa1mdl");
+			ChaoGardenSky_MR_Night = LoadModel("system\\data\\AL_GARDEN02\\Models\\0001BC88.sa1mdl");
 			WriteJump((void*)0x00718E90, LoadMRGardenX);
 			WriteJump((void*)0x0072A790, sub_72A790); // Mystic Ruins garden function 1
 			WriteJump((void*)0x0072A820, sub_72A820); // Mystic Ruins garden function 2
@@ -2430,8 +2430,8 @@ void ChaoGardens_Init()
 		// Egg Carrier garden stuff
 		if (EnableECGarden)
 		{
-			ChaoGardenSky_EC_Sky = LoadModel("system\\data\\AL_GARDEN01\\Models\\000105E4.sa1mdl", false); // Modified model with different UVs
-			ChaoGardenSky_EC_Water = LoadModel("system\\data\\AL_GARDEN01\\Models\\0000F01C.sa1mdl", false);
+			ChaoGardenSky_EC_Sky = LoadModel("system\\data\\AL_GARDEN01\\Models\\000105E4.sa1mdl"); // Modified model with different UVs
+			ChaoGardenSky_EC_Water = LoadModel("system\\data\\AL_GARDEN01\\Models\\0000F01C.sa1mdl");
 			ChaoGardenSky_EC_Water->basicdxmodel->mats[0].attrflags &= ~NJD_DA_ONE;
 			ChaoGardenSky_EC_Water->basicdxmodel->mats[0].attrflags &= ~NJD_SA_ONE;
 			ChaoGardenSky_EC_Water->basicdxmodel->mats[0].attrflags |= NJD_SA_SRC;

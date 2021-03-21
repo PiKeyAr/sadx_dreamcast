@@ -70,13 +70,13 @@ void Chaos2_Init()
 	if (!ModelsLoaded_B_CHAOS2)
 	{
 		*(NJS_TEXLIST*)0x117C76C = texlist_chaos2;
-		*(NJS_MODEL_SADX*)0x11863C0 = *LoadModel("system\\data\\B_CHAOS2\\Models\\0006CD68.sa1mdl", false)->basicdxmodel; // Column
-		*(NJS_OBJECT*)0x11835B4 = *LoadModel("system\\data\\B_CHAOS2\\Models\\0006812C.sa1mdl", false); // Table
+		*(NJS_MODEL_SADX*)0x11863C0 = *LoadModel("system\\data\\B_CHAOS2\\Models\\0006CD68.sa1mdl")->basicdxmodel; // Column
+		*(NJS_OBJECT*)0x11835B4 = *LoadModel("system\\data\\B_CHAOS2\\Models\\0006812C.sa1mdl"); // Table
 		((NJS_OBJECT*)0x11835B4)->basicdxmodel->mats[1].attrflags &= ~NJD_FLAG_USE_ALPHA; // This doesn't use alpha anyway
-		*(NJS_MODEL_SADX*)0x1183690 = *LoadModel("system\\data\\B_CHAOS2\\Models\\0006822C.sa1mdl", false)->basicdxmodel; // Transparent thing on table
+		*(NJS_MODEL_SADX*)0x1183690 = *LoadModel("system\\data\\B_CHAOS2\\Models\\0006822C.sa1mdl")->basicdxmodel; // Transparent thing on table
 		WriteCall((void*)0x54E3FE, Chaos2TableTopFix);
-		*(NJS_OBJECT*)0x117E86C = *LoadModel("system\\data\\B_CHAOS2\\Models\\0006A160.sa1mdl", false); // Chandelier
-		*(NJS_OBJECT*)0x117EB1C = *LoadModel("system\\data\\B_CHAOS2\\Models\\0006A400.sa1mdl", false); // Chandelier floor light
+		*(NJS_OBJECT*)0x117E86C = *LoadModel("system\\data\\B_CHAOS2\\Models\\0006A160.sa1mdl"); // Chandelier
+		*(NJS_OBJECT*)0x117EB1C = *LoadModel("system\\data\\B_CHAOS2\\Models\\0006A400.sa1mdl"); // Chandelier floor light
 		AddAlphaRejectMaterial(&((NJS_OBJECT*)0x117EB1C)->basicdxmodel->mats[0]);
 		WriteCall((void*)0x54DFCC, ChandelierFix);
 		WriteCall((void*)0x54E13C, ChandLightFix);

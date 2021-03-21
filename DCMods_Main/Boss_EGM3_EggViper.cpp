@@ -128,15 +128,15 @@ void EggViper_Init()
 		WriteCall((void*)0x584F6C, EggViperExplosionFix);
 		WriteCall((void*)0x57E0C1, EggViperLastExplosionFix);
 		WriteCall((void*)0x57E13C, EggViperLastExplosionFix);
-		EggViperDustTop = LoadModel("system\\data\\B_EGM3\\Models\\0004CD2C.sa1mdl", false); // Dust effect at the bottom of the room
+		EggViperDustTop = LoadModel("system\\data\\B_EGM3\\Models\\0004CD2C.sa1mdl"); // Dust effect at the bottom of the room
 		AddUVAnimation_Permanent(LevelIDs_EggViper, 0, EggViperDustTop->basicdxmodel->meshsets[0].vertuv, 12, 0, 1, 1);
 		EggViperDustTop->basicdxmodel->mats[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		EggViperDustBottom = LoadModel("system\\data\\B_EGM3\\Models\\0004CD2C.sa1mdl", false); // Dust effect at the bottom of the room
+		EggViperDustBottom = LoadModel("system\\data\\B_EGM3\\Models\\0004CD2C.sa1mdl"); // Dust effect at the bottom of the room
 		EggViperDustBottom->basicdxmodel->mats[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
 		AddUVAnimation_Permanent(LevelIDs_EggViper, 0, EggViperDustBottom->basicdxmodel->meshsets[0].vertuv, 12, 0, 0, 1);
 		WriteJump((void*)0x57E470, EggViperDust_DisplayFix); // If it's transparent, queue it. BITCH
-		*(NJS_OBJECT*)0x1669DA8 = *LoadModel("system\\data\\B_EGM3\\Models\\000434A0.sa1mdl", false); // Part of Egg Viper model with different UVs
-		*(NJS_OBJECT*)0x166C54C = *LoadModel("system\\data\\B_EGM3\\Models\\00045B34.sa1mdl", false); // Egg Viper cockpit with Eggman
+		*(NJS_OBJECT*)0x1669DA8 = *LoadModel("system\\data\\B_EGM3\\Models\\000434A0.sa1mdl"); // Part of Egg Viper model with different UVs
+		*(NJS_OBJECT*)0x166C54C = *LoadModel("system\\data\\B_EGM3\\Models\\00045B34.sa1mdl"); // Egg Viper cockpit with Eggman
 		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x166C54C)->basicdxmodel->mats[2]);
 		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x166C54C)->basicdxmodel->mats[3]);
 		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x166C54C)->basicdxmodel->mats[5]);

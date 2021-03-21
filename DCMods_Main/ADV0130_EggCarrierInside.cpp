@@ -296,8 +296,8 @@ void ADV01C_Init()
 		RemoveVertexColors_Object(ADV01C_OBJECTS[2]); // Hedhehog Hammer targets
 		RemoveVertexColors_Object((NJS_OBJECT*)0x31045B8); // Projectors in Gamma's cutscene
 		// Tarai fix
-		TaraiButton_Transparent = LoadModel("system\\data\\ADV0130\\Models\\000D16F4.sa1mdl", false);
-		TaraiButton_OpaqueOnly = LoadModel("system\\data\\ADV0130\\Models\\000D16F4.sa1mdl", false);
+		TaraiButton_Transparent = LoadModel("system\\data\\ADV0130\\Models\\000D16F4.sa1mdl");
+		TaraiButton_OpaqueOnly = LoadModel("system\\data\\ADV0130\\Models\\000D16F4.sa1mdl");
 		HideMesh_Object(TaraiButton_OpaqueOnly, 0);
 		AddWhiteDiffuseMaterial(&TaraiButton_OpaqueOnly->basicdxmodel->mats[1]);
 		AddWhiteDiffuseMaterial(&TaraiButton_OpaqueOnly->basicdxmodel->mats[2]);
@@ -308,23 +308,23 @@ void ADV01C_Init()
 		*ADV01C_MODELS[28] = *TaraiButton_Transparent->basicdxmodel;
 		*ADV01C_OBJECTS[7]->child = *TaraiButton_Transparent->child;
 		*ADV01C_MODELS[27] = *TaraiButton_Transparent->child->basicdxmodel;
-		*ADV01C_OBJECTS[8] = *LoadModel("system\\data\\ADV0130\\Models\\000D243C.sa1mdl", false); //Tarai
+		*ADV01C_OBJECTS[8] = *LoadModel("system\\data\\ADV0130\\Models\\000D243C.sa1mdl"); //Tarai
 		// Monorail front
-		NJS_OBJECT* MonorailFirstCar = LoadModel("system\\data\\ADV0130\\Models\\000B24D8.sa1mdl", false);
+		NJS_OBJECT* MonorailFirstCar = LoadModel("system\\data\\ADV0130\\Models\\000B24D8.sa1mdl");
 		*ADV01C_OBJECTS[43]->basicdxmodel = *MonorailFirstCar->basicdxmodel;
 		*ADV01C_OBJECTS[43]->child->basicdxmodel = *MonorailFirstCar->child->basicdxmodel;
 		*ADV01C_OBJECTS[43]->child->child->basicdxmodel = *MonorailFirstCar->child->child->basicdxmodel;
 		*ADV01C_OBJECTS[43]->child->sibling->basicdxmodel = *MonorailFirstCar->child->sibling->basicdxmodel;
 		AddAlphaRejectMaterial(&ADV01C_OBJECTS[43]->child->sibling->basicdxmodel->mats[0]);
 		// Monorail back
-		NJS_OBJECT* MonorailOtherCars = LoadModel("system\\data\\ADV0130\\Models\\000B64DC.sa1mdl", false);
+		NJS_OBJECT* MonorailOtherCars = LoadModel("system\\data\\ADV0130\\Models\\000B64DC.sa1mdl");
 		*ADV01C_OBJECTS[44]->basicdxmodel = *MonorailOtherCars->basicdxmodel;
 		*ADV01C_OBJECTS[44]->child->basicdxmodel = *MonorailOtherCars->child->basicdxmodel;
 		*ADV01C_OBJECTS[44]->child->child->basicdxmodel = *MonorailOtherCars->child->child->basicdxmodel;
 		// Other objects
-		*ADV01C_OBJECTS[29] = *LoadModel("system\\data\\ADV0130\\Models\\000ADCD8.sa1mdl", false); // Monorail station
-		*ADV01C_ACTIONS[6]->object = *LoadModel("system\\data\\ADV0130\\Models\\000BAF48.sa1mdl", false); // Door
-		NJS_OBJECT* EggLift = LoadModel("system\\data\\ADV0130\\Models\\000B8CD4.sa1mdl", false); // OEggLift
+		*ADV01C_OBJECTS[29] = *LoadModel("system\\data\\ADV0130\\Models\\000ADCD8.sa1mdl"); // Monorail station
+		*ADV01C_ACTIONS[6]->object = *LoadModel("system\\data\\ADV0130\\Models\\000BAF48.sa1mdl"); // Door
+		NJS_OBJECT* EggLift = LoadModel("system\\data\\ADV0130\\Models\\000B8CD4.sa1mdl"); // OEggLift
 		*ADV01C_OBJECTS[23] = *EggLift;
 		*ADV01C_ACTIONS[7]->object = *EggLift;
 		for (int i = 0; i < 3; i++)

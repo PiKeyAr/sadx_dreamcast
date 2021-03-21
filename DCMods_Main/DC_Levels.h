@@ -749,7 +749,7 @@ void AddUVAnimation(int level, int act, NJS_TEX* uv, int uv_count, int timer, in
 void AddUVAnimation_Permanent(int level, int act, NJS_TEX* uv, int uv_count, int timer, int u_speed, int v_speed);
 void RemoveVertexColors_Object(NJS_OBJECT *obj);
 void RemoveVertexColors_Model(NJS_MODEL_SADX *model);
-NJS_OBJECT* LoadModel(const char *ModelName, bool sort);
+NJS_OBJECT* LoadModel(const char *ModelName);
 void RemoveMaterialColors_Landtable(LandTable *landtable);
 void SortModel(NJS_OBJECT *model);
 void LoadModel_ReplaceMeshes(NJS_OBJECT *object, const char *ModelName);

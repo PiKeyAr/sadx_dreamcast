@@ -467,10 +467,10 @@ void LostWorld_Init()
 		WriteData((float*)0x2039774, 0.005f); // SA1 scale for fire particle
 		// AokiSwitch
 		WriteJump((void*)0x5E66D0, AokiSwitch_Display);
-		AokiSwitchModel_Base = LoadModel("system\\data\\STG07\\Models\\00152214.sa1mdl", false);
-		AokiSwitchModel_Child1 = LoadModel("system\\data\\STG07\\Models\\00151E58.sa1mdl", false);
-		AokiSwitchModel_Child2 = LoadModel("system\\data\\STG07\\Models\\00151E58.sa1mdl", false);
-		AokiSwitchModel_Child3 = LoadModel("system\\data\\STG07\\Models\\00151E58.sa1mdl", false);
+		AokiSwitchModel_Base = LoadModel("system\\data\\STG07\\Models\\00152214.sa1mdl");
+		AokiSwitchModel_Child1 = LoadModel("system\\data\\STG07\\Models\\00151E58.sa1mdl");
+		AokiSwitchModel_Child2 = LoadModel("system\\data\\STG07\\Models\\00151E58.sa1mdl");
+		AokiSwitchModel_Child3 = LoadModel("system\\data\\STG07\\Models\\00151E58.sa1mdl");
 		HideMesh_Object(AokiSwitchModel_Child1, 3);
 		HideMesh_Object(AokiSwitchModel_Child1, 4);
 		HideMesh_Object(AokiSwitchModel_Child2, 0);
@@ -483,23 +483,23 @@ void LostWorld_Init()
 		HideMesh_Object(AokiSwitchModel_Child3, 4);
 		// Models
 		RemoveVertexColors_Object((NJS_OBJECT*)0x10AD204); // OTaki
-		*(NJS_MODEL_SADX*)0x2027290 = *LoadModel("system\\data\\STG07\\Models\\0014A190.sa1mdl", false)->basicdxmodel; // RndBox
-		*(NJS_MODEL_SADX*)0x1FFCD68 = *LoadModel("system\\data\\STG07\\Models\\0012A3FC.sa1mdl", false)->basicdxmodel; // ORRaf 1
-		*(NJS_MODEL_SADX*)0x1FFAB20 = *LoadModel("system\\data\\STG07\\Models\\00128E68.sa1mdl", false)->basicdxmodel; // ORRaf 2
-		*(NJS_MODEL_SADX*)0x2002920 = *LoadModel("system\\data\\STG07\\Models\\0012E644.sa1mdl", false)->basicdxmodel; // HebiZou / MRSna
-		*(NJS_MODEL_SADX*)0x20068D0 = *LoadModel("system\\data\\STG07\\Models\\0013176C.sa1mdl", false)->basicdxmodel; // Sekicyuu 1
-		*(NJS_MODEL_SADX*)0x2006D68 = *LoadModel("system\\data\\STG07\\Models\\00131BEC.sa1mdl", false)->basicdxmodel; // Sekicyuu 2
-		*(NJS_MODEL_SADX*)0x2004E80 = *LoadModel("system\\data\\STG07\\Models\\00130608.sa1mdl", false)->basicdxmodel; // Hasira01 and Sekicyuu 3
-		*(NJS_MODEL_SADX*)0x20062E0 = *LoadModel("system\\data\\STG07\\Models\\001313E4.sa1mdl", false)->basicdxmodel; // Hasira02 and Sekicyuu 4
-		*(NJS_MODEL_SADX*)0x2026E38 = *LoadModel("system\\data\\STG07\\Models\\00149EA4.sa1mdl", false)->basicdxmodel; // Fire obstacle
-		*(NJS_MODEL_SADX*)0x201AF60 = *LoadModel("system\\data\\STG07\\Models\\00140C64.sa1mdl", false)->basicdxmodel; // Box part 1 model
-		*(NJS_MODEL_SADX*)0x201B198 = *LoadModel("system\\data\\STG07\\Models\\00140E84.sa1mdl", false)->basicdxmodel; // Box part 2 model
-		*(NJS_MODEL_SADX*)0x201B3E0 = *LoadModel("system\\data\\STG07\\Models\\001410B4.sa1mdl", false)->basicdxmodel; // Box part 3 model
-		*(NJS_MODEL_SADX*)0x201B6C8 = *LoadModel("system\\data\\STG07\\Models\\00141374.sa1mdl", false)->basicdxmodel; // Box part 4 model
-		*(NJS_MODEL_SADX*)0x201B910 = *LoadModel("system\\data\\STG07\\Models\\001415A4.sa1mdl", false)->basicdxmodel; // Box part 5 model
-		*(NJS_MODEL_SADX*)0x201BB90 = *LoadModel("system\\data\\STG07\\Models\\0014180C.sa1mdl", false)->basicdxmodel; // Box part 6 model
-		*(NJS_MODEL_SADX*)0x202A9D8 = *LoadModel("system\\data\\STG07\\Models\\0014D094.sa1mdl", false)->basicdxmodel; // OTap (snake head)
-		*(NJS_MODEL_SADX*)0x202AE00 = *LoadModel("system\\data\\STG07\\Models\\0014D47C.sa1mdl", false)->basicdxmodel; // OTap (water)
+		*(NJS_MODEL_SADX*)0x2027290 = *LoadModel("system\\data\\STG07\\Models\\0014A190.sa1mdl")->basicdxmodel; // RndBox
+		*(NJS_MODEL_SADX*)0x1FFCD68 = *LoadModel("system\\data\\STG07\\Models\\0012A3FC.sa1mdl")->basicdxmodel; // ORRaf 1
+		*(NJS_MODEL_SADX*)0x1FFAB20 = *LoadModel("system\\data\\STG07\\Models\\00128E68.sa1mdl")->basicdxmodel; // ORRaf 2
+		*(NJS_MODEL_SADX*)0x2002920 = *LoadModel("system\\data\\STG07\\Models\\0012E644.sa1mdl")->basicdxmodel; // HebiZou / MRSna
+		*(NJS_MODEL_SADX*)0x20068D0 = *LoadModel("system\\data\\STG07\\Models\\0013176C.sa1mdl")->basicdxmodel; // Sekicyuu 1
+		*(NJS_MODEL_SADX*)0x2006D68 = *LoadModel("system\\data\\STG07\\Models\\00131BEC.sa1mdl")->basicdxmodel; // Sekicyuu 2
+		*(NJS_MODEL_SADX*)0x2004E80 = *LoadModel("system\\data\\STG07\\Models\\00130608.sa1mdl")->basicdxmodel; // Hasira01 and Sekicyuu 3
+		*(NJS_MODEL_SADX*)0x20062E0 = *LoadModel("system\\data\\STG07\\Models\\001313E4.sa1mdl")->basicdxmodel; // Hasira02 and Sekicyuu 4
+		*(NJS_MODEL_SADX*)0x2026E38 = *LoadModel("system\\data\\STG07\\Models\\00149EA4.sa1mdl")->basicdxmodel; // Fire obstacle
+		*(NJS_MODEL_SADX*)0x201AF60 = *LoadModel("system\\data\\STG07\\Models\\00140C64.sa1mdl")->basicdxmodel; // Box part 1 model
+		*(NJS_MODEL_SADX*)0x201B198 = *LoadModel("system\\data\\STG07\\Models\\00140E84.sa1mdl")->basicdxmodel; // Box part 2 model
+		*(NJS_MODEL_SADX*)0x201B3E0 = *LoadModel("system\\data\\STG07\\Models\\001410B4.sa1mdl")->basicdxmodel; // Box part 3 model
+		*(NJS_MODEL_SADX*)0x201B6C8 = *LoadModel("system\\data\\STG07\\Models\\00141374.sa1mdl")->basicdxmodel; // Box part 4 model
+		*(NJS_MODEL_SADX*)0x201B910 = *LoadModel("system\\data\\STG07\\Models\\001415A4.sa1mdl")->basicdxmodel; // Box part 5 model
+		*(NJS_MODEL_SADX*)0x201BB90 = *LoadModel("system\\data\\STG07\\Models\\0014180C.sa1mdl")->basicdxmodel; // Box part 6 model
+		*(NJS_MODEL_SADX*)0x202A9D8 = *LoadModel("system\\data\\STG07\\Models\\0014D094.sa1mdl")->basicdxmodel; // OTap (snake head)
+		*(NJS_MODEL_SADX*)0x202AE00 = *LoadModel("system\\data\\STG07\\Models\\0014D47C.sa1mdl")->basicdxmodel; // OTap (water)
 		WriteData((NJS_MESHSET_SADX***)0x005E8818, &((NJS_OBJECT*)0x202AE2C)->basicdxmodel->meshsets); // UV animation for OTap
 		WriteData((NJS_MESHSET_SADX***)0x005E884C, &((NJS_OBJECT*)0x202AE2C)->basicdxmodel->meshsets); // UV animation for OTap
 		((NJS_OBJECT*)0x201AF8C)->basicdxmodel = (NJS_MODEL_SADX*)0x201AF60; // Box part 1 object
@@ -508,34 +508,34 @@ void LostWorld_Init()
 		((NJS_OBJECT*)0x201B6F4)->basicdxmodel = (NJS_MODEL_SADX*)0x201B6C8; // Box part 4 object
 		((NJS_OBJECT*)0x201B93C)->basicdxmodel = (NJS_MODEL_SADX*)0x201B910; // Box part 5 object
 		((NJS_OBJECT*)0x201BBBC)->basicdxmodel = (NJS_MODEL_SADX*)0x201BB90; // Box part 6 object
-		((NJS_OBJECT*)0x201A108)->basicdxmodel = LoadModel("system\\data\\STG07\\Models\\0013FE9C.sa1mdl", false)->basicdxmodel; // Lostjumpdai
-		((NJS_OBJECT*)0x2019E20)->basicdxmodel = LoadModel("system\\data\\STG07\\Models\\0013FBF4.sa1mdl", false)->basicdxmodel; // BurningBow
-		((NJS_OBJECT*)0x201C690)->basicdxmodel = LoadModel("system\\data\\STG07\\Models\\00141F40.sa1mdl", false)->basicdxmodel; // OSuimenSwitch
-		((NJS_OBJECT*)0x201C690)->child->model = LoadModel("system\\data\\STG07\\Models\\00141B84.sa1mdl", false)->basicdxmodel; // OSuimenSwitch button part
-		*(NJS_OBJECT*)0x202BE1C = *LoadModel("system\\data\\STG07\\Models\\0014E104.sa1mdl", false); // OBigMr
-		*(NJS_OBJECT*)0x2000824 = *LoadModel("system\\data\\STG07\\Models\\0012CF24.sa1mdl", false); // Ashikabe01
-		*(NJS_OBJECT*)0x2028BB8 = *LoadModel("system\\data\\STG07\\Models\\0014B2C8.sa1mdl", false); // RMirror
-		*(NJS_MODEL_SADX*)0x2028C98 = *LoadModel("system\\data\\STG07\\Models\\0014B3CC.sa1mdl", false)->basicdxmodel; // RMirror light
-		*(NJS_OBJECT*)0x2011548 = *LoadModel("system\\data\\STG07\\Models\\00139A9C.sa1mdl", false); // Toge
-		*(NJS_OBJECT*)0x2012FA0 = *LoadModel("system\\data\\STG07\\Models\\0013AD84.sa1mdl", false); // TogedaiUD
-		*(NJS_OBJECT*)0x201A39C = *LoadModel("system\\data\\STG07\\Models\\001400A0.sa1mdl", false); // TurnCube
-		*(NJS_OBJECT*)0x20144CC = *LoadModel("system\\data\\STG07\\Models\\0013BB70.sa1mdl", false); // Kusa02 type 1
-		*(NJS_OBJECT*)0x2015968 = *LoadModel("system\\data\\STG07\\Models\\0013CA2C.sa1mdl", false); // Kusa02 type 2
-		*(NJS_OBJECT*)0x2016B38 = *LoadModel("system\\data\\STG07\\Models\\0013D7A8.sa1mdl", false); // Kusa02 type 3 (Shitakusa)
-		*(NJS_OBJECT*)0x201889C = *LoadModel("system\\data\\STG07\\Models\\0013EC1C.sa1mdl", false); // Kusa02 type 4 (Shitakusa)
-		*(NJS_OBJECT*)0x201F82C = *LoadModel("system\\data\\STG07\\Models\\00144FD4.sa1mdl", false); // Door front
-		*(NJS_OBJECT*)0x200D9D4 = *LoadModel("system\\data\\STG07\\Models\\00135F50.sa1mdl", false); // Snake gate
-		*(NJS_OBJECT*)0x1FFE9A4 = *LoadModel("system\\data\\STG07\\Models\\0012BB88.sa1mdl", false); // Ashiba01
-		*(NJS_OBJECT*)0x1FFF454 = *LoadModel("system\\data\\STG07\\Models\\0012C218.sa1mdl", false); // Ashiba02
-		*(NJS_OBJECT*)0x1FFFF04 = *LoadModel("system\\data\\STG07\\Models\\0012C8B4.sa1mdl", false); // Ashiba03
-		*(NJS_OBJECT*)0x2023C08 = *LoadModel("system\\data\\STG07\\Models\\00148264.sa1mdl", false); // Snake head
-		*(NJS_OBJECT*)0x20253BC = *LoadModel("system\\data\\STG07\\Models\\00148E78.sa1mdl", false); // Snake joints
-		*(NJS_OBJECT*)0x2025D64 = *LoadModel("system\\data\\STG07\\Models\\00149374.sa1mdl", false); // Snake joint near the tail
-		*(NJS_OBJECT*)0x202670C = *LoadModel("system\\data\\STG07\\Models\\00149870.sa1mdl", false); // Snake tail
-		*(NJS_OBJECT*)0x2024828 = *LoadModel("system\\data\\STG07\\Models\\001487A0.sa1mdl", false); // Snake tail tip
-		*(NJS_OBJECT*)0x1FE9D7C = *LoadModel("system\\data\\STG07\\Models\\00057E5C.sa1mdl", false); // OSuimen
+		((NJS_OBJECT*)0x201A108)->basicdxmodel = LoadModel("system\\data\\STG07\\Models\\0013FE9C.sa1mdl")->basicdxmodel; // Lostjumpdai
+		((NJS_OBJECT*)0x2019E20)->basicdxmodel = LoadModel("system\\data\\STG07\\Models\\0013FBF4.sa1mdl")->basicdxmodel; // BurningBow
+		((NJS_OBJECT*)0x201C690)->basicdxmodel = LoadModel("system\\data\\STG07\\Models\\00141F40.sa1mdl")->basicdxmodel; // OSuimenSwitch
+		((NJS_OBJECT*)0x201C690)->child->model = LoadModel("system\\data\\STG07\\Models\\00141B84.sa1mdl")->basicdxmodel; // OSuimenSwitch button part
+		*(NJS_OBJECT*)0x202BE1C = *LoadModel("system\\data\\STG07\\Models\\0014E104.sa1mdl"); // OBigMr
+		*(NJS_OBJECT*)0x2000824 = *LoadModel("system\\data\\STG07\\Models\\0012CF24.sa1mdl"); // Ashikabe01
+		*(NJS_OBJECT*)0x2028BB8 = *LoadModel("system\\data\\STG07\\Models\\0014B2C8.sa1mdl"); // RMirror
+		*(NJS_MODEL_SADX*)0x2028C98 = *LoadModel("system\\data\\STG07\\Models\\0014B3CC.sa1mdl")->basicdxmodel; // RMirror light
+		*(NJS_OBJECT*)0x2011548 = *LoadModel("system\\data\\STG07\\Models\\00139A9C.sa1mdl"); // Toge
+		*(NJS_OBJECT*)0x2012FA0 = *LoadModel("system\\data\\STG07\\Models\\0013AD84.sa1mdl"); // TogedaiUD
+		*(NJS_OBJECT*)0x201A39C = *LoadModel("system\\data\\STG07\\Models\\001400A0.sa1mdl"); // TurnCube
+		*(NJS_OBJECT*)0x20144CC = *LoadModel("system\\data\\STG07\\Models\\0013BB70.sa1mdl"); // Kusa02 type 1
+		*(NJS_OBJECT*)0x2015968 = *LoadModel("system\\data\\STG07\\Models\\0013CA2C.sa1mdl"); // Kusa02 type 2
+		*(NJS_OBJECT*)0x2016B38 = *LoadModel("system\\data\\STG07\\Models\\0013D7A8.sa1mdl"); // Kusa02 type 3 (Shitakusa)
+		*(NJS_OBJECT*)0x201889C = *LoadModel("system\\data\\STG07\\Models\\0013EC1C.sa1mdl"); // Kusa02 type 4 (Shitakusa)
+		*(NJS_OBJECT*)0x201F82C = *LoadModel("system\\data\\STG07\\Models\\00144FD4.sa1mdl"); // Door front
+		*(NJS_OBJECT*)0x200D9D4 = *LoadModel("system\\data\\STG07\\Models\\00135F50.sa1mdl"); // Snake gate
+		*(NJS_OBJECT*)0x1FFE9A4 = *LoadModel("system\\data\\STG07\\Models\\0012BB88.sa1mdl"); // Ashiba01
+		*(NJS_OBJECT*)0x1FFF454 = *LoadModel("system\\data\\STG07\\Models\\0012C218.sa1mdl"); // Ashiba02
+		*(NJS_OBJECT*)0x1FFFF04 = *LoadModel("system\\data\\STG07\\Models\\0012C8B4.sa1mdl"); // Ashiba03
+		*(NJS_OBJECT*)0x2023C08 = *LoadModel("system\\data\\STG07\\Models\\00148264.sa1mdl"); // Snake head
+		*(NJS_OBJECT*)0x20253BC = *LoadModel("system\\data\\STG07\\Models\\00148E78.sa1mdl"); // Snake joints
+		*(NJS_OBJECT*)0x2025D64 = *LoadModel("system\\data\\STG07\\Models\\00149374.sa1mdl"); // Snake joint near the tail
+		*(NJS_OBJECT*)0x202670C = *LoadModel("system\\data\\STG07\\Models\\00149870.sa1mdl"); // Snake tail
+		*(NJS_OBJECT*)0x2024828 = *LoadModel("system\\data\\STG07\\Models\\001487A0.sa1mdl"); // Snake tail tip
+		*(NJS_OBJECT*)0x1FE9D7C = *LoadModel("system\\data\\STG07\\Models\\00057E5C.sa1mdl"); // OSuimen
 		AddTextureAnimation_Permanent(7, 0, &((NJS_OBJECT*)0x1FE9D7C)->basicdxmodel->mats[0], false, 1, 44, 57);
-		*(NJS_OBJECT*)0x202E404 = *LoadModel("system\\data\\STG07\\Models\\001506DC.sa1mdl", false); // Some other water (loaded with the skybox)
+		*(NJS_OBJECT*)0x202E404 = *LoadModel("system\\data\\STG07\\Models\\001506DC.sa1mdl"); // Some other water (loaded with the skybox)
 		// Rlight stuff
 		((NJS_MATERIAL*)0x2031660)->attrflags &= ~NJD_SA_ONE;
 		((NJS_MATERIAL*)0x2031660)->attrflags &= ~NJD_DA_ONE;
@@ -543,12 +543,12 @@ void LostWorld_Init()
 		((NJS_MATERIAL*)0x2031660)->attrflags |= NJD_DA_DST;
 		WriteCall((void*)0x5E8976, RLight_Load);
 		// TPanel fixes
-		*(NJS_MODEL_SADX*)0x201CE60 = *LoadModel("system\\data\\STG07\\Models\\00142710.sa1mdl", false)->basicdxmodel; // TPanel
+		*(NJS_MODEL_SADX*)0x201CE60 = *LoadModel("system\\data\\STG07\\Models\\00142710.sa1mdl")->basicdxmodel; // TPanel
 		WriteCall((void*)0x5E9216, RenderTPanelTriangle);
 		WriteCall((void*)0x5E927F, RenderTPanelLight);
 		WriteCall((void*)0x5E91CA, RenderTPanel);
 		WriteCall((void*)0x5E8AAC, RenderTPanelDust);
-		*(NJS_OBJECT*)0x20275D8 = *LoadModel("system\\data\\STG07\\Models\\0014A380.sa1mdl", false); // TPanel effect
+		*(NJS_OBJECT*)0x20275D8 = *LoadModel("system\\data\\STG07\\Models\\0014A380.sa1mdl"); // TPanel effect
 		// Water fixes
 		WriteData<1>((void*)0x005E2090, 0xC3u); // Kill water animation in Act 1
 		// Fog and other stuff

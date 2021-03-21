@@ -309,11 +309,11 @@ void Chaos4_Init()
 		WriteCall((void*)0x7ADC1E, Chaos4BrainHook);
 		WriteCall((void*)0x553380, Chaos4NumaFix);
 		WriteCall((void*)0x552918, Chaos4_Transform); // Chaos' model formed from balls
-		*(NJS_OBJECT*)0x11C4B90 = *LoadModel("SYSTEM\\data\\B_CHAOS4\\Models\\000425F8.sa1mdl", false); // Chaos 4 swamp water
-		Chaos4CleanWater = LoadModel("SYSTEM\\data\\B_CHAOS4\\Models\\0004476C.sa1mdl", false); // Chaos 4 swamp water
+		*(NJS_OBJECT*)0x11C4B90 = *LoadModel("SYSTEM\\data\\B_CHAOS4\\Models\\000425F8.sa1mdl"); // Chaos 4 swamp water
+		Chaos4CleanWater = LoadModel("SYSTEM\\data\\B_CHAOS4\\Models\\0004476C.sa1mdl"); // Chaos 4 swamp water
 		WriteData<1>((char*)0x00555B3F, 0x08); // Chaos 4 bubble blending mode SA_SRC instead of SA_ONE
 		WriteJump((void*)0x552F80, Chaos4CleanWater_Display);
-		*(NJS_OBJECT*)0x11E3240 = *LoadModel("SYSTEM\\data\\B_CHAOS4\\Models\\0003E6CC.sa1mdl", false); // Lilypad
+		*(NJS_OBJECT*)0x11E3240 = *LoadModel("SYSTEM\\data\\B_CHAOS4\\Models\\0003E6CC.sa1mdl"); // Lilypad
 		// Chaos 4
 		RemoveVertexColors_Object((NJS_OBJECT*)0x11A652C); // Chaos4 alt model
 		RemoveVertexColors_Object((NJS_OBJECT*)0x11A11C8); // Chaos4 hand attack

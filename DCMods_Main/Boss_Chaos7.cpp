@@ -173,9 +173,9 @@ void PerfectChaos_Init()
 		WriteCall((void*)0x562303, TornadoFunc); // Perfect Chaos tornado fade-in
 		// Tornado attack fix
 		WriteCall((void*)0x566673, Chaos7TornadoAttackHook);
-		TornadoAttack1 = LoadModel("system\\data\\B_CHAOS7\\Models\\000E16E8.sa1mdl", false); // Tornado attack
-		TornadoAttack2 = LoadModel("system\\data\\B_CHAOS7\\Models\\000E16E8.sa1mdl", false); // Tornado attack
-		TornadoAttack3 = LoadModel("system\\data\\B_CHAOS7\\Models\\000E16E8.sa1mdl", false); // Tornado attack
+		TornadoAttack1 = LoadModel("system\\data\\B_CHAOS7\\Models\\000E16E8.sa1mdl"); // Tornado attack
+		TornadoAttack2 = LoadModel("system\\data\\B_CHAOS7\\Models\\000E16E8.sa1mdl"); // Tornado attack
+		TornadoAttack3 = LoadModel("system\\data\\B_CHAOS7\\Models\\000E16E8.sa1mdl"); // Tornado attack
 		// 1 is just the middle layer
 		HideMesh_Object(TornadoAttack1, 0);
 		HideMesh_Object(TornadoAttack1->child, 0);
@@ -212,11 +212,11 @@ void PerfectChaos_Init()
 		// Perfect Chaos misc
 		((NJS_OBJECT*)0x248B1B4)->basicdxmodel->mats[2].attrflags &= ~NJD_FLAG_IGNORE_SPECULAR; // Egg Carrier 2
 		// Objects
-		*(NJS_OBJECT*)0x142C740 = *LoadModel("system\\data\\B_CHAOS7\\Models\\0006B410.sa1mdl", false); // ORoad0
-		*(NJS_OBJECT*)0x1455C0C = *LoadModel("system\\data\\B_CHAOS7\\Models\\000938C4.sa1mdl", false); // ORoad1
-		*(NJS_OBJECT*)0x1458A58 = *LoadModel("system\\data\\B_CHAOS7\\Models\\00095598.sa1mdl", false); // ORoad2
-		*(NJS_OBJECT*)0x145B4AC = *LoadModel("system\\data\\B_CHAOS7\\Models\\00096FC8.sa1mdl", false); // ORoad3
-		*(NJS_OBJECT*)0x145D000 = *LoadModel("system\\data\\B_CHAOS7\\Models\\000981B8.sa1mdl", false); // ORoad4
+		*(NJS_OBJECT*)0x142C740 = *LoadModel("system\\data\\B_CHAOS7\\Models\\0006B410.sa1mdl"); // ORoad0
+		*(NJS_OBJECT*)0x1455C0C = *LoadModel("system\\data\\B_CHAOS7\\Models\\000938C4.sa1mdl"); // ORoad1
+		*(NJS_OBJECT*)0x1458A58 = *LoadModel("system\\data\\B_CHAOS7\\Models\\00095598.sa1mdl"); // ORoad2
+		*(NJS_OBJECT*)0x145B4AC = *LoadModel("system\\data\\B_CHAOS7\\Models\\00096FC8.sa1mdl"); // ORoad3
+		*(NJS_OBJECT*)0x145D000 = *LoadModel("system\\data\\B_CHAOS7\\Models\\000981B8.sa1mdl"); // ORoad4
 		// Remove material colors in cars and other objects
 		RemoveVertexColors_Object((NJS_OBJECT*)0x142F08C);
 		RemoveVertexColors_Object((NJS_OBJECT*)0x14319AC);

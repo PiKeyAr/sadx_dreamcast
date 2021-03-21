@@ -742,48 +742,48 @@ void ADV00_Init()
 		((NJS_OBJECT*)0x2AB6E4C)->basicdxmodel->mats[2].attrflags &= ~NJD_FLAG_USE_ALPHA; // Speed Highway elevator door
 		ForceObjectSpecular_Object((NJS_OBJECT*)0x2AB7F74, false); // OHighEle (elevator in sewers)
 		// Objects
-		BurgerShopMan = LoadModel("system\\data\\ADV00\\Models\\001C9E28.sa1mdl", false);
+		BurgerShopMan = LoadModel("system\\data\\ADV00\\Models\\001C9E28.sa1mdl");
 		ForceLightType_Object(BurgerShopMan, 0, false);
 		WriteCall((void*)0x63072B, BurgerShopManHook);
-		*(NJS_MODEL_SADX*)0x2ACBB80 = *LoadModel("system\\data\\ADV00\\Models\\0017F588.sa1mdl", false)->basicdxmodel; // OPoolChair
-		*(NJS_MODEL_SADX*)0x2AC95BC = *LoadModel("system\\data\\ADV00\\Models\\0017D568.sa1mdl", false)->basicdxmodel; // Fire hydrant
+		*(NJS_MODEL_SADX*)0x2ACBB80 = *LoadModel("system\\data\\ADV00\\Models\\0017F588.sa1mdl")->basicdxmodel; // OPoolChair
+		*(NJS_MODEL_SADX*)0x2AC95BC = *LoadModel("system\\data\\ADV00\\Models\\0017D568.sa1mdl")->basicdxmodel; // Fire hydrant
 		WriteCall((void*)0x6372D4, OOfficeBarricade_Fix); // Fix office barricade rendering (same problem as OMSaku)
 		WriteCall((void*)0x6372F8, OOfficeBarricade_Fix); // Fix office barricade rendering (same problem as OMSaku)
 		WriteCall((void*)0x63731C, OOfficeBarricade_Fix); // Fix office barricade rendering (same problem as OMSaku)
-		*(NJS_OBJECT*)0x2AD7ED4 = *LoadModel("system\\data\\ADV00\\Models\\00189DC0.sa1mdl", false); // OOfficeBarricade
+		*(NJS_OBJECT*)0x2AD7ED4 = *LoadModel("system\\data\\ADV00\\Models\\00189DC0.sa1mdl"); // OOfficeBarricade
 		AddAlphaRejectMaterial(&((NJS_OBJECT*)0x2AD7ED4)->child->basicdxmodel->mats[0]);  // OOfficeBarricade shadow
-		*(NJS_OBJECT*)0x2AC9F10 = *LoadModel("system\\data\\ADV00\\Models\\0017DDE8.sa1mdl", false); // OGaitou (street light)
-		*(NJS_OBJECT*)0x2AEA9F8 = *LoadModel("system\\data\\ADV00\\Models\\00197228.sa1mdl", false); // OS1Dnto
+		*(NJS_OBJECT*)0x2AC9F10 = *LoadModel("system\\data\\ADV00\\Models\\0017DDE8.sa1mdl"); // OGaitou (street light)
+		*(NJS_OBJECT*)0x2AEA9F8 = *LoadModel("system\\data\\ADV00\\Models\\00197228.sa1mdl"); // OS1Dnto
 		((NJS_OBJECT*)0x2AEA9F8)->basicdxmodel->mats[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT; // OS1Dnto doesn't ignore lighting on DC even though the model does
-		*(NJS_OBJECT*)0x2AB2CCC = *LoadModel("system\\data\\ADV00\\Models\\001689C4.sa1mdl", true); // Souvenir shop door
-		*(NJS_OBJECT*)0x2AB57E4 = *LoadModel("system\\data\\ADV00\\Models\\0016B404.sa1mdl", false); // OTwaDoor
+		*(NJS_OBJECT*)0x2AB2CCC = *LoadModel("system\\data\\ADV00\\Models\\001689C4.sa1mdl"); // Souvenir shop door
+		*(NJS_OBJECT*)0x2AB57E4 = *LoadModel("system\\data\\ADV00\\Models\\0016B404.sa1mdl"); // OTwaDoor
 		*(NJS_MOTION*)0x2AB5960 = _0016B4B4; // OTwaDoor motion
-		*(NJS_OBJECT*)0x2AFE668 = *LoadModel("system\\data\\ADV00\\Models\\001A6DEC.sa1mdl", false); // Casino decoration 1 (stars)
-		*(NJS_OBJECT*)0x2B027D8 = *LoadModel("system\\data\\ADV00\\Models\\001AADA4.sa1mdl", false); // Casino decoration 2 (wall)
-		*(NJS_OBJECT*)0x2B04CF8 = *LoadModel("system\\data\\ADV00\\Models\\001AD220.sa1mdl", false); // Casino decoration 3 (letters)
+		*(NJS_OBJECT*)0x2AFE668 = *LoadModel("system\\data\\ADV00\\Models\\001A6DEC.sa1mdl"); // Casino decoration 1 (stars)
+		*(NJS_OBJECT*)0x2B027D8 = *LoadModel("system\\data\\ADV00\\Models\\001AADA4.sa1mdl"); // Casino decoration 2 (wall)
+		*(NJS_OBJECT*)0x2B04CF8 = *LoadModel("system\\data\\ADV00\\Models\\001AD220.sa1mdl"); // Casino decoration 3 (letters)
 		ForceLevelSpecular_Object((NJS_OBJECT*)0x2B03A38, false); // Big Casino object
 		ForceLevelSpecular_Object((NJS_OBJECT*)0x2B03320, false); // Big Casino object
 		ForceLevelSpecular_Object((NJS_OBJECT*)0x2B00E14, true); // Big Casino object (wall)
-		*(NJS_OBJECT*)0x2AC8AEC = *LoadModel("system\\data\\ADV00\\Models\\0017CD14.sa1mdl", false); // OStDoor
-		*(NJS_OBJECT*)0x2AB146C = *LoadModel("system\\data\\ADV00\\Models\\001671B8.sa1mdl", false); // Burger shop door
-		*(NJS_OBJECT*)0x2AD4EA4 = *LoadModel("system\\data\\ADV00\\Models\\00186E88.sa1mdl", false); // Hidden door 1
-		*(NJS_OBJECT*)0x2AD4CD4 = *LoadModel("system\\data\\ADV00\\Models\\00186CC4.sa1mdl", false); // Hidden door 2
-		*(NJS_OBJECT*)0x2AEE7B0 = *LoadModel("system\\data\\ADV00\\Models\\0019AF04.sa1mdl", false); // Boat
-		*(NJS_OBJECT*)0x2AAB0E4 = *LoadModel("system\\data\\ADV00\\Models\\00164444.sa1mdl", false); // OHotelFront 1
-		*(NJS_OBJECT*)0x2AAE0BC = *LoadModel("system\\data\\ADV00\\Models\\00164444.sa1mdl", false); // OHotelFront 2 (duplicate?)
-		*(NJS_OBJECT*)0x2ABDF0C = *LoadModel("system\\data\\ADV00\\Models\\00172BD4.sa1mdl", true); // Box in the sewers
-		*(NJS_OBJECT*)0x2AF1974 = *LoadModel("system\\data\\ADV00\\Models\\0019CBD8.sa1mdl", false); // Red Car
-		*(NJS_OBJECT*)0x2AF8400 = *LoadModel("system\\data\\ADV00\\Models\\001A17C4.sa1mdl", false); // Blue Car
-		*(NJS_OBJECT*)0x2AFBA64 = *LoadModel("system\\data\\ADV00\\Models\\001A4268.sa1mdl", false); // Taxi
-		*(NJS_OBJECT*)0x2AD362C = *LoadModel("system\\data\\ADV00\\Models\\00185A20.sa1mdl", false); // OWakusei
+		*(NJS_OBJECT*)0x2AC8AEC = *LoadModel("system\\data\\ADV00\\Models\\0017CD14.sa1mdl"); // OStDoor
+		*(NJS_OBJECT*)0x2AB146C = *LoadModel("system\\data\\ADV00\\Models\\001671B8.sa1mdl"); // Burger shop door
+		*(NJS_OBJECT*)0x2AD4EA4 = *LoadModel("system\\data\\ADV00\\Models\\00186E88.sa1mdl"); // Hidden door 1
+		*(NJS_OBJECT*)0x2AD4CD4 = *LoadModel("system\\data\\ADV00\\Models\\00186CC4.sa1mdl"); // Hidden door 2
+		*(NJS_OBJECT*)0x2AEE7B0 = *LoadModel("system\\data\\ADV00\\Models\\0019AF04.sa1mdl"); // Boat
+		*(NJS_OBJECT*)0x2AAB0E4 = *LoadModel("system\\data\\ADV00\\Models\\00164444.sa1mdl"); // OHotelFront 1
+		*(NJS_OBJECT*)0x2AAE0BC = *LoadModel("system\\data\\ADV00\\Models\\00164444.sa1mdl"); // OHotelFront 2 (duplicate?)
+		*(NJS_OBJECT*)0x2ABDF0C = *LoadModel("system\\data\\ADV00\\Models\\00172BD4.sa1mdl"); // Box in the sewers
+		*(NJS_OBJECT*)0x2AF1974 = *LoadModel("system\\data\\ADV00\\Models\\0019CBD8.sa1mdl"); // Red Car
+		*(NJS_OBJECT*)0x2AF8400 = *LoadModel("system\\data\\ADV00\\Models\\001A17C4.sa1mdl"); // Blue Car
+		*(NJS_OBJECT*)0x2AFBA64 = *LoadModel("system\\data\\ADV00\\Models\\001A4268.sa1mdl"); // Taxi
+		*(NJS_OBJECT*)0x2AD362C = *LoadModel("system\\data\\ADV00\\Models\\00185A20.sa1mdl"); // OWakusei
 		WriteCall((void*)0x6366C1, BigPuzzleFix);
 		WriteCall((void*)0x63951A, OWakuseiFix);
 		WriteCall((void*)0x639584, OWakuseiFix);
-		*(NJS_OBJECT*)0x2AB6900 = *LoadModel("system\\data\\ADV00\\Models\\0016C3FC.sa1mdl", false); // Twinkle Park elevator
-		*(NJS_OBJECT*)0x2AD14C8 = *LoadModel("system\\data\\ADV00\\Models\\00183B8C.sa1mdl", false); // OMSaku (Gamma's target)
-		*(NJS_OBJECT*)0x2AD484C = *LoadModel("system\\data\\ADV00\\Models\\0018684C.sa1mdl", false); // Ice Key
+		*(NJS_OBJECT*)0x2AB6900 = *LoadModel("system\\data\\ADV00\\Models\\0016C3FC.sa1mdl"); // Twinkle Park elevator
+		*(NJS_OBJECT*)0x2AD14C8 = *LoadModel("system\\data\\ADV00\\Models\\00183B8C.sa1mdl"); // OMSaku (Gamma's target)
+		*(NJS_OBJECT*)0x2AD484C = *LoadModel("system\\data\\ADV00\\Models\\0018684C.sa1mdl"); // Ice Key
 		// Event helicopter (set up exactly like the Chaos 0 helicopter so lots of copy-paste here)
-		((NJS_ACTION*)0x2DBD864)->object = LoadModel("system\\data\\Other\\00011208.sa1mdl", false);
+		((NJS_ACTION*)0x2DBD864)->object = LoadModel("system\\data\\Other\\00011208.sa1mdl");
 		// UV-less stuff fix
 		((NJS_ACTION*)0x2DBD864)->object->child->child->child->basicdxmodel->mats[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
 		// Add white diffuse on opaque things (have to use a different function because it "forgets" the light type
@@ -795,24 +795,24 @@ void ADV00_Init()
 		// Remove transparency in the part the light is coming from, because it isn't a transparent texture and it uses regular blending
 		((NJS_ACTION*)0x2DBD864)->object->child->sibling->sibling->sibling->sibling->child->child->sibling->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_USE_ALPHA;
 		// Light1 is the metal cover of the thing the light is supposed to be coming from
-		EVHelicopterLight1 = LoadModel("system\\data\\Other\\00011208.sa1mdl", false);
+		EVHelicopterLight1 = LoadModel("system\\data\\Other\\00011208.sa1mdl");
 		HideEntireObject(EVHelicopterLight1);
 		EVHelicopterLight1->child->sibling->sibling->sibling->sibling->child->evalflags &= ~NJD_EVAL_HIDE; // Unhide first transparent bit in mesh 1
 		HideMesh_Object(EVHelicopterLight1->child->sibling->sibling->sibling->sibling->child, 1); // Hide opaque bits in mesh 1
 		HideMesh_Object(EVHelicopterLight1->child->sibling->sibling->sibling->sibling->child, 2); // Hide opaque bits in mesh 1
 		// Light2 is the actual light
-		EVHelicopterLight2 = LoadModel("system\\data\\Other\\00011208.sa1mdl", false);
+		EVHelicopterLight2 = LoadModel("system\\data\\Other\\00011208.sa1mdl");
 		HideEntireObject(EVHelicopterLight2);
 		EVHelicopterLight2->child->sibling->sibling->sibling->sibling->child->child->evalflags &= ~NJD_EVAL_HIDE; // Unhide the light
 		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x2DBD6D0)->child->sibling->sibling->sibling->sibling->child->basicdxmodel->mats[1]);
 		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x2DBD6D0)->child->sibling->sibling->sibling->sibling->child->basicdxmodel->mats[2]);
-		*(NJS_OBJECT*)0x2AE8674 = *LoadModel("system\\data\\ADV00\\Models\\00195DC0.sa1mdl", false); // Train
+		*(NJS_OBJECT*)0x2AE8674 = *LoadModel("system\\data\\ADV00\\Models\\00195DC0.sa1mdl"); // Train
 		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x2AE8674)->child->sibling->sibling->sibling->basicdxmodel->mats[9]);
 		// Police car stuff
-		*(NJS_OBJECT*)0x2AF4FC0 = *LoadModel("system\\data\\ADV00\\Models\\0019F390.sa1mdl", false); // Police
+		*(NJS_OBJECT*)0x2AF4FC0 = *LoadModel("system\\data\\ADV00\\Models\\0019F390.sa1mdl"); // Police
 		HideMesh_Object(((NJS_OBJECT*)0x2AF4FC0), 9); // Hide lights
 		HideMesh_Object(((NJS_OBJECT*)0x2AF4FC0), 10); // Hide lights
-		PoliceCarModel_LightsOnly = LoadModel("system\\data\\ADV00\\Models\\0019F390.sa1mdl", false);
+		PoliceCarModel_LightsOnly = LoadModel("system\\data\\ADV00\\Models\\0019F390.sa1mdl");
 		HideMesh_Object(PoliceCarModel_LightsOnly, 0);
 		HideMesh_Object(PoliceCarModel_LightsOnly, 1);
 		HideMesh_Object(PoliceCarModel_LightsOnly, 2);
@@ -831,7 +831,7 @@ void ADV00_Init()
 		PoliceCarModel_LightsOnly->child->sibling->sibling->sibling->evalflags |= NJD_EVAL_HIDE;
 		// Parasol stuff
 		// Main model
-		Parasol_1 = LoadModel("system\\data\\ADV00\\Models\\00182AD8.sa1mdl", false);
+		Parasol_1 = LoadModel("system\\data\\ADV00\\Models\\00182AD8.sa1mdl");
 		HideMesh_Object(Parasol_1, 1);
 		HideMesh_Object(Parasol_1, 2);
 		HideMesh_Object(Parasol_1, 5);
@@ -840,7 +840,7 @@ void ADV00_Init()
 		HideMesh_Object(Parasol_1, 8);
 		HideMesh_Object(Parasol_1, 11);
 		// Chair transparency
-		Parasol_2 = LoadModel("system\\data\\ADV00\\Models\\00182AD8.sa1mdl", false);
+		Parasol_2 = LoadModel("system\\data\\ADV00\\Models\\00182AD8.sa1mdl");
 		HideMesh_Object(Parasol_2, 0);
 		HideMesh_Object(Parasol_2, 3);
 		HideMesh_Object(Parasol_2, 4);
@@ -855,7 +855,7 @@ void ADV00_Init()
 		HideMesh_Object(Parasol_2, 13);
 		HideMesh_Object(Parasol_2, 14);
 		// Parasol
-		Parasol_3 = LoadModel("system\\data\\ADV00\\Models\\00182AD8.sa1mdl", false);
+		Parasol_3 = LoadModel("system\\data\\ADV00\\Models\\00182AD8.sa1mdl");
 		HideMesh_Object(Parasol_3, 0);
 		HideMesh_Object(Parasol_3, 1);
 		HideMesh_Object(Parasol_3, 2);
@@ -871,7 +871,7 @@ void ADV00_Init()
 		HideMesh_Object(Parasol_3, 13);
 		HideMesh_Object(Parasol_3, 14);
 		// Glass
-		Parasol_4 = LoadModel("system\\data\\ADV00\\Models\\00182AD8.sa1mdl", false);
+		Parasol_4 = LoadModel("system\\data\\ADV00\\Models\\00182AD8.sa1mdl");
 		HideMesh_Object(Parasol_4, 0);
 		HideMesh_Object(Parasol_4, 1);
 		HideMesh_Object(Parasol_4, 2);

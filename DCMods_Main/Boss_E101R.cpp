@@ -190,7 +190,7 @@ void E101R_Init()
 		// Ocean model
 		if (!SADXWater_EggCarrier)
 		{
-			E101RBossOcean = LoadModel("system\\data\\B_E101_R\\Models\\00007C50.sa1mdl", false);
+			E101RBossOcean = LoadModel("system\\data\\B_E101_R\\Models\\00007C50.sa1mdl");
 			E101RBossOcean->basicdxmodel->mats[0].attr_texId = 4;
 			E101RBossOcean->basicdxmodel->mats[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
 			E101RBossOcean->basicdxmodel->mats[0].diffuse.color = 0x7FB2B2B2;

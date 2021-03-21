@@ -608,7 +608,7 @@ void SkyChase_Init()
 		if (EnableSkyChaseEnemyModels)
 		{
 			// Egg Carrier model
-			NJS_OBJECT* EggCarrierModel = LoadModel("system\\data\\SHOOTING\\Models\\0003FA40.sa1mdl", false);
+			NJS_OBJECT* EggCarrierModel = LoadModel("system\\data\\SHOOTING\\Models\\0003FA40.sa1mdl");
 			*(NJS_OBJECT*)0x02982F44 = *EggCarrierModel;
 			// Oh gee... This is gonna be long
 			AddObjectWhiteDiffuseMaterials_Range(EggCarrierModel->child->sibling->sibling->sibling, 75, 102);
@@ -619,10 +619,10 @@ void SkyChase_Init()
 			ForceLevelSpecular_Object(EggCarrierModel->child->sibling->sibling->sibling->sibling->sibling->sibling->sibling, false);
 			ForceLevelSpecular_Object(EggCarrierModel->child->sibling->sibling->sibling->sibling->sibling->sibling->sibling->sibling, false);
 			// Other objects
-			*(NJS_OBJECT*)0x298A894 = *LoadModel("system\\data\\SHOOTING\\Models\\00047110.sa1mdl", false); // Hodai
-			*(NJS_OBJECT*)0x2941B2C = *LoadModel("system\\data\\SHOOTING\\Models\\0001342C.sa1mdl", false); // Kirai
-			*(NJS_OBJECT*)0x028E2C88 = *LoadModel("system\\data\\SHOOTING\\Models\\0009153C.sa1mdl", false); // Beam in Act 1
-			*(NJS_OBJECT*)0x0298E7D0 = *LoadModel("system\\data\\SHOOTING\\Models\\0004AEE0.sa1mdl", false); // Beam in Act 2
+			*(NJS_OBJECT*)0x298A894 = *LoadModel("system\\data\\SHOOTING\\Models\\00047110.sa1mdl"); // Hodai
+			*(NJS_OBJECT*)0x2941B2C = *LoadModel("system\\data\\SHOOTING\\Models\\0001342C.sa1mdl"); // Kirai
+			*(NJS_OBJECT*)0x028E2C88 = *LoadModel("system\\data\\SHOOTING\\Models\\0009153C.sa1mdl"); // Beam in Act 1
+			*(NJS_OBJECT*)0x0298E7D0 = *LoadModel("system\\data\\SHOOTING\\Models\\0004AEE0.sa1mdl"); // Beam in Act 2
 			((NJS_ACTION*)0x28E596C)->object = (NJS_OBJECT*)0x028E2C88; // Beam in Act 1
 			((NJS_ACTION*)0x2996C74)->object = (NJS_OBJECT*)0x0298E7D0; // Beam in Act 2
 			WriteJump((void*)0x62A8C0, SkyChaseBeam1_Display_Fix); // Make the beam in Act 1 render above the clouds
@@ -697,7 +697,7 @@ void SandHill_Init()
 	if (!ModelsLoaded_SBOARD)
 	{
 		// Models
-		*(NJS_OBJECT*)0x017424DC = *LoadModel("system\\data\\SBOARD\\Models\\0006EA40.sa1mdl", false); // Sand Hill ramp
+		*(NJS_OBJECT*)0x017424DC = *LoadModel("system\\data\\SBOARD\\Models\\0006EA40.sa1mdl"); // Sand Hill ramp
 		// Clear material colors
 		RemoveVertexColors_Object((NJS_OBJECT*)0x1741A9C); // RockyHead
 		RemoveVertexColors_Object((NJS_OBJECT*)0x174DED0); // Rock

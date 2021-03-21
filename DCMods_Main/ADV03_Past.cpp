@@ -349,19 +349,19 @@ void ADV03_Init()
 		WriteCall((void*)0x6A1DFA, AllocateEventChao_2);
 		WriteCall((void*)0x6A2A09, AllocateEventChao_2);
 		// Palm fixes
-		*ADV03_ACTIONS[10]->object = *LoadModel("system\\data\\ADV03\\Models\\00012DA8.sa1mdl", false); // Palm in Act 3
+		*ADV03_ACTIONS[10]->object = *LoadModel("system\\data\\ADV03\\Models\\00012DA8.sa1mdl"); // Palm in Act 3
 		ADV03_ACTIONS[10]->object->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_USE_ALPHA; // Hide DA_ONE stuff
 		HideMesh_Object(ADV03_ACTIONS[10]->object, 0); // Hide DA_ONE stuff
 		HideMesh_Object(ADV03_ACTIONS[10]->object, 1); // Hide transparent stuff
-		PalmBottom = LoadModel("system\\data\\ADV03\\Models\\00012DA8.sa1mdl", false);
+		PalmBottom = LoadModel("system\\data\\ADV03\\Models\\00012DA8.sa1mdl");
 		HideMesh_Object(PalmBottom, 2);
 		PalmBottom->evalflags |= NJD_EVAL_BREAK;
 		PalmBottom->child = NULL;
-		*ADV03_OBJECTS[9] = *LoadModel("system\\data\\ADV03\\Models\\0001503C.sa1mdl", false); // Palm in Act 2
+		*ADV03_OBJECTS[9] = *LoadModel("system\\data\\ADV03\\Models\\0001503C.sa1mdl"); // Palm in Act 2
 		ADV03_OBJECTS[9]->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_USE_ALPHA; // Hide DA_ONE stuff
 		HideMesh_Object(ADV03_OBJECTS[9], 0); // Hide DA_ONE stuff
 		HideMesh_Object(ADV03_OBJECTS[9], 1); // Hide transparent stuff
-		PalmBottom2 = LoadModel("system\\data\\ADV03\\Models\\0001503C.sa1mdl", false);
+		PalmBottom2 = LoadModel("system\\data\\ADV03\\Models\\0001503C.sa1mdl");
 		HideMesh_Object(PalmBottom2, 2);
 		HideMesh_Object(PalmBottom2, 3);
 		HideMesh_Object(PalmBottom2, 4);
@@ -379,23 +379,23 @@ void ADV03_Init()
 		WriteData((float*)0x0068BA8F, 86.0f); // Ripple 3 Y
 		WriteData((float*)0x0068BA8A, 52.42f); // Ripple 3 Z
 		// Other objects
-		*ADV03_ACTIONS[9]->object = *LoadModel("system\\data\\ADV03\\Models\\0000F864.sa1mdl", false); // OTree 0
-		*ADV03_OBJECTS[16] = *LoadModel("system\\data\\ADV03\\Models\\0001EDDC.sa1mdl", false); // Tree 16
-		*ADV03_OBJECTS[17] = *LoadModel("system\\data\\ADV03\\Models\\0001EDDC.sa1mdl", false); // Tree 17 (low LOD model in SADX)
+		*ADV03_ACTIONS[9]->object = *LoadModel("system\\data\\ADV03\\Models\\0000F864.sa1mdl"); // OTree 0
+		*ADV03_OBJECTS[16] = *LoadModel("system\\data\\ADV03\\Models\\0001EDDC.sa1mdl"); // Tree 16
+		*ADV03_OBJECTS[17] = *LoadModel("system\\data\\ADV03\\Models\\0001EDDC.sa1mdl"); // Tree 17 (low LOD model in SADX)
 		HideMesh_Object(ADV03_OBJECTS[16], 2);
 		HideMesh_Object(ADV03_OBJECTS[17], 2);
-		TreeShadow = LoadModel("system\\data\\ADV03\\Models\\0001EDDC.sa1mdl", false);
+		TreeShadow = LoadModel("system\\data\\ADV03\\Models\\0001EDDC.sa1mdl");
 		HideMesh_Object(TreeShadow, 0);
 		HideMesh_Object(TreeShadow, 1);
 		WriteCall((void*)0x5455A9, FixTreeShadowFlickering1);
 		WriteCall((void*)0x54557C, FixTreeShadowFlickering2);
-		*ADV03_OBJECTS[15] = *LoadModel("system\\data\\ADV03\\Models\\00027158.sa1mdl", false); // Small tree shadow
-		*ADV03_OBJECTS[13] = *LoadModel("system\\data\\ADV03\\Models\\00016CA0.sa1mdl", false); // OWell
-		*ADV03_OBJECTS[18] = *LoadModel("system\\data\\ADV03\\Models\\00027054.sa1mdl", false); // Well shadow
-		*ADV03_OBJECTS[21] = *LoadModel("system\\data\\ADV03\\Models\\0001D774.sa1mdl", false); // OPyStairs
-		*ADV03_OBJECTS[20] = *LoadModel("system\\data\\ADV03\\Models\\0001E498.sa1mdl", false); // OBigStairs
-		*ADV03_OBJECTS[19] = *LoadModel("system\\data\\ADV03\\Models\\0001E59C.sa1mdl", false); // OBigStairs low LOD
-		*ADV03_OBJECTS[22] = *LoadModel("system\\data\\ADV03\\Models\\0001D878.sa1mdl", false); // OPyStairs low LOD
+		*ADV03_OBJECTS[15] = *LoadModel("system\\data\\ADV03\\Models\\00027158.sa1mdl"); // Small tree shadow
+		*ADV03_OBJECTS[13] = *LoadModel("system\\data\\ADV03\\Models\\00016CA0.sa1mdl"); // OWell
+		*ADV03_OBJECTS[18] = *LoadModel("system\\data\\ADV03\\Models\\00027054.sa1mdl"); // Well shadow
+		*ADV03_OBJECTS[21] = *LoadModel("system\\data\\ADV03\\Models\\0001D774.sa1mdl"); // OPyStairs
+		*ADV03_OBJECTS[20] = *LoadModel("system\\data\\ADV03\\Models\\0001E498.sa1mdl"); // OBigStairs
+		*ADV03_OBJECTS[19] = *LoadModel("system\\data\\ADV03\\Models\\0001E59C.sa1mdl"); // OBigStairs low LOD
+		*ADV03_OBJECTS[22] = *LoadModel("system\\data\\ADV03\\Models\\0001D878.sa1mdl"); // OPyStairs low LOD
 		// Fog data
 		for (int i = 0; i < 3; i++)
 		{

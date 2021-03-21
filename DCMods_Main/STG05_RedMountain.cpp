@@ -138,8 +138,8 @@ void RedMountain_Init()
 		MOUNTAIN02_TEXLIST = texlist_mountain2;
 		MOUNTAIN03_TEXLIST = texlist_mountain3;
 		// Cloud fixes
-		RMCloudTop = LoadModel("system\\data\\STG05\\Models\\00183AF8.sa1mdl", false);
-		RMCloudBottom = LoadModel("system\\data\\STG05\\Models\\00183AF8.sa1mdl", false);
+		RMCloudTop = LoadModel("system\\data\\STG05\\Models\\00183AF8.sa1mdl");
+		RMCloudBottom = LoadModel("system\\data\\STG05\\Models\\00183AF8.sa1mdl");
 		WriteCall((void*)0x600CA3, SetCloudColor); // Set alpha, but keep colors at 1.0
 		WriteCall((void*)0x006011D8, RenderRMClouds_Top);
 		WriteCall((void*)0x0060121C, RenderRMClouds_Bottom);
@@ -150,41 +150,41 @@ void RedMountain_Init()
 		RemoveVertexColors_Object((NJS_OBJECT*)0x02459814); // MtnSpiderA
 		RemoveVertexColors_Object((NJS_OBJECT*)0x0247E4D4); // OBat
 		RemoveVertexColors_Object((NJS_OBJECT*)0x024633B8); // Syuujin
-		*(NJS_OBJECT*)0x2439964 = *LoadModel("system\\data\\STG05\\Models\\001511FC.sa1mdl", false); // OLight
-		*(NJS_OBJECT*)0x243A220 = *LoadModel("system\\data\\STG05\\Models\\00152358.sa1mdl", false); // OLightB
+		*(NJS_OBJECT*)0x2439964 = *LoadModel("system\\data\\STG05\\Models\\001511FC.sa1mdl"); // OLight
+		*(NJS_OBJECT*)0x243A220 = *LoadModel("system\\data\\STG05\\Models\\00152358.sa1mdl"); // OLightB
 		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x243A220)->basicdxmodel->mats[1]);
 		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x243A220)->basicdxmodel->mats[2]);
 		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x243A220)->basicdxmodel->mats[3]);
-		*(NJS_OBJECT*)0x248213C = *LoadModel("system\\data\\STG05\\Models\\00197E70.sa1mdl", false); // Lamp1
+		*(NJS_OBJECT*)0x248213C = *LoadModel("system\\data\\STG05\\Models\\00197E70.sa1mdl"); // Lamp1
 		ForceObjectSpecular_Object((NJS_OBJECT*)0x248213C, false);
 		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x248213C)->basicdxmodel->mats[1]);
-		*(NJS_OBJECT*)0x2482D94 = *LoadModel("system\\data\\STG05\\Models\\00198A88.sa1mdl", false); // Lamp2
+		*(NJS_OBJECT*)0x2482D94 = *LoadModel("system\\data\\STG05\\Models\\00198A88.sa1mdl"); // Lamp2
 		ForceObjectSpecular_Object((NJS_OBJECT*)0x2482D94, false);
 		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x2482D94)->basicdxmodel->mats[1]);
-		*(NJS_OBJECT*)0x243D1B4 = *LoadModel("system\\data\\STG05\\Models\\00155284.sa1mdl", false); // OSaku2
+		*(NJS_OBJECT*)0x243D1B4 = *LoadModel("system\\data\\STG05\\Models\\00155284.sa1mdl"); // OSaku2
 		ForceLevelSpecular_Object((NJS_OBJECT*)0x243D1B4, false);
 		AddAlphaRejectMaterial(&((NJS_OBJECT*)0x243D1B4)->child->basicdxmodel->mats[0]);
 		AddAlphaRejectMaterial(&((NJS_OBJECT*)0x243D1B4)->child->basicdxmodel->mats[1]);
-		*(NJS_OBJECT*)0x2447920 = *LoadModel("system\\data\\STG05\\Models\\0015F77C.sa1mdl", false); // OErupt small piece (SL OBJECT)
+		*(NJS_OBJECT*)0x2447920 = *LoadModel("system\\data\\STG05\\Models\\0015F77C.sa1mdl"); // OErupt small piece (SL OBJECT)
 		((NJS_OBJECT*)0x2447920)->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_USE_ALPHA;
-		*(NJS_OBJECT*)0x244FD8C = *LoadModel("system\\data\\STG05\\Models\\00167A5C.sa1mdl", false); // OErupt big piece
-		*(NJS_OBJECT*)0x248042C = *LoadModel("system\\data\\STG05\\Models\\001961C4.sa1mdl", false); // OTree1
-		*(NJS_OBJECT*)0x246B81C = *LoadModel("system\\data\\STG05\\Models\\00182900.sa1mdl", false); // OAshiba1
-		*(NJS_OBJECT*)0x242FA04 = *LoadModel("system\\data\\STG05\\Models\\00147EE8.sa1mdl", false); // OUntei6 stuff
-		*(NJS_OBJECT*)0x2432404 = *LoadModel("system\\data\\STG05\\Models\\0014A8C4.sa1mdl", false); // OUntei6 stuff
-		*(NJS_OBJECT*)0x242B5FC = *LoadModel("system\\data\\STG05\\Models\\00143F94.sa1mdl", false); // Some mechanism part
-		*(NJS_OBJECT*)0x242D004 = *LoadModel("system\\data\\STG05\\Models\\0014550C.sa1mdl", false); // Some other mechanism part
-		*(NJS_OBJECT*)0x246A624 = *LoadModel("system\\data\\STG05\\Models\\00181CE0.sa1mdl", false); // O Bpole
-		*(NJS_OBJECT*)0x246AB24 = *LoadModel("system\\data\\STG05\\Models\\001821C0.sa1mdl", false); // O Bpole 2
-		*(NJS_MODEL_SADX*)0x243762C = *LoadModel("system\\data\\STG05\\Models\\0014F970.sa1mdl", false)->basicdxmodel; // OMAshiba
-		*(NJS_MODEL_SADX*)0x2466818 = *LoadModel("system\\data\\STG05\\Models\\0017DF54.sa1mdl", false)->basicdxmodel; // Bridge piece
-		*(NJS_MODEL_SADX*)0x2466568 = *LoadModel("system\\data\\STG05\\Models\\0017DCBC.sa1mdl", false)->basicdxmodel; // Bridge piece 2
-		*(NJS_MODEL_SADX*)0x24390BC = *LoadModel("system\\data\\STG05\\Models\\00151AB4.sa1mdl", false)->basicdxmodel; // Light thing
+		*(NJS_OBJECT*)0x244FD8C = *LoadModel("system\\data\\STG05\\Models\\00167A5C.sa1mdl"); // OErupt big piece
+		*(NJS_OBJECT*)0x248042C = *LoadModel("system\\data\\STG05\\Models\\001961C4.sa1mdl"); // OTree1
+		*(NJS_OBJECT*)0x246B81C = *LoadModel("system\\data\\STG05\\Models\\00182900.sa1mdl"); // OAshiba1
+		*(NJS_OBJECT*)0x242FA04 = *LoadModel("system\\data\\STG05\\Models\\00147EE8.sa1mdl"); // OUntei6 stuff
+		*(NJS_OBJECT*)0x2432404 = *LoadModel("system\\data\\STG05\\Models\\0014A8C4.sa1mdl"); // OUntei6 stuff
+		*(NJS_OBJECT*)0x242B5FC = *LoadModel("system\\data\\STG05\\Models\\00143F94.sa1mdl"); // Some mechanism part
+		*(NJS_OBJECT*)0x242D004 = *LoadModel("system\\data\\STG05\\Models\\0014550C.sa1mdl"); // Some other mechanism part
+		*(NJS_OBJECT*)0x246A624 = *LoadModel("system\\data\\STG05\\Models\\00181CE0.sa1mdl"); // O Bpole
+		*(NJS_OBJECT*)0x246AB24 = *LoadModel("system\\data\\STG05\\Models\\001821C0.sa1mdl"); // O Bpole 2
+		*(NJS_MODEL_SADX*)0x243762C = *LoadModel("system\\data\\STG05\\Models\\0014F970.sa1mdl")->basicdxmodel; // OMAshiba
+		*(NJS_MODEL_SADX*)0x2466818 = *LoadModel("system\\data\\STG05\\Models\\0017DF54.sa1mdl")->basicdxmodel; // Bridge piece
+		*(NJS_MODEL_SADX*)0x2466568 = *LoadModel("system\\data\\STG05\\Models\\0017DCBC.sa1mdl")->basicdxmodel; // Bridge piece 2
+		*(NJS_MODEL_SADX*)0x24390BC = *LoadModel("system\\data\\STG05\\Models\\00151AB4.sa1mdl")->basicdxmodel; // Light thing
 		HideMesh_Model((NJS_MODEL_SADX*)0x24390BC, 0);
-		PropellerGlass = LoadModel("system\\data\\STG05\\Models\\00151AB4.sa1mdl", false)->basicdxmodel;
+		PropellerGlass = LoadModel("system\\data\\STG05\\Models\\00151AB4.sa1mdl")->basicdxmodel;
 		HideMesh_Model(PropellerGlass, 1);
-		*(NJS_MODEL_SADX*)0x24394CC = *LoadModel("system\\data\\STG05\\Models\\00151600.sa1mdl", false)->basicdxmodel; // Light thing propeller 1
-		*(NJS_MODEL_SADX*)0x24392C4 = *LoadModel("system\\data\\STG05\\Models\\001513F0.sa1mdl", false)->basicdxmodel; // Light thing propeller 2
+		*(NJS_MODEL_SADX*)0x24394CC = *LoadModel("system\\data\\STG05\\Models\\00151600.sa1mdl")->basicdxmodel; // Light thing propeller 1
+		*(NJS_MODEL_SADX*)0x24392C4 = *LoadModel("system\\data\\STG05\\Models\\001513F0.sa1mdl")->basicdxmodel; // Light thing propeller 2
 		WriteCall((void*)0x60C987, FixPropellerThing);
 		for (int i = 0; i < 3; i++)
 		{
