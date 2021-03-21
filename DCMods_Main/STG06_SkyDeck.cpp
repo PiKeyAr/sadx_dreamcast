@@ -677,7 +677,7 @@ void SkyDeck_OnFrame()
 			if (GameState == 3 || GameState == 4 || GameState == 7 || GameState == 21)
 				for (int i = 0; i < GeoLists[49]->COLCount; i++)
 				{
-					if (GeoLists[49]->Col[i].anonymous_6 & 4)
+					if (GeoLists[49]->Col[i].blockbits & 4)
 						GeoLists[49]->Col[i].Flags |= ColFlags_Solid;
 				}
 		}
