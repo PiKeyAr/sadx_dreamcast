@@ -319,11 +319,7 @@ void SpeedHighway_Init()
 		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x026919C0)->basicdxmodel->mats[5]);
 		HideMesh_Object(((NJS_OBJECT*)0x026919C0), 3); // Hide DA_ONE thing
 		Antenna = LoadModel("system\\data\\STG04\\Models\\0015D440.sa1mdl"); // Antenna model
-		HideMesh_Object(Antenna, 0); // Hide all but the DA_ONE thing
-		HideMesh_Object(Antenna, 1); // Hide all but the DA_ONE thing
-		HideMesh_Object(Antenna, 2); // Hide all but the DA_ONE thing
-		HideMesh_Object(Antenna, 4); // Hide all but the DA_ONE thing
-		HideMesh_Object(Antenna, 5); // Hide all but the DA_ONE thing
+		HideMesh_Object(Antenna, 0, 1, 2, 4, 5); // Hide all but the DA_ONE thing
 		WriteCall((void*)0x00615D60, AntennaModel);
 		WriteData<1>((char*)0x004B19E2, 0x08); // Cop speeder effect blending
 		WriteCall((void*)0x4B1C6F, SetCopSpeederEffectAlpha);
@@ -406,24 +402,14 @@ void SpeedHighway_Init()
 		AddAlphaRejectMaterial(&FlySt1->child->sibling->sibling->basicdxmodel->mats[0]);
 		AddAlphaRejectMaterial(&FlySt1->child->sibling->sibling->sibling->basicdxmodel->mats[0]);
 		FlySt2 = LoadModel("system\\data\\STG04\\Models\\00142D48.sa1mdl"); // Platform2
-		HideMesh_Object(FlySt2, 0);
-		HideMesh_Object(FlySt2, 1);
-		HideMesh_Object(FlySt2, 2);
-		HideMesh_Object(FlySt2, 3);
-		HideMesh_Object(FlySt2, 4);
-		HideMesh_Object(FlySt2, 5);
+		HideMesh_Object(FlySt2, 0, 1, 2, 3, 4, 5);
 		((NJS_ACTION*)0x02674424)->object = FlySt1;
 		WriteCall((void*)0x617FCA, FlyStFix);
 		*(NJS_OBJECT*)0x02679ECC = *LoadModel("system\\data\\STG04\\Models\\00148880.sa1mdl"); // Platform (Tails)
 		*(NJS_OBJECT*)0x026A0008 = *LoadModel("system\\data\\STG04\\Models\\0016B6FC.sa1mdl"); // Missile (Tails)
 		HideMesh_Object(((NJS_OBJECT*)0x026A0008), 6); // Hide Eggman logo
 		MissileLogo = LoadModel("system\\data\\STG04\\Models\\0016B6FC.sa1mdl");
-		HideMesh_Object(MissileLogo, 0);
-		HideMesh_Object(MissileLogo, 1);
-		HideMesh_Object(MissileLogo, 2);
-		HideMesh_Object(MissileLogo, 3);
-		HideMesh_Object(MissileLogo, 4);
-		HideMesh_Object(MissileLogo, 5);
+		HideMesh_Object(MissileLogo, 0, 1, 2, 3, 4, 5);
 		AddAlphaRejectMaterial(&MissileLogo->basicdxmodel->mats[6]);
 		WriteCall((void*)0x613FD6, MissileFix);
 		*(NJS_OBJECT*)0x0267225C = *LoadModel("system\\data\\STG04\\Models\\00140EA4.sa1mdl"); // OCrane

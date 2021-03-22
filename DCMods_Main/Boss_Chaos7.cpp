@@ -178,20 +178,16 @@ void PerfectChaos_Init()
 		TornadoAttack3 = LoadModel("system\\data\\B_CHAOS7\\Models\\000E16E8.sa1mdl"); // Tornado attack
 		// 1 is just the middle layer
 		HideMesh_Object(TornadoAttack1, 0);
-		HideMesh_Object(TornadoAttack1->child, 0);
-		HideMesh_Object(TornadoAttack1->child, 1);
+		HideMesh_Object(TornadoAttack1->child, 0, 1);
 		HideMesh_Object(TornadoAttack1->child->sibling->sibling, 0);
 		// 2 is just the top layer
 		HideMesh_Object(TornadoAttack2, 0);
-		HideMesh_Object(TornadoAttack2->child->sibling, 0);
-		HideMesh_Object(TornadoAttack2->child->sibling, 1);
+		HideMesh_Object(TornadoAttack2->child->sibling, 0, 1);
 		HideMesh_Object(TornadoAttack2->child->sibling->sibling, 0);
 		// 3 is just the front layer
 		HideMesh_Object(TornadoAttack3, 0);
-		HideMesh_Object(TornadoAttack3->child, 0);
-		HideMesh_Object(TornadoAttack3->child, 1);
-		HideMesh_Object(TornadoAttack3->child->sibling, 0);
-		HideMesh_Object(TornadoAttack3->child->sibling, 1);
+		HideMesh_Object(TornadoAttack3->child, 0, 1);
+		HideMesh_Object(TornadoAttack3->child->sibling, 0, 1);		
 		// Perfect Chaos breath fix
 		WriteData((float*)0x566A03, 1.0f);
 		WriteCall((void*)0x5660BE, PerfectChaosBreathFix2);

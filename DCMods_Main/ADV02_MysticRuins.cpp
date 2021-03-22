@@ -576,13 +576,7 @@ void ADV02_Init()
 		OFinalEggModel_Transparent->child->sibling->sibling->sibling->sibling->sibling->child->sibling->evalflags |= NJD_EVAL_HIDE;
 		OFinalEggModel_Transparent->child->sibling->sibling->sibling->sibling->sibling->sibling->child->evalflags |= NJD_EVAL_HIDE;
 		OFinalEggModel_Transparent->child->sibling->sibling->sibling->sibling->sibling->sibling->child->sibling->evalflags |= NJD_EVAL_HIDE;
-		HideMesh_Object(OFinalEggModel_Transparent->child, 0);
-		HideMesh_Object(OFinalEggModel_Transparent->child, 1);
-		HideMesh_Object(OFinalEggModel_Transparent->child, 2);
-		HideMesh_Object(OFinalEggModel_Transparent->child, 3);
-		HideMesh_Object(OFinalEggModel_Transparent->child, 5);
-		HideMesh_Object(OFinalEggModel_Transparent->child, 6);
-		HideMesh_Object(OFinalEggModel_Transparent->child, 7);
+		HideMesh_Object(OFinalEggModel_Transparent->child, 0, 1, 2, 3, 4, 5, 6, 7);
 		// Base lights model
 		OFinalEggModel_Lights = LoadModel("system\\data\\ADV02\\Models\\0020C3B0.sa1mdl"); 
 		OFinalEggModel_Lights->evalflags |= NJD_EVAL_HIDE;
@@ -704,14 +698,11 @@ void ADV02_Init()
 		// Ice Cap door fix
 		*ADV02_OBJECTS[23] = *LoadModel("system\\data\\ADV02\\Models\\001BACAC.sa1mdl"); // Ice Cap door full
 		*ADV02_OBJECTS[25] = *LoadModel("system\\data\\ADV02\\Models\\001B9854.sa1mdl"); // Ice Cap door 1 (with snowflake)
-		HideMesh_Object(ADV02_OBJECTS[25], 0);
-		HideMesh_Object(ADV02_OBJECTS[25], 2);
+		HideMesh_Object(ADV02_OBJECTS[25], 0, 2);
 		IceCapDoorSnowflake = LoadModel("system\\data\\ADV02\\Models\\001B9854.sa1mdl");
-		HideMesh_Object(IceCapDoorSnowflake, 0);
-		HideMesh_Object(IceCapDoorSnowflake, 1);
+		HideMesh_Object(IceCapDoorSnowflake, 0, 1);
 		IceCapDoorSnowflakeWall = LoadModel("system\\data\\ADV02\\Models\\001B9854.sa1mdl");
-		HideMesh_Object(IceCapDoorSnowflakeWall, 1);
-		HideMesh_Object(IceCapDoorSnowflakeWall, 2);
+		HideMesh_Object(IceCapDoorSnowflakeWall, 1, 2);
 		WriteCall((void*)0x53E0B2, IceCapDoorFix);
 		// Other objects
 		MROcean = LoadModel("system\\data\\ADV02\\Models\\0005FEE0.sa1mdl");

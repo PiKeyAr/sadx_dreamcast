@@ -471,16 +471,9 @@ void LostWorld_Init()
 		AokiSwitchModel_Child1 = LoadModel("system\\data\\STG07\\Models\\00151E58.sa1mdl");
 		AokiSwitchModel_Child2 = LoadModel("system\\data\\STG07\\Models\\00151E58.sa1mdl");
 		AokiSwitchModel_Child3 = LoadModel("system\\data\\STG07\\Models\\00151E58.sa1mdl");
-		HideMesh_Object(AokiSwitchModel_Child1, 3);
-		HideMesh_Object(AokiSwitchModel_Child1, 4);
-		HideMesh_Object(AokiSwitchModel_Child2, 0);
-		HideMesh_Object(AokiSwitchModel_Child2, 1);
-		HideMesh_Object(AokiSwitchModel_Child2, 2);
-		HideMesh_Object(AokiSwitchModel_Child2, 3);
-		HideMesh_Object(AokiSwitchModel_Child3, 0);
-		HideMesh_Object(AokiSwitchModel_Child3, 1);
-		HideMesh_Object(AokiSwitchModel_Child3, 2);
-		HideMesh_Object(AokiSwitchModel_Child3, 4);
+		HideMesh_Object(AokiSwitchModel_Child1, 3, 4);
+		HideMesh_Object(AokiSwitchModel_Child2, 0, 1, 2, 3);
+		HideMesh_Object(AokiSwitchModel_Child3, 0, 1, 2, 4);
 		// Models
 		RemoveVertexColors_Object((NJS_OBJECT*)0x10AD204); // OTaki
 		*(NJS_MODEL_SADX*)0x2027290 = *LoadModel("system\\data\\STG07\\Models\\0014A190.sa1mdl")->basicdxmodel; // RndBox

@@ -520,24 +520,18 @@ void IceCap_Init()
 			stru_E773D8.basicdxmodel->mats[1].attrflags |= NJD_FLAG_USE_ALPHA;
 			// Crystal 1
 			Crystal1_1 = LoadModel("system\\data\\STG08\\Models\\00184058.sa1mdl");
-			HideMesh_Object(Crystal1_1, 1);
-			HideMesh_Object(Crystal1_1, 2);
+			HideMesh_Object(Crystal1_1, 1, 2);
 			Crystal1_2 = LoadModel("system\\data\\STG08\\Models\\00184058.sa1mdl");
-			HideMesh_Object(Crystal1_2, 0);
-			HideMesh_Object(Crystal1_2, 2);
+			HideMesh_Object(Crystal1_2, 0, 2);
 			Crystal1_3 = LoadModel("system\\data\\STG08\\Models\\00184058.sa1mdl");
-			HideMesh_Object(Crystal1_3, 0);
-			HideMesh_Object(Crystal1_3, 1);
+			HideMesh_Object(Crystal1_3, 0, 1);
 			// Crystal 2
 			Crystal2_1 = LoadModel("system\\data\\STG08\\Models\\00184918.sa1mdl");
-			HideMesh_Object(Crystal2_1, 1);
-			HideMesh_Object(Crystal2_1, 2);
+			HideMesh_Object(Crystal2_1, 1, 2);
 			Crystal2_2 = LoadModel("system\\data\\STG08\\Models\\00184918.sa1mdl");
-			HideMesh_Object(Crystal2_2, 0);
-			HideMesh_Object(Crystal2_2, 2);
+			HideMesh_Object(Crystal2_2, 0, 2);
 			Crystal2_3 = LoadModel("system\\data\\STG08\\Models\\00184918.sa1mdl");
-			HideMesh_Object(Crystal2_3, 0);
-			HideMesh_Object(Crystal2_3, 1);
+			HideMesh_Object(Crystal2_3, 0, 1);
 			WriteJump((void*)0x4EF5A0, Crystal_Display);
 		}
 		WriteCall((void*)0x4EFE10, RenderSmallIcicles);

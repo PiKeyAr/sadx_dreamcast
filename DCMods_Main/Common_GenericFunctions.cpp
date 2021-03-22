@@ -285,20 +285,230 @@ void ReplaceBIN(std::string src)
 	//PrintDebug("Replace generic BIN file %s with file %s\n", fullsrc.c_str(), fulldest.c_str());
 }
 
-void HideMesh_Object(NJS_OBJECT *object, int meshID)
+/*
+NJS_MESHSET_SADX* CloneMeshset(NJS_MESHSET_SADX meshset)
 {
-	if (object->basicdxmodel)
+	PrintDebug("\nClone meshset\n");
+	NJS_MESHSET_SADX* newmeshset = new NJS_MESHSET_SADX;
+	newmeshset->attrs = meshset.attrs;
+	newmeshset->buffer = nullptr;
+	newmeshset->nbMesh = meshset.nbMesh;
+	newmeshset->type_matId = meshset.type_matId;
+	std::vector<Sint16>* newpoly = new std::vector<Sint16>;
+	std::vector<NJS_TEX>* newuv = new std::vector<NJS_TEX>;
+	std::vector<NJS_COLOR>* newvc = new std::vector<NJS_COLOR>;
+	std::vector<NJS_VECTOR>* newnm = new std::vector<NJS_VECTOR>;
+	for (int m = 0; m < meshset.nbMesh; m++)
 	{
-		object->basicdxmodel->meshsets[meshID] = DeadMeshset;
+		if (meshset.meshes != NULL) newpoly->push_back(meshset.meshes[m]);
+		if (meshset.vertuv != NULL) newuv->push_back(meshset.vertuv[m]);
+		if (meshset.vertcolor != NULL) newvc->push_back(meshset.vertcolor[m]);
+		if (meshset.normals != NULL) newnm->push_back(meshset.normals[m]);
 	}
+	if (newpoly->size() > 0)
+		newmeshset->meshes = newpoly->data();
+	else
+		newmeshset->meshes = NULL;
+
+	if (newuv->size() > 0)
+		newmeshset->vertuv = newuv->data();
+	else
+		newmeshset->vertuv = NULL;
+
+	if (newvc->size() > 0)
+		newmeshset->vertcolor = newvc->data();
+	else
+		newmeshset->vertcolor = NULL;
+
+	if (newnm->size() > 0)
+		newmeshset->normals = newnm->data();
+	else
+		newmeshset->normals = NULL;
+	return newmeshset;
 }
 
-void HideMesh_Model(NJS_MODEL_SADX *model, int meshID)
+NJS_MATERIAL* CloneMaterial(NJS_MATERIAL* mat)
 {
-	if (model)
+	NJS_MATERIAL* newmat = new NJS_MATERIAL;
+	newmat->attrflags = mat->attrflags;
+	newmat->attr_texId = mat->attr_texId;
+	newmat->diffuse = mat->diffuse;
+	newmat->specular = mat->specular;
+	newmat->exponent = mat->exponent;
+	return newmat;
+}
+
+NJS_MODEL_SADX* CloneAttach(NJS_MODEL_SADX* att)
+{
+	NJS_MODEL_SADX* newatt = new NJS_MODEL_SADX;
+	newatt->buffer = nullptr;
+	newatt->center = att->center;
+	newatt->r = att->r;
+	newatt->nbMat = att->nbMat;
+	newatt->nbPoint = att->nbPoint;
+	newatt->nbMeshset = att->nbMeshset;
+
+	// Vertices and normals
+	std::vector<NJS_VECTOR>* newvert = new std::vector<NJS_VECTOR>;
+	std::vector<NJS_VECTOR>* newnorm = new std::vector<NJS_VECTOR>;
+	for (int m = 0; m < att->nbPoint; m++)
 	{
-		model->meshsets[meshID] = DeadMeshset;
+		if (att->points != NULL) newvert->push_back(att->points[m]);
+		if (att->normals != NULL) newnorm->push_back(att->normals[m]);
 	}
+
+	if (newvert->size() > 0)
+		newatt->points = newvert->data();
+	else
+		newatt->points = NULL;
+
+	if (newnorm->size() > 0)
+		newatt->normals = newnorm->data();
+	else
+		newatt->normals = NULL;
+	
+	// Meshsets
+	std::vector<NJS_MESHSET_SADX>* newmeshes = new std::vector<NJS_MESHSET_SADX>;
+	if (att->nbMeshset > 0)
+	{
+		for (int ms = 0; ms < att->nbMeshset; ms++)
+		{
+			newmeshes->push_back(*CloneMeshset(att->meshsets[ms]));
+		}
+	}
+	if (newmeshes->size() > 0)
+		newatt->meshsets = newmeshes->data();
+	else
+		newatt->meshsets = NULL;
+
+	// Materials
+	std::vector<NJS_MATERIAL>* newmats = new std::vector<NJS_MATERIAL>;
+	if (att->nbMat > 0)
+	{
+		for (int mt = 0; mt < att->nbMat; mt++)
+		{
+			newmats->push_back(*CloneMaterial(&att->mats[mt]));
+		}
+	}
+	if (newmats->size() > 0)
+		newatt->mats = newmats->data();
+	else
+		newatt->mats = NULL;
+	return newatt;
+}
+
+NJS_OBJECT* CloneObject(NJS_OBJECT *obj)
+{
+	NJS_OBJECT* newobj = new NJS_OBJECT;
+	newobj->ang[0] = obj->ang[0];
+	newobj->ang[1] = obj->ang[1];
+	newobj->ang[2] = obj->ang[2];
+	newobj->evalflags = obj->evalflags;
+	newobj->pos[0] = obj->pos[0];
+	newobj->pos[1] = obj->pos[1];
+	newobj->pos[2] = obj->pos[2];
+	newobj->scl[0] = obj->scl[0];
+	newobj->scl[1] = obj->scl[1];
+	newobj->scl[2] = obj->scl[2];
+	PrintDebug("Cloning attach\n");
+	// Model
+	if (obj->basicdxmodel)
+	{
+		newobj->basicdxmodel = CloneAttach(obj->basicdxmodel);
+	}
+	else
+		newobj->basicdxmodel = NULL;
+	PrintDebug("Cloning child\n");
+	// Child
+	if (obj->child)
+		newobj->child = CloneObject(obj->child);
+	else
+		newobj->child = NULL;
+	PrintDebug("Cloning sibling\n");
+	// Sibling
+	if (obj->sibling)
+		newobj->sibling = CloneObject(obj->sibling);
+	else
+		newobj->sibling = NULL;
+
+	return newobj;
+}
+*/
+
+void HideMesh_Model_(NJS_MODEL_SADX* model, int arg, ...)
+{
+	if (!model) return;
+
+	va_list arguments;
+	std::vector<int> hidemeshlist;
+	std::vector<NJS_MESHSET_SADX>* newmeshset = new std::vector<NJS_MESHSET_SADX>;
+
+	// Add list of meshset IDs
+	for (va_start(arguments, arg); arg != NULL; arg = va_arg(arguments, int))
+	{
+		hidemeshlist.push_back(arg);
+	}
+	va_end(arguments);
+
+	// Readd meshes to a new list excluding hidden meshes
+	for (int i = 0; i < model->nbMeshset; i++)
+	{
+		bool add = true;
+		// Check if a mesh ID is in the list of removed meshsets
+		for (int a : hidemeshlist)
+		{
+			if (i == a)
+				add = false;
+		}
+		// If it isn't, add it to the new meshset
+		if (add)
+		{
+			//PrintDebug("Adding meshset %d\n", i);
+			newmeshset->push_back(model->meshsets[i]);
+		}
+	}
+	model->meshsets = newmeshset->data();
+	//PrintDebug("Removed %d meshsets, meshset count %d before, %d after\n", hidemeshlist.size(), model->nbMeshset, model->nbMeshset - hidemeshlist.size());
+	model->nbMeshset = model->nbMeshset - hidemeshlist.size();
+}
+
+void HideMesh_Object_(NJS_OBJECT* object, int arg, ...)
+{
+	NJS_MODEL_SADX* model = object->basicdxmodel;
+	if (!model) return;
+
+	va_list arguments;
+	std::vector<int> hidemeshlist;
+	std::vector<NJS_MESHSET_SADX>* newmeshset = new std::vector<NJS_MESHSET_SADX>;
+
+	// Add list of meshset IDs
+	for (va_start(arguments, arg); arg != -1; arg = va_arg(arguments, int))
+	{
+		hidemeshlist.push_back(arg);
+		//PrintDebug("Hide %d", arg);
+	}
+	va_end(arguments);
+
+	// Readd meshes to a new list excluding hidden meshes
+	for (int i = 0; i < model->nbMeshset; i++)
+	{
+		bool add = true;
+		// Check if a mesh ID is in the list of removed meshsets
+		for (int a : hidemeshlist)
+		{
+			if (i == a)
+				add = false;
+		}
+		// If it isn't, add it to the new meshset
+		if (add)
+		{
+			//PrintDebug("Adding meshset %d\n", i);
+			newmeshset->push_back(model->meshsets[i]);
+		}
+	}
+	model->meshsets = newmeshset->data();
+	//PrintDebug("Removed %d meshsets, meshset count %d before, %d after\n", hidemeshlist.size(), model->nbMeshset, model->nbMeshset - hidemeshlist.size());
+	model->nbMeshset = model->nbMeshset - hidemeshlist.size();
 }
 
 void CheckAndUnloadLevelFiles()
@@ -1220,17 +1430,6 @@ void RemoveTransparency_Object(NJS_OBJECT* obj, bool recursive)
 	{
 		if (obj->child) RemoveTransparency_Object(obj->child, true);
 		if (obj->sibling) RemoveTransparency_Object(obj->sibling, true);
-	}
-}
-
-void HideAllButOneMesh(NJS_OBJECT *obj, int meshID)
-{
-	if (obj->basicdxmodel)
-	{
-		for (int k = 0; k < obj->basicdxmodel->nbMeshset; ++k)
-		{
-			if (k != meshID) HideMesh_Model(obj->basicdxmodel, k);
-		}
 	}
 }
 

@@ -529,28 +529,9 @@ void SwitchLighting_TimeOfDay(int act)
 	LandTable* landtable;
 	
 	Sint8 TimeOfDay = GetTimeOfDay();
-	switch (act)
-	{
-	case 1:
-		landtable = LANDTABLESS[1];
-		break;
-	case 2:
-		landtable = LANDTABLESS[2];
-		break;
-	case 3:
-		landtable = LANDTABLESS[3];
-		break;
-	case 4:
-		landtable = LANDTABLESS[4];
-		break;
-	case 5:
-		landtable = LANDTABLESS[5];
-	case 0:
-	default:
-		landtable = LANDTABLESS[0];
-		break;
-	}
 	
+	landtable = LANDTABLESS[act];
+		
 	// OGaitou "fix"
 	if (TimeOfDay != 2) 
 		((NJS_OBJECT*)0x2AC9F10)->child->sibling->basicdxmodel->mats[0].attrflags = 0x9421A500;
@@ -798,8 +779,7 @@ void ADV00_Init()
 		EVHelicopterLight1 = LoadModel("system\\data\\Other\\00011208.sa1mdl");
 		HideEntireObject(EVHelicopterLight1);
 		EVHelicopterLight1->child->sibling->sibling->sibling->sibling->child->evalflags &= ~NJD_EVAL_HIDE; // Unhide first transparent bit in mesh 1
-		HideMesh_Object(EVHelicopterLight1->child->sibling->sibling->sibling->sibling->child, 1); // Hide opaque bits in mesh 1
-		HideMesh_Object(EVHelicopterLight1->child->sibling->sibling->sibling->sibling->child, 2); // Hide opaque bits in mesh 1
+		HideMesh_Object(EVHelicopterLight1->child->sibling->sibling->sibling->sibling->child, 1, 2); // Hide opaque bits in mesh 1
 		// Light2 is the actual light
 		EVHelicopterLight2 = LoadModel("system\\data\\Other\\00011208.sa1mdl");
 		HideEntireObject(EVHelicopterLight2);
@@ -810,79 +790,26 @@ void ADV00_Init()
 		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x2AE8674)->child->sibling->sibling->sibling->basicdxmodel->mats[9]);
 		// Police car stuff
 		*(NJS_OBJECT*)0x2AF4FC0 = *LoadModel("system\\data\\ADV00\\Models\\0019F390.sa1mdl"); // Police
-		HideMesh_Object(((NJS_OBJECT*)0x2AF4FC0), 9); // Hide lights
-		HideMesh_Object(((NJS_OBJECT*)0x2AF4FC0), 10); // Hide lights
+		HideMesh_Object(((NJS_OBJECT*)0x2AF4FC0), 9, 10); // Hide lights
 		PoliceCarModel_LightsOnly = LoadModel("system\\data\\ADV00\\Models\\0019F390.sa1mdl");
-		HideMesh_Object(PoliceCarModel_LightsOnly, 0);
-		HideMesh_Object(PoliceCarModel_LightsOnly, 1);
-		HideMesh_Object(PoliceCarModel_LightsOnly, 2);
-		HideMesh_Object(PoliceCarModel_LightsOnly, 3);
-		HideMesh_Object(PoliceCarModel_LightsOnly, 4);
-		HideMesh_Object(PoliceCarModel_LightsOnly, 5);
-		HideMesh_Object(PoliceCarModel_LightsOnly, 6);
-		HideMesh_Object(PoliceCarModel_LightsOnly, 7);
-		HideMesh_Object(PoliceCarModel_LightsOnly, 8);
-		HideMesh_Object(PoliceCarModel_LightsOnly, 11);
-		HideMesh_Object(PoliceCarModel_LightsOnly, 12);
-		HideMesh_Object(PoliceCarModel_LightsOnly, 13);
+		HideMesh_Object(PoliceCarModel_LightsOnly, 0, 1, 2, 3, 4, 5, 6, 7, 8, 11, 12, 13);
 		PoliceCarModel_LightsOnly->child->evalflags |= NJD_EVAL_HIDE;
 		PoliceCarModel_LightsOnly->child->sibling->evalflags |= NJD_EVAL_HIDE;
 		PoliceCarModel_LightsOnly->child->sibling->sibling->evalflags |= NJD_EVAL_HIDE;
 		PoliceCarModel_LightsOnly->child->sibling->sibling->sibling->evalflags |= NJD_EVAL_HIDE;
 		// Parasol stuff
-		// Main model
 		Parasol_1 = LoadModel("system\\data\\ADV00\\Models\\00182AD8.sa1mdl");
-		HideMesh_Object(Parasol_1, 1);
-		HideMesh_Object(Parasol_1, 2);
-		HideMesh_Object(Parasol_1, 5);
-		HideMesh_Object(Parasol_1, 6);
-		HideMesh_Object(Parasol_1, 7);
-		HideMesh_Object(Parasol_1, 8);
-		HideMesh_Object(Parasol_1, 11);
-		// Chair transparency
 		Parasol_2 = LoadModel("system\\data\\ADV00\\Models\\00182AD8.sa1mdl");
-		HideMesh_Object(Parasol_2, 0);
-		HideMesh_Object(Parasol_2, 3);
-		HideMesh_Object(Parasol_2, 4);
-		HideMesh_Object(Parasol_2, 5);
-		HideMesh_Object(Parasol_2, 6);
-		HideMesh_Object(Parasol_2, 7);
-		HideMesh_Object(Parasol_2, 8);
-		HideMesh_Object(Parasol_2, 9);
-		HideMesh_Object(Parasol_2, 10);
-		HideMesh_Object(Parasol_2, 11);
-		HideMesh_Object(Parasol_2, 12);
-		HideMesh_Object(Parasol_2, 13);
-		HideMesh_Object(Parasol_2, 14);
-		// Parasol
 		Parasol_3 = LoadModel("system\\data\\ADV00\\Models\\00182AD8.sa1mdl");
-		HideMesh_Object(Parasol_3, 0);
-		HideMesh_Object(Parasol_3, 1);
-		HideMesh_Object(Parasol_3, 2);
-		HideMesh_Object(Parasol_3, 3);
-		HideMesh_Object(Parasol_3, 4);
-		HideMesh_Object(Parasol_3, 5);
-		HideMesh_Object(Parasol_3, 6);
-		HideMesh_Object(Parasol_3, 7);
-		HideMesh_Object(Parasol_3, 8);
-		HideMesh_Object(Parasol_3, 9);
-		HideMesh_Object(Parasol_3, 10);
-		HideMesh_Object(Parasol_3, 12);
-		HideMesh_Object(Parasol_3, 13);
-		HideMesh_Object(Parasol_3, 14);
-		// Glass
 		Parasol_4 = LoadModel("system\\data\\ADV00\\Models\\00182AD8.sa1mdl");
-		HideMesh_Object(Parasol_4, 0);
-		HideMesh_Object(Parasol_4, 1);
-		HideMesh_Object(Parasol_4, 2);
-		HideMesh_Object(Parasol_4, 3);
-		HideMesh_Object(Parasol_4, 4);
-		HideMesh_Object(Parasol_4, 9);
-		HideMesh_Object(Parasol_4, 10);
-		HideMesh_Object(Parasol_4, 11);
-		HideMesh_Object(Parasol_4, 12);
-		HideMesh_Object(Parasol_4, 13);
-		HideMesh_Object(Parasol_4, 14);
+		// Main model
+		HideMesh_Object(Parasol_1, 1, 2, 5, 6, 7, 8, 11);
+		// Chair transparency
+		HideMesh_Object(Parasol_2, 0, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14);
+		// Parasol
+		HideMesh_Object(Parasol_3, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 13, 14);
+		// Glass
+		HideMesh_Object(Parasol_4, 0, 1, 2, 3, 4, 9, 10, 11, 12, 13, 14);
 		SwapMeshsets(Parasol_4, 8, 6); // Move heart after glass
 		SwapMeshsets(Parasol_4, 7, 8); // Move lemon after glass
 		WriteCall((void*)0x63A6A4, RenderParasol); //Parasol

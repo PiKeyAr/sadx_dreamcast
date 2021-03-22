@@ -343,8 +343,7 @@ void HotShelter_Init()
 		// Model replacements
 		// OEfHikari
 		*(NJS_OBJECT*)0x187201C = *LoadModel("system\\data\\STG12\\Models\\0015CC48.sa1mdl"); // OEfHikari
-		HideMesh_Object(((NJS_OBJECT*)0x187201C), 0); // Hide light 1
-		HideMesh_Object(((NJS_OBJECT*)0x187201C), 7); // Hide light 2
+		HideMesh_Object(((NJS_OBJECT*)0x187201C), 0, 7); // Hide light
 		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x187201C)->basicdxmodel->mats[2]);
 		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x187201C)->basicdxmodel->mats[3]);
 		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x187201C)->basicdxmodel->mats[4]);
@@ -352,13 +351,7 @@ void HotShelter_Init()
 		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x187201C)->basicdxmodel->mats[6]);
 		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x187201C)->basicdxmodel->mats[7]);
 		OEfHikari_Light = LoadModel("system\\data\\STG12\\Models\\0015CC48.sa1mdl");
-		HideMesh_Object(OEfHikari_Light, 1);
-		HideMesh_Object(OEfHikari_Light, 2);
-		HideMesh_Object(OEfHikari_Light, 3);
-		HideMesh_Object(OEfHikari_Light, 4);
-		HideMesh_Object(OEfHikari_Light, 5);
-		HideMesh_Object(OEfHikari_Light, 6);
-		HideMesh_Object(OEfHikari_Light, 8);
+		HideMesh_Object(OEfHikari_Light, 1, 2, 3, 4, 5, 6, 8);
 		WriteCall((void*)0x59D444, RenderOHikari); // Add back OHikari green light
 		// E105 boss missile
 		*(NJS_OBJECT*)0x17DF53C = *LoadModel("system\\data\\STG12\\Models\\0019F8E4.sa1mdl");
@@ -371,27 +364,13 @@ void HotShelter_Init()
 		OLight3_2 = LoadModel("system\\data\\STG12\\Models\\0011E380.sa1mdl");
 		OLight3_3 = LoadModel("system\\data\\STG12\\Models\\0011E380.sa1mdl");
 		OLight3_4 = LoadModel("system\\data\\STG12\\Models\\0011E380.sa1mdl");
-		HideMesh_Object(OLight3_1->child, 3);
-		HideMesh_Object(OLight3_1->child, 4);
-		HideMesh_Object(OLight3_1->child, 5);
+		HideMesh_Object(OLight3_1->child, 3, 4, 5);
 		OLight3_2->evalflags |= NJD_EVAL_HIDE;
-		HideMesh_Object(OLight3_2->child, 0);
-		HideMesh_Object(OLight3_2->child, 1);
-		HideMesh_Object(OLight3_2->child, 2);
-		HideMesh_Object(OLight3_2->child, 4);
-		HideMesh_Object(OLight3_2->child, 5);
+		HideMesh_Object(OLight3_2->child, 0, 1, 2, 4, 5);
 		OLight3_3->evalflags |= NJD_EVAL_HIDE;
-		HideMesh_Object(OLight3_3->child, 0);
-		HideMesh_Object(OLight3_3->child, 1);
-		HideMesh_Object(OLight3_3->child, 2);
-		HideMesh_Object(OLight3_3->child, 3);
-		HideMesh_Object(OLight3_3->child, 5);
+		HideMesh_Object(OLight3_3->child, 0, 1, 2, 3, 5);
 		OLight3_4->evalflags |= NJD_EVAL_HIDE;
-		HideMesh_Object(OLight3_4->child, 0);
-		HideMesh_Object(OLight3_4->child, 1);
-		HideMesh_Object(OLight3_4->child, 2);
-		HideMesh_Object(OLight3_4->child, 3);
-		HideMesh_Object(OLight3_4->child, 4);
+		HideMesh_Object(OLight3_4->child, 0, 1, 2, 3, 4);
 		WriteCall((void*)0x5A2EF4, RenderOLight3);
 		// OEntotsu particle fix
 		WriteCall((void*)0x5A33C0, OEntotsuParticleFix);
@@ -410,8 +389,7 @@ void HotShelter_Init()
 		*(NJS_MODEL_SADX*)0x182DFF8 = *LoadModel("system\\data\\STG12\\Models\\00122168.sa1mdl")->basicdxmodel; // OKaitenKey
 		*(NJS_MODEL_SADX*)0x182D6F4 = *LoadModel("system\\data\\STG12\\Models\\001227C8.sa1mdl")->basicdxmodel; // OKaitenKey handle
 		BrokenGlass = LoadModel("system\\data\\STG12\\Models\\001781FC.sa1mdl"); // ORoboTV broken glass
-		HideMesh_Object(BrokenGlass, 0);
-		HideMesh_Object(BrokenGlass, 1);
+		HideMesh_Object(BrokenGlass, 0, 1);
 		*(NJS_MODEL_SADX*)0x180DC54 = *LoadModel("system\\data\\STG12\\Models\\001781FC.sa1mdl")->basicdxmodel; // ORoboTV broken glass
 		HideMesh_Model((NJS_MODEL_SADX*)0x180DC54, 2); // Hide the black part to render separately
 		*(NJS_OBJECT*)0x185D200 = *LoadModel("system\\data\\STG12\\Models\\0014A8F4.sa1mdl"); // OCarne

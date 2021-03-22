@@ -517,12 +517,7 @@ void FinalEgg_Init()
 		_0Light_Camera_Camera = LoadModel("system\\data\\STG10\\Models\\001AEB24.sa1mdl");
 		//SwapMeshsets(_0Light_Camera_Camera->child->child->sibling, 0, 5);
 		AddWhiteDiffuseMaterial(&_0Light_Camera_Camera->child->child->sibling->basicdxmodel->mats[5]);
-		HideMesh_Object(_0Light_Camera_Camera->child->child->sibling, 1);
-		HideMesh_Object(_0Light_Camera_Camera->child->child->sibling, 2);
-		HideMesh_Object(_0Light_Camera_Camera->child->child->sibling, 3);
-		HideMesh_Object(_0Light_Camera_Camera->child->child->sibling, 4);
-		HideMesh_Object(_0Light_Camera_Camera->child->child->sibling, 5);
-		HideMesh_Object(_0Light_Camera_Camera->child->child->sibling, 6);
+		HideMesh_Object(_0Light_Camera_Camera->child->child->sibling, 1, 2, 3, 4, 5, 6);
 		_0Light_Camera_Camera->evalflags |= NJD_EVAL_HIDE;
 		_0Light_Camera_Camera->child->evalflags |= NJD_EVAL_HIDE;
 		_0Light_Camera_Camera->child->child->evalflags |= NJD_EVAL_HIDE;
@@ -543,12 +538,7 @@ void FinalEgg_Init()
 		HideMesh_Object(BlueLight_Camera1, 6);
 		BlueLight_Camera2 = LoadModel("system\\data\\STG10\\Models\\001B01AC.sa1mdl")->child; // _0BlueLight camera blue lens thing
 		BlueLight_Camera2->child->evalflags |= NJD_EVAL_HIDE;
-		HideMesh_Object(BlueLight_Camera2, 0);
-		HideMesh_Object(BlueLight_Camera2, 1);
-		HideMesh_Object(BlueLight_Camera2, 2);
-		HideMesh_Object(BlueLight_Camera2, 3);
-		HideMesh_Object(BlueLight_Camera2, 4);
-		HideMesh_Object(BlueLight_Camera2, 5);
+		HideMesh_Object(BlueLight_Camera2, 0, 1, 2, 3, 4, 5);
 		AddAlphaRejectMaterial(&BlueLight_Light->child->basicdxmodel->mats[0]); // _0BlueLight
 		WriteJump((void*)0x5BBD10, RenderBlueLight);
 		*(NJS_MODEL_SADX*)0x19FBDAC = *LoadModel("system\\data\\STG10\\Models\\001ABCC8.sa1mdl")->basicdxmodel; // OPurs_Camera
@@ -559,10 +549,7 @@ void FinalEgg_Init()
 		((NJS_OBJECT*)0x1A478CC)->basicdxmodel->mats[5].attrflags &= ~NJD_FLAG_USE_ALPHA;
 		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x1A478CC)->basicdxmodel->mats[5]);
 		OLight2_Light = LoadModel("system\\data\\STG10\\Models\\001EFCC8.sa1mdl");
-		HideMesh_Object(OLight2_Light, 0);
-		HideMesh_Object(OLight2_Light, 1);
-		HideMesh_Object(OLight2_Light, 2);
-		HideMesh_Object(OLight2_Light, 4);
+		HideMesh_Object(OLight2_Light, 0, 1, 2, 4);
 		*(NJS_MODEL_SADX*)0x19D7530 = *LoadModel("system\\data\\STG10\\Models\\00191518.sa1mdl")->basicdxmodel; // OSetStep
 		*(NJS_MODEL_SADX*)0x19D77F0 = *LoadModel("system\\data\\STG10\\Models\\00191710.sa1mdl")->basicdxmodel; // OContainer
 		*(NJS_MODEL_SADX*)0x19D6A20 = *LoadModel("system\\data\\STG10\\Models\\00190D8C.sa1mdl")->basicdxmodel; // OMova_thorn 1
@@ -623,10 +610,7 @@ void FinalEgg_Init()
 		HideMesh_Object(((NJS_OBJECT*)0x1C28C78)->child, 4); // Hide beam
 		OStandLight_Light = LoadModel("system\\data\\STG10\\Models\\0021BC74.sa1mdl");
 		OStandLight_Light->evalflags |= NJD_EVAL_HIDE;
-		HideMesh_Object(OStandLight_Light->child, 0);
-		HideMesh_Object(OStandLight_Light->child, 1);
-		HideMesh_Object(OStandLight_Light->child, 2);
-		HideMesh_Object(OStandLight_Light->child, 3);
+		HideMesh_Object(OStandLight_Light->child, 0, 1, 2, 3);
 		OStandLight_Light->child->basicdxmodel->mats[4].attrflags &= ~NJD_DA_SRC; // No idea why it has that in the original model
 		OStandLight_Light->child->basicdxmodel->mats[4].attrflags |= NJD_DA_ONE;
 		memcpy((void*)0x019CDCD0, uv_0018AD48, sizeof(uv_0018AD48)); // Conveyour belt UVs

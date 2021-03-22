@@ -301,8 +301,7 @@ void ADV01C_Init()
 		HideMesh_Object(TaraiButton_OpaqueOnly, 0);
 		AddWhiteDiffuseMaterial(&TaraiButton_OpaqueOnly->basicdxmodel->mats[1]);
 		AddWhiteDiffuseMaterial(&TaraiButton_OpaqueOnly->basicdxmodel->mats[2]);
-		HideMesh_Object(TaraiButton_Transparent, 1);
-		HideMesh_Object(TaraiButton_Transparent, 2);
+		HideMesh_Object(TaraiButton_Transparent, 1, 2);
 		WriteJump((void*)0x52BA70, OTarai_Child_Display);
 		*ADV01C_OBJECTS[7] = *TaraiButton_Transparent; //Tarai button
 		*ADV01C_MODELS[28] = *TaraiButton_Transparent->basicdxmodel;

@@ -198,8 +198,7 @@ void Chaos0_Init()
 		C0HelicopterLight1 = LoadModel("system\\data\\B_CHAOS0\\Models\\0005825C.sa1mdl");
 		HideEntireObject(C0HelicopterLight1);
 		C0HelicopterLight1->child->sibling->sibling->sibling->sibling->child->evalflags &= ~NJD_EVAL_HIDE; // Unhide first transparent bit in mesh 1
-		HideMesh_Object(C0HelicopterLight1->child->sibling->sibling->sibling->sibling->child, 1); // Hide opaque bits in mesh 1
-		HideMesh_Object(C0HelicopterLight1->child->sibling->sibling->sibling->sibling->child, 2); // Hide opaque bits in mesh 1
+		HideMesh_Object(C0HelicopterLight1->child->sibling->sibling->sibling->sibling->child, 1, 2); // Hide opaque bits in mesh 1
 		// Light2 is the actual light
 		C0HelicopterLight2 = LoadModel("system\\data\\B_CHAOS0\\Models\\0005825C.sa1mdl");
 		HideEntireObject(C0HelicopterLight2);

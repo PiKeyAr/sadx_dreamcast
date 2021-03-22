@@ -1,5 +1,11 @@
 #include "stdafx.h"
 
+// TODO:
+// Clone loaded models instead of reloading them from files
+// Use symbol stuff where possible
+// Replace model filenames
+// Load all animations externally
+
 // Level files
 LandTableInfo *STG00_0_Info = nullptr;
 LandTableInfo *STG01_0_Info = nullptr;

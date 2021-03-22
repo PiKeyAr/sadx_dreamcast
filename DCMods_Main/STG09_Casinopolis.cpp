@@ -1059,31 +1059,18 @@ void Casinopolis_Init()
 			AddUVAnimation_Permanent(9, 0, NeonK_Text->child->basicdxmodel->meshsets[6].vertuv, 78, 16, 0, 100);
 			AddAlphaRejectMaterial(&NeonK_Text->basicdxmodel->mats[16]);
 			WriteCall((void*)0x5CAB34, RenderNeonK);
-			for (int i = 0; i < NeonK_Text->basicdxmodel->nbMeshset; i++)
-			{
-				if (i != 16) HideMesh_Object(NeonK_Text, i);
-			}
-			for (int i = 0; i < NeonK_Text->child->basicdxmodel->nbMeshset; i++)
-			{
-				if (i != 6) HideMesh_Object(NeonK_Text->child, i);
-			}
+			HideMesh_Object(NeonK_Text, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 17, 18, 19, 20, 21, 22, 23, 24);
+			HideMesh_Object(NeonK_Text->child, 0, 1, 2, 3, 4, 5, 7, 8, 9, 10);
 		}
 		// Models
 		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x01E4B760)->basicdxmodel->mats[2]); // OShwrl
 		// ODento
 		ODento_1 = LoadModel("system\\data\\STG09\\Models\\001DA8C8.sa1mdl");
-		HideMesh_Object(ODento_1, 1);
-		HideMesh_Object(ODento_1, 2);
-		HideMesh_Object(ODento_1, 4);
+		HideMesh_Object(ODento_1, 1, 2, 4);
 		ODento_2 = LoadModel("system\\data\\STG09\\Models\\001DA8C8.sa1mdl");
-		HideMesh_Object(ODento_2, 0);
-		HideMesh_Object(ODento_2, 3);
-		HideMesh_Object(ODento_2, 4);
+		HideMesh_Object(ODento_2, 0, 3, 4);
 		ODento_3 = LoadModel("system\\data\\STG09\\Models\\001DA8C8.sa1mdl");
-		HideMesh_Object(ODento_3, 0);
-		HideMesh_Object(ODento_3, 1);
-		HideMesh_Object(ODento_3, 2);
-		HideMesh_Object(ODento_3, 3);
+		HideMesh_Object(ODento_3, 0, 1, 2, 3);
 		AddAlphaRejectMaterial(&ODento_3->basicdxmodel->mats[4]);
 		WriteCall((void*)0x5DDADF, ODentoFix);
 		*(NJS_OBJECT*)0x1E4D66C = *LoadModel("system\\data\\STG09\\Models\\001CA53C.sa1mdl"); // OCardKan
@@ -1139,25 +1126,18 @@ void Casinopolis_Init()
 		WriteData((NJS_MESHSET_SADX**)0x1E76F18, &((NJS_OBJECT*)0x1E4B1A8)->child->basicdxmodel->meshsets[0]); // Child UV animation (meshes merged in the DC version so just one)
 		// OSl objects
 		OSlX_Base = LoadModel("system\\data\\STG09\\Models\\001BF300.sa1mdl"); // OSl Base
-		HideMesh_Object(OSlX_Base->child, 0); // Hide light start
-		HideMesh_Object(OSlX_Base->child, 2); // Hide light
+		HideMesh_Object(OSlX_Base->child, 0, 2); // Hide light
 		HideMesh_Object(((NJS_OBJECT*)0x01E5E7BC), 2); // OLhtr base
 		OLhtr_Bright = LoadModel("system\\data\\STG09\\Models\\001DAE74.sa1mdl"); // OLhtr bright
-		HideMesh_Object(OLhtr_Bright, 0);
-		HideMesh_Object(OLhtr_Bright, 1);
+		HideMesh_Object(OLhtr_Bright, 0, 1);
 		OLhtr_Dark = LoadModel("system\\data\\STG09\\Models\\001DAE74.sa1mdl"); // OLhtr dark
-		HideMesh_Object(OLhtr_Dark, 0);
-		HideMesh_Object(OLhtr_Dark, 1);
+		HideMesh_Object(OLhtr_Dark, 0, 1);
 		OLhtr_Dark->basicdxmodel->mats[2].diffuse.color = 0xFF4F4F4F;
 		HideMesh_Object(((NJS_OBJECT*)0x1E5EC4C), 3); // OLhtg base
 		OLhtg_Bright = LoadModel("system\\data\\STG09\\Models\\001DB2E4.sa1mdl"); // OLhtg bright
-		HideMesh_Object(OLhtg_Bright, 0);
-		HideMesh_Object(OLhtg_Bright, 1);
-		HideMesh_Object(OLhtg_Bright, 2);
+		HideMesh_Object(OLhtg_Bright, 0, 1, 2);
 		OLhtg_Dark = LoadModel("system\\data\\STG09\\Models\\001DB2E4.sa1mdl"); // OLhtg dark
-		HideMesh_Object(OLhtg_Dark, 0);
-		HideMesh_Object(OLhtg_Dark, 1);
-		HideMesh_Object(OLhtg_Dark, 2);
+		HideMesh_Object(OLhtg_Dark, 0, 1, 2);
 		OLhtg_Dark->basicdxmodel->mats[4].diffuse.color = 0xFF4F4F4F;
 		*(NJS_OBJECT*)0x1E40FB8 = *LoadModel("system\\data\\STG09\\Models\\001BF300.sa1mdl"); // OSl G
 		((NJS_OBJECT*)0x1E40FB8)->evalflags |= NJD_EVAL_HIDE;

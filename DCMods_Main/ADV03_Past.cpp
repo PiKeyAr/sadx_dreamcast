@@ -351,20 +351,16 @@ void ADV03_Init()
 		// Palm fixes
 		*ADV03_ACTIONS[10]->object = *LoadModel("system\\data\\ADV03\\Models\\00012DA8.sa1mdl"); // Palm in Act 3
 		ADV03_ACTIONS[10]->object->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_USE_ALPHA; // Hide DA_ONE stuff
-		HideMesh_Object(ADV03_ACTIONS[10]->object, 0); // Hide DA_ONE stuff
-		HideMesh_Object(ADV03_ACTIONS[10]->object, 1); // Hide transparent stuff
+		HideMesh_Object(ADV03_ACTIONS[10]->object, 0, 1); // Hide DA_ONE, transparent stuff
 		PalmBottom = LoadModel("system\\data\\ADV03\\Models\\00012DA8.sa1mdl");
 		HideMesh_Object(PalmBottom, 2);
 		PalmBottom->evalflags |= NJD_EVAL_BREAK;
 		PalmBottom->child = NULL;
 		*ADV03_OBJECTS[9] = *LoadModel("system\\data\\ADV03\\Models\\0001503C.sa1mdl"); // Palm in Act 2
 		ADV03_OBJECTS[9]->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_USE_ALPHA; // Hide DA_ONE stuff
-		HideMesh_Object(ADV03_OBJECTS[9], 0); // Hide DA_ONE stuff
-		HideMesh_Object(ADV03_OBJECTS[9], 1); // Hide transparent stuff
+		HideMesh_Object(ADV03_OBJECTS[9], 0, 1); // Hide DA_ONE, transparent stuff
 		PalmBottom2 = LoadModel("system\\data\\ADV03\\Models\\0001503C.sa1mdl");
-		HideMesh_Object(PalmBottom2, 2);
-		HideMesh_Object(PalmBottom2, 3);
-		HideMesh_Object(PalmBottom2, 4);
+		HideMesh_Object(PalmBottom2, 2, 2, 4);
 		WriteCall((void*)0x545C1A, RenderPalm1);
 		WriteCall((void*)0x545BFD, RenderPalm2);
 		AddWhiteDiffuseMaterial(&ADV03_OBJECTS[12]->basicdxmodel->mats[1]); // OTree 0 second model
@@ -385,8 +381,7 @@ void ADV03_Init()
 		HideMesh_Object(ADV03_OBJECTS[16], 2);
 		HideMesh_Object(ADV03_OBJECTS[17], 2);
 		TreeShadow = LoadModel("system\\data\\ADV03\\Models\\0001EDDC.sa1mdl");
-		HideMesh_Object(TreeShadow, 0);
-		HideMesh_Object(TreeShadow, 1);
+		HideMesh_Object(TreeShadow, 0, 1);
 		WriteCall((void*)0x5455A9, FixTreeShadowFlickering1);
 		WriteCall((void*)0x54557C, FixTreeShadowFlickering2);
 		*ADV03_OBJECTS[15] = *LoadModel("system\\data\\ADV03\\Models\\00027158.sa1mdl"); // Small tree shadow
