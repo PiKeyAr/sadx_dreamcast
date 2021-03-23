@@ -742,8 +742,6 @@ void HideEntireObject(NJS_OBJECT* a1);
 void RemoveTransparency_Object(NJS_OBJECT* obj, bool recursive);
 void OnInitEnd_Videos();
 void land_DrawObject_New(NJS_OBJECT* a1, _OBJ_LANDENTRY* a2);
-NJS_MODEL_SADX* CloneAttach(NJS_MODEL_SADX* att);
-NJS_OBJECT* CloneObject(NJS_OBJECT* obj);
 
 #define HideMesh_Object(...) HideMesh_Object_(__VA_ARGS__, -1)
 #define HideMesh_Model(...) HideMesh_Model_(__VA_ARGS__, -1)
