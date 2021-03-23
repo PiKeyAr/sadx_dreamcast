@@ -76,12 +76,12 @@ void SSOceanCallback(void(__cdecl *function)(OceanData *), OceanData *data, floa
 		DrawModelCallback_QueueOceanData(StationSquare_OceanDraw, data, depth, queueflags);
 }
 
-void FixPoliceCar(NJS_ACTION *a1, float a2, int a3)
+void FixPoliceCar(NJS_ACTION *action, float frame, int flags)
 {
 	// Draw the car animation without transparent parts
-	ds_ActionClip(a1, a2, a3);
+	ds_ActionClip(action, frame, 1.0f);
 	// Draw the transparent parts separately if this is the police car
-	if (a1->object == ((NJS_OBJECT*)0x2AF4FC0))
+	if (action->object == ((NJS_OBJECT*)0x2AF4FC0))
 	{
 		DrawQueueDepthBias = 1000.0f;
 		lateDrawObject(PoliceCarModel_LightsOnly, (QueuedModelFlagsB)0, 1.0f);

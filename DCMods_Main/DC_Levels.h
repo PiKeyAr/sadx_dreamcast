@@ -206,7 +206,7 @@ struct __declspec(align(4)) TitleNewWk
 	char kumoindex;
 };
 
-struct __declspec(align(2)) TitleMenuWk
+struct TitleMenuWk
 {
 	AdvaStatEnum Stat;
 	AdvaModeEnum PrevMode;
@@ -283,7 +283,7 @@ DataArray(CollisionData_, OCard_Collision, 0x2BC0748, 2);
 DataArray(CollisionData_, IceKey_Collision, 0x2BBF4C8, 2);
 DataArray(CollisionData_, KikiBomb_Collision, 0x96CA18, 4);
 DataArray(CollisionData_, Chaos6Freezer_Collision, 0x1386AC8, 3);
-FunctionPointer(double, Calculate2DDepth, (QueuedModelFlagsB flags, float a2), 0x404290);
+FunctionPointer(float, Calculate2DDepth, (QueuedModelFlagsB flags, float a2), 0x404290);
 FunctionPointer(void, Cutscene_ResetTransition, (), 0x436550);
 FunctionPointer(void, Cutscene_WaitForInput, (int a1), 0x4314D0);
 FunctionPointer(void, DrawModelCallback_QueueNothing, (void(__cdecl* function)(), float depth, QueuedModelFlagsB queueflags), 0x404840);
@@ -394,7 +394,7 @@ void ReplaceSET(std::string src);
 void ReplaceCAM(std::string src);
 void ReplaceGeneric(std::string src, std::string dest);
 
-struct __declspec(align(2)) ObjectThingC
+struct ObjectThingC
 {
 	NJS_OBJECT *object;
 	void(__cdecl *function)(NJS_OBJECT *);

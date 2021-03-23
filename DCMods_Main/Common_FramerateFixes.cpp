@@ -1,6 +1,6 @@
 #include "stdafx.h"
 
-enum SpriteThingFlagsA : __int8
+enum SpriteThingFlagsA : Uint8
 {
 	SpriteThingFlagsA_Scale = 0x1,
 	SpriteThingFlagsA_2 = 0x2,
@@ -12,7 +12,7 @@ enum SpriteThingFlagsA : __int8
 	SpriteThingFlagsA_80 = 0x80,
 };
 
-enum SpriteThingFlagsB : __int8
+enum SpriteThingFlagsB : Uint8
 {
 	SpriteThingFlagsB_1 = 0x1,
 	SpriteThingFlagsB_2 = 0x2,
@@ -176,21 +176,21 @@ void __cdecl Fuse_Fixed(ObjectMaster *a1)
 	unsigned __int16 v2; // ax
 	NJS_VECTOR *v3; // esi
 	float *v4; // eax
-	double v5; // st7
-	double v6; // st6
+	float v5; // st7
+	float v6; // st6
 	float v7; // ST34_4
 	float v8; // edx
 	float *v9; // eax
 	float v10; // ST34_4
 	float v11; // ST38_4
 	float v12; // ST28_4
-	double v13; // st7
+	float v13; // st7
 	float v14; // ST34_4
-	double v15; // st7
-	double v16; // st6
-	double v17; // st5
-	double v18; // st4
-	double v19; // st6
+	float v15; // st7
+	float v16; // st6
+	float v17; // st5
+	float v18; // st4
+	float v19; // st6
 	float v20; // ST38_4
 	float v21; // [esp+18h] [ebp+4h]
 	float v22; // [esp+18h] [ebp+4h]
@@ -207,9 +207,9 @@ void __cdecl Fuse_Fixed(ObjectMaster *a1)
 			if (IsVisible(&v1->Position, 5.0))
 			{
 				v4 = &v1->Scale.y;
-				v21 = v1->Scale.x * 0.97500002;
-				v5 = v1->Scale.y * 0.97500002 - 0.085000001;
-				v6 = v1->Scale.z * 0.97500002;
+				v21 = v1->Scale.x * 0.97500002f;
+				v5 = v1->Scale.y * 0.97500002f - 0.085000001f;
+				v6 = v1->Scale.z * 0.97500002f;
 				v4[1] = v6;
 				*v4 = v5;
 				*(v4 - 1) = v21;
@@ -223,12 +223,12 @@ void __cdecl Fuse_Fixed(ObjectMaster *a1)
 				v10 = v1->Scale.y;
 				v11 = v1->Scale.x;
 				v12 = v22 * v22 + v10 * v10 + v11 * v11;
-				v13 = 1.0 / squareroot(v12);
+				v13 = 1.0f / squareroot(v12);
 				v14 = v13 * v10;
 				v23 = v13 * v22;
-				v15 = v11 * v13 * 0.30000001;
-				v16 = v14 * 0.30000001;
-				v24 = v23 * 0.30000001;
+				v15 = v11 * v13 * 0.30000001f;
+				v16 = v14 * 0.30000001f;
+				v24 = v23 * 0.30000001f;
 				v17 = v3->x;
 				v18 = v1->Position.y;
 				FuseLine1.z = v1->Position.z + v24;
@@ -387,7 +387,7 @@ static Trampoline* Chaos0RainThing_t = nullptr;
 static void __cdecl Chaos0RainThing_r(ObjectMaster *a1)
 {
 	EntityData1 *v2; // esi
-	double v3; // st7
+	float v3; // st7
 	v2 = a1->Data1;
 	const auto original = TARGET_DYNAMIC(Chaos0RainThing);
 	if (EnableSpeedFixes)
@@ -433,7 +433,7 @@ void Bubbles_Display(ObjectMaster *a1)
 	float a2; // ST14_4
 	void *v3; // esi
 	int v4; // edi
-	double v5; // st7
+	float v5; // st7
 	float v6; // eax
 
 	v1 = a1->Data1;
@@ -474,7 +474,6 @@ static Trampoline* Bubbles_t = nullptr;
 static void __cdecl Bubbles_r(ObjectMaster *a1)
 {
 	EntityData1 *v2; // esi
-	double v3; // st7
 	v2 = a1->Data1;
 	const auto original = TARGET_DYNAMIC(Bubbles);
 	if (EnableSpeedFixes)
@@ -489,7 +488,7 @@ void IceKeySS_Display(ObjectMaster *obj)
 {
 	EntityData1 *v1; // esi
 	Angle v2; // eax
-	double v4; // st7
+	float v4; // st7
 	NJS_ACTION *action;
 	v1 = obj->Data1;
 	if (GetCharacterObject(0)->MainSub)
@@ -537,10 +536,8 @@ static void __cdecl OLamp_Display_r(ObjectMaster *a1)
 {
 	EntityData1 *v1; // esi
 	v1 = a1->Data1;
-	Angle v7;
-	double v6; // st7
+	float v6; // st7
 	__int16 v5; // ax
-	NJS_OBJECT obj;
 	const auto original = TARGET_DYNAMIC(OLamp_Display);
 	if (EnableSpeedFixes)
 	{

@@ -364,7 +364,7 @@ void __cdecl MissionStatue_DisplayFix(ObjectMaster* a1)
 		if (v1->CharIndex < 8 && !(v1->Status & 0x1000))
 		{
 			SetTextureToCommon();
-			v4 = 0.1 - *(float*)&v1->LoopData;
+			v4 = 0.1f - *(float*)&v1->LoopData;
 			njTranslate(0, 0.0f, v4, 0.0f);
 			late_DrawShadowObject(&ShadowBlob_Model, 1.0);
 		}
@@ -522,7 +522,7 @@ void __cdecl Knuckles_MaximumHeat_DrawX(NJS_VECTOR *position, float alpha)
 	{
 		a = alpha * -0.6f;
 		KNUCKLES_OBJECTS[47]->basicdxmodel->mats[0].attr_texId = 1;
-		KNUCKLES_OBJECTS[47]->basicdxmodel->mats[0].diffuse.argb.a = 255 * (1.0f - alpha*1.1f)*0.7f;
+		KNUCKLES_OBJECTS[47]->basicdxmodel->mats[0].diffuse.argb.a = 255 * Uint8((1.0f - alpha * 1.1f) * 0.7f);
 		njPushMatrix(0);
 		njTranslateV(0, position);
 		s = 1.2f - alpha * alpha;
@@ -605,7 +605,7 @@ void KnucklesPunch_RetrieveAlpha(float a, float r, float g, float b)
 
 void KnucklesPunch_Render(NJS_OBJECT *a1, QueuedModelFlagsB a2)
 {
-	a1->basicdxmodel->mats[0].diffuse.argb.a = alphathing * 255;
+	a1->basicdxmodel->mats[0].diffuse.argb.a = Uint8(alphathing * 255.0f);
 	late_DrawObject(a1, a2);
 }
 
@@ -648,12 +648,9 @@ void __cdecl Sonic_DisplayLightDashModelX(EntityData1 *data1, CharObj2 **data2_p
 {
 	int v3; // eax
 	__int16 v4; // t1
-	double v5; // st7
-	float v6; // ST28_4
-	double v7; // st7
+	float v5; // st7
 	float basedepth = 8000.0f;
 	NJS_ACTION v8; // [esp+4h] [ebp-18h]
-	NJS_ARGB a1; // [esp+Ch] [ebp-10h]
 	if (EnabledLevels[LevelIDs_SpeedHighway] && CurrentLevel == LevelIDs_SpeedHighway && CurrentAct == 2) basedepth = 1000.0f;
 	if (EnabledLevels[LevelIDs_StationSquare] && CurrentLevel == LevelIDs_StationSquare && CurrentAct == 3) basedepth = 1000.0f;
 	NJS_OBJECT **___SONIC_OBJECTS = (NJS_OBJECT **)GetProcAddress(GetModuleHandle(L"CHRMODELS_orig"), "___SONIC_OBJECTS");
@@ -670,7 +667,7 @@ void __cdecl Sonic_DisplayLightDashModelX(EntityData1 *data1, CharObj2 **data2_p
 		{
 			v8.motion = data2->AnimationThing.AnimData[v3].Animation->motion;
 		}
-		v5 = (double)(FrameCounterUnpaused & 0x7F);
+		v5 = (float)(FrameCounterUnpaused & 0x7F);
 		if (v5 >= 64.0f)
 		{
 			v5 = 128.0f - v5;
@@ -681,17 +678,17 @@ void __cdecl Sonic_DisplayLightDashModelX(EntityData1 *data1, CharObj2 **data2_p
 		njColorBlendingMode(0, NJD_COLOR_BLENDING_ONE);
 		njColorBlendingMode(NJD_DESTINATION_COLOR, NJD_COLOR_BLENDING_ONE);
 		// Main
-		SetMaterialAndSpriteColor_Float(1.0f, 0, 0.06f + (64 - v5) / 880.0f, 1.0f);
+		SetMaterialAndSpriteColor_Float(1.0f, 0, 0.06f + (64.0f - v5) / 880.0f, 1.0f);
 		DrawQueueDepthBias = basedepth;
 		late_ActionMesh(&v8, data2->AnimationThing.Frame, 0);
 		// Outer 1
 		njScale(0, 1.05f, 1.05f, 1.05f);
-		SetMaterialAndSpriteColor_Float(1.0f, 0.0245f, (64 - v5) / 1050.0f, 1.0f);
+		SetMaterialAndSpriteColor_Float(1.0f, 0.0245f, (64.0f - v5) / 1050.0f, 1.0f);
 		DrawQueueDepthBias = basedepth + 300.0f;
 		late_ActionMesh(&v8, data2->AnimationThing.Frame, 0);
 		// Outer 2
 		njScale(0, 1.05f, 1.05f, 1.05f);
-		SetMaterialAndSpriteColor_Float(1.0f, 0.024f, (64 - v5) / 2000.0f, 0.15f);
+		SetMaterialAndSpriteColor_Float(1.0f, 0.024f, (64.0f - v5) / 2000.0f, 0.15f);
 		DrawQueueDepthBias = basedepth + 600.0f;
 		late_ActionMesh(&v8, data2->AnimationThing.Frame, 0);
 		njColorBlendingMode(0, NJD_COLOR_BLENDING_SRCALPHA);
@@ -712,11 +709,11 @@ void __cdecl SpawnRipplesX(unsigned __int8 a1, NJS_VECTOR *a2)
 {
 	int v2; // eax
 	CharObj2 *v3; // esi
-	double v4; // st7
-	_BOOL1 v5; // c0
-	_BOOL1 v6; // c3
-	double v7; // st7
-	long double v8; // st7
+	float v4; // st7
+	bool v5; // c0
+	bool v6; // c3
+	float v7; // st7
+	float v8; // st7
 	float a3; // ST08_4
 	NJS_VECTOR a2a; // [esp+Ch] [ebp-Ch]
 
@@ -726,21 +723,21 @@ void __cdecl SpawnRipplesX(unsigned __int8 a1, NJS_VECTOR *a2)
 	{
 		if (njScalor(&v3->Speed) == 0.0f)
 		{
-			v4 = (double)rand() * 0.000030517578f;
+			v4 = rand() * 0.000030517578f;
 			v5 = v4 < 0.9f;
 			v6 = v4 == 0.9f;
 		}
 		else
 		{
-			v7 = (double)rand() * 0.000030517578f;
+			v7 = rand() * 0.000030517578f;
 			v5 = v7 < 0.85f;
 			v6 = v7 == 0.85f;
 		}
-		if (!(v5 | v6) && njScalor(&v3->Speed) != 0.0f)
+		if (!v5 && !v6 && njScalor(&v3->Speed) != 0.0f)
 		{
 			v8 = v3->Speed.y;
 			a2a.y = 0.0;
-			a2a.z = 1.5;
+			a2a.z = 1.5f;
 			a2a.x = fabs(v8) * 0.005f + 0.03f;
 			a3 = v3->PhysicsData.RippleSize * 0.1f;
 			sub_4B9430(a2, &a2a, a3);
@@ -782,7 +779,7 @@ void __cdecl FixedRipple_Normal(ObjectMaster *a2)
 void __cdecl FixedRipple_Bubble(ObjectMaster *a2)
 {
 	NJS_VECTOR *v1; // esi
-	double v2; // st7
+	float v2; // st7
 	NJS_ARGB colorthing;
 	v1 = (NJS_VECTOR *)a2->UnknownB_ptr;
 	if (!MissedFrames)
@@ -826,10 +823,10 @@ float CalculateEnemyYCoordinate_Wrapper(float x, float y, float z, Rotation3 *ro
 
 // This one is used exclusively by the Sweep badnik
 static Trampoline* CalculateEnemyYCoordinate_Sweep_t = nullptr;
-static double __cdecl CalculateEnemyYCoordinate_Sweep_r(float x, float y, float z, Rotation3 *rotation)
+static float __cdecl CalculateEnemyYCoordinate_Sweep_r(float x, float y, float z, Rotation3 *rotation)
 {
 	const auto original = TARGET_DYNAMIC(CalculateEnemyYCoordinate_Sweep);
-	float result = 	original(x, y, z, rotation);
+	float result =original(x, y, z, rotation);
 	if (result == -1000000.0f) 
 	{
 		result = y;
@@ -1016,7 +1013,7 @@ void __fastcall DrawUnderwaterOverlay(NJS_MATRIX_PTR m)
 		njColorBlendingMode(0, NJD_COLOR_BLENDING_SRCALPHA);
 		njColorBlendingMode(NJD_DESTINATION_COLOR, NJD_COLOR_BLENDING_ONE);
 		WaterOverlay_Colors.color = 0x1E0008FF;
-		DrawRect_Queue(0.0, 0.0, HorizontalResolution, VerticalResolution, 22041.496f, WaterOverlay_Colors.argb.b | ((WaterOverlay_Colors.argb.g | (*(unsigned __int16 *)&WaterOverlay_Colors.argb.r << 8)) << 8), QueuedModelFlagsB_EnableZWrite);
+		DrawRect_Queue(0.0f, 0.0f, (float)HorizontalResolution, (float)VerticalResolution, 22041.496f, WaterOverlay_Colors.argb.b | ((WaterOverlay_Colors.argb.g | (*(unsigned __int16 *)&WaterOverlay_Colors.argb.r << 8)) << 8), QueuedModelFlagsB_EnableZWrite);
 		njColorBlendingMode(0, NJD_COLOR_BLENDING_SRCALPHA);
 		njColorBlendingMode(NJD_DESTINATION_COLOR, NJD_COLOR_BLENDING_INVSRCALPHA);
 	//}
@@ -1035,7 +1032,7 @@ void __cdecl sub_4B9CE0(EntityData1 *a1, EntityData1 *a2)
 	a2a.y = 0.0;
 	a2a.x = 0.0;
 	v2->Scale.x = v3;
-	v2->Scale.y = GetCharObj2(0)->PhysicsData.CollisionSize * v2->Scale.x * 0.60000002;
+	v2->Scale.y = GetCharObj2(0)->PhysicsData.CollisionSize * v2->Scale.x * 0.60000002f;
 	njPushMatrix(nj_unit_matrix_);
 	njTranslateV(0, &a2->Position);
 	v4 = a2->Rotation.z;
@@ -1072,8 +1069,8 @@ void __cdecl Barrier_MainX(ObjectMaster *a1)
 			if (v3)
 			{
 				v5 = v3->Data1;
-				v5->Rotation.x = (unsigned __int64)((double)rand() * 0.000030517578f * 65536.0f);
-				v5->Rotation.y = (unsigned __int64)((double)rand() * 0.000030517578f * 65536.0f);
+				v5->Rotation.x = (int)(rand() * 0.000030517578f * 65536.0f);
+				v5->Rotation.y = (int)(rand() * 0.000030517578f * 65536.0f);
 				v4->DisplaySub = Barrier_Display;
 			}
 		}
@@ -1087,7 +1084,7 @@ void __cdecl Barrier_MainX(ObjectMaster *a1)
 
 void __cdecl RenderInvincibilityLines(NJS_MODEL_SADX *a1)
 {
-	double v1; // st7
+	float v1; // st7
 
 	v1 = 20048.0f;
 	if ((CurrentAct | (CurrentLevel << 8)) >> 8 == 3 && CurrentAct == 2)
@@ -1362,8 +1359,7 @@ void DrawCutsceneZeroShadow(NJS_OBJECT *object, float scale)
 
 void DrawScalableShadowHook(NJS_OBJECT *a1, float a2)
 {
-	double v2; // st7
-	float v3; // [esp+0h] [ebp-4h]
+	float v2; // st7
 	v2 = DrawQueueDepthBias;
 	if (EnabledLevels[LevelIDs_WindyValley] && CurrentLevel == LevelIDs_WindyValley && CurrentAct == 2)
 	{
@@ -1537,18 +1533,21 @@ void GeoAnimFix(NJS_ACTION* a1, float a2, QueuedModelFlagsB a3, float a4)
 
 void CaptureBeamFix(NJS_OBJECT *a1, QueuedModelFlagsB a2, float a3)
 {
-	// 9 - Sonic and Tails gassed at Casinopolis (Sonic)
-	// 53 - Sonic and Tails gassed at Casinopolis (Tails)
-	// 11 - Chaos 4 emerges (Sonic)
-	// 57 - Chaos 4 emerges (Tails)
-	// 139 - Chaos 4 emerges (Knuckles)
-	if (CutsceneID == 9 || CutsceneID == 11 | CutsceneID == 53 || CutsceneID == 57 || CutsceneID == 139)
+	switch (CutsceneID)
 	{
+	case 9: // Sonic and Tails gassed at Casinopolis (Sonic)
+	case 11: // Sonic and Tails gassed at Casinopolis (Tails)
+	case 53: // Chaos 4 emerges (Sonic)
+	case 57: // Chaos 4 emerges (Tails)
+	case 139: // Chaos 4 emerges (Knuckles)
 		DrawQueueDepthBias = 8000.0f;
 		late_DrawObjectClipMesh(a1, a2, a3);
 		DrawQueueDepthBias = 0.0f;
+		break;
+	default:
+		late_DrawObjectClip(a1, a2, a3);
+		break;
 	}
-	else late_DrawObjectClip(a1, a2, a3);
 }
 
 void QueueAnimals(NJS_ACTION *action, Float frame)
@@ -1574,7 +1573,7 @@ void QueueChaoAnimals2(NJS_OBJECT *a1, NJS_MOTION *a2, float a3)
 
 void CutsceneFadeHookForSubtitleBox(float left, float top, float right, float bottom, float depth, NJS_COLOR color)
 {
-	color.argb.a = color.argb.a * (1.0f - CutsceneFadeValue / 255.0f);
+	color.argb.a = (Uint8)(color.argb.a * (1.0f - CutsceneFadeValue / 255.0f));
 	DrawRect_DrawNowMaybe(left, top, right, bottom, depth, color.color);
 }
 
@@ -1898,7 +1897,7 @@ void General_Init()
 			WriteData((float**)0x7AC559, &SampleSOffset); // SampleS
 			WriteData((float**)0x55BBEA, &Chaos6FreezerOffset); // Chaos 6 freezer
 			// Hook njTranslate calls to add a vertical offset for all objects involved
-			for (int i = 0; i < LengthOfArray(njTranslateVCalls); i++)
+			for (unsigned int i = 0; i < LengthOfArray(njTranslateVCalls); i++)
 			{
 				WriteCall((void*)njTranslateVCalls[i], njTranslateVHacc);
 			}
@@ -2300,7 +2299,7 @@ void General_Init()
 		// Casino
 		WriteCall((void*)0x5DCFB0, RenderEmeraldWithGlow_Ice); // Same function
 		// Material fixes
-		for (int i = 0; i < LengthOfArray(RemoveColors_General); i++)
+		for (unsigned int i = 0; i < LengthOfArray(RemoveColors_General); i++)
 		{
 			RemoveMaterialColors(RemoveColors_General[i]);
 		}

@@ -147,7 +147,6 @@ void RemoveMaterials_SpeedHighway(LandTable *landtable)
 {
 	Uint32 materialflags;
 	NJS_MATERIAL *material;
-	int colflags;
 	for (int j = 0; j < landtable->COLCount; j++)
 	{
 		for (int k = 0; k < landtable->Col[j].Model->basicdxmodel->nbMat; ++k)
@@ -307,7 +306,7 @@ void SpeedHighway_Init()
 		WriteData((NJS_OBJECT**)0x026B3150, FountainSide);
 		// Fountain animation enhancement
 		TexLists_Level[11]->PVMList = (PVMEntry*)& SpeedHighway3Textures_list;
-		TexLists_Level[11]->NumTextures = LengthOfArray(SpeedHighway3Textures_list);
+		TexLists_Level[11]->NumTextures = (Sint16)LengthOfArray(SpeedHighway3Textures_list);
 		*(NJS_OBJECT*)0x0266403C = *LoadModel("system\\data\\STG04\\Models\\00136320.sa1mdl"); // OJamer
 		((NJS_OBJECT*)0x0266403C)->basicdxmodel->mats[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
 		((NJS_OBJECT*)0x0266403C)->basicdxmodel->mats[2].attrflags |= NJD_FLAG_IGNORE_LIGHT;

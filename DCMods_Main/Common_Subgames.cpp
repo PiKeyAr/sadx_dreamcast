@@ -545,7 +545,7 @@ void __cdecl SkyChaseBeam1_Display_Fix(ObjectMaster *a1)
 	else DrawModelCallback_QueueFloat(DrawBeam_Lol, *(float *)&v1->CharIndex, 30000.0f, QueuedModelFlagsB_SomeTextureThing);
 	njPopMatrix(1u);
 	njPushMatrix(0);
-	njTranslate(0, 0.0, -648.09998, -3698.0);
+	njTranslate(0, 0.0, -648.09998f, -3698.0f);
 	njSetTexture(&SHOOTING0_TEXLIST);
 	late_ActionClipEx((NJS_ACTION*)0x290761C, *(float *)&v1->CharIndex, 4, 1.0);
 	njPopMatrix(1u);

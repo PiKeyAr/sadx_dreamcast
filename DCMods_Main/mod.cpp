@@ -304,7 +304,7 @@ extern "C"
 			L"main Dreamcast Conversion mod.\n\n"
 			L"Please uninstall the following mods in the Mod Manager:\n\n";
 		bool OldModsFound = false;
-		for (int i = 0; i < LengthOfArray(OldModDLLs); i++)
+		for (unsigned int i = 0; i < LengthOfArray(OldModDLLs); i++)
 		{
 			if (GetModuleHandle(OldModDLLs[i]) != nullptr)
 			{
@@ -594,7 +594,7 @@ extern "C"
 		if (!SuppressWarnings && LanternErrorMessageTimer && (IsIngame() || GameMode == GameModes_Menu))
 		{
 			BackupDebugFontSettings();
-			SetDebugFontSize(10.0f * (float)VerticalResolution / 480.0f);
+			SetDebugFontSize(Uint16(10.0f * (float)VerticalResolution / 480.0f));
 			SetDebugFontColor(0xFFBFBFBF);
 			DisplayDebugString(NJM_LOCATION(2, 1), "Failed to detect the Lantern Engine mod.");
 			DisplayDebugString(NJM_LOCATION(2, 2), "Dreamcast levels will have no lighting,");
@@ -606,7 +606,7 @@ extern "C"
 		if (!SuppressWarnings && PauseHideErrorMessageTimer && (IsIngame() || GameMode == GameModes_Menu))
 		{
 			BackupDebugFontSettings();
-			SetDebugFontSize(10.0f * (float)VerticalResolution / 480.0f);
+			SetDebugFontSize(Uint16(10.0f * (float)VerticalResolution / 480.0f));
 			SetDebugFontColor(0xFFBFBFBF);
 			DisplayDebugString(NJM_LOCATION(2, 6), "The Pause Hide mod interferes with");
 			DisplayDebugString(NJM_LOCATION(2, 7), "some options in Dreamcast Conversion.");

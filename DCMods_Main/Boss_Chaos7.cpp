@@ -97,7 +97,7 @@ void __cdecl Chaos7Explosion_DisplayX(ObjectMaster *a1)
 void __cdecl Chaos7Damage_DisplayX(ObjectMaster *a1)
 {
 	EntityData1 *v1; // esi@1
-	double v2; // st7@2
+	float v2; // st7@2
 	short v3;
 	v1 = a1->Data1;
 	if (!DroppedFrames)

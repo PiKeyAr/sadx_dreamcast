@@ -46368,8 +46368,8 @@ extern "C" __declspec(dllexport) COL collist_00081980[] = {
 	{ { 996.3504f, -585.5854f, -639.0367f }, 67.22473f, 0.0001f, 0, &object_000C0E68, 0, 0x80000001 }, //vertical tube 2
 	{ { 993.7653f, -702.2927f, -636.814f }, 68.61455f, 0.0001f, 0, &object_000C1A48, 0, 0x80000001 },  //vertical tube 3
 	{ { 1060, -781.45f, -850.0001f }, 348.4782f, 0, 0.0001f, &object_00089114_2, 0, 0x81000401 }, //big glass inner layer
-	{ { 900.7501f, -830, -850.0001f }, 372.6965f, 0.0001f, 0, &object_00087F80_2, 0, 0x81000401 }, //big glass outer layer
-	{ { 1219.243f, -785.0252f, -850.0001f }, 361.985f, 1000.0f, 0, &object_00085D08_2, 0, 0x80000001 }, //big glass outer layer part 2
+	{ { 900.7501f, -830, -850.0001f }, 372.6965f, 0, -1000.0f, &object_00087F80_2, 0, 0x81000401 }, //big glass outer layer
+	{ { 1219.243f, -785.0252f, -850.0001f }, 361.985f, 0, -1000.0f, &object_00085D08_2, 0, 0x81000401 }, //big glass outer layer part 2
 	{ { 1120.431f, -2095.545f, -850.0001f }, 605.6641f, 0, 0, &object_000BB9A4, 0, 0x82000000 }, //Pillars for elevator
 	{ { 1001.216f, -2095.545f, -850.0001f }, 605.6641f, 0, 0, &object_000E02B4, 0, 0x82000000 }, //Pillars for elevator
 	{ { 1013.343f, -1560, -614.5788f }, 141.2099f, 0, 0, &object_0009EE34, 0, 0xC2000041 }, //Pillars at the very bottom

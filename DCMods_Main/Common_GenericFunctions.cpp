@@ -15,13 +15,13 @@ void RestoreDebugFontSettings()
 
 void njDrawQuadTexture_Italic(NJS_QUAD_TEXTURE* points, float scale)
 {
-	double widthmaybe; // st7
+	float widthmaybe; // st7
 	Float base_x; // ecx
 	Float v4; // edx
-	double v5; // st7
+	float v5; // st7
 	Float v6; // ecx
-	double v7; // st7
-	double v8; // st7
+	float v7; // st7
+	float v8; // st7
 	NJS_QUAD_TEXTURE_EX _points; // [esp+0h] [ebp-40h]
 
 	widthmaybe = points->x2 - points->x1;
@@ -71,14 +71,14 @@ void __cdecl njDrawSprite2D_DrawNow_Point(NJS_SPRITE* sp, Int n, Float pri, NJD_
 {
 	NJS_TEXLIST* texlist; // ecx
 	NJS_TEXANIM* texanim; // esi
-	double _cx; // st7
-	double cy; // st6
+	Sint16 _cx; // st7
+	Sint16 cy; // st6
 	float sy; // ST14_4
 	float v9; // ST2C_4
-	double v10; // st7
+	float v10; // st7
 	float v11; // ST30_4
-	double v12; // st7
-	double v13; // st7
+	float v12; // st7
+	float v13; // st7
 	float v14; // eax
 	float v15; // ecx
 	NJS_COLOR v16; // edi
@@ -102,15 +102,15 @@ void __cdecl njDrawSprite2D_DrawNow_Point(NJS_SPRITE* sp, Int n, Float pri, NJD_
 		{
 			Direct3D_SetTexList(texlist);
 			texanim = &sp->tanim[n];
-			u1 = (double)texanim->u1 * 0.0039215689f;
-			v1 = (double)texanim->v1 * 0.0039215689f;
-			u2 = (double)texanim->u2 * 0.0039215689f;
-			v2 = (double)texanim->v2 * 0.0039215689f;
-			_cx = (double)-texanim->cx;
-			cy = (double)-texanim->cy;
-			sy = (double)texanim->sy + cy;
+			u1 = texanim->u1 * 0.0039215689f;
+			v1 = texanim->v1 * 0.0039215689f;
+			u2 = texanim->u2 * 0.0039215689f;
+			v2 = texanim->v2 * 0.0039215689f;
+			_cx = -texanim->cx;
+			cy = -texanim->cy;
+			sy = texanim->sy + (float)cy;
 			result_x = _cx * sp->sx;
-			v26 = ((double)texanim->sx + _cx) * sp->sx;
+			v26 = (texanim->sx + _cx) * sp->sx;
 			result_y = cy * sp->sy;
 			v20 = sy * sp->sy;
 			if (attr & NJD_SPRITE_ANGLE)
@@ -129,7 +129,7 @@ void __cdecl njDrawSprite2D_DrawNow_Point(NJS_SPRITE* sp, Int n, Float pri, NJD_
 				points.y = v10;
 				vs.x = v26;
 				vs.z = 0.0;
-				points.z = -1.0 / pri;
+				points.z = -1.0f / pri;
 				njCalcVector(0, &vs, &vs);
 				points.vx1 = vs.x - v9;
 				vs.x = result_x;
@@ -149,7 +149,7 @@ void __cdecl njDrawSprite2D_DrawNow_Point(NJS_SPRITE* sp, Int n, Float pri, NJD_
 				points.vx2 = 0.0;
 				points.x = v13;
 				points.y = result_y + sp->p.y;
-				points.z = -1.0 / pri;
+				points.z = -1.0f / pri;
 				points.vx1 = v26 - result_x;
 				points.vy2 = v20 - result_y;
 			}
@@ -173,10 +173,10 @@ void __cdecl njDrawSprite2D_DrawNow_Point(NJS_SPRITE* sp, Int n, Float pri, NJD_
 			points.vv2 = v2 - v1;
 			if (attr & NJD_SPRITE_COLOR)
 			{
-				color_.argb.b = (unsigned __int64)(nj_constant_material_.b * 255.0);
-				color_.argb.g = (unsigned __int64)(nj_constant_material_.g * 255.0);
-				color_.argb.r = (unsigned __int64)(nj_constant_material_.r * 255.0);
-				color_.argb.a = (unsigned __int64)(nj_constant_material_.a * 255.0);
+				color_.argb.b = (Uint8)(nj_constant_material_.b * 255.0);
+				color_.argb.g = (Uint8)(nj_constant_material_.g * 255.0);
+				color_.argb.r = (Uint8)(nj_constant_material_.r * 255.0);
+				color_.argb.a = (Uint8)(nj_constant_material_.a * 255.0);
 				v16.color = color_.color;
 			}
 			else
@@ -198,15 +198,15 @@ void njDrawSprite2D_Queue_Point(NJS_SPRITE* sp, Int n, Float pri, NJD_SPRITE att
 {
 	QueuedModelSprite* v5; // eax
 	QueuedModelSprite* v6; // ebx
-	Float pria; // [esp+0h] [ebp-4h]
-	Float v8; // [esp+10h] [ebp+Ch]
+	float pria; // [esp+0h] [ebp-4h]
+	float v8; // [esp+10h] [ebp+Ch]
 
 	if (!MissedFrames && (unsigned int)sp >= 0x100000 && !VerifyTexList(sp->tlist))
 	{
 		pria = pri;
-		if (pri >= -2.0 && pri < 10000.0)
+		if (pri >= -2.0f && pri < 10000.0f)
 		{
-			pria = pri + 12048.0;
+			pria = pri + 12048.0f;
 		}
 		v5 = (QueuedModelSprite*)AllocateQueuedModel(n, 0x98, QueuedModelType_Sprite2D, queue_flags);
 		v6 = v5;
@@ -285,25 +285,25 @@ void ReplaceBIN(std::string src)
 	//PrintDebug("Replace generic BIN file %s with file %s\n", fullsrc.c_str(), fulldest.c_str());
 }
 
-/*
-NJS_MESHSET_SADX* CloneMeshset(NJS_MESHSET_SADX meshset)
+
+NJS_MESHSET_SADX* CloneMeshset(NJS_MESHSET_SADX *meshset)
 {
 	PrintDebug("\nClone meshset\n");
 	NJS_MESHSET_SADX* newmeshset = new NJS_MESHSET_SADX;
-	newmeshset->attrs = meshset.attrs;
+	newmeshset->attrs = meshset->attrs;
 	newmeshset->buffer = nullptr;
-	newmeshset->nbMesh = meshset.nbMesh;
-	newmeshset->type_matId = meshset.type_matId;
+	newmeshset->nbMesh = meshset->nbMesh;
+	newmeshset->type_matId = meshset->type_matId;
 	std::vector<Sint16>* newpoly = new std::vector<Sint16>;
 	std::vector<NJS_TEX>* newuv = new std::vector<NJS_TEX>;
 	std::vector<NJS_COLOR>* newvc = new std::vector<NJS_COLOR>;
 	std::vector<NJS_VECTOR>* newnm = new std::vector<NJS_VECTOR>;
-	for (int m = 0; m < meshset.nbMesh; m++)
+	for (int m = 0; m < meshset->nbMesh; m++)
 	{
-		if (meshset.meshes != NULL) newpoly->push_back(meshset.meshes[m]);
-		if (meshset.vertuv != NULL) newuv->push_back(meshset.vertuv[m]);
-		if (meshset.vertcolor != NULL) newvc->push_back(meshset.vertcolor[m]);
-		if (meshset.normals != NULL) newnm->push_back(meshset.normals[m]);
+		if (meshset->meshes != NULL) newpoly->push_back(meshset->meshes[m]);
+		if (meshset->vertuv != NULL) newuv->push_back(meshset->vertuv[m]);
+		if (meshset->vertcolor != NULL) newvc->push_back(meshset->vertcolor[m]);
+		if (meshset->normals != NULL) newnm->push_back(meshset->normals[m]);
 	}
 	if (newpoly->size() > 0)
 		newmeshset->meshes = newpoly->data();
@@ -324,6 +324,8 @@ NJS_MESHSET_SADX* CloneMeshset(NJS_MESHSET_SADX meshset)
 		newmeshset->normals = newnm->data();
 	else
 		newmeshset->normals = NULL;
+
+	newmeshset->normals = NULL;
 	return newmeshset;
 }
 
@@ -341,20 +343,36 @@ NJS_MATERIAL* CloneMaterial(NJS_MATERIAL* mat)
 NJS_MODEL_SADX* CloneAttach(NJS_MODEL_SADX* att)
 {
 	NJS_MODEL_SADX* newatt = new NJS_MODEL_SADX;
-	newatt->buffer = nullptr;
-	newatt->center = att->center;
+	newatt->buffer = NULL;
+	newatt->center.x = att->center.x;
+	newatt->center.y = att->center.y;
+	newatt->center.z = att->center.z;
 	newatt->r = att->r;
 	newatt->nbMat = att->nbMat;
 	newatt->nbPoint = att->nbPoint;
 	newatt->nbMeshset = att->nbMeshset;
 
 	// Vertices and normals
-	std::vector<NJS_VECTOR>* newvert = new std::vector<NJS_VECTOR>;
+	std::vector<NJS_POINT3>* newvert = new std::vector<NJS_POINT3>;
 	std::vector<NJS_VECTOR>* newnorm = new std::vector<NJS_VECTOR>;
 	for (int m = 0; m < att->nbPoint; m++)
 	{
-		if (att->points != NULL) newvert->push_back(att->points[m]);
-		if (att->normals != NULL) newnorm->push_back(att->normals[m]);
+		if (att->points != NULL)
+		{
+			NJS_POINT3* newpnt = new NJS_POINT3;
+			newpnt->x = att->points[m].x;
+			newpnt->y = att->points[m].y;
+			newpnt->z = att->points[m].z;
+			newvert->push_back(*newpnt);
+		}
+		if (att->normals != NULL)
+		{
+			NJS_VECTOR* newnml = new NJS_VECTOR;
+			newnml->x = att->normals[m].x;
+			newnml->y = att->normals[m].y;
+			newnml->z = att->normals[m].z;
+			newnorm->push_back(*newnml);
+		}
 	}
 
 	if (newvert->size() > 0)
@@ -373,7 +391,8 @@ NJS_MODEL_SADX* CloneAttach(NJS_MODEL_SADX* att)
 	{
 		for (int ms = 0; ms < att->nbMeshset; ms++)
 		{
-			newmeshes->push_back(*CloneMeshset(att->meshsets[ms]));
+			NJS_MESHSET_SADX* newmesh = CloneMeshset(&att->meshsets[ms]);
+			newmeshes->push_back(*newmesh);
 		}
 	}
 	if (newmeshes->size() > 0)
@@ -387,7 +406,8 @@ NJS_MODEL_SADX* CloneAttach(NJS_MODEL_SADX* att)
 	{
 		for (int mt = 0; mt < att->nbMat; mt++)
 		{
-			newmats->push_back(*CloneMaterial(&att->mats[mt]));
+			NJS_MATERIAL* newmat = CloneMaterial(&att->mats[mt]);
+			newmats->push_back(*newmat);
 		}
 	}
 	if (newmats->size() > 0)
@@ -433,7 +453,7 @@ NJS_OBJECT* CloneObject(NJS_OBJECT *obj)
 
 	return newobj;
 }
-*/
+
 
 void HideMesh_Model_(NJS_MODEL_SADX* model, int arg, ...)
 {
@@ -469,7 +489,7 @@ void HideMesh_Model_(NJS_MODEL_SADX* model, int arg, ...)
 	}
 	model->meshsets = newmeshset->data();
 	//PrintDebug("Removed %d meshsets, meshset count %d before, %d after\n", hidemeshlist.size(), model->nbMeshset, model->nbMeshset - hidemeshlist.size());
-	model->nbMeshset = model->nbMeshset - hidemeshlist.size();
+	model->nbMeshset = (Uint16)(model->nbMeshset - hidemeshlist.size());
 }
 
 void HideMesh_Object_(NJS_OBJECT* object, int arg, ...)
@@ -508,7 +528,7 @@ void HideMesh_Object_(NJS_OBJECT* object, int arg, ...)
 	}
 	model->meshsets = newmeshset->data();
 	//PrintDebug("Removed %d meshsets, meshset count %d before, %d after\n", hidemeshlist.size(), model->nbMeshset, model->nbMeshset - hidemeshlist.size());
-	model->nbMeshset = model->nbMeshset - hidemeshlist.size();
+	model->nbMeshset = (Uint16)(model->nbMeshset - hidemeshlist.size());
 }
 
 void CheckAndUnloadLevelFiles()
@@ -732,7 +752,7 @@ void AnimateUVs(UVAnimation *animation)
 
 void ClearTextureAnimationData()
 {
-	for (int i = 0; i < LengthOfArray(TextureAnimationData); i++)
+	for (unsigned int i = 0; i < LengthOfArray(TextureAnimationData); i++)
 	{
 		TextureAnimationData[i].act = -1;
 		TextureAnimationData[i].level = -1;
@@ -756,7 +776,7 @@ void ClearTextureAnimationData()
 		TextureAnimationData[i].Frame15 = 0;
 		TextureAnimationData[i].Frame16 = 0;
 	}
-	for (int i = 0; i < LengthOfArray(UVAnimationData); i++)
+	for (unsigned int i = 0; i < LengthOfArray(UVAnimationData); i++)
 	{
 		UVAnimationData[i].level = -1;
 		UVAnimationData[i].act = -1;
@@ -772,7 +792,7 @@ void ClearTextureAnimationData()
 
 void AddTextureAnimation(int level, int act, NJS_MATERIAL* material, bool nonsequential, int speed, int frame1, int frame2, int frame3, int frame4, int frame5, int frame6, int frame7, int frame8, int frame9, int frame10, int frame11, int frame12, int frame13, int frame14, int frame15, int frame16)
 {
-	for (int i = 0; i < LengthOfArray(TextureAnimationData); i++)
+	for (unsigned int i = 0; i < LengthOfArray(TextureAnimationData); i++)
 	{
 		if (TextureAnimationData[i].material == material && TextureAnimationData[i].act == act) return;
 		if (!TextureAnimationData[i].material)
@@ -807,7 +827,7 @@ void AddTextureAnimation(int level, int act, NJS_MATERIAL* material, bool nonseq
 
 void AddTextureAnimation_Permanent(int level, int act, NJS_MATERIAL* material, bool nonsequential, int speed, int frame1, int frame2, int frame3, int frame4, int frame5, int frame6, int frame7, int frame8, int frame9, int frame10, int frame11, int frame12, int frame13, int frame14, int frame15, int frame16)
 {
-	for (int i = 0; i < LengthOfArray(TextureAnimationData_Permanent); i++)
+	for (unsigned int i = 0; i < LengthOfArray(TextureAnimationData_Permanent); i++)
 	{
 		if (TextureAnimationData_Permanent[i].material == material && TextureAnimationData_Permanent[i].act == act) return;
 		if (!TextureAnimationData_Permanent[i].material)
@@ -840,7 +860,7 @@ void AddTextureAnimation_Permanent(int level, int act, NJS_MATERIAL* material, b
 
 void AddUVAnimation(int level, int act, NJS_TEX* uv, int uv_count, int timer, int u_speed, int v_speed)
 {
-	for (int i = 0; i < LengthOfArray(UVAnimationData); i++)
+	for (unsigned int i = 0; i < LengthOfArray(UVAnimationData); i++)
 	{
 		if (UVAnimationData[i].uv_pointer == uv) 
 		{
@@ -863,7 +883,7 @@ void AddUVAnimation(int level, int act, NJS_TEX* uv, int uv_count, int timer, in
 
 void AddUVAnimation_Permanent(int level, int act, NJS_TEX* uv, int uv_count, int timer, int u_speed, int v_speed)
 {
-	for (int i = 0; i < LengthOfArray(UVAnimationData_Permanent); i++)
+	for (unsigned int i = 0; i < LengthOfArray(UVAnimationData_Permanent); i++)
 	{
 		if (UVAnimationData_Permanent[i].uv_pointer == uv && UVAnimationData_Permanent[i].level == level && UVAnimationData_Permanent[i].act == act)
 		{
@@ -1257,6 +1277,7 @@ void LoadModel_ReplaceMeshes(NJS_OBJECT *object, const char *ModelName)
 	}
 	if (object->child) SwapModel(object->child, object2->child);
 	if (object->sibling) SwapModel(object->sibling, object2->sibling);
+	RemoveVertexColors_Object(object);
 	//PrintDebug("OK\n");
 }
 
@@ -1468,8 +1489,6 @@ void land_DrawObject_New(NJS_OBJECT* a1, _OBJ_LANDENTRY* a2)
 {
 	NJS_MODEL_SADX* v2; // esi
 	Uint32 flags; // ecx
-	unsigned __int8 v5; // c0
-	unsigned __int8 v6; // c2
 
 	// Call the original function if the level is disabled
 	int levelid = -1;

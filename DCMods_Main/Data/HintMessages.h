@@ -475,11 +475,11 @@ HintText_Text ChaoGardenMessages_Japanese_7_Text[] = {
 
 HintText_Text ChaoGardenMessages_German_7_Text[] = {
 	{ "\aLa\337 Deinen Chao beim Rennen\nzur Ziellinie st\374rmen!", 0 } /* "\aLaß Deinen Chao beim Rennen\nzur Ziellinie stürmen!" */,
-	{ "\a\Wenn Du im Chao Rennen -Jewel-\nden ersten Plaz belegst", 0 } /* "\a■Wenn Du im Chao Rennen -Jewel-\nden ersten Plaz belegst" */,
+	{ "\aWenn Du im Chao Rennen -Jewel-\nden ersten Plaz belegst", 0 } /* "\aWenn Du im Chao Rennen -Jewel-\nden ersten Plaz belegst" */,
 	{ "\agewinnst Du einen Juwelen Anh\344nger.", 0 } /* "\agewinnst Du einen Juwelen Anhänger." */,
-	{ "\a\Feuer den Chao an, und\ner leuchtet auf,", 0 } /* "\a■Feuer den Chao an, und\ner leuchtet auf," */,
+	{ "\aFeuer den Chao an, und\ner leuchtet auf,", 0 } /* "\aFeuer den Chao an, und\ner leuchtet auf," */,
 	{ "\aund wird schneller rennen.\nZum Anfeuern: ABXY Tasten", 0 } /* "\aund wird schneller rennen.\nZum Anfeuern: ABXY Tasten" */,
-	{ "\a\Bewege den Pfeil, und suche\neinen Chao mit neuem Blickwinkel aus", 0 } /* "\a■Bewege den Pfeil, und suche\neinen Chao mit neuem Blickwinkel aus" */,
+	{ "\aBewege den Pfeil, und suche\neinen Chao mit neuem Blickwinkel aus", 0 } /* "\aBewege den Pfeil, und suche\neinen Chao mit neuem Blickwinkel aus" */,
 	{ "\aden Du anfeuern willst.", 0 } /* "\aden Du anfeuern willst." */,
 	{ "\aVer\344nderung des Kamerawinkels:\nSteuerkreuz", 0 } /* "\aVeränderung des Kamerawinkels:\nSteuerkreuz" */,
 	{ 0 }
@@ -487,12 +487,12 @@ HintText_Text ChaoGardenMessages_German_7_Text[] = {
 
 HintText_Text ChaoGardenMessages_Spanish_7_Text[] = {
 	{ "\a'Carrera de Chao'", 0 } /* "\a'Carrera de Chao'" */,
-	{ "\a\Deja a tu Chao participar en\nuna carrera y luchar por la victoria!", 0 } /* "\a■Deja a tu Chao participar en\nuna carrera y luchar por la victoria!" */,
-	{ "\a\En una carrera de Chao\nsi llegas en primer lugar", 0 } /* "\a■En una carrera de Chao\nsi llegas en primer lugar" */,
+	{ "\a\241Deja a tu Chao participar en\nuna carrera y luchar por la victoria!", 0 } /* "\aDeja a tu Chao participar en\nuna carrera y luchar por la victoria!" */,
+	{ "\a\241En una carrera de Chao\nsi llegas en primer lugar", 0 } /* "\aEn una carrera de Chao\nsi llegas en primer lugar" */,
 	{ "\aganar\341s un Colgante!.", 0 } /* "\aganarás un Colgante!." */,
-	{ "\a\Anima a tu Chao! Si animas\na tu Chao cuando destella,", 0 } /* "\a■Anima a tu Chao! Si animas\na tu Chao cuando destella," */,
+	{ "\a\241Anima a tu Chao! Si animas\na tu Chao cuando destella,", 0 } /* "\aAnima a tu Chao! Si animas\na tu Chao cuando destella," */,
 	{ "\acorrer\341 m\341s r\341pido.\nara animar pulsa los botones ABXY", 0 } /* "\acorrerá más rápido.\nara animar pulsa los botones ABXY" */,
-	{ "\a\Mueve el cursor triangular para\ncambiar el \341ngulo de la c\341mara", 0 } /* "\a■Mueve el cursor triangular para\ncambiar el ángulo de la cámara" */,
+	{ "\aMueve el cursor triangular para\ncambiar el \341ngulo de la c\341mara", 0 } /* "\aMueve el cursor triangular para\ncambiar el ángulo de la cámara" */,
 	{ "\ay seleccionar el Chao\nque quieres ver.", 0 } /* "\ay seleccionar el Chao\nque quieres ver." */,
 	{ "\aCambio del \341ngulo de la c\341mara:\nBot\363n direccional", 0 } /* "\aCambio del ángulo de la cámara:\nBotón direccional" */,
 	{ 0 }
@@ -500,12 +500,12 @@ HintText_Text ChaoGardenMessages_Spanish_7_Text[] = {
 
 HintText_Text ChaoGardenMessages_French_7_Text[] = {
 	{ "\a'Course Chao'", 0 } /* "\a'Course Chao'" */,
-	{ "\a\Entrez votre Chao en\ncourse, et droit vers l'arriv\351e!", 0 } /* "\a■Entrez votre Chao en\ncourse, et droit vers l'arrivée!" */,
-	{ "\a\En course Chao -Joyau-\nsi vous finissez en 1\350re position", 0 } /* "\a■En course Chao -Joyau-\nsi vous finissez en 1ère position" */,
+	{ "\aEntrez votre Chao en\ncourse, et droit vers l'arriv\351e!", 0 } /* "\aEntrez votre Chao en\ncourse, et droit vers l'arrivée!" */,
+	{ "\aEn course Chao -Joyau-\nsi vous finissez en 1\350re position", 0 } /* "\aEn course Chao -Joyau-\nsi vous finissez en 1ère position" */,
 	{ "\avous recevrez un pendentif de Joyau.", 0 } /* "\avous recevrez un pendentif de Joyau." */,
-	{ "\a\Encouragez votre Chao! Applaudissez\nvotre Chao s'il se met \340 clignoter,", 0 } /* "\a■Encouragez votre Chao! Applaudissez\nvotre Chao s'il se met à clignoter," */,
+	{ "\aEncouragez votre Chao! Applaudissez\nvotre Chao s'il se met \340 clignoter,", 0 } /* "\aEncouragez votre Chao! Applaudissez\nvotre Chao s'il se met à clignoter," */,
 	{ "\aIl ira un peu plus vite.\nApplaudissement: Boutons ABXY", 0 } /* "\aIl ira un peu plus vite.\nApplaudissement: Boutons ABXY" */,
-	{ "\a\D\351placez le curseur pour changer\nde prise de vue et choisissez celui", 0 } /* "\a■Déplacez le curseur pour changer\nde prise de vue et choisissez celui" */,
+	{ "\aD\351placez le curseur pour changer\nde prise de vue et choisissez celui", 0 } /* "\aDéplacez le curseur pour changer\nde prise de vue et choisissez celui" */,
 	{ "\aque vous d\351sirez regarder.", 0 } /* "\aque vous désirez regarder." */,
 	{ "\aChangement de prise de vue:\nles Boutons Directionnels", 0 } /* "\aChangement de prise de vue:\nles Boutons Directionnels" */,
 	{ 0 }

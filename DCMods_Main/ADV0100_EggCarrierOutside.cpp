@@ -172,8 +172,6 @@ void ParseEC00Materials(bool remove)
 {
 	Uint32 materialflags;
 	NJS_MATERIAL* material;
-	NJS_TEX* uv;
-	int texid;
 	LandTable* landtable;
 	landtable = LANDTABLEEC0[0];
 	for (int j = 0; j < landtable->COLCount; j++)

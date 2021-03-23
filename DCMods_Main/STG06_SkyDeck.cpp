@@ -103,13 +103,13 @@ void __cdecl SkyDeck_QueueDrawQ(NJS_OBJECT *obj, NJS_TEX *uv, int uvSTG06_count,
 void SkyDeckSky_new(ObjectMaster *_this)
 {
 	float depthsucks;
-	unsigned __int64 v1; // rax@6
+	Uint32 v1; // rax@6
 	NJS_OBJECT *v2; // esi@7
-	long double v3; // st7@9
-	long double v4; // st7@13
+	float v3; // st7@9
+	float v4; // st7@13
 	NJS_OBJECT *v5; // eax@13
-	long double v6; // st7@15
-	long double v7; // st7@19
+	float v6; // st7@15
+	float v7; // st7@19
 	NJS_OBJECT *v8; // eax@19
 	NJS_ARGB a1; // [sp+4h] [bp-10h]@13
 	njControl3D_Backup();
@@ -293,11 +293,9 @@ void __cdecl SkyDeckSharedDisplaySubFix(ObjectMaster *a1)
 	Angle v6; // eax
 	float v7; // eax
 	unsigned __int8 v8; // al
-	double v9; // st7
+	float v9; // st7
 	NJS_MOTION *v10; // edx
-	double v11; // st6
-	double v12; // st7
-	float a1a; // [esp+10h] [ebp+4h]
+	float v11; // st6
 
 	v1 = a1;
 	v2 = a1->Data1;

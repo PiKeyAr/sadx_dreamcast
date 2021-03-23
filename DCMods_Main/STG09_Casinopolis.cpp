@@ -174,17 +174,9 @@ void __cdecl CowGirl_DisplayPart(NJS_MODEL_SADX* model, int a2, int a3)
 void __cdecl Cowgirl_Display(ObjectMaster *a1)
 {
 	EntityData1 *data; // esi@1
-	int cowgirlthing;
-	char v2; // al@3
-	Angle v3; // eax@5
-	NJS_OBJECT *v4; // edi@7
-	NJS_OBJECT *v5; // edi@7
-	Sint16 v6; // ax@7
-	NJS_OBJECT *v7; // edi@9
-	Sint16 v8; // ax@9
-	NJS_VECTOR distance_vector;
 	data = a1->Data1;
-	if (IsVisible(&data->Position, 280.0f)) {
+	if (IsVisible(&data->Position, 280.0f)) 
+	{
 		njSetTexture(&OBJ_CASINO9_TEXLIST);
 		njPushMatrixEx();
 		njTranslateEx(&data->Position);
@@ -262,14 +254,11 @@ void Cowgirl_Load(ObjectMaster* obj)
 	Cowgirl_AddDynCol(obj, (NJS_OBJECT*)0x1E5340C);
 }
 
-void __cdecl sub_5D0560(ObjectMaster *obj)
+void __cdecl sub_5D0560(ObjectMaster* obj)
 {
-	EntityData1 *v1; // esi@1
+	EntityData1* v1; // esi@1
 	Angle v2; // eax@3
 	Angle v7;
-	Sint16 v3; // ax@5
-	char *v4; // eax@12
-	double v5; // st7@14
 	Sint16 v6; // di@15
 	v1 = obj->Data1;
 	if (v1->Scale.x == 1.0f) v7 = RotationAngle1; else v7 = RotationAngle2;
@@ -291,29 +280,14 @@ void __cdecl sub_5D0560(ObjectMaster *obj)
 			{
 				njRotateZ(0, (unsigned __int16)v7);
 			}
-			DrawModel((NJS_MODEL_SADX *)v1->Object);
+			DrawModel((NJS_MODEL_SADX*)v1->Object);
 			njPopMatrix(1u);
 		}
-		if (ObjectSelectedDebug(obj))
-		{
-			v4 = "RotDir:Migi";
-			if (!((unsigned __int64)v1->Scale.x & 1))
-			{
-				v4 = "RotDir:Hidari";
-			}
-			DisplayDebugString(1179667, v4);
-			DisplayDebugString(1179668, "RotSpd:");
-			v5 = fabs(v1->Scale.y);
-			PrintDebugNumber(1703956, (unsigned __int64)v5, 4);
-		}
-		else
-		{
-			AddToCollisionList(v1);
-			v6 = dword_1E77568;
-			fabs(v1->Scale.y);
-			++v1->InvulnerableTime;
-			((short *)&v1->CharIndex)[0] = v6;
-		}
+		AddToCollisionList(v1);
+		v6 = dword_1E77568;
+		fabs(v1->Scale.y);
+		++v1->InvulnerableTime;
+		((short*)&v1->CharIndex)[0] = v6;
 	}
 }
 
@@ -322,9 +296,6 @@ void __cdecl sub_5D0560_KazB(ObjectMaster *obj)
 	EntityData1 *v1; // esi@1
 	Angle v2; // eax@3
 	Angle v7;
-	Sint16 v3; // ax@5
-	char *v4; // eax@12
-	double v5; // st7@14
 	Sint16 v6; // di@15
 	v1 = obj->Data1;
 	if (v1->Scale.x == 0.0f) v7 = RotationAngle1; else v7 = RotationAngle2;
@@ -346,29 +317,14 @@ void __cdecl sub_5D0560_KazB(ObjectMaster *obj)
 			{
 				njRotateZ(0, (unsigned __int16)v7);
 			}
-			DrawModel((NJS_MODEL_SADX *)v1->Object);
+			DrawModel((NJS_MODEL_SADX*)v1->Object);
 			njPopMatrix(1u);
 		}
-		if (ObjectSelectedDebug(obj))
-		{
-			v4 = "RotDir:Migi";
-			if (!((unsigned __int64)v1->Scale.x & 1))
-			{
-				v4 = "RotDir:Hidari";
-			}
-			DisplayDebugString(1179667, v4);
-			DisplayDebugString(1179668, "RotSpd:");
-			v5 = fabs(v1->Scale.y);
-			PrintDebugNumber(1703956, (unsigned __int64)v5, 4);
-		}
-		else
-		{
-			AddToCollisionList(v1);
-			v6 = dword_1E77568;
-			fabs(v1->Scale.y);
-			++v1->InvulnerableTime;
-			((short *)&v1->CharIndex)[0] = v6;
-		}
+		AddToCollisionList(v1);
+		v6 = dword_1E77568;
+		fabs(v1->Scale.y);
+		++v1->InvulnerableTime;
+		((short*)&v1->CharIndex)[0] = v6;
 	}
 }
 
@@ -592,7 +548,6 @@ void __cdecl OLhtr_Display(ObjectMaster *a1)
 	int v2; // eax@3
 	int v3; // eax@5
 	int v4; // eax@7
-	int v5;
 	v1 = a1->Data1;
 	if (!ClipObject(a1, 360010.0) && IsVisible(&v1->Position, 30.0f))
 	{
@@ -629,7 +584,6 @@ void __cdecl OLhtg_Display(ObjectMaster *a1)
 	int v2; // eax@3
 	int v3; // eax@5
 	int v4; // eax@7
-	int v5;
 	v1 = a1->Data1;
 	if (!ClipObject(a1, 360010.0) && IsVisible(&v1->Position, 105.0f))
 	{
@@ -660,16 +614,16 @@ void __cdecl OLhtg_Display(ObjectMaster *a1)
 	}
 }
 
-void OSlxDisplayNew(NJS_ACTION *a1, float a2, int a3, int a4)
+void OSlxDisplayNew(NJS_ACTION* action, float frame, int flags, float scale)
 {
 	NJS_ACTION OSlX_BaseAction;
-	OSlX_BaseAction.motion = a1->motion;
+	OSlX_BaseAction.motion = action->motion;
 	OSlX_BaseAction.object = OSlX_Base;
 	// Render main animation
-	ds_ActionClip(&OSlX_BaseAction, a2, a4);
+	ds_ActionClip(&OSlX_BaseAction, frame, scale);
 	// Render light
 	DrawQueueDepthBias = 8000.0f;
-	late_ActionMesh(a1, a2, (QueuedModelFlagsB)0);
+	late_ActionMesh(action, frame, (QueuedModelFlagsB)0);
 	DrawQueueDepthBias = 0;
 }
 
@@ -691,7 +645,7 @@ void RenderOKBSText(NJS_OBJECT *obj, float scale)
 void RenderOKBCText(NJS_ACTION *a1, float frame, float scale)
 {
 	DrawQueueDepthBias = 1000.0f;
-	late_ActionMesh(a1, frame, scale);
+	ds_ActionClip(a1, frame, scale);
 	DrawQueueDepthBias = 2000.0f;
 	DrawObjectClipMesh(a1->object->child->sibling->sibling->sibling->sibling, QueuedModelFlagsB_SomeTextureThing, 1.0f);
 	DrawQueueDepthBias = 0;
@@ -796,7 +750,6 @@ void UnloadLevelFiles_STG09()
 
 void ParseCasMaterials(LandTable* landtable, int act)
 {
-	Uint32 materialflags;
 	NJS_MATERIAL* material;
 	for (int j = 0; j < landtable->COLCount; j++)
 	{
@@ -914,7 +867,6 @@ void SetUpIdeyaCapModels(NJS_OBJECT* Object1, NJS_OBJECT* Object2, NJS_OBJECT* O
 void Casinopolis_Init()
 {
 	CasinoPaletteGenerated = false;
-	NJS_MATERIAL* material;
 	STG09_0_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG09\\0.sa1lvl"));
 	STG09_1_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG09\\1.sa1lvl"));
 	STG09_2_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG09\\2.sa1lvl"));
@@ -1204,6 +1156,7 @@ void Casinopolis_OnFrame()
 		// Failsafe stuff for palette blending
 		if (WhiteSonic && (InsideMachine == 0 || CurrentLevel != LevelIDs_Casinopolis || CurrentAct != 0 || GameMode == GameModes_Menu || GameState == 3 || GameState == 4 || GameState == 7 || GameState == 21))
 		{
+			CasinoPaletteGenerated = false;
 			WhiteSonic = false;
 			set_blend_factor(0.0f);
 			set_specular_blend(2, -1);

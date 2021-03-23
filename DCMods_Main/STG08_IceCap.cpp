@@ -314,9 +314,6 @@ void __cdecl Crystal_Display(ObjectMaster *a1)
 {
 	
 	EntityData1 *v1; // esi
-	Angle v2; // eax
-	Angle v3; // eax
-	Angle v4; // eax
 
 	v1 = a1->Data1;
 	if (!MissedFrames)
@@ -432,7 +429,6 @@ static void __declspec(naked) Obj_Icecap_DoColFlagThings_a()
 
 void ParseICMaterials(LandTable* landtable)
 {
-	Uint32 materialflags;
 	NJS_MATERIAL* material;
 	for (int j = 0; j < landtable->COLCount; j++)
 	{

@@ -51,11 +51,6 @@ void __cdecl DrawPirateShipShit(ObjectMaster *a1)
 	EntityData1 *v1; // esi
 	Angle v2; // edi
 	Angle v4; // eax
-	void* v3;
-	int v5; // ebp
-	int v6; // ebp
-	int v7; // ebp
-	EntityData1 *v8; // eax
 
 	v1 = a1->Data1;
 	v2 = v1->Rotation.z;

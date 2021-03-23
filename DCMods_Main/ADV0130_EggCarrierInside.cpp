@@ -141,8 +141,6 @@ void OTarai_Child_Display(ObjectMaster* a1)
 	Angle v2; // eax
 	NJS_MODEL_SADX* v3; // ebx
 	NJS_MATERIAL* v4; // eax
-	NJS_MODEL_SADX* v7; // ebx
-	NJS_MATERIAL* v8; // eax
 	int v5; // ecx
 
 	v1 = a1->Data1;

@@ -57,7 +57,7 @@ DataPointer(int, EffectActive, 0x3C5E4B0);
 FunctionPointer(void, DrawEmeraldCoastOcean, (OceanData *x), 0x004F8A30);
 
 int roundfloat(float r) {
-	return (r > 0.0) ? (r + 0.5) : (r - 0.5);
+	return int((r > 0.0f) ? (r + 0.5f) : (r - 0.5f));
 }
 
 void __cdecl Obj_EC23Water_DisplayX(ObjectMaster *a1)
@@ -67,7 +67,7 @@ void __cdecl Obj_EC23Water_DisplayX(ObjectMaster *a1)
 	double y; // st7
 	double z; // st6
 	v1 = a1->Data1;
-	int OceanUVShift1;
+	//int OceanUVShift1;
 	// Draw SA1 ocean
 	if (!SADXWater_EmeraldCoast)
 	{
@@ -131,14 +131,14 @@ void __cdecl Obj_EC23Water_DisplayX(ObjectMaster *a1)
 void __cdecl Obj_EC1Water_DisplayX(ObjectMaster *a1)
 {
 	auto entity = EntityData1Ptrs[0];
-	double v2;
-	int OceanUVShift1;
+	float v2;
+	//int OceanUVShift1;
 	EntityData1 *v1; // esi@1
 	v1 = a1->Data1;
 	int unitsize_u_small = 10;
 	int unitsize_v_small = 10;
-	float u2_add;
-	float v2_add;
+	int u2_add;
+	int v2_add;
 	int u2_delta;
 	int v2_delta;
 	DisableFog();
@@ -174,7 +174,7 @@ void __cdecl Obj_EC1Water_DisplayX(ObjectMaster *a1)
 			WriteData((float**)0x00501849, &float1);
 			WriteData((float**)0x00501832, &float2);
 			WriteData((float**)0x0050185B, &float2);
-			if (!DroppedFrames);
+			if (!DroppedFrames)
 			{
 				njSetTexture((NJS_TEXLIST*)0x010C0508); // BEACH_SEA
 				njPushMatrix(0);
@@ -220,7 +220,7 @@ void __cdecl Obj_EC1Water_DisplayX(ObjectMaster *a1)
 			else njSetTexture((NJS_TEXLIST*)0x010C0508); // BEACH_SEA
 			if (oldpos.x != v1->Position.x)
 			{
-				u2_add = int(255 * (v1->Position.x - oldpos.x) / unitsize_u_small) % 255;
+				u2_add = int(255.0f * (v1->Position.x - oldpos.x) / (float)unitsize_u_small) % 255;
 				if (SADXWater_EmeraldCoast == true) u2_add = roundfloat(1.5f * u2_add);
 				for (int u_step = 0; u_step < 1300; u_step++)
 				{
@@ -232,7 +232,7 @@ void __cdecl Obj_EC1Water_DisplayX(ObjectMaster *a1)
 			}
 			if (oldpos.z != v1->Position.z)
 			{
-				v2_add = int(255 * (v1->Position.z - oldpos.z) / unitsize_v_small) % 255;
+				v2_add = int(255.0f * (v1->Position.z - oldpos.z) / (float)unitsize_v_small) % 255;
 				if (SADXWater_EmeraldCoast == true) v2_add = roundfloat(0.5f * v2_add);
 				for (int v_step = 0; v_step < 1300; v_step++)
 				{
@@ -248,7 +248,7 @@ void __cdecl Obj_EC1Water_DisplayX(ObjectMaster *a1)
 			njTranslate(0, v1->Position.x, EC1OceanYShift, v1->Position.z);
 			DrawQueueDepthBias = -19952.0f;
 			EC1OceanYShift = -1.5f;
-			if (EffectActive) late_DrawObjectMesh((NJS_OBJECT*)0x010C03FC, 1.0f);
+			if (EffectActive) late_DrawObjectMesh((NJS_OBJECT*)0x010C03FC, 1);
 			else late_DrawObjectClip((NJS_OBJECT*)0x010C03FC, QueuedModelFlagsB_SomeTextureThing, 1.0f);
 			njPopMatrix(1u);
 
@@ -475,8 +475,6 @@ void ParseEmeraldCoastColFlagsAndMaterials(LandTable *landtable, int act)
 	Uint32 materialflags;
 	int colflags;
 	NJS_MATERIAL *material;
-	NJS_TEX *uv;
-	int texid;
 	switch (act)
 	{
 	case 0:
@@ -677,8 +675,8 @@ void EmeraldCoast_Init()
 			// Different UVs on the dynamic ocean model for SADX water
 			for (int rq = 0; rq < 1300; rq++)
 			{
-				uvSTG01_00CBB000_d[rq].u = round(0.5 * uvSTG01_00CBB000_d[rq].u);
-				uvSTG01_00CBB000_d[rq].v = round(0.5 * uvSTG01_00CBB000_d[rq].v);
+				uvSTG01_00CBB000_d[rq].u = (Sint16)round(0.5f * uvSTG01_00CBB000_d[rq].u);
+				uvSTG01_00CBB000_d[rq].v = (Sint16)round(0.5f * uvSTG01_00CBB000_d[rq].v);
 			}
 			BigDeco1 = LoadModel("system\\data\\STG01\\Models\\DX\\00ACA3EC.sa1mdl");
 			BigDeco2 = LoadModel("system\\data\\STG01\\Models\\DX\\00AC97B4.sa1mdl");

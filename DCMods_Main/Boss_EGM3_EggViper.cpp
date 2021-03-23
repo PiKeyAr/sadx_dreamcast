@@ -39,13 +39,6 @@ void EggViperCutsceneFix2(int time)
 
 void EggViperDust_DisplayFix(ObjectMaster *a1)
 {
-	signed int v1; // esi
-	NJS_TEX v2; // edx
-	int v3; // eax
-	signed int v4; // ecx
-	Float y; // ST04_4
-	signed int v6; // [esp+10h] [ebp-4h]
-
 	if (!MissedFrames)
 	{
 		BackupConstantAttr();

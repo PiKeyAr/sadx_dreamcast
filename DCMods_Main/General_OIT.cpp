@@ -19,7 +19,6 @@ void __cdecl DrawTriFanThing_Queue_r(NJS_POINT3COL *a1, int texnum, NJD_DRAW n, 
 
 void __cdecl Draw2DLines_Queue_r(NJS_POINT2COL *points, int count, float depth, NJD_DRAW attr, QueuedModelFlagsB flags)
 {
-	NJS_TEXLIST *v6;
 	float _depth;
 	float new_depth;
 	_depth = depth;

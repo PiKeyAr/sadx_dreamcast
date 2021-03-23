@@ -139,10 +139,8 @@ void FixTreeShadowFlickering2(NJS_OBJECT *a1, QueuedModelFlagsB a2, float a3)
 void ParsePastMaterials()
 {
 	Uint32 materialflags;
-	int colflags;
 	NJS_MATERIAL *material;
 	NJS_TEX *uv;
-	int texid;
 	LandTable *landtable;
 	landtable = LANDTABLEPAST[1];
 	// SADX water

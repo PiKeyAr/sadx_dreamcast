@@ -28,7 +28,7 @@ DataArray(FogData, LostWorld1Fog, 0x01E79AAC, 3);
 DataArray(FogData, LostWorld2Fog, 0x01E79ADC, 3);
 DataArray(FogData, LostWorld3Fog, 0x01E79B0C, 3);
 DataArray(char, AokiSwitchByteArray, 0x3C7ED8C, 32);
-FunctionPointer(long double, sub_49CC70, (float a1, float a2, float a3), 0x49CC70);
+FunctionPointer(float, sub_49CC70, (float a1, float a2, float a3), 0x49CC70);
 FunctionPointer(void, AllocateLWSpikeParticle, (NJS_VECTOR *a1, NJS_VECTOR *a2, float a3), 0x4B9820);
 FunctionPointer(void, ResetEntityStatus, (EntityData1 *a1, int a2), 0x49CE60);
 FunctionPointer(void, LostWorldSpikes_Display, (ObjectMaster *a1), 0x5EA720);
@@ -40,23 +40,23 @@ signed int __cdecl JapaneseSpikes(ObjectMaster *a1)
 	NJS_VECTOR v2; // edi
 	signed int result; // eax
 	char v4; // al
-	double v5; // st7
-	double v6; // st6
-	double v7; // st5
+	float v5; // st7
+	float v6; // st6
+	float v7; // st5
 	float v8; // ST0C_4
-	double v9; // st7
+	float v9; // st7
 	Angle v10; // edi
 	Angle v11; // eax
 	Angle v12; // eax
 	Angle v13; // eax
-	double v14; // st7
-	double v15; // st7
+	float v14; // st7
+	float v15; // st7
 	Angle v16; // eax
 	Angle v17; // eax
 	Angle v18; // eax
-	_BOOL1 v19; // zf
-	double v20; // st7
-	double v21; // st7
+	bool v19; // zf
+	float v20; // st7
+	float v21; // st7
 	NJS_VECTOR a3; // [esp+10h] [ebp-24h]
 	NJS_VECTOR a2; // [esp+1Ch] [ebp-18h]
 	NJS_VECTOR v24; // [esp+28h] [ebp-Ch]
@@ -101,7 +101,7 @@ signed int __cdecl JapaneseSpikes(ObjectMaster *a1)
 			{
 				goto LABEL_21;
 			}
-			v10 = (unsigned __int64)(atan2(Camera_Data1->Position.x - v1->Position.x, Camera_Data1->Position.z - v1->Position.z) * 65536.0 * 0.1591549762031479);
+			v10 = (Angle)(atan2(Camera_Data1->Position.x - v1->Position.x, Camera_Data1->Position.z - v1->Position.z) * 65536.0 * 0.1591549762031479);
 			a2.y = -12.0;
 			a2.x = njSin(v10) * 20.0f;
 			a2.z = njCos(v10) * 20.0f;
@@ -223,7 +223,7 @@ signed int __cdecl JapaneseSpikes(ObjectMaster *a1)
 				ResetEntityStatus(v1, 0);
 			}
 			result = LevelFrameCount;
-			*(float *)&v1->LoopData = LevelFrameCount;
+			*(int *)&v1->LoopData = LevelFrameCount; // ??
 			break;
 		default:
 			goto LABEL_21;
@@ -342,10 +342,10 @@ void RLight_Display(ObjectMaster *a1)
 		{
 			njRotateY(0, (unsigned __int16)v4);
 		}
-		a1a = v1->Scale.z + 1.0;
+		a1a = v1->Scale.z + 1.0f;
 		v5 = a1a;
-		sy = v1->Scale.y + 1.0;
-		sx = v1->Scale.x + 1.0;
+		sy = v1->Scale.y + 1.0f;
+		sx = v1->Scale.x + 1.0f;
 		a1b = sub_49CC70(sx, sy, a1a);
 		njScale(0, sx, sy, v5);
 		if (!AssumeOIT) late_DrawObjectClipMesh((NJS_OBJECT*)0x2031810, (QueuedModelFlagsB)0, a1b);
@@ -394,7 +394,6 @@ void UnloadLevelFiles_STG07()
 
 void ParseLWMaterials(LandTable* landtable, int act)
 {
-	Uint32 materialflags;
 	NJS_MATERIAL* material;
 	for (int j = 0; j < landtable->COLCount; j++)
 	{

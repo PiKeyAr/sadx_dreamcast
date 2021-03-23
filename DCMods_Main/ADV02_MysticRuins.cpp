@@ -97,11 +97,11 @@ void SetColor(float a, float r, float g, float b)
 	r = 0;
 	g = max(0.25f, g/0.6f);
 	b = 0;
-	SetMaterialAndSpriteColor_Float(a,r,g,b);
-	ADV02_MODELS[15]->mats[0].diffuse.argb.a = a*255;
-	ADV02_MODELS[15]->mats[0].diffuse.argb.r = r*255;
-	ADV02_MODELS[15]->mats[0].diffuse.argb.g = g*255;
-	ADV02_MODELS[15]->mats[0].diffuse.argb.b = b*255;
+	SetMaterialAndSpriteColor_Float(a, r, g, b);
+	ADV02_MODELS[15]->mats[0].diffuse.argb.a = (Uint8)(a * 255.0f);
+	ADV02_MODELS[15]->mats[0].diffuse.argb.r = (Uint8)(r * 255.0f);
+	ADV02_MODELS[15]->mats[0].diffuse.argb.g = (Uint8)(g * 255.0f);
+	ADV02_MODELS[15]->mats[0].diffuse.argb.b = (Uint8)(b * 255.0f);
 }
 
 // Render Eggman's base object (OFinalEgg)
@@ -163,10 +163,10 @@ void SetBlockEntryMaterialColor(float a, float r, float g, float b)
 	r = min(r, 1.0f);
 	g = min(g, 1.0f);
 	b = min(b, 1.0f);
-	ADV02_OBJECTS[50]->basicdxmodel->mats[0].diffuse.argb.a = max(0, min(255, 255 + r * 255));
-	ADV02_OBJECTS[50]->basicdxmodel->mats[0].diffuse.argb.r = max(0, min(255, 255 + r * 255));
-	ADV02_OBJECTS[50]->basicdxmodel->mats[0].diffuse.argb.g = max(0, min(255, 255 + g * 255));
-	ADV02_OBJECTS[50]->basicdxmodel->mats[0].diffuse.argb.b = max(0, min(255, 255 + b * 255));
+	ADV02_OBJECTS[50]->basicdxmodel->mats[0].diffuse.argb.a = Uint8(max(0, min(255.0f, 255.0f + r * 255.0f)));
+	ADV02_OBJECTS[50]->basicdxmodel->mats[0].diffuse.argb.r = Uint8(max(0, min(255.0f, 255.0f + r * 255.0f)));
+	ADV02_OBJECTS[50]->basicdxmodel->mats[0].diffuse.argb.g = Uint8(max(0, min(255.0f, 255.0f + g * 255.0f)));
+	ADV02_OBJECTS[50]->basicdxmodel->mats[0].diffuse.argb.b = Uint8(max(0, min(255.0f, 255.0f + b * 255.0f)));
 	SetMaterialAndSpriteColor_Float(0, 0, 0, 0);
 }
 

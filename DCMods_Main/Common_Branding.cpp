@@ -705,7 +705,8 @@ void DrawTitle_New(TitleNewWk* tnk)
 	char texture_id = 0;
 	//tnk->BaseCol = 0x00FFFFFF;
 	r30 = tnk->wavetimer++ * kj_dWaveTitleTime;
-	f30 = (njSin(r30 * kj_xWaveTitleFlactRot + 7.0f) + 1.0f) * 0.15f + 0.7f;
+	Angle angle = (Angle)(r30 * kj_xWaveTitleFlactRot + 7.0f);
+	f30 = (njSin(angle) + 1.0f) * 0.15f + 0.7f;
 	if (tnk->Stat == 1) tnk->logotimer = 0;
 	else if (tnk->logotimer < 70) tnk->logotimer++;
 	// Set scaling
@@ -732,7 +733,8 @@ void DrawTitle_New(TitleNewWk* tnk)
 		for (int i = 0; i < 1071; i++)
 		{
 			f1 = PYTHAGORAS(point_hamon_null1_grid1[i].x, point_hamon_null1_grid1[i].z);
-			f3 = njSin((r30 - f1 / kj_fWaveTitleWaveSpd) * kj_xWaveTitleWaveRot) / ((1.0f / kj_fWaveTitleWaveRad) * f1 + 1.0f);
+			Angle angle_f3 = (Angle)(r30 - f1 / kj_fWaveTitleWaveSpd) * kj_xWaveTitleWaveRot;
+			f3 = njSin(angle_f3) / ((1.0f / kj_fWaveTitleWaveRad) * f1 + 1.0f);
 			f2 = 1.0f - (point_hamon_null1_grid1[i].z + 21.0f) * 0.023809525f;
 			point_hamon_null1_grid1[i].y = kj_fWaveTitleWaveHeight * f3 * f30;
 			normal_hamon_null1_grid1[i].y = (f2 * f3 * f30 + 1.0f) * 0.5f;
@@ -740,7 +742,8 @@ void DrawTitle_New(TitleNewWk* tnk)
 		for (int i = 0; i < 1071; i++)
 		{
 			f1 = PYTHAGORAS(point_hamon_null1_grid2[i].x, point_hamon_null1_grid2[i].z);
-			f3 = njSin((r30 - f1 / kj_fWaveTitleWaveSpd) * kj_xWaveTitleWaveRot) / ((1.0f / kj_fWaveTitleWaveRad) * f1 + 1.0f);
+			Angle angle_f3 = (Angle)(r30 - f1 / kj_fWaveTitleWaveSpd) * kj_xWaveTitleWaveRot;
+			f3 = njSin(angle_f3) / ((1.0f / kj_fWaveTitleWaveRad) * f1 + 1.0f);
 			f2 = (1.0f - (point_hamon_null1_grid1[i].z + 21.0f) * 0.023809525f);
 			point_hamon_null1_grid2[i].y = kj_fWaveTitleWaveHeight * f3 * f30;
 			normal_hamon_null1_grid2[i].y = (f2 * f3 * f30 + 1.0f) * 0.5f;
@@ -814,7 +817,6 @@ char FindSaveFilesLite()
 {
 	HANDLE handle; // edi MAPDST
 	struct _WIN32_FIND_DATAA fileSearchData; // [esp+18h] [ebp-250h]
-	_WIN32_FIND_DATAA _FindFileData; // [esp-140h] [ebp-3A8h]
 
 	handle = FindFirstFileA("./SAVEDATA/SonicDX01.snc", &fileSearchData);
 	if (handle == (HANDLE)-1)
@@ -976,7 +978,7 @@ void __cdecl DrawFuckingFileSelectWindows(float pos_x, float pos_y, float pos_z,
 {
 	Uint32 v5; // esi
 	Uint32 v6; // edi
-	double v7; // st7
+	float v7; // st7
 	float v8; // ST50_4
 	float v9; // ST3C_4
 	int v10; // ebp
@@ -997,11 +999,11 @@ void __cdecl DrawFuckingFileSelectWindows(float pos_x, float pos_y, float pos_z,
 	v6 = ScreenTextureVertices[1].col;
 	njSetTexture(&adv_window_TEXLIST);
 	SetVtxColorB(0xC0808080);
-	v7 = 1.0 / height;
+	v7 = 1.0f / height;
 	v8 = v7;
-	v9 = v7 * 16.0;
+	v9 = v7 * 16.0f;
 	v10 = sub_433190(0, v5, v6, v9);
-	v11 = (height - 16.0) * v8;
+	v11 = (height - 16.0f) * v8;
 	a1 = sub_433190(0, v5, v6, v11);
 	DoColorGradientThingMaybe(v5, v10, v5, v10);
 	DrawBG(0, pos_x, pos_y, pos_z, scaleX, scaleY);
@@ -1012,14 +1014,14 @@ void __cdecl DrawFuckingFileSelectWindows(float pos_x, float pos_y, float pos_z,
 	DrawBG(0x46000000, pos_x, y, pos_z, scaleX, scaleY);
 	DrawBG(0xC8000000, v13, y, pos_z, scaleX, scaleY);
 	DoColorGradientThingMaybe(v10, a1, v10, a1);
-	centerY = height - 32.0*scaleX;
-	v16 = pos_y + 16.0*scaleY;
-	DisplayScreenTextureCenter(1, pos_x, v16, pos_z, 16.0*scaleX, centerY);
-	v17 = v13 - 16.0*scaleX;
-	DisplayScreenTextureCenter(1, v17, v16, pos_z, 16.0*scaleX, centerY);
+	centerY = height - 32.0f * scaleX;
+	v16 = pos_y + 16.0f * scaleY;
+	DisplayScreenTextureCenter(1, pos_x, v16, pos_z, 16.0f * scaleX, centerY);
+	v17 = v13 - 16.0f * scaleX;
+	DisplayScreenTextureCenter(1, v17, v16, pos_z, 16.0f * scaleX, centerY);
 	DoColorGradientThingMaybe(v5, v6, v5, v6);
-	centerX = width - 32.0*scaleX;
-	v19 = pos_x + 16.0*scaleY;
+	centerX = width - 32.0f * scaleX;
+	v19 = pos_x + 16.0f * scaleY;
 	DisplayScreenTextureCenter(1, v19, pos_y, pos_z, centerX, height);
 	njColorBlendingMode(0, NJD_COLOR_BLENDING_SRCALPHA);
 	njColorBlendingMode(NJD_DESTINATION_COLOR, NJD_COLOR_BLENDING_INVSRCALPHA);
@@ -1045,8 +1047,6 @@ void DrawFileSelectMockup(float depth_orig, bool use_scaling, int VertexColor)
 	SetVtxColorA(VertexColor);
 	float xpos;
 	float ypos;
-	float zpos;
-	float ydelta;
 	float width;
 	float height;
 	float depth;
@@ -1154,7 +1154,7 @@ void DrawFileSelectMockup(float depth_orig, bool use_scaling, int VertexColor)
 		height = 25;
 		DisplayScreenTextureCenter(*((unsigned __int8 *)v4 + 9), ScreenDeltaX + xpos * BaseScaleX, ScreenDeltaY + ypos * BaseScaleY, depth, BaseScaleX * width, BaseScaleY * height); 
 		// Left vertical bar
-		int v15 = CreateColorGradient(v4[0], v4[1], 0.93055558);
+		int v15 = CreateColorGradient(v4[0], v4[1], 0.93055558f);
 		DoColorGradientThingMaybe(v5, v15, v5, v15);
 		xpos = 268;
 		ypos = 103;
@@ -1246,7 +1246,6 @@ void DrawTitleScreen(TitleNewWk* tnk)
 	// Variables for logo/background
 	float xpos;
 	float ypos;
-	float scalefactor;
 	char texture_id = 11;
 	// Transition modes:
 	// 0 - title screen loaded
@@ -1455,7 +1454,7 @@ void DrawTitleScreen(TitleNewWk* tnk)
 			SetVtxColorB(0xFFFFFFFF);
 			whiteoverlaydrawn = true;
 		}
-		else DrawRect_Queue(0, 0, HorizontalResolution, VerticalResolution, 1.2f, BlackFadeout.color, QueuedModelFlagsB_SomeTextureThing);
+		else DrawRect_Queue(0, 0, (float)HorizontalResolution, (float)VerticalResolution, 1.2f, BlackFadeout.color, QueuedModelFlagsB_SomeTextureThing);
 	}
 }
 
@@ -1582,9 +1581,6 @@ void DrawBG_CreditsLogo(int texnum, float x, float y, float z, float scaleX, flo
 
 void __cdecl PauseMenu_ActuallyDrawTheThings_Flip(int n, NJS_POINT2 *pos, NJS_POINT2 *scale, int colorize, int flipmode)
 {
-	float r;
-	float g;
-	float b;
 	NJD_SPRITE spriteflags = NJD_SPRITE_ALPHA | NJD_SPRITE_COLOR;
 	NJS_SPRITE _sp; // [esp+4h] [ebp-20h]
 	if (flipmode == 1) spriteflags |= NJD_SPRITE_HFLIP;

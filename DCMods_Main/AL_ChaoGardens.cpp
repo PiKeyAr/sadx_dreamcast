@@ -1302,8 +1302,6 @@ void __cdecl ECGardenWater_Main(ObjectMaster *a1)
 void __cdecl ECGardenWater_Load(ObjectMaster *a1)
 {
 	EntityData1 *v1; // eax@1
-	float *v2; // eax@1
-	signed int v3; // edx@1
 
 	v1 = a1->Data1;
 	a1->MainSub = ECGardenWater_Main;
@@ -1396,7 +1394,6 @@ void cdecl NameMachineTexlist()
 void __cdecl LoadChaoNameMachineX(NJS_VECTOR *position, int yrotation)
 {
 	EntityData1 *ent; // eax@1
-	ObjectMaster *obj;
 	ent = LoadObject(LoadObj_Data1, 2, Chao_Name_Machine_Load)->Data1;
 	switch (CurrentChaoStage)
 	{
@@ -1471,13 +1468,13 @@ void __cdecl RenderChaoTreeWithFruit(ChaoTreeEntityData1 *a1, NJS_OBJECT *a2)
 		{
 			v4 = *(_DWORD *)&a1->gap4C[140];
 			v5 = (float *)&a1->gap4C[32 * *(_DWORD *)&a1->gap4C[140] + 8];
-			v.x = 0.0;
-			v.y = -1.8;
-			v.z = 0.0;
+			v.x = 0.0f;
+			v.y = -1.8f;
+			v.z = 0.0f;
 			sx = *v5;
-			if (*v5 <= 1.0)
+			if (*v5 <= 1.0f)
 			{
-				if (sx <= 0.0)
+				if (sx <= 0.0f)
 				{
 				LABEL_18:
 					++*(_DWORD *)&a1->gap4C[140];
@@ -1942,11 +1939,11 @@ void ChaoGardenTransporterEffect_Display(ObjectMaster *a2)
 void __cdecl ChaoGardenTransporterEffect_Main(ObjectMaster *a1)
 {
 	EntityData1 *v1; // esi
-	double v2; // st7
+	float v2; // st7
 	Angle v3; // ecx
-	double v4; // st7
+	float v4; // st7
 	Angle v5; // edx
-	double v6; // st6
+	float v6; // st6
 
 	v1 = a1->Data1;
 	if ( !v1->Action )
@@ -1963,7 +1960,7 @@ void __cdecl ChaoGardenTransporterEffect_Main(ObjectMaster *a1)
 		v1->Scale.z = v6;
 		if ( v5 + 546 >= 0x4000 )
 		{
-			v1->Position.y = (2.0 - v4) * 9.0f + *(float*)&v1->CharIndex;
+			v1->Position.y = (2.0f - v4) * 9.0f + *(float*)&v1->CharIndex;
 		}
 		else
 		{
@@ -2125,8 +2122,8 @@ void ChaoGardenSSMRWater_Display_()
 	v2 = OceanDataArray[0].Position.x + v0;
 	njTranslate(0, v2, OceanDataArray[0].Position.y, v1);
 	njPushMatrix(0);
-	v3 = v0 * 0.5;
-	njTranslate(0, v3, -1.0, v3);
+	v3 = v0 * 0.5f;
+	njTranslate(0, v3, -1.0f, v3);
 	v4 = 0;
 	if (OceanDataArray[0].PlaneCount)
 	{
