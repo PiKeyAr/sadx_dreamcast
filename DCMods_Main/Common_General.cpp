@@ -2154,7 +2154,7 @@ void General_Init()
 		// Item box fixes
 		WriteCall((void*)0x4C0066, RenderItemBoxIcon);
 		ItemBoxAirModel = LoadModel("system\\data\\1ST_READ\\Models\\001AC4F4.sa1mdl");
-		ItemBoxAirModel_Resize = LoadModel("system\\data\\1ST_READ\\Models\\001AC4F4.sa1mdl");
+		ItemBoxAirModel_Resize = CloneObject(ItemBoxAirModel);
 		ItemBoxAirModel_Resize->basicdxmodel->mats[0].attrflags |= NJD_FLAG_USE_ALPHA;
 		ItemBoxAirModel_Resize->basicdxmodel->mats[1].attrflags |= NJD_FLAG_USE_ALPHA;
 		ItemBoxAirModel_Resize->basicdxmodel->mats[2].attrflags |= NJD_FLAG_USE_ALPHA;
@@ -2169,7 +2169,7 @@ void General_Init()
 		WriteJump(ItemBox_Display, ItemBox_Display_Rotate);
 		LoadModel_ReplaceMeshes((NJS_OBJECT*)0x8C908C, "system\\data\\1ST_READ\\Models\\001AA1E0.sa1mdl"); // Checkpoint
 		*(NJS_OBJECT*)0x8B54C4 = *LoadModel("system\\data\\1ST_READ\\Models\\00197E20.sa1mdl")->child->child; // Spring static
-		*(NJS_OBJECT*)0x8B603C = *LoadModel("system\\data\\1ST_READ\\Models\\00197E20.sa1mdl")->child->child; // Spring touched
+		*(NJS_OBJECT*)0x8B603C = *CloneObject((NJS_OBJECT*)0x8B54C4); // Spring touched
 		*(NJS_OBJECT*)0x8BFEF4 = *LoadModel("system\\data\\1ST_READ\\Models\\001A12A4.sa1mdl"); // Rocket platform
 		*(NJS_MODEL_SADX*)0x8BE168 = *LoadModel("system\\data\\1ST_READ\\Models\\0019F5F4.sa1mdl")->basicdxmodel; // Balloon
 		if (!AssumeOIT) 
@@ -2180,7 +2180,7 @@ void General_Init()
 		*(NJS_MODEL_SADX*)0x8C6624 = *LoadModel("system\\data\\1ST_READ\\Models\\001A7A78.sa1mdl")->child->basicdxmodel; // Spring H
 		*(NJS_MODEL_SADX*)0x8C5D5C = *LoadModel("system\\data\\1ST_READ\\Models\\001A6F9C.sa1mdl")->basicdxmodel; // Star panel
 		*(NJS_MODEL_SADX*)0x8BBD84 = *LoadModel("system\\data\\1ST_READ\\Models\\0019D2C0.sa1mdl")->basicdxmodel; // Switch (pressed)
-		*(NJS_MODEL_SADX*)0x989384 = *LoadModel("system\\data\\1ST_READ\\Models\\0019D2C0.sa1mdl")->basicdxmodel; // Switch (unpressed)
+		*(NJS_MODEL_SADX*)0x989384 = *CloneAttach((NJS_MODEL_SADX*)0x8BBD84); // Switch (unpressed)
 		((NJS_MODEL_SADX*)0x989384)->meshsets[4].vertcolor = SwitchDark_vcolor2;
 		((NJS_MODEL_SADX*)0x989384)->meshsets[3].vertcolor = SwitchDark_vcolor1;
 		((NJS_ACTION*)0x8B8BC4)->object = LoadModel("system\\data\\1ST_READ\\Models\\0019A118.sa1mdl"); // Dash panel
@@ -2212,12 +2212,12 @@ void General_Init()
 		WriteCall((void*)0x49F1C0, FixWaterSplash);
 		// Some emerald shard "fixes"
 		EmeraldPieceModel = LoadModel("system\\data\\1st_read\\Models\\0019BC48.sa1mdl");
+		EmeraldPieceOutline = CloneObject(EmeraldPieceModel);
 		if (GetModuleHandle(L"sadx-d3d11") == nullptr)
 		{
 			EmeraldPieceModel->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_USE_ALPHA;
 			EmeraldPieceModel->basicdxmodel->mats[0].diffuse.color = 0xFFB2B2B2;
 		}
-		EmeraldPieceOutline = LoadModel("system\\data\\1st_read\\Models\\0019BC48.sa1mdl");
 		EmeraldPieceOutline->basicdxmodel->mats[0].attrflags &= ~NJD_DA_INV_SRC;
 		EmeraldPieceOutline->basicdxmodel->mats[0].attrflags |= NJD_DA_ONE;
 		EmeraldPieceOutline->basicdxmodel->mats[0].diffuse.color = 0x00000000;

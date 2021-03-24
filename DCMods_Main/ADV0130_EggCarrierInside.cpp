@@ -295,7 +295,7 @@ void ADV01C_Init()
 		RemoveVertexColors_Object((NJS_OBJECT*)0x31045B8); // Projectors in Gamma's cutscene
 		// Tarai fix
 		TaraiButton_Transparent = LoadModel("system\\data\\ADV0130\\Models\\000D16F4.sa1mdl");
-		TaraiButton_OpaqueOnly = LoadModel("system\\data\\ADV0130\\Models\\000D16F4.sa1mdl");
+		TaraiButton_OpaqueOnly = CloneObject(TaraiButton_Transparent);
 		HideMesh_Object(TaraiButton_OpaqueOnly, 0);
 		AddWhiteDiffuseMaterial(&TaraiButton_OpaqueOnly->basicdxmodel->mats[1]);
 		AddWhiteDiffuseMaterial(&TaraiButton_OpaqueOnly->basicdxmodel->mats[2]);

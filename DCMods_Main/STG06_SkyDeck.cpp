@@ -601,13 +601,13 @@ void SkyDeck_Init()
 		WriteCall((void*)0x5EE8EC, FixHangA);
 		WriteCall((void*)0x5EE919, FixHangA);
 		SkyNormal1 = LoadModel("system\\data\\STG06\\Models\\000FBC08.sa1mdl"); // Clouds normal
-		SkyNormal2 = LoadModel("system\\data\\STG06\\Models\\000FBC08.sa1mdl"); // Clouds normal
-		SkyDark2 = LoadModel("system\\data\\STG06\\Models\\000FE03C.sa1mdl"); // Clouds dark top 2 
-		SkyDark1 = LoadModel("system\\data\\STG06\\Models\\000FE03C.sa1mdl"); // Clouds dark top 1 
+		SkyNormal2 = CloneObject(SkyNormal1); // Clouds normal
+		SkyDark1 = LoadModel("system\\data\\STG06\\Models\\000FE03C.sa1mdl"); // Clouds dark top 2
+		SkyDark2 = CloneObject(SkyDark1); // Clouds dark top 1
 		WriteData((NJS_OBJECT**)0x005ED3AC, SkyNormal1);
-		WriteData((NJS_OBJECT**)0x005ED3A5, SkyDark2);
 		WriteData((NJS_OBJECT**)0x005ED46D, SkyDark1); // Clouds dark top
 		WriteData((NJS_OBJECT**)0x005ED4FC, SkyDark1); // Clouds dark bottom
+		WriteData((NJS_OBJECT**)0x005ED3A5, SkyDark2);
 		// Clip distance improvements
 		ObjList_SDeck[24].UseDistance = 1;
 		ObjList_SDeck[25].UseDistance = 1;

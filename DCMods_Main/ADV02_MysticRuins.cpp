@@ -543,6 +543,8 @@ void ADV02_Init()
 		WriteJump((void*)0x538430, OFinalEgg_DisplayFix);
 		// Base opaque model
 		OFinalEggModel_Opaque = LoadModel("system\\data\\ADV02\\Models\\0020C3B0.sa1mdl");
+		OFinalEggModel_Transparent = CloneObject(OFinalEggModel_Opaque);
+		OFinalEggModel_Lights = CloneObject(OFinalEggModel_Opaque);
 		HideMesh_Object(OFinalEggModel_Opaque->child, 4); // Lights around the tower
 		OFinalEggModel_Opaque->child->sibling->sibling->evalflags |= NJD_EVAL_HIDE;
 		OFinalEggModel_Opaque->child->sibling->sibling->sibling->child->evalflags |= NJD_EVAL_HIDE;
@@ -560,7 +562,6 @@ void ADV02_Init()
 		AddWhiteDiffuseMaterial(&OFinalEggModel_Opaque->child->basicdxmodel->mats[7]); // City 3
 		OFinalEggModel_Opaque->basicdxmodel->mats[8].attrflags = 0x8631A400; // Not the same as on DC but looks like an error in the original
 		// Base transparent model
-		OFinalEggModel_Transparent = LoadModel("system\\data\\ADV02\\Models\\0020C3B0.sa1mdl");
 		OFinalEggModel_Transparent->evalflags |= NJD_EVAL_HIDE;
 		OFinalEggModel_Transparent->child->sibling->evalflags |= NJD_EVAL_HIDE;
 		OFinalEggModel_Transparent->child->sibling->sibling->evalflags |= NJD_EVAL_HIDE;
@@ -578,7 +579,6 @@ void ADV02_Init()
 		OFinalEggModel_Transparent->child->sibling->sibling->sibling->sibling->sibling->sibling->child->sibling->evalflags |= NJD_EVAL_HIDE;
 		HideMesh_Object(OFinalEggModel_Transparent->child, 0, 1, 2, 3, 4, 5, 6, 7);
 		// Base lights model
-		OFinalEggModel_Lights = LoadModel("system\\data\\ADV02\\Models\\0020C3B0.sa1mdl"); 
 		OFinalEggModel_Lights->evalflags |= NJD_EVAL_HIDE;
 		OFinalEggModel_Lights->child->evalflags |= NJD_EVAL_HIDE;
 		OFinalEggModel_Lights->child->sibling->evalflags |= NJD_EVAL_HIDE;
@@ -589,9 +589,9 @@ void ADV02_Init()
 		OFinalEggModel_Lights->child->sibling->sibling->sibling->sibling->sibling->sibling->evalflags |= NJD_EVAL_HIDE;
 		// Transporter model (without car)
 		OFinalWayMain = LoadModel("system\\data\\ADV02\\Models\\0020DC78.sa1mdl"); // OFinalWay
+		OFinalWayCar = CloneObject(OFinalWayMain); // OFinalWay
 		OFinalWayMain->child->sibling->evalflags |= NJD_EVAL_HIDE; // Hide car
 		// Transporter model (car only)
-		OFinalWayCar = LoadModel("system\\data\\ADV02\\Models\\0020DC78.sa1mdl"); // OFinalWay
 		OFinalWayCar->evalflags |= NJD_EVAL_HIDE;
 		OFinalWayCar->child->evalflags |= NJD_EVAL_HIDE;
 		// Code fixes
@@ -698,10 +698,10 @@ void ADV02_Init()
 		// Ice Cap door fix
 		*ADV02_OBJECTS[23] = *LoadModel("system\\data\\ADV02\\Models\\001BACAC.sa1mdl"); // Ice Cap door full
 		*ADV02_OBJECTS[25] = *LoadModel("system\\data\\ADV02\\Models\\001B9854.sa1mdl"); // Ice Cap door 1 (with snowflake)
+		IceCapDoorSnowflake = CloneObject(ADV02_OBJECTS[25]);
+		IceCapDoorSnowflakeWall = CloneObject(ADV02_OBJECTS[25]);
 		HideMesh_Object(ADV02_OBJECTS[25], 0, 2);
-		IceCapDoorSnowflake = LoadModel("system\\data\\ADV02\\Models\\001B9854.sa1mdl");
 		HideMesh_Object(IceCapDoorSnowflake, 0, 1);
-		IceCapDoorSnowflakeWall = LoadModel("system\\data\\ADV02\\Models\\001B9854.sa1mdl");
 		HideMesh_Object(IceCapDoorSnowflakeWall, 1, 2);
 		WriteCall((void*)0x53E0B2, IceCapDoorFix);
 		// Other objects

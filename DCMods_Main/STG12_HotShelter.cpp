@@ -343,6 +343,7 @@ void HotShelter_Init()
 		// Model replacements
 		// OEfHikari
 		*(NJS_OBJECT*)0x187201C = *LoadModel("system\\data\\STG12\\Models\\0015CC48.sa1mdl"); // OEfHikari
+		OEfHikari_Light = CloneObject((NJS_OBJECT*)0x187201C);
 		HideMesh_Object(((NJS_OBJECT*)0x187201C), 0, 7); // Hide light
 		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x187201C)->basicdxmodel->mats[2]);
 		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x187201C)->basicdxmodel->mats[3]);
@@ -350,7 +351,6 @@ void HotShelter_Init()
 		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x187201C)->basicdxmodel->mats[5]);
 		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x187201C)->basicdxmodel->mats[6]);
 		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x187201C)->basicdxmodel->mats[7]);
-		OEfHikari_Light = LoadModel("system\\data\\STG12\\Models\\0015CC48.sa1mdl");
 		HideMesh_Object(OEfHikari_Light, 1, 2, 3, 4, 5, 6, 8);
 		WriteCall((void*)0x59D444, RenderOHikari); // Add back OHikari green light
 		// E105 boss missile
@@ -361,9 +361,9 @@ void HotShelter_Init()
 		((NJS_OBJECT*)0x17DF53C)->child->sibling->sibling->sibling->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
 		// OLight3
 		OLight3_1 = LoadModel("system\\data\\STG12\\Models\\0011E380.sa1mdl");
-		OLight3_2 = LoadModel("system\\data\\STG12\\Models\\0011E380.sa1mdl");
-		OLight3_3 = LoadModel("system\\data\\STG12\\Models\\0011E380.sa1mdl");
-		OLight3_4 = LoadModel("system\\data\\STG12\\Models\\0011E380.sa1mdl");
+		OLight3_2 = CloneObject(OLight3_1);
+		OLight3_3 = CloneObject(OLight3_1);
+		OLight3_4 = CloneObject(OLight3_1);
 		HideMesh_Object(OLight3_1->child, 3, 4, 5);
 		OLight3_2->evalflags |= NJD_EVAL_HIDE;
 		HideMesh_Object(OLight3_2->child, 0, 1, 2, 4, 5);
@@ -389,8 +389,8 @@ void HotShelter_Init()
 		*(NJS_MODEL_SADX*)0x182DFF8 = *LoadModel("system\\data\\STG12\\Models\\00122168.sa1mdl")->basicdxmodel; // OKaitenKey
 		*(NJS_MODEL_SADX*)0x182D6F4 = *LoadModel("system\\data\\STG12\\Models\\001227C8.sa1mdl")->basicdxmodel; // OKaitenKey handle
 		BrokenGlass = LoadModel("system\\data\\STG12\\Models\\001781FC.sa1mdl"); // ORoboTV broken glass
+		*(NJS_MODEL_SADX*)0x180DC54 = *CloneObject(BrokenGlass)->basicdxmodel; // ORoboTV broken glass
 		HideMesh_Object(BrokenGlass, 0, 1);
-		*(NJS_MODEL_SADX*)0x180DC54 = *LoadModel("system\\data\\STG12\\Models\\001781FC.sa1mdl")->basicdxmodel; // ORoboTV broken glass
 		HideMesh_Model((NJS_MODEL_SADX*)0x180DC54, 2); // Hide the black part to render separately
 		*(NJS_OBJECT*)0x185D200 = *LoadModel("system\\data\\STG12\\Models\\0014A8F4.sa1mdl"); // OCarne
 		ForceLevelSpecular_Object(((NJS_OBJECT*)0x185D200)->child->sibling->child, false);

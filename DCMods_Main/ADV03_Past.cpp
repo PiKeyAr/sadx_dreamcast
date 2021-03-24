@@ -348,16 +348,16 @@ void ADV03_Init()
 		WriteCall((void*)0x6A2A09, AllocateEventChao_2);
 		// Palm fixes
 		*ADV03_ACTIONS[10]->object = *LoadModel("system\\data\\ADV03\\Models\\00012DA8.sa1mdl"); // Palm in Act 3
+		PalmBottom = CloneObject(ADV03_ACTIONS[10]->object);
 		ADV03_ACTIONS[10]->object->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_USE_ALPHA; // Hide DA_ONE stuff
 		HideMesh_Object(ADV03_ACTIONS[10]->object, 0, 1); // Hide DA_ONE, transparent stuff
-		PalmBottom = LoadModel("system\\data\\ADV03\\Models\\00012DA8.sa1mdl");
 		HideMesh_Object(PalmBottom, 2);
 		PalmBottom->evalflags |= NJD_EVAL_BREAK;
 		PalmBottom->child = NULL;
 		*ADV03_OBJECTS[9] = *LoadModel("system\\data\\ADV03\\Models\\0001503C.sa1mdl"); // Palm in Act 2
+		PalmBottom2 = CloneObject(ADV03_OBJECTS[9]);
 		ADV03_OBJECTS[9]->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_USE_ALPHA; // Hide DA_ONE stuff
 		HideMesh_Object(ADV03_OBJECTS[9], 0, 1); // Hide DA_ONE, transparent stuff
-		PalmBottom2 = LoadModel("system\\data\\ADV03\\Models\\0001503C.sa1mdl");
 		HideMesh_Object(PalmBottom2, 2, 2, 4);
 		WriteCall((void*)0x545C1A, RenderPalm1);
 		WriteCall((void*)0x545BFD, RenderPalm2);
@@ -375,10 +375,10 @@ void ADV03_Init()
 		// Other objects
 		*ADV03_ACTIONS[9]->object = *LoadModel("system\\data\\ADV03\\Models\\0000F864.sa1mdl"); // OTree 0
 		*ADV03_OBJECTS[16] = *LoadModel("system\\data\\ADV03\\Models\\0001EDDC.sa1mdl"); // Tree 16
-		*ADV03_OBJECTS[17] = *LoadModel("system\\data\\ADV03\\Models\\0001EDDC.sa1mdl"); // Tree 17 (low LOD model in SADX)
+		*ADV03_OBJECTS[17] = *CloneObject(ADV03_OBJECTS[16]); // Tree 17 (low LOD model in SADX)
+		TreeShadow = CloneObject(ADV03_OBJECTS[16]);
 		HideMesh_Object(ADV03_OBJECTS[16], 2);
 		HideMesh_Object(ADV03_OBJECTS[17], 2);
-		TreeShadow = LoadModel("system\\data\\ADV03\\Models\\0001EDDC.sa1mdl");
 		HideMesh_Object(TreeShadow, 0, 1);
 		WriteCall((void*)0x5455A9, FixTreeShadowFlickering1);
 		WriteCall((void*)0x54557C, FixTreeShadowFlickering2);

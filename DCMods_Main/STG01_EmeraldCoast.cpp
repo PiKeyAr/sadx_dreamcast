@@ -622,7 +622,7 @@ void EmeraldCoast_Init()
 		}
 		// Ocean models
 		HighPolyOcean_Dynamic = LoadModel("system\\data\\STG01\\Models\\001A132C.sa1mdl");
-		HighPolyOcean_Static = LoadModel("system\\data\\STG01\\Models\\001A132C.sa1mdl");
+		HighPolyOcean_Static = CloneObject(HighPolyOcean_Dynamic);
 		LowPolyOcean = LoadModel("system\\data\\STG01\\Models\\001A1430.sa1mdl");
 		LowPolyOceanUVs = LowPolyOcean->basicdxmodel->meshsets[0].vertuv;
 		*(NJS_OBJECT*)0x010C03FC = *HighPolyOcean_Dynamic;

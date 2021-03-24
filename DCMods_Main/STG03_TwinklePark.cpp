@@ -284,7 +284,7 @@ void TwinklePark_Init()
 		RemoveVertexColors_Object((NJS_OBJECT*)0x27B1FB4); // OCandle2
 		// Pirate ship fixes
 		*(NJS_OBJECT*)0x27AC44C = *LoadModel("system\\data\\STG03\\Models\\000AB6DC.sa1mdl"); // Pirate ship
-		PirateShipStars = LoadModel("system\\data\\STG03\\Models\\000AB6DC.sa1mdl"); // Pirate ship stars mesh
+		PirateShipStars = CloneObject((NJS_OBJECT*)0x27AC44C); // Pirate ship stars mesh
 		PirateShipStars->child = NULL;
 		PirateShipStars->evalflags |= NJD_EVAL_BREAK;
 		HideMesh_Object(PirateShipStars, 0, 1, 2, 3, 4, 5, 6, 7);
@@ -436,8 +436,8 @@ void ShareObj_Init()
 		// ArchLight fixes
 		*(NJS_OBJECT*)0x38BFA74 = *LoadModel("system\\data\\STG03\\Models\\000ED90C.sa1mdl"); // Arch
 		*(NJS_OBJECT*)0x38C02C4 = *LoadModel("system\\data\\STG03\\Models\\000EE138.sa1mdl"); // Arch supporter
+		ArchLightLight = CloneObject((NJS_OBJECT*)0x38C02C4); // Arch supporter (transparent)
 		HideMesh_Object(((NJS_OBJECT*)0x38C02C4), 2); // Disable transparent parts
-		ArchLightLight = LoadModel("system\\data\\STG03\\Models\\000EE138.sa1mdl"); // Arch supporter (transparent)
 		ArchLightLight->evalflags |= NJD_EVAL_BREAK;
 		ArchLightLight->child = NULL;
 		HideMesh_Object(ArchLightLight, 0, 1, 3); // Disable opaque parts
@@ -452,8 +452,8 @@ void ShareObj_Init()
 		*(NJS_OBJECT*)0x38BE2B4 = *LoadModel("system\\data\\STG03\\Models\\000EC1B4.sa1mdl"); // OPlanet with rings
 		// OPanel fix
 		*(NJS_OBJECT*)0x38C214C = *LoadModel("system\\data\\STG03\\Models\\000EFF38.sa1mdl"); // OPanel (opaque)
+		OPanelPanel = CloneObject((NJS_OBJECT*)0x38C214C); // OPanel (transparent)
 		HideMesh_Object(((NJS_OBJECT*)0x38C214C), 1, 4, 6);
-		OPanelPanel = LoadModel("system\\data\\STG03\\Models\\000EFF38.sa1mdl"); // OPanel (transparent)
 		HideMesh_Object(OPanelPanel, 0, 2, 3, 5);
 		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x38C214C)->basicdxmodel->mats[2]);
 		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x38C214C)->basicdxmodel->mats[3]);
@@ -461,9 +461,9 @@ void ShareObj_Init()
 		WriteCall((void*)0x79DBA4, RenderOPanel_Transparent);
 		// OPole fix
 		OPole_Main = LoadModel("system\\data\\STG03\\Models\\000F066C.sa1mdl"); // OPole model (opaque + light child object)
+		OPole_Pole = CloneObject(OPole_Main); // OPole model (transparent)
 		AddWhiteDiffuseMaterial(&OPole_Main->basicdxmodel->mats[3]);
 		HideMesh_Object(OPole_Main, 1, 2, 4);
-		OPole_Pole = LoadModel("system\\data\\STG03\\Models\\000F066C.sa1mdl"); // OPole model (transparent)
 		HideMesh_Object(OPole_Pole, 0, 3);
 		OPole_Pole->evalflags |= NJD_EVAL_BREAK;
 		OPole_Pole->child = NULL;

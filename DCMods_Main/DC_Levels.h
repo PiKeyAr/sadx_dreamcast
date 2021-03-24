@@ -551,11 +551,10 @@ extern LandTableInfo *AL_GARDEN01_Info;
 extern LandTableInfo *AL_GARDEN02_Info;
 extern LandTableInfo *AL_RACE_0_Info;
 extern LandTableInfo *AL_RACE_1_Info;
-extern TextureAnimation TextureAnimationData[];
-extern TextureAnimation TextureAnimationData_Permanent[];
-extern UVAnimation UVAnimationData[];
-extern UVAnimation UVAnimationData_Permanent[];
-
+extern std::vector<TextureAnimation> TextureAnimationData;
+extern std::vector<TextureAnimation> TextureAnimationData_Permanent;
+extern std::vector<UVAnimation> UVAnimationData;
+extern std::vector <UVAnimation> UVAnimationData_Permanent;
 extern NJS_TEXLIST texlist_ChaoRace;
 extern NJS_TEXLIST texlist_ChaoRaceEntry;
 
@@ -735,13 +734,15 @@ void ForceLevelSpecular_Object(NJS_OBJECT *obj, bool recursive);
 void ForceObjectSpecular_Object(NJS_OBJECT *obj, bool recursive);
 void AddBossMaterials_Object(NJS_OBJECT *obj);
 void SwapMeshsets(NJS_OBJECT* object, int mesh1, int mesh2);
-void HideMesh_Object_(NJS_OBJECT* object, int arg, ...);
-void HideMesh_Model_(NJS_MODEL_SADX* model, int arg, ...);
+void HideMesh_Object_Wrapper(NJS_OBJECT* object, int arg, ...);
+void HideMesh_Model_Wrapper(NJS_MODEL_SADX* object, int arg, ...);
 void ForceLightType_Object(NJS_OBJECT* obj, int light_type, bool unregister);
 void HideEntireObject(NJS_OBJECT* a1);
 void RemoveTransparency_Object(NJS_OBJECT* obj, bool recursive);
 void OnInitEnd_Videos();
 void land_DrawObject_New(NJS_OBJECT* a1, _OBJ_LANDENTRY* a2);
+NJS_OBJECT* CloneObject(NJS_OBJECT* obj);
+NJS_MODEL_SADX* CloneAttach(NJS_MODEL_SADX* att);
 
-#define HideMesh_Object(...) HideMesh_Object_(__VA_ARGS__, -1)
-#define HideMesh_Model(...) HideMesh_Model_(__VA_ARGS__, -1)
+#define HideMesh_Object(...) HideMesh_Object_Wrapper(__VA_ARGS__, -1)
+#define HideMesh_Model(...) HideMesh_Model_Wrapper(__VA_ARGS__, -1)

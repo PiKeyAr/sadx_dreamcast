@@ -458,12 +458,12 @@ void ADV01_Init()
 		ADV01_OBJECTS[51]->basicdxmodel->mats[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT; // Pool water
 		ADV01_OBJECTS[51]->basicdxmodel->mats[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT; // Pool water
 		NJS_OBJECT* MonorailFront = LoadModel("system\\data\\ADV0100\\Models\\00170498.sa1mdl");
+		NJS_OBJECT* MonorailBack = CloneObject(MonorailFront);
 		*ADV01_OBJECTS[69]->basicdxmodel = *MonorailFront->basicdxmodel;
 		*ADV01_OBJECTS[69]->child->basicdxmodel = *MonorailFront->child->basicdxmodel;
 		*ADV01_OBJECTS[69]->child->child->basicdxmodel = *MonorailFront->child->child->basicdxmodel;
 		*ADV01_OBJECTS[69]->child->sibling->basicdxmodel = *MonorailFront->child->sibling->basicdxmodel;
 		AddAlphaRejectMaterial(&ADV01_OBJECTS[69]->child->sibling->basicdxmodel->mats[0]);
-		NJS_OBJECT* MonorailBack = LoadModel("system\\data\\ADV0100\\Models\\00170498.sa1mdl");
 		*ADV01_OBJECTS[70]->basicdxmodel = *MonorailBack->basicdxmodel;
 		*ADV01_OBJECTS[70]->child->basicdxmodel = *MonorailBack->child->basicdxmodel;
 		*ADV01_OBJECTS[70]->child->child->basicdxmodel = *MonorailBack->child->child->basicdxmodel;

@@ -777,11 +777,11 @@ void ADV00_Init()
 		((NJS_ACTION*)0x2DBD864)->object->child->sibling->sibling->sibling->sibling->child->child->sibling->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_USE_ALPHA;
 		// Light1 is the metal cover of the thing the light is supposed to be coming from
 		EVHelicopterLight1 = LoadModel("system\\data\\Other\\00011208.sa1mdl");
+		EVHelicopterLight2 = CloneObject(EVHelicopterLight1);
 		HideEntireObject(EVHelicopterLight1);
 		EVHelicopterLight1->child->sibling->sibling->sibling->sibling->child->evalflags &= ~NJD_EVAL_HIDE; // Unhide first transparent bit in mesh 1
 		HideMesh_Object(EVHelicopterLight1->child->sibling->sibling->sibling->sibling->child, 1, 2); // Hide opaque bits in mesh 1
 		// Light2 is the actual light
-		EVHelicopterLight2 = LoadModel("system\\data\\Other\\00011208.sa1mdl");
 		HideEntireObject(EVHelicopterLight2);
 		EVHelicopterLight2->child->sibling->sibling->sibling->sibling->child->child->evalflags &= ~NJD_EVAL_HIDE; // Unhide the light
 		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x2DBD6D0)->child->sibling->sibling->sibling->sibling->child->basicdxmodel->mats[1]);
@@ -790,8 +790,8 @@ void ADV00_Init()
 		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x2AE8674)->child->sibling->sibling->sibling->basicdxmodel->mats[9]);
 		// Police car stuff
 		*(NJS_OBJECT*)0x2AF4FC0 = *LoadModel("system\\data\\ADV00\\Models\\0019F390.sa1mdl"); // Police
+		PoliceCarModel_LightsOnly = CloneObject((NJS_OBJECT*)0x2AF4FC0);
 		HideMesh_Object(((NJS_OBJECT*)0x2AF4FC0), 9, 10); // Hide lights
-		PoliceCarModel_LightsOnly = LoadModel("system\\data\\ADV00\\Models\\0019F390.sa1mdl");
 		HideMesh_Object(PoliceCarModel_LightsOnly, 0, 1, 2, 3, 4, 5, 6, 7, 8, 11, 12, 13);
 		PoliceCarModel_LightsOnly->child->evalflags |= NJD_EVAL_HIDE;
 		PoliceCarModel_LightsOnly->child->sibling->evalflags |= NJD_EVAL_HIDE;
@@ -799,9 +799,9 @@ void ADV00_Init()
 		PoliceCarModel_LightsOnly->child->sibling->sibling->sibling->evalflags |= NJD_EVAL_HIDE;
 		// Parasol stuff
 		Parasol_1 = LoadModel("system\\data\\ADV00\\Models\\00182AD8.sa1mdl");
-		Parasol_2 = LoadModel("system\\data\\ADV00\\Models\\00182AD8.sa1mdl");
-		Parasol_3 = LoadModel("system\\data\\ADV00\\Models\\00182AD8.sa1mdl");
-		Parasol_4 = LoadModel("system\\data\\ADV00\\Models\\00182AD8.sa1mdl");
+		Parasol_2 = CloneObject(Parasol_1);
+		Parasol_3 = CloneObject(Parasol_1);
+		Parasol_4 = CloneObject(Parasol_1);
 		// Main model
 		HideMesh_Object(Parasol_1, 1, 2, 5, 6, 7, 8, 11);
 		// Chair transparency

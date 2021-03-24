@@ -139,7 +139,7 @@ void RedMountain_Init()
 		MOUNTAIN03_TEXLIST = texlist_mountain3;
 		// Cloud fixes
 		RMCloudTop = LoadModel("system\\data\\STG05\\Models\\00183AF8.sa1mdl");
-		RMCloudBottom = LoadModel("system\\data\\STG05\\Models\\00183AF8.sa1mdl");
+		RMCloudBottom = CloneObject(RMCloudTop);
 		WriteCall((void*)0x600CA3, SetCloudColor); // Set alpha, but keep colors at 1.0
 		WriteCall((void*)0x006011D8, RenderRMClouds_Top);
 		WriteCall((void*)0x0060121C, RenderRMClouds_Bottom);
@@ -180,8 +180,8 @@ void RedMountain_Init()
 		*(NJS_MODEL_SADX*)0x2466818 = *LoadModel("system\\data\\STG05\\Models\\0017DF54.sa1mdl")->basicdxmodel; // Bridge piece
 		*(NJS_MODEL_SADX*)0x2466568 = *LoadModel("system\\data\\STG05\\Models\\0017DCBC.sa1mdl")->basicdxmodel; // Bridge piece 2
 		*(NJS_MODEL_SADX*)0x24390BC = *LoadModel("system\\data\\STG05\\Models\\00151AB4.sa1mdl")->basicdxmodel; // Light thing
+		PropellerGlass = CloneAttach((NJS_MODEL_SADX*)0x24390BC);
 		HideMesh_Model((NJS_MODEL_SADX*)0x24390BC, 0);
-		PropellerGlass = LoadModel("system\\data\\STG05\\Models\\00151AB4.sa1mdl")->basicdxmodel;
 		HideMesh_Model(PropellerGlass, 1);
 		*(NJS_MODEL_SADX*)0x24394CC = *LoadModel("system\\data\\STG05\\Models\\00151600.sa1mdl")->basicdxmodel; // Light thing propeller 1
 		*(NJS_MODEL_SADX*)0x24392C4 = *LoadModel("system\\data\\STG05\\Models\\001513F0.sa1mdl")->basicdxmodel; // Light thing propeller 2

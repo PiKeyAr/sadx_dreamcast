@@ -93,6 +93,11 @@ LandTableInfo *AL_GARDEN02_Info = nullptr;
 LandTableInfo *AL_RACE_0_Info = nullptr;
 LandTableInfo *AL_RACE_1_Info = nullptr;
 
+std::vector<TextureAnimation> TextureAnimationData;
+std::vector<TextureAnimation> TextureAnimationData_Permanent;
+std::vector<UVAnimation> UVAnimationData;
+std::vector<UVAnimation> UVAnimationData_Permanent;
+
 bool UIScale = false;
 bool ModelsLoaded_General = false;
 bool ModelsLoaded_ShareObj = false;
@@ -641,12 +646,33 @@ extern "C"
 				actid = CurrentAct;
 				break;
 			}
-			for (int i = 0; i < 128; ++i)
+
+			// Texture animations
+			for (int i = 0; i < TextureAnimationData.size(); ++i)
 			{
-				if (UVAnimationData_Permanent[i].level == levelid && (UVAnimationData_Permanent[i].act == actid || UVAnimationData_Permanent[i].act == -1)) AnimateUVs(&UVAnimationData_Permanent[i]);
-				if (UVAnimationData[i].level == levelid && UVAnimationData[i].act == actid) AnimateUVs(&UVAnimationData[i]);
-				if (TextureAnimationData[i].level == levelid && TextureAnimationData[i].act == actid) AnimateTexture(&TextureAnimationData[i]);
-				if (TextureAnimationData_Permanent[i].level == levelid && TextureAnimationData_Permanent[i].act == actid) AnimateTexture(&TextureAnimationData_Permanent[i]);
+				if (TextureAnimationData[i].level == levelid && TextureAnimationData[i].act == actid) 
+					AnimateTexture(&TextureAnimationData[i]);
+			}
+
+			// Texture animations permanent
+			for (int i = 0; i < TextureAnimationData_Permanent.size(); ++i)
+			{
+				if (TextureAnimationData_Permanent[i].level == levelid && TextureAnimationData_Permanent[i].act == actid) 
+					AnimateTexture(&TextureAnimationData_Permanent[i]);
+			}
+
+			// UV animations
+			for (int i = 0; i < UVAnimationData.size(); ++i)
+			{
+				if (UVAnimationData[i].level == levelid && UVAnimationData[i].act == actid) 
+					AnimateUVs(&UVAnimationData[i]);
+			}
+
+			// UV animations permanent
+			for (int i = 0; i < UVAnimationData_Permanent.size(); ++i)
+			{
+				if (UVAnimationData_Permanent[i].level == levelid && (UVAnimationData_Permanent[i].act == actid || UVAnimationData_Permanent[i].act == -1)) 
+					AnimateUVs(&UVAnimationData_Permanent[i]);
 			}
 		}
 		if (EnableDCBranding) Branding_OnFrame();

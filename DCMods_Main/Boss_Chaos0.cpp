@@ -184,6 +184,8 @@ void Chaos0_Init()
 		RemoveVertexColors_Object((NJS_OBJECT*)0x339889C); // Bullets fired at Chaos
 		// Helicopter
 		*BOSSCHAOS0_ACTIONS[17]->object = *LoadModel("system\\data\\B_CHAOS0\\Models\\0005825C.sa1mdl");
+		C0HelicopterLight1 = CloneObject(BOSSCHAOS0_ACTIONS[17]->object);
+		C0HelicopterLight2 = CloneObject(BOSSCHAOS0_ACTIONS[17]->object);
 		// UV-less stuff fix
 		BOSSCHAOS0_ACTIONS[17]->object->child->child->child->basicdxmodel->mats[2].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
 		// Add white diffuse on opaque things
@@ -195,12 +197,10 @@ void Chaos0_Init()
 		// Remove transparency in the part the light is coming from, because it isn't a transparent texture and it uses regular blending
 		BOSSCHAOS0_ACTIONS[17]->object->child->sibling->sibling->sibling->sibling->child->child->sibling->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_USE_ALPHA;
 		// Light1 is the metal cover of the thing the light is supposed to be coming from
-		C0HelicopterLight1 = LoadModel("system\\data\\B_CHAOS0\\Models\\0005825C.sa1mdl");
 		HideEntireObject(C0HelicopterLight1);
 		C0HelicopterLight1->child->sibling->sibling->sibling->sibling->child->evalflags &= ~NJD_EVAL_HIDE; // Unhide first transparent bit in mesh 1
 		HideMesh_Object(C0HelicopterLight1->child->sibling->sibling->sibling->sibling->child, 1, 2); // Hide opaque bits in mesh 1
-		// Light2 is the actual light
-		C0HelicopterLight2 = LoadModel("system\\data\\B_CHAOS0\\Models\\0005825C.sa1mdl");
+		// Light2 is the actual light		
 		HideEntireObject(C0HelicopterLight2);
 		C0HelicopterLight2->child->sibling->sibling->sibling->sibling->child->child->evalflags &= ~NJD_EVAL_HIDE; // Unhide the light
 		WriteCall((void*)0x5498F6, DrawChaos0HelicopterWithLight);

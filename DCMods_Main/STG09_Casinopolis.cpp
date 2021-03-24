@@ -922,20 +922,20 @@ void Casinopolis_Init()
 		// Ideya cap fixes
 		WriteCall((void*)0x5D79A9, IdeyaCapFix);
 		IdeyaCap1_1 = LoadModel("system\\data\\STG09\\Models\\00144F38.sa1mdl");
-		IdeyaCap1_2 = LoadModel("system\\data\\STG09\\Models\\00144F38.sa1mdl");
-		IdeyaCap1_3 = LoadModel("system\\data\\STG09\\Models\\00144F38.sa1mdl");
+		IdeyaCap1_2 = CloneObject(IdeyaCap1_1);
+		IdeyaCap1_3 = CloneObject(IdeyaCap1_1);
 		SetUpIdeyaCapModels(IdeyaCap1_1, IdeyaCap1_2, IdeyaCap1_3);
 		IdeyaCap2_1 = LoadModel("system\\data\\STG09\\Models\\00146978.sa1mdl");
-		IdeyaCap2_2 = LoadModel("system\\data\\STG09\\Models\\00146978.sa1mdl");
-		IdeyaCap2_3 = LoadModel("system\\data\\STG09\\Models\\00146978.sa1mdl");
+		IdeyaCap2_2 = CloneObject(IdeyaCap2_1);
+		IdeyaCap2_3 = CloneObject(IdeyaCap2_1);
 		SetUpIdeyaCapModels(IdeyaCap2_1, IdeyaCap2_2, IdeyaCap2_3);
 		IdeyaCap3_1 = LoadModel("system\\data\\STG09\\Models\\001483B8.sa1mdl");
-		IdeyaCap3_2 = LoadModel("system\\data\\STG09\\Models\\001483B8.sa1mdl");
-		IdeyaCap3_3 = LoadModel("system\\data\\STG09\\Models\\001483B8.sa1mdl");
+		IdeyaCap3_2 = CloneObject(IdeyaCap3_1);
+		IdeyaCap3_3 = CloneObject(IdeyaCap3_1);
 		SetUpIdeyaCapModels(IdeyaCap3_1, IdeyaCap3_2, IdeyaCap3_3);
 		IdeyaCap4_1 = LoadModel("system\\data\\STG09\\Models\\00149DF8.sa1mdl");
-		IdeyaCap4_2 = LoadModel("system\\data\\STG09\\Models\\00149DF8.sa1mdl");
-		IdeyaCap4_3 = LoadModel("system\\data\\STG09\\Models\\00149DF8.sa1mdl");
+		IdeyaCap4_2 = CloneObject(IdeyaCap4_1);
+		IdeyaCap4_3 = CloneObject(IdeyaCap4_1);
 		SetUpIdeyaCapModels(IdeyaCap4_1, IdeyaCap4_2, IdeyaCap4_3);
 		// Jackpot sprite fixes
 		WriteCall((void*)0x05E1144, JackPotFix1);
@@ -1018,10 +1018,10 @@ void Casinopolis_Init()
 		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x01E4B760)->basicdxmodel->mats[2]); // OShwrl
 		// ODento
 		ODento_1 = LoadModel("system\\data\\STG09\\Models\\001DA8C8.sa1mdl");
+		ODento_2 = CloneObject(ODento_1);
+		ODento_3 = CloneObject(ODento_1);
 		HideMesh_Object(ODento_1, 1, 2, 4);
-		ODento_2 = LoadModel("system\\data\\STG09\\Models\\001DA8C8.sa1mdl");
 		HideMesh_Object(ODento_2, 0, 3, 4);
-		ODento_3 = LoadModel("system\\data\\STG09\\Models\\001DA8C8.sa1mdl");
 		HideMesh_Object(ODento_3, 0, 1, 2, 3);
 		AddAlphaRejectMaterial(&ODento_3->basicdxmodel->mats[4]);
 		WriteCall((void*)0x5DDADF, ODentoFix);

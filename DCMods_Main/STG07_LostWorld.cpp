@@ -468,8 +468,8 @@ void LostWorld_Init()
 		WriteJump((void*)0x5E66D0, AokiSwitch_Display);
 		AokiSwitchModel_Base = LoadModel("system\\data\\STG07\\Models\\00152214.sa1mdl");
 		AokiSwitchModel_Child1 = LoadModel("system\\data\\STG07\\Models\\00151E58.sa1mdl");
-		AokiSwitchModel_Child2 = LoadModel("system\\data\\STG07\\Models\\00151E58.sa1mdl");
-		AokiSwitchModel_Child3 = LoadModel("system\\data\\STG07\\Models\\00151E58.sa1mdl");
+		AokiSwitchModel_Child2 = CloneObject(AokiSwitchModel_Child1);
+		AokiSwitchModel_Child3 = CloneObject(AokiSwitchModel_Child1);
 		HideMesh_Object(AokiSwitchModel_Child1, 3, 4);
 		HideMesh_Object(AokiSwitchModel_Child2, 0, 1, 2, 3);
 		HideMesh_Object(AokiSwitchModel_Child3, 0, 1, 2, 4);

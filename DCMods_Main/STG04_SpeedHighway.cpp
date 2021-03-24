@@ -314,10 +314,10 @@ void SpeedHighway_Init()
 		WriteData((NJS_TEXNAME**)0x26B2968, (NJS_TEXNAME*)0x2670590); // OJamer texture list 1
 		WriteData((NJS_TEXNAME**)0x26B2960, (NJS_TEXNAME*)0x2670554); // OJamer texture list 2
 		*(NJS_OBJECT*)0x026919C0 = *LoadModel("system\\data\\STG04\\Models\\0015D440.sa1mdl"); // Antenna model
+		Antenna = CloneObject((NJS_OBJECT*)0x026919C0); // Antenna model
 		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x026919C0)->basicdxmodel->mats[4]);
 		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x026919C0)->basicdxmodel->mats[5]);
 		HideMesh_Object(((NJS_OBJECT*)0x026919C0), 3); // Hide DA_ONE thing
-		Antenna = LoadModel("system\\data\\STG04\\Models\\0015D440.sa1mdl"); // Antenna model
 		HideMesh_Object(Antenna, 0, 1, 2, 4, 5); // Hide all but the DA_ONE thing
 		WriteCall((void*)0x00615D60, AntennaModel);
 		WriteData<1>((char*)0x004B19E2, 0x08); // Cop speeder effect blending
@@ -387,8 +387,8 @@ void SpeedHighway_Init()
 		((NJS_MATERIAL*)0x02681330)->attrflags &= ~NJD_FLAG_IGNORE_SPECULAR;
 		ConeBase = LoadModel("system\\data\\STG04\\Models\\001554A8.sa1mdl"); // Cone
 		HideMesh_Object(ConeBase, 0);
+		ConeTop = CloneObject(ConeBase); // Cone
 		AddWhiteDiffuseMaterial(&ConeBase->basicdxmodel->mats[1]);
-		ConeTop = LoadModel("system\\data\\STG04\\Models\\001554A8.sa1mdl"); // Cone
 		HideMesh_Object(ConeTop, 1);
 		WriteCall((void*)0x6165E5, ConeModel);
 		WriteCall((void*)0x616733, ConeSprite);
@@ -406,8 +406,8 @@ void SpeedHighway_Init()
 		WriteCall((void*)0x617FCA, FlyStFix);
 		*(NJS_OBJECT*)0x02679ECC = *LoadModel("system\\data\\STG04\\Models\\00148880.sa1mdl"); // Platform (Tails)
 		*(NJS_OBJECT*)0x026A0008 = *LoadModel("system\\data\\STG04\\Models\\0016B6FC.sa1mdl"); // Missile (Tails)
+		MissileLogo = CloneObject((NJS_OBJECT*)0x026A0008);
 		HideMesh_Object(((NJS_OBJECT*)0x026A0008), 6); // Hide Eggman logo
-		MissileLogo = LoadModel("system\\data\\STG04\\Models\\0016B6FC.sa1mdl");
 		HideMesh_Object(MissileLogo, 0, 1, 2, 3, 4, 5);
 		AddAlphaRejectMaterial(&MissileLogo->basicdxmodel->mats[6]);
 		WriteCall((void*)0x613FD6, MissileFix);

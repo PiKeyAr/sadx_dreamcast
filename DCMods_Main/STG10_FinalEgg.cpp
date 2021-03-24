@@ -515,6 +515,7 @@ void FinalEgg_Init()
 		_0Light_Camera_SmallLight->child->child->sibling->child->evalflags |= NJD_EVAL_HIDE;
 		AddAlphaRejectMaterial(&_0Light_Camera_SmallLight->child->child->basicdxmodel->mats[0]);
 		_0Light_Camera_Camera = LoadModel("system\\data\\STG10\\Models\\001AEB24.sa1mdl");
+		_0Light_Camera_BigLight = CloneObject(_0Light_Camera_Camera);
 		//SwapMeshsets(_0Light_Camera_Camera->child->child->sibling, 0, 5);
 		AddWhiteDiffuseMaterial(&_0Light_Camera_Camera->child->child->sibling->basicdxmodel->mats[5]);
 		HideMesh_Object(_0Light_Camera_Camera->child->child->sibling, 1, 2, 3, 4, 5, 6);
@@ -522,7 +523,6 @@ void FinalEgg_Init()
 		_0Light_Camera_Camera->child->evalflags |= NJD_EVAL_HIDE;
 		_0Light_Camera_Camera->child->child->evalflags |= NJD_EVAL_HIDE;
 		_0Light_Camera_Camera->child->child->sibling->child->evalflags |= NJD_EVAL_HIDE;
-		_0Light_Camera_BigLight = LoadModel("system\\data\\STG10\\Models\\001AEB24.sa1mdl");
 		_0Light_Camera_BigLight->evalflags |= NJD_EVAL_HIDE;
 		_0Light_Camera_BigLight->child->evalflags |= NJD_EVAL_HIDE;
 		_0Light_Camera_BigLight->child->child->evalflags |= NJD_EVAL_HIDE;
@@ -532,11 +532,11 @@ void FinalEgg_Init()
 		// _0BlueLight fixes
 		*(NJS_OBJECT*)0x1A003F4 = *LoadModel("system\\data\\STG10\\Models\\001B01AC.sa1mdl"); // _0BlueLight pole
 		BlueLight_Light = LoadModel("system\\data\\STG10\\Models\\001B01AC.sa1mdl")->child; // _0BlueLight big light
+		BlueLight_Camera1 = CloneObject(BlueLight_Light)->child; // _0BlueLight camera
+		BlueLight_Camera2 = CloneObject(BlueLight_Light)->child; // _0BlueLight camera blue lens thing
 		BlueLight_Light->evalflags |= NJD_EVAL_HIDE;
-		BlueLight_Camera1 = LoadModel("system\\data\\STG10\\Models\\001B01AC.sa1mdl")->child; // _0BlueLight camera
 		BlueLight_Camera1->child->evalflags |= NJD_EVAL_HIDE;
 		HideMesh_Object(BlueLight_Camera1, 6);
-		BlueLight_Camera2 = LoadModel("system\\data\\STG10\\Models\\001B01AC.sa1mdl")->child; // _0BlueLight camera blue lens thing
 		BlueLight_Camera2->child->evalflags |= NJD_EVAL_HIDE;
 		HideMesh_Object(BlueLight_Camera2, 0, 1, 2, 3, 4, 5);
 		AddAlphaRejectMaterial(&BlueLight_Light->child->basicdxmodel->mats[0]); // _0BlueLight

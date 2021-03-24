@@ -174,8 +174,8 @@ void PerfectChaos_Init()
 		// Tornado attack fix
 		WriteCall((void*)0x566673, Chaos7TornadoAttackHook);
 		TornadoAttack1 = LoadModel("system\\data\\B_CHAOS7\\Models\\000E16E8.sa1mdl"); // Tornado attack
-		TornadoAttack2 = LoadModel("system\\data\\B_CHAOS7\\Models\\000E16E8.sa1mdl"); // Tornado attack
-		TornadoAttack3 = LoadModel("system\\data\\B_CHAOS7\\Models\\000E16E8.sa1mdl"); // Tornado attack
+		TornadoAttack2 = CloneObject(TornadoAttack1); // Tornado attack
+		TornadoAttack3 = CloneObject(TornadoAttack1); // Tornado attack
 		// 1 is just the middle layer
 		HideMesh_Object(TornadoAttack1, 0);
 		HideMesh_Object(TornadoAttack1->child, 0, 1);
