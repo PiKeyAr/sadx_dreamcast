@@ -1,7 +1,6 @@
 #include "stdafx.h"
 
 // TODO:
-// Clone loaded models instead of reloading them from files
 // Use symbol stuff where possible
 // Replace model filenames
 // Load all animations externally
@@ -648,31 +647,31 @@ extern "C"
 			}
 
 			// Texture animations
-			for (int i = 0; i < TextureAnimationData.size(); ++i)
+			for (TextureAnimation anim : TextureAnimationData)
 			{
-				if (TextureAnimationData[i].level == levelid && TextureAnimationData[i].act == actid) 
-					AnimateTexture(&TextureAnimationData[i]);
+				if (anim.level == levelid && anim.act == actid)
+					AnimateTexture(&anim);
 			}
 
 			// Texture animations permanent
-			for (int i = 0; i < TextureAnimationData_Permanent.size(); ++i)
+			for (TextureAnimation anim : TextureAnimationData_Permanent)
 			{
-				if (TextureAnimationData_Permanent[i].level == levelid && TextureAnimationData_Permanent[i].act == actid) 
-					AnimateTexture(&TextureAnimationData_Permanent[i]);
+				if (anim.level == levelid && anim.act == actid)
+					AnimateTexture(&anim);
 			}
 
 			// UV animations
-			for (int i = 0; i < UVAnimationData.size(); ++i)
+			for (UVAnimation uvanim : UVAnimationData)
 			{
-				if (UVAnimationData[i].level == levelid && UVAnimationData[i].act == actid) 
-					AnimateUVs(&UVAnimationData[i]);
+				if (uvanim.level == levelid && uvanim.act == actid)
+					AnimateUVs(&uvanim);
 			}
 
 			// UV animations permanent
-			for (int i = 0; i < UVAnimationData_Permanent.size(); ++i)
+			for (UVAnimation uvanim : UVAnimationData_Permanent)
 			{
-				if (UVAnimationData_Permanent[i].level == levelid && (UVAnimationData_Permanent[i].act == actid || UVAnimationData_Permanent[i].act == -1)) 
-					AnimateUVs(&UVAnimationData_Permanent[i]);
+				if (uvanim.level == levelid && (uvanim.act == actid || uvanim.act == -1))
+					AnimateUVs(&uvanim);
 			}
 		}
 		if (EnableDCBranding) Branding_OnFrame();

@@ -4,7 +4,6 @@ NJS_COLOR DebugFontColorBK;
 float DebugFontSizeBK;
 bool DebugFontItalic = false;
 
-NJS_MATERIAL* TemporaryMaterialArray[] = {nullptr};
 NJS_MESHSET_SADX TempMeshset = {NJD_MESHSET_TRIMESH | 0, 0, NULL, NULL, NULL, NULL, NULL, NULL};
 
 void BackupDebugFontSettings()
@@ -291,37 +290,6 @@ void ReplaceBIN(std::string src)
 	//PrintDebug("Replace generic BIN file %s with file %s\n", fullsrc.c_str(), fulldest.c_str());
 }
 
-void HideMesh_Model_(NJS_MODEL_SADX* att, int arg, ...)
-{
-	if (!att) return;
-
-	va_list arguments;
-	std::vector<int> hidemeshlist;
-	std::vector<int> includemeshes;
-	
-	// Add list of meshset IDs to hide
-	for (va_start(arguments, arg); arg != -1; arg = va_arg(arguments, int))
-	{
-		hidemeshlist.push_back(arg);
-	}
-	va_end(arguments);
-
-	// Add list of meshset IDs to show
-	for (int i: hidemeshlist)
-	{
-		for (int m = 0; m < att->nbMeshset; m++)
-			if (i != m)
-				includemeshes.push_back(m);
-	}
-
-	// Set meshlist
-	for (int n = 0; n < includemeshes.size(); n++)
-	{
-		att->meshsets[n] = att->meshsets[includemeshes[n]];
-	}
-	att->nbMeshset -= hidemeshlist.size();
-}
-
 void HideMesh_Model_Real(NJS_MODEL_SADX* att, std::vector<int> hidemeshlist)
 {
 	if (!att) return;
@@ -340,7 +308,7 @@ void HideMesh_Model_Real(NJS_MODEL_SADX* att, std::vector<int> hidemeshlist)
 			currmesh++;
 		}
 	}
-	att->nbMeshset -= hidemeshlist.size();
+	att->nbMeshset -= (Uint16)hidemeshlist.size();
 }
 
 void HideMesh_Model_Wrapper(NJS_MODEL_SADX* att, int arg, ...)
@@ -807,8 +775,7 @@ void AddAlphaRejectMaterial(NJS_MATERIAL *material)
 {
 	if (DLLLoaded_Lantern)
 	{
-		TemporaryMaterialArray[0] = material;
-		material_register(TemporaryMaterialArray, 1, DisableAlphaRejection);
+		material_register(&material, 1, DisableAlphaRejection);
 	}
 }
 
@@ -816,8 +783,7 @@ void AddWhiteDiffuseMaterial(NJS_MATERIAL *material)
 {
 	if (DLLLoaded_Lantern && EnableWhiteDiffuse)
 	{
-		TemporaryMaterialArray[0] = material;
-		material_register(TemporaryMaterialArray, 1, ForceWhiteDiffuse);
+		material_register(&material, 1, ForceWhiteDiffuse);
 	}
 }
 
@@ -825,9 +791,8 @@ void AddWhiteDiffuseMaterial_Specular3(NJS_MATERIAL *material)
 {
 	if (DLLLoaded_Lantern)
 	{
-		TemporaryMaterialArray[0] = material;
-		if (EnableWhiteDiffuse) material_register(TemporaryMaterialArray, 1, ForceWhiteDiffuse1Specular3);
-		else material_register(TemporaryMaterialArray, 1, ForceSpecular3);
+		if (EnableWhiteDiffuse) material_register(&material, 1, ForceWhiteDiffuse1Specular3);
+		else material_register(&material, 1, ForceSpecular3);
 	}
 }
 
@@ -835,8 +800,7 @@ void AddWhiteDiffuseNightMaterial(NJS_MATERIAL* material)
 {
 	if (DLLLoaded_Lantern && EnableWhiteDiffuse)
 	{
-		TemporaryMaterialArray[0] = material;
-		material_register(TemporaryMaterialArray, 1, ForceWhiteDiffuse3_Night);
+		material_register(&material, 1, ForceWhiteDiffuse3_Night);
 	}
 }
 
@@ -844,8 +808,7 @@ void RemoveWhiteDiffuseNightMaterial(NJS_MATERIAL* material)
 {
 	if (DLLLoaded_Lantern && EnableWhiteDiffuse)
 	{
-		TemporaryMaterialArray[0] = material;
-		material_unregister(TemporaryMaterialArray, 1, ForceWhiteDiffuse3_Night);
+		material_unregister(&material, 1, ForceWhiteDiffuse3_Night);
 	}
 }
 
@@ -853,8 +816,7 @@ void AddBossMaterial(NJS_MATERIAL *material)
 {
 	if (DLLLoaded_Lantern)
 	{
-		TemporaryMaterialArray[0] = material;
-		material_register(TemporaryMaterialArray, 1, ForceDiffuse4Specular5);
+		material_register(&material, 1, ForceDiffuse4Specular5);
 	}
 }
 
@@ -875,8 +837,7 @@ void RemoveAlphaRejectMaterial(NJS_MATERIAL *material)
 {
 	if (DLLLoaded_Lantern)
 	{
-		TemporaryMaterialArray[0] = material;
-		material_unregister(TemporaryMaterialArray, 1, DisableAlphaRejection);
+		material_unregister(&material, 1, DisableAlphaRejection);
 	}
 }
 
@@ -884,8 +845,7 @@ void RemoveWhiteDiffuseMaterial(NJS_MATERIAL *material)
 {
 	if (DLLLoaded_Lantern && EnableWhiteDiffuse)
 	{
-		TemporaryMaterialArray[0] = material;
-		material_unregister(TemporaryMaterialArray, 1, ForceWhiteDiffuse);
+		material_unregister(&material, 1, ForceWhiteDiffuse);
 	}
 }
 
@@ -893,9 +853,8 @@ void RemoveWhiteDiffuseMaterial_Specular3(NJS_MATERIAL *material)
 {
 	if (DLLLoaded_Lantern)
 	{
-		TemporaryMaterialArray[0] = material;
-		if (EnableWhiteDiffuse) material_unregister(TemporaryMaterialArray, 1, ForceWhiteDiffuse1Specular3);
-		else material_unregister(TemporaryMaterialArray, 1, ForceSpecular3);
+		if (EnableWhiteDiffuse) material_unregister(&material, 1, ForceWhiteDiffuse1Specular3);
+		else material_unregister(&material, 1, ForceSpecular3);
 	}
 }
 
@@ -1048,42 +1007,42 @@ void ForceObjectSpecular_Object(NJS_OBJECT *obj, bool recursive)
 void RegisterLanternMaterial(NJS_MATERIAL* material, int diffuse, int specular, bool unregister)
 {
 	//PrintDebug("Registering Lantern material with diffuse %d, specular %d, unregister: %d\n", diffuse, specular, unregister);
-	TemporaryMaterialArray[0] = material;
+	material_register(&material, 1, ForceDiffuse0Specular0);
 	if (!DLLLoaded_Lantern) return;
 	if (diffuse == 0 && specular == 0)
 	{
-		if (!unregister) material_register(TemporaryMaterialArray, 1, ForceDiffuse0Specular0);
-		else material_unregister(TemporaryMaterialArray, 1, ForceDiffuse0Specular0);
+		if (!unregister) material_register(&material, 1, ForceDiffuse0Specular0);
+		else material_unregister(&material, 1, ForceDiffuse0Specular0);
 		return;
 	}
 	if (diffuse == 0 && specular == 1)
 	{
-		if (!unregister) material_register(TemporaryMaterialArray, 1, ForceDiffuse0Specular1);
-		else material_unregister(TemporaryMaterialArray, 1, ForceDiffuse0Specular1);
+		if (!unregister) material_register(&material, 1, ForceDiffuse0Specular1);
+		else material_unregister(&material, 1, ForceDiffuse0Specular1);
 		return;
 	}
 	if (diffuse == 2 && specular == 2)
 	{
-		if (!unregister) material_register(TemporaryMaterialArray, 1, ForceDiffuse2Specular2);
-		else material_unregister(TemporaryMaterialArray, 1, ForceDiffuse2Specular2);
+		if (!unregister) material_register(&material, 1, ForceDiffuse2Specular2);
+		else material_unregister(&material, 1, ForceDiffuse2Specular2);
 		return;
 	}
 	if (diffuse == 2 && specular == 3)
 	{
-		if (!unregister) material_register(TemporaryMaterialArray, 1, ForceDiffuse2Specular3);
-		else material_unregister(TemporaryMaterialArray, 1, ForceDiffuse2Specular3);
+		if (!unregister) material_register(&material, 1, ForceDiffuse2Specular3);
+		else material_unregister(&material, 1, ForceDiffuse2Specular3);
 		return;
 	}
 	if (diffuse == 4 && specular == 4)
 	{
-		if (!unregister) material_register(TemporaryMaterialArray, 1, ForceDiffuse4Specular4);
-		else material_unregister(TemporaryMaterialArray, 1, ForceDiffuse4Specular4);
+		if (!unregister) material_register(&material, 1, ForceDiffuse4Specular4);
+		else material_unregister(&material, 1, ForceDiffuse4Specular4);
 		return;
 	}
 	if (diffuse == 4 && specular == 5)
 	{
-		if (!unregister) material_register(TemporaryMaterialArray, 1, ForceDiffuse4Specular5);
-		else material_unregister(TemporaryMaterialArray, 1, ForceDiffuse4Specular5);
+		if (!unregister) material_register(&material, 1, ForceDiffuse4Specular5);
+		else material_unregister(&material, 1, ForceDiffuse4Specular5);
 		return;
 	}
 }
