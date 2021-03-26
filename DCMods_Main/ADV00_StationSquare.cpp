@@ -202,6 +202,11 @@ void DrawCasinoDoor3(NJS_MODEL_SADX* model, float scale)
 	DrawQueueDepthBias = 0.0f;
 }
 
+void WalkingGuyFix(task* tp, NJS_OBJECT* op, NJS_MOTION* mp, NJS_TEXLIST* lp, double speed, int mode, int linkframe)
+{
+	EV_SetMotion(tp, op, MODEL_SS_PEOPLE_MOTIONS[0], lp, speed, mode, linkframe);
+}
+
 void ParseSSColFlags()
 {
 	int colflags;
@@ -684,6 +689,8 @@ void ADV00_Init()
 		*ADV00_TEXLISTS[4] = texlist_advss04;
 		*ADV00_TEXLISTS[5] = texlist_advss05;
 		StationSquareCarTextureIDs[5] = 7; // Not an actual car surface texture but it's like that in SA1 too
+		WriteCall((void*)0x6AD0A1, WalkingGuyFix); // Walking guy in Amy's intro
+		WriteData((short*)0x6AD16C, (short)460); // Walking guy speed
 		WriteCall((void*)0x638601, DrawCasinoDoor1);
 		WriteCall((void*)0x638640, DrawCasinoDoor2);
 		WriteCall((void*)0x638683, DrawCasinoDoor3);

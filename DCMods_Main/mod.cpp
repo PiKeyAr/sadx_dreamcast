@@ -5,6 +5,7 @@
 // Load all animations externally
 // Use symbol stuff where possible
 // Replace model filenames
+// Title screen lighting
 
 // Level files
 LandTableInfo *STG00_0_Info = nullptr;
