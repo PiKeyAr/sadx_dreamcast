@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "ChaoObjects_Race.h"
+#include "AL_RACE_Models.h"
 
 static bool SkipSA1Entry = false;
 static bool MedalTextLoaded = false;

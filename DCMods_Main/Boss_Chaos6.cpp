@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "Chaos6_Motion.h"
+#include "B_CHAOS6_Motions.h"
 
 NJS_TEXNAME textures_chaos6s[77];
 NJS_TEXLIST texlist_chaos6s = { arrayptrandlength(textures_chaos6s) };

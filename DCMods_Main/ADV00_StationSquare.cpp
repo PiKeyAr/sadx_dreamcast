@@ -1,10 +1,6 @@
 #include "stdafx.h"
 #include "ADV00_Motions.h"
 
-// TODO 
-// Very slight transparency issue with Casino door
-// OS1Dnto shouldn't ignore lighting (use object specular)
-
 // Texlists
 NJS_TEXNAME textures_sscar[22];
 NJS_TEXLIST texlist_sscar = {arrayptrandlength(textures_sscar)};
@@ -42,15 +38,6 @@ NJS_OBJECT* Parasol_3 = nullptr;
 NJS_OBJECT* Parasol_4 = nullptr;
 NJS_OBJECT* EVHelicopterLight1 = nullptr;
 NJS_OBJECT* EVHelicopterLight2 = nullptr;
-
-/*
-#include "SS00_CityHall.h"
-#include "SS01_Casino.h"
-#include "SS02_Sewers.h"
-#include "SS03_MainArea.h"
-#include "SS04_Hotel.h"
-#include "SS05_Twinkle.h"
-*/
 
 DataArray(int, StationSquareCarTextureIDs, 0x2BBE9D8, 6);
 DataArray(FogData, StationSquare1Fog, 0x02AA3D10, 3);
@@ -198,6 +185,23 @@ void BurgerShopManHook(NJS_OBJECT *a1, NJS_MOTION *a2, float a3)
 	njAction_QueueObject(BurgerShopMan, a2, a3);
 }
 
+void DrawCasinoDoor1(NJS_MODEL_SADX* model, float scale)
+{
+	late_DrawModelClip(model, 1, 1.0f);
+}
+
+void DrawCasinoDoor2(NJS_MODEL_SADX* model, float scale)
+{
+	DrawQueueDepthBias = -1000.0f;
+	late_DrawModelClip(model, 1, 1.0f);
+}
+
+void DrawCasinoDoor3(NJS_MODEL_SADX* model, float scale)
+{
+	late_DrawModelClip(model, 1, 1.0f);
+	DrawQueueDepthBias = 0.0f;
+}
+
 void ParseSSColFlags()
 {
 	int colflags;
@@ -210,7 +214,8 @@ void ParseSSColFlags()
 		for (int j = 0; j < landtable->COLCount; j++)
 		{
 			colflags = landtable->Col[j].Flags;
-			if ((colflags & ColFlags_Visible) && (colflags & ColFlags_Water)) landtable->Col[j].Model->basicdxmodel->mats[0].diffuse.argb.a = 0xD2;
+			if ((colflags & ColFlags_Visible) && (colflags & ColFlags_Water))
+				landtable->Col[j].Model->basicdxmodel->mats[0].diffuse.argb.a = 0xD2;
 		}
 	}
 	// Main area
@@ -221,9 +226,11 @@ void ParseSSColFlags()
 		if (SADXWater_StationSquare)
 		{
 			// Show SADX sea bottom
-			if (colflags == 0) landtable->Col[j].Flags = 0x80000000;
+			if (colflags == 0) 
+				landtable->Col[j].Flags |= SurfaceFlags_Visible;
 			// Hide SA1 water
-			if ((colflags & ColFlags_Visible) && (colflags & ColFlags_Water)) landtable->Col[j].Flags = 0x00000002;
+			if ((colflags & ColFlags_Visible) && (colflags & ColFlags_Water))
+				landtable->Col[j].Flags &= ~SurfaceFlags_Visible;
 		}
 	}
 	// Hotel area
@@ -234,9 +241,11 @@ void ParseSSColFlags()
 		if (SADXWater_StationSquare)
 		{
 			// Show SADX sea bottom
-			if (colflags == 0) landtable->Col[j].Flags = 0x80000000;
+			if (colflags == 0) 
+				landtable->Col[j].Flags |= SurfaceFlags_Visible;
 			// Hide SA1 water
-			if ((colflags & ColFlags_Visible) && (colflags & ColFlags_Water)) landtable->Col[j].Flags &= ~ColFlags_Visible;
+			if ((colflags & ColFlags_Visible) && (colflags & ColFlags_Water))
+				landtable->Col[j].Flags &= ~SurfaceFlags_Visible;
 		}
 	}
 }
@@ -675,6 +684,9 @@ void ADV00_Init()
 		*ADV00_TEXLISTS[4] = texlist_advss04;
 		*ADV00_TEXLISTS[5] = texlist_advss05;
 		StationSquareCarTextureIDs[5] = 7; // Not an actual car surface texture but it's like that in SA1 too
+		WriteCall((void*)0x638601, DrawCasinoDoor1);
+		WriteCall((void*)0x638640, DrawCasinoDoor2);
+		WriteCall((void*)0x638683, DrawCasinoDoor3);
 		WriteCall((void*)0x63EECF, SouvenirShopDoor_Depth);
 		WriteCall((void*)0x636DE9, RenderOfficeDoor);
 		WriteCall((void*)0x636E99, RenderOfficeDoor);

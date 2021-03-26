@@ -1,6 +1,6 @@
 #include "stdafx.h"
-#include "ChaoObjects.h"
-#include "HintMessages.h"
+#include "AL_GARDEN00_Motions.h"
+#include "AL_MAIN_Messages.h"
 
 NJS_TEXNAME textures_garden00_object[16];
 NJS_TEXLIST texlist_garden00_object = {arrayptrandlength(textures_garden00_object)};

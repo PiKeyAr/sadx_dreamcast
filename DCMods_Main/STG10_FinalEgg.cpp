@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "FinalEgg_UVs.h"
+#include "STG10_UVs.h"
 
 NJS_VECTOR DepthSphere1 = { 1054.796f, -443.4858f, -852.1802f };
 NJS_VECTOR DepthSphere2 = { 1054.796f, 51.51416f, -852.1802f };

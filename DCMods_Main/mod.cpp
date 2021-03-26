@@ -1,9 +1,10 @@
 #include "stdafx.h"
 
 // TODO:
+// Split code and asset projects
+// Load all animations externally
 // Use symbol stuff where possible
 // Replace model filenames
-// Load all animations externally
 
 // Level files
 LandTableInfo *STG00_0_Info = nullptr;

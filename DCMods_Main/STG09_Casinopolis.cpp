@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "Casino_UVs.h"
+#include "STG09_UVs.h"
 
 // TODO: Replace whole models instead of just the UVs in "UV fixes"
 

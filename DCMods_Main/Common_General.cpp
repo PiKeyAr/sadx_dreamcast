@@ -1982,35 +1982,6 @@ void General_Init()
 		WriteCall((void*)0x4181FD, CutsceneAnimationHook1);
 		WriteCall((void*)0x418214, CutsceneAnimationHook2);
 		WriteJump((void*)0x43A810, AnimateLandtableHook); // Landtable animation hook
-		// DirLight data... Probably never
-		/*
-		// Replace SADX DirLight data with SA1 DirLight data
-		DefaultDirLight_SADX.LightDirection.x = DirLights_SA1[0].LightDirection.x;
-		DefaultDirLight_SADX.LightDirection.y = DirLights_SA1[0].LightDirection.y;
-		DefaultDirLight_SADX.LightDirection.z = DirLights_SA1[0].LightDirection.z;
-		DefaultDirLight_SADX.R = DirLights_SA1[0].R;
-		DefaultDirLight_SADX.G = DirLights_SA1[0].G;
-		DefaultDirLight_SADX.B = DirLights_SA1[0].B;
-		DefaultDirLight_SADX.Specular = DirLights_SA1[0].Specular;
-		DefaultDirLight_SADX.Diffuse = DirLights_SA1[0].Diffuse;
-		DefaultDirLight_SADX.AmbientR = DirLights_SA1[0].Ambient;
-		DefaultDirLight_SADX.AmbientG = DirLights_SA1[0].Ambient;
-		DefaultDirLight_SADX.AmbientB = DirLights_SA1[0].Ambient;
-		for (int i = 0; i < LengthOfArray(DirLights_SA1); i++)
-		{
-			DirLights_SADX[i].LightDirection.x = DirLights_SA1[i].LightDirection.x;
-			DirLights_SADX[i].LightDirection.y = DirLights_SA1[i].LightDirection.y;
-			DirLights_SADX[i].LightDirection.z = DirLights_SA1[i].LightDirection.z;
-			DirLights_SADX[i].R = DirLights_SA1[i].R;
-			DirLights_SADX[i].G = DirLights_SA1[i].G;
-			DirLights_SADX[i].B = DirLights_SA1[i].B;
-			DirLights_SADX[i].Specular = DirLights_SA1[i].Specular;
-			DirLights_SADX[i].Diffuse = DirLights_SA1[i].Diffuse;
-			DirLights_SADX[i].AmbientR = DirLights_SA1[i].Ambient;
-			DirLights_SADX[i].AmbientG = DirLights_SA1[i].Ambient;
-			DirLights_SADX[i].AmbientB = DirLights_SA1[i].Ambient;
-		}
-		*/
 		WriteCall((void*)0x4A22A6, SonicFrozenCubeFix);
 		// Material/vertex color fixes
 		// Eggman's eyes (UV-less / SA1 model only)

@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "EggCarrier_Motions.h"
+#include "ADV0100_Motions.h"
 
 // Texlists
 NJS_TEXNAME textures_obj_ec00[206];
@@ -22,15 +22,6 @@ NJS_TEXLIST texlist_ec04 = { arrayptrandlength(textures_ec04) };
 
 NJS_TEXNAME textures_ec05[40];
 NJS_TEXLIST texlist_ec05 = { arrayptrandlength(textures_ec05) };
-
-/*
-#include "ADV0100_0.h"
-#include "ADV0100_1.h"
-#include "ADV0100_2.h"
-#include "ADV0100_3.h"
-#include "ADV0100_4.h"
-#include "ADV0100_5.h"
-*/
 
 FunctionPointer(void, sub_6F4570, (ObjectMaster* a1), 0x6F4570);
 DataPointer(ObjectMaster*, dword_3C85138, 0x3C85138);
