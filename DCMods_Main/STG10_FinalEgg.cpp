@@ -532,8 +532,8 @@ void FinalEgg_Init()
 		// _0BlueLight fixes
 		*(NJS_OBJECT*)0x1A003F4 = *LoadModel("system\\data\\STG10\\Models\\001B01AC.sa1mdl"); // _0BlueLight pole
 		BlueLight_Light = LoadModel("system\\data\\STG10\\Models\\001B01AC.sa1mdl")->child; // _0BlueLight big light
-		BlueLight_Camera1 = CloneObject(BlueLight_Light)->child; // _0BlueLight camera
-		BlueLight_Camera2 = CloneObject(BlueLight_Light)->child; // _0BlueLight camera blue lens thing
+		BlueLight_Camera1 = CloneObject(BlueLight_Light); // _0BlueLight camera
+		BlueLight_Camera2 = CloneObject(BlueLight_Light); // _0BlueLight camera blue lens thing
 		BlueLight_Light->evalflags |= NJD_EVAL_HIDE;
 		BlueLight_Camera1->child->evalflags |= NJD_EVAL_HIDE;
 		HideMesh_Object(BlueLight_Camera1, 6);
