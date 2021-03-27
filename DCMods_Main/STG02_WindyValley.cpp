@@ -48,6 +48,7 @@ void RenderWindy1Sky()
 
 void UnloadLevelFiles_STG02()
 {
+	RemoveLateDrawLandtable();
 	delete STG02_0_Info;
 	delete STG02_1_Info;
 	delete STG02_2_Info;

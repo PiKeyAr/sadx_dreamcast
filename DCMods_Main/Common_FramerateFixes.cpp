@@ -514,8 +514,8 @@ void IceKeySS_Display(ObjectMaster *obj)
 		SetTextureToLevelObj();
 		action = *(NJS_ACTION **)&v1->CharIndex;
 		if (CharObj2Ptrs[0]->UnderwaterTime) DrawQueueDepthBias = -25000.0f;
-		else  DrawQueueDepthBias = 5000.0f;
-		late_ActionClipMesh(action, *(float *)&v1->Object, 0, 1.0f);
+		else DrawQueueDepthBias = 5000.0f;
+		IceKeySSFix(action, *(float *)&v1->Object, 0, 1.0f);
 		DrawQueueDepthBias = 0.0f;
 		njPopMatrix(1u);
 	}

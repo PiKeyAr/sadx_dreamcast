@@ -38,6 +38,8 @@ NJS_OBJECT* Parasol_3 = nullptr;
 NJS_OBJECT* Parasol_4 = nullptr;
 NJS_OBJECT* EVHelicopterLight1 = nullptr;
 NJS_OBJECT* EVHelicopterLight2 = nullptr;
+NJS_OBJECT* IceKeySS_Outside = nullptr;
+NJS_OBJECT* IceKeySS_Inside = nullptr;
 
 DataArray(int, StationSquareCarTextureIDs, 0x2BBE9D8, 6);
 DataArray(FogData, StationSquare1Fog, 0x02AA3D10, 3);
@@ -205,6 +207,18 @@ void DrawCasinoDoor3(NJS_MODEL_SADX* model, float scale)
 void WalkingGuyFix(task* tp, NJS_OBJECT* op, NJS_MOTION* mp, NJS_TEXLIST* lp, double speed, int mode, int linkframe)
 {
 	EV_SetMotion(tp, op, MODEL_SS_PEOPLE_MOTIONS[0], lp, speed, mode, linkframe);
+}
+
+void IceKeySSFix(NJS_ACTION* action, float frame, int flags, float scale)
+{
+	float bias = DrawQueueDepthBias;
+	NJS_ACTION inside_action;
+	inside_action.motion = action->motion;
+	inside_action.object = IceKeySS_Inside;
+	DrawQueueDepthBias = bias - 1000.0f;
+	late_ActionClipEx(&inside_action, frame, 1, scale);
+	DrawQueueDepthBias = bias;
+	late_DrawObjectClipMesh(IceKeySS_Outside, 1, scale);
 }
 
 void ParseSSColFlags()
@@ -781,7 +795,13 @@ void ADV00_Init()
 		WriteCall((void*)0x639584, OWakuseiFix);
 		*(NJS_OBJECT*)0x2AB6900 = *LoadModel("system\\data\\ADV00\\Models\\0016C3FC.sa1mdl"); // Twinkle Park elevator
 		*(NJS_OBJECT*)0x2AD14C8 = *LoadModel("system\\data\\ADV00\\Models\\00183B8C.sa1mdl"); // OMSaku (Gamma's target)
-		*(NJS_OBJECT*)0x2AD484C = *LoadModel("system\\data\\ADV00\\Models\\0018684C.sa1mdl"); // Ice Key
+		// Ice Key fix
+		IceKeySS_Outside = LoadModel("system\\data\\ADV00\\Models\\0018684C.sa1mdl"); // Ice Key
+		IceKeySS_Inside = CloneObject(IceKeySS_Outside);
+		*(NJS_OBJECT*)0x2AD484C = *CloneObject(IceKeySS_Outside);
+		IceKeySS_Outside->child->evalflags |= NJD_EVAL_HIDE;
+		IceKeySS_Inside->evalflags |= NJD_EVAL_HIDE;
+		WriteCall((void*)0x637E34, IceKeySSFix);
 		// Event helicopter (set up exactly like the Chaos 0 helicopter so lots of copy-paste here)
 		((NJS_ACTION*)0x2DBD864)->object = LoadModel("system\\data\\Other\\00011208.sa1mdl");
 		// UV-less stuff fix

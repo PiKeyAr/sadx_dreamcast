@@ -5,6 +5,7 @@ float DebugFontSizeBK;
 bool DebugFontItalic = false;
 OBJ_CONDITION setdata_LateDrawLand = {};
 std::vector<int> LateDrawLandList;
+LandTable* LateDrawLand;
 
 NJS_MESHSET_SADX TempMeshset = {NJD_MESHSET_TRIMESH | 0, 0, NULL, NULL, NULL, NULL, NULL, NULL};
 
@@ -492,7 +493,7 @@ void AnimateTexture(TextureAnimation *texanim)
 			// Reset if reached end of animation or incorrect initial frame
 			if (framenumber > texanim->Frame2 || framenumber < texanim->Frame1) framenumber = texanim->Frame1;
 			texanim->material->attr_texId = framenumber;
-			//PrintDebug("Framenumber: %d\n", framenumber);
+			//PrintDebug("Framenumber for material %X: %d\n", texanim->material, framenumber);
 		}
 	}
 }
@@ -565,22 +566,46 @@ void ClearTextureAnimationData()
 
 void AddTextureAnimation(int level, int act, NJS_MATERIAL* material, bool nonsequential, int speed, int frame1, int frame2, int frame3, int frame4, int frame5, int frame6, int frame7, int frame8, int frame9, int frame10, int frame11, int frame12, int frame13, int frame14, int frame15, int frame16)
 {
+	// Check for duplicate materials
+	for (TextureAnimation i : TextureAnimationData)
+	{
+		if (i.material == material)
+			return;
+	}
 	TextureAnimationData.push_back({level, act, material, speed, nonsequential, frame1, frame2, frame3, frame4, frame5, frame6, frame7, frame8, frame9, frame10, frame11, frame12, frame13, frame14, frame15, frame16});
 			//PrintDebug("Added texture animation: level %d, act %d, frame1: %d, frame2: %d, ID %d\n", level, act, frame1, frame2, i);
 }
 
 void AddTextureAnimation_Permanent(int level, int act, NJS_MATERIAL* material, bool nonsequential, int speed, int frame1, int frame2, int frame3, int frame4, int frame5, int frame6, int frame7, int frame8, int frame9, int frame10, int frame11, int frame12, int frame13, int frame14, int frame15, int frame16)
 {
+	// Check for duplicate materials
+	for (TextureAnimation i : TextureAnimationData_Permanent)
+	{
+		if (i.material == material)
+			return;
+	}
 	TextureAnimationData_Permanent.push_back({level, act, material, speed, nonsequential, frame1, frame2, frame3, frame4, frame5, frame6, frame7, frame8, frame9, frame10, frame11, frame12, frame13, frame14, frame15, frame16});
 }
 
 void AddUVAnimation(int level, int act, NJS_TEX* uv, int uv_count, int timer, int u_speed, int v_speed)
 {
+	// Check for duplicate UVs
+	for (UVAnimation i : UVAnimationData)
+	{
+		if (i.uv_pointer == uv)
+			return;
+	}
 	UVAnimationData.push_back({level, act, uv, uv_count, timer, u_speed, v_speed});
 }
 
 void AddUVAnimation_Permanent(int level, int act, NJS_TEX* uv, int uv_count, int timer, int u_speed, int v_speed)
 {
+	// Check for duplicate UVs
+	for (UVAnimation i : UVAnimationData_Permanent)
+	{
+		if (i.uv_pointer == uv)
+			return;
+	}
 	UVAnimationData_Permanent.push_back({level, act, uv, uv_count, timer, u_speed, v_speed});
 }
 
@@ -1320,14 +1345,16 @@ NJS_OBJECT* CloneObject(NJS_OBJECT* obj)
 void __cdecl LateDrawLand_Display(task* a1)
 {
 	NJS_MATRIX matrix;
-	if (!MissedFrames && !isTextureNG(CurrentLandTable->TexList))
+	if (!LateDrawLand)
+		return;
+	if (!MissedFrames && !isTextureNG(LateDrawLand->TexList))
 	{
 		for (int i : LateDrawLandList)
 		{
-			COL colitem = CurrentLandTable->Col[i];
+			COL colitem = LateDrawLand->Col[i];
 			NJS_OBJECT* colmodel = colitem.Model;
 			njGetMatrix(matrix);
-			njSetTexture(CurrentLandTable->TexList);
+			njSetTexture(LateDrawLand->TexList);
 			njTranslateEx((NJS_VECTOR*)&colmodel->pos);
 			njRotateXYZ(0, colmodel->ang[0], colmodel->ang[1], colmodel->ang[2]);
 			land_DrawObject_New(colmodel, (_OBJ_LANDENTRY*)&colitem);
@@ -1358,6 +1385,7 @@ void LoadLateDrawLand()
 
 void AddLateDrawLandtable(LandTable* landtable)
 {
+	LateDrawLand = landtable;
 	for (int j = 0; j < landtable->COLCount; j++)
 	{
 		if (landtable->Col[j].widthZ == -1)
@@ -1366,4 +1394,10 @@ void AddLateDrawLandtable(LandTable* landtable)
 			LateDrawLandList.push_back(j);
 		}
 	}
+}
+
+void RemoveLateDrawLandtable()
+{
+	LateDrawLandList.clear();
+	LateDrawLand = NULL;
 }

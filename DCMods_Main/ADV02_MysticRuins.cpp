@@ -57,6 +57,10 @@ NJS_OBJECT* OFinalWayMain = nullptr;
 NJS_OBJECT* OFinalWayCar = nullptr;
 NJS_OBJECT* IceCapDoorSnowflakeWall = nullptr;
 NJS_OBJECT* IceCapDoorSnowflake = nullptr;
+NJS_OBJECT* WindyKey_Inside = nullptr;
+NJS_OBJECT* WindyKey_Outside = nullptr;
+NJS_OBJECT* IceKey_Inside = nullptr;
+NJS_OBJECT* IceKey_Outside = nullptr;
 
 // Lists
 NJS_OBJECT* MRJungle_Propeller;
@@ -502,6 +506,33 @@ void OTreeFix(NJS_OBJECT* a1, QueuedModelFlagsB a2, float a3)
 	late_DrawObjectClipEx(a1, a2, a3);
 }
 
+void OHandKeyFix(NJS_ACTION* action, float frame, int flags, float scale)
+{
+	NJS_ACTION inside_action;
+	// Wind Stone
+	if (action->object == ADV02_OBJECTS[76])
+	{
+		inside_action.motion = action->motion;
+		inside_action.object = WindyKey_Inside;
+		DrawQueueDepthBias = -1000.0f;
+		late_ActionClipEx(&inside_action, frame, 1, scale);
+		DrawQueueDepthBias = 0.0f;
+		late_DrawObjectClipMesh(WindyKey_Outside, 1, scale);
+	}
+	// Ice Stone
+	else if (action->object == ADV02_OBJECTS[88])
+	{
+		inside_action.motion = action->motion;
+		inside_action.object = IceKey_Inside;
+		DrawQueueDepthBias = -1000.0f;
+		late_ActionClipEx(&inside_action, frame, 1, scale);
+		DrawQueueDepthBias = 0.0f;
+		late_DrawObjectClipMesh(IceKey_Outside, 1, scale);
+	}
+	else
+		late_ActionClipEx(action, frame, flags, scale);
+}
+
 void ADV02_Init()
 {
 	// This is done every time the function is called
@@ -704,17 +735,31 @@ void ADV02_Init()
 		HideMesh_Object(IceCapDoorSnowflake, 0, 1);
 		HideMesh_Object(IceCapDoorSnowflakeWall, 1, 2);
 		WriteCall((void*)0x53E0B2, IceCapDoorFix);
+		// OHandKey fixes
+		WriteCall((void*)0x5322C3, OHandKeyFix);
+		// Wind Stone
+		WindyKey_Outside = LoadModel("system\\data\\ADV02\\Models\\001BCA10.sa1mdl");
+		WindyKey_Inside = CloneObject(WindyKey_Outside);
+		*ADV02_OBJECTS[76] = *CloneObject(WindyKey_Outside);
+		*ADV02_ACTIONS[28]->object = *ADV02_OBJECTS[76];
+		ForceLevelSpecular_Object(ADV02_OBJECTS[76], false);
+		ForceLevelSpecular_Object(WindyKey_Outside, false);
+		WindyKey_Outside->child->evalflags |= NJD_EVAL_HIDE;
+		WindyKey_Inside->evalflags |= NJD_EVAL_HIDE;
+		// Ice Stone
+		IceKey_Outside= LoadModel("system\\data\\ADV02\\Models\\001BBA04.sa1mdl");
+		IceKey_Inside = CloneObject(IceKey_Outside);
+		*ADV02_OBJECTS[88] = *CloneObject(IceKey_Outside);
+		*ADV02_ACTIONS[29]->object = *ADV02_OBJECTS[88]; // Ice Stone
+		ForceLevelSpecular_Object(ADV02_OBJECTS[88], false); // Ice Stone
+		ForceLevelSpecular_Object(IceKey_Outside, false); // Ice Stone
+		IceKey_Outside->child->evalflags |= NJD_EVAL_HIDE;
+		IceKey_Inside->evalflags |= NJD_EVAL_HIDE;		
 		// Other objects
 		MROcean = LoadModel("system\\data\\ADV02\\Models\\0005FEE0.sa1mdl");
 		AddTextureAnimation_Permanent(33, 0, &MROcean->basicdxmodel->mats[0], false, 5, 130, 139);
 		*ADV02_OBJECTS[26] = *LoadModel("system\\data\\ADV02\\Models\\001B9D9C.sa1mdl"); // Ice Cap door 2
 		*ADV02_OBJECTS[86] = *LoadModel("system\\data\\ADV02\\Models\\001BF00C.sa1mdl"); // Ice Cap lock
-		*ADV02_OBJECTS[76] = *LoadModel("system\\data\\ADV02\\Models\\001BCA10.sa1mdl"); // Wind Stone
-		ForceLevelSpecular_Object(ADV02_OBJECTS[76], false); // Wind Stone
-		*ADV02_ACTIONS[28]->object = *ADV02_OBJECTS[76]; // Wind Stone
-		*ADV02_OBJECTS[88] = *LoadModel("system\\data\\ADV02\\Models\\001BBA04.sa1mdl"); // Ice Stone
-		ForceLevelSpecular_Object(ADV02_OBJECTS[88], false); // Ice Stone
-		*ADV02_ACTIONS[29]->object = *ADV02_OBJECTS[88]; // Ice Stone
 		*ADV02_OBJECTS[64] = *LoadModel("system\\data\\ADV02\\Models\\001E87F0.sa1mdl"); // Angel Island rock
 		*ADV02_OBJECTS[68] = *LoadModel("system\\data\\ADV02\\Models\\002145D4.sa1mdl"); // That thing that pushes the Chao Egg out
 		*ADV02_OBJECTS[100] = *LoadModel("system\\data\\ADV02\\Models\\001F41C0.sa1mdl"); // Grass
