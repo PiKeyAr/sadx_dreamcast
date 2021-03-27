@@ -9,12 +9,6 @@ NJS_TEXLIST texlist_windy2 = { arrayptrandlength(textures_windy2) };
 NJS_TEXNAME textures_windy3[28];
 NJS_TEXLIST texlist_windy3 = { arrayptrandlength(textures_windy3) };
 
-/*
-#include "Windy1.h"
-#include "Windy2.h"
-#include "Windy3.h"
-*/
-
 DataArray(SkyboxScale, SkyboxScale_Windy1, 0x00AFE924, 3);
 DataArray(FogData, FogData_Windy1, 0x00AFEA20, 3);
 DataArray(FogData, FogData_Windy2, 0x00AFEA50, 3);
@@ -144,6 +138,7 @@ void WindyValley_Init()
 	WriteData((LandTable**)0x97DA48, STG02_0); // Act 1
 	WriteData((LandTable**)0x97DA4C, STG02_1); // Act 2
 	WriteData((LandTable**)0x97DA50, STG02_2); // Act 3
+	AddLateDrawLandtable(STG02_2);
 	if (!ModelsLoaded_STG02)
 	{
 		WINDY01_TEXLIST = texlist_windy1;

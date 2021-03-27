@@ -3,6 +3,8 @@
 NJS_COLOR DebugFontColorBK;
 float DebugFontSizeBK;
 bool DebugFontItalic = false;
+OBJ_CONDITION setdata_LateDrawLand = {};
+std::vector<int> LateDrawLandList;
 
 NJS_MESHSET_SADX TempMeshset = {NJD_MESHSET_TRIMESH | 0, 0, NULL, NULL, NULL, NULL, NULL, NULL};
 
@@ -1129,7 +1131,10 @@ static inline void land_DrawObjectOriginal(NJS_OBJECT* a1, _OBJ_LANDENTRY* a2)
 
 // Landtable draw hook
 // This uses the normally unused "Y width" and "Z width" COL item fields to manipulate depth.
-// The Z width value is used as depth for the callback function.
+// The Z width value is used in the following ways:
+//  0: Ignore
+// -1: Put the COL items on a list to render after the skybox
+//  Value other than -1 or 0: used as depth for the callback function
 void land_DrawObject_New(NJS_OBJECT* a1, _OBJ_LANDENTRY* a2)
 {
 	NJS_MODEL_SADX* v2; // esi
@@ -1178,7 +1183,7 @@ void land_DrawObject_New(NJS_OBJECT* a1, _OBJ_LANDENTRY* a2)
 	int queueFlags = QueuedModelFlagsB_EnableZWrite;
 
 	// Draw with callback
-	if (a2->zWidth != 0)
+	if (a2->zWidth != 0 && a2->zWidth != -1)
 	{
 		if (flags & SurfaceFlags_Waterfall) // Disable Z Write for the callback function
 			DrawModelCallback_QueueModel(DrawLandtableCallback_NoZWrite, v2, a2->zWidth, (QueuedModelFlagsB)queueFlags);
@@ -1207,7 +1212,7 @@ void land_DrawObject_New(NJS_OBJECT* a1, _OBJ_LANDENTRY* a2)
 	if (flags & SurfaceFlags_DrawByMesh)
 	{
 		late_DrawModelClipMesh(v2, queueFlags, 1.0f);
-		DrawQueueDepthBias = 0.0;
+		DrawQueueDepthBias = 0.0f;
 		return;
 	}
 
@@ -1215,7 +1220,7 @@ void land_DrawObject_New(NJS_OBJECT* a1, _OBJ_LANDENTRY* a2)
 	else if (flags & SurfaceFlags_LowDepth)
 	{
 		ds_DrawModelClip(v2, 1.0f);
-		DrawQueueDepthBias = 0.0;
+		DrawQueueDepthBias = 0.0f;
 		return;
 	}
 
@@ -1223,7 +1228,7 @@ void land_DrawObject_New(NJS_OBJECT* a1, _OBJ_LANDENTRY* a2)
 	else
 	{
 		late_DrawModelClip(v2, queueFlags, 1.0f);
-		DrawQueueDepthBias = 0.0;
+		DrawQueueDepthBias = 0.0f;
 		return;
 	}
 }
@@ -1309,4 +1314,56 @@ NJS_OBJECT* CloneObject(NJS_OBJECT* obj)
 		newobj->sibling = NULL;
 
 	return newobj;
+}
+
+// Stuff that draws after the skybox. This can be used in levels that make the skybox draw after level items (i.e. most levels).
+void __cdecl LateDrawLand_Display(task* a1)
+{
+	NJS_MATRIX matrix;
+	if (!MissedFrames && !isTextureNG(CurrentLandTable->TexList))
+	{
+		for (int i : LateDrawLandList)
+		{
+			COL colitem = CurrentLandTable->Col[i];
+			NJS_OBJECT* colmodel = colitem.Model;
+			njGetMatrix(matrix);
+			njSetTexture(CurrentLandTable->TexList);
+			njTranslateEx((NJS_VECTOR*)&colmodel->pos);
+			njRotateXYZ(0, colmodel->ang[0], colmodel->ang[1], colmodel->ang[2]);
+			land_DrawObject_New(colmodel, (_OBJ_LANDENTRY*)&colitem);
+			njSetMatrix(0, matrix);
+		}
+	}
+}
+
+void LateDrawLand_Load(task* a1)
+{
+	a1->exec = (void(__cdecl*)(task*))LateDrawLand_Display;
+	a1->disp = (void(__cdecl*)(task*))LateDrawLand_Display;
+	a1->dest = (void(__cdecl*)(task*))CheckThingButThenDeleteObject;
+}
+
+void LoadLateDrawLand()
+{
+	task* obj;
+	taskwk* ent;
+	setdata_LateDrawLand.unionStatus.fRangeOut = 612800.0f;
+	obj = CreateElementalTask((LoadObj)2, 3, LateDrawLand_Load);
+	obj->ocp = &setdata_LateDrawLand;
+	if (obj)
+	{
+		ent = obj->twp;
+	}
+}
+
+void AddLateDrawLandtable(LandTable* landtable)
+{
+	for (int j = 0; j < landtable->COLCount; j++)
+	{
+		if (landtable->Col[j].widthZ == -1)
+		{
+			if (landtable->Col[j].Flags & ColFlags_Visible) landtable->Col[j].Flags &= ~ColFlags_Visible;
+			LateDrawLandList.push_back(j);
+		}
+	}
 }

@@ -744,6 +744,8 @@ void OnInitEnd_Videos();
 void land_DrawObject_New(NJS_OBJECT* a1, _OBJ_LANDENTRY* a2);
 NJS_OBJECT* CloneObject(NJS_OBJECT* obj);
 NJS_MODEL_SADX* CloneAttach(NJS_MODEL_SADX* att);
+void LoadLateDrawLand();
+void AddLateDrawLandtable(LandTable* landtable);
 
 #define HideMesh_Object(...) HideMesh_Object_Wrapper(__VA_ARGS__, -1)
 #define HideMesh_Model(...) HideMesh_Model_Wrapper(__VA_ARGS__, -1)

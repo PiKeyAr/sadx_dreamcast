@@ -254,6 +254,15 @@ static void __cdecl LoadLevelFiles_r()
 	original();
 }
 
+// Trampoline that loads stuff to be rendered after the skybox
+static Trampoline* LoadSkyboxObject_t = nullptr;
+static void __cdecl LoadSkyboxObject_r()
+{
+	const auto original = TARGET_DYNAMIC(LoadSkyboxObject);
+	original();
+	LoadLateDrawLand();
+}
+
 static void __declspec(naked) land_DrawObjectHacc()
 {
 	__asm
@@ -329,6 +338,7 @@ extern "C"
 		}
 		if (InitError) return;
 		LoadLevelFiles_t = new Trampoline(0x422AD0, 0x422AD8, LoadLevelFiles_r);
+		LoadSkyboxObject_t = new Trampoline(0x414420, 0x414427, LoadSkyboxObject_r);
 		const std::string s_path(path);
 		const std::string s_config_ini(s_path + "\\config.ini");
 		// Config stuff
