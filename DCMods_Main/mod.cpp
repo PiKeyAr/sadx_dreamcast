@@ -736,6 +736,7 @@ extern "C"
 		if (InitError) return;
 		SkyChaseFix_UpdateBounds();
 		Branding_SetUpVariables();
+		Videos_OnReset();
 	}
 
 	__declspec(dllexport) ModInfo SADXModInfo = { ModLoaderVer };

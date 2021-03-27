@@ -366,3 +366,10 @@ void Videos_OnInput()
 		}
 	}
 }
+
+void Videos_OnReset()
+{
+	VideoFrame_Points[1] = {0, (float)VerticalResolution};
+	VideoFrame_Points[2] = {(float)HorizontalResolution, 0};
+	VideoFrame_Points[3] = {(float)HorizontalResolution, (float)VerticalResolution};
+}
