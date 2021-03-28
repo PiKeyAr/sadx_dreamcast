@@ -436,10 +436,10 @@ void HotShelter_Init()
 		*(NJS_OBJECT*)0x1862834 = *LoadModel("system\\data\\STG12\\Models\\0014E514.sa1mdl"); // Broken wall (broken)
 		*(NJS_OBJECT*)0x185F280 = *LoadModel("system\\data\\STG12\\Models\\0014C23C.sa1mdl"); // Broken wall (pieces)
 		*(NJS_OBJECT*)0x1812D34 = *LoadModel("system\\data\\STG12\\Models\\00109F58.sa1mdl"); // Egghead door 1
-		((NJS_OBJECT*)0x184C22C)->basicdxmodel = LoadModel("system\\data\\STG12\\Models\\0013CDD4.sa1mdl")->basicdxmodel; // Egghead door 2 part 1 (has sibling)
+		((NJS_OBJECT*)0x184C22C)->basicdxmodel = LoadModel("system\\data\\STG12\\Models\\0013CDD4.sa1mdl")->basicdxmodel; // Egghead door 2 part 1 (has sibling in DX but fuck it)
 		((NJS_OBJECT*)0x184C22C)->sibling = NULL;
 		((NJS_OBJECT*)0x184C22C)->evalflags |= NJD_EVAL_BREAK;
-		((NJS_OBJECT*)0x184BA64)->basicdxmodel = LoadModel("system\\data\\STG12\\Models\\0013C6AC.sa1mdl")->basicdxmodel; // Egghead door 2 part 2 (no sibling?)
+		((NJS_OBJECT*)0x184BA64)->basicdxmodel = LoadModel("system\\data\\STG12\\Models\\0013C6AC.sa1mdl")->basicdxmodel; // Egghead door 2 part 2 (has sibling)
 		((NJS_OBJECT*)0x184BA64)->sibling = NULL;
 		((NJS_OBJECT*)0x184BA64)->evalflags |= NJD_EVAL_BREAK;
 		*(NJS_OBJECT*)0x186FC1C = *LoadModel("system\\data\\STG12\\Models\\0015ACB0.sa1mdl"); // OKaitenashiba
