@@ -376,6 +376,12 @@ void ParseSSMaterials(bool remove)
 				material = (NJS_MATERIAL*)&landtable->Col[j].Model->basicdxmodel->mats[k];
 				AddTextureAnimation(26, 4, material, true, 4, 65, 78, 79, 80, 81, 82, 83, 84, 85, 86);
 			}
+			// Texanim 4
+			if (material->attr_texId == 59 || (material->attr_texId > 86 && material->attr_texId < 101))
+			{
+				material = (NJS_MATERIAL*)&landtable->Col[j].Model->basicdxmodel->mats[k];
+				AddTextureAnimation(26, 4, material, true, 4, 59, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100);
+			}
 		}
 	}
 }
