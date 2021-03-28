@@ -3,8 +3,6 @@
 NJS_TEXNAME textures_e101[77];
 NJS_TEXLIST texlist_e101 = { arrayptrandlength(textures_e101) };
 
-//#include "E101.h"
-
 void UnloadLevelFiles_B_E101()
 {
 	delete B_E101_Info;

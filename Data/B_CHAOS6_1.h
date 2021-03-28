@@ -16776,6 +16776,6 @@ extern "C" __declspec(dllexport) COL collist_0016F6D8[] = {
 	{ { -1.325371f, 742.6668f, -387.0145f }, 221.4299f, 0, 0, &object_00181A14, 0, 0x80040000 }, //Glass fragments
 };
 
-extern "C" __declspec(dllexport) LandTable landtable_0000033C = { LengthOfArray(collist_0016F6D8), 0, 0xC, 1700, collist_0016F6D8, NULL, "LM_CHAOS6_2", &texlist_chaos6k, 0, 0 };
+extern "C" __declspec(dllexport) LandTable landtable_0000033C = { LengthOfArray(collist_0016F6D8), 0, 0xC, 0, 1700, collist_0016F6D8, NULL, "LM_CHAOS6_2", &texlist_chaos6k, 0, 0 };
 
 #pragma warning(pop)

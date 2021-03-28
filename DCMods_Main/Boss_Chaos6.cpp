@@ -7,9 +7,6 @@ NJS_TEXLIST texlist_chaos6s = { arrayptrandlength(textures_chaos6s) };
 NJS_TEXNAME textures_chaos6k[79];
 NJS_TEXLIST texlist_chaos6k = { arrayptrandlength(textures_chaos6k) };
 
-//#include "Chaos6_Sonic.h"
-//#include "Chaos6_Knuckles.h"
-
 NJS_OBJECT *Chaos6Main_OpaqueOnly = nullptr;
 
 DataArray(FogData, Chaos6SFog, 0x011EF0E8, 3);

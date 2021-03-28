@@ -36358,6 +36358,6 @@ COL collist_00043230[] = {
 	{ { -226.8878f, 204, 1187.22f }, 91.54961f, 0, 0, &object_00078018, 0, 0x80000000 }, //Top tunnel 3
 };
 
-extern "C" __declspec(dllexport) LandTable landtable_0000022C = { LengthOfArray(collist_00043230), 0, 0xC, 10000, collist_00043230, NULL, "EGM2_TIKEI", (NJS_TEXLIST *)&texlist_eggwalker, 0, 0 };
+extern "C" __declspec(dllexport) LandTable landtable_0000022C = { LengthOfArray(collist_00043230), 0, 0xC, 0, 10000, collist_00043230, NULL, "EGM2_TIKEI", (NJS_TEXLIST *)&texlist_eggwalker, 0, 0 };
 
 #pragma warning(pop)

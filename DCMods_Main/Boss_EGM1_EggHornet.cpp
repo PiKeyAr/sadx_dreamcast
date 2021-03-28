@@ -3,8 +3,6 @@
 NJS_TEXNAME textures_egm1land[118];
 NJS_TEXLIST texlist_egm1land = { arrayptrandlength(textures_egm1land) };
 
-//#include "EggHornet.h"
-
 DataArray(PVMEntry, EggHornetObjectTextures, 0x156F6B0, 15);
 DataArray(FogData, EggHornetFog, 0x01556B34, 3);
 DataArray(DrawDistance, DrawDist_EggHornet, 0x01556B1C, 3);

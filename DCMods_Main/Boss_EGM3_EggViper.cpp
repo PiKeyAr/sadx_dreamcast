@@ -3,8 +3,6 @@
 NJS_TEXNAME textures_eggviper[45];
 NJS_TEXLIST texlist_eggviper = { arrayptrandlength(textures_eggviper) };
 
-//#include "EggViper.h"
-
 DataArray(FogData, EggViperFog, 0x0165D334, 3);
 DataPointer(int, EVEffect, 0x3C6E1EC);
 DataPointer(char, EggViperByteThing, 0x03C6E178);

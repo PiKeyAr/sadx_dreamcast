@@ -11199,6 +11199,6 @@ COL collist_00005280[] = {
 	{ { 270, -200, 340 }, 848.5281f, 0, 0, &object_0001CB54, 0, 0x80000001 }, //big transparent thing
 };
 
-extern "C" __declspec(dllexport) LandTable landtable_000001D8 = { LengthOfArray(collist_00005280), 0, 8, 0, collist_00005280, NULL, "LM_CHAOS0", &texlist_chaos0 , 0, 0 };
+extern "C" __declspec(dllexport) LandTable landtable_000001D8 = { LengthOfArray(collist_00005280), 0, 8, 0, 0, collist_00005280, NULL, "LM_CHAOS0", &texlist_chaos0 , 0, 0 };
 
 #pragma warning(pop)

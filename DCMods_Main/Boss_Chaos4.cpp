@@ -6,8 +6,6 @@ NJS_TEXLIST texlist_chaos4_object = {arrayptrandlength(textures_chaos4_object)};
 NJS_TEXNAME textures_chaos4[14];
 NJS_TEXLIST texlist_chaos4 = { arrayptrandlength(textures_chaos4) };
 
-//#include "Chaos4.h"
-
 NJS_OBJECT *Chaos4CleanWater = nullptr;
 DataPointer(NJS_VECTOR, ChaosPosition, 0x3C5A358);
 DataPointer(float, Chaos4NumaTransparency, 0x3C688D4);

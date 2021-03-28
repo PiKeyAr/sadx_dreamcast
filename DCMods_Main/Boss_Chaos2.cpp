@@ -5,7 +5,6 @@
 NJS_TEXNAME textures_chaos2[15];
 NJS_TEXLIST texlist_chaos2 = { arrayptrandlength(textures_chaos2) };
 
-//#include "Chaos2.h"
 //#include "Chaos2_Objects.h"
 
 DataArray(FogData, Chaos2Fog, 0x01120638, 3);

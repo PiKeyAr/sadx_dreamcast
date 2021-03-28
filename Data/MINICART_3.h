@@ -32180,6 +32180,6 @@ extern "C" __declspec(dllexport) COL collist_00004370[] = {
 	{ { -489, -9542, 2450 }, 283.2402f, 0, 0, &object_000C1C48, 0, 0xA0000001 }
 };
 
-extern "C" __declspec(dllexport) LandTable landtable_0000566C = { LengthOfArray<int16_t>(collist_00004370), 0, 0xC, 3000, collist_00004370, NULL, "MINI_CART04", (NJS_TEXLIST*)&texlist_minicart04, 0, 0 };
+extern "C" __declspec(dllexport) LandTable landtable_0000566C = { LengthOfArray<int16_t>(collist_00004370), 0, 0xC, 0, 3000, collist_00004370, NULL, "MINI_CART04", (NJS_TEXLIST*)&texlist_minicart04, 0, 0 };
 
 #pragma warning(pop)

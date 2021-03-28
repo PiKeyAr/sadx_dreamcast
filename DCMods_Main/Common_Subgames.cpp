@@ -24,16 +24,6 @@ NJS_TEXLIST texlist_minicart05 = { arrayptrandlength(textures_minicart05) };
 NJS_TEXNAME textures_minicart06[10];
 NJS_TEXLIST texlist_minicart06 = { arrayptrandlength(textures_minicart06) };
 
-/*
-#include "SandHill.h"
-#include "TwinkleCircuit_1.h"
-#include "TwinkleCircuit_2.h"
-#include "TwinkleCircuit_3.h"
-#include "TwinkleCircuit_4.h"
-#include "TwinkleCircuit_5.h"
-#include "TwinkleCircuit_6.h"
-*/
-
 DataArray(FogData, FogData_SandHill, 0x0173BB74, 3);
 DataArray(FogData, FogData_HedgehogHammer, 0x027C69C4, 3);
 DataArray(SkyboxScale, SkyboxScale_SkyChase1, 0x027D6CE0, 3);

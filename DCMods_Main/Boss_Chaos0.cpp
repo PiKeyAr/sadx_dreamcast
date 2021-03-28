@@ -6,8 +6,6 @@ NJS_TEXLIST texlist_chaos0 = { arrayptrandlength(textures_chaos0) };
 NJS_TEXNAME chaos0_obj_tex[33];
 NJS_TEXLIST chaos0_object = { arrayptrandlength(chaos0_obj_tex) };
 
-//#include "Chaos0.h"
-
 NJS_TEXANIM Chaos0SpotlightTexanim = { 128, 128, 64, 64, 0, 0, 255, 255, 1, 0 };
 NJS_SPRITE Chaos0SpotlightSprite1 = { -54.0f, 10.0f, 0.01f, 0.25f, 0.42f, 17500, BOSSCHAOS0_TEXLISTS[1], &Chaos0SpotlightTexanim };
 NJS_SPRITE Chaos0SpotlightSprite2 = { -54.0f, -10.0f, 0.01f, 0.25f, 0.42f, 15000, BOSSCHAOS0_TEXLISTS[1], &Chaos0SpotlightTexanim };

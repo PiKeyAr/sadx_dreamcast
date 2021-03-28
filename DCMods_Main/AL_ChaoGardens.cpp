@@ -26,15 +26,6 @@ NJS_TEXLIST texlist_ChaoRace = { arrayptrandlength(textures_chaorace) };
 NJS_TEXNAME textures_chaoraceentry[23];
 NJS_TEXLIST texlist_ChaoRaceEntry = { arrayptrandlength(textures_chaoraceentry) };
 
-/*
-#include "SSGarden.h"
-#include "MRGarden.h"
-#include "ECGarden.h"
-#include "ECGarden_Skybox.h"
-#include "ChaoRaceEntry.h"
-#include "ChaoRace.h"
-*/
-
 NJS_OBJECT* ChaoGardenTransporterEffect = nullptr;
 NJS_OBJECT* ChaoFruit_Chaonut = nullptr;
 NJS_OBJECT* ChaoFruit_Starnut = nullptr;

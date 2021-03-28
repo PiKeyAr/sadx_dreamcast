@@ -3,8 +3,6 @@
 NJS_TEXNAME textures_chaos7[168];
 NJS_TEXLIST texlist_chaos7 = { arrayptrandlength(textures_chaos7) };
 
-//#include "Chaos7.h"
-
 NJS_OBJECT *TornadoAttack1 = nullptr;
 NJS_OBJECT *TornadoAttack2 = nullptr;
 NJS_OBJECT *TornadoAttack3 = nullptr;

@@ -3,8 +3,6 @@
 NJS_TEXNAME textures_eggwalker[231];
 NJS_TEXLIST texlist_eggwalker = { arrayptrandlength(textures_eggwalker) };
 
-//#include "EggWalker.h"
-
 DataArray(FogData, EggWalkerFog, 0x015E87F4, 3);
 DataArray(NJS_TEXANIM, EggWalkerFireTexanims, 0x1655790, 16);
 

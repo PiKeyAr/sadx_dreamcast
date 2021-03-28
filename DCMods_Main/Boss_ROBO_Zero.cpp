@@ -3,8 +3,6 @@
 DataArray(FogData, Fog_Zero, 0x016B4DB0, 3);
 DataArray(DrawDistance, DrawDist_Zero, 0x016B4D98, 3);
 
-//#include "Zero.h"
-
 FunctionPointer(void, ZeroBarriers_Display, (void *a1), 0x58F470); // Bariers_Display
 FunctionPointer(void, ZeroAttack_Display, (void *a1), 0x58C500); // FVFShit_Display
 FunctionPointer(void, CreateFireParticle, (NJS_VECTOR *a1, float a2), 0x4CACF0);

@@ -62323,7 +62323,7 @@ extern "C" __declspec(dllexport) COL collist_000001A0[] = {
 	{ { 1750, -5944.24f, -12252.5f }, 107.9418f, 0, 0, &objectSBOARD_0006BE00, 0, 0xA0000011 }
 };
 
-extern "C" __declspec(dllexport) LandTable landtable_00002DEC = { LengthOfArray(collist_000001A0), 0, 0xC, 3000, collist_000001A0, NULL, "SANDBOARD", (NJS_TEXLIST *)&texlist_sandhill, 0, 0 };
+extern "C" __declspec(dllexport) LandTable landtable_00002DEC = { LengthOfArray(collist_000001A0), 0, 0xC, 0, 3000, collist_000001A0, NULL, "SANDBOARD", (NJS_TEXLIST *)&texlist_sandhill, 0, 0 };
 
 
 #pragma warning(pop)

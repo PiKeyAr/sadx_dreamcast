@@ -3,8 +3,6 @@
 DataArray(FogData, Fog_E101R, 0x015225F0, 3);
 DataArray(DrawDistance, DrawDist_E101R, 0x015225D8, 3);
 
-//#include "E101R.h"
-
 FunctionPointer(void, sub_570900, (int a1, int a2), 0x570900);
 FunctionPointer(void, sub_568EC0, (EntityData1 *a1), 0x568EC0);
 FunctionPointer(void, sub_77E940, (FVFStruct_H_B *a1, signed int count, int a3), 0x77E940);

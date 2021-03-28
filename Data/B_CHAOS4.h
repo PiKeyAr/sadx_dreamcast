@@ -7765,6 +7765,6 @@ GeoAnimData animlist_00045AB8[] = {
 	{ 0, 0.5f, 60, &object_0004FB90, &action_animation_0001643C, (NJS_TEXLIST *)0 }
 };
 
-extern "C" __declspec(dllexport) LandTable landtable_00000238 = { LengthOfArray(collist_00045098), LengthOfArray(animlist_00045AB8), 0xD, 20000, collist_00045098, animlist_00045AB8, "CHAOS4_TIKEI", &texlist_chaos4, 0, 0 };
+extern "C" __declspec(dllexport) LandTable landtable_00000238 = { LengthOfArray(collist_00045098), LengthOfArray(animlist_00045AB8), 0xD, 0, 20000, collist_00045098, animlist_00045AB8, "CHAOS4_TIKEI", &texlist_chaos4, 0, 0 };
 
 #pragma warning(pop)
