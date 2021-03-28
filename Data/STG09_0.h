@@ -32900,6 +32900,6 @@ extern "C" __declspec(dllexport) COL collist_00023DA0[] = {
 	{ { -374.6237f, 218.5009f, -12.62659f }, 225.1661f, 0, 0, &object_000492C0, 0, 0x82040000 }, //Ship mast 2
 };
 
-extern "C" __declspec(dllexport) LandTable landtable_00025EAC = { LengthOfArray(collist_00023DA0), 0, 0xC, 800, collist_00023DA0, NULL, "CASINO01", &texlist_casino1, 0, 0 };
+extern "C" __declspec(dllexport) LandTable landtable_00025EAC = { LengthOfArray(collist_00023DA0), 0, 0xC, 0, 800, collist_00023DA0, NULL, "CASINO01", &texlist_casino1, 0, 0 };
 
 #pragma warning(pop)

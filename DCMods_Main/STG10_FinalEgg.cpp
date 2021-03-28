@@ -19,12 +19,6 @@ NJS_TEXLIST texlist_finalegg3 = { arrayptrandlength(textures_finalegg3) };
 NJS_TEXNAME textures_cylinder[256];
 NJS_TEXLIST texlist_cylinder = { arrayptrandlength(textures_cylinder) };
 
-/*
-#include "FinalEgg1.h"
-#include "FinalEgg2.h"
-#include "FinalEgg3.h"
-*/
-
 NJS_OBJECT* OStandLight_Light = nullptr;
 NJS_OBJECT* OLight2_Light = nullptr;
 NJS_OBJECT* _0Light_Camera_Main = nullptr;

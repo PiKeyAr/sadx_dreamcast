@@ -66315,6 +66315,6 @@ extern "C" __declspec(dllexport) COL collist_00013780[] = {
 	{ { -174.0937f, 569.1877f, 188.7395f }, 174.3236f, 0, 0, &object_0009A730_2, 0, 0x82000001 }, //Curved platform thing outer
 };
 
-extern "C" __declspec(dllexport) LandTable landtable_00018CB8 = { LengthOfArray(collist_00013780), 0, 0xC, 900, collist_00013780, NULL, "MOUNTAIN01", &texlist_mountain1, 0, 0 };
+extern "C" __declspec(dllexport) LandTable landtable_00018CB8 = { LengthOfArray(collist_00013780), 0, 0xC, 0, 900, collist_00013780, NULL, "MOUNTAIN01", &texlist_mountain1, 0, 0 };
 
 #pragma warning(pop)

@@ -52,7 +52,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)Data;$(ProjectDir)..\sadx-mod-loader\libmodutils;$(ProjectDir)..\sadx-mod-loader\mod-loader-common\ModLoaderCommon;$(ProjectDir)..\sadx-mod-loader\SADXModLoader\include;$(SolutionDir)Lantern</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Data;$(ProjectDir)..\sadx-mod-loader\libmodutils;$(ProjectDir)..\sadx-mod-loader\mod-loader-common\ModLoaderCommon;$(SolutionDir)sadx-mod-loader\SADXModLoader\include;$(SolutionDir)Lantern</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <PrecompiledHeader>Use</PrecompiledHeader>

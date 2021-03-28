@@ -38454,6 +38454,6 @@ extern "C" __declspec(dllexport) COL collist_00018CDC[] = {
 };
 
 
-extern "C" __declspec(dllexport) LandTable landtable_0001A8FC = { LengthOfArray(collist_00018CDC), 0, 0xC, 1050, collist_00018CDC, NULL, "MOUNTAIN02", &texlist_mountain2, 0, 0 };
+extern "C" __declspec(dllexport) LandTable landtable_0001A8FC = { LengthOfArray(collist_00018CDC), 0, 0xC, 0, 1050, collist_00018CDC, NULL, "MOUNTAIN02", &texlist_mountain2, 0, 0 };
 
 #pragma warning(pop)

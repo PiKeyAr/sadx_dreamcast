@@ -34,12 +34,6 @@ NJS_OBJECT* FlySt2 = nullptr;
 NJS_OBJECT* MissileLogo = nullptr;
 NJS_OBJECT* HW3FountainMesh = nullptr; // This unloads when the level unloads
 
-/*
-#include "Highway1.h"
-#include "Highway2.h"
-#include "Highway3.h"
-*/
-
 FunctionPointer(long double, sub_49CC70, (float a1, float a2, float a3), 0x49CC70);
 
 DataArray(FogData, SpeedHighway1Fog, 0x024CA4E4, 3);

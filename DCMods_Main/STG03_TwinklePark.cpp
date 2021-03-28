@@ -12,12 +12,6 @@ NJS_TEXLIST texlist_twinkle2 = { arrayptrandlength(textures_twinkle2) };
 NJS_TEXNAME textures_twinkle3[30];
 NJS_TEXLIST texlist_twinkle3 = { arrayptrandlength(textures_twinkle3) };
 
-/*
-#include "Twinkle1.h"
-#include "Twinkle2.h"
-#include "Twinkle3.h"
-*/
-
 DataArray(FogData, TwinklePark1Fog, 0x026B339C, 3);
 DataArray(FogData, TwinklePark2Fog, 0x026B33CC, 3);
 DataArray(FogData, TwinklePark3Fog, 0x026B33FC, 3);

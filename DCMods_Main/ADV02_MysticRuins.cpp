@@ -19,13 +19,6 @@ NJS_TEXLIST texlist_mrobj = { arrayptrandlength(textures_mrobj) };
 NJS_TEXNAME textures_mrtrain[31];
 NJS_TEXLIST texlist_mrtrain = { arrayptrandlength(textures_mrtrain) };
 
-/*
-#include "MR00_Station.h"
-#include "MR01_Island.h"
-#include "MR02_Jungle.h"
-#include "MR03_FinalEgg.h"
-*/
-
 DataPointer(float, CurrentFogDist, 0x03ABDC64);
 DataPointer(float, CurrentFogLayer, 0x03ABDC60);
 DataArray(FogData, MR1FogDay, 0x01103448, 3);

@@ -18,12 +18,6 @@ NJS_OBJECT* OLight3_2 = nullptr;
 NJS_OBJECT* OLight3_3 = nullptr;
 NJS_OBJECT* OLight3_4 = nullptr;
 
-/*
-#include "HotShelter1.h"
-#include "HotShelter2.h"
-#include "HotShelter3.h"
-*/
-
 DataPointer(float, E105HitCounter, 0x03C58158);
 DataPointer(float, CurrentFogDist, 0x03ABDC64);
 DataPointer(float, CurrentFogLayer, 0x03ABDC60);

@@ -14,12 +14,6 @@ NJS_TEXLIST texlist_past01 = { arrayptrandlength(textures_past1) };
 NJS_TEXNAME textures_past2[85];
 NJS_TEXLIST texlist_past02 = { arrayptrandlength(textures_past2) };
 
-/*
-#include "ADV03_00.h"
-#include "ADV03_01.h"
-#include "ADV03_02.h"
-*/
-
 // Model pointers
 ModelInfo *PastChaoModel_2_Info = nullptr;
 ModelInfo *PastChaoModel_7_Info = nullptr;

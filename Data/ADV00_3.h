@@ -48353,15 +48353,15 @@ extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_0018AB84 = { vertex_0018A
 NJS_OBJECT SADXWaterCollision = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_0018AB84, 100, -17.29691f, 1789, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
 //SADX style sea bottom
-extern "C" __declspec(dllexport) extern "C" __declspec(dllexport) NJS_MATERIAL matlistADV00_00114D80[] = {
+extern "C" __declspec(dllexport) NJS_MATERIAL matlist_00114D80_DX[] = {
 	{ { 0xB2FFFFFF },{ 0xFFFFFFFF }, 11, 228, NJD_D_100 | NJD_FILTER_BILINEAR | NJD_FLAG_FLIP_V | NJD_FLAG_USE_ALPHA | NJD_FLAG_FLIP_U | NJD_FLAG_USE_TEXTURE | NJD_DA_INV_SRC | NJD_SA_SRC }
 };
 
-extern "C" __declspec(dllexport) extern "C" __declspec(dllexport) Sint16 polyADV00_00114D94[] = {
+extern "C" __declspec(dllexport) Sint16 poly_00114D94_DX[] = {
 	4, 3, 2, 1, 0
 };
 
-extern "C" __declspec(dllexport) NJS_TEX uvADV00_00114DA0[] = {
+extern "C" __declspec(dllexport) NJS_TEX uv_00114DA0_DX[] = {
 	{ 16320, -16065 },
 	{ 16320, 255 },
 	{ 0, -16065 },
@@ -48540,27 +48540,27 @@ extern "C" __declspec(dllexport) NJS_COLOR vcolor_0015EFF0_DX[] = {
 	{ 0xFF2049C6 }
 };
 
-extern "C" __declspec(dllexport) extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlistADV00_00114DB0[] = {
-	{ NJD_MESHSET_TRIMESH | 0, 1, polyADV00_00114D94, NULL, NULL, vcolor_0015EFF0_DX, uvADV00_00114DA0, NULL }
+extern "C" __declspec(dllexport) NJS_MESHSET_SADX meshlist_00114DB0_DX[] = {
+	{ NJD_MESHSET_TRIMESH | 0, 1, poly_00114D94_DX, NULL, NULL, vcolor_0015EFF0_DX, uv_00114DA0_DX, NULL }
 };
 
-extern "C" __declspec(dllexport) extern "C" __declspec(dllexport) NJS_VECTOR vertexADV00_00114DC8[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR vertex_00114DC8_DX[] = {
 	{ -2710, 0, -120 },
 	{ -2710, 0, 5382 },
 	{ 2950, 0, -120 },
 	{ 2950, 0, 5382 }
 };
 
-extern "C" __declspec(dllexport) extern "C" __declspec(dllexport) NJS_VECTOR normalADV00_00114DF8[] = {
+extern "C" __declspec(dllexport) NJS_VECTOR normal_00114DF8_DX[] = {
 	{ 0, 1, 0 },
 	{ 0, 1, 0 },
 	{ 0, 1, 0 },
 	{ 0, 1, 0 }
 };
 
-extern "C" __declspec(dllexport) extern "C" __declspec(dllexport) NJS_MODEL_SADX attachADV00_00114E28 = { vertexADV00_00114DC8, normalADV00_00114DF8, LengthOfArray(vertexADV00_00114DC8), meshlistADV00_00114DB0, matlistADV00_00114D80, LengthOfArray(meshlistADV00_00114DB0), LengthOfArray(matlistADV00_00114D80),{ 120, 0, 2631 }, 3946.758f, NULL };
+extern "C" __declspec(dllexport) NJS_MODEL_SADX attach_00114E28_DX = { vertex_00114DC8_DX, normal_00114DF8_DX, LengthOfArray(vertex_00114DC8_DX), meshlist_00114DB0_DX, matlist_00114D80_DX, LengthOfArray(meshlist_00114DB0_DX), LengthOfArray(matlist_00114D80_DX),{ 120, 0, 2631 }, 3946.758f, NULL };
 
-extern "C" __declspec(dllexport) NJS_OBJECT SADXSeaBottom = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attachADV00_00114E28, 100, -50.71019f, 1789, 0, 0, 0, 1, 1, 1, NULL, NULL };
+extern "C" __declspec(dllexport) NJS_OBJECT SADXSeaBottom = { NJD_EVAL_UNIT_ANG | NJD_EVAL_UNIT_SCL | NJD_EVAL_BREAK, &attach_00114E28_DX, 100, -50.71019f, 1789, 0, 0, 0, 1, 1, 1, NULL, NULL };
 
 // Cyber-Net logo
 NJS_MATERIAL matlist_000FF63C[] = {	

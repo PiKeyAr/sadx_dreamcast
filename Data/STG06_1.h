@@ -25187,6 +25187,6 @@ extern "C" __declspec(dllexport) COL collist_0001F03C[] = {
 	{ { -677.5f, -39.81088f, 448 }, 218.9615f, 0, 0, &object_000AC308_2, 6, 0xA0000001 }, //Glass 4
 };
 
-extern "C" __declspec(dllexport) LandTable landtable_00021094 = { LengthOfArray(collist_0001F03C), 0, 0xC, 1400, collist_0001F03C, NULL, "SKYDECK02", &texlist_skydeck2, 0, 0 };
+extern "C" __declspec(dllexport) LandTable landtable_00021094 = { LengthOfArray(collist_0001F03C), 0, 0xC, 0, 1400, collist_0001F03C, NULL, "SKYDECK02", &texlist_skydeck2, 0, 0 };
 
 #pragma warning(pop)

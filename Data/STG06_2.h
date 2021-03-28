@@ -40813,6 +40813,6 @@ extern "C" __declspec(dllexport) COL collist_000210B8[] = {
 	{ { -280, -109.8532f, -299.985f }, 39.06592f, 0, 0, &object_000FA330, 0, 0x80000000 }, //Weird floor shit opaque rocks end
 };
 
-extern "C" __declspec(dllexport) LandTable landtable_00023EB4 = { LengthOfArray<int16_t>(collist_000210B8), 0, 0xC, 2000, collist_000210B8, NULL, "SKYDECK03", &texlist_skydeck3, 0, 0 };
+extern "C" __declspec(dllexport) LandTable landtable_00023EB4 = { LengthOfArray<int16_t>(collist_000210B8), 0, 0xC, 0, 2000, collist_000210B8, NULL, "SKYDECK03", &texlist_skydeck3, 0, 0 };
 
 #pragma warning(pop)

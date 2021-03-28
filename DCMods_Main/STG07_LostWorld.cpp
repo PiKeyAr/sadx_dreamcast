@@ -12,12 +12,6 @@ NJS_TEXLIST texlist_lw2 = { arrayptrandlength(textures_lw2) };
 NJS_TEXNAME textures_lw3[30];
 NJS_TEXLIST texlist_lw3 = { arrayptrandlength(textures_lw3) };
 
-/*
-#include "LostWorld1.h"
-#include "LostWorld2.h"
-#include "LostWorld3.h"
-*/
-
 NJS_OBJECT* AokiSwitchModel_Base = nullptr;
 NJS_OBJECT* AokiSwitchModel_Child1 = nullptr;
 NJS_OBJECT* AokiSwitchModel_Child2 = nullptr;

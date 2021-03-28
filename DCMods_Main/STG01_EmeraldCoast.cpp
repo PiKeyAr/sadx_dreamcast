@@ -27,12 +27,6 @@ DataArray(NJS_TEX, uvSTG01_00CC0530_d, 0x10C0530, 4); // Static ocean default UV
 DataArray(NJS_TEX, uvSTG01_00CBB000_d, 0x10BB000, 1300); // Dynamic ocean default UVs
 DataPointer(char, DolphinsActivated, 0x3C5E444);
 
-/*
-#include "EmeraldCoast1.h"
-#include "EmeraldCoast2.h"
-#include "EmeraldCoast3.h"
-*/
-
 static float float1 = 0.02f;
 static float float2 = 66.0f;
 static bool SkyboxHidden = false;

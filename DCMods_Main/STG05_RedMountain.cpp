@@ -12,12 +12,6 @@ NJS_TEXLIST texlist_mountain2 = { arrayptrandlength(textures_mountain2) };
 NJS_TEXNAME textures_mountain3[27];
 NJS_TEXLIST texlist_mountain3 = { arrayptrandlength(textures_mountain3) };
 
-/*
-#include "Mountain1.h"
-#include "Mountain2.h"
-#include "Mountain3.h"
-*/
-
 NJS_OBJECT* RMCloudTop = nullptr;
 NJS_OBJECT* RMCloudBottom = nullptr;
 NJS_MODEL_SADX* PropellerGlass = nullptr;

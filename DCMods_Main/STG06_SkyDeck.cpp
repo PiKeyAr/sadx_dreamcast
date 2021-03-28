@@ -12,12 +12,6 @@ NJS_TEXLIST texlist_skydeck2 = { arrayptrandlength(textures_skydeck2) };
 NJS_TEXNAME textures_skydeck3[65];
 NJS_TEXLIST texlist_skydeck3 = { arrayptrandlength(textures_skydeck3) };
 
-/*
-#include "SkyDeck1.h"
-#include "SkyDeck2.h"
-#include "SkyDeck3.h"
-*/
-
 NJS_OBJECT* SkyNormal1 = nullptr;
 NJS_OBJECT* SkyNormal2 = nullptr;
 NJS_OBJECT* SkyDark2 = nullptr;

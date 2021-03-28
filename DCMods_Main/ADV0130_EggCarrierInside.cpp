@@ -18,15 +18,6 @@ NJS_TEXLIST texlist_ec34 = { arrayptrandlength(textures_ec34) };
 NJS_TEXNAME textures_ec35[14];
 NJS_TEXLIST texlist_ec35 = { arrayptrandlength(textures_ec35) };
 
-/*
-#include "ADV01C_00.h"
-#include "ADV01C_01.h"
-#include "ADV01C_02.h"
-#include "ADV01C_03.h"
-#include "ADV01C_04.h"
-#include "ADV01C_05.h"
-*/
-
 NJS_OBJECT* TaraiButton_Transparent = nullptr;
 NJS_OBJECT* TaraiButton_OpaqueOnly = nullptr;
 

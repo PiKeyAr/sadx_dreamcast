@@ -1,6 +1,7 @@
 #include "stdafx.h"
 
 // TODO:
+// Meshset cloning, Egg Viper
 // Split code and asset projects
 // Load all animations externally
 // Use symbol stuff where possible

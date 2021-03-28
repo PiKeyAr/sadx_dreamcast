@@ -18,13 +18,6 @@ NJS_TEXLIST texlist_casino3 = { arrayptrandlength(textures_casino3) };
 NJS_TEXNAME textures_casino4[71];
 NJS_TEXLIST texlist_casino4 = { arrayptrandlength(textures_casino4) };
 
-/*
-#include "Casino1.h"
-#include "Casino2.h"
-#include "Casino3.h"
-#include "Casino4.h"
-*/
-
 NJS_OBJECT* OSlX_Base = nullptr;
 NJS_OBJECT* OLhtr_Bright = nullptr;
 NJS_OBJECT* OLhtr_Dark = nullptr;

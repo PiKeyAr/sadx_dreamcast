@@ -12,13 +12,6 @@ NJS_TEXLIST texlist_icecap2 = { arrayptrandlength(textures_icecap2) };
 NJS_TEXNAME textures_icecap3[40];
 NJS_TEXLIST texlist_icecap3 = { arrayptrandlength(textures_icecap3) };
 
-/*
-#include "IceCap1.h"
-#include "IceCap2.h"
-#include "IceCap3.h"
-#include "IceCap4.h"
-*/
-
 DataPointer(float, CurrentFogDist, 0x03ABDC64);
 DataPointer(float, CurrentFogLayer, 0x03ABDC60);
 DataPointer(NJS_ACTION, stru_E758E4, 0xE758E4);

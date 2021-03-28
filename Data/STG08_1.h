@@ -26803,6 +26803,6 @@ extern "C" __declspec(dllexport) COL collist_00014B68[] = {
 	{ { 1358.082f, 187.7548f, 186.5943f }, 125.2277f, 0, 0, &object_0007F6C4, 0, 0x81040000 },
 };
 
-extern "C" __declspec(dllexport) LandTable landtable_00015714 = { LengthOfArray(collist_00014B68), 0, 8, 0, collist_00014B68, NULL, "ICECAP02", &texlist_icecap2, 0, 0 };
+extern "C" __declspec(dllexport) LandTable landtable_00015714 = { LengthOfArray(collist_00014B68), 0, 8, 0, 0, collist_00014B68, NULL, "ICECAP02", &texlist_icecap2, 0, 0 };
 
 #pragma warning(pop)
