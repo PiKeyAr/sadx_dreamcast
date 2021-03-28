@@ -619,7 +619,7 @@ void RemoveMaterialColors(NJS_MATERIAL* material)
 bool ForceWhiteDiffuse(NJS_MATERIAL* material, uint32_t flags)
 {
 	diffuse_override(true);
-	diffuse_override_rgb(1, 1, 1);
+	diffuse_override_rgb(1, 1, 1, false);
 	return true;
 }
 
