@@ -363,6 +363,16 @@ void DrawDecalHook(NJS_OBJECT *a1)
 	DrawQueueDepthBias = 0.0f;
 }
 
+void Connect0Fix(NJS_MODEL_SADX* model, float scale)
+{
+	late_DrawModelClip(model, 1, scale);
+}
+
+void Connect0Fix2(NJS_OBJECT* obj, float scale)
+{
+	late_DrawObjectClip(obj, 1, scale);
+}
+
 void SkyDeck_Init()
 {
 	STG06_0_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG06\\0.sa1lvl"));
@@ -416,6 +426,11 @@ void SkyDeck_Init()
 		SkyDeckSkyboxModel_Dark.basicdxmodel->mats[3].attrflags |= NJD_DA_ONE | NJD_SA_ONE;
 		WriteCall((void*)0x005ED72F, RenderSmallCloud);
 		WriteJump((void*)0x005ED1E0, SkyDeckSky_new);
+		// Object fixes
+		WriteCall((void*)0x5FAE66, Connect0Fix2); // Connect0
+		WriteCall((void*)0x5FAE2A, Connect0Fix); // Connect0 broken pieces
+		WriteCall((void*)0x5FB5CC, Connect0Fix2); // Talap0
+		WriteCall((void*)0x5FB58A, Connect0Fix); // Talap0 broken pieces
 		// Some material fixes
 		((NJS_OBJECT*)0x95D0F4)->basicdxmodel->mats[7].attrflags &= ~NJD_FLAG_IGNORE_LIGHT; // Aircraft
 		((NJS_OBJECT*)0x95A334)->basicdxmodel->mats[4].attrflags &= ~NJD_FLAG_IGNORE_LIGHT; // Some rocket or whatever
