@@ -402,10 +402,10 @@ void ADV01_Init()
 		NJS_OBJECT* EggChair = LoadModel("system\\data\\ADV0100\\Models\\0019795C.sa1mdl"); // OEggChair
 		*ADV01_ACTIONS[2]->object = *EggChair;
 		*ADV01_ACTIONS[2]->motion = *LoadAnimation("system\\data\\ADV0100\\Models\\00197DBC.saanim"); // OEggChair
-		*ADV01_OBJECTS[21] = *EggChair->child->child;
-		*ADV01_OBJECTS[22] = *EggChair->child->child->sibling->sibling->sibling;
-		*ADV01_OBJECTS[23] = *EggChair->child->child->sibling->sibling->sibling->sibling;
-		*ADV01_OBJECTS[24] = *EggChair->child->child->sibling->sibling->sibling->sibling->sibling;
+		ADV01_OBJECTS[21] = EggChair->child->child;
+		ADV01_OBJECTS[22] = EggChair->child->child->sibling->sibling->sibling;
+		ADV01_OBJECTS[23] = EggChair->child->child->sibling->sibling->sibling->sibling;
+		ADV01_OBJECTS[24] = EggChair->child->child->sibling->sibling->sibling->sibling->sibling;
 		*ADV01_ACTIONS[6]->object = *LoadModel("system\\data\\ADV0100\\Models\\0016991C.sa1mdl"); // OSkyDeck
 		NJS_OBJECT* ECTransform = LoadModel("system\\data\\ADV0100\\Models\\00209538.sa1mdl");
 		*ADV01_ACTIONS[7]->object = *ECTransform; // EC transform
