@@ -99,6 +99,7 @@ struct TitleScreenData
 };
 
 // Various pointers
+DataPointer(char, MenuSelection, 0x3B2A2FA);
 DataPointer(NJS_CAMERA, View, 0x3AAD0A0);
 FunctionPointer(void, njSetCamera_, (NJS_CAMERA* matrix), 0x781250);
 FunctionPointer(void, sub_433410, (ObjectMaster* a1), 0x433410);
