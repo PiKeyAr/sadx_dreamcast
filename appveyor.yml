@@ -26,7 +26,7 @@ before_build:
 - cmd: git submodule update --init --recursive
 
 build:
-  project: DCMods_Main.sln
+  project: sadx_dreamcast.sln
   
 after_build:
 - cmd: copy C:\projects\sadx-dreamcast\bin\DCMods_Main.dll C:\DreamcastConversion\DCMods_Main.dll
