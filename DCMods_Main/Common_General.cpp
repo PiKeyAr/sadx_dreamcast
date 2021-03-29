@@ -1,10 +1,4 @@
 #include "stdafx.h"
-#include "Animals_motions.h"
-#include "CommonObjects.h"
-//#include "StageLights.h"
-//#include "Animals.h"
-//#include "Frogs.h"
-//#include "RobotChest.h"
 
 // TODO: Chaos puddle in Knuckles' "Chaos 4 emerges" cutscene shouldn't ignore lighting (use specular 3)
 // TODO: Chaos puddle in the cutscene after Chaos 2 is defeated should use object light type
@@ -98,6 +92,34 @@ static float EmeraldScale = 1.005f;
 static uint8_t FilteringSettingBackup1 = 2;
 static uint8_t FilteringSettingBackup2 = 2;
 static uint8_t FilteringSettingBackup3 = 2;
+
+NJS_COLOR SwitchDark_vcolor1[] = {
+	{ 0xFF101010 },
+	{ 0xFF101010 },
+	{ 0xFF101010 },
+	{ 0xFF101010 },
+	{ 0xFF101010 },
+	{ 0xFF101010 },
+	{ 0xFF101010 },
+	{ 0xFF101010 },
+};
+
+NJS_COLOR SwitchDark_vcolor2[] = {
+	{ 0xFF101010 },
+	{ 0xFF101010 },
+	{ 0xFF101010 },
+	{ 0xFF101010 },
+	{ 0xFF101010 },
+	{ 0xFF101010 },
+	{ 0xFF101010 },
+	{ 0xFF101010 },
+	{ 0xFF101010 },
+	{ 0xFF101010 },
+	{ 0xFF101010 },
+	{ 0xFF101010 },
+	{ 0xFF101010 },
+	{ 0xFF101010 },
+};
 
 static const NJS_MATERIAL* Chaos4Materials[] = {
 	((NJS_MATERIAL*)0x0119D0FC),
@@ -2299,49 +2321,49 @@ void General_Init()
 		// Load SA1 animal models and replace their models/animations in Action Stages
 		NJS_OBJECT* SA1Animal_Goma = LoadModel("system\\data\\1st_read\\Models\\00157760.sa1mdl");
 		Action_Goma.object = SA1Animal_Goma;
-		Action_Goma.motion = &_158830;
+		Action_Goma.motion = LoadAnimation("system\\data\\1st_read\\Models\\00158830.saanim");
 		NJS_OBJECT* SA1Animal_Pen = LoadModel("system\\data\\1st_read\\Models\\00159F2C.sa1mdl");
 		Action_Pen.object = SA1Animal_Pen;
-		Action_Pen.motion = &_15B72C;
+		Action_Pen.motion = LoadAnimation("system\\data\\1st_read\\Models\\0015B72C.saanim");
 		NJS_OBJECT* SA1Animal_Tuba = LoadModel("system\\data\\1st_read\\Models\\0015CD8C.sa1mdl");
 		Action_Tuba.object = SA1Animal_Tuba;
-		Action_Tuba.motion = &_15DD6C;
+		Action_Tuba.motion = LoadAnimation("system\\data\\1st_read\\Models\\0015DD6C.saanim");
 		NJS_OBJECT* SA1Animal_Kuja = LoadModel("system\\data\\1st_read\\Models\\0015F348.sa1mdl");
 		Action_Kuja.object = SA1Animal_Kuja;
-		Action_Kuja.motion = &_160688;
+		Action_Kuja.motion = LoadAnimation("system\\data\\1st_read\\Models\\00160688.saanim");
 		NJS_OBJECT* SA1Animal_Oum = LoadModel("system\\data\\1st_read\\Models\\00161CFC.sa1mdl");
 		Action_Oum.object = SA1Animal_Oum;
-		Action_Oum.motion = &_162EBC;
+		Action_Oum.motion = LoadAnimation("system\\data\\1st_read\\Models\\00162EBC.saanim");
 		NJS_OBJECT* SA1Animal_Koar = LoadModel("system\\data\\1st_read\\Models\\00164470.sa1mdl");
 		Action_Koar.object = SA1Animal_Koar;
-		Action_Koar.motion = &_165C70;
+		Action_Koar.motion = LoadAnimation("system\\data\\1st_read\\Models\\00165C70.saanim");
 		NJS_OBJECT* SA1Animal_Wara = LoadModel("system\\data\\1st_read\\Models\\001674B8.sa1mdl");
 		Action_Wara.object = SA1Animal_Wara;
-		Action_Wara.motion = &_169078;
+		Action_Wara.motion = LoadAnimation("system\\data\\1st_read\\Models\\00169078.saanim");
 		NJS_OBJECT* SA1Animal_Banb = LoadModel("system\\data\\1st_read\\Models\\0016A648.sa1mdl");
 		Action_Banb.object = SA1Animal_Banb;
-		Action_Banb.motion = &_16BC68;
+		Action_Banb.motion = LoadAnimation("system\\data\\1st_read\\Models\\0016BC68.saanim");
 		NJS_OBJECT* SA1Animal_Usa = LoadModel("system\\data\\1st_read\\Models\\0016D218.sa1mdl");
 		Action_Usa.object = SA1Animal_Usa;
-		Action_Usa.motion = &_16EA18;
+		Action_Usa.motion = LoadAnimation("system\\data\\1st_read\\Models\\0016EA18.saanim");
 		NJS_OBJECT* SA1Animal_Mogu = LoadModel("system\\data\\1st_read\\Models\\0016FD28.sa1mdl");
 		Action_Mogu.object = SA1Animal_Mogu;
-		Action_Mogu.motion = &_170DF8;
+		Action_Mogu.motion = LoadAnimation("system\\data\\1st_read\\Models\\00170DF8.saanim");
 		NJS_OBJECT* SA1Animal_Zou = LoadModel("system\\data\\1st_read\\Models\\001724E0.sa1mdl");
 		Action_Zou.object = SA1Animal_Zou;
-		Action_Zou.motion = &_174000;
+		Action_Zou.motion = LoadAnimation("system\\data\\1st_read\\Models\\00174000.saanim");
 		NJS_OBJECT* SA1Animal_Lion = LoadModel("system\\data\\1st_read\\Models\\0017579C.sa1mdl");
 		Action_Lion.object = SA1Animal_Lion;
-		Action_Lion.motion = &_17725C;
+		Action_Lion.motion = LoadAnimation("system\\data\\1st_read\\Models\\0017725C.saanim");
 		NJS_OBJECT* SA1Animal_Gori = LoadModel("system\\data\\1st_read\\Models\\00178190.sa1mdl");
 		Action_Gori.object = SA1Animal_Gori;
-		Action_Gori.motion = &_178FE0;
+		Action_Gori.motion = LoadAnimation("system\\data\\1st_read\\Models\\00178FE0.saanim");
 		NJS_OBJECT* SA1Animal_Suka = LoadModel("system\\data\\1st_read\\Models\\0017A37C.sa1mdl");
 		Action_Suka.object = SA1Animal_Suka;
-		Action_Suka.motion = &_17B5DC;
+		Action_Suka.motion = LoadAnimation("system\\data\\1st_read\\Models\\0017B5DC.saanim");
 		NJS_OBJECT* SA1Animal_Rako = LoadModel("system\\data\\1st_read\\Models\\0017CDE0.sa1mdl");
 		Action_Rako.object = SA1Animal_Rako;
-		Action_Rako.motion = &_17E5E0;
+		Action_Rako.motion = LoadAnimation("system\\data\\1st_read\\Models\\0017E5E0.saanim");
 		// Replace DX animal models with edited DC models that have matching model hierarchy (for Chao Garden animations)
 		*(NJS_OBJECT*)0x944FD4 = *LoadModel("system\\data\\1st_read\\Models\\DX\\00544FD4.sa1mdl"); // Gori
 		*(NJS_OBJECT*)0x934AE0 = *LoadModel("system\\data\\1st_read\\Models\\DX\\00534AE0.sa1mdl"); // Koar

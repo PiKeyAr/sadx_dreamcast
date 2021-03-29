@@ -25,3 +25,4 @@ NJS_TEXLIST texlist_ec05 = {arrayptrandlength(textures_ec05)};
 #include "ADV0100_3.h"
 #include "ADV0100_4.h"
 #include "ADV0100_5.h"
+#include "ADV0100_Motions.h"

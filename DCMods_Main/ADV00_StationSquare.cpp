@@ -1,5 +1,4 @@
 #include "stdafx.h"
-#include "ADV00_Motions.h"
 
 // Texlists
 NJS_TEXNAME textures_sscar[22];
@@ -777,7 +776,7 @@ void ADV00_Init()
 		((NJS_OBJECT*)0x2AEA9F8)->basicdxmodel->mats[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT; // OS1Dnto doesn't ignore lighting on DC even though the model does
 		*(NJS_OBJECT*)0x2AB2CCC = *LoadModel("system\\data\\ADV00\\Models\\001689C4.sa1mdl"); // Souvenir shop door
 		*(NJS_OBJECT*)0x2AB57E4 = *LoadModel("system\\data\\ADV00\\Models\\0016B404.sa1mdl"); // OTwaDoor
-		*(NJS_MOTION*)0x2AB5960 = _0016B4B4; // OTwaDoor motion
+		*(NJS_MOTION*)0x2AB5960 = *LoadAnimation("system\\data\\ADV00\\Models\\0016B4B4.saanim"); // OTwaDoor motion
 		*(NJS_OBJECT*)0x2AFE668 = *LoadModel("system\\data\\ADV00\\Models\\001A6DEC.sa1mdl"); // Casino decoration 1 (stars)
 		*(NJS_OBJECT*)0x2B027D8 = *LoadModel("system\\data\\ADV00\\Models\\001AADA4.sa1mdl"); // Casino decoration 2 (wall)
 		*(NJS_OBJECT*)0x2B04CF8 = *LoadModel("system\\data\\ADV00\\Models\\001AD220.sa1mdl"); // Casino decoration 3 (letters)

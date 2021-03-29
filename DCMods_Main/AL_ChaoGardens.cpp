@@ -1,5 +1,4 @@
 #include "stdafx.h"
-#include "AL_GARDEN00_Motions.h"
 #include "AL_MAIN_Messages.h"
 
 NJS_TEXNAME textures_garden00_object[16];
@@ -2321,7 +2320,7 @@ void ChaoGardens_Init()
 			WriteCall((void*)0x6390B2, PlayElevatorSound);
 			WriteData<5>((void*)0x007195A3, 0x90); // SADX SS Garden Exit
 			*(NJS_OBJECT*)0x0340C5A4 = *LoadModel("system\\data\\AL_GARDEN00\\Models\\00012A2C.sa1mdl"); // Chao Race door
-			*(NJS_MOTION*)0x0340D978 = _12ADC; // Chao Race door animation
+			*(NJS_MOTION*)0x0340D978 = *LoadAnimation("system\\data\\AL_GARDEN00\\Models\\00012ADC.saanim"); // Chao Race door animation
 			WriteData<1>((void*)0x00719265, 0x7D); // Exit 1
 			WriteData<1>((void*)0x00719264, 0xF2); // Exit 2
 			WriteData<1>((void*)0x00719263, 0xF0); // Exit 2

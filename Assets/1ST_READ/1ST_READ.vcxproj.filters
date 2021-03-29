@@ -20,10 +20,10 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Data\AL_GARDEN00.h">
+    <ClInclude Include="..\..\Data\Animals_motions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Data\AL_GARDEN00_Motions.h">
+    <ClInclude Include="..\..\Data\CommonObjects.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

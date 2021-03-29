@@ -1,5 +1,4 @@
 #include "stdafx.h"
-#include "ADV0100_Motions.h"
 
 // Texlists
 NJS_TEXNAME textures_obj_ec00[206];
@@ -402,7 +401,7 @@ void ADV01_Init()
 		// Model replacements
 		NJS_OBJECT* EggChair = LoadModel("system\\data\\ADV0100\\Models\\0019795C.sa1mdl"); // OEggChair
 		*ADV01_ACTIONS[2]->object = *EggChair;
-		*ADV01_ACTIONS[2]->motion = _197dbc; // OEggChair
+		*ADV01_ACTIONS[2]->motion = *LoadAnimation("system\\data\\ADV0100\\Models\\00197DBC.saanim"); // OEggChair
 		*ADV01_OBJECTS[21] = *EggChair->child->child;
 		*ADV01_OBJECTS[22] = *EggChair->child->child->sibling->sibling->sibling;
 		*ADV01_OBJECTS[23] = *EggChair->child->child->sibling->sibling->sibling->sibling;

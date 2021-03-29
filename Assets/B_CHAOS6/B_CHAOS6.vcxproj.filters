@@ -20,10 +20,13 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-     <ClInclude Include="..\..\Data\B_CHAOS6_0.h">
+    <ClInclude Include="..\..\Data\B_CHAOS6_0.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-     <ClInclude Include="..\..\Data\B_CHAOS6_1.h">
+    <ClInclude Include="..\..\Data\B_CHAOS6_1.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Data\B_CHAOS6_Motions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

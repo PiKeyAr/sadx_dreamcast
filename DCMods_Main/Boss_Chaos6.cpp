@@ -1,5 +1,4 @@
 #include "stdafx.h"
-#include "B_CHAOS6_Motions.h"
 
 NJS_TEXNAME textures_chaos6s[77];
 NJS_TEXLIST texlist_chaos6s = { arrayptrandlength(textures_chaos6s) };
@@ -161,7 +160,7 @@ void Chaos6_Init()
 		WriteCall((void*)0x55BCF4, njDrawSprite3D_Queue_TheyForgotToClamp);
 		WriteJump((void*)0x556FD0, Chaos6SkyboxBottom);
 		WriteJump((void*)0x556F20, Chaos6SkyboxMain);
-		((NJS_ACTION*)0x134C56C)->motion = &Chaos6Animation3; // Fix flickering parts in Chaos 6' walking animation
+		((NJS_ACTION*)0x134C56C)->motion = LoadAnimation("system\\data\\B_CHAOS6\\Models\\0011889C.saanim"); // Fix flickering parts in Chaos 6' walking animation
 		WriteData<1>((char*)0x556E40, 0xC3u); // Disable SetClip_Chaos6S
 		WriteData<1>((char*)0x556D60, 0xC3u); // Disable SetClip_Chaos6K
 		for (int i = 0; i < 3; i++)

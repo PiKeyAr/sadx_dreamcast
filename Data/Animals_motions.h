@@ -4,17 +4,17 @@
 #pragma warning(disable: 4267 4838)
 
 //GOMA
-NJS_MKEY_F _158830_0_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _158830_0_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _158830_0_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _158830_0_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _158830_1_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _158830_1_pos[] = {
 	{ 0, 0, 0, 0 },
 { 1, 0, 0.028512f, -0.00316f },
 { 2, 0, 0.09276699f, -0.008425999f },
@@ -34,17 +34,17 @@ NJS_MKEY_F _158830_1_pos[] = {
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _158830_1_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _158830_1_rot[] = {
 	{ 0, 0, 0x3FFF, 0 },
 { 16, 0, 0x3FFF, 0 }
 };
 
-NJS_MKEY_F _158830_2_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _158830_2_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _158830_2_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _158830_2_rot[] = {
 	{ 0, 0, 0, 0x4034 },
 { 1, 0, 0, 0x3EF6 },
 { 2, 0, 0, 0x3C46 },
@@ -64,42 +64,42 @@ NJS_MKEY_A _158830_2_rot[] = {
 { 16, 0, 0, 0x4034 }
 };
 
-NJS_MKEY_F _158830_3_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _158830_3_pos[] = {
 	{ 0, 3.043363f, 0, 0 },
 { 16, 3.043363f, 0, 0 }
 };
 
-NJS_MKEY_A _158830_3_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _158830_3_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _158830_4_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _158830_4_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _158830_4_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _158830_4_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _158830_5_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _158830_5_pos[] = {
 	{ 0, 0.403036f, 0.728202f, 0.60386f },
 { 16, 0.403036f, 0.728202f, 0.60386f }
 };
 
-NJS_MKEY_A _158830_5_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _158830_5_rot[] = {
 	{ 0, 0xFFFF9FE6, 0xFFFFC001, 0xFFFFDFE6 },
 { 16, 0xFFFF9FE6, 0xFFFFC001, 0xFFFFDFE6 }
 };
 
-NJS_MKEY_F _158830_6_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _158830_6_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _158830_6_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _158830_6_rot[] = {
 	{ 0, 0, 0xAD6, 0xFFFFED1B },
 { 1, 0, 0xD26, 0xFFFFEE35 },
 { 2, 0, 0x11E3, 0xFFFFF18E },
@@ -119,42 +119,42 @@ NJS_MKEY_A _158830_6_rot[] = {
 { 16, 0, 0xAD6, 0xFFFFED1B }
 };
 
-NJS_MKEY_F _158830_7_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _158830_7_pos[] = {
 	{ 0, 1.450049f, 0, 0 },
 { 16, 1.450049f, 0, 0 }
 };
 
-NJS_MKEY_A _158830_7_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _158830_7_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _158830_8_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _158830_8_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _158830_8_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _158830_8_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _158830_9_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _158830_9_pos[] = {
 	{ 0, 0.403036f, 0.728202f, -0.60386f },
 { 16, 0.403036f, 0.728202f, -0.60386f }
 };
 
-NJS_MKEY_A _158830_9_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _158830_9_rot[] = {
 	{ 0, 0x601A, 0x3FFF, 0xFFFFDFE6 },
 { 16, 0x601A, 0x3FFF, 0xFFFFDFE6 }
 };
 
-NJS_MKEY_F _158830_10_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _158830_10_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _158830_10_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _158830_10_rot[] = {
 	{ 0, 0, 0xFFFF8AD7, 0x6D19 },
 { 1, 0, 0xFFFF8D28, 0x6E33 },
 { 2, 0, 0xFFFF91E5, 0x718D },
@@ -174,42 +174,42 @@ NJS_MKEY_A _158830_10_rot[] = {
 { 16, 0, 0xFFFF8AD7, 0x6D19 }
 };
 
-NJS_MKEY_F _158830_11_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _158830_11_pos[] = {
 	{ 0, 1.450049f, 0, 0 },
 { 16, 1.450049f, 0, 0 }
 };
 
-NJS_MKEY_A _158830_11_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _158830_11_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _158830_12_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _158830_12_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _158830_12_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _158830_12_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _158830_13_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _158830_13_pos[] = {
 	{ 0, 0.278968f, -1.332942f, 0.126363f },
 { 16, 0.278968f, -1.332942f, 0.126363f }
 };
 
-NJS_MKEY_A _158830_13_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _158830_13_rot[] = {
 	{ 0, 0xFFFF9FE6, 0xFFFFC001, 0xFFFFDFE6 },
 { 16, 0xFFFF9FE6, 0xFFFFC001, 0xFFFFDFE6 }
 };
 
-NJS_MKEY_F _158830_14_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _158830_14_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _158830_14_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _158830_14_rot[] = {
 	{ 0, 0, 0x5B6, 0x27CE },
 { 1, 0, 0x3DB, 0x279D },
 { 2, 0, 0xFFFFFFE3, 0x272F },
@@ -229,42 +229,42 @@ NJS_MKEY_A _158830_14_rot[] = {
 { 16, 0, 0x5B6, 0x27CE }
 };
 
-NJS_MKEY_F _158830_15_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _158830_15_pos[] = {
 	{ 0, 0.981858f, 0, 0 },
 { 16, 0.981858f, 0, 0 }
 };
 
-NJS_MKEY_A _158830_15_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _158830_15_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _158830_16_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _158830_16_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _158830_16_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _158830_16_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _158830_17_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _158830_17_pos[] = {
 	{ 0, 0.336866f, 2.291382f, 0 },
 { 16, 0.336866f, 2.291382f, 0 }
 };
 
-NJS_MKEY_A _158830_17_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _158830_17_rot[] = {
 	{ 0, 0x201A, 0x3FFF, 0xFFFFDFE6 },
 { 16, 0x201A, 0x3FFF, 0xFFFFDFE6 }
 };
 
-NJS_MKEY_F _158830_18_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _158830_18_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _158830_18_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _158830_18_rot[] = {
 	{ 0, 0x7FFF, 0, 0x71 },
 { 1, 0x7FFF, 0xA2, 0xFFFFFB9F },
 { 2, 0x7FFF, 0x13E, 0xFFFFF1C0 },
@@ -284,42 +284,42 @@ NJS_MKEY_A _158830_18_rot[] = {
 { 16, 0x7FFF, 0, 0x71 }
 };
 
-NJS_MKEY_F _158830_19_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _158830_19_pos[] = {
 	{ 0, 0.749528f, 0, 0 },
 { 16, 0.749528f, 0, 0 }
 };
 
-NJS_MKEY_A _158830_19_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _158830_19_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _158830_20_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _158830_20_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _158830_20_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _158830_20_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _158830_21_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _158830_21_pos[] = {
 	{ 0, 0.336866f, 2.291382f, 0 },
 { 16, 0.336866f, 2.291382f, 0 }
 };
 
-NJS_MKEY_A _158830_21_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _158830_21_rot[] = {
 	{ 0, 0xFFFFDFE6, 0xFFFFC001, 0xFFFFDFE6 },
 { 16, 0xFFFFDFE6, 0xFFFFC001, 0xFFFFDFE6 }
 };
 
-NJS_MKEY_F _158830_22_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _158830_22_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _158830_22_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _158830_22_rot[] = {
 	{ 0, 0, 0, 0x71 },
 { 1, 0, 0xFFFFFF5E, 0xFFFFFB9F },
 { 2, 0, 0xFFFFFEC2, 0xFFFFF1C0 },
@@ -339,42 +339,42 @@ NJS_MKEY_A _158830_22_rot[] = {
 { 16, 0, 0, 0x71 }
 };
 
-NJS_MKEY_F _158830_23_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _158830_23_pos[] = {
 	{ 0, 0.749528f, 0, 0 },
 { 16, 0.749528f, 0, 0 }
 };
 
-NJS_MKEY_A _158830_23_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _158830_23_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _158830_24_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _158830_24_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _158830_24_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _158830_24_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _158830_25_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _158830_25_pos[] = {
 	{ 0, 0.278968f, -1.332942f, -0.126362f },
 { 16, 0.278968f, -1.332942f, -0.126362f }
 };
 
-NJS_MKEY_A _158830_25_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _158830_25_rot[] = {
 	{ 0, 0x601A, 0x3FFF, 0xFFFFDFE6 },
 { 16, 0x601A, 0x3FFF, 0xFFFFDFE6 }
 };
 
-NJS_MKEY_F _158830_26_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _158830_26_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _158830_26_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _158830_26_rot[] = {
 	{ 0, 0x7FFF, 0xFFFFFA4A, 0x27CE },
 { 1, 0x7FFF, 0xFFFFFC25, 0x279D },
 { 2, 0x7FFF, 0x1D, 0x272F },
@@ -394,27 +394,27 @@ NJS_MKEY_A _158830_26_rot[] = {
 { 16, 0x7FFF, 0xFFFFFA4A, 0x27CE }
 };
 
-NJS_MKEY_F _158830_27_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _158830_27_pos[] = {
 	{ 0, 0.981858f, 0, 0 },
 { 16, 0.981858f, 0, 0 }
 };
 
-NJS_MKEY_A _158830_27_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _158830_27_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _158830_28_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _158830_28_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _158830_28_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _158830_28_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MDATA2 _158830_mdat[] = {
+extern "C" __declspec(dllexport) NJS_MDATA2 _158830_mdat[] = {
 	{ _158830_0_pos, _158830_0_rot, LengthOfArray<Uint32>(_158830_0_pos), LengthOfArray<Uint32>(_158830_0_rot) },
 { _158830_1_pos, _158830_1_rot, LengthOfArray<Uint32>(_158830_1_pos), LengthOfArray<Uint32>(_158830_1_rot) },
 { _158830_2_pos, _158830_2_rot, LengthOfArray<Uint32>(_158830_2_pos), LengthOfArray<Uint32>(_158830_2_rot) },
@@ -446,20 +446,20 @@ NJS_MDATA2 _158830_mdat[] = {
 { _158830_28_pos, _158830_28_rot, LengthOfArray<Uint32>(_158830_28_pos), LengthOfArray<Uint32>(_158830_28_rot) }
 };
 
-NJS_MOTION _158830 = { _158830_mdat, 17, NJD_MTYPE_POS_0 | NJD_MTYPE_ANG_1, 2 };
+extern "C" __declspec(dllexport) NJS_MOTION _158830 = { _158830_mdat, 17, NJD_MTYPE_POS_0 | NJD_MTYPE_ANG_1, 2 };
 
 //PEN
-NJS_MKEY_F _15B72C_0_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _15B72C_0_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _15B72C_0_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _15B72C_0_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _15B72C_1_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _15B72C_1_pos[] = {
 	{ 0, 0, 0, 0 },
 { 1, 0, 0.060311f, 0.033827f },
 { 2, 0, 0.186213f, 0.096649f },
@@ -479,17 +479,17 @@ NJS_MKEY_F _15B72C_1_pos[] = {
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _15B72C_1_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _15B72C_1_rot[] = {
 	{ 0, 0, 0x3FFF, 0 },
 { 16, 0, 0x3FFF, 0 }
 };
 
-NJS_MKEY_F _15B72C_2_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _15B72C_2_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _15B72C_2_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _15B72C_2_rot[] = {
 	{ 0, 0, 0, 0x3FFF },
 { 1, 0xD3, 0, 0x3FFF },
 { 2, 0x2A5, 0, 0x3FFF },
@@ -509,32 +509,32 @@ NJS_MKEY_A _15B72C_2_rot[] = {
 { 16, 0, 0, 0x3FFF }
 };
 
-NJS_MKEY_F _15B72C_3_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _15B72C_3_pos[] = {
 	{ 0, 4.992908f, 0, 0 },
 { 16, 4.992908f, 0, 0 }
 };
 
-NJS_MKEY_A _15B72C_3_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _15B72C_3_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _15B72C_4_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _15B72C_4_pos[] = {
 	{ 0, 3.193245f, 0.346022f, 0 },
 { 16, 3.193245f, 0.346022f, 0 }
 };
 
-NJS_MKEY_A _15B72C_4_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _15B72C_4_rot[] = {
 	{ 0, 0, 0, 0xFFFFC001 },
 { 16, 0, 0, 0xFFFFC001 }
 };
 
-NJS_MKEY_F _15B72C_5_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _15B72C_5_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _15B72C_5_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _15B72C_5_rot[] = {
 	{ 0, 0, 0, 0x56C },
 { 1, 0, 0xFFFFFF4C, 0x17B },
 { 2, 0, 0xFFFFFDBE, 0xFFFFFCF5 },
@@ -554,42 +554,42 @@ NJS_MKEY_A _15B72C_5_rot[] = {
 { 16, 0, 0, 0x56C }
 };
 
-NJS_MKEY_F _15B72C_6_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _15B72C_6_pos[] = {
 	{ 0, 2.323657f, 0, 0 },
 { 16, 2.323657f, 0, 0 }
 };
 
-NJS_MKEY_A _15B72C_6_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _15B72C_6_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _15B72C_7_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _15B72C_7_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _15B72C_7_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _15B72C_7_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _15B72C_8_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _15B72C_8_pos[] = {
 	{ 0, 2.57955f, 0.982766f, -0.030644f },
 { 16, 2.57955f, 0.982766f, -0.030644f }
 };
 
-NJS_MKEY_A _15B72C_8_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _15B72C_8_rot[] = {
 	{ 0, 0x1FFF, 0x3FFF, 0xFFFFE001 },
 { 16, 0x1FFF, 0x3FFF, 0xFFFFE001 }
 };
 
-NJS_MKEY_F _15B72C_9_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _15B72C_9_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _15B72C_9_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _15B72C_9_rot[] = {
 	{ 0, 0, 0xFFFFFDEE, 0xC85 },
 { 1, 0, 0xFFFFFE2E, 0x878 },
 { 2, 0, 0xFFFFFDF9, 0x1D0 },
@@ -609,42 +609,42 @@ NJS_MKEY_A _15B72C_9_rot[] = {
 { 16, 0, 0xFFFFFDEE, 0xC85 }
 };
 
-NJS_MKEY_F _15B72C_10_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _15B72C_10_pos[] = {
 	{ 0, 1.447636f, 0, 0 },
 { 16, 1.447636f, 0, 0 }
 };
 
-NJS_MKEY_A _15B72C_10_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _15B72C_10_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _15B72C_11_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _15B72C_11_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _15B72C_11_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _15B72C_11_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _15B72C_12_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _15B72C_12_pos[] = {
 	{ 0, 2.57955f, 0.982766f, 0.030644f },
 { 16, 2.57955f, 0.982766f, 0.030644f }
 };
 
-NJS_MKEY_A _15B72C_12_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _15B72C_12_rot[] = {
 	{ 0, 0xFFFFE001, 0xFFFFC001, 0xFFFFE001 },
 { 16, 0xFFFFE001, 0xFFFFC001, 0xFFFFE001 }
 };
 
-NJS_MKEY_F _15B72C_13_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _15B72C_13_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _15B72C_13_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _15B72C_13_rot[] = {
 	{ 0, 0, 0x212, 0xC85 },
 { 1, 0, 0x298, 0x848 },
 { 2, 0, 0x2F7, 0x29E },
@@ -664,42 +664,42 @@ NJS_MKEY_A _15B72C_13_rot[] = {
 { 16, 0, 0x212, 0xC85 }
 };
 
-NJS_MKEY_F _15B72C_14_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _15B72C_14_pos[] = {
 	{ 0, 1.447636f, 0, 0 },
 { 16, 1.447636f, 0, 0 }
 };
 
-NJS_MKEY_A _15B72C_14_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _15B72C_14_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _15B72C_15_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _15B72C_15_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _15B72C_15_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _15B72C_15_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _15B72C_16_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _15B72C_16_pos[] = {
 	{ 0, 1.929205f, -0.221791f, -1.052219f },
 { 16, 1.929205f, -0.221791f, -1.052219f }
 };
 
-NJS_MKEY_A _15B72C_16_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _15B72C_16_rot[] = {
 	{ 0, 0x1FFF, 0x3FFF, 0xFFFFE001 },
 { 16, 0x1FFF, 0x3FFF, 0xFFFFE001 }
 };
 
-NJS_MKEY_F _15B72C_17_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _15B72C_17_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _15B72C_17_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _15B72C_17_rot[] = {
 	{ 0, 0x7FFF, 0x7FFF, 0x57DB },
 { 1, 0x7FFF, 0x839F, 0x5B42 },
 { 2, 0x7FFF, 0x8BE2, 0x632E },
@@ -719,42 +719,42 @@ NJS_MKEY_A _15B72C_17_rot[] = {
 { 16, 0x7FFF, 0x7FFF, 0x57DB }
 };
 
-NJS_MKEY_F _15B72C_18_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _15B72C_18_pos[] = {
 	{ 0, 1.608448f, 0, 0 },
 { 16, 1.608448f, 0, 0 }
 };
 
-NJS_MKEY_A _15B72C_18_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _15B72C_18_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _15B72C_19_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _15B72C_19_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _15B72C_19_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _15B72C_19_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _15B72C_20_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _15B72C_20_pos[] = {
 	{ 0, 1.929205f, -0.221791f, 1.052219f },
 { 16, 1.929205f, -0.221791f, 1.052219f }
 };
 
-NJS_MKEY_A _15B72C_20_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _15B72C_20_rot[] = {
 	{ 0, 0xFFFFE001, 0xFFFFC001, 0xFFFFE001 },
 { 16, 0xFFFFE001, 0xFFFFC001, 0xFFFFE001 }
 };
 
-NJS_MKEY_F _15B72C_21_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _15B72C_21_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _15B72C_21_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _15B72C_21_rot[] = {
 	{ 0, 0, 0, 0xFFFFD7DC },
 { 1, 0, 0xFFFFFECE, 0xFFFFDBAD },
 { 2, 0, 0xFFFFFB64, 0xFFFFE4B5 },
@@ -774,27 +774,27 @@ NJS_MKEY_A _15B72C_21_rot[] = {
 { 16, 0, 0, 0xFFFFD7DC }
 };
 
-NJS_MKEY_F _15B72C_22_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _15B72C_22_pos[] = {
 	{ 0, 1.608448f, 0, 0 },
 { 16, 1.608448f, 0, 0 }
 };
 
-NJS_MKEY_A _15B72C_22_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _15B72C_22_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _15B72C_23_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _15B72C_23_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _15B72C_23_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _15B72C_23_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _15B72C_24_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _15B72C_24_pos[] = {
 	{ 0, 2.115839f, -0.269325f, -0.53005f },
 { 1, 2.04935f, -0.269325f, -0.53005f },
 { 2, 1.903074f, -0.269325f, -0.53005f },
@@ -814,17 +814,17 @@ NJS_MKEY_F _15B72C_24_pos[] = {
 { 16, 2.115839f, -0.269325f, -0.53005f }
 };
 
-NJS_MKEY_A _15B72C_24_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _15B72C_24_rot[] = {
 	{ 0, 0, 0, 0xFFFFC001 },
 { 16, 0, 0, 0xFFFFC001 }
 };
 
-NJS_MKEY_F _15B72C_25_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _15B72C_25_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _15B72C_25_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _15B72C_25_rot[] = {
 	{ 0, 0, 0, 0xFFFFCBC3 },
 { 1, 0x13, 0x17, 0xFFFFD1CF },
 { 2, 0xFFFFFFBA, 0xFFFFFFB1, 0xFFFFDEEE },
@@ -844,12 +844,12 @@ NJS_MKEY_A _15B72C_25_rot[] = {
 { 16, 0, 0, 0xFFFFCBC3 }
 };
 
-NJS_MKEY_F _15B72C_26_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _15B72C_26_pos[] = {
 	{ 0, 2.134011f, 0, 0 },
 { 16, 2.134011f, 0, 0 }
 };
 
-NJS_MKEY_A _15B72C_26_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _15B72C_26_rot[] = {
 	{ 0, 0, 0, 0xFFFFB6ED },
 { 1, 0, 0, 0xFFFFB3B9 },
 { 2, 0, 0, 0xFFFFB0C6 },
@@ -869,27 +869,27 @@ NJS_MKEY_A _15B72C_26_rot[] = {
 { 16, 0, 0, 0xFFFFB6ED }
 };
 
-NJS_MKEY_F _15B72C_27_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _15B72C_27_pos[] = {
 	{ 0, 1.499112f, 0, 0 },
 { 16, 1.499112f, 0, 0 }
 };
 
-NJS_MKEY_A _15B72C_27_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _15B72C_27_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _15B72C_28_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _15B72C_28_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _15B72C_28_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _15B72C_28_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _15B72C_29_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _15B72C_29_pos[] = {
 	{ 0, 2.115839f, -0.269325f, 0.53005f },
 { 1, 2.04935f, -0.269325f, 0.53005f },
 { 2, 1.903074f, -0.269325f, 0.53005f },
@@ -909,17 +909,17 @@ NJS_MKEY_F _15B72C_29_pos[] = {
 { 16, 2.115839f, -0.269325f, 0.53005f }
 };
 
-NJS_MKEY_A _15B72C_29_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _15B72C_29_rot[] = {
 	{ 0, 0, 0, 0xFFFFC001 },
 { 16, 0, 0, 0xFFFFC001 }
 };
 
-NJS_MKEY_F _15B72C_30_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _15B72C_30_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _15B72C_30_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _15B72C_30_rot[] = {
 	{ 0, 0, 0, 0xFFFFCBC3 },
 { 1, 0x30, 0x38, 0xFFFFC89B },
 { 2, 0x101, 0x117, 0xFFFFBE6A },
@@ -939,12 +939,12 @@ NJS_MKEY_A _15B72C_30_rot[] = {
 { 16, 0, 0, 0xFFFFCBC3 }
 };
 
-NJS_MKEY_F _15B72C_31_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _15B72C_31_pos[] = {
 	{ 0, 2.134011f, 0, 0 },
 { 16, 2.134011f, 0, 0 }
 };
 
-NJS_MKEY_A _15B72C_31_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _15B72C_31_rot[] = {
 	{ 0, 0, 0, 0xFFFFB6ED },
 { 1, 0, 0, 0xFFFFB2A6 },
 { 2, 0, 0, 0xFFFFACAC },
@@ -964,57 +964,57 @@ NJS_MKEY_A _15B72C_31_rot[] = {
 { 16, 0, 0, 0xFFFFB6ED }
 };
 
-NJS_MKEY_F _15B72C_32_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _15B72C_32_pos[] = {
 	{ 0, 1.499113f, 0, 0 },
 { 16, 1.499113f, 0, 0 }
 };
 
-NJS_MKEY_A _15B72C_32_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _15B72C_32_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _15B72C_33_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _15B72C_33_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _15B72C_33_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _15B72C_33_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _15B72C_34_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _15B72C_34_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _15B72C_34_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _15B72C_34_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _15B72C_35_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _15B72C_35_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _15B72C_35_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _15B72C_35_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _15B72C_36_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _15B72C_36_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _15B72C_36_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _15B72C_36_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MDATA2 _15B72C_mdat[] = {
+extern "C" __declspec(dllexport) NJS_MDATA2 _15B72C_mdat[] = {
 	{ _15B72C_0_pos, _15B72C_0_rot, LengthOfArray<Uint32>(_15B72C_0_pos), LengthOfArray<Uint32>(_15B72C_0_rot) },
 { _15B72C_1_pos, _15B72C_1_rot, LengthOfArray<Uint32>(_15B72C_1_pos), LengthOfArray<Uint32>(_15B72C_1_rot) },
 { _15B72C_2_pos, _15B72C_2_rot, LengthOfArray<Uint32>(_15B72C_2_pos), LengthOfArray<Uint32>(_15B72C_2_rot) },
@@ -1054,125 +1054,125 @@ NJS_MDATA2 _15B72C_mdat[] = {
 { _15B72C_36_pos, _15B72C_36_rot, LengthOfArray<Uint32>(_15B72C_36_pos), LengthOfArray<Uint32>(_15B72C_36_rot) }
 };
 
-NJS_MOTION _15B72C = { _15B72C_mdat, 17, NJD_MTYPE_POS_0 | NJD_MTYPE_ANG_1, 2 };
+extern "C" __declspec(dllexport) NJS_MOTION _15B72C = { _15B72C_mdat, 17, NJD_MTYPE_POS_0 | NJD_MTYPE_ANG_1, 2 };
 
 //TUBA
-NJS_MKEY_F _15DD6C_0_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _15DD6C_0_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _15DD6C_0_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _15DD6C_0_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _15DD6C_1_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _15DD6C_1_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _15DD6C_1_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _15DD6C_1_rot[] = {
 	{ 0, 0, 0x3FFF, 0 },
 { 16, 0, 0x3FFF, 0 }
 };
 
-NJS_MKEY_F _15DD6C_2_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _15DD6C_2_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _15DD6C_2_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _15DD6C_2_rot[] = {
 	{ 0, 0, 0, 0x5EF6 },
 { 16, 0, 0, 0x5EF6 }
 };
 
-NJS_MKEY_F _15DD6C_3_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _15DD6C_3_pos[] = {
 	{ 0, 3.943263f, 0, 0 },
 { 16, 3.943263f, 0, 0 }
 };
 
-NJS_MKEY_A _15DD6C_3_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _15DD6C_3_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _15DD6C_4_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _15DD6C_4_pos[] = {
 	{ 0, 2.181202f, 0.761844f, 0 },
 { 16, 2.181202f, 0.761844f, 0 }
 };
 
-NJS_MKEY_A _15DD6C_4_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _15DD6C_4_rot[] = {
 	{ 0, 0, 0, 0xFFFFC001 },
 { 16, 0, 0, 0xFFFFC001 }
 };
 
-NJS_MKEY_F _15DD6C_5_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _15DD6C_5_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _15DD6C_5_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _15DD6C_5_rot[] = {
 	{ 0, 0, 0, 0x6192 },
 { 16, 0, 0, 0x6192 }
 };
 
-NJS_MKEY_F _15DD6C_6_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _15DD6C_6_pos[] = {
 	{ 0, 1.44925f, 0, 0 },
 { 16, 1.44925f, 0, 0 }
 };
 
-NJS_MKEY_A _15DD6C_6_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _15DD6C_6_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _15DD6C_7_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _15DD6C_7_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _15DD6C_7_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _15DD6C_7_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _15DD6C_8_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _15DD6C_8_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _15DD6C_8_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _15DD6C_8_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _15DD6C_9_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _15DD6C_9_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _15DD6C_9_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _15DD6C_9_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _15DD6C_10_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _15DD6C_10_pos[] = {
 	{ 0, 1.800191f, 0.6843399f, 0.579401f },
 { 16, 1.800191f, 0.6843399f, 0.579401f }
 };
 
-NJS_MKEY_A _15DD6C_10_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _15DD6C_10_rot[] = {
 	{ 0, 0xFFFFE001, 0xFFFFC001, 0xFFFFE001 },
 { 16, 0xFFFFE001, 0xFFFFC001, 0xFFFFE001 }
 };
 
-NJS_MKEY_F _15DD6C_11_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _15DD6C_11_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _15DD6C_11_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _15DD6C_11_rot[] = {
 	{ 0, 0x1F74, 0xFFFFFF6D, 0x765 },
 { 1, 0x1FD8, 0x51, 0x829 },
 { 2, 0x2039, 0x140, 0x8E7 },
@@ -1192,12 +1192,12 @@ NJS_MKEY_A _15DD6C_11_rot[] = {
 { 16, 0x1F74, 0xFFFFFF6D, 0x765 }
 };
 
-NJS_MKEY_F _15DD6C_12_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _15DD6C_12_pos[] = {
 	{ 0, 1.289249f, 0, 0 },
 { 16, 1.289249f, 0, 0 }
 };
 
-NJS_MKEY_A _15DD6C_12_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _15DD6C_12_rot[] = {
 	{ 0, 0, 0, 0xFFFFD131 },
 { 1, 0, 0, 0xFFFFD18C },
 { 2, 0, 0, 0xFFFFD204 },
@@ -1217,52 +1217,52 @@ NJS_MKEY_A _15DD6C_12_rot[] = {
 { 16, 0, 0, 0xFFFFD131 }
 };
 
-NJS_MKEY_F _15DD6C_13_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _15DD6C_13_pos[] = {
 	{ 0, 1.538857f, 0, 0 },
 { 16, 1.538857f, 0, 0 }
 };
 
-NJS_MKEY_A _15DD6C_13_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _15DD6C_13_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _15DD6C_14_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _15DD6C_14_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _15DD6C_14_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _15DD6C_14_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _15DD6C_15_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _15DD6C_15_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _15DD6C_15_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _15DD6C_15_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _15DD6C_16_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _15DD6C_16_pos[] = {
 	{ 0, 1.800191f, 0.6843399f, -0.579401f },
 { 16, 1.800191f, 0.6843399f, -0.579401f }
 };
 
-NJS_MKEY_A _15DD6C_16_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _15DD6C_16_rot[] = {
 	{ 0, 0x1FFF, 0xFFFF4001, 0xFFFFE001 },
 { 16, 0x1FFF, 0xFFFF4001, 0xFFFFE001 }
 };
 
-NJS_MKEY_F _15DD6C_17_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _15DD6C_17_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _15DD6C_17_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _15DD6C_17_rot[] = {
 	{ 0, 0xFFFFDCF3, 0x1BA, 0x45D },
 { 1, 0xFFFFDC9C, 0xD1, 0x520 },
 { 2, 0xFFFFDC47, 0xFFFFFFDE, 0x5DC },
@@ -1282,12 +1282,12 @@ NJS_MKEY_A _15DD6C_17_rot[] = {
 { 16, 0xFFFFDCF3, 0x1BA, 0x45D }
 };
 
-NJS_MKEY_F _15DD6C_18_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _15DD6C_18_pos[] = {
 	{ 0, 1.289249f, 0, 0 },
 { 16, 1.289249f, 0, 0 }
 };
 
-NJS_MKEY_A _15DD6C_18_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _15DD6C_18_rot[] = {
 	{ 0, 0, 0, 0xFFFFD357 },
 { 1, 0, 0, 0xFFFFD3AC },
 { 2, 0, 0, 0xFFFFD41E },
@@ -1307,132 +1307,132 @@ NJS_MKEY_A _15DD6C_18_rot[] = {
 { 16, 0, 0, 0xFFFFD357 }
 };
 
-NJS_MKEY_F _15DD6C_19_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _15DD6C_19_pos[] = {
 	{ 0, 1.538857f, 0, 0 },
 { 16, 1.538857f, 0, 0 }
 };
 
-NJS_MKEY_A _15DD6C_19_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _15DD6C_19_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _15DD6C_20_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _15DD6C_20_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _15DD6C_20_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _15DD6C_20_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _15DD6C_21_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _15DD6C_21_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _15DD6C_21_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _15DD6C_21_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _15DD6C_22_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _15DD6C_22_pos[] = {
 	{ 0, 0.33389f, -0.313131f, 0.260831f },
 { 16, 0.33389f, -0.313131f, 0.260831f }
 };
 
-NJS_MKEY_A _15DD6C_22_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _15DD6C_22_rot[] = {
 	{ 0, 0, 0, 0xFFFFC001 },
 { 16, 0, 0, 0xFFFFC001 }
 };
 
-NJS_MKEY_F _15DD6C_23_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _15DD6C_23_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _15DD6C_23_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _15DD6C_23_rot[] = {
 	{ 0, 0, 0, 0xFFFFE331 },
 { 16, 0, 0, 0xFFFFE331 }
 };
 
-NJS_MKEY_F _15DD6C_24_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _15DD6C_24_pos[] = {
 	{ 0, 0.663681f, 0, 0 },
 { 16, 0.663681f, 0, 0 }
 };
 
-NJS_MKEY_A _15DD6C_24_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _15DD6C_24_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _15DD6C_25_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _15DD6C_25_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _15DD6C_25_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _15DD6C_25_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _15DD6C_26_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _15DD6C_26_pos[] = {
 	{ 0, 0.33389f, -0.313131f, -0.260831f },
 { 16, 0.33389f, -0.313131f, -0.260831f }
 };
 
-NJS_MKEY_A _15DD6C_26_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _15DD6C_26_rot[] = {
 	{ 0, 0, 0, 0xFFFFC001 },
 { 16, 0, 0, 0xFFFFC001 }
 };
 
-NJS_MKEY_F _15DD6C_27_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _15DD6C_27_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _15DD6C_27_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _15DD6C_27_rot[] = {
 	{ 0, 0, 0, 0xFFFFE331 },
 { 16, 0, 0, 0xFFFFE331 }
 };
 
-NJS_MKEY_F _15DD6C_28_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _15DD6C_28_pos[] = {
 	{ 0, 0.663681f, 0, 0 },
 { 16, 0.663681f, 0, 0 }
 };
 
-NJS_MKEY_A _15DD6C_28_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _15DD6C_28_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _15DD6C_29_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _15DD6C_29_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _15DD6C_29_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _15DD6C_29_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _15DD6C_30_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _15DD6C_30_pos[] = {
 	{ 0, 0.480129f, -1.036296f, 0 },
 { 16, 0.480129f, -1.036296f, 0 }
 };
 
-NJS_MKEY_A _15DD6C_30_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _15DD6C_30_rot[] = {
 	{ 0, 0, 0, 0xFFFFC001 },
 { 16, 0, 0, 0xFFFFC001 }
 };
 
-NJS_MKEY_F _15DD6C_31_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _15DD6C_31_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _15DD6C_31_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _15DD6C_31_rot[] = {
 	{ 0, 0, 0, 0xFFFFE6E6 },
 { 1, 0, 0, 0xFFFFE5D6 },
 { 2, 0, 0, 0xFFFFE4C5 },
@@ -1452,37 +1452,37 @@ NJS_MKEY_A _15DD6C_31_rot[] = {
 { 16, 0, 0, 0xFFFFE6E6 }
 };
 
-NJS_MKEY_F _15DD6C_32_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _15DD6C_32_pos[] = {
 	{ 0, 2.386438f, 0, 0 },
 { 16, 2.386438f, 0, 0 }
 };
 
-NJS_MKEY_A _15DD6C_32_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _15DD6C_32_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _15DD6C_33_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _15DD6C_33_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _15DD6C_33_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _15DD6C_33_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _15DD6C_34_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _15DD6C_34_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _15DD6C_34_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _15DD6C_34_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MDATA2 _15DD6C_mdat[] = {
+extern "C" __declspec(dllexport) NJS_MDATA2 _15DD6C_mdat[] = {
 	{ _15DD6C_0_pos, _15DD6C_0_rot, LengthOfArray<Uint32>(_15DD6C_0_pos), LengthOfArray<Uint32>(_15DD6C_0_rot) },
 { _15DD6C_1_pos, _15DD6C_1_rot, LengthOfArray<Uint32>(_15DD6C_1_pos), LengthOfArray<Uint32>(_15DD6C_1_rot) },
 { _15DD6C_2_pos, _15DD6C_2_rot, LengthOfArray<Uint32>(_15DD6C_2_pos), LengthOfArray<Uint32>(_15DD6C_2_rot) },
@@ -1520,20 +1520,20 @@ NJS_MDATA2 _15DD6C_mdat[] = {
 { _15DD6C_34_pos, _15DD6C_34_rot, LengthOfArray<Uint32>(_15DD6C_34_pos), LengthOfArray<Uint32>(_15DD6C_34_rot) }
 };
 
-NJS_MOTION _15DD6C = { _15DD6C_mdat, 17, NJD_MTYPE_POS_0 | NJD_MTYPE_ANG_1, 2 };
+extern "C" __declspec(dllexport) NJS_MOTION _15DD6C = { _15DD6C_mdat, 17, NJD_MTYPE_POS_0 | NJD_MTYPE_ANG_1, 2 };
 
 //KUJA
-NJS_MKEY_F _160688_0_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _160688_0_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _160688_0_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _160688_0_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _160688_1_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _160688_1_pos[] = {
 	{ 0, 0, 0.008617f, 0.012926f },
 { 1, 0, 0.00027f, 0.000405f },
 { 2, 0, 0.003913f, 0.00587f },
@@ -1553,17 +1553,17 @@ NJS_MKEY_F _160688_1_pos[] = {
 { 16, 0, 0.008617f, 0.012926f }
 };
 
-NJS_MKEY_A _160688_1_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _160688_1_rot[] = {
 	{ 0, 0, 0x3FFF, 0 },
 { 16, 0, 0x3FFF, 0 }
 };
 
-NJS_MKEY_F _160688_2_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _160688_2_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _160688_2_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _160688_2_rot[] = {
 	{ 0, 0, 0, 0x4385 },
 { 1, 0, 0, 0x43A2 },
 { 2, 0, 0, 0x43ED },
@@ -1583,27 +1583,27 @@ NJS_MKEY_A _160688_2_rot[] = {
 { 16, 0, 0, 0x4385 }
 };
 
-NJS_MKEY_F _160688_3_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _160688_3_pos[] = {
 	{ 0, 5.204968f, 0, 0 },
 { 16, 5.204968f, 0, 0 }
 };
 
-NJS_MKEY_A _160688_3_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _160688_3_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _160688_4_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _160688_4_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _160688_4_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _160688_4_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _160688_5_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _160688_5_pos[] = {
 	{ 0, 2.319705f, 0.310176f, 0 },
 { 1, 2.319017f, 0.303984f, 0 },
 { 2, 2.319498f, 0.308307f, 0 },
@@ -1623,17 +1623,17 @@ NJS_MKEY_F _160688_5_pos[] = {
 { 16, 2.319705f, 0.310176f, 0 }
 };
 
-NJS_MKEY_A _160688_5_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _160688_5_rot[] = {
 	{ 0, 0, 0, 0xFFFFBFBD },
 { 16, 0, 0, 0xFFFFBFBD }
 };
 
-NJS_MKEY_F _160688_6_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _160688_6_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _160688_6_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _160688_6_rot[] = {
 	{ 0, 0, 0, 0x7A8D },
 { 1, 0, 0, 0x7A88 },
 { 2, 0, 0, 0x7A23 },
@@ -1653,52 +1653,52 @@ NJS_MKEY_A _160688_6_rot[] = {
 { 16, 0, 0, 0x7A8D }
 };
 
-NJS_MKEY_F _160688_7_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _160688_7_pos[] = {
 	{ 0, 2.639653f, 0, 0 },
 { 16, 2.639653f, 0, 0 }
 };
 
-NJS_MKEY_A _160688_7_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _160688_7_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _160688_8_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _160688_8_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _160688_8_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _160688_8_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _160688_9_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _160688_9_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _160688_9_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _160688_9_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _160688_10_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _160688_10_pos[] = {
 	{ 0, 1.655576f, -0.014632f, -0.491403f },
 { 16, 1.655576f, -0.014632f, -0.491403f }
 };
 
-NJS_MKEY_A _160688_10_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _160688_10_rot[] = {
 	{ 0, 0x2021, 0x3FFF, 0xFFFFDFDF },
 { 16, 0x2021, 0x3FFF, 0xFFFFDFDF }
 };
 
-NJS_MKEY_F _160688_11_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _160688_11_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _160688_11_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _160688_11_rot[] = {
 	{ 0, 0xFFFFB642, 0x1A7B, 0x27D8 },
 { 1, 0xFFFFB650, 0x185B, 0x2523 },
 { 2, 0xFFFFB675, 0x12C1, 0x1E02 },
@@ -1717,62 +1717,62 @@ NJS_MKEY_A _160688_11_rot[] = {
 { 16, 0xFFFFB642, 0x1A7B, 0x27D8 }
 };
 
-NJS_MKEY_F _160688_12_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _160688_12_pos[] = {
 	{ 0, 1.865034f, 0, 0 },
 { 16, 1.865034f, 0, 0 }
 };
 
-NJS_MKEY_A _160688_12_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _160688_12_rot[] = {
 	{ 0, 0, 0, 0xFFFFEF3B },
 { 16, 0, 0, 0xFFFFEF3B }
 };
 
-NJS_MKEY_F _160688_13_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _160688_13_pos[] = {
 	{ 0, 1.886619f, 0, 0 },
 { 16, 1.886619f, 0, 0 }
 };
 
-NJS_MKEY_A _160688_13_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _160688_13_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _160688_14_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _160688_14_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _160688_14_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _160688_14_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _160688_15_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _160688_15_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _160688_15_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _160688_15_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _160688_16_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _160688_16_pos[] = {
 	{ 0, 1.655576f, -0.014632f, 0.491403f },
 { 16, 1.655576f, -0.014632f, 0.491403f }
 };
 
-NJS_MKEY_A _160688_16_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _160688_16_rot[] = {
 	{ 0, 0xFFFFDFDF, 0xFFFFC001, 0xFFFFDFDF },
 { 16, 0xFFFFDFDF, 0xFFFFC001, 0xFFFFDFDF }
 };
 
-NJS_MKEY_F _160688_17_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _160688_17_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _160688_17_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _160688_17_rot[] = {
 	{ 0, 0x49BE, 0xFFFFE585, 0x27D8 },
 { 1, 0x49B8, 0xFFFFE7A2, 0x2526 },
 { 2, 0x49A5, 0xFFFFED35, 0x1E0C },
@@ -1792,62 +1792,62 @@ NJS_MKEY_A _160688_17_rot[] = {
 { 16, 0x49BE, 0xFFFFE585, 0x27D8 }
 };
 
-NJS_MKEY_F _160688_18_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _160688_18_pos[] = {
 	{ 0, 1.865034f, 0, 0 },
 { 16, 1.865034f, 0, 0 }
 };
 
-NJS_MKEY_A _160688_18_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _160688_18_rot[] = {
 	{ 0, 0, 0, 0xFFFFEF3B },
 { 16, 0, 0, 0xFFFFEF3B }
 };
 
-NJS_MKEY_F _160688_19_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _160688_19_pos[] = {
 	{ 0, 1.886619f, 0, 0 },
 { 16, 1.886619f, 0, 0 }
 };
 
-NJS_MKEY_A _160688_19_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _160688_19_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _160688_20_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _160688_20_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _160688_20_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _160688_20_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _160688_21_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _160688_21_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _160688_21_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _160688_21_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _160688_22_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _160688_22_pos[] = {
 	{ 0, 0.648838f, -0.9272889f, -0.284711f },
 { 16, 0.648838f, -0.9272889f, -0.284711f }
 };
 
-NJS_MKEY_A _160688_22_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _160688_22_rot[] = {
 	{ 0, 0, 0, 0xFFFFBFBD },
 { 16, 0, 0, 0xFFFFBFBD }
 };
 
-NJS_MKEY_F _160688_23_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _160688_23_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _160688_23_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _160688_23_rot[] = {
 	{ 0, 0, 0, 0xFFFFEFA3 },
 { 1, 0xFFFFFF63, 0, 0xFFFFEF61 },
 { 2, 0xFFFFFDE4, 0, 0xFFFFEEB5 },
@@ -1867,42 +1867,42 @@ NJS_MKEY_A _160688_23_rot[] = {
 { 16, 0, 0, 0xFFFFEFA3 }
 };
 
-NJS_MKEY_F _160688_24_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _160688_24_pos[] = {
 	{ 0, 0.915887f, 0, 0 },
 { 16, 0.915887f, 0, 0 }
 };
 
-NJS_MKEY_A _160688_24_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _160688_24_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _160688_25_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _160688_25_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _160688_25_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _160688_25_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _160688_26_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _160688_26_pos[] = {
 	{ 0, 0.648838f, -0.9272889f, 0.284711f },
 { 16, 0.648838f, -0.9272889f, 0.284711f }
 };
 
-NJS_MKEY_A _160688_26_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _160688_26_rot[] = {
 	{ 0, 0, 0, 0xFFFFBFBD },
 { 16, 0, 0, 0xFFFFBFBD }
 };
 
-NJS_MKEY_F _160688_27_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _160688_27_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _160688_27_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _160688_27_rot[] = {
 	{ 0, 0, 0, 0xFFFFEFA3 },
 { 1, 0, 0, 0xFFFFEF61 },
 { 2, 0, 0, 0xFFFFEEB5 },
@@ -1922,42 +1922,42 @@ NJS_MKEY_A _160688_27_rot[] = {
 { 16, 0, 0, 0xFFFFEFA3 }
 };
 
-NJS_MKEY_F _160688_28_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _160688_28_pos[] = {
 	{ 0, 0.915887f, 0, 0 },
 { 16, 0.915887f, 0, 0 }
 };
 
-NJS_MKEY_A _160688_28_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _160688_28_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _160688_29_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _160688_29_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _160688_29_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _160688_29_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _160688_30_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _160688_30_pos[] = {
 	{ 0, 1.788794f, -1.203181f, 0 },
 { 16, 1.788794f, -1.203181f, 0 }
 };
 
-NJS_MKEY_A _160688_30_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _160688_30_rot[] = {
 	{ 0, 0, 0, 0xFFFFBFBD },
 { 16, 0, 0, 0xFFFFBFBD }
 };
 
-NJS_MKEY_F _160688_31_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _160688_31_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _160688_31_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _160688_31_rot[] = {
 	{ 0, 0, 0, 0xFFFFF5C8 },
 { 1, 0, 0, 0xFFFFF566 },
 { 2, 0, 0, 0xFFFFF462 },
@@ -1977,27 +1977,27 @@ NJS_MKEY_A _160688_31_rot[] = {
 { 16, 0, 0, 0xFFFFF5C8 }
 };
 
-NJS_MKEY_F _160688_32_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _160688_32_pos[] = {
 	{ 0, 2.312137f, 0, 0 },
 { 16, 2.312137f, 0, 0 }
 };
 
-NJS_MKEY_A _160688_32_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _160688_32_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _160688_33_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _160688_33_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _160688_33_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _160688_33_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MDATA2 _160688_mdat[] = {
+extern "C" __declspec(dllexport) NJS_MDATA2 _160688_mdat[] = {
 	{ _160688_0_pos, _160688_0_rot, LengthOfArray<Uint32>(_160688_0_pos), LengthOfArray<Uint32>(_160688_0_rot) },
 { _160688_1_pos, _160688_1_rot, LengthOfArray<Uint32>(_160688_1_pos), LengthOfArray<Uint32>(_160688_1_rot) },
 { _160688_2_pos, _160688_2_rot, LengthOfArray<Uint32>(_160688_2_pos), LengthOfArray<Uint32>(_160688_2_rot) },
@@ -2034,20 +2034,20 @@ NJS_MDATA2 _160688_mdat[] = {
 { _160688_33_pos, _160688_33_rot, LengthOfArray<Uint32>(_160688_33_pos), LengthOfArray<Uint32>(_160688_33_rot) }
 };
 
-NJS_MOTION _160688 = { _160688_mdat, 17, NJD_MTYPE_POS_0 | NJD_MTYPE_ANG_1, 2 };
+extern "C" __declspec(dllexport) NJS_MOTION _160688 = { _160688_mdat, 17, NJD_MTYPE_POS_0 | NJD_MTYPE_ANG_1, 2 };
 
 //OUM
-NJS_MKEY_F _162EBC_0_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _162EBC_0_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _162EBC_0_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _162EBC_0_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _162EBC_1_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _162EBC_1_pos[] = {
 	{ 0, 0, 0.040407f, 0.021688f },
 { 1, 0, 0.050048f, 0.029723f },
 { 2, 0, 0.075466f, 0.050904f },
@@ -2067,47 +2067,47 @@ NJS_MKEY_F _162EBC_1_pos[] = {
 { 16, 0, 0.040407f, 0.021688f }
 };
 
-NJS_MKEY_A _162EBC_1_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _162EBC_1_rot[] = {
 	{ 0, 0, 0x3FFF, 0 },
 { 16, 0, 0x3FFF, 0 }
 };
 
-NJS_MKEY_F _162EBC_2_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _162EBC_2_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _162EBC_2_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _162EBC_2_rot[] = {
 	{ 0, 0, 0, 0x504B },
 { 16, 0, 0, 0x504B }
 };
 
-NJS_MKEY_F _162EBC_3_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _162EBC_3_pos[] = {
 	{ 0, 4.150987f, 0, 0 },
 { 16, 4.150987f, 0, 0 }
 };
 
-NJS_MKEY_A _162EBC_3_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _162EBC_3_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _162EBC_4_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _162EBC_4_pos[] = {
 	{ 0, 2.243281f, -0.00602f, 0 },
 { 16, 2.243281f, -0.00602f, 0 }
 };
 
-NJS_MKEY_A _162EBC_4_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _162EBC_4_rot[] = {
 	{ 0, 0, 0, 0xFFFFC001 },
 { 16, 0, 0, 0xFFFFC001 }
 };
 
-NJS_MKEY_F _162EBC_5_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _162EBC_5_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _162EBC_5_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _162EBC_5_rot[] = {
 	{ 0, 0, 0, 0x7284 },
 { 1, 0, 0, 0x721D },
 { 2, 0, 0, 0x710D },
@@ -2127,62 +2127,62 @@ NJS_MKEY_A _162EBC_5_rot[] = {
 { 16, 0, 0, 0x7284 }
 };
 
-NJS_MKEY_F _162EBC_6_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _162EBC_6_pos[] = {
 	{ 0, 2.722942f, 0, 0 },
 { 16, 2.722942f, 0, 0 }
 };
 
-NJS_MKEY_A _162EBC_6_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _162EBC_6_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _162EBC_7_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _162EBC_7_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _162EBC_7_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _162EBC_7_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _162EBC_8_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _162EBC_8_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _162EBC_8_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _162EBC_8_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _162EBC_9_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _162EBC_9_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _162EBC_9_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _162EBC_9_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _162EBC_10_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _162EBC_10_pos[] = {
 	{ 0, 1.850887f, -0.066333f, 1.079213f },
 { 16, 1.850887f, -0.066333f, 1.079213f }
 };
 
-NJS_MKEY_A _162EBC_10_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _162EBC_10_rot[] = {
 	{ 0, 0xFFFFE001, 0xFFFFC001, 0xFFFFE001 },
 { 16, 0xFFFFE001, 0xFFFFC001, 0xFFFFE001 }
 };
 
-NJS_MKEY_F _162EBC_11_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _162EBC_11_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _162EBC_11_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _162EBC_11_rot[] = {
 	{ 0, 0x49BE, 0xFFFFF3C7, 0x28C3 },
 { 1, 0x4ABE, 0xFFFFF506, 0x2543 },
 { 2, 0x4D5F, 0xFFFFF84D, 0x1C08 },
@@ -2202,62 +2202,62 @@ NJS_MKEY_A _162EBC_11_rot[] = {
 { 16, 0x49BE, 0xFFFFF3C7, 0x28C3 }
 };
 
-NJS_MKEY_F _162EBC_12_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _162EBC_12_pos[] = {
 	{ 0, 1.242973f, 0, 0 },
 { 16, 1.242973f, 0, 0 }
 };
 
-NJS_MKEY_A _162EBC_12_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _162EBC_12_rot[] = {
 	{ 0, 0, 0, 0xFFFFFFEF },
 { 16, 0, 0, 0xFFFFFFEF }
 };
 
-NJS_MKEY_F _162EBC_13_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _162EBC_13_pos[] = {
 	{ 0, 1.737066f, 0, 0 },
 { 16, 1.737066f, 0, 0 }
 };
 
-NJS_MKEY_A _162EBC_13_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _162EBC_13_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _162EBC_14_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _162EBC_14_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _162EBC_14_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _162EBC_14_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _162EBC_15_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _162EBC_15_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _162EBC_15_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _162EBC_15_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _162EBC_16_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _162EBC_16_pos[] = {
 	{ 0, 1.872056f, -0.066333f, -1.079213f },
 { 16, 1.872056f, -0.066333f, -1.079213f }
 };
 
-NJS_MKEY_A _162EBC_16_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _162EBC_16_rot[] = {
 	{ 0, 0xFFFFE001, 0xFFFFC001, 0xFFFFE001 },
 { 16, 0xFFFFE001, 0xFFFFC001, 0xFFFFE001 }
 };
 
-NJS_MKEY_F _162EBC_17_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _162EBC_17_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _162EBC_17_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _162EBC_17_rot[] = {
 	{ 0, 0xFFFFB5DA, 0xFFFFF35F, 0xFFFF57FB },
 { 1, 0xFFFFB4EC, 0xFFFFF4A2, 0xFFFF5B7B },
 { 2, 0xFFFFB27A, 0xFFFFF7F5, 0xFFFF64B7 },
@@ -2277,62 +2277,62 @@ NJS_MKEY_A _162EBC_17_rot[] = {
 { 16, 0xFFFFB5DA, 0xFFFFF35F, 0xFFFF57FB }
 };
 
-NJS_MKEY_F _162EBC_18_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _162EBC_18_pos[] = {
 	{ 0, 1.25749f, 0, 0 },
 { 16, 1.25749f, 0, 0 }
 };
 
-NJS_MKEY_A _162EBC_18_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _162EBC_18_rot[] = {
 	{ 0, 0, 0, 0xAC },
 { 16, 0, 0, 0xAC }
 };
 
-NJS_MKEY_F _162EBC_19_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _162EBC_19_pos[] = {
 	{ 0, 1.72901f, 0, 0 },
 { 16, 1.72901f, 0, 0 }
 };
 
-NJS_MKEY_A _162EBC_19_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _162EBC_19_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _162EBC_20_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _162EBC_20_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _162EBC_20_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _162EBC_20_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _162EBC_21_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _162EBC_21_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _162EBC_21_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _162EBC_21_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _162EBC_22_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _162EBC_22_pos[] = {
 	{ 0, 0.408801f, -0.447814f, 0.595745f },
 { 16, 0.408801f, -0.447814f, 0.595745f }
 };
 
-NJS_MKEY_A _162EBC_22_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _162EBC_22_rot[] = {
 	{ 0, 0, 0, 0xFFFFC001 },
 { 16, 0, 0, 0xFFFFC001 }
 };
 
-NJS_MKEY_F _162EBC_23_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _162EBC_23_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _162EBC_23_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _162EBC_23_rot[] = {
 	{ 0, 0, 0, 0xFFFFDA5D },
 { 1, 0, 0, 0xFFFFDB24 },
 { 2, 0, 0, 0xFFFFDD30 },
@@ -2352,42 +2352,42 @@ NJS_MKEY_A _162EBC_23_rot[] = {
 { 16, 0, 0, 0xFFFFDA5D }
 };
 
-NJS_MKEY_F _162EBC_24_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _162EBC_24_pos[] = {
 	{ 0, 1.359189f, 0, 0 },
 { 16, 1.359189f, 0, 0 }
 };
 
-NJS_MKEY_A _162EBC_24_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _162EBC_24_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _162EBC_25_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _162EBC_25_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _162EBC_25_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _162EBC_25_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _162EBC_26_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _162EBC_26_pos[] = {
 	{ 0, 0.408801f, -0.447814f, -0.595745f },
 { 16, 0.408801f, -0.447814f, -0.595745f }
 };
 
-NJS_MKEY_A _162EBC_26_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _162EBC_26_rot[] = {
 	{ 0, 0, 0, 0xFFFFC001 },
 { 16, 0, 0, 0xFFFFC001 }
 };
 
-NJS_MKEY_F _162EBC_27_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _162EBC_27_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _162EBC_27_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _162EBC_27_rot[] = {
 	{ 0, 0, 0, 0xFFFFDA5D },
 { 1, 0, 0, 0xFFFFDB27 },
 { 2, 0, 0, 0xFFFFDD3A },
@@ -2407,42 +2407,42 @@ NJS_MKEY_A _162EBC_27_rot[] = {
 { 16, 0, 0, 0xFFFFDA5D }
 };
 
-NJS_MKEY_F _162EBC_28_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _162EBC_28_pos[] = {
 	{ 0, 1.359189f, 0, 0 },
 { 16, 1.359189f, 0, 0 }
 };
 
-NJS_MKEY_A _162EBC_28_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _162EBC_28_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _162EBC_29_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _162EBC_29_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _162EBC_29_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _162EBC_29_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _162EBC_30_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _162EBC_30_pos[] = {
 	{ 0, 0.257465f, -1.893513f, 0 },
 { 16, 0.257465f, -1.893513f, 0 }
 };
 
-NJS_MKEY_A _162EBC_30_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _162EBC_30_rot[] = {
 	{ 0, 0, 0, 0xFFFFC001 },
 { 16, 0, 0, 0xFFFFC001 }
 };
 
-NJS_MKEY_F _162EBC_31_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _162EBC_31_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _162EBC_31_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _162EBC_31_rot[] = {
 	{ 0, 0, 0, 0xFFFFDAB6 },
 { 1, 0, 0, 0xFFFFDB14 },
 { 2, 0, 0, 0xFFFFDC0C },
@@ -2462,37 +2462,37 @@ NJS_MKEY_A _162EBC_31_rot[] = {
 { 16, 0, 0, 0xFFFFDAB6 }
 };
 
-NJS_MKEY_F _162EBC_32_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _162EBC_32_pos[] = {
 	{ 0, 1.860864f, 0, 0 },
 { 16, 1.860864f, 0, 0 }
 };
 
-NJS_MKEY_A _162EBC_32_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _162EBC_32_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _162EBC_33_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _162EBC_33_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _162EBC_33_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _162EBC_33_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _162EBC_34_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _162EBC_34_pos[] = {
 	{ 0, -0.040407f, -0.021688f, 0 },
 { 16, -0.040407f, -0.021688f, 0 }
 };
 
-NJS_MKEY_A _162EBC_34_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _162EBC_34_rot[] = {
 	{ 0, 0xFFFFE001, 0xFFFFC001, 0xFFFFE001 },
 { 16, 0xFFFFE001, 0xFFFFC001, 0xFFFFE001 }
 };
 
-NJS_MDATA2 _162EBC_mdat[] = {
+extern "C" __declspec(dllexport) NJS_MDATA2 _162EBC_mdat[] = {
 	{ _162EBC_0_pos, _162EBC_0_rot, LengthOfArray<Uint32>(_162EBC_0_pos), LengthOfArray<Uint32>(_162EBC_0_rot) },
 { _162EBC_1_pos, _162EBC_1_rot, LengthOfArray<Uint32>(_162EBC_1_pos), LengthOfArray<Uint32>(_162EBC_1_rot) },
 { _162EBC_2_pos, _162EBC_2_rot, LengthOfArray<Uint32>(_162EBC_2_pos), LengthOfArray<Uint32>(_162EBC_2_rot) },
@@ -2530,20 +2530,20 @@ NJS_MDATA2 _162EBC_mdat[] = {
 { _162EBC_34_pos, _162EBC_34_rot, LengthOfArray<Uint32>(_162EBC_34_pos), LengthOfArray<Uint32>(_162EBC_34_rot) }
 };
 
-NJS_MOTION _162EBC = { _162EBC_mdat, 17, NJD_MTYPE_POS_0 | NJD_MTYPE_ANG_1, 2 };
+extern "C" __declspec(dllexport) NJS_MOTION _162EBC = { _162EBC_mdat, 17, NJD_MTYPE_POS_0 | NJD_MTYPE_ANG_1, 2 };
 
 //KOAR
-NJS_MKEY_F _165C70_0_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _165C70_0_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _165C70_0_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _165C70_0_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _165C70_1_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _165C70_1_pos[] = {
 	{ 0, 0, 0, 0 },
 { 1, 0, 0.02784f, -0.010545f },
 { 2, 0, 0.101237f, -0.033746f },
@@ -2563,17 +2563,17 @@ NJS_MKEY_F _165C70_1_pos[] = {
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _165C70_1_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _165C70_1_rot[] = {
 	{ 0, 0, 0x3FFF, 0 },
 { 16, 0, 0x3FFF, 0 }
 };
 
-NJS_MKEY_F _165C70_2_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _165C70_2_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _165C70_2_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _165C70_2_rot[] = {
 	{ 0, 0, 0, 0x3FFF },
 { 1, 0, 0, 0x4345 },
 { 2, 0, 0, 0x4AA9 },
@@ -2593,32 +2593,32 @@ NJS_MKEY_A _165C70_2_rot[] = {
 { 16, 0, 0, 0x3FFF }
 };
 
-NJS_MKEY_F _165C70_3_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _165C70_3_pos[] = {
 	{ 0, 4.851692f, 0, 0 },
 { 16, 4.851692f, 0, 0 }
 };
 
-NJS_MKEY_A _165C70_3_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _165C70_3_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _165C70_4_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _165C70_4_pos[] = {
 	{ 0, 1.981771f, -0.145836f, 0 },
 { 16, 1.981771f, -0.145836f, 0 }
 };
 
-NJS_MKEY_A _165C70_4_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _165C70_4_rot[] = {
 	{ 0, 0, 0, 0xFFFFC001 },
 { 16, 0, 0, 0xFFFFC001 }
 };
 
-NJS_MKEY_F _165C70_5_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _165C70_5_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _165C70_5_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _165C70_5_rot[] = {
 	{ 0, 0, 0, 0xFFFF8121 },
 { 1, 0, 0, 0xFFFF7DBF },
 { 2, 0, 0, 0xFFFF7622 },
@@ -2638,32 +2638,32 @@ NJS_MKEY_A _165C70_5_rot[] = {
 { 16, 0, 0, 0xFFFF8121 }
 };
 
-NJS_MKEY_F _165C70_6_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _165C70_6_pos[] = {
 	{ 0, 2.68724f, 0, 0 },
 { 16, 2.68724f, 0, 0 }
 };
 
-NJS_MKEY_A _165C70_6_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _165C70_6_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _165C70_7_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _165C70_7_pos[] = {
 	{ 0, 0.04506f, -1.057515f, -0.9895239f },
 { 16, 0.04506f, -1.057515f, -0.9895239f }
 };
 
-NJS_MKEY_A _165C70_7_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _165C70_7_rot[] = {
 	{ 0, 0xFFFFC091, 0x3FFF, 0x3F6F },
 { 16, 0xFFFFC091, 0x3FFF, 0x3F6F }
 };
 
-NJS_MKEY_F _165C70_8_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _165C70_8_pos[] = {
 	{ 0, 0, -0.00001f, 0 },
 { 16, 0, -0.00001f, 0 }
 };
 
-NJS_MKEY_A _165C70_8_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _165C70_8_rot[] = {
 	{ 0, 0, 0xA97, 0x185B },
 { 1, 0, 0x974, 0x1807 },
 { 2, 0, 0x674, 0x172B },
@@ -2683,42 +2683,42 @@ NJS_MKEY_A _165C70_8_rot[] = {
 { 16, 0, 0xA97, 0x185B }
 };
 
-NJS_MKEY_F _165C70_9_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _165C70_9_pos[] = {
 	{ 0, 2.948229f, 0, 0 },
 { 16, 2.948229f, 0, 0 }
 };
 
-NJS_MKEY_A _165C70_9_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _165C70_9_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _165C70_10_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _165C70_10_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _165C70_10_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _165C70_10_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _165C70_11_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _165C70_11_pos[] = {
 	{ 0, 0.04506f, -1.057515f, 0.9895239f },
 { 16, 0.04506f, -1.057515f, 0.9895239f }
 };
 
-NJS_MKEY_A _165C70_11_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _165C70_11_rot[] = {
 	{ 0, 0x3F6F, 0xFFFFC001, 0x3F6F },
 { 16, 0x3F6F, 0xFFFFC001, 0x3F6F }
 };
 
-NJS_MKEY_F _165C70_12_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _165C70_12_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _165C70_12_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _165C70_12_rot[] = {
 	{ 0, 0, 0xFFFFF569, 0x185B },
 { 1, 0, 0xFFFFF68C, 0x1807 },
 { 2, 0, 0xFFFFF98C, 0x1728 },
@@ -2738,52 +2738,52 @@ NJS_MKEY_A _165C70_12_rot[] = {
 { 16, 0, 0xFFFFF569, 0x185B }
 };
 
-NJS_MKEY_F _165C70_13_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _165C70_13_pos[] = {
 	{ 0, 2.948229f, 0, 0 },
 { 16, 2.948229f, 0, 0 }
 };
 
-NJS_MKEY_A _165C70_13_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _165C70_13_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _165C70_14_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _165C70_14_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _165C70_14_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _165C70_14_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _165C70_15_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _165C70_15_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _165C70_15_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _165C70_15_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _165C70_16_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _165C70_16_pos[] = {
 	{ 0, 1.492692f, 0.039768f, -0.38085f },
 { 16, 1.492692f, 0.039768f, -0.38085f }
 };
 
-NJS_MKEY_A _165C70_16_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _165C70_16_rot[] = {
 	{ 0, 0x1FFF, 0x3FFF, 0xFFFFE001 },
 { 16, 0x1FFF, 0x3FFF, 0xFFFFE001 }
 };
 
-NJS_MKEY_F _165C70_17_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _165C70_17_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _165C70_17_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _165C70_17_rot[] = {
 	{ 0, 0x7FFF, 0xFFFF5627, 0x4681 },
 { 1, 0x7FFF, 0xFFFF56BA, 0x4681 },
 { 2, 0x7FFF, 0xFFFF579C, 0x4681 },
@@ -2803,42 +2803,42 @@ NJS_MKEY_A _165C70_17_rot[] = {
 { 16, 0x7FFF, 0xFFFF5627, 0x4681 }
 };
 
-NJS_MKEY_F _165C70_18_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _165C70_18_pos[] = {
 	{ 0, 1.611037f, 0, 0 },
 { 16, 1.611037f, 0, 0 }
 };
 
-NJS_MKEY_A _165C70_18_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _165C70_18_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _165C70_19_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _165C70_19_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _165C70_19_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _165C70_19_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _165C70_20_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _165C70_20_pos[] = {
 	{ 0, 1.492692f, 0.039768f, 0.38085f },
 { 16, 1.492692f, 0.039768f, 0.38085f }
 };
 
-NJS_MKEY_A _165C70_20_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _165C70_20_rot[] = {
 	{ 0, 0xFFFFE001, 0xFFFFC001, 0xFFFFE001 },
 { 16, 0xFFFFE001, 0xFFFFC001, 0xFFFFE001 }
 };
 
-NJS_MKEY_F _165C70_21_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _165C70_21_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _165C70_21_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _165C70_21_rot[] = {
 	{ 0, 0, 0xFFFFCEBE, 0xFFFFC682 },
 { 1, 0, 0xFFFFCE02, 0xFFFFC682 },
 { 2, 0, 0xFFFFCCC8, 0xFFFFC682 },
@@ -2858,27 +2858,27 @@ NJS_MKEY_A _165C70_21_rot[] = {
 { 16, 0, 0xFFFFCEBE, 0xFFFFC682 }
 };
 
-NJS_MKEY_F _165C70_22_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _165C70_22_pos[] = {
 	{ 0, 1.611037f, 0, 0 },
 { 16, 1.611037f, 0, 0 }
 };
 
-NJS_MKEY_A _165C70_22_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _165C70_22_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _165C70_23_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _165C70_23_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _165C70_23_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _165C70_23_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _165C70_24_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _165C70_24_pos[] = {
 	{ 0, 0.748964f, -0.424104f, -0.914323f },
 { 1, 0.724456f, -0.432508f, -0.914323f },
 { 2, 0.66149f, -0.454097f, -0.914323f },
@@ -2898,17 +2898,17 @@ NJS_MKEY_F _165C70_24_pos[] = {
 { 16, 0.748964f, -0.424104f, -0.914323f }
 };
 
-NJS_MKEY_A _165C70_24_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _165C70_24_rot[] = {
 	{ 0, 0, 0, 0xFFFFC001 },
 { 16, 0, 0, 0xFFFFC001 }
 };
 
-NJS_MKEY_F _165C70_25_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _165C70_25_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _165C70_25_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _165C70_25_rot[] = {
 	{ 0, 0, 0, 0xFFFFC754 },
 { 1, 0, 0, 0xFFFFC639 },
 { 2, 0, 0, 0xFFFFC375 },
@@ -2928,12 +2928,12 @@ NJS_MKEY_A _165C70_25_rot[] = {
 { 16, 0, 0, 0xFFFFC754 }
 };
 
-NJS_MKEY_F _165C70_26_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _165C70_26_pos[] = {
 	{ 0, 0.592818f, 0, 0 },
 { 16, 0.592818f, 0, 0 }
 };
 
-NJS_MKEY_A _165C70_26_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _165C70_26_rot[] = {
 	{ 0, 0, 0, 0xFFFFC148 },
 { 1, 0, 0, 0xFFFFC228 },
 { 2, 0, 0, 0xFFFFC4A8 },
@@ -2953,37 +2953,37 @@ NJS_MKEY_A _165C70_26_rot[] = {
 { 16, 0, 0, 0xFFFFC148 }
 };
 
-NJS_MKEY_F _165C70_27_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _165C70_27_pos[] = {
 	{ 0, 0.758907f, 0, 0 },
 { 16, 0.758907f, 0, 0 }
 };
 
-NJS_MKEY_A _165C70_27_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _165C70_27_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _165C70_28_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _165C70_28_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _165C70_28_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _165C70_28_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _165C70_29_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _165C70_29_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _165C70_29_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _165C70_29_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _165C70_30_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _165C70_30_pos[] = {
 	{ 0, 0.748964f, -0.424104f, 0.914323f },
 { 1, 0.724456f, -0.432508f, 0.914323f },
 { 2, 0.66149f, -0.454097f, 0.914323f },
@@ -3003,17 +3003,17 @@ NJS_MKEY_F _165C70_30_pos[] = {
 { 16, 0.748964f, -0.424104f, 0.914323f }
 };
 
-NJS_MKEY_A _165C70_30_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _165C70_30_rot[] = {
 	{ 0, 0, 0, 0xFFFFC001 },
 { 16, 0, 0, 0xFFFFC001 }
 };
 
-NJS_MKEY_F _165C70_31_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _165C70_31_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _165C70_31_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _165C70_31_rot[] = {
 	{ 0, 0, 0, 0xFFFFC754 },
 { 1, 0, 0, 0xFFFFC639 },
 { 2, 0, 0, 0xFFFFC375 },
@@ -3033,12 +3033,12 @@ NJS_MKEY_A _165C70_31_rot[] = {
 { 16, 0, 0, 0xFFFFC754 }
 };
 
-NJS_MKEY_F _165C70_32_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _165C70_32_pos[] = {
 	{ 0, 0.592818f, 0, 0 },
 { 16, 0.592818f, 0, 0 }
 };
 
-NJS_MKEY_A _165C70_32_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _165C70_32_rot[] = {
 	{ 0, 0, 0, 0xFFFFC148 },
 { 1, 0, 0, 0xFFFFC228 },
 { 2, 0, 0, 0xFFFFC4A8 },
@@ -3058,47 +3058,47 @@ NJS_MKEY_A _165C70_32_rot[] = {
 { 16, 0, 0, 0xFFFFC148 }
 };
 
-NJS_MKEY_F _165C70_33_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _165C70_33_pos[] = {
 	{ 0, 0.758907f, 0, 0 },
 { 16, 0.758907f, 0, 0 }
 };
 
-NJS_MKEY_A _165C70_33_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _165C70_33_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _165C70_34_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _165C70_34_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _165C70_34_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _165C70_34_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _165C70_35_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _165C70_35_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _165C70_35_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _165C70_35_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _165C70_36_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _165C70_36_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _165C70_36_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _165C70_36_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MDATA2 _165C70_mdat[] = {
+extern "C" __declspec(dllexport) NJS_MDATA2 _165C70_mdat[] = {
 	{ _165C70_0_pos, _165C70_0_rot, LengthOfArray<Uint32>(_165C70_0_pos), LengthOfArray<Uint32>(_165C70_0_rot) },
 { _165C70_1_pos, _165C70_1_rot, LengthOfArray<Uint32>(_165C70_1_pos), LengthOfArray<Uint32>(_165C70_1_rot) },
 { _165C70_2_pos, _165C70_2_rot, LengthOfArray<Uint32>(_165C70_2_pos), LengthOfArray<Uint32>(_165C70_2_rot) },
@@ -3138,35 +3138,35 @@ NJS_MDATA2 _165C70_mdat[] = {
 { _165C70_36_pos, _165C70_36_rot, LengthOfArray<Uint32>(_165C70_36_pos), LengthOfArray<Uint32>(_165C70_36_rot) }
 };
 
-NJS_MOTION _165C70 = { _165C70_mdat, 17, NJD_MTYPE_POS_0 | NJD_MTYPE_ANG_1, 2 };
+extern "C" __declspec(dllexport) NJS_MOTION _165C70 = { _165C70_mdat, 17, NJD_MTYPE_POS_0 | NJD_MTYPE_ANG_1, 2 };
 
 //WARA
-NJS_MKEY_F _169078_0_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _169078_0_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _169078_0_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _169078_0_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _169078_1_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _169078_1_pos[] = {
 	{ 0, -0.032994f, 0.111753f, 0.049712f },
 { 16, -0.032994f, 0.111753f, 0.049712f }
 };
 
-NJS_MKEY_A _169078_1_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _169078_1_rot[] = {
 	{ 0, 0, 0x3FFF, 0 },
 { 16, 0, 0x3FFF, 0 }
 };
 
-NJS_MKEY_F _169078_2_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _169078_2_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _169078_2_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _169078_2_rot[] = {
 	{ 0, 0, 0, 0x4024 },
 { 1, 0, 0, 0x3FFC },
 { 2, 0, 0, 0x3F94 },
@@ -3186,27 +3186,27 @@ NJS_MKEY_A _169078_2_rot[] = {
 { 16, 0, 0, 0x4024 }
 };
 
-NJS_MKEY_F _169078_3_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _169078_3_pos[] = {
 	{ 0, 6.018938f, 0, 0 },
 { 16, 6.018938f, 0, 0 }
 };
 
-NJS_MKEY_A _169078_3_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _169078_3_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _169078_4_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _169078_4_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _169078_4_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _169078_4_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _169078_5_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _169078_5_pos[] = {
 	{ 0, 2.025012f, 0.179868f, -0.019222f },
 { 1, 2.029662f, 0.184403f, -0.019222f },
 { 2, 2.042163f, 0.196558f, -0.019222f },
@@ -3226,17 +3226,17 @@ NJS_MKEY_F _169078_5_pos[] = {
 { 16, 2.025012f, 0.179868f, -0.019222f }
 };
 
-NJS_MKEY_A _169078_5_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _169078_5_rot[] = {
 	{ 0, 0, 0, 0xFFFFBFDC },
 { 16, 0, 0, 0xFFFFBFDC }
 };
 
-NJS_MKEY_F _169078_6_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _169078_6_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _169078_6_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _169078_6_rot[] = {
 	{ 0, 0, 0, 0xFFFF961B },
 { 1, 0, 0, 0xFFFF953C },
 { 2, 0, 0, 0xFFFF92E5 },
@@ -3256,42 +3256,42 @@ NJS_MKEY_A _169078_6_rot[] = {
 { 16, 0, 0, 0xFFFF961B }
 };
 
-NJS_MKEY_F _169078_7_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _169078_7_pos[] = {
 	{ 0, 2.408009f, 0, 0 },
 { 16, 2.408009f, 0, 0 }
 };
 
-NJS_MKEY_A _169078_7_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _169078_7_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _169078_8_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _169078_8_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _169078_8_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _169078_8_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _169078_9_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _169078_9_pos[] = {
 	{ 0, 0.327026f, -1.087904f, 0.373945f },
 { 16, 0.327026f, -1.087904f, 0.373945f }
 };
 
-NJS_MKEY_A _169078_9_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _169078_9_rot[] = {
 	{ 0, 0x3BE3, 0xFFFFC001, 0x3BE3 },
 { 16, 0x3BE3, 0xFFFFC001, 0x3BE3 }
 };
 
-NJS_MKEY_F _169078_10_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _169078_10_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _169078_10_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _169078_10_rot[] = {
 	{ 0, 0, 0xFFFFEE7C, 0x4030 },
 { 1, 0xFFFFFF9F, 0xFFFFEFF8, 0x3EFB },
 { 2, 0xFFFFFE9E, 0xFFFFF3E5, 0x3BCB },
@@ -3311,42 +3311,42 @@ NJS_MKEY_A _169078_10_rot[] = {
 { 16, 0, 0xFFFFEE7C, 0x4030 }
 };
 
-NJS_MKEY_F _169078_11_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _169078_11_pos[] = {
 	{ 0, 1.5646f, 0, 0 },
 { 16, 1.5646f, 0, 0 }
 };
 
-NJS_MKEY_A _169078_11_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _169078_11_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _169078_12_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _169078_12_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _169078_12_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _169078_12_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _169078_13_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _169078_13_pos[] = {
 	{ 0, 0.327026f, -1.087904f, -0.373945f },
 { 16, 0.327026f, -1.087904f, -0.373945f }
 };
 
-NJS_MKEY_A _169078_13_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _169078_13_rot[] = {
 	{ 0, 0xFFFFC41D, 0x3FFF, 0x3BE3 },
 { 16, 0xFFFFC41D, 0x3FFF, 0x3BE3 }
 };
 
-NJS_MKEY_F _169078_14_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _169078_14_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _169078_14_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _169078_14_rot[] = {
 	{ 0, 0xFFFF8001, 0x6E7A, 0xFFFFC031 },
 { 1, 0xFFFF8062, 0x6FF2, 0xFFFFBEEF },
 { 2, 0xFFFF8162, 0x73D2, 0xFFFFBB9C },
@@ -3366,27 +3366,27 @@ NJS_MKEY_A _169078_14_rot[] = {
 { 16, 0xFFFF8001, 0x6E7A, 0xFFFFC031 }
 };
 
-NJS_MKEY_F _169078_15_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _169078_15_pos[] = {
 	{ 0, 1.5646f, 0, 0 },
 { 16, 1.5646f, 0, 0 }
 };
 
-NJS_MKEY_A _169078_15_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _169078_15_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _169078_16_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _169078_16_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _169078_16_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _169078_16_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _169078_17_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _169078_17_pos[] = {
 	{ 0, 1.719506f, 0.349333f, 0.250452f },
 { 1, 1.708756f, 0.355355f, 0.255619f },
 { 2, 1.680416f, 0.371229f, 0.269241f },
@@ -3406,17 +3406,17 @@ NJS_MKEY_F _169078_17_pos[] = {
 { 16, 1.719506f, 0.349333f, 0.250452f }
 };
 
-NJS_MKEY_A _169078_17_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _169078_17_rot[] = {
 	{ 0, 0, 0, 0xFFFFBFDC },
 { 16, 0, 0, 0xFFFFBFDC }
 };
 
-NJS_MKEY_F _169078_18_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _169078_18_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _169078_18_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _169078_18_rot[] = {
 	{ 0, 0, 0, 0xFFFF949F },
 { 1, 0, 0xFFFFFF76, 0xFFFF9CB4 },
 { 2, 0, 0xFFFFFE08, 0xFFFFA4DA },
@@ -3436,42 +3436,42 @@ NJS_MKEY_A _169078_18_rot[] = {
 { 16, 0, 0, 0xFFFF949F }
 };
 
-NJS_MKEY_F _169078_19_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _169078_19_pos[] = {
 	{ 0, 1.467504f, 0, 0 },
 { 16, 1.467504f, 0, 0 }
 };
 
-NJS_MKEY_A _169078_19_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _169078_19_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _169078_20_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _169078_20_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _169078_20_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _169078_20_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _169078_21_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _169078_21_pos[] = {
 	{ 0, 1.258567f, 0.017047f, 0.727211f },
 { 16, 1.258567f, 0.017047f, 0.727211f }
 };
 
-NJS_MKEY_A _169078_21_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _169078_21_rot[] = {
 	{ 0, 0, 0, 0xFFFFBFDC },
 { 16, 0, 0, 0xFFFFBFDC }
 };
 
-NJS_MKEY_F _169078_22_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _169078_22_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _169078_22_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _169078_22_rot[] = {
 	{ 0, 0, 0, 0xFFFFB910 },
 { 1, 0, 0, 0xFFFFAFC2 },
 { 2, 0, 0, 0xFFFFB98E },
@@ -3491,12 +3491,12 @@ NJS_MKEY_A _169078_22_rot[] = {
 { 16, 0, 0, 0xFFFFB910 }
 };
 
-NJS_MKEY_F _169078_23_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _169078_23_pos[] = {
 	{ 0, 1.265373f, 0, 0 },
 { 16, 1.265373f, 0, 0 }
 };
 
-NJS_MKEY_A _169078_23_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _169078_23_rot[] = {
 	{ 0, 0, 0, 0xFFFFCB83 },
 { 1, 0, 0, 0xFFFFD652 },
 { 2, 0, 0, 0xFFFFEAFB },
@@ -3516,52 +3516,52 @@ NJS_MKEY_A _169078_23_rot[] = {
 { 16, 0, 0, 0xFFFFCB83 }
 };
 
-NJS_MKEY_F _169078_24_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _169078_24_pos[] = {
 	{ 0, 2.036819f, 0, 0 },
 { 16, 2.036819f, 0, 0 }
 };
 
-NJS_MKEY_A _169078_24_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _169078_24_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _169078_25_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _169078_25_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _169078_25_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _169078_25_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _169078_26_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _169078_26_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _169078_26_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _169078_26_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _169078_27_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _169078_27_pos[] = {
 	{ 0, 0.960358f, -0.495836f, 0 },
 { 16, 0.960358f, -0.495836f, 0 }
 };
 
-NJS_MKEY_A _169078_27_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _169078_27_rot[] = {
 	{ 0, 0, 0, 0xFFFFBFDC },
 { 16, 0, 0, 0xFFFFBFDC }
 };
 
-NJS_MKEY_F _169078_28_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _169078_28_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _169078_28_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _169078_28_rot[] = {
 	{ 0, 0, 0, 0xFFFFD7EE },
 { 1, 0, 0, 0xFFFFD4DC },
 { 2, 0, 0, 0xFFFFD34A },
@@ -3581,12 +3581,12 @@ NJS_MKEY_A _169078_28_rot[] = {
 { 16, 0, 0, 0xFFFFD7EE }
 };
 
-NJS_MKEY_F _169078_29_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _169078_29_pos[] = {
 	{ 0, 1.139308f, 0, 0 },
 { 16, 1.139308f, 0, 0 }
 };
 
-NJS_MKEY_A _169078_29_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _169078_29_rot[] = {
 	{ 0, 0, 0, 0x2D8A },
 { 1, 0, 0, 0x2BF2 },
 { 2, 0, 0, 0x2913 },
@@ -3606,37 +3606,37 @@ NJS_MKEY_A _169078_29_rot[] = {
 { 16, 0, 0, 0x2D8A }
 };
 
-NJS_MKEY_F _169078_30_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _169078_30_pos[] = {
 	{ 0, 2.64228f, 0, 0 },
 { 16, 2.64228f, 0, 0 }
 };
 
-NJS_MKEY_A _169078_30_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _169078_30_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _169078_31_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _169078_31_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _169078_31_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _169078_31_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _169078_32_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _169078_32_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _169078_32_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _169078_32_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _169078_33_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _169078_33_pos[] = {
 	{ 0, 1.719506f, 0.349333f, -0.250452f },
 { 1, 1.708756f, 0.355354f, -0.25467f },
 { 2, 1.680416f, 0.371228f, -0.265807f },
@@ -3656,17 +3656,17 @@ NJS_MKEY_F _169078_33_pos[] = {
 { 16, 1.719506f, 0.349333f, -0.250452f }
 };
 
-NJS_MKEY_A _169078_33_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _169078_33_rot[] = {
 	{ 0, 0, 0, 0xFFFFBFDC },
 { 16, 0, 0, 0xFFFFBFDC }
 };
 
-NJS_MKEY_F _169078_34_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _169078_34_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _169078_34_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _169078_34_rot[] = {
 	{ 0, 0, 0, 0xFFFF949F },
 { 1, 0, 0x90, 0xFFFF9CB9 },
 { 2, 0, 0x20C, 0xFFFFA4E2 },
@@ -3686,42 +3686,42 @@ NJS_MKEY_A _169078_34_rot[] = {
 { 16, 0, 0, 0xFFFF949F }
 };
 
-NJS_MKEY_F _169078_35_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _169078_35_pos[] = {
 	{ 0, 1.467504f, 0, 0 },
 { 16, 1.467504f, 0, 0 }
 };
 
-NJS_MKEY_A _169078_35_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _169078_35_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _169078_36_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _169078_36_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _169078_36_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _169078_36_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _169078_37_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _169078_37_pos[] = {
 	{ 0, 1.258567f, 0.017047f, -0.727211f },
 { 16, 1.258567f, 0.017047f, -0.727211f }
 };
 
-NJS_MKEY_A _169078_37_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _169078_37_rot[] = {
 	{ 0, 0, 0, 0xFFFFBFDC },
 { 16, 0, 0, 0xFFFFBFDC }
 };
 
-NJS_MKEY_F _169078_38_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _169078_38_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _169078_38_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _169078_38_rot[] = {
 	{ 0, 0, 0, 0xFFFFB910 },
 { 1, 0, 0, 0xFFFFAFC3 },
 { 2, 0, 0, 0xFFFFB98F },
@@ -3741,12 +3741,12 @@ NJS_MKEY_A _169078_38_rot[] = {
 { 16, 0, 0, 0xFFFFB910 }
 };
 
-NJS_MKEY_F _169078_39_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _169078_39_pos[] = {
 	{ 0, 1.265373f, 0, 0 },
 { 16, 1.265373f, 0, 0 }
 };
 
-NJS_MKEY_A _169078_39_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _169078_39_rot[] = {
 	{ 0, 0, 0, 0xFFFFCB83 },
 { 1, 0, 0, 0xFFFFD69C },
 { 2, 0, 0, 0xFFFFEB96 },
@@ -3766,37 +3766,37 @@ NJS_MKEY_A _169078_39_rot[] = {
 { 16, 0, 0, 0xFFFFCB83 }
 };
 
-NJS_MKEY_F _169078_40_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _169078_40_pos[] = {
 	{ 0, 2.036819f, -0.00001f, 0 },
 { 16, 2.036819f, -0.00001f, 0 }
 };
 
-NJS_MKEY_A _169078_40_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _169078_40_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _169078_41_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _169078_41_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _169078_41_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _169078_41_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _169078_42_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _169078_42_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _169078_42_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _169078_42_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MDATA2 _169078_mdat[] = {
+extern "C" __declspec(dllexport) NJS_MDATA2 _169078_mdat[] = {
 	{ _169078_0_pos, _169078_0_rot, LengthOfArray<Uint32>(_169078_0_pos), LengthOfArray<Uint32>(_169078_0_rot) },
 { _169078_1_pos, _169078_1_rot, LengthOfArray<Uint32>(_169078_1_pos), LengthOfArray<Uint32>(_169078_1_rot) },
 { _169078_2_pos, _169078_2_rot, LengthOfArray<Uint32>(_169078_2_pos), LengthOfArray<Uint32>(_169078_2_rot) },
@@ -3842,20 +3842,20 @@ NJS_MDATA2 _169078_mdat[] = {
 { _169078_42_pos, _169078_42_rot, LengthOfArray<Uint32>(_169078_42_pos), LengthOfArray<Uint32>(_169078_42_rot) }
 };
 
-NJS_MOTION _169078 = { _169078_mdat, 17, NJD_MTYPE_POS_0 | NJD_MTYPE_ANG_1, 2 };
+extern "C" __declspec(dllexport) NJS_MOTION _169078 = { _169078_mdat, 17, NJD_MTYPE_POS_0 | NJD_MTYPE_ANG_1, 2 };
 
 //BANB
-NJS_MKEY_F _16BC68_0_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _16BC68_0_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _16BC68_0_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _16BC68_0_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _16BC68_1_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _16BC68_1_pos[] = {
 	{ 0, 0, 0.930527f, 0 },
 { 1, 0, 0.9087189f, -0.007559f },
 { 2, 0, 0.848761f, -0.02804f },
@@ -3875,17 +3875,17 @@ NJS_MKEY_F _16BC68_1_pos[] = {
 { 16, 0, 0.930527f, 0 }
 };
 
-NJS_MKEY_A _16BC68_1_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _16BC68_1_rot[] = {
 	{ 0, 0, 0x3FFF, 0 },
 { 16, 0, 0x3FFF, 0 }
 };
 
-NJS_MKEY_F _16BC68_2_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _16BC68_2_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _16BC68_2_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _16BC68_2_rot[] = {
 	{ 0, 0, 0, 0x4209 },
 { 1, 0, 0, 0x42A3 },
 { 2, 0, 0, 0x443F },
@@ -3905,32 +3905,32 @@ NJS_MKEY_A _16BC68_2_rot[] = {
 { 16, 0, 0, 0x4209 }
 };
 
-NJS_MKEY_F _16BC68_3_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _16BC68_3_pos[] = {
 	{ 0, 4.997561f, 0, 0 },
 { 16, 4.997561f, 0, 0 }
 };
 
-NJS_MKEY_A _16BC68_3_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _16BC68_3_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _16BC68_4_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _16BC68_4_pos[] = {
 	{ 0, 1.720738f, 0.923369f, 0.453901f },
 { 16, 1.720738f, 0.923369f, 0.453901f }
 };
 
-NJS_MKEY_A _16BC68_4_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _16BC68_4_rot[] = {
 	{ 0, 0, 0, 0xFFFFC000 },
 { 16, 0, 0, 0xFFFFC000 }
 };
 
-NJS_MKEY_F _16BC68_5_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _16BC68_5_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _16BC68_5_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _16BC68_5_rot[] = {
 	{ 0, 0, 0, 0xFFFF96AC },
 { 1, 0, 0, 0xFFFF9056 },
 { 2, 0, 0, 0xFFFF8F4C },
@@ -3950,42 +3950,42 @@ NJS_MKEY_A _16BC68_5_rot[] = {
 { 16, 0, 0, 0xFFFF96AC }
 };
 
-NJS_MKEY_F _16BC68_6_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _16BC68_6_pos[] = {
 	{ 0, 1.716093f, 0, 0 },
 { 16, 1.716093f, 0, 0 }
 };
 
-NJS_MKEY_A _16BC68_6_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _16BC68_6_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _16BC68_7_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _16BC68_7_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _16BC68_7_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _16BC68_7_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _16BC68_8_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _16BC68_8_pos[] = {
 	{ 0, 1.720738f, 0.923368f, -0.453901f },
 { 16, 1.720738f, 0.923368f, -0.453901f }
 };
 
-NJS_MKEY_A _16BC68_8_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _16BC68_8_rot[] = {
 	{ 0, 0, 0, 0xFFFFC000 },
 { 16, 0, 0, 0xFFFFC000 }
 };
 
-NJS_MKEY_F _16BC68_9_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _16BC68_9_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _16BC68_9_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _16BC68_9_rot[] = {
 	{ 0, 0, 0, 0xFFFF91A0 },
 { 1, 0, 0, 0xFFFF9360 },
 { 2, 0, 0, 0xFFFF96B3 },
@@ -4005,42 +4005,42 @@ NJS_MKEY_A _16BC68_9_rot[] = {
 { 16, 0, 0, 0xFFFF91A0 }
 };
 
-NJS_MKEY_F _16BC68_10_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _16BC68_10_pos[] = {
 	{ 0, 1.716093f, 0, 0 },
 { 16, 1.716093f, 0, 0 }
 };
 
-NJS_MKEY_A _16BC68_10_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _16BC68_10_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _16BC68_11_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _16BC68_11_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _16BC68_11_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _16BC68_11_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _16BC68_12_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _16BC68_12_pos[] = {
 	{ 0, 1.472214f, -0.715922f, -0.453901f },
 { 16, 1.472214f, -0.715922f, -0.453901f }
 };
 
-NJS_MKEY_A _16BC68_12_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _16BC68_12_rot[] = {
 	{ 0, 0, 0, 0xFFFFC000 },
 { 16, 0, 0, 0xFFFFC000 }
 };
 
-NJS_MKEY_F _16BC68_13_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _16BC68_13_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _16BC68_13_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _16BC68_13_rot[] = {
 	{ 0, 0, 0, 0xFFFFE04B },
 { 1, 0, 0, 0xFFFFE6B0 },
 { 2, 0, 0, 0xFFFFE7A6 },
@@ -4060,42 +4060,42 @@ NJS_MKEY_A _16BC68_13_rot[] = {
 { 16, 0, 0, 0xFFFFE04B }
 };
 
-NJS_MKEY_F _16BC68_14_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _16BC68_14_pos[] = {
 	{ 0, 1.476882f, 0, 0 },
 { 16, 1.476882f, 0, 0 }
 };
 
-NJS_MKEY_A _16BC68_14_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _16BC68_14_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _16BC68_15_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _16BC68_15_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _16BC68_15_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _16BC68_15_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _16BC68_16_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _16BC68_16_pos[] = {
 	{ 0, 1.69584f, -0.7407669f, 0 },
 { 16, 1.69584f, -0.7407669f, 0 }
 };
 
-NJS_MKEY_A _16BC68_16_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _16BC68_16_rot[] = {
 	{ 0, 0, 0, 0xFFFFC000 },
 { 16, 0, 0, 0xFFFFC000 }
 };
 
-NJS_MKEY_F _16BC68_17_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _16BC68_17_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _16BC68_17_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _16BC68_17_rot[] = {
 	{ 0, 0, 0, 0xABD },
 { 1, 0, 0, 0xEE2 },
 { 2, 0, 0, 0x1407 },
@@ -4115,52 +4115,52 @@ NJS_MKEY_A _16BC68_17_rot[] = {
 { 16, 0, 0, 0xABD }
 };
 
-NJS_MKEY_F _16BC68_18_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _16BC68_18_pos[] = {
 	{ 0, 2.102266f, 0, 0 },
 { 16, 2.102266f, 0, 0 }
 };
 
-NJS_MKEY_A _16BC68_18_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _16BC68_18_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _16BC68_19_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _16BC68_19_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _16BC68_19_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _16BC68_19_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _16BC68_20_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _16BC68_20_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _16BC68_20_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _16BC68_20_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _16BC68_21_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _16BC68_21_pos[] = {
 	{ 0, 1.472214f, -0.715922f, 0.453901f },
 { 16, 1.472214f, -0.715922f, 0.453901f }
 };
 
-NJS_MKEY_A _16BC68_21_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _16BC68_21_rot[] = {
 	{ 0, 0, 0, 0xFFFFC000 },
 { 16, 0, 0, 0xFFFFC000 }
 };
 
-NJS_MKEY_F _16BC68_22_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _16BC68_22_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _16BC68_22_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _16BC68_22_rot[] = {
 	{ 0, 0, 0, 0xFFFFE6CB },
 { 1, 0, 0, 0xFFFFE76D },
 { 2, 0, 0, 0xFFFFE40E },
@@ -4180,27 +4180,27 @@ NJS_MKEY_A _16BC68_22_rot[] = {
 { 16, 0, 0, 0xFFFFE6CB }
 };
 
-NJS_MKEY_F _16BC68_23_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _16BC68_23_pos[] = {
 	{ 0, 1.476882f, 0, 0 },
 { 16, 1.476882f, 0, 0 }
 };
 
-NJS_MKEY_A _16BC68_23_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _16BC68_23_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _16BC68_24_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _16BC68_24_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _16BC68_24_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _16BC68_24_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _16BC68_25_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _16BC68_25_pos[] = {
 	{ 0, 2.845473f, 0.971966f, 0 },
 { 1, 2.893709f, 1.002967f, 0 },
 { 2, 2.899887f, 1.007429f, 0 },
@@ -4220,17 +4220,17 @@ NJS_MKEY_F _16BC68_25_pos[] = {
 { 16, 2.845473f, 0.971966f, 0 }
 };
 
-NJS_MKEY_A _16BC68_25_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _16BC68_25_rot[] = {
 	{ 0, 0, 0, 0xFFFFC000 },
 { 16, 0, 0, 0xFFFFC000 }
 };
 
-NJS_MKEY_F _16BC68_26_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _16BC68_26_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _16BC68_26_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _16BC68_26_rot[] = {
 	{ 0, 0, 0, 0xFFFF8FED },
 { 1, 0, 0, 0xFFFF8FAD },
 { 2, 0, 0, 0xFFFF8EFD },
@@ -4250,42 +4250,42 @@ NJS_MKEY_A _16BC68_26_rot[] = {
 { 16, 0, 0, 0xFFFF8FED }
 };
 
-NJS_MKEY_F _16BC68_27_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _16BC68_27_pos[] = {
 	{ 0, 2.283319f, 0, 0 },
 { 16, 2.283319f, 0, 0 }
 };
 
-NJS_MKEY_A _16BC68_27_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _16BC68_27_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _16BC68_28_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _16BC68_28_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _16BC68_28_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _16BC68_28_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _16BC68_29_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _16BC68_29_pos[] = {
 	{ 0, -0.172463f, -0.98153f, 0.453725f },
 { 16, -0.172463f, -0.98153f, 0.453725f }
 };
 
-NJS_MKEY_A _16BC68_29_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _16BC68_29_rot[] = {
 	{ 0, 0x3809, 0xFFFFC001, 0x3809 },
 { 16, 0x3809, 0xFFFFC001, 0x3809 }
 };
 
-NJS_MKEY_F _16BC68_30_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _16BC68_30_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _16BC68_30_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _16BC68_30_rot[] = {
 	{ 0, 0xFFFFF141, 0x1C1D, 0x695 },
 { 1, 0xFFFFF18B, 0x1BF5, 0x712 },
 { 2, 0xFFFFF259, 0x1B87, 0x86A },
@@ -4305,42 +4305,42 @@ NJS_MKEY_A _16BC68_30_rot[] = {
 { 16, 0xFFFFF141, 0x1C1D, 0x695 }
 };
 
-NJS_MKEY_F _16BC68_31_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _16BC68_31_pos[] = {
 	{ 0, 2.023378f, 0, 0 },
 { 16, 2.023378f, 0, 0 }
 };
 
-NJS_MKEY_A _16BC68_31_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _16BC68_31_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _16BC68_32_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _16BC68_32_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _16BC68_32_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _16BC68_32_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _16BC68_33_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _16BC68_33_pos[] = {
 	{ 0, -0.172463f, -0.98153f, -0.453725f },
 { 16, -0.172463f, -0.98153f, -0.453725f }
 };
 
-NJS_MKEY_A _16BC68_33_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _16BC68_33_rot[] = {
 	{ 0, 0xFFFFC7F7, 0x3FFF, 0x3809 },
 { 16, 0xFFFFC7F7, 0x3FFF, 0x3809 }
 };
 
-NJS_MKEY_F _16BC68_34_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _16BC68_34_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _16BC68_34_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _16BC68_34_rot[] = {
 	{ 0, 0xE41, 0xFFFFE318, 0x683 },
 { 1, 0xDF9, 0xFFFFE33D, 0x702 },
 { 2, 0xD33, 0xFFFFE3A4, 0x862 },
@@ -4360,27 +4360,27 @@ NJS_MKEY_A _16BC68_34_rot[] = {
 { 16, 0xE41, 0xFFFFE318, 0x683 }
 };
 
-NJS_MKEY_F _16BC68_35_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _16BC68_35_pos[] = {
 	{ 0, 2.023378f, 0, 0 },
 { 16, 2.023378f, 0, 0 }
 };
 
-NJS_MKEY_A _16BC68_35_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _16BC68_35_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _16BC68_36_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _16BC68_36_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _16BC68_36_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _16BC68_36_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MDATA2 _16BC68_mdat[] = {
+extern "C" __declspec(dllexport) NJS_MDATA2 _16BC68_mdat[] = {
 	{ _16BC68_0_pos, _16BC68_0_rot, LengthOfArray<Uint32>(_16BC68_0_pos), LengthOfArray<Uint32>(_16BC68_0_rot) },
 { _16BC68_1_pos, _16BC68_1_rot, LengthOfArray<Uint32>(_16BC68_1_pos), LengthOfArray<Uint32>(_16BC68_1_rot) },
 { _16BC68_2_pos, _16BC68_2_rot, LengthOfArray<Uint32>(_16BC68_2_pos), LengthOfArray<Uint32>(_16BC68_2_rot) },
@@ -4420,20 +4420,20 @@ NJS_MDATA2 _16BC68_mdat[] = {
 { _16BC68_36_pos, _16BC68_36_rot, LengthOfArray<Uint32>(_16BC68_36_pos), LengthOfArray<Uint32>(_16BC68_36_rot) }
 };
 
-NJS_MOTION _16BC68 = { _16BC68_mdat, 17, NJD_MTYPE_POS_0 | NJD_MTYPE_ANG_1, 2 };
+extern "C" __declspec(dllexport) NJS_MOTION _16BC68 = { _16BC68_mdat, 17, NJD_MTYPE_POS_0 | NJD_MTYPE_ANG_1, 2 };
 
 //USA
-NJS_MKEY_F _16EA18_0_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _16EA18_0_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _16EA18_0_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _16EA18_0_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _16EA18_1_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _16EA18_1_pos[] = {
 	{ 0, 0, 0.01359f, 0.0005819999f },
 { 1, 0, 0.01359f, 0.017732f },
 { 2, 0, 0.01359f, 0.063821f },
@@ -4453,17 +4453,17 @@ NJS_MKEY_F _16EA18_1_pos[] = {
 { 16, 0, 0.01359f, 0.0005819999f }
 };
 
-NJS_MKEY_A _16EA18_1_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _16EA18_1_rot[] = {
 	{ 0, 0, 0x3FFF, 0 },
 { 16, 0, 0x3FFF, 0 }
 };
 
-NJS_MKEY_F _16EA18_2_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _16EA18_2_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _16EA18_2_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _16EA18_2_rot[] = {
 	{ 0, 0, 0, 0x4E6C },
 { 1, 0, 0, 0x4DC9 },
 { 2, 0, 0, 0x4C1F },
@@ -4483,27 +4483,27 @@ NJS_MKEY_A _16EA18_2_rot[] = {
 { 16, 0, 0, 0x4E6C }
 };
 
-NJS_MKEY_F _16EA18_3_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _16EA18_3_pos[] = {
 	{ 0, 5.015508f, 0, 0 },
 { 16, 5.015508f, 0, 0 }
 };
 
-NJS_MKEY_A _16EA18_3_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _16EA18_3_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _16EA18_4_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _16EA18_4_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _16EA18_4_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _16EA18_4_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _16EA18_5_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _16EA18_5_pos[] = {
 	{ 0, 1.904356f, -0.07632799f, 0 },
 { 1, 1.861878f, -0.076541f, 0 },
 { 2, 1.83481f, -0.077102f, 0 },
@@ -4523,17 +4523,17 @@ NJS_MKEY_F _16EA18_5_pos[] = {
 { 16, 1.899107f, -0.07632799f, 0 }
 };
 
-NJS_MKEY_A _16EA18_5_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _16EA18_5_rot[] = {
 	{ 0, 0, 0, 0xFFFFBFD6 },
 { 16, 0, 0, 0xFFFFBFD6 }
 };
 
-NJS_MKEY_F _16EA18_6_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _16EA18_6_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _16EA18_6_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _16EA18_6_rot[] = {
 	{ 0, 0, 0, 0xFFFF79B5 },
 { 1, 0, 0, 0xFFFF7996 },
 { 2, 0, 0, 0xFFFF7943 },
@@ -4553,42 +4553,42 @@ NJS_MKEY_A _16EA18_6_rot[] = {
 { 16, 0, 0, 0xFFFF79B5 }
 };
 
-NJS_MKEY_F _16EA18_7_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _16EA18_7_pos[] = {
 	{ 0, 1.802638f, 0, 0 },
 { 16, 1.802638f, 0, 0 }
 };
 
-NJS_MKEY_A _16EA18_7_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _16EA18_7_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _16EA18_8_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _16EA18_8_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _16EA18_8_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _16EA18_8_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _16EA18_9_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _16EA18_9_pos[] = {
 	{ 0, -0.04553f, -0.981567f, 0.18417f },
 { 16, -0.04553f, -0.981567f, 0.18417f }
 };
 
-NJS_MKEY_A _16EA18_9_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _16EA18_9_rot[] = {
 	{ 0, 0x3F12, 0xFFFFC001, 0x3F12 },
 { 16, 0x3F12, 0xFFFFC001, 0x3F12 }
 };
 
-NJS_MKEY_F _16EA18_10_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _16EA18_10_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _16EA18_10_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _16EA18_10_rot[] = {
 	{ 0, 0xFFFFFA84, 0xFFFFF3A4, 0x2D15 },
 { 1, 0xFFFFFA6B, 0xFFFFEF5D, 0x2F07 },
 { 2, 0xFFFFFA6E, 0xFFFFECF0, 0x2EC9 },
@@ -4608,42 +4608,42 @@ NJS_MKEY_A _16EA18_10_rot[] = {
 { 16, 0xFFFFFA84, 0xFFFFF3A4, 0x2D15 }
 };
 
-NJS_MKEY_F _16EA18_11_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _16EA18_11_pos[] = {
 	{ 0, 2.746457f, 0, 0 },
 { 16, 2.746457f, 0, 0 }
 };
 
-NJS_MKEY_A _16EA18_11_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _16EA18_11_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _16EA18_12_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _16EA18_12_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _16EA18_12_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _16EA18_12_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _16EA18_13_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _16EA18_13_pos[] = {
 	{ 0, -0.04553f, -0.981567f, -0.18417f },
 { 16, -0.04553f, -0.981567f, -0.18417f }
 };
 
-NJS_MKEY_A _16EA18_13_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _16EA18_13_rot[] = {
 	{ 0, 0xFFFFC0EE, 0x3FFF, 0x3F12 },
 { 16, 0xFFFFC0EE, 0x3FFF, 0x3F12 }
 };
 
-NJS_MKEY_F _16EA18_14_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _16EA18_14_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _16EA18_14_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _16EA18_14_rot[] = {
 	{ 0, 0xFFFF859D, 0x7355, 0xFFFFAD25 },
 { 1, 0xFFFF85B8, 0x6F00, 0xFFFFAF18 },
 { 2, 0xFFFF85B5, 0x6C8C, 0xFFFFAEDA },
@@ -4663,42 +4663,42 @@ NJS_MKEY_A _16EA18_14_rot[] = {
 { 16, 0xFFFF859D, 0x7355, 0xFFFFAD25 }
 };
 
-NJS_MKEY_F _16EA18_15_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _16EA18_15_pos[] = {
 	{ 0, 2.746457f, 0, 0 },
 { 16, 2.746457f, 0, 0 }
 };
 
-NJS_MKEY_A _16EA18_15_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _16EA18_15_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _16EA18_16_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _16EA18_16_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _16EA18_16_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _16EA18_16_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _16EA18_17_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _16EA18_17_pos[] = {
 	{ 0, 0.324866f, -0.656159f, 0 },
 { 16, 0.324866f, -0.656159f, 0 }
 };
 
-NJS_MKEY_A _16EA18_17_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _16EA18_17_rot[] = {
 	{ 0, 0, 0, 0xFFFFBFD6 },
 { 16, 0, 0, 0xFFFFBFD6 }
 };
 
-NJS_MKEY_F _16EA18_18_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _16EA18_18_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _16EA18_18_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _16EA18_18_rot[] = {
 	{ 0, 0, 0, 0x66A },
 { 1, 0, 0, 0x5E6 },
 { 2, 0, 0, 0x489 },
@@ -4718,27 +4718,27 @@ NJS_MKEY_A _16EA18_18_rot[] = {
 { 16, 0, 0, 0x66A }
 };
 
-NJS_MKEY_F _16EA18_19_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _16EA18_19_pos[] = {
 	{ 0, 1.131999f, 0, 0 },
 { 16, 1.131999f, 0, 0 }
 };
 
-NJS_MKEY_A _16EA18_19_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _16EA18_19_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _16EA18_20_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _16EA18_20_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _16EA18_20_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _16EA18_20_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _16EA18_21_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _16EA18_21_pos[] = {
 	{ 0, 1.422487f, 0.230237f, 0.327541f },
 { 1, 1.410659f, 0.228935f, 0.327541f },
 { 2, 1.379476f, 0.225505f, 0.327541f },
@@ -4758,17 +4758,17 @@ NJS_MKEY_F _16EA18_21_pos[] = {
 { 16, 1.422487f, 0.230237f, 0.327541f }
 };
 
-NJS_MKEY_A _16EA18_21_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _16EA18_21_rot[] = {
 	{ 0, 0, 0, 0xFFFFBFD6 },
 { 16, 0, 0, 0xFFFFBFD6 }
 };
 
-NJS_MKEY_F _16EA18_22_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _16EA18_22_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _16EA18_22_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _16EA18_22_rot[] = {
 	{ 0, 0x8B, 0xFFFFFACB, 0xFFFF8E29 },
 { 1, 0x4E, 0xFFFFFACE, 0xFFFF8FB1 },
 { 2, 0xFFFFFFAE, 0xFFFFFAD3, 0xFFFF93B8 },
@@ -4788,27 +4788,27 @@ NJS_MKEY_A _16EA18_22_rot[] = {
 { 16, 0x8B, 0xFFFFFACB, 0xFFFF8E29 }
 };
 
-NJS_MKEY_F _16EA18_23_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _16EA18_23_pos[] = {
 	{ 0, 1.114478f, 0, 0 },
 { 16, 1.114478f, 0, 0 }
 };
 
-NJS_MKEY_A _16EA18_23_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _16EA18_23_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _16EA18_24_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _16EA18_24_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _16EA18_24_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _16EA18_24_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _16EA18_25_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _16EA18_25_pos[] = {
 	{ 0, 1.422486f, 0.230237f, -0.32754f },
 { 1, 1.410658f, 0.228936f, -0.32754f },
 { 2, 1.379476f, 0.225505f, -0.32754f },
@@ -4828,17 +4828,17 @@ NJS_MKEY_F _16EA18_25_pos[] = {
 { 16, 1.422486f, 0.230237f, -0.32754f }
 };
 
-NJS_MKEY_A _16EA18_25_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _16EA18_25_rot[] = {
 	{ 0, 0, 0, 0xFFFFBFD6 },
 { 16, 0, 0, 0xFFFFBFD6 }
 };
 
-NJS_MKEY_F _16EA18_26_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _16EA18_26_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _16EA18_26_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _16EA18_26_rot[] = {
 	{ 0, 0xFFFFFF75, 0x535, 0xFFFF8E29 },
 { 1, 0xFFFFFFB2, 0x532, 0xFFFF8FB1 },
 { 2, 0x52, 0x52D, 0xFFFF93B8 },
@@ -4858,42 +4858,42 @@ NJS_MKEY_A _16EA18_26_rot[] = {
 { 16, 0xFFFFFF75, 0x535, 0xFFFF8E29 }
 };
 
-NJS_MKEY_F _16EA18_27_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _16EA18_27_pos[] = {
 	{ 0, 1.114478f, 0, 0 },
 { 16, 1.114478f, 0, 0 }
 };
 
-NJS_MKEY_A _16EA18_27_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _16EA18_27_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _16EA18_28_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _16EA18_28_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _16EA18_28_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _16EA18_28_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _16EA18_29_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _16EA18_29_pos[] = {
 	{ 0, 0.407586f, -0.451861f, 0.348012f },
 { 16, 0.407586f, -0.451861f, 0.348012f }
 };
 
-NJS_MKEY_A _16EA18_29_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _16EA18_29_rot[] = {
 	{ 0, 0, 0, 0xFFFFBFD6 },
 { 16, 0, 0, 0xFFFFBFD6 }
 };
 
-NJS_MKEY_F _16EA18_30_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _16EA18_30_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _16EA18_30_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _16EA18_30_rot[] = {
 	{ 0, 0, 0, 0xFFFF82C4 },
 { 1, 0, 0, 0xFFFF8C81 },
 { 2, 0, 0, 0xFFFF9FBF },
@@ -4913,42 +4913,42 @@ NJS_MKEY_A _16EA18_30_rot[] = {
 { 16, 0, 0, 0xFFFF82C4 }
 };
 
-NJS_MKEY_F _16EA18_31_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _16EA18_31_pos[] = {
 	{ 0, 1.340819f, 0, 0 },
 { 16, 1.340819f, 0, 0 }
 };
 
-NJS_MKEY_A _16EA18_31_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _16EA18_31_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _16EA18_32_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _16EA18_32_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _16EA18_32_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _16EA18_32_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _16EA18_33_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _16EA18_33_pos[] = {
 	{ 0, 0.407586f, -0.451861f, -0.348012f },
 { 16, 0.407586f, -0.451861f, -0.348012f }
 };
 
-NJS_MKEY_A _16EA18_33_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _16EA18_33_rot[] = {
 	{ 0, 0, 0, 0xFFFFBFD6 },
 { 16, 0, 0, 0xFFFFBFD6 }
 };
 
-NJS_MKEY_F _16EA18_34_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _16EA18_34_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _16EA18_34_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _16EA18_34_rot[] = {
 	{ 0, 0, 0, 0xFFFF82C4 },
 { 1, 0, 0, 0xFFFF8C81 },
 { 2, 0, 0, 0xFFFF9FBF },
@@ -4968,27 +4968,27 @@ NJS_MKEY_A _16EA18_34_rot[] = {
 { 16, 0, 0, 0xFFFF82C4 }
 };
 
-NJS_MKEY_F _16EA18_35_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _16EA18_35_pos[] = {
 	{ 0, 1.340819f, 0, 0 },
 { 16, 1.340819f, 0, 0 }
 };
 
-NJS_MKEY_A _16EA18_35_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _16EA18_35_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _16EA18_36_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _16EA18_36_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _16EA18_36_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _16EA18_36_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MDATA2 _16EA18_mdat[] = {
+extern "C" __declspec(dllexport) NJS_MDATA2 _16EA18_mdat[] = {
 	{ _16EA18_0_pos, _16EA18_0_rot, LengthOfArray<Uint32>(_16EA18_0_pos), LengthOfArray<Uint32>(_16EA18_0_rot) },
 { _16EA18_1_pos, _16EA18_1_rot, LengthOfArray<Uint32>(_16EA18_1_pos), LengthOfArray<Uint32>(_16EA18_1_rot) },
 { _16EA18_2_pos, _16EA18_2_rot, LengthOfArray<Uint32>(_16EA18_2_pos), LengthOfArray<Uint32>(_16EA18_2_rot) },
@@ -5028,20 +5028,20 @@ NJS_MDATA2 _16EA18_mdat[] = {
 { _16EA18_36_pos, _16EA18_36_rot, LengthOfArray<Uint32>(_16EA18_36_pos), LengthOfArray<Uint32>(_16EA18_36_rot) }
 };
 
-NJS_MOTION _16EA18 = { _16EA18_mdat, 17, NJD_MTYPE_POS_0 | NJD_MTYPE_ANG_1, 2 };
+extern "C" __declspec(dllexport) NJS_MOTION _16EA18 = { _16EA18_mdat, 17, NJD_MTYPE_POS_0 | NJD_MTYPE_ANG_1, 2 };
 
 //MOGU
-NJS_MKEY_F _170DF8_0_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _170DF8_0_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _170DF8_0_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _170DF8_0_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _170DF8_1_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _170DF8_1_pos[] = {
 	{ 0, 0, 0, 0 },
 { 1, 0, 0.013298f, -0.005234f },
 { 2, 0, 0.042553f, -0.04563f },
@@ -5061,17 +5061,17 @@ NJS_MKEY_F _170DF8_1_pos[] = {
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _170DF8_1_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _170DF8_1_rot[] = {
 	{ 0, 0, 0x3FFF, 0 },
 { 16, 0, 0x3FFF, 0 }
 };
 
-NJS_MKEY_F _170DF8_2_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _170DF8_2_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _170DF8_2_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _170DF8_2_rot[] = {
 	{ 0, 0x4E3, 0x47B, 0x43CC },
 { 1, 0x47D, 0x42B, 0x42DF },
 { 2, 0x370, 0x357, 0x40DA },
@@ -5091,42 +5091,42 @@ NJS_MKEY_A _170DF8_2_rot[] = {
 { 16, 0x4E3, 0x47B, 0x43CC }
 };
 
-NJS_MKEY_F _170DF8_3_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _170DF8_3_pos[] = {
 	{ 0, 2.963695f, 0, 0 },
 { 16, 2.963695f, 0, 0 }
 };
 
-NJS_MKEY_A _170DF8_3_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _170DF8_3_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _170DF8_4_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _170DF8_4_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _170DF8_4_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _170DF8_4_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _170DF8_5_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _170DF8_5_pos[] = {
 	{ 0, 0.479385f, 1.753899f, 0 },
 { 16, 0.479385f, 1.753899f, 0 }
 };
 
-NJS_MKEY_A _170DF8_5_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _170DF8_5_rot[] = {
 	{ 0, 0xFFFFA015, 0xFFFFC001, 0xFFFFE015 },
 { 16, 0xFFFFA015, 0xFFFFC001, 0xFFFFE015 }
 };
 
-NJS_MKEY_F _170DF8_6_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _170DF8_6_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _170DF8_6_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _170DF8_6_rot[] = {
 	{ 0, 0, 0, 0xFFFFBF78 },
 { 1, 0, 0xFFFFF97C, 0xFFFFBF78 },
 { 2, 0, 0, 0xFFFFBF78 },
@@ -5146,42 +5146,42 @@ NJS_MKEY_A _170DF8_6_rot[] = {
 { 16, 0, 0, 0xFFFFBF78 }
 };
 
-NJS_MKEY_F _170DF8_7_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _170DF8_7_pos[] = {
 	{ 0, 1.052164f, 0, 0 },
 { 16, 1.052164f, 0, 0 }
 };
 
-NJS_MKEY_A _170DF8_7_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _170DF8_7_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _170DF8_8_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _170DF8_8_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _170DF8_8_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _170DF8_8_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _170DF8_9_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _170DF8_9_pos[] = {
 	{ 0, 0.283187f, -1.368324f, 0 },
 { 16, 0.283187f, -1.368324f, 0 }
 };
 
-NJS_MKEY_A _170DF8_9_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _170DF8_9_rot[] = {
 	{ 0, 0xFFFFA015, 0xFFFFC001, 0xFFFFE015 },
 { 16, 0xFFFFA015, 0xFFFFC001, 0xFFFFE015 }
 };
 
-NJS_MKEY_F _170DF8_10_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _170DF8_10_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _170DF8_10_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _170DF8_10_rot[] = {
 	{ 0, 0x27C, 0x6F4, 0x4DAD },
 { 1, 0x24E, 0x921, 0x4CA9 },
 { 2, 0x1D4, 0xDEC, 0x49FD },
@@ -5201,42 +5201,42 @@ NJS_MKEY_A _170DF8_10_rot[] = {
 { 16, 0x27C, 0x6F4, 0x4DAD }
 };
 
-NJS_MKEY_F _170DF8_11_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _170DF8_11_pos[] = {
 	{ 0, 1.453588f, 0, 0 },
 { 16, 1.453588f, 0, 0 }
 };
 
-NJS_MKEY_A _170DF8_11_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _170DF8_11_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _170DF8_12_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _170DF8_12_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _170DF8_12_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _170DF8_12_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _170DF8_13_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _170DF8_13_pos[] = {
 	{ 0, 0.49925f, 0.798798f, 0.66421f },
 { 16, 0.49925f, 0.798798f, 0.66421f }
 };
 
-NJS_MKEY_A _170DF8_13_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _170DF8_13_rot[] = {
 	{ 0, 0xFFFFA015, 0xFFFFC001, 0xFFFFE015 },
 { 16, 0xFFFFA015, 0xFFFFC001, 0xFFFFE015 }
 };
 
-NJS_MKEY_F _170DF8_14_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _170DF8_14_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _170DF8_14_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _170DF8_14_rot[] = {
 	{ 0, 0x4C18, 0x93C, 0xB4C },
 { 1, 0x4C70, 0xFFFFFE56, 0x975 },
 { 2, 0x4701, 0xFFFFF8B8, 0x430 },
@@ -5256,42 +5256,42 @@ NJS_MKEY_A _170DF8_14_rot[] = {
 { 16, 0x4C18, 0x93C, 0xB4C }
 };
 
-NJS_MKEY_F _170DF8_15_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _170DF8_15_pos[] = {
 	{ 0, 1.66363f, 0, 0 },
 { 16, 1.66363f, 0, 0 }
 };
 
-NJS_MKEY_A _170DF8_15_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _170DF8_15_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _170DF8_16_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _170DF8_16_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _170DF8_16_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _170DF8_16_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _170DF8_17_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _170DF8_17_pos[] = {
 	{ 0, 0.488733f, 0.793696f, -0.662172f },
 { 16, 0.488733f, 0.793696f, -0.662172f }
 };
 
-NJS_MKEY_A _170DF8_17_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _170DF8_17_rot[] = {
 	{ 0, 0xFFFFA015, 0xFFFFC001, 0xFFFFE015 },
 { 16, 0xFFFFA015, 0xFFFFC001, 0xFFFFE015 }
 };
 
-NJS_MKEY_F _170DF8_18_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _170DF8_18_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _170DF8_18_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _170DF8_18_rot[] = {
 	{ 0, 0xFFFFDA03, 0x386, 0xFFFFA512 },
 { 1, 0xFFFFCF85, 0x54D, 0xFFFFA273 },
 { 2, 0xFFFFC79F, 0x9A7, 0xFFFF9C6D },
@@ -5311,42 +5311,42 @@ NJS_MKEY_A _170DF8_18_rot[] = {
 { 16, 0xFFFFDA03, 0x386, 0xFFFFA512 }
 };
 
-NJS_MKEY_F _170DF8_19_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _170DF8_19_pos[] = {
 	{ 0, 1.708764f, 0, 0 },
 { 16, 1.708764f, 0, 0 }
 };
 
-NJS_MKEY_A _170DF8_19_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _170DF8_19_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _170DF8_20_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _170DF8_20_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _170DF8_20_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _170DF8_20_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _170DF8_21_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _170DF8_21_pos[] = {
 	{ 0, 0.12517f, -0.5288759f, -0.704161f },
 { 16, 0.12517f, -0.5288759f, -0.704161f }
 };
 
-NJS_MKEY_A _170DF8_21_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _170DF8_21_rot[] = {
 	{ 0, 0xFFFFA015, 0xFFFFC001, 0xFFFFE015 },
 { 16, 0xFFFFA015, 0xFFFFC001, 0xFFFFE015 }
 };
 
-NJS_MKEY_F _170DF8_22_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _170DF8_22_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _170DF8_22_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _170DF8_22_rot[] = {
 	{ 0, 0x7905, 0x8A9A, 0x2D53 },
 { 1, 0x7EAC, 0x8B15, 0x37D1 },
 { 2, 0x8303, 0x872A, 0x3FDE },
@@ -5366,42 +5366,42 @@ NJS_MKEY_A _170DF8_22_rot[] = {
 { 16, 0x7906, 0x8A9A, 0x2D53 }
 };
 
-NJS_MKEY_F _170DF8_23_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _170DF8_23_pos[] = {
 	{ 0, 0.912911f, 0, 0 },
 { 16, 0.912911f, 0, 0 }
 };
 
-NJS_MKEY_A _170DF8_23_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _170DF8_23_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _170DF8_24_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _170DF8_24_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _170DF8_24_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _170DF8_24_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _170DF8_25_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _170DF8_25_pos[] = {
 	{ 0, 0.129367f, -0.517747f, 0.7033899f },
 { 16, 0.129367f, -0.517747f, 0.7033899f }
 };
 
-NJS_MKEY_A _170DF8_25_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _170DF8_25_rot[] = {
 	{ 0, 0xFFFFA015, 0xFFFFC001, 0xFFFFE015 },
 { 16, 0xFFFFA015, 0xFFFFC001, 0xFFFFE015 }
 };
 
-NJS_MKEY_F _170DF8_26_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _170DF8_26_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _170DF8_26_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _170DF8_26_rot[] = {
 	{ 0, 0xFFFFA521, 0x5881, 0xFFFF90F1 },
 { 1, 0xFFFFA856, 0x5910, 0xFFFF95A5 },
 { 2, 0xFFFFA90E, 0x5B84, 0xFFFF95C2 },
@@ -5421,27 +5421,27 @@ NJS_MKEY_A _170DF8_26_rot[] = {
 { 16, 0xFFFFA521, 0x5881, 0xFFFF90F1 }
 };
 
-NJS_MKEY_F _170DF8_27_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _170DF8_27_pos[] = {
 	{ 0, 0.927485f, 0, 0 },
 { 16, 0.927485f, 0, 0 }
 };
 
-NJS_MKEY_A _170DF8_27_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _170DF8_27_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _170DF8_28_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _170DF8_28_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _170DF8_28_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _170DF8_28_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MDATA2 _170DF8_mdat[] = {
+extern "C" __declspec(dllexport) NJS_MDATA2 _170DF8_mdat[] = {
 	{ _170DF8_0_pos, _170DF8_0_rot, LengthOfArray<Uint32>(_170DF8_0_pos), LengthOfArray<Uint32>(_170DF8_0_rot) },
 { _170DF8_1_pos, _170DF8_1_rot, LengthOfArray<Uint32>(_170DF8_1_pos), LengthOfArray<Uint32>(_170DF8_1_rot) },
 { _170DF8_2_pos, _170DF8_2_rot, LengthOfArray<Uint32>(_170DF8_2_pos), LengthOfArray<Uint32>(_170DF8_2_rot) },
@@ -5473,20 +5473,20 @@ NJS_MDATA2 _170DF8_mdat[] = {
 { _170DF8_28_pos, _170DF8_28_rot, LengthOfArray<Uint32>(_170DF8_28_pos), LengthOfArray<Uint32>(_170DF8_28_rot) }
 };
 
-NJS_MOTION _170DF8 = { _170DF8_mdat, 17, NJD_MTYPE_POS_0 | NJD_MTYPE_ANG_1, 2 };
+extern "C" __declspec(dllexport) NJS_MOTION _170DF8 = { _170DF8_mdat, 17, NJD_MTYPE_POS_0 | NJD_MTYPE_ANG_1, 2 };
 
 //ZOU
-NJS_MKEY_F _174000_0_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _174000_0_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _174000_0_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _174000_0_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _174000_1_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _174000_1_pos[] = {
 	{ 0, 0, 0.086109f, 0.073808f },
 { 1, 0, 0.072655f, 0.062276f },
 { 2, 0, 0.043055f, 0.036904f },
@@ -5506,17 +5506,17 @@ NJS_MKEY_F _174000_1_pos[] = {
 { 16, 0, 0.086109f, 0.073808f }
 };
 
-NJS_MKEY_A _174000_1_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _174000_1_rot[] = {
 	{ 0, 0, 0x3FFF, 0 },
 { 16, 0, 0x3FFF, 0 }
 };
 
-NJS_MKEY_F _174000_2_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _174000_2_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _174000_2_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _174000_2_rot[] = {
 	{ 0, 0, 0x3AA, 0x403A },
 { 1, 0, 0x351, 0x403A },
 { 2, 0, 0x264, 0x403A },
@@ -5536,67 +5536,67 @@ NJS_MKEY_A _174000_2_rot[] = {
 { 16, 0, 0x3AA, 0x403A }
 };
 
-NJS_MKEY_F _174000_3_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _174000_3_pos[] = {
 	{ 0, 3.173064f, 0, 0 },
 { 16, 3.173064f, 0, 0 }
 };
 
-NJS_MKEY_A _174000_3_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _174000_3_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _174000_4_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _174000_4_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _174000_4_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _174000_4_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _174000_5_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _174000_5_pos[] = {
 	{ 0, 1.389242f, 0.480878f, 0 },
 { 16, 1.389242f, 0.480878f, 0 }
 };
 
-NJS_MKEY_A _174000_5_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _174000_5_rot[] = {
 	{ 0, 0, 0, 0xFFFFBFC6 },
 { 16, 0, 0, 0xFFFFBFC6 }
 };
 
-NJS_MKEY_F _174000_6_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _174000_6_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _174000_6_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _174000_6_rot[] = {
 	{ 0, 0, 0, 0xFFFF80E5 },
 { 16, 0, 0, 0xFFFF80E5 }
 };
 
-NJS_MKEY_F _174000_7_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _174000_7_pos[] = {
 	{ 0, 2.035048f, 0, 0 },
 { 16, 2.035048f, 0, 0 }
 };
 
-NJS_MKEY_A _174000_7_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _174000_7_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _174000_8_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _174000_8_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _174000_8_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _174000_8_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _174000_9_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _174000_9_pos[] = {
 	{ 0, 0.957617f, 0.095617f, -0.004422f },
 { 1, 0.9696119f, 0.089176f, -0.00448f },
 { 2, 0.982347f, 0.07500499f, -0.004608f },
@@ -5616,17 +5616,17 @@ NJS_MKEY_F _174000_9_pos[] = {
 { 16, 0.957617f, 0.095617f, -0.004422f }
 };
 
-NJS_MKEY_A _174000_9_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _174000_9_rot[] = {
 	{ 0, 0xFFFF8001, 0x7FFF, 0xFFFFFF1D },
 { 16, 0xFFFF8001, 0x7FFF, 0xFFFFFF1D }
 };
 
-NJS_MKEY_F _174000_10_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _174000_10_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _174000_10_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _174000_10_rot[] = {
 	{ 0, 0, 0x549, 0xFFFF9C60 },
 { 1, 0, 0x3EC, 0xFFFF9FBF },
 { 2, 0, 0x217, 0xFFFFA381 },
@@ -5646,42 +5646,42 @@ NJS_MKEY_A _174000_10_rot[] = {
 { 16, 0, 0x549, 0xFFFF9C60 }
 };
 
-NJS_MKEY_F _174000_11_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _174000_11_pos[] = {
 	{ 0, 1.840311f, 0, 0 },
 { 16, 1.840311f, 0, 0 }
 };
 
-NJS_MKEY_A _174000_11_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _174000_11_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _174000_12_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _174000_12_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _174000_12_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _174000_12_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _174000_13_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _174000_13_pos[] = {
 	{ 0, 0.287115f, -0.689172f, -0.718707f },
 { 16, 0.287115f, -0.689172f, -0.718707f }
 };
 
-NJS_MKEY_A _174000_13_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _174000_13_rot[] = {
 	{ 0, 0xFFFFC073, 0x3FFF, 0x3F8D },
 { 16, 0xFFFFC073, 0x3FFF, 0x3F8D }
 };
 
-NJS_MKEY_F _174000_14_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _174000_14_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _174000_14_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _174000_14_rot[] = {
 	{ 0, 0, 0xFFFFE96A, 0x23A },
 { 1, 0, 0xFFFFEDCB, 0x5B },
 { 2, 0, 0xFFFFF27E, 0xFFFFFE99 },
@@ -5701,42 +5701,42 @@ NJS_MKEY_A _174000_14_rot[] = {
 { 16, 0, 0xFFFFE96A, 0x23A }
 };
 
-NJS_MKEY_F _174000_15_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _174000_15_pos[] = {
 	{ 0, 1.754314f, 0, 0 },
 { 16, 1.754314f, 0, 0 }
 };
 
-NJS_MKEY_A _174000_15_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _174000_15_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _174000_16_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _174000_16_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _174000_16_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _174000_16_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _174000_17_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _174000_17_pos[] = {
 	{ 0, 0.287115f, -0.689172f, 0.718707f },
 { 16, 0.287115f, -0.689172f, 0.718707f }
 };
 
-NJS_MKEY_A _174000_17_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _174000_17_rot[] = {
 	{ 0, 0x3F8D, 0xFFFFC001, 0x3F8D },
 { 16, 0x3F8D, 0xFFFFC001, 0x3F8D }
 };
 
-NJS_MKEY_F _174000_18_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _174000_18_pos[] = {
 	{ 0, 0, 0.000001f, 0 },
 { 16, 0, 0.000001f, 0 }
 };
 
-NJS_MKEY_A _174000_18_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _174000_18_rot[] = {
 	{ 0, 0, 0x1696, 0x23A },
 { 1, 0, 0x1235, 0x5B },
 { 2, 0, 0xD82, 0xFFFFFE99 },
@@ -5756,27 +5756,27 @@ NJS_MKEY_A _174000_18_rot[] = {
 { 16, 0, 0x1696, 0x23A }
 };
 
-NJS_MKEY_F _174000_19_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _174000_19_pos[] = {
 	{ 0, 1.754314f, 0, 0 },
 { 16, 1.754314f, 0, 0 }
 };
 
-NJS_MKEY_A _174000_19_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _174000_19_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _174000_20_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _174000_20_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _174000_20_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _174000_20_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _174000_21_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _174000_21_pos[] = {
 	{ 0, 1.292093f, 0.348152f, -0.354267f },
 { 1, 1.299399f, 0.348111f, -0.355074f },
 { 2, 1.300156f, 0.348107f, -0.355158f },
@@ -5796,17 +5796,17 @@ NJS_MKEY_F _174000_21_pos[] = {
 { 16, 1.292093f, 0.348152f, -0.354267f }
 };
 
-NJS_MKEY_A _174000_21_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _174000_21_rot[] = {
 	{ 0, 0, 0, 0xFFFFBFC6 },
 { 16, 0, 0, 0xFFFFBFC6 }
 };
 
-NJS_MKEY_F _174000_22_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _174000_22_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _174000_22_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _174000_22_rot[] = {
 	{ 0, 0, 0, 0xFFFFCD7A },
 { 1, 0, 0, 0xFFFFCD43 },
 { 2, 0, 0, 0xFFFFCA16 },
@@ -5826,27 +5826,27 @@ NJS_MKEY_A _174000_22_rot[] = {
 { 16, 0, 0, 0xFFFFCD7A }
 };
 
-NJS_MKEY_F _174000_23_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _174000_23_pos[] = {
 	{ 0, 1.300108f, 0, 0 },
 { 16, 1.300108f, 0, 0 }
 };
 
-NJS_MKEY_A _174000_23_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _174000_23_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _174000_24_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _174000_24_pos[] = {
 	{ 0, 0.016142f, -0.120764f, 0 },
 { 16, 0.016142f, -0.120764f, 0 }
 };
 
-NJS_MKEY_A _174000_24_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _174000_24_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _174000_25_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _174000_25_pos[] = {
 	{ 0, 1.306046f, 0.348074f, 0.354388f },
 { 1, 1.301144f, 0.348101f, 0.35493f },
 { 2, 1.27272f, 0.348261f, 0.358069f },
@@ -5866,17 +5866,17 @@ NJS_MKEY_F _174000_25_pos[] = {
 { 16, 1.306046f, 0.348074f, 0.354388f }
 };
 
-NJS_MKEY_A _174000_25_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _174000_25_rot[] = {
 	{ 0, 0, 0, 0xFFFFBFC6 },
 { 16, 0, 0, 0xFFFFBFC6 }
 };
 
-NJS_MKEY_F _174000_26_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _174000_26_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _174000_26_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _174000_26_rot[] = {
 	{ 0, 0, 0, 0xFFFFA910 },
 { 1, 0, 0, 0xFFFFA935 },
 { 2, 0, 0, 0xFFFFAC54 },
@@ -5896,27 +5896,27 @@ NJS_MKEY_A _174000_26_rot[] = {
 { 16, 0, 0, 0xFFFFA910 }
 };
 
-NJS_MKEY_F _174000_27_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _174000_27_pos[] = {
 	{ 0, 1.300108f, 0, 0 },
 { 16, 1.300108f, 0, 0 }
 };
 
-NJS_MKEY_A _174000_27_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _174000_27_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _174000_28_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _174000_28_pos[] = {
 	{ 0, 0.016139f, -0.120764f, 0 },
 { 16, 0.016139f, -0.120764f, 0 }
 };
 
-NJS_MKEY_A _174000_28_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _174000_28_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _174000_29_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _174000_29_pos[] = {
 	{ 0, 1.137122f, -0.468016f, -0.366952f },
 { 1, 1.15434f, -0.419898f, -0.366116f },
 { 2, 1.17832f, -0.351529f, -0.364838f },
@@ -5936,17 +5936,17 @@ NJS_MKEY_F _174000_29_pos[] = {
 { 16, 1.137122f, -0.468016f, -0.366952f }
 };
 
-NJS_MKEY_A _174000_29_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _174000_29_rot[] = {
 	{ 0, 0, 0, 0xFFFFBFC6 },
 { 16, 0, 0, 0xFFFFBFC6 }
 };
 
-NJS_MKEY_F _174000_30_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _174000_30_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _174000_30_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _174000_30_rot[] = {
 	{ 0, 0, 0, 0xFFFFDCEB },
 { 1, 0, 0, 0xFFFFD947 },
 { 2, 0, 0, 0xFFFFD434 },
@@ -5966,27 +5966,27 @@ NJS_MKEY_A _174000_30_rot[] = {
 { 16, 0, 0, 0xFFFFDCEB }
 };
 
-NJS_MKEY_F _174000_31_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _174000_31_pos[] = {
 	{ 0, 1.2341f, 0, 0 },
 { 16, 1.2341f, 0, 0 }
 };
 
-NJS_MKEY_A _174000_31_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _174000_31_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _174000_32_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _174000_32_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _174000_32_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _174000_32_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _174000_33_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _174000_33_pos[] = {
 	{ 0, 1.201888f, -0.10322f, 0.361758f },
 { 1, 1.121711f, -0.232182f, 0.365818f },
 { 2, 1.109788f, -0.292371f, 0.362992f },
@@ -6006,17 +6006,17 @@ NJS_MKEY_F _174000_33_pos[] = {
 { 16, 1.201888f, -0.103221f, 0.361758f }
 };
 
-NJS_MKEY_A _174000_33_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _174000_33_rot[] = {
 	{ 0, 0, 0, 0xFFFFBFC6 },
 { 16, 0, 0, 0xFFFFBFC6 }
 };
 
-NJS_MKEY_F _174000_34_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _174000_34_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _174000_34_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _174000_34_rot[] = {
 	{ 0, 0, 0, 0xFFFFC06B },
 { 1, 0, 0, 0xFFFFC400 },
 { 2, 0, 0, 0xFFFFC90B },
@@ -6036,42 +6036,42 @@ NJS_MKEY_A _174000_34_rot[] = {
 { 16, 0, 0, 0xFFFFC06B }
 };
 
-NJS_MKEY_F _174000_35_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _174000_35_pos[] = {
 	{ 0, 1.2341f, 0, 0 },
 { 16, 1.2341f, 0, 0 }
 };
 
-NJS_MKEY_A _174000_35_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _174000_35_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _174000_36_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _174000_36_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _174000_36_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _174000_36_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _174000_37_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _174000_37_pos[] = {
 	{ 0, 1.186743f, -0.761845f, 0 },
 { 16, 1.186743f, -0.761845f, 0 }
 };
 
-NJS_MKEY_A _174000_37_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _174000_37_rot[] = {
 	{ 0, 0, 0, 0xFFFFBFC6 },
 { 16, 0, 0, 0xFFFFBFC6 }
 };
 
-NJS_MKEY_F _174000_38_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _174000_38_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _174000_38_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _174000_38_rot[] = {
 	{ 0, 0, 0xFFFFF22E, 0xFFFFE618 },
 { 1, 0, 0xFFFFF626, 0xFFFFE0F4 },
 { 2, 0, 0xFFFFFB08, 0xFFFFDBDA },
@@ -6091,27 +6091,27 @@ NJS_MKEY_A _174000_38_rot[] = {
 { 16, 0, 0xFFFFF22E, 0xFFFFE618 }
 };
 
-NJS_MKEY_F _174000_39_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _174000_39_pos[] = {
 	{ 0, 1.111749f, 0, 0 },
 { 16, 1.111749f, 0, 0 }
 };
 
-NJS_MKEY_A _174000_39_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _174000_39_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _174000_40_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _174000_40_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _174000_40_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _174000_40_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MDATA2 _174000_mdat[] = {
+extern "C" __declspec(dllexport) NJS_MDATA2 _174000_mdat[] = {
 	{ _174000_0_pos, _174000_0_rot, LengthOfArray<Uint32>(_174000_0_pos), LengthOfArray<Uint32>(_174000_0_rot) },
 { _174000_1_pos, _174000_1_rot, LengthOfArray<Uint32>(_174000_1_pos), LengthOfArray<Uint32>(_174000_1_rot) },
 { _174000_2_pos, _174000_2_rot, LengthOfArray<Uint32>(_174000_2_pos), LengthOfArray<Uint32>(_174000_2_rot) },
@@ -6155,20 +6155,20 @@ NJS_MDATA2 _174000_mdat[] = {
 { _174000_40_pos, _174000_40_rot, LengthOfArray<Uint32>(_174000_40_pos), LengthOfArray<Uint32>(_174000_40_rot) }
 };
 
-NJS_MOTION _174000 = { _174000_mdat, 17, NJD_MTYPE_POS_0 | NJD_MTYPE_ANG_1, 2 };
+extern "C" __declspec(dllexport) NJS_MOTION _174000 = { _174000_mdat, 17, NJD_MTYPE_POS_0 | NJD_MTYPE_ANG_1, 2 };
 
 //LION
-NJS_MKEY_F _17725C_0_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17725C_0_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _17725C_0_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17725C_0_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _17725C_1_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17725C_1_pos[] = {
 	{ 0, 0, 0.391249f, 0.06491899f },
 { 1, 0, 0.367401f, 0.0589f },
 { 2, 0, 0.30453f, 0.043431f },
@@ -6188,17 +6188,17 @@ NJS_MKEY_F _17725C_1_pos[] = {
 { 16, 0, 0.391249f, 0.06491899f }
 };
 
-NJS_MKEY_A _17725C_1_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17725C_1_rot[] = {
 	{ 0, 0, 0x3FFF, 0 },
 { 16, 0, 0x3FFF, 0 }
 };
 
-NJS_MKEY_F _17725C_2_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17725C_2_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _17725C_2_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17725C_2_rot[] = {
 	{ 0, 0, 0, 0x38EE },
 { 1, 0, 0, 0x3CAF },
 { 2, 0, 0, 0x40EB },
@@ -6218,42 +6218,42 @@ NJS_MKEY_A _17725C_2_rot[] = {
 { 16, 0, 0, 0x38EE }
 };
 
-NJS_MKEY_F _17725C_3_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17725C_3_pos[] = {
 	{ 0, 4.753023f, 0, 0 },
 { 16, 4.753023f, 0, 0 }
 };
 
-NJS_MKEY_A _17725C_3_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17725C_3_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _17725C_4_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17725C_4_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _17725C_4_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17725C_4_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _17725C_5_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17725C_5_pos[] = {
 	{ 0, 1.733869f, -0.897733f, 0 },
 { 16, 1.733869f, -0.897733f, 0 }
 };
 
-NJS_MKEY_A _17725C_5_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17725C_5_rot[] = {
 	{ 0, 0, 0, 0xFFFFC001 },
 { 16, 0, 0, 0xFFFFC001 }
 };
 
-NJS_MKEY_F _17725C_6_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17725C_6_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _17725C_6_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17725C_6_rot[] = {
 	{ 0, 0, 0, 0xFFFFF58E },
 { 1, 0, 0, 0xFFFFF41A },
 { 2, 0, 0, 0xFFFFF413 },
@@ -6273,12 +6273,12 @@ NJS_MKEY_A _17725C_6_rot[] = {
 { 16, 0, 0, 0xFFFFF58E }
 };
 
-NJS_MKEY_F _17725C_7_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17725C_7_pos[] = {
 	{ 0, 0.919385f, 0, 0 },
 { 16, 0.919385f, 0, 0 }
 };
 
-NJS_MKEY_A _17725C_7_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17725C_7_rot[] = {
 	{ 0, 0, 0, 0xFFFFFEA0 },
 { 1, 0, 0, 0xFFFFF76F },
 { 2, 0, 0, 0xFFFFF1AF },
@@ -6298,37 +6298,37 @@ NJS_MKEY_A _17725C_7_rot[] = {
 { 16, 0, 0, 0xFFFFFEA0 }
 };
 
-NJS_MKEY_F _17725C_8_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17725C_8_pos[] = {
 	{ 0, 1.102611f, 0, 0 },
 { 16, 1.102611f, 0, 0 }
 };
 
-NJS_MKEY_A _17725C_8_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17725C_8_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _17725C_9_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17725C_9_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _17725C_9_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17725C_9_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _17725C_10_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17725C_10_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _17725C_10_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17725C_10_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _17725C_11_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17725C_11_pos[] = {
 	{ 0, 1.372801f, 0.98512f, -0.463997f },
 { 1, 1.378453f, 0.982893f, -0.463997f },
 { 2, 1.392586f, 0.977326f, -0.463997f },
@@ -6348,17 +6348,17 @@ NJS_MKEY_F _17725C_11_pos[] = {
 { 16, 1.372801f, 0.98512f, -0.463997f }
 };
 
-NJS_MKEY_A _17725C_11_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17725C_11_rot[] = {
 	{ 0, 0, 0, 0xFFFFC001 },
 { 16, 0, 0, 0xFFFFC001 }
 };
 
-NJS_MKEY_F _17725C_12_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17725C_12_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _17725C_12_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17725C_12_rot[] = {
 	{ 0, 0, 0x61C, 0xFFFF93C1 },
 { 1, 0, 0x5D9, 0xFFFF9BF2 },
 { 2, 0, 0x528, 0xFFFFA3A8 },
@@ -6378,27 +6378,27 @@ NJS_MKEY_A _17725C_12_rot[] = {
 { 16, 0, 0x61C, 0xFFFF93C1 }
 };
 
-NJS_MKEY_F _17725C_13_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17725C_13_pos[] = {
 	{ 0, 1.439153f, 0, 0 },
 { 16, 1.439153f, 0, 0 }
 };
 
-NJS_MKEY_A _17725C_13_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17725C_13_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _17725C_14_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17725C_14_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _17725C_14_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17725C_14_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _17725C_15_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17725C_15_pos[] = {
 	{ 0, 1.372801f, 0.98512f, 0.463997f },
 { 1, 1.378453f, 0.982893f, 0.463997f },
 { 2, 1.392586f, 0.977326f, 0.463997f },
@@ -6418,17 +6418,17 @@ NJS_MKEY_F _17725C_15_pos[] = {
 { 16, 1.372801f, 0.98512f, 0.463997f }
 };
 
-NJS_MKEY_A _17725C_15_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17725C_15_rot[] = {
 	{ 0, 0, 0, 0xFFFFC001 },
 { 16, 0, 0, 0xFFFFC001 }
 };
 
-NJS_MKEY_F _17725C_16_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17725C_16_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _17725C_16_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17725C_16_rot[] = {
 	{ 0, 0, 0xFFFFF913, 0xFFFF8BF9 },
 { 1, 0, 0xFFFFF960, 0xFFFF8E07 },
 { 2, 0, 0xFFFFFA28, 0xFFFF9399 },
@@ -6448,27 +6448,27 @@ NJS_MKEY_A _17725C_16_rot[] = {
 { 16, 0, 0xFFFFF913, 0xFFFF8BF9 }
 };
 
-NJS_MKEY_F _17725C_17_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17725C_17_pos[] = {
 	{ 0, 1.439153f, -0.00001f, 0 },
 { 16, 1.439153f, -0.00001f, 0 }
 };
 
-NJS_MKEY_A _17725C_17_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17725C_17_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _17725C_18_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17725C_18_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _17725C_18_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17725C_18_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _17725C_19_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17725C_19_pos[] = {
 	{ 0, 1.204095f, -0.585884f, -0.459274f },
 { 1, 1.203622f, -0.577716f, -0.459274f },
 { 2, 1.202375f, -0.556183f, -0.459274f },
@@ -6488,17 +6488,17 @@ NJS_MKEY_F _17725C_19_pos[] = {
 { 16, 1.204095f, -0.585884f, -0.459274f }
 };
 
-NJS_MKEY_A _17725C_19_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17725C_19_rot[] = {
 	{ 0, 0, 0, 0xFFFFC001 },
 { 16, 0, 0, 0xFFFFC001 }
 };
 
-NJS_MKEY_F _17725C_20_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17725C_20_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _17725C_20_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17725C_20_rot[] = {
 	{ 0, 0, 0, 0x56F },
 { 1, 0, 0, 0x11F },
 { 2, 0, 0, 0xFFFFF5C3 },
@@ -6517,27 +6517,27 @@ NJS_MKEY_A _17725C_20_rot[] = {
 { 16, 0, 0, 0x56F }
 };
 
-NJS_MKEY_F _17725C_21_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17725C_21_pos[] = {
 	{ 0, 1.210041f, 0, 0 },
 { 16, 1.210041f, 0, 0 }
 };
 
-NJS_MKEY_A _17725C_21_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17725C_21_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _17725C_22_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17725C_22_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _17725C_22_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17725C_22_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _17725C_23_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17725C_23_pos[] = {
 	{ 0, 1.204095f, -0.585884f, 0.459274f },
 { 1, 1.203622f, -0.577716f, 0.459274f },
 { 2, 1.202375f, -0.556183f, 0.459274f },
@@ -6557,17 +6557,17 @@ NJS_MKEY_F _17725C_23_pos[] = {
 { 16, 1.204095f, -0.585884f, 0.459274f }
 };
 
-NJS_MKEY_A _17725C_23_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17725C_23_rot[] = {
 	{ 0, 0, 0, 0xFFFFC001 },
 { 16, 0, 0, 0xFFFFC001 }
 };
 
-NJS_MKEY_F _17725C_24_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17725C_24_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _17725C_24_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17725C_24_rot[] = {
 	{ 0, 0, 0, 0xFFFFF9A8 },
 { 1, 0, 0, 0xFFFFEB32 },
 { 2, 0, 0, 0xFFFFDC29 },
@@ -6587,42 +6587,42 @@ NJS_MKEY_A _17725C_24_rot[] = {
 { 16, 0, 0, 0xFFFFF9A8 }
 };
 
-NJS_MKEY_F _17725C_25_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17725C_25_pos[] = {
 	{ 0, 1.210041f, 0, 0 },
 { 16, 1.210041f, 0, 0 }
 };
 
-NJS_MKEY_A _17725C_25_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17725C_25_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _17725C_26_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17725C_26_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _17725C_26_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17725C_26_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _17725C_27_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17725C_27_pos[] = {
 	{ 0, 1.92207f, 0.76382f, 0 },
 { 16, 1.92207f, 0.76382f, 0 }
 };
 
-NJS_MKEY_A _17725C_27_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17725C_27_rot[] = {
 	{ 0, 0, 0, 0xFFFFC001 },
 { 16, 0, 0, 0xFFFFC001 }
 };
 
-NJS_MKEY_F _17725C_28_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17725C_28_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _17725C_28_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17725C_28_rot[] = {
 	{ 0, 0, 0, 0xFFFF985E },
 { 1, 0, 0, 0xFFFF9777 },
 { 2, 0, 0, 0xFFFF9518 },
@@ -6642,42 +6642,42 @@ NJS_MKEY_A _17725C_28_rot[] = {
 { 16, 0, 0, 0xFFFF985E }
 };
 
-NJS_MKEY_F _17725C_29_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17725C_29_pos[] = {
 	{ 0, 2.287611f, 0, 0 },
 { 16, 2.287611f, 0, 0 }
 };
 
-NJS_MKEY_A _17725C_29_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17725C_29_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _17725C_30_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17725C_30_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _17725C_30_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17725C_30_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _17725C_31_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17725C_31_pos[] = {
 	{ 0, 0.828182f, -0.313004f, 0 },
 { 16, 0.828182f, -0.313004f, 0 }
 };
 
-NJS_MKEY_A _17725C_31_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17725C_31_rot[] = {
 	{ 0, 0xFFFF8001, 0x7FFF, 0xFFFFF74E },
 { 16, 0xFFFF8001, 0x7FFF, 0xFFFFF74E }
 };
 
-NJS_MKEY_F _17725C_32_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17725C_32_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _17725C_32_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17725C_32_rot[] = {
 	{ 0, 0, 0, 0xFFFFFB08 },
 { 1, 0, 0, 0xFFFFFB98 },
 { 2, 0, 0, 0xFFFFFD15 },
@@ -6697,107 +6697,107 @@ NJS_MKEY_A _17725C_32_rot[] = {
 { 16, 0, 0, 0xFFFFFB08 }
 };
 
-NJS_MKEY_F _17725C_33_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17725C_33_pos[] = {
 	{ 0, 4.04396f, 0, 0 },
 { 16, 4.04396f, 0, 0 }
 };
 
-NJS_MKEY_A _17725C_33_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17725C_33_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _17725C_34_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17725C_34_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _17725C_34_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17725C_34_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _17725C_35_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17725C_35_pos[] = {
 	{ 0, 0.236441f, -0.822026f, -0.5006289f },
 { 16, 0.236441f, -0.822026f, -0.5006289f }
 };
 
-NJS_MKEY_A _17725C_35_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17725C_35_rot[] = {
 	{ 0, 0, 0, 0x774D },
 { 16, 0, 0, 0x774D }
 };
 
-NJS_MKEY_F _17725C_36_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17725C_36_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _17725C_36_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17725C_36_rot[] = {
 	{ 0, 0, 0, 0x60C2 },
 { 16, 0, 0, 0x60C2 }
 };
 
-NJS_MKEY_F _17725C_37_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17725C_37_pos[] = {
 	{ 0, 1.396948f, 0.000001f, 0 },
 { 16, 1.396948f, 0.000001f, 0 }
 };
 
-NJS_MKEY_A _17725C_37_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17725C_37_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _17725C_38_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17725C_38_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _17725C_38_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17725C_38_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _17725C_39_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17725C_39_pos[] = {
 	{ 0, 0.236441f, -0.822026f, 0.5006289f },
 { 16, 0.236441f, -0.822026f, 0.5006289f }
 };
 
-NJS_MKEY_A _17725C_39_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17725C_39_rot[] = {
 	{ 0, 0, 0, 0x774D },
 { 16, 0, 0, 0x774D }
 };
 
-NJS_MKEY_F _17725C_40_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17725C_40_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _17725C_40_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17725C_40_rot[] = {
 	{ 0, 0, 0, 0x60C2 },
 { 16, 0, 0, 0x60C2 }
 };
 
-NJS_MKEY_F _17725C_41_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17725C_41_pos[] = {
 	{ 0, 1.396947f, 0.000001f, 0 },
 { 16, 1.396947f, 0.000001f, 0 }
 };
 
-NJS_MKEY_A _17725C_41_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17725C_41_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _17725C_42_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17725C_42_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _17725C_42_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17725C_42_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MDATA2 _17725C_mdat[] = {
+extern "C" __declspec(dllexport) NJS_MDATA2 _17725C_mdat[] = {
 	{ _17725C_0_pos, _17725C_0_rot, LengthOfArray<Uint32>(_17725C_0_pos), LengthOfArray<Uint32>(_17725C_0_rot) },
 { _17725C_1_pos, _17725C_1_rot, LengthOfArray<Uint32>(_17725C_1_pos), LengthOfArray<Uint32>(_17725C_1_rot) },
 { _17725C_2_pos, _17725C_2_rot, LengthOfArray<Uint32>(_17725C_2_pos), LengthOfArray<Uint32>(_17725C_2_rot) },
@@ -6843,20 +6843,20 @@ NJS_MDATA2 _17725C_mdat[] = {
 { _17725C_42_pos, _17725C_42_rot, LengthOfArray<Uint32>(_17725C_42_pos), LengthOfArray<Uint32>(_17725C_42_rot) }
 };
 
-NJS_MOTION _17725C = { _17725C_mdat, 17, NJD_MTYPE_POS_0 | NJD_MTYPE_ANG_1, 2 };
+extern "C" __declspec(dllexport) NJS_MOTION _17725C = { _17725C_mdat, 17, NJD_MTYPE_POS_0 | NJD_MTYPE_ANG_1, 2 };
 
 //GORI
-NJS_MKEY_F _178FE0_0_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _178FE0_0_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _178FE0_0_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _178FE0_0_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _178FE0_1_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _178FE0_1_pos[] = {
 	{ 0, 0, 0.287927f, 0.143826f },
 { 1, 0, 0.242982f, 0.121353f },
 { 2, 0, 0.144102f, 0.071913f },
@@ -6876,17 +6876,17 @@ NJS_MKEY_F _178FE0_1_pos[] = {
 { 16, 0, 0.287927f, 0.143826f }
 };
 
-NJS_MKEY_A _178FE0_1_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _178FE0_1_rot[] = {
 	{ 0, 0, 0x3FFF, 0 },
 { 16, 0, 0x3FFF, 0 }
 };
 
-NJS_MKEY_F _178FE0_2_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _178FE0_2_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _178FE0_2_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _178FE0_2_rot[] = {
 	{ 0, 0xFFFFF9E4, 0, 0x4DFF },
 { 1, 0xFFFFFA61, 0, 0x4D5C },
 { 2, 0xFFFFFBAC, 0, 0x4BF6 },
@@ -6906,42 +6906,42 @@ NJS_MKEY_A _178FE0_2_rot[] = {
 { 16, 0xFFFFF9E4, 0, 0x4DFF }
 };
 
-NJS_MKEY_F _178FE0_3_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _178FE0_3_pos[] = {
 	{ 0, 4.803001f, 0, 0 },
 { 16, 4.803001f, 0, 0 }
 };
 
-NJS_MKEY_A _178FE0_3_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _178FE0_3_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _178FE0_4_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _178FE0_4_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _178FE0_4_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _178FE0_4_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _178FE0_5_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _178FE0_5_pos[] = {
 	{ 0, 2.741951f, 0.844551f, -0.963778f },
 { 16, 2.741951f, 0.844551f, -0.963778f }
 };
 
-NJS_MKEY_A _178FE0_5_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _178FE0_5_rot[] = {
 	{ 0, 0, 0, 0xFFFFBF73 },
 { 16, 0, 0, 0xFFFFBF73 }
 };
 
-NJS_MKEY_F _178FE0_6_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _178FE0_6_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _178FE0_6_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _178FE0_6_rot[] = {
 	{ 0, 0xFFFFFF88, 0x532, 0xFFFFB138 },
 { 1, 0xFFFFFF65, 0x521, 0xFFFFB004 },
 { 2, 0xFFFFFF05, 0x4F2, 0xFFFFACAF },
@@ -6961,42 +6961,42 @@ NJS_MKEY_A _178FE0_6_rot[] = {
 { 16, 0xFFFFFF88, 0x532, 0xFFFFB138 }
 };
 
-NJS_MKEY_F _178FE0_7_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _178FE0_7_pos[] = {
 	{ 0, 2.79128f, 0, 0 },
 { 16, 2.79128f, 0, 0 }
 };
 
-NJS_MKEY_A _178FE0_7_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _178FE0_7_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _178FE0_8_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _178FE0_8_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _178FE0_8_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _178FE0_8_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _178FE0_9_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _178FE0_9_pos[] = {
 	{ 0, 2.741951f, 0.844552f, 0.963778f },
 { 16, 2.741951f, 0.844552f, 0.963778f }
 };
 
-NJS_MKEY_A _178FE0_9_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _178FE0_9_rot[] = {
 	{ 0, 0, 0, 0xFFFFBF73 },
 { 16, 0, 0, 0xFFFFBF73 }
 };
 
-NJS_MKEY_F _178FE0_10_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _178FE0_10_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _178FE0_10_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _178FE0_10_rot[] = {
 	{ 0, 0x3D3, 0xFFFFFC72, 0xFFFF9358 },
 { 1, 0x3AE, 0xFFFFFC60, 0xFFFF94A0 },
 { 2, 0x34D, 0xFFFFFC31, 0xFFFF9803 },
@@ -7016,27 +7016,27 @@ NJS_MKEY_A _178FE0_10_rot[] = {
 { 16, 0x3D3, 0xFFFFFC72, 0xFFFF9358 }
 };
 
-NJS_MKEY_F _178FE0_11_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _178FE0_11_pos[] = {
 	{ 0, 2.79128f, 0, 0 },
 { 16, 2.79128f, 0, 0 }
 };
 
-NJS_MKEY_A _178FE0_11_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _178FE0_11_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _178FE0_12_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _178FE0_12_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _178FE0_12_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _178FE0_12_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _178FE0_13_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _178FE0_13_pos[] = {
 	{ 0, 2.26873f, -0.779969f, -1.045455f },
 { 1, 2.240492f, -0.790076f, -1.045455f },
 { 2, 2.166047f, -0.816723f, -1.045455f },
@@ -7056,17 +7056,17 @@ NJS_MKEY_F _178FE0_13_pos[] = {
 { 16, 2.26873f, -0.779969f, -1.045455f }
 };
 
-NJS_MKEY_A _178FE0_13_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _178FE0_13_rot[] = {
 	{ 0, 0, 0, 0xFFFFBF73 },
 { 16, 0, 0, 0xFFFFBF73 }
 };
 
-NJS_MKEY_F _178FE0_14_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _178FE0_14_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _178FE0_14_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _178FE0_14_rot[] = {
 	{ 0, 5, 0x239, 0xFFFFAC68 },
 { 1, 0x13, 0x235, 0xFFFFAD75 },
 { 2, 0x37, 0x229, 0xFFFFB03B },
@@ -7086,27 +7086,27 @@ NJS_MKEY_A _178FE0_14_rot[] = {
 { 16, 5, 0x239, 0xFFFFAC68 }
 };
 
-NJS_MKEY_F _178FE0_15_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _178FE0_15_pos[] = {
 	{ 0, 2.389544f, 0, 0 },
 { 16, 2.389544f, 0, 0 }
 };
 
-NJS_MKEY_A _178FE0_15_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _178FE0_15_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _178FE0_16_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _178FE0_16_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _178FE0_16_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _178FE0_16_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _178FE0_17_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _178FE0_17_pos[] = {
 	{ 0, 1.611584f, -1.015181f, 1.045455f },
 { 1, 1.638122f, -1.005683f, 1.045455f },
 { 2, 1.711352f, -0.979472f, 1.045455f },
@@ -7126,17 +7126,17 @@ NJS_MKEY_F _178FE0_17_pos[] = {
 { 16, 1.611584f, -1.015181f, 1.045455f }
 };
 
-NJS_MKEY_A _178FE0_17_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _178FE0_17_rot[] = {
 	{ 0, 0, 0, 0xFFFFBF73 },
 { 16, 0, 0, 0xFFFFBF73 }
 };
 
-NJS_MKEY_F _178FE0_18_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _178FE0_18_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _178FE0_18_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _178FE0_18_rot[] = {
 	{ 0, 0xFFFFFEBA, 0xFFFFFE2D, 0xFFFFC4E1 },
 { 1, 0xFFFFFEC7, 0xFFFFFE29, 0xFFFFC3E4 },
 { 2, 0xFFFFFEEB, 0xFFFFFE1E, 0xFFFFC12A },
@@ -7156,27 +7156,27 @@ NJS_MKEY_A _178FE0_18_rot[] = {
 { 16, 0xFFFFFEBA, 0xFFFFFE2D, 0xFFFFC4E1 }
 };
 
-NJS_MKEY_F _178FE0_19_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _178FE0_19_pos[] = {
 	{ 0, 2.389544f, 0, 0 },
 { 16, 2.389544f, 0, 0 }
 };
 
-NJS_MKEY_A _178FE0_19_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _178FE0_19_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _178FE0_20_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _178FE0_20_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _178FE0_20_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _178FE0_20_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MDATA2 _178FE0_mdat[] = {
+extern "C" __declspec(dllexport) NJS_MDATA2 _178FE0_mdat[] = {
 	{ _178FE0_0_pos, _178FE0_0_rot, LengthOfArray<Uint32>(_178FE0_0_pos), LengthOfArray<Uint32>(_178FE0_0_rot) },
 { _178FE0_1_pos, _178FE0_1_rot, LengthOfArray<Uint32>(_178FE0_1_pos), LengthOfArray<Uint32>(_178FE0_1_rot) },
 { _178FE0_2_pos, _178FE0_2_rot, LengthOfArray<Uint32>(_178FE0_2_pos), LengthOfArray<Uint32>(_178FE0_2_rot) },
@@ -7200,20 +7200,20 @@ NJS_MDATA2 _178FE0_mdat[] = {
 { _178FE0_20_pos, _178FE0_20_rot, LengthOfArray<Uint32>(_178FE0_20_pos), LengthOfArray<Uint32>(_178FE0_20_rot) }
 };
 
-NJS_MOTION _178FE0 = { _178FE0_mdat, 17, NJD_MTYPE_POS_0 | NJD_MTYPE_ANG_1, 2 };
+extern "C" __declspec(dllexport) NJS_MOTION _178FE0 = { _178FE0_mdat, 17, NJD_MTYPE_POS_0 | NJD_MTYPE_ANG_1, 2 };
 
 //SUKA
-NJS_MKEY_F _17B5DC_0_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17B5DC_0_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _17B5DC_0_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17B5DC_0_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _17B5DC_1_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17B5DC_1_pos[] = {
 	{ 0, 0, 0.166656f, 0.08818f },
 { 1, 0, 0.158358f, 0.07435f },
 { 2, 0, 0.140103f, 0.043924f },
@@ -7233,17 +7233,17 @@ NJS_MKEY_F _17B5DC_1_pos[] = {
 { 16, 0, 0.166656f, 0.08818f }
 };
 
-NJS_MKEY_A _17B5DC_1_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17B5DC_1_rot[] = {
 	{ 0, 0, 0x3FFF, 0 },
 { 16, 0, 0x3FFF, 0 }
 };
 
-NJS_MKEY_F _17B5DC_2_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17B5DC_2_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _17B5DC_2_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17B5DC_2_rot[] = {
 	{ 0, 0, 0xFFFFFF38, 0x43B9 },
 { 1, 0, 0xFFFFFF4D, 0x43B9 },
 { 2, 0, 0xFFFFFF7F, 0x43B9 },
@@ -7263,102 +7263,102 @@ NJS_MKEY_A _17B5DC_2_rot[] = {
 { 16, 0, 0xFFFFFF38, 0x43B9 }
 };
 
-NJS_MKEY_F _17B5DC_3_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17B5DC_3_pos[] = {
 	{ 0, 4.238029f, 0, 0 },
 { 16, 4.238029f, 0, 0 }
 };
 
-NJS_MKEY_A _17B5DC_3_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17B5DC_3_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _17B5DC_4_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17B5DC_4_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _17B5DC_4_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17B5DC_4_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _17B5DC_5_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17B5DC_5_pos[] = {
 	{ 0, 0.796408f, 0.931326f, 0 },
 { 16, 0.796408f, 0.931326f, 0 }
 };
 
-NJS_MKEY_A _17B5DC_5_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17B5DC_5_rot[] = {
 	{ 0, 0, 0, 0xFFFFC001 },
 { 16, 0, 0, 0xFFFFC001 }
 };
 
-NJS_MKEY_F _17B5DC_6_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17B5DC_6_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _17B5DC_6_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17B5DC_6_rot[] = {
 	{ 0, 0, 0, 0xFFFF8B79 },
 { 16, 0, 0, 0xFFFF8B79 }
 };
 
-NJS_MKEY_F _17B5DC_7_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17B5DC_7_pos[] = {
 	{ 0, 1.944168f, 0, 0 },
 { 16, 1.944168f, 0, 0 }
 };
 
-NJS_MKEY_A _17B5DC_7_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17B5DC_7_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _17B5DC_8_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17B5DC_8_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _17B5DC_8_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17B5DC_8_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _17B5DC_9_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17B5DC_9_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _17B5DC_9_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17B5DC_9_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _17B5DC_10_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17B5DC_10_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _17B5DC_10_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17B5DC_10_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _17B5DC_11_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17B5DC_11_pos[] = {
 	{ 0, 0.767965f, 0.423275f, 0.32808f },
 { 16, 0.767965f, 0.423275f, 0.32808f }
 };
 
-NJS_MKEY_A _17B5DC_11_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17B5DC_11_rot[] = {
 	{ 0, 0, 0, 0xFFFFC001 },
 { 16, 0, 0, 0xFFFFC001 }
 };
 
-NJS_MKEY_F _17B5DC_12_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17B5DC_12_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _17B5DC_12_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17B5DC_12_rot[] = {
 	{ 0, 0, 0, 0xFFFFD182 },
 { 1, 0, 0, 0xFFFFCF4A },
 { 2, 0, 0, 0xFFFFC929 },
@@ -7378,42 +7378,42 @@ NJS_MKEY_A _17B5DC_12_rot[] = {
 { 16, 0, 0, 0xFFFFD182 }
 };
 
-NJS_MKEY_F _17B5DC_13_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17B5DC_13_pos[] = {
 	{ 0, 0.791539f, 0, 0 },
 { 16, 0.791539f, 0, 0 }
 };
 
-NJS_MKEY_A _17B5DC_13_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17B5DC_13_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _17B5DC_14_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17B5DC_14_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _17B5DC_14_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17B5DC_14_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _17B5DC_15_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17B5DC_15_pos[] = {
 	{ 0, 0.767965f, 0.423275f, -0.32808f },
 { 16, 0.767965f, 0.423275f, -0.32808f }
 };
 
-NJS_MKEY_A _17B5DC_15_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17B5DC_15_rot[] = {
 	{ 0, 0, 0, 0xFFFFC001 },
 { 16, 0, 0, 0xFFFFC001 }
 };
 
-NJS_MKEY_F _17B5DC_16_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17B5DC_16_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _17B5DC_16_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17B5DC_16_rot[] = {
 	{ 0, 0, 0, 0xFFFF9A82 },
 { 1, 0, 0, 0xFFFF9CDF },
 { 2, 0, 0, 0xFFFFA31A },
@@ -7433,27 +7433,27 @@ NJS_MKEY_A _17B5DC_16_rot[] = {
 { 16, 0, 0, 0xFFFF9A82 }
 };
 
-NJS_MKEY_F _17B5DC_17_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17B5DC_17_pos[] = {
 	{ 0, 0.79154f, 0, 0 },
 { 16, 0.79154f, 0, 0 }
 };
 
-NJS_MKEY_A _17B5DC_17_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17B5DC_17_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _17B5DC_18_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17B5DC_18_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _17B5DC_18_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17B5DC_18_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _17B5DC_19_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17B5DC_19_pos[] = {
 	{ 0, 0.8715889f, -0.354514f, 0.32808f },
 { 1, 0.867299f, -0.358574f, 0.32808f },
 { 2, 0.855464f, -0.369779f, 0.32808f },
@@ -7473,17 +7473,17 @@ NJS_MKEY_F _17B5DC_19_pos[] = {
 { 16, 0.8715889f, -0.354514f, 0.32808f }
 };
 
-NJS_MKEY_A _17B5DC_19_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17B5DC_19_rot[] = {
 	{ 0, 0, 0, 0xFFFFC001 },
 { 16, 0, 0, 0xFFFFC001 }
 };
 
-NJS_MKEY_F _17B5DC_20_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17B5DC_20_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _17B5DC_20_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17B5DC_20_rot[] = {
 	{ 0, 0, 0, 0xFFFFE1CB },
 { 1, 0, 0, 0xFFFFD7E4 },
 { 2, 0, 0, 0xFFFFCC08 },
@@ -7503,27 +7503,27 @@ NJS_MKEY_A _17B5DC_20_rot[] = {
 { 16, 0, 0, 0xFFFFE1CB }
 };
 
-NJS_MKEY_F _17B5DC_21_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17B5DC_21_pos[] = {
 	{ 0, 1.014104f, 0, 0 },
 { 16, 1.014104f, 0, 0 }
 };
 
-NJS_MKEY_A _17B5DC_21_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17B5DC_21_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _17B5DC_22_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17B5DC_22_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _17B5DC_22_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17B5DC_22_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _17B5DC_23_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17B5DC_23_pos[] = {
 	{ 0, 0.765379f, -0.455059f, -0.32808f },
 { 1, 0.769943f, -0.450738f, -0.32808f },
 { 2, 0.781975f, -0.439348f, -0.32808f },
@@ -7543,17 +7543,17 @@ NJS_MKEY_F _17B5DC_23_pos[] = {
 { 16, 0.765379f, -0.455059f, -0.32808f }
 };
 
-NJS_MKEY_A _17B5DC_23_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17B5DC_23_rot[] = {
 	{ 0, 0, 0, 0xFFFFC001 },
 { 16, 0, 0, 0xFFFFC001 }
 };
 
-NJS_MKEY_F _17B5DC_24_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17B5DC_24_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _17B5DC_24_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17B5DC_24_rot[] = {
 	{ 0, 0, 0, 0xFFFFB001 },
 { 1, 0, 0, 0xFFFFB9FE },
 { 2, 0, 0, 0xFFFFC5E3 },
@@ -7573,42 +7573,42 @@ NJS_MKEY_A _17B5DC_24_rot[] = {
 { 16, 0, 0, 0xFFFFB001 }
 };
 
-NJS_MKEY_F _17B5DC_25_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17B5DC_25_pos[] = {
 	{ 0, 1.014104f, 0, 0 },
 { 16, 1.014104f, 0, 0 }
 };
 
-NJS_MKEY_A _17B5DC_25_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17B5DC_25_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _17B5DC_26_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17B5DC_26_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _17B5DC_26_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17B5DC_26_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _17B5DC_27_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17B5DC_27_pos[] = {
 	{ 0, 0.853294f, -0.578476f, 0 },
 { 16, 0.853294f, -0.578476f, 0 }
 };
 
-NJS_MKEY_A _17B5DC_27_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17B5DC_27_rot[] = {
 	{ 0, 0, 0, 0xFFFFC001 },
 { 16, 0, 0, 0xFFFFC001 }
 };
 
-NJS_MKEY_F _17B5DC_28_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17B5DC_28_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _17B5DC_28_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17B5DC_28_rot[] = {
 	{ 0, 0, 0xFFFFFF7F, 0x222D },
 { 1, 0, 0xFFFFFE42, 0x2145 },
 { 2, 0, 0xFFFFFD14, 0x209D },
@@ -7628,27 +7628,27 @@ NJS_MKEY_A _17B5DC_28_rot[] = {
 { 16, 0, 0xFFFFFF7F, 0x222D }
 };
 
-NJS_MKEY_F _17B5DC_29_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17B5DC_29_pos[] = {
 	{ 0, 3.084564f, 0, 0 },
 { 16, 3.084564f, 0, 0 }
 };
 
-NJS_MKEY_A _17B5DC_29_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17B5DC_29_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _17B5DC_30_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17B5DC_30_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _17B5DC_30_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17B5DC_30_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MDATA2 _17B5DC_mdat[] = {
+extern "C" __declspec(dllexport) NJS_MDATA2 _17B5DC_mdat[] = {
 	{ _17B5DC_0_pos, _17B5DC_0_rot, LengthOfArray<Uint32>(_17B5DC_0_pos), LengthOfArray<Uint32>(_17B5DC_0_rot) },
 { _17B5DC_1_pos, _17B5DC_1_rot, LengthOfArray<Uint32>(_17B5DC_1_pos), LengthOfArray<Uint32>(_17B5DC_1_rot) },
 { _17B5DC_2_pos, _17B5DC_2_rot, LengthOfArray<Uint32>(_17B5DC_2_pos), LengthOfArray<Uint32>(_17B5DC_2_rot) },
@@ -7682,20 +7682,20 @@ NJS_MDATA2 _17B5DC_mdat[] = {
 { _17B5DC_30_pos, _17B5DC_30_rot, LengthOfArray<Uint32>(_17B5DC_30_pos), LengthOfArray<Uint32>(_17B5DC_30_rot) }
 };
 
-NJS_MOTION _17B5DC = { _17B5DC_mdat, 17, NJD_MTYPE_POS_0 | NJD_MTYPE_ANG_1, 2 };
+extern "C" __declspec(dllexport) NJS_MOTION _17B5DC = { _17B5DC_mdat, 17, NJD_MTYPE_POS_0 | NJD_MTYPE_ANG_1, 2 };
 
 //RAKO
-NJS_MKEY_F _17E5E0_0_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17E5E0_0_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _17E5E0_0_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17E5E0_0_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _17E5E0_1_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17E5E0_1_pos[] = {
 	{ 0, -0.11223f, -0.102572f, 0.048995f },
 { 1, -0.095432f, -0.111134f, 0.043061f },
 { 2, -0.06385899f, -0.125114f, 0.029636f },
@@ -7715,17 +7715,17 @@ NJS_MKEY_F _17E5E0_1_pos[] = {
 { 16, -0.11223f, -0.102391f, 0.048995f }
 };
 
-NJS_MKEY_A _17E5E0_1_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17E5E0_1_rot[] = {
 	{ 0, 0, 0x3FFF, 0 },
 { 16, 0, 0x3FFF, 0 }
 };
 
-NJS_MKEY_F _17E5E0_2_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17E5E0_2_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _17E5E0_2_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17E5E0_2_rot[] = {
 	{ 0, 0, 0, 0x3D10 },
 { 1, 0, 0, 0x3E83 },
 { 2, 0, 0, 0x3FB2 },
@@ -7745,42 +7745,42 @@ NJS_MKEY_A _17E5E0_2_rot[] = {
 { 16, 0, 0, 0x3D10 }
 };
 
-NJS_MKEY_F _17E5E0_3_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17E5E0_3_pos[] = {
 	{ 0, 5.50753f, 0, 0 },
 { 16, 5.50753f, 0, 0 }
 };
 
-NJS_MKEY_A _17E5E0_3_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17E5E0_3_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _17E5E0_4_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17E5E0_4_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _17E5E0_4_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17E5E0_4_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _17E5E0_5_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17E5E0_5_pos[] = {
 	{ 0, 0.827159f, -0.913848f, 0 },
 { 16, 0.827159f, -0.913848f, 0 }
 };
 
-NJS_MKEY_A _17E5E0_5_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17E5E0_5_rot[] = {
 	{ 0, 0, 0, 0xFFFFC001 },
 { 16, 0, 0, 0xFFFFC001 }
 };
 
-NJS_MKEY_F _17E5E0_6_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17E5E0_6_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _17E5E0_6_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17E5E0_6_rot[] = {
 	{ 0, 0, 0x12D8, 0xFFFFF92C },
 { 1, 0, 0x191B, 0xFFFFFC6B },
 { 2, 0, 0x1ABD, 0xFFFFFD59 },
@@ -7800,27 +7800,27 @@ NJS_MKEY_A _17E5E0_6_rot[] = {
 { 16, 0, 0x12D8, 0xFFFFF92C }
 };
 
-NJS_MKEY_F _17E5E0_7_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17E5E0_7_pos[] = {
 	{ 0, 1.389654f, 0, 0 },
 { 16, 1.389654f, 0, 0 }
 };
 
-NJS_MKEY_A _17E5E0_7_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17E5E0_7_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _17E5E0_8_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17E5E0_8_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _17E5E0_8_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17E5E0_8_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _17E5E0_9_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17E5E0_9_pos[] = {
 	{ 0, 0.6544459f, -0.808359f, -0.088551f },
 { 1, 0.685652f, -0.743177f, -0.10922f },
 { 2, 0.755615f, -0.592491f, -0.158152f },
@@ -7840,17 +7840,17 @@ NJS_MKEY_F _17E5E0_9_pos[] = {
 { 16, 0.6544459f, -0.808359f, -0.088551f }
 };
 
-NJS_MKEY_A _17E5E0_9_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17E5E0_9_rot[] = {
 	{ 0, 0, 0, 0xFFFFC001 },
 { 16, 0, 0, 0xFFFFC001 }
 };
 
-NJS_MKEY_F _17E5E0_10_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17E5E0_10_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _17E5E0_10_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17E5E0_10_rot[] = {
 	{ 0, 0, 0, 0xFFFF8BC2 },
 { 1, 0, 0xFFFFFF15, 0xFFFF8ACE },
 { 2, 0, 0xFFFFFCF9, 0xFFFF88B5 },
@@ -7870,27 +7870,27 @@ NJS_MKEY_A _17E5E0_10_rot[] = {
 { 16, 0, 0, 0xFFFF8BC2 }
 };
 
-NJS_MKEY_F _17E5E0_11_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17E5E0_11_pos[] = {
 	{ 0, 1.680368f, 0, 0 },
 { 16, 1.680368f, 0, 0 }
 };
 
-NJS_MKEY_A _17E5E0_11_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17E5E0_11_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _17E5E0_12_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17E5E0_12_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _17E5E0_12_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17E5E0_12_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _17E5E0_13_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17E5E0_13_pos[] = {
 	{ 0, 0.713825f, -0.226379f, 0.355139f },
 { 1, 0.707069f, -0.257932f, 0.334469f },
 { 2, 0.6909879f, -0.334622f, 0.285537f },
@@ -7910,17 +7910,17 @@ NJS_MKEY_F _17E5E0_13_pos[] = {
 { 16, 0.713825f, -0.226379f, 0.355139f }
 };
 
-NJS_MKEY_A _17E5E0_13_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17E5E0_13_rot[] = {
 	{ 0, 0, 0, 0xFFFFC001 },
 { 16, 0, 0, 0xFFFFC001 }
 };
 
-NJS_MKEY_F _17E5E0_14_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17E5E0_14_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _17E5E0_14_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17E5E0_14_rot[] = {
 	{ 0, 0, 0x74D, 0xFFFF8BC2 },
 { 1, 0, 0x5E3, 0xFFFF8BC2 },
 { 2, 0, 0x3BF, 0xFFFF8BC2 },
@@ -7940,42 +7940,42 @@ NJS_MKEY_A _17E5E0_14_rot[] = {
 { 16, 0, 0x747, 0xFFFF8BC2 }
 };
 
-NJS_MKEY_F _17E5E0_15_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17E5E0_15_pos[] = {
 	{ 0, 1.680368f, 0, 0 },
 { 16, 1.680368f, 0, 0 }
 };
 
-NJS_MKEY_A _17E5E0_15_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17E5E0_15_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _17E5E0_16_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17E5E0_16_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _17E5E0_16_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17E5E0_16_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _17E5E0_17_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17E5E0_17_pos[] = {
 	{ 0, 2.261596f, 0.6379769f, -0.6578799f },
 { 16, 2.261596f, 0.6379769f, -0.6578799f }
 };
 
-NJS_MKEY_A _17E5E0_17_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17E5E0_17_rot[] = {
 	{ 0, 0, 0, 0xFFFFC001 },
 { 16, 0, 0, 0xFFFFC001 }
 };
 
-NJS_MKEY_F _17E5E0_18_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17E5E0_18_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _17E5E0_18_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17E5E0_18_rot[] = {
 	{ 0, 0x25, 0xFFFFFB87, 0xFFFFB0DE },
 { 1, 5, 0xFFFFFB85, 0xFFFFB1B2 },
 { 2, 4, 0xFFFFFB85, 0xFFFFB1B7 },
@@ -7995,52 +7995,52 @@ NJS_MKEY_A _17E5E0_18_rot[] = {
 { 16, 0x25, 0xFFFFFB87, 0xFFFFB0DE }
 };
 
-NJS_MKEY_F _17E5E0_19_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17E5E0_19_pos[] = {
 	{ 0, 1.714142f, 0, 0 },
 { 16, 1.714142f, 0, 0 }
 };
 
-NJS_MKEY_A _17E5E0_19_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17E5E0_19_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _17E5E0_20_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17E5E0_20_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _17E5E0_20_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17E5E0_20_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _17E5E0_21_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17E5E0_21_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _17E5E0_21_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17E5E0_21_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _17E5E0_22_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17E5E0_22_pos[] = {
 	{ 0, 2.261596f, 0.6379769f, 0.6578799f },
 { 16, 2.261596f, 0.6379769f, 0.6578799f }
 };
 
-NJS_MKEY_A _17E5E0_22_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17E5E0_22_rot[] = {
 	{ 0, 0, 0, 0xFFFFC001 },
 { 16, 0, 0, 0xFFFFC001 }
 };
 
-NJS_MKEY_F _17E5E0_23_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17E5E0_23_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _17E5E0_23_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17E5E0_23_rot[] = {
 	{ 0, 0x164D, 0x5D7, 0xFFFFA586 },
 { 1, 0x1638, 0x543, 0xFFFFA632 },
 { 2, 0x1609, 0x540, 0xFFFFA635 },
@@ -8060,27 +8060,27 @@ NJS_MKEY_A _17E5E0_23_rot[] = {
 { 16, 0x164D, 0x5D7, 0xFFFFA586 }
 };
 
-NJS_MKEY_F _17E5E0_24_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17E5E0_24_pos[] = {
 	{ 0, 1.714142f, 0, 0 },
 { 16, 1.714142f, 0, 0 }
 };
 
-NJS_MKEY_A _17E5E0_24_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17E5E0_24_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _17E5E0_25_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17E5E0_25_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _17E5E0_25_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17E5E0_25_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _17E5E0_26_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17E5E0_26_pos[] = {
 	{ 0, 2.305161f, 1.025992f, 0 },
 { 1, 2.305161f, 0.970738f, -0.026609f },
 { 2, 2.305161f, 0.9530399f, -0.085148f },
@@ -8100,67 +8100,67 @@ NJS_MKEY_F _17E5E0_26_pos[] = {
 { 16, 2.305161f, 1.025992f, 0 }
 };
 
-NJS_MKEY_A _17E5E0_26_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17E5E0_26_rot[] = {
 	{ 0, 0, 0, 0xFFFFC001 },
 { 16, 0, 0, 0xFFFFC001 }
 };
 
-NJS_MKEY_F _17E5E0_27_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17E5E0_27_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _17E5E0_27_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17E5E0_27_rot[] = {
 	{ 0, 0, 0x36, 0x81CA },
 { 16, 0, 0x36, 0x81CA }
 };
 
-NJS_MKEY_F _17E5E0_28_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17E5E0_28_pos[] = {
 	{ 0, 3.625491f, 0, 0 },
 { 16, 3.625491f, 0, 0 }
 };
 
-NJS_MKEY_A _17E5E0_28_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17E5E0_28_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _17E5E0_29_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17E5E0_29_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _17E5E0_29_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17E5E0_29_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _17E5E0_30_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17E5E0_30_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _17E5E0_30_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17E5E0_30_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _17E5E0_31_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17E5E0_31_pos[] = {
 	{ 0, 1.830964f, 0.016073f, 0.062815f },
 { 16, 1.830964f, 0.016073f, 0.062815f }
 };
 
-NJS_MKEY_A _17E5E0_31_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17E5E0_31_rot[] = {
 	{ 0, 0xFFFFC021, 0xFFFFC001, 0xFFFFC021 },
 { 16, 0xFFFFC021, 0xFFFFC001, 0xFFFFC021 }
 };
 
-NJS_MKEY_F _17E5E0_32_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17E5E0_32_pos[] = {
 	{ 0, 0, 0.000001f, 0.000001f },
 { 16, 0, 0.000001f, 0.000001f }
 };
 
-NJS_MKEY_A _17E5E0_32_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17E5E0_32_rot[] = {
 	{ 0, 0, 0xFFFFFFA7, 0xFFFFFFAA },
 { 1, 0xFFFFFFA4, 0x1C, 0xFFFFFEDF },
 { 2, 0xFFFFFED8, 0x11E, 0xFFFFFD22 },
@@ -8180,42 +8180,42 @@ NJS_MKEY_A _17E5E0_32_rot[] = {
 { 16, 0, 0xFFFFFFA7, 0xFFFFFFAA }
 };
 
-NJS_MKEY_F _17E5E0_33_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17E5E0_33_pos[] = {
 	{ 0, 2.779967f, 0, 0 },
 { 16, 2.779967f, 0, 0 }
 };
 
-NJS_MKEY_A _17E5E0_33_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17E5E0_33_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _17E5E0_34_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17E5E0_34_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _17E5E0_34_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17E5E0_34_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _17E5E0_35_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17E5E0_35_pos[] = {
 	{ 0, 1.830964f, 0.016073f, -0.062815f },
 { 16, 1.830964f, 0.016073f, -0.062815f }
 };
 
-NJS_MKEY_A _17E5E0_35_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17E5E0_35_rot[] = {
 	{ 0, 0x3FDF, 0x3FFF, 0xFFFFC021 },
 { 16, 0x3FDF, 0x3FFF, 0xFFFFC021 }
 };
 
-NJS_MKEY_F _17E5E0_36_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17E5E0_36_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _17E5E0_36_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17E5E0_36_rot[] = {
 	{ 0, 0, 0xA6, 0xFFFFFFAB },
 { 1, 6, 0x115, 0x7B },
 { 2, 0x15, 0x209, 0x246 },
@@ -8235,37 +8235,37 @@ NJS_MKEY_A _17E5E0_36_rot[] = {
 { 16, 0, 0xA6, 0xFFFFFFAB }
 };
 
-NJS_MKEY_F _17E5E0_37_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17E5E0_37_pos[] = {
 	{ 0, 2.779967f, 0, 0 },
 { 16, 2.779967f, 0, 0 }
 };
 
-NJS_MKEY_A _17E5E0_37_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17E5E0_37_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _17E5E0_38_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17E5E0_38_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _17E5E0_38_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17E5E0_38_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_F _17E5E0_39_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _17E5E0_39_pos[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MKEY_A _17E5E0_39_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _17E5E0_39_rot[] = {
 	{ 0, 0, 0, 0 },
 { 16, 0, 0, 0 }
 };
 
-NJS_MDATA2 _17E5E0_mdat[] = {
+extern "C" __declspec(dllexport) NJS_MDATA2 _17E5E0_mdat[] = {
 	{ _17E5E0_0_pos, _17E5E0_0_rot, LengthOfArray<Uint32>(_17E5E0_0_pos), LengthOfArray<Uint32>(_17E5E0_0_rot) },
 { _17E5E0_1_pos, _17E5E0_1_rot, LengthOfArray<Uint32>(_17E5E0_1_pos), LengthOfArray<Uint32>(_17E5E0_1_rot) },
 { _17E5E0_2_pos, _17E5E0_2_rot, LengthOfArray<Uint32>(_17E5E0_2_pos), LengthOfArray<Uint32>(_17E5E0_2_rot) },
@@ -8308,6 +8308,6 @@ NJS_MDATA2 _17E5E0_mdat[] = {
 { _17E5E0_39_pos, _17E5E0_39_rot, LengthOfArray<Uint32>(_17E5E0_39_pos), LengthOfArray<Uint32>(_17E5E0_39_rot) }
 };
 
-NJS_MOTION _17E5E0 = { _17E5E0_mdat, 17, NJD_MTYPE_POS_0 | NJD_MTYPE_ANG_1, 2 };
+extern "C" __declspec(dllexport) NJS_MOTION _17E5E0 = { _17E5E0_mdat, 17, NJD_MTYPE_POS_0 | NJD_MTYPE_ANG_1, 2 };
 
 #pragma warning(pop)

@@ -25,3 +25,4 @@ NJS_TEXLIST texlist_advss05 = {arrayptrandlength(textures_advss05)};
 #include "ADV00_3.h"
 #include "ADV00_4.h"
 #include "ADV00_5.h"
+#include "ADV00_Motions.h"

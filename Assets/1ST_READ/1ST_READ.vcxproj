@@ -13,8 +13,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{bb9696dc-3245-4d0d-9688-4fd7c24f274a}</ProjectGuid>
-    <RootNamespace>STG02</RootNamespace>
+    <ProjectGuid>{8FB537EB-C0F5-4DF1-A11D-A3E651FA6FBB}</ProjectGuid>
+    <RootNamespace>1ST_READ</RootNamespace>
     <WindowsTargetPlatformVersion>7.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -95,9 +95,8 @@
     <ClCompile Include="dllmain.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Data\STG02_0.h" />
-    <ClInclude Include="..\..\Data\STG02_1.h" />
-    <ClInclude Include="..\..\Data\STG02_2.h" />
+    <ClInclude Include="..\..\Data\Animals_motions.h" />
+    <ClInclude Include="..\..\Data\CommonObjects.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

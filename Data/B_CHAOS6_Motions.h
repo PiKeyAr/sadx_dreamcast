@@ -5,7 +5,7 @@
 
 //Walking
 
-NJS_MKEY_A Chaos6Animation3_1_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A Chaos6Animation3_1_rot[] = {
 	{ 0, 0, 0, 0x4B7C },
 	{ 1, 0, 0x1B, 0x4B75 },
 	{ 2, 0, 0x3B, 0x4B6E },
@@ -94,7 +94,7 @@ NJS_MKEY_A Chaos6Animation3_1_rot[] = {
 	{ 89, 0, 0xFFFFFFC9, 0x4B7C }
 };
 
-NJS_MKEY_A Chaos6Animation3_19_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A Chaos6Animation3_19_rot[] = {
 	{ 0, 0, 0, 0xFFFF7036 },
 	{ 1, 0xFFFFFF3D, 0, 0xFFFF7041 },
 	{ 2, 0xFFFFFE71, 0, 0xFFFF7051 },
@@ -187,7 +187,7 @@ NJS_MKEY_A Chaos6Animation3_19_rot[] = {
 	{ 89, 0xD1, 0, 0xFFFF703B }
 };
 
-NJS_MKEY_A Chaos6Animation3_22_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A Chaos6Animation3_22_rot[] = {
 	{ 0, 0, 0x684, 0xFFFF8498 },
 	{ 1, 0, 0x672, 0xFFFF8498 },
 	{ 2, 0, 0x650, 0xFFFF8498 },
@@ -277,7 +277,7 @@ NJS_MKEY_A Chaos6Animation3_22_rot[] = {
 	{ 89, 0, 0x683, 0xFFFF8498 }
 };
 
-NJS_MKEY_A Chaos6Animation3_26_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A Chaos6Animation3_26_rot[] = {
 	{ 0, 0x7FFF, 0xFFFF8001, 0x7FFF },
 	{ 43, 0x7FFF, 0xFFFF8001, 0x7FFF },
 	{ 44, 0x7FFF, 0xFFFF8001, 0x7FFF },
@@ -286,7 +286,7 @@ NJS_MKEY_A Chaos6Animation3_26_rot[] = {
 	{ 89, 0x7FFF, 0xFFFF8001, 0x7FFF }
 };
 
-NJS_MKEY_A Chaos6Animation3_28_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A Chaos6Animation3_28_rot[] = {
 	{ 0, 0, 0xFFFFFA4C, 0xFFFF8498 },
 	{ 1, 0, 0xFFFFFAA2, 0xFFFF8498 },
 	{ 2, 0, 0xFFFFFB0E, 0xFFFF8498 },
@@ -376,7 +376,7 @@ NJS_MKEY_A Chaos6Animation3_28_rot[] = {
 	{ 89, 0, 0xFFFFFA51, 0xFFFF8498 }
 };
 
-NJS_MKEY_A Chaos6Animation3_32_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A Chaos6Animation3_32_rot[] = {
 	{ 0, 0x7FFF, 0xFFFF8001, 0x7FFF },
 	{ 43, 0x7FFF, 0xFFFF8001, 0x7FFF },
 	{ 44, 0x7FFF, 0xFFFF8001, 0x7FFF },
@@ -385,7 +385,7 @@ NJS_MKEY_A Chaos6Animation3_32_rot[] = {
 	{ 89, 0x7FFF, 0xFFFF8001, 0x7FFF }
 };
 
-NJS_MKEY_A Chaos6Animation3_34_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A Chaos6Animation3_34_rot[] = {
 	{ 0, 0, 0, 0xFFFF9B05 },
 	{ 1, 0, 0, 0xFFFF9A03 },
 	{ 2, 0, 0, 0xFFFF98FE },
@@ -478,7 +478,7 @@ NJS_MKEY_A Chaos6Animation3_34_rot[] = {
 	{ 89, 0, 0, 0xFFFF9BF4 }
 };
 
-NJS_MKEY_A Chaos6Animation3_37_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A Chaos6Animation3_37_rot[] = {
 	{ 0, 0x7FFF, 0xFFFF8001, 0x7FFF },
 	{ 11, 0x7FFF, 0xFFFF8001, 0x7FFF },
 	{ 12, 0x7FFF, 0xFFFF8001, 0x7FFF },
@@ -487,7 +487,7 @@ NJS_MKEY_A Chaos6Animation3_37_rot[] = {
 	{ 89, 0x7FFF, 0xFFFF8001, 0x7FFF }
 };
 
-NJS_MKEY_A Chaos6Animation3_41_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A Chaos6Animation3_41_rot[] = {
 	{ 0, 0xFFFFF58A, 0x8B6, 0x5BC },
 	{ 1, 0xFFFFF51C, 0x50C, 0x559 },
 	{ 2, 0xFFFFF41C, 0xFFFFFC95, 0x472 },
@@ -580,7 +580,7 @@ NJS_MKEY_A Chaos6Animation3_41_rot[] = {
 	{ 89, 0xFFFFF5C3, 0x9E1, 0x5BB }
 };
 
-NJS_MKEY_A Chaos6Animation3_42_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A Chaos6Animation3_42_rot[] = {
 	{ 0, 0, 0, 0xFFFFED30 },
 	{ 1, 0, 0, 0xFFFFEE8D },
 	{ 2, 0, 0, 0xFFFFF167 },
@@ -673,7 +673,7 @@ NJS_MKEY_A Chaos6Animation3_42_rot[] = {
 	{ 89, 0, 0, 0xFFFFE9B6 }
 };
 
-NJS_MKEY_A Chaos6Animation3_47_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A Chaos6Animation3_47_rot[] = {
 	{ 0, 0xFFFFFF75, 0x189, 0xFFFFD714 },
 	{ 1, 0xFFFFFED6, 0x2B1, 0xFFFFD6A6 },
 	{ 2, 0xFFFFFD48, 0x590, 0xFFFFD5A0 },
@@ -766,7 +766,7 @@ NJS_MKEY_A Chaos6Animation3_47_rot[] = {
 	{ 89, 0xFFFFFF32, 0x46, 0xFFFFD730 }
 };
 
-NJS_MKEY_A Chaos6Animation3_48_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A Chaos6Animation3_48_rot[] = {
 	{ 0, 0, 0, 0xFFFFF36D },
 	{ 1, 0, 0, 0xFFFFF18C },
 	{ 2, 0, 0, 0xFFFFECD4 },
@@ -859,7 +859,7 @@ NJS_MKEY_A Chaos6Animation3_48_rot[] = {
 	{ 89, 0, 0, 0xFFFFF468 }
 };
 
-NJS_MKEY_A Chaos6Animation3_53_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A Chaos6Animation3_53_rot[] = {
 	{ 0, 0x81B5, 0xFFFFFF1B, 0xFFFFE84A },
 	{ 1, 0x819E, 0xB8, 0xFFFFE985 },
 	{ 2, 0x8164, 0x4C5, 0xFFFFEC91 },
@@ -952,7 +952,7 @@ NJS_MKEY_A Chaos6Animation3_53_rot[] = {
 	{ 89, 0x8139, 0xFFFFFD94, 0xFFFFEA11 }
 };
 
-NJS_MKEY_A Chaos6Animation3_54_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A Chaos6Animation3_54_rot[] = {
 	{ 0, 0, 0, 0xFFFFB48C },
 	{ 1, 0, 0, 0xFFFFB347 },
 	{ 2, 0, 0, 0xFFFFB041 },
@@ -1045,7 +1045,7 @@ NJS_MKEY_A Chaos6Animation3_54_rot[] = {
 	{ 89, 0, 0, 0xFFFFB750 }
 };
 
-NJS_MKEY_A Chaos6Animation3_59_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A Chaos6Animation3_59_rot[] = {
 	{ 0, 0xAC3, 0x24A, 0x6D5 },
 	{ 1, 0x884, 0x62D, 0x258 },
 	{ 2, 0x356, 0xF17, 0xFFFFF7CE },
@@ -1138,7 +1138,7 @@ NJS_MKEY_A Chaos6Animation3_59_rot[] = {
 	{ 89, 0xA84, 0x150, 0x3EA }
 };
 
-NJS_MKEY_A Chaos6Animation3_60_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A Chaos6Animation3_60_rot[] = {
 	{ 0, 0, 0, 0xFFFFD999 },
 	{ 1, 0, 0, 0xFFFFDB8F },
 	{ 2, 0, 0, 0xFFFFDFFB },
@@ -1231,7 +1231,7 @@ NJS_MKEY_A Chaos6Animation3_60_rot[] = {
 	{ 89, 0, 0, 0xFFFFD904 }
 };
 
-NJS_MKEY_A Chaos6Animation3_65_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A Chaos6Animation3_65_rot[] = {
 	{ 0, 0x21A, 0xFFFFF6E4, 0x2F50 },
 	{ 1, 0x21C, 0xFFFFF74E, 0x2F68 },
 	{ 2, 0x21C, 0xFFFFF7B5, 0x2F80 },
@@ -1310,7 +1310,7 @@ NJS_MKEY_A Chaos6Animation3_65_rot[] = {
 	{ 89, 0x21A, 0xFFFFF6BB, 0x2F50 }
 };
 
-NJS_MKEY_A Chaos6Animation3_66_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A Chaos6Animation3_66_rot[] = {
 	{ 0, 0, 0xFFFFFCBE, 0x172 },
 	{ 1, 0, 0xFFFFFD86, 0x174 },
 	{ 2, 0, 0xFFFFFE4D, 0x17B },
@@ -1400,7 +1400,7 @@ NJS_MKEY_A Chaos6Animation3_66_rot[] = {
 	{ 89, 0, 0xFFFFFC39, 0x172 }
 };
 
-NJS_MKEY_A Chaos6Animation3_71_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A Chaos6Animation3_71_rot[] = {
 	{ 0, 0xFFFFEF71, 0x497, 0x3078 },
 	{ 1, 0xFFFFEF7A, 0x51B, 0x3079 },
 	{ 2, 0xFFFFEF83, 0x593, 0x307E },
@@ -1493,7 +1493,7 @@ NJS_MKEY_A Chaos6Animation3_71_rot[] = {
 	{ 89, 0xFFFFEF71, 0x486, 0x3090 }
 };
 
-NJS_MKEY_A Chaos6Animation3_72_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A Chaos6Animation3_72_rot[] = {
 	{ 0, 0, 0xFFFFFB1D, 0x243 },
 	{ 1, 0, 0xFFFFFB91, 0x255 },
 	{ 2, 0, 0xFFFFFC07, 0x26A },
@@ -1586,7 +1586,7 @@ NJS_MKEY_A Chaos6Animation3_72_rot[] = {
 	{ 89, 0, 0xFFFFFA9D, 0x242 }
 };
 
-NJS_MKEY_A Chaos6Animation3_77_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A Chaos6Animation3_77_rot[] = {
 	{ 0, 0, 0xFFFFFF8F, 0x162C },
 	{ 1, 0xDF, 0xFFFFFE5B, 0x1637 },
 	{ 2, 0x1B7, 0xFFFFFD35, 0x163F },
@@ -1679,7 +1679,7 @@ NJS_MKEY_A Chaos6Animation3_77_rot[] = {
 	{ 89, 0xFFFFFF25, 0x83, 0x162D }
 };
 
-NJS_MKEY_A Chaos6Animation3_82_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A Chaos6Animation3_82_rot[] = {
 	{ 0, 0x7FFF, 0x95CF, 0xFFFFA0A8 },
 	{ 1, 0x7FFF, 0x93DD, 0xFFFFA16A },
 	{ 2, 0x7FFF, 0x91E2, 0xFFFFA1C7 },
@@ -1772,7 +1772,7 @@ NJS_MKEY_A Chaos6Animation3_82_rot[] = {
 	{ 89, 0x7FFF, 0x97AF, 0xFFFFA06A }
 };
 
-NJS_MKEY_A Chaos6Animation3_83_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A Chaos6Animation3_83_rot[] = {
 	{ 0, 0x7F56, 0xFFFF6CB1, 0x2545 },
 	{ 1, 0x7F56, 0xFFFF6B51, 0x2669 },
 	{ 2, 0x7F56, 0xFFFF69AE, 0x2807 },
@@ -1865,7 +1865,7 @@ NJS_MKEY_A Chaos6Animation3_83_rot[] = {
 	{ 89, 0x7F56, 0xFFFF6D8D, 0x252E }
 };
 
-NJS_MKEY_A Chaos6Animation3_84_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A Chaos6Animation3_84_rot[] = {
 	{ 0, 0xFFFFF8AD, 0xFFFFFF10, 0xFFFFF490 },
 	{ 1, 0xFFFFFACB, 0xFFFFFE7D, 0xFFFFEEED },
 	{ 2, 0xFFFFFD32, 0xFFFFFDE8, 0xFFFFE801 },
@@ -1958,7 +1958,7 @@ NJS_MKEY_A Chaos6Animation3_84_rot[] = {
 	{ 89, 0xFFFFF714, 0xFFFFFFDB, 0xFFFFF945 }
 };
 
-NJS_MKEY_A Chaos6Animation3_94_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A Chaos6Animation3_94_rot[] = {
 	{ 0, 0, 0x1377, 0x1BDC },
 	{ 1, 0, 0x16FF, 0x1CA7 },
 	{ 2, 0, 0x1A55, 0x1D4A },
@@ -2051,7 +2051,7 @@ NJS_MKEY_A Chaos6Animation3_94_rot[] = {
 	{ 89, 0, 0x102D, 0x1B94 }
 };
 
-NJS_MKEY_A Chaos6Animation3_95_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A Chaos6Animation3_95_rot[] = {
 	{ 0, 0xA9, 0xFFFFE706, 0xFFFF9AB4 },
 	{ 1, 0xA9, 0xFFFFE970, 0xFFFF9B34 },
 	{ 2, 0xA9, 0xFFFFEBAC, 0xFFFF9C00 },
@@ -2144,7 +2144,7 @@ NJS_MKEY_A Chaos6Animation3_95_rot[] = {
 	{ 89, 0xA9, 0xFFFFE4B7, 0xFFFF9A90 }
 };
 
-NJS_MKEY_A Chaos6Animation3_96_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A Chaos6Animation3_96_rot[] = {
 	{ 0, 0xF52, 0xFFFFFE97, 0x7CD },
 	{ 1, 0xFF0, 0xFFFFFE98, 0x6EF },
 	{ 2, 0x1083, 0xFFFFFE9C, 0x5FC },
@@ -2237,7 +2237,7 @@ NJS_MKEY_A Chaos6Animation3_96_rot[] = {
 	{ 89, 0xEE8, 0xFFFFFE8F, 0x9F3 }
 };
 
-NJS_MKEY_A Chaos6Animation3_106_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A Chaos6Animation3_106_rot[] = {
 	{ 0, 0, 0xFFFFFFDD, 0x5B48 },
 	{ 1, 0, 0x6B, 0x5B41 },
 	{ 2, 0, 0xF5, 0x5B3E },
@@ -2330,7 +2330,7 @@ NJS_MKEY_A Chaos6Animation3_106_rot[] = {
 	{ 89, 0, 0xFFFFFF61, 0x5B48 }
 };
 
-NJS_MKEY_A Chaos6Animation3_107_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A Chaos6Animation3_107_rot[] = {
 	{ 0, 0, 0x46, 0xFFFF913A },
 	{ 1, 0, 0x131, 0xFFFF913A },
 	{ 2, 0, 0x20A, 0xFFFF9135 },
@@ -2423,7 +2423,7 @@ NJS_MKEY_A Chaos6Animation3_107_rot[] = {
 	{ 89, 0, 0xFFFFFFAA, 0xFFFF913A }
 };
 
-NJS_MKEY_A Chaos6Animation3_111_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A Chaos6Animation3_111_rot[] = {
 	{ 0, 0, 0, 0x2B4F },
 	{ 1, 0, 0xFFFFFAB0, 0x2B4F },
 	{ 2, 0, 0xFFFFF5A3, 0x2B4F },
@@ -2516,7 +2516,7 @@ NJS_MKEY_A Chaos6Animation3_111_rot[] = {
 	{ 89, 0, 0x41A, 0x2B4F }
 };
 
-NJS_MDATA2 Chaos6Animation3_mdat[] = {
+extern "C" __declspec(dllexport) NJS_MDATA2 Chaos6Animation3_mdat[] = {
 	{ NULL, NULL, 0, 0 },
 	{ NULL, Chaos6Animation3_1_rot, 0, LengthOfArray<Uint32>(Chaos6Animation3_1_rot) },
 	{ NULL, NULL, 0, 0 },
@@ -2636,6 +2636,6 @@ NJS_MDATA2 Chaos6Animation3_mdat[] = {
 	{ NULL, NULL, 0, 0 }
 };
 
-NJS_MOTION Chaos6Animation3 = { Chaos6Animation3_mdat, 90, NJD_MTYPE_POS_0 | NJD_MTYPE_ANG_1, 2 };
+extern "C" __declspec(dllexport) NJS_MOTION motion_0011889C = { Chaos6Animation3_mdat, 90, NJD_MTYPE_POS_0 | NJD_MTYPE_ANG_1, 2 };
 
 #pragma warning(pop)

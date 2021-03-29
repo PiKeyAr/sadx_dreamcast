@@ -720,6 +720,7 @@ void AddUVAnimation_Permanent(int level, int act, NJS_TEX* uv, int uv_count, int
 void RemoveVertexColors_Object(NJS_OBJECT *obj);
 void RemoveVertexColors_Model(NJS_MODEL_SADX *model);
 NJS_OBJECT* LoadModel(const char *ModelName);
+NJS_MOTION* LoadAnimation(const char* AnimationName);
 void RemoveMaterialColors_Landtable(LandTable *landtable);
 void LoadModel_ReplaceMeshes(NJS_OBJECT *object, const char *ModelName);
 void AddAlphaRejectMaterial(NJS_MATERIAL *material);

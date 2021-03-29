@@ -5,7 +5,7 @@
 
 //OEggChair
 
-NJS_MKEY_A _197dbc_4_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _197dbc_4_rot[] = {
 	{ 0, 0, 0, 0 },
 	{ 1, 0, 0, 0xFFFFFFA5 },
 	{ 2, 0, 0, 0xFFFFFF4A },
@@ -23,7 +23,7 @@ NJS_MKEY_A _197dbc_4_rot[] = {
 	{ 14, 0, 0, 0xFFFFFF4A }
 };
 
-NJS_MKEY_F _197dbc_6_pos[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_F _197dbc_6_pos[] = {
 	{ 0, -17.28465f, 38.44907f, -0.09192999f },
 	{ 1, -17.28465f, 38.27728f, -0.09192999f },
 	{ 2, -17.28465f, 38.10548f, -0.09192999f },
@@ -41,7 +41,7 @@ NJS_MKEY_F _197dbc_6_pos[] = {
 	{ 14, -17.28465f, 38.10548f, -0.09192999f }
 };
 
-NJS_MKEY_A _197dbc_20_rot[] = {
+extern "C" __declspec(dllexport) NJS_MKEY_A _197dbc_20_rot[] = {
 	{ 0, 0, 0, 0 },
 	{ 1, 0, 0, 0xFFFFFFA5 },
 	{ 2, 0, 0, 0xFFFFFF4A },
@@ -59,7 +59,7 @@ NJS_MKEY_A _197dbc_20_rot[] = {
 	{ 14, 0, 0, 0xFFFFFF4A }
 };
 
-NJS_MDATA2 _197dbc_mdat[] = {
+extern "C" __declspec(dllexport) NJS_MDATA2 _197dbc_mdat[] = {
 	{ NULL, NULL, 0, 0 },
 	{ NULL, NULL, 0, 0 },
 	{ NULL, NULL, 0, 0 },
@@ -83,6 +83,6 @@ NJS_MDATA2 _197dbc_mdat[] = {
 	{ NULL, _197dbc_20_rot, 0, LengthOfArray(_197dbc_20_rot) }
 };
 
-NJS_MOTION _197dbc = { _197dbc_mdat, 15, NJD_MTYPE_POS_0 | NJD_MTYPE_ANG_1, 2 };
+extern "C" __declspec(dllexport) NJS_MOTION _197dbc = { _197dbc_mdat, 15, NJD_MTYPE_POS_0 | NJD_MTYPE_ANG_1, 2 };
 
 #pragma warning(pop)

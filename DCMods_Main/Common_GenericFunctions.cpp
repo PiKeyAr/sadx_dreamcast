@@ -1,4 +1,5 @@
 #include "stdafx.h"
+#include "AnimationFile.h"
 
 NJS_COLOR DebugFontColorBK;
 float DebugFontSizeBK;
@@ -992,6 +993,13 @@ NJS_OBJECT* LoadModel(const char *ModelName)
 	ProcessMaterials_Object(object);
 	//PrintDebug("OK\n");
 	return object;
+}
+
+NJS_MOTION* LoadAnimation(const char* AnimationName)
+{
+	AnimationFile* animfile = new AnimationFile(HelperFunctionsGlobal.GetReplaceablePath(AnimationName));
+	NJS_MOTION* motion = animfile->getmotion();
+	return motion;
 }
 
 void ForceLevelSpecular_Object(NJS_OBJECT *obj, bool recursive)

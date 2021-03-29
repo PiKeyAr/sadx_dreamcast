@@ -101,6 +101,7 @@
     <ClInclude Include="..\..\Data\ADV0100_3.h" />
     <ClInclude Include="..\..\Data\ADV0100_4.h" />
     <ClInclude Include="..\..\Data\ADV0100_5.h" />
+    <ClInclude Include="..\..\Data\ADV0100_Motions.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
