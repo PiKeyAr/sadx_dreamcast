@@ -46,13 +46,13 @@
     <OutDir>$(SolutionDir)bin</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>$(SolutionDir)bin</OutDir>
+    <OutDir>$(SolutionDir)bin\</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(ProjectDir)Data;$(ProjectDir)..\sadx-mod-loader\libmodutils;$(ProjectDir)..\sadx-mod-loader\mod-loader-common\ModLoaderCommon;$(ProjectDir)..\sadx-mod-loader\SADXModLoader\include;$(SolutionDir)Lantern</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Data;$(ProjectDir)..\sadx-mod-loader\libmodutils;$(ProjectDir)..\sadx-mod-loader\mod-loader-common\ModLoaderCommon;$(SolutionDir)sadx-mod-loader\SADXModLoader\include;$(SolutionDir)Lantern</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <PrecompiledHeader>Use</PrecompiledHeader>
@@ -70,7 +70,7 @@
       <WarningLevel>Level3</WarningLevel>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(ProjectDir)Data;$(ProjectDir)..\sadx-mod-loader\libmodutils;$(ProjectDir)..\sadx-mod-loader\mod-loader-common\ModLoaderCommon;$(ProjectDir)..\sadx-mod-loader\SADXModLoader\include;$(SolutionDir)Lantern</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Data;$(ProjectDir)..\sadx-mod-loader\libmodutils;$(ProjectDir)..\sadx-mod-loader\mod-loader-common\ModLoaderCommon;$(ProjectDir)..\sadx-mod-loader\SADXModLoader\include;$(SolutionDir)Lantern</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <PrecompiledHeader>Use</PrecompiledHeader>
@@ -119,7 +119,7 @@
     <ClCompile Include="STG03_TwinklePark.cpp" />
     <ClCompile Include="STG02_WindyValley.cpp" />
     <ClCompile Include="Common_GenericFunctions.cpp" />
-    <ClCompile Include="Common_Main.cpp" />
+    <ClCompile Include="mod.cpp" />
     <ClCompile Include="Common_SADXStyleWater.cpp" />
     <ClCompile Include="Common_SkyChaseFixes.cpp" />
     <ClCompile Include="Common_Videos.cpp" />
@@ -130,112 +130,8 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Data\ADV00_Motions.h" />
-    <ClInclude Include="Data\Animals.h" />
-    <ClInclude Include="Data\Animals_motions.h" />
-    <ClInclude Include="Data\ChaoObjects_Race.h" />
-    <ClInclude Include="Data\Chaos2_Objects.h" />
-    <ClInclude Include="Data\ADV01C_00.h" />
-    <ClInclude Include="Data\ADV01C_01.h" />
-    <ClInclude Include="Data\ADV01C_02.h" />
-    <ClInclude Include="Data\ADV01C_03.h" />
-    <ClInclude Include="Data\ADV01C_04.h" />
-    <ClInclude Include="Data\ADV01C_05.h" />
-    <ClInclude Include="Data\ADV0100_0.h" />
-    <ClInclude Include="Data\ADV0100_1.h" />
-    <ClInclude Include="Data\ADV0100_2.h" />
-    <ClInclude Include="Data\ADV0100_3.h" />
-    <ClInclude Include="Data\ADV0100_4.h" />
-    <ClInclude Include="Data\ADV0100_5.h" />
-    <ClInclude Include="Data\ADV03_00.h" />
-    <ClInclude Include="Data\ADV03_01.h" />
-    <ClInclude Include="Data\ADV03_02.h" />
-    <ClInclude Include="Data\Casino1.h" />
-    <ClInclude Include="Data\Casino2.h" />
-    <ClInclude Include="Data\Casino3.h" />
-    <ClInclude Include="Data\Casino4.h" />
-    <ClInclude Include="Data\Casino_UVs.h" />
-    <ClInclude Include="Data\ChaoObjects.h" />
-    <ClInclude Include="Data\ChaoRace.h" />
-    <ClInclude Include="Data\ChaoRaceEntry.h" />
-    <ClInclude Include="Data\Chaos0.h" />
-    <ClInclude Include="Data\Chaos2.h" />
-    <ClInclude Include="Data\Chaos4.h" />
-    <ClInclude Include="Data\Chaos6_Sonic.h" />
-    <ClInclude Include="Data\Chaos6_Knuckles.h" />
-    <ClInclude Include="Data\Chaos6_Motion.h" />
-    <ClInclude Include="Data\Chaos7.h" />
-    <ClInclude Include="Data\CommonObjects.h" />
-    <ClInclude Include="Data\E101.h" />
-    <ClInclude Include="Data\E101R.h" />
-    <ClInclude Include="Data\ECGarden.h" />
-    <ClInclude Include="Data\ECGarden_Skybox.h" />
-    <ClInclude Include="Data\EggCarrier_Motions.h" />
-    <ClInclude Include="Data\EggHornet.h" />
-    <ClInclude Include="Data\EggViper.h" />
-    <ClInclude Include="Data\EggWalker.h" />
-    <ClInclude Include="Data\EmeraldCoast1.h" />
-    <ClInclude Include="Data\EmeraldCoast2.h" />
-    <ClInclude Include="Data\EmeraldCoast3.h" />
-    <ClInclude Include="Data\FinalEgg1.h" />
-    <ClInclude Include="Data\FinalEgg2.h" />
-    <ClInclude Include="Data\FinalEgg3.h" />
-    <ClInclude Include="Data\FinalEgg_UVs.h" />
-    <ClInclude Include="Data\Frogs.h" />
-    <ClInclude Include="Data\HedgehogHammer.h" />
-    <ClInclude Include="Data\Highway1.h" />
-    <ClInclude Include="Data\Highway2.h" />
-    <ClInclude Include="Data\Highway3.h" />
-    <ClInclude Include="Data\HintMessages.h" />
-    <ClInclude Include="Data\HotShelter1.h" />
-    <ClInclude Include="Data\HotShelter2.h" />
-    <ClInclude Include="Data\HotShelter3.h" />
-    <ClInclude Include="Data\IceCap1.h" />
-    <ClInclude Include="Data\IceCap2.h" />
-    <ClInclude Include="Data\IceCap3.h" />
-    <ClInclude Include="Data\IceCap4.h" />
-    <ClInclude Include="Data\LostWorld1.h" />
-    <ClInclude Include="Data\LostWorld2.h" />
-    <ClInclude Include="Data\LostWorld3.h" />
-    <ClInclude Include="Data\Mountain1.h" />
-    <ClInclude Include="Data\Mountain2.h" />
-    <ClInclude Include="Data\Mountain3.h" />
-    <ClInclude Include="Data\MR00_Station.h" />
-    <ClInclude Include="Data\MR01_Island.h" />
-    <ClInclude Include="Data\MR02_Jungle.h" />
-    <ClInclude Include="Data\MR03_FinalEgg.h" />
-    <ClInclude Include="Data\MRGarden.h" />
-    <ClInclude Include="Data\RM_Objects.h" />
-    <ClInclude Include="Data\RobotChest.h" />
-    <ClInclude Include="Data\SandHill.h" />
-    <ClInclude Include="Data\SH_helicopter.h" />
-    <ClInclude Include="Data\SkyDeck1.h" />
-    <ClInclude Include="Data\SkyDeck2.h" />
-    <ClInclude Include="Data\SkyDeck3.h" />
-    <ClInclude Include="Data\SS00_CityHall.h" />
-    <ClInclude Include="Data\SS01_Casino.h" />
-    <ClInclude Include="Data\SS02_Sewers.h" />
-    <ClInclude Include="Data\SS03_MainArea.h" />
-    <ClInclude Include="Data\SS04_Hotel.h" />
-    <ClInclude Include="Data\SS05_Twinkle.h" />
-    <ClInclude Include="Data\SSGarden.h" />
     <ClInclude Include="Data\TitleScreen.h" />
-    <ClInclude Include="Data\Twinkle1.h" />
-    <ClInclude Include="Data\Twinkle2.h" />
-    <ClInclude Include="Data\Twinkle3.h" />
-    <ClInclude Include="Data\TwinkleCircuit_1.h" />
-    <ClInclude Include="Data\TwinkleCircuit_2.h" />
-    <ClInclude Include="Data\TwinkleCircuit_3.h" />
-    <ClInclude Include="Data\TwinkleCircuit_4.h" />
-    <ClInclude Include="Data\TwinkleCircuit_5.h" />
-    <ClInclude Include="Data\TwinkleCircuit_6.h" />
-    <ClInclude Include="Data\Windy1.h" />
-    <ClInclude Include="Data\Windy2.h" />
-    <ClInclude Include="Data\Windy3.h" />
-    <ClInclude Include="Data\Zero.h" />
     <ClInclude Include="DC_Levels.h" />
-    <ClInclude Include="GenericData.h" />
-    <ClInclude Include="StageLights.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>

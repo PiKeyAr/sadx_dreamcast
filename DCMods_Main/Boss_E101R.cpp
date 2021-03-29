@@ -3,8 +3,6 @@
 DataArray(FogData, Fog_E101R, 0x015225F0, 3);
 DataArray(DrawDistance, DrawDist_E101R, 0x015225D8, 3);
 
-//#include "E101R.h"
-
 FunctionPointer(void, sub_570900, (int a1, int a2), 0x570900);
 FunctionPointer(void, sub_568EC0, (EntityData1 *a1), 0x568EC0);
 FunctionPointer(void, sub_77E940, (FVFStruct_H_B *a1, signed int count, int a3), 0x77E940);
@@ -20,7 +18,7 @@ static Trampoline* E101RHurtExplosion_t = nullptr;
 static void __cdecl E101RHurtExplosion_r(void *a1)
 {
 	const auto original = TARGET_DYNAMIC(E101RHurtExplosion);
-	if (EnableZeroE101R || EnableE101) DrawModelCallback_Queue(original, a1, 22048.0f, QueuedModelFlagsB_SomeTextureThing);
+	if (EnabledLevels[LevelIDs_Zero] || EnabledLevels[LevelIDs_E101]) DrawModelCallback_Queue(original, a1, 22048.0f, QueuedModelFlagsB_SomeTextureThing);
 	else original(a1);
 }
 
@@ -88,7 +86,7 @@ void E101R_AfterImageQueue(NJS_ACTION *anim, float a2, int a3)
 void E101R_ArmsHook(NJS_OBJECT *a1, QueuedModelFlagsB a2)
 {
 	DrawQueueDepthBias = 2000.0f;
-	ProcessModelNode(a1, a2, GlobalModelNodeScale);
+	lateDrawObject(a1, a2, GlobalModelNodeScale);
 	DrawQueueDepthBias = 0;
 }
 
@@ -104,7 +102,7 @@ void E101R_FVFShit(FVFStruct_H_B *a1, signed int count, int a3)
 void E101R_DrawExplosion(NJS_OBJECT *a1, QueuedModelFlagsB a2)
 {
 	DrawQueueDepthBias = 20000.0f;
-	ProcessModelNode_A_WrapperB(a1, QueuedModelFlagsB_SomeTextureThing);
+	late_DrawObject(a1, QueuedModelFlagsB_SomeTextureThing);
 	DrawQueueDepthBias = 0.0f;
 }
 
@@ -118,7 +116,7 @@ void __cdecl E101ROceanHook(OceanData *a1)
 			njSetTexture(&EC_SEA_TEXLIST);
 			njPushMatrix(0);
 			njTranslate(0, Camera_Data1->Position.x, 0, Camera_Data1->Position.z);
-			ProcessModelNode(E101RBossOcean, QueuedModelFlagsB_EnableZWrite, 1.0f);
+			lateDrawObject(E101RBossOcean, QueuedModelFlagsB_EnableZWrite, 1.0f);
 			njPopMatrix(1u);
 		}
 	}
@@ -174,23 +172,23 @@ void E101R_Init()
 		if (!ModelsLoaded_B_ROBO) ResizeE101RTexlist();
 		FixFVFShit();
 		WriteCall((void*)0x570DB1, RenderE101R_Rocket);
-		//E-101R fixes
+		// E-101R fixes
 		ShadowBlob_Model.basicdxmodel->mats[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
 		WriteCall((void*)0x005709CA, E101R_ArmsHook);
-		WriteData<1>((char*)0x00568D20, 0xC3u); //E101R clip function
-		WriteCall((void*)0x0057069D, E101R_AfterImageMaterial); //E101R afterimage
-		WriteCall((void*)0x00570784, E101R_AfterImageConstantAttr); //E101R afterimage
+		WriteData<1>((char*)0x00568D20, 0xC3u); // E101R clip function
+		WriteCall((void*)0x0057069D, E101R_AfterImageMaterial); // E101R afterimage
+		WriteCall((void*)0x00570784, E101R_AfterImageConstantAttr); // E101R afterimage
 		WriteCall((void*)0x0057072A, E101R_AfterImageQueue);
-		WriteCall((void*)0x0056B07D, E101REffect_Orange); //Set arm effect to orange and render
-		WriteCall((void*)0x0056B096, E101REffect_Blue); //Set arm effect to blue and render
-		WriteCall((void*)0x0057098A, E101RRenderAfterEffect); //After effect on E101R's arms
+		WriteCall((void*)0x0056B07D, E101REffect_Orange); // Set arm effect to orange and render
+		WriteCall((void*)0x0056B096, E101REffect_Blue); // Set arm effect to blue and render
+		WriteCall((void*)0x0057098A, E101RRenderAfterEffect); // After effect on E101R's arms
 		WriteCall((void*)0x00570952, E101R_AfterImageArmConstantAttr);
 		WriteCall((void*)0x569078, LoadBossECOceanPVM);
 		WriteJump(E101Mk2_OceanDraw, E101ROceanHook);
-		//Ocean model
+		// Ocean model
 		if (!SADXWater_EggCarrier)
 		{
-			E101RBossOcean = LoadModel("system\\data\\B_E101_R\\Models\\00007C50.sa1mdl", false);
+			E101RBossOcean = LoadModel("system\\data\\B_E101_R\\Models\\00007C50.sa1mdl");
 			E101RBossOcean->basicdxmodel->mats[0].attr_texId = 4;
 			E101RBossOcean->basicdxmodel->mats[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
 			E101RBossOcean->basicdxmodel->mats[0].diffuse.color = 0x7FB2B2B2;
@@ -207,7 +205,7 @@ void E101R_Init()
 
 void E101R_OnFrame()
 {
-	//Ocean animation
+	// Ocean animation
 	if (!IsGamePaused() && CurrentLevel == LevelIDs_E101R)
 	{
 		if (FramerateSetting < 2 && FrameCounter % 4 == 0 || FramerateSetting >= 2) e101rsea_dc++;

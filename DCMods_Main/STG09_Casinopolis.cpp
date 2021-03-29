@@ -1,7 +1,7 @@
 #include "stdafx.h"
-#include "Casino_UVs.h"
+#include "STG09_UVs.h"
 
-//TODO: Replace whole models instead of just the UVs in "UV fixes"
+// TODO: Replace whole models instead of just the UVs in "UV fixes"
 
 NJS_TEXNAME textures_obj_casino[203];
 NJS_TEXLIST texlist_obj_casino = {arrayptrandlength(textures_obj_casino)};
@@ -17,13 +17,6 @@ NJS_TEXLIST texlist_casino3 = { arrayptrandlength(textures_casino3) };
 
 NJS_TEXNAME textures_casino4[71];
 NJS_TEXLIST texlist_casino4 = { arrayptrandlength(textures_casino4) };
-
-/*
-#include "Casino1.h"
-#include "Casino2.h"
-#include "Casino3.h"
-#include "Casino4.h"
-*/
 
 NJS_OBJECT* OSlX_Base = nullptr;
 NJS_OBJECT* OLhtr_Bright = nullptr;
@@ -67,10 +60,6 @@ FunctionPointer(void, sub_5DD900, (int a1, int a2), 0x5DD900);
 FunctionPointer(void, sub_5DD920, (ObjectMaster *a1, int a2), 0x5DD920);
 FunctionPointer(void, sub_5D04C0, (ObjectMaster *a1), 0x5D04C0);
 FunctionPointer(Sint32, sub_5C09D0, (int a1), 0x5C09D0);
-FunctionPointer(void, sub_405450, (NJS_ACTION *a1, float frame, float scale), 0x405450);
-FunctionPointer(void, sub_407A00, (NJS_MODEL_SADX *model, float a2), 0x407A00);
-FunctionPointer(void, sub_405370, (NJS_OBJECT *a1, NJS_MOTION *a2, float animframe, float scale), 0x405370);
-FunctionPointer(void, sub_408300, (NJS_OBJECT *a1, NJS_MOTION *a2, float animframe, float scale), 0x408300);
 
 NJS_VECTOR Cowgirl1 = { 457.6972f, 45.06788f, 390 };
 NJS_VECTOR Cowgirl2 = { 340.3949f, 51.20071f, 480 };
@@ -97,7 +86,7 @@ void RenderCasinoBackgroundWater(ObjectMaster* a1)
 		njPushMatrix(0);
 		njTranslate(0, 0, 0, 0);
 		DrawQueueDepthBias = -47960.0f;
-		ProcessModelNode(TikeiAnim_WaterAroundShip, QueuedModelFlagsB_SomeTextureThing, 1.0f);
+		lateDrawObject(TikeiAnim_WaterAroundShip, QueuedModelFlagsB_SomeTextureThing, 1.0f);
 		DrawQueueDepthBias = 0.0f;
 		njPopMatrix(1u);
 	}
@@ -109,14 +98,14 @@ static void __cdecl OTikeiAnim_Load_r(ObjectMaster* a1)
 	v1 = a1->Data1;
 	const auto original = TARGET_DYNAMIC(OTikeiAnim_Load);
 	original(a1);
-	if (EnableCasinopolis) a1->DisplaySub = RenderCasinoBackgroundWater;
+	if (EnabledLevels[LevelIDs_Casinopolis]) a1->DisplaySub = RenderCasinoBackgroundWater;
 }
 
 static void __cdecl OTikeiAnim_Main_r(ObjectMaster* a1)
 {
 	const auto original = TARGET_DYNAMIC(OTikeiAnim_Main);
 	original(a1);
-	if (EnableCasinopolis && CurrentAct == 0)
+	if (EnabledLevels[LevelIDs_Casinopolis] && CurrentAct == 0)
 	{
 		RenderCasinoBackgroundWater(a1);
 	}
@@ -166,7 +155,7 @@ void Cowgirl_MoveDynCol(NJS_OBJECT* dyncol, Float frame) {
 
 void __cdecl CowGirl_DisplayPart(NJS_MODEL_SADX* model, int a2, int a3) 
 {
-	ProcessModel_407CF0(model, a2, a3);
+	DrawModelMS(model, a2);
 	// If the model is the glass, retrieve its position
 	if (model == CowgirlGlass)
 	{
@@ -178,23 +167,15 @@ void __cdecl CowGirl_DisplayPart(NJS_MODEL_SADX* model, int a2, int a3)
 void __cdecl Cowgirl_Display(ObjectMaster *a1)
 {
 	EntityData1 *data; // esi@1
-	int cowgirlthing;
-	char v2; // al@3
-	Angle v3; // eax@5
-	NJS_OBJECT *v4; // edi@7
-	NJS_OBJECT *v5; // edi@7
-	Sint16 v6; // ax@7
-	NJS_OBJECT *v7; // edi@9
-	Sint16 v8; // ax@9
-	NJS_VECTOR distance_vector;
 	data = a1->Data1;
-	if (IsVisible(&data->Position, 280.0f)) {
+	if (IsVisible(&data->Position, 280.0f)) 
+	{
 		njSetTexture(&OBJ_CASINO9_TEXLIST);
 		njPushMatrixEx();
 		njTranslateEx(&data->Position);
 		njRotateEx((Angle*)&data->Rotation, 0);
 		DrawQueueDepthBias = 4000.0f;
-		DisplayAnimationFrame((NJS_ACTION*)0x1E5C414, data->Scale.x, (QueuedModelFlagsB)0, 0.0f, CowGirl_DisplayPart);
+		DrawAction((NJS_ACTION*)0x1E5C414, data->Scale.x, (QueuedModelFlagsB)0, 0.0f, CowGirl_DisplayPart);
 		DrawQueueDepthBias = 0;
 		njPopMatrixEx();
 	}
@@ -256,7 +237,7 @@ void Cowgirl_Delete(ObjectMaster *obj)
 
 void Cowgirl_Load(ObjectMaster* obj)
 {
-	//Hardcoded position and rotation to match SA1 JP
+	// Hardcoded position and rotation to match SA1 JP
 	obj->Data1->Position = { 311.62f, 0.0f, 338.93f };
 	obj->Data1->Rotation = { 0, 0x1E00, 0 };
 	Collision_Init(obj, CollisionData_NeonK, 3, 4u);
@@ -266,14 +247,11 @@ void Cowgirl_Load(ObjectMaster* obj)
 	Cowgirl_AddDynCol(obj, (NJS_OBJECT*)0x1E5340C);
 }
 
-void __cdecl sub_5D0560(ObjectMaster *obj)
+void __cdecl sub_5D0560(ObjectMaster* obj)
 {
-	EntityData1 *v1; // esi@1
+	EntityData1* v1; // esi@1
 	Angle v2; // eax@3
 	Angle v7;
-	Sint16 v3; // ax@5
-	char *v4; // eax@12
-	double v5; // st7@14
 	Sint16 v6; // di@15
 	v1 = obj->Data1;
 	if (v1->Scale.x == 1.0f) v7 = RotationAngle1; else v7 = RotationAngle2;
@@ -295,29 +273,14 @@ void __cdecl sub_5D0560(ObjectMaster *obj)
 			{
 				njRotateZ(0, (unsigned __int16)v7);
 			}
-			DrawModel((NJS_MODEL_SADX *)v1->Object);
+			DrawModel((NJS_MODEL_SADX*)v1->Object);
 			njPopMatrix(1u);
 		}
-		if (ObjectSelectedDebug(obj))
-		{
-			v4 = "RotDir:Migi";
-			if (!((unsigned __int64)v1->Scale.x & 1))
-			{
-				v4 = "RotDir:Hidari";
-			}
-			DisplayDebugString(1179667, v4);
-			DisplayDebugString(1179668, "RotSpd:");
-			v5 = fabs(v1->Scale.y);
-			PrintDebugNumber(1703956, (unsigned __int64)v5, 4);
-		}
-		else
-		{
-			AddToCollisionList(v1);
-			v6 = dword_1E77568;
-			fabs(v1->Scale.y);
-			++v1->InvulnerableTime;
-			((short *)&v1->CharIndex)[0] = v6;
-		}
+		AddToCollisionList(v1);
+		v6 = dword_1E77568;
+		fabs(v1->Scale.y);
+		++v1->InvulnerableTime;
+		((short*)&v1->CharIndex)[0] = v6;
 	}
 }
 
@@ -326,9 +289,6 @@ void __cdecl sub_5D0560_KazB(ObjectMaster *obj)
 	EntityData1 *v1; // esi@1
 	Angle v2; // eax@3
 	Angle v7;
-	Sint16 v3; // ax@5
-	char *v4; // eax@12
-	double v5; // st7@14
 	Sint16 v6; // di@15
 	v1 = obj->Data1;
 	if (v1->Scale.x == 0.0f) v7 = RotationAngle1; else v7 = RotationAngle2;
@@ -350,29 +310,14 @@ void __cdecl sub_5D0560_KazB(ObjectMaster *obj)
 			{
 				njRotateZ(0, (unsigned __int16)v7);
 			}
-			DrawModel((NJS_MODEL_SADX *)v1->Object);
+			DrawModel((NJS_MODEL_SADX*)v1->Object);
 			njPopMatrix(1u);
 		}
-		if (ObjectSelectedDebug(obj))
-		{
-			v4 = "RotDir:Migi";
-			if (!((unsigned __int64)v1->Scale.x & 1))
-			{
-				v4 = "RotDir:Hidari";
-			}
-			DisplayDebugString(1179667, v4);
-			DisplayDebugString(1179668, "RotSpd:");
-			v5 = fabs(v1->Scale.y);
-			PrintDebugNumber(1703956, (unsigned __int64)v5, 4);
-		}
-		else
-		{
-			AddToCollisionList(v1);
-			v6 = dword_1E77568;
-			fabs(v1->Scale.y);
-			++v1->InvulnerableTime;
-			((short *)&v1->CharIndex)[0] = v6;
-		}
+		AddToCollisionList(v1);
+		v6 = dword_1E77568;
+		fabs(v1->Scale.y);
+		++v1->InvulnerableTime;
+		((short*)&v1->CharIndex)[0] = v6;
 	}
 }
 
@@ -487,7 +432,7 @@ void FixedGear1()
 	njAction((NJS_ACTION*)0x1E06634, GearFrame);
 }
 
-void __cdecl TutuA_Display(ObjectMaster *a2) //OTutuA
+void __cdecl TutuA_Display(ObjectMaster *a2) // OTutuA
 {
 	EntityData1 *v1; // esi@1
 	unsigned __int16 v2; // ax@3
@@ -503,18 +448,18 @@ void __cdecl TutuA_Display(ObjectMaster *a2) //OTutuA
 		{
 			njRotateY(0, v2);
 		}
-		sub_407A00((NJS_MODEL_SADX*)0x1DF2570, 1.0f);
+		ds_DrawModelClip((NJS_MODEL_SADX*)0x1DF2570, 1.0f);
 		v3 = ((unsigned short *)&v1->LoopData)[0];
 		if (v1->Rotation.y != v3)
 		{
 			njRotateY(0, (unsigned __int16)(v1->Rotation.y - v3));
 		}
-		ProcessModelNode_AB_Wrapper((NJS_OBJECT*)0x1DF230C, 1.0f);
+		ds_DrawObjectClip((NJS_OBJECT*)0x1DF230C, 1.0f);
 		njPopMatrix(1u);
 	}
 }
 
-void __cdecl TutuB_Display(ObjectMaster *a2) //TutuB
+void __cdecl TutuB_Display(ObjectMaster *a2) // OTutuB
 {
 	EntityData1 *v1; // esi@1
 	unsigned __int16 v2; // ax@3
@@ -530,18 +475,18 @@ void __cdecl TutuB_Display(ObjectMaster *a2) //TutuB
 		{
 			njRotateY(0, v2);
 		}
-		sub_407A00((NJS_MODEL_SADX*)0x1DF2B60, 1.0f);
+		ds_DrawModelClip((NJS_MODEL_SADX*)0x1DF2B60, 1.0f);
 		v3 = ((unsigned short *)&v1->LoopData)[0];
 		if (v1->Rotation.y != v3)
 		{
 			njRotateY(0, (unsigned __int16)(v1->Rotation.y - v3));
 		}
-		ProcessModelNode_AB_Wrapper((NJS_OBJECT*)0x1DF2908, 1.0f);
+		ds_DrawObjectClip((NJS_OBJECT*)0x1DF2908, 1.0f);
 		njPopMatrix(1u);
 	}
 }
 
-void __cdecl TutuC_Display(ObjectMaster *a2) //TutuC
+void __cdecl TutuC_Display(ObjectMaster *a2) // OTutuC
 {
 	EntityData1 *v1; // esi@1
 	unsigned __int16 v2; // ax@3
@@ -557,13 +502,13 @@ void __cdecl TutuC_Display(ObjectMaster *a2) //TutuC
 		{
 			njRotateY(0, v2);
 		}
-		sub_407A00((NJS_MODEL_SADX*)0x1DF3160, 1.0f);
+		ds_DrawModelClip((NJS_MODEL_SADX*)0x1DF3160, 1.0f);
 		v3 = ((unsigned short *)&v1->LoopData)[0];
 		if (v1->Rotation.y != v3)
 		{
 			njRotateY(0, (unsigned __int16)(v1->Rotation.y - v3));
 		}
-		ProcessModelNode_AB_Wrapper((NJS_OBJECT*)0x1DF2EF8, 1.0f);
+		ds_DrawObjectClip((NJS_OBJECT*)0x1DF2EF8, 1.0f);
 		njPopMatrix(1u);
 	}
 }
@@ -583,7 +528,7 @@ void __cdecl FixedGear2(int a2)
 		njTranslateV(0, &v1->Position);
 		njRotateY(0, v2);
 		sub_5C09D0(12);
-		ProcessModelNode_AB_Wrapper((NJS_OBJECT*)0x1DF198C, 1.0);
+		ds_DrawObjectClip((NJS_OBJECT*)0x1DF198C, 1.0);
 		v3 = v1->Rotation.y;
 		v1->Rotation.y = (v3 + GearRotationDirection*-128) % 65535;
 		njPopMatrix(1u);
@@ -596,7 +541,6 @@ void __cdecl OLhtr_Display(ObjectMaster *a1)
 	int v2; // eax@3
 	int v3; // eax@5
 	int v4; // eax@7
-	int v5;
 	v1 = a1->Data1;
 	if (!ClipObject(a1, 360010.0) && IsVisible(&v1->Position, 30.0f))
 	{
@@ -619,9 +563,9 @@ void __cdecl OLhtr_Display(ObjectMaster *a1)
 		{
 			njRotateY(0, (unsigned __int16)v4);
 		}
-		ProcessModelNode_AB_Wrapper((NJS_OBJECT*)0x01E5E7BC, 1.0f);
-		if (v1->Action == 0) ProcessModelNode_A_Wrapper(OLhtr_Dark, QueuedModelFlagsB_SomeTextureThing, 1.0f);
-		else ProcessModelNode_A_Wrapper(OLhtr_Bright, QueuedModelFlagsB_SomeTextureThing, 1.0f);
+		ds_DrawObjectClip((NJS_OBJECT*)0x01E5E7BC, 1.0f);
+		if (v1->Action == 0) late_DrawObjectClip(OLhtr_Dark, QueuedModelFlagsB_SomeTextureThing, 1.0f);
+		else late_DrawObjectClip(OLhtr_Bright, QueuedModelFlagsB_SomeTextureThing, 1.0f);
 		njPopMatrix(1u);
 		sub_5DD920((ObjectMaster*)0x1E75DE0, 2);
 	}
@@ -633,7 +577,6 @@ void __cdecl OLhtg_Display(ObjectMaster *a1)
 	int v2; // eax@3
 	int v3; // eax@5
 	int v4; // eax@7
-	int v5;
 	v1 = a1->Data1;
 	if (!ClipObject(a1, 360010.0) && IsVisible(&v1->Position, 105.0f))
 	{
@@ -656,31 +599,31 @@ void __cdecl OLhtg_Display(ObjectMaster *a1)
 		{
 			njRotateY(0, (unsigned __int16)v4);
 		}
-		ProcessModelNode_AB_Wrapper((NJS_OBJECT*)0x1E5EC4C, 1.0f);
-		if (v1->Action == 1) ProcessModelNode_A_Wrapper(OLhtg_Bright, QueuedModelFlagsB_SomeTextureThing, 1.0f);
-		else ProcessModelNode_A_Wrapper(OLhtg_Dark, QueuedModelFlagsB_SomeTextureThing, 1.0f);
+		ds_DrawObjectClip((NJS_OBJECT*)0x1E5EC4C, 1.0f);
+		if (v1->Action == 1) late_DrawObjectClip(OLhtg_Bright, QueuedModelFlagsB_SomeTextureThing, 1.0f);
+		else late_DrawObjectClip(OLhtg_Dark, QueuedModelFlagsB_SomeTextureThing, 1.0f);
 		njPopMatrix(1u);
 		sub_5DD920((ObjectMaster*)0x1E75DC8, 2);
 	}
 }
 
-void OSlxDisplayNew(NJS_ACTION *a1, float a2, int a3, int a4)
+void OSlxDisplayNew(NJS_ACTION* action, float frame, int flags, float scale)
 {
 	NJS_ACTION OSlX_BaseAction;
-	OSlX_BaseAction.motion = a1->motion;
+	OSlX_BaseAction.motion = action->motion;
 	OSlX_BaseAction.object = OSlX_Base;
-	//Render main animation
-	sub_405450(&OSlX_BaseAction, a2, a4);
-	//Render light
+	// Render main animation
+	ds_ActionClip(&OSlX_BaseAction, frame, scale);
+	// Render light
 	DrawQueueDepthBias = 8000.0f;
-	njAction_Queue_407FC0(a1, a2, (QueuedModelFlagsB)0);
+	late_ActionMesh(action, frame, (QueuedModelFlagsB)0);
 	DrawQueueDepthBias = 0;
 }
 
 void RenderLightA(NJS_OBJECT *a1, QueuedModelFlagsB a2, float a3)
 {
 	DrawQueueDepthBias = 8000.0f;
-	ProcessModelNode(a1, (QueuedModelFlagsB)4, a3);
+	lateDrawObject(a1, (QueuedModelFlagsB)4, a3);
 	DrawQueueDepthBias = 0;
 }
 
@@ -688,40 +631,40 @@ void RenderOKBSText(NJS_OBJECT *obj, float scale)
 {
 	DrawModel(obj->basicdxmodel);
 	DrawQueueDepthBias = 1000.0f;
-	ProcessModelNode(obj->child, QueuedModelFlagsB_SomeTextureThing, 1.0f);
+	lateDrawObject(obj->child, QueuedModelFlagsB_SomeTextureThing, 1.0f);
 	DrawQueueDepthBias = 0;
 }
 
 void RenderOKBCText(NJS_ACTION *a1, float frame, float scale)
 {
 	DrawQueueDepthBias = 1000.0f;
-	njAction_Queue_407FC0(a1, frame, scale);
+	ds_ActionClip(a1, frame, scale);
 	DrawQueueDepthBias = 2000.0f;
-	ProcessModelNode_D(a1->object->child->sibling->sibling->sibling->sibling, QueuedModelFlagsB_SomeTextureThing, 1.0f);
+	DrawObjectClipMesh(a1->object->child->sibling->sibling->sibling->sibling, QueuedModelFlagsB_SomeTextureThing, 1.0f);
 	DrawQueueDepthBias = 0;
 }
 
 void RenderNeonK(NJS_MODEL_SADX *model, float scale)
 {
-	sub_407A00(model, scale);
+	ds_DrawModelClip(model, scale);
 	DrawQueueDepthBias = 1000.0f;
-	DrawModel_Queue(NeonK_Text->child->basicdxmodel, (QueuedModelFlagsB)0);
+	lateDrawModel(NeonK_Text->child->basicdxmodel, (QueuedModelFlagsB)0);
 	DrawQueueDepthBias = 1500.0f;
-	DrawModel_Queue(NeonK_Text->basicdxmodel, (QueuedModelFlagsB)0);
+	lateDrawModel(NeonK_Text->basicdxmodel, (QueuedModelFlagsB)0);
 	DrawQueueDepthBias = 0;
 }
 
 void JackPotFix1(NJS_MODEL_SADX *a1)
 {
 	DrawQueueDepthBias = 10000.0f;
-	DrawModel_Queue(a1, QueuedModelFlagsB_SomeTextureThing);
+	lateDrawModel(a1, QueuedModelFlagsB_SomeTextureThing);
 	DrawQueueDepthBias = 0;
 }
 
 void JackPotFix2(NJS_MODEL_SADX *a1)
 {
 	DrawQueueDepthBias = 20000.0f;
-	DrawModel_Queue(a1, QueuedModelFlagsB_SomeTextureThing);
+	lateDrawModel(a1, QueuedModelFlagsB_SomeTextureThing);
 	DrawQueueDepthBias = 0;
 }
 
@@ -800,7 +743,6 @@ void UnloadLevelFiles_STG09()
 
 void ParseCasMaterials(LandTable* landtable, int act)
 {
-	Uint32 materialflags;
 	NJS_MATERIAL* material;
 	for (int j = 0; j < landtable->COLCount; j++)
 	{
@@ -848,18 +790,18 @@ void IdeyaCapFix(NJS_OBJECT *a1, NJS_MOTION *a2, float animframe, float scale)
 		Object2 = IdeyaCap4_2;
 		Object3 = IdeyaCap4_3;
 	}
-	//Process non-transparent parts
-	sub_405370(Object1, a2, animframe, scale);
+	// Process non-transparent parts
+	dsDrawMotionClip(Object1, a2, animframe, scale);
 	DrawQueueDepthBias = 2000.0f;
-	//Process transparent parts
-	sub_408300(Object2, a2, animframe, scale);
-	sub_408300(Object3, a2, animframe, scale);
+	// Process transparent parts
+	late_DrawMotionClipMesh(Object2, a2, animframe, 0, scale);
+	late_DrawMotionClipMesh(Object3, a2, animframe, 0, scale);
 	DrawQueueDepthBias = 0.0f;
 }
 
 void TDenkiFix(NJS_OBJECT* a1, QueuedModelFlagsB a2, float a3)
 {
-	ProcessModelNode_A_Wrapper(a1, (QueuedModelFlagsB)0, 1.0f);
+	late_DrawObjectClip(a1, (QueuedModelFlagsB)0, 1.0f);
 }
 
 void MizuAFix(void(__cdecl* function)(ObjectMaster*), ObjectMaster* data, float depth, QueuedModelFlagsB queueflags)
@@ -880,45 +822,44 @@ void ODentoFix(NJS_OBJECT* obj, float scale)
 {
 	if (obj == (NJS_OBJECT*)0x1E5E1E0)
 	{
-		ProcessModelNode_AB_Wrapper(ODento_1, scale);
+		ds_DrawObjectClip(ODento_1, scale);
 		DrawQueueDepthBias = 4000.0f;
-		ProcessModelNode_A_Wrapper(ODento_2, QueuedModelFlagsB_EnableZWrite, scale);
+		late_DrawObjectClip(ODento_2, QueuedModelFlagsB_EnableZWrite, scale);
 		DrawQueueDepthBias = 6000.0f;
-		ProcessModelNode_A_Wrapper(ODento_3, QueuedModelFlagsB_SomeTextureThing, scale);
+		late_DrawObjectClip(ODento_3, QueuedModelFlagsB_SomeTextureThing, scale);
 		DrawQueueDepthBias = 0.0f;
 	}
-	else ProcessModelNode_AB_Wrapper(obj, scale);
+	else ds_DrawObjectClip(obj, scale);
 }
 
 void SetUpIdeyaCapModels(NJS_OBJECT* Object1, NJS_OBJECT* Object2, NJS_OBJECT* Object3)
 {
-	//Hide transparent meshes in the first object
-	Object1->evalflags |= NJD_EVAL_HIDE; //Root node (transparent base)
-	Object1->child->sibling->evalflags |= NJD_EVAL_HIDE; //Transparent sphere
-	//Hide everything but the first transparent mesh (root node) in the second object
-	Object2->child->evalflags |= NJD_EVAL_HIDE; //Non-transparent base
-	Object2->child->sibling->evalflags |= NJD_EVAL_HIDE; //Transparent sphere
-	Object2->child->child->evalflags |= NJD_EVAL_HIDE; //Horns
-	Object2->child->child->sibling->evalflags |= NJD_EVAL_HIDE; //Horns
-	Object2->child->child->sibling->sibling->evalflags |= NJD_EVAL_HIDE; //Horns
-	Object2->child->sibling->sibling->evalflags |= NJD_EVAL_HIDE; //Wings
-	Object2->child->sibling->sibling->sibling->evalflags |= NJD_EVAL_HIDE; //Wings
-	Object2->child->sibling->sibling->sibling->sibling->evalflags |= NJD_EVAL_HIDE; //Wings
-	//Hide everything but the second transparent mesh (sphere) in the third object
-	Object3->evalflags |= NJD_EVAL_HIDE; //Root node(transparent base)
-	Object3->child->evalflags |= NJD_EVAL_HIDE; //Non-transparent base
-	Object3->child->child->evalflags |= NJD_EVAL_HIDE; //Horns
-	Object3->child->child->sibling->evalflags |= NJD_EVAL_HIDE; //Horns
-	Object3->child->child->sibling->sibling->evalflags |= NJD_EVAL_HIDE; //Horns
-	Object3->child->sibling->sibling->evalflags |= NJD_EVAL_HIDE; //Wings
-	Object3->child->sibling->sibling->sibling->evalflags |= NJD_EVAL_HIDE; //Wings
-	Object3->child->sibling->sibling->sibling->sibling->evalflags |= NJD_EVAL_HIDE; //Wings
+	// Hide transparent meshes in the first object
+	Object1->evalflags |= NJD_EVAL_HIDE; // Root node (transparent base)
+	Object1->child->sibling->evalflags |= NJD_EVAL_HIDE; // Transparent sphere
+	// Hide everything but the first transparent mesh (root node) in the second object
+	Object2->child->evalflags |= NJD_EVAL_HIDE; // Non-transparent base
+	Object2->child->sibling->evalflags |= NJD_EVAL_HIDE; // Transparent sphere
+	Object2->child->child->evalflags |= NJD_EVAL_HIDE; // Horns
+	Object2->child->child->sibling->evalflags |= NJD_EVAL_HIDE; // Horns
+	Object2->child->child->sibling->sibling->evalflags |= NJD_EVAL_HIDE; // Horns
+	Object2->child->sibling->sibling->evalflags |= NJD_EVAL_HIDE; // Wings
+	Object2->child->sibling->sibling->sibling->evalflags |= NJD_EVAL_HIDE; // Wings
+	Object2->child->sibling->sibling->sibling->sibling->evalflags |= NJD_EVAL_HIDE; // Wings
+	// Hide everything but the second transparent mesh (sphere) in the third object
+	Object3->evalflags |= NJD_EVAL_HIDE; // Root node(transparent base)
+	Object3->child->evalflags |= NJD_EVAL_HIDE; // Non-transparent base
+	Object3->child->child->evalflags |= NJD_EVAL_HIDE; // Horns
+	Object3->child->child->sibling->evalflags |= NJD_EVAL_HIDE; // Horns
+	Object3->child->child->sibling->sibling->evalflags |= NJD_EVAL_HIDE; // Horns
+	Object3->child->sibling->sibling->evalflags |= NJD_EVAL_HIDE; // Wings
+	Object3->child->sibling->sibling->sibling->evalflags |= NJD_EVAL_HIDE; // Wings
+	Object3->child->sibling->sibling->sibling->sibling->evalflags |= NJD_EVAL_HIDE; // Wings
 }
 
 void Casinopolis_Init()
 {
 	CasinoPaletteGenerated = false;
-	NJS_MATERIAL* material;
 	STG09_0_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG09\\0.sa1lvl"));
 	STG09_1_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG09\\1.sa1lvl"));
 	STG09_2_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG09\\2.sa1lvl"));
@@ -951,71 +892,71 @@ void Casinopolis_Init()
 		CASINO03_TEXLIST = texlist_casino3;
 		CASINO04_TEXLIST = texlist_casino4;
 		OBJ_CASINO9_TEXLIST = texlist_obj_casino;
-		//Code fixes
-		WriteData((float*)0x5C0CA4, 10000.0f); //BALLS depth
-		TikeiAnim_WaterAroundShip = LoadModel("system\\data\\STG09\\Models\\00066F28.sa1mdl", false);
+		// Code fixes
+		WriteData((float*)0x5C0CA4, 10000.0f); // BALLS depth
+		TikeiAnim_WaterAroundShip = LoadModel("system\\data\\STG09\\Models\\00066F28.sa1mdl");
 		AddTextureAnimation_Permanent(9, 0, &TikeiAnim_WaterAroundShip->basicdxmodel->mats[0], true, 3, 75, 68, 69, 70, 71, 72, 73, 74, 67, 76, 77, 78, 79, 80, -1, -1);
 		WriteData((NJS_OBJECT**)0x005CB1B7, TikeiAnim_WaterAroundShip);
-		//OKBS
+		// OKBS
 		WriteCall((void*)0x5CE84B, RenderOKBSText);
 		AddAlphaRejectMaterial(&((NJS_OBJECT*)0x1E40344)->child->basicdxmodel->mats[0]);
 		AddAlphaRejectMaterial(&((NJS_OBJECT*)0x1E40344)->child->basicdxmodel->mats[1]);
-		//OKBC
+		// OKBC
 		WriteCall((void*)0x5CEA2A, RenderOKBCText);
 		AddAlphaRejectMaterial(&((NJS_OBJECT*)0x1E3EE0C)->child->sibling->sibling->sibling->sibling->basicdxmodel->mats[0]);
 		AddAlphaRejectMaterial(&((NJS_OBJECT*)0x1E3EE0C)->child->sibling->sibling->sibling->sibling->basicdxmodel->mats[1]);
-		//TDenki
+		// TDenki
 		WriteCall((void*)0x5DF170, TDenkiFix2);
-		WriteCall((void*)0x5DF08A, TDenkiFix); //TDenki blending
-		WriteData<5>((void*)0x5DF073, 0x90u); //Disable ZFunc set in TDenki
-		WriteData<5>((void*)0x5DF092, 0x90u); //Disable ZFunc set in TDeinki
-		WriteCall((void*)0x5DE7A0, MizuAFix); //To make TDenki fix work
-		WriteData<1>((char*)0x8135F2, 0x0i8); //Reala thing UV fix
-		//Ideya cap fixes
+		WriteCall((void*)0x5DF08A, TDenkiFix); // TDenki blending
+		WriteData<5>((void*)0x5DF073, 0x90u); // Disable ZFunc set in TDenki
+		WriteData<5>((void*)0x5DF092, 0x90u); // Disable ZFunc set in TDeinki
+		WriteCall((void*)0x5DE7A0, MizuAFix); // To make TDenki fix work
+		WriteData<1>((char*)0x8135F2, 0x0i8); // Reala thing UV fix
+		// Ideya cap fixes
 		WriteCall((void*)0x5D79A9, IdeyaCapFix);
-		IdeyaCap1_1 = LoadModel("system\\data\\STG09\\Models\\00144F38.sa1mdl", false);
-		IdeyaCap1_2 = LoadModel("system\\data\\STG09\\Models\\00144F38.sa1mdl", false);
-		IdeyaCap1_3 = LoadModel("system\\data\\STG09\\Models\\00144F38.sa1mdl", false);
+		IdeyaCap1_1 = LoadModel("system\\data\\STG09\\Models\\00144F38.sa1mdl");
+		IdeyaCap1_2 = CloneObject(IdeyaCap1_1);
+		IdeyaCap1_3 = CloneObject(IdeyaCap1_1);
 		SetUpIdeyaCapModels(IdeyaCap1_1, IdeyaCap1_2, IdeyaCap1_3);
-		IdeyaCap2_1 = LoadModel("system\\data\\STG09\\Models\\00146978.sa1mdl", false);
-		IdeyaCap2_2 = LoadModel("system\\data\\STG09\\Models\\00146978.sa1mdl", false);
-		IdeyaCap2_3 = LoadModel("system\\data\\STG09\\Models\\00146978.sa1mdl", false);
+		IdeyaCap2_1 = LoadModel("system\\data\\STG09\\Models\\00146978.sa1mdl");
+		IdeyaCap2_2 = CloneObject(IdeyaCap2_1);
+		IdeyaCap2_3 = CloneObject(IdeyaCap2_1);
 		SetUpIdeyaCapModels(IdeyaCap2_1, IdeyaCap2_2, IdeyaCap2_3);
-		IdeyaCap3_1 = LoadModel("system\\data\\STG09\\Models\\001483B8.sa1mdl", false);
-		IdeyaCap3_2 = LoadModel("system\\data\\STG09\\Models\\001483B8.sa1mdl", false);
-		IdeyaCap3_3 = LoadModel("system\\data\\STG09\\Models\\001483B8.sa1mdl", false);
+		IdeyaCap3_1 = LoadModel("system\\data\\STG09\\Models\\001483B8.sa1mdl");
+		IdeyaCap3_2 = CloneObject(IdeyaCap3_1);
+		IdeyaCap3_3 = CloneObject(IdeyaCap3_1);
 		SetUpIdeyaCapModels(IdeyaCap3_1, IdeyaCap3_2, IdeyaCap3_3);
-		IdeyaCap4_1 = LoadModel("system\\data\\STG09\\Models\\00149DF8.sa1mdl", false);
-		IdeyaCap4_2 = LoadModel("system\\data\\STG09\\Models\\00149DF8.sa1mdl", false);
-		IdeyaCap4_3 = LoadModel("system\\data\\STG09\\Models\\00149DF8.sa1mdl", false);
+		IdeyaCap4_1 = LoadModel("system\\data\\STG09\\Models\\00149DF8.sa1mdl");
+		IdeyaCap4_2 = CloneObject(IdeyaCap4_1);
+		IdeyaCap4_3 = CloneObject(IdeyaCap4_1);
 		SetUpIdeyaCapModels(IdeyaCap4_1, IdeyaCap4_2, IdeyaCap4_3);
-		//Jackpot sprite fixes
+		// Jackpot sprite fixes
 		WriteCall((void*)0x05E1144, JackPotFix1);
 		WriteCall((void*)0x05E1187, JackPotFix2);
 		WriteJump(PinballJackpot_Sprite_Main, PinballJackpot_Sprite_MainX);
-		//Act 2 lights
+		// Act 2 lights
 		WriteJump((void*)0x5C9980, OLhtg_Display);
 		WriteJump((void*)0x5C9BA0, OLhtr_Display);
-		//OLightA stuff
-		*(NJS_OBJECT*)0x01E5E39C = *LoadModel("system\\data\\STG09\\Models\\001DAA78.sa1mdl", false);
+		// OLightA stuff
+		*(NJS_OBJECT*)0x01E5E39C = *LoadModel("system\\data\\STG09\\Models\\001DAA78.sa1mdl");
 		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x01E5E39C)->basicdxmodel->mats[1]);
-		WriteCall((void*)0x5DDBE4, RenderLightA); //OLightA
-		WriteCall((void*)0x5CE630, OSlxDisplayNew); //OSlX lights
-		//Fixed gears
+		WriteCall((void*)0x5DDBE4, RenderLightA); // OLightA
+		WriteCall((void*)0x5CE630, OSlxDisplayNew); // OSlX lights
+		// Fixed gears
 		WriteCall((void*)0x5D09C7, FixedGear1);
-		WriteJump((void*)0x5D3A90, FixedGear2); //Gears main
+		WriteJump((void*)0x5D3A90, FixedGear2); // Gears main
 		WriteJump((void*)0x5D0C60, OKazeX);
 		WriteJump((void*)0x5D0C20, OKazcX);
 		WriteJump((void*)0x5D0C40, OKazdX);
 		WriteJump((void*)0x5D0C00, OKazbX);
 		WriteJump((void*)0x5D0C80, OKazfX);
-		WriteJump((void*)0x5D43F0, TutuA_Display); //OTutuA display
-		WriteJump((void*)0x5D44A0, TutuB_Display); //OTutuB display
-		WriteJump((void*)0x5D4550, TutuC_Display); //OTutuC display
-		WriteData((int*)0x1E77E58, 128); //Gear rotation speed
+		WriteJump((void*)0x5D43F0, TutuA_Display); // OTutuA display
+		WriteJump((void*)0x5D44A0, TutuB_Display); // OTutuB display
+		WriteJump((void*)0x5D4550, TutuC_Display); // OTutuC display
+		WriteData((int*)0x1E77E58, 128); // Gear rotation speed
 		if (CowgirlOn)
 		{
-			CowgirlModel = LoadModel("system\\data\\STG09\\Models\\001D7FE0.sa1mdl", false);
+			CowgirlModel = LoadModel("system\\data\\STG09\\Models\\001D7FE0.sa1mdl");
 			CowgirlGlass = CowgirlModel->child->sibling->sibling->sibling->sibling->child->basicdxmodel;
 			*(NJS_OBJECT*)0x1E5B870 = *CowgirlModel;
 			AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E5B870)->basicdxmodel->meshsets[1].vertuv, 92, 16, 100, 0);
@@ -1046,7 +987,7 @@ void Casinopolis_Init()
 		}
 		else
 		{
-			*(NJS_OBJECT*)0x1E74A94 = *LoadModel("system\\data\\STG09\\Models\\001F0CCC.sa1mdl", false); //NeonK
+			*(NJS_OBJECT*)0x1E74A94 = *LoadModel("system\\data\\STG09\\Models\\001F0CCC.sa1mdl"); // NeonK
 			AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E74A94)->child->basicdxmodel->meshsets[0].vertuv, 28, 16, 100, 0);
 			AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E74A94)->child->basicdxmodel->meshsets[2].vertuv, 200, 16, -100, 0);
 			AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E74A94)->child->basicdxmodel->meshsets[3].vertuv, 28, 16, 100, 0);
@@ -1057,152 +998,132 @@ void Casinopolis_Init()
 			AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E74A94)->child->basicdxmodel->meshsets[10].vertuv, 18, 16, -100, 0);
 			AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E74A94)->child->sibling->basicdxmodel->meshsets[1].vertuv, 20, 32, 100, 0);
 			AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E74A94)->child->sibling->sibling->basicdxmodel->meshsets[0].vertuv, 20, 32, 100, 0);
-			HideMesh_Object((NJS_OBJECT*)0x1E74A94, 16); //Hide NeonK text
-			HideMesh_Object(((NJS_OBJECT*)0x1E74A94)->child, 6); //Hide NeonK decoration
-			NeonK_Text = LoadModel("system\\data\\STG09\\Models\\001F0CCC.sa1mdl", false);
+			HideMesh_Object((NJS_OBJECT*)0x1E74A94, 16); // Hide NeonK text
+			HideMesh_Object(((NJS_OBJECT*)0x1E74A94)->child, 6); // Hide NeonK decoration
+			NeonK_Text = LoadModel("system\\data\\STG09\\Models\\001F0CCC.sa1mdl");
 			AddUVAnimation_Permanent(9, 0, NeonK_Text->child->basicdxmodel->meshsets[6].vertuv, 78, 16, 0, 100);
 			AddAlphaRejectMaterial(&NeonK_Text->basicdxmodel->mats[16]);
 			WriteCall((void*)0x5CAB34, RenderNeonK);
-			for (int i = 0; i < NeonK_Text->basicdxmodel->nbMeshset; i++)
-			{
-				if (i != 16) HideMesh_Object(NeonK_Text, i);
-			}
-			for (int i = 0; i < NeonK_Text->child->basicdxmodel->nbMeshset; i++)
-			{
-				if (i != 6) HideMesh_Object(NeonK_Text->child, i);
-			}
+			HideMesh_Object(NeonK_Text, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 17, 18, 19, 20, 21, 22, 23, 24);
+			HideMesh_Object(NeonK_Text->child, 0, 1, 2, 3, 4, 5, 7, 8, 9, 10);
 		}
-		//Models
-		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x01E4B760)->basicdxmodel->mats[2]); //OShwrl
-		//ODento
-		ODento_1 = LoadModel("system\\data\\STG09\\Models\\001DA8C8.sa1mdl", false);
-		HideMesh_Object(ODento_1, 1);
-		HideMesh_Object(ODento_1, 2);
-		HideMesh_Object(ODento_1, 4);
-		ODento_2 = LoadModel("system\\data\\STG09\\Models\\001DA8C8.sa1mdl", false);
-		HideMesh_Object(ODento_2, 0);
-		HideMesh_Object(ODento_2, 3);
-		HideMesh_Object(ODento_2, 4);
-		ODento_3 = LoadModel("system\\data\\STG09\\Models\\001DA8C8.sa1mdl", false);
-		HideMesh_Object(ODento_3, 0);
-		HideMesh_Object(ODento_3, 1);
-		HideMesh_Object(ODento_3, 2);
-		HideMesh_Object(ODento_3, 3);
+		// Models
+		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x01E4B760)->basicdxmodel->mats[2]); // OShwrl
+		// ODento
+		ODento_1 = LoadModel("system\\data\\STG09\\Models\\001DA8C8.sa1mdl");
+		ODento_2 = CloneObject(ODento_1);
+		ODento_3 = CloneObject(ODento_1);
+		HideMesh_Object(ODento_1, 1, 2, 4);
+		HideMesh_Object(ODento_2, 0, 3, 4);
+		HideMesh_Object(ODento_3, 0, 1, 2, 3);
 		AddAlphaRejectMaterial(&ODento_3->basicdxmodel->mats[4]);
 		WriteCall((void*)0x5DDADF, ODentoFix);
-		*(NJS_OBJECT*)0x1E4D66C = *LoadModel("system\\data\\STG09\\Models\\001CA53C.sa1mdl", true); //OCardKan
-		AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E4D66C)->basicdxmodel->meshsets[1].vertuv, 4, 8, 65, 0); //Meshset order changed after sorting
+		*(NJS_OBJECT*)0x1E4D66C = *LoadModel("system\\data\\STG09\\Models\\001CA53C.sa1mdl"); // OCardKan
+		AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E4D66C)->basicdxmodel->meshsets[1].vertuv, 4, 8, 65, 0); // Meshset order changed after sorting
 		AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E4D66C)->child->basicdxmodel->meshsets[0].vertuv, 16, 8, 65, 0);
 		AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E4D66C)->child->sibling->basicdxmodel->meshsets[0].vertuv, 16, 8, 65, 0);
 		ForceLevelSpecular_Object((NJS_OBJECT*)0x1E4D66C, false);
-		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x1E4D66C)->basicdxmodel->mats[0]); //Material order changed after sorting
-		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x1E4D66C)->basicdxmodel->mats[2]); //Material order changed after sorting
-		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x1E4D66C)->basicdxmodel->mats[3]); //Material order changed after sorting
-		*(NJS_OBJECT*)0x1E4E3F0 = *LoadModel("system\\data\\STG09\\Models\\001CB278.sa1mdl", true); //OSlotKan
+		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x1E4D66C)->basicdxmodel->mats[0]); // Material order changed after sorting
+		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x1E4D66C)->basicdxmodel->mats[2]); // Material order changed after sorting
+		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x1E4D66C)->basicdxmodel->mats[3]); // Material order changed after sorting
+		*(NJS_OBJECT*)0x1E4E3F0 = *LoadModel("system\\data\\STG09\\Models\\001CB278.sa1mdl"); // OSlotKan
 		AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E4E3F0)->basicdxmodel->meshsets[2].vertuv, 6, 8, 65, 0);
 		AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E4E3F0)->child->basicdxmodel->meshsets[1].vertuv, 28, 8, 65, 0);
-		AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E4E3F0)->child->sibling->basicdxmodel->meshsets[2].vertuv, 8, 8, 65, 0); //Meshset order changed after sorting
-		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x1E4E3F0)->basicdxmodel->mats[3]); //Material order changed after sorting
-		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x1E4E3F0)->child->sibling->basicdxmodel->mats[0]); //Material order changed after sorting
-		*(NJS_MODEL_SADX*)0x1D98CE8 = *LoadModel("system\\data\\STG09\\Models\\0011B708.sa1mdl", false)->basicdxmodel; //Bumper1 pressed
-		*(NJS_MODEL_SADX*)0x1D99790 = *LoadModel("system\\data\\STG09\\Models\\0011C1A4.sa1mdl", false)->basicdxmodel; //Bumper1
-		*(NJS_MODEL_SADX*)0x1DD2094 = *LoadModel("system\\data\\STG09\\Models\\00153F34.sa1mdl", false)->basicdxmodel; //Piantama top
-		*(NJS_MODEL_SADX*)0x1DD23FC = *LoadModel("system\\data\\STG09\\Models\\0015428C.sa1mdl", false)->basicdxmodel; //Piantama bottom
-		*(NJS_MODEL_SADX*)0x1DD1D18 = *LoadModel("system\\data\\STG09\\Models\\00153BCC.sa1mdl", false)->basicdxmodel; //Piantama full
-		*(NJS_MODEL_SADX*)0x1D8BC10 = *LoadModel("system\\data\\STG09\\Models\\0010E9AC.sa1mdl", false)->basicdxmodel; //FlipperL
-		*(NJS_MODEL_SADX*)0x1D8BED8 = *LoadModel("system\\data\\STG09\\Models\\0010EC64.sa1mdl", false)->basicdxmodel; //FlipperR
-		*(NJS_MODEL_SADX*)0x1DDE898 = *LoadModel("system\\data\\STG09\\Models\\00160380.sa1mdl", false)->basicdxmodel; //BanjuDoor
-		*(NJS_MODEL_SADX*)0x1D8E1B8 = *LoadModel("system\\data\\STG09\\Models\\00110EC4.sa1mdl", false)->basicdxmodel; //Dtarget
-		*(NJS_MODEL_SADX*)0x1DCF690 = *LoadModel("system\\data\\STG09\\Models\\00151638.sa1mdl", true)->basicdxmodel; //Kazariyaji
-		*(NJS_MODEL_SADX*)0x1DCF970 = *LoadModel("system\\data\\STG09\\Models\\001518FC.sa1mdl", true)->basicdxmodel; //Kazariyaji2
-		*(NJS_MODEL_SADX*)0x1DCFC50 = *LoadModel("system\\data\\STG09\\Models\\00151BC0.sa1mdl", true)->basicdxmodel; //Kazariyaji green 2
-		*(NJS_MODEL_SADX*)0x1DCFF30 = *LoadModel("system\\data\\STG09\\Models\\00151E84.sa1mdl", true)->basicdxmodel; //Kazariyaji pink 2
-		*(NJS_MODEL_SADX*)0x1D9C72C = *LoadModel("system\\data\\STG09\\Models\\0011F078.sa1mdl", false)->basicdxmodel; //Bottom decoration in Act 3 (bright)
-		*(NJS_MODEL_SADX*)0x1D9CB7C = *LoadModel("system\\data\\STG09\\Models\\0011F4B8.sa1mdl", false)->basicdxmodel; //Bottom decoration in Act 3 (dark)
-		*(NJS_MODEL_SADX*)0x1DDF318 = *LoadModel("system\\data\\STG09\\Models\\00160DCC.sa1mdl", false)->basicdxmodel; //CardUV 1
-		*(NJS_MODEL_SADX*)0x1E5DBC8 = *LoadModel("system\\data\\STG09\\Models\\001DA308.sa1mdl", false)->basicdxmodel; //OKDAnm
-		*(NJS_MODEL_SADX*)0x1E0D048 = *LoadModel("system\\data\\STG09\\Models\\0018C0F8.sa1mdl", false)->basicdxmodel; //Sonic token
-		*(NJS_MODEL_SADX*)0x1E5D8D8 = *LoadModel("system\\data\\STG09\\Models\\001DA034.sa1mdl", false)->basicdxmodel; //That brick thing in Act 1
-		*(NJS_MODEL_SADX*)0x1E46F30 = *LoadModel("system\\data\\STG09\\Models\\001C4DF4.sa1mdl", false)->basicdxmodel; //OCfO rotating thing
-		AddTextureAnimation_Permanent(9, 0, &((NJS_MODEL_SADX*)0x1E46F30)->mats[3], false, 120, 140, 147, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1);
-		*(NJS_OBJECT*)0x1E510A8 = *LoadModel("system\\data\\STG09\\Models\\001CD9D0.sa1mdl", false); //OFanFan
-		*(NJS_OBJECT*)0x1DF716C = *LoadModel("system\\data\\STG09\\Models\\001771B0.sa1mdl", false); //Slot red
+		AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E4E3F0)->child->sibling->basicdxmodel->meshsets[2].vertuv, 8, 8, 65, 0); // Meshset order changed after sorting
+		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x1E4E3F0)->basicdxmodel->mats[3]); // Material order changed after sorting
+		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x1E4E3F0)->child->sibling->basicdxmodel->mats[0]); // Material order changed after sorting
+		*(NJS_MODEL_SADX*)0x1D98CE8 = *LoadModel("system\\data\\STG09\\Models\\0011B708.sa1mdl")->basicdxmodel; // Bumper1 pressed
+		*(NJS_MODEL_SADX*)0x1D99790 = *LoadModel("system\\data\\STG09\\Models\\0011C1A4.sa1mdl")->basicdxmodel; // Bumper1
+		*(NJS_MODEL_SADX*)0x1DD2094 = *LoadModel("system\\data\\STG09\\Models\\00153F34.sa1mdl")->basicdxmodel; // Piantama top
+		*(NJS_MODEL_SADX*)0x1DD23FC = *LoadModel("system\\data\\STG09\\Models\\0015428C.sa1mdl")->basicdxmodel; // Piantama bottom
+		*(NJS_MODEL_SADX*)0x1DD1D18 = *LoadModel("system\\data\\STG09\\Models\\00153BCC.sa1mdl")->basicdxmodel; // Piantama full
+		*(NJS_MODEL_SADX*)0x1D8BC10 = *LoadModel("system\\data\\STG09\\Models\\0010E9AC.sa1mdl")->basicdxmodel; // FlipperL
+		*(NJS_MODEL_SADX*)0x1D8BED8 = *LoadModel("system\\data\\STG09\\Models\\0010EC64.sa1mdl")->basicdxmodel; // FlipperR
+		*(NJS_MODEL_SADX*)0x1DDE898 = *LoadModel("system\\data\\STG09\\Models\\00160380.sa1mdl")->basicdxmodel; // BanjuDoor
+		*(NJS_MODEL_SADX*)0x1D8E1B8 = *LoadModel("system\\data\\STG09\\Models\\00110EC4.sa1mdl")->basicdxmodel; // Dtarget
+		*(NJS_MODEL_SADX*)0x1DCF690 = *LoadModel("system\\data\\STG09\\Models\\00151638.sa1mdl")->basicdxmodel; // Kazariyaji
+		*(NJS_MODEL_SADX*)0x1DCF970 = *LoadModel("system\\data\\STG09\\Models\\001518FC.sa1mdl")->basicdxmodel; // Kazariyaji2
+		*(NJS_MODEL_SADX*)0x1DCFC50 = *LoadModel("system\\data\\STG09\\Models\\00151BC0.sa1mdl")->basicdxmodel; // Kazariyaji green 2
+		*(NJS_MODEL_SADX*)0x1DCFF30 = *LoadModel("system\\data\\STG09\\Models\\00151E84.sa1mdl")->basicdxmodel; // Kazariyaji pink 2
+		*(NJS_MODEL_SADX*)0x1D9C72C = *LoadModel("system\\data\\STG09\\Models\\0011F078.sa1mdl")->basicdxmodel; // Bottom decoration in Act 3 (bright)
+		*(NJS_MODEL_SADX*)0x1D9CB7C = *LoadModel("system\\data\\STG09\\Models\\0011F4B8.sa1mdl")->basicdxmodel; // Bottom decoration in Act 3 (dark)
+		*(NJS_MODEL_SADX*)0x1DDF318 = *LoadModel("system\\data\\STG09\\Models\\00160DCC.sa1mdl")->basicdxmodel; // CardUV 1
+		*(NJS_MODEL_SADX*)0x1E5DBC8 = *LoadModel("system\\data\\STG09\\Models\\001DA308.sa1mdl")->basicdxmodel; // OKDAnm
+		*(NJS_MODEL_SADX*)0x1E0D048 = *LoadModel("system\\data\\STG09\\Models\\0018C0F8.sa1mdl")->basicdxmodel; // Sonic token
+		*(NJS_MODEL_SADX*)0x1E5D8D8 = *LoadModel("system\\data\\STG09\\Models\\001DA034.sa1mdl")->basicdxmodel; // That brick thing in Act 1
+		*(NJS_MODEL_SADX*)0x1E46F30 = *LoadModel("system\\data\\STG09\\Models\\001C4DF4.sa1mdl")->basicdxmodel; // OCfO rotating thing
+		AddTextureAnimation_Permanent(9, 0, &((NJS_MODEL_SADX*)0x1E46F30)->mats[3], false, 120, 140, 147);
+		*(NJS_OBJECT*)0x1E510A8 = *LoadModel("system\\data\\STG09\\Models\\001CD9D0.sa1mdl"); // OFanFan
+		*(NJS_OBJECT*)0x1DF716C = *LoadModel("system\\data\\STG09\\Models\\001771B0.sa1mdl"); // Slot red
 		AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1DF716C)->basicdxmodel->meshsets[8].vertuv, 14, 16, 65, 0);
-		*(NJS_OBJECT*)0x1DF5164 = *LoadModel("system\\data\\STG09\\Models\\00175E6C.sa1mdl", false); //Slot blue
+		*(NJS_OBJECT*)0x1DF5164 = *LoadModel("system\\data\\STG09\\Models\\00175E6C.sa1mdl"); // Slot blue
 		AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1DF5164)->basicdxmodel->meshsets[8].vertuv, 14, 16, 65, 0);
-		//Card pinball entrance OTensC
-		*(NJS_OBJECT*)0x1E49864 = *LoadModel("system\\data\\STG09\\Models\\001C6E9C.sa1mdl", false); //Main object
-		AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E49864)->basicdxmodel->meshsets[0].vertuv, 67, 12, 65, 0); //Main object UV animation 1
-		AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E49864)->basicdxmodel->meshsets[5].vertuv, 8, 12, 65, 0); //Main object UV animation 1
-		WriteData((NJS_MESHSET_SADX**)0x1E76D30, &((NJS_OBJECT*)0x1E49864)->child->basicdxmodel->meshsets[1]); //Child UV animation 1
-		WriteData((NJS_MESHSET_SADX**)0x1E76D40, &((NJS_OBJECT*)0x1E49864)->child->basicdxmodel->meshsets[0]); //Child UV animation 2
-		//Slot pinball entrance OTensS
-		*(NJS_OBJECT*)0x1E4B1A8 = *LoadModel("system\\data\\STG09\\Models\\001C8150.sa1mdl", false); //Main object
-		AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E4B1A8)->basicdxmodel->meshsets[0].vertuv, 28, 12, 65, 0); //Main object UV animation 1
-		AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E4B1A8)->basicdxmodel->meshsets[11].vertuv, 24, 12, 65, 0); //Main object UV animation 2
-		WriteData((NJS_MESHSET_SADX**)0x1E76F18, &((NJS_OBJECT*)0x1E4B1A8)->child->basicdxmodel->meshsets[0]); //Child UV animation (meshes merged in the DC version so just one)
-		//OSl objects
-		OSlX_Base = LoadModel("system\\data\\STG09\\Models\\001BF300.sa1mdl", false); //OSl Base
-		HideMesh_Object(OSlX_Base->child, 0); //Hide light start
-		HideMesh_Object(OSlX_Base->child, 2); //Hide light
-		HideMesh_Object(((NJS_OBJECT*)0x01E5E7BC), 2); //OLhtr base
-		OLhtr_Bright = LoadModel("system\\data\\STG09\\Models\\001DAE74.sa1mdl", false); //OLhtr bright
-		HideMesh_Object(OLhtr_Bright, 0);
-		HideMesh_Object(OLhtr_Bright, 1);
-		OLhtr_Dark = LoadModel("system\\data\\STG09\\Models\\001DAE74.sa1mdl", false); //OLhtr dark
-		HideMesh_Object(OLhtr_Dark, 0);
-		HideMesh_Object(OLhtr_Dark, 1);
+		// Card pinball entrance OTensC
+		*(NJS_OBJECT*)0x1E49864 = *LoadModel("system\\data\\STG09\\Models\\001C6E9C.sa1mdl"); // Main object
+		AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E49864)->basicdxmodel->meshsets[0].vertuv, 67, 12, 65, 0); // Main object UV animation 1
+		AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E49864)->basicdxmodel->meshsets[5].vertuv, 8, 12, 65, 0); // Main object UV animation 1
+		WriteData((NJS_MESHSET_SADX**)0x1E76D30, &((NJS_OBJECT*)0x1E49864)->child->basicdxmodel->meshsets[1]); // Child UV animation 1
+		WriteData((NJS_MESHSET_SADX**)0x1E76D40, &((NJS_OBJECT*)0x1E49864)->child->basicdxmodel->meshsets[0]); // Child UV animation 2
+		// Slot pinball entrance OTensS
+		*(NJS_OBJECT*)0x1E4B1A8 = *LoadModel("system\\data\\STG09\\Models\\001C8150.sa1mdl"); // Main object
+		AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E4B1A8)->basicdxmodel->meshsets[0].vertuv, 28, 12, 65, 0); // Main object UV animation 1
+		AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E4B1A8)->basicdxmodel->meshsets[11].vertuv, 24, 12, 65, 0); // Main object UV animation 2
+		WriteData((NJS_MESHSET_SADX**)0x1E76F18, &((NJS_OBJECT*)0x1E4B1A8)->child->basicdxmodel->meshsets[0]); // Child UV animation (meshes merged in the DC version so just one)
+		// OSl objects
+		OSlX_Base = LoadModel("system\\data\\STG09\\Models\\001BF300.sa1mdl"); // OSl Base
+		HideMesh_Object(OSlX_Base->child, 0, 2); // Hide light
+		HideMesh_Object(((NJS_OBJECT*)0x01E5E7BC), 2); // OLhtr base
+		OLhtr_Bright = LoadModel("system\\data\\STG09\\Models\\001DAE74.sa1mdl"); // OLhtr bright
+		HideMesh_Object(OLhtr_Bright, 0, 1);
+		OLhtr_Dark = LoadModel("system\\data\\STG09\\Models\\001DAE74.sa1mdl"); // OLhtr dark
+		HideMesh_Object(OLhtr_Dark, 0, 1);
 		OLhtr_Dark->basicdxmodel->mats[2].diffuse.color = 0xFF4F4F4F;
-		HideMesh_Object(((NJS_OBJECT*)0x1E5EC4C), 3); //OLhtg base
-		OLhtg_Bright = LoadModel("system\\data\\STG09\\Models\\001DB2E4.sa1mdl", false); //OLhtg bright
-		HideMesh_Object(OLhtg_Bright, 0);
-		HideMesh_Object(OLhtg_Bright, 1);
-		HideMesh_Object(OLhtg_Bright, 2);
-		OLhtg_Dark = LoadModel("system\\data\\STG09\\Models\\001DB2E4.sa1mdl", false); //OLhtg dark
-		HideMesh_Object(OLhtg_Dark, 0);
-		HideMesh_Object(OLhtg_Dark, 1);
-		HideMesh_Object(OLhtg_Dark, 2);
+		HideMesh_Object(((NJS_OBJECT*)0x1E5EC4C), 3); // OLhtg base
+		OLhtg_Bright = LoadModel("system\\data\\STG09\\Models\\001DB2E4.sa1mdl"); // OLhtg bright
+		HideMesh_Object(OLhtg_Bright, 0, 1, 2);
+		OLhtg_Dark = LoadModel("system\\data\\STG09\\Models\\001DB2E4.sa1mdl"); // OLhtg dark
+		HideMesh_Object(OLhtg_Dark, 0, 1, 2);
 		OLhtg_Dark->basicdxmodel->mats[4].diffuse.color = 0xFF4F4F4F;
-		*(NJS_OBJECT*)0x1E40FB8 = *LoadModel("system\\data\\STG09\\Models\\001BF300.sa1mdl", false); //OSl G
+		*(NJS_OBJECT*)0x1E40FB8 = *LoadModel("system\\data\\STG09\\Models\\001BF300.sa1mdl"); // OSl G
 		((NJS_OBJECT*)0x1E40FB8)->evalflags |= NJD_EVAL_HIDE;
 		HideMesh_Object(((NJS_OBJECT*)0x1E40FB8)->child, 1);
-		*(NJS_OBJECT*)0x1E40980 = *LoadModel("system\\data\\STG09\\Models\\001BECF4.sa1mdl", false); //OSl B
+		*(NJS_OBJECT*)0x1E40980 = *LoadModel("system\\data\\STG09\\Models\\001BECF4.sa1mdl"); // OSl B
 		((NJS_OBJECT*)0x1E40980)->evalflags |= NJD_EVAL_HIDE;
 		HideMesh_Object(((NJS_OBJECT*)0x1E40980)->child, 1);
-		*(NJS_OBJECT*)0x1E415F0 = *LoadModel("system\\data\\STG09\\Models\\001BF90C.sa1mdl", false); //OSl R
+		*(NJS_OBJECT*)0x1E415F0 = *LoadModel("system\\data\\STG09\\Models\\001BF90C.sa1mdl"); // OSl R
 		((NJS_OBJECT*)0x1E415F0)->evalflags |= NJD_EVAL_HIDE;
 		HideMesh_Object(((NJS_OBJECT*)0x1E415F0)->child, 1);
-		*(NJS_OBJECT*)0x1E41C28 = *LoadModel("system\\data\\STG09\\Models\\001BFF18.sa1mdl", false); //OSl Y
+		*(NJS_OBJECT*)0x1E41C28 = *LoadModel("system\\data\\STG09\\Models\\001BFF18.sa1mdl"); // OSl Y
 		((NJS_OBJECT*)0x1E41C28)->evalflags |= NJD_EVAL_HIDE;
 		HideMesh_Object(((NJS_OBJECT*)0x1E41C28)->child, 1);
-		*(NJS_OBJECT*)0x1E47B1C = *LoadModel("system\\data\\STG09\\Models\\001C5990.sa1mdl", false); //MizuA (fountain)
+		*(NJS_OBJECT*)0x1E47B1C = *LoadModel("system\\data\\STG09\\Models\\001C5990.sa1mdl"); // MizuA (fountain)
 		AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E47B1C)->basicdxmodel->meshsets[0].vertuv, 36, 0, 0, -16);
 		AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E47B1C)->basicdxmodel->meshsets[1].vertuv, 80, 0, 0, -16);
-		*(NJS_OBJECT*)0x1E47CA4 = *LoadModel("system\\data\\STG09\\Models\\001C5B0C.sa1mdl", false); //MizuB (waterfall)
+		*(NJS_OBJECT*)0x1E47CA4 = *LoadModel("system\\data\\STG09\\Models\\001C5B0C.sa1mdl"); // MizuB (waterfall)
 		AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E47CA4)->basicdxmodel->meshsets[0].vertuv, 8, 0, 0, -16);
-		*(NJS_OBJECT*)0x1E01EB4 = *LoadModel("system\\data\\STG09\\Models\\0018141C.sa1mdl", false); //Lion
+		*(NJS_OBJECT*)0x1E01EB4 = *LoadModel("system\\data\\STG09\\Models\\0018141C.sa1mdl"); // Lion
 		AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E01EB4)->child->sibling->sibling->basicdxmodel->meshsets[5].vertuv, 36, 8, -127, 0);
 		AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E01EB4)->child->sibling->sibling->basicdxmodel->meshsets[10].vertuv, 20, 8, -127, 0);
-		((NJS_ACTION*)0x1DE120C)->object = LoadModel("system\\data\\STG09\\Models\\00155E04.sa1mdl", false); //Pianpach
-		((NJS_ACTION*)0x1DE223C)->object = LoadModel("system\\data\\STG09\\Models\\001594F4.sa1mdl", false); //Pianwalk
-		((NJS_ACTION*)0x1DE23C4)->object = LoadModel("system\\data\\STG09\\Models\\0015B34C.sa1mdl", false); //Pianfish
-		((NJS_ACTION*)0x1DE2A5C)->object = LoadModel("system\\data\\STG09\\Models\\0015CEC4.sa1mdl", false); //Pianslee
-		((NJS_ACTION*)0x1DE18A4)->object = LoadModel("system\\data\\STG09\\Models\\0015797C.sa1mdl", false); //Piantama
-		((NJS_ACTION*)0x1DE084C)->object = LoadModel("system\\data\\STG09\\Models\\00153688.sa1mdl", false); //Flying clock
-		//UV fixes
-		((NJS_TEX*)0x01DDB544)->u = 509; //Yaji
-		((NJS_TEX*)0x01DDB548)->u = 510; //Yaji
-		((NJS_MODEL_SADX*)0x01DDB5D0)->mats[0].attrflags |= NJD_FLAG_FLIP_U; //Yaji
-		memcpy((void*)0x1E3C3C8, uv_001BA8B0, sizeof(uv_001BA8B0)); //O KBB
-		memcpy((void*)0x1E3C868, uv_001BA8B0, sizeof(uv_001BA8B0)); //O KBR
-		memcpy((void*)0x1E46FF8, uv_001C4E90, sizeof(uv_001C4E90)); //SDFUTIR
-		memcpy((void*)0x1E471C8, uv_001C4E90, sizeof(uv_001C4E90)); //SDFUTIB
-		memcpy((void*)0x1E4BD38, uv_001C8C9C, sizeof(uv_001C8C9C)); //Wall marquee
-		memcpy((void*)0x1E4BD98, uv_001C8CFC, sizeof(uv_001C8CFC)); //Wall marquee
-		memcpy((void*)0x1E3BAC8, uv_001B9FC4, sizeof(uv_001B9FC4)); //ORlti
-		memcpy((void*)0x1E3BBC8, uv_001BA0C4, sizeof(uv_001BA0C4)); //ORlti
-		memcpy((void*)0x1E3BC08, uv_001BA104, sizeof(uv_001BA104)); //ORlti
-		//Fog and draw distance stuff 
+		((NJS_ACTION*)0x1DE120C)->object = LoadModel("system\\data\\STG09\\Models\\00155E04.sa1mdl"); // Pianpach
+		((NJS_ACTION*)0x1DE223C)->object = LoadModel("system\\data\\STG09\\Models\\001594F4.sa1mdl"); // Pianwalk
+		((NJS_ACTION*)0x1DE23C4)->object = LoadModel("system\\data\\STG09\\Models\\0015B34C.sa1mdl"); // Pianfish
+		((NJS_ACTION*)0x1DE2A5C)->object = LoadModel("system\\data\\STG09\\Models\\0015CEC4.sa1mdl"); // Pianslee
+		((NJS_ACTION*)0x1DE18A4)->object = LoadModel("system\\data\\STG09\\Models\\0015797C.sa1mdl"); // Piantama
+		((NJS_ACTION*)0x1DE084C)->object = LoadModel("system\\data\\STG09\\Models\\00153688.sa1mdl"); // Flying clock
+		// UV fixes
+		((NJS_TEX*)0x01DDB544)->u = 509; // Yaji
+		((NJS_TEX*)0x01DDB548)->u = 510; // Yaji
+		((NJS_MODEL_SADX*)0x01DDB5D0)->mats[0].attrflags |= NJD_FLAG_FLIP_U; // Yaji
+		memcpy((void*)0x1E3C3C8, uv_001BA8B0, sizeof(uv_001BA8B0)); // O KBB
+		memcpy((void*)0x1E3C868, uv_001BA8B0, sizeof(uv_001BA8B0)); // O KBR
+		memcpy((void*)0x1E46FF8, uv_001C4E90, sizeof(uv_001C4E90)); // SDFUTIR
+		memcpy((void*)0x1E471C8, uv_001C4E90, sizeof(uv_001C4E90)); // SDFUTIB
+		memcpy((void*)0x1E4BD38, uv_001C8C9C, sizeof(uv_001C8C9C)); // Wall marquee
+		memcpy((void*)0x1E4BD98, uv_001C8CFC, sizeof(uv_001C8CFC)); // Wall marquee
+		memcpy((void*)0x1E3BAC8, uv_001B9FC4, sizeof(uv_001B9FC4)); // ORlti
+		memcpy((void*)0x1E3BBC8, uv_001BA0C4, sizeof(uv_001BA0C4)); // ORlti
+		memcpy((void*)0x1E3BC08, uv_001BA104, sizeof(uv_001BA104)); // ORlti
+		// Fog and draw distance stuff 
 		for (int i = 0; i < 3; i++)
 		{
 			Casino1Fog[i].Color = 0xFF000000;
@@ -1222,19 +1143,20 @@ void Casinopolis_Init()
 void Casinopolis_OnFrame()
 {
 	auto entity = EntityData1Ptrs[0];
-	//Palette effect
+	// Palette effect
 	if (DLLLoaded_Lantern)
 	{
-		//Failsafe stuff for palette blending
+		// Failsafe stuff for palette blending
 		if (WhiteSonic && (InsideMachine == 0 || CurrentLevel != LevelIDs_Casinopolis || CurrentAct != 0 || GameMode == GameModes_Menu || GameState == 3 || GameState == 4 || GameState == 7 || GameState == 21))
 		{
+			CasinoPaletteGenerated = false;
 			WhiteSonic = false;
 			set_blend_factor(0.0f);
 			set_specular_blend(2, -1);
 			set_specular_blend(3, -1);
 			set_shader_flags(ShaderFlags_Blend, false);
 			SonicWhiteBlendFactor = 0;
-			//Restore OTeleport UVs
+			// Restore OTeleport UVs
 			for (int i = 0; i < 14; i++)
 			{
 				((NJS_MESHSET_SADX*)0x1E45F1C)->vertuv[i].v = uv_01A45EE4[i].v;
@@ -1243,13 +1165,13 @@ void Casinopolis_OnFrame()
 		}
 		if (CurrentLevel == LevelIDs_Casinopolis && CurrentAct == 0 && !IsGamePaused())
 		{
-			//Generate palette
+			// Generate palette
 			if (!CasinoPaletteGenerated)
 			{
 				palette_from_rgb(4, 255, 255, 255, true, true);
 				CasinoPaletteGenerated = true;
 			}
-			//Make Sonic white
+			// Make Sonic white
 			if (!WhiteSonic && InsideMachine != 0)
 			{
 				WhiteSonic = true;
@@ -1259,30 +1181,30 @@ void Casinopolis_OnFrame()
 			}
 			if (WhiteSonic && SonicWhiteBlendFactor <= 0.75f)
 			{
-				//Move OTeleport UVs
+				// Move OTeleport UVs
 				for (int i = 0; i < 14; i++)
 				{
-					((NJS_MESHSET_SADX*)0x1E45F1C)->vertuv[i].v += 16 * min(1, FramerateSetting); //uv_01A45EE4
-					((NJS_MESHSET_SADX*)0x1E46124)->vertuv[i].v += 16 * min(1, FramerateSetting); //uv_01A460EC
+					((NJS_MESHSET_SADX*)0x1E45F1C)->vertuv[i].v += 16 * min(1, FramerateSetting); // uv_01A45EE4
+					((NJS_MESHSET_SADX*)0x1E46124)->vertuv[i].v += 16 * min(1, FramerateSetting); // uv_01A460EC
 				}
 				set_blend_factor(SonicWhiteBlendFactor);
 				SonicWhiteBlendFactor += (0.01f * FramerateSetting);
 			}
 		}
 	}
-	//Other things
+	// Other things
 	if (CurrentLevel == LevelIDs_Casinopolis && !IsGamePaused())
 	{
-		//Knuckles stuff
+		// Knuckles stuff
 		if (CurrentAct == 0 && CurrentCharacter == 3)
 		{
-			//Gears
+			// Gears
 			GearFrame += 0.1f;
 			if (GearFrame > 15) GearFrame = 0;
 			RotationAngle1 = (RotationAngle1 + 128) % 65536;
 			RotationAngle2 = (RotationAngle2 - 128) % 65536;
 		}
-		//Tails' sound thing
+		// Tails' sound thing
 		if (CurrentAct != 1) SoundPlayed = 0;
 		else
 		{

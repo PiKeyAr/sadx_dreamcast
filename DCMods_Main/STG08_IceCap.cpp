@@ -12,13 +12,6 @@ NJS_TEXLIST texlist_icecap2 = { arrayptrandlength(textures_icecap2) };
 NJS_TEXNAME textures_icecap3[40];
 NJS_TEXLIST texlist_icecap3 = { arrayptrandlength(textures_icecap3) };
 
-/*
-#include "IceCap1.h"
-#include "IceCap2.h"
-#include "IceCap3.h"
-#include "IceCap4.h"
-*/
-
 DataPointer(float, CurrentFogDist, 0x03ABDC64);
 DataPointer(float, CurrentFogLayer, 0x03ABDC60);
 DataPointer(NJS_ACTION, stru_E758E4, 0xE758E4);
@@ -32,7 +25,6 @@ DataArray(FogData, IceCap4Fog, 0x00C67F30, 3);
 DataArray(DrawDistance, DrawDist_IceCap1, 0x00C67E40, 3);
 DataArray(DrawDistance, DrawDist_IceCap2, 0x00C67E58, 3);
 DataArray(DrawDistance, DrawDist_IceCap3, 0x00C67E70, 3);
-FunctionPointer(void, sub_405450, (NJS_ACTION *a1, float frame, float scale), 0x405450);
 
 NJS_OBJECT* Crystal1_1 = nullptr;
 NJS_OBJECT* Crystal1_2 = nullptr;
@@ -71,7 +63,7 @@ void RenderSnowboardEffect(ObjectMaster *a1)
 	}
 	njScale(0, XScalea, XScalea, XScalea);
 	DrawQueueDepthBias = 2000.0f;
-	ProcessModelNode((NJS_OBJECT*)0xE43544, QueuedModelFlagsB_EnableZWrite, XScalea);
+	lateDrawObject((NJS_OBJECT*)0xE43544, QueuedModelFlagsB_EnableZWrite, XScalea);
 	DrawQueueDepthBias = 0.0f;
 	njPopMatrix(1u);
 }
@@ -79,14 +71,14 @@ void RenderSnowboardEffect(ObjectMaster *a1)
 void RenderSmallIcicles(NJS_OBJECT *a1, QueuedModelFlagsB blend_mode, float scale)
 {
 	DrawQueueDepthBias = 15000.0f;
-	ProcessModelNode(a1, QueuedModelFlagsB_SomeTextureThing, scale);
+	lateDrawObject(a1, QueuedModelFlagsB_SomeTextureThing, scale);
 	DrawQueueDepthBias = 0;
 }
 
 void RenderIcicleSpriteThing(NJS_OBJECT *a1, QueuedModelFlagsB blend_mode, float scale)
 {
 	DrawQueueDepthBias = -1000.0f;
-	ProcessModelNode(a1, blend_mode, scale);
+	lateDrawObject(a1, blend_mode, scale);
 	DrawQueueDepthBias = 0;
 }
 
@@ -118,7 +110,7 @@ void DrawCrystal0(ObjectMaster *a1)
 		{
 			njRotateY(0, (unsigned __int16)v4);
 		}
-		DisplayAnimationFrame(&stru_E758E4, *(float *)&v1->LoopData, (QueuedModelFlagsB)0, 0, (void (__cdecl *)(NJS_MODEL_SADX *, int, int))DrawModelThing);
+		DrawAction(&stru_E758E4, *(float *)&v1->LoopData, (QueuedModelFlagsB)0, 0, (void (__cdecl *)(NJS_MODEL_SADX *, int, int))DrawModelThing);
 		njPopMatrix(1u);
 	}
 }
@@ -151,11 +143,11 @@ void DrawCrystal1(ObjectMaster *a1)
 		{
 			njRotateY(0, (unsigned __int16)v4);
 		}
-		//1
+		// 1
 		DrawQueueDepthBias = 1000.0f;
-		ProcessModelNode_D(Crystal1_2, (QueuedModelFlagsB)1, 1.0f);
+		DrawObjectClipMesh(Crystal1_2, (QueuedModelFlagsB)1, 1.0f);
 		njPopMatrix(1u);
-		//2
+		// 2
 		njPushMatrix(0);
 		njTranslateV(0, &v1->Position);
 		v2 = v1->Rotation.z;
@@ -173,9 +165,9 @@ void DrawCrystal1(ObjectMaster *a1)
 		{
 			njRotateY(0, (unsigned __int16)v4);
 		}
-		ProcessModelNode_D(Crystal1_1, QueuedModelFlagsB_EnableZWrite, 1.0f);
+		DrawObjectClipMesh(Crystal1_1, QueuedModelFlagsB_EnableZWrite, 1.0f);
 		njPopMatrix(1u);
-		//3
+		// 3
 		njPushMatrix(0);
 		njTranslateV(0, &v1->Position);
 		v2 = v1->Rotation.z;
@@ -194,7 +186,7 @@ void DrawCrystal1(ObjectMaster *a1)
 			njRotateY(0, (unsigned __int16)v4);
 		}
 		DrawQueueDepthBias = 2000.0f;
-		ProcessModelNode_D(Crystal1_3, QueuedModelFlagsB_EnableZWrite, 1.0f);
+		DrawObjectClipMesh(Crystal1_3, QueuedModelFlagsB_EnableZWrite, 1.0f);
 		njPopMatrix(1u);
 		DrawQueueDepthBias = 0;
 	}
@@ -228,11 +220,11 @@ void DrawCrystal2(ObjectMaster *a1)
 		{
 			njRotateY(0, (unsigned __int16)v4);
 		}
-		//1
+		// 1
 		DrawQueueDepthBias = 1000.0f;
-		ProcessModelNode_D(Crystal2_2, QueuedModelFlagsB_EnableZWrite, 1.0f);
+		DrawObjectClipMesh(Crystal2_2, QueuedModelFlagsB_EnableZWrite, 1.0f);
 		njPopMatrix(1u);
-		//2
+		// 2
 		njPushMatrix(0);
 		njTranslateV(0, &v1->Position);
 		v2 = v1->Rotation.z;
@@ -251,9 +243,9 @@ void DrawCrystal2(ObjectMaster *a1)
 			njRotateY(0, (unsigned __int16)v4);
 		}
 		DrawQueueDepthBias = 2000.0f;
-		ProcessModelNode_D(Crystal2_1, QueuedModelFlagsB_EnableZWrite, 1.0f);
+		DrawObjectClipMesh(Crystal2_1, QueuedModelFlagsB_EnableZWrite, 1.0f);
 		njPopMatrix(1u);
-		//3
+		// 3
 		njPushMatrix(0);
 		njTranslateV(0, &v1->Position);
 		v2 = v1->Rotation.z;
@@ -272,7 +264,7 @@ void DrawCrystal2(ObjectMaster *a1)
 			njRotateY(0, (unsigned __int16)v4);
 		}
 		DrawQueueDepthBias = 3000.0f;
-		ProcessModelNode_D(Crystal2_3, QueuedModelFlagsB_EnableZWrite, 1.0f);
+		DrawObjectClipMesh(Crystal2_3, QueuedModelFlagsB_EnableZWrite, 1.0f);
 		njPopMatrix(1u);
 		DrawQueueDepthBias = 0;
 	}
@@ -306,7 +298,7 @@ void DrawCrystal3(ObjectMaster *a1)
 		{
 			njRotateY(0, v4);
 		}
-		ProcessModelNode_D(&stru_E773D8, (QueuedModelFlagsB)1, 1.0f);
+		DrawObjectClipMesh(&stru_E773D8, (QueuedModelFlagsB)1, 1.0f);
 		njPopMatrix(1u);
 	}
 }
@@ -315,9 +307,6 @@ void __cdecl Crystal_Display(ObjectMaster *a1)
 {
 	
 	EntityData1 *v1; // esi
-	Angle v2; // eax
-	Angle v3; // eax
-	Angle v4; // eax
 
 	v1 = a1->Data1;
 	if (!MissedFrames)
@@ -433,7 +422,6 @@ static void __declspec(naked) Obj_Icecap_DoColFlagThings_a()
 
 void ParseICMaterials(LandTable* landtable)
 {
-	Uint32 materialflags;
 	NJS_MATERIAL* material;
 	for (int j = 0; j < landtable->COLCount; j++)
 	{
@@ -463,7 +451,7 @@ void UnloadLevelFiles_STG08()
 void RenderBigIcicleWithDepth(NJS_OBJECT* a1, int blend_mode, float scale)
 {
 	DrawQueueDepthBias = 3000.0f;
-	ProcessModelNode_D_WrapperB(a1, blend_mode, scale);
+	late_DrawObjectClipMesh(a1, blend_mode, scale);
 	DrawQueueDepthBias = 0.0f;
 }
 
@@ -496,61 +484,55 @@ void IceCap_Init()
 		ICECAP02_TEXLIST = texlist_icecap2;
 		ICECAP03_TEXLIST = texlist_icecap3;
 		OBJ_ICECAP_TEXLIST = texlist_obj_icecap;
-		WriteJump((void*)0x4E91C0, Obj_Icecap_DoColFlagThings_a); //Weird COL flag function
-		//Objects
-		*(NJS_OBJECT*)0xE60F54 = *LoadModel("system\\data\\STG08\\Models\\001702F4.sa1mdl", false); //OSaku01
-		*(NJS_OBJECT*)0xE61BBC = *LoadModel("system\\data\\STG08\\Models\\001713F0.sa1mdl", false); //OSaku01b
-		*(NJS_OBJECT*)0xE6261C = *LoadModel("system\\data\\STG08\\Models\\00170B20.sa1mdl", false); //OSaku02
-		*(NJS_OBJECT*)0xE63444 = *LoadModel("system\\data\\STG08\\Models\\0016F968.sa1mdl", false); //OSaku02b
-		*(NJS_OBJECT*)0xE7B20C = *LoadModel("system\\data\\STG08\\Models\\00188C0C.sa1mdl", false); //OFutaL
-		*(NJS_OBJECT*)0xE7E11C = *LoadModel("system\\data\\STG08\\Models\\0018B1E4.sa1mdl", false); //OFutaL broken
-		*(NJS_OBJECT*)0xE537D8 = *LoadModel("system\\data\\STG08\\Models\\00162694.sa1mdl", false); //Icicle inner part
-		*(NJS_OBJECT*)0xE6E0E0 = *LoadModel("system\\data\\STG08\\Models\\0017BD64.sa1mdl", false); //MizuIwa B
-		*(NJS_OBJECT*)0xE6E694 = *LoadModel("system\\data\\STG08\\Models\\0017C308.sa1mdl", false); //MizuIwa C
-		*(NJS_OBJECT*)0xE52FCC = *LoadModel("system\\data\\STG08\\Models\\00161838.sa1mdl", false); //OIceJmp
-		*(NJS_OBJECT*)0xE6FECC = *LoadModel("system\\data\\STG08\\Models\\0017DAD8.sa1mdl", false); //Giant icicle
-		SwapMeshsets((NJS_OBJECT*)0xE6FECC, 0, 1); //For better looks of the meshes
+		WriteJump((void*)0x4E91C0, Obj_Icecap_DoColFlagThings_a); // Weird COL flag function
+		// Objects
+		*(NJS_OBJECT*)0xE60F54 = *LoadModel("system\\data\\STG08\\Models\\001702F4.sa1mdl"); // OSaku01
+		*(NJS_OBJECT*)0xE61BBC = *LoadModel("system\\data\\STG08\\Models\\001713F0.sa1mdl"); // OSaku01b
+		*(NJS_OBJECT*)0xE6261C = *LoadModel("system\\data\\STG08\\Models\\00170B20.sa1mdl"); // OSaku02
+		*(NJS_OBJECT*)0xE63444 = *LoadModel("system\\data\\STG08\\Models\\0016F968.sa1mdl"); // OSaku02b
+		*(NJS_OBJECT*)0xE7B20C = *LoadModel("system\\data\\STG08\\Models\\00188C0C.sa1mdl"); // OFutaL
+		*(NJS_OBJECT*)0xE7E11C = *LoadModel("system\\data\\STG08\\Models\\0018B1E4.sa1mdl"); // OFutaL broken
+		*(NJS_OBJECT*)0xE537D8 = *LoadModel("system\\data\\STG08\\Models\\00162694.sa1mdl"); // Icicle inner part
+		*(NJS_OBJECT*)0xE6E0E0 = *LoadModel("system\\data\\STG08\\Models\\0017BD64.sa1mdl"); // MizuIwa B
+		*(NJS_OBJECT*)0xE6E694 = *LoadModel("system\\data\\STG08\\Models\\0017C308.sa1mdl"); // MizuIwa C
+		*(NJS_OBJECT*)0xE52FCC = *LoadModel("system\\data\\STG08\\Models\\00161838.sa1mdl"); // OIceJmp
+		*(NJS_OBJECT*)0xE6FECC = *LoadModel("system\\data\\STG08\\Models\\0017DAD8.sa1mdl"); // Giant icicle
+		SwapMeshsets((NJS_OBJECT*)0xE6FECC, 0, 1); // For better looks of the meshes
 		WriteCall((void*)0x4EFE72, RenderBigIcicleWithDepth);
-		*(NJS_OBJECT*)0x986F80 = *LoadModel("system\\data\\STG08\\Models\\001BEF20.sa1mdl", false); //ESMan
-		((NJS_OBJECT*)0x986F80)->basicdxmodel->mats[7].attrflags &= ~NJD_FLAG_USE_ALPHA; //Unnecessary alpha causing errors
-		RemoveVertexColors_Object((NJS_OBJECT*)0x9889E4); //ESMan vehicle
-		//Crystal fixes for OIT
+		*(NJS_OBJECT*)0x986F80 = *LoadModel("system\\data\\STG08\\Models\\001BEF20.sa1mdl"); // ESMan
+		((NJS_OBJECT*)0x986F80)->basicdxmodel->mats[7].attrflags &= ~NJD_FLAG_USE_ALPHA; // Unnecessary alpha causing errors
+		RemoveVertexColors_Object((NJS_OBJECT*)0x9889E4); // ESMan vehicle
+		// Crystal fixes for OIT
 		if (AssumeOIT)
 		{
 			stru_E773D8.basicdxmodel->mats[0].attrflags |= NJD_FLAG_USE_ALPHA;
 			stru_E773D8.basicdxmodel->mats[1].attrflags |= NJD_FLAG_USE_ALPHA;
-			//Crystal 1
-			Crystal1_1 = LoadModel("system\\data\\STG08\\Models\\00184058.sa1mdl", false);
-			HideMesh_Object(Crystal1_1, 1);
-			HideMesh_Object(Crystal1_1, 2);
-			Crystal1_2 = LoadModel("system\\data\\STG08\\Models\\00184058.sa1mdl", false);
-			HideMesh_Object(Crystal1_2, 0);
-			HideMesh_Object(Crystal1_2, 2);
-			Crystal1_3 = LoadModel("system\\data\\STG08\\Models\\00184058.sa1mdl", false);
-			HideMesh_Object(Crystal1_3, 0);
-			HideMesh_Object(Crystal1_3, 1);
-			//Crystal 2
-			Crystal2_1 = LoadModel("system\\data\\STG08\\Models\\00184918.sa1mdl", false);
-			HideMesh_Object(Crystal2_1, 1);
-			HideMesh_Object(Crystal2_1, 2);
-			Crystal2_2 = LoadModel("system\\data\\STG08\\Models\\00184918.sa1mdl", false);
-			HideMesh_Object(Crystal2_2, 0);
-			HideMesh_Object(Crystal2_2, 2);
-			Crystal2_3 = LoadModel("system\\data\\STG08\\Models\\00184918.sa1mdl", false);
-			HideMesh_Object(Crystal2_3, 0);
-			HideMesh_Object(Crystal2_3, 1);
+			// Crystal 1
+			Crystal1_1 = LoadModel("system\\data\\STG08\\Models\\00184058.sa1mdl");
+			Crystal1_2 = CloneObject(Crystal1_1);
+			Crystal1_3 = CloneObject(Crystal1_1);
+			HideMesh_Object(Crystal1_1, 1, 2);
+			HideMesh_Object(Crystal1_2, 0, 2);
+			HideMesh_Object(Crystal1_3, 0, 1);
+			// Crystal 2
+			Crystal2_1 = LoadModel("system\\data\\STG08\\Models\\00184918.sa1mdl");
+			Crystal2_2 = CloneObject(Crystal2_1);
+			Crystal2_3 = CloneObject(Crystal2_1);
+			HideMesh_Object(Crystal2_1, 1, 2);
+			HideMesh_Object(Crystal2_2, 0, 2);
+			HideMesh_Object(Crystal2_3, 0, 1);
 			WriteJump((void*)0x4EF5A0, Crystal_Display);
 		}
 		WriteCall((void*)0x4EFE10, RenderSmallIcicles);
-		//Various effect fixes
+		// Various effect fixes
 		WriteCall((void*)0x4EFEF7, RenderIcicleSpriteThing);
 		WriteJump((void*)0x4EB770, FixedAvalanche);
 		WriteJump((void*)0x4EA3E0, RenderSnowboardEffect);
-		WriteCall((void*)0x4F5B6F, FixSnowflake); //Snowflake brightness
-		WriteCall((void*)0x4EB948, FixSnowflake); //Snowflake brightness 2
-		((NJS_OBJECT*)0xE43544)->basicdxmodel->mats[0].attr_texId = 58; //Snowboard effect
-		((NJS_SPRITE*)0xE956E4)->tlist = &OBJ_ICECAP_TEXLIST; //Snow effect texlist
-		((NJS_TEXANIM*)0xE956D0)->texid = 96; //Snow effect texture ID
+		WriteCall((void*)0x4F5B6F, FixSnowflake); // Snowflake brightness
+		WriteCall((void*)0x4EB948, FixSnowflake); // Snowflake brightness 2
+		((NJS_OBJECT*)0xE43544)->basicdxmodel->mats[0].attr_texId = 58; // Snowboard effect
+		((NJS_SPRITE*)0xE956E4)->tlist = &OBJ_ICECAP_TEXLIST; // Snow effect texlist
+		((NJS_TEXANIM*)0xE956D0)->texid = 96; // Snow effect texture ID
 		for (int i = 0; i < 3; i++)
 		{
 			IceCap1Fog[i].Color = 0xFFFFFFFF;

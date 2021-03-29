@@ -1,5 +1,14 @@
 #include "stdafx.h"
-#include "GenericData.h"
+#include "AnimationFile.h"
+
+NJS_COLOR DebugFontColorBK;
+float DebugFontSizeBK;
+bool DebugFontItalic = false;
+OBJ_CONDITION setdata_LateDrawLand = {};
+std::vector<int> LateDrawLandList;
+LandTable* LateDrawLand;
+
+NJS_MESHSET_SADX TempMeshset = {NJD_MESHSET_TRIMESH | 0, 0, NULL, NULL, NULL, NULL, NULL, NULL};
 
 void BackupDebugFontSettings()
 {
@@ -15,21 +24,21 @@ void RestoreDebugFontSettings()
 
 void njDrawQuadTexture_Italic(NJS_QUAD_TEXTURE* points, float scale)
 {
-	double widthmaybe; // st7
+	float widthmaybe; // st7
 	Float base_x; // ecx
 	Float v4; // edx
-	double v5; // st7
+	float v5; // st7
 	Float v6; // ecx
-	double v7; // st7
-	double v8; // st7
+	float v7; // st7
+	float v8; // st7
 	NJS_QUAD_TEXTURE_EX _points; // [esp+0h] [ebp-40h]
 
 	widthmaybe = points->x2 - points->x1;
 	base_x = points->x1;
 	_points.y = points->y1;
 	v4 = points->u1;
-	_points.vx1 = widthmaybe + DebugFontItalic * 4.0f; //width
-	_points.x = base_x + DebugFontItalic * 4.0f; //offset for accuracy
+	_points.vx1 = widthmaybe + DebugFontItalic * 4.0f; // Width
+	_points.x = base_x + DebugFontItalic * 4.0f; // Offset for accuracy
 	v5 = points->y2 - points->y1;
 	_points.u = v4;
 	_points.z = scale;
@@ -71,14 +80,14 @@ void __cdecl njDrawSprite2D_DrawNow_Point(NJS_SPRITE* sp, Int n, Float pri, NJD_
 {
 	NJS_TEXLIST* texlist; // ecx
 	NJS_TEXANIM* texanim; // esi
-	double _cx; // st7
-	double cy; // st6
+	Sint16 _cx; // st7
+	Sint16 cy; // st6
 	float sy; // ST14_4
 	float v9; // ST2C_4
-	double v10; // st7
+	float v10; // st7
 	float v11; // ST30_4
-	double v12; // st7
-	double v13; // st7
+	float v12; // st7
+	float v13; // st7
 	float v14; // eax
 	float v15; // ecx
 	NJS_COLOR v16; // edi
@@ -102,15 +111,15 @@ void __cdecl njDrawSprite2D_DrawNow_Point(NJS_SPRITE* sp, Int n, Float pri, NJD_
 		{
 			Direct3D_SetTexList(texlist);
 			texanim = &sp->tanim[n];
-			u1 = (double)texanim->u1 * 0.0039215689f;
-			v1 = (double)texanim->v1 * 0.0039215689f;
-			u2 = (double)texanim->u2 * 0.0039215689f;
-			v2 = (double)texanim->v2 * 0.0039215689f;
-			_cx = (double)-texanim->cx;
-			cy = (double)-texanim->cy;
-			sy = (double)texanim->sy + cy;
+			u1 = texanim->u1 * 0.0039215689f;
+			v1 = texanim->v1 * 0.0039215689f;
+			u2 = texanim->u2 * 0.0039215689f;
+			v2 = texanim->v2 * 0.0039215689f;
+			_cx = -texanim->cx;
+			cy = -texanim->cy;
+			sy = texanim->sy + (float)cy;
 			result_x = _cx * sp->sx;
-			v26 = ((double)texanim->sx + _cx) * sp->sx;
+			v26 = (texanim->sx + _cx) * sp->sx;
 			result_y = cy * sp->sy;
 			v20 = sy * sp->sy;
 			if (attr & NJD_SPRITE_ANGLE)
@@ -129,7 +138,7 @@ void __cdecl njDrawSprite2D_DrawNow_Point(NJS_SPRITE* sp, Int n, Float pri, NJD_
 				points.y = v10;
 				vs.x = v26;
 				vs.z = 0.0;
-				points.z = -1.0 / pri;
+				points.z = -1.0f / pri;
 				njCalcVector(0, &vs, &vs);
 				points.vx1 = vs.x - v9;
 				vs.x = result_x;
@@ -149,7 +158,7 @@ void __cdecl njDrawSprite2D_DrawNow_Point(NJS_SPRITE* sp, Int n, Float pri, NJD_
 				points.vx2 = 0.0;
 				points.x = v13;
 				points.y = result_y + sp->p.y;
-				points.z = -1.0 / pri;
+				points.z = -1.0f / pri;
 				points.vx1 = v26 - result_x;
 				points.vy2 = v20 - result_y;
 			}
@@ -173,10 +182,10 @@ void __cdecl njDrawSprite2D_DrawNow_Point(NJS_SPRITE* sp, Int n, Float pri, NJD_
 			points.vv2 = v2 - v1;
 			if (attr & NJD_SPRITE_COLOR)
 			{
-				color_.argb.b = (unsigned __int64)(nj_constant_material_.b * 255.0);
-				color_.argb.g = (unsigned __int64)(nj_constant_material_.g * 255.0);
-				color_.argb.r = (unsigned __int64)(nj_constant_material_.r * 255.0);
-				color_.argb.a = (unsigned __int64)(nj_constant_material_.a * 255.0);
+				color_.argb.b = (Uint8)(nj_constant_material_.b * 255.0);
+				color_.argb.g = (Uint8)(nj_constant_material_.g * 255.0);
+				color_.argb.r = (Uint8)(nj_constant_material_.r * 255.0);
+				color_.argb.a = (Uint8)(nj_constant_material_.a * 255.0);
 				v16.color = color_.color;
 			}
 			else
@@ -198,15 +207,15 @@ void njDrawSprite2D_Queue_Point(NJS_SPRITE* sp, Int n, Float pri, NJD_SPRITE att
 {
 	QueuedModelSprite* v5; // eax
 	QueuedModelSprite* v6; // ebx
-	Float pria; // [esp+0h] [ebp-4h]
-	Float v8; // [esp+10h] [ebp+Ch]
+	float pria; // [esp+0h] [ebp-4h]
+	float v8; // [esp+10h] [ebp+Ch]
 
 	if (!MissedFrames && (unsigned int)sp >= 0x100000 && !VerifyTexList(sp->tlist))
 	{
 		pria = pri;
-		if (pri >= -2.0 && pri < 10000.0)
+		if (pri >= -2.0f && pri < 10000.0f)
 		{
-			pria = pri + 12048.0;
+			pria = pri + 12048.0f;
 		}
 		v5 = (QueuedModelSprite*)AllocateQueuedModel(n, 0x98, QueuedModelType_Sprite2D, queue_flags);
 		v6 = v5;
@@ -285,20 +294,50 @@ void ReplaceBIN(std::string src)
 	//PrintDebug("Replace generic BIN file %s with file %s\n", fullsrc.c_str(), fulldest.c_str());
 }
 
-void HideMesh_Object(NJS_OBJECT *object, int meshID)
+void HideMesh_Model_Real(NJS_MODEL_SADX* att, std::vector<int> hidemeshlist)
 {
-	if (object->basicdxmodel)
+	if (!att) return;
+
+	int currmesh = 0;
+	for (int m = 0; m < att->nbMeshset; m++)
 	{
-		object->basicdxmodel->meshsets[meshID] = DeadMeshset;
+		bool add = true;
+		for (int i : hidemeshlist)
+		{
+			if (m == i) add = false;
+		}
+		if (add)
+		{
+			att->meshsets[currmesh] = att->meshsets[m];
+			currmesh++;
+		}
 	}
+	att->nbMeshset -= (Uint16)hidemeshlist.size();
 }
 
-void HideMesh_Model(NJS_MODEL_SADX *model, int meshID)
+void HideMesh_Model_Wrapper(NJS_MODEL_SADX* att, int arg, ...)
 {
-	if (model)
+	va_list arguments;
+	std::vector<int> hidemeshlist;
+	for (va_start(arguments, arg); arg != -1; arg = va_arg(arguments, int))
 	{
-		model->meshsets[meshID] = DeadMeshset;
+		hidemeshlist.push_back(arg);
 	}
+	va_end(arguments);
+	HideMesh_Model_Real(att, hidemeshlist);
+}
+
+void HideMesh_Object_Wrapper(NJS_OBJECT* object, int arg, ...)
+{
+	va_list arguments;
+	std::vector<int> hidemeshlist;
+	// Add list of meshset IDs to hide
+	for (va_start(arguments, arg); arg != -1; arg = va_arg(arguments, int))
+	{
+		hidemeshlist.push_back(arg);
+	}
+	va_end(arguments);
+	HideMesh_Model_Real(object->basicdxmodel, hidemeshlist);
 }
 
 void CheckAndUnloadLevelFiles()
@@ -342,11 +381,11 @@ void AnimateTexture(TextureAnimation *texanim)
 	//PrintDebug("Animation: level %d, act %d, original %d, final %d\n", texanim->level, texanim->act, texanim->Frame1, texanim->Frame2);
 	int framenumber;
 	int actualspeed = 1;
-	//Calculate animation speed if in 30 or 15 FPS mode
+	// Calculate animation speed if in 30 or 15 FPS mode
 	if (FramerateSetting > 1 && texanim->Speed > 1) actualspeed = texanim->Speed / 2; else actualspeed = texanim->Speed;
 	if (texanim->material && FrameCounter % actualspeed == 0)
 	{
-		//Deal with non-sequential animations manually
+		// Deal with non-sequential animations manually
 		if (texanim->NonSequential)
 		{
 			if (texanim->material->attr_texId == texanim->Frame1)
@@ -447,15 +486,15 @@ void AnimateTexture(TextureAnimation *texanim)
 		nonseq_done:
 			return;
 		}
-		//Animate automatically if sequential
+		// Animate automatically if sequential
 		else
 		{
 			framenumber = texanim->material->attr_texId;
 			framenumber++;
-			//Reset if reached end of animation or incorrect initial frame
+			// Reset if reached end of animation or incorrect initial frame
 			if (framenumber > texanim->Frame2 || framenumber < texanim->Frame1) framenumber = texanim->Frame1;
 			texanim->material->attr_texId = framenumber;
-			//PrintDebug("Framenumber: %d\n", framenumber);
+			//PrintDebug("Framenumber for material %X: %d\n", texanim->material, framenumber);
 		}
 	}
 }
@@ -465,14 +504,14 @@ void AnimateUVs(UVAnimation *animation)
 	if (CurrentAct == animation->act || animation->act == -1)
 	{
 		int actualtimer = 1;
-		//Calculate animation speed if in 30 or 15 FPS mode
+		// Calculate animation speed if in 30 or 15 FPS mode
 		if (FramerateSetting > 1 && animation->timer > 1) actualtimer = animation->timer / 2; else actualtimer = animation->timer;
 		if (actualtimer == 0) actualtimer = 1;
 		if (animation->uv_pointer && animation->uv_count && FrameCounter % actualtimer == 0)
 		{
 			animation->v_shift += animation->v_speed;
 			animation->u_shift += animation->u_speed;
-			//Limit V +
+			// Limit V +
 			if (animation->v_shift > 510)
 			{
 				animation->v_shift -= 510;
@@ -481,7 +520,7 @@ void AnimateUVs(UVAnimation *animation)
 					animation->uv_pointer[i].v -= 510;
 				}
 			}
-			//Limit V -
+			// Limit V -
 			if (animation->v_shift < -510)
 			{
 				animation->v_shift += 510;
@@ -490,7 +529,7 @@ void AnimateUVs(UVAnimation *animation)
 					animation->uv_pointer[i].v += 510;
 				}
 			}
-			//Limit U +
+			// Limit U +
 			if (animation->u_shift > 510)
 			{
 				animation->u_shift -= 510;
@@ -499,7 +538,7 @@ void AnimateUVs(UVAnimation *animation)
 					animation->uv_pointer[i].u -= 510;
 				}
 			}
-			//Limit U -
+			// Limit U -
 			if (animation->u_shift < -510)
 			{
 				animation->u_shift += 510;
@@ -508,7 +547,7 @@ void AnimateUVs(UVAnimation *animation)
 					animation->uv_pointer[i].u += 510;
 				}
 			}
-			//Add U and V
+			// Add U and V
 			for (int i = 0; i < animation->uv_count; i++)
 			{
 				animation->uv_pointer[i].v += animation->v_speed;
@@ -522,156 +561,53 @@ void AnimateUVs(UVAnimation *animation)
 
 void ClearTextureAnimationData()
 {
-	for (int i = 0; i < LengthOfArray(TextureAnimationData); i++)
-	{
-		TextureAnimationData[i].act = -1;
-		TextureAnimationData[i].level = -1;
-		TextureAnimationData[i].material = nullptr;
-		TextureAnimationData[i].NonSequential = false;
-		TextureAnimationData[i].Speed = 0;
-		TextureAnimationData[i].Frame1 = 0;
-		TextureAnimationData[i].Frame2 = 0;
-		TextureAnimationData[i].Frame3 = 0;
-		TextureAnimationData[i].Frame4 = 0;
-		TextureAnimationData[i].Frame5 = 0;
-		TextureAnimationData[i].Frame6 = 0;
-		TextureAnimationData[i].Frame7 = 0;
-		TextureAnimationData[i].Frame8 = 0;
-		TextureAnimationData[i].Frame9 = 0;
-		TextureAnimationData[i].Frame10 = 0;
-		TextureAnimationData[i].Frame11 = 0;
-		TextureAnimationData[i].Frame12 = 0;
-		TextureAnimationData[i].Frame13 = 0;
-		TextureAnimationData[i].Frame14 = 0;
-		TextureAnimationData[i].Frame15 = 0;
-		TextureAnimationData[i].Frame16 = 0;
-	}
-	for (int i = 0; i < LengthOfArray(UVAnimationData); i++)
-	{
-		UVAnimationData[i].level = -1;
-		UVAnimationData[i].act = -1;
-		UVAnimationData[i].uv_pointer = nullptr;
-		UVAnimationData[i].uv_count = 0;
-		UVAnimationData[i].u_speed = 0;
-		UVAnimationData[i].v_speed = 0;
-		UVAnimationData[i].u_shift = 0;
-		UVAnimationData[i].v_shift = 0;
-		UVAnimationData[i].timer = 0;
-	}
+	TextureAnimationData.clear();
+	UVAnimationData.clear();
 }
 
 void AddTextureAnimation(int level, int act, NJS_MATERIAL* material, bool nonsequential, int speed, int frame1, int frame2, int frame3, int frame4, int frame5, int frame6, int frame7, int frame8, int frame9, int frame10, int frame11, int frame12, int frame13, int frame14, int frame15, int frame16)
 {
-	for (int i = 0; i < LengthOfArray(TextureAnimationData); i++)
+	// Check for duplicate materials
+	for (TextureAnimation i : TextureAnimationData)
 	{
-		if (TextureAnimationData[i].material == material && TextureAnimationData[i].act == act) return;
-		if (!TextureAnimationData[i].material)
-		{
-			TextureAnimationData[i].level = level;
-			TextureAnimationData[i].act = act;
-			TextureAnimationData[i].material = material;
-			TextureAnimationData[i].NonSequential = nonsequential;
-			TextureAnimationData[i].Speed = speed;
-			TextureAnimationData[i].Frame1 = frame1;
-			TextureAnimationData[i].Frame2 = frame2;
-			TextureAnimationData[i].Frame3 = frame3;
-			TextureAnimationData[i].Frame4 = frame4;
-			TextureAnimationData[i].Frame5 = frame5;
-			TextureAnimationData[i].Frame6 = frame6;
-			TextureAnimationData[i].Frame7 = frame7;
-			TextureAnimationData[i].Frame8 = frame8;
-			TextureAnimationData[i].Frame9 = frame9;
-			TextureAnimationData[i].Frame10 = frame10;
-			TextureAnimationData[i].Frame11 = frame11;
-			TextureAnimationData[i].Frame12 = frame12;
-			TextureAnimationData[i].Frame13 = frame13;
-			TextureAnimationData[i].Frame14 = frame14;
-			TextureAnimationData[i].Frame15 = frame15;
-			TextureAnimationData[i].Frame16 = frame16;
-			//PrintDebug("Added texture animation: level %d, act %d, frame1: %d, frame2: %d, ID %d\n", level, act, frame1, frame2, i);
+		if (i.material == material)
 			return;
-		}
 	}
-	PrintDebug("Unable to add animation: level %d, act %d, frame1 %d, frame2 %d\n", level, act, frame1, frame2);
+	TextureAnimationData.push_back({level, act, material, speed, nonsequential, frame1, frame2, frame3, frame4, frame5, frame6, frame7, frame8, frame9, frame10, frame11, frame12, frame13, frame14, frame15, frame16});
+			//PrintDebug("Added texture animation: level %d, act %d, frame1: %d, frame2: %d, ID %d\n", level, act, frame1, frame2, i);
 }
 
 void AddTextureAnimation_Permanent(int level, int act, NJS_MATERIAL* material, bool nonsequential, int speed, int frame1, int frame2, int frame3, int frame4, int frame5, int frame6, int frame7, int frame8, int frame9, int frame10, int frame11, int frame12, int frame13, int frame14, int frame15, int frame16)
 {
-	for (int i = 0; i < LengthOfArray(TextureAnimationData_Permanent); i++)
+	// Check for duplicate materials
+	for (TextureAnimation i : TextureAnimationData_Permanent)
 	{
-		if (TextureAnimationData_Permanent[i].material == material && TextureAnimationData_Permanent[i].act == act) return;
-		if (!TextureAnimationData_Permanent[i].material)
-		{
-			TextureAnimationData_Permanent[i].level = level;
-			TextureAnimationData_Permanent[i].act = act;
-			TextureAnimationData_Permanent[i].material = material;
-			TextureAnimationData_Permanent[i].NonSequential = nonsequential;
-			TextureAnimationData_Permanent[i].Speed = speed;
-			TextureAnimationData_Permanent[i].Frame1 = frame1;
-			TextureAnimationData_Permanent[i].Frame2 = frame2;
-			TextureAnimationData_Permanent[i].Frame3 = frame3;
-			TextureAnimationData_Permanent[i].Frame4 = frame4;
-			TextureAnimationData_Permanent[i].Frame5 = frame5;
-			TextureAnimationData_Permanent[i].Frame6 = frame6;
-			TextureAnimationData_Permanent[i].Frame7 = frame7;
-			TextureAnimationData_Permanent[i].Frame8 = frame8;
-			TextureAnimationData_Permanent[i].Frame9 = frame9;
-			TextureAnimationData_Permanent[i].Frame10 = frame10;
-			TextureAnimationData_Permanent[i].Frame11 = frame11;
-			TextureAnimationData_Permanent[i].Frame12 = frame12;
-			TextureAnimationData_Permanent[i].Frame13 = frame13;
-			TextureAnimationData_Permanent[i].Frame14 = frame14;
-			TextureAnimationData_Permanent[i].Frame15 = frame15;
-			TextureAnimationData_Permanent[i].Frame16 = frame16;
+		if (i.material == material)
 			return;
-		}
 	}
+	TextureAnimationData_Permanent.push_back({level, act, material, speed, nonsequential, frame1, frame2, frame3, frame4, frame5, frame6, frame7, frame8, frame9, frame10, frame11, frame12, frame13, frame14, frame15, frame16});
 }
 
 void AddUVAnimation(int level, int act, NJS_TEX* uv, int uv_count, int timer, int u_speed, int v_speed)
 {
-	for (int i = 0; i < LengthOfArray(UVAnimationData); i++)
+	// Check for duplicate UVs
+	for (UVAnimation i : UVAnimationData)
 	{
-		if (UVAnimationData[i].uv_pointer == uv) 
-		{
-			//PrintDebug("Duplicate UVs found\n");
+		if (i.uv_pointer == uv)
 			return;
-		}
-		if (!UVAnimationData[i].uv_pointer)
-		{
-			UVAnimationData[i].level = level;
-			UVAnimationData[i].act = act;
-			UVAnimationData[i].uv_pointer = uv;
-			UVAnimationData[i].uv_count = uv_count;
-			UVAnimationData[i].u_speed = u_speed;
-			UVAnimationData[i].v_speed = v_speed;
-			UVAnimationData[i].timer = timer;
-			return;
-		}
 	}
+	UVAnimationData.push_back({level, act, uv, uv_count, timer, u_speed, v_speed});
 }
 
 void AddUVAnimation_Permanent(int level, int act, NJS_TEX* uv, int uv_count, int timer, int u_speed, int v_speed)
 {
-	for (int i = 0; i < LengthOfArray(UVAnimationData_Permanent); i++)
+	// Check for duplicate UVs
+	for (UVAnimation i : UVAnimationData_Permanent)
 	{
-		if (UVAnimationData_Permanent[i].uv_pointer == uv && UVAnimationData_Permanent[i].level == level && UVAnimationData_Permanent[i].act == act)
-		{
-			//PrintDebug("Duplicate UVs found\n");
+		if (i.uv_pointer == uv)
 			return;
-		}
-		if (!UVAnimationData_Permanent[i].uv_pointer)
-		{
-			UVAnimationData_Permanent[i].level = level;
-			UVAnimationData_Permanent[i].act = act;
-			UVAnimationData_Permanent[i].uv_pointer = uv;
-			UVAnimationData_Permanent[i].uv_count = uv_count;
-			UVAnimationData_Permanent[i].u_speed = u_speed;
-			UVAnimationData_Permanent[i].v_speed = v_speed;
-			UVAnimationData_Permanent[i].timer = timer;
-			return;
-		}
 	}
+	UVAnimationData_Permanent.push_back({level, act, uv, uv_count, timer, u_speed, v_speed});
 }
 
 void RemoveMaterialColors(NJS_MATERIAL* material)
@@ -684,7 +620,7 @@ void RemoveMaterialColors(NJS_MATERIAL* material)
 bool ForceWhiteDiffuse(NJS_MATERIAL* material, uint32_t flags)
 {
 	diffuse_override(true);
-	diffuse_override_rgb(1, 1, 1);
+	diffuse_override_rgb(1, 1, 1, false);
 	return true;
 }
 
@@ -867,8 +803,7 @@ void AddAlphaRejectMaterial(NJS_MATERIAL *material)
 {
 	if (DLLLoaded_Lantern)
 	{
-		TemporaryMaterialArray[0] = material;
-		material_register(TemporaryMaterialArray, 1, DisableAlphaRejection);
+		material_register(&material, 1, DisableAlphaRejection);
 	}
 }
 
@@ -876,8 +811,7 @@ void AddWhiteDiffuseMaterial(NJS_MATERIAL *material)
 {
 	if (DLLLoaded_Lantern && EnableWhiteDiffuse)
 	{
-		TemporaryMaterialArray[0] = material;
-		material_register(TemporaryMaterialArray, 1, ForceWhiteDiffuse);
+		material_register(&material, 1, ForceWhiteDiffuse);
 	}
 }
 
@@ -885,9 +819,8 @@ void AddWhiteDiffuseMaterial_Specular3(NJS_MATERIAL *material)
 {
 	if (DLLLoaded_Lantern)
 	{
-		TemporaryMaterialArray[0] = material;
-		if (EnableWhiteDiffuse) material_register(TemporaryMaterialArray, 1, ForceWhiteDiffuse1Specular3);
-		else material_register(TemporaryMaterialArray, 1, ForceSpecular3);
+		if (EnableWhiteDiffuse) material_register(&material, 1, ForceWhiteDiffuse1Specular3);
+		else material_register(&material, 1, ForceSpecular3);
 	}
 }
 
@@ -895,8 +828,7 @@ void AddWhiteDiffuseNightMaterial(NJS_MATERIAL* material)
 {
 	if (DLLLoaded_Lantern && EnableWhiteDiffuse)
 	{
-		TemporaryMaterialArray[0] = material;
-		material_register(TemporaryMaterialArray, 1, ForceWhiteDiffuse3_Night);
+		material_register(&material, 1, ForceWhiteDiffuse3_Night);
 	}
 }
 
@@ -904,8 +836,7 @@ void RemoveWhiteDiffuseNightMaterial(NJS_MATERIAL* material)
 {
 	if (DLLLoaded_Lantern && EnableWhiteDiffuse)
 	{
-		TemporaryMaterialArray[0] = material;
-		material_unregister(TemporaryMaterialArray, 1, ForceWhiteDiffuse3_Night);
+		material_unregister(&material, 1, ForceWhiteDiffuse3_Night);
 	}
 }
 
@@ -913,8 +844,7 @@ void AddBossMaterial(NJS_MATERIAL *material)
 {
 	if (DLLLoaded_Lantern)
 	{
-		TemporaryMaterialArray[0] = material;
-		material_register(TemporaryMaterialArray, 1, ForceDiffuse4Specular5);
+		material_register(&material, 1, ForceDiffuse4Specular5);
 	}
 }
 
@@ -935,8 +865,7 @@ void RemoveAlphaRejectMaterial(NJS_MATERIAL *material)
 {
 	if (DLLLoaded_Lantern)
 	{
-		TemporaryMaterialArray[0] = material;
-		material_unregister(TemporaryMaterialArray, 1, DisableAlphaRejection);
+		material_unregister(&material, 1, DisableAlphaRejection);
 	}
 }
 
@@ -944,8 +873,7 @@ void RemoveWhiteDiffuseMaterial(NJS_MATERIAL *material)
 {
 	if (DLLLoaded_Lantern && EnableWhiteDiffuse)
 	{
-		TemporaryMaterialArray[0] = material;
-		material_unregister(TemporaryMaterialArray, 1, ForceWhiteDiffuse);
+		material_unregister(&material, 1, ForceWhiteDiffuse);
 	}
 }
 
@@ -953,18 +881,17 @@ void RemoveWhiteDiffuseMaterial_Specular3(NJS_MATERIAL *material)
 {
 	if (DLLLoaded_Lantern)
 	{
-		TemporaryMaterialArray[0] = material;
-		if (EnableWhiteDiffuse) material_unregister(TemporaryMaterialArray, 1, ForceWhiteDiffuse1Specular3);
-		else material_unregister(TemporaryMaterialArray, 1, ForceSpecular3);
+		if (EnableWhiteDiffuse) material_unregister(&material, 1, ForceWhiteDiffuse1Specular3);
+		else material_unregister(&material, 1, ForceSpecular3);
 	}
 }
 
 void CheckModelForWhiteDiffuse(NJS_MODEL_SADX *model, int ignorelightmaterial)
 {
 	Uint32 materialflags;
-	if (model->mats[model->meshsets[0].type_matId & ~0xC000].attrflags & NJD_FLAG_USE_ENV) return; //First mesh
-	if (model->mats[ignorelightmaterial + 1].attrflags & NJD_FLAG_USE_ENV) return; //Material after the white diffuse one
-	if (model->mats[ignorelightmaterial + 1].attrflags & NJD_FLAG_IGNORE_SPECULAR) return; //Material after the white diffuse one
+	if (model->mats[model->meshsets[0].type_matId & ~0xC000].attrflags & NJD_FLAG_USE_ENV) return; // First mesh
+	if (model->mats[ignorelightmaterial + 1].attrflags & NJD_FLAG_USE_ENV) return; // Material after the white diffuse one
+	if (model->mats[ignorelightmaterial + 1].attrflags & NJD_FLAG_IGNORE_SPECULAR) return; // Material after the white diffuse one
 	for (int q = ignorelightmaterial + 1; q < model->nbMat; ++q)
 	{
 		materialflags = model->mats[q].attrflags;
@@ -982,7 +909,7 @@ void ProcessMaterials_Object(NJS_OBJECT *obj)
 	Uint32 materialflags;
 	bool ignorelight = false;
 	bool ignorespecular = false;
-	//Check meshsets and remove vertex colors, if any
+	// Check meshsets and remove vertex colors, if any
 	if (obj->basicdxmodel)
 	{
 		for (int k = 0; k < obj->basicdxmodel->nbMeshset; ++k)
@@ -992,7 +919,7 @@ void ProcessMaterials_Object(NJS_OBJECT *obj)
 				obj->basicdxmodel->meshsets[k].vertcolor = nullptr;
 			}
 		}
-		//Check the first material for NJD_FLAG_IGNORE_SPECULAR and adjust the rest of the materials accordingly
+		// Check the first material for NJD_FLAG_IGNORE_SPECULAR and adjust the rest of the materials accordingly
 		if (obj->basicdxmodel->mats[0].attrflags & NJD_FLAG_IGNORE_SPECULAR) ignorespecular = true; else ignorespecular = false;
 		for (int k = 1; k < obj->basicdxmodel->nbMat; ++k)
 		{
@@ -1006,22 +933,22 @@ void ProcessMaterials_Object(NJS_OBJECT *obj)
 				if ((materialflags & NJD_FLAG_IGNORE_SPECULAR)) obj->basicdxmodel->mats[k].attrflags &= ~NJD_FLAG_IGNORE_SPECULAR;
 			}
 		}
-		//Check materials
+		// Check materials
 		for (int k = 0; k < obj->basicdxmodel->nbMat; ++k)
 		{
-			//Remove material colors
+			// Remove material colors
 			obj->basicdxmodel->mats[k].diffuse.argb.r = 0xFF;
 			obj->basicdxmodel->mats[k].diffuse.argb.g = 0xFF;
 			obj->basicdxmodel->mats[k].diffuse.argb.b = 0xFF;
 			materialflags = obj->basicdxmodel->mats[k].attrflags;
-			//Check for alpha rejection flag
+			// Check for alpha rejection flag
 			if (materialflags & NJD_CUSTOMFLAG_NO_REJECT)
 			{
 				AddAlphaRejectMaterial((NJS_MATERIAL*)&obj->basicdxmodel->mats[obj->basicdxmodel->meshsets[k].type_matId & ~0xC000]);
 			}
 		}
 	}
-	//Process materials of child and sibling models as well
+	// Process materials of child and sibling models as well
 	if (obj->child != nullptr) ProcessMaterials_Object(obj->child);
 	if (obj->sibling != nullptr) ProcessMaterials_Object(obj->sibling);
 }
@@ -1047,172 +974,32 @@ void LoadModel_ReplaceMeshes(NJS_OBJECT *object, const char *ModelName)
 	}
 	if (object->child) SwapModel(object->child, object2->child);
 	if (object->sibling) SwapModel(object->sibling, object2->sibling);
+	RemoveVertexColors_Object(object);
 	//PrintDebug("OK\n");
 }
 
 void SwapMeshsets(NJS_OBJECT* object, int mesh1, int mesh2)
 {
-	//Save mesh 1 data to a temporary meshset
-	TempMeshset.attrs = object->basicdxmodel->meshsets[mesh1].attrs;
-	TempMeshset.buffer = object->basicdxmodel->meshsets[mesh1].buffer;
-	TempMeshset.meshes = object->basicdxmodel->meshsets[mesh1].meshes;
-	TempMeshset.nbMesh = object->basicdxmodel->meshsets[mesh1].nbMesh;
-	TempMeshset.normals = object->basicdxmodel->meshsets[mesh1].normals;
-	TempMeshset.type_matId = object->basicdxmodel->meshsets[mesh1].type_matId;
-	TempMeshset.vertcolor = object->basicdxmodel->meshsets[mesh1].vertcolor;
-	TempMeshset.vertuv = object->basicdxmodel->meshsets[mesh1].vertuv;
-	//Replace mesh 1 data with mesh 2 data
-	object->basicdxmodel->meshsets[mesh1].attrs = object->basicdxmodel->meshsets[mesh2].attrs;
-	object->basicdxmodel->meshsets[mesh1].buffer = object->basicdxmodel->meshsets[mesh2].buffer;
-	object->basicdxmodel->meshsets[mesh1].meshes = object->basicdxmodel->meshsets[mesh2].meshes;
-	object->basicdxmodel->meshsets[mesh1].nbMesh = object->basicdxmodel->meshsets[mesh2].nbMesh;
-	object->basicdxmodel->meshsets[mesh1].normals = object->basicdxmodel->meshsets[mesh2].normals;
-	object->basicdxmodel->meshsets[mesh1].type_matId = object->basicdxmodel->meshsets[mesh2].type_matId;
-	object->basicdxmodel->meshsets[mesh1].vertcolor = object->basicdxmodel->meshsets[mesh2].vertcolor;
-	object->basicdxmodel->meshsets[mesh1].vertuv = object->basicdxmodel->meshsets[mesh2].vertuv;
-	//Replace mesh 2 data with saved mesh 1 data
-	object->basicdxmodel->meshsets[mesh2].attrs = TempMeshset.attrs;
-	object->basicdxmodel->meshsets[mesh2].buffer = TempMeshset.buffer;
-	object->basicdxmodel->meshsets[mesh2].meshes = TempMeshset.meshes;
-	object->basicdxmodel->meshsets[mesh2].nbMesh = TempMeshset.nbMesh;
-	object->basicdxmodel->meshsets[mesh2].normals = TempMeshset.normals;
-	object->basicdxmodel->meshsets[mesh2].type_matId = TempMeshset.type_matId;
-	object->basicdxmodel->meshsets[mesh2].vertcolor = TempMeshset.vertcolor;
-	object->basicdxmodel->meshsets[mesh2].vertuv = TempMeshset.vertuv;
+	memcpy(&TempMeshset, &object->basicdxmodel->meshsets[mesh1], sizeof(NJS_MESHSET_SADX));
+	memcpy(&object->basicdxmodel->meshsets[mesh1], &object->basicdxmodel->meshsets[mesh2], sizeof(NJS_MESHSET_SADX));
+	memcpy(&object->basicdxmodel->meshsets[mesh2], &TempMeshset, sizeof(NJS_MESHSET_SADX));
 }
 
-void SortModel(NJS_OBJECT *object)
-{
-	bool DebugSorting = false;
-	if (DebugSorting) PrintDebug("\nSorting model\n");
-	int tempcounter_transparent = 0;
-	int tempcounter_opaque = 0;
-	//Prepare the arrays
-	for (int k = 0; k < 16; ++k)
-	{
-		OpaqueMeshes[k] = -1;
-		TransparentMeshes[k] = -1;
-	}
-	//Iterate through meshsets
-	if (object->basicdxmodel)
-	{
-		for (int k = 0; k < object->basicdxmodel->nbMeshset; ++k)
-		{
-			//Scan for transparent materials
-			if (object->basicdxmodel->mats[object->basicdxmodel->meshsets[k].type_matId & ~0xC000].attrflags & NJD_FLAG_USE_ALPHA)
-			{
-				tempmaterialarray_transparent[tempcounter_transparent].attrflags = object->basicdxmodel->mats[object->basicdxmodel->meshsets[k].type_matId & ~0xC000].attrflags;
-				tempmaterialarray_transparent[tempcounter_transparent].attr_texId = object->basicdxmodel->mats[object->basicdxmodel->meshsets[k].type_matId & ~0xC000].attr_texId;
-				tempmaterialarray_transparent[tempcounter_transparent].diffuse = object->basicdxmodel->mats[object->basicdxmodel->meshsets[k].type_matId & ~0xC000].diffuse;
-				tempmaterialarray_transparent[tempcounter_transparent].specular = object->basicdxmodel->mats[object->basicdxmodel->meshsets[k].type_matId & ~0xC000].specular;
-				tempmaterialarray_transparent[tempcounter_transparent].exponent = object->basicdxmodel->mats[object->basicdxmodel->meshsets[k].type_matId & ~0xC000].exponent;
-				tempmeshsetarray_transparent[tempcounter_transparent].attrs = object->basicdxmodel->meshsets[k].attrs;
-				tempmeshsetarray_transparent[tempcounter_transparent].buffer = object->basicdxmodel->meshsets[k].buffer;
-				tempmeshsetarray_transparent[tempcounter_transparent].meshes = object->basicdxmodel->meshsets[k].meshes;
-				tempmeshsetarray_transparent[tempcounter_transparent].nbMesh = object->basicdxmodel->meshsets[k].nbMesh;
-				tempmeshsetarray_transparent[tempcounter_transparent].normals = object->basicdxmodel->meshsets[k].normals;
-				tempmeshsetarray_transparent[tempcounter_transparent].vertcolor = object->basicdxmodel->meshsets[k].vertcolor;
-				tempmeshsetarray_transparent[tempcounter_transparent].vertuv = object->basicdxmodel->meshsets[k].vertuv;
-				tempmeshsetarray_transparent[tempcounter_transparent].type_matId = object->basicdxmodel->meshsets[k].type_matId;
-				TransparentMeshes[tempcounter_transparent] = k;
-				tempcounter_transparent++;
-				if (DebugSorting) PrintDebug("Added transparent mesh: %d\n", k);
-			}
-			//Scan for opaque materials
-			else
-			{
-				tempmaterialarray_opaque[tempcounter_opaque].attrflags = object->basicdxmodel->mats[object->basicdxmodel->meshsets[k].type_matId & ~0xC000].attrflags;
-				tempmaterialarray_opaque[tempcounter_opaque].attr_texId = object->basicdxmodel->mats[object->basicdxmodel->meshsets[k].type_matId & ~0xC000].attr_texId;
-				tempmaterialarray_opaque[tempcounter_opaque].diffuse = object->basicdxmodel->mats[object->basicdxmodel->meshsets[k].type_matId & ~0xC000].diffuse;
-				tempmaterialarray_opaque[tempcounter_opaque].specular = object->basicdxmodel->mats[object->basicdxmodel->meshsets[k].type_matId & ~0xC000].specular;
-				tempmaterialarray_opaque[tempcounter_opaque].exponent = object->basicdxmodel->mats[object->basicdxmodel->meshsets[k].type_matId & ~0xC000].exponent;
-				tempmeshsetarray_opaque[tempcounter_opaque].attrs = object->basicdxmodel->meshsets[k].attrs;
-				tempmeshsetarray_opaque[tempcounter_opaque].buffer = object->basicdxmodel->meshsets[k].buffer;
-				tempmeshsetarray_opaque[tempcounter_opaque].meshes = object->basicdxmodel->meshsets[k].meshes;
-				tempmeshsetarray_opaque[tempcounter_opaque].nbMesh = object->basicdxmodel->meshsets[k].nbMesh;
-				tempmeshsetarray_opaque[tempcounter_opaque].normals = object->basicdxmodel->meshsets[k].normals;
-				tempmeshsetarray_opaque[tempcounter_opaque].vertcolor = object->basicdxmodel->meshsets[k].vertcolor;
-				tempmeshsetarray_opaque[tempcounter_opaque].vertuv = object->basicdxmodel->meshsets[k].vertuv;
-				tempmeshsetarray_opaque[tempcounter_opaque].type_matId = object->basicdxmodel->meshsets[k].type_matId;
-				OpaqueMeshes[tempcounter_opaque] = k;
-				tempcounter_opaque++;
-				if (DebugSorting) PrintDebug("Added opaque mesh: %d\n", k);
-			}
-		}
-		//Now sort the model by listing opaque materials first
-		for (int k = 0; k < tempcounter_opaque; ++k)
-		{
-			if (OpaqueMeshes[k] != -1)
-			{
-				object->basicdxmodel->mats[k].attrflags = tempmaterialarray_opaque[k].attrflags;
-				object->basicdxmodel->mats[k].attr_texId = tempmaterialarray_opaque[k].attr_texId;
-				object->basicdxmodel->mats[k].diffuse = tempmaterialarray_opaque[k].diffuse;
-				object->basicdxmodel->mats[k].specular = tempmaterialarray_opaque[k].specular;
-				object->basicdxmodel->mats[k].exponent = tempmaterialarray_opaque[k].exponent;
-				object->basicdxmodel->meshsets[k].attrs = tempmeshsetarray_opaque[k].attrs;
-				object->basicdxmodel->meshsets[k].buffer = tempmeshsetarray_opaque[k].buffer;
-				object->basicdxmodel->meshsets[k].meshes = tempmeshsetarray_opaque[k].meshes;
-				object->basicdxmodel->meshsets[k].nbMesh = tempmeshsetarray_opaque[k].nbMesh;
-				object->basicdxmodel->meshsets[k].normals = tempmeshsetarray_opaque[k].normals;
-				object->basicdxmodel->meshsets[k].vertcolor = tempmeshsetarray_opaque[k].vertcolor;
-				object->basicdxmodel->meshsets[k].vertuv = tempmeshsetarray_opaque[k].vertuv;
-				object->basicdxmodel->meshsets[k].type_matId = k | 0xC000;
-				if (DebugSorting) PrintDebug("Opaque meshset ID %d added\n", k);
-			}
-		}
-		//Continue sorting by adding transparent materials
-		for (int q = 0; q < tempcounter_transparent; ++q)
-		{
-			if (TransparentMeshes[q] != -1)
-			{
-				object->basicdxmodel->mats[tempcounter_opaque + q].attrflags = tempmaterialarray_transparent[q].attrflags;
-				object->basicdxmodel->mats[tempcounter_opaque + q].attr_texId = tempmaterialarray_transparent[q].attr_texId;
-				object->basicdxmodel->mats[tempcounter_opaque + q].diffuse = tempmaterialarray_transparent[q].diffuse;
-				object->basicdxmodel->mats[tempcounter_opaque + q].specular = tempmaterialarray_transparent[q].specular;
-				object->basicdxmodel->mats[tempcounter_opaque + q].exponent = tempmaterialarray_transparent[q].exponent;
-				object->basicdxmodel->meshsets[tempcounter_opaque + q].attrs = tempmeshsetarray_transparent[q].attrs;
-				object->basicdxmodel->meshsets[tempcounter_opaque + q].buffer = tempmeshsetarray_transparent[q].buffer;
-				object->basicdxmodel->meshsets[tempcounter_opaque + q].meshes = tempmeshsetarray_transparent[q].meshes;
-				object->basicdxmodel->meshsets[tempcounter_opaque + q].nbMesh = tempmeshsetarray_transparent[q].nbMesh;
-				object->basicdxmodel->meshsets[tempcounter_opaque + q].normals = tempmeshsetarray_transparent[q].normals;
-				object->basicdxmodel->meshsets[tempcounter_opaque + q].vertcolor = tempmeshsetarray_transparent[q].vertcolor;
-				object->basicdxmodel->meshsets[tempcounter_opaque + q].vertuv = tempmeshsetarray_transparent[q].vertuv;
-				object->basicdxmodel->meshsets[tempcounter_opaque + q].type_matId = (tempcounter_opaque + q) | 0xC000;
-				if (DebugSorting) PrintDebug("Transparent meshset ID %d added\n", q);
-			}
-			if (DebugSorting)
-			{
-				for (int k = 0; k < object->basicdxmodel->nbMat; ++k)
-				{
-					PrintDebug("Material %d: texid %d\n", k, object->basicdxmodel->mats[k].attr_texId);
-				}
-				for (int k = 0; k < object->basicdxmodel->nbMeshset; ++k)
-				{
-					if (object->basicdxmodel->meshsets[k].type_matId & 0xC000) PrintDebug("Meshset %d: matid %d\n", k, object->basicdxmodel->meshsets[k].type_matId & ~0xC000);
-					else if (object->basicdxmodel->meshsets[k].type_matId & 0x8000) PrintDebug("Meshset %d: matid %d\n", k, object->basicdxmodel->meshsets[k].type_matId & ~0x8000);
-					else if (object->basicdxmodel->meshsets[k].type_matId & 0x4000) PrintDebug("Meshset %d: matid %d\n", k, object->basicdxmodel->meshsets[k].type_matId & ~0x4000);
-					else PrintDebug("Meshset %d: matid %d\n", k, object->basicdxmodel->meshsets[k].type_matId);
-				}
-				PrintDebug("Total opaque materials: %d\n", tempcounter_opaque);
-				PrintDebug("Total transparent materials: %d\n", tempcounter_transparent);
-				PrintDebug("Sorting complete\n\n");
-			}
-		}
-		//Also sort child and sibling objects
-	}
-	if (object->child != nullptr) SortModel(object->child);
-	if (object->sibling != nullptr) SortModel(object->sibling);
-}
-
-NJS_OBJECT* LoadModel(const char *ModelName, bool sort)
+NJS_OBJECT* LoadModel(const char *ModelName)
 {
 	//PrintDebug("Loading model: %s: ", HelperFunctionsGlobal.GetReplaceablePath(ModelName));
 	ModelInfo *info = new ModelInfo(HelperFunctionsGlobal.GetReplaceablePath(ModelName));
 	NJS_OBJECT *object = info->getmodel();
-	if (sort) SortModel(object);
 	ProcessMaterials_Object(object);
 	//PrintDebug("OK\n");
 	return object;
+}
+
+NJS_MOTION* LoadAnimation(const char* AnimationName)
+{
+	AnimationFile* animfile = new AnimationFile(HelperFunctionsGlobal.GetReplaceablePath(AnimationName));
+	NJS_MOTION* motion = animfile->getmotion();
+	return motion;
 }
 
 void ForceLevelSpecular_Object(NJS_OBJECT *obj, bool recursive)
@@ -1255,42 +1042,42 @@ void ForceObjectSpecular_Object(NJS_OBJECT *obj, bool recursive)
 void RegisterLanternMaterial(NJS_MATERIAL* material, int diffuse, int specular, bool unregister)
 {
 	//PrintDebug("Registering Lantern material with diffuse %d, specular %d, unregister: %d\n", diffuse, specular, unregister);
-	TemporaryMaterialArray[0] = material;
+	material_register(&material, 1, ForceDiffuse0Specular0);
 	if (!DLLLoaded_Lantern) return;
 	if (diffuse == 0 && specular == 0)
 	{
-		if (!unregister) material_register(TemporaryMaterialArray, 1, ForceDiffuse0Specular0);
-		else material_unregister(TemporaryMaterialArray, 1, ForceDiffuse0Specular0);
+		if (!unregister) material_register(&material, 1, ForceDiffuse0Specular0);
+		else material_unregister(&material, 1, ForceDiffuse0Specular0);
 		return;
 	}
 	if (diffuse == 0 && specular == 1)
 	{
-		if (!unregister) material_register(TemporaryMaterialArray, 1, ForceDiffuse0Specular1);
-		else material_unregister(TemporaryMaterialArray, 1, ForceDiffuse0Specular1);
+		if (!unregister) material_register(&material, 1, ForceDiffuse0Specular1);
+		else material_unregister(&material, 1, ForceDiffuse0Specular1);
 		return;
 	}
 	if (diffuse == 2 && specular == 2)
 	{
-		if (!unregister) material_register(TemporaryMaterialArray, 1, ForceDiffuse2Specular2);
-		else material_unregister(TemporaryMaterialArray, 1, ForceDiffuse2Specular2);
+		if (!unregister) material_register(&material, 1, ForceDiffuse2Specular2);
+		else material_unregister(&material, 1, ForceDiffuse2Specular2);
 		return;
 	}
 	if (diffuse == 2 && specular == 3)
 	{
-		if (!unregister) material_register(TemporaryMaterialArray, 1, ForceDiffuse2Specular3);
-		else material_unregister(TemporaryMaterialArray, 1, ForceDiffuse2Specular3);
+		if (!unregister) material_register(&material, 1, ForceDiffuse2Specular3);
+		else material_unregister(&material, 1, ForceDiffuse2Specular3);
 		return;
 	}
 	if (diffuse == 4 && specular == 4)
 	{
-		if (!unregister) material_register(TemporaryMaterialArray, 1, ForceDiffuse4Specular4);
-		else material_unregister(TemporaryMaterialArray, 1, ForceDiffuse4Specular4);
+		if (!unregister) material_register(&material, 1, ForceDiffuse4Specular4);
+		else material_unregister(&material, 1, ForceDiffuse4Specular4);
 		return;
 	}
 	if (diffuse == 4 && specular == 5)
 	{
-		if (!unregister) material_register(TemporaryMaterialArray, 1, ForceDiffuse4Specular5);
-		else material_unregister(TemporaryMaterialArray, 1, ForceDiffuse4Specular5);
+		if (!unregister) material_register(&material, 1, ForceDiffuse4Specular5);
+		else material_unregister(&material, 1, ForceDiffuse4Specular5);
 		return;
 	}
 }
@@ -1347,13 +1134,278 @@ void RemoveTransparency_Object(NJS_OBJECT* obj, bool recursive)
 	}
 }
 
-void HideAllButOneMesh(NJS_OBJECT *obj, int meshID)
+void DrawLandtableCallback_NoZWrite(NJS_MODEL_SADX* model)
 {
+	if (DroppedFrames) return;
+	Direct3D_EnableZWrite(0);
+	dsDrawModel(model);
+	Direct3D_EnableZWrite(1u);
+}
+
+void DrawLandtableCallback_ZWrite(NJS_MODEL_SADX* model)
+{
+	if (DroppedFrames) return;
+	dsDrawModel(model);
+}
+
+
+// void __usercall(NJS_OBJECT *a1@<edi>, COL *a2)
+static const void* const land_DrawObjectPtr = (void*)0x43A570;
+static inline void land_DrawObjectOriginal(NJS_OBJECT* a1, _OBJ_LANDENTRY* a2)
+{
+	__asm
+	{
+		push[a2]
+		mov edi, [a1]
+		call land_DrawObjectPtr
+		add esp, 4
+	}
+}
+
+// Landtable draw hook
+// This uses the normally unused "Y width" and "Z width" COL item fields to manipulate depth.
+// The Z width value is used in the following ways:
+//  0: Ignore
+// -1: Put the COL items on a list to render after the skybox
+//  Value other than -1 or 0: used as depth for the callback function
+void land_DrawObject_New(NJS_OBJECT* a1, _OBJ_LANDENTRY* a2)
+{
+	NJS_MODEL_SADX* v2; // esi
+	Uint32 flags; // ecx
+
+	// Call the original function if the level is disabled
+	int levelid = -1;
+	switch (CurrentChaoStage)
+	{
+	case SADXChaoStage_Race:
+		levelid = LevelIDs_ChaoRace;
+		break;
+	case SADXChaoStage_StationSquare:
+		levelid = LevelIDs_SSGarden;
+		break;
+	case SADXChaoStage_EggCarrier:
+		levelid = LevelIDs_ECGarden;
+		break;
+	case SADXChaoStage_MysticRuins:
+		levelid = LevelIDs_MRGarden;
+		break;
+	case -1:
+	default:
+		levelid = CurrentLevel;
+		break;
+	}
+
+	if (!EnabledLevels[levelid])
+	{
+		land_DrawObjectOriginal(a1, a2);
+		return;
+	}
+
+	// Call the original function if no additional depth data is found
+	if (a2->yWidth == 0 && a2->zWidth == 0)
+	{
+		land_DrawObjectOriginal(a1, a2);
+		return;
+	}
+
+	v2 = a1->basicdxmodel;
+	if (!IsVisible(&v2->center, v2->r))
+		return;
+		
+	flags = a2->slAttribute;
+	int queueFlags = QueuedModelFlagsB_EnableZWrite;
+
+	// Draw with callback
+	if (a2->zWidth != 0 && a2->zWidth != -1)
+	{
+		if (flags & SurfaceFlags_Waterfall) // Disable Z Write for the callback function
+			DrawModelCallback_QueueModel(DrawLandtableCallback_NoZWrite, v2, a2->zWidth, (QueuedModelFlagsB)queueFlags);
+		else
+			DrawModelCallback_QueueModel(DrawLandtableCallback_ZWrite, v2, a2->zWidth, (QueuedModelFlagsB)queueFlags);
+		return;
+	}
+
+	// Disable Z Write
+	if (flags & SurfaceFlags_NoZWrite)
+	{
+		if (flags & SurfaceFlags_Waterfall)
+			queueFlags = QueuedModelFlagsB_3;
+		else
+			queueFlags = 0; // Regular flag
+	}
+
+	// Alternative queue flags
+	else if (flags & SurfaceFlags_Waterfall)
+		queueFlags = QueuedModelFlagsB_SomeTextureThing;
+	
+	// Set depth
+	DrawQueueDepthBias = a2->yWidth;
+
+	// Draw by Mesh
+	if (flags & SurfaceFlags_DrawByMesh)
+	{
+		late_DrawModelClipMesh(v2, queueFlags, 1.0f);
+		DrawQueueDepthBias = 0.0f;
+		return;
+	}
+
+	// Draw regular transparent (early)
+	else if (flags & SurfaceFlags_LowDepth)
+	{
+		ds_DrawModelClip(v2, 1.0f);
+		DrawQueueDepthBias = 0.0f;
+		return;
+	}
+
+	// Draw regular transparent (late)
+	else
+	{
+		late_DrawModelClip(v2, queueFlags, 1.0f);
+		DrawQueueDepthBias = 0.0f;
+		return;
+	}
+}
+
+NJS_MODEL_SADX* CloneAttach(NJS_MODEL_SADX* att)
+{
+	NJS_MODEL_SADX* newatt = new NJS_MODEL_SADX;
+	newatt->buffer = nullptr;
+	newatt->center = att->center;
+	newatt->r = att->r;
+	newatt->nbMat = att->nbMat;
+	newatt->nbPoint = att->nbPoint;
+	newatt->nbMeshset = att->nbMeshset;
+
+	// Vertices and normals
+	if (att->points != NULL)
+	{
+		newatt->points = new NJS_VECTOR[att->nbPoint];
+		memcpy(newatt->points, att->points, att->nbPoint * sizeof(NJS_VECTOR));
+	}
+	else
+		newatt->points = NULL;
+	if (att->normals != NULL)
+	{
+		newatt->normals = new NJS_VECTOR[att->nbPoint];
+		memcpy(newatt->normals, att->normals, att->nbPoint * sizeof(NJS_VECTOR));
+	}
+	else
+		newatt->normals = NULL;
+
+	// Meshsets
+	if (att->nbMeshset > 0)
+	{
+		newatt->meshsets = new NJS_MESHSET_SADX[att->nbMeshset];
+		memcpy(newatt->meshsets, att->meshsets, att->nbMeshset * sizeof(NJS_MESHSET_SADX));
+	}
+	else
+		newatt->meshsets = NULL;
+
+	// Materials
+	if (att->nbMat > 0)
+	{
+		newatt->mats = new NJS_MATERIAL[att->nbMat];
+		memcpy(newatt->mats, att->mats, att->nbMat * sizeof(NJS_MATERIAL));
+	}
+	else
+		newatt->mats = NULL;
+	return newatt;
+}
+
+NJS_OBJECT* CloneObject(NJS_OBJECT* obj)
+{
+	NJS_OBJECT* newobj = new NJS_OBJECT;
+	newobj->ang[0] = obj->ang[0];
+	newobj->ang[1] = obj->ang[1];
+	newobj->ang[2] = obj->ang[2];
+	newobj->evalflags = obj->evalflags;
+	newobj->pos[0] = obj->pos[0];
+	newobj->pos[1] = obj->pos[1];
+	newobj->pos[2] = obj->pos[2];
+	newobj->scl[0] = obj->scl[0];
+	newobj->scl[1] = obj->scl[1];
+	newobj->scl[2] = obj->scl[2];
+
+	// Model
 	if (obj->basicdxmodel)
 	{
-		for (int k = 0; k < obj->basicdxmodel->nbMeshset; ++k)
+		newobj->basicdxmodel = CloneAttach(obj->basicdxmodel);
+	}
+	else
+		newobj->basicdxmodel = NULL;
+
+	// Child
+	if (obj->child)
+		newobj->child = CloneObject(obj->child);
+	else
+		newobj->child = NULL;
+
+	// Sibling
+	if (obj->sibling)
+		newobj->sibling = CloneObject(obj->sibling);
+	else
+		newobj->sibling = NULL;
+
+	return newobj;
+}
+
+// Stuff that draws after the skybox. This can be used in levels that make the skybox draw after level items (i.e. most levels).
+void __cdecl LateDrawLand_Display(task* a1)
+{
+	NJS_MATRIX matrix;
+	if (!LateDrawLand)
+		return;
+	if (!MissedFrames && !isTextureNG(LateDrawLand->TexList))
+	{
+		for (int i : LateDrawLandList)
 		{
-			if (k != meshID) HideMesh_Model(obj->basicdxmodel, k);
+			COL colitem = LateDrawLand->Col[i];
+			NJS_OBJECT* colmodel = colitem.Model;
+			njGetMatrix(matrix);
+			njSetTexture(LateDrawLand->TexList);
+			njTranslateEx((NJS_VECTOR*)&colmodel->pos);
+			njRotateXYZ(0, colmodel->ang[0], colmodel->ang[1], colmodel->ang[2]);
+			land_DrawObject_New(colmodel, (_OBJ_LANDENTRY*)&colitem);
+			njSetMatrix(0, matrix);
 		}
 	}
+}
+
+void LateDrawLand_Load(task* a1)
+{
+	a1->exec = (void(__cdecl*)(task*))LateDrawLand_Display;
+	a1->disp = (void(__cdecl*)(task*))LateDrawLand_Display;
+	a1->dest = (void(__cdecl*)(task*))CheckThingButThenDeleteObject;
+}
+
+void LoadLateDrawLand()
+{
+	task* obj;
+	taskwk* ent;
+	setdata_LateDrawLand.unionStatus.fRangeOut = 612800.0f;
+	obj = CreateElementalTask((LoadObj)2, 3, LateDrawLand_Load);
+	obj->ocp = &setdata_LateDrawLand;
+	if (obj)
+	{
+		ent = obj->twp;
+	}
+}
+
+void AddLateDrawLandtable(LandTable* landtable)
+{
+	LateDrawLand = landtable;
+	for (int j = 0; j < landtable->COLCount; j++)
+	{
+		if (landtable->Col[j].widthZ == -1)
+		{
+			if (landtable->Col[j].Flags & ColFlags_Visible) landtable->Col[j].Flags &= ~ColFlags_Visible;
+			LateDrawLandList.push_back(j);
+		}
+	}
+}
+
+void RemoveLateDrawLandtable()
+{
+	LateDrawLandList.clear();
+	LateDrawLand = NULL;
 }

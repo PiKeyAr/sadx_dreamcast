@@ -42,6 +42,49 @@ DataPointer(Uint8, nullsub_SBOARD, 0x42370F);
 DataPointer(Uint8, nullsub_MINICART, 0x4235EC);
 DataPointer(Uint8, nullsub_Chao, 0x423795);
 
+enum SurfaceFlags
+{
+	SurfaceFlags_Solid = 0x00000001,
+	SurfaceFlags_Water = 0x00000002, // Water with transparency sorting
+	SurfaceFlags_NoFriction = 0x00000004,
+	SurfaceFlags_NoAccel = 0x00000008,
+
+	SurfaceFlags_LowAccel = 0x00000010,
+	SurfaceFlags_UseSkyDrawDist = 0x00000020,
+	SurfaceFlags_NoLandingA = 0x00000040, // ??? Used, unknown
+	SurfaceFlags_IncAccel = 0x00000080,
+
+	SurfaceFlags_Dig = 0x00000100,
+	SurfaceFlags_Unknown5 = 0x00000200, // ???
+	SurfaceFlags_Waterfall = 0x00000400, // Force alpha sorting; Disable Z Write when used together with Water; Force disable Z write in all levels except Lost World 2
+	SurfaceFlags_Unknown7 = 0x00000800, // ??? Unused?
+
+	SurfaceFlags_NoClimb = 0x00001000,
+	SurfaceFlags_Chaos0Land = 0x00002000, // Makes COL items invisible when Chaos jumps up pole
+	SurfaceFlags_Stairs = 0x00004000,
+	SurfaceFlags_Unknown10 = 0x00008000, // ???
+
+	SurfaceFlags_Hurt = 0x00010000,
+	SurfaceFlags_Accelerate = 0x00020000,
+	SurfaceFlags_LowDepth = 0x00040000, // Set lowest depth (-37952)
+	SurfaceFlags_Unknown13 = 0x00080000, // ???
+
+	SurfaceFlags_Footprints = 0x00100000,
+	SurfaceFlags_NoLandingB = 0x00200000, // ???
+	SurfaceFlags_WaterNoAlpha = 0x00400000, // Water (physics only)
+	SurfaceFlags_RotateGravity = 0x00800000, // Calls the function "RotateByGravity"
+
+	SurfaceFlags_NoZWrite = 0x01000000, // Sets QueuedModelFlagsB_SomeTextureThing when enabled, QueuedModelFlagsB_EnableZWrite otherwise
+	SurfaceFlags_DrawByMesh = 0x02000000,
+	SurfaceFlags_UvManipulation = 0x04000000,
+	SurfaceFlags_DynamicCollision = 0x08000000, // Something for dynamic collision
+
+	SurfaceFlags_UseRotation = 0x10000000,
+	SurfaceFlags_Unknown22 = 0x20000000, // ??? Something related to scale
+	SurfaceFlags_Unknown23 = 0x40000000, // ??? Something related to scale
+	SurfaceFlags_Visible = 0x80000000,
+};
+
 struct CollisionData_
 {
 	char kind;
@@ -163,7 +206,7 @@ struct __declspec(align(4)) TitleNewWk
 	char kumoindex;
 };
 
-struct __declspec(align(2)) TitleMenuWk
+struct TitleMenuWk
 {
 	AdvaStatEnum Stat;
 	AdvaModeEnum PrevMode;
@@ -240,32 +283,17 @@ DataArray(CollisionData_, OCard_Collision, 0x2BC0748, 2);
 DataArray(CollisionData_, IceKey_Collision, 0x2BBF4C8, 2);
 DataArray(CollisionData_, KikiBomb_Collision, 0x96CA18, 4);
 DataArray(CollisionData_, Chaos6Freezer_Collision, 0x1386AC8, 3);
-FunctionPointer(double, Calculate2DDepth, (QueuedModelFlagsB flags, float a2), 0x404290);
+FunctionPointer(void, EV_SetMotion, (task* tp, NJS_OBJECT* op, NJS_MOTION* mp, NJS_TEXLIST* lp, double speed, int mode, int linkframe), 0x42FE20);
+FunctionPointer(float, Calculate2DDepth, (QueuedModelFlagsB flags, float a2), 0x404290);
 FunctionPointer(void, Cutscene_ResetTransition, (), 0x436550);
 FunctionPointer(void, Cutscene_WaitForInput, (int a1), 0x4314D0);
+FunctionPointer(void, DrawModelCallback_QueueNothing, (void(__cdecl* function)(), float depth, QueuedModelFlagsB queueflags), 0x404840);
 FunctionPointer(void, DrawModelCallback_QueueModel, (void(__cdecl* function)(NJS_MODEL_SADX*), NJS_MODEL_SADX* data, float depth, QueuedModelFlagsB queueflags), 0x404840);
 FunctionPointer(void, DrawModelCallback_QueueObject, (void(__cdecl* function)(NJS_OBJECT*), NJS_OBJECT* data, float depth, QueuedModelFlagsB queueflags), 0x404840);
 FunctionPointer(void, DrawModelCallback_QueueObjectMaster, (void(__cdecl* function)(ObjectMaster*), ObjectMaster* data, float depth, QueuedModelFlagsB queueflags), 0x404840);
 FunctionPointer(void, DrawModelCallback_QueueInt, (void(__cdecl* function)(int), int data, float depth, QueuedModelFlagsB queueflags), 0x404840);
 FunctionPointer(void, DrawModelCallback_QueueOceanData, (void(__cdecl* function)(OceanData*), OceanData* data, float depth, QueuedModelFlagsB queueflags), 0x404840);
 FunctionPointer(void, DrawModelCallback_QueueFloat, (void(__cdecl* function)(float), float data, float depth, QueuedModelFlagsB queueflags), 0x404840);
-FunctionPointer(void, ProcessModel_407BB0, (NJS_MODEL_SADX *model, QueuedModelFlagsB blend, float radius_scale), 0x4094D0);
-FunctionPointer(void, ProcessModel_407CF0, (NJS_MODEL_SADX* model, int a2, int a3), 0x407CF0);
-FunctionPointer(void, ProcessModelNode_TryReallyHard_2, (NJS_OBJECT* a1), 0x40A280);
-FunctionPointer(void, ProcessModelNode_Try, (NJS_OBJECT* a1, int a2, float a3), 0x40A1E0);
-FunctionPointer(int, ProcessModelNode_NoQueueScale, (NJS_OBJECT* a1), 0x4034B0);
-FunctionPointer(void, ProcessModel_NoSorting, (NJS_MODEL_SADX* model, float scale), 0x407A00);
-FunctionPointer(void, njAction_ReallyHard, (NJS_ACTION* a1, float frameNumber), 0x409FB0);
-FunctionPointer(void, njAction_Queue_407CF0_2, (NJS_ACTION *a1, float a2, int a3), 0x408380);
-FunctionPointer(void, DrawModel_Queue_407BB0, (NJS_MODEL_SADX *a1, QueuedModelFlagsB a2), 0x407BB0);
-FunctionPointer(void, DrawModel_Queue_407FC0, (NJS_MODEL_SADX* a1, int blend), 0x407FC0);
-FunctionPointer(void, DrawModel_Queue_407FC0_WithScale, (NJS_MODEL_SADX *model, QueuedModelFlagsB blend, float scale), 0x409E70);
-FunctionPointer(void, DrawModel_Queue_407CF0, (NJS_MODEL_SADX* a1, int blend), 0x407FC0);
-FunctionPointer(void, njAction_Queue_DrawModelQueue, (NJS_ACTION* a1, float a2, int a3, float a4), 0x405490);
-FunctionPointer(void, njAction_DontQueue, (NJS_ACTION *a1, float frame, float scale), 0x405450);
-FunctionPointer(void, njAction_Queue_407BB0, (NJS_ACTION *anim, float a2, int a3), 0x408350);
-FunctionPointer(void, njAction_Queue_407BB0_2, (NJS_ACTION *a1, float a2, int a3, float a4), 0x408350);
-FunctionPointer(void, DrawModel_TryReallyHard, (NJS_MODEL_SADX* a1), 0x409EF0);
 FunctionPointer(void, Bridge_CreateDustParticle, (NJS_VECTOR *a1, NJS_VECTOR *a2, float a3), 0x4B9820);
 
 extern HelperFunctions HelperFunctionsGlobal;
@@ -323,6 +351,7 @@ extern bool AssumeOIT;
 extern bool BigBeltFix;
 extern bool UIScale;
 
+extern bool EnabledLevels[43];
 extern bool EnableCutsceneFix;
 extern int CutsceneSkipMode;
 extern int CutsceneFrameCounter;
@@ -334,23 +363,8 @@ extern bool EnableLSDFix;
 extern bool FPSLock;
 extern bool EnableDCRipple;
 extern bool EnableDCBranding;
-extern bool EnableEmeraldCoast;
 extern bool IamStupidAndIWantFuckedUpOcean;
-extern bool EnableWindyValley;
-extern bool EnableTwinklePark;
-extern bool EnableSpeedHighway;
-extern bool EnableRedMountain;
-extern bool EnableSkyDeck;
-extern bool EnableLostWorld;
-extern bool EnableIceCap;
-extern bool EnableCasinopolis;
 extern bool CowgirlOn;
-extern bool EnableFinalEgg;
-extern bool EnableHotShelter;
-extern bool EnableStationSquare;
-extern bool EnableMysticRuins;
-extern bool EnableEggCarrier;
-extern bool EnablePast;
 extern bool DisableAllVideoStuff;
 extern bool EnableWhiteDiffuse;
 extern bool SADXWater_EmeraldCoast;
@@ -358,24 +372,8 @@ extern bool SADXWater_StationSquare;
 extern bool SADXWater_MysticRuins;
 extern bool SADXWater_EggCarrier;
 extern bool SADXWater_Past;
-extern bool EnableChaos0;
-extern bool EnableChaos2;
-extern bool EnableChaos4;
-extern bool EnableChaos6;
-extern bool EnablePerfectChaos;
-extern bool EnableEggHornet;
-extern bool EnableEggWalker;
-extern bool EnableEggViper;
-extern bool EnableE101;
-extern bool EnableZeroE101R;
-extern bool EnableHedgehogHammer;
-extern bool EnableTwinkleCircuit;
-extern bool EnableSandHill;
 extern bool EnableSkyChaseFixes;
 extern bool EnableSkyChaseEnemyModels;
-extern bool EnableSSGarden;
-extern bool EnableMRGarden;
-extern bool EnableECGarden;
 extern bool ReplaceEggs;
 extern bool EnableLobby;
 extern bool DisableChaoButtonPrompts;
@@ -397,7 +395,7 @@ void ReplaceSET(std::string src);
 void ReplaceCAM(std::string src);
 void ReplaceGeneric(std::string src, std::string dest);
 
-struct __declspec(align(2)) ObjectThingC
+struct ObjectThingC
 {
 	NJS_OBJECT *object;
 	void(__cdecl *function)(NJS_OBJECT *);
@@ -554,11 +552,10 @@ extern LandTableInfo *AL_GARDEN01_Info;
 extern LandTableInfo *AL_GARDEN02_Info;
 extern LandTableInfo *AL_RACE_0_Info;
 extern LandTableInfo *AL_RACE_1_Info;
-extern TextureAnimation TextureAnimationData[];
-extern TextureAnimation TextureAnimationData_Permanent[];
-extern UVAnimation UVAnimationData[];
-extern UVAnimation UVAnimationData_Permanent[];
-
+extern std::vector<TextureAnimation> TextureAnimationData;
+extern std::vector<TextureAnimation> TextureAnimationData_Permanent;
+extern std::vector<UVAnimation> UVAnimationData;
+extern std::vector <UVAnimation> UVAnimationData_Permanent;
 extern NJS_TEXLIST texlist_ChaoRace;
 extern NJS_TEXLIST texlist_ChaoRaceEntry;
 
@@ -716,15 +713,15 @@ void njDrawSprite2D_Queue_Point(NJS_SPRITE* sp, Int n, Float pri, NJD_SPRITE att
 void AnimateTexture(TextureAnimation *texanim);
 void AnimateUVs(UVAnimation *animation);
 void ClearTextureAnimationData();
-void AddTextureAnimation(int level, int act, NJS_MATERIAL* material, bool nonsequential, int speed, int frame1, int frame2, int frame3, int frame4, int frame5, int frame6, int frame7, int frame8, int frame9, int frame10, int frame11, int frame12, int frame13, int frame14, int frame15, int frame16);
-void AddTextureAnimation_Permanent(int level, int act, NJS_MATERIAL* material, bool nonsequential, int speed, int frame1, int frame2, int frame3, int frame4, int frame5, int frame6, int frame7, int frame8, int frame9, int frame10, int frame11, int frame12, int frame13, int frame14, int frame15, int frame16);
+void AddTextureAnimation(int level, int act, NJS_MATERIAL* material, bool nonsequential, int speed, int frame1, int frame2, int frame3 = -1, int frame4 = -1, int frame5 = -1, int frame6 = -1, int frame7 = -1, int frame8 = -1, int frame9 = -1, int frame10 = -1, int frame11 = -1, int frame12 = -1, int frame13 = -1, int frame14 = -1, int frame15 = -1, int frame16 = -1);
+void AddTextureAnimation_Permanent(int level, int act, NJS_MATERIAL* material, bool nonsequential, int speed, int frame1, int frame2, int frame3 = -1, int frame4 = -1, int frame5 = -1, int frame6 = -1, int frame7 = -1, int frame8 = -1, int frame9 = -1, int frame10 = -1, int frame11 = -1, int frame12 = -1, int frame13 = -1, int frame14 = -1, int frame15 = -1, int frame16 = -1);
 void AddUVAnimation(int level, int act, NJS_TEX* uv, int uv_count, int timer, int u_speed, int v_speed);
 void AddUVAnimation_Permanent(int level, int act, NJS_TEX* uv, int uv_count, int timer, int u_speed, int v_speed);
 void RemoveVertexColors_Object(NJS_OBJECT *obj);
 void RemoveVertexColors_Model(NJS_MODEL_SADX *model);
-NJS_OBJECT* LoadModel(const char *ModelName, bool sort);
+NJS_OBJECT* LoadModel(const char *ModelName);
+NJS_MOTION* LoadAnimation(const char* AnimationName);
 void RemoveMaterialColors_Landtable(LandTable *landtable);
-void SortModel(NJS_OBJECT *model);
 void LoadModel_ReplaceMeshes(NJS_OBJECT *object, const char *ModelName);
 void AddAlphaRejectMaterial(NJS_MATERIAL *material);
 void AddWhiteDiffuseMaterial(NJS_MATERIAL *material);
@@ -739,10 +736,20 @@ void ForceLevelSpecular_Object(NJS_OBJECT *obj, bool recursive);
 void ForceObjectSpecular_Object(NJS_OBJECT *obj, bool recursive);
 void AddBossMaterials_Object(NJS_OBJECT *obj);
 void SwapMeshsets(NJS_OBJECT* object, int mesh1, int mesh2);
-void HideMesh_Object(NJS_OBJECT *object, int meshID);
-void HideMesh_Model(NJS_MODEL_SADX *model, int meshID);
+void HideMesh_Object_Wrapper(NJS_OBJECT* object, int arg, ...);
+void HideMesh_Model_Wrapper(NJS_MODEL_SADX* object, int arg, ...);
 void ForceLightType_Object(NJS_OBJECT* obj, int light_type, bool unregister);
 void HideEntireObject(NJS_OBJECT* a1);
 void RemoveTransparency_Object(NJS_OBJECT* obj, bool recursive);
-void HideAllButOneMesh(NJS_OBJECT *obj, int meshID);
 void OnInitEnd_Videos();
+void land_DrawObject_New(NJS_OBJECT* a1, _OBJ_LANDENTRY* a2);
+NJS_OBJECT* CloneObject(NJS_OBJECT* obj);
+NJS_MODEL_SADX* CloneAttach(NJS_MODEL_SADX* att);
+void LoadLateDrawLand();
+void AddLateDrawLandtable(LandTable* landtable);
+void RemoveLateDrawLandtable();
+void Videos_OnReset();
+void IceKeySSFix(NJS_ACTION* action, float frame, int flags, float scale);
+
+#define HideMesh_Object(...) HideMesh_Object_Wrapper(__VA_ARGS__, -1)
+#define HideMesh_Model(...) HideMesh_Model_Wrapper(__VA_ARGS__, -1)

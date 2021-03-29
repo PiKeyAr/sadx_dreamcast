@@ -82,11 +82,8 @@ void __cdecl StationSquare_OceanDraw_SADXStyle(OceanData *x)
 {
 	OceanData *v1; // esi
 	Uint32 v2; // edi
-	int v3; // eax
-	Uint32 v4; // ebx
-	int v5; // eax
-	double v6; // st7
-	Float z; // ST14_4
+	float v6; // st7
+	float z; // ST14_4
 	float XDist; // ST0C_4
 	unsigned int v9; // edi
 	unsigned int v10; // edi
@@ -114,8 +111,8 @@ void __cdecl StationSquare_OceanDraw_SADXStyle(OceanData *x)
 		XDist = xa + v1->Position.x;
 		njTranslate(0, XDist, v1->Position.y, z);
 		njPushMatrix(0);
-		xb = xa * 0.5;
-		njTranslate(0, xb, -1.0, xb);
+		xb = xa * 0.5f;
+		njTranslate(0, xb, -1.0f, xb);
 		njSetTextureNum(v2);
 		v9 = 0;
 		if (v1->PlaneCount)
@@ -157,8 +154,8 @@ void __cdecl EmeraldCoast_OceanDraw_SADXStyle(OceanData *o)
 	OceanData *_o; // esi
 	char v2; // al
 	char v3; // cl
-	double f; // st7
-	Float z; // ST1C_4
+	float f; // st7
+	float z; // ST1C_4
 	float x; // ST14_4
 	unsigned int v7; // edi
 	unsigned int v8; // edi
@@ -210,7 +207,7 @@ void __cdecl EmeraldCoast_OceanDraw_SADXStyle(OceanData *o)
 		}
 		njPopMatrix(1u);
 		njPushMatrix(0);
-		xb = _f * 0.5;
+		xb = _f * 0.5f;
 		njTranslate(0, xb, 0.2f, xb);
 		njSetTextureNum(SADXWaveAnimation);
 		v7 = 0;
@@ -237,9 +234,9 @@ void __cdecl EmeraldCoast_OceanDraw_SADXStyle(OceanData *o)
 void __cdecl MysticRuins_OceanDraw_SADXStyle(OceanData *x)
 {
 	OceanData *v1; // esi
-	double v2; // st7
+	float v2; // st7
 	float v3; // edx
-	Float z; // ST1C_4
+	float z; // ST1C_4
 	float XDist; // ST14_4
 	unsigned int v6; // edi
 	float xa; // [esp+18h] [ebp+4h]
@@ -264,7 +261,7 @@ void __cdecl MysticRuins_OceanDraw_SADXStyle(OceanData *x)
 		v6 = 0;
 		if (v1->PlaneCount)
 		{
-			xb = xa * 0.5;
+			xb = xa * 0.5f;
 			do
 			{
 				njPushMatrix(0);
@@ -297,7 +294,7 @@ void __cdecl EggCarrier_OceanDraw_SADXStyle(OceanData *arg_0)
 {
 	Uint32 v1; // ebp
 	OceanData *v2; // esi
-	double v3; // st7
+	float v3; // st7
 	float v4; // ecx
 	float ZDist; // ST0C_4
 	float XDist; // ST04_4
@@ -335,18 +332,18 @@ void __cdecl EggCarrier_OceanDraw_SADXStyle(OceanData *arg_0)
 		v7 = 0;
 		if (v2->PlaneCount)
 		{
-			xz = x * 0.5;
+			xz = x * 0.5f;
 			do
 			{
 				njPushMatrix(0);
-				njTranslate(0, xz, 0.0, xz);
+				njTranslate(0, xz, 0.0f, xz);
 				njSetTextureNum(v1);
 				Direct3D_DrawFVF_H(
 					OceanGarbageArray[0x23 * (unsigned __int8)v2->VBuffIndex].points,
 					4 * (unsigned __int8)v2->PrimitiveCount);
 				njPopMatrix(1u);
 				njPushMatrix(0);
-				njTranslate(0, 0.0, 2.5, 0.0);
+				njTranslate(0, 0.0f, 2.5f, 0.0f);
 				njSetTextureNum(a2);
 				Direct3D_DrawFVF_H(
 					OceanGarbageArray[0x23 * (unsigned __int8)v2->VBuffIndex].points,
@@ -371,9 +368,9 @@ void __cdecl Past_OceanDraw_SADXStyle(OceanData *x)
 	Uint32 v1; // edi
 	Uint32 v2; // ebx
 	OceanData *v3; // esi
-	double v4; // st7
+	float v4; // st7
 	float v5; // ecx
-	Float z; // ST18_4
+	float z; // ST18_4
 	float XDist; // ST10_4
 	unsigned int v8; // edi
 	unsigned int v9; // edi
@@ -407,8 +404,8 @@ void __cdecl Past_OceanDraw_SADXStyle(OceanData *x)
 		XDist = xa + v3->Position.x;
 		njTranslate(0, XDist, v5, z);
 		njPushMatrix(0);
-		xb = xa * 0.5;
-		njTranslate(0, xb, 0.0, xb);
+		xb = xa * 0.5f;
+		njTranslate(0, xb, 0.0f, xb);
 		njSetTextureNum(v1);
 		v8 = 0;
 		if (v3->PlaneCount)
@@ -528,64 +525,64 @@ NJS_TEXLIST **__cdecl SetUpPastTexlists_2()
 
 void SADXStyleWater_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 {
-	//Emerald Coast
-	if (SADXWater_EmeraldCoast && EnableEmeraldCoast)
+	// Emerald Coast
+	if (SADXWater_EmeraldCoast && EnabledLevels[LevelIDs_EmeraldCoast])
 	{
 		WriteJump(EmeraldCoast_OceanDraw, EmeraldCoast_OceanDraw_SADXStyle);
 		TexLists_Level[0]->PVMList = (PVMEntry*)&EmeraldCoast1Textures_list;
-		TexLists_Level[0]->NumTextures = LengthOfArray(EmeraldCoast1Textures_list);
+		TexLists_Level[0]->NumTextures = (int16_t)LengthOfArray(EmeraldCoast1Textures_list);
 		TexLists_Level[1]->PVMList = (PVMEntry*)&EmeraldCoast2Textures_list;
-		TexLists_Level[1]->NumTextures = LengthOfArray(EmeraldCoast2Textures_list);
+		TexLists_Level[1]->NumTextures = (int16_t)LengthOfArray(EmeraldCoast2Textures_list);
 		TexLists_Level[2]->PVMList = (PVMEntry*)&EmeraldCoast3Textures_list;
-		TexLists_Level[2]->NumTextures = LengthOfArray(EmeraldCoast3Textures_list);
+		TexLists_Level[2]->NumTextures = (int16_t)LengthOfArray(EmeraldCoast3Textures_list);
 	}
-	//Station Square
-	if (SADXWater_StationSquare && EnableStationSquare)
+	// Station Square
+	if (SADXWater_StationSquare && EnabledLevels[LevelIDs_StationSquare])
 	{
 		WriteJump(StationSquare_OceanDraw, StationSquare_OceanDraw_SADXStyle);
 		WriteJump((void*)0x07C4FD0, SetUpSSTexlists);
 		TexLists_Level[36]->PVMList = (PVMEntry*)&StationSquare4Textures_list;
 		TexLists_Level[36]->NumTextures = 3;
 		TexLists_Level[37]->PVMList = (PVMEntry*)&StationSquare5Textures_list;
-		TexLists_Level[37]->NumTextures = LengthOfArray(StationSquare5Textures_list);
+		TexLists_Level[37]->NumTextures = (int16_t)LengthOfArray(StationSquare5Textures_list);
 	}
-	//Mystic Ruins
-	if (SADXWater_MysticRuins && EnableMysticRuins)
+	// Mystic Ruins
+	if (SADXWater_MysticRuins && EnabledLevels[LevelIDs_MysticRuins])
 	{
 		WriteJump((void*)0x7C5040, SetUpMRTexlists);
 		WriteJump(MysticRuins_OceanDraw, MysticRuins_OceanDraw_SADXStyle);
 		TexLists_Level[39]->PVMList = (PVMEntry*)&MysticRuins1Textures_list;
 		TexLists_Level[39]->NumTextures = 4;
 	}
-	//Egg Carrier
-	if (SADXWater_EggCarrier && EnableEggCarrier)
+	// Egg Carrier
+	if (SADXWater_EggCarrier && EnabledLevels[LevelIDs_EggCarrierOutside])
 	{
 		WriteJump((void*)0x7D2C50, SetUpECTexlists_1);
 		WriteJump((void*)0x7D2C60, SetUpECTexlists_2);
 		WriteJump((void*)0x7D2C70, SetUpECTexlists_3);
 		WriteJump(EggCarrier_OceanDraw, EggCarrier_OceanDraw_SADXStyle);
 		TexLists_Level[46]->PVMList = (PVMEntry*)&EggCarrierOutside1Textures_list;
-		TexLists_Level[46]->NumTextures = LengthOfArray(EggCarrierOutside1Textures_list);
+		TexLists_Level[46]->NumTextures = (int16_t)LengthOfArray(EggCarrierOutside1Textures_list);
 		TexLists_Level[47]->PVMList = (PVMEntry*)&EggCarrierOutside2Textures_list;
-		TexLists_Level[47]->NumTextures = LengthOfArray(EggCarrierOutside2Textures_list);
+		TexLists_Level[47]->NumTextures = (int16_t)LengthOfArray(EggCarrierOutside2Textures_list);
 		TexLists_Level[48]->PVMList = (PVMEntry*)&EggCarrierOutside3Textures_list;
-		TexLists_Level[48]->NumTextures = LengthOfArray(EggCarrierOutside3Textures_list);
+		TexLists_Level[48]->NumTextures = (int16_t)LengthOfArray(EggCarrierOutside3Textures_list);
 	}
-	//Past
-	if (SADXWater_Past && EnablePast)
+	// Past
+	if (SADXWater_Past && EnabledLevels[LevelIDs_Past])
 	{
 		WriteJump((void*)0x7C5150, SetUpPastTexlists_1);
 		WriteJump((void*)0x7C5180, SetUpPastTexlists_2);
 		TexLists_Level[44]->PVMList = (PVMEntry*)&Past2Textures_list;
-		TexLists_Level[44]->NumTextures = LengthOfArray(Past2Textures_list);
+		TexLists_Level[44]->NumTextures = (int16_t)LengthOfArray(Past2Textures_list);
 		TexLists_Level[45]->PVMList = (PVMEntry*)&Past3Textures_list;
-		TexLists_Level[45]->NumTextures = LengthOfArray(Past3Textures_list);
+		TexLists_Level[45]->NumTextures = (int16_t)LengthOfArray(Past3Textures_list);
 	}
 }
 
 void SADXStyleWater_OnFrame()
 {
-	//Runs only when the game isn't paused
+	// Runs only when the game isn't paused
 	if ((FramerateSetting < 2 && FrameCounter % 4 == 0) || (FramerateSetting == 2 && FrameCounter % 2 == 0) || FramerateSetting > 2)
 	{
 		SADXWaveAnimation++;

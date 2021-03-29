@@ -1,7 +1,7 @@
 #include "stdafx.h"
 
-//The init function here runs right when the mod loads.
-//It fixes/replaces various character and boss-related things that are used across multiple levels and/or load before any level (e.g. character select screen)
+// The init function here runs right when the mod loads.
+// It fixes/replaces various character and boss-related things that are used across multiple levels and/or load before any level (e.g. character select screen)
 
 FunctionPointer(void, sub_4014B0, (), 0x4014B0);
 
@@ -62,13 +62,13 @@ void InputHookForCutscenes()
 
 void FixCutsceneTransition()
 {
-	if (CutsceneID == 134) Cutscene_ResetTransition(); //Knuckles back in Station Square after meeting Pacman
-	if (CutsceneID == 380) Cutscene_ResetTransition(); //Gamma after Windy Valley
+	if (CutsceneID == 134) Cutscene_ResetTransition(); // Knuckles back in Station Square after meeting Pacman
+	if (CutsceneID == 380) Cutscene_ResetTransition(); // Gamma after Windy Valley
 }
 
 void Init_Global()
 {
-	//General stuff
+	// General stuff
 	ReplacePVM("CHAOS1");
 	ReplacePVM("CHAOS_BRAINFRAME");
 	ReplacePVM("CHAOS_EFFECT");
@@ -85,11 +85,11 @@ void Init_Global()
 	ReplacePVM("EV_E105_FUN");
 	ReplacePVM("ICM0001_3");
 	ReplacePVM("ICM0001_5");
-	//Replacements from DC_General
+	// Replacements from DC_General
 	if (DLLLoaded_HDGUI == false)
 	{
 		ReplacePVM("OBJ_REGULAR");
-		OBJ_REGULAR_TEXLIST = texlist_obj_regular; //Added DC ripple texture
+		OBJ_REGULAR_TEXLIST = texlist_obj_regular; // Added DC ripple texture
 	}
 	ReplacePVR("AL_BARRIA");
 	ReplacePVR("AM_SEA124_8");
@@ -250,9 +250,9 @@ void Init_Global()
 	ReplacePVM("WING_P");
 	ReplacePVM("WING_T");
 	ReplacePVM("ZOU");
-	WriteData<1>((char*)0x00480080, 0x0i8); //Light type for Gamma's upgrades
-	//Gamma's chest stuff
-	//Actual code in General_OnFrame
+	WriteData<1>((char*)0x00480080, 0x0i8); // Light type for Gamma's upgrades
+	// Gamma's chest stuff
+	// Actual code in General_OnFrame
 	RemoveVertexColors_Object(E102_OBJECTS[0]);
 	RemoveVertexColors_Object(E102_OBJECTS[1]);
 	RemoveVertexColors_Object(E102_OBJECTS[2]);
@@ -265,64 +265,64 @@ void Init_Global()
 	RemoveVertexColors_Object(E102_OBJECTS[18]);
 	RemoveVertexColors_Object(E102_OBJECTS[20]);
 	RemoveVertexColors_Object(E102_ACTIONS[50]->object);
-	E102_OBJECTS[0]->child->child->sibling->sibling->sibling->child->child->sibling->child->sibling->sibling->child->child->sibling->basicdxmodel->mats[8].attrflags &= ~NJD_FLAG_USE_ALPHA; //E102 unnecessary alpha
-	//FPS lock
+	E102_OBJECTS[0]->child->child->sibling->sibling->sibling->child->child->sibling->child->sibling->sibling->child->child->sibling->basicdxmodel->mats[8].attrflags &= ~NJD_FLAG_USE_ALPHA; // E102 unnecessary alpha
+	// FPS lock
 	if (FPSLock) WriteCall((void*)0x411E79, FPSLockHook);
-	//Cancel cutscenes with C button
+	// Cancel cutscenes with C button
 	if (CutsceneSkipMode != 3)
 	{
-		WriteData<1>((char*)0x431520, 0x20); //Use D-Pad Down instead of A or Start
+		WriteData<1>((char*)0x431520, 0x20); // Use D-Pad Down instead of A or Start
 		if (CutsceneSkipMode != 2) WriteCall((void*)0x4314F9, InputHookForCutscenes);
 	}
-	//Fix for cutscene transitions
+	// Fix for cutscene transitions
 	if (EnableCutsceneFix)
 	{
-		WriteCall((void*)0x4311E3, FixCutsceneTransition); //Main thread
-		WriteData<5>((void*)0x43131D, 0x90u); //Skipping cutscenes
+		WriteCall((void*)0x4311E3, FixCutsceneTransition); // Main thread
+		WriteData<5>((void*)0x43131D, 0x90u); // Skipping cutscenes
 	}
-	//Environment maps
+	// Environment maps
 	EnvMap1 = 0.5f;
 	EnvMap2 = 0.5f;
 	EnvMap3 = 0.5f;
 	EnvMap4 = 0.5f;
-	//Amy's barrel fix
+	// Amy's barrel fix
 	AMY_OBJECTS[1]->child->child->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
 	AMY_OBJECTS[1]->child->child->basicdxmodel->mats[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-	//Various material fixes
-	RemoveVertexColors_Object((NJS_OBJECT*)0x10D7774); //Question mark from Character Select
-	((NJS_OBJECT*)0x10D7774)->basicdxmodel->mats[0].attr_texId = 10; //Fix wrong texture on question mark
-	RemoveVertexColors_Object((NJS_OBJECT*)0x991268); //Zero main and cutscene model
-	RemoveVertexColors_Object((NJS_OBJECT*)0x3306270); //Egg Hornet cutscene model
-	RemoveVertexColors_Object((NJS_OBJECT*)0x330A4D0); //Eggman in Egg Hornet cutscene model
-	RemoveVertexColors_Object((NJS_OBJECT*)0x2EEB524); //Eggman in Eggmobile in cutscenes (EV_EGGMOBLE0)
-	WriteData<1>((char*)0x568D20, 0xC3u); //Disable SetClip_E101R
-	RemoveVertexColors_Object((NJS_OBJECT*)0x2DA8664); //E101R model in cutscenes
-	((NJS_OBJECT*)0x2DA770C)->basicdxmodel->mats[2].attrflags |= NJD_FLAG_IGNORE_LIGHT; //E101R model in cutscenes
-	((NJS_OBJECT*)0x2DA770C)->basicdxmodel->mats[5].attrflags |= NJD_FLAG_IGNORE_LIGHT; //E101R model in cutscenes
-	((NJS_OBJECT*)0x2DA3064)->basicdxmodel->mats[1].attrflags |= NJD_FLAG_IGNORE_LIGHT; //E101R model in cutscenes
-	((NJS_OBJECT*)0x2DA6364)->basicdxmodel->mats[1].attrflags |= NJD_FLAG_IGNORE_LIGHT; //E101R model in cutscenes
-	((NJS_OBJECT*)0x2DA2A2C)->basicdxmodel->mats[3].attrflags |= NJD_FLAG_IGNORE_LIGHT; //E101R model in cutscenes
-	((NJS_OBJECT*)0x2DA1014)->basicdxmodel->mats[3].attrflags |= NJD_FLAG_IGNORE_LIGHT; //E101R model in cutscenes
-	((NJS_OBJECT*)0x2DA3064)->basicdxmodel->mats[1].attrflags |= NJD_FLAG_IGNORE_LIGHT; //E101R model in cutscenes
-	((NJS_OBJECT*)0x2DA1444)->basicdxmodel->mats[1].attrflags |= NJD_FLAG_IGNORE_LIGHT; //E101R model in cutscenes
-	((NJS_OBJECT*)0x2DA3CEC)->basicdxmodel->mats[1].attrflags |= NJD_FLAG_IGNORE_LIGHT; //E101R model in cutscenes
-	((NJS_OBJECT*)0x2DA39EC)->basicdxmodel->mats[1].attrflags |= NJD_FLAG_IGNORE_LIGHT; //E101R model in cutscenes
-	RemoveVertexColors_Object((NJS_OBJECT*)0x269D214); //Eggmobile 2P
-	RemoveVertexColors_Object((NJS_OBJECT*)0x269EE24); //Eggman 2P
-	RemoveVertexColors_Object((NJS_OBJECT*)0x2C66BAC); //Chaos 0 in cutscenes
-	RemoveVertexColors_Object((NJS_OBJECT*)0x1133328); //Chaos 2 (main and cutscenes)
-	RemoveVertexColors_Object((NJS_OBJECT*)0x119E240); //Chaos 4 main/NPC model
-	RemoveVertexColors_Object((NJS_OBJECT*)0x302FD70); //Chaos 4 cutscene model
-	RemoveVertexColors_Object((NJS_OBJECT*)0x2D6962C); //Chaos puddle in cutscenes
-	RemoveVertexColors_Object((NJS_OBJECT*)0x38DD9BC); //Chaos puddle in cutscenes + Chaos 0
-	RemoveVertexColors_Object((NJS_OBJECT*)0x38DEA10); //Chaos 2 small puddles + Chaos 0 when defeated
-	WriteCall((void*)0x6EE43F, ComeOnChaosTimeToEat); //Environment mapping effect on Chaos' puddle before Chaos 0 emerges
-	((NJS_MATERIAL*)0x02D64FD8)->exponent = 11; //Chaos 1/4 puddle
-	((NJS_MATERIAL*)0x038D936C)->attrflags &= ~NJD_FLAG_USE_ENV; //Chaos 0/2/6 puddle
-	((NJS_MATERIAL*)0x038D936C)->exponent = 11; //Chaos 0/2/6 puddle
-	ICM0001_3_TEXLISTS[0].Name = "ICM0001_5"; //Higher quality background in Sonic story
-	//Stage-specific stuff
-	if (EnableStationSquare)
+	// Various material fixes
+	RemoveVertexColors_Object((NJS_OBJECT*)0x10D7774); // Question mark from Character Select
+	((NJS_OBJECT*)0x10D7774)->basicdxmodel->mats[0].attr_texId = 10; // Fix wrong texture on question mark
+	RemoveVertexColors_Object((NJS_OBJECT*)0x991268); // Zero main and cutscene model
+	RemoveVertexColors_Object((NJS_OBJECT*)0x3306270); // Egg Hornet cutscene model
+	RemoveVertexColors_Object((NJS_OBJECT*)0x330A4D0); // Eggman in Egg Hornet cutscene model
+	RemoveVertexColors_Object((NJS_OBJECT*)0x2EEB524); // Eggman in Eggmobile in cutscenes (EV_EGGMOBLE0)
+	WriteData<1>((char*)0x568D20, 0xC3u); // Disable SetClip_E101R
+	RemoveVertexColors_Object((NJS_OBJECT*)0x2DA8664); // E101R model in cutscenes
+	((NJS_OBJECT*)0x2DA770C)->basicdxmodel->mats[2].attrflags |= NJD_FLAG_IGNORE_LIGHT; // E101R model in cutscenes
+	((NJS_OBJECT*)0x2DA770C)->basicdxmodel->mats[5].attrflags |= NJD_FLAG_IGNORE_LIGHT; // E101R model in cutscenes
+	((NJS_OBJECT*)0x2DA3064)->basicdxmodel->mats[1].attrflags |= NJD_FLAG_IGNORE_LIGHT; // E101R model in cutscenes
+	((NJS_OBJECT*)0x2DA6364)->basicdxmodel->mats[1].attrflags |= NJD_FLAG_IGNORE_LIGHT; // E101R model in cutscenes
+	((NJS_OBJECT*)0x2DA2A2C)->basicdxmodel->mats[3].attrflags |= NJD_FLAG_IGNORE_LIGHT; // E101R model in cutscenes
+	((NJS_OBJECT*)0x2DA1014)->basicdxmodel->mats[3].attrflags |= NJD_FLAG_IGNORE_LIGHT; // E101R model in cutscenes
+	((NJS_OBJECT*)0x2DA3064)->basicdxmodel->mats[1].attrflags |= NJD_FLAG_IGNORE_LIGHT; // E101R model in cutscenes
+	((NJS_OBJECT*)0x2DA1444)->basicdxmodel->mats[1].attrflags |= NJD_FLAG_IGNORE_LIGHT; // E101R model in cutscenes
+	((NJS_OBJECT*)0x2DA3CEC)->basicdxmodel->mats[1].attrflags |= NJD_FLAG_IGNORE_LIGHT; // E101R model in cutscenes
+	((NJS_OBJECT*)0x2DA39EC)->basicdxmodel->mats[1].attrflags |= NJD_FLAG_IGNORE_LIGHT; // E101R model in cutscenes
+	RemoveVertexColors_Object((NJS_OBJECT*)0x269D214); // Eggmobile 2P
+	RemoveVertexColors_Object((NJS_OBJECT*)0x269EE24); // Eggman 2P
+	RemoveVertexColors_Object((NJS_OBJECT*)0x2C66BAC); // Chaos 0 in cutscenes
+	RemoveVertexColors_Object((NJS_OBJECT*)0x1133328); // Chaos 2 (main and cutscenes)
+	RemoveVertexColors_Object((NJS_OBJECT*)0x119E240); // Chaos 4 main/NPC model
+	RemoveVertexColors_Object((NJS_OBJECT*)0x302FD70); // Chaos 4 cutscene model
+	RemoveVertexColors_Object((NJS_OBJECT*)0x2D6962C); // Chaos puddle in cutscenes
+	RemoveVertexColors_Object((NJS_OBJECT*)0x38DD9BC); // Chaos puddle in cutscenes + Chaos 0
+	RemoveVertexColors_Object((NJS_OBJECT*)0x38DEA10); // Chaos 2 small puddles + Chaos 0 when defeated
+	WriteCall((void*)0x6EE43F, ComeOnChaosTimeToEat); // Environment mapping effect on Chaos' puddle before Chaos 0 emerges
+	((NJS_MATERIAL*)0x02D64FD8)->exponent = 11; // Chaos 1/4 puddle
+	((NJS_MATERIAL*)0x038D936C)->attrflags &= ~NJD_FLAG_USE_ENV; // Chaos 0/2/6 puddle
+	((NJS_MATERIAL*)0x038D936C)->exponent = 11; // Chaos 0/2/6 puddle
+	ICM0001_3_TEXLISTS[0].Name = "ICM0001_5"; // Higher quality background in Sonic story
+	// Stage-specific stuff
+	if (EnabledLevels[LevelIDs_StationSquare])
 	{
 		ReplaceSET("SETSS00A");
 		ReplaceSET("SETSS00B");
@@ -386,9 +386,9 @@ void Init_Global()
 		ReplacePVR("SS_NIGHTSKYB");
 		ReplacePVR("SS_YUSKAY_MINI");
 	}
-	if (EnableEggCarrier)
+	if (EnabledLevels[LevelIDs_EggCarrierOutside])
 	{
-		//Outside
+		// Outside
 		ReplaceSET("SETEC00S");
 		ReplaceSET("SETEC00M");
 		ReplaceSET("SETEC00K");
@@ -443,7 +443,7 @@ void Init_Global()
 		ReplacePVM("EV_ECCLOUD");
 		ReplacePVM("EC_SEA");
 		ReplacePVM("OBJ_EC00");
-		//Inside
+		// Inside
 		ReplaceSET("SETEC30S");
 		ReplaceSET("SETEC31S");
 		ReplaceSET("SETEC31B");
@@ -471,7 +471,7 @@ void Init_Global()
 		ReplacePVM("EC_TARAI");
 		ReplacePVM("PVME101FACTORY");
 	}
-	if (EnableMysticRuins)
+	if (EnabledLevels[LevelIDs_MysticRuins])
 	{
 		ReplaceSET("SETMR00A");
 		ReplaceSET("SETMR00B");
@@ -510,11 +510,11 @@ void Init_Global()
 		ReplacePVM("MR_PYRAMID");
 		ReplacePVM("MR_TORNADO2");
 		ReplacePVM("MR_FINALEGG");
-		ReplaceBIN("SL_X0B"); //Day light direction override
-		ReplaceBIN("SL_X1B"); //Evening light direction override
-		ReplaceBIN("SL_X2B"); //Night light direction override
+		ReplaceBIN("SL_X0B"); // Day light direction override
+		ReplaceBIN("SL_X1B"); // Evening light direction override
+		ReplaceBIN("SL_X2B"); // Night light direction override
 	}
-	if (EnablePast)
+	if (EnabledLevels[LevelIDs_Past])
 	{
 		ReplaceCAM("CAMPAST00S");
 		ReplaceCAM("CAMPAST01S");
@@ -534,7 +534,7 @@ void Init_Global()
 		ReplacePVM("KNUCKLES_DEBU");
 		ReplacePVM("KNUCKLES_LONG");
 	}
-	if (EnableEmeraldCoast)
+	if (EnabledLevels[LevelIDs_EmeraldCoast])
 	{
 		if (!IamStupidAndIWantFuckedUpOcean)
 		{
@@ -564,9 +564,9 @@ void Init_Global()
 		ReplacePVM("BG_BEACH");
 		ReplacePVM("OBJ_BEACH");
 		ReplacePVM("BEACH_SEA");
-		WriteData<1>((char*)0x4F68E0, 0xC3u); //Disable SetClip_ECoast1
+		WriteData<1>((char*)0x4F68E0, 0xC3u); // Disable SetClip_ECoast1
 	}
-	if (EnableWindyValley)
+	if (EnabledLevels[LevelIDs_WindyValley])
 	{
 		ReplaceSET("SET0200S");
 		ReplaceSET("SET0200E");
@@ -586,7 +586,7 @@ void Init_Global()
 		ReplacePVM("WINDY_BACK2");
 		ReplacePVM("WINDY_BACK3");
 	}
-	if (EnableTwinklePark)
+	if (EnabledLevels[LevelIDs_TwinklePark])
 	{
 		ReplaceCAM("CAM0300S");
 		ReplaceCAM("CAM0301A");
@@ -605,12 +605,12 @@ void Init_Global()
 		ReplacePVM("TWINKLE02");
 		ReplacePVM("TWINKLE03");
 	}
-	if (EnableTwinklePark || EnableTwinkleCircuit)
+	if (EnabledLevels[LevelIDs_TwinklePark] || EnabledLevels[LevelIDs_TwinkleCircuit])
 	{
 		ReplacePVM("BG_SHAREOBJ");
 		ReplacePVM("OBJ_SHAREOBJ");
 	}
-	if (EnableSpeedHighway)
+	if (EnabledLevels[LevelIDs_SpeedHighway])
 	{
 		ReplaceCAM("CAM0400M");
 		ReplaceCAM("CAM0400S");
@@ -633,7 +633,7 @@ void Init_Global()
 		ReplacePVM("OBJ_HIGHWAY");
 		ReplacePVM("OBJ_HIGHWAY2");
 	}
-	if (EnableRedMountain)
+	if (EnabledLevels[LevelIDs_RedMountain])
 	{
 		ReplaceCAM("CAM0500S");
 		ReplaceCAM("CAM0501E");
@@ -652,9 +652,9 @@ void Init_Global()
 		ReplacePVM("MOUNTAIN_STEAM");
 		ReplacePVM("OBJ_MOUNTAIN");
 		ReplacePVM("YOUGAN_ANIM");
-		WriteData<1>((char*)0x600700, 0xC3u); //Disable SetClip_RedMountain
+		WriteData<1>((char*)0x600700, 0xC3u); // Disable SetClip_RedMountain
 	}
-	if (EnableSkyDeck)
+	if (EnabledLevels[LevelIDs_SkyDeck])
 	{
 		ReplaceSET("SET0600M");
 		ReplaceSET("SET0600S");
@@ -674,7 +674,7 @@ void Init_Global()
 		ReplacePVM("SKYDECK02");
 		ReplacePVM("SKYDECK03");
 	}
-	if (EnableLostWorld)
+	if (EnabledLevels[LevelIDs_LostWorld])
 	{
 		ReplaceCAM("CAM0700S");
 		ReplaceCAM("CAM0701K");
@@ -691,7 +691,7 @@ void Init_Global()
 		ReplacePVM("OBJ_RUIN");
 		ReplacePVM("OBJ_RUIN2");
 	}
-	if (EnableIceCap)
+	if (EnabledLevels[LevelIDs_IceCap])
 	{
 		ReplaceCAM("CAM0800S");
 		ReplaceCAM("CAM0801S");
@@ -712,7 +712,7 @@ void Init_Global()
 		ReplacePVR("MTX_BOARD0");
 		ReplacePVR("SB_BOARD1");
 	}
-	if (EnableCasinopolis)
+	if (EnabledLevels[LevelIDs_Casinopolis])
 	{
 		ReplaceCAM("CAM0900K");
 		ReplaceCAM("CAM0900S");
@@ -726,7 +726,7 @@ void Init_Global()
 		ReplaceSET("SET0901S");
 		ReplaceSET("SET0902S");
 		ReplaceSET("SET0903S");
-		ReplaceBIN("SETMI0900K"); //Fixed Casino mission objects not spawning
+		ReplaceBIN("SETMI0900K"); // Fixed Casino mission objects not spawning
 		ReplacePVM("CASINO01");
 		ReplacePVM("CASINO02");
 		ReplacePVM("CASINO03");
@@ -736,7 +736,7 @@ void Init_Global()
 		ReplacePVM("OBJ_CASINO9");
 		ReplacePVM("OBJ_CASINO_E");
 	}
-	if (EnableFinalEgg)
+	if (EnabledLevels[LevelIDs_FinalEgg])
 	{
 		ReplaceCAM("CAM1000A");
 		ReplaceCAM("CAM1000S");
@@ -757,7 +757,7 @@ void Init_Global()
 		ReplacePVM("FINALEGG4");
 		ReplacePVM("OBJ_FINALEGG");
 	}
-	if (EnableHotShelter)
+	if (EnabledLevels[LevelIDs_HotShelter])
 	{
 		ReplaceSET("SET1200A");
 		ReplaceSET("SET1200B");
@@ -783,7 +783,7 @@ void Init_Global()
 		ReplacePVM("SHELTER_COLUMN");
 		ReplacePVM("SHELTER_SUIMEN");
 	}
-	if (EnableChaos0)
+	if (EnabledLevels[LevelIDs_Chaos0])
 	{
 		ReplaceSET("SET1500S");
 		ReplacePVM("LM_CHAOS0");
@@ -792,7 +792,7 @@ void Init_Global()
 		ReplacePVM("CHAOS0_OBJECT");
 		ReplacePVM("EV_CHAOS0_MANJU");
 	}
-	if (EnableChaos2)
+	if (EnabledLevels[LevelIDs_Chaos2])
 	{
 		ReplaceSET("SET1600S");
 		ReplacePVM("CHAOS2");
@@ -801,7 +801,7 @@ void Init_Global()
 		ReplacePVM("CHAOS2_EFFECT");
 		ReplacePVM("CHAOS2_OBJECT");
 	}
-	if (EnableChaos4)
+	if (EnabledLevels[LevelIDs_Chaos4])
 	{
 		ReplaceSET("SET1700S");
 		ReplacePVM("CHAOS4_COMMON");
@@ -813,7 +813,7 @@ void Init_Global()
 		ReplacePVM("CHAOS4_TIKEI");
 		ReplacePVM("CHAOS4_WAVE");
 	}
-	if (EnableChaos6)
+	if (EnabledLevels[LevelIDs_Chaos6])
 	{
 		ReplaceSET("SET1800B");
 		ReplaceSET("SET1800S");
@@ -827,7 +827,7 @@ void Init_Global()
 		ReplacePVM("CHAOS6_EISEI");
 		ReplacePVM("CHAOS6_OBJECT");
 	}
-	if (EnablePerfectChaos)
+	if (EnabledLevels[LevelIDs_PerfectChaos])
 	{
 		ReplaceSET("SET1900S");
 		ReplaceCAM("CAM1900S");
@@ -842,7 +842,7 @@ void Init_Global()
 		ReplacePVM("LM_CHAOS7_0");
 		ReplacePVM("OBJ_CHAOS7");
 	}
-	if (EnableEggHornet)
+	if (EnabledLevels[LevelIDs_EggHornet])
 	{
 		ReplaceSET("SETEGM1S");
 		ReplacePVM("EGM1");
@@ -855,7 +855,7 @@ void Init_Global()
 		ReplacePVM("EGM1SORA");
 		ReplacePVM("EGM1TSUCHI");
 	}
-	if (EnableEggWalker)
+	if (EnabledLevels[LevelIDs_EggWalker])
 	{
 		ReplaceSET("SETEGM2S");
 		ReplacePVM("EGM2");
@@ -870,32 +870,32 @@ void Init_Global()
 		ReplacePVM("EGM2_SKY");
 		ReplacePVM("EGM2_TIKEI");
 	}
-	if (EnableEggViper)
+	if (EnabledLevels[LevelIDs_EggViper])
 	{
 		ReplaceSET("SETEGM3S");
 		ReplacePVM("EGM3CHIKEI");
 		ReplacePVM("EGM3MDL");
 		ReplacePVM("EGM3SPR");
 	}
-	if (EnableE101)
+	if (EnabledLevels[LevelIDs_E101])
 	{
 		ReplaceSET("SETE101E");
 		ReplacePVM("E101");
 		ReplacePVM("E101_TIKEI");
 	}
-	if (EnableZeroE101R)
+	if (EnabledLevels[LevelIDs_Zero])
 	{
-		//Zero
+		// Zero
 		ReplaceSET("SETZEROA");
 		ReplaceSET("SETZEROS");
 		ReplacePVM("EROBO");
 		ReplaceGeneric("EROBO_GC.NB", "EROBO_DC.NB");
-		//E101R
+		// E101R
 		ReplaceGeneric("E101R_GC.NB", "E101R_DC.NB");
 		ReplaceSET("SETE101RE");
 		ReplacePVM("E101R");
 		ReplacePVM("E101R_BG");
-		ReplacePVM("E101R_TIKEI"); //Shared with Zero
+		ReplacePVM("E101R_TIKEI"); // Shared with Zero
 	}
 	ReplacePVM("CHAO");
 	ReplacePVM("CHAO_OBJECT");
@@ -905,13 +905,13 @@ void Init_Global()
 	ReplacePVM("CHAO_HYOUJI_G");
 	ReplacePVM("CHAO_HYOUJI_S");
 	ReplacePVM("EC_ALIFE");
-	if (EnableSSGarden)
+	if (EnabledLevels[LevelIDs_SSGarden])
 	{
 		ReplacePVM("GARDEN00");
 		ReplaceCAM("SETMI3900M");
 		ReplacePVM("GARDEN00_OBJECT");
 	}
-	if (EnableMRGarden)
+	if (EnabledLevels[LevelIDs_MRGarden])
 	{
 		ReplacePVM("GARDEN_MR_SKY_HIRU");
 		ReplacePVM("GARDEN_MR_SKY_YORU");
@@ -919,12 +919,12 @@ void Init_Global()
 		ReplacePVM("GARDEN02");
 		ReplacePVM("GARDEN02_OBJECT");
 	}
-	if (EnableECGarden)
+	if (EnabledLevels[LevelIDs_ECGarden])
 	{
 		ReplacePVM("GARDEN01");
 		ReplacePVM("GARDEN01_SKY");
 	}
-	if (EnableTwinkleCircuit)
+	if (EnabledLevels[LevelIDs_TwinkleCircuit])
 	{
 		ReplaceSET("SETMCART00S");
 		ReplaceSET("SETMCART01S");
@@ -946,7 +946,7 @@ void Init_Global()
 		ReplacePVM("MINI_CART06");
 		if (!DLLLoaded_HDGUI) ReplacePVM("OBJ_MINI_CART");
 	}
-	if (EnableSandHill)
+	if (EnabledLevels[LevelIDs_SandHill])
 	{
 		ReplaceCAM("CAMSBOARD00S");
 		ReplaceCAM("CAMSBOARD01S");

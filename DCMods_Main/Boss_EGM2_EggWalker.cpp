@@ -3,8 +3,6 @@
 NJS_TEXNAME textures_eggwalker[231];
 NJS_TEXLIST texlist_eggwalker = { arrayptrandlength(textures_eggwalker) };
 
-//#include "EggWalker.h"
-
 DataArray(FogData, EggWalkerFog, 0x015E87F4, 3);
 DataArray(NJS_TEXANIM, EggWalkerFireTexanims, 0x1655790, 16);
 
@@ -16,8 +14,7 @@ void UnloadLevelFiles_B_EGM2()
 
 void SetEggWalkerFireColor(NJS_ARGB *a1a)
 {
-	if (a1a->r < 0) SetMaterialAndSpriteColor_Float(0, 0, 0, 0);
-	else SetMaterialAndSpriteColor_Float(a1a->a, a1a->r, a1a->g, a1a->b);
+	SetMaterialAndSpriteColor_Float(max(0, a1a->a), max(0, a1a->r), max(0, a1a->g), max(0, a1a->b));
 }
 
 void EggWalker_Init()
@@ -30,17 +27,17 @@ void EggWalker_Init()
 	if (!ModelsLoaded_B_EGM2)
 	{
 		*(NJS_TEXLIST*)0x15E99F8 = texlist_eggwalker;
-		RemoveVertexColors_Object((NJS_OBJECT*)0x162DAC0); //Egg Walker body
-		RemoveVertexColors_Object((NJS_OBJECT*)0x162F554); //Egg Walker cockpit
-		RemoveVertexColors_Object((NJS_OBJECT*)0x1654F28); //Egg Walker Eggman
-		RemoveVertexColors_Object((NJS_OBJECT*)0x16556F8); //Egg Walker bomb
+		RemoveVertexColors_Object((NJS_OBJECT*)0x162DAC0); // Egg Walker body
+		RemoveVertexColors_Object((NJS_OBJECT*)0x162F554); // Egg Walker cockpit
+		RemoveVertexColors_Object((NJS_OBJECT*)0x1654F28); // Egg Walker Eggman
+		RemoveVertexColors_Object((NJS_OBJECT*)0x16556F8); // Egg Walker bomb
 		((NJS_OBJECT*)0x162E0FC)->basicdxmodel->mats[2].attrflags &= ~NJD_FLAG_IGNORE_SPECULAR;
 		((NJS_MATERIAL*)0x0162E158)->attrflags &= ~NJD_FLAG_IGNORE_SPECULAR;
-		//Object fixes
-		((NJS_OBJECT*)0x1655EF0)->basicdxmodel->mats[3].attrflags &= ~NJD_FLAG_USE_ALPHA; //Remove unneeded alpha in Egg Walker missile model
-		WriteData<1>((char*)0x57AB35, 0x01u); //Queue flag for Egg walker missile
-		WriteCall((void*)0x57A43A, SetEggWalkerFireColor); //Clamp Egg Walker fire sprite alpha
-		//Fix fire sprite texanim to match texture order in the PVM
+		// Object fixes
+		((NJS_OBJECT*)0x1655EF0)->basicdxmodel->mats[3].attrflags &= ~NJD_FLAG_USE_ALPHA; // Remove unneeded alpha in Egg Walker missile model
+		WriteData<1>((char*)0x57AB35, 0x01u); // Queue flag for Egg walker missile
+		WriteCall((void*)0x57A43A, SetEggWalkerFireColor); // Clamp Egg Walker fire sprite alpha
+		// Fix fire sprite texanim to match texture order in the PVM
 		EggWalkerFireTexanims[0].texid = 7;
 		EggWalkerFireTexanims[7].texid = 0;
 		for (int i = 0; i < 3; i++)

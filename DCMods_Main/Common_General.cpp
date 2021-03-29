@@ -1,13 +1,7 @@
 #include "stdafx.h"
-#include "Animals_motions.h"
-#include "CommonObjects.h"
-//#include "StageLights.h"
-//#include "Animals.h"
-//#include "Frogs.h"
-//#include "RobotChest.h"
 
-//TODO: Chaos puddle in Knuckles' "Chaos 4 emerges" cutscene shouldn't ignore lighting (use specular 3)
-//TODO: Chaos puddle in the cutscene after Chaos 2 is defeated should use object light type
+// TODO: Chaos puddle in Knuckles' "Chaos 4 emerges" cutscene shouldn't ignore lighting (use specular 3)
+// TODO: Chaos puddle in the cutscene after Chaos 2 is defeated should use object light type
 
 NJS_TEXANIM EmeraldGlowTexanim = { 64, 64, 32, 32, 0, 0, 0xFF, 0xFF, 3, 0 };
 NJS_SPRITE EmeraldGlowSprite = { { 0.0f, 5.0f, 0.0f }, 0.35f, 0.35f, 61439, (NJS_TEXLIST*)0xC3FE20, &EmeraldGlowTexanim };
@@ -40,25 +34,16 @@ DataPointer(NJS_ACTION, Tornado2TransformationAction, 0x28988FC);
 DataArray(ObjectMaster*, LocksArray, 0x3C63284, 5);
 DataPointer(NJS_VECTOR, Chaos4Position, 0x3C5A358);
 
-FunctionPointer(void, njAction_Queue_407CF0_Scale, (NJS_ACTION* a1, float a2, int a3, float a4), 0x4083F0);
 FunctionPointer(void, BarrierChild, (ObjectMaster *a1), 0x4BA1E0);
-FunctionPointer(void, sub_4083D0, (NJS_ACTION *a1, float a2, int a3), 0x4083D0);
 FunctionPointer(EntityData1*, sub_4B9430, (NJS_VECTOR *a1, NJS_VECTOR *a2, float a3), 0x4B9430);
 FunctionPointer(void, sub_40EFE0, (), 0x40EFE0);
 FunctionPointer(double, sub_49EAD0, (float a1, float a2, float a3, int a4), 0x49EAD0);
 FunctionPointer(float, sub_49E920, (float x, float y, float z, Rotation3 *rotation), 0x49E920);
 FunctionPointer(SubtitleThing *, sub_6424A0, (int a1, int a2, float a3, float a4, float a5, float a6, float a7, float a8), 0x6424A0);
-FunctionPointer(void, sub_409E70, (NJS_MODEL_SADX *a1, int a2, float a3), 0x409E70);
 FunctionPointer(void, Cutscene_MoveCharacterAtoB, (ObjectMaster *a1, float a2, float a3, float a4, float a5, float a6, float a7, signed int a8), 0x6EC2B0);
-FunctionPointer(void, sub_4094D0, (NJS_MODEL_SADX *model, QueuedModelFlagsB blend, float radius_scale), 0x4094D0);
-FunctionPointer(void, sub_4053A0, (NJS_OBJECT *a1, NJS_MOTION *a2, float frame, int flags, float scale), 0x4053A0);
-FunctionPointer(void, sub_407CF0, (NJS_MODEL_SADX *a1, QueuedModelFlagsB a2), 0x407CF0);
 FunctionPointer(void, sub_4BFF90, (NJS_OBJECT* a1), 0x4BFF90);
 FunctionPointer(void, AnimationCallback_C, (NJS_ACTION *a1, float a2, QueuedModelFlagsB a3), 0x4084B0);
-FunctionPointer(void, DrawObjectWithMotion_407BB0, (NJS_OBJECT *a1, NJS_MOTION *a2, float framenumber, QueuedModelFlagsB a4, float scale), 0x4082D0);
-FunctionPointer(void, DrawObjectWithMotion_407FC0, (NJS_OBJECT *a1, NJS_MOTION *a2, float framenumber, QueuedModelFlagsB a4, float scale), 0x408300);
 FunctionPointer(float, CalculateEnemyYCoordinate, (float x, float y, float z, Rotation3 *rotation), 0x49E920);
-FunctionPointer(void, ProcessModelNode_NoScaling, (NJS_OBJECT* a1), 0x408530);
 
 ObjectThingC ItemBoxAirResizeThing = { (NJS_OBJECT*)0, sub_4BFF90 };
 
@@ -66,21 +51,21 @@ float SnowboardOffset1 = 2.72f;
 float SnowboardOffset2 = -2.72f;
 float hsdistance = -2.0f;
 float ssdistance = 3.5f;
-float HeldOffset_Sonic_1 = 0.0f; //3.7
-float HeldOffset_Sonic_2 = 0.0f; //2.7
-float HeldOffset_Sonic_3 = 0.0f; //1.7
-float HeldOffset_Sonic_4 = 0.0f; //1.0
-float HeldOffset_Tails_1 = -0.5f; //3.3
-float HeldOffset_Tails_2 = 0.0f; //2.2
-float HeldOffset_Tails_3 = 0.0f; //1.7
-float HeldOffset_Tails_4 = 0.0f; //1.0
-float HeldOffset_Knuckles_1 = 0.0f; //1.5
-float HeldOffset_Knuckles_2 = 0.0f; //1.2
-float HeldOffset_Knuckles_3 = 0.0f; //2.7
-float HeldOffset_Knuckles_4 = 0.0f; //0.0
-float HeldOffset_Big = 0.0f; //2.0
-float mrdistance = 2.6f; //0.1
-float mrdistance2 = 9.5f; //7.0
+float HeldOffset_Sonic_1 = 0.0f; // 3.7
+float HeldOffset_Sonic_2 = 0.0f; // 2.7
+float HeldOffset_Sonic_3 = 0.0f; // 1.7
+float HeldOffset_Sonic_4 = 0.0f; // 1.0
+float HeldOffset_Tails_1 = -0.5f; // 3.3
+float HeldOffset_Tails_2 = 0.0f; // 2.2
+float HeldOffset_Tails_3 = 0.0f; // 1.7
+float HeldOffset_Tails_4 = 0.0f; // 1.0
+float HeldOffset_Knuckles_1 = 0.0f; // 1.5
+float HeldOffset_Knuckles_2 = 0.0f; // 1.2
+float HeldOffset_Knuckles_3 = 0.0f; // 2.7
+float HeldOffset_Knuckles_4 = 0.0f; // 0.0
+float HeldOffset_Big = 0.0f; // 2.0
+float mrdistance = 2.6f; // 0.1
+float mrdistance2 = 9.5f; // 7.0
 float Chaos6FreezerOffset = 1.25f;
 float SampleSOffset = 0.0f;
 double holddelta = 1000.0f;
@@ -97,8 +82,8 @@ static int EnvMapMode = 0;
 static int AlphaRejectionMode = 0;
 static int EmeraldGlowAlpha = 255;
 static bool EmeraldGlowDirection = false;
-static float heat_float1 = 1.0f; //1
-static float heat_float2 = 0.2f; //0.5
+static float heat_float1 = 1.0f; // 1
+static float heat_float2 = 0.2f; // 0.5
 static float alphathing = 1.0f;
 int CutsceneFadeValue = 0;
 int CutsceneFadeMode = 0;
@@ -107,6 +92,34 @@ static float EmeraldScale = 1.005f;
 static uint8_t FilteringSettingBackup1 = 2;
 static uint8_t FilteringSettingBackup2 = 2;
 static uint8_t FilteringSettingBackup3 = 2;
+
+NJS_COLOR SwitchDark_vcolor1[] = {
+	{ 0xFF101010 },
+	{ 0xFF101010 },
+	{ 0xFF101010 },
+	{ 0xFF101010 },
+	{ 0xFF101010 },
+	{ 0xFF101010 },
+	{ 0xFF101010 },
+	{ 0xFF101010 },
+};
+
+NJS_COLOR SwitchDark_vcolor2[] = {
+	{ 0xFF101010 },
+	{ 0xFF101010 },
+	{ 0xFF101010 },
+	{ 0xFF101010 },
+	{ 0xFF101010 },
+	{ 0xFF101010 },
+	{ 0xFF101010 },
+	{ 0xFF101010 },
+	{ 0xFF101010 },
+	{ 0xFF101010 },
+	{ 0xFF101010 },
+	{ 0xFF101010 },
+	{ 0xFF101010 },
+	{ 0xFF101010 },
+};
 
 static const NJS_MATERIAL* Chaos4Materials[] = {
 	((NJS_MATERIAL*)0x0119D0FC),
@@ -154,7 +167,7 @@ static const NJS_MATERIAL* Chaos4Materials[] = {
 };
 
 static const NJS_MATERIAL* WhiteDiffuse_General[] = {
-	//Mecha fish
+	// Mecha fish
 	((NJS_MATERIAL*)0x016F96C0),
 	((NJS_MATERIAL*)0x016F96D4),
 	((NJS_MATERIAL*)0x016F96E8),
@@ -173,9 +186,9 @@ static const NJS_MATERIAL* WhiteDiffuse_General[] = {
 	((NJS_MATERIAL*)0x0172793C),
 	((NJS_MATERIAL*)0x01727950),
 	((NJS_MATERIAL*)0x01727964),
-	//Item capsule
+	// Item capsule
 	((NJS_MATERIAL*)0x008BEB44),
-	//Emblem
+	// Emblem
 	((NJS_MATERIAL*)0x009740FC),
 	((NJS_MATERIAL*)0x00974110),
 	((NJS_MATERIAL*)0x00974124),
@@ -183,7 +196,7 @@ static const NJS_MATERIAL* WhiteDiffuse_General[] = {
 };
 
 static const NJS_MATERIAL* WhiteDiffuseSecondCharSpecular[] = {
-	//Metal Sonic in Amy's cutscene
+	// Metal Sonic in Amy's cutscene
 	((NJS_MATERIAL*)0x032D31BC),
 	((NJS_MATERIAL*)0x032D31D0),
 	((NJS_MATERIAL*)0x032D31E4),
@@ -201,9 +214,9 @@ static const NJS_MATERIAL* E101Material[] = {
 };
 
 NJS_MATERIAL* RemoveColors_General[] = {
-	//The beam that collects the emeralds in "Tails and Sonic gassed at Casinopolis" cutscene
+	// The beam that collects the emeralds in "Tails and Sonic gassed at Casinopolis" cutscene
 	((NJS_MATERIAL*)0x30B010C),
-	//Shopping bag in Amy's first cutscene
+	// Shopping bag in Amy's first cutscene
 	((NJS_MATERIAL*)0x328C498),
 	((NJS_MATERIAL*)0x328C4AC),
 	((NJS_MATERIAL*)0x328C1B8),
@@ -224,15 +237,15 @@ NJS_MATERIAL* RemoveColors_General[] = {
 	((NJS_MATERIAL*)0x3289F1C),
 	((NJS_MATERIAL*)0x3289D3C),
 	((NJS_MATERIAL*)0x3289B58),
-	//Amy's escape balloon
+	// Amy's escape balloon
 	((NJS_MATERIAL*)0x8BD7A0),
 	((NJS_MATERIAL*)0x8BD454),
 	((NJS_MATERIAL*)0x8BD468),
 	((NJS_MATERIAL*)0x8BCFC8),
-	//Birdie's locket in Amy's cutscene
+	// Birdie's locket in Amy's cutscene
 	((NJS_MATERIAL*)0x2BE2630),
 	((NJS_MATERIAL*)0x2BE2644),
-	//Birdie
+	// Birdie
 	((NJS_MATERIAL*)0x984470),
 	((NJS_MATERIAL*)0x984484),
 	((NJS_MATERIAL*)0x984498),
@@ -250,7 +263,7 @@ NJS_MATERIAL* RemoveColors_General[] = {
 	((NJS_MATERIAL*)0x982550),
 	((NJS_MATERIAL*)0x982444),
 	((NJS_MATERIAL*)0x9822C8),
-	//Birdie in Amy's cutscene after escape
+	// Birdie in Amy's cutscene after escape
 	((NJS_MATERIAL*)0x2F021EC),
 	((NJS_MATERIAL*)0x2F02200),
 	((NJS_MATERIAL*)0x2F01EA4),
@@ -276,7 +289,7 @@ NJS_MATERIAL* RemoveColors_General[] = {
 	((NJS_MATERIAL*)0x2EFE98C),
 	((NJS_MATERIAL*)0x2EFE6D8),
 	((NJS_MATERIAL*)0x2EFE5CC),
-	//Birdie (ver 2 wing)
+	// Birdie (ver 2 wing)
 	((NJS_MATERIAL*)0x2F07C4C),
 	((NJS_MATERIAL*)0x2F07C60),
 	((NJS_MATERIAL*)0x2F07904),
@@ -369,13 +382,13 @@ void __cdecl MissionStatue_DisplayFix(ObjectMaster* a1)
 		{
 			njRotateY(0, (unsigned __int16)v2);
 		}
-		ProcessModelNode_NoScaling((NJS_OBJECT*)0x016F5EA0);
+		dsDrawObject((NJS_OBJECT*)0x016F5EA0);
 		if (v1->CharIndex < 8 && !(v1->Status & 0x1000))
 		{
 			SetTextureToCommon();
-			v4 = 0.1 - *(float*)&v1->LoopData;
+			v4 = 0.1f - *(float*)&v1->LoopData;
 			njTranslate(0, 0.0f, v4, 0.0f);
-			ProcessModelNode_A_WrapperC(&ShadowBlob_Model, 1.0);
+			late_DrawShadowObject(&ShadowBlob_Model, 1.0);
 		}
 		njPopMatrix(1u);
 	}
@@ -412,7 +425,7 @@ void __cdecl BurgerShopStatue_DisplayFix(ObjectMaster* a2)
 			SetTextureToCommon();
 			v4 = 0.1f - *(float*)&v1->LoopData;
 			njTranslate(0, 0.0f, v4, 0.0f);
-			ProcessModelNode_A_WrapperC(&ShadowBlob_Model, 1.0);
+			late_DrawShadowObject(&ShadowBlob_Model, 1.0);
 		}
 		njPopMatrix(1u);
 	}
@@ -444,8 +457,8 @@ static void __cdecl GoalEmerald_Casino_Display_r(ObjectMaster* a1)
 
 void RenderEmeraldWithGlow_Windy(NJS_OBJECT *object, int flags)
 {
-	//Do the emerald itself first
-	ProcessModelNode_D_Wrapper(object, flags);
+	// Do the emerald itself first
+	late_DrawObjectMesh(object, flags);
 	njPopMatrix(1u);
 	if (EmeraldGlowAlpha >= 360) EmeraldGlowDirection = false;
 	if (EmeraldGlowAlpha <= 128) EmeraldGlowDirection = true;
@@ -453,7 +466,7 @@ void RenderEmeraldWithGlow_Windy(NJS_OBJECT *object, int flags)
 	if (CurrentLevel == 2) EmeraldGlowTexanim.texid = 3;
 	if (CurrentLevel == 9) EmeraldGlowTexanim.texid = 4;
 	if (CurrentLevel == 8) EmeraldGlowTexanim.texid = 5;
-	//Emerald glow sprite
+	// Emerald glow sprite
 	njColorBlendingMode(NJD_SOURCE_COLOR, NJD_COLOR_BLENDING_ONE);
 	njColorBlendingMode(NJD_DESTINATION_COLOR, NJD_COLOR_BLENDING_ONE);
 	njPushMatrix(0);
@@ -468,13 +481,13 @@ void RenderEmeraldWithGlow_Windy(NJS_OBJECT *object, int flags)
 	njColorBlendingMode(NJD_DESTINATION_COLOR, NJD_COLOR_BLENDING_INVSRCALPHA);
 	ClampGlobalColorThing_Thing();
 	ToggleStageFog();
-	//Don't njPopMatrix because there's one right after this hook in code
+	// Don't njPopMatrix because there's one right after this hook in code
 }
 
 void RenderEmeraldWithGlow_Ice(NJS_OBJECT *object, int flags, float scale)
 {
-	//Do the emerald itself first
-	ProcessModelNode_D_Wrapper(object, flags);
+	// Do the emerald itself first
+	late_DrawObjectMesh(object, flags);
 	njPopMatrix(1u);
 	if (EmeraldGlowAlpha >= 360) EmeraldGlowDirection = false;
 	if (EmeraldGlowAlpha <= 128) EmeraldGlowDirection = true;
@@ -482,7 +495,7 @@ void RenderEmeraldWithGlow_Ice(NJS_OBJECT *object, int flags, float scale)
 	if (CurrentLevel == 2) EmeraldGlowTexanim.texid = 3;
 	if (CurrentLevel == 9) EmeraldGlowTexanim.texid = 4;
 	if (CurrentLevel == 8) EmeraldGlowTexanim.texid = 5;
-	//Emerald glow sprite
+	// Emerald glow sprite
 	njColorBlendingMode(NJD_SOURCE_COLOR, NJD_COLOR_BLENDING_ONE);
 	njColorBlendingMode(NJD_DESTINATION_COLOR, NJD_COLOR_BLENDING_ONE);
 	njPushMatrix(0);
@@ -498,16 +511,16 @@ void RenderEmeraldWithGlow_Ice(NJS_OBJECT *object, int flags, float scale)
 	njColorBlendingMode(NJD_DESTINATION_COLOR, NJD_COLOR_BLENDING_INVSRCALPHA);
 	ClampGlobalColorThing_Thing();
 	ToggleStageFog();
-	//Don't njPopMatrix because there's one right after this hook in code
+	// Don't njPopMatrix because there's one right after this hook in code
 }
 
 void SonicDashTrailFix(NJS_OBJECT *a1, QueuedModelFlagsB a2)
 {
 	DrawQueueDepthBias = 2500.0f;
-	if (EnableWindyValley && CurrentLevel == LevelIDs_WindyValley && CurrentAct == 2) DrawQueueDepthBias = 3500.0f;
-	if (EnableChaos4 && CurrentLevel == LevelIDs_Chaos4) DrawQueueDepthBias = 4500.0f;
+	if (EnabledLevels[LevelIDs_WindyValley] && CurrentLevel == LevelIDs_WindyValley && CurrentAct == 2) DrawQueueDepthBias = 3500.0f;
+	if (EnabledLevels[LevelIDs_Chaos4] && CurrentLevel == LevelIDs_Chaos4) DrawQueueDepthBias = 4500.0f;
 	if (!IsGamePaused()) a1->basicdxmodel->mats->attr_texId = rand() % 2;
-	ProcessModelNode(a1, (QueuedModelFlagsB)0, 1.0f);
+	lateDrawObject(a1, (QueuedModelFlagsB)0, 1.0f);
 	if (!IsGamePaused()) a1->basicdxmodel->mats->attr_texId = 0;
 	DrawQueueDepthBias = 0.0f;
 }
@@ -515,9 +528,9 @@ void SonicDashTrailFix(NJS_OBJECT *a1, QueuedModelFlagsB a2)
 void SonicDashTrailFix2(NJS_OBJECT *a1, QueuedModelFlagsB a2)
 {
 	DrawQueueDepthBias = 2500.0f;
-	if (EnableWindyValley && CurrentLevel == LevelIDs_WindyValley && CurrentAct == 2) DrawQueueDepthBias = 3500.0f;
-	if (EnableChaos4 && CurrentLevel == LevelIDs_Chaos4) DrawQueueDepthBias = 4500.0f;
-	ProcessModelNode_A_WrapperB(a1, a2);
+	if (EnabledLevels[LevelIDs_WindyValley] && CurrentLevel == LevelIDs_WindyValley && CurrentAct == 2) DrawQueueDepthBias = 3500.0f;
+	if (EnabledLevels[LevelIDs_Chaos4] && CurrentLevel == LevelIDs_Chaos4) DrawQueueDepthBias = 4500.0f;
+	late_DrawObject(a1, a2);
 	DrawQueueDepthBias = 0.0f;
 }
 
@@ -531,7 +544,7 @@ void __cdecl Knuckles_MaximumHeat_DrawX(NJS_VECTOR *position, float alpha)
 	{
 		a = alpha * -0.6f;
 		KNUCKLES_OBJECTS[47]->basicdxmodel->mats[0].attr_texId = 1;
-		KNUCKLES_OBJECTS[47]->basicdxmodel->mats[0].diffuse.argb.a = 255 * (1.0f - alpha*1.1f)*0.7f;
+		KNUCKLES_OBJECTS[47]->basicdxmodel->mats[0].diffuse.argb.a = 255 * Uint8((1.0f - alpha * 1.1f) * 0.7f);
 		njPushMatrix(0);
 		njTranslateV(0, position);
 		s = 1.2f - alpha * alpha;
@@ -543,8 +556,8 @@ void __cdecl Knuckles_MaximumHeat_DrawX(NJS_VECTOR *position, float alpha)
 		}
 		njSetTexture(&KNU_EFF_TEXLIST);
 		DrawQueueDepthBias = 2000.0f;
-		if (EnableChaos4 && CurrentLevel == LevelIDs_Chaos4) DrawQueueDepthBias = 4500.0f;
-		ProcessModelNode_A_WrapperB(KNUCKLES_OBJECTS[47], QueuedModelFlagsB_SomeTextureThing);
+		if (EnabledLevels[LevelIDs_Chaos4] && CurrentLevel == LevelIDs_Chaos4) DrawQueueDepthBias = 4500.0f;
+		late_DrawObject(KNUCKLES_OBJECTS[47], QueuedModelFlagsB_SomeTextureThing);
 		DrawQueueDepthBias = 0.0f;
 		njPopMatrix(1u);
 		ClampGlobalColorThing_Thing();
@@ -578,7 +591,7 @@ void __cdecl Knuckles_MaximumHeatSprite_Draw(ObjectMaster *sx)
 			njSetTexture(&KNU_EFF_TEXLIST);
 			njColorBlendingMode(NJD_SOURCE_COLOR, NJD_COLOR_BLENDING_SRCALPHA);
 			njColorBlendingMode(NJD_DESTINATION_COLOR, NJD_COLOR_BLENDING_ONE);
-			//Sprite 1
+			// Sprite 1
 			scl1 = sxa*0.09f;
 			njPushMatrix(0);
 			njTranslateV(0, &pos);
@@ -589,7 +602,7 @@ void __cdecl Knuckles_MaximumHeatSprite_Draw(ObjectMaster *sx)
 			DrawQueueDepthBias = 5000.0f;
 			njDrawSprite3D(&Heat1Sprite, 0, NJD_SPRITE_ALPHA | NJD_SPRITE_COLOR);
 			njPopMatrix(1u);
-			//Sprite 2
+			// Sprite 2
 			scl2 = 0.05f / scl1;
 			njPushMatrix(0);
 			njTranslateV(0, &pos);
@@ -614,8 +627,8 @@ void KnucklesPunch_RetrieveAlpha(float a, float r, float g, float b)
 
 void KnucklesPunch_Render(NJS_OBJECT *a1, QueuedModelFlagsB a2)
 {
-	a1->basicdxmodel->mats[0].diffuse.argb.a = alphathing * 255;
-	ProcessModelNode_A_WrapperB(a1, a2);
+	a1->basicdxmodel->mats[0].diffuse.argb.a = Uint8(alphathing * 255.0f);
+	late_DrawObject(a1, a2);
 }
 
 void MagneticBarrierLightning(NJS_POINT3COL *a1, int a2, NJD_DRAW attr, QueuedModelFlagsB a4)
@@ -638,18 +651,18 @@ void SetMagneticBarrierColor(float a, float r, float g, float b)
 int __cdecl RenderBarrierModels(NJS_MODEL_SADX *a1)
 {
 	if ((unsigned __int16)(CurrentAct | (CurrentLevel << 8)) >> 8 == 3 && CurrentAct == 2) DrawQueueDepthBias = 0; else DrawQueueDepthBias = 20048.0f;
-	if (EnableSpeedHighway && CurrentLevel == LevelIDs_SpeedHighway && CurrentAct == 2) DrawQueueDepthBias = 500.0f;
-	DrawVisibleModel_Queue(a1, (QueuedModelFlagsB)0);
+	if (EnabledLevels[LevelIDs_SpeedHighway] && CurrentLevel == LevelIDs_SpeedHighway && CurrentAct == 2) DrawQueueDepthBias = 500.0f;
+	late_DrawModel(a1, (QueuedModelFlagsB)0);
 	DrawQueueDepthBias = 0;
 	return 0;
 }
 
 void SuperSonicAuraHook(NJS_OBJECT *a1, QueuedModelFlagsB a2)
 {
-	//Same deal as the barriers basically
+	// Same deal as the barriers basically
 	if ((unsigned __int16)(CurrentAct | (CurrentLevel << 8)) >> 8 == 3 && CurrentAct == 2) DrawQueueDepthBias = 0; else DrawQueueDepthBias = 20048.0f;
-	if (EnableSpeedHighway && CurrentLevel == LevelIDs_SpeedHighway && CurrentAct == 2) DrawQueueDepthBias = 500.0f;
-	ProcessModelNode_A_WrapperB(a1, a2);
+	if (EnabledLevels[LevelIDs_SpeedHighway] && CurrentLevel == LevelIDs_SpeedHighway && CurrentAct == 2) DrawQueueDepthBias = 500.0f;
+	late_DrawObject(a1, a2);
 	DrawQueueDepthBias = 0;
 }
 
@@ -657,14 +670,11 @@ void __cdecl Sonic_DisplayLightDashModelX(EntityData1 *data1, CharObj2 **data2_p
 {
 	int v3; // eax
 	__int16 v4; // t1
-	double v5; // st7
-	float v6; // ST28_4
-	double v7; // st7
+	float v5; // st7
 	float basedepth = 8000.0f;
 	NJS_ACTION v8; // [esp+4h] [ebp-18h]
-	NJS_ARGB a1; // [esp+Ch] [ebp-10h]
-	if (EnableSpeedHighway && CurrentLevel == LevelIDs_SpeedHighway && CurrentAct == 2) basedepth = 1000.0f;
-	if (EnableStationSquare && CurrentLevel == LevelIDs_StationSquare && CurrentAct == 3) basedepth = 1000.0f;
+	if (EnabledLevels[LevelIDs_SpeedHighway] && CurrentLevel == LevelIDs_SpeedHighway && CurrentAct == 2) basedepth = 1000.0f;
+	if (EnabledLevels[LevelIDs_StationSquare] && CurrentLevel == LevelIDs_StationSquare && CurrentAct == 3) basedepth = 1000.0f;
 	NJS_OBJECT **___SONIC_OBJECTS = (NJS_OBJECT **)GetProcAddress(GetModuleHandle(L"CHRMODELS_orig"), "___SONIC_OBJECTS");
 	if (!MissedFrames)
 	{
@@ -679,7 +689,7 @@ void __cdecl Sonic_DisplayLightDashModelX(EntityData1 *data1, CharObj2 **data2_p
 		{
 			v8.motion = data2->AnimationThing.AnimData[v3].Animation->motion;
 		}
-		v5 = (double)(FrameCounterUnpaused & 0x7F);
+		v5 = (float)(FrameCounterUnpaused & 0x7F);
 		if (v5 >= 64.0f)
 		{
 			v5 = 128.0f - v5;
@@ -689,20 +699,20 @@ void __cdecl Sonic_DisplayLightDashModelX(EntityData1 *data1, CharObj2 **data2_p
 		njControl3D(NJD_CONTROL_3D_CONSTANT_MATERIAL | NJD_CONTROL_3D_ENABLE_ALPHA | NJD_CONTROL_3D_CONSTANT_ATTR);
 		njColorBlendingMode(0, NJD_COLOR_BLENDING_ONE);
 		njColorBlendingMode(NJD_DESTINATION_COLOR, NJD_COLOR_BLENDING_ONE);
-		//Main
-		SetMaterialAndSpriteColor_Float(1.0f, 0, 0.06f + (64 - v5) / 880.0f, 1.0f);
+		// Main
+		SetMaterialAndSpriteColor_Float(1.0f, 0, 0.06f + (64.0f - v5) / 880.0f, 1.0f);
 		DrawQueueDepthBias = basedepth;
-		sub_4083D0(&v8, data2->AnimationThing.Frame, 0);
-		//Outer 1
+		late_ActionMesh(&v8, data2->AnimationThing.Frame, 0);
+		// Outer 1
 		njScale(0, 1.05f, 1.05f, 1.05f);
-		SetMaterialAndSpriteColor_Float(1.0f, 0.0245f, (64 - v5) / 1050.0f, 1.0f);
+		SetMaterialAndSpriteColor_Float(1.0f, 0.0245f, (64.0f - v5) / 1050.0f, 1.0f);
 		DrawQueueDepthBias = basedepth + 300.0f;
-		sub_4083D0(&v8, data2->AnimationThing.Frame, 0);
-		//Outer 2
+		late_ActionMesh(&v8, data2->AnimationThing.Frame, 0);
+		// Outer 2
 		njScale(0, 1.05f, 1.05f, 1.05f);
-		SetMaterialAndSpriteColor_Float(1.0f, 0.024f, (64 - v5) / 2000.0f, 0.15f);
+		SetMaterialAndSpriteColor_Float(1.0f, 0.024f, (64.0f - v5) / 2000.0f, 0.15f);
 		DrawQueueDepthBias = basedepth + 600.0f;
-		sub_4083D0(&v8, data2->AnimationThing.Frame, 0);
+		late_ActionMesh(&v8, data2->AnimationThing.Frame, 0);
 		njColorBlendingMode(0, NJD_COLOR_BLENDING_SRCALPHA);
 		njColorBlendingMode(NJD_DESTINATION_COLOR, NJD_COLOR_BLENDING_INVSRCALPHA);
 		njPopMatrixEx();
@@ -721,11 +731,11 @@ void __cdecl SpawnRipplesX(unsigned __int8 a1, NJS_VECTOR *a2)
 {
 	int v2; // eax
 	CharObj2 *v3; // esi
-	double v4; // st7
-	_BOOL1 v5; // c0
-	_BOOL1 v6; // c3
-	double v7; // st7
-	long double v8; // st7
+	float v4; // st7
+	bool v5; // c0
+	bool v6; // c3
+	float v7; // st7
+	float v8; // st7
 	float a3; // ST08_4
 	NJS_VECTOR a2a; // [esp+Ch] [ebp-Ch]
 
@@ -735,21 +745,21 @@ void __cdecl SpawnRipplesX(unsigned __int8 a1, NJS_VECTOR *a2)
 	{
 		if (njScalor(&v3->Speed) == 0.0f)
 		{
-			v4 = (double)rand() * 0.000030517578f;
+			v4 = rand() * 0.000030517578f;
 			v5 = v4 < 0.9f;
 			v6 = v4 == 0.9f;
 		}
 		else
 		{
-			v7 = (double)rand() * 0.000030517578f;
+			v7 = rand() * 0.000030517578f;
 			v5 = v7 < 0.85f;
 			v6 = v7 == 0.85f;
 		}
-		if (!(v5 | v6) && njScalor(&v3->Speed) != 0.0f)
+		if (!v5 && !v6 && njScalor(&v3->Speed) != 0.0f)
 		{
 			v8 = v3->Speed.y;
 			a2a.y = 0.0;
-			a2a.z = 1.5;
+			a2a.z = 1.5f;
 			a2a.x = fabs(v8) * 0.005f + 0.03f;
 			a3 = v3->PhysicsData.RippleSize * 0.1f;
 			sub_4B9430(a2, &a2a, a3);
@@ -777,7 +787,7 @@ void __cdecl FixedRipple_Normal(ObjectMaster *a2)
 		g = *(float *)&v1->CharIndex;
 		SetMaterialAndSpriteColor_Float(g, g, g, g);
 		DrawQueueDepthBias = 2000.0f;
-		ProcessModelNode(&stru_8B22F4, (QueuedModelFlagsB)0, v1->Scale.x);
+		lateDrawObject(&stru_8B22F4, (QueuedModelFlagsB)0, v1->Scale.x);
 		DrawQueueDepthBias = 0.0;
 		ClampGlobalColorThing_Thing();
 		njColorBlendingMode(0, NJD_COLOR_BLENDING_SRCALPHA);
@@ -791,7 +801,7 @@ void __cdecl FixedRipple_Normal(ObjectMaster *a2)
 void __cdecl FixedRipple_Bubble(ObjectMaster *a2)
 {
 	NJS_VECTOR *v1; // esi
-	double v2; // st7
+	float v2; // st7
 	NJS_ARGB colorthing;
 	v1 = (NJS_VECTOR *)a2->UnknownB_ptr;
 	if (!MissedFrames)
@@ -812,7 +822,7 @@ void __cdecl FixedRipple_Bubble(ObjectMaster *a2)
 		njColorBlendingMode(0, NJD_COLOR_BLENDING_SRCALPHA);
 		njColorBlendingMode(NJD_DESTINATION_COLOR, NJD_COLOR_BLENDING_ONE);
 		DrawQueueDepthBias = 2000.0f;
-		ProcessModelNode(&stru_8B22F4, (QueuedModelFlagsB)0, v1[2].z);
+		lateDrawObject(&stru_8B22F4, (QueuedModelFlagsB)0, v1[2].z);
 		DrawQueueDepthBias = 0.0;
 		ClampGlobalColorThing_Thing();
 		njColorBlendingMode(0, NJD_COLOR_BLENDING_SRCALPHA);
@@ -833,12 +843,12 @@ float CalculateEnemyYCoordinate_Wrapper(float x, float y, float z, Rotation3 *ro
 	return result;
 }
 
-//This one is used exclusively by the Sweep badnik
+// This one is used exclusively by the Sweep badnik
 static Trampoline* CalculateEnemyYCoordinate_Sweep_t = nullptr;
-static double __cdecl CalculateEnemyYCoordinate_Sweep_r(float x, float y, float z, Rotation3 *rotation)
+static float __cdecl CalculateEnemyYCoordinate_Sweep_r(float x, float y, float z, Rotation3 *rotation)
 {
 	const auto original = TARGET_DYNAMIC(CalculateEnemyYCoordinate_Sweep);
-	float result = 	original(x, y, z, rotation);
+	float result =original(x, y, z, rotation);
 	if (result == -1000000.0f) 
 	{
 		result = y;
@@ -909,7 +919,7 @@ void __cdecl ItemBox_Display_Unknown_Rotate(ObjectMaster* _this)
 				if (IsCameraUnderwater) DrawQueueDepthBias = -10000.0f; 
 				else if (CurrentLevel == LevelIDs_HotShelter && CurrentAct == 0 && EntityData1Ptrs[0]->Position.x < 1050) DrawQueueDepthBias = -1000.0f; 
 				else DrawQueueDepthBias = 8000.0f;
-				DrawModel_Queue(&ItemBox_Capsule_MODEL, (QueuedModelFlagsB)0);
+				lateDrawModel(&ItemBox_Capsule_MODEL, (QueuedModelFlagsB)0);
 				DrawQueueDepthBias = 0.0f;
 				DrawModel(&ItemBox_Top_MODEL);
 			}
@@ -964,7 +974,7 @@ void __cdecl ItemBox_Display_Rotate(ObjectMaster* _this)
 				if (IsCameraUnderwater) DrawQueueDepthBias = -10000.0f; 
 				else if (CurrentLevel == LevelIDs_HotShelter && CurrentAct == 0 && EntityData1Ptrs[0]->Position.x < 1050) DrawQueueDepthBias = -1000.0f; 
 				else DrawQueueDepthBias = 8000.0f;
-				DrawModel_Queue(&ItemBox_Capsule_MODEL, (QueuedModelFlagsB)0);
+				lateDrawModel(&ItemBox_Capsule_MODEL, (QueuedModelFlagsB)0);
 				DrawQueueDepthBias = 0.0f;
 				DrawModel(&ItemBox_Top_MODEL);
 			}
@@ -1019,13 +1029,13 @@ void __fastcall DrawUnderwaterOverlay(NJS_MATRIX_PTR m)
 {
 	NJS_COLOR WaterOverlay_Colors;
 	njPushMatrix(m);
-	//if (CurrentLevel != 9) //I forgot why
+	//if (CurrentLevel != 9) // I forgot why
 	//{		
 		IsCameraUnderwater = true;
 		njColorBlendingMode(0, NJD_COLOR_BLENDING_SRCALPHA);
 		njColorBlendingMode(NJD_DESTINATION_COLOR, NJD_COLOR_BLENDING_ONE);
 		WaterOverlay_Colors.color = 0x1E0008FF;
-		DrawRect_Queue(0.0, 0.0, HorizontalResolution, VerticalResolution, 22041.496f, WaterOverlay_Colors.argb.b | ((WaterOverlay_Colors.argb.g | (*(unsigned __int16 *)&WaterOverlay_Colors.argb.r << 8)) << 8), QueuedModelFlagsB_EnableZWrite);
+		DrawRect_Queue(0.0f, 0.0f, (float)HorizontalResolution, (float)VerticalResolution, 22041.496f, WaterOverlay_Colors.argb.b | ((WaterOverlay_Colors.argb.g | (*(unsigned __int16 *)&WaterOverlay_Colors.argb.r << 8)) << 8), QueuedModelFlagsB_EnableZWrite);
 		njColorBlendingMode(0, NJD_COLOR_BLENDING_SRCALPHA);
 		njColorBlendingMode(NJD_DESTINATION_COLOR, NJD_COLOR_BLENDING_INVSRCALPHA);
 	//}
@@ -1044,7 +1054,7 @@ void __cdecl sub_4B9CE0(EntityData1 *a1, EntityData1 *a2)
 	a2a.y = 0.0;
 	a2a.x = 0.0;
 	v2->Scale.x = v3;
-	v2->Scale.y = GetCharObj2(0)->PhysicsData.CollisionSize * v2->Scale.x * 0.60000002;
+	v2->Scale.y = GetCharObj2(0)->PhysicsData.CollisionSize * v2->Scale.x * 0.60000002f;
 	njPushMatrix(nj_unit_matrix_);
 	njTranslateV(0, &a2->Position);
 	v4 = a2->Rotation.z;
@@ -1081,8 +1091,8 @@ void __cdecl Barrier_MainX(ObjectMaster *a1)
 			if (v3)
 			{
 				v5 = v3->Data1;
-				v5->Rotation.x = (unsigned __int64)((double)rand() * 0.000030517578f * 65536.0f);
-				v5->Rotation.y = (unsigned __int64)((double)rand() * 0.000030517578f * 65536.0f);
+				v5->Rotation.x = (int)(rand() * 0.000030517578f * 65536.0f);
+				v5->Rotation.y = (int)(rand() * 0.000030517578f * 65536.0f);
 				v4->DisplaySub = Barrier_Display;
 			}
 		}
@@ -1096,7 +1106,7 @@ void __cdecl Barrier_MainX(ObjectMaster *a1)
 
 void __cdecl RenderInvincibilityLines(NJS_MODEL_SADX *a1)
 {
-	double v1; // st7
+	float v1; // st7
 
 	v1 = 20048.0f;
 	if ((CurrentAct | (CurrentLevel << 8)) >> 8 == 3 && CurrentAct == 2)
@@ -1104,13 +1114,13 @@ void __cdecl RenderInvincibilityLines(NJS_MODEL_SADX *a1)
 		v1 = 0.0f;
 	}
 	DrawQueueDepthBias = v1;
-	DrawVisibleModel_Queue(a1, (QueuedModelFlagsB)0);
+	late_DrawModel(a1, (QueuedModelFlagsB)0);
 	DrawQueueDepthBias = 0.0f;
 }
 
 void RenderHintMonitor_Main(NJS_MODEL_SADX *a1, int a2, float a3)
 {
-	sub_409E70(HintMonitorModel->basicdxmodel, a2, a3);
+	late_DrawModelClipMesh(HintMonitorModel->basicdxmodel, a2, a3);
 }
 
 void SetHintMonitorTransparency(NJS_ARGB *a1)
@@ -1120,7 +1130,7 @@ void SetHintMonitorTransparency(NJS_ARGB *a1)
 
 void DrawNPCShadowFix(NJS_MODEL_SADX *a1)
 {
-	DrawModel_Queue(a1, QueuedModelFlagsB_EnableZWrite);
+	lateDrawModel(a1, QueuedModelFlagsB_EnableZWrite);
 }
 
 void ECGammaCutsceneFix(ObjectMaster *a1, NJS_ACTION *a2, NJS_TEXLIST *a3, float a4, char a5, char a6)
@@ -1195,7 +1205,7 @@ void __cdecl ItemBoxAirDrawFunction_Normal(NJS_OBJECT *a1, ObjectThingC *a2)
 				if (IsCameraUnderwater) DrawQueueDepthBias = -13000.0f; 
 				else if (CurrentLevel == LevelIDs_HotShelter && CurrentAct == 0 && EntityData1Ptrs[0]->Position.x < 1050) DrawQueueDepthBias = -1000.0f; 
 				else DrawQueueDepthBias = 3000.0f;
-				sub_4094D0(v2->basicdxmodel, (QueuedModelFlagsB)0, a3);
+				late_DrawModelClipEx(v2->basicdxmodel, (QueuedModelFlagsB)0, a3);
 				DrawQueueDepthBias = 0.0f;
 			}
 		}
@@ -1254,14 +1264,14 @@ void DrawAfterImageFixed(int a1, CharObj2 *a2)
 			{
 				njSetTexture(&METALSONIC_TEXLIST);
 				if (CharObj2Ptrs[0]->UnderwaterTime) DrawQueueDepthBias = -35000.0f; else DrawQueueDepthBias = 5000.0f;
-				sub_4053A0(SONIC_OBJECTS[68], SONIC_MOTIONS[1], a2->AnimationThing.Frame, 0, 0);
+				late_DrawMotionClip(SONIC_OBJECTS[68], SONIC_MOTIONS[1], a2->AnimationThing.Frame, 0, 0);
 				DrawQueueDepthBias = 0;
 			}
 			else
 			{
 				njSetTexture(&METALSONIC_TEXLIST);
 				if (CharObj2Ptrs[0]->UnderwaterTime) DrawQueueDepthBias = -35000.0f; else DrawQueueDepthBias = 5000.0f;
-				sub_4053A0(SONIC_OBJECTS[68], (*(NJS_ACTION **)((char *)&a2->AnimationThing.AnimData->Animation + v5))->motion, a2->AnimationThing.Frame, 0, 0);
+				late_DrawMotionClip(SONIC_OBJECTS[68], (*(NJS_ACTION **)((char *)&a2->AnimationThing.AnimData->Animation + v5))->motion, a2->AnimationThing.Frame, 0, 0);
 				DrawQueueDepthBias = 0;
 			}
 		}
@@ -1269,14 +1279,14 @@ void DrawAfterImageFixed(int a1, CharObj2 *a2)
 		{
 			njSetTexture(&METALSONIC_TEXLIST);
 			if (CharObj2Ptrs[0]->UnderwaterTime) DrawQueueDepthBias = -35000.0f; else DrawQueueDepthBias = 5000.0f;
-			sub_4053A0(SONIC_OBJECTS[69], (*(NJS_ACTION **)((char *)&a2->AnimationThing.AnimData->Animation + v5))->motion,	a2->AnimationThing.Frame, 0, 0);
+			late_DrawMotionClip(SONIC_OBJECTS[69], (*(NJS_ACTION **)((char *)&a2->AnimationThing.AnimData->Animation + v5))->motion,	a2->AnimationThing.Frame, 0, 0);
 			DrawQueueDepthBias = 0;
 		}
 		else if (v3 == SONIC_OBJECTS[67])
 		{
 			njSetTexture(&METALSONIC_TEXLIST);
 			if (CharObj2Ptrs[0]->UnderwaterTime) DrawQueueDepthBias = -35000.0f; else DrawQueueDepthBias = 5000.0f;
-			sub_4053A0(SONIC_OBJECTS[70], (*(NJS_ACTION **)((char *)&a2->AnimationThing.AnimData->Animation + v5))->motion,	a2->AnimationThing.Frame, 0, 0);
+			late_DrawMotionClip(SONIC_OBJECTS[70], (*(NJS_ACTION **)((char *)&a2->AnimationThing.AnimData->Animation + v5))->motion,	a2->AnimationThing.Frame, 0, 0);
 			DrawQueueDepthBias = 0;
 		}
 		else
@@ -1338,15 +1348,15 @@ void CharacterShadowHook(NJS_OBJECT *a1, float a2)
 {
 	float v2; // st7
 	v2 = DrawQueueDepthBias;
-	if (EnableWindyValley && CurrentLevel == LevelIDs_WindyValley && CurrentAct == 2) DrawQueueDepthBias = 2600.0f;
-	else if (EnableChaos4 && CurrentLevel == LevelIDs_Chaos4)
+	if (EnabledLevels[LevelIDs_WindyValley] && CurrentLevel == LevelIDs_WindyValley && CurrentAct == 2) DrawQueueDepthBias = 2600.0f;
+	else if (EnabledLevels[LevelIDs_Chaos4] && CurrentLevel == LevelIDs_Chaos4)
 	{
 		if (EntityData1Ptrs[0]->Position.y >= 18) DrawQueueDepthBias = 4000.0f;
 		else DrawQueueDepthBias = -32952.0f;
 	}
-	else if (EnableRedMountain && CurrentLevel == LevelIDs_RedMountain && CurrentAct != 1)
+	else if (EnabledLevels[LevelIDs_RedMountain] && CurrentLevel == LevelIDs_RedMountain && CurrentAct != 1)
 	{
-		//Disable for digging
+		// Disable for digging
 		if (CurrentCharacter == Characters_Knuckles && CharObj2Ptrs[0]->AnimationThing.Index >= 41 && CharObj2Ptrs[0]->AnimationThing.Index <= 44) DrawQueueDepthBias = -21000.0f;
 		else DrawQueueDepthBias = 1000.0f;
 	}
@@ -1357,7 +1367,7 @@ void CharacterShadowHook(NJS_OBJECT *a1, float a2)
 	}
 	else
 	{
-		ProcessModelNode(a1, (QueuedModelFlagsB)6, a2);
+		lateDrawObject(a1, (QueuedModelFlagsB)6, a2);
 		DrawQueueDepthBias = v2;
 	}
 }
@@ -1365,19 +1375,18 @@ void CharacterShadowHook(NJS_OBJECT *a1, float a2)
 void DrawCutsceneZeroShadow(NJS_OBJECT *object, float scale)
 {
 	DrawQueueDepthBias = 2000.0f;
-	ProcessModelNode(object, QueuedModelFlagsB_SomeTextureThing, scale);
+	lateDrawObject(object, QueuedModelFlagsB_SomeTextureThing, scale);
 	DrawQueueDepthBias = 0.0f;
 }
 
 void DrawScalableShadowHook(NJS_OBJECT *a1, float a2)
 {
-	double v2; // st7
-	float v3; // [esp+0h] [ebp-4h]
+	float v2; // st7
 	v2 = DrawQueueDepthBias;
-	if (EnableWindyValley && CurrentLevel == LevelIDs_WindyValley && CurrentAct == 2)
+	if (EnabledLevels[LevelIDs_WindyValley] && CurrentLevel == LevelIDs_WindyValley && CurrentAct == 2)
 	{
 		DrawQueueDepthBias = 2600.0f;
-		ProcessModelNode(a1, (QueuedModelFlagsB)6, a2);
+		lateDrawObject(a1, (QueuedModelFlagsB)6, a2);
 	}
 	else
 	{
@@ -1387,9 +1396,9 @@ void DrawScalableShadowHook(NJS_OBJECT *a1, float a2)
 		}
 		else
 		{
-			ProcessModelNode(a1, (QueuedModelFlagsB)6, a2);
+			lateDrawObject(a1, (QueuedModelFlagsB)6, a2);
 		}
-		ProcessModelNode_A_WrapperC(a1, a2);
+		late_DrawShadowObject(a1, a2);
 	}
 	DrawQueueDepthBias = v2;
 }
@@ -1397,37 +1406,37 @@ void DrawScalableShadowHook(NJS_OBJECT *a1, float a2)
 void DrawRingShadowHook(NJS_MODEL_SADX *a1, float a2)
 {
 	float v2 = DrawQueueDepthBias;
-	if (EnableWindyValley && CurrentLevel == LevelIDs_WindyValley && CurrentAct == 2)
+	if (EnabledLevels[LevelIDs_WindyValley] && CurrentLevel == LevelIDs_WindyValley && CurrentAct == 2)
 	{
 		DrawQueueDepthBias = 2600.0f;
 	}
-	else if (EnableFinalEgg && CurrentLevel == LevelIDs_FinalEgg && CurrentAct == 2)
+	else if (EnabledLevels[LevelIDs_FinalEgg] && CurrentLevel == LevelIDs_FinalEgg && CurrentAct == 2)
 	{
 		DrawQueueDepthBias = 3000.0f;
 	}
 	else DrawQueueDepthBias = -27952.0f;
-	DrawModel_QueueVisible(a1, (QueuedModelFlagsB)6, a2);
+	late_DrawModelClip(a1, (QueuedModelFlagsB)6, a2);
 	DrawQueueDepthBias = v2;
 }
 
 void RenderEmeraldShard_A(NJS_OBJECT *a1, QueuedModelFlagsB a2, float a3)
 {
 	DrawQueueDepthBias = 2000.0f;
-	ProcessModelNode_D(EmeraldPieceModel, (QueuedModelFlagsB)1, a3);
+	DrawObjectClipMesh(EmeraldPieceModel, (QueuedModelFlagsB)1, a3);
 	DrawQueueDepthBias = 0.0f;
 }
 
 void RenderEmeraldShard_B(NJS_OBJECT *a1, QueuedModelFlagsB a2)
 {
 	DrawQueueDepthBias = 1500.0f;
-	ProcessModelNode_D(EmeraldPieceOutline, (QueuedModelFlagsB)0, 1.0f);
+	DrawObjectClipMesh(EmeraldPieceOutline, (QueuedModelFlagsB)0, 1.0f);
 	DrawQueueDepthBias = 0.0f;
 }
 
 void RenderEmeraldShard_C(NJS_OBJECT *a1)
 {
 	DrawQueueDepthBias = 1500.0f;
-	ProcessModelNode_D(EmeraldPieceOutline, (QueuedModelFlagsB)0, 1.0f);
+	DrawObjectClipMesh(EmeraldPieceOutline, (QueuedModelFlagsB)0, 1.0f);
 	DrawQueueDepthBias = 0.0f;
 }
 
@@ -1438,80 +1447,80 @@ void SetEmeraldShardColor(float a, float r, float g, float b)
 
 void SonicFrozenCubeFix(NJS_OBJECT *a1)
 {
-	ProcessModelNode_D(a1, 0, 1.0f);
+	DrawObjectClipMesh(a1, 0, 1.0f);
 }
 
 void AnimalBubbleHook(NJS_OBJECT* a1, QueuedModelFlagsB a2)
 {
 	DrawQueueDepthBias = 4000.0f;
-	ProcessModelNode(a1, (QueuedModelFlagsB)0, 1.0f);
+	lateDrawObject(a1, (QueuedModelFlagsB)0, 1.0f);
 	DrawQueueDepthBias = 0.0f;
 }
 
 void BigFishingThingFix(NJS_OBJECT* a1)
 {
-	ProcessModelNode(a1, (QueuedModelFlagsB)0, 1.0f);
+	lateDrawObject(a1, (QueuedModelFlagsB)0, 1.0f);
 }
 
 void RenderItemBoxIcon(NJS_MODEL_SADX* a1)
 {
 	if (IsCameraUnderwater) DrawQueueDepthBias = -15000.0f;
 	else if (CurrentLevel == LevelIDs_HotShelter && CurrentAct == 0 && EntityData1Ptrs[0]->Position.x < 1050) DrawQueueDepthBias = -2000.0f; 
-	DrawModel_Queue(a1, QueuedModelFlagsB_EnableZWrite);
+	lateDrawModel(a1, QueuedModelFlagsB_EnableZWrite);
 	DrawQueueDepthBias = 0.0f;
 }
 
 void SpindashChargeLinesHook(NJS_POINT3COL *a1, int a2, NJD_DRAW attr, QueuedModelFlagsB a4)
 {
-	if (EnableWindyValley && CurrentLevel == LevelIDs_WindyValley && CurrentAct == 2) DrawQueueDepthBias = 4000.0f;
-	if (EnableStationSquare && CurrentLevel == LevelIDs_StationSquare && CurrentAct == 3) DrawQueueDepthBias = 1000.0f;
+	if (EnabledLevels[LevelIDs_WindyValley] && CurrentLevel == LevelIDs_WindyValley && CurrentAct == 2) DrawQueueDepthBias = 4000.0f;
+	if (EnabledLevels[LevelIDs_StationSquare] && CurrentLevel == LevelIDs_StationSquare && CurrentAct == 3) DrawQueueDepthBias = 1000.0f;
 	Draw3DLinesMaybe_Queue(a1, a2, attr, a4);
 	DrawQueueDepthBias = 0.0f;
 }
 
 void SpindashChargeSpriteHook(NJS_SPRITE *sp, Int n, NJD_SPRITE attr, QueuedModelFlagsB zfunc_type)
 {
-	if (EnableWindyValley && CurrentLevel == LevelIDs_WindyValley && CurrentAct == 2) DrawQueueDepthBias = 4000.0f;
-	if (EnableStationSquare && CurrentLevel == LevelIDs_StationSquare && CurrentAct == 3) DrawQueueDepthBias = 1000.0f;
+	if (EnabledLevels[LevelIDs_WindyValley] && CurrentLevel == LevelIDs_WindyValley && CurrentAct == 2) DrawQueueDepthBias = 4000.0f;
+	if (EnabledLevels[LevelIDs_StationSquare] && CurrentLevel == LevelIDs_StationSquare && CurrentAct == 3) DrawQueueDepthBias = 1000.0f;
 	njDrawSprite3D_Queue(sp, n, attr, zfunc_type);
 	DrawQueueDepthBias = 0.0f;
 }
 
 void RenderChaosPuddle_Last(NJS_OBJECT *a1)
 {
-	ProcessModelNode_D(a1, (QueuedModelFlagsB)0, 1.0f);
+	DrawObjectClipMesh(a1, (QueuedModelFlagsB)0, 1.0f);
 }
 
 void CutsceneAnimationHook1(NJS_ACTION *a1, float a2, QueuedModelFlagsB a3)
 {
-	//Event helicopter
+	// Event helicopter
 	if (CurrentTexList == &EV_HELI_TEXLIST) DrawEventHelicopter(a1, a2, a3);
-	else njAction_Queue_407FC0(a1, a2, a3);
+	else late_ActionMesh(a1, a2, a3);
 }
 
 void CutsceneAnimationHook2(NJS_ACTION *anim, float a2, QueuedModelFlagsB a3)
 {
-	//Chaos emeralds
+	// Chaos emeralds
 	if (CurrentTexList == &M_EM_BLUE_TEXLIST || CurrentTexList == &M_EM_GREEN_TEXLIST || CurrentTexList == &M_EM_WHITE_TEXLIST || CurrentTexList == &M_EM_PURPLE_TEXLIST || CurrentTexList == &M_EM_SKY_TEXLIST || CurrentTexList == &M_EM_YELLOW_TEXLIST || CurrentTexList == &M_EM_RED_TEXLIST || CurrentTexList == &M_EM_BLACK_TEXLIST)
 	{
-		njAction_Queue_407FC0(anim, a2, a3);
+		late_ActionMesh(anim, a2, a3);
 	}
-	//Event Tornado 2
+	// Event Tornado 2
 	if (anim->object == Tornado2Pointer->object)
 	{
-		njAction_Queue_407FC0(anim, a2, a3);
+		late_ActionMesh(anim, a2, a3);
 	}
-	else njAction_Queue_407BB0(anim, a2, a3);
+	else late_ActionEx(anim, a2, a3);
 }
 
 void RenderEggCarrier0NPC(NJS_ACTION* action, Float frame)
 {
-	if (action == (NJS_ACTION*)0x11A86D4) njAction_ReallyHard(action, frame); //Chaos 4
+	if (action == (NJS_ACTION*)0x11A86D4) CHAOS_Action(action, frame); // Chaos 4
 	else if (action->object == E102_OBJECTS[0])
 	{
 		njControl3D_Remove(NJD_CONTROL_3D_CONSTANT_MATERIAL);
 		njControl3D_Add(NJD_CONTROL_3D_ENABLE_ALPHA);
-		njAction_Queue_407BB0(action, frame, QueuedModelFlagsB_EnableZWrite);
+		late_ActionEx(action, frame, QueuedModelFlagsB_EnableZWrite);
 	}
 	else njAction(action, frame);
 }
@@ -1522,42 +1531,45 @@ void RenderEggCarrier3NPC(NJS_ACTION* action, Float frame)
 	{
 		njControl3D_Remove(NJD_CONTROL_3D_CONSTANT_MATERIAL);
 		njControl3D_Add(NJD_CONTROL_3D_ENABLE_ALPHA);
-		njAction_Queue_407BB0(action, frame, QueuedModelFlagsB_EnableZWrite);
+		late_ActionEx(action, frame, QueuedModelFlagsB_EnableZWrite);
 	}
 	else njAction(action, frame);
 }
 
 void GeoAnimFix(NJS_ACTION* a1, float a2, QueuedModelFlagsB a3, float a4)
 {
-	if (EnableMysticRuins && CurrentLevel == LevelIDs_MysticRuins && CurrentAct == 2)
+	if (EnabledLevels[LevelIDs_MysticRuins] && CurrentLevel == LevelIDs_MysticRuins && CurrentAct == 2)
 	{
 		DrawQueueDepthBias = -20952.0f;
-		njAction_Queue_407FC0(a1, a2, 1);
+		late_ActionMesh(a1, a2, 1);
 		DrawQueueDepthBias = 0.0f;
 	}
-	else if (EnableFinalEgg && CurrentLevel == LevelIDs_FinalEgg && CurrentAct == 2)
+	else if (EnabledLevels[LevelIDs_FinalEgg] && CurrentLevel == LevelIDs_FinalEgg && CurrentAct == 2)
 	{
 		DrawQueueDepthBias = -47952.0f;
-		njAction_Queue_407BB0_2(a1, a2, a3, a4);
+		late_ActionClipEx(a1, a2, a3, a4);
 		DrawQueueDepthBias = 0.0f;
 	}
-	else njAction_Queue_407BB0_2(a1, a2, a3, a4);
+	else late_ActionClipEx(a1, a2, a3, a4);
 }
 
 void CaptureBeamFix(NJS_OBJECT *a1, QueuedModelFlagsB a2, float a3)
 {
-	//9 - Sonic and Tails gassed at Casinopolis (Sonic)
-	//53 - Sonic and Tails gassed at Casinopolis (Tails)
-	//11 - Chaos 4 emerges (Sonic)
-	//57 - Chaos 4 emerges (Tails)
-	//139 - Chaos 4 emerges (Knuckles)
-	if (CutsceneID == 9 || CutsceneID == 11 | CutsceneID == 53 || CutsceneID == 57 || CutsceneID == 139)
+	switch (CutsceneID)
 	{
+	case 9: // Sonic and Tails gassed at Casinopolis (Sonic)
+	case 11: // Sonic and Tails gassed at Casinopolis (Tails)
+	case 53: // Chaos 4 emerges (Sonic)
+	case 57: // Chaos 4 emerges (Tails)
+	case 139: // Chaos 4 emerges (Knuckles)
 		DrawQueueDepthBias = 8000.0f;
-		ProcessModelNode_D_WrapperB(a1, a2, a3);
+		late_DrawObjectClipMesh(a1, a2, a3);
 		DrawQueueDepthBias = 0.0f;
+		break;
+	default:
+		late_DrawObjectClip(a1, a2, a3);
+		break;
 	}
-	else ProcessModelNode_A_Wrapper(a1, a2, a3);
 }
 
 void QueueAnimals(NJS_ACTION *action, Float frame)
@@ -1577,13 +1589,13 @@ void QueueChaoAnimals1(NJS_ACTION *a1, float a2)
 void QueueChaoAnimals2(NJS_OBJECT *a1, NJS_MOTION *a2, float a3)
 {
 	DrawQueueDepthBias = -20000.0f;
-	DrawObjectWithMotion_407BB0(a1, a2, a3, QueuedModelFlagsB_EnableZWrite, 1.0f);
+	late_DrawMotionClipEx(a1, a2, a3, QueuedModelFlagsB_EnableZWrite, 1.0f);
 	DrawQueueDepthBias = 0.0f;
 }
 
 void CutsceneFadeHookForSubtitleBox(float left, float top, float right, float bottom, float depth, NJS_COLOR color)
 {
-	color.argb.a = color.argb.a * (1.0f - CutsceneFadeValue / 255.0f);
+	color.argb.a = (Uint8)(color.argb.a * (1.0f - CutsceneFadeValue / 255.0f));
 	DrawRect_DrawNowMaybe(left, top, right, bottom, depth, color.color);
 }
 
@@ -1597,7 +1609,7 @@ void CutsceneFadeHookForSubtitleText(NJS_ARGB *a1)
 void DrawBombExplosionHook(NJS_MODEL_SADX *model, QueuedModelFlagsB blend)
 {
 	if (!EV_MainThread_ptr && CurrentLevel != LevelIDs_EggViper) DrawQueueDepthBias = 2000.0f;
-	DrawVisibleModel_Queue(model, blend);
+	late_DrawModel(model, blend);
 	DrawQueueDepthBias = 0.0f;
 }
 
@@ -1667,30 +1679,30 @@ void __fastcall njTranslateVHacc(NJS_MATRIX_PTR m, const NJS_VECTOR* v)
 }
 
 int njTranslateVCalls[] = {
-	0x6361D8, //Eggs
-	0x532273, //OHandKey
-	0x526020, //OKurotama
-	0x535406, //OKillSwitch
-	0x536902, //OEggStand
-	0x59A8E3, //OBoxSwitch
-	0x635F82, //ChaoCard
-	0x636702, //OKeyblock
-	0x6377E1, //KartPass
-	0x63BF24, //OCard
-	0x637E0A, //Ice Key
+	0x6361D8, // Eggs
+	0x532273, // OHandKey
+	0x526020, // OKurotama
+	0x535406, // OKillSwitch
+	0x536902, // OEggStand
+	0x59A8E3, // OBoxSwitch
+	0x635F82, // ChaoCard
+	0x636702, // OKeyblock
+	0x6377E1, // KartPass
+	0x63BF24, // OCard
+	0x637E0A, // Ice Key
 };
 
 void DrawChaosBubbles(NJS_SPRITE* sp, Int n, NJD_SPRITE attr, QueuedModelFlagsB zfunc_type)
 {
 	if (CurrentLevel == LevelIDs_Chaos4)
 	{
-		//Camera below water - Chaos above water
+		// Camera below water - Chaos above water
 		if (Camera_Data1->Position.y <= 0) DrawQueueDepthBias = 7500.0f;
 		if (Camera_Data1->Position.y > 0)
 		{
-			//Camera above water and Chaos above water - Chaos above water
+			// Camera above water and Chaos above water - Chaos above water
 			if (Chaos4Position.y >= 15) DrawQueueDepthBias = 7500.0f;
-			//Camera above water and Chaos below water - Chaos below water
+			// Camera above water and Chaos below water - Chaos below water
 			else DrawQueueDepthBias = -20500.0f;
 		}
 		njDrawSprite3D_Queue(sp, n, attr, zfunc_type);
@@ -1805,15 +1817,78 @@ void __cdecl actBubble(ObjectMaster* a1)
 void BigDisplayFix(NJS_ACTION* action, float frame, float scale)
 {
 	DrawQueueDepthBias = -52952.0f;
-	DisplayAnimationFrame(action, frame, (QueuedModelFlagsB)1, scale, (void(__cdecl*)(NJS_MODEL_SADX*, int, int))DrawModel_Queue);
+	DrawAction(action, frame, (QueuedModelFlagsB)1, scale, (void(__cdecl*)(NJS_MODEL_SADX*, int, int))lateDrawModel);
 	DrawQueueDepthBias = 0.0f;
+}
+
+void __cdecl AnimateLandtableHook()
+{
+	GeoAnimData* v0; // esi
+	NJS_TEXLIST* v1; // ecx
+	int animCount; // edi
+	NJS_ACTION** v3; // esi
+
+	if (!MissedFrames && (CurrentLandTable->Attrs & LandTableFlags_Animation) != 0)
+	{
+		v0 = CurrentLandTable->AnimData;
+		v1 = v0->TexList;
+		animCount = CurrentLandTable->AnimCount;
+		if (v1)
+		{
+			njSetTexture(v1);
+		}
+		else
+		{
+			njSetTexture(CurrentLandTable->TexList);
+		}
+		if (ClipLevel >= 1)
+		{
+			if (animCount > 0)
+			{
+				v3 = &v0->Animation;
+				do
+				{
+					late_DrawObjectClipEx((*v3)->object, (QueuedModelFlagsB)0, 1.0);
+					v3 += 6;
+					--animCount;
+				}         while (animCount);
+			}
+		}
+		else if (animCount > 0)
+		{
+			for (int i = 0; i < animCount; i++)
+			{
+				if (EnabledLevels[LevelIDs_MysticRuins] && CurrentLevel == LevelIDs_MysticRuins && CurrentAct == 2)
+				{
+					//PrintDebug("%d", i);
+					DrawQueueDepthBias = -20000.0f;
+					if (i == 0)
+						late_ActionClipMS(v0[i].Animation, v0[i].Frame, 1, 1.0f);
+					else
+					{
+						DrawQueueDepthBias = -19000.0f;
+						late_ActionClipMesh(v0[i].Animation, v0[i].Frame, 0, 1.0f);
+					}
+					DrawQueueDepthBias = 0.0f;
+				}
+				else if (EnabledLevels[LevelIDs_FinalEgg] && CurrentLevel == LevelIDs_FinalEgg && CurrentAct == 2)
+				{
+					DrawQueueDepthBias = -47952.0f;
+					late_ActionClipEx(v0[i].Animation, v0[i].Frame, 0, 1.0);
+					DrawQueueDepthBias = 0.0f;
+				}
+				else
+					late_ActionClipEx(v0[i].Animation, v0[i].Frame, 0, 1.0);
+			}
+		}
+	}
 }
 
 void General_Init()
 {
 	if (!ModelsLoaded_General)
 	{
-		//Trampolines
+		// Trampolines
 		BurgerStatueMain_t = new Trampoline(0x630780, 0x630785, BurgerStatueMain_r);
 		MissionStatueMain_t = new Trampoline(0x593510, 0x593515, MissionStatueMain_r);
 		GoalEmerald_Windy_Display_t = new Trampoline(0x4DF3B0, 0x4DF3B6, GoalEmerald_Windy_Display_r);
@@ -1824,33 +1899,33 @@ void General_Init()
 		CameraB_Display_t = new Trampoline(0x436CD0, 0x436CD6, CameraB_Display_r);
 		SetGlobalPoint2Col_Colors_t = new Trampoline(0x402F10, 0x402F18, SetGlobalPoint2Col_Colors_r);
 		HandKey_Display_t = new Trampoline(0x532240, 0x532245, HandKey_Display_r);
-		//Disable GrabButton setting in Control
+		// Disable GrabButton setting in Control
 		if (RestoreYButton) WriteData<5>((char*)0x40FDEA, 0x90u);
-		//Fixes for held objects
+		// Fixes for held objects
 		if (FixHeldObjects)
 		{
-			WriteData((float**)0x495975, &SnowboardOffset1); //Sonic
-			WriteData((float**)0x45E56D, &SnowboardOffset1); //Tails
-			WriteData((float**)0x495989, &SnowboardOffset2); //Sonic
-			WriteData((float**)0x45E581, &SnowboardOffset2); //Tails
-			WriteData((double**)0x44232A, &holddelta); //Z offset check when putting objects down
-			//WriteData((float*)0x49D867, 0.0f); //Doesn't do shit
-			WriteData((float*)0x49D902, 0.0f); //Y offset after being put down
-			WriteData((float*)0x49D957, 0.01f); //Y speed after hitting ceiling
-			WriteData((float**)0x53C96E, &mrdistance); //Wind/Ice/Statue key distance check
-			WriteData((float**)0x53C919, &mrdistance2); //Wind/Ice/Statue key rotation check
-			WriteData((float**)0x59A93B, &hsdistance); //Hot Shelter cube puzzle distance check
-			WriteData((float**)0x6367CE, &ssdistance); //Station Square cube puzzle distance check
-			WriteData((float**)0x7AC559, &SampleSOffset); //SampleS
-			WriteData((float**)0x55BBEA, &Chaos6FreezerOffset); //Chaos 6 freezer
-			//Hook njTranslate calls to add a vertical offset for all objects involved
-			for (int i = 0; i < LengthOfArray(njTranslateVCalls); i++)
+			WriteData((float**)0x495975, &SnowboardOffset1); // Sonic
+			WriteData((float**)0x45E56D, &SnowboardOffset1); // Tails
+			WriteData((float**)0x495989, &SnowboardOffset2); // Sonic
+			WriteData((float**)0x45E581, &SnowboardOffset2); // Tails
+			WriteData((double**)0x44232A, &holddelta); // Z offset check when putting objects down
+			//WriteData((float*)0x49D867, 0.0f); // Doesn't do shit
+			WriteData((float*)0x49D902, 0.0f); // Y offset after being put down
+			WriteData((float*)0x49D957, 0.01f); // Y speed after hitting ceiling
+			WriteData((float**)0x53C96E, &mrdistance); // Wind/Ice/Statue key distance check
+			WriteData((float**)0x53C919, &mrdistance2); // Wind/Ice/Statue key rotation check
+			WriteData((float**)0x59A93B, &hsdistance); // Hot Shelter cube puzzle distance check
+			WriteData((float**)0x6367CE, &ssdistance); // Station Square cube puzzle distance check
+			WriteData((float**)0x7AC559, &SampleSOffset); // SampleS
+			WriteData((float**)0x55BBEA, &Chaos6FreezerOffset); // Chaos 6 freezer
+			// Hook njTranslate calls to add a vertical offset for all objects involved
+			for (unsigned int i = 0; i < LengthOfArray(njTranslateVCalls); i++)
 			{
 				WriteCall((void*)njTranslateVCalls[i], njTranslateVHacc);
 			}
-			WriteJump((void*)0x630690, BurgerShopStatue_DisplayFix); //Statue shadow/Y position fix
-			WriteJump((void*)0x593410, MissionStatue_DisplayFix); //Statue shadow/Y position fix
-			//Collision adjustments
+			WriteJump((void*)0x630690, BurgerShopStatue_DisplayFix); // Statue shadow/Y position fix
+			WriteJump((void*)0x593410, MissionStatue_DisplayFix); // Statue shadow/Y position fix
+			// Collision adjustments
 			WriteData((float**)0x49577F, &HeldOffset_Sonic_1);
 			WriteData((float**)0x495777, &HeldOffset_Sonic_2);
 			WriteData((float**)0x495787, &HeldOffset_Sonic_3);
@@ -1898,210 +1973,181 @@ void General_Init()
 			Chaos6Freezer_Collision[1].a = 1.0f;
 			ChaoAnimal_Collision[0].center.y = 1.0f;
 			ChaoFruit_Collision[0].center.y = 1.0f;
-			KikiBomb_Collision[1].a = 2.8f; //Z offset after putting down		
+			KikiBomb_Collision[1].a = 2.8f; // Z offset after putting down		
 		}
-		//Chaos bubbles fix
+		// Chaos bubbles fix
 		WriteJump((void*)0x7ADD30, actBubble);
-		//Cutscene skip hooks
+		// Cutscene skip hooks
 		WriteCall((void*)0x40D69C, CutsceneFadeHookForSubtitleBox); 
 		WriteCall((void*)0x40D78A, CutsceneFadeHookForSubtitleText);
 		if (DisableFontFiltering && !DLLLoaded_HDGUI) WriteCall((void*)0x40D7DA, njDrawSprite2D_Queue_Point);
-		//Snow/sandboard "fixes" (SL OBJECTS)
+		// Snow/sandboard "fixes" (SL OBJECTS)
 		RemoveVertexColors_Object(SONIC_OBJECTS[71]);
 		RemoveVertexColors_Object(MILES_OBJECTS[71]);
 		ForceLightType_Object(SONIC_OBJECTS[71], 2, false);
 		ForceLightType_Object(MILES_OBJECTS[71], 2, false);
-		//The beam that collects the emerald in "Sonic and Tails gassed at Casinopolis" cutscene
+		// The beam that collects the emerald in "Sonic and Tails gassed at Casinopolis" cutscene
 		WriteCall((void*)0x6F37DC, CaptureBeamFix);
-		//Big's fishing thing fix
+		// Big's fishing thing fix
 		WriteCall((void*)0x46C547, BigFishingThingFix);
-		//Big's belt buckle fix
+		// Big's belt buckle fix
 		if (BigBeltFix) WriteCall((void*)0x48BA29, BigDisplayFix);
-		//Metal Sonic afterimage fix
+		// Metal Sonic afterimage fix
 		WriteJump(MetalSonic_AfterImage_Display, MetalSonic_AfterImage_Display_Fixed);
-		//Character shadow fix (lame)
+		// Character shadow fix (lame)
 		WriteCall((void*)0x49F182, CharacterShadowHook);
-		//NPC shadow fix
+		// NPC shadow fix
 		WriteCall((void*)0x5252E8, DrawNPCShadowFix);
-		WriteCall((void*)0x51AB88, RenderEggCarrier0NPC); //Chaos 4 glitch
-		WriteCall((void*)0x525405, RenderEggCarrier3NPC); //Gamma's chest fix
-		//Cutscene stuff
+		WriteCall((void*)0x51AB88, RenderEggCarrier0NPC); // Chaos 4 glitch
+		WriteCall((void*)0x525405, RenderEggCarrier3NPC); // Gamma's chest fix
+		// Cutscene stuff
 		WriteCall((void*)0x4181FD, CutsceneAnimationHook1);
 		WriteCall((void*)0x418214, CutsceneAnimationHook2);
-		WriteCall((void*)0x43A85F, GeoAnimFix); //Landtable animation hook
-		//DirLight data... Someday
-		/*
-		//Replace SADX DirLight data with SA1 DirLight data
-		DefaultDirLight_SADX.LightDirection.x = DirLights_SA1[0].LightDirection.x;
-		DefaultDirLight_SADX.LightDirection.y = DirLights_SA1[0].LightDirection.y;
-		DefaultDirLight_SADX.LightDirection.z = DirLights_SA1[0].LightDirection.z;
-		DefaultDirLight_SADX.R = DirLights_SA1[0].R;
-		DefaultDirLight_SADX.G = DirLights_SA1[0].G;
-		DefaultDirLight_SADX.B = DirLights_SA1[0].B;
-		DefaultDirLight_SADX.Specular = DirLights_SA1[0].Specular;
-		DefaultDirLight_SADX.Diffuse = DirLights_SA1[0].Diffuse;
-		DefaultDirLight_SADX.AmbientR = DirLights_SA1[0].Ambient;
-		DefaultDirLight_SADX.AmbientG = DirLights_SA1[0].Ambient;
-		DefaultDirLight_SADX.AmbientB = DirLights_SA1[0].Ambient;
-		for (int i = 0; i < LengthOfArray(DirLights_SA1); i++)
-		{
-			DirLights_SADX[i].LightDirection.x = DirLights_SA1[i].LightDirection.x;
-			DirLights_SADX[i].LightDirection.y = DirLights_SA1[i].LightDirection.y;
-			DirLights_SADX[i].LightDirection.z = DirLights_SA1[i].LightDirection.z;
-			DirLights_SADX[i].R = DirLights_SA1[i].R;
-			DirLights_SADX[i].G = DirLights_SA1[i].G;
-			DirLights_SADX[i].B = DirLights_SA1[i].B;
-			DirLights_SADX[i].Specular = DirLights_SA1[i].Specular;
-			DirLights_SADX[i].Diffuse = DirLights_SA1[i].Diffuse;
-			DirLights_SADX[i].AmbientR = DirLights_SA1[i].Ambient;
-			DirLights_SADX[i].AmbientG = DirLights_SA1[i].Ambient;
-			DirLights_SADX[i].AmbientB = DirLights_SA1[i].Ambient;
-		}
-		*/
+		WriteJump((void*)0x43A810, AnimateLandtableHook); // Landtable animation hook
 		WriteCall((void*)0x4A22A6, SonicFrozenCubeFix);
-		//Material/vertex color fixes
-		//Eggman's eyes (UV-less / SA1 model only)
+		// Material/vertex color fixes
+		// Eggman's eyes (UV-less / SA1 model only)
 		if (DLLLoaded_SA1Chars)
 		{
-			//Regular model
+			// Regular model
 			if (((NJS_ACTION*)0x89E254)->object->child->child->basicdxmodel->mats[4].attrflags & NJD_FLAG_IGNORE_LIGHT)
 			{
-				ForceLevelSpecular_Object(((NJS_ACTION*)0x89E254)->object->child->child, false); //Prevent the glasses from "forgetting" specular in some cutscenes
+				ForceLevelSpecular_Object(((NJS_ACTION*)0x89E254)->object->child->child, false); // Prevent the glasses from "forgetting" specular in some cutscenes
 				((NJS_ACTION*)0x89E254)->object->child->child->basicdxmodel->mats[4].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
 			}
-			//Event Eggmobile 0
+			// Event Eggmobile 0
 			if (((NJS_ACTION*)0x2CD393C)->object->child->child->basicdxmodel->mats[4].attrflags & NJD_FLAG_IGNORE_LIGHT)
 			{
-				ForceLevelSpecular_Object(((NJS_ACTION*)0x2CD393C)->object->child->child, false); //Prevent the glasses from "forgetting" specular in some cutscenes
-				ForceObjectSpecular_Object(((NJS_ACTION*)0x2CD393C)->object->child->child->sibling->sibling->child, false); //Right hand
-				ForceObjectSpecular_Object(((NJS_ACTION*)0x2CD393C)->object->child->child->sibling->child, false); //Left hand
+				ForceLevelSpecular_Object(((NJS_ACTION*)0x2CD393C)->object->child->child, false); // Prevent the glasses from "forgetting" specular in some cutscenes
+				ForceObjectSpecular_Object(((NJS_ACTION*)0x2CD393C)->object->child->child->sibling->sibling->child, false); // Right hand
+				ForceObjectSpecular_Object(((NJS_ACTION*)0x2CD393C)->object->child->child->sibling->child, false); // Left hand
 				((NJS_ACTION*)0x2CD393C)->object->child->child->basicdxmodel->mats[4].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
 			}
-			//Disabled most of these since they're being taken care of in SA1_Chars now
-			//Event Tornado 2 pre-transformed light type fix
+			// Disabled most of these since they're being taken care of in SA1_Chars now
+			// Event Tornado 2 pre-transformed light type fix
 			ForceLightType_Object(Tornado2Pointer->object, 2, false);
-			//Event Tornado 2 transformed specular fix
-			//ForceObjectSpecular_Object(Tornado2ChangeAction.object->child, false); //Moved to SA1_Chars
-			//Event Tornado 2 transformed emerald transparency fix
-			//SortModel(Tornado2ChangeAction.object->child->sibling->sibling); //Sorted already?
-			//Event Tornado 2 transformation emerald transparency fix
-			//SortModel(Tornado2TransformationAction.object->child->child->sibling->sibling->sibling->child); //Sorted in SA1_Chars
-			//Tornado 2 white diffuse during transformation custcene
+			// Event Tornado 2 transformed specular fix
+			//ForceObjectSpecular_Object(Tornado2ChangeAction.object->child, false); // Moved to SA1_Chars
+			// Event Tornado 2 transformed emerald transparency fix
+			//SortModel(Tornado2ChangeAction.object->child->sibling->sibling); // Sorted already?
+			// Event Tornado 2 transformation emerald transparency fix
+			//SortModel(Tornado2TransformationAction.object->child->child->sibling->sibling->sibling->child); // Sorted in SA1_Chars
+			// Tornado 2 white diffuse during transformation custcene
 			AddWhiteDiffuseMaterial(&Tornado2TransformationAction.object->child->child->sibling->sibling->sibling->child->basicdxmodel->mats[0]);
 			AddWhiteDiffuseMaterial(&Tornado2TransformationAction.object->child->child->sibling->sibling->sibling->child->basicdxmodel->mats[1]);
 			AddWhiteDiffuseMaterial(&Tornado2TransformationAction.object->child->child->sibling->sibling->sibling->child->basicdxmodel->mats[2]);
 			AddWhiteDiffuseMaterial(&Tornado2TransformationAction.object->child->child->sibling->sibling->sibling->child->basicdxmodel->mats[3]);
 		}
-		RemoveVertexColors_Object((NJS_OBJECT*)0x3318898); //Egg Missile cutscene model
-		ForceObjectSpecular_Object((NJS_OBJECT*)0x3318898, false); //Egg Missile cutscene model
-		RemoveVertexColors_Model((NJS_MODEL_SADX*)0x94BAA0); //ERobo0 head
+		RemoveVertexColors_Object((NJS_OBJECT*)0x3318898); // Egg Missile cutscene model
+		ForceObjectSpecular_Object((NJS_OBJECT*)0x3318898, false); // Egg Missile cutscene model
+		RemoveVertexColors_Model((NJS_MODEL_SADX*)0x94BAA0); // ERobo0 head
 		AddWhiteDiffuseMaterial(&(((NJS_MODEL_SADX*)0x94BAA0)->mats[4]));
-		RemoveVertexColors_Object((NJS_OBJECT*)0x94DA44); //ERobo0 body
-		((NJS_OBJECT*)0x008BF3A0)->basicdxmodel->mats[0].attrflags |= NJD_FLAG_IGNORE_LIGHT; //Shadow blob
-		WriteCall((void*)0x6A65CB, DrawCutsceneZeroShadow); //Fix Zero's shadow overlapping Amy's in a cutscene
-		RemoveVertexColors_Object((NJS_OBJECT*)0x3175528); //Tails' model in the cutscene where Sonic sees him crash
-		RemoveVertexColors_Object(MILES_OBJECTS[71]); //Tails' snowboard
-		RemoveVertexColors_Object(BIG_OBJECTS[42]); //Big fishing thing 1
-		RemoveVertexColors_Object(BIG_OBJECTS[43]); //Big fishing thing 2
-		RemoveVertexColors_Object(SONIC_OBJECTS[72]); //Ice cube for frozen Sonic
-		RemoveVertexColors_Object(SONIC_OBJECTS[73]); //Ice cube fragments for frozen Sonic
-		RemoveVertexColors_Object((NJS_OBJECT*)0x38CBC74); //Rhinotank
-		RemoveVertexColors_Object((NJS_OBJECT*)0x38D0CF0); //AMEMB
-		RemoveVertexColors_Object((NJS_OBJECT*)0x38E50C4); //Buyon A
-		RemoveVertexColors_Object((NJS_OBJECT*)0x38E3B2C); //Buyon B
-		RemoveVertexColors_Object((NJS_OBJECT*)0x38E3584); //Buyon C
-		RemoveVertexColors_Object((NJS_OBJECT*)0x9538EC); //Leon body
-		RemoveVertexColors_Object((NJS_OBJECT*)0x96BC08); //Kiki's bomb
-		RemoveVertexColors_Object((NJS_OBJECT*)0x96C9B4); //Kiki's toge bomb
-		WriteCall((void*)0x4CE670, DrawBombExplosionHook); //Depth bias for explosion
-		WriteCall((void*)0x596C7C, SGeneHook); //Fishes
-		RemoveVertexColors_Model((NJS_MODEL_SADX*)0x8B966C); //Capsule
-		RemoveVertexColors_Model((NJS_MODEL_SADX*)0x8BA2AC); //Capsule
-		*(NJS_OBJECT*)0x96F3F0 = *LoadModel("system\\data\\1ST_READ\\Models\\005B8C04.sa1mdl", false); //Unidus spinning part
+		RemoveVertexColors_Object((NJS_OBJECT*)0x94DA44); // ERobo0 body
+		((NJS_OBJECT*)0x008BF3A0)->basicdxmodel->mats[0].attrflags |= NJD_FLAG_IGNORE_LIGHT; // Shadow blob
+		WriteCall((void*)0x6A65CB, DrawCutsceneZeroShadow); // Fix Zero's shadow overlapping Amy's in a cutscene
+		RemoveVertexColors_Object((NJS_OBJECT*)0x3175528); // Tails' model in the cutscene where Sonic sees him crash
+		RemoveVertexColors_Object(MILES_OBJECTS[71]); // Tails' snowboard
+		RemoveVertexColors_Object(BIG_OBJECTS[42]); // Big fishing thing 1
+		RemoveVertexColors_Object(BIG_OBJECTS[43]); // Big fishing thing 2
+		RemoveVertexColors_Object(SONIC_OBJECTS[72]); // Ice cube for frozen Sonic
+		RemoveVertexColors_Object(SONIC_OBJECTS[73]); // Ice cube fragments for frozen Sonic
+		RemoveVertexColors_Object((NJS_OBJECT*)0x38CBC74); // Rhinotank
+		RemoveVertexColors_Object((NJS_OBJECT*)0x38D0CF0); // AMEMB
+		RemoveVertexColors_Object((NJS_OBJECT*)0x38E50C4); // Buyon A
+		RemoveVertexColors_Object((NJS_OBJECT*)0x38E3B2C); // Buyon B
+		RemoveVertexColors_Object((NJS_OBJECT*)0x38E3584); // Buyon C
+		RemoveVertexColors_Object((NJS_OBJECT*)0x9538EC); // Leon body
+		RemoveVertexColors_Object((NJS_OBJECT*)0x96BC08); // Kiki's bomb
+		RemoveVertexColors_Object((NJS_OBJECT*)0x96C9B4); // Kiki's toge bomb
+		WriteCall((void*)0x4CE670, DrawBombExplosionHook); // Depth bias for explosion
+		WriteCall((void*)0x596C7C, SGeneHook); // Fishes
+		RemoveVertexColors_Model((NJS_MODEL_SADX*)0x8B966C); // Capsule
+		RemoveVertexColors_Model((NJS_MODEL_SADX*)0x8BA2AC); // Capsule
+		*(NJS_OBJECT*)0x96F3F0 = *LoadModel("system\\data\\1ST_READ\\Models\\005B8C04.sa1mdl"); // Unidus spinning part
 		((NJS_OBJECT*)0x96F3F0)->basicdxmodel->mats[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		*(NJS_OBJECT*)0x954D28 = *LoadModel("system\\data\\1ST_READ\\Models\\005A2DDC.sa1mdl", false); //Leon eyes
+		*(NJS_OBJECT*)0x954D28 = *LoadModel("system\\data\\1ST_READ\\Models\\005A2DDC.sa1mdl"); // Leon eyes
 		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x954D28)->child->basicdxmodel->mats[1]);
 		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x954D28)->child->basicdxmodel->mats[2]);
 		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x954D28)->child->sibling->sibling->sibling->sibling->basicdxmodel->mats[1]);
 		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x954D28)->child->sibling->sibling->sibling->sibling->basicdxmodel->mats[2]);
-		RemoveVertexColors_Object((NJS_OBJECT*)0x954E94); //Leon tongue
-		RemoveVertexColors_Object((NJS_OBJECT*)0x95504C); //Leon tongue tip
-		RemoveVertexColors_Object((NJS_OBJECT*)0x950940); //Boa 1
-		RemoveVertexColors_Object((NJS_OBJECT*)0x950690); //Boa 2 
-		RemoveVertexColors_Object((NJS_OBJECT*)0x94FB38); //Boa 3
-		RemoveVertexColors_Object((NJS_OBJECT*)0x94EFD4); //Boa 4
-		RemoveVertexColors_Object((NJS_OBJECT*)0x97388C); //Cop speeder
-		RemoveVertexColors_Object((NJS_OBJECT*)0x970D8C); //Spinner
-		WriteCall((void*)0x4A07D9, CharBubbleHook); //Draw bubbles behind water
-		//Hedgehog Hammer fixes
+		RemoveVertexColors_Object((NJS_OBJECT*)0x954E94); // Leon tongue
+		RemoveVertexColors_Object((NJS_OBJECT*)0x95504C); // Leon tongue tip
+		RemoveVertexColors_Object((NJS_OBJECT*)0x950940); // Boa 1
+		RemoveVertexColors_Object((NJS_OBJECT*)0x950690); // Boa 2 
+		RemoveVertexColors_Object((NJS_OBJECT*)0x94FB38); // Boa 3
+		RemoveVertexColors_Object((NJS_OBJECT*)0x94EFD4); // Boa 4
+		RemoveVertexColors_Object((NJS_OBJECT*)0x97388C); // Cop speeder
+		RemoveVertexColors_Object((NJS_OBJECT*)0x970D8C); // Spinner
+		WriteCall((void*)0x4A07D9, CharBubbleHook); // Draw bubbles behind water
+		// Hedgehog Hammer fixes
 		WriteCall((void*)0x5279E2, DrawHedgehogHammerTextHook);
-		WriteCall((void*)0x527C53, DrawHedgehogHammerScoreboardHook); //Adventure Field version
-		WriteCall((void*)0x625713, DrawHedgehogHammerScoreboardHook); //Minigame version
-		//Stupid hacks for Windy Valley 3 and other stages
+		WriteCall((void*)0x527C53, DrawHedgehogHammerScoreboardHook); // Adventure Field version
+		WriteCall((void*)0x625713, DrawHedgehogHammerScoreboardHook); // Minigame version
+		// Stupid hacks for Windy Valley 3 and other stages
 		WriteCall((void*)0x49EE10, DrawRingShadowHook);
 		WriteCall((void*)0x49EFAE, DrawScalableShadowHook);
 		WriteCall((void*)0x4A1827, SpindashChargeLinesHook);
 		WriteCall((void*)0x4A1E55, SpindashChargeSpriteHook);
-		//Replace hint monitor model
-		HintMonitorModel = LoadModel("system\\data\\1st_read\\Models\\001AD358.sa1mdl", false);
-		HideMesh_Object(HintMonitorModel, 10); //Hide screen (rendered separately in DX)
+		// Replace hint monitor model
+		HintMonitorModel = LoadModel("system\\data\\1st_read\\Models\\001AD358.sa1mdl");
+		HideMesh_Object(HintMonitorModel, 10); // Hide screen (rendered separately in DX)
 		HintMonitorModel->basicdxmodel->mats[8].attrflags &= ~NJD_FLAG_USE_ALPHA;
 		HintMonitorModel->basicdxmodel->mats[11].attrflags &= ~NJD_FLAG_USE_ALPHA;
 		HintMonitorModel->basicdxmodel->mats[14].attrflags &= ~NJD_FLAG_USE_ALPHA;
 		HintMonitorModel->basicdxmodel->mats[15].attrflags &= ~NJD_FLAG_USE_ALPHA;
 		WriteCall((void*)0x7A9509, RenderHintMonitor_Main);
 		WriteCall((void*)0x7A957F, SetHintMonitorTransparency);
-		//Fix frogs lol
-		*(NJS_OBJECT*)0x30CB4F8 = *LoadModel("system\\data\\Other\\02CCB4F8.sa1mdl", false);
-		*(NJS_OBJECT*)0x30CDB28 = *LoadModel("system\\data\\Other\\02CCDB28.sa1mdl", false);
-		*(NJS_OBJECT*)0x30D0160 = *LoadModel("system\\data\\Other\\02CD0160.sa1mdl", false);
-		//Leon fixes
-		WriteData((float**)0x4CD75A, &_nj_screen_.w); //from SADXFE
-		WriteData((float**)0x4CD77C, &_nj_screen_.h); //from SADXFE
-		//Robot chest stuff
-		WriteData<1>((char*)0x4CFC05, 0x08); //Zero constant material thing
-		WriteData<1>((char*)0x4CFC99, 0x08); //Zero constant material thing
-		WriteData<1>((char*)0x567CF2, 0x08); //E101 Beta (boss) constant material
-		((NJS_OBJECT*)0x14D857C)->basicdxmodel->mats[1].attrflags |= NJD_FLAG_IGNORE_LIGHT; //E101 left eye (boss model)
-		((NJS_OBJECT*)0x14D857C)->basicdxmodel->mats[2].attrflags |= NJD_FLAG_IGNORE_LIGHT; //E101 nose (boss model)
-		((NJS_OBJECT*)0x14D887C)->basicdxmodel->mats[1].attrflags |= NJD_FLAG_IGNORE_LIGHT; //E101 right eye (boss model)
-		((NJS_OBJECT*)0x14D6504)->basicdxmodel->mats[2].attrflags |= NJD_FLAG_IGNORE_LIGHT; //E101 chest (boss model)
-		((NJS_OBJECT*)0x14D943C)->basicdxmodel->mats[3].attrflags &= ~NJD_FLAG_USE_ALPHA; //E101 unnecessary alpha (boss model)
-		((NJS_OBJECT*)0x312F714)->basicdxmodel->mats[3].attrflags &= ~NJD_FLAG_USE_ALPHA; //E101 unnecessary alpha (cutscene model)
-		((NJS_OBJECT*)0x30AB08C)->basicdxmodel->mats[3].attrflags &= ~NJD_FLAG_USE_ALPHA; //E103 unnecessary alpha (cutscene model)
-		((NJS_OBJECT*)0x30A290C)->basicdxmodel->mats[3].attrflags &= ~NJD_FLAG_USE_ALPHA; //E104 unnecessary alpha (cutscene model)
-		((NJS_OBJECT*)0x309A21C)->basicdxmodel->mats[3].attrflags &= ~NJD_FLAG_USE_ALPHA; //E105 unnecessary alpha (cutscene model)
-		WriteData((float*)0x567D08, 0.847f); //E101 (boss model)
-		WriteData((float*)0x4E7BFD, 0.847f); //E103 (boss model)
-		WriteData((float*)0x4E7C40, 0.847f); //E103 (boss model/other)
-		WriteData((float*)0x605813, 0.847f); //E104 (boss model)
-		WriteData((float*)0x6F4718, 0.847f); //E101 (cutscene model)
-		WriteData((float*)0x6F3F94, 0.847f); //E103 (cutscene model)
-		WriteData((float*)0x6F3D54, 0.847f); //E104 (cutscene model)
-		WriteData((float*)0x6F3B24, 0.847f); //E105 (cutscene model)
-		ForceLightType_Object((NJS_OBJECT*)0x31342F8, 2, false); //E101 cutscene chest model light type
-		ForceLightType_Object((NJS_OBJECT*)0x30A7D44, 2, false); //E103 cutscene chest model light type
-		ForceLightType_Object((NJS_OBJECT*)0x309F5C4, 2, false); //E104 cutscene chest model light type
-		ForceLightType_Object((NJS_OBJECT*)0x3096F1C, 2, false); //E105 cutscene chest model light type
-		//Gamma's projectile fix. I have no idea why this works, but ok I guess
+		// Fix frogs lol
+		*(NJS_OBJECT*)0x30CB4F8 = *LoadModel("system\\data\\Other\\02CCB4F8.sa1mdl");
+		*(NJS_OBJECT*)0x30CDB28 = *LoadModel("system\\data\\Other\\02CCDB28.sa1mdl");
+		*(NJS_OBJECT*)0x30D0160 = *LoadModel("system\\data\\Other\\02CD0160.sa1mdl");
+		// Leon fixes
+		WriteData((float**)0x4CD75A, &_nj_screen_.w); // From SADXFE
+		WriteData((float**)0x4CD77C, &_nj_screen_.h); // From SADXFE
+		// Robot chest stuff
+		WriteData<1>((char*)0x4CFC05, 0x08); // Zero constant material thing
+		WriteData<1>((char*)0x4CFC99, 0x08); // Zero constant material thing
+		WriteData<1>((char*)0x567CF2, 0x08); // E101 Beta (boss) constant material
+		((NJS_OBJECT*)0x14D857C)->basicdxmodel->mats[1].attrflags |= NJD_FLAG_IGNORE_LIGHT; // E101 left eye (boss model)
+		((NJS_OBJECT*)0x14D857C)->basicdxmodel->mats[2].attrflags |= NJD_FLAG_IGNORE_LIGHT; // E101 nose (boss model)
+		((NJS_OBJECT*)0x14D887C)->basicdxmodel->mats[1].attrflags |= NJD_FLAG_IGNORE_LIGHT; // E101 right eye (boss model)
+		((NJS_OBJECT*)0x14D6504)->basicdxmodel->mats[2].attrflags |= NJD_FLAG_IGNORE_LIGHT; // E101 chest (boss model)
+		((NJS_OBJECT*)0x14D943C)->basicdxmodel->mats[3].attrflags &= ~NJD_FLAG_USE_ALPHA; // E101 unnecessary alpha (boss model)
+		((NJS_OBJECT*)0x312F714)->basicdxmodel->mats[3].attrflags &= ~NJD_FLAG_USE_ALPHA; // E101 unnecessary alpha (cutscene model)
+		((NJS_OBJECT*)0x30AB08C)->basicdxmodel->mats[3].attrflags &= ~NJD_FLAG_USE_ALPHA; // E103 unnecessary alpha (cutscene model)
+		((NJS_OBJECT*)0x30A290C)->basicdxmodel->mats[3].attrflags &= ~NJD_FLAG_USE_ALPHA; // E104 unnecessary alpha (cutscene model)
+		((NJS_OBJECT*)0x309A21C)->basicdxmodel->mats[3].attrflags &= ~NJD_FLAG_USE_ALPHA; // E105 unnecessary alpha (cutscene model)
+		WriteData((float*)0x567D08, 0.847f); // E101 (boss model)
+		WriteData((float*)0x4E7BFD, 0.847f); // E103 (boss model)
+		WriteData((float*)0x4E7C40, 0.847f); // E103 (boss model/other)
+		WriteData((float*)0x605813, 0.847f); // E104 (boss model)
+		WriteData((float*)0x6F4718, 0.847f); // E101 (cutscene model)
+		WriteData((float*)0x6F3F94, 0.847f); // E103 (cutscene model)
+		WriteData((float*)0x6F3D54, 0.847f); // E104 (cutscene model)
+		WriteData((float*)0x6F3B24, 0.847f); // E105 (cutscene model)
+		ForceLightType_Object((NJS_OBJECT*)0x31342F8, 2, false); // E101 cutscene chest model light type
+		ForceLightType_Object((NJS_OBJECT*)0x30A7D44, 2, false); // E103 cutscene chest model light type
+		ForceLightType_Object((NJS_OBJECT*)0x309F5C4, 2, false); // E104 cutscene chest model light type
+		ForceLightType_Object((NJS_OBJECT*)0x3096F1C, 2, false); // E105 cutscene chest model light type
+		// Gamma's projectile fix. I have no idea why this works, but ok I guess
 		E102_OBJECTS[5]->basicdxmodel->mats[0].attr_texId = 10;
 		E102_OBJECTS[5]->basicdxmodel->mats[0].attrflags |= NJD_FLAG_USE_TEXTURE;
 		*E102_OBJECTS[6] = *E102_OBJECTS[5];
-		//Make the electric sparks render above Gamma's body in post-fight cutscenes
+		// Make the electric sparks render above Gamma's body in post-fight cutscenes
 		WriteCall((void*)0x6F2D96, GammaDamageSpriteFix);
-		//Chaos 1 materials
-		RemoveVertexColors_Object((NJS_OBJECT*)0x38DD9BC); //Chaos puddle 1
-		RemoveVertexColors_Object((NJS_OBJECT*)0x2D6962C); //Chaos puddle 2
-		RemoveVertexColors_Object((NJS_OBJECT*)0x3185D2C); //Chaos 1
-		//Gamma's dynamite
-		*(NJS_OBJECT*)0x8C9C4C = *LoadModel("system\\data\\1ST_READ\\Models\\001AAD68.sa1mdl", false);
-		((NJS_OBJECT*)0x8C9C4C)->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_USE_ALPHA; //I think it's supposed to be transparent but it looks like that on DC so...
-		((NJS_OBJECT*)0x8C9C4C)->basicdxmodel->mats[1].attrflags &= ~NJD_FLAG_USE_ALPHA; //But this one is totally unnecessary either way
+		// Chaos 1 materials
+		RemoveVertexColors_Object((NJS_OBJECT*)0x38DD9BC); // Chaos puddle 1
+		RemoveVertexColors_Object((NJS_OBJECT*)0x2D6962C); // Chaos puddle 2
+		RemoveVertexColors_Object((NJS_OBJECT*)0x3185D2C); // Chaos 1
+		// Gamma's dynamite
+		*(NJS_OBJECT*)0x8C9C4C = *LoadModel("system\\data\\1ST_READ\\Models\\001AAD68.sa1mdl");
+		((NJS_OBJECT*)0x8C9C4C)->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_USE_ALPHA; // I think it's supposed to be transparent but it looks like that on DC so...
+		((NJS_OBJECT*)0x8C9C4C)->basicdxmodel->mats[1].attrflags &= ~NJD_FLAG_USE_ALPHA; // But this one is totally unnecessary either way
 		ForceObjectSpecular_Object((NJS_OBJECT*)0x8C9C4C, false);
-		//Item box fixes
+		// Item box fixes
 		WriteCall((void*)0x4C0066, RenderItemBoxIcon);
-		ItemBoxAirModel = LoadModel("system\\data\\1ST_READ\\Models\\001AC4F4.sa1mdl", false);
-		ItemBoxAirModel_Resize = LoadModel("system\\data\\1ST_READ\\Models\\001AC4F4.sa1mdl", false);
+		ItemBoxAirModel = LoadModel("system\\data\\1ST_READ\\Models\\001AC4F4.sa1mdl");
+		ItemBoxAirModel_Resize = CloneObject(ItemBoxAirModel);
 		ItemBoxAirModel_Resize->basicdxmodel->mats[0].attrflags |= NJD_FLAG_USE_ALPHA;
 		ItemBoxAirModel_Resize->basicdxmodel->mats[1].attrflags |= NJD_FLAG_USE_ALPHA;
 		ItemBoxAirModel_Resize->basicdxmodel->mats[2].attrflags |= NJD_FLAG_USE_ALPHA;
@@ -2114,57 +2160,57 @@ void General_Init()
 		WriteJump(ItemBox_Display_Destroyed, ItemBox_Display_Destroyed_Rotate);
 		WriteJump(ItemBox_Display_Unknown, ItemBox_Display_Unknown_Rotate);
 		WriteJump(ItemBox_Display, ItemBox_Display_Rotate);
-		LoadModel_ReplaceMeshes((NJS_OBJECT*)0x8C908C, "system\\data\\1ST_READ\\Models\\001AA1E0.sa1mdl"); //Checkpoint
-		*(NJS_OBJECT*)0x8B54C4 = *LoadModel("system\\data\\1ST_READ\\Models\\00197E20.sa1mdl", false)->child->child; //Spring static
-		*(NJS_OBJECT*)0x8B603C = *LoadModel("system\\data\\1ST_READ\\Models\\00197E20.sa1mdl", false)->child->child; //Spring touched
-		*(NJS_OBJECT*)0x8BFEF4 = *LoadModel("system\\data\\1ST_READ\\Models\\001A12A4.sa1mdl", false); //Rocket platform
-		*(NJS_MODEL_SADX*)0x8BE168 = *LoadModel("system\\data\\1ST_READ\\Models\\0019F5F4.sa1mdl", false)->basicdxmodel; //Balloon
+		LoadModel_ReplaceMeshes((NJS_OBJECT*)0x8C908C, "system\\data\\1ST_READ\\Models\\001AA1E0.sa1mdl"); // Checkpoint
+		*(NJS_OBJECT*)0x8B54C4 = *LoadModel("system\\data\\1ST_READ\\Models\\00197E20.sa1mdl")->child->child; // Spring static
+		*(NJS_OBJECT*)0x8B603C = *CloneObject((NJS_OBJECT*)0x8B54C4); // Spring touched
+		*(NJS_OBJECT*)0x8BFEF4 = *LoadModel("system\\data\\1ST_READ\\Models\\001A12A4.sa1mdl"); // Rocket platform
+		*(NJS_MODEL_SADX*)0x8BE168 = *LoadModel("system\\data\\1ST_READ\\Models\\0019F5F4.sa1mdl")->basicdxmodel; // Balloon
 		if (!AssumeOIT) 
 		{
 			((NJS_MODEL_SADX*)0x8BE168)->mats[0].attrflags &= ~NJD_FLAG_USE_ALPHA;
 			((NJS_MODEL_SADX*)0x8BE168)->mats[1].attrflags &= ~NJD_FLAG_USE_ALPHA;
 		}
-		*(NJS_MODEL_SADX*)0x8C6624 = *LoadModel("system\\data\\1ST_READ\\Models\\001A7A78.sa1mdl", false)->child->basicdxmodel; //Spring H
-		*(NJS_MODEL_SADX*)0x8C5D5C = *LoadModel("system\\data\\1ST_READ\\Models\\001A6F9C.sa1mdl", false)->basicdxmodel; //Star panel
-		*(NJS_MODEL_SADX*)0x8BBD84 = *LoadModel("system\\data\\1ST_READ\\Models\\0019D2C0.sa1mdl", false)->basicdxmodel; //Switch (pressed)
-		*(NJS_MODEL_SADX*)0x989384 = *LoadModel("system\\data\\1ST_READ\\Models\\0019D2C0.sa1mdl", false)->basicdxmodel; //Switch (unpressed)
+		*(NJS_MODEL_SADX*)0x8C6624 = *LoadModel("system\\data\\1ST_READ\\Models\\001A7A78.sa1mdl")->child->basicdxmodel; // Spring H
+		*(NJS_MODEL_SADX*)0x8C5D5C = *LoadModel("system\\data\\1ST_READ\\Models\\001A6F9C.sa1mdl")->basicdxmodel; // Star panel
+		*(NJS_MODEL_SADX*)0x8BBD84 = *LoadModel("system\\data\\1ST_READ\\Models\\0019D2C0.sa1mdl")->basicdxmodel; // Switch (pressed)
+		*(NJS_MODEL_SADX*)0x989384 = *CloneAttach((NJS_MODEL_SADX*)0x8BBD84); // Switch (unpressed)
 		((NJS_MODEL_SADX*)0x989384)->meshsets[4].vertcolor = SwitchDark_vcolor2;
 		((NJS_MODEL_SADX*)0x989384)->meshsets[3].vertcolor = SwitchDark_vcolor1;
-		((NJS_ACTION*)0x8B8BC4)->object = LoadModel("system\\data\\1ST_READ\\Models\\0019A118.sa1mdl", false); //Dash panel
-		//Light Speed Dash distance fix
+		((NJS_ACTION*)0x8B8BC4)->object = LoadModel("system\\data\\1ST_READ\\Models\\0019A118.sa1mdl"); // Dash panel
+		// Light Speed Dash distance fix
 		if (EnableLSDFix)
 		{
 			LSDMinimumCheck1 = 8.0f;
 			LSDMinimumSet1 = 9.0f;
 			LSDMinimumCheck2 = 4.0f;
 			LSDMinimumSet2 = 4.0f;
-			WriteData((float*)0x49306A, 16.0f); //Initial X speed
-			WriteData((float**)0x492CCB, &LSDMinimumCheck2); //Minimum check 1 (2.0 in SADX)
-			WriteData((float*)0x492CDA, LSDMinimumSet2); //Set if met check 1 (2.0 in SADX)
-			WriteData((float**)0x492CB0, &LSDMinimumCheck1); //Minimum speed to be compared
-			WriteData((float*)0x492CBF, LSDMinimumSet1); //Minimum speed to be set
+			WriteData((float*)0x49306A, 16.0f); // Initial X speed
+			WriteData((float**)0x492CCB, &LSDMinimumCheck2); // Minimum check 1 (2.0 in SADX)
+			WriteData((float*)0x492CDA, LSDMinimumSet2); // Set if met check 1 (2.0 in SADX)
+			WriteData((float**)0x492CB0, &LSDMinimumCheck1); // Minimum speed to be compared
+			WriteData((float*)0x492CBF, LSDMinimumSet1); // Minimum speed to be set
 		}
-		//Fix badniks not spawning (Amenbo fix in trampoline)
+		// Fix badniks not spawning (Amenbo fix in trampoline)
 		WriteCall((void*)0x49EFE7, CalculateEnemyYCoordinate_Wrapper);
-		//Ripples
+		// Ripples
 		if (EnableDCRipple)
 		{
-			*(NJS_OBJECT*)0x8B22F4 = *LoadModel("system\\data\\1st_read\\Models\\00193A44.sa1mdl", false);
+			*(NJS_OBJECT*)0x8B22F4 = *LoadModel("system\\data\\1st_read\\Models\\00193A44.sa1mdl");
 			((NJS_OBJECT*)0x8B22F4)->basicdxmodel->mats[0].attr_texId = 99;
 			WriteJump((void*)0x4B9290, FixedRipple_Normal);
 			WriteJump((void*)0x7A81A0, FixedRipple_Bubble);
 			WriteJump((void*)0x4407C0, SpawnRipplesX);
 		}
-		//Water splash particle
+		// Water splash particle
 		WriteCall((void*)0x49F1C0, FixWaterSplash);
-		//Some emerald shard "fixes"
-		EmeraldPieceModel = LoadModel("system\\data\\1st_read\\Models\\0019BC48.sa1mdl", false);
+		// Some emerald shard "fixes"
+		EmeraldPieceModel = LoadModel("system\\data\\1st_read\\Models\\0019BC48.sa1mdl");
+		EmeraldPieceOutline = CloneObject(EmeraldPieceModel);
 		if (GetModuleHandle(L"sadx-d3d11") == nullptr)
 		{
 			EmeraldPieceModel->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_USE_ALPHA;
 			EmeraldPieceModel->basicdxmodel->mats[0].diffuse.color = 0xFFB2B2B2;
 		}
-		EmeraldPieceOutline = LoadModel("system\\data\\1st_read\\Models\\0019BC48.sa1mdl", false);
 		EmeraldPieceOutline->basicdxmodel->mats[0].attrflags &= ~NJD_DA_INV_SRC;
 		EmeraldPieceOutline->basicdxmodel->mats[0].attrflags |= NJD_DA_ONE;
 		EmeraldPieceOutline->basicdxmodel->mats[0].diffuse.color = 0x00000000;
@@ -2172,10 +2218,10 @@ void General_Init()
 		WriteCall((void*)0x4A2DBD, RenderEmeraldShard_B);
 		WriteCall((void*)0x4A2E02, RenderEmeraldShard_C);
 		WriteCall((void*)0x4A2D0D, SetEmeraldShardColor);
-		WriteData((float**)0x4A2D39, &EmeraldScale); //Prevent minor Z Fighting with the main model
-		//Underwater overlay
+		WriteData((float**)0x4A2D39, &EmeraldScale); // Prevent minor Z Fighting with the main model
+		// Underwater overlay
 		WriteCall((void*)0x43708D, DrawUnderwaterOverlay);
-		//Character effects
+		// Character effects
 		WriteJump((void*)0x4A1630, Sonic_DisplayLightDashModelX);
 		WriteData((float**)0x47404B, &heat_float1);
 		WriteData((float**)0x474057, &heat_float2);
@@ -2183,33 +2229,33 @@ void General_Init()
 		WriteJump((void*)0x4C1410, Knuckles_MaximumHeatSprite_Draw);
 		WriteCall((void*)0x4C1258, KnucklesPunch_RetrieveAlpha);
 		WriteCall((void*)0x4C1305, KnucklesPunch_Render);
-		//Dash trail fixes
+		// Dash trail fixes
 		WriteCall((void*)0x4A0F56, SonicDashTrailFix);
 		WriteCall((void*)0x4A1233, SonicDashTrailFix2);
-		WriteData((float*)0x4A1216, 2500.0f); //Long dash trail depth bias
-		WriteData<1>((char*)0x4A1220, 0i8); //Spindash trail queued flags
-		//Barrier fixes
-		WriteData<5>((char*)0x4B9E3A, 0x90u); //Disable ClampGlobalColorThing (it's called later in my replacement function)
+		WriteData((float*)0x4A1216, 2500.0f); // Long dash trail depth bias
+		WriteData<1>((char*)0x4A1220, 0i8); // Spindash trail queued flags
+		// Barrier fixes
+		WriteData<5>((char*)0x4B9E3A, 0x90u); // Disable ClampGlobalColorThing (it's called later in my replacement function)
 		WriteCall((void*)0x4B9F0F, MagneticBarrierLightning);
 		WriteCall((void*)0x4B9DDA, SetMagneticBarrierColor);
 		WriteJump((void*)0x4B9C90, RenderBarrierModels);
-		WriteCall((void*)0x55E782, SuperSonicAuraHook); //Super Sonic aura 1
-		WriteCall((void*)0x55E76A, SuperSonicAuraHook); //Super Sonic aura 2
-		WriteCall((void*)0x55E72A, SuperSonicAuraHook); //Super Sonic aura 3
-		WriteJump(Barrier_Main, Barrier_MainX); //Barrier
+		WriteCall((void*)0x55E782, SuperSonicAuraHook); // Super Sonic aura 1
+		WriteCall((void*)0x55E76A, SuperSonicAuraHook); // Super Sonic aura 2
+		WriteCall((void*)0x55E72A, SuperSonicAuraHook); // Super Sonic aura 3
+		WriteJump(Barrier_Main, Barrier_MainX); // Barrier
 		WriteCall((void*)0x4BA0E4, RenderInvincibilityLines);
-		WriteData<10>((char*)0x40889C, 0x90u); //Queued model lighting/specular fix
-		//Various bugfixes
-		//Gamma cutscenes fix 
-		WriteCall((void*)0x6D9DA7, ECGammaCutsceneFix); //Fix Gamma hover scene in Sonic's story
-		WriteCall((void*)0x6B8D5E, ECGammaCutsceneFix); //Fix Gamma hover scene in Tails' story
-		//Zero holding Amy lighting fix
+		WriteData<10>((char*)0x40889C, 0x90u); // Queued model lighting/specular fix
+		// Various bugfixes
+		// Gamma cutscenes fix 
+		WriteCall((void*)0x6D9DA7, ECGammaCutsceneFix); // Fix Gamma hover scene in Sonic's story
+		WriteCall((void*)0x6B8D5E, ECGammaCutsceneFix); // Fix Gamma hover scene in Tails' story
+		// Zero holding Amy lighting fix
 		((NJS_OBJECT*)0x31A4DFC)->basicdxmodel->mats[11].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
 		((NJS_OBJECT*)0x31A4DFC)->basicdxmodel->mats[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		//Tikal lighting fixes
+		// Tikal lighting fixes
 		((NJS_OBJECT*)0x8CE058)->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_USE_ALPHA;
 		((NJS_OBJECT*)0x8CC658)->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_USE_ALPHA;
-		//Eggman fingers fix
+		// Eggman fingers fix
 		((NJS_OBJECT*)0x8961E0)->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_USE_ALPHA;
 		((NJS_OBJECT*)0x8964CC)->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_USE_ALPHA;
 		((NJS_OBJECT*)0x8980DC)->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_USE_ALPHA;
@@ -2218,18 +2264,18 @@ void General_Init()
 		((NJS_OBJECT*)0x2EE25AC)->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_USE_ALPHA;
 		((NJS_OBJECT*)0x2EE4194)->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_USE_ALPHA;
 		((NJS_OBJECT*)0x2EE3E98)->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_USE_ALPHA;
-		((NJS_OBJECT*)0x1257754)->basicdxmodel->mats[15].diffuse.color = 0xFFFFFFFF; //Chaos6 Eggmobile
-		*(NJS_TEXLIST**)0x2BD5FE4 = (NJS_TEXLIST*)0x2EE0AA4; //Eggman Super Sonic cutscene texlist fix
-		//Emblem field model
+		((NJS_OBJECT*)0x1257754)->basicdxmodel->mats[15].diffuse.color = 0xFFFFFFFF; // Chaos6 Eggmobile
+		*(NJS_TEXLIST**)0x2BD5FE4 = (NJS_TEXLIST*)0x2EE0AA4; // Eggman Super Sonic cutscene texlist fix
+		// Emblem field model
 		((NJS_MATERIAL*)0x9740FC)->attrflags &= ~NJD_FLAG_IGNORE_SPECULAR;
 		((NJS_MATERIAL*)0x974110)->attrflags &= ~NJD_FLAG_IGNORE_SPECULAR;
 		((NJS_MATERIAL*)0x974124)->attrflags &= ~NJD_FLAG_IGNORE_SPECULAR;
 		((NJS_MATERIAL*)0x974138)->attrflags &= ~NJD_FLAG_IGNORE_SPECULAR;
-		//Remove material colors on goal emeralds
+		// Remove material colors on goal emeralds
 		RemoveVertexColors_Object((NJS_OBJECT*)0xC3FDA0);
 		RemoveVertexColors_Object((NJS_OBJECT*)0xC3E300);
 		RemoveVertexColors_Object((NJS_OBJECT*)0xC3F050);
-		//Remove material colors on cutscene emeralds
+		// Remove material colors on cutscene emeralds
 		RemoveVertexColors_Object(&EV_MODEL_EME_BLACK);
 		RemoveVertexColors_Object(&EV_MODEL_EME_RED);
 		RemoveVertexColors_Object(&EV_MODEL_EME_BLUE);
@@ -2238,111 +2284,111 @@ void General_Init()
 		RemoveVertexColors_Object(&EV_MODEL_EME_SKY);
 		RemoveVertexColors_Object(&EV_MODEL_EME_WHITE);
 		RemoveVertexColors_Object(&EV_MODEL_EME_YELLOW);
-		//Emeralds glow
-		//Windy Valley
-		WriteCall((void*)0x4DF27F, RenderEmeraldWithGlow_Windy); //Uses a different function than Ice Cap or Casino
-		//Ice Cap
+		// Emeralds glow
+		// Windy Valley
+		WriteCall((void*)0x4DF27F, RenderEmeraldWithGlow_Windy); // Uses a different function than Ice Cap or Casino
+		// Ice Cap
 		WriteCall((void*)0x4ECEC4, RenderEmeraldWithGlow_Ice);
-		//Casino
-		WriteCall((void*)0x5DCFB0, RenderEmeraldWithGlow_Ice); //Same function
-		//Material fixes
-		for (int i = 0; i < LengthOfArray(RemoveColors_General); i++)
+		// Casino
+		WriteCall((void*)0x5DCFB0, RenderEmeraldWithGlow_Ice); // Same function
+		// Material fixes
+		for (unsigned int i = 0; i < LengthOfArray(RemoveColors_General); i++)
 		{
 			RemoveMaterialColors(RemoveColors_General[i]);
 		}
 		if (DLLLoaded_Lantern == true)
 		{
-			AddAlphaRejectMaterial(&((NJS_OBJECT*)0x8BF3A0)->basicdxmodel->mats[0]); //Shadow blob
-			AddAlphaRejectMaterial((NJS_MATERIAL*)0x8B2E6C); //Invincibility lines
-			AddAlphaRejectMaterial((NJS_MATERIAL*)0x8B2F80); //Invincibility ball
-			AddAlphaRejectMaterial((NJS_MATERIAL*)0x8B26E4); //Magnetic barrier
-			AddAlphaRejectMaterial((NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x7C334)); //Emerald shards (cutscene)
+			AddAlphaRejectMaterial(&((NJS_OBJECT*)0x8BF3A0)->basicdxmodel->mats[0]); // Shadow blob
+			AddAlphaRejectMaterial((NJS_MATERIAL*)0x8B2E6C); // Invincibility lines
+			AddAlphaRejectMaterial((NJS_MATERIAL*)0x8B2F80); // Invincibility ball
+			AddAlphaRejectMaterial((NJS_MATERIAL*)0x8B26E4); // Magnetic barrier
+			AddAlphaRejectMaterial((NJS_MATERIAL*)((size_t)GetModuleHandle(L"ADV02MODELS") + 0x7C334)); // Emerald shards (cutscene)
 			material_register(WhiteDiffuse_General, LengthOfArray(WhiteDiffuse_General), &ForceWhiteDiffuse);
 			material_register(WhiteDiffuseSecondCharSpecular, LengthOfArray(WhiteDiffuseSecondCharSpecular), &ForceWhiteDiffuse1Specular3);
 		}
-		RemoveVertexColors_Object((NJS_OBJECT*)0x31AB49C); //Birdie in "Zero holding Amy" cutscenes
-		RemoveVertexColors_Object((NJS_OBJECT*)0x31A72D8); //Zero holding Amy
-		RemoveVertexColors_Object((NJS_OBJECT*)0x319F714); //Amy held by Zero (talking head)
-		RemoveVertexColors_Object((NJS_OBJECT*)0x319C3EC); //Amy held by Zero
-		RemoveVertexColors_Object((NJS_OBJECT*)0x33144B0); //Egg Walker cutscene
-		WriteCall((void*)0x4D7718, AnimalBubbleHook); //Animal bubble blending mode + depth
-		*(NJS_OBJECT*)0x2F67B78 = *LoadModel("system\\data\\Other\\00006C38.sa1mdl", false); //Tornado 2 crashed
-		//Animals
-		WriteCall((void*)0x4D769B, QueueAnimals); //Queue animal models because they have transparency
-		WriteCall((void*)0x73F726, QueueChaoAnimals1); //Also queue Chao animals
-		WriteCall((void*)0x73F742, QueueChaoAnimals2); //Also queue Chao animals
-		*(NJS_TEXLIST*)0x92ACE4 = texlist_goma; //GOMA texlist
-		//Load SA1 animal models and replace their models/animations in Action Stages
-		NJS_OBJECT* SA1Animal_Goma = LoadModel("system\\data\\1st_read\\Models\\00157760.sa1mdl", false);
+		RemoveVertexColors_Object((NJS_OBJECT*)0x31AB49C); // Birdie in "Zero holding Amy" cutscenes
+		RemoveVertexColors_Object((NJS_OBJECT*)0x31A72D8); // Zero holding Amy
+		RemoveVertexColors_Object((NJS_OBJECT*)0x319F714); // Amy held by Zero (talking head)
+		RemoveVertexColors_Object((NJS_OBJECT*)0x319C3EC); // Amy held by Zero
+		RemoveVertexColors_Object((NJS_OBJECT*)0x33144B0); // Egg Walker cutscene
+		WriteCall((void*)0x4D7718, AnimalBubbleHook); // Animal bubble blending mode + depth
+		*(NJS_OBJECT*)0x2F67B78 = *LoadModel("system\\data\\Other\\00006C38.sa1mdl"); // Tornado 2 crashed
+		// Animals
+		WriteCall((void*)0x4D769B, QueueAnimals); // Queue animal models because they have transparency
+		WriteCall((void*)0x73F726, QueueChaoAnimals1); // Also queue Chao animals
+		WriteCall((void*)0x73F742, QueueChaoAnimals2); // Also queue Chao animals
+		*(NJS_TEXLIST*)0x92ACE4 = texlist_goma; // GOMA texlist
+		// Load SA1 animal models and replace their models/animations in Action Stages
+		NJS_OBJECT* SA1Animal_Goma = LoadModel("system\\data\\1st_read\\Models\\00157760.sa1mdl");
 		Action_Goma.object = SA1Animal_Goma;
-		Action_Goma.motion = &_158830;
-		NJS_OBJECT* SA1Animal_Pen = LoadModel("system\\data\\1st_read\\Models\\00159F2C.sa1mdl", false);
+		Action_Goma.motion = LoadAnimation("system\\data\\1st_read\\Models\\00158830.saanim");
+		NJS_OBJECT* SA1Animal_Pen = LoadModel("system\\data\\1st_read\\Models\\00159F2C.sa1mdl");
 		Action_Pen.object = SA1Animal_Pen;
-		Action_Pen.motion = &_15B72C;
-		NJS_OBJECT* SA1Animal_Tuba = LoadModel("system\\data\\1st_read\\Models\\0015CD8C.sa1mdl", false);
+		Action_Pen.motion = LoadAnimation("system\\data\\1st_read\\Models\\0015B72C.saanim");
+		NJS_OBJECT* SA1Animal_Tuba = LoadModel("system\\data\\1st_read\\Models\\0015CD8C.sa1mdl");
 		Action_Tuba.object = SA1Animal_Tuba;
-		Action_Tuba.motion = &_15DD6C;
-		NJS_OBJECT* SA1Animal_Kuja = LoadModel("system\\data\\1st_read\\Models\\0015F348.sa1mdl", false);
+		Action_Tuba.motion = LoadAnimation("system\\data\\1st_read\\Models\\0015DD6C.saanim");
+		NJS_OBJECT* SA1Animal_Kuja = LoadModel("system\\data\\1st_read\\Models\\0015F348.sa1mdl");
 		Action_Kuja.object = SA1Animal_Kuja;
-		Action_Kuja.motion = &_160688;
-		NJS_OBJECT* SA1Animal_Oum = LoadModel("system\\data\\1st_read\\Models\\00161CFC.sa1mdl", false);
+		Action_Kuja.motion = LoadAnimation("system\\data\\1st_read\\Models\\00160688.saanim");
+		NJS_OBJECT* SA1Animal_Oum = LoadModel("system\\data\\1st_read\\Models\\00161CFC.sa1mdl");
 		Action_Oum.object = SA1Animal_Oum;
-		Action_Oum.motion = &_162EBC;
-		NJS_OBJECT* SA1Animal_Koar = LoadModel("system\\data\\1st_read\\Models\\00164470.sa1mdl", false);
+		Action_Oum.motion = LoadAnimation("system\\data\\1st_read\\Models\\00162EBC.saanim");
+		NJS_OBJECT* SA1Animal_Koar = LoadModel("system\\data\\1st_read\\Models\\00164470.sa1mdl");
 		Action_Koar.object = SA1Animal_Koar;
-		Action_Koar.motion = &_165C70;
-		NJS_OBJECT* SA1Animal_Wara = LoadModel("system\\data\\1st_read\\Models\\001674B8.sa1mdl", false);
+		Action_Koar.motion = LoadAnimation("system\\data\\1st_read\\Models\\00165C70.saanim");
+		NJS_OBJECT* SA1Animal_Wara = LoadModel("system\\data\\1st_read\\Models\\001674B8.sa1mdl");
 		Action_Wara.object = SA1Animal_Wara;
-		Action_Wara.motion = &_169078;
-		NJS_OBJECT* SA1Animal_Banb = LoadModel("system\\data\\1st_read\\Models\\0016A648.sa1mdl", false);
+		Action_Wara.motion = LoadAnimation("system\\data\\1st_read\\Models\\00169078.saanim");
+		NJS_OBJECT* SA1Animal_Banb = LoadModel("system\\data\\1st_read\\Models\\0016A648.sa1mdl");
 		Action_Banb.object = SA1Animal_Banb;
-		Action_Banb.motion = &_16BC68;
-		NJS_OBJECT* SA1Animal_Usa = LoadModel("system\\data\\1st_read\\Models\\0016D218.sa1mdl", false);
+		Action_Banb.motion = LoadAnimation("system\\data\\1st_read\\Models\\0016BC68.saanim");
+		NJS_OBJECT* SA1Animal_Usa = LoadModel("system\\data\\1st_read\\Models\\0016D218.sa1mdl");
 		Action_Usa.object = SA1Animal_Usa;
-		Action_Usa.motion = &_16EA18;
-		NJS_OBJECT* SA1Animal_Mogu = LoadModel("system\\data\\1st_read\\Models\\0016FD28.sa1mdl", false);
+		Action_Usa.motion = LoadAnimation("system\\data\\1st_read\\Models\\0016EA18.saanim");
+		NJS_OBJECT* SA1Animal_Mogu = LoadModel("system\\data\\1st_read\\Models\\0016FD28.sa1mdl");
 		Action_Mogu.object = SA1Animal_Mogu;
-		Action_Mogu.motion = &_170DF8;
-		NJS_OBJECT* SA1Animal_Zou = LoadModel("system\\data\\1st_read\\Models\\001724E0.sa1mdl", false);
+		Action_Mogu.motion = LoadAnimation("system\\data\\1st_read\\Models\\00170DF8.saanim");
+		NJS_OBJECT* SA1Animal_Zou = LoadModel("system\\data\\1st_read\\Models\\001724E0.sa1mdl");
 		Action_Zou.object = SA1Animal_Zou;
-		Action_Zou.motion = &_174000;
-		NJS_OBJECT* SA1Animal_Lion = LoadModel("system\\data\\1st_read\\Models\\0017579C.sa1mdl", false);
+		Action_Zou.motion = LoadAnimation("system\\data\\1st_read\\Models\\00174000.saanim");
+		NJS_OBJECT* SA1Animal_Lion = LoadModel("system\\data\\1st_read\\Models\\0017579C.sa1mdl");
 		Action_Lion.object = SA1Animal_Lion;
-		Action_Lion.motion = &_17725C;
-		NJS_OBJECT* SA1Animal_Gori = LoadModel("system\\data\\1st_read\\Models\\00178190.sa1mdl", false);
+		Action_Lion.motion = LoadAnimation("system\\data\\1st_read\\Models\\0017725C.saanim");
+		NJS_OBJECT* SA1Animal_Gori = LoadModel("system\\data\\1st_read\\Models\\00178190.sa1mdl");
 		Action_Gori.object = SA1Animal_Gori;
-		Action_Gori.motion = &_178FE0;
-		NJS_OBJECT* SA1Animal_Suka = LoadModel("system\\data\\1st_read\\Models\\0017A37C.sa1mdl", false);
+		Action_Gori.motion = LoadAnimation("system\\data\\1st_read\\Models\\00178FE0.saanim");
+		NJS_OBJECT* SA1Animal_Suka = LoadModel("system\\data\\1st_read\\Models\\0017A37C.sa1mdl");
 		Action_Suka.object = SA1Animal_Suka;
-		Action_Suka.motion = &_17B5DC;
-		NJS_OBJECT* SA1Animal_Rako = LoadModel("system\\data\\1st_read\\Models\\0017CDE0.sa1mdl", false);
+		Action_Suka.motion = LoadAnimation("system\\data\\1st_read\\Models\\0017B5DC.saanim");
+		NJS_OBJECT* SA1Animal_Rako = LoadModel("system\\data\\1st_read\\Models\\0017CDE0.sa1mdl");
 		Action_Rako.object = SA1Animal_Rako;
-		Action_Rako.motion = &_17E5E0;
-		//Replace DX animal models with edited DC models that have matching model hierarchy (for Chao Garden animations)
-		*(NJS_OBJECT*)0x944FD4 = *LoadModel("system\\data\\1st_read\\Models\\DX\\00544FD4.sa1mdl", false); //Gori
-		*(NJS_OBJECT*)0x934AE0 = *LoadModel("system\\data\\1st_read\\Models\\DX\\00534AE0.sa1mdl", false); //Koar
-		*(NJS_OBJECT*)0x92C40C = *LoadModel("system\\data\\1st_read\\Models\\DX\\0052C40C.sa1mdl", false); //Pen
-		*(NJS_OBJECT*)0x92A2D0 = *LoadModel("system\\data\\1st_read\\Models\\DX\\0052A2D0.sa1mdl", false); //Goma
-		*(NJS_OBJECT*)0x949104 = *LoadModel("system\\data\\1st_read\\Models\\DX\\00549104.sa1mdl", false); //Rako
-		*(NJS_OBJECT*)0x9308DC = *LoadModel("system\\data\\1st_read\\Models\\DX\\005308DC.sa1mdl", false); //Kuja
-		*(NJS_OBJECT*)0x92EA0C = *LoadModel("system\\data\\1st_read\\Models\\DX\\0052EA0C.sa1mdl", false); //Tuba
-		*(NJS_OBJECT*)0x932ADC = *LoadModel("system\\data\\1st_read\\Models\\DX\\00532ADC.sa1mdl", false); //Oum
-		*(NJS_OBJECT*)0x939B2C = *LoadModel("system\\data\\1st_read\\Models\\DX\\00539B2C.sa1mdl", false); //Banb
-		*(NJS_OBJECT*)0x93BFE4 = *LoadModel("system\\data\\1st_read\\Models\\DX\\0053BFE4.sa1mdl", false); //Usa
-		*(NJS_OBJECT*)0x93723C = *LoadModel("system\\data\\1st_read\\Models\\DX\\0053723C.sa1mdl", false); //Wara
-		*(NJS_OBJECT*)0x942F90 = *LoadModel("system\\data\\1st_read\\Models\\DX\\00542F90.sa1mdl", false); //Lion
-		*(NJS_OBJECT*)0x94043C = *LoadModel("system\\data\\1st_read\\Models\\DX\\0054043C.sa1mdl", false); //Zou
-		*(NJS_OBJECT*)0x93E2B8 = *LoadModel("system\\data\\1st_read\\Models\\DX\\0053E2B8.sa1mdl", false); //Mogu
-		*(NJS_OBJECT*)0x946D4C = *LoadModel("system\\data\\1st_read\\Models\\DX\\00546D4C.sa1mdl", false); //Suka blyat
+		Action_Rako.motion = LoadAnimation("system\\data\\1st_read\\Models\\0017E5E0.saanim");
+		// Replace DX animal models with edited DC models that have matching model hierarchy (for Chao Garden animations)
+		*(NJS_OBJECT*)0x944FD4 = *LoadModel("system\\data\\1st_read\\Models\\DX\\00544FD4.sa1mdl"); // Gori
+		*(NJS_OBJECT*)0x934AE0 = *LoadModel("system\\data\\1st_read\\Models\\DX\\00534AE0.sa1mdl"); // Koar
+		*(NJS_OBJECT*)0x92C40C = *LoadModel("system\\data\\1st_read\\Models\\DX\\0052C40C.sa1mdl"); // Pen
+		*(NJS_OBJECT*)0x92A2D0 = *LoadModel("system\\data\\1st_read\\Models\\DX\\0052A2D0.sa1mdl"); // Goma
+		*(NJS_OBJECT*)0x949104 = *LoadModel("system\\data\\1st_read\\Models\\DX\\00549104.sa1mdl"); // Rako
+		*(NJS_OBJECT*)0x9308DC = *LoadModel("system\\data\\1st_read\\Models\\DX\\005308DC.sa1mdl"); // Kuja
+		*(NJS_OBJECT*)0x92EA0C = *LoadModel("system\\data\\1st_read\\Models\\DX\\0052EA0C.sa1mdl"); // Tuba
+		*(NJS_OBJECT*)0x932ADC = *LoadModel("system\\data\\1st_read\\Models\\DX\\00532ADC.sa1mdl"); // Oum
+		*(NJS_OBJECT*)0x939B2C = *LoadModel("system\\data\\1st_read\\Models\\DX\\00539B2C.sa1mdl"); // Banb
+		*(NJS_OBJECT*)0x93BFE4 = *LoadModel("system\\data\\1st_read\\Models\\DX\\0053BFE4.sa1mdl"); // Usa
+		*(NJS_OBJECT*)0x93723C = *LoadModel("system\\data\\1st_read\\Models\\DX\\0053723C.sa1mdl"); // Wara
+		*(NJS_OBJECT*)0x942F90 = *LoadModel("system\\data\\1st_read\\Models\\DX\\00542F90.sa1mdl"); // Lion
+		*(NJS_OBJECT*)0x94043C = *LoadModel("system\\data\\1st_read\\Models\\DX\\0054043C.sa1mdl"); // Zou
+		*(NJS_OBJECT*)0x93E2B8 = *LoadModel("system\\data\\1st_read\\Models\\DX\\0053E2B8.sa1mdl"); // Mogu
+		*(NJS_OBJECT*)0x946D4C = *LoadModel("system\\data\\1st_read\\Models\\DX\\00546D4C.sa1mdl"); // Suka blyat
 		ModelsLoaded_General = true;
 	}
 }
 
 void General_OnFrame()
 {
-	//Use Y button as intended in stages
+	// Use Y button as intended in stages
 	if (RestoreYButton && !IsLevelChaoGarden()) GrabButtons = (Buttons)(Buttons_B | Buttons_X | Buttons_Y);
-	//This is stupid but I need to disable Gamma's chest fix on the character select screen or when he dies because it breaks there
+	// This is stupid but I need to disable Gamma's chest fix on the character select screen or when he dies because it breaks there
 	if (GammaConstantMaterialAlpha != 1.0f && ((!AssumeOIT && GameMode == GameModes_Menu) || (CurrentCharacter == Characters_Gamma && EntityData1Ptrs[0] && EntityData1Ptrs[0]->Action == 51)))
 	{
 		WriteData<1>((char*)0x47FDF9, 0x10u);
@@ -2355,7 +2401,7 @@ void General_OnFrame()
 		WriteData((float*)0x47FE0F, 0.847f);
 		E102_OBJECTS[0]->child->child->sibling->sibling->sibling->sibling->sibling->sibling->sibling->sibling->sibling->sibling->child->sibling->child->basicdxmodel->mats[0].attrflags = 0x94318400;
 	}
-	//Global colors screen fade fix
+	// Global colors screen fade fix
 	if (GlobalColor_wait)
 	{
 		if (ScreenFade_Alpha < 200)
@@ -2364,14 +2410,14 @@ void General_OnFrame()
 			GlobalColor_wait = false;
 		}
 	}
-	//Frame counter for cutscenes
+	// Frame counter for cutscenes
 	if (EV_MainThread_ptr != nullptr)
 	{
 		CutsceneFrameCounter++;
 		//PrintDebug("Cutscene timer: %d\n", CutsceneFrameCounter);
 	}
 	else CutsceneFrameCounter = 0;
-	//Cutscene skip
+	// Cutscene skip
 	if (CutsceneSkipMode <= 1 && SkipPressed_Cutscene)
 	{
 		if (CutsceneSkipMode == 0)
@@ -2425,27 +2471,27 @@ void General_OnFrame()
 			}
 		}
 	}
-	//Fix broken welds after playing as Metal Sonic
+	// Fix broken welds after playing as Metal Sonic
 	if (!DLLLoaded_SADXFE)
 	{
 		if (GameMode == GameModes_CharSel && MetalSonicFlag) MetalSonicFlag = false;
 	}
-	//Alpha rejection
+	// Alpha rejection
 	if (DLLLoaded_Lantern)
 	{
-		if (AlphaRejectionMode == 0 && GameMode != GameModes_CharSel && GameMode != GameModes_Menu && CurrentChaoStage != 2)
+		if (AlphaRejectionMode == 0 && GameMode != GameModes_CharSel && GameMode != GameModes_Menu && CurrentChaoStage != SADXChaoStage_RaceEntry)
 		{
 			WriteData((char*)0x7919CD, 0i8);
 			AlphaRejectionMode = 1;
 		}
-		if (AlphaRejectionMode == 1 && (GameMode == GameModes_CharSel || GameMode == GameModes_Menu || CurrentChaoStage == 2))
+		if (AlphaRejectionMode == 1 && (GameMode == GameModes_CharSel || GameMode == GameModes_Menu || CurrentChaoStage == SADXChaoStage_RaceEntry))
 		{
 			WriteData<1>((char*)0x7919CD, 0x16u);
 			AlphaRejectionMode = 0;
 		}
 	}
-	//Environment maps
-	//Egg Hornet level
+	// Environment maps
+	// Egg Hornet level
 	if (EnvMapMode == 0 && CurrentLevel == 20 && !MetalSonicFlag)
 	{
 		EnvMapMode = 1;
@@ -2462,7 +2508,7 @@ void General_OnFrame()
 		EnvMap3 = 0.5f;
 		EnvMap4 = 0.5f;
 	}
-	//Big's intro
+	// Big's intro
 	if (EnvMapMode == 0 && CutsceneID == 208 && CutsceneFrameCounter > 800 && CutsceneFrameCounter < 1200) 
 	{
 		EnvMapMode = 2;
@@ -2479,7 +2525,7 @@ void General_OnFrame()
 		EnvMap3 = 0.5f;
 		EnvMap4 = 0.5f;
 	}
-	//Knuckles' intro
+	// Knuckles' intro
 	if (EnvMapMode == 0 && CutsceneID == 128 && CutsceneFrameCounter > 1700 && CutsceneFrameCounter < 2230) 
 	{
 		EnvMapMode = 2;
@@ -2496,12 +2542,12 @@ void General_OnFrame()
 		EnvMap3 = 0.5f;
 		EnvMap4 = 0.5f;
 	}
-	//Chaos 1 puddle
+	// Chaos 1 puddle
 	if (CurrentLevel == 33 && CutsceneID != 57) ((NJS_MATERIAL*)0x2D64FD8)->attrflags |= NJD_FLAG_IGNORE_LIGHT;
 	else ((NJS_MATERIAL*)0x2D64FD8)->attrflags &= ~NJD_FLAG_IGNORE_LIGHT;	
-	//Chaos puddle in Final Story cutscenes
+	// Chaos puddle in Final Story cutscenes
 	WriteCall((void*)0x7AF877, RenderChaosPuddle_Last); 
-	//Chaos 4 lighting in cutscenes
+	// Chaos 4 lighting in cutscenes
 	if (DLLLoaded_Lantern)
 	{
 		material_register(Chaos4Materials, LengthOfArray(Chaos4Materials), &Chaos4NPCFunction);
@@ -2510,7 +2556,7 @@ void General_OnFrame()
 
 void General_OnInput()
 {
-	//Input hook for cutscenes
+	// Input hook for cutscenes
 	if (CutsceneSkipMode < 2 && !SkipPressed_Cutscene && !DemoPlaying)
 		if (EV_MainThread_ptr != 0 && ControllerPointers[0]->PressedButtons & Buttons_Start)
 		{

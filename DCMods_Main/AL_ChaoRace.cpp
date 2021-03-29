@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "ChaoObjects_Race.h"
+#include "AL_RACE_Models.h"
 
 static bool SkipSA1Entry = false;
 static bool MedalTextLoaded = false;
@@ -52,7 +52,7 @@ static bool a2 = false;
 static bool c2 = false;
 static bool e2 = false;
 static float bowchaoframe = 0;
-static int letterframe = 0;
+static unsigned int letterframe = 0;
 static int bowchaoanim = 0;
 static bool cheerchaoanim = false;
 static int ChaoRaceStartGoalTimer = 0;
@@ -358,7 +358,7 @@ static NJS_TEXANIM ChaoNameLettersTexanim[] = {
 { 22, 22, 0, 0, 242, 242, 253, 264, 1, 0 },
 };
 
-//Chao nameplate stuff
+// Chao nameplate stuff
 void BuildChaoFontUVMap()
 {
 	int numrows = 16;
@@ -369,7 +369,7 @@ void BuildChaoFontUVMap()
 		for (int xcolumn = 0; xcolumn < numcolumns; xcolumn++)
 		{
 			//ChaoNameLettersTexanim[xrow*numcolumns + xcolumn].u1 = 11 * xcolumn;
-			//ChaoNameLettersTexanim[xrow*numcolumns + xcolumn].u2 = 11 * xcolumn + 11; //this is half the real number because the texture is rectangular
+			//ChaoNameLettersTexanim[xrow*numcolumns + xcolumn].u2 = 11 * xcolumn + 11; // This is half the real number because the texture is rectangular
 			//ChaoNameLettersTexanim[xrow*numcolumns + xcolumn].v1 = 22 * xrow;
 			//ChaoNameLettersTexanim[xrow*numcolumns + xcolumn].v2 = 22 * xrow + 22;
 			PrintDebug("{ 64, 64, 0, 0, %d, %d, %d, %d, 61, 0 },\n", -1 + 16 * xcolumn, -1 + 16 * xrow, -1 + 16 * xcolumn + 16, -1 + 16 * xrow + 16);
@@ -385,7 +385,7 @@ void BuildChaoFontUVMap()
 		for (int xcolumn = 0; xcolumn < numcolumns; xcolumn++)
 		{
 			ChaoNameLettersTexanim[xrow*numcolumns + xcolumn].u1 = 11 * xcolumn;
-			ChaoNameLettersTexanim[xrow*numcolumns + xcolumn].u2 = 11 * xcolumn + 11; //this is half the real number because the texture is rectangular
+			ChaoNameLettersTexanim[xrow*numcolumns + xcolumn].u2 = 11 * xcolumn + 11; // This is half the real number because the texture is rectangular
 			ChaoNameLettersTexanim[xrow*numcolumns + xcolumn].v1 = 22 * xrow;
 			ChaoNameLettersTexanim[xrow*numcolumns + xcolumn].v2 = 22 * xrow + 22;
 			PrintDebug("{ 22, 22, 0, 0, %d, %d, %d, %d, 1, 0 },\n", 11 * xcolumn, 22 * xrow, 11 * xcolumn + 11, 22 * xrow + 22);
@@ -401,7 +401,7 @@ void ChaoFukidasi_Display(ObjectMaster* a1)
 	int ChaoNameCurrentCharacter = 0;
 	int ChaoNameNumSpaces = 0;
 	ChaoData1* data1 = (ChaoData1*)a1->Data1;
-	//Subtract the internal timer
+	// Subtract the internal timer
 	if (data1->entity.CharIndex)
 	{
 		if (data1->entity.CharID > 0) data1->entity.CharID--;
@@ -411,7 +411,7 @@ void ChaoFukidasi_Display(ObjectMaster* a1)
 	{
 		data1->entity.CharID = 0;
 	}
-	//Display the bubble
+	// Display the bubble
 	if (((data1->entity.CharIndex == 1 && data1->entity.CharID > 0) || data1->entity.CharIndex == 2) && data1->ChaoDataBase_ptr->Name[0] != 0x00)
 	{
 		NJS_VECTOR ChatBubblePosition = { a1->Data1->Position.x, a1->Data1->Position.y, a1->Data1->Position.z };
@@ -423,13 +423,13 @@ void ChaoFukidasi_Display(ObjectMaster* a1)
 		ChaoNameLetterSprite.sx = 0.04f;
 		ChaoNameLetterSprite.sy = 0.04f;
 		ChaoNameLetterSprite.tanim = ChaoNameLettersTexanim;
-		//Calculate the number of spaces for centering the name
+		// Calculate the number of spaces for centering the name
 		for (int i = 0; i < 7; i++)
 		{
 			ChaoNameCurrentCharacter = data1->ChaoDataBase_ptr->Name[i];
 			if (ChaoNameCurrentCharacter == 0x5F) ChaoNameNumSpaces++;
 		}
-		//Draw the letters
+		// Draw the letters
 		for (int i = 0; i < 7; i++)
 		{
 			njPushMatrix(0);
@@ -437,18 +437,18 @@ void ChaoFukidasi_Display(ObjectMaster* a1)
 			ChaoNameLetterSprite.p.x = -3.4f + i * 1.0f + ChaoNameNumSpaces * 0.5f;
 			njRotateXYZ(0, Camera_Data1->Rotation.x, Camera_Data1->Rotation.y, 0);
 			ChaoNameCurrentCharacter = data1->ChaoDataBase_ptr->Name[i];
-			//Set letter color (blue for CPU, black for player's Chao)
+			// Set letter color (blue for CPU, black for player's Chao)
 			if (data1->entity.Index == 7) SetMaterialAndSpriteColor_Float(1.0f, 0.2f, 0.2f, 0.2f); else SetMaterialAndSpriteColor_Float(1.0f, 0.0f, 0.0f, 0.9f);
-			//Draw space
+			// Draw space
 			if (ChaoNameCurrentCharacter == 0x5F || ChaoNameCurrentCharacter == 0x00) njDrawSprite3D_Queue(&ChaoNameLetterSprite, 254, NJD_SPRITE_ALPHA | NJD_SPRITE_VFLIP, QueuedModelFlagsB_EnableZWrite);
-			//Draw all letters before space (because SADX is retarded)
+			// Draw all letters before space (because SADX is retarded)
 			else if (ChaoNameCurrentCharacter < 0) njDrawSprite3D_Queue(&ChaoNameLetterSprite, 254 + ChaoNameCurrentCharacter, NJD_SPRITE_ALPHA | NJD_SPRITE_COLOR | NJD_SPRITE_VFLIP, QueuedModelFlagsB_EnableZWrite);
 			else njDrawSprite3D_Queue(&ChaoNameLetterSprite, ChaoNameCurrentCharacter - 1, NJD_SPRITE_ALPHA | NJD_SPRITE_COLOR | NJD_SPRITE_VFLIP, QueuedModelFlagsB_EnableZWrite);
 			Sprite3DDepth_Current = 0.0f;
 			njPopMatrix(1u);
 			ClampGlobalColorThing_Thing();
 		}
-		//Draw the chat bubble
+		// Draw the chat bubble
 		SetMaterialAndSpriteColor_Float(1.0f, 1.0f, 1.0f, 1.0f);
 		njColorBlendingMode(NJD_SOURCE_COLOR, NJD_COLOR_BLENDING_SRCALPHA);
 		njColorBlendingMode(NJD_DESTINATION_COLOR, NJD_COLOR_BLENDING_INVSRCALPHA);
@@ -464,7 +464,7 @@ void ChaoFukidasi_Display(ObjectMaster* a1)
 void __cdecl GenerateRaceChaoName(ObjectMaster *a1)
 {
 	ChaoData1* data1 = (ChaoData1*)a1->Data1;
-	//Assign a name if the Chao doesn't have one
+	// Assign a name if the Chao doesn't have one
 	if (data1->ChaoDataBase_ptr->Name[0] == 0)
 	{
 		if (data1->ChaoDataBase_ptr->Type == ChaoType_Child)
@@ -522,10 +522,10 @@ static void __cdecl Chao_Display_r(ObjectMaster *a1)
 	{
 		ChaoData1* data1 = (ChaoData1*)a1->Data1;
 		int ChaoAnimationWhatever = data1->MotionTable[4];
-		//All this stuff should only happen during Chao Race
-		if (CurrentChaoStage == 1)
+		// All this stuff should only happen during Chao Race
+		if (CurrentChaoStage == SADXChaoStage_Race)
 		{
-			//Generate Chao name if it's not on the first track (which would be the player's Chao)
+			// Generate Chao name if it's not on the first track (which would be the player's Chao)
 			if (ChaoRaceTimer < 50)
 			{
 				if (a1->Data1->Index != 7) GenerateRaceChaoName(a1);
@@ -545,7 +545,7 @@ static void __cdecl Chao_Display_r(ObjectMaster *a1)
 			float dist_cam = sqrt(x_c * x_c + y_c * y_c + z_c * z_c);
 			float dist_arrow = sqrt(x_a * x_a + y_a * y_a + z_a * z_a);
 			//PrintDebug("Index: %d, Distance cam: %f, Distance arrow: %f, CharIndex: %d, CharID: %d\n", data1->entity.Index, dist_cam, dist_arrow, data1->entity.CharIndex, data1->entity.CharID);
-			//Assign the winner a permanent name badge
+			// Assign the winner a permanent name badge
 			if (!ChaoRaceEnded && ChaoAnimationWhatever == -17)
 			{
 				ChaoRaceEnded = true;
@@ -553,19 +553,19 @@ static void __cdecl Chao_Display_r(ObjectMaster *a1)
 				data1->entity.CharID = 80;
 				data1->entity.CharIndex = 2;
 			}
-			//Disable the nameplate if too far from the arrow/camera
+			// Disable the nameplate if too far from the arrow/camera
 			if ((dist_arrow >= 8.5f || dist_cam >= 45.0f) && ChaoAnimationWhatever != -17)
 			{
 				data1->entity.CharIndex = 0;
 				data1->entity.CharID = 0;
 			}
-			//Disable the nameplate if playing the win animation but another Chao reached the end first
+			// Disable the nameplate if playing the win animation but another Chao reached the end first
 			if (data1->entity.CharIndex != 2 && ChaoRaceEnded && ChaoAnimationWhatever == -17)
 			{
 				data1->entity.CharIndex = 0;
 				data1->entity.CharID = 0;
 			}
-			//Trigger the nameplate when the red arrow's coordinates roughly match the Chao's
+			// Trigger the nameplate when the red arrow's coordinates roughly match the Chao's
 			if (data1->entity.CharIndex != 2 && ChaoAnimationWhatever != -17 && dist_cam < 45.0f)
 			{
 				if (dist_arrow < 8.5f)
@@ -589,7 +589,7 @@ static void __cdecl Chao_Display_r(ObjectMaster *a1)
 	else original(a1);
 }
 
-//Chao Race double shadow fix
+// Chao Race double shadow fix
 static Trampoline* ChaoShadowFix_t = nullptr;
 static void __cdecl ChaoShadowFix_r(ObjectMaster *a1, float a2, float a3, float a4)
 {
@@ -601,7 +601,7 @@ static void __cdecl ChaoShadowFix_r(ObjectMaster *a1, float a2, float a3, float 
 	else original(a1, a2, a3, a4);
 }
 
-//Entry
+// Entry
 
 void ChaoCheerHologram_Main(ObjectMaster *a1)
 {
@@ -613,7 +613,7 @@ void ChaoCheerHologram_Main(ObjectMaster *a1)
 	njRotateY(0, v1->Rotation.y);
 	njScale(0, 1.0f, 1.0f, 1.0f);
 	DrawQueueDepthBias = 2000.0f;
-	ProcessModelNode(&cheer_hologram, QueuedModelFlagsB_SomeTextureThing, 1.0f);
+	lateDrawObject(&cheer_hologram, QueuedModelFlagsB_SomeTextureThing, 1.0f);
 	njPopMatrix(1u);
 	DrawQueueDepthBias = 0;
 }
@@ -635,7 +635,7 @@ void ChaoLetters_Main(ObjectMaster *a1)
 	njRotateY(0, v1->Rotation.y);
 	njScale(0, 1.0f, 1.0f, 1.0f);
 	DrawQueueDepthBias = 2000.0f;
-	ProcessModelNode(ChaoRaceLetters, QueuedModelFlagsB_SomeTextureThing, 1.0f);
+	lateDrawObject(ChaoRaceLetters, QueuedModelFlagsB_SomeTextureThing, 1.0f);
 	njPopMatrix(1u);
 	DrawQueueDepthBias = 0;
 }
@@ -655,13 +655,13 @@ void ChaoSlidingDoors_Display(ObjectMaster *a1)
 	CharIndexShit = *(float *)&v1->CharIndex;
 	SetTextureToLevelObj();
 	DrawQueueDepthBias = 1000.0f;
-	//Gate 1
+	// Gate 1
 	njPushMatrix(0);
 	njTranslate(0, 2099.9f, 0, -1 * CharIndexShit);
 	njScale(0, 1.0f, 1.0f, 1.0f);
 	DrawModel(ChaoRaceSlidingDoors->child->sibling->basicdxmodel);
 	njPopMatrix(1u);
-	//Gate 2
+	// Gate 2
 	njPushMatrix(0);
 	njTranslate(0, 2099.9f, 0, CharIndexShit);
 	njScale(0, 1.0f, 1.0f, 1.0f);
@@ -728,28 +728,28 @@ void ChaoNumbers_Display(ObjectMaster *a1)
 	switch (ObjectIndex)
 	{
 	case 0:
-		ProcessModelNode(ChaoRaceNumber0, QueuedModelFlagsB_EnableZWrite, 1.0f);
+		lateDrawObject(ChaoRaceNumber0, QueuedModelFlagsB_EnableZWrite, 1.0f);
 		break;
 	case 1:
-		ProcessModelNode(ChaoRaceNumber1, QueuedModelFlagsB_EnableZWrite, 1.0f);
+		lateDrawObject(ChaoRaceNumber1, QueuedModelFlagsB_EnableZWrite, 1.0f);
 		break;
 	case 2:
-		ProcessModelNode(ChaoRaceNumber2, QueuedModelFlagsB_EnableZWrite, 1.0f);
+		lateDrawObject(ChaoRaceNumber2, QueuedModelFlagsB_EnableZWrite, 1.0f);
 		break;
 	case 3:
-		ProcessModelNode(ChaoRaceNumber3, QueuedModelFlagsB_EnableZWrite, 1.0f);
+		lateDrawObject(ChaoRaceNumber3, QueuedModelFlagsB_EnableZWrite, 1.0f);
 		break;
 	case 4:
-		ProcessModelNode(ChaoRaceNumber4, QueuedModelFlagsB_EnableZWrite, 1.0f);
+		lateDrawObject(ChaoRaceNumber4, QueuedModelFlagsB_EnableZWrite, 1.0f);
 		break;
 	case 5:
-		ProcessModelNode(ChaoRaceNumber5, QueuedModelFlagsB_EnableZWrite, 1.0f);
+		lateDrawObject(ChaoRaceNumber5, QueuedModelFlagsB_EnableZWrite, 1.0f);
 		break;
 	case 6:
-		ProcessModelNode(ChaoRaceNumber6, QueuedModelFlagsB_EnableZWrite, 1.0f);
+		lateDrawObject(ChaoRaceNumber6, QueuedModelFlagsB_EnableZWrite, 1.0f);
 		break;
 	case 7:
-		ProcessModelNode(ChaoRaceNumber7, QueuedModelFlagsB_EnableZWrite, 1.0f);
+		lateDrawObject(ChaoRaceNumber7, QueuedModelFlagsB_EnableZWrite, 1.0f);
 		break;
 	}
 	njPopMatrix(1u);
@@ -848,7 +848,7 @@ ObjectFunc(OF_E20, ChaoCheerHologram_Load); // Chao cheer hologram
 ObjectFunc(OF_E21, ChaoSlidingDoors_Load); // Sliding doors
 ObjectFunc(OF_E22, ChaoLetters_Load); // Chao Race letters
 
-//Race
+// Race
 
 void ChaoRaceStartGoalSprite_Display(ObjectMaster *a1)
 {
@@ -874,22 +874,22 @@ void ChaoRaceStartGoalSprite_Display(ObjectMaster *a1)
 	njPushMatrix(0);
 	njColorBlendingMode(NJD_SOURCE_COLOR, NJD_COLOR_BLENDING_SRCALPHA);
 	njColorBlendingMode(NJD_DESTINATION_COLOR, NJD_COLOR_BLENDING_INVSRCALPHA);
-	//"Start!" sprite
+	// "Start!" sprite
 	if (SpriteType == 0)
 	{
 		njDrawSprite2D_Queue(&_sp, 20, 22046.9f, NJD_SPRITE_ALPHA | NJD_SPRITE_COLOR, QueuedModelFlagsB_SomeTextureThing);
 	}
-	//"Goal!" sprite
+	// "Goal!" sprite
 	else if (SpriteType == 1)
 	{
 		njDrawSprite2D_Queue(&_sp, 21, 22046.9f, NJD_SPRITE_ALPHA | NJD_SPRITE_COLOR, QueuedModelFlagsB_SomeTextureThing);
 	}
-	//"Cool!" sprite
+	// "Cool!" sprite
 	else if (SpriteType == 2)
 	{
 		njDrawSprite2D_Queue(&_sp, 22, 22046.9f, NJD_SPRITE_ALPHA | NJD_SPRITE_COLOR, QueuedModelFlagsB_SomeTextureThing);
 	}
-	//"You won the jewel!" sprite
+	// "You won the jewel!" sprite
 	else if (SpriteType == 3)
 	{
 		njDrawSprite2D_Queue(&_sp, 23, 22046.9f, NJD_SPRITE_ALPHA | NJD_SPRITE_COLOR, QueuedModelFlagsB_SomeTextureThing);
@@ -952,8 +952,8 @@ void ChaoRaceWaterfall_Display(ObjectMaster *a1)
 	njRotateXYZ(0, v1->Rotation.x, v1->Rotation.y, v1->Rotation.z);
 	njScale(0, 1.0f, 1.0f, 1.0f);
 	DrawQueueDepthBias = 2000.0f;
-	if (ObjectIndex) ProcessModelNode(ChaoRaceWaterfall1, (QueuedModelFlagsB)0, 1.0f);
-	else ProcessModelNode(ChaoRaceWaterfall2, (QueuedModelFlagsB)0, 1.0f);
+	if (ObjectIndex) lateDrawObject(ChaoRaceWaterfall1, (QueuedModelFlagsB)0, 1.0f);
+	else lateDrawObject(ChaoRaceWaterfall2, (QueuedModelFlagsB)0, 1.0f);
 	njPopMatrix(1u);
 	DrawQueueDepthBias = 0;
 }
@@ -983,8 +983,8 @@ void ChaoRaceSkybox_Display(ObjectMaster *a1)
 	njRotateY(0, v1->Rotation.y);
 	njScale(0, 1.0f, 1.0f, 1.0f);
 	DrawQueueDepthBias = -47000;
-	ProcessModelNode(ChaoRaceSkyboxBottom, QueuedModelFlagsB_EnableZWrite, 1.0f); //Bottom thing
-	ProcessModelNode(ChaoRaceSkyboxMain, QueuedModelFlagsB_EnableZWrite, 1.0f); //Sky
+	lateDrawObject(ChaoRaceSkyboxBottom, QueuedModelFlagsB_EnableZWrite, 1.0f); // Bottom thing
+	lateDrawObject(ChaoRaceSkyboxMain, QueuedModelFlagsB_EnableZWrite, 1.0f); // Sky
 	njPopMatrix(1u);
 	DrawQueueDepthBias = 0;
 }
@@ -1010,8 +1010,8 @@ void ChaoRaceStartMark_Display(ObjectMaster *a1)
 	njTranslateV(0, &v1->Position);
 	njScale(0, 1.0f, 1.0f, 1.0f);
 	DrawQueueDepthBias = -47000;
-	ProcessModelNode(ChaoRaceStartMark1, QueuedModelFlagsB_EnableZWrite, 1.0f); //Thing 1
-	ProcessModelNode(ChaoRaceStartMark2, QueuedModelFlagsB_EnableZWrite, 1.0f); //Thing 2
+	lateDrawObject(ChaoRaceStartMark1, QueuedModelFlagsB_EnableZWrite, 1.0f); // Thing 1
+	lateDrawObject(ChaoRaceStartMark2, QueuedModelFlagsB_EnableZWrite, 1.0f); // Thing 2
 	njPopMatrix(1u);
 	DrawQueueDepthBias = 0;
 }
@@ -1038,7 +1038,7 @@ void ChaoRaceCracker_Display(ObjectMaster *a1)
 	njRotateZYX(0, v1->Rotation.x, v1->Rotation.y, v1->Rotation.z);
 	njScale(0, 1.0f, 1.0f, 1.0f);
 	DrawQueueDepthBias = -37000;
-	ProcessModelNode(ChaoRaceCracker, QueuedModelFlagsB_EnableZWrite, 1.0f);
+	lateDrawObject(ChaoRaceCracker, QueuedModelFlagsB_EnableZWrite, 1.0f);
 	njPopMatrix(1u);
 	DrawQueueDepthBias = 0;
 }
@@ -1055,8 +1055,8 @@ void ChaoRaceCracker_Load(ObjectMaster *a1)
 	a1->DeleteSub = (void(__cdecl *)(ObjectMaster *))CheckThingButThenDeleteObject;
 }
 
-SETObjData setdata_e = {}; //Entry
-SETObjData setdata_race = {}; //Race
+SETObjData setdata_e = {}; // Entry
+SETObjData setdata_race = {}; // Race
 ObjectFunc(OF0, 0x450370); // RING   
 ObjectFunc(OF1, 0x71D230); // ENTRY BUTTON
 ObjectFunc(OF2, 0x71CE60); // ZONE
@@ -1085,8 +1085,8 @@ void LoadObjects_RaceEntry()
 {
 	ObjectMaster *obj;
 	EntityData1 *ent;
-	//Chao Race numbers
-	//1
+	// Chao Race numbers
+	// 1
 	obj = LoadObject((LoadObj)2, 3, OF_E19);
 	obj->SETData.SETData = &setdata_e;
 	if (obj)
@@ -1098,7 +1098,7 @@ void LoadObjects_RaceEntry()
 		ent->Rotation.y = 0;
 		ent->CharIndex = 0;
 	}
-	//2
+	// 2
 	obj = LoadObject((LoadObj)2, 3, OF_E19);
 	obj->SETData.SETData = &setdata_e;
 	if (obj)
@@ -1110,7 +1110,7 @@ void LoadObjects_RaceEntry()
 		ent->Rotation.y = 0;
 		ent->CharIndex = 1;
 	}
-	//3
+	// 3
 	obj = LoadObject((LoadObj)2, 3, OF_E19);
 	obj->SETData.SETData = &setdata_e;
 	if (obj)
@@ -1122,7 +1122,7 @@ void LoadObjects_RaceEntry()
 		ent->Rotation.y = 0;
 		ent->CharIndex = 2;
 	}
-	//4
+	// 4
 	obj = LoadObject((LoadObj)2, 3, OF_E19);
 	obj->SETData.SETData = &setdata_e;
 	if (obj)
@@ -1134,7 +1134,7 @@ void LoadObjects_RaceEntry()
 		ent->Rotation.y = 0;
 		ent->CharIndex = 3;
 	}
-	//5
+	// 5
 	obj = LoadObject((LoadObj)2, 3, OF_E19);
 	obj->SETData.SETData = &setdata_e;
 	if (obj)
@@ -1146,7 +1146,7 @@ void LoadObjects_RaceEntry()
 		ent->Rotation.y = 0;
 		ent->CharIndex = 4;
 	}
-	//6
+	// 6
 	obj = LoadObject((LoadObj)2, 3, OF_E19);
 	obj->SETData.SETData = &setdata_e;
 	if (obj)
@@ -1158,7 +1158,7 @@ void LoadObjects_RaceEntry()
 		ent->Rotation.y = 0;
 		ent->CharIndex = 5;
 	}
-	//7
+	// 7
 	obj = LoadObject((LoadObj)2, 3, OF_E19);
 	obj->SETData.SETData = &setdata_e;
 	if (obj)
@@ -1170,7 +1170,7 @@ void LoadObjects_RaceEntry()
 		ent->Rotation.y = 0;
 		ent->CharIndex = 6;
 	}
-	//8
+	// 8
 	obj = LoadObject((LoadObj)2, 3, OF_E19);
 	obj->SETData.SETData = &setdata_e;
 	if (obj)
@@ -1182,7 +1182,7 @@ void LoadObjects_RaceEntry()
 		ent->Rotation.y = 0;
 		ent->CharIndex = 7;
 	}
-	//Doors
+	// Doors
 	obj = LoadObject((LoadObj)2, 3, OF_E21);
 	obj->SETData.SETData = &setdata_e;
 	if (obj)
@@ -1193,7 +1193,7 @@ void LoadObjects_RaceEntry()
 		ent->Position.z = 0;
 		ent->Rotation.y = 0;
 	}
-	//Letters
+	// Letters
 	obj = LoadObject((LoadObj)2, 3, OF_E22);
 	obj->SETData.SETData = &setdata_e;
 	if (obj)
@@ -1224,7 +1224,7 @@ void LoadObjects_RaceEntry()
 		ent->Position.z = 0;
 		ent->Rotation.y = 0x8000;
 	}
-	//Cheer holograms
+	// Cheer holograms
 	obj = LoadObject((LoadObj)2, 3, OF_E20);
 	obj->SETData.SETData = &setdata_e;
 	if (obj)
@@ -1305,7 +1305,7 @@ void LoadObjects_RaceEntry()
 		ent->Position.z = -55.5f;
 		ent->Rotation.y = 0;
 	}
-	//Other stuff
+	// Other stuff
 	obj = LoadObject((LoadObj)2, 3, OF_E16); // BOW CHAO
 	obj->SETData.SETData = &setdata_e;
 	if (obj)
@@ -1408,7 +1408,7 @@ void LoadObjects_Race()
 	ObjectMaster *obj;
 	EntityData1 *ent;
 	setdata_race.Distance = 612800.0f;
-	//Start Mark
+	// Start Mark
 	obj = LoadObject((LoadObj)2, 3, OF8);
 	obj->SETData.SETData = &setdata_race;
 	if (obj)
@@ -1421,7 +1421,7 @@ void LoadObjects_Race()
 		ent->Rotation.y = 0;
 		ent->Rotation.z = 0;
 	}
-	//Crackers
+	// Crackers
 	obj = LoadObject((LoadObj)2, 3, OF21);
 	obj->SETData.SETData = &setdata_race;
 	if (obj)
@@ -1477,7 +1477,7 @@ void LoadObjects_Race()
 		ent->Rotation.y = 0xE000;
 		ent->Rotation.z = 0x3000;
 	}
-	//Skybox
+	// Skybox
 	obj = LoadObject((LoadObj)2, 3, OF20);
 	obj->SETData.SETData = &setdata_race;
 	if (obj)
@@ -1488,7 +1488,7 @@ void LoadObjects_Race()
 		ent->Position.z = 0;
 		ent->Rotation.y = 0;
 	}
-	//Waterfall 1
+	// Waterfall 1
 	obj = LoadObject((LoadObj)2, 3, OF19);
 	obj->SETData.SETData = &setdata_race;
 	if (obj)
@@ -1502,7 +1502,7 @@ void LoadObjects_Race()
 		ent->Rotation.z = 0;
 		ent->CharID = 0;
 	}
-	//Waterfall 2
+	// Waterfall 2
 	obj = LoadObject((LoadObj)2, 3, OF19);
 	obj->SETData.SETData = &setdata_race;
 	if (obj)
@@ -2540,9 +2540,9 @@ void LoadObjects_Race()
 	if (obj)
 	{
 		ent = obj->Data1;
-		ent->Position.x = -365.66f; //-265.66f in the original, probably a mistake
+		ent->Position.x = -365.66f; // -265.66f in the original, probably a mistake
 		ent->Position.y = 82.63f;
-		ent->Position.z = 123.59f; //223.59f in the original, probably a mistake
+		ent->Position.z = 123.59f; // 223.59f in the original, probably a mistake
 		ent->Rotation.y = 0xC4B5;
 		ent->Rotation.z = 0x15F;
 		ent->Scale.x = 4;
@@ -3576,7 +3576,7 @@ void LoadObjects_Race()
 		ent->Position.y = 60;
 		ent->Position.z = 97.08f;
 		ent->Scale.x = 50;
-		ent->Scale.z = 200; //0 soon
+		ent->Scale.z = 200; // 0 soon
 	}
 	obj = LoadObject((LoadObj)2, 3, OF5); // FLAG
 	obj->SETData.SETData = &setdata_race;
@@ -3886,7 +3886,7 @@ ObjectMaster *__cdecl sub_71BF20()
 void RenderChaoRaceLetters_Fix(NJS_OBJECT *a1)
 {
 	DrawQueueDepthBias = 2000.0f;
-	ProcessModelNode(a1, QueuedModelFlagsB_SomeTextureThing, 1.0f);
+	lateDrawObject(a1, QueuedModelFlagsB_SomeTextureThing, 1.0f);
 	DrawQueueDepthBias = 0;
 }
 
@@ -3900,9 +3900,9 @@ void ChaoRaceRedArrowHook(NJS_SPRITE *_sp, Int n, NJD_SPRITE attr)
 	DrawQueueDepthBias = 0.0f;
 }
 
-//Chao Race Entry stuff
+// Chao Race Entry stuff
 
-//Bow Chao
+// Bow Chao
 
 void __cdecl BowChaoThing(NJS_ACTION *action, float frame)
 {
@@ -3941,7 +3941,7 @@ void __cdecl LoadRaceEntryX()
 		SSGardenStartPoint.YRot = BK_SSGardenStartPoint.YRot;
 		PrintDebug("ChaoStgEntrance _prolog begin.\n");
 		LoadObject(LoadObj_Data1, 5, ChaoStgEntrance_Main);
-		SetChaoLandTable((LandTable*)0x03423700); //PC
+		SetChaoLandTable((LandTable*)0x03423700); // PC
 		PrintDebug("ChaoStgEntrance _prolog end.\n");
 		SkipSA1Entry = false;
 	}
@@ -3961,24 +3961,24 @@ void __cdecl LoadRaceEntryX()
 
 void LoadSADXEntry(int ID, int a2, NJS_VECTOR *a3)
 {
-	sub_79E400(2, 0, 0); //Play sound
+	sub_79E400(2, 0, 0); // Play sound
 	SkipSA1Entry = true;
-	sub_715700(2); //Go to Chao Race Entry (2)
+	sub_715700(2); // Go to Chao Race Entry (2)
 }
 
 void ExitRaceEntry(int a1)
 {
 	SkipSA1Entry = false;
-	sub_715700(2); //Exit to the SA1 lobby (2) instead of SS garden (4)
+	sub_715700(2); // Exit to the SA1 lobby (2) instead of SS garden (4)
 }
 
-//Chao Race stuff
+// Chao Race stuff
 
 void RenderChaoBall()
 {
 	njSetTexture(&CHAO_TEXLIST);
 	njScale(0, 1.5f, 1.5f, 1.5f);
-	ProcessModelNode_AB_Wrapper(ChaoRaceBall, 1.5f);
+	ds_DrawObjectClip(ChaoRaceBall, 1.5f);
 }
 
 void __cdecl LoadChaoRaceX()
@@ -3988,7 +3988,7 @@ void __cdecl LoadChaoRaceX()
 	PrintDebug("ChaoStgRace _prolog begin.\n");
 	LoadObject(LoadObj_Data1, 2, ChaoStgRace_Init);
 	LoadPVM("BG_AL_RACE02", &texlist_chaoracebg);
-	LoadPVM("AL_TEX_COMMON", &ChaoTexLists[1]); //Name font
+	LoadPVM("AL_TEX_COMMON", &ChaoTexLists[1]); // Name font
 	LoadObjects_Race();
 	SetChaoLandTable(AL_RACE_1_Info->getlandtable());
 	PrintDebug("ChaoStgRace _prolog end.\n");
@@ -4020,80 +4020,80 @@ void ChaoRace_Init()
 {
 	Chao_Display_t = new Trampoline(0x7204B0, 0x7204B5, Chao_Display_r);
 	ChaoShadowFix_t = new Trampoline(0x73EF60, 0x73EF65, ChaoShadowFix_r);
-	//Load models
+	// Load models
 	OBJ_AL_RACE_TEXLISTS[1].Name = "BG_AL_RACE02";
 	OBJ_AL_RACE_TEXLISTS[1].TexList = &texlist_chaoracebg;
-	ChaoRaceSlidingDoors = LoadModel("system\\data\\AL_RACE\\Models\\00049C28.sa1mdl", false);
-	ChaoRaceNumber0 = LoadModel("system\\data\\AL_RACE\\Models\\0004E7BC.sa1mdl", false);
+	ChaoRaceSlidingDoors = LoadModel("system\\data\\AL_RACE\\Models\\00049C28.sa1mdl");
+	ChaoRaceNumber0 = LoadModel("system\\data\\AL_RACE\\Models\\0004E7BC.sa1mdl");
 	RemovePositionRotation_Object(ChaoRaceNumber0);
-	ChaoRaceNumber1 = LoadModel("system\\data\\AL_RACE\\Models\\0004E8C0.sa1mdl", false);
+	ChaoRaceNumber1 = LoadModel("system\\data\\AL_RACE\\Models\\0004E8C0.sa1mdl");
 	RemovePositionRotation_Object(ChaoRaceNumber1);
-	ChaoRaceNumber2 = LoadModel("system\\data\\AL_RACE\\Models\\0004E9C4.sa1mdl", false);
+	ChaoRaceNumber2 = LoadModel("system\\data\\AL_RACE\\Models\\0004E9C4.sa1mdl");
 	RemovePositionRotation_Object(ChaoRaceNumber2);
-	ChaoRaceNumber3 = LoadModel("system\\data\\AL_RACE\\Models\\0004EAC8.sa1mdl", false);
+	ChaoRaceNumber3 = LoadModel("system\\data\\AL_RACE\\Models\\0004EAC8.sa1mdl");
 	RemovePositionRotation_Object(ChaoRaceNumber3);
-	ChaoRaceNumber4 = LoadModel("system\\data\\AL_RACE\\Models\\0004EBCC.sa1mdl", false);
+	ChaoRaceNumber4 = LoadModel("system\\data\\AL_RACE\\Models\\0004EBCC.sa1mdl");
 	RemovePositionRotation_Object(ChaoRaceNumber4);
-	ChaoRaceNumber5 = LoadModel("system\\data\\AL_RACE\\Models\\0004ECD0.sa1mdl", false);
+	ChaoRaceNumber5 = LoadModel("system\\data\\AL_RACE\\Models\\0004ECD0.sa1mdl");
 	RemovePositionRotation_Object(ChaoRaceNumber5);
-	ChaoRaceNumber6 = LoadModel("system\\data\\AL_RACE\\Models\\0004EDD4.sa1mdl", false);
+	ChaoRaceNumber6 = LoadModel("system\\data\\AL_RACE\\Models\\0004EDD4.sa1mdl");
 	RemovePositionRotation_Object(ChaoRaceNumber6);
-	ChaoRaceNumber7 = LoadModel("system\\data\\AL_RACE\\Models\\0004EED8.sa1mdl", false);
+	ChaoRaceNumber7 = LoadModel("system\\data\\AL_RACE\\Models\\0004EED8.sa1mdl");
 	RemovePositionRotation_Object(ChaoRaceNumber7);
-	ChaoRaceLetters = LoadModel("system\\data\\AL_RACE\\Models\\00048224.sa1mdl", false);
+	ChaoRaceLetters = LoadModel("system\\data\\AL_RACE\\Models\\00048224.sa1mdl");
 	RemovePositionRotation_Object(ChaoRaceLetters);
-	ChaoRaceWaterfall1 = LoadModel("system\\data\\AL_RACE\\Models\\00046254.sa1mdl", false);
+	ChaoRaceWaterfall1 = LoadModel("system\\data\\AL_RACE\\Models\\00046254.sa1mdl");
 	RemovePositionRotation_Object(ChaoRaceWaterfall1);
 	ChaoRaceWaterfall1->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_CLAMP_V;
 	AddUVAnimation_Permanent(LevelIDs_ChaoRace, 0, ChaoRaceWaterfall1->basicdxmodel->meshsets[0].vertuv, 48, 0, 0, -6);
-	ChaoRaceWaterfall2 = LoadModel("system\\data\\AL_RACE\\Models\\00045EB4.sa1mdl", false);
+	ChaoRaceWaterfall2 = LoadModel("system\\data\\AL_RACE\\Models\\00045EB4.sa1mdl");
 	RemovePositionRotation_Object(ChaoRaceWaterfall2);
 	ChaoRaceWaterfall2->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_CLAMP_V;
 	AddUVAnimation_Permanent(LevelIDs_ChaoRace, 0, ChaoRaceWaterfall2->basicdxmodel->meshsets[0].vertuv, 80, 0, 0, -6);
-	ChaoRaceSkyboxBottom = LoadModel("system\\data\\AL_RACE\\Models\\0002A888.sa1mdl", false);
+	ChaoRaceSkyboxBottom = LoadModel("system\\data\\AL_RACE\\Models\\0002A888.sa1mdl");
 	ChaoRaceSkyboxBottom->basicdxmodel->mats[0].attr_texId = 0;
-	ChaoRaceSkyboxMain = LoadModel("system\\data\\AL_RACE\\Models\\0001C628.sa1mdl", false);
-	ChaoRaceStartMark1 = LoadModel("system\\data\\AL_RACE\\Models\\000445A0.sa1mdl", false);
-	ChaoRaceStartMark2 = LoadModel("system\\data\\AL_RACE\\Models\\000459E4.sa1mdl", false);
-	ChaoRaceCracker = LoadModel("system\\data\\AL_RACE\\Models\\00046364.sa1mdl", false);
-	ChaoRaceBall = LoadModel("system\\data\\AL_MAIN\\Models\\0014B2C0.sa1mdl", false); //This is in AL_MAIN
-	//Chao Race Entry
+	ChaoRaceSkyboxMain = LoadModel("system\\data\\AL_RACE\\Models\\0001C628.sa1mdl");
+	ChaoRaceStartMark1 = LoadModel("system\\data\\AL_RACE\\Models\\000445A0.sa1mdl");
+	ChaoRaceStartMark2 = LoadModel("system\\data\\AL_RACE\\Models\\000459E4.sa1mdl");
+	ChaoRaceCracker = LoadModel("system\\data\\AL_RACE\\Models\\00046364.sa1mdl");
+	ChaoRaceBall = LoadModel("system\\data\\AL_MAIN\\Models\\0014B2C0.sa1mdl"); // This is in AL_MAIN
+	// Chao Race Entry
 	if (EnableLobby)
 	{
 		WriteCall((void*)0x0071C0CF, BowChaoThing);
 		WriteJump((void*)0x007199B0, LoadRaceEntryX);
 		WriteCall((void*)0x0072C618, ExitRaceEntry);
 		WriteCall((void*)0x0071D17A, LoadSADXEntry);
-		WriteData<5>((void*)0x0071D158, 0x90); //Don't move Sanic
-		WriteData<5>((void*)0x0071CEE0, 0x90); //Don't mess with entry button
-		WriteData<5>((void*)0x0071CEC2, 0x90); //Don't mess with entry button
-		RemoveVertexColors_Object((NJS_OBJECT*)0x33AEF88); //Old Chao Race button
+		WriteData<5>((void*)0x0071D158, 0x90); // Don't move Sanic
+		WriteData<5>((void*)0x0071CEE0, 0x90); // Don't mess with entry button
+		WriteData<5>((void*)0x0071CEC2, 0x90); // Don't mess with entry button
+		RemoveVertexColors_Object((NJS_OBJECT*)0x33AEF88); // Old Chao Race button
 	}
-	//Chao Race stuff
-	WriteData((int**)0x751B11, &CurrentChaoStage); //Restore Chao Race jewel by replacing the invalid pointer with something that always returns something
+	// Chao Race stuff
+	WriteData((int**)0x751B11, &CurrentChaoStage); // Restore Chao Race jewel by replacing the invalid pointer with something that always returns something
 	WriteCall((void*)0x72E688, LoadChaoRaceJewelAndText);
 	WriteCall((void*)0x719D8C, LoadObjChaoRaceTexlist);
-	//BuildChaoFontUVMap(); //Create UV maps for the Chao name font (better to run this once and use the output statically)
-	//Convert the first letter in Chaclon's name to uppercase
+	//BuildChaoFontUVMap(); // Create UV maps for the Chao name font (better to run this once and use the output statically)
+	// Convert the first letter in Chaclon's name to uppercase
 	ChaclonNameFix1 = 0x23;
 	ChaclonNameFix2 = 0x23;
 	ChaclonNameFix3 = 0x23;
 	ChaclonNameFix4 = 0x23;
 	WriteCall((void*)0x751746, ChaoRaceRedArrowHook);
-	WriteCall((void*)0x76DA03, RenderChaoRaceLetters_Fix); //Chao Race letters fix
-	WriteCall((void*)0x72E2D3, ChaoRaceSoundHook_Start); //Play sound and load "Start" graphics
-	WriteCall((void*)0x72F031, ChaoRaceSoundHook_Goal); //Play sound and load "Goal" graphics
-	WriteJump((void*)0x71BF20, LoadChaoRaceCrackers); //Load crackers
-	WriteCall((void*)0x75A550, RenderChaoBall); //Chao Race ball model
-	WriteData((NJS_OBJECT**)0x883E68, ChaoRaceStartMark2); //Start Mark in Chao Race
+	WriteCall((void*)0x76DA03, RenderChaoRaceLetters_Fix); // Chao Race letters fix
+	WriteCall((void*)0x72E2D3, ChaoRaceSoundHook_Start); // Play sound and load "Start" graphics
+	WriteCall((void*)0x72F031, ChaoRaceSoundHook_Goal); // Play sound and load "Goal" graphics
+	WriteJump((void*)0x71BF20, LoadChaoRaceCrackers); // Load crackers
+	WriteCall((void*)0x75A550, RenderChaoBall); // Chao Race ball model
+	WriteData((NJS_OBJECT**)0x883E68, ChaoRaceStartMark2); // Start Mark in Chao Race
 	WriteJump((void*)0x00719DB0, LoadChaoRaceX);
-	WriteData((float*)0x00719D74, -16000.0f); //Draw distance
+	WriteData((float*)0x00719D74, -16000.0f); // Draw distance
 }
 
 void ChaoRace_OnFrame()
 {
-	//Chao Race Entry
-	if (CurrentChaoStage == 2 && !IsGamePaused() && EnableLobby)
+	// Chao Race Entry
+	if (CurrentChaoStage == SADXChaoStage_RaceEntry && !IsGamePaused() && EnableLobby)
 	{
 		if (SkipSA1Entry)
 		{
@@ -4103,10 +4103,10 @@ void ChaoRace_OnFrame()
 		{
 			((NJS_MATERIAL*)0x033AEB70)->attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
 		}
-		//Cheer Chao hologram
+		// Cheer Chao hologram
 		if (FrameCounter % (35 / FramerateSetting) == 0) cheerchaoanim = !cheerchaoanim;
 		if (cheerchaoanim == true) matlistCHAO_03270F10[0].attr_texId = 34; else matlistCHAO_03270F10[0].attr_texId = 35;
-		//Letters
+		// Letters
 		c1 = letteranims[letterframe][0];
 		h1 = letteranims[letterframe][1];
 		a1 = letteranims[letterframe][2];
@@ -4125,7 +4125,7 @@ void ChaoRace_OnFrame()
 		if (e2) ChaoRaceLetters->basicdxmodel->mats[4].attr_texId = 32; else ChaoRaceLetters->basicdxmodel->mats[4].attr_texId = 33;
 		if (FrameCounter % (10 / FramerateSetting) == 0) letterframe++;
 		if (letterframe > LengthOfArray(letteranims)) letterframe = 0;
-		//Exit
+		// Exit
 		auto entity = EntityData1Ptrs[0];
 		if (entity != nullptr)
 		{
@@ -4139,7 +4139,7 @@ void ChaoRace_OnFrame()
 			SkipSA1Entry = true;
 			sub_715700(2);
 		}
-		//Chao bowing when player leaves the room
+		// Chao bowing when player leaves the room
 		if (bowchaoanim == 1)
 		{
 			bowchaoframe = bowchaoframe + (0.25f*FramerateSetting);
@@ -4150,11 +4150,11 @@ void ChaoRace_OnFrame()
 			bowchaoframe = 0;
 		}
 	}
-	//Chao Race
-	if (AL_RACE_1_Info && CurrentChaoStage == 1 && !IsGamePaused())
+	// Chao Race
+	if (AL_RACE_1_Info && CurrentChaoStage == SADXChaoStage_Race && !IsGamePaused())
 	{
 		if (!ChaoRaceEnded) ChaoRaceTimer += FramerateSetting;
-		//Winning the race (not jewel)
+		// Winning the race (not jewel)
 		if (!MedalTextLoaded)
 		{
 			if (ChaoRaceOver > 0 && CrackersShouldFire > 0)
@@ -4164,7 +4164,7 @@ void ChaoRace_OnFrame()
 			}
 		}
 	}
-	if (CurrentChaoStage != 1)
+	if (CurrentChaoStage != SADXChaoStage_Race)
 	{
 		ChaoRaceTimer = 0;
 		ChaoRaceEnded = false;

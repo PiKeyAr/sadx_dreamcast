@@ -12,12 +12,6 @@ NJS_TEXLIST texlist_skydeck2 = { arrayptrandlength(textures_skydeck2) };
 NJS_TEXNAME textures_skydeck3[65];
 NJS_TEXLIST texlist_skydeck3 = { arrayptrandlength(textures_skydeck3) };
 
-/*
-#include "SkyDeck1.h"
-#include "SkyDeck2.h"
-#include "SkyDeck3.h"
-*/
-
 NJS_OBJECT* SkyNormal1 = nullptr;
 NJS_OBJECT* SkyNormal2 = nullptr;
 NJS_OBJECT* SkyDark2 = nullptr;
@@ -27,7 +21,7 @@ static int UVShift1 = 0;
 static int UVShift2 = 0;
 static int SkyboxAlpha = 255;
 static bool SkyDeckTransitionEnable = false;
-DataPointer(float, SkyDeckAltitude, 0x03C80610); //0 to 700
+DataPointer(float, SkyDeckAltitude, 0x03C80610); // 0 to 700
 DataPointer(float, CurrentSkyBoxScaleX, 0x03ABDC94);
 DataPointer(float, CurrentSkyBoxScaleY, 0x03ABDC98);
 DataPointer(float, CurrentSkyBoxScaleZ, 0x03ABDC9C);
@@ -52,11 +46,7 @@ DataArray(SkyboxScale, SkyDeck3SkyboxScale, 0x02039FE0, 3);
 DataArray(DrawDistance, SkyDeck1DrawDist, 0x0203A04C, 3);
 DataArray(DrawDistance, SkyDeck2DrawDist, 0x0203A064, 3);
 DataArray(DrawDistance, SkyDeck3DrawDist, 0x0203A07C, 3);
-FunctionPointer(void, sub_408530, (NJS_OBJECT *a1), 0x408530);
-FunctionPointer(void, sub_407A00, (NJS_MODEL_SADX *model, float scale), 0x407A00);
 FunctionPointer(void, sub_5ED790, (ObjectMaster *a1, NJS_OBJECT *a2), 0x5ED790);
-FunctionPointer(void, sub_408300, (NJS_OBJECT *a1, NJS_MOTION *a2, float a3, QueuedModelFlagsB a4, float a5), 0x408300);
-FunctionPointer(void, DrawObjectWithMotion_407BB0, (NJS_OBJECT *a1, NJS_MOTION *a2, float framenumber, int a4, int a5), 0x4082D0);
 
 void DisableMetalStruts(LandTable* landtable)
 {
@@ -96,7 +86,7 @@ void __cdecl SkyDeck_QueueDrawQ(NJS_OBJECT *obj, NJS_TEX *uv, int uvSTG06_count,
 					memcpy(v6, uv, 4 * uvSTG06_count);
 					v5->vertuv = v6;
 					DrawQueueDepthBias = depth;
-					ProcessModelNode_A_WrapperB(obj, (QueuedModelFlagsB)0);
+					late_DrawObject(obj, (QueuedModelFlagsB)0);
 					DrawQueueDepthBias = 0.0f;
 				}
 			}
@@ -107,13 +97,13 @@ void __cdecl SkyDeck_QueueDrawQ(NJS_OBJECT *obj, NJS_TEX *uv, int uvSTG06_count,
 void SkyDeckSky_new(ObjectMaster *_this)
 {
 	float depthsucks;
-	unsigned __int64 v1; // rax@6
+	Uint32 v1; // rax@6
 	NJS_OBJECT *v2; // esi@7
-	long double v3; // st7@9
-	long double v4; // st7@13
+	float v3; // st7@9
+	float v4; // st7@13
 	NJS_OBJECT *v5; // eax@13
-	long double v6; // st7@15
-	long double v7; // st7@19
+	float v6; // st7@15
+	float v7; // st7@19
 	NJS_OBJECT *v8; // eax@19
 	NJS_ARGB a1; // [sp+4h] [bp-10h]@13
 	njControl3D_Backup();
@@ -147,7 +137,7 @@ void SkyDeckSky_new(ObjectMaster *_this)
 			}
 			njSetTexture(&OBJ_SKYDECK_TEXLIST);
 			njScaleEx(&Skybox_Scale);
-			sub_408530(v2);
+			dsDrawObject(v2);
 			njScale(0, 1.0f, 1.0f, 1.0f);
 			v3 = 1.0f - fabs(Camera_Data1->Position.y - (SkyDeck_SkyPosition.y - 1350.0f)) * 0.025f;
 			if (v3 >= 0.05f)
@@ -224,7 +214,7 @@ void SkyDeckSky_new(ObjectMaster *_this)
 void RenderSmallCloud(NJS_OBJECT *a1, QueuedModelFlagsB a2, float a3)
 {
 	DrawQueueDepthBias = -6000.0f;
-	ProcessModelNode_A_Wrapper(a1, a2, a3);
+	late_DrawObjectClip(a1, a2, a3);
 	DrawQueueDepthBias = 0.0f;
 }
 
@@ -233,7 +223,7 @@ static void __cdecl TheyForgotToClampAgain_r(ObjectMaster *a1)
 {
 	const auto original = TARGET_DYNAMIC(TheyForgotToClampAgain);
 	original(a1);
-	if (EnableSkyDeck) ClampGlobalColorThing_Thing();
+	if (EnabledLevels[LevelIDs_SkyDeck]) ClampGlobalColorThing_Thing();
 }
 
 /*
@@ -243,7 +233,7 @@ static Trampoline SkyDeckShockwave2_t(0x5FF370, 0x5FF378, SkyDeckShockwave2_r);
 static void __cdecl SkyDeckShockwave2_r(ObjectMaster *a1)
 {
 	auto original = reinterpret_cast<decltype(SkyDeckShockwave2_r)*>(SkyDeckShockwave2_t.Target());
-	if (EnableSkyDeck)
+	if (EnabledLevels[LevelIDs_SkyDeck])
 	{
 		DrawQueueDepthBias = 4000.0f;
 		original(a1);
@@ -257,7 +247,7 @@ static Trampoline SkyDeckShockwave3_t(0x5FD860, 0x5FD867, SkyDeckShockwave3_r);
 static void __cdecl SkyDeckShockwave3_r(ObjectMaster *a1)
 {
 	auto original = reinterpret_cast<decltype(SkyDeckShockwave3_r)*>(SkyDeckShockwave3_t.Target());
-	if (EnableSkyDeck)
+	if (EnabledLevels[LevelIDs_SkyDeck])
 	{
 		DrawQueueDepthBias = 4000.0f;
 		original(a1);
@@ -269,12 +259,12 @@ static void __cdecl SkyDeckShockwave3_r(ObjectMaster *a1)
 
 void FixHangA(NJS_OBJECT *obj, float scale)
 {
-	ProcessModelNode(obj, QueuedModelFlagsB_EnableZWrite, scale);
+	lateDrawObject(obj, QueuedModelFlagsB_EnableZWrite, scale);
 }
 
 void RenderCrane(NJS_OBJECT* obj, float scale)
 {
-	ProcessModelNode_D(obj, QueuedModelFlagsB_EnableZWrite, scale);
+	DrawObjectClipMesh(obj, QueuedModelFlagsB_EnableZWrite, scale);
 }
 
 void UnloadLevelFiles_STG06()
@@ -297,11 +287,9 @@ void __cdecl SkyDeckSharedDisplaySubFix(ObjectMaster *a1)
 	Angle v6; // eax
 	float v7; // eax
 	unsigned __int8 v8; // al
-	double v9; // st7
+	float v9; // st7
 	NJS_MOTION *v10; // edx
-	double v11; // st6
-	double v12; // st7
-	float a1a; // [esp+10h] [ebp+4h]
+	float v11; // st6
 
 	v1 = a1;
 	v2 = a1->Data1;
@@ -346,11 +334,11 @@ void __cdecl SkyDeckSharedDisplaySubFix(ObjectMaster *a1)
 				v11 = SkyDeckSharedMotionLengthArray[v8];
 				if (v9 > v11 - 1.0f) v9 = 0;
 				v2->Scale.z = v9;
-				DrawObjectWithMotion_407BB0(v3, v10, v9, 1, v2->Scale.x);
+				late_DrawMotionClipEx(v3, v10, v9, 1, v2->Scale.x);
 			}
 			else
 			{
-				ProcessModelNode_C_VerifyTexList(v3, QueuedModelFlagsB_EnableZWrite, v2->Scale.x);
+				late_DrawObjectClipEx(v3, QueuedModelFlagsB_EnableZWrite, v2->Scale.x);
 			}
 			if ( v2->Scale.x != 1.0f )
 			{
@@ -365,8 +353,18 @@ void __cdecl SkyDeckSharedDisplaySubFix(ObjectMaster *a1)
 void DrawDecalHook(NJS_OBJECT *a1)
 {
 	DrawQueueDepthBias = -47952.0f;
-	ProcessModelNode(a1, QueuedModelFlagsB_3, 1.0f);
+	lateDrawObject(a1, QueuedModelFlagsB_3, 1.0f);
 	DrawQueueDepthBias = 0.0f;
+}
+
+void Connect0Fix(NJS_MODEL_SADX* model, float scale)
+{
+	late_DrawModelClip(model, 1, scale);
+}
+
+void Connect0Fix2(NJS_OBJECT* obj, float scale)
+{
+	late_DrawObjectClip(obj, 1, scale);
 }
 
 void SkyDeck_Init()
@@ -396,9 +394,9 @@ void SkyDeck_Init()
 		SKYDECK02_TEXLIST = texlist_skydeck2;
 		SKYDECK03_TEXLIST = texlist_skydeck3;
 		OBJ_SKYDECK_TEXLIST = texlist_obj_skydeck;
-		WriteJump((void*)0x5EF870, SkyDeckSharedDisplaySubFix); //Fix jerky animation for some objects (mostly unused)
-		//Skybox transparency
-		SkyDeckSkyboxModel_Normal.basicdxmodel->nbMeshset = 2; //Disable the annoying sky mesh
+		WriteJump((void*)0x5EF870, SkyDeckSharedDisplaySubFix); // Fix jerky animation for some objects (mostly unused)
+		// Skybox transparency
+		SkyDeckSkyboxModel_Normal.basicdxmodel->nbMeshset = 2; // Disable the annoying sky mesh
 		SkyDeckSkyboxModel_Normal.basicdxmodel->mats[0].diffuse.color = 0x11FFFFFF;
 		SkyDeckSkyboxModel_Normal.basicdxmodel->mats[1].diffuse.color = 0x11FFFFFF;
 		SkyDeckSkyboxModel_Normal.basicdxmodel->mats[2].diffuse.color = 0x11FFFFFF;
@@ -422,199 +420,204 @@ void SkyDeck_Init()
 		SkyDeckSkyboxModel_Dark.basicdxmodel->mats[3].attrflags |= NJD_DA_ONE | NJD_SA_ONE;
 		WriteCall((void*)0x005ED72F, RenderSmallCloud);
 		WriteJump((void*)0x005ED1E0, SkyDeckSky_new);
-		//Some material fixes
-		((NJS_OBJECT*)0x95D0F4)->basicdxmodel->mats[7].attrflags &= ~NJD_FLAG_IGNORE_LIGHT; //Aircraft
-		((NJS_OBJECT*)0x95A334)->basicdxmodel->mats[4].attrflags &= ~NJD_FLAG_IGNORE_LIGHT; //Some rocket or whatever
-		((NJS_OBJECT*)0x95C204)->basicdxmodel->mats[7].attrflags &= ~NJD_FLAG_IGNORE_LIGHT; //Some other thing related to aircraft
-		//Lol wtf is this? Disable robot underwear?
+		// Object fixes
+		WriteCall((void*)0x5FAE66, Connect0Fix2); // Connect0
+		WriteCall((void*)0x5FAE2A, Connect0Fix); // Connect0 broken pieces
+		WriteCall((void*)0x5FB5CC, Connect0Fix2); // Talap0
+		WriteCall((void*)0x5FB58A, Connect0Fix); // Talap0 broken pieces
+		// Some material fixes
+		((NJS_OBJECT*)0x95D0F4)->basicdxmodel->mats[7].attrflags &= ~NJD_FLAG_IGNORE_LIGHT; // Aircraft
+		((NJS_OBJECT*)0x95A334)->basicdxmodel->mats[4].attrflags &= ~NJD_FLAG_IGNORE_LIGHT; // Some rocket or whatever
+		((NJS_OBJECT*)0x95C204)->basicdxmodel->mats[7].attrflags &= ~NJD_FLAG_IGNORE_LIGHT; // Some other thing related to aircraft
+		// Lol wtf is this? Disable robot underwear?
 		WriteData((float*)0x005F4D20, 1.0f);
 		WriteData((float*)0x005F4D28, 1.0f);
 		WriteData((float*)0x005F4D30, 1.0f);
 		WriteData((float*)0x005F4D38, 1.0f);
-		//Alpha rejected explosions/shockwaves
-		*(NJS_OBJECT*)0x21DF2A4 = *LoadModel("system\\data\\STG06\\Models\\0017C8A8.sa1mdl", false);
+		// Alpha rejected explosions/shockwaves
+		*(NJS_OBJECT*)0x21DF2A4 = *LoadModel("system\\data\\STG06\\Models\\0017C8A8.sa1mdl");
 		AddAlphaRejectMaterial(&((NJS_OBJECT*)0x21DF2A4)->basicdxmodel->mats[0]);
-		*(NJS_OBJECT*)0x21DF554 = *LoadModel("system\\data\\STG06\\Models\\0017CB48.sa1mdl", false);
+		*(NJS_OBJECT*)0x21DF554 = *LoadModel("system\\data\\STG06\\Models\\0017CB48.sa1mdl");
 		AddAlphaRejectMaterial(&((NJS_OBJECT*)0x21DF554)->basicdxmodel->mats[0]);
-		*(NJS_OBJECT*)0x21DFEB4 = *LoadModel("system\\data\\STG06\\Models\\0017D498.sa1mdl", false);
+		*(NJS_OBJECT*)0x21DFEB4 = *LoadModel("system\\data\\STG06\\Models\\0017D498.sa1mdl");
 		AddAlphaRejectMaterial(&((NJS_OBJECT*)0x21DFEB4)->basicdxmodel->mats[0]);
-		*(NJS_OBJECT*)0x21E0438 = *LoadModel("system\\data\\STG06\\Models\\0017DA08.sa1mdl", false);
+		*(NJS_OBJECT*)0x21E0438 = *LoadModel("system\\data\\STG06\\Models\\0017DA08.sa1mdl");
 		AddAlphaRejectMaterial(&((NJS_OBJECT*)0x21E0438)->basicdxmodel->mats[0]);
-		*(NJS_OBJECT*)0x21E06BC = *LoadModel("system\\data\\STG06\\Models\\0017DC80.sa1mdl", false);
+		*(NJS_OBJECT*)0x21E06BC = *LoadModel("system\\data\\STG06\\Models\\0017DC80.sa1mdl");
 		AddAlphaRejectMaterial(&((NJS_OBJECT*)0x21E06BC)->basicdxmodel->mats[0]);
-		*(NJS_OBJECT*)0x21ED6E4 = *LoadModel("system\\data\\STG06\\Models\\00188178.sa1mdl", false);
+		*(NJS_OBJECT*)0x21ED6E4 = *LoadModel("system\\data\\STG06\\Models\\00188178.sa1mdl");
 		AddAlphaRejectMaterial(&((NJS_OBJECT*)0x21ED6E4)->basicdxmodel->mats[0]);
-		*(NJS_OBJECT*)0x21ED7F0 = *LoadModel("system\\data\\STG06\\Models\\0018827C.sa1mdl", false);
+		*(NJS_OBJECT*)0x21ED7F0 = *LoadModel("system\\data\\STG06\\Models\\0018827C.sa1mdl");
 		AddAlphaRejectMaterial(&((NJS_OBJECT*)0x21ED7F0)->basicdxmodel->mats[0]);
-		*(NJS_OBJECT*)0x21EDE68 = *LoadModel("system\\data\\STG06\\Models\\001888E4.sa1mdl", false);
+		*(NJS_OBJECT*)0x21EDE68 = *LoadModel("system\\data\\STG06\\Models\\001888E4.sa1mdl");
 		AddAlphaRejectMaterial(&((NJS_OBJECT*)0x21EDE68)->basicdxmodel->mats[0]);
-		*(NJS_OBJECT*)0x21EE164 = *LoadModel("system\\data\\STG06\\Models\\00188BD4.sa1mdl", false);
+		*(NJS_OBJECT*)0x21EE164 = *LoadModel("system\\data\\STG06\\Models\\00188BD4.sa1mdl");
 		AddAlphaRejectMaterial(&((NJS_OBJECT*)0x21EE164)->basicdxmodel->mats[0]);
-		*(NJS_OBJECT*)0x21ED460 = *LoadModel("system\\data\\STG06\\Models\\00187F00.sa1mdl", false);
+		*(NJS_OBJECT*)0x21ED460 = *LoadModel("system\\data\\STG06\\Models\\00187F00.sa1mdl");
 		AddAlphaRejectMaterial(&((NJS_OBJECT*)0x21ED460)->basicdxmodel->mats[0]);
-		//Objects
-		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x21FB818)->basicdxmodel->mats[1]); //OUeKi
-		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x21FB818)->basicdxmodel->mats[2]); //OUeKi
-		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x21FB818)->basicdxmodel->mats[3]); //OUeKi
-		RemoveVertexColors_Object((NJS_OBJECT*)0x960AE4); //Enemy aircraft
-		RemoveVertexColors_Object((NJS_OBJECT*)0x95A334); //Enemy aircraft rocket
-		RemoveVertexColors_Object((NJS_OBJECT*)0x21B6DF4); //Objects that fall down from Chambr
-		RemoveVertexColors_Object((NJS_OBJECT*)0x21B5844); //Objects that fall down from Chambr
-		RemoveVertexColors_Object((NJS_OBJECT*)0x21B3988); //Objects that fall down from Chambr
-		RemoveVertexColors_Object((NJS_OBJECT*)0x21B29B4); //Objects that fall down from Chambr
-		RemoveVertexColors_Object((NJS_OBJECT*)0x21F2CA4); //Objects that fall down from Chambr
-		RemoveVertexColors_Object((NJS_OBJECT*)0x21F223C); //Objects that fall down from Chambr
-		RemoveVertexColors_Object((NJS_OBJECT*)0x21F370C); //Objects that fall down from Chambr
-		RemoveVertexColors_Object((NJS_OBJECT*)0x21B8A7C); //Objects that fall down from Chambr
-		RemoveVertexColors_Object((NJS_OBJECT*)0x21B4D8C); //Objects that fall down from Chambr
-		*(NJS_OBJECT*)0x21F4EC0 = *LoadModel("system\\data\\STG06\\Models\\0018F244.sa1mdl", false); //OSkyEv 1
-		*(NJS_OBJECT*)0x21F53EC = *LoadModel("system\\data\\STG06\\Models\\0018F744.sa1mdl", false); //OSkyEv 2
-		*(NJS_OBJECT*)0x21F5AB4 = *LoadModel("system\\data\\STG06\\Models\\0018FC54.sa1mdl", false); //OSkyEv 3
-		*(NJS_OBJECT*)0x21A7604 = *LoadModel("system\\data\\STG06\\Models\\00148250.sa1mdl", false); //Fence_L
-		*(NJS_OBJECT*)0x21A95B4 = *LoadModel("system\\data\\STG06\\Models\\0014A1E0.sa1mdl", false); //Fence_M
-		*(NJS_OBJECT*)0x21AA97C = *LoadModel("system\\data\\STG06\\Models\\0014B58C.sa1mdl", false); //Fence_S
-		*(NJS_OBJECT*)0x21523C4 = *LoadModel("system\\data\\STG06\\Models\\001011C4.sa1mdl", false); //CannonB
-		*(NJS_OBJECT*)0x21E0DD4 = *LoadModel("system\\data\\STG06\\Models\\0017E160.sa1mdl", false); //OConnect0 debris
-		*(NJS_OBJECT*)0x21E14EC = *LoadModel("system\\data\\STG06\\Models\\0017E640.sa1mdl", false); //OConnect0 debris
-		*(NJS_OBJECT*)0x21E1C04 = *LoadModel("system\\data\\STG06\\Models\\0017EB3C.sa1mdl", false); //OConnect0 debris
-		*(NJS_OBJECT*)0x21E231C = *LoadModel("system\\data\\STG06\\Models\\0017F038.sa1mdl", false); //OConnect0 debris
-		*(NJS_OBJECT*)0x21E2800 = *LoadModel("system\\data\\STG06\\Models\\0017F420.sa1mdl", false); //OConnect0 debris
-		*(NJS_OBJECT*)0x21E29B4 = *LoadModel("system\\data\\STG06\\Models\\0017F588.sa1mdl", false); //OConnect0 debris
-		*(NJS_OBJECT*)0x21E2DD8 = *LoadModel("system\\data\\STG06\\Models\\0017F8FC.sa1mdl", false); //OConnect0 debris
-		*(NJS_OBJECT*)0x21E3014 = *LoadModel("system\\data\\STG06\\Models\\0017FAAC.sa1mdl", false); //OConnect0 debris
-		*(NJS_OBJECT*)0x21E32DC = *LoadModel("system\\data\\STG06\\Models\\0017FD04.sa1mdl", false); //OConnect0 debris
-		*(NJS_OBJECT*)0x21E37B4 = *LoadModel("system\\data\\STG06\\Models\\0018010C.sa1mdl", false); //OTalap0 debris
-		*(NJS_OBJECT*)0x21E38AC = *LoadModel("system\\data\\STG06\\Models\\001801F0.sa1mdl", false); //OTalap0 debris
-		*(NJS_OBJECT*)0x21E39C8 = *LoadModel("system\\data\\STG06\\Models\\001802F4.sa1mdl", false); //OTalap0 debris
-		*(NJS_OBJECT*)0x21E3C5C = *LoadModel("system\\data\\STG06\\Models\\00180504.sa1mdl", false); //OTalap0 debris
-		*(NJS_OBJECT*)0x21E3EEC = *LoadModel("system\\data\\STG06\\Models\\00180714.sa1mdl", false); //OTalap0 debris
-		*(NJS_OBJECT*)0x21E41A4 = *LoadModel("system\\data\\STG06\\Models\\00180950.sa1mdl", false); //OTalap0 debris
-		*(NJS_OBJECT*)0x21E42C0 = *LoadModel("system\\data\\STG06\\Models\\00180A54.sa1mdl", false); //OTalap0 debris
-		*(NJS_OBJECT*)0x21E4694 = *LoadModel("system\\data\\STG06\\Models\\00180D58.sa1mdl", false); //OTalap0 debris
-		*(NJS_OBJECT*)0x21E4A64 = *LoadModel("system\\data\\STG06\\Models\\00181078.sa1mdl", false); //OTalap0 debris
-		*(NJS_OBJECT*)0x21E4E24 = *LoadModel("system\\data\\STG06\\Models\\0018137C.sa1mdl", false); //OTalap0 debris
-		*(NJS_OBJECT*)0x21E50B4 = *LoadModel("system\\data\\STG06\\Models\\0018158C.sa1mdl", false); //OTalap0 debris
-		*(NJS_OBJECT*)0x21E51D0 = *LoadModel("system\\data\\STG06\\Models\\00181690.sa1mdl", false); //OTalap0 debris
-		*(NJS_OBJECT*)0x21E52C8 = *LoadModel("system\\data\\STG06\\Models\\00181774.sa1mdl", false); //OTalap0 debris
-		*(NJS_OBJECT*)0x21E53C0 = *LoadModel("system\\data\\STG06\\Models\\00181858.sa1mdl", false); //OTalap0 debris
-		*(NJS_OBJECT*)0x21E54DC = *LoadModel("system\\data\\STG06\\Models\\0018195C.sa1mdl", false); //OTalap0 debris
-		*(NJS_OBJECT*)0x21E55F8 = *LoadModel("system\\data\\STG06\\Models\\00181A60.sa1mdl", false); //OTalap0 debris
-		*(NJS_OBJECT*)0x21E58AC = *LoadModel("system\\data\\STG06\\Models\\00181CB8.sa1mdl", false); //OTalap0 debris
-		*(NJS_OBJECT*)0x21E5CCC = *LoadModel("system\\data\\STG06\\Models\\00182038.sa1mdl", false); //OTalap0 debris
-		*(NJS_OBJECT*)0x21E5EDC = *LoadModel("system\\data\\STG06\\Models\\001821E8.sa1mdl", false); //OTalap0 debris
-		*(NJS_OBJECT*)0x21E611C = *LoadModel("system\\data\\STG06\\Models\\00182398.sa1mdl", false); //OTalap0 debris
-		*(NJS_OBJECT*)0x21E65F8 = *LoadModel("system\\data\\STG06\\Models\\00182778.sa1mdl", false); //OTalap0 debris
-		*(NJS_OBJECT*)0x21E67CC = *LoadModel("system\\data\\STG06\\Models\\001828F4.sa1mdl", false); //OTalap0 debris
-		*(NJS_OBJECT*)0x21E6D48 = *LoadModel("system\\data\\STG06\\Models\\00182D34.sa1mdl", false); //OTalap0 debris
-		*(NJS_OBJECT*)0x21E7050 = *LoadModel("system\\data\\STG06\\Models\\00182F78.sa1mdl", false); //OTalap0 debris
-		*(NJS_OBJECT*)0x21E752C = *LoadModel("system\\data\\STG06\\Models\\00183330.sa1mdl", false); //OTalap0 debris
-		*(NJS_OBJECT*)0x21E7704 = *LoadModel("system\\data\\STG06\\Models\\001834CC.sa1mdl", false); //OTalap0 debris
-		*(NJS_OBJECT*)0x21E7C80 = *LoadModel("system\\data\\STG06\\Models\\0018390C.sa1mdl", false); //OTalap0 debris
-		*(NJS_OBJECT*)0x21E7F88 = *LoadModel("system\\data\\STG06\\Models\\00183B50.sa1mdl", false); //OTalap0 debris
-		*(NJS_OBJECT*)0x21E816C = *LoadModel("system\\data\\STG06\\Models\\00183CEC.sa1mdl", false); //OTalap0 debris
-		*(NJS_OBJECT*)0x21E83AC = *LoadModel("system\\data\\STG06\\Models\\00183E9C.sa1mdl", false); //OTalap0 debris
-		*(NJS_OBJECT*)0x21E8584 = *LoadModel("system\\data\\STG06\\Models\\00184038.sa1mdl", false); //OTalap0 debris
-		*(NJS_OBJECT*)0x21E875C = *LoadModel("system\\data\\STG06\\Models\\001841D4.sa1mdl", false); //OTalap0 debris
-		*(NJS_OBJECT*)0x21E8944 = *LoadModel("system\\data\\STG06\\Models\\00184370.sa1mdl", false); //OTalap0 debris
-		*(NJS_OBJECT*)0x21A2804 = *LoadModel("system\\data\\STG06\\Models\\001434E8.sa1mdl", false); //Stop
-		*(NJS_OBJECT*)0x21FDE74 = *LoadModel("system\\data\\STG06\\Models\\00197D2C.sa1mdl", false); //Decal 1
+		// Objects
+		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x21FB818)->basicdxmodel->mats[1]); // OUeKi
+		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x21FB818)->basicdxmodel->mats[2]); // OUeKi
+		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x21FB818)->basicdxmodel->mats[3]); // OUeKi
+		RemoveVertexColors_Object((NJS_OBJECT*)0x960AE4); // Enemy aircraft
+		RemoveVertexColors_Object((NJS_OBJECT*)0x95A334); // Enemy aircraft rocket
+		RemoveVertexColors_Object((NJS_OBJECT*)0x21B6DF4); // Objects that fall down from Chambr
+		RemoveVertexColors_Object((NJS_OBJECT*)0x21B5844); // Objects that fall down from Chambr
+		RemoveVertexColors_Object((NJS_OBJECT*)0x21B3988); // Objects that fall down from Chambr
+		RemoveVertexColors_Object((NJS_OBJECT*)0x21B29B4); // Objects that fall down from Chambr
+		RemoveVertexColors_Object((NJS_OBJECT*)0x21F2CA4); // Objects that fall down from Chambr
+		RemoveVertexColors_Object((NJS_OBJECT*)0x21F223C); // Objects that fall down from Chambr
+		RemoveVertexColors_Object((NJS_OBJECT*)0x21F370C); // Objects that fall down from Chambr
+		RemoveVertexColors_Object((NJS_OBJECT*)0x21B8A7C); // Objects that fall down from Chambr
+		RemoveVertexColors_Object((NJS_OBJECT*)0x21B4D8C); // Objects that fall down from Chambr
+		*(NJS_OBJECT*)0x21F4EC0 = *LoadModel("system\\data\\STG06\\Models\\0018F244.sa1mdl"); // OSkyEv 1
+		*(NJS_OBJECT*)0x21F53EC = *LoadModel("system\\data\\STG06\\Models\\0018F744.sa1mdl"); // OSkyEv 2
+		*(NJS_OBJECT*)0x21F5AB4 = *LoadModel("system\\data\\STG06\\Models\\0018FC54.sa1mdl"); // OSkyEv 3
+		*(NJS_OBJECT*)0x21A7604 = *LoadModel("system\\data\\STG06\\Models\\00148250.sa1mdl"); // Fence_L
+		*(NJS_OBJECT*)0x21A95B4 = *LoadModel("system\\data\\STG06\\Models\\0014A1E0.sa1mdl"); // Fence_M
+		*(NJS_OBJECT*)0x21AA97C = *LoadModel("system\\data\\STG06\\Models\\0014B58C.sa1mdl"); // Fence_S
+		*(NJS_OBJECT*)0x21523C4 = *LoadModel("system\\data\\STG06\\Models\\001011C4.sa1mdl"); // CannonB
+		*(NJS_OBJECT*)0x21E0DD4 = *LoadModel("system\\data\\STG06\\Models\\0017E160.sa1mdl"); // OConnect0 debris
+		*(NJS_OBJECT*)0x21E14EC = *LoadModel("system\\data\\STG06\\Models\\0017E640.sa1mdl"); // OConnect0 debris
+		*(NJS_OBJECT*)0x21E1C04 = *LoadModel("system\\data\\STG06\\Models\\0017EB3C.sa1mdl"); // OConnect0 debris
+		*(NJS_OBJECT*)0x21E231C = *LoadModel("system\\data\\STG06\\Models\\0017F038.sa1mdl"); // OConnect0 debris
+		*(NJS_OBJECT*)0x21E2800 = *LoadModel("system\\data\\STG06\\Models\\0017F420.sa1mdl"); // OConnect0 debris
+		*(NJS_OBJECT*)0x21E29B4 = *LoadModel("system\\data\\STG06\\Models\\0017F588.sa1mdl"); // OConnect0 debris
+		*(NJS_OBJECT*)0x21E2DD8 = *LoadModel("system\\data\\STG06\\Models\\0017F8FC.sa1mdl"); // OConnect0 debris
+		*(NJS_OBJECT*)0x21E3014 = *LoadModel("system\\data\\STG06\\Models\\0017FAAC.sa1mdl"); // OConnect0 debris
+		*(NJS_OBJECT*)0x21E32DC = *LoadModel("system\\data\\STG06\\Models\\0017FD04.sa1mdl"); // OConnect0 debris
+		*(NJS_OBJECT*)0x21E37B4 = *LoadModel("system\\data\\STG06\\Models\\0018010C.sa1mdl"); // OTalap0 debris
+		*(NJS_OBJECT*)0x21E38AC = *LoadModel("system\\data\\STG06\\Models\\001801F0.sa1mdl"); // OTalap0 debris
+		*(NJS_OBJECT*)0x21E39C8 = *LoadModel("system\\data\\STG06\\Models\\001802F4.sa1mdl"); // OTalap0 debris
+		*(NJS_OBJECT*)0x21E3C5C = *LoadModel("system\\data\\STG06\\Models\\00180504.sa1mdl"); // OTalap0 debris
+		*(NJS_OBJECT*)0x21E3EEC = *LoadModel("system\\data\\STG06\\Models\\00180714.sa1mdl"); // OTalap0 debris
+		*(NJS_OBJECT*)0x21E41A4 = *LoadModel("system\\data\\STG06\\Models\\00180950.sa1mdl"); // OTalap0 debris
+		*(NJS_OBJECT*)0x21E42C0 = *LoadModel("system\\data\\STG06\\Models\\00180A54.sa1mdl"); // OTalap0 debris
+		*(NJS_OBJECT*)0x21E4694 = *LoadModel("system\\data\\STG06\\Models\\00180D58.sa1mdl"); // OTalap0 debris
+		*(NJS_OBJECT*)0x21E4A64 = *LoadModel("system\\data\\STG06\\Models\\00181078.sa1mdl"); // OTalap0 debris
+		*(NJS_OBJECT*)0x21E4E24 = *LoadModel("system\\data\\STG06\\Models\\0018137C.sa1mdl"); // OTalap0 debris
+		*(NJS_OBJECT*)0x21E50B4 = *LoadModel("system\\data\\STG06\\Models\\0018158C.sa1mdl"); // OTalap0 debris
+		*(NJS_OBJECT*)0x21E51D0 = *LoadModel("system\\data\\STG06\\Models\\00181690.sa1mdl"); // OTalap0 debris
+		*(NJS_OBJECT*)0x21E52C8 = *LoadModel("system\\data\\STG06\\Models\\00181774.sa1mdl"); // OTalap0 debris
+		*(NJS_OBJECT*)0x21E53C0 = *LoadModel("system\\data\\STG06\\Models\\00181858.sa1mdl"); // OTalap0 debris
+		*(NJS_OBJECT*)0x21E54DC = *LoadModel("system\\data\\STG06\\Models\\0018195C.sa1mdl"); // OTalap0 debris
+		*(NJS_OBJECT*)0x21E55F8 = *LoadModel("system\\data\\STG06\\Models\\00181A60.sa1mdl"); // OTalap0 debris
+		*(NJS_OBJECT*)0x21E58AC = *LoadModel("system\\data\\STG06\\Models\\00181CB8.sa1mdl"); // OTalap0 debris
+		*(NJS_OBJECT*)0x21E5CCC = *LoadModel("system\\data\\STG06\\Models\\00182038.sa1mdl"); // OTalap0 debris
+		*(NJS_OBJECT*)0x21E5EDC = *LoadModel("system\\data\\STG06\\Models\\001821E8.sa1mdl"); // OTalap0 debris
+		*(NJS_OBJECT*)0x21E611C = *LoadModel("system\\data\\STG06\\Models\\00182398.sa1mdl"); // OTalap0 debris
+		*(NJS_OBJECT*)0x21E65F8 = *LoadModel("system\\data\\STG06\\Models\\00182778.sa1mdl"); // OTalap0 debris
+		*(NJS_OBJECT*)0x21E67CC = *LoadModel("system\\data\\STG06\\Models\\001828F4.sa1mdl"); // OTalap0 debris
+		*(NJS_OBJECT*)0x21E6D48 = *LoadModel("system\\data\\STG06\\Models\\00182D34.sa1mdl"); // OTalap0 debris
+		*(NJS_OBJECT*)0x21E7050 = *LoadModel("system\\data\\STG06\\Models\\00182F78.sa1mdl"); // OTalap0 debris
+		*(NJS_OBJECT*)0x21E752C = *LoadModel("system\\data\\STG06\\Models\\00183330.sa1mdl"); // OTalap0 debris
+		*(NJS_OBJECT*)0x21E7704 = *LoadModel("system\\data\\STG06\\Models\\001834CC.sa1mdl"); // OTalap0 debris
+		*(NJS_OBJECT*)0x21E7C80 = *LoadModel("system\\data\\STG06\\Models\\0018390C.sa1mdl"); // OTalap0 debris
+		*(NJS_OBJECT*)0x21E7F88 = *LoadModel("system\\data\\STG06\\Models\\00183B50.sa1mdl"); // OTalap0 debris
+		*(NJS_OBJECT*)0x21E816C = *LoadModel("system\\data\\STG06\\Models\\00183CEC.sa1mdl"); // OTalap0 debris
+		*(NJS_OBJECT*)0x21E83AC = *LoadModel("system\\data\\STG06\\Models\\00183E9C.sa1mdl"); // OTalap0 debris
+		*(NJS_OBJECT*)0x21E8584 = *LoadModel("system\\data\\STG06\\Models\\00184038.sa1mdl"); // OTalap0 debris
+		*(NJS_OBJECT*)0x21E875C = *LoadModel("system\\data\\STG06\\Models\\001841D4.sa1mdl"); // OTalap0 debris
+		*(NJS_OBJECT*)0x21E8944 = *LoadModel("system\\data\\STG06\\Models\\00184370.sa1mdl"); // OTalap0 debris
+		*(NJS_OBJECT*)0x21A2804 = *LoadModel("system\\data\\STG06\\Models\\001434E8.sa1mdl"); // Stop
+		*(NJS_OBJECT*)0x21FDE74 = *LoadModel("system\\data\\STG06\\Models\\00197D2C.sa1mdl"); // Decal 1
 		AddAlphaRejectMaterial(&((NJS_OBJECT*)0x21FDE74)->basicdxmodel->mats[0]);
-		*(NJS_OBJECT*)0x21FE9F8 = *LoadModel("system\\data\\STG06\\Models\\00198858.sa1mdl", false); //Decal 2
+		*(NJS_OBJECT*)0x21FE9F8 = *LoadModel("system\\data\\STG06\\Models\\00198858.sa1mdl"); // Decal 2
 		AddAlphaRejectMaterial(&((NJS_OBJECT*)0x21FE9F8)->basicdxmodel->mats[0]);
-		*(NJS_OBJECT*)0x21FEB04 = *LoadModel("system\\data\\STG06\\Models\\0019895C.sa1mdl", false); //Decal 3
+		*(NJS_OBJECT*)0x21FEB04 = *LoadModel("system\\data\\STG06\\Models\\0019895C.sa1mdl"); // Decal 3
 		AddAlphaRejectMaterial(&((NJS_OBJECT*)0x21FEB04)->basicdxmodel->mats[0]);
-		*(NJS_OBJECT*)0x21FEC10 = *LoadModel("system\\data\\STG06\\Models\\00198A60.sa1mdl", false); //Decal 4
+		*(NJS_OBJECT*)0x21FEC10 = *LoadModel("system\\data\\STG06\\Models\\00198A60.sa1mdl"); // Decal 4
 		AddAlphaRejectMaterial(&((NJS_OBJECT*)0x21FEC10)->basicdxmodel->mats[0]);
-		*(NJS_OBJECT*)0x21FED1C = *LoadModel("system\\data\\STG06\\Models\\00198B64.sa1mdl", false); //Decal 5 not sure
+		*(NJS_OBJECT*)0x21FED1C = *LoadModel("system\\data\\STG06\\Models\\00198B64.sa1mdl"); // Decal 5 not sure
 		AddAlphaRejectMaterial(&((NJS_OBJECT*)0x21FED1C)->basicdxmodel->mats[0]);
-		*(NJS_OBJECT*)0x21FEE28 = *LoadModel("system\\data\\STG06\\Models\\00198C68.sa1mdl", false); //Decal 6 not sure
+		*(NJS_OBJECT*)0x21FEE28 = *LoadModel("system\\data\\STG06\\Models\\00198C68.sa1mdl"); // Decal 6 not sure
 		AddAlphaRejectMaterial(&((NJS_OBJECT*)0x21FEE28)->basicdxmodel->mats[0]);
 		WriteCall((void*)0x5F2399, DrawDecalHook);
-		*(NJS_OBJECT*)0x21FEF34 = *LoadModel("system\\data\\STG06\\Models\\00198D6C.sa1mdl", false); //Warning sign
-		*(NJS_OBJECT*)0x214FB74 = *LoadModel("system\\data\\STG06\\Models\\000FF4A4.sa1mdl", false); //Cannon in Act 1
-		*(NJS_OBJECT*)0x2161F68 = *LoadModel("system\\data\\STG06\\Models\\0010EB4C.sa1mdl", false); //Cannon in Act 2
-		*(NJS_OBJECT*)0x21802BC = *LoadModel("system\\data\\STG06\\Models\\00126000.sa1mdl", false); //Rail platform 1
-		*(NJS_OBJECT*)0x218346C = *LoadModel("system\\data\\STG06\\Models\\00128644.sa1mdl", false); //Rail platform 2
-		*(NJS_OBJECT*)0x2186254 = *LoadModel("system\\data\\STG06\\Models\\0012A9C8.sa1mdl", false); //Rail platform 3
-		*(NJS_OBJECT*)0x216F67C = *LoadModel("system\\data\\STG06\\Models\\00118920.sa1mdl", false); //Rail platform 4
-		*(NJS_OBJECT*)0x2162D5C = *LoadModel("system\\data\\STG06\\Models\\0010FAFC.sa1mdl", false); //Rail platform 5
-		*(NJS_OBJECT*)0x2171694 = *LoadModel("system\\data\\STG06\\Models\\0011A3D8.sa1mdl", false); //Rail platform 6
-		*(NJS_OBJECT*)0x2171834 = *LoadModel("system\\data\\STG06\\Models\\0011A564.sa1mdl", false); //Some ladder
-		*(NJS_OBJECT*)0x216B984 = *LoadModel("system\\data\\STG06\\Models\\00115F88.sa1mdl", false); //OConnect_0
-		*(NJS_OBJECT*)0x21660AC = *LoadModel("system\\data\\STG06\\Models\\001118F8.sa1mdl", false); //Curved platform
-		*(NJS_OBJECT*)0x216E770 = *LoadModel("system\\data\\STG06\\Models\\00117D5C.sa1mdl", false); //Top0
-		*(NJS_OBJECT*)0x2171D0C = *LoadModel("system\\data\\STG06\\Models\\0011AA1C.sa1mdl", false); //Platform with ladder
-		*(NJS_OBJECT*)0x21936AC = *LoadModel("system\\data\\STG06\\Models\\00135E10.sa1mdl", false); //Small round thing
-		*(NJS_OBJECT*)0x216889C = *LoadModel("system\\data\\STG06\\Models\\001138B4.sa1mdl", false); //Stairs 1
-		*(NJS_OBJECT*)0x216A4AC = *LoadModel("system\\data\\STG06\\Models\\00114F2C.sa1mdl", false); //Stairs 2
-		*(NJS_OBJECT*)0x21C4FD8 = *LoadModel("system\\data\\STG06\\Models\\00162F84.sa1mdl", false); //Crane
+		*(NJS_OBJECT*)0x21FEF34 = *LoadModel("system\\data\\STG06\\Models\\00198D6C.sa1mdl"); // Warning sign
+		*(NJS_OBJECT*)0x214FB74 = *LoadModel("system\\data\\STG06\\Models\\000FF4A4.sa1mdl"); // Cannon in Act 1
+		*(NJS_OBJECT*)0x2161F68 = *LoadModel("system\\data\\STG06\\Models\\0010EB4C.sa1mdl"); // Cannon in Act 2
+		*(NJS_OBJECT*)0x21802BC = *LoadModel("system\\data\\STG06\\Models\\00126000.sa1mdl"); // Rail platform 1
+		*(NJS_OBJECT*)0x218346C = *LoadModel("system\\data\\STG06\\Models\\00128644.sa1mdl"); // Rail platform 2
+		*(NJS_OBJECT*)0x2186254 = *LoadModel("system\\data\\STG06\\Models\\0012A9C8.sa1mdl"); // Rail platform 3
+		*(NJS_OBJECT*)0x216F67C = *LoadModel("system\\data\\STG06\\Models\\00118920.sa1mdl"); // Rail platform 4
+		*(NJS_OBJECT*)0x2162D5C = *LoadModel("system\\data\\STG06\\Models\\0010FAFC.sa1mdl"); // Rail platform 5
+		*(NJS_OBJECT*)0x2171694 = *LoadModel("system\\data\\STG06\\Models\\0011A3D8.sa1mdl"); // Rail platform 6
+		*(NJS_OBJECT*)0x2171834 = *LoadModel("system\\data\\STG06\\Models\\0011A564.sa1mdl"); // Some ladder
+		*(NJS_OBJECT*)0x216B984 = *LoadModel("system\\data\\STG06\\Models\\00115F88.sa1mdl"); // OConnect_0
+		*(NJS_OBJECT*)0x21660AC = *LoadModel("system\\data\\STG06\\Models\\001118F8.sa1mdl"); // Curved platform
+		*(NJS_OBJECT*)0x216E770 = *LoadModel("system\\data\\STG06\\Models\\00117D5C.sa1mdl"); // Top0
+		*(NJS_OBJECT*)0x2171D0C = *LoadModel("system\\data\\STG06\\Models\\0011AA1C.sa1mdl"); // Platform with ladder
+		*(NJS_OBJECT*)0x21936AC = *LoadModel("system\\data\\STG06\\Models\\00135E10.sa1mdl"); // Small round thing
+		*(NJS_OBJECT*)0x216889C = *LoadModel("system\\data\\STG06\\Models\\001138B4.sa1mdl"); // Stairs 1
+		*(NJS_OBJECT*)0x216A4AC = *LoadModel("system\\data\\STG06\\Models\\00114F2C.sa1mdl"); // Stairs 2
+		*(NJS_OBJECT*)0x21C4FD8 = *LoadModel("system\\data\\STG06\\Models\\00162F84.sa1mdl"); // Crane
 		WriteCall((void*)0x5F2DD6, RenderCrane);
 		((NJS_OBJECT*)0x21C4FD8)->child->basicdxmodel->mats[1].attrflags |= NJD_FLAG_USE_TEXTURE;
 		((NJS_OBJECT*)0x21C4FD8)->child->basicdxmodel->mats[1].attr_texId = 6;
 		((NJS_OBJECT*)0x21C4FD8)->child->sibling->basicdxmodel->mats[1].attrflags |= NJD_FLAG_USE_TEXTURE;
 		((NJS_OBJECT*)0x21C4FD8)->child->sibling->basicdxmodel->mats[1].attr_texId = 6;
-		*(NJS_OBJECT*)0x21642D4 = *LoadModel("system\\data\\STG06\\Models\\00110634.sa1mdl", false); //Talap 0
-		*(NJS_OBJECT*)0x21AD794 = *LoadModel("system\\data\\STG06\\Models\\0014D990.sa1mdl", false); //Trolley thing or whatever that is
-		((NJS_ACTION*)0x2223C0C)->object = LoadModel("system\\data\\STG06\\Models\\00192044.sa1mdl", false); //ORoboA
-		((NJS_ACTION*)0x2223EF4)->object = LoadModel("system\\data\\STG06\\Models\\001946BC.sa1mdl", false); //ORoboB
-		*(NJS_OBJECT*)0x21B29B4 = *LoadModel("system\\data\\STG06\\Models\\00152A40.sa1mdl", false); //Another cleaning robot
-		*(NJS_OBJECT*)0x21B995C = *LoadModel("system\\data\\STG06\\Models\\001592E0.sa1mdl", false); //Platform2
-		*(NJS_OBJECT*)0x21CAE18 = *LoadModel("system\\data\\STG06\\Models\\00168CFC.sa1mdl", false); //Another big object
-		*(NJS_OBJECT*)0x2194F44 = *LoadModel("system\\data\\STG06\\Models\\001370C4.sa1mdl", false); //OAnaA
-		*(NJS_OBJECT*)0x218C52C = *LoadModel("system\\data\\STG06\\Models\\00130724.sa1mdl", false); //ORaneA
-		*(NJS_OBJECT*)0x2176E88 = *LoadModel("system\\data\\STG06\\Models\\0011E1D4.sa1mdl", false); //Pole_L
-		*(NJS_OBJECT*)0x2175950 = *LoadModel("system\\data\\STG06\\Models\\0011D1E0.sa1mdl", false); //Pole_S
-		*(NJS_OBJECT*)0x2177AF4 = *LoadModel("system\\data\\STG06\\Models\\0011E864.sa1mdl", false); //Cyl_S
-		*(NJS_OBJECT*)0x2170324 = *LoadModel("system\\data\\STG06\\Models\\00119084.sa1mdl", false); //Cyl_0
-		*(NJS_OBJECT*)0x21730BC = *LoadModel("system\\data\\STG06\\Models\\0011B614.sa1mdl", false); //Cyl_1
-		*(NJS_OBJECT*)0x217441C = *LoadModel("system\\data\\STG06\\Models\\0011C1EC.sa1mdl", false); //Cyl_2
-		*(NJS_OBJECT*)0x217843C = *LoadModel("system\\data\\STG06\\Models\\0011EDC0.sa1mdl", false); //BaseL
-		*(NJS_OBJECT*)0x21A0084 = *LoadModel("system\\data\\STG06\\Models\\00140DFC.sa1mdl", false); //Duct_0
-		*(NJS_OBJECT*)0x219B084 = *LoadModel("system\\data\\STG06\\Models\\0013C4B0.sa1mdl", false); //Cannon_M
-		*(NJS_MODEL_SADX*)0x21B0228 = *LoadModel("system\\data\\STG06\\Models\\001503BC.sa1mdl", false)->basicdxmodel; //OLever
+		*(NJS_OBJECT*)0x21642D4 = *LoadModel("system\\data\\STG06\\Models\\00110634.sa1mdl"); // Talap 0
+		*(NJS_OBJECT*)0x21AD794 = *LoadModel("system\\data\\STG06\\Models\\0014D990.sa1mdl"); // Trolley thing or whatever that is
+		((NJS_ACTION*)0x2223C0C)->object = LoadModel("system\\data\\STG06\\Models\\00192044.sa1mdl"); // ORoboA
+		((NJS_ACTION*)0x2223EF4)->object = LoadModel("system\\data\\STG06\\Models\\001946BC.sa1mdl"); // ORoboB
+		*(NJS_OBJECT*)0x21B29B4 = *LoadModel("system\\data\\STG06\\Models\\00152A40.sa1mdl"); // Another cleaning robot
+		*(NJS_OBJECT*)0x21B995C = *LoadModel("system\\data\\STG06\\Models\\001592E0.sa1mdl"); // Platform2
+		*(NJS_OBJECT*)0x21CAE18 = *LoadModel("system\\data\\STG06\\Models\\00168CFC.sa1mdl"); // Another big object
+		*(NJS_OBJECT*)0x2194F44 = *LoadModel("system\\data\\STG06\\Models\\001370C4.sa1mdl"); // OAnaA
+		*(NJS_OBJECT*)0x218C52C = *LoadModel("system\\data\\STG06\\Models\\00130724.sa1mdl"); // ORaneA
+		*(NJS_OBJECT*)0x2176E88 = *LoadModel("system\\data\\STG06\\Models\\0011E1D4.sa1mdl"); // Pole_L
+		*(NJS_OBJECT*)0x2175950 = *LoadModel("system\\data\\STG06\\Models\\0011D1E0.sa1mdl"); // Pole_S
+		*(NJS_OBJECT*)0x2177AF4 = *LoadModel("system\\data\\STG06\\Models\\0011E864.sa1mdl"); // Cyl_S
+		*(NJS_OBJECT*)0x2170324 = *LoadModel("system\\data\\STG06\\Models\\00119084.sa1mdl"); // Cyl_0
+		*(NJS_OBJECT*)0x21730BC = *LoadModel("system\\data\\STG06\\Models\\0011B614.sa1mdl"); // Cyl_1
+		*(NJS_OBJECT*)0x217441C = *LoadModel("system\\data\\STG06\\Models\\0011C1EC.sa1mdl"); // Cyl_2
+		*(NJS_OBJECT*)0x217843C = *LoadModel("system\\data\\STG06\\Models\\0011EDC0.sa1mdl"); // BaseL
+		*(NJS_OBJECT*)0x21A0084 = *LoadModel("system\\data\\STG06\\Models\\00140DFC.sa1mdl"); // Duct_0
+		*(NJS_OBJECT*)0x219B084 = *LoadModel("system\\data\\STG06\\Models\\0013C4B0.sa1mdl"); // Cannon_M
+		*(NJS_MODEL_SADX*)0x21B0228 = *LoadModel("system\\data\\STG06\\Models\\001503BC.sa1mdl")->basicdxmodel; // OLever
 		((NJS_MODEL_SADX*)0x21B0228)->mats[8].attrflags |= NJD_FLAG_USE_TEXTURE;
 		((NJS_MODEL_SADX*)0x21B0228)->mats[8].attr_texId = 6;
-		*(NJS_MODEL_SADX*)0x0961300 = *LoadModel("system\\data\\STG06\\Models\\001E1120.sa1mdl", false)->basicdxmodel; //Aircraft pad
-		*(NJS_MODEL_SADX*)0x0961EF8 = *LoadModel("system\\data\\STG06\\Models\\001E1CE4.sa1mdl", false)->basicdxmodel; //Aircraft pad something
+		*(NJS_MODEL_SADX*)0x0961300 = *LoadModel("system\\data\\STG06\\Models\\001E1120.sa1mdl")->basicdxmodel; // Aircraft pad
+		*(NJS_MODEL_SADX*)0x0961EF8 = *LoadModel("system\\data\\STG06\\Models\\001E1CE4.sa1mdl")->basicdxmodel; // Aircraft pad something
 		AddWhiteDiffuseMaterial(&((NJS_MODEL_SADX*)0x0961EF8)->mats[4]);
 		AddWhiteDiffuseMaterial(&((NJS_MODEL_SADX*)0x0961EF8)->mats[5]);
 		AddWhiteDiffuseMaterial(&((NJS_MODEL_SADX*)0x0961EF8)->mats[6]);
 		AddWhiteDiffuseMaterial(&((NJS_MODEL_SADX*)0x0961EF8)->mats[7]);
 		AddWhiteDiffuseMaterial(&((NJS_MODEL_SADX*)0x0961EF8)->mats[8]);
-		*(NJS_OBJECT*)0x218E0BC = *LoadModel("system\\data\\STG06\\Models\\00131D70.sa1mdl", false); //ORaneC
-		*(NJS_OBJECT*)0x218F7CC = *LoadModel("system\\data\\STG06\\Models\\00132DE4.sa1mdl", false); //ORaneD
-		*(NJS_OBJECT*)0x2190D94 = *LoadModel("system\\data\\STG06\\Models\\00133CD0.sa1mdl", false); //ORaneE
-		*(NJS_OBJECT*)0x2192798 = *LoadModel("system\\data\\STG06\\Models\\00134F30.sa1mdl", false); //ORaneF
-		*(NJS_OBJECT*)0x21BA014 = *LoadModel("system\\data\\STG06\\Models\\0015996C.sa1mdl", false); //Hangar 1
-		*(NJS_OBJECT*)0x21BA484 = *LoadModel("system\\data\\STG06\\Models\\00159DBC.sa1mdl", false); //Hangar 2
-		*(NJS_OBJECT*)0x21BCA10 = *LoadModel("system\\data\\STG06\\Models\\0015C2D0.sa1mdl", false); //Radar-like thing
-		*(NJS_OBJECT*)0x21BDD24 = *LoadModel("system\\data\\STG06\\Models\\0015D5B8.sa1mdl", false); //Huge thing 2
-		*(NJS_OBJECT*)0x21BF034 = *LoadModel("system\\data\\STG06\\Models\\0015E8A0.sa1mdl", false); //Huge thing 3
-		*(NJS_OBJECT*)0x214E4B8 = *LoadModel("system\\data\\STG06\\Models\\000FE140.sa1mdl", false); //Target
-		*(NJS_OBJECT*)0x21A34C8 = *LoadModel("system\\data\\STG06\\Models\\00144178.sa1mdl", false); //Top red orb
-		*(NJS_OBJECT*)0x21A4C38 = *LoadModel("system\\data\\STG06\\Models\\0014589C.sa1mdl", false); //Light-like thing
-		*(NJS_OBJECT*)0x21D1CC0 = *LoadModel("system\\data\\STG06\\Models\\0016FA10.sa1mdl", false); //Huge Egg Carrier decoration
-		*(NJS_OBJECT*)0x21D41A0 = *LoadModel("system\\data\\STG06\\Models\\00171E3C.sa1mdl", false); //Another decoration
-		*(NJS_OBJECT*)0x21FBF84 = *LoadModel("system\\data\\STG06\\Models\\00195B24.sa1mdl", false); //Escalator
-		*(NJS_OBJECT*)0x217CFE4 = *LoadModel("system\\data\\STG06\\Models\\001238FC.sa1mdl", false); //Untei
-		*(NJS_OBJECT*)0x218A66C = *LoadModel("system\\data\\STG06\\Models\\0012EDA8.sa1mdl", false); //Untei climbing part
-		*(NJS_OBJECT*)0x21A4074 = *LoadModel("system\\data\\STG06\\Models\\00144D04.sa1mdl", false); //Lb
-		*(NJS_OBJECT*)0x0960DFC = *LoadModel("system\\data\\STG06\\Models\\001E0C04.sa1mdl", false); //Aircraft lift piece
-		*(NJS_OBJECT*)0x217C724 = *LoadModel("system\\data\\STG06\\Models\\00123054.sa1mdl", false); //HangA 1
-		*(NJS_OBJECT*)0x217AB2C = *LoadModel("system\\data\\STG06\\Models\\00121478.sa1mdl", false); //HangA 2
-		*(NJS_OBJECT*)0x2179C0C = *LoadModel("system\\data\\STG06\\Models\\00120574.sa1mdl", false); //HangA 3
+		*(NJS_OBJECT*)0x218E0BC = *LoadModel("system\\data\\STG06\\Models\\00131D70.sa1mdl"); // ORaneC
+		*(NJS_OBJECT*)0x218F7CC = *LoadModel("system\\data\\STG06\\Models\\00132DE4.sa1mdl"); // ORaneD
+		*(NJS_OBJECT*)0x2190D94 = *LoadModel("system\\data\\STG06\\Models\\00133CD0.sa1mdl"); // ORaneE
+		*(NJS_OBJECT*)0x2192798 = *LoadModel("system\\data\\STG06\\Models\\00134F30.sa1mdl"); // ORaneF
+		*(NJS_OBJECT*)0x21BA014 = *LoadModel("system\\data\\STG06\\Models\\0015996C.sa1mdl"); // Hangar 1
+		*(NJS_OBJECT*)0x21BA484 = *LoadModel("system\\data\\STG06\\Models\\00159DBC.sa1mdl"); // Hangar 2
+		*(NJS_OBJECT*)0x21BCA10 = *LoadModel("system\\data\\STG06\\Models\\0015C2D0.sa1mdl"); // Radar-like thing
+		*(NJS_OBJECT*)0x21BDD24 = *LoadModel("system\\data\\STG06\\Models\\0015D5B8.sa1mdl"); // Huge thing 2
+		*(NJS_OBJECT*)0x21BF034 = *LoadModel("system\\data\\STG06\\Models\\0015E8A0.sa1mdl"); // Huge thing 3
+		*(NJS_OBJECT*)0x214E4B8 = *LoadModel("system\\data\\STG06\\Models\\000FE140.sa1mdl"); // Target
+		*(NJS_OBJECT*)0x21A34C8 = *LoadModel("system\\data\\STG06\\Models\\00144178.sa1mdl"); // Top red orb
+		*(NJS_OBJECT*)0x21A4C38 = *LoadModel("system\\data\\STG06\\Models\\0014589C.sa1mdl"); // Light-like thing
+		*(NJS_OBJECT*)0x21D1CC0 = *LoadModel("system\\data\\STG06\\Models\\0016FA10.sa1mdl"); // Huge Egg Carrier decoration
+		*(NJS_OBJECT*)0x21D41A0 = *LoadModel("system\\data\\STG06\\Models\\00171E3C.sa1mdl"); // Another decoration
+		*(NJS_OBJECT*)0x21FBF84 = *LoadModel("system\\data\\STG06\\Models\\00195B24.sa1mdl"); // Escalator
+		*(NJS_OBJECT*)0x217CFE4 = *LoadModel("system\\data\\STG06\\Models\\001238FC.sa1mdl"); // Untei
+		*(NJS_OBJECT*)0x218A66C = *LoadModel("system\\data\\STG06\\Models\\0012EDA8.sa1mdl"); // Untei climbing part
+		*(NJS_OBJECT*)0x21A4074 = *LoadModel("system\\data\\STG06\\Models\\00144D04.sa1mdl"); // Lb
+		*(NJS_OBJECT*)0x0960DFC = *LoadModel("system\\data\\STG06\\Models\\001E0C04.sa1mdl"); // Aircraft lift piece
+		*(NJS_OBJECT*)0x217C724 = *LoadModel("system\\data\\STG06\\Models\\00123054.sa1mdl"); // HangA 1
+		*(NJS_OBJECT*)0x217AB2C = *LoadModel("system\\data\\STG06\\Models\\00121478.sa1mdl"); // HangA 2
+		*(NJS_OBJECT*)0x2179C0C = *LoadModel("system\\data\\STG06\\Models\\00120574.sa1mdl"); // HangA 3
 		WriteCall((void*)0x5EE8C0, FixHangA);
 		WriteCall((void*)0x5EE8EC, FixHangA);
 		WriteCall((void*)0x5EE919, FixHangA);
-		SkyNormal1 = LoadModel("system\\data\\STG06\\Models\\000FBC08.sa1mdl", false); //Clouds normal
-		SkyNormal2 = LoadModel("system\\data\\STG06\\Models\\000FBC08.sa1mdl", false); //Clouds normal
-		SkyDark2 = LoadModel("system\\data\\STG06\\Models\\000FE03C.sa1mdl", false); //Clouds dark top 2 
-		SkyDark1 = LoadModel("system\\data\\STG06\\Models\\000FE03C.sa1mdl", false); //Clouds dark top 1 
+		SkyNormal1 = LoadModel("system\\data\\STG06\\Models\\000FBC08.sa1mdl"); // Clouds normal
+		SkyNormal2 = CloneObject(SkyNormal1); // Clouds normal
+		SkyDark1 = LoadModel("system\\data\\STG06\\Models\\000FE03C.sa1mdl"); // Clouds dark top 2
+		SkyDark2 = CloneObject(SkyDark1); // Clouds dark top 1
 		WriteData((NJS_OBJECT**)0x005ED3AC, SkyNormal1);
+		WriteData((NJS_OBJECT**)0x005ED46D, SkyDark1); // Clouds dark top
+		WriteData((NJS_OBJECT**)0x005ED4FC, SkyDark1); // Clouds dark bottom
 		WriteData((NJS_OBJECT**)0x005ED3A5, SkyDark2);
-		WriteData((NJS_OBJECT**)0x005ED46D, SkyDark1); //Clouds dark top
-		WriteData((NJS_OBJECT**)0x005ED4FC, SkyDark1); //Clouds dark bottom
-		//Clip distance improvements
+		// Clip distance improvements
 		ObjList_SDeck[24].UseDistance = 1;
 		ObjList_SDeck[25].UseDistance = 1;
 		ObjList_SDeck[29].UseDistance = 1;
@@ -639,7 +642,7 @@ void SkyDeck_Init()
 		ObjList_SDeck[36].Distance = 8000000;
 		ObjList_SDeck[37].Distance = 8000000;
 		ObjList_SDeck[38].Distance = 3000000;
-		//Fog data
+		// Fog data
 		for (int i = 0; i < 3; i++)
 		{
 			SkyDeck1Fog[i].Layer = 4000.0f;
@@ -671,7 +674,7 @@ void SkyDeck_OnFrame()
 {
 	if (CurrentLevel == LevelIDs_SkyDeck)
 	{
-		//Reset COL flags in Act 2 after the wing breaks off
+		// Reset COL flags in Act 2 after the wing breaks off
 		if (CurrentAct == 1 && STG06_1_Info != nullptr)
 		{
 			if (GameState == 3 || GameState == 4 || GameState == 7 || GameState == 21)
@@ -681,7 +684,7 @@ void SkyDeck_OnFrame()
 						GeoLists[49]->Col[i].Flags |= ColFlags_Solid;
 				}
 		}
-		//Cloud UVs and stuff
+		// Cloud UVs and stuff
 		if (!IsGamePaused())
 		{
 			UVShift1 = (UVShift1 - 4 * FramerateSetting) % 255;
