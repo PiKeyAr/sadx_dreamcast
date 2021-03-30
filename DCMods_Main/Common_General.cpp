@@ -82,7 +82,7 @@ static int EnvMapMode = 0;
 static int AlphaRejectionMode = 0;
 static int EmeraldGlowAlpha = 255;
 static bool EmeraldGlowDirection = false;
-static float heat_float1 = 1.0f; // 1
+static float heat_float1 = 0.8f; // 1
 static float heat_float2 = 0.2f; // 0.5
 static float alphathing = 1.0f;
 int CutsceneFadeValue = 0;
@@ -537,17 +537,19 @@ void SonicDashTrailFix2(NJS_OBJECT *a1, QueuedModelFlagsB a2)
 void __cdecl Knuckles_MaximumHeat_DrawX(NJS_VECTOR *position, float alpha)
 {
 	float a; // ST00_4
+	float a2;
 	float s; // ST10_4
-	double y; // st7
+	float y; // st7
 
 	if (!MissedFrames)
 	{
-		a = alpha * -0.6f;
+		a = alpha * -0.6f;		
+		a2 = (1.0f - alpha * 1.1f) * 0.7f;
 		KNUCKLES_OBJECTS[47]->basicdxmodel->mats[0].attr_texId = 1;
 		KNUCKLES_OBJECTS[47]->basicdxmodel->mats[0].diffuse.argb.a = 255 * Uint8((1.0f - alpha * 1.1f) * 0.7f);
 		njPushMatrix(0);
 		njTranslateV(0, position);
-		s = 1.2f - alpha * alpha;
+		s = 1.1f - alpha * alpha;
 		njScale(0, s, s, s);
 		y = alpha * 262144.0f;
 		if ((unsigned int)(unsigned __int64)y)
@@ -557,6 +559,7 @@ void __cdecl Knuckles_MaximumHeat_DrawX(NJS_VECTOR *position, float alpha)
 		njSetTexture(&KNU_EFF_TEXLIST);
 		DrawQueueDepthBias = 2000.0f;
 		if (EnabledLevels[LevelIDs_Chaos4] && CurrentLevel == LevelIDs_Chaos4) DrawQueueDepthBias = 4500.0f;
+		SetMaterialAndSpriteColor_Float(a2, a2, a2, a2);
 		late_DrawObject(KNUCKLES_OBJECTS[47], QueuedModelFlagsB_SomeTextureThing);
 		DrawQueueDepthBias = 0.0f;
 		njPopMatrix(1u);
