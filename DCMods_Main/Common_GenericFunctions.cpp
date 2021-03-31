@@ -562,6 +562,11 @@ void AnimateUVs(UVAnimation *animation)
 void ClearTextureAnimationData()
 {
 	TextureAnimationData.clear();
+	for (UVAnimation* uvanim : UVAnimationData)
+	{
+		delete uvanim;
+		uvanim = nullptr;
+	}
 	UVAnimationData.clear();
 }
 
