@@ -2069,8 +2069,8 @@ void ProcessChaoGardenMaterials(LandTable *landtable, int garden)
 			}
 			if (garden == 2) // MR
 			{
-				if (material->attr_texId == 23) AddUVAnimation(LevelIDs_MRGarden, 0, landtable->Col[j].Model->basicdxmodel->meshsets[k].vertuv, 112, 0, 0, -1);
-				if (material->attr_texId == 24) AddUVAnimation(LevelIDs_MRGarden, 0, landtable->Col[j].Model->basicdxmodel->meshsets[k].vertuv, 48, 0, 0, -6);
+				if (material->attr_texId == 23) AddUVAnimation(LevelIDs_MRGarden, 0, &landtable->Col[j].Model->basicdxmodel->meshsets[k], 0, 0, -1);
+				if (material->attr_texId == 24) AddUVAnimation(LevelIDs_MRGarden, 0, &landtable->Col[j].Model->basicdxmodel->meshsets[k], 0, 0, -6);
 				if (material->attr_texId >= 36 && material->attr_texId <= 45) AddTextureAnimation(LevelIDs_MRGarden, 0, material, false, 4, 36, 45, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1);
 			}
 			if (garden == 3) // Race

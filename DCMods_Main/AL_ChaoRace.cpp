@@ -4045,11 +4045,11 @@ void ChaoRace_Init()
 	ChaoRaceWaterfall1 = LoadModel("system\\data\\AL_RACE\\Models\\00046254.sa1mdl");
 	RemovePositionRotation_Object(ChaoRaceWaterfall1);
 	ChaoRaceWaterfall1->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_CLAMP_V;
-	AddUVAnimation_Permanent(LevelIDs_ChaoRace, 0, ChaoRaceWaterfall1->basicdxmodel->meshsets[0].vertuv, 48, 0, 0, -6);
+	AddUVAnimation_Permanent(LevelIDs_ChaoRace, 0, &ChaoRaceWaterfall1->basicdxmodel->meshsets[0], 0, 0, -6);
 	ChaoRaceWaterfall2 = LoadModel("system\\data\\AL_RACE\\Models\\00045EB4.sa1mdl");
 	RemovePositionRotation_Object(ChaoRaceWaterfall2);
 	ChaoRaceWaterfall2->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_CLAMP_V;
-	AddUVAnimation_Permanent(LevelIDs_ChaoRace, 0, ChaoRaceWaterfall2->basicdxmodel->meshsets[0].vertuv, 80, 0, 0, -6);
+	AddUVAnimation_Permanent(LevelIDs_ChaoRace, 0, &ChaoRaceWaterfall2->basicdxmodel->meshsets[0], 0, 0, -6);
 	ChaoRaceSkyboxBottom = LoadModel("system\\data\\AL_RACE\\Models\\0002A888.sa1mdl");
 	ChaoRaceSkyboxBottom->basicdxmodel->mats[0].attr_texId = 0;
 	ChaoRaceSkyboxMain = LoadModel("system\\data\\AL_RACE\\Models\\0001C628.sa1mdl");

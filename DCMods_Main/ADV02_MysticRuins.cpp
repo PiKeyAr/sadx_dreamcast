@@ -312,7 +312,7 @@ void ParseMRMaterials()
 {
 	Uint32 materialflags;
 	NJS_MATERIAL *material;
-	NJS_TEX *uv;
+	NJS_MESHSET_SADX *ms;
 	int texid;
 	LandTable *landtable;
 	// Station area
@@ -337,15 +337,15 @@ void ParseMRMaterials()
 			if ((materialflags & NJD_CUSTOMFLAG_UVANIM1) && !(materialflags & NJD_CUSTOMFLAG_UVANIM2))
 			{
 				if (!(landtable->Col[j].Flags & ColFlags_UvManipulation)) landtable->Col[j].Flags |= ColFlags_UvManipulation;
-				uv = landtable->Col[j].Model->basicdxmodel->meshsets[k].vertuv;
-				AddUVAnimation(33, 0, uv, 32, 1, 0, 1);
+				ms = &landtable->Col[j].Model->basicdxmodel->meshsets[k];
+				AddUVAnimation(33, 0, ms, 1, 0, 1);
 			}
 			// UVAnim 2
 			if ((materialflags & NJD_CUSTOMFLAG_UVANIM2) && !(materialflags & NJD_CUSTOMFLAG_UVANIM1))
 			{
 				if (!(landtable->Col[j].Flags & ColFlags_UvManipulation)) landtable->Col[j].Flags |= ColFlags_UvManipulation;
-				uv = landtable->Col[j].Model->basicdxmodel->meshsets[k].vertuv;
-				AddUVAnimation(33, 0, uv, 184, 1, 0, -1);
+				ms = &landtable->Col[j].Model->basicdxmodel->meshsets[k];
+				AddUVAnimation(33, 0, ms, 1, 0, -1);
 			}
 		}
 	}
@@ -389,38 +389,38 @@ void ParseMRMaterials()
 			if ((materialflags & NJD_CUSTOMFLAG_UVANIM1) && !(materialflags & NJD_CUSTOMFLAG_UVANIM2))
 			{
 				if (!(landtable->Col[j].Flags & ColFlags_UvManipulation)) landtable->Col[j].Flags |= ColFlags_UvManipulation;
-				uv = landtable->Col[j].Model->basicdxmodel->meshsets[k].vertuv;
-				AddUVAnimation(33, 2, uv, 32, 2, 0, 1);
+				ms = &landtable->Col[j].Model->basicdxmodel->meshsets[k];
+				AddUVAnimation(33, 2, ms, 2, 0, 1);
 				//PrintDebug("Added UVAnim1\n");
 			}
 			// UVAnim 2
 			if ((materialflags & NJD_CUSTOMFLAG_UVANIM2) && !(materialflags & NJD_CUSTOMFLAG_UVANIM1))
 			{
 				if (!(landtable->Col[j].Flags & ColFlags_UvManipulation)) landtable->Col[j].Flags |= ColFlags_UvManipulation;
-				uv = landtable->Col[j].Model->basicdxmodel->meshsets[k].vertuv;
-				AddUVAnimation(33, 2, uv, 14, 2, 0, 1);
+				ms = &landtable->Col[j].Model->basicdxmodel->meshsets[k];
+				AddUVAnimation(33, 2, ms, 2, 0, 1);
 				//PrintDebug("Added UVAnim2\n");
 			}
 			// UVAnim 3
 			if ((materialflags & NJD_CUSTOMFLAG_UVANIM2) && (materialflags & NJD_CUSTOMFLAG_UVANIM1))
 			{
 				if (!(landtable->Col[j].Flags & ColFlags_UvManipulation)) landtable->Col[j].Flags |= ColFlags_UvManipulation;
-				uv = landtable->Col[j].Model->basicdxmodel->meshsets[k].vertuv;
+				ms = &landtable->Col[j].Model->basicdxmodel->meshsets[k];
 				if (texid == 83)
 				{
-					AddUVAnimation(33, 2, uv, 126, 2, 0, -1);
+					AddUVAnimation(33, 2, ms, 2, 0, -1);
 					//PrintDebug("Added UVAnim4 - 126\n");
 				}
 				else 
 				{
 					if (landtable->Col[j].Model->basicdxmodel->meshsets[k].nbMesh == 3)
 					{
-						AddUVAnimation(33, 2, uv, 48, 2, 0, 1);
+						AddUVAnimation(33, 2, ms, 2, 0, 1);
 						//PrintDebug("Added UVAnim3 - 48\n");
 					}
 					else
 					{
-						AddUVAnimation(33, 2, uv, 46, 2, 0, 1);
+						AddUVAnimation(33, 2, ms, 2, 0, 1);
 						//PrintDebug("Added UVAnim3 - 46\n");
 					}
 				}

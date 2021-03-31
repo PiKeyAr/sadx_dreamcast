@@ -95,10 +95,10 @@ LandTableInfo *AL_GARDEN02_Info = nullptr;
 LandTableInfo *AL_RACE_0_Info = nullptr;
 LandTableInfo *AL_RACE_1_Info = nullptr;
 
-std::vector<TextureAnimation> TextureAnimationData;
-std::vector<TextureAnimation> TextureAnimationData_Permanent;
-std::vector<UVAnimation> UVAnimationData;
-std::vector<UVAnimation> UVAnimationData_Permanent;
+std::vector<TextureAnimation*> TextureAnimationData;
+std::vector<TextureAnimation*> TextureAnimationData_Permanent;
+std::vector<UVAnimation*> UVAnimationData;
+std::vector<UVAnimation*> UVAnimationData_Permanent;
 
 bool UIScale = false;
 bool ModelsLoaded_General = false;
@@ -660,31 +660,31 @@ extern "C"
 			}
 
 			// Texture animations
-			for (TextureAnimation anim : TextureAnimationData)
+			for (TextureAnimation* anim : TextureAnimationData)
 			{
-				if (anim.level == levelid && anim.act == actid)
-					AnimateTexture(&anim);
+				if (anim->level == levelid && anim->act == actid)
+					AnimateTexture(anim);
 			}
 
 			// Texture animations permanent
-			for (TextureAnimation anim : TextureAnimationData_Permanent)
+			for (TextureAnimation* anim : TextureAnimationData_Permanent)
 			{
-				if (anim.level == levelid && anim.act == actid)
-					AnimateTexture(&anim);
+				if (anim->level == levelid && anim->act == actid)
+					AnimateTexture(anim);
 			}
 
 			// UV animations
-			for (UVAnimation uvanim : UVAnimationData)
+			for (UVAnimation* uvanim : UVAnimationData)
 			{
-				if (uvanim.level == levelid && uvanim.act == actid)
-					AnimateUVs(&uvanim);
+				if (uvanim->level == levelid && uvanim->act == actid)
+					AnimateUVs(uvanim);
 			}
 
 			// UV animations permanent
-			for (UVAnimation uvanim : UVAnimationData_Permanent)
+			for (UVAnimation* uvanim : UVAnimationData_Permanent)
 			{
-				if (uvanim.level == levelid && (uvanim.act == actid || uvanim.act == -1))
-					AnimateUVs(&uvanim);
+				if (uvanim->level == levelid && (uvanim->act == actid || uvanim->act == -1))
+					AnimateUVs(uvanim);
 			}
 		}
 		if (EnableDCBranding) Branding_OnFrame();

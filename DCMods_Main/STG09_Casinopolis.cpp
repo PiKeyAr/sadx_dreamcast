@@ -857,6 +857,38 @@ void SetUpIdeyaCapModels(NJS_OBJECT* Object1, NJS_OBJECT* Object2, NJS_OBJECT* O
 	Object3->child->sibling->sibling->sibling->sibling->evalflags |= NJD_EVAL_HIDE; // Wings
 }
 
+void AddCowgirlUVAnimations(NJS_OBJECT* obj)
+{
+	NJS_MODEL_SADX* mdl = obj->basicdxmodel;
+	if (mdl)
+	{
+		for (int u = 0; u < mdl->nbMeshset; u++)
+		{
+			int matid = mdl->meshsets[u].type_matId & 0x3FFF;
+			int texid = mdl->mats[matid].attr_texId;
+			switch (texid)
+			{
+			case 191:
+			case 192:
+			case 193:
+			case 194:
+			case 195:
+				AddUVAnimation_Permanent(9, 0, &mdl->meshsets[u], 16, 100, 0);
+				break;
+			case 133:
+				AddUVAnimation_Permanent(9, 0, &mdl->meshsets[u], 16, 65, 0);
+				break;
+			default:
+				break;
+			}
+		}
+	}
+	if (obj->child)
+		AddCowgirlUVAnimations(obj->child);
+	if (obj->sibling)
+		AddCowgirlUVAnimations(obj->sibling);
+}
+
 void Casinopolis_Init()
 {
 	CasinoPaletteGenerated = false;
@@ -959,21 +991,7 @@ void Casinopolis_Init()
 			CowgirlModel = LoadModel("system\\data\\STG09\\Models\\001D7FE0.sa1mdl");
 			CowgirlGlass = CowgirlModel->child->sibling->sibling->sibling->sibling->child->basicdxmodel;
 			*(NJS_OBJECT*)0x1E5B870 = *CowgirlModel;
-			AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E5B870)->basicdxmodel->meshsets[1].vertuv, 92, 16, 100, 0);
-			AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E5B870)->basicdxmodel->meshsets[7].vertuv, 130, 16, 100, 0);
-			AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E5B870)->basicdxmodel->meshsets[8].vertuv, 32, 16, 100, 0);
-			AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E5B870)->basicdxmodel->meshsets[9].vertuv, 92, 16, 100, 0);
-			AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E5B870)->child->basicdxmodel->meshsets[0].vertuv, 24, 16, 100, 0);
-			AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E5B870)->child->sibling->basicdxmodel->meshsets[2].vertuv, 10, 16, 100, 0);
-			AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E5B870)->child->sibling->sibling->basicdxmodel->meshsets[0].vertuv, 14, 16, 100, 0);
-			AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E5B870)->child->sibling->sibling->basicdxmodel->meshsets[2].vertuv, 10, 16, 100, 0);
-			AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E5B870)->child->sibling->sibling->basicdxmodel->meshsets[9].vertuv, 20, 16, 100, 0);
-			AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E5B870)->child->sibling->sibling->sibling->basicdxmodel->meshsets[1].vertuv, 6, 16, 100, 0);
-			AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E5B870)->child->sibling->sibling->sibling->basicdxmodel->meshsets[2].vertuv, 21, 16, 100, 0);
-			AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E5B870)->child->sibling->sibling->sibling->sibling->basicdxmodel->meshsets[0].vertuv, 7, 16, 100, 0);
-			AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E5B870)->child->sibling->sibling->sibling->sibling->child->basicdxmodel->meshsets[7].vertuv, 4, 16, 100, 0);
-			AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E5B870)->child->sibling->sibling->sibling->sibling->child->basicdxmodel->meshsets[11].vertuv, 30, 16, 100, 0);
-			AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E5B870)->child->sibling->sibling->sibling->sibling->sibling->basicdxmodel->meshsets[0].vertuv, 10, 16, 65, 0);
+			AddCowgirlUVAnimations((NJS_OBJECT*)0x1E5B870);
 			CollisionData_NeonK[0].b = CollisionData_NeonK[0].b * 6;
 			CollisionData_NeonK[1].b = CollisionData_NeonK[1].b * 6;
 			CollisionData_NeonK[2].b = CollisionData_NeonK[2].b * 6;
@@ -988,20 +1006,20 @@ void Casinopolis_Init()
 		else
 		{
 			*(NJS_OBJECT*)0x1E74A94 = *LoadModel("system\\data\\STG09\\Models\\001F0CCC.sa1mdl"); // NeonK
-			AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E74A94)->child->basicdxmodel->meshsets[0].vertuv, 28, 16, 100, 0);
-			AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E74A94)->child->basicdxmodel->meshsets[2].vertuv, 200, 16, -100, 0);
-			AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E74A94)->child->basicdxmodel->meshsets[3].vertuv, 28, 16, 100, 0);
-			AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E74A94)->child->basicdxmodel->meshsets[4].vertuv, 144, 16, 100, 0);
-			AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E74A94)->child->basicdxmodel->meshsets[5].vertuv, 188, 16, -100, 0);
-			AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E74A94)->child->basicdxmodel->meshsets[7].vertuv, 44, 16, -100, 0);
-			AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E74A94)->child->basicdxmodel->meshsets[9].vertuv, 12, 16, 100, 0);
-			AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E74A94)->child->basicdxmodel->meshsets[10].vertuv, 18, 16, -100, 0);
-			AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E74A94)->child->sibling->basicdxmodel->meshsets[1].vertuv, 20, 32, 100, 0);
-			AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E74A94)->child->sibling->sibling->basicdxmodel->meshsets[0].vertuv, 20, 32, 100, 0);
+			AddUVAnimation_Permanent(9, 0, &((NJS_OBJECT*)0x1E74A94)->child->basicdxmodel->meshsets[0], 16, 100, 0);
+			AddUVAnimation_Permanent(9, 0, &((NJS_OBJECT*)0x1E74A94)->child->basicdxmodel->meshsets[2], 16, -100, 0);
+			AddUVAnimation_Permanent(9, 0, &((NJS_OBJECT*)0x1E74A94)->child->basicdxmodel->meshsets[3], 16, 100, 0);
+			AddUVAnimation_Permanent(9, 0, &((NJS_OBJECT*)0x1E74A94)->child->basicdxmodel->meshsets[4], 16, 100, 0);
+			AddUVAnimation_Permanent(9, 0, &((NJS_OBJECT*)0x1E74A94)->child->basicdxmodel->meshsets[5], 16, -100, 0);
+			AddUVAnimation_Permanent(9, 0, &((NJS_OBJECT*)0x1E74A94)->child->basicdxmodel->meshsets[7], 16, -100, 0);
+			AddUVAnimation_Permanent(9, 0, &((NJS_OBJECT*)0x1E74A94)->child->basicdxmodel->meshsets[9], 16, 100, 0);
+			AddUVAnimation_Permanent(9, 0, &((NJS_OBJECT*)0x1E74A94)->child->basicdxmodel->meshsets[10], 16, -100, 0);
+			AddUVAnimation_Permanent(9, 0, &((NJS_OBJECT*)0x1E74A94)->child->sibling->basicdxmodel->meshsets[1], 32, 100, 0);
+			AddUVAnimation_Permanent(9, 0, &((NJS_OBJECT*)0x1E74A94)->child->sibling->sibling->basicdxmodel->meshsets[0], 32, 100, 0);
 			HideMesh_Object((NJS_OBJECT*)0x1E74A94, 16); // Hide NeonK text
 			HideMesh_Object(((NJS_OBJECT*)0x1E74A94)->child, 6); // Hide NeonK decoration
 			NeonK_Text = LoadModel("system\\data\\STG09\\Models\\001F0CCC.sa1mdl");
-			AddUVAnimation_Permanent(9, 0, NeonK_Text->child->basicdxmodel->meshsets[6].vertuv, 78, 16, 0, 100);
+			AddUVAnimation_Permanent(9, 0, &NeonK_Text->child->basicdxmodel->meshsets[6], 16, 0, 100);
 			AddAlphaRejectMaterial(&NeonK_Text->basicdxmodel->mats[16]);
 			WriteCall((void*)0x5CAB34, RenderNeonK);
 			HideMesh_Object(NeonK_Text, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 17, 18, 19, 20, 21, 22, 23, 24);
@@ -1019,17 +1037,17 @@ void Casinopolis_Init()
 		AddAlphaRejectMaterial(&ODento_3->basicdxmodel->mats[4]);
 		WriteCall((void*)0x5DDADF, ODentoFix);
 		*(NJS_OBJECT*)0x1E4D66C = *LoadModel("system\\data\\STG09\\Models\\001CA53C.sa1mdl"); // OCardKan
-		AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E4D66C)->basicdxmodel->meshsets[1].vertuv, 4, 8, 65, 0); // Meshset order changed after sorting
-		AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E4D66C)->child->basicdxmodel->meshsets[0].vertuv, 16, 8, 65, 0);
-		AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E4D66C)->child->sibling->basicdxmodel->meshsets[0].vertuv, 16, 8, 65, 0);
+		AddUVAnimation_Permanent(9, 0, &((NJS_OBJECT*)0x1E4D66C)->basicdxmodel->meshsets[1], 8, 65, 0); // Meshset order changed after sorting
+		AddUVAnimation_Permanent(9, 0, &((NJS_OBJECT*)0x1E4D66C)->child->basicdxmodel->meshsets[0], 8, 65, 0);
+		AddUVAnimation_Permanent(9, 0, &((NJS_OBJECT*)0x1E4D66C)->child->sibling->basicdxmodel->meshsets[0], 8, 65, 0);
 		ForceLevelSpecular_Object((NJS_OBJECT*)0x1E4D66C, false);
 		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x1E4D66C)->basicdxmodel->mats[0]); // Material order changed after sorting
 		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x1E4D66C)->basicdxmodel->mats[2]); // Material order changed after sorting
 		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x1E4D66C)->basicdxmodel->mats[3]); // Material order changed after sorting
 		*(NJS_OBJECT*)0x1E4E3F0 = *LoadModel("system\\data\\STG09\\Models\\001CB278.sa1mdl"); // OSlotKan
-		AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E4E3F0)->basicdxmodel->meshsets[2].vertuv, 6, 8, 65, 0);
-		AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E4E3F0)->child->basicdxmodel->meshsets[1].vertuv, 28, 8, 65, 0);
-		AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E4E3F0)->child->sibling->basicdxmodel->meshsets[2].vertuv, 8, 8, 65, 0); // Meshset order changed after sorting
+		AddUVAnimation_Permanent(9, 0, &((NJS_OBJECT*)0x1E4E3F0)->basicdxmodel->meshsets[2], 8, 65, 0);
+		AddUVAnimation_Permanent(9, 0, &((NJS_OBJECT*)0x1E4E3F0)->child->basicdxmodel->meshsets[1], 8, 65, 0);
+		AddUVAnimation_Permanent(9, 0, &((NJS_OBJECT*)0x1E4E3F0)->child->sibling->basicdxmodel->meshsets[2], 8, 65, 0); // Meshset order changed after sorting
 		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x1E4E3F0)->basicdxmodel->mats[3]); // Material order changed after sorting
 		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x1E4E3F0)->child->sibling->basicdxmodel->mats[0]); // Material order changed after sorting
 		*(NJS_MODEL_SADX*)0x1D98CE8 = *LoadModel("system\\data\\STG09\\Models\\0011B708.sa1mdl")->basicdxmodel; // Bumper1 pressed
@@ -1055,19 +1073,19 @@ void Casinopolis_Init()
 		AddTextureAnimation_Permanent(9, 0, &((NJS_MODEL_SADX*)0x1E46F30)->mats[3], false, 120, 140, 147);
 		*(NJS_OBJECT*)0x1E510A8 = *LoadModel("system\\data\\STG09\\Models\\001CD9D0.sa1mdl"); // OFanFan
 		*(NJS_OBJECT*)0x1DF716C = *LoadModel("system\\data\\STG09\\Models\\001771B0.sa1mdl"); // Slot red
-		AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1DF716C)->basicdxmodel->meshsets[8].vertuv, 14, 16, 65, 0);
+		AddUVAnimation_Permanent(9, 0, &((NJS_OBJECT*)0x1DF716C)->basicdxmodel->meshsets[8], 16, 65, 0);
 		*(NJS_OBJECT*)0x1DF5164 = *LoadModel("system\\data\\STG09\\Models\\00175E6C.sa1mdl"); // Slot blue
-		AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1DF5164)->basicdxmodel->meshsets[8].vertuv, 14, 16, 65, 0);
+		AddUVAnimation_Permanent(9, 0, &((NJS_OBJECT*)0x1DF5164)->basicdxmodel->meshsets[8], 16, 65, 0);
 		// Card pinball entrance OTensC
 		*(NJS_OBJECT*)0x1E49864 = *LoadModel("system\\data\\STG09\\Models\\001C6E9C.sa1mdl"); // Main object
-		AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E49864)->basicdxmodel->meshsets[0].vertuv, 67, 12, 65, 0); // Main object UV animation 1
-		AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E49864)->basicdxmodel->meshsets[5].vertuv, 8, 12, 65, 0); // Main object UV animation 1
+		AddUVAnimation_Permanent(9, 0, &((NJS_OBJECT*)0x1E49864)->basicdxmodel->meshsets[0], 12, 65, 0); // Main object UV animation 1
+		AddUVAnimation_Permanent(9, 0, &((NJS_OBJECT*)0x1E49864)->basicdxmodel->meshsets[5], 12, 65, 0); // Main object UV animation 1
 		WriteData((NJS_MESHSET_SADX**)0x1E76D30, &((NJS_OBJECT*)0x1E49864)->child->basicdxmodel->meshsets[1]); // Child UV animation 1
 		WriteData((NJS_MESHSET_SADX**)0x1E76D40, &((NJS_OBJECT*)0x1E49864)->child->basicdxmodel->meshsets[0]); // Child UV animation 2
 		// Slot pinball entrance OTensS
 		*(NJS_OBJECT*)0x1E4B1A8 = *LoadModel("system\\data\\STG09\\Models\\001C8150.sa1mdl"); // Main object
-		AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E4B1A8)->basicdxmodel->meshsets[0].vertuv, 28, 12, 65, 0); // Main object UV animation 1
-		AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E4B1A8)->basicdxmodel->meshsets[11].vertuv, 24, 12, 65, 0); // Main object UV animation 2
+		AddUVAnimation_Permanent(9, 0, &((NJS_OBJECT*)0x1E4B1A8)->basicdxmodel->meshsets[0], 12, 65, 0); // Main object UV animation 1
+		AddUVAnimation_Permanent(9, 0, &((NJS_OBJECT*)0x1E4B1A8)->basicdxmodel->meshsets[11], 12, 65, 0); // Main object UV animation 2
 		WriteData((NJS_MESHSET_SADX**)0x1E76F18, &((NJS_OBJECT*)0x1E4B1A8)->child->basicdxmodel->meshsets[0]); // Child UV animation (meshes merged in the DC version so just one)
 		// OSl objects
 		OSlX_Base = LoadModel("system\\data\\STG09\\Models\\001BF300.sa1mdl"); // OSl Base
@@ -1097,13 +1115,13 @@ void Casinopolis_Init()
 		((NJS_OBJECT*)0x1E41C28)->evalflags |= NJD_EVAL_HIDE;
 		HideMesh_Object(((NJS_OBJECT*)0x1E41C28)->child, 1);
 		*(NJS_OBJECT*)0x1E47B1C = *LoadModel("system\\data\\STG09\\Models\\001C5990.sa1mdl"); // MizuA (fountain)
-		AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E47B1C)->basicdxmodel->meshsets[0].vertuv, 36, 0, 0, -16);
-		AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E47B1C)->basicdxmodel->meshsets[1].vertuv, 80, 0, 0, -16);
+		AddUVAnimation_Permanent(9, 0, &((NJS_OBJECT*)0x1E47B1C)->basicdxmodel->meshsets[0], 0, 0, -16);
+		AddUVAnimation_Permanent(9, 0, &((NJS_OBJECT*)0x1E47B1C)->basicdxmodel->meshsets[1], 0, 0, -16);
 		*(NJS_OBJECT*)0x1E47CA4 = *LoadModel("system\\data\\STG09\\Models\\001C5B0C.sa1mdl"); // MizuB (waterfall)
-		AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E47CA4)->basicdxmodel->meshsets[0].vertuv, 8, 0, 0, -16);
+		AddUVAnimation_Permanent(9, 0, &((NJS_OBJECT*)0x1E47CA4)->basicdxmodel->meshsets[0], 0, 0, -16);
 		*(NJS_OBJECT*)0x1E01EB4 = *LoadModel("system\\data\\STG09\\Models\\0018141C.sa1mdl"); // Lion
-		AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E01EB4)->child->sibling->sibling->basicdxmodel->meshsets[5].vertuv, 36, 8, -127, 0);
-		AddUVAnimation_Permanent(9, 0, ((NJS_OBJECT*)0x1E01EB4)->child->sibling->sibling->basicdxmodel->meshsets[10].vertuv, 20, 8, -127, 0);
+		AddUVAnimation_Permanent(9, 0, &((NJS_OBJECT*)0x1E01EB4)->child->sibling->sibling->basicdxmodel->meshsets[5], 8, -127, 0);
+		AddUVAnimation_Permanent(9, 0, &((NJS_OBJECT*)0x1E01EB4)->child->sibling->sibling->basicdxmodel->meshsets[10], 8, -127, 0);
 		((NJS_ACTION*)0x1DE120C)->object = LoadModel("system\\data\\STG09\\Models\\00155E04.sa1mdl"); // Pianpach
 		((NJS_ACTION*)0x1DE223C)->object = LoadModel("system\\data\\STG09\\Models\\001594F4.sa1mdl"); // Pianwalk
 		((NJS_ACTION*)0x1DE23C4)->object = LoadModel("system\\data\\STG09\\Models\\0015B34C.sa1mdl"); // Pianfish

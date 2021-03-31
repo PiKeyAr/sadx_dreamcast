@@ -552,10 +552,10 @@ extern LandTableInfo *AL_GARDEN01_Info;
 extern LandTableInfo *AL_GARDEN02_Info;
 extern LandTableInfo *AL_RACE_0_Info;
 extern LandTableInfo *AL_RACE_1_Info;
-extern std::vector<TextureAnimation> TextureAnimationData;
-extern std::vector<TextureAnimation> TextureAnimationData_Permanent;
-extern std::vector<UVAnimation> UVAnimationData;
-extern std::vector <UVAnimation> UVAnimationData_Permanent;
+extern std::vector<TextureAnimation*> TextureAnimationData;
+extern std::vector<TextureAnimation*> TextureAnimationData_Permanent;
+extern std::vector<UVAnimation*> UVAnimationData;
+extern std::vector <UVAnimation*> UVAnimationData_Permanent;
 extern NJS_TEXLIST texlist_ChaoRace;
 extern NJS_TEXLIST texlist_ChaoRaceEntry;
 
@@ -715,8 +715,8 @@ void AnimateUVs(UVAnimation *animation);
 void ClearTextureAnimationData();
 void AddTextureAnimation(int level, int act, NJS_MATERIAL* material, bool nonsequential, int speed, int frame1, int frame2, int frame3 = -1, int frame4 = -1, int frame5 = -1, int frame6 = -1, int frame7 = -1, int frame8 = -1, int frame9 = -1, int frame10 = -1, int frame11 = -1, int frame12 = -1, int frame13 = -1, int frame14 = -1, int frame15 = -1, int frame16 = -1);
 void AddTextureAnimation_Permanent(int level, int act, NJS_MATERIAL* material, bool nonsequential, int speed, int frame1, int frame2, int frame3 = -1, int frame4 = -1, int frame5 = -1, int frame6 = -1, int frame7 = -1, int frame8 = -1, int frame9 = -1, int frame10 = -1, int frame11 = -1, int frame12 = -1, int frame13 = -1, int frame14 = -1, int frame15 = -1, int frame16 = -1);
-void AddUVAnimation(int level, int act, NJS_TEX* uv, int uv_count, int timer, int u_speed, int v_speed);
-void AddUVAnimation_Permanent(int level, int act, NJS_TEX* uv, int uv_count, int timer, int u_speed, int v_speed);
+void AddUVAnimation(int level, int act, NJS_MESHSET_SADX* meshset, int timer, int u_speed, int v_speed);
+void AddUVAnimation_Permanent(int level, int act, NJS_MESHSET_SADX* meshset, int timer, int u_speed, int v_speed);
 void RemoveVertexColors_Object(NJS_OBJECT *obj);
 void RemoveVertexColors_Model(NJS_MODEL_SADX *model);
 NJS_OBJECT* LoadModel(const char *ModelName);
@@ -750,6 +750,5 @@ void AddLateDrawLandtable(LandTable* landtable);
 void RemoveLateDrawLandtable();
 void Videos_OnReset();
 void IceKeySSFix(NJS_ACTION* action, float frame, int flags, float scale);
-
 #define HideMesh_Object(...) HideMesh_Object_Wrapper(__VA_ARGS__, -1)
 #define HideMesh_Model(...) HideMesh_Model_Wrapper(__VA_ARGS__, -1)

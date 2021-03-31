@@ -509,8 +509,9 @@ void AnimateUVs(UVAnimation *animation)
 		if (actualtimer == 0) actualtimer = 1;
 		if (animation->uv_pointer && animation->uv_count && FrameCounter % actualtimer == 0)
 		{
-			animation->v_shift += animation->v_speed;
-			animation->u_shift += animation->u_speed;
+			animation->v_shift = animation->v_shift + 100;
+			animation->u_shift += 100;
+			//PrintDebug("U speed: %d, V speed: %d, U shift: %d, V shift: %d\n", animation->u_speed, animation->v_speed, animation->u_shift, animation->v_shift);
 			// Limit V +
 			if (animation->v_shift > 510)
 			{
@@ -568,46 +569,81 @@ void ClearTextureAnimationData()
 void AddTextureAnimation(int level, int act, NJS_MATERIAL* material, bool nonsequential, int speed, int frame1, int frame2, int frame3, int frame4, int frame5, int frame6, int frame7, int frame8, int frame9, int frame10, int frame11, int frame12, int frame13, int frame14, int frame15, int frame16)
 {
 	// Check for duplicate materials
-	for (TextureAnimation i : TextureAnimationData)
+	for (TextureAnimation* i : TextureAnimationData)
 	{
-		if (i.material == material)
+		if (i->material == material)
 			return;
 	}
-	TextureAnimationData.push_back({level, act, material, speed, nonsequential, frame1, frame2, frame3, frame4, frame5, frame6, frame7, frame8, frame9, frame10, frame11, frame12, frame13, frame14, frame15, frame16});
+	TextureAnimation* anim = new TextureAnimation{level, act, material, speed, nonsequential, frame1, frame2, frame3, frame4, frame5, frame6, frame7, frame8, frame9, frame10, frame11, frame12, frame13, frame14, frame15, frame16};
+	TextureAnimationData.push_back(anim);
 			//PrintDebug("Added texture animation: level %d, act %d, frame1: %d, frame2: %d, ID %d\n", level, act, frame1, frame2, i);
 }
 
 void AddTextureAnimation_Permanent(int level, int act, NJS_MATERIAL* material, bool nonsequential, int speed, int frame1, int frame2, int frame3, int frame4, int frame5, int frame6, int frame7, int frame8, int frame9, int frame10, int frame11, int frame12, int frame13, int frame14, int frame15, int frame16)
 {
 	// Check for duplicate materials
-	for (TextureAnimation i : TextureAnimationData_Permanent)
+	for (TextureAnimation* i : TextureAnimationData_Permanent)
 	{
-		if (i.material == material)
+		if (i->material == material)
 			return;
 	}
-	TextureAnimationData_Permanent.push_back({level, act, material, speed, nonsequential, frame1, frame2, frame3, frame4, frame5, frame6, frame7, frame8, frame9, frame10, frame11, frame12, frame13, frame14, frame15, frame16});
+	TextureAnimation* anim = new TextureAnimation{level, act, material, speed, nonsequential, frame1, frame2, frame3, frame4, frame5, frame6, frame7, frame8, frame9, frame10, frame11, frame12, frame13, frame14, frame15, frame16};
+	TextureAnimationData_Permanent.push_back(anim);
 }
 
-void AddUVAnimation(int level, int act, NJS_TEX* uv, int uv_count, int timer, int u_speed, int v_speed)
+int GetUVCount(NJS_MESHSET_SADX* meshset)
 {
-	// Check for duplicate UVs
-	for (UVAnimation i : UVAnimationData)
+	int meshtype = meshset->type_matId >> 0xE;
+	int indices = 0;
+	switch (meshtype)
 	{
-		if (i.uv_pointer == uv)
-			return;
+	case 0: // Tri
+		return meshset->nbMesh * 3;
+	case 1: // Quad
+		return meshset->nbMesh * 4;
+	case 2: // NPoly
+	case 3: // Strip
+		int currentindex = 0;
+		int currentmesh = 0;
+		do
+		{
+			//PrintDebug("Mesh %d of %d\n", currentmesh, meshset->nbMesh);
+			int numvrt = meshset->meshes[currentindex] & 0x7FFF;
+			//PrintDebug("Num: %d\n", numvrt);
+			indices += numvrt;
+			currentindex += numvrt + 1;
+			currentmesh++;
+		} while (currentmesh < meshset->nbMesh);
+		break;
 	}
-	UVAnimationData.push_back({level, act, uv, uv_count, timer, u_speed, v_speed});
+	//PrintDebug("Mesh type: %d\n", meshtype);
+	return indices;
 }
 
-void AddUVAnimation_Permanent(int level, int act, NJS_TEX* uv, int uv_count, int timer, int u_speed, int v_speed)
+void AddUVAnimation(int level, int act, NJS_MESHSET_SADX* meshset, int timer, int u_speed, int v_speed)
 {
 	// Check for duplicate UVs
-	for (UVAnimation i : UVAnimationData_Permanent)
+	for (UVAnimation* i : UVAnimationData)
 	{
-		if (i.uv_pointer == uv)
+		if (i->uv_pointer == meshset->vertuv)
 			return;
 	}
-	UVAnimationData_Permanent.push_back({level, act, uv, uv_count, timer, u_speed, v_speed});
+	int uv_count = GetUVCount(meshset);
+	UVAnimation* uvanim = new UVAnimation{level, act, meshset->vertuv, uv_count, timer, u_speed, v_speed, 0, 0};
+	UVAnimationData.push_back(uvanim);
+}
+
+void AddUVAnimation_Permanent(int level, int act, NJS_MESHSET_SADX* meshset, int timer, int u_speed, int v_speed)
+{
+	// Check for duplicate UVs
+	for (UVAnimation* i : UVAnimationData_Permanent)
+	{
+		if (i->uv_pointer == meshset->vertuv)
+			return;
+	}
+	int uv_count = GetUVCount(meshset);
+	UVAnimation* uvanim = new UVAnimation{level, act, meshset->vertuv, uv_count, timer, u_speed, v_speed, 0, 0};
+	UVAnimationData.push_back(uvanim);
 }
 
 void RemoveMaterialColors(NJS_MATERIAL* material)

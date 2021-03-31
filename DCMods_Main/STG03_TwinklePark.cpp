@@ -463,8 +463,8 @@ void ShareObj_Init()
 		OPole_Pole->child = NULL;
 		WriteCall((void*)0x79CD61, OPoleFix1);
 		WriteCall((void*)0x79CD96, OPoleFix2);
-		AddUVAnimation_Permanent(LevelIDs_TwinklePark, 0, OPole_Pole->basicdxmodel->meshsets[1].vertuv, 12, 0, 0, 16);
-		AddUVAnimation_Permanent(LevelIDs_TwinkleCircuit, -1, OPole_Pole->basicdxmodel->meshsets[1].vertuv, 12, 0, 0, 16);
+		AddUVAnimation_Permanent(LevelIDs_TwinklePark, 0, &OPole_Pole->basicdxmodel->meshsets[1], 0, 0, 16);
+		AddUVAnimation_Permanent(LevelIDs_TwinkleCircuit, -1, &OPole_Pole->basicdxmodel->meshsets[1], 0, 0, 16);
 		ModelsLoaded_ShareObj = true;
 	}
 }
