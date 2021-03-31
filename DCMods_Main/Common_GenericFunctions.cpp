@@ -509,8 +509,6 @@ void AnimateUVs(UVAnimation *animation)
 		if (actualtimer == 0) actualtimer = 1;
 		if (animation->uv_pointer && animation->uv_count && FrameCounter % actualtimer == 0)
 		{
-			animation->v_shift = animation->v_shift + 100;
-			animation->u_shift += 100;
 			//PrintDebug("U speed: %d, V speed: %d, U shift: %d, V shift: %d\n", animation->u_speed, animation->v_speed, animation->u_shift, animation->v_shift);
 			// Limit V +
 			if (animation->v_shift > 510)
@@ -554,6 +552,7 @@ void AnimateUVs(UVAnimation *animation)
 				animation->uv_pointer[i].v += animation->v_speed;
 				animation->uv_pointer[i].u += animation->u_speed;
 			}
+		
 			//PrintDebug("UV Animation count %d, timer %d, add %d, current %d \n", animation->uv_count, animation->timer, animation->v_shift, animation->uv_pointer[0].v);
 		}
 	}
@@ -643,7 +642,7 @@ void AddUVAnimation_Permanent(int level, int act, NJS_MESHSET_SADX* meshset, int
 	}
 	int uv_count = GetUVCount(meshset);
 	UVAnimation* uvanim = new UVAnimation{level, act, meshset->vertuv, uv_count, timer, u_speed, v_speed, 0, 0};
-	UVAnimationData.push_back(uvanim);
+	UVAnimationData_Permanent.push_back(uvanim);
 }
 
 void RemoveMaterialColors(NJS_MATERIAL* material)
