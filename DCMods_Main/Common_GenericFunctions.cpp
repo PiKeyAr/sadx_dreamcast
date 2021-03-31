@@ -509,6 +509,8 @@ void AnimateUVs(UVAnimation *animation)
 		if (actualtimer == 0) actualtimer = 1;
 		if (animation->uv_pointer && animation->uv_count && FrameCounter % actualtimer == 0)
 		{
+			animation->v_shift += animation->v_speed;
+			animation->u_shift += animation->u_speed;
 			//PrintDebug("U speed: %d, V speed: %d, U shift: %d, V shift: %d\n", animation->u_speed, animation->v_speed, animation->u_shift, animation->v_shift);
 			// Limit V +
 			if (animation->v_shift > 510)
