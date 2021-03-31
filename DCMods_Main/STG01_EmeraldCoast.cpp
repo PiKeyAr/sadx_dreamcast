@@ -545,7 +545,6 @@ void ParseEmeraldCoastColFlagsAndMaterials(LandTable *landtable, int act)
 				if (material->attr_texId >= 50 && material->attr_texId <= 64)
 				{
 					AddTextureAnimation(1, 2, material, false, 4, 50, 64);
-					if (landtable->Col[j].Flags & ColFlags_Visible) landtable->Col[j].Flags &= ~ColFlags_Visible;
 				}
 				// Texanim 3
 				if (material->attr_texId >= 80 && material->attr_texId <= 93)
@@ -641,17 +640,13 @@ void EmeraldCoast_Init()
 			WriteData<1>((void*)0x004F790A, 0x0F); // 15 animation frames for water in Act 3
 			AddTextureAnimation_Permanent(1, 0, &HighPolyOcean_Static->basicdxmodel->mats[0], false, 4, 0, 14); // Static ocean
 			AddTextureAnimation_Permanent(1, 0, &HighPolyOcean_Dynamic->basicdxmodel->mats[0], false, 4, 0, 14); // Dynamic ocean
-			AddTextureAnimation_Permanent(1, 0, &LowPolyOcean->basicdxmodel->mats[0], false, 4, 0, 14); // Static ocean
-			AddTextureAnimation_Permanent(1, 1, &LowPolyOcean->basicdxmodel->mats[0], false, 4, 0, 14); // Static ocean
-			AddTextureAnimation_Permanent(1, 2, &LowPolyOcean->basicdxmodel->mats[0], false, 4, 0, 14); // Static ocean
+			AddTextureAnimation_Permanent(1, -1, &LowPolyOcean->basicdxmodel->mats[0], false, 4, 0, 14); // Static ocean
 		}
 		else
 		{
 			AddTextureAnimation_Permanent(1, 0, &HighPolyOcean_Static->basicdxmodel->mats[0], false, 4, 0, 9); // Static ocean
 			AddTextureAnimation_Permanent(1, 0, &HighPolyOcean_Dynamic->basicdxmodel->mats[0], false, 4, 0, 9); // Dynamic ocean
-			AddTextureAnimation_Permanent(1, 0, &LowPolyOcean->basicdxmodel->mats[0], false, 4, 0, 9); // Static ocean
-			AddTextureAnimation_Permanent(1, 1, &LowPolyOcean->basicdxmodel->mats[0], false, 4, 0, 9); // Static ocean
-			AddTextureAnimation_Permanent(1, 2, &LowPolyOcean->basicdxmodel->mats[0], false, 4, 0, 9); // Static ocean
+			AddTextureAnimation_Permanent(1, -1, &LowPolyOcean->basicdxmodel->mats[0], false, 4, 0, 9); // Static ocean
 		}
 		// Models
 		RemoveVertexColors_Object((NJS_OBJECT*)0x10C782C); // Tails' crashed plane

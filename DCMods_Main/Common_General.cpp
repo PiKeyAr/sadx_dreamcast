@@ -1539,23 +1539,6 @@ void RenderEggCarrier3NPC(NJS_ACTION* action, Float frame)
 	else njAction(action, frame);
 }
 
-void GeoAnimFix(NJS_ACTION* a1, float a2, QueuedModelFlagsB a3, float a4)
-{
-	if (EnabledLevels[LevelIDs_MysticRuins] && CurrentLevel == LevelIDs_MysticRuins && CurrentAct == 2)
-	{
-		DrawQueueDepthBias = -20952.0f;
-		late_ActionMesh(a1, a2, 1);
-		DrawQueueDepthBias = 0.0f;
-	}
-	else if (EnabledLevels[LevelIDs_FinalEgg] && CurrentLevel == LevelIDs_FinalEgg && CurrentAct == 2)
-	{
-		DrawQueueDepthBias = -47952.0f;
-		late_ActionClipEx(a1, a2, a3, a4);
-		DrawQueueDepthBias = 0.0f;
-	}
-	else late_ActionClipEx(a1, a2, a3, a4);
-}
-
 void CaptureBeamFix(NJS_OBJECT *a1, QueuedModelFlagsB a2, float a3)
 {
 	switch (CutsceneID)
@@ -1663,16 +1646,12 @@ static void __cdecl HandKey_Display_r(ObjectMaster* a1)
 	ObjectMaster* lock = LocksArray[a1->Data1->Index];
 	NJS_VECTOR* pos_lock = nullptr;
 	NJS_VECTOR* pos_key = &a1->Data1->Position;
-	if (FixHeldObjects)
+
+	if (lock) pos_lock = &lock->Data1->Position;
+	if (pos_lock && pos_key->x == pos_lock->x && pos_key->z == pos_lock->z)
 	{
-		if (lock) pos_lock = &lock->Data1->Position;
-		if (pos_lock && pos_key->x == pos_lock->x && pos_key->z == pos_lock->z)
-		{
-			if (pos_key->y < pos_lock->y + 2.5f) pos_key->y = pos_lock->y + 2.5f;
-		}
-		original(a1);
+		if (pos_key->y < pos_lock->y + 2.5f) pos_key->y = pos_lock->y + 2.5f;
 	}
-	//else 
 	original(a1);
 }
 
@@ -1901,12 +1880,12 @@ void General_Init()
 		DisplayTitleCard_t = new Trampoline(0x47E170, 0x47E175, DisplayTitleCard_r);
 		CameraB_Display_t = new Trampoline(0x436CD0, 0x436CD6, CameraB_Display_r);
 		SetGlobalPoint2Col_Colors_t = new Trampoline(0x402F10, 0x402F18, SetGlobalPoint2Col_Colors_r);
-		HandKey_Display_t = new Trampoline(0x532240, 0x532245, HandKey_Display_r);
 		// Disable GrabButton setting in Control
 		if (RestoreYButton) WriteData<5>((char*)0x40FDEA, 0x90u);
 		// Fixes for held objects
 		if (FixHeldObjects)
 		{
+			HandKey_Display_t = new Trampoline(0x532240, 0x532245, HandKey_Display_r);
 			WriteData((float**)0x495975, &SnowboardOffset1); // Sonic
 			WriteData((float**)0x45E56D, &SnowboardOffset1); // Tails
 			WriteData((float**)0x495989, &SnowboardOffset2); // Sonic

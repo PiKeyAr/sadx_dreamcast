@@ -662,21 +662,21 @@ extern "C"
 			// Texture animations
 			for (TextureAnimation* anim : TextureAnimationData)
 			{
-				if (anim->level == levelid && anim->act == actid)
+				if (anim->level == levelid && (anim->act == actid || anim->act == -1))
 					AnimateTexture(anim);
 			}
 
 			// Texture animations permanent
 			for (TextureAnimation* anim : TextureAnimationData_Permanent)
 			{
-				if (anim->level == levelid && anim->act == actid)
+				if (anim->level == levelid && (anim->act == actid || anim->act == -1))
 					AnimateTexture(anim);
 			}
 
 			// UV animations
 			for (UVAnimation* uvanim : UVAnimationData)
 			{
-				if (uvanim->level == levelid && uvanim->act == actid)
+				if (uvanim->level == levelid && (uvanim->act == actid || uvanim->act == -1))
 					AnimateUVs(uvanim);
 			}
 

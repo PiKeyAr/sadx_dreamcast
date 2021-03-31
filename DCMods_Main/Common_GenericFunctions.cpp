@@ -554,7 +554,6 @@ void AnimateUVs(UVAnimation *animation)
 				animation->uv_pointer[i].v += animation->v_speed;
 				animation->uv_pointer[i].u += animation->u_speed;
 			}
-		
 			//PrintDebug("UV Animation count %d, timer %d, add %d, current %d \n", animation->uv_count, animation->timer, animation->v_shift, animation->uv_pointer[0].v);
 		}
 	}
@@ -1282,6 +1281,17 @@ void land_DrawObject_New(NJS_OBJECT* a1, _OBJ_LANDENTRY* a2)
 	
 	// Set depth
 	DrawQueueDepthBias = a2->yWidth;
+
+	// Of course there are cutscenes using camera angles that break everything
+	if (EV_MainThread_ptr)
+	switch (CutsceneID)
+	{
+	case 240: // Final story Tornado 2 flashback
+		DrawQueueDepthBias = 0;
+		break;
+	default:
+		break;
+	}
 
 	// Draw by Mesh
 	if (flags & SurfaceFlags_DrawByMesh)
