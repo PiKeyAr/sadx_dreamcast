@@ -71,7 +71,7 @@ void OLight1_Display(ObjectMaster *a1)
 				SetMaterialAndSpriteColor_Float(1.0f, 1.0f, 1.0f, 1.0f);
 			}
 			if (v1->Position.x > 1050) DrawQueueDepthBias = -48000.0f;
-			late_DrawObjectClipMesh((NJS_OBJECT*)0x1828BD4, (QueuedModelFlagsB)0, 1.0f);
+			late_DrawObjectClipMesh((NJS_OBJECT*)0x1828BD4, (QueuedModelFlagsB)4, 1.0f);
 			njPopMatrix(1u);
 			ClampGlobalColorThing_Thing();
 			njControl3D_Restore();
