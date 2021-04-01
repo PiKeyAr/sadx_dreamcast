@@ -299,7 +299,7 @@ void Videos_Init(const IniFile *config, const HelperFunctions &helperFunctions)
 	}
 }
 
-void OnInitEnd_Videos()
+void Videos_OnInitEnd()
 {
 	if (DLLLoaded_HDVideos)
 	{

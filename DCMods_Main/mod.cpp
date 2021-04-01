@@ -192,7 +192,7 @@ bool DLLLoaded_SADXFE = false;
 bool DLLLoaded_DX11 = false;
 bool EnableSpeedFixes = true;
 bool SuppressWarnings = false;
-bool BigBeltFix = false;
+bool BigBeltFix = true;
 
 int LanternErrorMessageTimer = 0;
 int PauseHideErrorMessageTimer = 0;
@@ -251,7 +251,6 @@ static void __cdecl LoadLevelFiles_r()
 {
 	const auto original = TARGET_DYNAMIC(LoadLevelFiles);
 	CheckAndUnloadLevelFiles();
-	if (RestoreHumpAnimations) RestoreHumpAnimations_apply();
 	original();
 }
 
@@ -357,7 +356,7 @@ extern "C"
 		DisableFontSmoothing = config->getBool("General", "DisableFontSmoothing", true);
 		DisableFontFiltering = config->getBool("General", "DisableFontFiltering", true);
 		EnableLSDFix = config->getBool("Miscellaneous", "EnableLSDFix", false);
-		BigBeltFix = config->getBool("Miscellaneous", "BigBeltFix", false);
+		BigBeltFix = config->getBool("Miscellaneous", "BigBeltFix", true);
 		RemoveSetUpPad = config->getBool("Branding", "RemoveSetUpPad", false);
 		RemoveMap = config->getBool("Branding", "RemoveMap", false);
 		RemoveCamera = config->getBool("Branding", "RemoveCamera", false);
@@ -601,7 +600,8 @@ extern "C"
 	__declspec(dllexport) void __cdecl OnInitEnd()
 	{
 		if (InitError) return;
-		OnInitEnd_Videos();
+		Videos_OnInitEnd();
+		if (RestoreHumpAnimations) RestoreHumpAnimations_apply();
 	}
 
 	__declspec(dllexport) void __cdecl OnFrame()

@@ -741,7 +741,7 @@ void HideMesh_Model_Wrapper(NJS_MODEL_SADX* object, int arg, ...);
 void ForceLightType_Object(NJS_OBJECT* obj, int light_type, bool unregister);
 void HideEntireObject(NJS_OBJECT* a1);
 void RemoveTransparency_Object(NJS_OBJECT* obj, bool recursive);
-void OnInitEnd_Videos();
+void Videos_OnInitEnd();
 void land_DrawObject_New(NJS_OBJECT* a1, _OBJ_LANDENTRY* a2);
 NJS_OBJECT* CloneObject(NJS_OBJECT* obj);
 NJS_MODEL_SADX* CloneAttach(NJS_MODEL_SADX* att);

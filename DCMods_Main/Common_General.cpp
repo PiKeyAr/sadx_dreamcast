@@ -329,37 +329,31 @@ static Trampoline* BurgerStatueMain_t = nullptr;
 static void __cdecl BurgerStatueMain_r(ObjectMaster* a1)
 {
 	const auto original = TARGET_DYNAMIC(BurgerStatueMain);
-	if (FixHeldObjects)
+
+	if (a1->Data1->Status & 0x1000)
 	{
-		if (a1->Data1->Status & 0x1000)
-		{
-			a1->Data1->CharID = 1;
-		}
-		if (!(a1->Data1->Status & 0x1)) a1->Data1->CharIndex++;
-		else a1->Data1->CharIndex = 0;
-		if (a1->Data1->CharIndex > 100) a1->Data1->CharIndex = 10;
-		//PrintDebug("Status: %04X, char: %d\n", a1->Data1->Status, a1->Data1->CharIndex);
-		original(a1);
+		a1->Data1->CharID = 1;
 	}
-	else original(a1);
+	if (!(a1->Data1->Status & 0x1)) a1->Data1->CharIndex++;
+	else a1->Data1->CharIndex = 0;
+	if (a1->Data1->CharIndex > 100) a1->Data1->CharIndex = 10;
+	//PrintDebug("Status: %04X, char: %d\n", a1->Data1->Status, a1->Data1->CharIndex);
+	original(a1);
 }
 	
 static Trampoline* MissionStatueMain_t = nullptr;
 static void __cdecl MissionStatueMain_r(ObjectMaster* a1)
 {
 	const auto original = TARGET_DYNAMIC(MissionStatueMain);
-	if (FixHeldObjects)
+
+	if (a1->Data1->Status & 0x1000)
 	{
-		if (a1->Data1->Status & 0x1000)
-		{
-			a1->Data1->CharID = 1;
-		}
-		if (!(a1->Data1->Status & 0x1)) a1->Data1->CharIndex++;
-		else a1->Data1->CharIndex = 0;
-		if (a1->Data1->CharIndex > 100) a1->Data1->CharIndex = 10;
-		original(a1);
+		a1->Data1->CharID = 1;
 	}
-	else original(a1);
+	if (!(a1->Data1->Status & 0x1)) a1->Data1->CharIndex++;
+	else a1->Data1->CharIndex = 0;
+	if (a1->Data1->CharIndex > 100) a1->Data1->CharIndex = 10;
+	original(a1);
 }
 
 void __cdecl MissionStatue_DisplayFix(ObjectMaster* a1)
@@ -1799,7 +1793,7 @@ void __cdecl actBubble(ObjectMaster* a1)
 void BigDisplayFix(NJS_ACTION* action, float frame, float scale)
 {
 	DrawQueueDepthBias = -52952.0f;
-	DrawAction(action, frame, (QueuedModelFlagsB)1, scale, (void(__cdecl*)(NJS_MODEL_SADX*, int, int))lateDrawModel);
+	DrawAction(action, frame, (QueuedModelFlagsB)1, scale, (void(__cdecl*)(NJS_MODEL_SADX*, int, int))late_DrawModelEx);
 	DrawQueueDepthBias = 0.0f;
 }
 
@@ -1871,8 +1865,6 @@ void General_Init()
 	if (!ModelsLoaded_General)
 	{
 		// Trampolines
-		BurgerStatueMain_t = new Trampoline(0x630780, 0x630785, BurgerStatueMain_r);
-		MissionStatueMain_t = new Trampoline(0x593510, 0x593515, MissionStatueMain_r);
 		GoalEmerald_Windy_Display_t = new Trampoline(0x4DF3B0, 0x4DF3B6, GoalEmerald_Windy_Display_r);
 		GoalEmerald_Ice_Display_t = new Trampoline(0x4ECFA0, 0x4ECFA6, GoalEmerald_Ice_Display_r);
 		GoalEmerald_Casino_Display_t = new Trampoline(0x5DD0A0, 0x5DD0A6, GoalEmerald_Casino_Display_r);
@@ -1885,6 +1877,8 @@ void General_Init()
 		// Fixes for held objects
 		if (FixHeldObjects)
 		{
+			BurgerStatueMain_t = new Trampoline(0x630780, 0x630785, BurgerStatueMain_r);
+			MissionStatueMain_t = new Trampoline(0x593510, 0x593515, MissionStatueMain_r);
 			HandKey_Display_t = new Trampoline(0x532240, 0x532245, HandKey_Display_r);
 			WriteData((float**)0x495975, &SnowboardOffset1); // Sonic
 			WriteData((float**)0x45E56D, &SnowboardOffset1); // Tails
