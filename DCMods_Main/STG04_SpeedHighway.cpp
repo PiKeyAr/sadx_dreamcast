@@ -389,12 +389,12 @@ void SpeedHighway_Init()
 		*(NJS_OBJECT*)0x0267497C = *LoadModel("system\\data\\STG04\\Models\\001434F4.sa1mdl"); // Platform
 		*(NJS_OBJECT*)0x02687284 = *LoadModel("system\\data\\STG04\\Models\\00154480.sa1mdl"); // Small plant in Act 3
 		FlySt1 = LoadModel("system\\data\\STG04\\Models\\00142D48.sa1mdl"); // Platform2
+		FlySt2 = CloneObject(FlySt1); // Platform2
 		HideMesh_Object(FlySt1, 6);
 		AddAlphaRejectMaterial(&FlySt1->child->basicdxmodel->mats[0]);
 		AddAlphaRejectMaterial(&FlySt1->child->sibling->basicdxmodel->mats[0]);
 		AddAlphaRejectMaterial(&FlySt1->child->sibling->sibling->basicdxmodel->mats[0]);
 		AddAlphaRejectMaterial(&FlySt1->child->sibling->sibling->sibling->basicdxmodel->mats[0]);
-		FlySt2 = LoadModel("system\\data\\STG04\\Models\\00142D48.sa1mdl"); // Platform2
 		HideMesh_Object(FlySt2, 0, 1, 2, 3, 4, 5);
 		((NJS_ACTION*)0x02674424)->object = FlySt1;
 		WriteCall((void*)0x617FCA, FlyStFix);
