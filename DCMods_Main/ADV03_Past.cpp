@@ -32,6 +32,7 @@ NJS_OBJECT* TreeShadow = nullptr;
 FunctionPointer(void, AllocateEventObject, (ObjectMaster *a1, NJS_ACTION *a2, NJS_TEXLIST *a3, float a4, char a5, char a6), 0x42FE00);
 FunctionPointer(void, sub_6EEFF0, (NJS_OBJECT *a1), 0x6EEFF0);
 FunctionPointer(void, sub_4187D0, (EntityData1 *a1), 0x4187D0);
+FunctionPointer(void, DrawNPCShadow, (float a1), 0x634EB0);
 DataArray(DrawDistance, DrawDist_Past1, 0x0111E540, 3);
 DataArray(DrawDistance, DrawDist_Past2, 0x0111E558, 3);
 DataArray(DrawDistance, DrawDist_Past3, 0x0111E570, 3);
@@ -228,6 +229,12 @@ void UnloadLevelFiles_ADV03()
 	ADV03_2_Info = nullptr;
 }
 
+void PastNPCShadowFix(float size)
+{
+	DrawNPCShadow(size);
+	njControl3D(NJD_CONTROL_3D_CONSTANT_MATERIAL);
+}
+
 void ADV03_Init()
 {
 	// This is done every time the function is called
@@ -302,6 +309,9 @@ void ADV03_Init()
 		RemoveVertexColors_Object(ADV03_OBJECTS[29]); // Emeralds
 		RemoveVertexColors_Object(ADV03_ACTIONS[3]->object); // Tikal 1
 		RemoveVertexColors_Object((NJS_OBJECT*)0x8D4880); // Tikal 2
+		// Echidnas shadow fix
+		WriteData<5>((char*)0x543364, 0x90u); // Disable constant material before drawing NPC shadow
+		WriteCall((void*)0x5433A3, PastNPCShadowFix); // Enable constant material after drawing NPC shadow
 		// Event Chao eye fixes
 		WriteCall((void*)0x653C40, AllocateEventChao_9);
 		WriteCall((void*)0x653C67, AllocateEventChao_9);
