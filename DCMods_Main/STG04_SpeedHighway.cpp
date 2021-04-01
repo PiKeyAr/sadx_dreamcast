@@ -380,9 +380,9 @@ void SpeedHighway_Init()
 		((NJS_MATERIAL*)0x0268131C)->attrflags &= ~NJD_FLAG_IGNORE_SPECULAR;
 		((NJS_MATERIAL*)0x02681330)->attrflags &= ~NJD_FLAG_IGNORE_SPECULAR;
 		ConeBase = LoadModel("system\\data\\STG04\\Models\\001554A8.sa1mdl"); // Cone
-		HideMesh_Object(ConeBase, 0);
 		ConeTop = CloneObject(ConeBase); // Cone
 		AddWhiteDiffuseMaterial(&ConeBase->basicdxmodel->mats[1]);
+		HideMesh_Object(ConeBase, 0);
 		HideMesh_Object(ConeTop, 1);
 		WriteCall((void*)0x6165E5, ConeModel);
 		WriteCall((void*)0x616733, ConeSprite);
