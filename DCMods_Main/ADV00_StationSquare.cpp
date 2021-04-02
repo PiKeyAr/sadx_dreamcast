@@ -777,12 +777,23 @@ void ADV00_Init()
 		*(NJS_OBJECT*)0x2AB2CCC = *LoadModel("system\\data\\ADV00\\Models\\001689C4.sa1mdl"); // Souvenir shop door
 		*(NJS_OBJECT*)0x2AB57E4 = *LoadModel("system\\data\\ADV00\\Models\\0016B404.sa1mdl"); // OTwaDoor
 		*(NJS_MOTION*)0x2AB5960 = *LoadAnimation("system\\data\\ADV00\\Models\\0016B4B4.saanim"); // OTwaDoor motion
-		*(NJS_OBJECT*)0x2AFE668 = *LoadModel("system\\data\\ADV00\\Models\\001A6DEC.sa1mdl"); // Casino decoration 1 (stars)
-		*(NJS_OBJECT*)0x2B027D8 = *LoadModel("system\\data\\ADV00\\Models\\001AADA4.sa1mdl"); // Casino decoration 2 (wall)
-		*(NJS_OBJECT*)0x2B04CF8 = *LoadModel("system\\data\\ADV00\\Models\\001AD220.sa1mdl"); // Casino decoration 3 (letters)
-		ForceLevelSpecular_Object((NJS_OBJECT*)0x2B03A38, false); // Big Casino object
-		ForceLevelSpecular_Object((NJS_OBJECT*)0x2B03320, false); // Big Casino object
-		ForceLevelSpecular_Object((NJS_OBJECT*)0x2B00E14, true); // Big Casino object (wall)
+		*(NJS_OBJECT*)0x2AFE668 = *LoadModel("system\\data\\ADV00\\Models\\001A6DEC.sa1mdl"); // Casino stars
+		*(NJS_OBJECT*)0x2B04CF8 = *LoadModel("system\\data\\ADV00\\Models\\001AD220.sa1mdl"); // Casino moji
+		LoadModel_ReplaceMeshes((NJS_OBJECT*)0x2B040B4, "system\\data\\ADV00\\Models\\001AC5F0.sa1mdl"); // Casino building
+		*(NJS_OBJECT*)0x2B00E14 = *LoadModel("system\\data\\ADV00\\Models\\001A9448.sa1mdl"); // Casino building G
+		*(NJS_OBJECT*)0x2B027D8 = *LoadModel("system\\data\\ADV00\\Models\\001AADA4.sa1mdl"); // Casino building H
+		// Scale for Casino buildings (otherwise DC models clip)
+		WriteData((float*)0x63197B, 10.0f); // Night
+		WriteData((float*)0x6319A5, 10.0f); // Night
+		WriteData((float*)0x577059, 10.0f); // OKazari
+		WriteData((float*)0x577077, 10.0f); // OKazari
+		WriteData((float*)0x577119, 10.0f); // OKazari child
+		WriteData((float*)0x577199, 10.0f); // OKazari child
+		WriteData((float*)0x631A25, 10.0f); // OKazari child night
+		WriteData((float*)0x631AA9, 10.0f); // OKazari child night
+		WriteData((float*)0x631B16, 10.0f); // Day
+		WriteData((float*)0x631B34, 10.0f); // Day
+		WriteData((float*)0x631B43, 10.0f); // Day
 		*(NJS_OBJECT*)0x2AC8AEC = *LoadModel("system\\data\\ADV00\\Models\\0017CD14.sa1mdl"); // OStDoor
 		*(NJS_OBJECT*)0x2AB146C = *LoadModel("system\\data\\ADV00\\Models\\001671B8.sa1mdl"); // Burger shop door
 		*(NJS_OBJECT*)0x2AD4EA4 = *LoadModel("system\\data\\ADV00\\Models\\00186E88.sa1mdl"); // Hidden door 1
