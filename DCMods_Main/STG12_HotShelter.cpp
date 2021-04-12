@@ -203,20 +203,6 @@ void RenderOLight3(NJS_OBJECT* a1, QueuedModelFlagsB a2, float a3)
 	lateDrawObject(OLight3_4, (QueuedModelFlagsB)0, a3);
 }
 
-void E105Animation(NJS_OBJECT *a1, NJS_MOTION *a2, float a3, float a4)
-{
-	dsDrawMotionClip(a1, a2, a3, a4);
-	if (!MissedFrames && GameState != 16 && E105HitCounter > 0)
-	{
-		E105Angle = (E105Angle + 1024 * FramerateSetting) % 65535;
-		((NJS_OBJECT*)0x017D6C64)->pos[1] = -7.5f - 7.5f*njSin((E105Angle + 1024 * FramerateSetting) % 65535);
-		((NJS_OBJECT*)0x017D72FC)->pos[1] = -7.5f - 7.5f*njSin((E105Angle + 8192 + 1024 * FramerateSetting) % 65535);
-		((NJS_OBJECT*)0x017D7994)->pos[1] = -7.5f - 7.5f*njSin((E105Angle + 24576 + 1024 * FramerateSetting) % 65535);
-		((NJS_OBJECT*)0x017D589C)->pos[1] = -7.5f - 7.5f*njSin((E105Angle + 49152 + 1024 * FramerateSetting) % 65535);
-		((NJS_OBJECT*)0x017D5F34)->pos[1] = -7.5f - 7.5f*njSin((E105Angle + 32768 + 1024 * FramerateSetting) % 65535);
-		((NJS_OBJECT*)0x017D65CC)->pos[1] = -7.5f - 7.5f*njSin((E105Angle + 16384 + 1024 * FramerateSetting) % 65535);
-	}
-}
 
 void OEntotsuParticleFix(NJS_VECTOR *a1, NJS_VECTOR *a2, float a3)
 {
@@ -321,7 +307,6 @@ void HotShelter_Init()
 		WriteJump((void*)0x5A30F0, OLight1_Display);
 		WriteCall((void*)0x5A5D6C, RenderRoboTVBrokenGlass);
 		WriteCall((void*)0x5A3A03, PlayMusicHook_ReduceE105Fog); // Hook to disable fog in E105 room
-		WriteCall((void*)0x5A3C99, E105Animation); // Add missing E105 Zeta animation
 		WriteCall((void*)0x59F75C, AmyHatchFix); // Don't make the ventilation hatch solid when playing as Amy
 		WriteCall((void*)0x5ADAFE, RenderFourWaterThings); // Four aquariums in drainage room
 		// Fix the water splashes created by the water thing

@@ -131,6 +131,14 @@ void FixFVFZWrite(FVFStruct_H_B *a1, signed int count, int a3)
 	Direct3D_EnableZWrite(1u);
 }
 
+
+void DrawE101RWithCallback(NJS_ACTION* action, float frame)
+{
+	nj_motion_callback_old = 0x56AE40;
+	njActionOld(action, frame);
+	nj_motion_callback_old = 0;
+}
+
 void RenderE101R_Rocket(NJS_OBJECT *a1, NJS_MOTION *a2, float a3)
 {
 	SetMaterialAndSpriteColor_Float(1.0f, 1.0f, 1.0f, 1.0f);
@@ -170,9 +178,10 @@ void E101R_Init()
 	{
 		E101RHurtExplosion_t = new Trampoline(0x4CC880, 0x4CC886, E101RHurtExplosion_r);
 		if (!ModelsLoaded_B_ROBO) ResizeE101RTexlist();
+		// E-101R fixes
 		FixFVFShit();
 		WriteCall((void*)0x570DB1, RenderE101R_Rocket);
-		// E-101R fixes
+		WriteCall((void*)0x56B018, DrawE101RWithCallback);
 		ShadowBlob_Model.basicdxmodel->mats[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
 		WriteCall((void*)0x005709CA, E101R_ArmsHook);
 		WriteData<1>((char*)0x00568D20, 0xC3u); // E101R clip function

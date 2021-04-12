@@ -232,6 +232,7 @@ class IniFile;
 #define NJD_CUSTOMFLAG_NO_REJECT	(BIT_7)
 
 DataPointer(int, f_shadow, 0x3B2C5E4);
+DataPointer(int, nj_motion_callback_old, 0x3D08844);
 DataPointer(NJS_ARGB, nj_constant_material_, 0x3D0F7F0);
 DataPointer(NJS_MATRIX, nj_unit_matrix_, 0x389D650);
 DataPointer(NJS_MATRIX, MatrixStack_, 0x03A7CF48);

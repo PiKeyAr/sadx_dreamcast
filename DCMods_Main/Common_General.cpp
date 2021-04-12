@@ -1872,6 +1872,7 @@ void General_Init()
 		DisplayTitleCard_t = new Trampoline(0x47E170, 0x47E175, DisplayTitleCard_r);
 		CameraB_Display_t = new Trampoline(0x436CD0, 0x436CD6, CameraB_Display_r);
 		SetGlobalPoint2Col_Colors_t = new Trampoline(0x402F10, 0x402F18, SetGlobalPoint2Col_Colors_r);
+		WriteData((int*)0x007802D2, 0x3AB9908); // Redirect the old motion callback to fix missing animations
 		// Disable GrabButton setting in Control
 		if (RestoreYButton) WriteData<5>((char*)0x40FDEA, 0x90u);
 		// Fixes for held objects
