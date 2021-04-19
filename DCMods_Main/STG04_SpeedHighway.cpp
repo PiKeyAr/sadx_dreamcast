@@ -189,7 +189,7 @@ void ProcessMaterials_SpeedHighway(LandTable *landtable)
 		{
 			landtable->Col[j].Flags = 0x00000002;
 			HW3FountainMesh = landtable->Col[j].Model;
-			AddTextureAnimation_Permanent(4, 2, &HW3FountainMesh->basicdxmodel->mats[0], false, 4, 0, 13);
+			AddTextureAnimation(4, 2, &HW3FountainMesh->basicdxmodel->mats[0], false, 4, 0, 13);
 		}
 		if (DLLLoaded_Lantern)
 		{
