@@ -131,7 +131,6 @@ void FixFVFZWrite(FVFStruct_H_B *a1, signed int count, int a3)
 	Direct3D_EnableZWrite(1u);
 }
 
-
 void DrawE101RWithCallback(NJS_ACTION* action, float frame)
 {
 	nj_motion_callback_old = 0x56AE40;
