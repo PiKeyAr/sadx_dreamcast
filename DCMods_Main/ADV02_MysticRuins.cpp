@@ -601,7 +601,7 @@ void ADV02_Init()
 		OFinalEggModel_Transparent->child->sibling->sibling->sibling->sibling->sibling->child->sibling->evalflags |= NJD_EVAL_HIDE;
 		OFinalEggModel_Transparent->child->sibling->sibling->sibling->sibling->sibling->sibling->child->evalflags |= NJD_EVAL_HIDE;
 		OFinalEggModel_Transparent->child->sibling->sibling->sibling->sibling->sibling->sibling->child->sibling->evalflags |= NJD_EVAL_HIDE;
-		HideMesh_Object(OFinalEggModel_Transparent->child, 0, 1, 2, 3, 4, 5, 6, 7);
+		HideMesh_Object(OFinalEggModel_Transparent->child, 0, 1, 2, 3, 5, 6, 7);
 		// Base lights model
 		OFinalEggModel_Lights->evalflags |= NJD_EVAL_HIDE;
 		OFinalEggModel_Lights->child->evalflags |= NJD_EVAL_HIDE;
