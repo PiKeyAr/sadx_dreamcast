@@ -1220,21 +1220,21 @@ void RenderSA1ChaoFruits_Model_BlackMarket(NJS_CNK_MODEL *a1)
 	else if (a1 == Fruit_Hero.chunkmodel)
 	{
 		njSetTexture(&CHAO_OBJECT_TEXLIST);
-		njTranslate(0, 0, 0.8f, 0);
-		njScale(0, 0.5f, 0.5f, 0.5f);
+		njTranslate(0, 0, 0.5f, 0);
+		njScale(0, 0.6f, 0.6f, 0.6f);
 		dsDrawObject(ChaoFruit_Starnut); // Starnut
 	}
 	else if (a1 == Fruit_Dark.chunkmodel)
 	{
 		njSetTexture(&CHAO_OBJECT_TEXLIST);
-		njTranslate(0, 0, 0, 0);
-		njScale(0, 0.5f, 0.5f, 0.5f);
+		njTranslate(0, 0, -0.3f, 0);
+		njScale(0, 0.6f, 0.6f, 0.6f);
 		dsDrawObject(ChaoFruit_Hastnut); // Hastnut
 	}
 	else if (a1 == Fruit_Heart.chunkmodel)
 	{
 		njSetTexture(&CHAO_OBJECT_TEXLIST);
-		njTranslate(0, 0, -0.3f, 0);
+		njTranslate(0, 0, -0.5f, 0);
 		njScale(0, 0.5f, 0.5f, 0.5f);
 		dsDrawObject(ChaoFruit_Lifenut); // Lifenut
 	}
@@ -1556,25 +1556,25 @@ void ChaoEggHook_BlackMarket(NJS_CNK_MODEL *a1, int a2)
 	if (a2 == SADXEggColour_Black_TwoTone)
 	{
 		njSetTexture(&CHAO_TEXLIST);
-		lateDrawObject(ChaoEgg_BlackTwoTone, QueuedModelFlagsB_EnableZWrite, 1.0f);
+		dsDrawModel(ChaoEgg_BlackTwoTone->basicdxmodel);
 	}
 	// Generic egg
 	else if (a2 == SADXEggColour_Normal)
 	{
 		njSetTexture(&CHAO_TEXLIST);
-		lateDrawObject(ChaoEgg_Normal, QueuedModelFlagsB_EnableZWrite, 1.0f);
+		dsDrawModel(ChaoEgg_Normal->basicdxmodel);
 	}
 	// Gold egg
 	else if (a2 == SADXEggColour_YellowJewel)
 	{
 		njSetTexture(&CHAO_TEXLIST);
-		lateDrawObject(ChaoEgg_Gold, QueuedModelFlagsB_EnableZWrite, 1.0f);
+		dsDrawModel(ChaoEgg_Gold->basicdxmodel);
 	}
 	// Silver egg
 	else if (a2 == SADXEggColour_WhiteJewel)
 	{
 		njSetTexture(&CHAO_TEXLIST);
-		lateDrawObject(ChaoEgg_Silver, QueuedModelFlagsB_EnableZWrite, 1.0f);
+		dsDrawModel(ChaoEgg_Silver->basicdxmodel);
 	}
 	else GetChaoHatModel(a1, a2);
 }
@@ -1884,7 +1884,7 @@ void ChaoEggshellHatHook(NJS_CNK_MODEL *a1, int a2)
 	}
 }
 
-void ChaoEggshellHatHook_Empty(NJS_CNK_MODEL *a1, int a2)
+void ChaoEggshellHatHook_Empty(NJS_CNK_MODEL* a1, int a2)
 {
 	if (a2 != SADXEggColour_Black_TwoTone && a2 != SADXEggColour_Normal && a2 == SADXEggColour_YellowJewel && a2 == SADXEggColour_WhiteJewel)
 	{
@@ -2264,14 +2264,14 @@ void ChaoGardens_Init()
 		if (ReplaceEggs)
 		{
 			WriteCall((void*)0x73EA48, RenderChaoHatEyes);
-			WriteCall((void*)0x7264C3, ChaoEggshellHatHook_Empty); // Black Market 1
-			WriteCall((void*)0x7264D7, ChaoEggshellHatHook); // Black Market 2
+			WriteCall((void*)0x7264C3, ChaoEggshellHatHook_Empty); // Avoid rendering stuff twice
+			WriteCall((void*)0x7264D7, ChaoEggshellHatHook); // Black Market preview
 			WriteCall((void*)0x73EA2F, ChaoEggshellHatHook); // In DrawChao
 			WriteCall((void*)0x7235D9, ChaoEggshellHatHook); // In the garden
 			WriteJump((void*)0x78AF40, RenderChaoEgg_DC_1);
 			WriteJump((void*)0x78AF80, RenderChaoEgg_DC_2);
-			WriteCall((void*)0x7277C9, ChaoEggHook_BlackMarket);
-			WriteCall((void*)0x725EAE, ChaoEggHook_BlackMarket);
+			WriteCall((void*)0x7277C9, ChaoEggHook_BlackMarket); // Item list
+			WriteCall((void*)0x725EAE, ChaoEggHook_BlackMarket); // Preview
 		}
 		// Trees
 		WriteCall((void*)0x0072110F, SetChaoObjectTexlist);
