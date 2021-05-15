@@ -891,6 +891,44 @@ void AddCowgirlUVAnimations(NJS_OBJECT* obj)
 
 void Casinopolis_Init()
 {
+	ReplaceCAM("CAM0900K");
+	ReplaceCAM("CAM0900S");
+	ReplaceCAM("CAM0901M");
+	ReplaceCAM("CAM0901S");
+	ReplaceCAM("CAM0902S");
+	ReplaceCAM("CAM0903S");
+	ReplaceSET("SET0900K");
+	ReplaceSET("SET0900S");
+	ReplaceSET("SET0901M");
+	ReplaceSET("SET0901S");
+	ReplaceSET("SET0902S");
+	ReplaceSET("SET0903S");
+	ReplaceBIN("SETMI0900K"); // Fixed Casino mission objects not spawning
+	ReplacePVM("CASINO01");
+	ReplacePVM("CASINO02");
+	ReplacePVM("CASINO03");
+	ReplacePVM("CASINO04");
+	ReplacePVM("OBJ_CASINO2");
+	ReplacePVM("OBJ_CASINO8");
+	ReplacePVM("OBJ_CASINO9");
+	ReplacePVM("OBJ_CASINO_E");
+	// Fog and draw distance stuff 
+	for (int i = 0; i < 3; i++)
+	{
+		Casino1Fog[i].Color = 0xFF000000;
+		Casino1Fog[i].Layer = 800.0f;
+		Casino1Fog[i].Toggle = 1;
+		Casino1Fog[i].Distance = 2000.0f;
+		Casino2Fog[i].Color = 0xFF707000;
+		Casino2Fog[i].Layer = 1.0f;
+		Casino2Fog[i].Distance = 4000.0f;
+		Casino2Fog[i].Toggle = 1;
+		DrawDist_Casino2[i].Maximum = -2000.0;
+	}
+}
+
+void Casinopolis_Load()
+{
 	CasinoPaletteGenerated = false;
 	STG09_0_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG09\\0.sa1lvl"));
 	STG09_1_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG09\\1.sa1lvl"));
@@ -1141,19 +1179,6 @@ void Casinopolis_Init()
 		memcpy((void*)0x1E3BAC8, uv_001B9FC4, sizeof(uv_001B9FC4)); // ORlti
 		memcpy((void*)0x1E3BBC8, uv_001BA0C4, sizeof(uv_001BA0C4)); // ORlti
 		memcpy((void*)0x1E3BC08, uv_001BA104, sizeof(uv_001BA104)); // ORlti
-		// Fog and draw distance stuff 
-		for (int i = 0; i < 3; i++)
-		{
-			Casino1Fog[i].Color = 0xFF000000;
-			Casino1Fog[i].Layer = 800.0f;
-			Casino1Fog[i].Toggle = 1;
-			Casino1Fog[i].Distance = 2000.0f;
-			Casino2Fog[i].Color = 0xFF707000;
-			Casino2Fog[i].Layer = 1.0f;
-			Casino2Fog[i].Distance = 4000.0f;
-			Casino2Fog[i].Toggle = 1;
-			DrawDist_Casino2[i].Maximum = -2000.0;
-		}
 		ModelsLoaded_STG09 = true;
 	}
 }

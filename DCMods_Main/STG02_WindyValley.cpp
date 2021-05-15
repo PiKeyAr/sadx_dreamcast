@@ -124,6 +124,51 @@ void OHaneAFix(NJS_MODEL_SADX *model, QueuedModelFlagsB blend, float scale)
 
 void WindyValley_Init()
 {
+	ReplaceSET("SET0200S");
+	ReplaceSET("SET0200E");
+	ReplaceSET("SET0201S");
+	ReplaceSET("SET0202M");
+	ReplaceSET("SET0202S");
+	ReplaceCAM("CAM0200E");
+	ReplaceCAM("CAM0200S");
+	ReplaceCAM("CAM0201S");
+	ReplaceCAM("CAM0202M");
+	ReplaceCAM("CAM0202S");
+	ReplacePVM("OBJ_WINDY");
+	ReplacePVM("WINDY01");
+	ReplacePVM("WINDY02");
+	ReplacePVM("WINDY03");
+	ReplacePVM("WINDY_BACK");
+	ReplacePVM("WINDY_BACK2");
+	ReplacePVM("WINDY_BACK3");
+	// Skybox/fog data stuff
+	for (int i = 0; i < 3; i++)
+	{
+		SkyboxScale_Windy1->Far.x = 1.0f;
+		SkyboxScale_Windy1->Far.y = 1.0f;
+		SkyboxScale_Windy1->Far.z = 1.0f;
+		SkyboxScale_Windy1->Normal.x = 1.0f;
+		SkyboxScale_Windy1->Normal.y = 1.0f;
+		SkyboxScale_Windy1->Normal.z = 1.0f;
+		SkyboxScale_Windy1->Near.x = 1.0f;
+		SkyboxScale_Windy1->Near.y = 1.0f;
+		SkyboxScale_Windy1->Near.z = 1.0f;
+		DrawDist_WindyValley1[i].Maximum = -8000.0f;
+		FogData_Windy1[i].Distance = 12000.0f;
+		FogData_Windy1[i].Layer = 1000.0f;
+		FogData_Windy1[i].Color = 0xFFFFFFFF;
+		FogData_Windy2[i].Color = 0xFFFFFFFF;
+		FogData_Windy2[i].Distance = 2500.0f;
+		FogData_Windy2[i].Layer = 50.0f;
+		FogData_Windy2[i].Toggle = 1;
+		FogData_Windy3[i].Distance = 6000.0f;
+		FogData_Windy3[i].Layer = 200.0f;
+		FogData_Windy3[i].Color = 0xFFFFFFFF;
+	}
+}
+
+void WindyValley_Load()
+{
 	STG02_0_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG02\\0.sa1lvl"));
 	STG02_1_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG02\\1.sa1lvl"));
 	STG02_2_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG02\\2.sa1lvl"));
@@ -289,30 +334,6 @@ void WindyValley_Init()
 		*(NJS_OBJECT*)0xC36E44 = *LoadModel("system\\data\\STG02\\Models\\000D6BF8.sa1mdl"); // OKazami 1
 		*(NJS_OBJECT*)0xC365AC = *LoadModel("system\\data\\STG02\\Models\\000D6630.sa1mdl"); // OKazami 2
 		*(NJS_OBJECT*)0xC35F44 = *LoadModel("system\\data\\STG02\\Models\\000D6134.sa1mdl"); // OKazami 3
-		// Skybox/fog data stuff
-		for (int i = 0; i < 3; i++)
-		{
-			SkyboxScale_Windy1->Far.x = 1.0f;
-			SkyboxScale_Windy1->Far.y = 1.0f;
-			SkyboxScale_Windy1->Far.z = 1.0f;
-			SkyboxScale_Windy1->Normal.x = 1.0f;
-			SkyboxScale_Windy1->Normal.y = 1.0f;
-			SkyboxScale_Windy1->Normal.z = 1.0f;
-			SkyboxScale_Windy1->Near.x = 1.0f;
-			SkyboxScale_Windy1->Near.y = 1.0f;
-			SkyboxScale_Windy1->Near.z = 1.0f;
-			DrawDist_WindyValley1[i].Maximum = -8000.0f;
-			FogData_Windy1[i].Distance = 12000.0f;
-			FogData_Windy1[i].Layer = 1000.0f;
-			FogData_Windy1[i].Color = 0xFFFFFFFF;
-			FogData_Windy2[i].Color = 0xFFFFFFFF;
-			FogData_Windy2[i].Distance = 2500.0f;
-			FogData_Windy2[i].Layer = 50.0f;
-			FogData_Windy2[i].Toggle = 1;
-			FogData_Windy3[i].Distance = 6000.0f;
-			FogData_Windy3[i].Layer = 200.0f;
-			FogData_Windy3[i].Color = 0xFFFFFFFF;
-		}
 		ModelsLoaded_STG02 = true;
 	}
 };

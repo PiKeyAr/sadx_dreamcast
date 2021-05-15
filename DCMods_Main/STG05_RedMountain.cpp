@@ -111,6 +111,48 @@ void FixPropellerThing(NJS_MODEL_SADX *model, QueuedModelFlagsB blend, float sca
 
 void RedMountain_Init()
 {
+	ReplaceCAM("CAM0500S");
+	ReplaceCAM("CAM0501E");
+	ReplaceCAM("CAM0501S");
+	ReplaceCAM("CAM0502K");
+	ReplaceSET("SET0500S");
+	ReplaceSET("SET0501E");
+	ReplaceSET("SET0501S");
+	ReplaceSET("SET0502K");
+	ReplacePVM("MOUNTAIN01");
+	ReplacePVM("MOUNTAIN02");
+	ReplacePVM("MOUNTAIN03");
+	ReplacePVM("MOUNTAIN_CARRIER");
+	ReplacePVM("MOUNTAIN_E104");
+	ReplacePVM("MOUNTAIN_MEXPLOSION");
+	ReplacePVM("MOUNTAIN_STEAM");
+	ReplacePVM("OBJ_MOUNTAIN");
+	ReplacePVM("YOUGAN_ANIM");
+	WriteData<1>((char*)0x600700, 0xC3u); // Disable SetClip_RedMountain
+	for (int i = 0; i < 3; i++)
+	{
+		RedMountain1Fog[i].Color = 0xFFFFFFFF;
+		RedMountain1Fog[i].Layer = 2000.0f;
+		RedMountain1Fog[i].Distance = 16000.0f;
+		RedMountain1Fog[i].Toggle = 1;
+		RedMountain2Fog[i].Layer = 1650.0f;
+		RedMountain2Fog[i].Color = 0xFF000000;
+		RedMountain2Fog[i].Distance = 4000.0f;
+		RedMountain2Fog[i].Toggle = 1;
+		RedMountain3Fog[i].Color = 0xFFFFFFFF;
+		RedMountain3Fog[i].Layer = 1000.0f;
+		RedMountain3Fog[i].Distance = 12000.0f;
+		RedMountain3Fog[i].Toggle = 1;
+		DrawDist_RedMountain1[i].Maximum = -16000.0f;
+		DrawDist_RedMountain3[i].Maximum = -16000.0f;
+		SkyboxScale_RedMountain2[i].x = 1.0f;
+		SkyboxScale_RedMountain2[i].y = 1.0f;
+		SkyboxScale_RedMountain2[i].z = 1.0f;
+	}
+}
+
+void RedMountain_Load()
+{
 	STG05_0_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG05\\0.sa1lvl"));
 	STG05_1_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG05\\1.sa1lvl"));
 	STG05_2_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG05\\2.sa1lvl"));
@@ -180,26 +222,6 @@ void RedMountain_Init()
 		*(NJS_MODEL_SADX*)0x24394CC = *LoadModel("system\\data\\STG05\\Models\\00151600.sa1mdl")->basicdxmodel; // Light thing propeller 1
 		*(NJS_MODEL_SADX*)0x24392C4 = *LoadModel("system\\data\\STG05\\Models\\001513F0.sa1mdl")->basicdxmodel; // Light thing propeller 2
 		WriteCall((void*)0x60C987, FixPropellerThing);
-		for (int i = 0; i < 3; i++)
-		{
-			RedMountain1Fog[i].Color = 0xFFFFFFFF;
-			RedMountain1Fog[i].Layer = 2000.0f;
-			RedMountain1Fog[i].Distance = 16000.0f;
-			RedMountain1Fog[i].Toggle = 1;
-			RedMountain2Fog[i].Layer = 1650.0f;
-			RedMountain2Fog[i].Color = 0xFF000000;
-			RedMountain2Fog[i].Distance = 4000.0f;
-			RedMountain2Fog[i].Toggle = 1;
-			RedMountain3Fog[i].Color = 0xFFFFFFFF;
-			RedMountain3Fog[i].Layer = 1000.0f;
-			RedMountain3Fog[i].Distance = 12000.0f;
-			RedMountain3Fog[i].Toggle = 1;
-			DrawDist_RedMountain1[i].Maximum = -16000.0f;
-			DrawDist_RedMountain3[i].Maximum = -16000.0f;
-			SkyboxScale_RedMountain2[i].x = 1.0f;
-			SkyboxScale_RedMountain2[i].y = 1.0f;
-			SkyboxScale_RedMountain2[i].z = 1.0f;
-		}
 		ModelsLoaded_STG05 = true;
 	}
 }

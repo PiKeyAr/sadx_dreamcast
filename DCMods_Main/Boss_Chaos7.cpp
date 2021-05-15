@@ -154,7 +154,31 @@ void PerfectChaosBreathFix2(NJS_OBJECT *a1, float scale)
 	late_DrawObjectClip(a1, (QueuedModelFlagsB)0, scale);
 }
 
-void PerfectChaos_Init()
+void B_CHAOS7_Init()
+{
+	ReplaceSET("SET1900S");
+	ReplaceCAM("CAM1900S");
+	ReplacePVM("CHAOS7_0");
+	ReplacePVM("CHAOS7_0BREATH");
+	ReplacePVM("CHAOS7_0BREATH2ND");
+	ReplacePVM("CHAOS7_0DAMAGE");
+	ReplacePVM("CHAOS7_0DEAD_PTCHG");
+	ReplacePVM("CHAOS7_0SURFACE");
+	ReplacePVM("CHAOS7_0WATEREXP");
+	ReplacePVM("CHAOS7_0WEXP_PTCHG");
+	ReplacePVM("LM_CHAOS7_0");
+	ReplacePVM("OBJ_CHAOS7");
+	for (int i = 0; i < 3; i++)
+	{
+		Chaos7Fog[i].Layer = -6000.0f;
+		Chaos7Fog[i].Distance = -15000.0f;
+		Chaos7Fog[i].Toggle = 1;
+		Chaos7Fog[i].Color = 0xFF19CED3;
+		DrawDist_Chaos7[i].Maximum = -6500.0;
+	}
+}
+
+void B_CHAOS7_Load()
 {
 	B_CHAOS7_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\B_CHAOS7\\0.sa1lvl"));
 	LandTable* B_CHAOS7 = B_CHAOS7_Info->getlandtable(); //&landtable_00001214;
@@ -251,19 +275,11 @@ void PerfectChaos_Init()
 		// Breath
 		RemoveVertexColors_Object((NJS_OBJECT*)0x13A4034);
 		RemoveVertexColors_Object((NJS_OBJECT*)0x14D5530);
-		for (int i = 0; i < 3; i++)
-		{
-			Chaos7Fog[i].Layer = -6000.0f;
-			Chaos7Fog[i].Distance = -15000.0f;
-			Chaos7Fog[i].Toggle = 1;
-			Chaos7Fog[i].Color = 0xFF19CED3;
-			DrawDist_Chaos7[i].Maximum = -6500.0;
-		}
 		ModelsLoaded_B_CHAOS7 = true;
 	}
 }
 
-void PerfectChaos_OnFrame()
+void B_CHAOS7_OnFrame()
 {
 	// Super stupid hax to make Perfect Chaos' tornadoes fade in
 	if (EnabledLevels[LevelIDs_PerfectChaos])

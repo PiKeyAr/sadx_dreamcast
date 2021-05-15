@@ -7,7 +7,7 @@
 #define SQUARE(x) (x)*(x) 
 #define PYTHAGORAS(x,y) sqrt(SQUARE(x) + SQUARE(y))
 
-//Nullsub calls for other mods to hook
+// Nullsub calls for other mods to hook
 DataPointer(Uint8, nullsub_ADV00, 0x4231E6);
 DataPointer(Uint8, nullsub_ADV01, 0x4232C9);
 DataPointer(Uint8, nullsub_ADV01C, 0x4233BB);
@@ -467,7 +467,7 @@ struct UVAnimation
 	int v_shift;
 };
 
-//Level files
+// Level files
 extern LandTableInfo *STG00_0_Info;
 extern LandTableInfo *STG01_0_Info;
 extern LandTableInfo *STG01_1_Info;
@@ -560,7 +560,7 @@ extern std::vector <UVAnimation*> UVAnimationData_Permanent;
 extern NJS_TEXLIST texlist_ChaoRace;
 extern NJS_TEXLIST texlist_ChaoRaceEntry;
 
-//Level unload functions
+// Level unload functions
 void CheckAndUnloadLevelFiles();
 void UnloadLevelFiles_STG01();
 void UnloadLevelFiles_STG02();
@@ -592,88 +592,123 @@ void UnloadLevelFiles_ADV03();
 void UnloadLevelFiles_MINICART();
 void UnloadLevelFiles_SBOARD();
 void UnloadLevelFiles_Chao();
-void ReinitializeDLLStuff();
 
-//Mod Init and OnFrame functions
-void OIT_Init();
-void Branding_Init(const IniFile *config, const HelperFunctions &helperFunctions);
-void Videos_Init(const IniFile* config, const HelperFunctions& helperFunctions);
-void SADXStyleWater_Init(const IniFile* config, const HelperFunctions& helperFunctions);
-void Branding_OnFrame();
+// Mod Init, Load, OnFrame and OnInput functions
+void ADV00_Load();
+void ADV01_Load();
+void ADV01C_Load();
+void ADV02_Load();
+void ADV03_Load();
+void B_CHAOS0_Load();
+void B_CHAOS2_Load();
+void B_CHAOS4_Load();
+void B_CHAOS6_Load();
+void B_CHAOS7_Load();
+void B_EGM1_Load();
+void B_EGM2_Load();
+void B_EGM3_Load();
+void B_ROBO_Load();
+void B_E101_Load();
+void B_E101_R_Load();
+void EmeraldCoast_Load();
+void WindyValley_Load();
+void TwinklePark_Load();
+void SpeedHighway_Load();
+void RedMountain_Load();
+void SkyDeck_Load();
+void LostWorld_Load();
+void IceCap_Load();
+void Casinopolis_Load();
+void FinalEgg_Load();
+void HotShelter_Load();
+void SkyChase_Load();
+void TwinkleCircuit_Load();
+void SandHill_Load();
+void HedgehogHammer_Load();
+void AL_MAIN_Load();
+void AL_RACE_Load();
+void General_Load();
+
 void ADV00_Init();
-void ADV00_OnFrame();
 void ADV01_Init();
-void ADV01_OnFrame();
 void ADV01C_Init();
-void ADV01C_OnFrame();
 void ADV02_Init();
-void ADV02_OnFrame();
 void ADV03_Init();
-void ADV03_OnFrame();
-void Init_Global();
-void EggViper_OnFrame();
-void PerfectChaos_OnFrame();
-void EggHornet_OnFrame();
-void Zero_OnFrame();
-void E101R_OnFrame();
-void Chaos0_Init();
-void Chaos2_Init();
-void Chaos4_Init();
-void Chaos6_Init();
-void PerfectChaos_Init();
-void EggHornet_Init();
-void EggViper_Init();
-void EggWalker_Init();
-void Zero_Init();
-void E101_Init();
-void E101R_Init();
+void B_CHAOS0_Init();
+void B_CHAOS2_Init();
+void B_CHAOS4_Init();
+void B_CHAOS6_Init();
+void B_CHAOS7_Init();
+void B_EGM1_Init();
+void B_EGM2_Init();
+void B_EGM3_Init();
+void B_ROBO_Init();
+void B_E101_Init();
+void B_E101_R_Init();
 void EmeraldCoast_Init();
-void EmeraldCoast_OnFrame();
 void WindyValley_Init();
-void WindyValley_OnFrame();
 void ShareObj_Init();
 void TwinklePark_Init();
-//void TwinklePark_OnFrame();
-//void ShareObj_OnFrame();
 void SpeedHighway_Init();
-void SpeedHighway_OnFrame();
 void RedMountain_Init();
-void RedMountain_OnFrame();
 void SkyDeck_Init();
-void SkyDeck_OnFrame();
 void LostWorld_Init();
-void LostWorld_OnFrame();
 void IceCap_Init();
-void IceCap_OnFrame();
 void Casinopolis_Init();
-void Casinopolis_OnFrame();
 void FinalEgg_Init();
-void FinalEgg_OnFrame();
 void HotShelter_Init();
-void HotShelter_OnFrame();
 void SkyChase_Init();
 void TwinkleCircuit_Init();
-void SandHill_Init();
 void HedgehogHammer_Init();
-//void Subgames_OnFrame();
-void ChaoGardens_Init();
-void ChaoGardens_OnFrame();
-void ChaoRace_Init();
-void ChaoRace_OnFrame();
-void General_Init();
-void General_OnFrame();
-void General_OnInput();
-void Videos_OnFrame();
-void Videos_OnInput();
+void AL_MAIN_Init();
+void AL_RACE_Init();
 void SkyChaseFix_Init();
-void SkyChaseFix_UpdateBounds();
-void Branding_SetUpVariables();
+void General_Init();
 void SpeedFixes_Init();
+void SandHill_Init();
+void OIT_Init();
+void Branding_Init(const IniFile* config, const HelperFunctions& helperFunctions);
+void Videos_Init(const IniFile* config, const HelperFunctions& helperFunctions);
+void SADXStyleWater_Init(const IniFile* config, const HelperFunctions& helperFunctions);
+
+void EmeraldCoast_OnFrame();
+void WindyValley_OnFrame();
+//void TwinklePark_OnFrame();
+//void ShareObj_OnFrame();
+//void SpeedHighway_OnFrame();
+void RedMountain_OnFrame();
+void SkyDeck_OnFrame();
+void LostWorld_OnFrame();
+void IceCap_OnFrame();
+void Casinopolis_OnFrame();
+void FinalEgg_OnFrame();
+void HotShelter_OnFrame();
+void General_OnFrame();
+void AL_MAIN_OnFrame();
+void AL_RACE_OnFrame();
+void Videos_OnFrame();
 void SpeedFixes_OnFrame();
 void SADXStyleWater_OnFrame();
+void ADV00_OnFrame();
+void ADV01_OnFrame();
+void ADV01C_OnFrame();
+void ADV02_OnFrame();
+void ADV03_OnFrame();
+void B_EGM3_OnFrame();
+void B_CHAOS7_OnFrame();
+void B_EGM1_OnFrame();
+void B_ROBO_OnFrame();
+void B_E101_R_OnFrame();
+//void Subgames_OnFrame();
+void Branding_OnFrame();
+
+void General_OnInput();
+void Videos_OnInput();
+void SkyChaseFix_UpdateBounds();
+void Branding_SetUpVariables();
 void FixFVFShit();
 
-//Other stuff
+// Other stuff
 void ColorizeRecapText(int a1, int a2, float a3, float a4, float a5, float a6, float a7, float a8);
 void DisplayVideoFadeout(int fadeout, int mode);
 void __cdecl EmeraldCoast_OceanDraw_SADXStyle(OceanData *o);
@@ -685,10 +720,8 @@ void LoadBossECOceanTexlist();
 void RenderChaoTransporterEffect_Fix(NJS_MODEL_SADX *a1, float scale);
 void DrawEventHelicopter(NJS_ACTION *a1, float a2, int a3);
 void ResizeE101RTexlist();
-void DrawDebugText_NoFiltering(NJS_POINT2* points, float scale);
-void RestoreSubtitleFiltering(NJS_ARGB* a1);
 
-//Lighting functions
+// Lighting functions
 bool ForceWhiteDiffuse(NJS_MATERIAL* material, uint32_t flags);
 bool ForceWhiteDiffuse3_Night(NJS_MATERIAL* material, uint32_t flags);
 bool ForceWhiteDiffuse3Specular1(NJS_MATERIAL* material, uint32_t flags);
@@ -705,7 +738,7 @@ bool ForceDiffuse2Specular2(NJS_MATERIAL* material, uint32_t flags);
 bool ForceDiffuse2Specular3(NJS_MATERIAL* material, uint32_t flags);
 bool ForceDiffuse4Specular5(NJS_MATERIAL* material, uint32_t flags);
 
-//Generic functions
+// Generic functions
 void BackupDebugFontSettings();
 void RestoreDebugFontSettings();
 void SetHudColorAndTextureNum_Italic(int n, NJS_COLOR color);

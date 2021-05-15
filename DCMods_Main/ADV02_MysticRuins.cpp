@@ -528,6 +528,79 @@ void OHandKeyFix(NJS_ACTION* action, float frame, int flags, float scale)
 
 void ADV02_Init()
 {
+	ReplaceSET("SETMR00A");
+	ReplaceSET("SETMR00B");
+	ReplaceSET("SETMR00E");
+	ReplaceSET("SETMR00K");
+	ReplaceSET("SETMR00L");
+	ReplaceSET("SETMR00M");
+	ReplaceSET("SETMR00S");
+	ReplaceSET("SETMR01A");
+	ReplaceSET("SETMR01B");
+	ReplaceSET("SETMR01E");
+	ReplaceSET("SETMR01K");
+	ReplaceSET("SETMR01L");
+	ReplaceSET("SETMR01M");
+	ReplaceSET("SETMR01S");
+	ReplaceSET("SETMR02S");
+	ReplaceSET("SETMR03S");
+	ReplaceCAM("CAMMR00S");
+	ReplaceCAM("CAMMR01S");
+	ReplaceCAM("CAMMR02S");
+	ReplaceCAM("CAMMR03S");
+	ReplacePVM("ADV_MR00");
+	ReplacePVM("ADV_MR01");
+	ReplacePVM("ADV_MR02");
+	ReplacePVM("ADV_MR03");
+	ReplacePVM("MROBJ");
+	ReplacePVM("MR_SKY00");
+	ReplacePVM("MR_SKY01");
+	ReplacePVM("MR_SKY02");
+	ReplacePVM("MR_TRAIN");
+	ReplacePVM("TANKEN");
+	ReplacePVM("MROBJ_MAST");
+	ReplacePVM("MROBJ_MASTLDAM");
+	ReplacePVM("MROBJ_MASTSDAM");
+	ReplacePVM("MR_EGG");
+	ReplacePVM("MR_PYRAMID");
+	ReplacePVM("MR_TORNADO2");
+	ReplacePVM("MR_FINALEGG");
+	ReplaceBIN("SL_X0B"); // Day light direction override
+	ReplaceBIN("SL_X1B"); // Evening light direction override
+	ReplaceBIN("SL_X2B"); // Night light direction override
+	// Fog/draw distance data
+	for (int i = 0; i < 3; i++)
+	{
+		MR1FogDay[i].Distance = -14000.0f;
+		MR1FogDay[i].Layer = -2000.0f;
+		MR1FogDay[i].Toggle = 1;
+		MR1FogDay[i].Color = 0xFFA0A0A0;
+		MR1FogEvening[i].Distance = -9000.0f;
+		MR1FogEvening[i].Layer = -3500.0f;
+		MR1FogNight[i].Color = 0xFF001058;
+		MR1FogNight[i].Distance = -10000.0f;
+		MR1FogNight[i].Layer = -2000.0f;
+		MR2FogDay[i].Layer = -2000.0f;
+		MR2FogDay[i].Distance = -16000.0f;
+		MR2FogDay[i].Color = 0xFFA0A0A0;
+		MR2FogEvening[i].Distance = -12000.0f;
+		MR2FogEvening[i].Layer = -5000.0f;
+		MR2FogEvening[i].Color = 0xFF907858;
+		MR3FogDay[i].Layer = -4000.0f;
+		MR3FogDay[i].Distance = -16000.0f;
+		MR3FogDay[i].Color = 0xFFA0A0A0;
+		MR3FogNight[i].Distance = -12000;
+		MR3FogNight[i].Color = 0xFF001058;
+		MR3FogNight[i].Layer = -5000;
+		MR1DrawDist[i].Maximum = -10000.0f;
+		MR2DrawDist[i].Maximum = -10000.0f;
+		MR3DrawDist[i].Maximum = -16000.0f;
+		MR4DrawDist[i].Maximum = -4000.0f;
+	}
+}
+
+void ADV02_Load()
+{
 	// This is done every time the function is called
 	ADV02_0_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV02\\0.sa1lvl"));
 	ADV02_1_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV02\\1.sa1lvl"));
@@ -652,34 +725,6 @@ void ADV02_Init()
 		WriteCall((void*)0x53CD37, SetColor); // Set material color for Master Emerald glow
 		WriteCall((void*)0x53CE7D, DrawMasterEmeraldGlow);
 		WriteCall((void*)0x53CEDC, DrawMasterEmeraldGlow);
-		for (int i = 0; i < 3; i++)
-		{
-			MR1FogDay[i].Distance = -14000.0f;
-			MR1FogDay[i].Layer = -2000.0f;
-			MR1FogDay[i].Toggle = 1;
-			MR1FogDay[i].Color = 0xFFA0A0A0;
-			MR1FogEvening[i].Distance = -9000.0f;
-			MR1FogEvening[i].Layer = -3500.0f;
-			MR1FogNight[i].Color = 0xFF001058;
-			MR1FogNight[i].Distance = -10000.0f;
-			MR1FogNight[i].Layer = -2000.0f;
-			MR2FogDay[i].Layer = -2000.0f;
-			MR2FogDay[i].Distance = -16000.0f;
-			MR2FogDay[i].Color = 0xFFA0A0A0;
-			MR2FogEvening[i].Distance = -12000.0f;
-			MR2FogEvening[i].Layer = -5000.0f;
-			MR2FogEvening[i].Color = 0xFF907858;
-			MR3FogDay[i].Layer = -4000.0f;
-			MR3FogDay[i].Distance = -16000.0f;
-			MR3FogDay[i].Color = 0xFFA0A0A0;
-			MR3FogNight[i].Distance = -12000;
-			MR3FogNight[i].Color = 0xFF001058;
-			MR3FogNight[i].Layer = -5000;
-			MR1DrawDist[i].Maximum = -10000.0f;
-			MR2DrawDist[i].Maximum = -10000.0f;
-			MR3DrawDist[i].Maximum = -16000.0f;
-			MR4DrawDist[i].Maximum = -4000.0f;
-		}
 		*ADV02_TEXLISTS[38] = texlist_mr00;
 		*ADV02_TEXLISTS[39] = texlist_mr01;
 		*ADV02_TEXLISTS[40] = texlist_mr02;

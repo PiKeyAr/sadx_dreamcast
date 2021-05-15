@@ -166,7 +166,22 @@ void FixFVFShit()
 	WriteCall((void*)0x005715AE, E101R_DrawExplosion);
 }
 
-void E101R_Init()
+void B_E101_R_Init()
+{
+	ReplaceGeneric("E101R_GC.NB", "E101R_DC.NB");
+	ReplaceSET("SETE101RE");
+	ReplacePVM("E101R");
+	ReplacePVM("E101R_BG");
+	//ReplacePVM("E101R_TIKEI"); // Shared with Zero
+	for (int i = 0; i < 3; i++)
+	{
+		Fog_E101R[i].Distance = -10000.0f;
+		Fog_E101R[i].Layer = -10000.0f;
+		DrawDist_E101R[i].Maximum = -9500.0f;
+	}
+}
+
+void B_E101_R_Load()
 {
 	B_E101_R_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\B_E101_R\\0.sa1lvl"));
 	LandTable* B_E101_R = B_E101_R_Info->getlandtable(); //&landtable_00000180;
@@ -201,17 +216,11 @@ void E101R_Init()
 			E101RBossOcean->basicdxmodel->mats[0].attrflags |= NJD_FLAG_IGNORE_LIGHT;
 			E101RBossOcean->basicdxmodel->mats[0].diffuse.color = 0x7FB2B2B2;
 		}
-		for (int i = 0; i < 3; i++)
-		{
-			Fog_E101R[i].Distance = -10000.0f;
-			Fog_E101R[i].Layer = -10000.0f;
-			DrawDist_E101R[i].Maximum = -9500.0f;
-		}
 		ModelsLoaded_B_E101R = true;
 	}
 }
 
-void E101R_OnFrame()
+void B_E101_R_OnFrame()
 {
 	// Ocean animation
 	if (!IsGamePaused() && CurrentLevel == LevelIDs_E101R)

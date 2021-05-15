@@ -88,7 +88,20 @@ void UnloadLevelFiles_B_EGM3()
 	B_EGM3_Info = nullptr;
 }
 
-void EggViper_Init()
+void B_EGM3_Init()
+{
+	ReplaceSET("SETEGM3S");
+	ReplacePVM("EGM3CHIKEI");
+	ReplacePVM("EGM3MDL");
+	ReplacePVM("EGM3SPR");
+	for (int i = 0; i < 3; i++)
+	{
+		EggViperFog[i].Distance = -10000.0f;
+		EggViperFog[i].Layer = -10000.0f;
+	}
+}
+
+void B_EGM3_Load()
 {
 	NJS_MATERIAL* material;
 	B_EGM3_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\B_EGM3\\0.sa1lvl"));
@@ -134,16 +147,11 @@ void EggViper_Init()
 		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x166C54C)->basicdxmodel->mats[6]);
 		WriteCall((void*)0x6D04E3, EggViperCutsceneFix1); // supercoolsonic's position fix
 		WriteCall((void*)0x6D04EA, EggViperCutsceneFix2); // Cutscene pose fix
-		for (int i = 0; i < 3; i++)
-		{
-			EggViperFog[i].Distance = -10000.0f;
-			EggViperFog[i].Layer = -10000.0f;
-		}
 		ModelsLoaded_B_EGM3 = true;
 	}
 }
 
-void EggViper_OnFrame()
+void B_EGM3_OnFrame()
 {
 	// Egg Viper lighting effects
 	if (DLLLoaded_Lantern)

@@ -418,6 +418,42 @@ void ParseLWMaterials(LandTable* landtable, int act)
 
 void LostWorld_Init()
 {
+	ReplaceCAM("CAM0700S");
+	ReplaceCAM("CAM0701K");
+	ReplaceCAM("CAM0701S");
+	ReplaceCAM("CAM0702S");
+	ReplaceSET("SET0700S");
+	ReplaceSET("SET0701K");
+	ReplaceSET("SET0701S");
+	ReplaceSET("SET0702S");
+	ReplacePVM("BG_RUIN");
+	ReplacePVM("RUIN01");
+	ReplacePVM("RUIN02");
+	ReplacePVM("RUIN03");
+	ReplacePVM("OBJ_RUIN");
+	ReplacePVM("OBJ_RUIN2");
+	// Fog and other stuff
+	WriteData<1>((char*)0x005E315D, 0i8); // Prevent the mirror room from disabling character lighting
+	WriteData((float*)0x814CB4, -25.0f); // LW2 fog stuff
+	for (int i = 0; i < 3; i++)
+	{
+		LostWorld1Fog[i].Color = 0xFFFFFFFF;
+		LostWorld1Fog[i].Layer = 1.0f;
+		LostWorld1Fog[i].Distance = 3400.0f;
+		LostWorld1Fog[i].Toggle = 1;
+		LostWorld2Fog[i].Color = 0xFFFFFFFF;
+		LostWorld2Fog[i].Layer = 150.0f;
+		LostWorld2Fog[i].Distance = 3200.0f;
+		LostWorld2Fog[i].Toggle = 1;
+		LostWorld3Fog[i].Layer = 1.0f;
+		LostWorld3Fog[i].Distance = 3400.0f;
+		LostWorld3Fog[i].Color = 0xFFFFFFFF;
+		DrawDist_LostWorld2[i].Maximum = -2700.0;
+	}
+}
+
+void LostWorld_Load()
+{
 	STG07_0_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG07\\0.sa1lvl"));
 	STG07_1_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG07\\1.sa1lvl"));
 	STG07_2_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG07\\2.sa1lvl"));
@@ -537,24 +573,6 @@ void LostWorld_Init()
 		*(NJS_OBJECT*)0x20275D8 = *LoadModel("system\\data\\STG07\\Models\\0014A380.sa1mdl"); // TPanel effect
 		// Water fixes
 		WriteData<1>((void*)0x005E2090, 0xC3u); // Kill water animation in Act 1
-		// Fog and other stuff
-		WriteData<1>((char*)0x005E315D, 0i8); // Prevent the mirror room from disabling character lighting
-		WriteData((float*)0x814CB4, -25.0f); // LW2 fog stuff
-		for (int i = 0; i < 3; i++)
-		{
-			LostWorld1Fog[i].Color = 0xFFFFFFFF;
-			LostWorld1Fog[i].Layer = 1.0f;
-			LostWorld1Fog[i].Distance = 3400.0f;
-			LostWorld1Fog[i].Toggle = 1;
-			LostWorld2Fog[i].Color = 0xFFFFFFFF;
-			LostWorld2Fog[i].Layer = 150.0f;
-			LostWorld2Fog[i].Distance = 3200.0f;
-			LostWorld2Fog[i].Toggle = 1;
-			LostWorld3Fog[i].Layer = 1.0f;
-			LostWorld3Fog[i].Distance = 3400.0f;
-			LostWorld3Fog[i].Color = 0xFFFFFFFF;
-			DrawDist_LostWorld2[i].Maximum = -2700.0;
-		}
 		ModelsLoaded_STG07 = true;
 	}
 }

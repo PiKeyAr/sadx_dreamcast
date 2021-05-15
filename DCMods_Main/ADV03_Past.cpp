@@ -237,6 +237,40 @@ void PastNPCShadowFix(float size)
 
 void ADV03_Init()
 {
+	ReplaceCAM("CAMPAST00S");
+	ReplaceCAM("CAMPAST01S");
+	ReplaceCAM("CAMPAST02S");
+	ReplaceSET("SETPAST00S");
+	ReplaceSET("SETPAST01S");
+	ReplaceSET("SETPAST02S");
+	ReplacePVM("EFF_PAST");
+	ReplacePVM("EV_ALIFE");
+	ReplacePVM("K_PATYA");
+	ReplacePVM("OBJ_PAST");
+	ReplacePVM("PAST00");
+	ReplacePVM("PAST01");
+	ReplacePVM("PAST02");
+	ReplacePVM("PAST_KN_FAM");
+	ReplacePVM("KNUCKLES_NORMAL");
+	ReplacePVM("KNUCKLES_DEBU");
+	ReplacePVM("KNUCKLES_LONG");
+	// Fog data
+	for (int i = 0; i < 3; i++)
+	{
+		FogData_Past1[i].Layer = -12000.0f;
+		FogData_Past1[i].Distance = -12000.0f;
+		FogData_Past2[i].Layer = -12000.0f;
+		FogData_Past2[i].Distance = -12000.0f;
+		FogData_Past3[i].Layer = -12000.0f;
+		FogData_Past3[i].Distance = -12000.0f;
+		DrawDist_Past1[i].Maximum = -12000.0f;
+		DrawDist_Past2[i].Maximum = -16000.0f;
+		DrawDist_Past3[i].Maximum = -16000.0f;
+	}
+}
+
+void ADV03_Load()
+{
 	// This is done every time the function is called
 	PastChaoModel_2_Info = new ModelInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV03\\Models\\000DD8A8.sa1mdl"));
 	PastChaoModel_7_Info = new ModelInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV03\\Models\\000DD8A8.sa1mdl"));
@@ -393,19 +427,6 @@ void ADV03_Init()
 		*ADV03_OBJECTS[20] = *LoadModel("system\\data\\ADV03\\Models\\0001E498.sa1mdl"); // OBigStairs
 		*ADV03_OBJECTS[19] = *LoadModel("system\\data\\ADV03\\Models\\0001E59C.sa1mdl"); // OBigStairs low LOD
 		*ADV03_OBJECTS[22] = *LoadModel("system\\data\\ADV03\\Models\\0001D878.sa1mdl"); // OPyStairs low LOD
-		// Fog data
-		for (int i = 0; i < 3; i++)
-		{
-			FogData_Past1[i].Layer = -12000.0f;
-			FogData_Past1[i].Distance = -12000.0f;
-			FogData_Past2[i].Layer = -12000.0f;
-			FogData_Past2[i].Distance = -12000.0f;
-			FogData_Past3[i].Layer = -12000.0f;
-			FogData_Past3[i].Distance = -12000.0f;
-			DrawDist_Past1[i].Maximum = -12000.0f;
-			DrawDist_Past2[i].Maximum = -16000.0f;
-			DrawDist_Past3[i].Maximum = -16000.0f;
-		}
 		ModelsLoaded_ADV03 = true;
 	}
 }

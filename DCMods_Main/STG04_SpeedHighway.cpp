@@ -263,6 +263,42 @@ void MissileFix(NJS_OBJECT *obj)
 
 void SpeedHighway_Init()
 {
+	ReplaceCAM("CAM0400M");
+	ReplaceCAM("CAM0400S");
+	ReplaceCAM("CAM0401S");
+	ReplaceCAM("CAM0402K");
+	ReplaceCAM("CAM0402S");
+	ReplaceSET("SET0400M");
+	ReplaceSET("SET0400S");
+	ReplaceSET("SET0401S");
+	ReplaceSET("SET0402K");
+	ReplaceSET("SET0402S");
+	ReplacePVM("BG_HIGHWAY");
+	ReplacePVM("BG_HIGHWAY01");
+	ReplacePVM("BG_HIGHWAY02");
+	ReplacePVM("BG_HIGHWAY03");
+	ReplacePVM("HIGHWAY01");
+	ReplacePVM("HIGHWAY02");
+	ReplacePVM("HIGHWAY03");
+	ReplacePVM("HIGHWAY_CAR");
+	ReplacePVM("OBJ_HIGHWAY");
+	ReplacePVM("OBJ_HIGHWAY2");
+	for (int i = 0; i < 3; i++)
+	{
+		SpeedHighway1Fog[i].Layer = 2000.0f;
+		SpeedHighway1Fog[i].Distance = 5200.0f;
+		SpeedHighway3Fog[i].Color = 0xFF7FB2E5;
+		SpeedHighway3Fog[i].Layer = 1200.0f;
+		SpeedHighway3Fog[i].Distance = 2900.0f;
+		SpeedHighway3Fog[i].Toggle = 1;
+		SpeedHighway2Fog[i].Layer = 1600.0f;
+		SpeedHighway2Fog[i].Distance = 4800.0f;
+		SpeedHighway2Fog[i].Color = 0xFF300020;
+	}
+}
+
+void SpeedHighway_Load()
+{
 	STG04_0_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG04\\0.sa1lvl"));
 	STG04_1_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG04\\1.sa1lvl"));
 	STG04_2_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG04\\2.sa1lvl"));
@@ -486,18 +522,6 @@ void SpeedHighway_Init()
 		RemoveVertexColors_Object((NJS_OBJECT*)0x2675730); // container B top broken 3
 		RemoveVertexColors_Object((NJS_OBJECT*)0x2677A4C); // container B top broken 4
 		RemoveVertexColors_Object((NJS_OBJECT*)0x26774B8); // container B top broken 5
-		for (int i = 0; i < 3; i++)
-		{
-			SpeedHighway1Fog[i].Layer = 2000.0f;
-			SpeedHighway1Fog[i].Distance = 5200.0f;
-			SpeedHighway3Fog[i].Color = 0xFF7FB2E5;
-			SpeedHighway3Fog[i].Layer = 1200.0f;
-			SpeedHighway3Fog[i].Distance = 2900.0f;
-			SpeedHighway3Fog[i].Toggle = 1;
-			SpeedHighway2Fog[i].Layer = 1600.0f;
-			SpeedHighway2Fog[i].Distance = 4800.0f;
-			SpeedHighway2Fog[i].Color = 0xFF300020;
-		}
 		ModelsLoaded_STG04 = true;
 	}
 }

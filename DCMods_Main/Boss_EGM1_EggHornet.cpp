@@ -77,7 +77,29 @@ void EggHornet_RotationDisable(ObjectMaster *a1)
 	CheckThingButThenDeleteObject(a1);
 }
 
-void EggHornet_Init()
+void B_EGM1_Init()
+{
+	ReplaceSET("SETEGM1S");
+	ReplacePVM("EGM1");
+	ReplacePVM("EGM1LAND");
+	ReplacePVM("EGM1BARRIER");
+	ReplacePVM("EGM1EGGMAN");
+	ReplacePVM("EGM1JET");
+	ReplacePVM("EGM1JETB");
+	ReplacePVM("EGM1MIS");
+	ReplacePVM("EGM1SORA");
+	ReplacePVM("EGM1TSUCHI");
+	for (int i = 0; i < 3; i++)
+	{
+		DrawDist_EggHornet[i].Maximum = -12500.0;
+		EggHornetFog[i].Distance = -14000.0f;
+		EggHornetFog[i].Layer = -2000.0f;
+		EggHornetFog[i].Toggle = 1;
+		EggHornetFog[i].Color = 0xFFA0A0A0;
+	}
+}
+
+void B_EGM1_Load()
 {
 	NJS_MATERIAL* material;
 	B_EGM1_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\B_EGM1\\0.sa1lvl"));
@@ -160,14 +182,6 @@ void EggHornet_Init()
 		((NJS_MATERIAL*)0x015570AC)->attrflags &= ~NJD_FLAG_IGNORE_SPECULAR;
 		ForceObjectSpecular_Object((NJS_OBJECT*)0x1561A70, false);
 		AddWhiteDiffuseMaterial((NJS_MATERIAL*)0x0155D1DC); // Drill white diffuse
-		for (int i = 0; i < 3; i++)
-		{
-			DrawDist_EggHornet[i].Maximum = -12500.0;
-			EggHornetFog[i].Distance = -14000.0f;
-			EggHornetFog[i].Layer = -2000.0f;
-			EggHornetFog[i].Toggle = 1;
-			EggHornetFog[i].Color = 0xFFA0A0A0;
-		}
 		// Rotation stuff
 		WriteCall((void*)0x574BC3, EggHornet_RotationDisable);
 		WriteCall((void*)0x571F79, RotateEggHornet);
@@ -176,7 +190,7 @@ void EggHornet_Init()
 	}
 }
 
-void EggHornet_OnFrame()
+void B_EGM1_OnFrame()
 {
 	// Egg Hornet rotation
 	if (EnabledLevels[LevelIDs_EggHornet] && CurrentLevel == LevelIDs_EggHornet && !IsGamePaused())

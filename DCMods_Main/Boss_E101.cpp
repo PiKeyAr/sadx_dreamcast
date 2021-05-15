@@ -9,7 +9,14 @@ void UnloadLevelFiles_B_E101()
 	B_E101_Info = nullptr;
 }
 
-void E101_Init()
+void B_E101_Init()
+{
+	ReplaceSET("SETE101E");
+	ReplacePVM("E101");
+	ReplacePVM("E101_TIKEI");
+}
+
+void B_E101_Load()
 {
 	B_E101_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\B_E101\\0.sa1lvl"));
 	LandTable* B_E101 = B_E101_Info->getlandtable(); //&landtable_00000068;

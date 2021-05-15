@@ -468,130 +468,185 @@ extern "C"
 			WriteCall((void*)0x6428AD, ColorizeRecapText);
 		}
 		// Init functions
-		Init_Global(); // General stuff that runs at mod startup, some level-specific stuff there too
 		WriteCall((void*)0x43A757, land_DrawObjectHacc);
 		WriteCall((void*)0x43A7CD, land_DrawObjectHacc);
 		if (AssumeOIT) OIT_Init();
 		SADXStyleWater_Init(config, helperFunctions);
+		General_Init();
 		if (EnableDCBranding) Branding_Init(config, helperFunctions);
 		if (EnabledLevels[LevelIDs_StationSquare] && nullsub_ADV00 != 0x90u)
 		{
-			WriteCall((void*)0x4231E6, ADV00_Init);
+			ADV00_Init();
+			WriteCall((void*)0x4231E6, ADV00_Load);
 		}
 		if (EnabledLevels[LevelIDs_EggCarrierOutside])
 		{
-			if (nullsub_ADV01 != 0x90u) WriteCall((void*)0x4232C9, ADV01_Init);
-			if (nullsub_ADV01C != 0x90u) WriteCall((void*)0x4233BB, ADV01C_Init);
+			if (nullsub_ADV01 != 0x90u)
+			{
+				ADV01_Init();
+				WriteCall((void*)0x4232C9, ADV01_Load); 
+			}
+			if (nullsub_ADV01C != 0x90u)
+			{
+				ADV01C_Init();
+				WriteCall((void*)0x4233BB, ADV01C_Load);
+			}
 		}
 		if (EnabledLevels[LevelIDs_MysticRuins] && nullsub_ADV02 != 0x90u)
 		{
-			WriteCall((void*)0x4234AD, ADV02_Init);
+			ADV02_Init();
+			WriteCall((void*)0x4234AD, ADV02_Load);
 		}
 		if (EnabledLevels[LevelIDs_Past] && nullsub_ADV03 != 0x90u)
 		{
-			WriteCall((void*)0x423554, ADV03_Init);
+			ADV03_Init();
+			WriteCall((void*)0x423554, ADV03_Load);
 		}
 		if (EnabledLevels[LevelIDs_EmeraldCoast] && nullsub_STG01 != 0x90u)
 		{
-			WriteCall((void*)0x422B68, EmeraldCoast_Init);
+			EmeraldCoast_Init();
+			WriteCall((void*)0x422B68, EmeraldCoast_Load);
 		}
 		if (EnabledLevels[LevelIDs_WindyValley] && nullsub_STG02 != 0x90u)
 		{
-			WriteCall((void*)0x422BD3, WindyValley_Init);
+			WindyValley_Init();
+			WriteCall((void*)0x422BD3, WindyValley_Load);
 		}
 		if (EnabledLevels[LevelIDs_TwinklePark] && nullsub_STG03 != 0x90u)
 		{
-			WriteCall((void*)0x422C3E, TwinklePark_Init);
+			TwinklePark_Init();
+			WriteCall((void*)0x422C3E, TwinklePark_Load);
 		}
 		if (EnabledLevels[LevelIDs_SpeedHighway] && nullsub_STG04 != 0x90u)
 		{
-			WriteCall((void*)0x422CA9, SpeedHighway_Init);
+			SpeedHighway_Init();
+			WriteCall((void*)0x422CA9, SpeedHighway_Load);
 		}
 		if (EnabledLevels[LevelIDs_RedMountain] && nullsub_STG05 != 0x90u)
 		{
-			WriteCall((void*)0x422D14, RedMountain_Init);
+			RedMountain_Init();
+			WriteCall((void*)0x422D14, RedMountain_Load);
 		}
 		if (EnabledLevels[LevelIDs_SkyDeck] && nullsub_STG06 != 0x90u)
 		{
-			WriteCall((void*)0x422D84, SkyDeck_Init);
+			SkyDeck_Init();
+			WriteCall((void*)0x422D84, SkyDeck_Load);
 		}
 		if (EnabledLevels[LevelIDs_LostWorld] && nullsub_STG07 != 0x90u)
 		{
-			WriteCall((void*)0x422DEF, LostWorld_Init);
+			LostWorld_Init();
+			WriteCall((void*)0x422DEF, LostWorld_Load);
 		}
 		if (EnabledLevels[LevelIDs_IceCap] && nullsub_STG08 != 0x90u)
 		{
-			WriteCall((void*)0x422E5A, IceCap_Init);
+			IceCap_Init();
+			WriteCall((void*)0x422E5A, IceCap_Load);
 		}
 		if (EnabledLevels[LevelIDs_Casinopolis] && nullsub_STG09 != 0x90u)
 		{
-			WriteCall((void*)0x422EE8, Casinopolis_Init);
+			Casinopolis_Init();
+			WriteCall((void*)0x422EE8, Casinopolis_Load);
 		}
 		if (EnabledLevels[LevelIDs_FinalEgg] && nullsub_STG10 != 0x90u)
 		{
-			WriteCall((void*)0x422F71, FinalEgg_Init);
+			FinalEgg_Init();
+			WriteCall((void*)0x422F71, FinalEgg_Load);
 		}
 		if (EnabledLevels[LevelIDs_HotShelter] && nullsub_STG12 != 0x90u)
 		{
-			WriteCall((void*)0x422FFF, HotShelter_Init);
+			HotShelter_Init();
+			WriteCall((void*)0x422FFF, HotShelter_Load);
 		}
 		if (EnabledLevels[LevelIDs_Chaos0] && nullsub_B_CHAOS0 != 0x90u)
 		{
-			WriteCall((void*)0x423088, Chaos0_Init);
+			B_CHAOS0_Init();
+			WriteCall((void*)0x423088, B_CHAOS0_Load);
 		}
 		if (EnabledLevels[LevelIDs_Chaos2] && nullsub_B_CHAOS2 != 0x90u)
 		{
-			WriteCall((void*)0x4230B7, Chaos2_Init);
+			B_CHAOS2_Init();
+			WriteCall((void*)0x4230B7, B_CHAOS2_Load);
 		}
 		if (EnabledLevels[LevelIDs_Chaos4] && nullsub_B_CHAOS4 != 0x90u)
 		{
-			WriteCall((void*)0x4230CD, Chaos4_Init);
+			B_CHAOS4_Init();
+			WriteCall((void*)0x4230CD, B_CHAOS4_Load);
 		}
 		if (EnabledLevels[LevelIDs_Chaos6] && nullsub_B_CHAOS6 != 0x90u)
 		{
-			WriteCall((void*)0x4230E3, Chaos6_Init);
+			B_CHAOS6_Init();
+			WriteCall((void*)0x4230E3, B_CHAOS6_Load);
 		}
 		if (EnabledLevels[LevelIDs_PerfectChaos] && nullsub_B_CHAOS7 != 0x90u)
 		{
-			WriteCall((void*)0x423108, PerfectChaos_Init);
+			B_CHAOS7_Init();
+			WriteCall((void*)0x423108, B_CHAOS7_Load);
 		}
 		if (EnabledLevels[LevelIDs_EggHornet] && nullsub_B_EGM1 != 0x90u)
 		{
-			WriteCall((void*)0x423146, EggHornet_Init);
+			B_EGM1_Init();
+			WriteCall((void*)0x423146, B_EGM1_Load);
 		}
 		if (EnabledLevels[LevelIDs_EggWalker] && nullsub_B_EGM2 != 0x90u)
 		{
-			WriteCall((void*)0x42315F, EggWalker_Init);
+			B_EGM2_Init();
+			WriteCall((void*)0x42315F, B_EGM2_Load);
 		}
 		if (EnabledLevels[LevelIDs_EggViper] && nullsub_B_EGM3 != 0x90u)
 		{
-			WriteCall((void*)0x423178, EggViper_Init);
+			B_EGM3_Init();
+			WriteCall((void*)0x423178, B_EGM3_Load);
 		}
 		if (EnabledLevels[LevelIDs_E101] && nullsub_B_E101 != 0x90u)
 		{
-			WriteCall((void*)0x4231AF, E101_Init);
+			B_E101_Init();
+			WriteCall((void*)0x4231AF, B_E101_Load);
 		}
 		if (EnabledLevels[LevelIDs_Zero])
 		{
-			if (nullsub_B_ROBO != 0x90u) WriteCall((void*)0x423196, Zero_Init);
-			if (nullsub_B_E101R != 0x90u) WriteCall((void*)0x4231CD, E101R_Init);
+			if (nullsub_B_ROBO != 0x90u)
+			{
+				B_ROBO_Init();
+				WriteCall((void*)0x423196, B_ROBO_Load);
+			}
+			if (nullsub_B_E101R != 0x90u)
+			{
+				B_E101_R_Init();
+				WriteCall((void*)0x4231CD, B_E101_R_Load);
+			}
 		}
 		SkyChaseFix_Init();
-		if (nullsub_SHOOTING1 != 0x90u) WriteCall((void*)0x4236B1, SkyChase_Init);
-		if (nullsub_SHOOTING2 != 0x90u) WriteCall((void*)0x4236E0, SkyChase_Init);
+		if (nullsub_SHOOTING1 == 0x90u || nullsub_SHOOTING2 == 0x90u)
+			SkyChase_Init();
+		if (nullsub_SHOOTING1 != 0x90u)
+		{
+			WriteCall((void*)0x4236B1, SkyChase_Load);
+		}
+		if (nullsub_SHOOTING2 != 0x90u)
+		{
+			WriteCall((void*)0x4236E0, SkyChase_Load);
+		}
 		if (EnabledLevels[LevelIDs_HedgehogHammer] && nullsub_STG00 != 0x90u)
 		{
-			WriteCall((void*)0x422B2A, HedgehogHammer_Init);
+			HedgehogHammer_Init();
+			WriteCall((void*)0x422B2A, HedgehogHammer_Load);
 		}
 		if (EnabledLevels[LevelIDs_TwinkleCircuit] && nullsub_MINICART != 0x90u)
 		{
-			WriteCall((void*)0x4235EC, TwinkleCircuit_Init);
+			TwinkleCircuit_Init();
+			WriteCall((void*)0x4235EC, TwinkleCircuit_Load);
 		}
 		if (EnabledLevels[LevelIDs_SandHill] && nullsub_SBOARD != 0x90u)
 		{
-			WriteCall((void*)0x42370F, SandHill_Init);
+			SandHill_Init();
+			WriteCall((void*)0x42370F, SandHill_Load);
 		}
-		if (nullsub_Chao != 0x90u) WriteCall((void*)0x423795, ChaoGardens_Init);
+		if (nullsub_Chao != 0x90u)
+		{
+			AL_MAIN_Init();
+			AL_RACE_Init();
+			WriteCall((void*)0x423795, AL_MAIN_Load);
+		}
 		if (!DisableAllVideoStuff) Videos_Init(config, helperFunctions);
 		if (EnableSpeedFixes) SpeedFixes_Init();
 		delete config;
@@ -696,14 +751,14 @@ extern "C"
 		}
 		if (EnabledLevels[LevelIDs_MysticRuins] && nullsub_ADV02 != 0x90u) ADV02_OnFrame();
 		if (EnabledLevels[LevelIDs_Past] && nullsub_ADV03 != 0x90u) ADV03_OnFrame();
-		if (EnabledLevels[LevelIDs_EggHornet] && nullsub_B_EGM1 != 0x90u) EggHornet_OnFrame();
-		if (EnabledLevels[LevelIDs_EggViper] && nullsub_B_EGM3 != 0x90u) EggViper_OnFrame();
+		if (EnabledLevels[LevelIDs_EggHornet] && nullsub_B_EGM1 != 0x90u) B_EGM1_OnFrame();
+		if (EnabledLevels[LevelIDs_EggViper] && nullsub_B_EGM3 != 0x90u) B_EGM3_OnFrame();
 		if (EnabledLevels[LevelIDs_Zero])
 		{
-			if (nullsub_B_ROBO != 0x90u) Zero_OnFrame();
-			if (nullsub_B_E101R != 0x90u) E101R_OnFrame();
+			if (nullsub_B_ROBO != 0x90u) B_ROBO_OnFrame();
+			if (nullsub_B_E101R != 0x90u) B_E101_R_OnFrame();
 		}
-		if (EnabledLevels[LevelIDs_PerfectChaos] && nullsub_B_CHAOS7 != 0x90u) PerfectChaos_OnFrame();
+		if (EnabledLevels[LevelIDs_PerfectChaos] && nullsub_B_CHAOS7 != 0x90u) B_CHAOS7_OnFrame();
 		if (EnabledLevels[LevelIDs_EmeraldCoast] && nullsub_STG01 != 0x90u) EmeraldCoast_OnFrame();
 		if (EnabledLevels[LevelIDs_WindyValley] && nullsub_STG02 != 0x90u) WindyValley_OnFrame();
 		//if (EnabledLevels[LevelIDs_TwinklePark] && nullsub_STG03 != 0x90u) TwinklePark_OnFrame();
@@ -717,8 +772,8 @@ extern "C"
 		if (EnabledLevels[LevelIDs_FinalEgg] && nullsub_STG10 != 0x90u) FinalEgg_OnFrame();
 		if (EnabledLevels[LevelIDs_HotShelter] && nullsub_STG12 != 0x90u) HotShelter_OnFrame();
 		//Subgames_OnFrame();
-		if (nullsub_Chao != 0x90u) ChaoGardens_OnFrame();
-		if (nullsub_Chao != 0x90u) ChaoRace_OnFrame();
+		if (nullsub_Chao != 0x90u) AL_MAIN_OnFrame();
+		if (nullsub_Chao != 0x90u) AL_RACE_OnFrame();
 		General_OnFrame();
 		if (!DisableAllVideoStuff) Videos_OnFrame();
 		if (EnableSpeedFixes) SpeedFixes_OnFrame();

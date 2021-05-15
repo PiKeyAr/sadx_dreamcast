@@ -123,9 +123,6 @@
     <ClCompile Include="Common_Branding.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Common_Startup.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Common_Videos.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

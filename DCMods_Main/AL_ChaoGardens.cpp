@@ -2146,7 +2146,38 @@ void UnloadLevelFiles_Chao()
 	AL_RACE_1_Info = nullptr;
 }
 
-void ChaoGardens_Init()
+void AL_MAIN_Init()
+{
+	ReplacePVM("CHAO");
+	ReplacePVM("CHAO_OBJECT");
+	ReplacePVM("CHAO_HYOUJI");
+	ReplacePVM("CHAO_HYOUJI_E");
+	ReplacePVM("CHAO_HYOUJI_F");
+	ReplacePVM("CHAO_HYOUJI_G");
+	ReplacePVM("CHAO_HYOUJI_S");
+	ReplacePVM("EC_ALIFE");
+	if (EnabledLevels[LevelIDs_SSGarden])
+	{
+		ReplacePVM("GARDEN00");
+		ReplaceCAM("SETMI3900M");
+		ReplacePVM("GARDEN00_OBJECT");
+	}
+	if (EnabledLevels[LevelIDs_MRGarden])
+	{
+		ReplacePVM("GARDEN_MR_SKY_HIRU");
+		ReplacePVM("GARDEN_MR_SKY_YORU");
+		ReplacePVM("GARDEN_MR_SKY_YUU");
+		ReplacePVM("GARDEN02");
+		ReplacePVM("GARDEN02_OBJECT");
+	}
+	if (EnabledLevels[LevelIDs_ECGarden])
+	{
+		ReplacePVM("GARDEN01");
+		ReplacePVM("GARDEN01_SKY");
+	}
+}
+
+void AL_MAIN_Load()
 {
 	// This stuff is done every time the function is called
 	AL_GARDEN00_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\AL_GARDEN00\\0.sa1lvl"));
@@ -2471,12 +2502,12 @@ void ChaoGardens_Init()
 			ChaoTreeSpawns[1].e.y = 72.0f;  // Palm tree 5
 			ChaoTreeSpawns[1].e.z = -65.27f;  // Palm tree 5
 		}
-		ChaoRace_Init();
+		AL_RACE_Load();
 		ModelsLoaded_Chao = true;
 	}
 }
 
-void ChaoGardens_OnFrame()
+void AL_MAIN_OnFrame()
 {
 	// All gardens VMU
 	if (CurrentChaoStage >= SADXChaoStage_StationSquare && CurrentChaoStage <= SADXChaoStage_MysticRuins)

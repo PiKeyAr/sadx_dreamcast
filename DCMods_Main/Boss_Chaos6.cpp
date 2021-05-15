@@ -120,7 +120,35 @@ void HideOpaqueParts(NJS_OBJECT *obj)
 	if (obj->sibling) HideOpaqueParts(obj->sibling);
 }
 
-void Chaos6_Init()
+void B_CHAOS6_Init()
+{
+	ReplaceSET("SET1800B");
+	ReplaceSET("SET1800S");
+	ReplaceSET("SET1801K");
+	ReplacePVM("LM_CHAOS6");
+	ReplacePVM("LM_CHAOS6_2");
+	ReplacePVM("CHAOS6");
+	ReplacePVM("CHAOS6_BG");
+	ReplacePVM("CHAOS6_EFFECT");
+	ReplacePVM("CHAOS6_EGGMAN");
+	ReplacePVM("CHAOS6_EISEI");
+	ReplacePVM("CHAOS6_OBJECT");
+	for (int i = 0; i < 3; i++)
+	{
+		Chaos6SFog[i].Distance = 12000.0f;
+		Chaos6KFog[i].Distance = 12000.0f;
+		SkyBoxScale_Chaos6S[i].x = 1.0f;
+		SkyBoxScale_Chaos6S[i].y = 1.0f;
+		SkyBoxScale_Chaos6S[i].z = 1.0f;
+		SkyBoxScale_Chaos6K[i].x = 1.0f;
+		SkyBoxScale_Chaos6K[i].y = 1.0f;
+		SkyBoxScale_Chaos6K[i].z = 1.0f;
+		DrawDist_Chaso6S[i].Maximum = -18000.0f;
+		DrawDist_Chaso6K[i].Maximum = -18000.0f;
+	}
+}
+
+void B_CHAOS6_Load()
 {
 	B_CHAOS6_0_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\B_CHAOS6\\0.sa1lvl"));
 	B_CHAOS6_1_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\B_CHAOS6\\1.sa1lvl"));
@@ -163,19 +191,6 @@ void Chaos6_Init()
 		((NJS_ACTION*)0x134C56C)->motion = LoadAnimation("system\\data\\B_CHAOS6\\Models\\0011889C.saanim"); // Fix flickering parts in Chaos 6' walking animation
 		WriteData<1>((char*)0x556E40, 0xC3u); // Disable SetClip_Chaos6S
 		WriteData<1>((char*)0x556D60, 0xC3u); // Disable SetClip_Chaos6K
-		for (int i = 0; i < 3; i++)
-		{
-			Chaos6SFog[i].Distance = 12000.0f;
-			Chaos6KFog[i].Distance = 12000.0f;
-			SkyBoxScale_Chaos6S[i].x = 1.0f;
-			SkyBoxScale_Chaos6S[i].y = 1.0f;
-			SkyBoxScale_Chaos6S[i].z = 1.0f;
-			SkyBoxScale_Chaos6K[i].x = 1.0f;
-			SkyBoxScale_Chaos6K[i].y = 1.0f;
-			SkyBoxScale_Chaos6K[i].z = 1.0f;
-			DrawDist_Chaso6S[i].Maximum = -18000.0f;
-			DrawDist_Chaso6K[i].Maximum = -18000.0f;
-		}
 		ModelsLoaded_B_CHAOS6 = true;
 	}
 }

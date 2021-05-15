@@ -277,6 +277,50 @@ void UnloadLevelFiles_STG12()
 
 void HotShelter_Init()
 {
+	ReplaceSET("SET1200A");
+	ReplaceSET("SET1200B");
+	ReplaceSET("SET1200S");
+	ReplaceSET("SET1201A");
+	ReplaceSET("SET1201S");
+	ReplaceSET("SET1202E");
+	ReplaceSET("SET1202S");
+	ReplaceSET("SET1203S");
+	ReplaceCAM("CAM1200A");
+	ReplaceCAM("CAM1200B");
+	ReplaceCAM("CAM1200S");
+	ReplaceCAM("CAM1201A");
+	ReplaceCAM("CAM1201S");
+	ReplaceCAM("CAM1202E");
+	ReplaceCAM("CAM1202S");
+	ReplaceCAM("CAM1203S");
+	ReplacePVM("HOTSHELTER0");
+	ReplacePVM("HOTSHELTER1");
+	ReplacePVM("HOTSHELTER2");
+	ReplacePVM("HOTSHELTER3");
+	ReplacePVM("HOTSHELTER4");
+	ReplacePVM("SHELTER_COLUMN");
+	ReplacePVM("SHELTER_SUIMEN");
+	// Fog/draw distance data
+	for (int i = 0; i < 3; i++)
+	{
+		DrawDist_HotShelter1[i].Maximum = -3000.0;
+		DrawDist_HotShelter2[i].Maximum = -3000.0;
+		FogData_HotShelter1[i].Color = 0xFF000000;
+		FogData_HotShelter1[i].Layer = 600.0f;
+		FogData_HotShelter1[i].Distance = 1500.0f;
+		FogData_HotShelter2[i].Color = 0xFF000000;
+		FogData_HotShelter2[i].Toggle = 1;
+		FogData_HotShelter2[i].Layer = 800.0f;
+		FogData_HotShelter2[i].Distance = 2000.0f;
+		FogData_HotShelter3[i].Color = 0xFF000000;
+		FogData_HotShelter3[i].Toggle = 1;
+		FogData_HotShelter3[i].Layer = 500.0f;
+		FogData_HotShelter3[i].Distance = 1800.0f;
+	}
+}
+
+void HotShelter_Load()
+{
 	STG12_0_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG12\\0.sa1lvl"));
 	STG12_1_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG12\\1.sa1lvl"));
 	STG12_2_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG12\\2.sa1lvl"));
@@ -430,23 +474,6 @@ void HotShelter_Init()
 		*(NJS_OBJECT*)0x186FC1C = *LoadModel("system\\data\\STG12\\Models\\0015ACB0.sa1mdl"); // OKaitenashiba
 		*(NJS_OBJECT*)0x1853D7C = *LoadModel("system\\data\\STG12\\Models\\00142958.sa1mdl"); // Daruma (unused lightning box)
 		*(NJS_OBJECT*)0x181406C = *LoadModel("system\\data\\STG12\\Models\\0010AFB8.sa1mdl"); // OUkijima
-		// Fog/draw distance data
-		for (int i = 0; i < 3; i++)
-		{
-			DrawDist_HotShelter1[i].Maximum = -3000.0;
-			DrawDist_HotShelter2[i].Maximum = -3000.0;
-			FogData_HotShelter1[i].Color = 0xFF000000;
-			FogData_HotShelter1[i].Layer = 600.0f;
-			FogData_HotShelter1[i].Distance = 1500.0f;
-			FogData_HotShelter2[i].Color = 0xFF000000;
-			FogData_HotShelter2[i].Toggle = 1;
-			FogData_HotShelter2[i].Layer = 800.0f;
-			FogData_HotShelter2[i].Distance = 2000.0f;
-			FogData_HotShelter3[i].Color = 0xFF000000;
-			FogData_HotShelter3[i].Toggle = 1;
-			FogData_HotShelter3[i].Layer = 500.0f;
-			FogData_HotShelter3[i].Distance = 1800.0f;
-		}
 		ModelsLoaded_STG12 = true;
 	}
 }

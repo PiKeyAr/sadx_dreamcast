@@ -542,24 +542,54 @@ void __cdecl SkyChaseBeam1_Display_Fix(ObjectMaster *a1)
 
 void HedgehogHammer_Init()
 {
+	ReplaceSET("SET0000A");
+	ReplaceSET("SET0000S");
+	ReplaceSET("SET0001S");
+	for (int i = 0; i < 3; i++)
+	{
+		FogData_HedgehogHammer[i].Distance = 16000.0f;
+		FogData_HedgehogHammer[i].Layer = 5000.0f;
+	}
+}
+
+void HedgehogHammer_Load()
+{
 	STG00_0_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG00\\0.sa1lvl"));
 	LandTable* STG00_0 = STG00_0_Info->getlandtable();
 	RemoveMaterialColors_Landtable(STG00_0);
 	STG00_0->TexList = &texlist_hhammer;
-	WriteData((LandTable**)0x97DA08, STG00_0);
-	// No models to load here but using the same pattern for the sake of consistency
-	if (!ModelsLoaded_STG00)
-	{
-		for (int i = 0; i < 3; i++)
-		{
-			FogData_HedgehogHammer[i].Distance = 16000.0f;
-			FogData_HedgehogHammer[i].Layer = 5000.0f;
-		}
-		ModelsLoaded_STG00 = true;
-	}
+	WriteData((LandTable**)0x97DA08, STG00_0); 
+	ModelsLoaded_STG00 = true;
 }
 
 void SkyChase_Init()
+{
+	ReplaceSET("SETSHT1S");
+	ReplaceSET("SETSHT2S");
+	ReplaceCAM("CAMSHT1S");
+	ReplaceCAM("CAMSHT2S");
+	if (EnableSkyChaseEnemyModels)
+	{
+		if (!DLLLoaded_SA1Chars)
+		{
+			ReplacePVM("SHOOTING1");
+			ReplacePVM("SHOOTING2");
+		}
+		if (!DLLLoaded_HDGUI)
+		{
+			ReplacePVM("SHOOTING0");
+		}
+	}
+	if (!DLLLoaded_HDGUI)
+	{
+		ReplacePVR("ST_064S_LOCKA");
+		ReplacePVR("ST_064S_LOCKB");
+		ReplacePVR("ST_064S_LOCKC");
+		ReplacePVR("STG_S_LOCKMK");
+	}
+}
+
+void SkyChase_Load()
 {
 	// This stuff is done only once
 	if (!ModelsLoaded_SHOOTING)
@@ -632,6 +662,31 @@ void SkyChase_Init()
 
 void TwinkleCircuit_Init()
 {
+	ReplacePVM("BG_SHAREOBJ");
+	ReplacePVM("OBJ_SHAREOBJ");
+	ReplaceSET("SETMCART00S");
+	ReplaceSET("SETMCART01S");
+	ReplaceSET("SETMCART02S");
+	ReplaceSET("SETMCART03S");
+	ReplaceSET("SETMCART04S");
+	ReplaceSET("SETMCART05S");
+	ReplaceCAM("CAMMCART00S");
+	ReplaceCAM("CAMMCART01S");
+	ReplaceCAM("CAMMCART02S");
+	ReplaceCAM("CAMMCART03S");
+	ReplaceCAM("CAMMCART04S");
+	ReplaceCAM("CAMMCART05S");
+	ReplacePVM("MINI_CART01");
+	ReplacePVM("MINI_CART02");
+	ReplacePVM("MINI_CART03");
+	ReplacePVM("MINI_CART04");
+	ReplacePVM("MINI_CART05");
+	ReplacePVM("MINI_CART06");
+	if (!DLLLoaded_HDGUI) ReplacePVM("OBJ_MINI_CART");
+}
+
+void TwinkleCircuit_Load()
+{
 	MINICART_0_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\MINICART\\0.sa1lvl"));
 	MINICART_1_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\MINICART\\1.sa1lvl"));
 	MINICART_2_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\MINICART\\2.sa1lvl"));
@@ -675,6 +730,26 @@ void TwinkleCircuit_Init()
 
 void SandHill_Init()
 {
+	ReplaceCAM("CAMSBOARD00S");
+	ReplaceCAM("CAMSBOARD01S");
+	ReplaceSET("SETSBOARD00M");
+	ReplaceSET("SETSBOARD00S");
+	ReplaceSET("SETSBOARD01S");
+	ReplacePVM("BG_SANDBOARD");
+	ReplacePVM("EFF_SANDBOARD");
+	ReplacePVM("OBJ_SANDBOARD");
+	ReplacePVM("SANDBOARD");
+	// Fog color
+	for (int i = 0; i < 3; i++)
+	{
+		FogData_SandHill[i].Color = 0xFFE0E0B0;
+		FogData_SandHill[i].Layer = 800.0f;
+		FogData_SandHill[i].Distance = 10000.0f;
+	}
+}
+
+void SandHill_Load()
+{
 	// This stuff is done every time the function is called
 	SBOARD_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\SBOARD\\0.sa1lvl"));
 	LandTable* SBOARD = SBOARD_Info->getlandtable();
@@ -700,13 +775,6 @@ void SandHill_Init()
 		RemoveVertexColors_Object((NJS_OBJECT*)0x1749E44); // Sand worm tail
 		RemoveVertexColors_Object((NJS_OBJECT*)0x17499DC); // Sand worm body
 		RemoveVertexColors_Object((NJS_OBJECT*)0x17495AC); // Sand worm head
-		// Fog color
-		for (int i = 0; i < 3; i++)
-		{
-			FogData_SandHill[i].Color = 0xFFE0E0B0;
-			FogData_SandHill[i].Layer = 800.0f;
-			FogData_SandHill[i].Distance = 10000.0f;
-		}
 		ModelsLoaded_SBOARD = true;
 	}
 }

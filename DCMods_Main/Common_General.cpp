@@ -34,6 +34,7 @@ DataPointer(NJS_ACTION, Tornado2TransformationAction, 0x28988FC);
 DataArray(ObjectMaster*, LocksArray, 0x3C63284, 5);
 DataPointer(NJS_VECTOR, Chaos4Position, 0x3C5A358);
 
+FunctionPointer(void, sub_4014B0, (), 0x4014B0);
 FunctionPointer(void, BarrierChild, (ObjectMaster *a1), 0x4BA1E0);
 FunctionPointer(EntityData1*, sub_4B9430, (NJS_VECTOR *a1, NJS_VECTOR *a2, float a3), 0x4B9430);
 FunctionPointer(void, sub_40EFE0, (), 0x40EFE0);
@@ -92,6 +93,12 @@ static float EmeraldScale = 1.005f;
 static uint8_t FilteringSettingBackup1 = 2;
 static uint8_t FilteringSettingBackup2 = 2;
 static uint8_t FilteringSettingBackup3 = 2;
+
+NJS_TEXNAME textures_obj_regular[100];
+NJS_TEXLIST texlist_obj_regular = {arrayptrandlength(textures_obj_regular)};
+
+NJS_TEXNAME textures_e101r_tikei[76];
+NJS_TEXLIST texlist_e101r_tikei = {arrayptrandlength(textures_e101r_tikei)};
 
 NJS_COLOR SwitchDark_vcolor1[] = {
 	{ 0xFF101010 },
@@ -316,6 +323,61 @@ NJS_MATERIAL* RemoveColors_General[] = {
 	((NJS_MATERIAL*)0x2F04138),
 	((NJS_MATERIAL*)0x2F0402C),
 };
+
+void ResizeE101RTexlist()
+{
+	*(NJS_TEXLIST*)0x16B460C = texlist_e101r_tikei;
+}
+
+void LoadBossECOceanPVM(const char* filename, NJS_TEXLIST* texlist)
+{
+	LoadPVM(filename, texlist);
+	if (SADXWater_EggCarrier) LoadPVM("SADXWTR_WAVES", &texlist_sadxwtr_waves);
+	else LoadPVM("EC_SEA", &EC_SEA_TEXLIST);
+}
+
+void LoadBossECOceanTexlist()
+{
+	njSetTexture(&EC_SEA_TEXLIST);
+}
+
+void ChaosTimeToEat_DrawModel(NJS_OBJECT* a1)
+{
+	EnvMap1 = 2.0f;
+	EnvMap2 = 1;
+	EnvMap3 = 0.5f;
+	EnvMap4 = 1.0f;
+	Direct3D_EnableZWrite(0);
+	DrawModel(a1->basicdxmodel);
+	Direct3D_EnableZWrite(1);
+	EnvMap1 = 0.5f;
+	EnvMap2 = 0.5f;
+	EnvMap3 = 0.5f;
+	EnvMap4 = 0.5f;
+}
+
+void ComeOnChaosTimeToEat(NJS_OBJECT* a1)
+{
+	DrawModelCallback_QueueObject(ChaosTimeToEat_DrawModel, a1, 2000.0f, (QueuedModelFlagsB)0);
+}
+
+void FPSLockHook(int a1)
+{
+	if (a1 == 1 && GameState != 21 && CurrentLevel != LevelIDs_TwinkleCircuit) a1 = 2;
+	DeltaTime_Multiplier(a1);
+}
+
+void InputHookForCutscenes()
+{
+	sub_4014B0();
+	if (CutsceneFadeMode == 1) ControllerPointers[0]->PressedButtons |= Buttons_Down;
+}
+
+void FixCutsceneTransition()
+{
+	if (CutsceneID == 134) Cutscene_ResetTransition(); // Knuckles back in Station Square after meeting Pacman
+	if (CutsceneID == 380) Cutscene_ResetTransition(); // Gamma after Windy Valley
+}
 
 void GetEmeraldGlow(ObjectMaster* a1)
 {
@@ -1862,126 +1924,487 @@ void __cdecl AnimateLandtableHook()
 
 void General_Init()
 {
+	// General stuff
+	ReplacePVM("CHAOS1");
+	ReplacePVM("CHAOS_BRAINFRAME");
+	ReplacePVM("CHAOS_EFFECT");
+	ReplacePVM("CHAOS_SURFACE");
+	ReplacePVM("EV_CHAOS1");
+	ReplacePVM("EV_E101KAI");
+	ReplacePVM("EV_E101_BODY");
+	ReplacePVM("EV_E101_FUN");
+	ReplacePVM("EV_E103_BODY");
+	ReplacePVM("EV_E103_FUN");
+	ReplacePVM("EV_E104_BODY");
+	ReplacePVM("EV_E104_FUN");
+	ReplacePVM("EV_E105_BODY");
+	ReplacePVM("EV_E105_FUN");
+	ReplacePVM("ICM0001_3");
+	ReplacePVM("ICM0001_5");
+	// Replacements from DC_General
+	if (DLLLoaded_HDGUI == false)
+	{
+		ReplacePVM("OBJ_REGULAR");
+		OBJ_REGULAR_TEXLIST = texlist_obj_regular; // Added DC ripple texture
+	}
+	ReplacePVR("AL_BARRIA");
+	ReplacePVR("AM_SEA124_8");
+	ReplacePVR("BELT2");
+	ReplacePVR("CAPTUREBEAM");
+	ReplacePVR("SORA60");
+	ReplacePVR("SSTX_BODY");
+	ReplacePVR("SW_NBG2");
+	ReplacePVR("S_WT28");
+	ReplacePVR("S_WT32");
+	ReplacePVR("TM32KURAGE");
+	ReplacePVR("SEA");
+	ReplacePVR("SKY_H_BAL01");
+	ReplacePVR("STX_ICE0");
+	ReplacePVR("MRASC_016S_HIRUUMI");
+	ReplacePVR("MRASC_256S_HIRUSORAA");
+	ReplacePVR("WATERCOLUMN01");
+	ReplacePVR("WINDSEA001");
+	ReplacePVR("WINDY2_NBG1");
+	ReplacePVR("WINDY2_NBG2");
+	ReplacePVR("WINDY2_NBG5");
+	ReplacePVR("WINDY3_NBG2");
+	ReplacePVM("AIR_SIGNAL");
+	ReplacePVM("ANCIENT_LIGHT");
+	ReplacePVM("ANKO");
+	ReplacePVM("ANKO_T");
+	ReplacePVM("A_MASTER");
+	ReplacePVM("BANB");
+	ReplacePVM("BIG_KAERU");
+	ReplacePVM("BO1_MODEL");
+	ReplacePVM("BULLET");
+	ReplacePVM("CAPTUREBEAM");
+	ReplacePVM("CHAOS_EMERALD");
+	ReplacePVM("COERA");
+	ReplacePVM("E102");
+	ReplacePVM("E102BEAM");
+	ReplacePVM("E102EFFECT");
+	ReplacePVM("E102HIT");
+	ReplacePVM("E103OLD");
+	ReplacePVM("E104OLD");
+	ReplacePVM("E105");
+	ReplacePVM("E105OLD");
+	ReplacePVM("EDV_K_HLIFT");
+	ReplacePVM("EDV_S_STDOOR");
+	ReplacePVM("EFF_C7_BUBBLE");
+	ReplacePVM("EFF_CANDLE");
+	ReplacePVM("EFF_REGULAR");
+	ReplacePVM("EFF_TWINKLE");
+	ReplacePVM("EFF_WT_COLUMN");
+	ReplacePVM("EGGROB");
+	ReplacePVM("EGG_MISSILE");
+	ReplacePVM("EME_KIRAN");
+	ReplacePVM("ER_9000_EGGMANROBO");
+	ReplacePVM("EV_EGGMAN_BODY");
+	ReplacePVM("EV_EGGMOBILE1");
+	ReplacePVM("EV_EGGMOBLE0DM");
+	ReplacePVM("EV_EGGMOBLE1");
+	ReplacePVM("EV_EGGMOBLE2");
+	ReplacePVM("EV_HELI");
+	ReplacePVM("EV_K_PATYA");
+	ReplacePVM("EV_SPOTLIGHT");
+	ReplacePVM("EV_S_MSBODY");
+	ReplacePVM("EV_S_T2C_BODY");
+	ReplacePVM("EV_TR1");
+	ReplacePVM("EV_TR2_BIG");
+	ReplacePVM("E_AMENBO");
+	ReplacePVM("E_BOMB");
+	ReplacePVM("E_BUYON");
+	ReplacePVM("E_CART");
+	ReplacePVM("E_LEON");
+	ReplacePVM("E_ROBO");
+	ReplacePVM("E_SAI");
+	ReplacePVM("E_SARU");
+	ReplacePVM("E_SNAKE");
+	ReplacePVM("E_SNOWMAN");
+	ReplacePVM("F0000_FROG");
+	ReplacePVM("FAT_B");
+	ReplacePVM("FPACK");
+	ReplacePVM("FROG");
+	ReplacePVM("FROG1");
+	ReplacePVM("FROG2");
+	ReplacePVM("FROG3");
+	ReplacePVM("F_EGG_ZANGAI");
+	ReplacePVM("GACHAPON");
+	ReplacePVM("GOMA");
+	ReplacePVM("GORI");
+	ReplacePVM("GR1_MODEL");
+	ReplacePVM("GR_10000_GIRL1");
+	ReplacePVM("HAMMER");
+	ReplacePVM("HINT");
+	ReplacePVM("HOT_E105");
+	ReplacePVM("ICM0060");
+	ReplacePVM("ICM006D");
+	ReplacePVM("ICM00C3");
+	ReplacePVM("ICM00C5");
+	ReplacePVM("ICM00C7");
+	ReplacePVM("ICM0142");
+	ReplacePVM("ISHIDAI");
+	ReplacePVM("KAJIKI");
+	ReplacePVM("KAOS_EME");
+	ReplacePVM("KNU_EFF");
+	ReplacePVM("KOAR");
+	ReplacePVM("KUJA");
+	ReplacePVM("LAST1A_HIGHWAY_A");
+	ReplacePVM("LIGHTNING");
+	ReplacePVM("LION");
+	ReplacePVM("LOCKET");
+	ReplacePVM("L_SIBUKI");
+	ReplacePVM("MECHA");
+	ReplacePVM("MGHAND");
+	ReplacePVM("MIZUBASIRA");
+	ReplacePVM("MOGU");
+	ReplacePVM("MOGURATATAKI");
+	ReplacePVM("MP_10000_POLICE");
+	ReplacePVM("MRACE_EGGMOBLE");
+	ReplacePVM("M_EM_BLACK");
+	ReplacePVM("M_EM_BLUE");
+	ReplacePVM("M_EM_GREEN");
+	ReplacePVM("M_EM_PURPLE");
+	ReplacePVM("M_EM_RED");
+	ReplacePVM("M_EM_SKY");
+	ReplacePVM("M_EM_WHITE");
+	ReplacePVM("M_EM_YELLOW");
+	ReplacePVM("M_TR_S");
+	ReplacePVM("NEW_BB");
+	ReplacePVM("NISEPAT");
+	ReplacePVM("OL_10000");
+	ReplacePVM("OUM");
+	ReplacePVM("OY_10000");
+	ReplacePVM("PEN");
+	ReplacePVM("PIRANIA");
+	ReplacePVM("RAKO");
+	ReplacePVM("ROBOTV");
+	ReplacePVM("RYUGU");
+	ReplacePVM("SAKE");
+	ReplacePVM("SAME");
+	ReplacePVM("SEA_BASS");
+	ReplacePVM("SHAPE_FROG");
+	ReplacePVM("SHAPE_FROG_2");
+	ReplacePVM("SUKA");
+	ReplacePVM("SUPI_SUPI");
+	ReplacePVM("TAI");
+	ReplacePVM("TOGEBALL_TOGEBALL");
+	ReplacePVM("TR2CRASH");
+	ReplacePVM("TUBA");
+	ReplacePVM("UNAGI");
+	ReplacePVM("UNI_A_UNIBODY");
+	ReplacePVM("UNI_C_UNIBODY");
+	ReplacePVM("USA");
+	ReplacePVM("UTSUBO");
+	ReplacePVM("VER1_WING");
+	ReplacePVM("VER2_WING");
+	ReplacePVM("VER3_WING");
+	ReplacePVM("VER4_WING");
+	ReplacePVM("WARA");
+	ReplacePVM("WAVE7_WA");
+	ReplacePVM("WINDY_E103");
+	ReplacePVM("WING_P");
+	ReplacePVM("WING_T");
+	ReplacePVM("ZOU");
+	// Trampolines
+	GoalEmerald_Windy_Display_t = new Trampoline(0x4DF3B0, 0x4DF3B6, GoalEmerald_Windy_Display_r);
+	GoalEmerald_Ice_Display_t = new Trampoline(0x4ECFA0, 0x4ECFA6, GoalEmerald_Ice_Display_r);
+	GoalEmerald_Casino_Display_t = new Trampoline(0x5DD0A0, 0x5DD0A6, GoalEmerald_Casino_Display_r);
+	CalculateEnemyYCoordinate_Sweep_t = new Trampoline(0x49EAD0, 0x49EAD7, CalculateEnemyYCoordinate_Sweep_r);
+	DisplayTitleCard_t = new Trampoline(0x47E170, 0x47E175, DisplayTitleCard_r);
+	CameraB_Display_t = new Trampoline(0x436CD0, 0x436CD6, CameraB_Display_r);
+	SetGlobalPoint2Col_Colors_t = new Trampoline(0x402F10, 0x402F18, SetGlobalPoint2Col_Colors_r);
+	WriteData((int*)0x007802D2, 0x3AB9908); // Redirect the old motion callback to fix missing animations
+	// Disable GrabButton setting in Control
+	if (RestoreYButton) WriteData<5>((char*)0x40FDEA, 0x90u);
+	WriteData<1>((char*)0x00480080, 0x0i8); // Light type for Gamma's upgrades
+	// Gamma's chest stuff
+	// Actual code in General_OnFrame
+	RemoveVertexColors_Object(E102_OBJECTS[0]);
+	RemoveVertexColors_Object(E102_OBJECTS[1]);
+	RemoveVertexColors_Object(E102_OBJECTS[2]);
+	RemoveVertexColors_Object(E102_OBJECTS[4]);
+	RemoveVertexColors_Object(E102_OBJECTS[5]);
+	RemoveVertexColors_Object(E102_OBJECTS[6]);
+	RemoveVertexColors_Object(E102_OBJECTS[13]);
+	RemoveVertexColors_Object(E102_OBJECTS[14]);
+	RemoveVertexColors_Object(E102_OBJECTS[16]);
+	RemoveVertexColors_Object(E102_OBJECTS[18]);
+	RemoveVertexColors_Object(E102_OBJECTS[20]);
+	RemoveVertexColors_Object(E102_ACTIONS[50]->object);
+	E102_OBJECTS[0]->child->child->sibling->sibling->sibling->child->child->sibling->child->sibling->sibling->child->child->sibling->basicdxmodel->mats[8].attrflags &= ~NJD_FLAG_USE_ALPHA; // E102 unnecessary alpha
+	// FPS lock
+	if (FPSLock) WriteCall((void*)0x411E79, FPSLockHook);
+	// Cancel cutscenes with C button
+	if (CutsceneSkipMode != 3)
+	{
+		WriteData<1>((char*)0x431520, 0x20); // Use D-Pad Down instead of A or Start
+		if (CutsceneSkipMode != 2) WriteCall((void*)0x4314F9, InputHookForCutscenes);
+	}
+	// Fix for cutscene transitions
+	if (EnableCutsceneFix)
+	{
+		WriteCall((void*)0x4311E3, FixCutsceneTransition); // Main thread
+		WriteData<5>((void*)0x43131D, 0x90u); // Skipping cutscenes
+	}
+	// Environment maps
+	EnvMap1 = 0.5f;
+	EnvMap2 = 0.5f;
+	EnvMap3 = 0.5f;
+	EnvMap4 = 0.5f;
+	// Amy's barrel fix
+	AMY_OBJECTS[1]->child->child->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	AMY_OBJECTS[1]->child->child->basicdxmodel->mats[1].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	// Various material fixes
+	RemoveVertexColors_Object((NJS_OBJECT*)0x10D7774); // Question mark from Character Select
+	((NJS_OBJECT*)0x10D7774)->basicdxmodel->mats[0].attr_texId = 10; // Fix wrong texture on question mark
+	RemoveVertexColors_Object((NJS_OBJECT*)0x991268); // Zero main and cutscene model
+	RemoveVertexColors_Object((NJS_OBJECT*)0x3306270); // Egg Hornet cutscene model
+	RemoveVertexColors_Object((NJS_OBJECT*)0x330A4D0); // Eggman in Egg Hornet cutscene model
+	RemoveVertexColors_Object((NJS_OBJECT*)0x2EEB524); // Eggman in Eggmobile in cutscenes (EV_EGGMOBLE0)
+	WriteData<1>((char*)0x568D20, 0xC3u); // Disable SetClip_E101R
+	RemoveVertexColors_Object((NJS_OBJECT*)0x2DA8664); // E101R model in cutscenes
+	((NJS_OBJECT*)0x2DA770C)->basicdxmodel->mats[2].attrflags |= NJD_FLAG_IGNORE_LIGHT; // E101R model in cutscenes
+	((NJS_OBJECT*)0x2DA770C)->basicdxmodel->mats[5].attrflags |= NJD_FLAG_IGNORE_LIGHT; // E101R model in cutscenes
+	((NJS_OBJECT*)0x2DA3064)->basicdxmodel->mats[1].attrflags |= NJD_FLAG_IGNORE_LIGHT; // E101R model in cutscenes
+	((NJS_OBJECT*)0x2DA6364)->basicdxmodel->mats[1].attrflags |= NJD_FLAG_IGNORE_LIGHT; // E101R model in cutscenes
+	((NJS_OBJECT*)0x2DA2A2C)->basicdxmodel->mats[3].attrflags |= NJD_FLAG_IGNORE_LIGHT; // E101R model in cutscenes
+	((NJS_OBJECT*)0x2DA1014)->basicdxmodel->mats[3].attrflags |= NJD_FLAG_IGNORE_LIGHT; // E101R model in cutscenes
+	((NJS_OBJECT*)0x2DA3064)->basicdxmodel->mats[1].attrflags |= NJD_FLAG_IGNORE_LIGHT; // E101R model in cutscenes
+	((NJS_OBJECT*)0x2DA1444)->basicdxmodel->mats[1].attrflags |= NJD_FLAG_IGNORE_LIGHT; // E101R model in cutscenes
+	((NJS_OBJECT*)0x2DA3CEC)->basicdxmodel->mats[1].attrflags |= NJD_FLAG_IGNORE_LIGHT; // E101R model in cutscenes
+	((NJS_OBJECT*)0x2DA39EC)->basicdxmodel->mats[1].attrflags |= NJD_FLAG_IGNORE_LIGHT; // E101R model in cutscenes
+	RemoveVertexColors_Object((NJS_OBJECT*)0x269D214); // Eggmobile 2P
+	RemoveVertexColors_Object((NJS_OBJECT*)0x269EE24); // Eggman 2P
+	RemoveVertexColors_Object((NJS_OBJECT*)0x2C66BAC); // Chaos 0 in cutscenes
+	RemoveVertexColors_Object((NJS_OBJECT*)0x1133328); // Chaos 2 (main and cutscenes)
+	RemoveVertexColors_Object((NJS_OBJECT*)0x119E240); // Chaos 4 main/NPC model
+	RemoveVertexColors_Object((NJS_OBJECT*)0x302FD70); // Chaos 4 cutscene model
+	RemoveVertexColors_Object((NJS_OBJECT*)0x2D6962C); // Chaos puddle in cutscenes
+	RemoveVertexColors_Object((NJS_OBJECT*)0x38DD9BC); // Chaos puddle in cutscenes + Chaos 0
+	RemoveVertexColors_Object((NJS_OBJECT*)0x38DEA10); // Chaos 2 small puddles + Chaos 0 when defeated
+	WriteCall((void*)0x6EE43F, ComeOnChaosTimeToEat); // Environment mapping effect on Chaos' puddle before Chaos 0 emerges
+	((NJS_MATERIAL*)0x02D64FD8)->exponent = 11; // Chaos 1/4 puddle
+	((NJS_MATERIAL*)0x038D936C)->attrflags &= ~NJD_FLAG_USE_ENV; // Chaos 0/2/6 puddle
+	((NJS_MATERIAL*)0x038D936C)->exponent = 11; // Chaos 0/2/6 puddle
+	ICM0001_3_TEXLISTS[0].Name = "ICM0001_5"; // Higher quality background in Sonic story
+	// Fixes for held objects
+	if (FixHeldObjects)
+	{
+		BurgerStatueMain_t = new Trampoline(0x630780, 0x630785, BurgerStatueMain_r);
+		MissionStatueMain_t = new Trampoline(0x593510, 0x593515, MissionStatueMain_r);
+		HandKey_Display_t = new Trampoline(0x532240, 0x532245, HandKey_Display_r);
+		WriteData((float**)0x495975, &SnowboardOffset1); // Sonic
+		WriteData((float**)0x45E56D, &SnowboardOffset1); // Tails
+		WriteData((float**)0x495989, &SnowboardOffset2); // Sonic
+		WriteData((float**)0x45E581, &SnowboardOffset2); // Tails
+		WriteData((double**)0x44232A, &holddelta); // Z offset check when putting objects down
+		//WriteData((float*)0x49D867, 0.0f); // Doesn't do shit
+		WriteData((float*)0x49D902, 0.0f); // Y offset after being put down
+		WriteData((float*)0x49D957, 0.01f); // Y speed after hitting ceiling
+		WriteData((float**)0x53C96E, &mrdistance); // Wind/Ice/Statue key distance check
+		WriteData((float**)0x53C919, &mrdistance2); // Wind/Ice/Statue key rotation check
+		WriteData((float**)0x59A93B, &hsdistance); // Hot Shelter cube puzzle distance check
+		WriteData((float**)0x6367CE, &ssdistance); // Station Square cube puzzle distance check
+		WriteData((float**)0x7AC559, &SampleSOffset); // SampleS
+		WriteData((float**)0x55BBEA, &Chaos6FreezerOffset); // Chaos 6 freezer
+		// Hook njTranslate calls to add a vertical offset for all objects involved
+		for (unsigned int i = 0; i < LengthOfArray(njTranslateVCalls); i++)
+		{
+			WriteCall((void*)njTranslateVCalls[i], njTranslateVHacc);
+		}
+		WriteJump((void*)0x630690, BurgerShopStatue_DisplayFix); // Statue shadow/Y position fix
+		WriteJump((void*)0x593410, MissionStatue_DisplayFix); // Statue shadow/Y position fix
+		// Collision adjustments
+		WriteData((float**)0x49577F, &HeldOffset_Sonic_1);
+		WriteData((float**)0x495777, &HeldOffset_Sonic_2);
+		WriteData((float**)0x495787, &HeldOffset_Sonic_3);
+		WriteData((float**)0x49578F, &HeldOffset_Sonic_4);
+		WriteData((float**)0x45D5F5, &HeldOffset_Tails_1);
+		WriteData((float**)0x45D5ED, &HeldOffset_Tails_2);
+		WriteData((float**)0x45D5FD, &HeldOffset_Tails_3);
+		WriteData((float**)0x45D605, &HeldOffset_Tails_4);
+		WriteData((float**)0x477892, &HeldOffset_Knuckles_1);
+		WriteData((float**)0x4778A2, &HeldOffset_Knuckles_2);
+		WriteData((float**)0x47789A, &HeldOffset_Knuckles_3);
+		WriteData((float**)0x4778AA, &HeldOffset_Knuckles_4);
+		WriteData((float**)0x48E250, &HeldOffset_Big);
+		BurgerMan_Collision[0].center.y = 0.0f;
+		BurgerMan_Collision[1].center.y = 0.0f;
+		FakeEgg_Collision[0].center.y = 0.0f;
+		FakeEgg_Collision[1].center.y = -0.5f;
+		OHandKey_Collision[0].center.y = 0.0f;
+		OHandKey_Collision[1].center.y = 0.0f;
+		OHandKey_Collision[1].a = 1.0f;
+		OKurotama_Collision[0].center.y = 0.0f;
+		OKurotama_Collision[1].center.y = -0.5f;
+		OKillSwitch_Collision[0].center.y = 0.0f;
+		OKillSwitch_Collision[1].center.y = -2.2f;
+		OEggStand_Collision[0].center.y = 0.0f;
+		OEggStand_Collision[1].center.y = 0.0f;
+		OBoxSwitch_Collision[0].center.y = 0.5f;
+		OBoxSwitch_Collision[1].center.y = 0.5f;
+		ChaoCard_Collision[0].center.y = 0.0f;
+		ChaoCard_Collision[1].center.x = -1.0f;
+		ChaoCard_Collision[1].center.y = 0.0f;
+		OKeyBlock_Collision[0].center.y = 2.0f;
+		OKeyBlock_Collision[1].center.y = 0.0f;
+		OKeyBlock_Collision[1].a = 0.0f;
+		OKartPass_Collision[0].center.y = 0.0f;
+		OKartPass_Collision[0].center.x = -1.0f;
+		OKartPass_Collision[1].center.y = 0.0f;
+		OCard_Collision[0].center.y = 0.0f;
+		OCard_Collision[0].center.x = -1.0f;
+		OCard_Collision[1].center.y = 0.0f;
+		IceKey_Collision[0].center.y = 0.0f;
+		IceKey_Collision[1].center.y = 0.0f;
+		IceKey_Collision[1].a = 1.0f;
+		Chaos6Freezer_Collision[0].center.y = 0.0f;
+		Chaos6Freezer_Collision[1].a = 1.0f;
+		ChaoAnimal_Collision[0].center.y = 1.0f;
+		ChaoFruit_Collision[0].center.y = 1.0f;
+		KikiBomb_Collision[1].a = 2.8f; // Z offset after putting down		
+	}
+	// Chaos bubbles fix
+	WriteJump((void*)0x7ADD30, actBubble);
+	// Cutscene skip hooks
+	WriteCall((void*)0x40D69C, CutsceneFadeHookForSubtitleBox);
+	WriteCall((void*)0x40D78A, CutsceneFadeHookForSubtitleText);
+	if (DisableFontFiltering && !DLLLoaded_HDGUI) WriteCall((void*)0x40D7DA, njDrawSprite2D_Queue_Point);
+	// Light Speed Dash distance fix
+	if (EnableLSDFix)
+	{
+		LSDMinimumCheck1 = 8.0f;
+		LSDMinimumSet1 = 9.0f;
+		LSDMinimumCheck2 = 4.0f;
+		LSDMinimumSet2 = 4.0f;
+		WriteData((float*)0x49306A, 16.0f); // Initial X speed
+		WriteData((float**)0x492CCB, &LSDMinimumCheck2); // Minimum check 1 (2.0 in SADX)
+		WriteData((float*)0x492CDA, LSDMinimumSet2); // Set if met check 1 (2.0 in SADX)
+		WriteData((float**)0x492CB0, &LSDMinimumCheck1); // Minimum speed to be compared
+		WriteData((float*)0x492CBF, LSDMinimumSet1); // Minimum speed to be set
+	}
+	// Fix badniks not spawning (Amenbo fix in trampoline)
+	WriteCall((void*)0x49EFE7, CalculateEnemyYCoordinate_Wrapper);
+	// Underwater overlay
+	WriteCall((void*)0x43708D, DrawUnderwaterOverlay);
+	// Character effects
+	WriteJump((void*)0x4A1630, Sonic_DisplayLightDashModelX);
+	WriteData((float**)0x47404B, &heat_float1);
+	WriteData((float**)0x474057, &heat_float2);
+	WriteJump((void*)0x4C1330, Knuckles_MaximumHeat_DrawX);
+	WriteJump((void*)0x4C1410, Knuckles_MaximumHeatSprite_Draw);
+	WriteCall((void*)0x4C1258, KnucklesPunch_RetrieveAlpha);
+	WriteCall((void*)0x4C1305, KnucklesPunch_Render);
+	// Dash trail fixes
+	WriteCall((void*)0x4A0F56, SonicDashTrailFix);
+	WriteCall((void*)0x4A1233, SonicDashTrailFix2);
+	WriteData((float*)0x4A1216, 2500.0f); // Long dash trail depth bias
+	WriteData<1>((char*)0x4A1220, 0i8); // Spindash trail queued flags
+	// Barrier fixes
+	WriteData<5>((char*)0x4B9E3A, 0x90u); // Disable ClampGlobalColorThing (it's called later in my replacement function)
+	WriteCall((void*)0x4B9F0F, MagneticBarrierLightning);
+	WriteCall((void*)0x4B9DDA, SetMagneticBarrierColor);
+	WriteJump((void*)0x4B9C90, RenderBarrierModels);
+	WriteCall((void*)0x55E782, SuperSonicAuraHook); // Super Sonic aura 1
+	WriteCall((void*)0x55E76A, SuperSonicAuraHook); // Super Sonic aura 2
+	WriteCall((void*)0x55E72A, SuperSonicAuraHook); // Super Sonic aura 3
+	WriteJump(Barrier_Main, Barrier_MainX); // Barrier
+	WriteCall((void*)0x4BA0E4, RenderInvincibilityLines);
+	WriteData<10>((char*)0x40889C, 0x90u); // Queued model lighting/specular fix
+	// Various bugfixes
+	// Gamma cutscenes fix 
+	WriteCall((void*)0x6D9DA7, ECGammaCutsceneFix); // Fix Gamma hover scene in Sonic's story
+	WriteCall((void*)0x6B8D5E, ECGammaCutsceneFix); // Fix Gamma hover scene in Tails' story
+	// Zero holding Amy lighting fix
+	((NJS_OBJECT*)0x31A4DFC)->basicdxmodel->mats[11].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
+	((NJS_OBJECT*)0x31A4DFC)->basicdxmodel->mats[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
+	// Tikal lighting fixes
+	((NJS_OBJECT*)0x8CE058)->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_USE_ALPHA;
+	((NJS_OBJECT*)0x8CC658)->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_USE_ALPHA;
+	// Eggman fingers fix
+	((NJS_OBJECT*)0x8961E0)->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_USE_ALPHA;
+	((NJS_OBJECT*)0x8964CC)->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_USE_ALPHA;
+	((NJS_OBJECT*)0x8980DC)->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_USE_ALPHA;
+	((NJS_OBJECT*)0x897DE0)->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_USE_ALPHA;
+	((NJS_OBJECT*)0x2EE22C0)->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_USE_ALPHA;
+	((NJS_OBJECT*)0x2EE25AC)->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_USE_ALPHA;
+	((NJS_OBJECT*)0x2EE4194)->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_USE_ALPHA;
+	((NJS_OBJECT*)0x2EE3E98)->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_USE_ALPHA;
+	((NJS_OBJECT*)0x1257754)->basicdxmodel->mats[15].diffuse.color = 0xFFFFFFFF; // Chaos6 Eggmobile
+	*(NJS_TEXLIST**)0x2BD5FE4 = (NJS_TEXLIST*)0x2EE0AA4; // Eggman Super Sonic cutscene texlist fix
+	// Emblem field model
+	((NJS_MATERIAL*)0x9740FC)->attrflags &= ~NJD_FLAG_IGNORE_SPECULAR;
+	((NJS_MATERIAL*)0x974110)->attrflags &= ~NJD_FLAG_IGNORE_SPECULAR;
+	((NJS_MATERIAL*)0x974124)->attrflags &= ~NJD_FLAG_IGNORE_SPECULAR;
+	((NJS_MATERIAL*)0x974138)->attrflags &= ~NJD_FLAG_IGNORE_SPECULAR;
+	// Remove material colors on goal emeralds
+	RemoveVertexColors_Object((NJS_OBJECT*)0xC3FDA0);
+	RemoveVertexColors_Object((NJS_OBJECT*)0xC3E300);
+	RemoveVertexColors_Object((NJS_OBJECT*)0xC3F050);
+	// Remove material colors on cutscene emeralds
+	RemoveVertexColors_Object(&EV_MODEL_EME_BLACK);
+	RemoveVertexColors_Object(&EV_MODEL_EME_RED);
+	RemoveVertexColors_Object(&EV_MODEL_EME_BLUE);
+	RemoveVertexColors_Object(&EV_MODEL_EME_PURPLE);
+	RemoveVertexColors_Object(&EV_MODEL_EME_GREEN);
+	RemoveVertexColors_Object(&EV_MODEL_EME_SKY);
+	RemoveVertexColors_Object(&EV_MODEL_EME_WHITE);
+	RemoveVertexColors_Object(&EV_MODEL_EME_YELLOW);
+	// Emeralds glow
+	// Windy Valley
+	WriteCall((void*)0x4DF27F, RenderEmeraldWithGlow_Windy); // Uses a different function than Ice Cap or Casino
+	// Ice Cap
+	WriteCall((void*)0x4ECEC4, RenderEmeraldWithGlow_Ice);
+	// Casino
+	WriteCall((void*)0x5DCFB0, RenderEmeraldWithGlow_Ice); // Same function
+	// Material fixes
+	for (unsigned int i = 0; i < LengthOfArray(RemoveColors_General); i++)
+	{
+		RemoveMaterialColors(RemoveColors_General[i]);
+	}
+	// Water splash particle
+	WriteCall((void*)0x49F1C0, FixWaterSplash);
+	// The beam that collects the emerald in "Sonic and Tails gassed at Casinopolis" cutscene
+	WriteCall((void*)0x6F37DC, CaptureBeamFix);
+	// Big's fishing thing fix
+	WriteCall((void*)0x46C547, BigFishingThingFix);
+	// Big's belt buckle fix
+	if (BigBeltFix) WriteCall((void*)0x48BA29, BigDisplayFix);
+	// Metal Sonic afterimage fix
+	WriteJump(MetalSonic_AfterImage_Display, MetalSonic_AfterImage_Display_Fixed);
+	// Character shadow fix (lame)
+	WriteCall((void*)0x49F182, CharacterShadowHook);
+	// NPC shadow fix
+	WriteCall((void*)0x5252E8, DrawNPCShadowFix);
+	WriteCall((void*)0x51AB88, RenderEggCarrier0NPC); // Chaos 4 glitch
+	WriteCall((void*)0x525405, RenderEggCarrier3NPC); // Gamma's chest fix
+	// Cutscene stuff
+	WriteCall((void*)0x4181FD, CutsceneAnimationHook1);
+	WriteCall((void*)0x418214, CutsceneAnimationHook2);
+	WriteJump((void*)0x43A810, AnimateLandtableHook); // Landtable animation hook
+	WriteCall((void*)0x4A22A6, SonicFrozenCubeFix);
+	WriteCall((void*)0x4A07D9, CharBubbleHook); // Draw bubbles behind water
+	// Hedgehog Hammer fixes
+	WriteCall((void*)0x5279E2, DrawHedgehogHammerTextHook);
+	WriteCall((void*)0x527C53, DrawHedgehogHammerScoreboardHook); // Adventure Field version
+	WriteCall((void*)0x625713, DrawHedgehogHammerScoreboardHook); // Minigame version
+	// Stupid hacks for Windy Valley 3 and other stages
+	WriteCall((void*)0x49EE10, DrawRingShadowHook);
+	WriteCall((void*)0x49EFAE, DrawScalableShadowHook);
+	WriteCall((void*)0x4A1827, SpindashChargeLinesHook);
+	WriteCall((void*)0x4A1E55, SpindashChargeSpriteHook);
+}
+
+void General_Load()
+{
 	if (!ModelsLoaded_General)
 	{
-		// Trampolines
-		GoalEmerald_Windy_Display_t = new Trampoline(0x4DF3B0, 0x4DF3B6, GoalEmerald_Windy_Display_r);
-		GoalEmerald_Ice_Display_t = new Trampoline(0x4ECFA0, 0x4ECFA6, GoalEmerald_Ice_Display_r);
-		GoalEmerald_Casino_Display_t = new Trampoline(0x5DD0A0, 0x5DD0A6, GoalEmerald_Casino_Display_r);
-		CalculateEnemyYCoordinate_Sweep_t = new Trampoline(0x49EAD0, 0x49EAD7, CalculateEnemyYCoordinate_Sweep_r);
-		DisplayTitleCard_t = new Trampoline(0x47E170, 0x47E175, DisplayTitleCard_r);
-		CameraB_Display_t = new Trampoline(0x436CD0, 0x436CD6, CameraB_Display_r);
-		SetGlobalPoint2Col_Colors_t = new Trampoline(0x402F10, 0x402F18, SetGlobalPoint2Col_Colors_r);
-		WriteData((int*)0x007802D2, 0x3AB9908); // Redirect the old motion callback to fix missing animations
-		// Disable GrabButton setting in Control
-		if (RestoreYButton) WriteData<5>((char*)0x40FDEA, 0x90u);
-		// Fixes for held objects
-		if (FixHeldObjects)
-		{
-			BurgerStatueMain_t = new Trampoline(0x630780, 0x630785, BurgerStatueMain_r);
-			MissionStatueMain_t = new Trampoline(0x593510, 0x593515, MissionStatueMain_r);
-			HandKey_Display_t = new Trampoline(0x532240, 0x532245, HandKey_Display_r);
-			WriteData((float**)0x495975, &SnowboardOffset1); // Sonic
-			WriteData((float**)0x45E56D, &SnowboardOffset1); // Tails
-			WriteData((float**)0x495989, &SnowboardOffset2); // Sonic
-			WriteData((float**)0x45E581, &SnowboardOffset2); // Tails
-			WriteData((double**)0x44232A, &holddelta); // Z offset check when putting objects down
-			//WriteData((float*)0x49D867, 0.0f); // Doesn't do shit
-			WriteData((float*)0x49D902, 0.0f); // Y offset after being put down
-			WriteData((float*)0x49D957, 0.01f); // Y speed after hitting ceiling
-			WriteData((float**)0x53C96E, &mrdistance); // Wind/Ice/Statue key distance check
-			WriteData((float**)0x53C919, &mrdistance2); // Wind/Ice/Statue key rotation check
-			WriteData((float**)0x59A93B, &hsdistance); // Hot Shelter cube puzzle distance check
-			WriteData((float**)0x6367CE, &ssdistance); // Station Square cube puzzle distance check
-			WriteData((float**)0x7AC559, &SampleSOffset); // SampleS
-			WriteData((float**)0x55BBEA, &Chaos6FreezerOffset); // Chaos 6 freezer
-			// Hook njTranslate calls to add a vertical offset for all objects involved
-			for (unsigned int i = 0; i < LengthOfArray(njTranslateVCalls); i++)
-			{
-				WriteCall((void*)njTranslateVCalls[i], njTranslateVHacc);
-			}
-			WriteJump((void*)0x630690, BurgerShopStatue_DisplayFix); // Statue shadow/Y position fix
-			WriteJump((void*)0x593410, MissionStatue_DisplayFix); // Statue shadow/Y position fix
-			// Collision adjustments
-			WriteData((float**)0x49577F, &HeldOffset_Sonic_1);
-			WriteData((float**)0x495777, &HeldOffset_Sonic_2);
-			WriteData((float**)0x495787, &HeldOffset_Sonic_3);
-			WriteData((float**)0x49578F, &HeldOffset_Sonic_4);
-			WriteData((float**)0x45D5F5, &HeldOffset_Tails_1);
-			WriteData((float**)0x45D5ED, &HeldOffset_Tails_2);
-			WriteData((float**)0x45D5FD, &HeldOffset_Tails_3);
-			WriteData((float**)0x45D605, &HeldOffset_Tails_4);
-			WriteData((float**)0x477892, &HeldOffset_Knuckles_1);
-			WriteData((float**)0x4778A2, &HeldOffset_Knuckles_2);
-			WriteData((float**)0x47789A, &HeldOffset_Knuckles_3);
-			WriteData((float**)0x4778AA, &HeldOffset_Knuckles_4);
-			WriteData((float**)0x48E250, &HeldOffset_Big);
-			BurgerMan_Collision[0].center.y = 0.0f;
-			BurgerMan_Collision[1].center.y = 0.0f;
-			FakeEgg_Collision[0].center.y = 0.0f;
-			FakeEgg_Collision[1].center.y = -0.5f;
-			OHandKey_Collision[0].center.y = 0.0f;
-			OHandKey_Collision[1].center.y = 0.0f;
-			OHandKey_Collision[1].a = 1.0f;
-			OKurotama_Collision[0].center.y = 0.0f;
-			OKurotama_Collision[1].center.y = -0.5f;
-			OKillSwitch_Collision[0].center.y = 0.0f;
-			OKillSwitch_Collision[1].center.y = -2.2f;
-			OEggStand_Collision[0].center.y = 0.0f;
-			OEggStand_Collision[1].center.y = 0.0f;
-			OBoxSwitch_Collision[0].center.y = 0.5f;
-			OBoxSwitch_Collision[1].center.y = 0.5f;
-			ChaoCard_Collision[0].center.y = 0.0f;
-			ChaoCard_Collision[1].center.x = -1.0f;
-			ChaoCard_Collision[1].center.y = 0.0f;
-			OKeyBlock_Collision[0].center.y = 2.0f;
-			OKeyBlock_Collision[1].center.y = 0.0f;
-			OKeyBlock_Collision[1].a = 0.0f;
-			OKartPass_Collision[0].center.y = 0.0f;
-			OKartPass_Collision[0].center.x = -1.0f;
-			OKartPass_Collision[1].center.y = 0.0f;
-			OCard_Collision[0].center.y = 0.0f;
-			OCard_Collision[0].center.x = -1.0f;
-			OCard_Collision[1].center.y = 0.0f;
-			IceKey_Collision[0].center.y = 0.0f;
-			IceKey_Collision[1].center.y = 0.0f;
-			IceKey_Collision[1].a = 1.0f;
-			Chaos6Freezer_Collision[0].center.y = 0.0f;
-			Chaos6Freezer_Collision[1].a = 1.0f;
-			ChaoAnimal_Collision[0].center.y = 1.0f;
-			ChaoFruit_Collision[0].center.y = 1.0f;
-			KikiBomb_Collision[1].a = 2.8f; // Z offset after putting down		
-		}
-		// Chaos bubbles fix
-		WriteJump((void*)0x7ADD30, actBubble);
-		// Cutscene skip hooks
-		WriteCall((void*)0x40D69C, CutsceneFadeHookForSubtitleBox); 
-		WriteCall((void*)0x40D78A, CutsceneFadeHookForSubtitleText);
-		if (DisableFontFiltering && !DLLLoaded_HDGUI) WriteCall((void*)0x40D7DA, njDrawSprite2D_Queue_Point);
 		// Snow/sandboard "fixes" (SL OBJECTS)
 		RemoveVertexColors_Object(SONIC_OBJECTS[71]);
 		RemoveVertexColors_Object(MILES_OBJECTS[71]);
 		ForceLightType_Object(SONIC_OBJECTS[71], 2, false);
 		ForceLightType_Object(MILES_OBJECTS[71], 2, false);
-		// The beam that collects the emerald in "Sonic and Tails gassed at Casinopolis" cutscene
-		WriteCall((void*)0x6F37DC, CaptureBeamFix);
-		// Big's fishing thing fix
-		WriteCall((void*)0x46C547, BigFishingThingFix);
-		// Big's belt buckle fix
-		if (BigBeltFix) WriteCall((void*)0x48BA29, BigDisplayFix);
-		// Metal Sonic afterimage fix
-		WriteJump(MetalSonic_AfterImage_Display, MetalSonic_AfterImage_Display_Fixed);
-		// Character shadow fix (lame)
-		WriteCall((void*)0x49F182, CharacterShadowHook);
-		// NPC shadow fix
-		WriteCall((void*)0x5252E8, DrawNPCShadowFix);
-		WriteCall((void*)0x51AB88, RenderEggCarrier0NPC); // Chaos 4 glitch
-		WriteCall((void*)0x525405, RenderEggCarrier3NPC); // Gamma's chest fix
-		// Cutscene stuff
-		WriteCall((void*)0x4181FD, CutsceneAnimationHook1);
-		WriteCall((void*)0x418214, CutsceneAnimationHook2);
-		WriteJump((void*)0x43A810, AnimateLandtableHook); // Landtable animation hook
-		WriteCall((void*)0x4A22A6, SonicFrozenCubeFix);
 		// Material/vertex color fixes
 		// Eggman's eyes (UV-less / SA1 model only)
 		if (DLLLoaded_SA1Chars)
@@ -2055,16 +2478,6 @@ void General_Init()
 		RemoveVertexColors_Object((NJS_OBJECT*)0x94EFD4); // Boa 4
 		RemoveVertexColors_Object((NJS_OBJECT*)0x97388C); // Cop speeder
 		RemoveVertexColors_Object((NJS_OBJECT*)0x970D8C); // Spinner
-		WriteCall((void*)0x4A07D9, CharBubbleHook); // Draw bubbles behind water
-		// Hedgehog Hammer fixes
-		WriteCall((void*)0x5279E2, DrawHedgehogHammerTextHook);
-		WriteCall((void*)0x527C53, DrawHedgehogHammerScoreboardHook); // Adventure Field version
-		WriteCall((void*)0x625713, DrawHedgehogHammerScoreboardHook); // Minigame version
-		// Stupid hacks for Windy Valley 3 and other stages
-		WriteCall((void*)0x49EE10, DrawRingShadowHook);
-		WriteCall((void*)0x49EFAE, DrawScalableShadowHook);
-		WriteCall((void*)0x4A1827, SpindashChargeLinesHook);
-		WriteCall((void*)0x4A1E55, SpindashChargeSpriteHook);
 		// Replace hint monitor model
 		HintMonitorModel = LoadModel("system\\data\\1st_read\\Models\\001AD358.sa1mdl");
 		HideMesh_Object(HintMonitorModel, 10); // Hide screen (rendered separately in DX)
@@ -2154,21 +2567,6 @@ void General_Init()
 		((NJS_MODEL_SADX*)0x989384)->meshsets[4].vertcolor = SwitchDark_vcolor2;
 		((NJS_MODEL_SADX*)0x989384)->meshsets[3].vertcolor = SwitchDark_vcolor1;
 		((NJS_ACTION*)0x8B8BC4)->object = LoadModel("system\\data\\1ST_READ\\Models\\0019A118.sa1mdl"); // Dash panel
-		// Light Speed Dash distance fix
-		if (EnableLSDFix)
-		{
-			LSDMinimumCheck1 = 8.0f;
-			LSDMinimumSet1 = 9.0f;
-			LSDMinimumCheck2 = 4.0f;
-			LSDMinimumSet2 = 4.0f;
-			WriteData((float*)0x49306A, 16.0f); // Initial X speed
-			WriteData((float**)0x492CCB, &LSDMinimumCheck2); // Minimum check 1 (2.0 in SADX)
-			WriteData((float*)0x492CDA, LSDMinimumSet2); // Set if met check 1 (2.0 in SADX)
-			WriteData((float**)0x492CB0, &LSDMinimumCheck1); // Minimum speed to be compared
-			WriteData((float*)0x492CBF, LSDMinimumSet1); // Minimum speed to be set
-		}
-		// Fix badniks not spawning (Amenbo fix in trampoline)
-		WriteCall((void*)0x49EFE7, CalculateEnemyYCoordinate_Wrapper);
 		// Ripples
 		if (EnableDCRipple)
 		{
@@ -2178,8 +2576,6 @@ void General_Init()
 			WriteJump((void*)0x7A81A0, FixedRipple_Bubble);
 			WriteJump((void*)0x4407C0, SpawnRipplesX);
 		}
-		// Water splash particle
-		WriteCall((void*)0x49F1C0, FixWaterSplash);
 		// Some emerald shard "fixes"
 		EmeraldPieceModel = LoadModel("system\\data\\1st_read\\Models\\0019BC48.sa1mdl");
 		EmeraldPieceOutline = CloneObject(EmeraldPieceModel);
@@ -2196,83 +2592,6 @@ void General_Init()
 		WriteCall((void*)0x4A2E02, RenderEmeraldShard_C);
 		WriteCall((void*)0x4A2D0D, SetEmeraldShardColor);
 		WriteData((float**)0x4A2D39, &EmeraldScale); // Prevent minor Z Fighting with the main model
-		// Underwater overlay
-		WriteCall((void*)0x43708D, DrawUnderwaterOverlay);
-		// Character effects
-		WriteJump((void*)0x4A1630, Sonic_DisplayLightDashModelX);
-		WriteData((float**)0x47404B, &heat_float1);
-		WriteData((float**)0x474057, &heat_float2);
-		WriteJump((void*)0x4C1330, Knuckles_MaximumHeat_DrawX);
-		WriteJump((void*)0x4C1410, Knuckles_MaximumHeatSprite_Draw);
-		WriteCall((void*)0x4C1258, KnucklesPunch_RetrieveAlpha);
-		WriteCall((void*)0x4C1305, KnucklesPunch_Render);
-		// Dash trail fixes
-		WriteCall((void*)0x4A0F56, SonicDashTrailFix);
-		WriteCall((void*)0x4A1233, SonicDashTrailFix2);
-		WriteData((float*)0x4A1216, 2500.0f); // Long dash trail depth bias
-		WriteData<1>((char*)0x4A1220, 0i8); // Spindash trail queued flags
-		// Barrier fixes
-		WriteData<5>((char*)0x4B9E3A, 0x90u); // Disable ClampGlobalColorThing (it's called later in my replacement function)
-		WriteCall((void*)0x4B9F0F, MagneticBarrierLightning);
-		WriteCall((void*)0x4B9DDA, SetMagneticBarrierColor);
-		WriteJump((void*)0x4B9C90, RenderBarrierModels);
-		WriteCall((void*)0x55E782, SuperSonicAuraHook); // Super Sonic aura 1
-		WriteCall((void*)0x55E76A, SuperSonicAuraHook); // Super Sonic aura 2
-		WriteCall((void*)0x55E72A, SuperSonicAuraHook); // Super Sonic aura 3
-		WriteJump(Barrier_Main, Barrier_MainX); // Barrier
-		WriteCall((void*)0x4BA0E4, RenderInvincibilityLines);
-		WriteData<10>((char*)0x40889C, 0x90u); // Queued model lighting/specular fix
-		// Various bugfixes
-		// Gamma cutscenes fix 
-		WriteCall((void*)0x6D9DA7, ECGammaCutsceneFix); // Fix Gamma hover scene in Sonic's story
-		WriteCall((void*)0x6B8D5E, ECGammaCutsceneFix); // Fix Gamma hover scene in Tails' story
-		// Zero holding Amy lighting fix
-		((NJS_OBJECT*)0x31A4DFC)->basicdxmodel->mats[11].attrflags &= ~NJD_FLAG_IGNORE_LIGHT;
-		((NJS_OBJECT*)0x31A4DFC)->basicdxmodel->mats[1].attrflags |= NJD_FLAG_IGNORE_LIGHT;
-		// Tikal lighting fixes
-		((NJS_OBJECT*)0x8CE058)->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_USE_ALPHA;
-		((NJS_OBJECT*)0x8CC658)->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_USE_ALPHA;
-		// Eggman fingers fix
-		((NJS_OBJECT*)0x8961E0)->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_USE_ALPHA;
-		((NJS_OBJECT*)0x8964CC)->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_USE_ALPHA;
-		((NJS_OBJECT*)0x8980DC)->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_USE_ALPHA;
-		((NJS_OBJECT*)0x897DE0)->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_USE_ALPHA;
-		((NJS_OBJECT*)0x2EE22C0)->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_USE_ALPHA;
-		((NJS_OBJECT*)0x2EE25AC)->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_USE_ALPHA;
-		((NJS_OBJECT*)0x2EE4194)->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_USE_ALPHA;
-		((NJS_OBJECT*)0x2EE3E98)->basicdxmodel->mats[0].attrflags &= ~NJD_FLAG_USE_ALPHA;
-		((NJS_OBJECT*)0x1257754)->basicdxmodel->mats[15].diffuse.color = 0xFFFFFFFF; // Chaos6 Eggmobile
-		*(NJS_TEXLIST**)0x2BD5FE4 = (NJS_TEXLIST*)0x2EE0AA4; // Eggman Super Sonic cutscene texlist fix
-		// Emblem field model
-		((NJS_MATERIAL*)0x9740FC)->attrflags &= ~NJD_FLAG_IGNORE_SPECULAR;
-		((NJS_MATERIAL*)0x974110)->attrflags &= ~NJD_FLAG_IGNORE_SPECULAR;
-		((NJS_MATERIAL*)0x974124)->attrflags &= ~NJD_FLAG_IGNORE_SPECULAR;
-		((NJS_MATERIAL*)0x974138)->attrflags &= ~NJD_FLAG_IGNORE_SPECULAR;
-		// Remove material colors on goal emeralds
-		RemoveVertexColors_Object((NJS_OBJECT*)0xC3FDA0);
-		RemoveVertexColors_Object((NJS_OBJECT*)0xC3E300);
-		RemoveVertexColors_Object((NJS_OBJECT*)0xC3F050);
-		// Remove material colors on cutscene emeralds
-		RemoveVertexColors_Object(&EV_MODEL_EME_BLACK);
-		RemoveVertexColors_Object(&EV_MODEL_EME_RED);
-		RemoveVertexColors_Object(&EV_MODEL_EME_BLUE);
-		RemoveVertexColors_Object(&EV_MODEL_EME_PURPLE);
-		RemoveVertexColors_Object(&EV_MODEL_EME_GREEN);
-		RemoveVertexColors_Object(&EV_MODEL_EME_SKY);
-		RemoveVertexColors_Object(&EV_MODEL_EME_WHITE);
-		RemoveVertexColors_Object(&EV_MODEL_EME_YELLOW);
-		// Emeralds glow
-		// Windy Valley
-		WriteCall((void*)0x4DF27F, RenderEmeraldWithGlow_Windy); // Uses a different function than Ice Cap or Casino
-		// Ice Cap
-		WriteCall((void*)0x4ECEC4, RenderEmeraldWithGlow_Ice);
-		// Casino
-		WriteCall((void*)0x5DCFB0, RenderEmeraldWithGlow_Ice); // Same function
-		// Material fixes
-		for (unsigned int i = 0; i < LengthOfArray(RemoveColors_General); i++)
-		{
-			RemoveMaterialColors(RemoveColors_General[i]);
-		}
 		if (DLLLoaded_Lantern == true)
 		{
 			AddAlphaRejectMaterial(&((NJS_OBJECT*)0x8BF3A0)->basicdxmodel->mats[0]); // Shadow blob

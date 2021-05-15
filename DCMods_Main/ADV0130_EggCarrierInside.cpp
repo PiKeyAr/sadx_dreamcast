@@ -207,6 +207,55 @@ void UnloadLevelFiles_ADV01C()
 
 void ADV01C_Init()
 {
+	ReplaceSET("SETEC30S");
+	ReplaceSET("SETEC31S");
+	ReplaceSET("SETEC31B");
+	ReplaceSET("SETEC32S");
+	ReplaceSET("SETEC33S");
+	ReplaceSET("SETEC34S");
+	ReplaceSET("SETEC35S");
+	ReplaceCAM("CAMEC30S");
+	ReplaceCAM("CAMEC31S");
+	ReplaceCAM("CAMEC32S");
+	ReplaceCAM("CAMEC33S");
+	ReplaceCAM("CAMEC34S");
+	ReplaceCAM("CAMEC35S");
+	ReplacePVM("ADV_EC30");
+	ReplacePVM("ADV_EC31");
+	ReplacePVM("ADV_EC32");
+	ReplacePVM("ADV_EC33");
+	ReplacePVM("ADV_EC34");
+	ReplacePVM("ADV_EC35");
+	ReplacePVM("ADV_EC36");
+	ReplacePVM("OBJ_EC30");
+	ReplacePVM("EC_ACTDOOR");
+	ReplacePVM("EC_ALIFE");
+	ReplacePVM("EC_EGGLIFT");
+	ReplacePVM("EC_TARAI");
+	ReplacePVM("PVME101FACTORY");
+	for (int i = 0; i < 3; i++)
+	{
+		EggCarrierInside1Fog[i].Distance = -12000;
+		EggCarrierInside1Fog[i].Layer = -12000;
+		EggCarrierInside2Fog[i].Toggle = 1;
+		EggCarrierInside2Fog[i].Distance = 4000.0f;
+		EggCarrierInside2Fog[i].Layer = 800.0f;
+		EggCarrierInside2Fog[i].Color = 0xFFA0A0A0;
+		EggCarrierInside3Fog[i].Distance = -12000;
+		EggCarrierInside3Fog[i].Layer = -12000;
+		EggCarrierInside4Fog[i].Toggle = 1;
+		EggCarrierInside4Fog[i].Distance = 1216.0f;
+		EggCarrierInside4Fog[i].Layer = 139.0f;
+		EggCarrierInside4Fog[i].Color = 0xFF7F7F40;
+		EggCarrierInside5Fog[i].Distance = -12000;
+		EggCarrierInside5Fog[i].Layer = -12000;
+		EggCarrierInside6Fog[i].Distance = -12000;
+		EggCarrierInside6Fog[i].Layer = -12000;
+	}
+}
+
+void ADV01C_Load()
+{
 	ADV01C_0_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("system\\data\\ADV0130\\0.sa1lvl"));
 	ADV01C_1_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("system\\data\\ADV0130\\1.sa1lvl"));
 	ADV01C_2_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("system\\data\\ADV0130\\2.sa1lvl"));
@@ -315,25 +364,6 @@ void ADV01C_Init()
 		NJS_OBJECT* EggLift = LoadModel("system\\data\\ADV0130\\Models\\000B8CD4.sa1mdl"); // OEggLift
 		*ADV01C_OBJECTS[23] = *EggLift;
 		*ADV01C_ACTIONS[7]->object = *EggLift;
-		for (int i = 0; i < 3; i++)
-		{
-			EggCarrierInside1Fog[i].Distance = -12000;
-			EggCarrierInside1Fog[i].Layer = -12000;
-			EggCarrierInside2Fog[i].Toggle = 1;
-			EggCarrierInside2Fog[i].Distance = 4000.0f;
-			EggCarrierInside2Fog[i].Layer = 800.0f;
-			EggCarrierInside2Fog[i].Color = 0xFFA0A0A0;
-			EggCarrierInside3Fog[i].Distance = -12000;
-			EggCarrierInside3Fog[i].Layer = -12000;
-			EggCarrierInside4Fog[i].Toggle = 1;
-			EggCarrierInside4Fog[i].Distance = 1216.0f;
-			EggCarrierInside4Fog[i].Layer = 139.0f;
-			EggCarrierInside4Fog[i].Color = 0xFF7F7F40;
-			EggCarrierInside5Fog[i].Distance = -12000;
-			EggCarrierInside5Fog[i].Layer = -12000;
-			EggCarrierInside6Fog[i].Distance = -12000;
-			EggCarrierInside6Fog[i].Layer = -12000;
-		}
 		ModelsLoaded_ADV0130 = true;
 	}
 }

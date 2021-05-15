@@ -244,6 +244,43 @@ void OPoleFix2(NJS_MODEL_SADX *model, QueuedModelFlagsB blend)
 
 void TwinklePark_Init()
 {
+	ReplacePVM("BG_SHAREOBJ");
+	ReplacePVM("OBJ_SHAREOBJ");
+	ReplaceCAM("CAM0300S");
+	ReplaceCAM("CAM0301A");
+	ReplaceCAM("CAM0301B");
+	ReplaceCAM("CAM0301S");
+	ReplaceCAM("CAM0302A");
+	ReplaceCAM("CAM0302S");
+	ReplaceSET("SET0300S");
+	ReplaceSET("SET0301A");
+	ReplaceSET("SET0301B");
+	ReplaceSET("SET0301S");
+	ReplaceSET("SET0302A");
+	ReplaceSET("SET0302S");
+	ReplacePVM("OBJ_TWINKLE");
+	ReplacePVM("TWINKLE01");
+	ReplacePVM("TWINKLE02");
+	ReplacePVM("TWINKLE03");
+	// Fog and draw distance
+	for (int i = 0; i < 3; i++)
+	{
+		TwinklePark1Fog[i].Layer = 1500.0f;
+		TwinklePark2Fog[i].Layer = -1400.0f;
+		TwinklePark2Fog[i].Distance = -3200.0f;
+		TwinklePark2Fog[i].Color = 0xFF100030;
+		TwinklePark3Fog[i].Layer = -800.0f;
+		TwinklePark3Fog[i].Distance = -2200.0f;
+		TwinklePark3Fog[i].Color = 0xFF100030;
+		TwinklePark4Fog[i].Color = 0xFF000000;
+		TwinklePark4Fog[i].Layer = 1.0f;
+		TwinklePark4Fog[i].Distance = 1200.0f;
+		TwinklePark4Fog[i].Toggle = 1;
+	}
+}
+
+void TwinklePark_Load()
+{
 	STG03_0_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG03\\0.sa1lvl"));
 	STG03_1_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG03\\1.sa1lvl"));
 	STG03_2_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG03\\2.sa1lvl"));
@@ -341,21 +378,6 @@ void TwinklePark_Init()
 		*(NJS_OBJECT*)0x279DB14 = *LoadModel("system\\data\\STG03\\Models\\000A14AC.sa1mdl"); // Barrel (destroyed) part 5
 		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x279D364)->basicdxmodel->mats[1]);
 		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x279D364)->basicdxmodel->mats[2]);
-		// Fog and draw distance
-		for (int i = 0; i < 3; i++)
-		{
-			TwinklePark1Fog[i].Layer = 1500.0f;
-			TwinklePark2Fog[i].Layer = -1400.0f;
-			TwinklePark2Fog[i].Distance = -3200.0f;
-			TwinklePark2Fog[i].Color = 0xFF100030;
-			TwinklePark3Fog[i].Layer = -800.0f;
-			TwinklePark3Fog[i].Distance = -2200.0f;
-			TwinklePark3Fog[i].Color = 0xFF100030;
-			TwinklePark4Fog[i].Color = 0xFF000000;
-			TwinklePark4Fog[i].Layer = 1.0f;
-			TwinklePark4Fog[i].Distance = 1200.0f;
-			TwinklePark4Fog[i].Toggle = 1;
-		}
 		// Lantern stuff
 		if (DLLLoaded_Lantern)
 		{

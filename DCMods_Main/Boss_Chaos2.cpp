@@ -64,7 +64,24 @@ void ChandLightFix(NJS_OBJECT *a1, QueuedModelFlagsB a2)
 	DrawQueueDepthBias = 0.0f;
 }
 
-void Chaos2_Init()
+void B_CHAOS2_Init()
+{
+	ReplaceSET("SET1600S");
+	ReplacePVM("CHAOS2");
+	ReplacePVM("LM_CHAOS2");
+	ReplacePVM("CHAOS2_BARRIER");
+	ReplacePVM("CHAOS2_EFFECT");
+	ReplacePVM("CHAOS2_OBJECT");
+	for (int i = 0; i < 3; i++)
+	{
+		Chaos2Fog[i].Color = 0xFF000000;
+		Chaos2Fog[i].Layer = 700.0f;
+		Chaos2Fog[i].Distance = 1700.0f;
+		Chaos2Fog[i].Toggle = 0;
+	}
+}
+
+void B_CHAOS2_Load()
 {
 	B_CHAOS2_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\B_CHAOS2\\0.sa1lvl"));
 	LandTable* B_CHAOS2 = B_CHAOS2_Info->getlandtable();
@@ -98,13 +115,6 @@ void Chaos2_Init()
 		RemoveVertexColors_Object((NJS_OBJECT*)0x11339EC); // Chaos2 small ball
 		RemoveVertexColors_Object((NJS_OBJECT*)0x1139274); // Chaos2 ball
 		RemoveVertexColors_Object((NJS_OBJECT*)0x113F81C); // Chaos2 ball 2
-		for (int i = 0; i < 3; i++)
-		{
-			Chaos2Fog[i].Color = 0xFF000000;
-			Chaos2Fog[i].Layer = 700.0f;
-			Chaos2Fog[i].Distance = 1700.0f;
-			Chaos2Fog[i].Toggle = 0;
-		}
 		ModelsLoaded_B_CHAOS2 = true;
 	}
 }

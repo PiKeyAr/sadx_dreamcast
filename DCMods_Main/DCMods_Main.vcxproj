@@ -43,7 +43,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>$(SolutionDir)bin</OutDir>
+    <OutDir>$(SolutionDir)bin\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>$(SolutionDir)bin\</OutDir>
@@ -100,7 +100,6 @@
     <ClCompile Include="ADV0100_EggCarrierOutside.cpp" />
     <ClCompile Include="ADV02_MysticRuins.cpp" />
     <ClCompile Include="ADV03_Past.cpp" />
-    <ClCompile Include="Common_Startup.cpp" />
     <ClCompile Include="Common_Branding.cpp" />
     <ClCompile Include="General_OIT.cpp" />
     <ClCompile Include="STG09_Casinopolis.cpp" />

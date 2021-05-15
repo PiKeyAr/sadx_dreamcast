@@ -369,6 +369,51 @@ void Connect0Fix2(NJS_OBJECT* obj, float scale)
 
 void SkyDeck_Init()
 {
+	ReplaceSET("SET0600M");
+	ReplaceSET("SET0600S");
+	ReplaceSET("SET0601M");
+	ReplaceSET("SET0601S");
+	ReplaceSET("SET0602K");
+	ReplaceSET("SET0602M");
+	ReplaceSET("SET0602S");
+	ReplaceCAM("CAM0600M");
+	ReplaceCAM("CAM0600S");
+	ReplaceCAM("CAM0601S");
+	ReplaceCAM("CAM0602K");
+	ReplaceCAM("CAM0602S");
+	ReplacePVM("E_AIRCRAFT");
+	ReplacePVM("OBJ_SKYDECK");
+	ReplacePVM("SKYDECK01");
+	ReplacePVM("SKYDECK02");
+	ReplacePVM("SKYDECK03");
+	// Fog data
+	for (int i = 0; i < 3; i++)
+	{
+		SkyDeck1Fog[i].Layer = 4000.0f;
+		SkyDeck1Fog[i].Distance = 12000.0f;
+		SkyDeck1Fog[i].Color = 0xFF000000;
+		SkyDeck2Fog[i].Layer = 4000.0f;
+		SkyDeck2Fog[i].Distance = 12000.0f;
+		SkyDeck2Fog[i].Color = 0xFF000000;
+		SkyDeck3Fog[i].Layer = 4000.0f;
+		SkyDeck3Fog[i].Distance = 12000.0f;
+		SkyDeck1DrawDist[i].Maximum = -20000.0f;
+		SkyDeck2DrawDist[i].Maximum = -20000.0f;
+		SkyDeck3DrawDist[i].Maximum = -16000.0f;
+		SkyDeck3SkyboxScale->Far.x = 1.0f;
+		SkyDeck3SkyboxScale->Far.y = 1.0f;
+		SkyDeck3SkyboxScale->Far.z = 1.0f;
+		SkyDeck3SkyboxScale->Normal.x = 1.0f;
+		SkyDeck3SkyboxScale->Normal.y = 1.0f;
+		SkyDeck3SkyboxScale->Normal.z = 1.0f;
+		SkyDeck3SkyboxScale->Near.x = 1.0f;
+		SkyDeck3SkyboxScale->Near.y = 1.0f;
+		SkyDeck3SkyboxScale->Near.z = 1.0f;
+	}
+}
+
+void SkyDeck_Load()
+{
 	STG06_0_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG06\\0.sa1lvl"));
 	STG06_1_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG06\\1.sa1lvl"));
 	STG06_2_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG06\\2.sa1lvl"));
@@ -642,30 +687,6 @@ void SkyDeck_Init()
 		ObjList_SDeck[36].Distance = 8000000;
 		ObjList_SDeck[37].Distance = 8000000;
 		ObjList_SDeck[38].Distance = 3000000;
-		// Fog data
-		for (int i = 0; i < 3; i++)
-		{
-			SkyDeck1Fog[i].Layer = 4000.0f;
-			SkyDeck1Fog[i].Distance = 12000.0f;
-			SkyDeck1Fog[i].Color = 0xFF000000;
-			SkyDeck2Fog[i].Layer = 4000.0f;
-			SkyDeck2Fog[i].Distance = 12000.0f;
-			SkyDeck2Fog[i].Color = 0xFF000000;
-			SkyDeck3Fog[i].Layer = 4000.0f;
-			SkyDeck3Fog[i].Distance = 12000.0f;
-			SkyDeck1DrawDist[i].Maximum = -20000.0f;
-			SkyDeck2DrawDist[i].Maximum = -20000.0f;
-			SkyDeck3DrawDist[i].Maximum = -16000.0f;
-			SkyDeck3SkyboxScale->Far.x = 1.0f;
-			SkyDeck3SkyboxScale->Far.y = 1.0f;
-			SkyDeck3SkyboxScale->Far.z = 1.0f;
-			SkyDeck3SkyboxScale->Normal.x = 1.0f;
-			SkyDeck3SkyboxScale->Normal.y = 1.0f;
-			SkyDeck3SkyboxScale->Normal.z = 1.0f;
-			SkyDeck3SkyboxScale->Near.x = 1.0f;
-			SkyDeck3SkyboxScale->Near.y = 1.0f;
-			SkyDeck3SkyboxScale->Near.z = 1.0f;
-		}
 		ModelsLoaded_STG06 = true;
 	}
 }

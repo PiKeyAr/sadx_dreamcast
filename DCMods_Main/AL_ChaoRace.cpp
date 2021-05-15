@@ -4016,7 +4016,23 @@ void RemovePositionRotation_Object(NJS_OBJECT *object)
 	object->ang[2] = 0;
 }
 
-void ChaoRace_Init()
+void AL_RACE_Init()
+{
+	ReplacePVM("AL_RACE02");
+	ReplacePVM("BG_AL_RACE02");
+	ReplacePVM("OBJ_AL_RACE");
+	ReplacePVM("OBJ_AL_RACE_E");
+	ReplaceSET("SETAL_RACE00S");
+	ReplaceSET("SETAL_RACE01S");
+	ReplaceCAM("CAMAL_RACE01S");
+	if (EnableLobby)
+	{
+		ReplaceCAM("CAMAL_RACE00S");
+		ReplacePVM("AL_RACE01");
+	}
+}
+
+void AL_RACE_Load()
 {
 	Chao_Display_t = new Trampoline(0x7204B0, 0x7204B5, Chao_Display_r);
 	ChaoShadowFix_t = new Trampoline(0x73EF60, 0x73EF65, ChaoShadowFix_r);
@@ -4090,7 +4106,7 @@ void ChaoRace_Init()
 	WriteData((float*)0x00719D74, -16000.0f); // Draw distance
 }
 
-void ChaoRace_OnFrame()
+void AL_RACE_OnFrame()
 {
 	// Chao Race Entry
 	if (CurrentChaoStage == SADXChaoStage_RaceEntry && !IsGamePaused() && EnableLobby)

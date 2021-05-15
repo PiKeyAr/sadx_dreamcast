@@ -297,6 +297,90 @@ void UnloadLevelFiles_ADV01()
 
 void ADV01_Init()
 {
+	ReplaceSET("SETEC00S");
+	ReplaceSET("SETEC00M");
+	ReplaceSET("SETEC00K");
+	ReplaceSET("SETEC00A");
+	ReplaceSET("SETEC00E");
+	ReplaceSET("SETEC00B");
+	ReplaceSET("SETEC01S");
+	ReplaceSET("SETEC01M");
+	ReplaceSET("SETEC01K");
+	ReplaceSET("SETEC01A");
+	ReplaceSET("SETEC01E");
+	ReplaceSET("SETEC01B");
+	ReplaceSET("SETEC02S");
+	ReplaceSET("SETEC02M");
+	ReplaceSET("SETEC02K");
+	ReplaceSET("SETEC02A");
+	ReplaceSET("SETEC02E");
+	ReplaceSET("SETEC02B");
+	ReplaceSET("SETEC03S");
+	ReplaceSET("SETEC03M");
+	ReplaceSET("SETEC04S");
+	ReplaceSET("SETEC04M");
+	ReplaceSET("SETEC04K");
+	ReplaceSET("SETEC04A");
+	ReplaceSET("SETEC04E");
+	ReplaceSET("SETEC04B");
+	ReplaceSET("SETEC05S");
+	ReplaceSET("SETEC05M");
+	ReplaceCAM("CAMEC00S");
+	ReplaceCAM("CAMEC01S");
+	ReplaceCAM("CAMEC02S");
+	ReplaceCAM("CAMEC03S");
+	ReplaceCAM("CAMEC04S");
+	ReplaceCAM("CAMEC05S");
+	ReplacePVM("ADV_EC00");
+	ReplacePVM("ADV_EC01");
+	ReplacePVM("ADV_EC02");
+	ReplacePVM("ADV_EC03");
+	ReplacePVM("ADV_EC04");
+	ReplacePVM("ADV_EC05");
+	ReplacePVM("BG_EC00");
+	ReplacePVM("EC_ACTDOOR");
+	ReplacePVM("EC_BG");
+	ReplacePVM("EC_BOAT");
+	ReplacePVM("EC_CLOUDS");
+	ReplacePVM("EC_IKADA");
+	ReplacePVM("EC_LIGHT");
+	ReplacePVM("EC_SKY");
+	ReplacePVM("EC_TORNADO");
+	ReplacePVM("EC_TRANSFORM");
+	ReplacePVM("EC_WATER");
+	ReplacePVM("EV_ECCLOUD");
+	ReplacePVM("EC_SEA");
+	ReplacePVM("OBJ_EC00");
+	// Fog/draw distance data
+	for (int i = 0; i < 3; i++)
+	{
+		SkyboxScale_EggCarrier4[i].x = 1.0f;
+		SkyboxScale_EggCarrier4[i].y = 1.0f;
+		SkyboxScale_EggCarrier4[i].z = 1.0f;
+		EggCarrierOutsideSkyDrawDist3[i].Maximum = -9000;
+		EggCarrierOutsideDrawDist1[i].Maximum = -11000;
+		EggCarrierOutsideDrawDist2[i].Maximum = -11000;
+		EggCarrierOutsideDrawDist3[i].Maximum = -11000;
+		EggCarrierOutsideDrawDist7[i].Maximum = -28000;
+		EggCarrierOutside2Fog[i].Distance = -12000;
+		EggCarrierOutside2Fog[i].Layer = -12000;
+		EggCarrierOutside3Fog[i].Distance = -12000;
+		EggCarrierOutside3Fog[i].Layer = -12000;
+		EggCarrierOutside4Fog[i].Distance = -12000;
+		EggCarrierOutside4Fog[i].Layer = -12000;
+		EggCarrierOutside5Fog[i].Distance = -12000;
+		EggCarrierOutside5Fog[i].Layer = -12000;
+		EggCarrierOutside6Fog[i].Distance = -12000;
+		EggCarrierOutside6Fog[i].Layer = -12000;
+		EggCarrierOutside7Fog[i].Toggle = 1;
+		EggCarrierOutside7Fog[i].Layer = 6500;
+		EggCarrierOutside7Fog[i].Color = 0xFF000000;
+		EggCarrierOutside7Fog[i].Distance = 17000;
+	}
+}
+
+void ADV01_Load()
+{
 	// This is done every time the function is called
 	ADV01_0_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV0100\\0.sa1lvl"));
 	ADV01_1_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV0100\\1.sa1lvl"));
@@ -457,31 +541,6 @@ void ADV01_Init()
 		*ADV01_OBJECTS[70]->basicdxmodel = *MonorailBack->basicdxmodel;
 		*ADV01_OBJECTS[70]->child->basicdxmodel = *MonorailBack->child->basicdxmodel;
 		*ADV01_OBJECTS[70]->child->child->basicdxmodel = *MonorailBack->child->child->basicdxmodel;
-		for (int i = 0; i < 3; i++)
-		{
-			SkyboxScale_EggCarrier4[i].x = 1.0f;
-			SkyboxScale_EggCarrier4[i].y = 1.0f;
-			SkyboxScale_EggCarrier4[i].z = 1.0f;
-			EggCarrierOutsideSkyDrawDist3[i].Maximum = -9000;
-			EggCarrierOutsideDrawDist1[i].Maximum = -11000;
-			EggCarrierOutsideDrawDist2[i].Maximum = -11000;
-			EggCarrierOutsideDrawDist3[i].Maximum = -11000;
-			EggCarrierOutsideDrawDist7[i].Maximum = -28000;
-			EggCarrierOutside2Fog[i].Distance = -12000;
-			EggCarrierOutside2Fog[i].Layer = -12000;
-			EggCarrierOutside3Fog[i].Distance = -12000;
-			EggCarrierOutside3Fog[i].Layer = -12000;
-			EggCarrierOutside4Fog[i].Distance = -12000;
-			EggCarrierOutside4Fog[i].Layer = -12000;
-			EggCarrierOutside5Fog[i].Distance = -12000;
-			EggCarrierOutside5Fog[i].Layer = -12000;
-			EggCarrierOutside6Fog[i].Distance = -12000;
-			EggCarrierOutside6Fog[i].Layer = -12000;
-			EggCarrierOutside7Fog[i].Toggle = 1;
-			EggCarrierOutside7Fog[i].Layer = 6500;
-			EggCarrierOutside7Fog[i].Color = 0xFF000000;
-			EggCarrierOutside7Fog[i].Distance = 17000;
-		}
 		ModelsLoaded_ADV0100 = true;
 	}
 }

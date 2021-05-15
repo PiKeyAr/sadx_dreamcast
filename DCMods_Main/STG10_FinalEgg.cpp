@@ -419,6 +419,42 @@ void __cdecl _0Light_Camera_DisplayFix(ObjectMaster *a1)
 
 void FinalEgg_Init()
 {
+	ReplaceCAM("CAM1000A");
+	ReplaceCAM("CAM1000S");
+	ReplaceCAM("CAM1001S");
+	ReplaceCAM("CAM1002E");
+	ReplaceCAM("CAM1002S");
+	ReplaceCAM("CAM1003S");
+	ReplaceSET("SET1000A");
+	ReplaceSET("SET1000S");
+	ReplaceSET("SET1001S");
+	ReplaceSET("SET1002E");
+	ReplaceSET("SET1002S");
+	ReplaceSET("SET1003S");
+	ReplacePVM("EFF_FINALEGG_POM");
+	ReplacePVM("FINALEGG1");
+	ReplacePVM("FINALEGG2");
+	ReplacePVM("FINALEGG3");
+	ReplacePVM("FINALEGG4");
+	ReplacePVM("OBJ_FINALEGG");
+	for (int i = 0; i < 3; i++)
+	{
+		FinalEgg1Fog[i].Color = 0xFF000000;
+		FinalEgg1Fog[i].Layer = 1200.0f;
+		FinalEgg1Fog[i].Distance = 3000.0f;
+		FinalEgg2Fog[i].Color = 0xFF000000;
+		FinalEgg2Fog[i].Layer = 650.0f;
+		FinalEgg2Fog[i].Distance = 2000.0f;
+		FinalEgg2Fog[i].Toggle = 1;
+		FinalEgg3Fog[i].Color = 0xFF000000;
+		FinalEgg3Fog[i].Layer = 650.0f;
+		FinalEgg3Fog[i].Distance = 2000.0f;
+		DrawDist_FinalEgg2[i].Maximum = -2400.0f;
+	}
+}
+
+void FinalEgg_Load()
+{
 	STG10_0_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG10\\0.sa1lvl"));
 	STG10_1_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG10\\1.sa1lvl"));
 	STG10_2_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG10\\2.sa1lvl"));
@@ -622,20 +658,6 @@ void FinalEgg_Init()
 		WriteJump(OStandLight_Main, OStandLight_Main_F);
 		WriteJump(OStandLight_Display, OStandLight_Display_F); // O Stand Light function
 		WriteJump((void*)0x005B4690, OTatekan_Display); // Cylinder function
-		for (int i = 0; i < 3; i++)
-		{
-			FinalEgg1Fog[i].Color = 0xFF000000;
-			FinalEgg1Fog[i].Layer = 1200.0f;
-			FinalEgg1Fog[i].Distance = 3000.0f;
-			FinalEgg2Fog[i].Color = 0xFF000000;
-			FinalEgg2Fog[i].Layer = 650.0f;
-			FinalEgg2Fog[i].Distance = 2000.0f;
-			FinalEgg2Fog[i].Toggle = 1;
-			FinalEgg3Fog[i].Color = 0xFF000000;
-			FinalEgg3Fog[i].Layer = 650.0f;
-			FinalEgg3Fog[i].Distance = 2000.0f;
-			DrawDist_FinalEgg2[i].Maximum = -2400.0f;
-		}
 		ModelsLoaded_STG10 = true;
 	}
 }

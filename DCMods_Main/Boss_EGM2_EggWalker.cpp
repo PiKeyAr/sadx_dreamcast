@@ -17,7 +17,28 @@ void SetEggWalkerFireColor(NJS_ARGB *a1a)
 	SetMaterialAndSpriteColor_Float(max(0, a1a->a), max(0, a1a->r), max(0, a1a->g), max(0, a1a->b));
 }
 
-void EggWalker_Init()
+void B_EGM2_Init()
+{
+	ReplaceSET("SETEGM2S");
+	ReplacePVM("EGM2");
+	ReplacePVM("EGM2_BAKU");
+	ReplacePVM("EGM2_CAR");
+	ReplacePVM("EGM2_COMMON");
+	ReplacePVM("EGM2_EFFECT");
+	ReplacePVM("EGM2_FIRE");
+	ReplacePVM("EGM2_HAMON");
+	ReplacePVM("EGM2_MINE");
+	ReplacePVM("EGM2_MISSILE");
+	ReplacePVM("EGM2_SKY");
+	ReplacePVM("EGM2_TIKEI");
+	for (int i = 0; i < 3; i++)
+	{
+		EggWalkerFog[i].Layer = -10000.0f;
+		EggWalkerFog[i].Distance = -10000.0f;
+	}
+}
+
+void B_EGM2_Load()
 {
 	B_EGM2_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\B_EGM2\\0.sa1lvl"));
 	LandTable* B_EGM2 = B_EGM2_Info->getlandtable(); //&landtable_0000022C;
@@ -40,11 +61,6 @@ void EggWalker_Init()
 		// Fix fire sprite texanim to match texture order in the PVM
 		EggWalkerFireTexanims[0].texid = 7;
 		EggWalkerFireTexanims[7].texid = 0;
-		for (int i = 0; i < 3; i++)
-		{
-			EggWalkerFog[i].Layer = -10000.0f;
-			EggWalkerFog[i].Distance = -10000.0f;
-		}
 		ModelsLoaded_B_EGM2 = true;
 	}
 }

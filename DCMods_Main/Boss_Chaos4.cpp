@@ -273,7 +273,27 @@ void Chaos4_Transform(NJS_OBJECT *object)
 	DrawQueueDepthBias = 0;
 }
 
-void Chaos4_Init()
+void B_CHAOS4_Init()
+{
+	ReplaceSET("SET1700S");
+	ReplacePVM("CHAOS4_COMMON");
+	ReplacePVM("CHAOS4_HASHIRA");
+	ReplacePVM("CHAOS4_KAMA");
+	ReplacePVM("CHAOS4_NUMA");
+	ReplacePVM("CHAOS4_OBJECT");
+	ReplacePVM("CHAOS4_SHIBUKI");
+	ReplacePVM("CHAOS4_TIKEI");
+	ReplacePVM("CHAOS4_WAVE");
+	for (int i = 0; i < 3; i++)
+	{
+		Chaos4Fog[i].Color = 0xFF000000;
+		Chaos4Fog[i].Layer = 1.0f;
+		Chaos4Fog[i].Distance = 2000.0f;
+		Chaos4Fog[i].Toggle = 0;
+	}
+}
+
+void B_CHAOS4_Load()
 {
 	NJS_MATERIAL* material;
 	B_CHAOS4_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\B_CHAOS4\\0.sa1lvl"));
@@ -324,13 +344,6 @@ void Chaos4_Init()
 		WriteCall((void*)0x55667C, Chaos4KamaWave);
 		WriteCall((void*)0x5539E6, SetMaterial_Chaos4Wave); // Make Chaos 4 wave visible
 		((NJS_MATERIAL*)0x11C7BEC)->attr_texId = 0; // Fix Chaos 4 wave texture ID
-		for (int i = 0; i < 3; i++)
-		{
-			Chaos4Fog[i].Color = 0xFF000000;
-			Chaos4Fog[i].Layer = 1.0f;
-			Chaos4Fog[i].Distance = 2000.0f;
-			Chaos4Fog[i].Toggle = 0;
-		}
 		ModelsLoaded_B_CHAOS4 = true;
 	}
 }

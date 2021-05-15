@@ -138,7 +138,17 @@ void Chaos0Action(NJS_ACTION* a1, float frameNumber)
 	late_ActionMesh(a1, frameNumber, (QueuedModelFlagsB)0);
 }
 
-void Chaos0_Init()
+void B_CHAOS0_Init()
+{
+	ReplaceSET("SET1500S");
+	ReplacePVM("LM_CHAOS0");
+	ReplacePVM("CHAOS0");
+	ReplacePVM("CHAOS0_EFFECT");
+	ReplacePVM("CHAOS0_OBJECT");
+	ReplacePVM("EV_CHAOS0_MANJU");
+}
+
+void B_CHAOS0_Load()
 {
 	B_CHAOS0_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\B_CHAOS0\\0.sa1lvl"));
 	LandTable* B_CHAOS0 = B_CHAOS0_Info->getlandtable();

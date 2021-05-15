@@ -561,6 +561,60 @@ void ParseEmeraldCoastColFlagsAndMaterials(LandTable *landtable, int act)
 
 void EmeraldCoast_Init()
 {
+	if (!IamStupidAndIWantFuckedUpOcean)
+	{
+		ReplaceCAM("CAM0100E");
+		ReplaceCAM("CAM0100S");
+		ReplaceCAM("CAM0101S");
+		ReplaceCAM("CAM0102B");
+		ReplaceCAM("CAM0102S");
+	}
+	else
+	{
+		ReplaceGeneric("CAM0100E.BIN", "CAM0100E_R.BIN");
+		ReplaceGeneric("CAM0100S.BIN", "CAM0100S_R.BIN");
+		ReplaceGeneric("CAM0101S.BIN", "CAM0101S_R.BIN");
+		ReplaceGeneric("CAM0102S.BIN", "CAM0102S_R.BIN");
+		ReplaceGeneric("CAM0102B.BIN", "CAM0102B_R.BIN");
+	}
+	ReplaceSET("SET0100E");
+	ReplaceSET("SET0100S");
+	ReplaceSET("SET0101M");
+	ReplaceSET("SET0101S");
+	ReplaceSET("SET0102B");
+	ReplaceSET("SET0102S");
+	ReplacePVM("BEACH01");
+	ReplacePVM("BEACH02");
+	ReplacePVM("BEACH03");
+	ReplacePVM("BG_BEACH");
+	ReplacePVM("OBJ_BEACH");
+	ReplacePVM("BEACH_SEA");
+	WriteData<1>((char*)0x4F68E0, 0xC3u); // Disable SetClip_ECoast1
+	if (!IamStupidAndIWantFuckedUpOcean)
+	{
+		for (int i = 0; i < 3; i++)
+		{
+			SkyboxScale_EmeraldCoast1[i].x = 1.0f;
+			SkyboxScale_EmeraldCoast1[i].y = 1.0f;
+			SkyboxScale_EmeraldCoast1[i].z = 1.0f;
+			SkyboxScale_EmeraldCoast2[i].x = 1.0f;
+			SkyboxScale_EmeraldCoast2[i].y = 1.0f;
+			SkyboxScale_EmeraldCoast2[i].z = 1.0f;
+			SkyboxScale_EmeraldCoast3[i].x = 1.0f;
+			SkyboxScale_EmeraldCoast3[i].y = 1.0f;
+			SkyboxScale_EmeraldCoast3[i].z = 1.0f;
+			DrawDist_EmeraldCoast1[i].Maximum = -6000.0f;
+			DrawDist_EmeraldCoast2[i].Maximum = -3900.0f;
+			FogData_EmeraldCoast1[i].Distance = -12000.0f;
+			FogData_EmeraldCoast1[i].Layer = -12000.0f;
+			FogData_EmeraldCoast2[i].Distance = -12000.0f;
+			FogData_EmeraldCoast2[i].Layer = -12000.0f;
+		}
+	}
+}
+
+void EmeraldCoast_Load()
+{
 	// Landtables
 	STG01_0_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG01\\0.sa1lvl"));
 	STG01_1_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG01\\1.sa1lvl"));
@@ -591,27 +645,6 @@ void EmeraldCoast_Init()
 			WriteData((float**)0x4D46C8, &WallCollisionNerf);
 			WriteData((float**)0x4D46D7, &WallCollisionNerf);
 			WriteData((float**)0x4D46E3, &WallCollisionNerf);
-		}
-		if (!IamStupidAndIWantFuckedUpOcean)
-		{
-			for (int i = 0; i < 3; i++)
-			{
-				SkyboxScale_EmeraldCoast1[i].x = 1.0f;
-				SkyboxScale_EmeraldCoast1[i].y = 1.0f;
-				SkyboxScale_EmeraldCoast1[i].z = 1.0f;
-				SkyboxScale_EmeraldCoast2[i].x = 1.0f;
-				SkyboxScale_EmeraldCoast2[i].y = 1.0f;
-				SkyboxScale_EmeraldCoast2[i].z = 1.0f;
-				SkyboxScale_EmeraldCoast3[i].x = 1.0f;
-				SkyboxScale_EmeraldCoast3[i].y = 1.0f;
-				SkyboxScale_EmeraldCoast3[i].z = 1.0f;
-				DrawDist_EmeraldCoast1[i].Maximum = -6000.0f;
-				DrawDist_EmeraldCoast2[i].Maximum = -3900.0f;
-				FogData_EmeraldCoast1[i].Distance = -12000.0f;
-				FogData_EmeraldCoast1[i].Layer = -12000.0f;
-				FogData_EmeraldCoast2[i].Distance = -12000.0f;
-				FogData_EmeraldCoast2[i].Layer = -12000.0f;
-			}
 		}
 		// Ocean models
 		HighPolyOcean_Dynamic = LoadModel("system\\data\\STG01\\Models\\001A132C.sa1mdl");

@@ -208,6 +208,16 @@ void WalkingGuyFix(task* tp, NJS_OBJECT* op, NJS_MOTION* mp, NJS_TEXLIST* lp, do
 	EV_SetMotion(tp, op, MODEL_SS_PEOPLE_MOTIONS[0], lp, speed, mode, linkframe);
 }
 
+void HotelDoorCallback(float frame)
+{
+	ds_ActionClip((NJS_ACTION*)0x2AAB204, frame, 1.0f);
+}
+
+void RenderHotelDoor(NJS_ACTION* a1, float a2, int a3, float a4)
+{
+	DrawModelCallback_QueueFloat(HotelDoorCallback, a2, 2000, (QueuedModelFlagsB)0);
+}
+
 void IceKeySSFix(NJS_ACTION* action, float frame, int flags, float scale)
 {
 	float bias = DrawQueueDepthBias;
@@ -639,6 +649,94 @@ void UnloadLevelFiles_ADV00()
 
 void ADV00_Init()
 {
+	ReplaceSET("SETSS00A");
+	ReplaceSET("SETSS00B");
+	ReplaceSET("SETSS00E");
+	ReplaceSET("SETSS00K");
+	ReplaceSET("SETSS00L");
+	ReplaceSET("SETSS00M");
+	ReplaceSET("SETSS00S");
+	ReplaceSET("SETSS01A");
+	ReplaceSET("SETSS01B");
+	ReplaceSET("SETSS01E");
+	ReplaceSET("SETSS01K");
+	ReplaceSET("SETSS01L");
+	ReplaceSET("SETSS01M");
+	ReplaceSET("SETSS01S");
+	ReplaceSET("SETSS02S");
+	ReplaceSET("SETSS02B");
+	ReplaceSET("SETSS03A");
+	ReplaceSET("SETSS03B");
+	ReplaceSET("SETSS03E");
+	ReplaceSET("SETSS03K");
+	ReplaceSET("SETSS03L");
+	ReplaceSET("SETSS03M");
+	ReplaceSET("SETSS03S");
+	ReplaceSET("SETSS04A");
+	ReplaceSET("SETSS04B");
+	ReplaceSET("SETSS04E");
+	ReplaceSET("SETSS04K");
+	ReplaceSET("SETSS04L");
+	ReplaceSET("SETSS04M");
+	ReplaceSET("SETSS04S");
+	ReplaceSET("SETSS05S");
+	ReplaceCAM("CAMSS00S");
+	ReplaceCAM("CAMSS01S");
+	ReplaceCAM("CAMSS02S");
+	ReplaceCAM("CAMSS03S");
+	ReplaceCAM("CAMSS04S");
+	ReplaceCAM("CAMSS05S");
+	ReplacePVM("ADVSS00");
+	ReplacePVM("ADVSS01");
+	ReplacePVM("ADVSS02");
+	ReplacePVM("ADVSS03");
+	ReplacePVM("ADVSS04");
+	ReplacePVM("ADVSS05");
+	ReplacePVM("OBJ_SS");
+	ReplacePVM("SS_BG");
+	ReplacePVM("SS_BOAT");
+	ReplacePVM("SS_BURGER");
+	ReplacePVM("SS_CASINO");
+	ReplacePVM("SS_DENTOU");
+	ReplacePVM("SS_EKIIN");
+	ReplacePVM("SS_KANBAN");
+	ReplacePVM("SS_MIZUGI");
+	ReplacePVM("SS_PEOPLE");
+	ReplacePVM("SS_TRAIN");
+	ReplacePVM("SS_TWINS");
+	ReplacePVM("SSCAR");
+	ReplacePVM("SSPATCAR_BODY");
+	ReplacePVR("SS_FINESKY");
+	ReplacePVR("SS_NIGHTSKY");
+	ReplacePVR("SS_NIGHTSKYB");
+	ReplacePVR("SS_YUSKAY_MINI");
+	// Fog data
+	for (int i = 0; i < 3; i++)
+	{
+		StationSquare1Fog[i].Toggle = 1;
+		StationSquare2Fog[i].Toggle = 1;
+		StationSquare3Fog[i].Toggle = 1;
+		StationSquare4Fog[i].Toggle = 1;
+		StationSquare5Fog[i].Toggle = 1;
+		StationSquare6Fog[i].Toggle = 1;
+		StationSquare1Fog[i].Distance = -12000.0f;
+		StationSquare2Fog[i].Distance = -12000.0f;
+		StationSquare3Fog[i].Distance = -12000.0f;
+		StationSquare4Fog[i].Distance = -12000.0f;
+		StationSquare5Fog[i].Distance = -12000.0f;
+		StationSquare6Fog[i].Distance = -12000.0f;
+		StationSquare1Fog[i].Layer = -12000.0f;
+		StationSquare2Fog[i].Layer = -12000.0f;
+		StationSquare3Fog[i].Layer = -12000.0f;
+		StationSquare4Fog[i].Layer = -12000.0f;
+		StationSquare5Fog[i].Layer = -12000.0f;
+		StationSquare6Fog[i].Layer = -12000.0f;
+		StationSquare6DrawDist[i].Maximum = -600.0f;
+	}
+}
+
+void ADV00_Load()
+{
 	// This is done every time the function is called
 	ADV00_0_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV00\\0.sa1lvl"));
 	ADV00_1_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\ADV00\\1.sa1lvl"));
@@ -710,6 +808,7 @@ void ADV00_Init()
 		StationSquareCarTextureIDs[5] = 7; // Not an actual car surface texture but it's like that in SA1 too
 		WriteCall((void*)0x6AD0A1, WalkingGuyFix); // Walking guy in Amy's intro
 		WriteData((short*)0x6AD16C, (short)460); // Walking guy speed
+		WriteCall((void*)0x630AC7, RenderHotelDoor);
 		WriteCall((void*)0x638601, DrawCasinoDoor1);
 		WriteCall((void*)0x638640, DrawCasinoDoor2);
 		WriteCall((void*)0x638683, DrawCasinoDoor3);
@@ -868,29 +967,6 @@ void ADV00_Init()
 		SwapMeshsets(Parasol_4, 8, 6); // Move heart after glass
 		SwapMeshsets(Parasol_4, 7, 8); // Move lemon after glass
 		WriteCall((void*)0x63A6A4, RenderParasol); //Parasol
-		// Fog data
-		for (int i = 0; i < 3; i++)
-		{
-			StationSquare1Fog[i].Toggle = 1;
-			StationSquare2Fog[i].Toggle = 1;
-			StationSquare3Fog[i].Toggle = 1;
-			StationSquare4Fog[i].Toggle = 1;
-			StationSquare5Fog[i].Toggle = 1;
-			StationSquare6Fog[i].Toggle = 1;
-			StationSquare1Fog[i].Distance = -12000.0f;
-			StationSquare2Fog[i].Distance = -12000.0f;
-			StationSquare3Fog[i].Distance = -12000.0f;
-			StationSquare4Fog[i].Distance = -12000.0f;
-			StationSquare5Fog[i].Distance = -12000.0f;
-			StationSquare6Fog[i].Distance = -12000.0f;
-			StationSquare1Fog[i].Layer = -12000.0f;
-			StationSquare2Fog[i].Layer = -12000.0f;
-			StationSquare3Fog[i].Layer = -12000.0f;
-			StationSquare4Fog[i].Layer = -12000.0f;
-			StationSquare5Fog[i].Layer = -12000.0f;
-			StationSquare6Fog[i].Layer = -12000.0f;
-			StationSquare6DrawDist[i].Maximum = -600.0f;
-		}
 		ModelsLoaded_ADV00 = true;
 	}
 }

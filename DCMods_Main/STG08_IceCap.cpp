@@ -457,6 +457,48 @@ void RenderBigIcicleWithDepth(NJS_OBJECT* a1, int blend_mode, float scale)
 
 void IceCap_Init()
 {
+	ReplaceCAM("CAM0800S");
+	ReplaceCAM("CAM0801S");
+	ReplaceCAM("CAM0802S");
+	ReplaceCAM("CAM0803B");
+	ReplaceSET("SET0800S");
+	ReplaceSET("SET0801S");
+	ReplaceSET("SET0802M");
+	ReplaceSET("SET0802S");
+	ReplaceSET("SET0803B");
+	ReplacePVM("BG_ICECAP");
+	ReplacePVM("ICECAP01");
+	ReplacePVM("ICECAP02");
+	ReplacePVM("ICECAP03");
+	ReplacePVM("OBJ_ICECAP");
+	ReplacePVM("OBJ_ICECAP2");
+	ReplacePVR("MIW_B001");
+	ReplacePVR("MTX_BOARD0");
+	ReplacePVR("SB_BOARD1");
+	for (int i = 0; i < 3; i++)
+	{
+		IceCap1Fog[i].Color = 0xFFFFFFFF;
+		IceCap1Fog[i].Layer = 1500.0f;
+		IceCap1Fog[i].Distance = 3800.0f;
+		IceCap1Fog[i].Toggle = 1;
+		DrawDist_IceCap1[i].Maximum = -12000.0;
+		IceCap2Fog[i].Color = 0xFF000060;
+		IceCap2Fog[i].Layer = 1600.0f;
+		IceCap2Fog[i].Distance = 4000.0f;
+		IceCap2Fog[i].Toggle = 1;
+		DrawDist_IceCap2[i].Maximum = -4000.0;
+		DrawDist_IceCap3[i].Maximum = -8000.0;
+		IceCap3Fog[i].Layer = 2500.0f;
+		IceCap3Fog[i].Color = 0xFFFFFFFF;
+		IceCap4Fog[i].Color = 0xFF000060;
+		IceCap4Fog[i].Layer = 800.0f;
+		IceCap4Fog[i].Distance = 3800.0f;
+		IceCap4Fog[i].Toggle = 1;
+	}
+}
+
+void IceCap_Load()
+{
 	STG08_0_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG08\\0.sa1lvl"));
 	STG08_1_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG08\\1.sa1lvl"));
 	STG08_2_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\STG08\\2.sa1lvl"));
@@ -533,26 +575,6 @@ void IceCap_Init()
 		((NJS_OBJECT*)0xE43544)->basicdxmodel->mats[0].attr_texId = 58; // Snowboard effect
 		((NJS_SPRITE*)0xE956E4)->tlist = &OBJ_ICECAP_TEXLIST; // Snow effect texlist
 		((NJS_TEXANIM*)0xE956D0)->texid = 96; // Snow effect texture ID
-		for (int i = 0; i < 3; i++)
-		{
-			IceCap1Fog[i].Color = 0xFFFFFFFF;
-			IceCap1Fog[i].Layer = 1500.0f;
-			IceCap1Fog[i].Distance = 3800.0f;
-			IceCap1Fog[i].Toggle = 1;
-			DrawDist_IceCap1[i].Maximum = -12000.0;
-			IceCap2Fog[i].Color = 0xFF000060;
-			IceCap2Fog[i].Layer = 1600.0f;
-			IceCap2Fog[i].Distance = 4000.0f;
-			IceCap2Fog[i].Toggle = 1;
-			DrawDist_IceCap2[i].Maximum = -4000.0;
-			DrawDist_IceCap3[i].Maximum = -8000.0;
-			IceCap3Fog[i].Layer = 2500.0f;
-			IceCap3Fog[i].Color = 0xFFFFFFFF;
-			IceCap4Fog[i].Color = 0xFF000060;
-			IceCap4Fog[i].Layer = 800.0f;
-			IceCap4Fog[i].Distance = 3800.0f;
-			IceCap4Fog[i].Toggle = 1;
-		}
 		ModelsLoaded_STG08 = true;
 	}
 }

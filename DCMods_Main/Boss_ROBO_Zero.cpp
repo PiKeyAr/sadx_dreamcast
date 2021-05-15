@@ -79,7 +79,22 @@ void DrawShadow_ERobo_Fix(NJS_OBJECT *a1)
 	lateDrawObject(a1, QueuedModelFlagsB_SomeTextureThing, 1.0f);
 }
 
-void Zero_Init()
+void B_ROBO_Init()
+{
+	ReplaceSET("SETZEROA");
+	ReplaceSET("SETZEROS");
+	ReplacePVM("EROBO");
+	ReplaceGeneric("EROBO_GC.NB", "EROBO_DC.NB");
+	ReplacePVM("E101R_TIKEI");
+	for (int i = 0; i < 3; i++)
+	{
+		DrawDist_Zero[i].Maximum = -9500.0f;
+		Fog_Zero[i].Distance = -10000.0f;
+		Fog_Zero[i].Layer = -10000.0f;
+	}
+}
+
+void B_ROBO_Load()
 {
 	B_ROBO_Info = new LandTableInfo(HelperFunctionsGlobal.GetReplaceablePath("SYSTEM\\data\\B_ROBO\\0.sa1lvl"));
 	LandTable* B_ROBO = B_ROBO_Info->getlandtable(); //&landtable_00000110;
@@ -109,17 +124,11 @@ void Zero_Init()
 			ZeroBossOcean->basicdxmodel->mats[0].diffuse.color = 0x7FB2B2B2;
 			AddTextureAnimation_Permanent(23, 0, &ZeroBossOcean->basicdxmodel->mats[0], false, 4, 4, 13);
 		}
-		for (int i = 0; i < 3; i++)
-		{
-			DrawDist_Zero[i].Maximum = -9500.0f;
-			Fog_Zero[i].Distance = -10000.0f;
-			Fog_Zero[i].Layer = -10000.0f;
-		}
 		ModelsLoaded_B_ROBO = true;
 	}
 }
 
-void Zero_OnFrame()
+void B_ROBO_OnFrame()
 {
 	// Barriers
 	if (ZeroBarriers_FadeOut)

@@ -342,7 +342,7 @@ void HideMesh_Object_Wrapper(NJS_OBJECT* object, int arg, ...)
 
 void CheckAndUnloadLevelFiles()
 {
-	General_Init();
+	General_Load();
 	ClearTextureAnimationData();
 	if (CurrentLevel != LevelIDs_StationSquare && ADV00_0_Info) UnloadLevelFiles_ADV00();
 	if (CurrentLevel != LevelIDs_EggCarrierOutside && ADV01_0_Info) UnloadLevelFiles_ADV01();
