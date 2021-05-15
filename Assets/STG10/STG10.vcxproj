@@ -98,6 +98,7 @@
     <ClInclude Include="..\..\Data\STG10_0.h" />
     <ClInclude Include="..\..\Data\STG10_1.h" />
     <ClInclude Include="..\..\Data\STG10_2.h" />
+    <ClInclude Include="STG10_Objects.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

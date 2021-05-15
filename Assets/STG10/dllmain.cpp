@@ -13,3 +13,4 @@ NJS_TEXLIST texlist_finalegg3 = {arrayptrandlength(textures_finalegg3)};
 #include "STG10_0.h"
 #include "STG10_1.h"
 #include "STG10_2.h"
+#include "STG10_Objects.h"

@@ -331,6 +331,13 @@ void GachaponExplosionFix(NJS_MODEL_SADX *a1)
 	DrawQueueDepthBias = 0;
 }
 
+void RenderOLight1(NJS_OBJECT* a1, QueuedModelFlagsB a2, float a3)
+{
+	late_DrawModelClip(a1->basicdxmodel, 1, a3);
+	late_DrawModelClipEx(a1->child->basicdxmodel, 4, a3);
+	late_DrawModelClipEx(a1->child->child->basicdxmodel, 4, a3);
+}
+
 void ParseFinalEggMaterials(LandTable* landtable, int act, bool remove)
 {
 	NJS_MATERIAL* material;
@@ -521,9 +528,6 @@ void FinalEgg_Load()
 		// OTatekan
 		*(NJS_OBJECT*)0x1A4425C = *LoadModel("system\\data\\STG10\\Models\\001ECA50.sa1mdl"); // OTatekan pivot
 		*(NJS_OBJECT*)0x1A4583C = *LoadModel("system\\data\\STG10\\Models\\001EDFBC.sa1mdl"); // OTatekan glass
-		// OLight1
-		AddWhiteDiffuseMaterial((NJS_MATERIAL*)0x01A46C10);
-		AddWhiteDiffuseMaterial((NJS_MATERIAL*)0x01A46C24);
 		ForceObjectSpecular_Object((NJS_OBJECT*)0x1C27FB0, false); // OEggKanban sibling
 		// Giant _0Light_Camera_Main fix
 		_0Light_Camera_Main = LoadModel("system\\data\\STG10\\Models\\001AEB24.sa1mdl");
@@ -574,6 +578,11 @@ void FinalEgg_Load()
 		*(NJS_MODEL_SADX*)0x19FBDAC = *LoadModel("system\\data\\STG10\\Models\\001ABCC8.sa1mdl")->basicdxmodel; // OPurs_Camera
 		AddAlphaRejectMaterial(&((NJS_MODEL_SADX*)0x19FBDAC)->mats[0]); // OPurs_Camera
 		WriteCall((void*)0x5B2636, RenderOLight2WithDepth);
+		// OLight1
+		*(NJS_OBJECT*)0x1A472BC = *LoadModel("system\\data\\STG10\\Models\\001EF764.sa1mdl"); // OLight1
+		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x1A472BC)->basicdxmodel->mats[0]);
+		AddWhiteDiffuseMaterial(&((NJS_OBJECT*)0x1A472BC)->basicdxmodel->mats[1]);
+		WriteCall((void*)0x5B2796, RenderOLight1);
 		*(NJS_OBJECT*)0x1A478CC = *LoadModel("system\\data\\STG10\\Models\\001EFCC8.sa1mdl"); // OLight2
 		HideMesh_Object(((NJS_OBJECT*)0x1A478CC), 3); // Hide light
 		((NJS_OBJECT*)0x1A478CC)->basicdxmodel->mats[5].attrflags &= ~NJD_FLAG_USE_ALPHA;

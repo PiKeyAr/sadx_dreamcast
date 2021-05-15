@@ -117,6 +117,7 @@ echo Final Egg
 split dllexport STG10.dll landtable landtable_0001D108 STG10\0.sa1lvl
 split dllexport STG10.dll landtable landtable_00083CCC STG10\1.sa1lvl
 split dllexport STG10.dll landtable landtable_000E67D0 STG10\2.sa1lvl
+split dllexport STG10.dll basicdxmodel object_001EF764 STG10\Models\001EF764.sa1mdl
 echo Hot Shelter
 split dllexport STG12.dll landtable landtable_0001970C STG12\0.sa1lvl
 split dllexport STG12.dll landtable landtable_0005277C STG12\1.sa1lvl
