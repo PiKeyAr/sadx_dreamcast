@@ -2313,10 +2313,10 @@ void AL_MAIN_Load()
 		// Misc
 		WriteData<1>((char*)0x007151D3, 0x1A); // The secret EC egg is a two-tone black egg
 		// Name Machine stuff
-		ECGardenStartPoint.Position.y = 71.0f; // Prevent endless jumping in EC garden with the DC model for the Name Machine
-		MRGardenReturnPoint.Position.x = 219; // Same for MR garden
-		MRGardenReturnPoint.Position.y = 15.45f; // Same for MR garden
-		MRGardenReturnPoint.Position.z = -48.5f; // Same for MR garden
+		// Prevent endless jumping in EC garden with the DC model for the Name Machine (required for DX MR garden too)
+		MRGardenReturnPoint.Position.x = 219;
+		MRGardenReturnPoint.Position.y = 15.45f;
+		MRGardenReturnPoint.Position.z = -48.5f;
 		WriteData((NJS_OBJECT**)0x33D0D0C, ChaoVMU);
 		WriteData((NJS_OBJECT**)0x33D0D10, ChaoVMU);
 		WriteData((NJS_OBJECT**)0x33D0D14, ChaoVMU);
@@ -2450,6 +2450,7 @@ void AL_MAIN_Load()
 		// Egg Carrier garden stuff
 		if (EnabledLevels[LevelIDs_ECGarden])
 		{
+			ECGardenStartPoint.Position.y = 71.0f; // Prevent endless jumping in EC garden with the DC model for the Name Machine (DC garden only)
 			ChaoGardenSky_EC_Sky = LoadModel("system\\data\\AL_GARDEN01\\Models\\000105E4.sa1mdl"); // Modified model with different UVs
 			ChaoGardenSky_EC_Water = LoadModel("system\\data\\AL_GARDEN01\\Models\\0000F01C.sa1mdl");
 			ChaoGardenSky_EC_Water->basicdxmodel->mats[0].attrflags &= ~NJD_DA_ONE;
