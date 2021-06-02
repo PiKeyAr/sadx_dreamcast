@@ -175,7 +175,7 @@ void RedMountain_Load()
 		MOUNTAIN03_TEXLIST = texlist_mountain3;
 		// Cloud fixes
 		RMCloudTop = LoadModel("system\\data\\STG05\\Models\\00183AF8.sa1mdl");
-		RMCloudBottom = CloneObject(RMCloudTop);
+		RMCloudBottom = LoadModel("system\\data\\STG05\\Models\\00183AF8.sa1mdl"); // Needs unique UVs
 		WriteCall((void*)0x600CA3, SetCloudColor); // Set alpha, but keep colors at 1.0
 		WriteCall((void*)0x006011D8, RenderRMClouds_Top);
 		WriteCall((void*)0x0060121C, RenderRMClouds_Bottom);
